@@ -10,8 +10,13 @@ totalSeconds %= 3600;
 let minutes = Math.floor(totalSeconds / 60);
 let seconds = totalSeconds % 60;
   
-  message.channel.send(`Ativo faz: ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos`)
-  
+let embed = new Discord.MessageEmbed() 
+.setColor(`RANDOM`) 
+.setTitle(`Tempo de atividade`) 
+.setDescription(`Faz ${days} dias, ${hours} Horas, ${minutes} e ${seconds} segundos.`)
+
+.setFooter(`• Autor: ${message.author.tag}`, message.author.displayAvatarURL({format: "png"}));
+await message.channel.send(embed); 
   
   message.delete().catch(O_o => {});
 
