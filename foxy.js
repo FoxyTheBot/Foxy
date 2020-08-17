@@ -20,7 +20,8 @@ client.on("ready", () => {
       `f!help para ajuda`,
       `Made by WinGamer`,
       `Imagem por: Bis❄#1651`,
-      `Versão 2970`
+      `Versão 2970`,
+      `Em ${client.guilds.cache.size} Servidores`
   ],
 
   i = 0;
@@ -38,7 +39,7 @@ fs.readdir("./commands/", (err, files) => {
     let props = require(`./commands/${file}`);
 
     let commandName = file.split(".")[0];
-    console.log(`Comando ${commandName} foi carregado`);
+    console.log(`Comando ${commandName} carregado com sucesso! ✅`);
     
     client.commands.set(commandName, props);
   });
@@ -46,7 +47,7 @@ fs.readdir("./commands/", (err, files) => {
 client.on('message', async (msg, message, channel) => {
   
   if (msg.content === 'f!ping') {
-  msg.reply('Ping?').then(m => m.edit(`${msg.author}, Pong! Latência é ${m.createdTimestamp - msg.createdTimestamp}ms. Latência da API é ${Math.round(client.ping)} ms`))
+  msg.reply('Calculando Latência.').then(m => m.edit(`${msg.author}, Pong! Latência é ${m.createdTimestamp - msg.createdTimestamp}ms. Latência da API é ${Math.round(client.ping)} ms`))
   }                
 });
 client.on("message", async message => {
