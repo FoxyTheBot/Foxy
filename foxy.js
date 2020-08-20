@@ -20,14 +20,15 @@ client.on("ready", () => {
       `f!help para ajuda`,
       `Made by WinGamer`,
       `Imagem por: Bis❄#1651`,
-      `Versão 2970`,
-      `Em ${client.guilds.cache.size} Servidores`
+      `Em ${client.guilds.cache.size} Servidores`,
+      `Sabia que sou open source? https://github.com/WinG4mer/FoxyBot `
+
   ],
 
   i = 0;
   setInterval(() => client.user.setActivity(`${activities[i++ %
   activities.length]}`,{
-    type: "LISTENING"
+    type: "WATCHING"
   }), 5000); //WATCHING, LISTENING, PLAYING, STREAMING
   console.log("Olá Mundo!")
   })

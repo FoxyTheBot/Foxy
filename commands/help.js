@@ -5,8 +5,8 @@ exports.run = async (client, message, args) => {
 
   let embed = new Discord.MessageEmbed() 
     .setColor(`#4cd8b2`) 
-    .setTitle(`Central de Ajuda`) 
-    .setDescription("f!ban `Bane o usuario`\n f!coinflip `Cara ou coroa?` \n f!kick `Expulsa usuário do servidor` \n f!mute `Silencia o usuário` \n f!help `Mostra essa mensagem` \n f!support `Mostra meu servidor de suporte` \n f!uptime `Verifica o tempo ativo` \n f!say `Você diz, eu repito` \n f!invite `me envie para o seu servidor!` \n f!github `Mostra o github de WinGamer` \n f!clear `limpa mensagens no canal` \n f!unban `desbane usuario mencionado` \n f!antimalware `É uma lista de comandos, que te ajuda a se prevenir de ataques, ou espionagem` \n f!8ball <pergunta> `Quer saber se sim, não ou com certeza? Pergunte para mim` \n f!love `Conselhos amorosos do Foxy` \n f!kiss `Mencione alguém para beijar` \n f!avatar `Ver ou baixar o avatar do usuário mencionado` \n f!botinfo `Mostra minhas informações`")
+    .setTitle(`<:info:718944993741373511> Central de Ajuda <:info:718944993741373511>`) 
+    .setDescription("**Moderação** \n f!kick `Expulsa usuario do servidor` \n f!ban `Bane usuário mencionado` \n f!clear `Apaga mensagens no canal` \n f!mute `Muta usuário mencionado` \n f!unmute `Desmuta Usuário` \n f!unban `Desbane usuario` \n **Diversão** \n  f!8ball `Me pergunte algo` \n f!kiss `Mencione alguem para beijar` \n f!say `Você diz... eu repito` \n f!coinflip `Cara ou coroa` \n **Miscelâneas** \n f!servers `Ver minha quantidade de servidores` \n f!invite `Me envie para o seu servidor` \n f!support `Servidor de suporte` \n f!avatar `Sua foto de perfil ou de um user` \n f!bsod `Tela azul D:` \n f!github `GitHub do WinGamer` \n f!botinfo `Sobre mim :D` \n f!crab `CRAB`z \n f!sanduba `Bem aleatorio mesmo`")
 
     .setFooter(`• Autor: ${message.author.tag}`, message.author.displayAvatarURL({format: "png"}));
  await message.channel.send(embed); 
