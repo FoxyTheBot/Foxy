@@ -11,7 +11,7 @@ app.get('/', function(req, res) {
 });
 
 const listener = app.listen(process.env.PORT, function() {
-  console.log('Your app is listening on port ' + listener.address().port);
+  console.log('Seu projeto está na porta ' + listener.address().port);
 });
 
 client.commands = new Enmap();
@@ -21,7 +21,7 @@ client.on("ready", () => {
       `Made by WinGamer`,
       `Imagem por: Bis❄#1651`,
       `Em ${client.guilds.cache.size} Servidores`,
-      `Sabia que sou open source? https://github.com/WinG4mer/FoxyBot `
+      `Sou open source😎 https://github.com/WinG4mer/FoxyBot `
 
   ],
 
@@ -30,7 +30,7 @@ client.on("ready", () => {
   activities.length]}`,{
     type: "WATCHING"
   }), 5000); //WATCHING, LISTENING, PLAYING, STREAMING
-  console.log("Olá Mundo!")
+  console.log(`Bot iniciado com ${client.guilds.cache.size} Servidores e ${client.users.cache.size} Membros`)
   })
 fs.readdir("./commands/", (err, files) => {
   if (err) return console.error(err);
@@ -40,7 +40,7 @@ fs.readdir("./commands/", (err, files) => {
     let props = require(`./commands/${file}`);
 
     let commandName = file.split(".")[0];
-    console.log(`Comando ${commandName} carregado com sucesso! ✅`);
+    console.log(`${commandName} carregado com sucesso! ✅`);
     
     client.commands.set(commandName, props);
   });

@@ -4,15 +4,15 @@ const config = require('../config.json')
 exports.run = async (client, message, args) => {
 
 var list = [
-  'https://imgur.com/iclUiUN.gif',
-  'https://imgur.com/lYQt9rx.gif',
-  'https://imgur.com/w1TU5mR.gif'
+  'https://i.imgur.com/wOmoeF8.gif',
+  'https://media1.tenor.com/images/43fce3d874179afb2d9d74a7402dcff4/tenor.gif?itemid=17264448',
+  'https://thumbs.gfycat.com/WellgroomedVapidKitten-small.gif'
 ];
 
 var rand = list[Math.floor(Math.random() * list.length)];
 let user = message.mentions.users.first() || client.users.cache.get(args[0]);
 if (!user) {
-return message.reply('lembre-se de mencionar um usuário válido para beijar!');
+return message.reply('lembre-se de mencionar um usuário válido para abraçar!');
 }
 /*
 message.channel.send(`${message.author.username} **acaba de beijar** ${user.username}! :heart:`, {files: [rand]});
@@ -20,7 +20,7 @@ message.channel.send(`${message.author.username} **acaba de beijar** ${user.user
 let avatar = message.author.displayAvatarURL({format: 'png'});
   const embed = new Discord.MessageEmbed()
         .setColor('#000000')
-        .setDescription(`${message.author} acaba de beijar ${user}`)
+        .setDescription(`${message.author} acaba de abraçar ${user}`)
         .setImage(rand)
         .setTimestamp()
         .setFooter('Made with 💖 by WinGamer#1047')
