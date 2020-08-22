@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
     let embed = new Discord.MessageEmbed() 
     .setColor(`#4cd8b2`) 
     .setTitle(`<:DiscordStaff:731947814246154240> Painel do Desenvolvedor Foxy <:DiscordStaff:731947814246154240>`) 
-    .setDescription(`<a:wumpus:728716750706835518> Servidores: ${client.guilds.cache.size} \n <a:MSNXP:717914271349997598> Usuários: ${client.users.cache.size} \n <a:CatDance:728688774967721994> Canais: ${client.channels.cache.size} \n <a:windows10:728716821145845770> Tempo de atividade: ${days} dias ${hours} horas ${minutes} minutos e ${seconds} segundos \n <a:windows95:711191736764071937> API: ${Math.round(client.ping)} `)
+    .setDescription(`<a:wumpus:728716750706835518> Servidores: ${client.guilds.cache.size} \n <a:MSNXP:717914271349997598> Usuários: ${client.users.cache.size} \n <a:CatDance:728688774967721994> Canais: ${client.channels.cache.size} \n  <a:windows95:711191736764071937> API: ${Math.round(client.ping)} `)
     .setImage("https://discord.com/assets/ef555bf639a11bd65ae3065263788bba.png")
 
     .setFooter(`• Autor: ${message.author.tag}`, message.author.displayAvatarURL({format: "png"}));

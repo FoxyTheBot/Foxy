@@ -4,26 +4,27 @@ const config = require('../config.json')
 exports.run = async (client, message, args) => {
 
 var list = [
-  'https://imgur.com/iclUiUN.gif',
-  'https://imgur.com/lYQt9rx.gif',
-  'https://imgur.com/w1TU5mR.gif'
+  'https://image.myanimelist.net/ui/BQM6jEZ-UJLgGUuvrNkYUFk2Ae92E1tAeAfjk_pGLpKnHfWiikue5-m1fMe8_1TjRXlLKNwbrQTs1EfUN5ol3A',
+  'https://i.pinimg.com/originals/65/57/f6/6557f684d6ffcd3cd4558f695c6d8956.gif',
+  'https://media1.tenor.com/images/b6d8a83eb652a30b95e87cf96a21e007/tenor.gif?itemid=10426943'
 ];
 
 var rand = list[Math.floor(Math.random() * list.length)];
 let user = message.mentions.users.first() || client.users.cache.get(args[0]);
 if (!user) {
-return message.reply('lembre-se de mencionar um usuário válido para beijar!');
+return message.reply('lembre-se de mencionar um usuário válido para bater!');
 }
 /*
 message.channel.send(`${message.author.username} **acaba de beijar** ${user.username}! :heart:`, {files: [rand]});
 */
 let avatar = message.author.displayAvatarURL({format: 'png'});
   const embed = new Discord.MessageEmbed()
+        .setTitle('😱')
         .setColor('#000000')
-        .setDescription(`${message.author} acaba de beijar ${user}`)
+        .setDescription(`${message.author} acaba de bater em ${user}`)
         .setImage(rand)
         .setTimestamp()
-        .setFooter('Made with 💖 by WinGamer#1047')
+        .setFooter('😱😱')
         .setAuthor(message.author.tag, avatar);
   await message.channel.send(embed);
 }

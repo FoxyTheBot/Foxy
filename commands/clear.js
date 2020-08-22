@@ -1,14 +1,15 @@
 const Discord = require("discord.js");
+const config = require('../config.json')
 
 exports.run = async (client, message, args) => {
   if (!message.member.permissions.has("MANAGE_MESSAGES"))
     return message.reply(
-      "você é fraco, lhe falta permissão de `Gerenciar Mensagens` para usar esse comando"
+      "<:Error:718944903886930013> você é fraco, lhe falta permissão de `Gerenciar Mensagens` para usar esse comando"
     );
   const deleteCount = parseInt(args[0], 10);
   if (!deleteCount || deleteCount < 1 || deleteCount > 99)
     return message.reply(
-      "forneça um número de até **99 mensagens** a serem excluídas"
+      "<:Alerta:718944960933527632> forneça um número de até **99 mensagens** a serem excluídas"
     );
 
   const fetched = await message.channel.messages.fetch({
