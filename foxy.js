@@ -11,24 +11,24 @@ app.get('/', function(req, res) {
 });
 
 const listener = app.listen(process.env.PORT, function() {
-  console.log('Seu projeto está na porta ' + listener.address().port);
+  console.log('Port: ' + listener.address().port);
 });
-
 client.commands = new Enmap();
 client.on("ready", () => {
     let activities = [
       `f!help para ajuda`,
-      `Made by WinGamer`,
-      `Imagem por: Bis❄#1651`,
-      `Em ${client.guilds.cache.size} Servidores`,
-      `Sou open source😎 https://github.com/WinG4mer/FoxyBot `
+      `💻 Made by WinGamer#1047 `,
+      `📷 Fanart por: Bis❄#1651`,
+      `💖 Em ${client.guilds.cache.size} Servidores`,
+      ` Com ${client.users.cache.size} membros 💖`,
+      `😎 Sou open source https://github.com/WinG4mer/FoxyBot `
 
   ],
 
   i = 0;
   setInterval(() => client.user.setActivity(`${activities[i++ %
   activities.length]}`,{
-    type: "WATCHING"
+    type: "PLAYING"
   }), 5000); //WATCHING, LISTENING, PLAYING, STREAMING
   console.log(`Bot iniciado com ${client.guilds.cache.size} Servidores e ${client.users.cache.size} Membros`)
   })
@@ -54,10 +54,8 @@ client.on('message', async (msg, message, channel) => {
 client.on("message", async message => {
     
   if (message.author.bot) return;
-  //disable DM
   if (message.channel.dm === "dm") return;
   
-//variables to work bot
 let messageArray = message.content.split(" ");
 let cmd = messageArray[0];
 let args = messageArray.slice(1);

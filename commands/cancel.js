@@ -6,7 +6,8 @@ exports.run = async (client, message, args) => {
       'velho(a)',
       'feio(a)',
       'corno(a)',
-      'idiota'
+      'idiota',
+      `trouxa`
     ];
     
     var rand = list[Math.floor(Math.random() * list.length)];
