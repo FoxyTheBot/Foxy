@@ -7,8 +7,3 @@ module.exports.run = async (client, message, args) => {
 
     message.channel.send(results[result])
 }
-
-module.exports.config = {
-    name: "8ball",
-    usage: "f!8ball <Pergunta>"
-}
