@@ -14,14 +14,16 @@ const listener = app.listen(process.env.PORT, function() {
   console.log('Port: ' + listener.address().port);
 });
 client.commands = new Enmap();
+
 client.on("ready", () => {
     let activities = [
       `f!help para ajuda`,
       `💻 Made by WinGamer#1047 `,
       `📷 Fanart por: Bis❄#1651`,
       `💖 Em ${client.guilds.cache.size} Servidores`,
-      ` Com ${client.users.cache.size} membros 💖`,
-      `😎 Sou open source https://github.com/WinG4mer/FoxyBot `
+      `Com ${client.users.cache.size} membros 💖`,
+      `😎 Sou open source https://github.com/WinG4mer/FoxyBot`
+
 
   ],
 

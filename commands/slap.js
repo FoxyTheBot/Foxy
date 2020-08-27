@@ -19,7 +19,6 @@ message.channel.send(`${message.author.username} **acaba de beijar** ${user.user
 */
 let avatar = message.author.displayAvatarURL({format: 'png'});
   const embed = new Discord.MessageEmbed()
-        .setTitle('😱')
         .setColor('#000000')
         .setDescription(`${message.author} acaba de bater em ${user}`)
         .setImage(rand)
