@@ -1,13 +1,9 @@
-const Discord = require("discord.js");
+const Discord = require('discord.js')
 
-module.exports.run = async (client, message, args) => {
-  
-if(message.author.id != "708493555768885338") return message.channel.send("Desculpa, Mas só meu dono pode usar esse comando!")
-  message.channel.send(`WinGamer eu estou em ${client.guilds.cache.size} Servidores ${client.users.cache.size} Membros`)
-  message.channel.send(client.guilds.map(g=>g.name).join('\n'))
-  }
-
-
-module.exports.help = {
-  name: "servers"
+module.exports.run = async(client, message, channel) => {
+    const embed = new Discord.MessageEmbed()
+    message
+    .setTitle("Servidores e membros")
+    .setDescription(`<a:MSNXP:717914271349997598> ${client.guilds.cache.size} Servidores \n <a:DRFrog:728716839601045524> ${client.users.cache.size} Membros `)
+    await message.channel.send(embed)
 }
