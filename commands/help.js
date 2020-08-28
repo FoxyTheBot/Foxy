@@ -44,7 +44,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     adm.on('collect', r2 => {
       
       ajuda.setTitle("Comandos de administração!")
-      ajuda.setDescription("f!kick - Expulsa um usuário \n f!clear - Limpa até 99 mensagens em um canal \n f!ban - Bana um membro! \n f!unban - Desbana um membro! \n f!mute - Muta um usuário \n f!unmute - Desmuta um usuário")
+      ajuda.setDescription("f!kick - Expulsa um usuário \n f!clear - Limpa até 99 mensagens em um canal \n f!ban - Ban um membro! \n f!unban - Desban um membro! \n f!mute - Muta um usuário \n f!unmute - Desmuta um usuário")
       msg.edit(ajuda)
       
     })
@@ -63,7 +63,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     })
     Misc.on('collect', r2 => {
       ajuda.setTitle("Miscelâneas")
-      ajuda.setDescription("f!servers - Minha quantidade de servers yeey \n f!ad faça anúncio em um canal \n f!cancel - Cancele um usuário \n f!invite - Me envie para o seu servidor \n f!avatar - Veja uma foto de perfil \n f!github - GitHub do meu criador :D \n f!crab - 🦀")
+      ajuda.setDescription("f!servers - Minha quantidade de servers yeey \n f!ad - faça anúncio em um canal \n f!cancel - Cancele um usuário \n f!invite - Me envie para o seu servidor \n f!avatar - Veja uma foto de perfil \n f!github - GitHub do meu criador :D \n f!crab - 🦀")
       msg.edit(ajuda)
     })
 
