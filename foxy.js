@@ -20,9 +20,11 @@ client.on("ready", () => {
       `f!help para ajuda`,
       `💻 Made by WinGamer#1047 `,
       `📷 Fanart por: Bis❄#1651`,
-      `💖 Em ${client.guilds.cache.size} Servidores`,
+      `😍 ${client.guilds.cache.size} Servidores`,
       `Com ${client.users.cache.size} membros 💖`,
-      `😎 Sou open source https://github.com/WinG4mer/FoxyBot`
+      `😎 Sou open source https://github.com/WinG4mer/FoxyBot`,
+      `Encontrou falhas? Reporte para o suporte usando f!invite`,
+      `Você sabia que meu criador tem apenas 14 anos? :3`
 
 
   ],

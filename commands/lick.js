@@ -14,9 +14,7 @@ let user = message.mentions.users.first() || client.users.cache.get(args[0]);
 if (!user) {
 return message.reply('lembre-se de mencionar um usuário válido para lamber!');
 }
-/*
-message.channel.send(`${message.author.username} **acaba de beijar** ${user.username}! :heart:`, {files: [rand]});
-*/
+
 let avatar = message.author.displayAvatarURL({format: 'png'});
   const embed = new Discord.MessageEmbed()
         .setColor('#000000')
