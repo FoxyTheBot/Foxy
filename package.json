@@ -10,6 +10,7 @@
     "start": "node ."
   },
   "dependencies": {
+    "canvas": "^2.6.1",
     "discord-eval.js": "^1.0.2",
     "discord.js": "^12.2.0",
     "enmap": "^5.2.1",

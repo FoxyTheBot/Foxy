@@ -51,7 +51,7 @@ module.exports.run = async (client, message, args) => {
          .setColor('#498bfa')
          .setDescription(`Jogador punido: **${user}**\nAutor da punição: ${message.author}\nMotivo da punição: ${reason}\nTipo de punição: Banimento.`);
          let banschannel = client.channels.cache.get('741078512886087681')
-         if(!banschannel) return message.channel.send(" |foi banido. ");
+         if(!banschannel) return message.channel.send(`${user} foi punido!`);
   
          message.delete().catch(O_o=>{});
 
