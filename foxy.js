@@ -18,13 +18,14 @@ client.commands = new Enmap();
 client.on("ready", () => {
     let activities = [
       `f!help para ajuda`,
-      `💻 Made by WinGamer#1047 `,
+      `💻 Made by WinGamer `,
       `📷 Fanart por: Bis❄#1651`,
       `😍 ${client.guilds.cache.size} Servidores`,
       `Com ${client.users.cache.size} membros 💖`,
       `😎 Sou open source https://github.com/WinG4mer/FoxyBot`,
       `Encontrou falhas? Reporte para o suporte usando f!invite`,
-      `Você sabia que meu criador tem apenas 14 anos? :3`
+      `Você sabia que meu criador tem apenas 14 anos? :3`,
+      `Com a Mangle 💖`
 
 
   ],
@@ -52,7 +53,7 @@ fs.readdir("./commands/", (err, files) => {
 client.on('message', async (msg, message, channel) => {
   
   if (msg.content === 'f!ping') {
-  msg.reply('Calculando Latência.').then(m => m.edit(`${msg.author}, Pong! Latência é ${m.createdTimestamp - msg.createdTimestamp}ms. Latência da API é ${Math.round(client.ping)} ms`))
+  msg.reply('Calculando Latência <a:carregando:749403691077074953>').then(m => m.edit(`<:ping:749403780998758520> ${msg.author}, Pong! Latência é ${m.createdTimestamp - msg.createdTimestamp}ms. Latência da API é ${Math.round(client.ping)}ms`))
   }                
 });
 client.on("message", async message => {

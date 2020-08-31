@@ -6,8 +6,8 @@ module.exports.run = async (bot, message, args) => {
   //!tempmute @user 1s/m/h/d
 
   let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if(!tomute) return message.reply("Usuário não encontrado :(");
-  if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("Não consigo mutar ele");
+  if(!tomute) return message.reply("<:nao:749403722488217610> Usuário não encontrado :(");
+  if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("<:nao:749403722488217610> Não consigo mutar ele");
 let muterole = message.guild.roles.find(muterole => muterole.name === "muted");
   //start of create role
   if(!muterole){

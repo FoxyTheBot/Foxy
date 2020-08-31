@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
     if(!member) return message.channel.send(`Use: ${prefix}ban <@Usuário> <Motivo>`)
 
         if(!member.bannable)
-        return message.reply("Eu não posso banir esse usuário, ele pode ter um cargo maior que o meu.")
+        return message.reply("<:nao:749403722488217610> Eu não posso banir esse usuário, ele pode ter um cargo maior que o meu.")
 
         let reason = args.slice(1).join(' ');
 
@@ -35,11 +35,11 @@ module.exports.run = async (client, message, args) => {
         if(!reason) reason = "Não informado"
         member.ban(reason)
 
-         .catch(error => message.reply(`Desculpe ${message.author} não consigo expulsar esse jogador, devido ao erro: ${error}`));
+         .catch(error => message.reply(`<:nao:749403722488217610> Desculpe ${message.author} não consigo expulsar esse jogador, devido ao erro: ${error}`));
 
         let pEmbed = new Discord.MessageEmbed()
 
-        .setDescription(`O jogador ${user.toString()} foi banido. Motivo: ${reason}`)
+        .setDescription(`<:sim:749403706394411068> O jogador ${user.toString()} foi banido. Motivo: ${reason}`)
         .setFooter(`${message.author.tag}`, message.author.displayAvatarURL)
         .setColor("#498bfa").setTimestamp()
         

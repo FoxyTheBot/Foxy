@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 
 exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     
-    if(!message.member.permissions.has("ADMINISTRATOR"))return message.channel.send("Somente adms")
+    if(!message.member.permissions.has("ADMINSTRATOR"))return message.channel.send("<:nao:749403722488217610> Somente adms")
   
   message.channel.send("Onde você quer enviar a mensagem?").then(msg1 => {
     let canal = message.channel.createMessageCollector(c => c.author.id === message.author.id, {max: 1})

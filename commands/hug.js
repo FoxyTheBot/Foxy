@@ -21,7 +21,7 @@ let avatar = message.author.displayAvatarURL({format: 'png'});
         .setDescription(`${message.author} acaba de abraçar ${user}`)
         .setImage(rand)
         .setTimestamp()
-        .setFooter('Made with 💖 by WinGamer#1047')
+        .setFooter('Made with 💖 by WinGamer')
         .setAuthor(message.author.tag, avatar);
   await message.channel.send(embed);
 }

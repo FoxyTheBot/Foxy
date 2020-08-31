@@ -11,7 +11,7 @@ exports.run = async (client, message, args) => {
     .setColor(`#4cd8b2`) 
     .setTitle(`Avatar Carregado!`) 
     .setImage(avatar) 
-    .setFooter("Made with 💖 by WinGamer#1047");
+    .setFooter("Made with 💖 by WinGamer");
  await message.channel.send(embed); 
 
 };
