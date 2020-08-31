@@ -36,7 +36,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     infos.on('collect', r2 => {
       
       ajuda.setTitle("Comandos informativos!")
-      ajuda.setDescription("f!help - Mostra os comandos do bot! \n f!botinfo - Mostra as informações do bot \n ")
+      ajuda.setDescription(" f!help - Mostra os comandos do bot! \n f!botinfo - Mostra as informações do bot \n ")
       msg.edit(ajuda)
       
     })
@@ -44,7 +44,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     adm.on('collect', r2 => {
       
       ajuda.setTitle("Comandos de administração!")
-      ajuda.setDescription("f!kick - Expulsa um usuário \n f!clear - Limpa até 99 mensagens em um canal \n f!ban - Ban um membro! \n f!unban - Desban um membro! \n f!mute - Muta um usuário \n f!unmute - Desmuta um usuário")
+      ajuda.setDescription(" f!kick - Expulsa um usuário \n f!clear - Limpa até 99 mensagens em um canal \n f!ban - Ban um membro! \n f!unban - Desban um membro! \n f!mute - Muta um usuário \n f!unmute - Desmuta um usuário")
       msg.edit(ajuda)
       
     })
@@ -52,18 +52,18 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     fun.on('collect', r2 => {
       
       ajuda.setTitle("Comandos de diversão!")
-      ajuda.setDescription("\n f!ship faça ships com um usuário :3 \n f!8ball - Me pergunte algo \n f!say - Você fala e eu repito \n f!coinflip - Cara ou coroa?")
+      ajuda.setDescription(" f!ship faça ships com um usuário :3 \n f!8ball - Me pergunte algo \n f!say - Você fala e eu repito \n f!coinflip - Cara ou coroa?")
       msg.edit(ajuda)
       
     })
     role.on('collect', r2 => {
       ajuda.setTitle("Comandos de Roleplay")
-     ajuda.setDescription("f!kiss - Beije um usuário \n f!hug - Abraçe um usuário \n f!lick - Lamba um usuário \n f!trava - Trave um zap hehe \n f!pat - Faça Cafuné em um usuário \n f!slap - bata em um usuário")
+     ajuda.setDescription(" f!kiss - Beije um usuário \n f!hug - Abraçe um usuário \n f!lick - Lamba um usuário \n f!trava - Trave um zap hehe \n f!pat - Faça Cafuné em um usuário \n f!slap - bata em um usuário")
     msg.edit(ajuda)
     })
     Misc.on('collect', r2 => {
       ajuda.setTitle("Miscelâneas")
-      ajuda.setDescription("f!servers - Minha quantidade de servers yeey \n f!ad - faça anúncio em um canal \n f!cancel - Cancele um usuário \n f!invite - Me envie para o seu servidor \n f!avatar - Veja uma foto de perfil \n f!github - GitHub do meu criador :D \n f!crab - 🦀")
+      ajuda.setDescription(" f!ad - faça anúncio em um canal \n f!cancel - Cancele um usuário \n f!invite - Me envie para o seu servidor \n f!avatar - Veja uma foto de perfil \n f!github - GitHub do meu criador :D \n f!crab - 🦀")
       msg.edit(ajuda)
     })
 

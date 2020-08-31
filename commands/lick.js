@@ -22,7 +22,7 @@ let avatar = message.author.displayAvatarURL({format: 'png'});
         .setImage(rand)
         .setTimestamp()
         .setThumbnail(avatar)
-        .setFooter('Made with 💖 by WinGamer#1047')
+        .setFooter('Made with 💖 by WinGamer')
         .setAuthor(message.author.tag, avatar);
   await message.channel.send(embed);
 }
