@@ -23,9 +23,7 @@ client.on("ready", () => {
       `😍 ${client.guilds.cache.size} Servidores`,
       `Com ${client.users.cache.size} membros 💖`,
       `😎 Sou open source https://github.com/WinG4mer/FoxyBot`,
-      `Encontrou falhas? Reporte para o suporte usando f!invite`,
-      `Você sabia que meu criador tem apenas 14 anos? :3`,
-      `Com a Mangle 💖`
+      `Encontrou falhas? Reporte para o suporte usando f!invite`
 
 
   ],
@@ -53,7 +51,7 @@ fs.readdir("./commands/", (err, files) => {
 client.on('message', async (msg, message, channel) => {
   
   if (msg.content === 'f!ping') {
-  msg.reply('Calculando Latência <a:carregando:749403691077074953>').then(m => m.edit(`<:ping:749403780998758520> ${msg.author}, Pong! Latência é ${m.createdTimestamp - msg.createdTimestamp}ms. Latência da API é ${Math.round(client.ping)}ms`))
+  msg.reply('<a:discord_clyde:750940164284743712> Calculando Latência.').then(m => m.edit(`<:ping:749403780998758520> ${msg.author}, Pong! Latência é ${m.createdTimestamp - msg.createdTimestamp}ms. Latência da API é ${Math.round(client.ping)}ms`))
   }                
 });
 client.on("message", async message => {
