@@ -1,35 +1,20 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 
-exports.run = (client, message, args) => {
+module.exports.run = async (client, message, args) => {
+  let totalSeconds = client.uptime / 1000;
+  let days = Math.floor(totalSeconds / 86400);
+  let hours = Math.floor(totalSeconds / 3600);
+  totalSeconds %= 3600;
+  let minutes = Math.floor(totalSeconds / 60);
+  let seconds = totalSeconds % 60;
 
-    let dias = 0;
-    let semanas = 0;
+  let uptime = `🗓️ ${days.toFixed()} dias\n🗓️ ${hours.toFixed()} horas\n🗓️ ${minutes.toFixed()} minutos\n🗓️ ${seconds.toFixed()} segundos`;
 
-    let uptime = ``;
-    let totalSegundos = (client.uptime / 1000);
-    let horas = Math.floor(totalSegundos / 3600);
-    totalSegundos %= 3600;
-    let minutos = Math.floor(totalSegundos / 60);
-    let segundos = Math.floor(totalSegundos % 60)
+  const embed = new Discord.MessageEmbed()
+    .setTitle(`Tempo de atividade 🕰️`)
+    .setThumbnail("https://cdn.discordapp.com/avatars/737044809650274325/64b92e7d5e7fb48e977e1f04ef13369d.png?size=1024")
+    .setColor("#FF0000")
+    .setDescription(`**Estou online há:**\n${uptime}`)
 
-    if (horas > 23){
-        dias = dias + 1;
-        horas = 0;
-    }
-    if (dias == 7) {
-    dias = 0;
-    semanas = semanas + 1;
-    }
-
-    if (semanas > 0){
-        uptime += `Faz ${semanas} que eu acordei UWU `;
-    }
-
-    if (minutos > 60){
-        minutos = 0;
-    }
-
-    uptime += `**${dias}d** **${horas}h** **${minutos}m** **${segundos}s**`;
-
-    message.channel.send(`Faz ${uptime} que eu acordei :sleeping: `)
-}
+  message.channel.send(embed);
+};

@@ -4,8 +4,8 @@ const config = require('../config.json')
 exports.run = async (client, message, args) => {
 
 var list = [
-  'https://imgur.com/iclUiUN.gif',
-  'https://imgur.com/lYQt9rx.gif',
+  'https://media1.tenor.com/images/78095c007974aceb72b91aeb7ee54a71/tenor.gif?itemid=5095865',
+  'https://i.pinimg.com/originals/7e/28/71/7e28715f3c114dc720688f1a03abc5f5.gif',
   'https://imgur.com/w1TU5mR.gif'
 ];
 
