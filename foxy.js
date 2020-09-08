@@ -21,9 +21,10 @@ client.on("ready", () => {
       `💻 Made by WinGamer `,
       `📷 Fanart por: Bis❄#1651`,
       `😍 ${client.guilds.cache.size} Servidores`,
+      `${client.channels.cache.size} Canais`, 
       `Com ${client.users.cache.size} membros 💖`,
       `😎 Sou open source https://github.com/WinG4mer/FoxyBot`,
-      `Encontrou falhas? Reporte para o suporte usando f!invite`
+      `Encontrou falhas? Reporte para o suporte usando f!report`  
 
 
   ],
@@ -48,12 +49,7 @@ fs.readdir("./commands/", (err, files) => {
     client.commands.set(commandName, props);
   });
 });
-client.on('message', async (msg, message, channel) => {
-  
-  if (msg.content === 'f!ping') {
-  msg.reply('<a:discord_clyde:750940164284743712> Calculando Latência.').then(m => m.edit(`<:ping:749403780998758520> ${msg.author}, Pong! Latência é ${m.createdTimestamp - msg.createdTimestamp}ms. Latência da API é ${Math.round(client.ping)}ms`))
-  }                
-});
+
 client.on("message", async message => {
     
   if (message.author.bot) return;

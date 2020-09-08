@@ -3,11 +3,9 @@ const Discord = require('discord.js')
 exports.run = async (client, message, args) => {
 
     var list = [
-      'velho(a)',
-      'feio(a)',
-      'corno(a)',
-      'idiota',
-      `trouxa`
+      'ser velho(a)',
+      'ser feio(a)',
+      'fazer nada'
     ];
     
     var rand = list[Math.floor(Math.random() * list.length)];
@@ -15,5 +13,5 @@ exports.run = async (client, message, args) => {
     if (!user) {
     return message.reply('lembre-se de mencionar um usuário válido para cancelar!');
     }
-      await message.channel.send(`${message.author} cancelou ${user} por ser ${rand}`);
+      await message.channel.send(`${message.author} cancelou ${user} por ${rand}`);
     }
