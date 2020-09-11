@@ -17,7 +17,7 @@ let avatar = message.author.displayAvatarURL({format: 'png'});
         .setDescription(`${message.author} está triste ` + sayMessage)
         .setImage(rand)
         .setTimestamp()
-        .setFooter('Made with 💖 by WinGamer')
+        .setFooter('Made with 💖 by WinGamer | Gifs by: ByteAlex#1644')
         .setAuthor(message.author.tag, avatar);
   await message.channel.send(embed);
 }

@@ -20,7 +20,7 @@ let avatar = message.author.displayAvatarURL({format: 'png'});
         .setDescription(`${message.author} acaba de atirar em ${user}`)
         .setImage(rand)
         .setTimestamp()
-        .setFooter('😱😱')
+        .setFooter('Made with 💖 by WinGamer | Gifs by: ByteAlex#1644')
         .setAuthor(message.author.tag, avatar);
   await message.channel.send(embed);
 }

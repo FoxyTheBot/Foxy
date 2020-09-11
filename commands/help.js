@@ -57,14 +57,14 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     fun.on('collect', r2 => {
       ajuda.setColor('BLACK')
       ajuda.setTitle("Comandos de diversão")
-      ajuda.setDescription(" f!cancel - Cancele um usuário \n f!avatar - Veja uma foto de perfil \n f!putin - Crie um meme do Putin Andando \n f!emoji - Para ver um emoji \n f!ship - faça ships com um usuário :3 \n f!8ball - Me pergunte algo \n f!say - Você fala e eu repito \n f!coinflip - Cara ou coroa?")
+      ajuda.setDescription(" f!fate - oq eu sou seu? \n f!cancel - Cancele um usuário \n f!avatar - Veja uma foto de perfil \n f!putin - Crie um meme do Putin Andando \n f!emoji - Para ver um emoji \n f!ship - faça ships com um usuário :3 \n f!8ball - Me pergunte algo \n f!say - Você fala e eu repito \n f!coinflip - Cara ou coroa?")
       msg.edit(ajuda)
       
     })
     role.on('collect', r2 => {
       ajuda.setColor('YELLOW')
       ajuda.setTitle("Comandos de Roleplay")
-     ajuda.setDescription(" f!moonwalk - HEE HEE \n f!scream - AAAAAAAA \n f!dance - Para dançar \n f!laugh- Ta rindo do que? \n f!sad - Ta triste? \n f!die - Ta vivo ae? \n f!kill - para ~~atirar~~ em algúem \n f!attack - para atacar alguém \n f!kiss - Beije um usuário \n f!hug - Abraçe um usuário \n f!lick - Lamba um usuário \n f!pat - Faça Cafuné em um usuário \n f!slap - bata em um usuário")
+     ajuda.setDescription(" f!shy - timido \n f!smile - Para sorrir \n f!moonwalk - HEE HEE \n f!scream - AAAAAAAA \n f!dance - Para dançar \n f!laugh- Ta rindo do que? \n f!sad - Ta triste? \n f!die - Ta vivo ae? \n f!kill - para ~~atirar~~ em algúem \n f!attack - para atacar alguém \n f!kiss - Beije um usuário \n f!hug - Abraçe um usuário \n f!lick - Lamba um usuário \n f!pat - Faça Cafuné em um usuário \n f!slap - bata em um usuário")
     msg.edit(ajuda)
     })
     Misc.on('collect', r2 => {
