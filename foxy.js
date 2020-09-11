@@ -19,12 +19,12 @@ client.on("ready", () => {
     let activities = [
       `f!help para ajuda`,
       `💻 Made by WinGamer `,
-      `📷 Fanart por: Bis❄#1651`,
+      `📷 Fanart por: Bis❄#0001`,
       `😍 ${client.guilds.cache.size} Servidores`,
       `${client.channels.cache.size} Canais`, 
       `Com ${client.users.cache.size} membros 💖`,
       `😎 Sou open source https://github.com/WinG4mer/FoxyBot`,
-      `Encontrou falhas? Reporte para o suporte usando f!report`  
+      `Encontrou falhas? Reporte para o suporte usando f!report`
 
 
   ],
@@ -32,7 +32,7 @@ client.on("ready", () => {
   i = 0;
   setInterval(() => client.user.setActivity(`${activities[i++ %
   activities.length]}`,{
-    type: "PLAYING"
+    type: "LISTENING"
   }), 5000); //WATCHING, LISTENING, PLAYING, STREAMING
   console.log(`Bot iniciado com ${client.guilds.cache.size} Servidores e ${client.users.cache.size} Membros`)
   })
