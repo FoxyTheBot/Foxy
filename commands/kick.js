@@ -16,7 +16,7 @@ module.exports.run = (client, message, args) => {
    if(!member)
      return message.reply("Mencione um usuário valido!");
    if(!member.kickable) 
-     return message.reply("<:nao:749403722488217610> Usuário tem um cargo maior que o meu");
+     return message.reply("<a:error:754144173942243378> Usuário tem um cargo maior que o meu");
    
    let reason = args.slice(1).jnooin(' ');
    

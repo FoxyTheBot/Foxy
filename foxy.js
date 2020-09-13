@@ -14,7 +14,17 @@ const listener = app.listen(process.env.PORT, function() {
   console.log('Port: ' + listener.address().port);
 });
 client.commands = new Enmap();
+const cmd = require('./resposta.json');
 
+client.on('message', msg => {
+    if (msg.author.bot) {
+        return;
+    }
+    responseObject = cmd;
+    if(responseObject[msg.content]){
+        msg.channel.send(responseObject[msg.content]);
+    }
+});
 client.on("ready", () => {
     let activities = [
       `f!help para ajuda`,
