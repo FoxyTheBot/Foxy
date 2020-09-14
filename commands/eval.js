@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args) =>{
     let modelo = os.cpus().map((i) => `${i.model}`)[0]
     const status = new Discord.MessageEmbed()
     .setTitle('<:DiscordStaff:731947814246154240> Painel de Informações Restritas <:DiscordStaff:731947814246154240>')
-    .setDescription(`<a:ping2:754144264161591336> API: ${Math.round(client.ws.ping)}ms`)
+    .setDescription(`<a:ping2:754144264161591336> API: ${Math.round(client.ws.ping)}ms \n Servidores: ${client.guilds.cache.size}`)
     .setThumbnail('https://cdn.discordapp.com/avatars/737044809650274325/64b92e7d5e7fb48e977e1f04ef13369d.png?size=1024')
     .addField(`Uso da CPU`, `${cpu}%`, true)
     .addField(`Uso da RAM:`, `${ram}MB`, true)
