@@ -1,8 +1,12 @@
-# FoxyBot
 
-Foxy é um bot de moderação, diversão e roleplay
-Foxy usa JavaScript 
-com as dependências: Canvas, os, ms, fs, enmap, express, super-agent e discord.js 
-Foxy tem respostas automáticas a certas coisas tente dizer um "Te amo Foxy"
-ou um "Oi" :3 o principal comando do foxy é f!help
-[Envie o Foxy para seu servidor](https://discord.com/api/oauth2/authorize?client_id=737044809650274325&permissions=8&scope=bot)
+<p align="center">
+<img width="15%" src="https://images.discordapp.net/avatars/737044809650274325/64b92e7d5e7fb48e977e1f04ef13369d.png?size=512">
+<br>
+
+<h1 align="center">🦊 Foxy 🦊</h1>
+
+<p align="center">
+<a href="https://top.gg/bot/737044809650274325">
+    <img src="https://top.gg/api/widget/737044809650274325.svg" alt="Foxy" />
+</a>
+</p>
