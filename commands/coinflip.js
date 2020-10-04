@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 const Discord = require("discord.js")
 
 exports.run = async (client, message, args) => {
@@ -34,5 +34,4 @@ else if (args[0].toLowerCase() != array1[rand]) {
     message.channel.send("Deu **" + array1[rand] + "**, você perdeu dessa vez!"
     );
   }
->>>>>>> 4849578b0c5c2f2bc00528e9d14395b0384702c6
 };
