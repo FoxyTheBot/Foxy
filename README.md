@@ -10,4 +10,7 @@
     <img src="https://top.gg/api/widget/737044809650274325.svg" alt="Foxy" />
 </a>
 </p>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 29acc2112f1f1b022c2e185e1f27f7123ef33f38

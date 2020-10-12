@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 29acc2112f1f1b022c2e185e1f27f7123ef33f38
 const Discord = require("discord.js")
 
 exports.run = async (client, message, args) => {
@@ -15,4 +19,8 @@ else if (args[0].toLowerCase() != array1[rand]) {
     message.channel.send("Deu **" + array1[rand] + "**, você perdeu dessa vez!"
     );
   }
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 29acc2112f1f1b022c2e185e1f27f7123ef33f38

@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 29acc2112f1f1b022c2e185e1f27f7123ef33f38
 const Discord = require("discord.js");
 const config = require('../config.json')
 
@@ -21,4 +25,8 @@ exports.run = async (client, message, args) => {
     .catch(error =>
       console.log(`Não foi possível deletar mensagens devido a: ${error}`)
     );
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 29acc2112f1f1b022c2e185e1f27f7123ef33f38
