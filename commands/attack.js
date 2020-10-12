@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 29acc2112f1f1b022c2e185e1f27f7123ef33f38
 const Discord = require('discord.js');
 const config = require('../config.json')
 
@@ -24,4 +28,7 @@ let avatar = message.author.displayAvatarURL({format: 'png'});
         .setFooter('Made with 💖 by WinGamer | Gifs by: ByteAlex#1644')
         .setAuthor(message.author.tag, avatar);
   await message.channel.send(embed);
+<<<<<<< HEAD
 }
+=======
+>>>>>>> 29acc2112f1f1b022c2e185e1f27f7123ef33f38

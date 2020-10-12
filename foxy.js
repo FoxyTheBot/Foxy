@@ -35,6 +35,15 @@ client.on("ready", () => {
       `Com ${client.users.cache.size} membros 💖`,
       `😎 Sou open source https://github.com/WinG4mer/FoxyBot`,
       `Encontrou falhas? Reporte para o suporte usando f!report`,
+<<<<<<< HEAD
+=======
+      `Cause this is thriller`,
+      `Thriller Night`,
+      `You're fighting for your life`,
+      `inside a killer thriller`,
+      `Tonight, Yeah!`,
+      `Michael Jackson - Thriller`,
+>>>>>>> 29acc2112f1f1b022c2e185e1f27f7123ef33f38
       `🎃 Happy Halloween!`
 
 
