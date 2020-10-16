@@ -1,8 +1,8 @@
 const Discord = require ('discord.js')
 
-exports.run = async (client ,Message) => {
+exports.run = async (client ,message) => {
 
 
-    Message.channel.send(`Sua id é: ${message.author.id}`)
+    message.channel.send(`Sua id é: ${message.author.id}`)
 
 }
