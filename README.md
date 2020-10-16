@@ -29,21 +29,4 @@ git clone https://github.com/WinG4mer/FoxyBot.git
 <p align="center">
 <img src="https://cdn.discordapp.com/avatars/737044809650274325/64b92e7d5e7fb48e977e1f04ef13369d.png?size=1024">
 </p>
-<<<<<<< HEAD
-=======
 
-<html lang="pt-BR">
-
-<body>
-
-Foxy é um bot de moderação, diversão e roleplay desenvolvida em JavaScript, Foxy tem vários recursos divertidos, assim podendo entreter e moderar seu servidor
-                <li>
-                    <a href="https://discord.gg/54eBJcv">Servidor de suporte</a>
-                </li>
-                                <li>
-                    <a href="https://github.com/WinG4mer">GitHub</a>
-                </li>
-                
-</body>
-</html>
->>>>>>> da0e5c4baddbbcff284728a96cd107c83e3e9f63
