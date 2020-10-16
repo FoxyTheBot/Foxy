@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 29acc2112f1f1b022c2e185e1f27f7123ef33f38
 const Discord = require('discord.js')
 
 exports.run = async (bot, message, argumentos, arg_texto, chat) => {
@@ -48,7 +44,3 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
       })
 
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 29acc2112f1f1b022c2e185e1f27f7123ef33f38
