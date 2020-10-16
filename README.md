@@ -23,7 +23,6 @@
 <body>
 
 Foxy é um bot de moderação, diversão e roleplay desenvolvida em JavaScript, Foxy tem vários recursos divertidos, assim podendo entreter e moderar seu servidor
-            </p>
                 <li>
                     <a href="https://discord.gg/54eBJcv">Servidor de suporte</a>
                 </li>
