@@ -26,7 +26,4 @@ Clicando <a href="https://discord.com/api/oauth2/authorize?client_id=73704480965
 git clone https://github.com/WinG4mer/FoxyBot.git
 ```
 
-<p align="center">
-<img src="https://cdn.discordapp.com/avatars/737044809650274325/64b92e7d5e7fb48e977e1f04ef13369d.png?size=1024">
-</p>
 
