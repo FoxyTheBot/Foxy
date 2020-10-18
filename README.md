@@ -1,8 +1,16 @@
 
 <p align="center">
+<<<<<<< HEAD
 <img width="65%" src="https://cdn.discordapp.com/avatars/762395332863852555/236faa60621cccc3b02aafae5709a053.png?size=1024">
 <br>
 
+=======
+<img width="45%" src="https://cdn.discordapp.com/avatars/762395332863852555/236faa60621cccc3b02aafae5709a053.png?size=1024">
+<br>
+<a href="https://top.gg/bot/737044809650274325">
+    <img src="https://top.gg/api/widget/737044809650274325.svg" alt="Foxy" />
+</a>
+>>>>>>> 8b2dd5b1cf0e1334aa6333ed03ee64562ae2be81
 <h1 align="center">Foxy</h1>
 
 
