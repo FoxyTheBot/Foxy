@@ -57,7 +57,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     fun.on('collect', r2 => {
       ajuda.setColor('BLACK')
       ajuda.setTitle("Comandos de diversão")
-      ajuda.setDescription(" f!morse - Decodificador e codificador Morse \n f!tf - É verdade ou é falso? \n f!fate - oq eu sou seu? \n f!cancel - Cancele um usuário \n f!avatar - Veja uma foto de perfil \n f!putin - Crie um meme do Putin Andando \n f!emoji - Para ver um emoji \n f!ship - faça ships com um usuário :3 \n f!8ball - Me pergunte algo \n f!say - Você fala e eu repito \n f!coinflip - Cara ou coroa?")
+      ajuda.setDescription(" f!say - você diz e eu repito \n f!morse - Decodificador e codificador Morse \n f!tf - É verdade ou é falso? \n f!fate - oq eu sou seu? \n f!cancel - Cancele um usuário \n f!avatar - Veja uma foto de perfil \n f!putin - Crie um meme do Putin Andando \n f!emoji - Para ver um emoji \n f!ship - faça ships com um usuário :3 \n f!8ball - Me pergunte algo \n f!coinflip - Cara ou coroa?")
       msg.edit(ajuda)
       
     })
@@ -70,7 +70,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     Misc.on('collect', r2 => {
       ajuda.setColor('BLUE')
       ajuda.setTitle("Miscelâneas")
-      ajuda.setDescription(" f!translate - Traduza algo \n f!id - Mostra a sua ID do Discord \n f!partnership - Como fazer parceria \n f!vote - Para votar em mim \n f!ideia - Faça uma votação ou diga sua ideia sobre um servidor \n f!report - Entre em contato direto com o criador \n f!embed - Construa uma embed usando a base `f!say` \n f!ad - faça anúncio em um canal \n f!invite - Me envie para o seu servidor \n f!github - GitHub do meu criador :D \n f!partner - Gera um link de servidor parceiro")
+      ajuda.setDescription(" f!id - Mostra a sua ID do Discord \n f!partnership - Como fazer parceria \n f!vote - Para votar em mim \n f!ideia - Faça uma votação ou diga sua ideia sobre um servidor \n f!report - Entre em contato direto com o criador \n f!ad - faça anúncio em um canal \n f!invite - Me envie para o seu servidor \n f!github - GitHub do meu criador :D \n f!partner - Gera um link de servidor parceiro")
       msg.edit(ajuda)
     })
     
