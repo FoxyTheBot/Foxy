@@ -1,8 +1,10 @@
-const Discord = require('discord.js')
+const Discord = require('discord.js');
 
-module.exports.run = async(client, message, channel) => {
-
-    message.delete().catch(O_o => {});
-
-    message.channel.send("<:nao:749403722488217610> | Este comando foi desativado")
-}
+module.exports.run = async (client, message, args) => {
+  let say = new Discord.MessageEmbed()
+  .setColor('RED')
+  .setTitle('Ops! Algo deu errado aqui!')
+  .setDescription('Este comando não existe. Digite f!commands para ver a lista de comandos')
+  .setThumbnail('https://cdn.discordapp.com/attachments/766414535396425739/769241451371692072/PngItem_1646925.png')
+  await message.channel.send(say)
+};

@@ -6,5 +6,6 @@ module.exports.run = async (client, message, args) => {
   let embed = new Discord.MessageEmbed()
   .setDescription(sayMessage)
   .setImage('https://media1.tenor.com/images/20af5cca901f8fe316c93174da43c4e8/tenor.gif')
+  .setFooter(`Comando solicitado por ${message.author}`)
   await message.channel.send(embed)
 };
