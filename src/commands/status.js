@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args) =>{
     let ram = Math.round(process.memoryUsage().rss / 1024 / 1024).toString()
     let modelo = os.cpus().map((i) => `${i.model}`)[0]
     const status = new Discord.MessageEmbed()
-    .setTitle('<:DiscordStaff:731947814246154240> Status<:DiscordStaff:731947814246154240>')
+    .setTitle('<:DiscordStaff:731947814246154240> Status <:DiscordStaff:731947814246154240>')
     .setDescription(`Status do bot`)
     .addField(`Uso da CPU`, `${cpu}%`, true)
     .addField(`Uso da RAM:`, `${ram}MB`, true)

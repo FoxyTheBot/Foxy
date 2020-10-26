@@ -63,7 +63,3 @@ module.exports.run = async (client, message, args) => {
 })
 
 }
-exports.help = {
-  nome : "Ban",
-  descricao: "Um usuário está atrapalhando ou bagunçando no seu servidor? Não deixe use esse comando para banir ele."
-} ;
