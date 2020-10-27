@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "canvas": "^2.6.1",
-    "discord.js": "^12.2.0",
+    "discord.js": "^12.4.0",
     "enmap": "^5.2.1",
-    "express": "^4.16.4",
-    "fs": "^0.0.2",
+    "express": "^4.17.1",
+    "fs": "0.0.2",
     "ms": "^2.1.2",
     "os": "^0.1.1",
     "superagent": "^6.1.0"
