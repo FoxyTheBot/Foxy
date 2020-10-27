@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) =>{
  
 let stats = new Discord.MessageEmbed()
 .setTitle('Logs do sistema aqui!')
-.setURL('https://painel.rocket-host.ml/server/77185ac5')
+.setURL('host painel link')
 .setFooter('Não compartilhe sua senha!')
 message.channel.send(stats)
 console.log(`Usuário ${message.author.tag} Obteve o link do painel`)
