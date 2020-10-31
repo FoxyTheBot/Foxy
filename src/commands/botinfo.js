@@ -1,15 +1,9 @@
 const Discord = require('discord.js')
-const os = require('os')
+
 exports.run = async (client, message) => {
 
   message.delete().catch(O_o => {});
-    
-    let cpu = Math.round(process.cpuUsage().system / 1024 / 1024).toString()
-    if(cpu < 1) {
-        cpu = (process.cpuUsage().system / 1024 / 1024).toFixed()
-    }
-    let ram = Math.round(process.memoryUsage().rss / 1024 / 1024).toString()
-    let modelo = os.cpus().map((i) => `${i.model}`)[0]
+  
   
   let totalSeconds = client.uptime / 1000;
   let days = Math.floor(totalSeconds / 86400);
@@ -39,11 +33,7 @@ message.channel.send(ajuda).then(msg => {
 
 
   infos.on('collect', r2 => {
-      let status = new Discord.MessageEmbed()
-      .setColor('BLUE')
-      .setTitle('Status')
-      .setDescription(`<:ApoiadorDoDiscord:731946134720741377> | ${message.author} \n<:catblush:768292358458179595> | **Amor:** ∞ \n<:js:769246367717261362> | **Versão do Node:** 10.x \n<:discordjs:771848408821792798> | **Versão do discord.js:** V12.4.1 \n<:LinuxTux:771017653702885386> | **SO:** Ubuntu 20.04 \n:computer: | **Memória Utilizada** | ${ram} MB \n:computer: | **Memória Alocada:** 512 MB \n:computer: | **Memória Total:** 18000 MB`)
-    msg.edit(status)
+    msg.edit(`<:ApoiadorDoDiscord:731946134720741377> | ${message.author} \n<:js:769246367717261362> | **Versão do Node:** 10.x \n<:discordjs:771848408821792798> | **Versão do discord.js:** V12.4.1 | `)
     
   })
 

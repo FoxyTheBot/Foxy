@@ -1,9 +1,5 @@
 const Discord = require('discord.js')
 
-exports.run = async (client, message) => {
-    let reports = new Discord.MessageEmbed()
-    .setColor('RED')
+exports.run = new Discord.MessageEmbed()
 .setTitle('Como reportar no Discord')
 .setDescription('Para reportar no Discord acesse https://dis.gd/request')
-    await message.channel.send(reports)
-    }
