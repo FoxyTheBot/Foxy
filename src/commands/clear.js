@@ -20,6 +20,6 @@ exports.run = async (client, message, args) => {
   message.channel
     .send(`**${args[0]} mensagens limpas nesse chat!**`).then(msg => msg.delete({timeout: 5000}))
     .catch(error =>
-      message.channel.send(`Não foi possível deletar mensagens devido a: ${error}`)
+      console.log(`Não foi possível deletar mensagens devido a: ${error}`)
     );
 };

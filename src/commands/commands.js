@@ -5,7 +5,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     .setColor("GREEN")
     .setTitle("Lista de comandos")
     .setThumbnail(`https://cdn.discordapp.com/avatars/737044809650274325/64b92e7d5e7fb48e977e1f04ef13369d.png?size=1024`)
-    .setDescription("Reagir de acordo com o que procura \n\n📚 - Informações\n\n🛡 - Administrativos\n\n🎊 - Diversão \n\n🕹 - RolePlay \n\n💿 - Atalhos do Discord \n\n💾 - Miscelâneas")
+    .setDescription("Reagir de acordo com o que procura \n\n📚 - Informações\n\n🛡 - Administrativos\n\n🎊 - Diversão \n\n🕹 - RolePlay \n\n💾 - Miscelâneas")
     .setTimestamp()
     .setFooter(`Comando solicitado por ${message.member.displayName}`, message.author.displayAvatarURL({Size: 32}))   
     
@@ -60,7 +60,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     fun.on('collect', r2 => {
       ajuda.setColor('BLACK')
       ajuda.setTitle("Comandos de diversão")
-      ajuda.setDescription(" f!say - você diz e eu repito \n f!morse - Decodificador e codificador Morse \n f!tf - É verdade ou é falso? \n f!fate - oq eu sou seu? \n f!cancel - Cancele um usuário \n f!avatar - Veja uma foto de perfil \n f!putin - Crie um meme do Putin Andando \n f!emoji - Para ver um emoji \n f!ship - faça ships com um usuário :3 \n f!8ball - Me pergunte algo \n f!coinflip - Cara ou coroa?")
+      ajuda.setDescription(" f!laranjomemes - Gera um meme do Laranjo \n f!laranjo - Crie um meme do Laranjo \n f!say - você diz e eu repito \n f!morse - Decodificador e codificador Morse \n f!tf - É verdade ou é falso? \n f!fate - oq eu sou seu? \n f!cancel - Cancele um usuário \n f!avatar - Veja uma foto de perfil \n f!putin - Crie um meme do Putin Andando \n f!emoji - Para ver um emoji \n f!ship - faça ships com um usuário :3 \n f!8ball - Me pergunte algo \n f!coinflip - Cara ou coroa?")
       msg.edit(ajuda)
       
     })
@@ -79,7 +79,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     Discord.on('collect', r2 => {
       ajuda.setColor('BLUE')
       ajuda.setTitle('Atalhos do Discord')
-      ajuda.setDescription('f!dpartner - Como fazer parceria com o Discord \n f!nitro - Como e onde comprar Discord Nitro \n f!reports - Como denunciar no Discord \nf!dst - Status do Discord')
+      ajuda.setDescription('f!dpartner Como fazer parceria com o Discord \n f!nitro Como e onde comprar Discord Nitro \n f!reports - Como denunciar no Discord \nf!dst - Status do Discord')
     msg.edit(ajuda)
     })
     
