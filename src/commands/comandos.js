@@ -5,7 +5,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     .setColor("GREEN")
     .setTitle("Lista de comandos")
     .setThumbnail(`https://cdn.discordapp.com/avatars/737044809650274325/64b92e7d5e7fb48e977e1f04ef13369d.png?size=1024`)
-    .setDescription("Reagir de acordo com o que procura \n\n📚 - Informações\n\n🛡 - Administrativos\n\n🎊 - Diversão \n\n🕹 - RolePlay \n\n💾 - Miscelâneas")
+    .setDescription("Reagir de acordo com o que procura \n\n📚 - Informações\n\n🛡 - Administrativos\n\n🎊 - Diversão \n\n🕹 - RolePlay \n\n💿 - Atalhos do Discord \n\n💾 - Miscelâneas")
     .setTimestamp()
     .setFooter(`Comando solicitado por ${message.member.displayName}`, message.author.displayAvatarURL({Size: 32}))   
     
@@ -15,6 +15,9 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     msg.react('🎊').then(r => {
       msg.react('🕹').then(r => {
       msg.react('💾').then(r => {
+        msg.react('💿').then(r => {
+
+        })
 
         })
       })
@@ -26,7 +29,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
         const admFilter = (reaction, user) => reaction.emoji.name === '🛡' && user.id === message.author.id;
     const funFilter = (reaction, user) => reaction.emoji.name === '🎊' && user.id === message.author.id;
     const rpFilter = (reaction, user) => reaction.emoji.name === '🕹' && user.id === message.author.id;
-    const dcFilter = (reaction, user) => reaction.emoji.name === '💬' && user.id === message.author.id;
+    const dcFilter = (reaction, user) => reaction.emoji.name === '💿' && user.id === message.author.id;
     const MiscFilter = (reaction, user) => reaction.emoji.name === '💾' && user.id === message.author.id;
 
     
@@ -72,6 +75,12 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
       ajuda.setTitle("Miscelâneas")
       ajuda.setDescription(" f!id - Mostra a sua ID do Discord \n f!partnership - Como fazer parceria \n f!vote - Para votar em mim \n f!ideia - Faça uma votação ou diga sua ideia sobre um servidor \n f!report - Entre em contato direto com o criador \n f!ad - faça anúncio em um canal \n f!invite - Me envie para o seu servidor \n f!github - GitHub do meu criador :D \n f!partner - Gera um link de servidor parceiro")
       msg.edit(ajuda)
+    })
+    Discord.on('collect', r2 => {
+      ajuda.setColor('BLUE')
+      ajuda.setTitle('Atalhos do Discord')
+      ajuda.setDescription('f!dpartner - Como fazer parceria com o Discord \n f!nitro - Como e onde comprar Discord Nitro \n f!reports - Como denunciar no Discord \nf!dst - Status do Discord')
+    msg.edit(ajuda)
     })
     
   })
