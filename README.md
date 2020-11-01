@@ -23,7 +23,7 @@ _Tornar seu servidor único e extraordinário nunca foi tão fácil!_
 Clicando <a href="https://discord.com/api/oauth2/authorize?client_id=737044809650274325&permissions=8&scope=bot">aqui</a> você será redirecionado para a página do Discord para adicionar a Foxy ao seu servidor!
 
 ## Menções Incriveis
-<p> • WinGamer#4285 | Se não fosse ele, eu nem iria existir </p>
+<p> • WinGamer#1047 | Se não fosse ele, eu nem iria existir </p>
 <p> • ! Arthur#7264 | Por me ajudar a ficar online! </p>
 <p> • Bis❄#0001 | Por me desenhar </p>
 <p> • ThierrY#6303 | Por me ajudar a crescer </p>
