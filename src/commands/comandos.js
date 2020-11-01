@@ -52,7 +52,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     adm.on('collect', r2 => {
       ajuda.setColor('RANDOM')
       ajuda.setTitle("Comandos de administração")
-      ajuda.setDescription(" f!dm - Envie alguma mensagem para a dm de seus membros \n f!kick - Expulsa um usuário \n f!clear - Limpa até 99 mensagens em um canal \n f!ban - Ban um membro! \n f!unban - Desban um membro!")
+      ajuda.setDescription(" f!dm - Envie alguma mensagem para a dm de seus membros \n f!kick - Expulsa um usuário \n f!clear - Limpa até 99 mensagens em um canal")
       msg.edit(ajuda)
       
     })
