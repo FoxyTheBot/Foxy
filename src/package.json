@@ -1,11 +1,8 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-  "name": "hello-express",
+  "name": "FoxyBot",
   "version": "0.0.1",
-  "description": "A simple Node app built on Express, instantly up and running.",
-  "main": "foxy.js",
+  "description": "Foxy is a bot for Discord, developed in JavaScript using the libraries discord.js",
+  "main": "FoxyClient.js",
   "scripts": {
     "start": "node ."
   },
@@ -22,14 +19,14 @@
     "node": "10.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
+    "url": "https://github.com/WinG4mer/FoxyBot"
   },
-  "license": "MIT",
+  "license": "GPL",
   "keywords": [
     "node",
-    "glitch",
-    "express"
+    "discord",
+    "bot"
   ],
   "devDependencies": {},
-  "author": ""
+  "author": "WinG4mer"
 }
