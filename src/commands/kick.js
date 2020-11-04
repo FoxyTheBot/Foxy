@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
     if(!member) return message.channel.send(`Use: ${prefix}kick <@Usuário> <Motivo>`)
 
         if(!member.bannable)
-        return message.reply("<a:error:754144173942243378> Eu não posso expulsar esse usuário, ele pode ter um cargo maior que o meu.")
+        return message.reply("<:sad_cat_thumbs_up:768291053765525525> Eu não posso expulsar esse usuário, ele pode ter um cargo maior que o meu.")
 
         let reason = args.slice(1).join(' ');
 
@@ -57,7 +57,7 @@ module.exports.run = async (client, message, args) => {
 
          kickschannel.send(kick)
 })
-  b2.on("collect", c2 => {
+  b1.on("collect", c2 => {
     msg.delete(0) 
     
     })
