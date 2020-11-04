@@ -6,7 +6,7 @@ exports.run = async (client, message, args, applyText) => {
     const canvas = Canvas.createCanvas(500, 400);
     const ctx = canvas.getContext('2d');
   const sayMessage = args.join(' ');
-    const background = await Canvas.loadImage('./images/comunismo.png');
+    const background = await Canvas.loadImage('./images/fodase.jpeg');
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     ctx.strokeStyle = '#74037b';
@@ -24,7 +24,7 @@ exports.run = async (client, message, args, applyText) => {
     ctx.closePath();
     ctx.clip();
 
-    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'nosso.png');
+    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'respier.png');
 
     message.channel.send(attachment);
 };
