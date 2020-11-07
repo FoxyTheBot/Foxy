@@ -13,14 +13,17 @@ Todos os servidores Discord têm os mesmos problemas. Os membros querem entreten
 
 Sua vida é muito preciosa para gastar seu tempo com coisas inúteis, deixe-me cuidar das partes chatas enquanto você se diverte no seu servidor!
 
-Com recursos para entreter e envolver seus membros, recursos de moderação para manter seu servidor sempre seguro e agradável, e com uma maneira fácil de configurar, mas com um poder de personalização incomparável...
+Com recursos para entreter e envolver seus membros, recursos de moderação para manter seu servidor sempre seguro e agradável
 
 E tudo graças a uma raposinha
 
 _Tornar seu servidor único e extraordinário nunca foi tão fácil!_
+
+Have Fun~
 
 ## Menções Incriveis
 <p> • WinGamer#1047 | Se não fosse ele, eu nem iria existir </p>
 <p> • ! Arthur#7264 | Por me ajudar a ficar online! </p>
 <p> • Bis❄#0001 | Por me desenhar </p>
 <p> • ThierrY#6303 | Por me ajudar a crescer </p>
+
