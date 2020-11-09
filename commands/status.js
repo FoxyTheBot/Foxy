@@ -21,7 +21,6 @@ module.exports.run = async (client, message, args) =>{
     .addField(`Uso da RAM:`, `${ram}MB`, true)
     .addField(`Modelo da CPU`, `${modelo}`)
     .addField(`Servidores`, `${client.guilds.cache.size}`)
-    .addField(`Users`, `${client.users.cache.size}`)
     .addField(`Ping API`, `${Math.round(
       client.ws.ping
     )}ms`)
