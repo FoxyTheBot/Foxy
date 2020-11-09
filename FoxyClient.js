@@ -45,6 +45,14 @@ client.on("ready", () => {
   }), 5000); //WATCHING, LISTENING, PLAYING, STREAMING
   console.log(`Sessão Iniciada. Guilds: ${client.guilds.cache.size} Users: ${client.users.cache.size}`)
   })
+client
+  .on("reconnecting", () => {
+    console.warn("Foxy is reconnecting...");
+  })
+  .on("disconnect", () => {
+    console.warn("Warning! Foxy has disconnected!");
+  });
+
 fs.readdir("./commands/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
