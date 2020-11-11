@@ -21,7 +21,7 @@ _Tornar seu servidor único e extraordinário nunca foi tão fácil!_
 
 Have Fun~
 
-## Menções Incriveis
+## Pessoas Incriveis
 <p> • WinGamer#1047 | Se não fosse ele, eu nem iria existir </p>
 <p> • ! Arthur#7264 | Por me ajudar a ficar online! </p>
 <p> • Bis❄#0001 | Por me desenhar </p>
