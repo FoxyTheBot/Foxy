@@ -1,32 +1,27 @@
 {
-  "name": "FoxyBot",
+  "//1": "describes your app and its dependencies",
+  "//2": "https://docs.npmjs.com/files/package.json",
+  "//3": "updating this file will download and update your packages",
+  "name": "hello-express",
   "version": "0.0.1",
-  "description": "Foxy is a bot for Discord, developed in JavaScript using the libraries discord.js",
-  "main": "FoxyClient.js",
+  "description": "A simple Node app built on Express, instantly up and running.",
+  "main": "YasuClient.js",
   "scripts": {
     "start": "node ."
   },
   "dependencies": {
     "canvas": "^2.6.1",
-    "discord.js": "^12.4.0",
+    "discord.js": "^12.4.1",
     "enmap": "^5.2.1",
     "express": "^4.17.1",
     "fs": "0.0.2",
     "ms": "^2.1.2",
-    "os": "^0.1.1"
+    "os": "^0.1.1",
+    "superagent": "^6.1.0"
   },
   "engines": {
     "node": "10.x"
   },
-  "repository": {
-    "url": "https://github.com/WinG4mer/FoxyBot"
-  },
-  "license": "GPL",
-  "keywords": [
-    "node",
-    "discord",
-    "bot"
-  ],
   "devDependencies": {},
-  "author": "WinG4mer"
+  "author": ""
 }
