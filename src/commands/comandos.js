@@ -44,7 +44,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     infos.on('collect', r2 => {
       ajuda.setColor('RANDOM')
       ajuda.setTitle("Comandos informativos")
-      ajuda.setDescription(" f!commandos - Mostra minha lista de comandos | Sinônimos: f!commands \n f!termos - Termos de Uso da Foxy \n f!help - Mostra a mensagem de ajuda \n f!botinfo - Mostra as informações do bot \n f!ping - Para ver meu tempo de resposta")
+      ajuda.setDescription(" f!userinfo - Para ver informações de um usuário \n f!commandos - Mostra minha lista de comandos | Sinônimos: f!commands \n f!termos - Termos de Uso da Foxy \n f!help - Mostra a mensagem de ajuda \n f!botinfo - Mostra as informações do bot \n f!ping - Para ver meu tempo de resposta")
       msg.edit(ajuda)
       
     })
@@ -67,13 +67,13 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     role.on('collect', r2 => {
       ajuda.setColor('YELLOW')
       ajuda.setTitle("Comandos de Roleplay")
-     ajuda.setDescription(" f!applause - Para aplaudir algúem \n f!stare - Para encarar alguém \n f!run - Corre cara, corre! \n f!shy - timido \n f!smile - Para sorrir \n f!moonwalk - HEE HEE \n f!scream - AAAAAAAA \n f!dance - Para dançar \n f!laugh- Ta rindo do que? \n f!sad - Ta triste? \n f!attack - fazer um duelo de titãs? pq não :3 \n f!kiss - Beije um usuário \n f!hug - Abraçe um usuário \n f!lick - Lamba um usuário \n f!pat - Faça Cafuné em um usuário \n f!slap - bata em um usuário")
+     ajuda.setDescription(" f!step - Para pisar em alguém \n f!kissc - Para beijar o rosto de algúem owo \n f!applause - Para aplaudir algúem \n f!stare - Para encarar alguém \n f!run - Corre cara, corre! \n f!shy - timido \n f!smile - Para sorrir \n f!moonwalk - HEE HEE \n f!scream - AAAAAAAA \n f!dance - Para dançar \n f!laugh- Ta rindo do que? \n f!sad - Ta triste? \n f!attack - fazer um duelo de titãs? pq não :3 \n f!kiss - Beije um usuário \n f!hug - Abraçe um usuário \n f!lick - Lamba um usuário \n f!pat - Faça Cafuné em um usuário \n f!slap - bata em um usuário")
     msg.edit(ajuda)
     })
     Misc.on('collect', r2 => {
       ajuda.setColor('BLUE')
       ajuda.setTitle("Miscelâneas")
-      ajuda.setDescription(" f!id - Mostra a sua ID do Discord \n f!partnership - Como fazer parceria \n f!vote - Para votar em mim \n f!ideia - Faça uma votação ou diga sua ideia sobre um servidor \n f!report - Entre em contato direto com o criador \n f!ad - faça anúncio em um canal \n f!invite - Me envie para o seu servidor \n f!github - GitHub do meu criador :D \n f!partner - Gera um link de servidor parceiro")
+      ajuda.setDescription(" f!id - Mostra a sua ID do Discord \n f!partnership - Como fazer parceria \n f!dbl - Para votar em mim na Discord Bot List \n f!ideia - Faça uma votação ou diga sua ideia sobre um servidor \n f!report - Entre em contato direto com o criador \n f!ad - faça anúncio em um canal \n f!invite - Me envie para o seu servidor \n f!github - GitHub do meu criador :D \n f!partner - Gera um link de servidor parceiro")
       msg.edit(ajuda)
     })
     Discord.on('collect', r2 => {

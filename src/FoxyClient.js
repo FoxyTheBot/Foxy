@@ -27,25 +27,32 @@ client.on('message', msg => {
 });
 client.on("ready", () => {
     let activities = [
-      `Meu prefixo é f!`,
+`Meu prefixo é f!`,
       `❓ Use f!help para obter ajuda`,
-      `📷 Icon por: Bis❄#0001`,
+      `📷 Avatar por: Bis❄#0001`,
       `😍 Espalhando alegria em ${client.guilds.cache.size} servidores`,
-      `😎 Eu sou open-source https://github.com/WinG4mer/FoxyBot`,
-      `💻 Use f!commands para ver minha lista de comandos ＼(^o^)／`,
+      `😎 Eu sou open-source https://github.com/WinG4mer/FoxyBot ＼(^o^)／`,
+      `💻 Use f!commands para ver minha lista de comandos`,
       `😍 Tornando seu servidor extraordinário ᕕ(ᐛ)ᕗ`,
       `🐦 Me siga no Twitter @FoxyDiscordBot`
-
 
   ],
 
   i = 0;
   setInterval(() => client.user.setActivity(`${activities[i++ %
   activities.length]}`,{
-    type: "PLAYING"
-  }), 4000); //WATCHING, LISTENING, PLAYING, STREAMING
+    type: "WATCHING"
+  }), 5000); //WATCHING, LISTENING, PLAYING, STREAMING
   console.log(`Sessão Iniciada. Guilds: ${client.guilds.cache.size} Users: ${client.users.cache.size}`)
   })
+client
+  .on("reconnecting", () => {
+    console.warn("Foxy is reconnecting...");
+  })
+  .on("disconnect", () => {
+    console.warn("Warning! Foxy has disconnected!");
+  });
+
 fs.readdir("./commands/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {

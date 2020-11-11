@@ -1,27 +1,25 @@
 const Discord = require('discord.js');
-const config = require('../config.json')
 
 exports.run = async (client, message, args) => {
   message.delete().catch(O_o => {});
 var list = [
-  'https://i.pinimg.com/originals/56/42/0d/56420de595681d55e4ea2cc9dcc48db9.gif',
-  'https://media1.tenor.com/images/efd46743771a78e493e66b5d26cd2af1/tenor.gif?itemid=14002773',
-  'https://media1.tenor.com/images/89ad29ff456763c351ccb1fb35605778/tenor.gif?itemid=15150258'
+	'https://media1.tenor.com/images/577ecef137a88a9149f375d225724b34/tenor.gif?itemid=15524285',
+    'https://i.imgur.com/jNWQvTO.gifhttps://media1.tenor.com/images/4ba29ae0be8524550e9f2b88e39ffa9f/tenor.gif?itemid=13091153',
+    'https://media1.tenor.com/images/47e776592b6a231acc06826330ab7a45/tenor.gif?itemid=13894493'
 ];
 
 var rand = list[Math.floor(Math.random() * list.length)];
 let user = message.mentions.users.first() || client.users.cache.get(args[0]);
 if (!user) {
-return message.reply('lembre-se de mencionar um usuário válido para lamber!');
+return message.reply('lembre-se de mencionar um usuário válido para pisar!');
 }
 
 let avatar = message.author.displayAvatarURL({format: 'png'});
   const embed = new Discord.MessageEmbed()
-        .setColor('#000000')
-        .setDescription(`${message.author} acaba de lamber ${user}`)
+        .setColor('RED')
+        .setDescription(`${message.author} pisou em ${user}`)
         .setImage(rand)
         .setTimestamp()
-        .setThumbnail(avatar)
         .setFooter('Made with 💖 by WinGamer')
         .setAuthor(message.author.tag, avatar);
   await message.channel.send(embed);
