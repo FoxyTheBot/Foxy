@@ -1,12 +1,21 @@
 
 <p align="center">
-<img width="35%" src="https://cdn.discordapp.com/avatars/762395332863852555/236faa60621cccc3b02aafae5709a053.png?size=1024">
+<img width="35%" src="https://cdn.discordapp.com/attachments/776930851753426945/777176123221082142/Foxy.png">
 <br>
-    
+
+<h1 align="center">Foxy</h1>
+
+<p align="center">
+
+ </p>
+<p align="center">
 <a href="https://top.gg/bot/737044809650274325">
     <img src="https://top.gg/api/widget/737044809650274325.svg" alt="Foxy" />
 </a>
-<h1 align="center">Foxy</h1>
+
+<a href="https://github.com/BotFoxy/FoxyBot/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-AGPL%20v3-lightgray.svg"></a>
+</p>
+
 
 
 Todos os servidores Discord têm os mesmos problemas. Os membros querem entretenimento, os moderadores querem automação... e você só quer descansar.
@@ -21,9 +30,21 @@ _Tornar seu servidor único e extraordinário nunca foi tão fácil!_
 
 Have Fun~
 
-## Pessoas Incriveis
-<p> • WinGamer#1047 | Se não fosse ele, eu nem iria existir </p>
+## 🤔 Como eu posso adicionar ela
+
+Adicione a Foxy [clicando aqui](https://discord.com/oauth2/authorize?client_id=737044809650274325&permissions=355526&scope=bot)
+
+
+## Infraestrutura 
+📁 src
+└── 📁 commands
+📁 src
+└── 📁 images
+
+## Menções Honrorosas
+<p> • WinGamer#1047 | Se não fosse ele, eu nem iria existir</p>
 <p> • ! Arthur#7264 | Por me ajudar a ficar online! </p>
-<p> • Bis❄#0001 | Por me desenhar </p>
-<p> • ThierrY#6303 | Por me ajudar a crescer </p>
+<p> • Bis❄#0001 | Por me desenhar e ajudar a me manter online <3 </p>
+<p> • ThierrY#6303 | Por me ajudar a cresce </p>
+
 
