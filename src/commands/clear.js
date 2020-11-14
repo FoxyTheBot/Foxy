@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
   const deleteCount = parseInt(args[0], 10);
   if (!deleteCount || deleteCount < 1 || deleteCount > 99)
     return message.reply(
-      "<:Alerta:718944960933527632> forneça um número de até **99 mensagens** a serem excluídas"
+      "<:Alerta:718944960933527632> forneça um número de até **99 mensagens** a serem excluídas (Você não pode apagar mensagens com mais de 14 dias!)"
     );
 
   const fetched = await message.channel.messages.fetch({
@@ -22,4 +22,4 @@ exports.run = async (client, message, args) => {
     .catch(error =>
       message.channel.send(`Não foi possível deletar mensagens devido a: ${error}`)
     );
-};
+}
