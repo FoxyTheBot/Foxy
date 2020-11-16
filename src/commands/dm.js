@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 exports.run = async (bot, msg, args) => {
     var membro = msg.mentions.members.first() || msg.guild.members.cache.get(args[0])
         if(!msg.member.permissions.has("ADMINISTRATOR")) {
-        return msg.reply('<:WindowsShield:777579023249178625> Você precisa ter a permissão de administrador ativa!')
+        return msg.reply('Você precisa ter a permissão de administrador ativa!')
     }
    if(!membro) return msg.reply(`Coloque o id do usuário que você quer enviar a mensagem ou o mencione!`)
    
