@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 exports.run = async (bot, msg, args) => {
-        if(msg.author.id != "708493555768885338") return msg.channel.send(`<:WindowsShield:777579023249178625> | ${message.author} <:nao:749403722488217610> Apenas pessoas especiais podem usar este comando :3 \n Sua ID: ${msg.author.id} não foi encontrada nos meus arquivos.`)
+        if(msg.author.id != "708493555768885338") return msg.channel.send(`<:Error:718944903886930013> | ${message.author} <:nao:749403722488217610> Apenas pessoas especiais podem usar este comando :3 \n Sua ID: ${msg.author.id} não foi encontrada nos meus arquivos.`)
     var membro = msg.mentions.members.first() || msg.guild.members.cache.get(args[0])
  
    if(!membro) return msg.reply(`Coloque o id do usuário que você quer enviar a mensagem ou o mencione!`)
