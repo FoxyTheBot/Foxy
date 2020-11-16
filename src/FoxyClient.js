@@ -27,14 +27,15 @@ client.on('message', msg => {
 });
 client.on("ready", () => {
     let activities = [
-`Meu prefixo é f!`,
+`Meu prefixo é ${prefix}`,
       `❓ Use f!help para obter ajuda`,
       `📷 Avatar por: Bis❄#0001`,
       `😍 Espalhando alegria em ${client.guilds.cache.size} servidores`,
-      `😎 Eu sou open-source https://github.com/WinG4mer/FoxyBot ＼(^o^)／`,
+      `😎 Eu sou open-source https://github.com/BotFoxy ＼(^o^)／`,
       `💻 Use f!commands para ver minha lista de comandos`,
       `😍 Tornando seu servidor extraordinário ᕕ(ᐛ)ᕗ`,
-      `🐦 Me siga no Twitter @FoxyDiscordBot`
+      `🐦 Me siga no Twitter @FoxyDiscordBot`,
+      `💖 Use f!donate para me ajudar a ficar online!`
 
   ],
 
@@ -43,16 +44,8 @@ client.on("ready", () => {
   activities.length]}`,{
     type: "WATCHING"
   }), 5000); //WATCHING, LISTENING, PLAYING, STREAMING
-  console.log(`Sessão Iniciada. Guilds: ${client.guilds.cache.size} Users: ${client.users.cache.size}`)
+  console.log(`Sessão Iniciada como ${client.user.tag}\nGuilds: ${client.guilds.cache.size}`)
   })
-client
-  .on("reconnecting", () => {
-    console.warn("Foxy is reconnecting...");
-  })
-  .on("disconnect", () => {
-    console.warn("Warning! Foxy has disconnected!");
-  });
-
 fs.readdir("./commands/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
@@ -66,7 +59,6 @@ fs.readdir("./commands/", (err, files) => {
     client.commands.set(commandName, props);
   });
 });
-
 client.on("message", async message => {
     
   if (message.author.bot) return;
