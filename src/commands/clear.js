@@ -5,7 +5,7 @@ exports.run = async (client, message, args) => {
   message.delete().catch(O_o => {});
   if (!message.member.permissions.has("MANAGE_MESSAGES"))
     return message.reply(
-      "<:Error:718944903886930013> você é fraco, lhe falta permissão de `Gerenciar Mensagens` para usar esse comando"
+      "<:WindowsShield:777579023249178625> | Você não tem permissão para usar este comando. Você precisa da permissão `Gerenciar mensagens` para isso."
     );
   const deleteCount = parseInt(args[0], 10);
   if (!deleteCount || deleteCount < 1 || deleteCount > 99)
