@@ -1,10 +1,13 @@
 const Discord = require('discord.js')
+module.exports = {
 
-exports.run = async (client, message) => {
-    let embed = new Discord.MessageEmbed()
-    .setColor('BLUE')
-    .setTitle('Doações')
-    .setURL('https://www.paypal.com/donate/?hosted_button_id=J7Y747Q38UEKN')
-    .setDescription('Me ajude a ficar online doando para mim <a:yay_fast:768292346843889714> \nVocê pode doar para mim clicando em "Doações" \nDoações são feitas via PayPal<:paypal:776965353904930826> mas pode também ser feitas via cartão :3')
-    await message.channel.send(embed)
-}
+    run: async (client, message, args) => {
+        let embed = new Discord.MessageEmbed()
+            .setColor('BLUE')
+            .setTitle('(._.`) Sabia que a crise afeta todos nós?')
+            .setDescription('Eu preciso de dinheiro para ficar online<a:bugcat_sleepy:776250262146515006> \nVocê pode doar para mim clicando [aqui](https://www.paypal.com/donate/?hosted_button_id=J7Y747Q38UEKN), lembrando que eu também aceito doações via boleto, cartão de crédito e PayPal<:paypal:776965353904930826>')
+        .setFooter('Caso queira doar em boleto entre em contato com WinG4merBR#1047')
+
+        message.channel.send(embed);
+    }
+};

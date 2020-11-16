@@ -44,7 +44,7 @@ client.on("ready", () => {
   activities.length]}`,{
     type: "WATCHING"
   }), 5000); //WATCHING, LISTENING, PLAYING, STREAMING
-  console.log(`Sessão Iniciada como ${client.user.tag}\nGuilds: ${client.guilds.cache.size}`)
+  console.log(`Sessão Iniciada. \nLogado com ${client.guilds.cache.size} guilds desde a inicialização.`)
   })
 fs.readdir("./commands/", (err, files) => {
   if (err) return console.error(err);
@@ -54,7 +54,7 @@ fs.readdir("./commands/", (err, files) => {
     let props = require(`./commands/${file}`);
 
     let commandName = file.split(".")[0];
-    console.log(`Iniciado ${commandName}`);
+    console.log(` f!${commandName} está funcionando.`);
     
     client.commands.set(commandName, props);
   });
