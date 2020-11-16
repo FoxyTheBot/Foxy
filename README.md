@@ -43,7 +43,7 @@ Adicione a Foxy [clicando aqui](https://discord.com/oauth2/authorize?client_id=7
 └── 📁 images
 ```
 ## Menções Honrorosas
-<p> • WinGamer#1047 | Se não fosse ele, eu nem iria existir</p>
+<p> • WinG4merBR#1047 | Se não fosse ele, eu nem iria existir</p>
 <p> • ! Arthur#7264 | Por me ajudar a ficar online! </p>
 <p> • Bis❄#0001 | Por me desenhar e ajudar a me manter online <3 </p>
 <p> • ThierrY#6303 | Por me ajudar a cresce </p>
