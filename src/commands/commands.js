@@ -73,7 +73,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     Misc.on('collect', r2 => {
       ajuda.setColor('BLUE')
       ajuda.setTitle("Miscelâneas")
-      ajuda.setDescription("f!donate - Para doar para mim <3 \n f!id - Mostra a sua ID do Discord \n f!partnership - Como fazer parceria \n f!vote - Para votar em mim \n f!ideia - Faça uma votação ou diga sua ideia sobre um servidor \n f!report - Entre em contato direto com o criador \n f!ad - faça anúncio em um canal \n f!invite - Me envie para o seu servidor \n f!github - GitHub do meu criador :D \n f!partner - Gera um link de servidor parceiro")
+      ajuda.setDescription("f!ticket - crie um canal temporário em um servidor \n f!donate - Para doar para mim <3 \n f!id - Mostra a sua ID do Discord \n f!partnership - Como fazer parceria \n f!vote - Para votar em mim \n f!ideia - Faça uma votação ou diga sua ideia sobre um servidor \n f!report - Entre em contato direto com o criador \n f!ad - faça anúncio em um canal \n f!invite - Me envie para o seu servidor \n f!github - GitHub do meu criador :D \n f!partner - Gera um link de servidor parceiro")
       msg.edit(ajuda)
     })
     Discord.on('collect', r2 => {
@@ -84,4 +84,5 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     })
     
   })
-} 
+
+}
