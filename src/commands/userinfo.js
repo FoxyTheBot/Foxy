@@ -7,9 +7,8 @@ exports.run = async (client, message, args, level) => {
     const embed = new Discord.MessageEmbed()
       .setTitle(user.user.username)
       .setDescription(`ID: ${user.id}
-Nome: ${user.user.username}
-Conta criada em: ${user.user.createdAt}
-Username: ${user.user.tag}`)
+Nome: ${user.user.tag}
+Conta criada em: ${user.user.createdAt}`)
       .setThumbnail(user.user.avatarURL)
       .setColor('#eeeeee')
 
