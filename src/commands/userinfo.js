@@ -4,12 +4,11 @@ exports.run = async (client, message, args, level) => {
   try {
     const user = message.mentions.members.first() || message.member
 
-    const embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
       .setTitle(user.user.username)
       .setDescription(`ID: ${user.id}
-Nome: ${user.user.username}
-Conta criada em: ${user.user.createdAt}
-Username: ${user.user.tag}`)
+Nome: ${user.user.tag}
+Conta criada em: ${user.user.createdAt}`)
       .setThumbnail(user.user.avatarURL)
       .setColor('#eeeeee')
 
