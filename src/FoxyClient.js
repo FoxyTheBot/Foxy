@@ -15,7 +15,15 @@ const listener = app.listen(process.env.PORT, function() {
 });
 client.commands = new Enmap();
 const cmd = require('./resposta.json');
+client.on("message", message => {
+  if (message.author.bot) return false;
 
+  if (message.content.includes("@here") || message.content.includes("@everyone")) return false;
+
+  if (message.mentions.has(client.user.id)) {
+      message.channel.send(`Olá, ${message.author} eu sou a Foxy! Meu prefixo é f!`);
+  };
+});
 client.on('message', msg => {
     if (msg.author.bot) {
         return;
@@ -34,8 +42,7 @@ client.on("ready", () => {
       `💻 Use f!commands para ver minha lista de comandos`,
       `😍 Tornando seu servidor extraordinário ᕕ(ᐛ)ᕗ`,
       `🐦 Me siga no Twitter @FoxyDiscordBot`,
-      `💖 Use f!donate para me ajudar a ficar online!`,
-        `🦊 What Does The Fox Say?`
+      `💖 Use f!donate para me ajudar a ficar online!`
 
   ],
 
