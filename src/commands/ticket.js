@@ -40,7 +40,7 @@ exports.run = async (client, message, args) => {
 				.delete() // tenta deletar o canal
 				.then(c => message.channel.send(`\`Canal ${c.name} deletado ✅\``)) // avisa no canal que foi dado o comando que o canal foi deletado
 				.catch(err => message.channel.send('Erro: ' + err.message)),
-		1000 * 60
+		5000 * 60
 	); // 1000 * 60 == 1 minuto em milissegundos (ms)
 };
 

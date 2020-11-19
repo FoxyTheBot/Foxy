@@ -19,6 +19,6 @@ const embed = new Discord.MessageEmbed()
 .setDescription(`${message.author} beijou o rosto de ${user}`)
 .setImage(rand)
 .setTimestamp()
-.setFooter('Made With 💖 by WinGamer')
+.setFooter('Made With 💖 by WinG4merBR')
 await message.channel.send(embed)
 }

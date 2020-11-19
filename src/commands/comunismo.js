@@ -27,4 +27,5 @@ exports.run = async (client, message, args, applyText) => {
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'nosso.png');
 
     message.channel.send(attachment);
+     console.log(`User: ${message.author.tag} ID: ${message.author.id} disse "${sayMessage}" no servidor ${message.guild.name} ID: ${message.guild.id}`)
 };
