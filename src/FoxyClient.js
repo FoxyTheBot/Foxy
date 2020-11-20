@@ -42,7 +42,8 @@ client.on("ready", () => {
       `💻 Use f!commands para ver minha lista de comandos`,
       `😍 Tornando seu servidor extraordinário ᕕ(ᐛ)ᕗ`,
       `🐦 Me siga no Twitter @FoxyDiscordBot`,
-      `💖 Use f!donate para me ajudar a ficar online!`
+      `💖 Use f!donate para me ajudar a ficar online!`,
+      `What Does The Fox Say?`
 
   ],
 
