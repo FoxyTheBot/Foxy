@@ -6,7 +6,7 @@ exports.run = async (client, message, args, applyText) => {
     const canvas = Canvas.createCanvas(500, 400);
     const ctx = canvas.getContext('2d');
   const sayMessage = args.join(' ');
-    const background = await Canvas.loadImage('./utils/images/comunismo.png');
+    const background = await Canvas.loadImage('./src/utils/images/comunismo.png');
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     ctx.strokeStyle = '#74037b';
