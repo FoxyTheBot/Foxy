@@ -52,8 +52,6 @@ Não delete ou mova os arquivos da pasta src, isso pode dar erro na hora de comp
 ```ascii
 📁 src
 └── 📁 commands
-📁 src
-└── 📁 images
 ```
 ## Menções Honrorosas
 <p> • WinG4merBR#1047 | Se não fosse ele, eu nem iria existir</p>
