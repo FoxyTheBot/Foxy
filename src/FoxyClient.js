@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const { prefix, token } = require("./config.json");
+const { prefix, token } = require("./src/config.json");
 const Enmap = require('enmap')
 const fs = require('fs');
 const express = require('express');
@@ -60,7 +60,7 @@ fs.readdir("./commands/", (err, files) => {
   files.forEach(file => {
     if (!file.endsWith(".js")) return;
 
-    let props = require(`./commands/${file}`);
+    let props = require(`./src/commands/${file}`);
 
     let commandName = file.split(".")[0];
     console.log(` f!${commandName} está funcionando.`);

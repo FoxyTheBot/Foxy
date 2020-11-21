@@ -34,6 +34,17 @@ Have Fun~
 
 Adicione a Foxy [clicando aqui](https://discord.com/oauth2/authorize?client_id=737044809650274325&permissions=355526&scope=bot)
 
+## Preparando
+
+A pasta node_modules tem que está dentro da pasta "src"
+
+```npm i``` Para instalar todas as dependências de uma vez
+
+## Compilando
+
+**Windows e Linux**
+
+```cd src && node .```
 
 ## Infraestrutura 
 ```ascii
