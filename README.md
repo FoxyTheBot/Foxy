@@ -46,6 +46,8 @@ A pasta node_modules tem que está dentro da pasta "src"
 
 ```cd src && node .```
 
+Não delete ou mova os arquivos da pasta src, isso pode dar erro na hora de compilar
+
 ## Infraestrutura 
 ```ascii
 📁 src

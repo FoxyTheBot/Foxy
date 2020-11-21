@@ -14,7 +14,7 @@ const listener = app.listen(process.env.PORT, function() {
   console.log('Port: ' + listener.address().port);
 });
 client.commands = new Enmap();
-const cmd = require('./resposta.json');
+const cmd = require('./src/resposta.json');
 client.on("message", message => {
   if (message.author.bot) return false;
 
