@@ -1,5 +1,5 @@
 {
-  "name": "Foxy",
+  "name": "foxybot",
   "version": "2020.03.17.28-stablw",
   "description": "Simples bot para o Discord",
   "main": "FoxyClient.js",
