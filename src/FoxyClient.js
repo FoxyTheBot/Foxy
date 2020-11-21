@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const { prefix, token } = require("./src/config.json");
+const { prefix, token } = require("./config.json");
 const Enmap = require('enmap')
 const fs = require('fs');
 const express = require('express');
@@ -14,7 +14,7 @@ const listener = app.listen(process.env.PORT, function() {
   console.log('Port: ' + listener.address().port);
 });
 client.commands = new Enmap();
-const cmd = require('./src/resposta.json');
+const cmd = require('./resposta.json');
 client.on("message", message => {
   if (message.author.bot) return false;
 
@@ -60,7 +60,7 @@ fs.readdir("./commands/", (err, files) => {
   files.forEach(file => {
     if (!file.endsWith(".js")) return;
 
-    let props = require(`./src/commands/${file}`);
+    let props = require(`./commands/${file}`);
 
     let commandName = file.split(".")[0];
     console.log(` f!${commandName} está funcionando.`);
