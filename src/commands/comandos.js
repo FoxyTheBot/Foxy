@@ -52,7 +52,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     adm.on('collect', r2 => {
       ajuda.setColor('RANDOM')
       ajuda.setTitle("Comandos de administração")
-      ajuda.setDescription(" f!dm - Envie alguma mensagem para a dm de seus membros \n f!kick - Expulsa um usuário \n f!clear - Limpa até 99 mensagens em um canal")
+      ajuda.setDescription(" f!addrole - Para dar um cargo para alguèm \n f!dm - Envie alguma mensagem para a dm de seus membros \n f!kick - Expulsa um usuário \n f!clear - Limpa até 99 mensagens em um canal")
       msg.edit(ajuda)
       
     })
@@ -60,7 +60,7 @@ exports.run = async (bot, message, argumentos, arg_texto, chat) => {
     fun.on('collect', r2 => {
       ajuda.setColor('BLACK')
       ajuda.setTitle("Comandos de diversão")
-      ajuda.setDescription(" f!esponja - Cria um meme do bob esponja fds \n f!comunismo - Nosso bot (cria meme comunista) \n f!laranjomemes - Gera um meme do Laranjo \n f!laranjo - Crie um meme do Laranjo \n f!say - você diz e eu repito \n f!morse - Decodificador e codificador Morse \n f!tf - É verdade ou é falso? \n f!fate - oq eu sou seu? \n f!cancel - Cancele um usuário \n f!avatar - Veja uma foto de perfil \n f!putin - Crie um meme do Putin Andando \n f!emoji - Para ver um emoji \n f!ship - faça ships com um usuário :3 \n f!8ball - Me pergunte algo \n f!coinflip - Cara ou coroa?")
+      ajuda.setDescription(" f!eventos - Para ver minha lista de mensagens automaticas \n f!esponja - Cria um meme do bob esponja fds \n f!comunismo - Nosso bot (cria meme comunista) \n f!laranjomemes - Gera um meme do Laranjo \n f!laranjo - Crie um meme do Laranjo \n f!say - você diz e eu repito \n f!morse - Decodificador e codificador Morse \n f!tf - É verdade ou é falso? \n f!fate - oq eu sou seu? \n f!cancel - Cancele um usuário \n f!avatar - Veja uma foto de perfil \n f!putin - Crie um meme do Putin Andando \n f!emoji - Para ver um emoji \n f!ship - faça ships com um usuário :3 \n f!8ball - Me pergunte algo \n f!coinflip - Cara ou coroa?")
       msg.edit(ajuda)
       
     })
