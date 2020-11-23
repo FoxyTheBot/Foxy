@@ -33,7 +33,11 @@ exports.run = async (client, message, args) => {
 	let timeout = await channel
 		.send(`<@${message.author.id}>`) // espera o canal ser criado e marca o membro
 		.catch(err => message.channel.send('Erro: ' + err.message));
+<<<<<<< HEAD
 	timeout.delete({ timeout: 2000 }); // deleta a mensagem que ping que avisou o membro do canal criado
+=======
+	timeout.delete({ timeout: 5000 }); // deleta a mensagem que ping que avisou o membro do canal criado
+>>>>>>> fa1949703b749456bfd65b341678577697547e6d
 	setTimeout(
 		() =>
 			channel

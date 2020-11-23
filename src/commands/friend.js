@@ -41,6 +41,7 @@ let membro1 = message.mentions.members.first()
 
   let desc;
     if(amor > 90) {
+<<<<<<< HEAD
       desc = ("Amigos ou não?\n`"+membro1.user.username+"`\n`"+membro2.user.username+"``\n:heart: `"+nomeship+"` Eles são melhores amigos :3");
     } else if(amor >= 70) {
       desc = ("Amigos ou não?\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:neutral_face: `"+nomeship+"` Eles são amigos mas não conversam muito :/");
@@ -48,6 +49,15 @@ let membro1 = message.mentions.members.first()
       desc = ("Amigos ou não? \n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:no_mouth: `"+nomeship+"` Talvez só precisa o "+membro2.user.username+" querer... :no_mouth:");
     } else {
       desc = ("Amigos ou não? \n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:cry: `"+nomeship+"`Não eles não são amigos :cry: ");
+=======
+      desc = ("Amigos ou não?\n``"+membro1.user.username+"``\n``"+membro2.user.username+"``\n:heart: ``"+nomeship+"`` Eles são melhores amigos :3");
+    } else if(amor >= 70) {
+      desc = ("Amigos ou não?\n``"+membro1.user.username+"``\n``"+membro2.user.username+"``\n:neutral_face: ``"+nomeship+"`` Eles são amigos mas não conversam muito :/");
+    } else if(amor >= 45) {
+      desc = ("Amigos ou não? \n``"+membro1.user.username+"``\n``"+membro2.user.username+"``\n:no_mouth: ``"+nomeship+"`` Talvez só precisa o "+membro2.user.username+" querer... :no_mouth:");
+    } else {
+      desc = ("Amigos ou não? \n``"+membro1.user.username+"``\n``"+membro2.user.username+"``\n:cry: ``"+nomeship+"``Não eles não são amigos :cry: ");
+>>>>>>> fa1949703b749456bfd65b341678577697547e6d
     }
   
   const canvas = Canvas.createCanvas(384, 128);
