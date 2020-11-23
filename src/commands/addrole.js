@@ -1,9 +1,5 @@
 const Discord = require('discord.js')
-<<<<<<< HEAD
 const config = require('../config.json')
-=======
-const config = require('./config.json')
->>>>>>> fa1949703b749456bfd65b341678577697547e6d
 module.exports.run = (client, message, args) => {
  
  let username = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
