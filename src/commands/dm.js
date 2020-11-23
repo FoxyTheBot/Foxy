@@ -1,10 +1,7 @@
 const Discord = require('discord.js')
 
 exports.run = async (bot, msg, args) => {
-<<<<<<< HEAD
     msg.delete().catch(O_o => {});
-=======
->>>>>>> fa1949703b749456bfd65b341678577697547e6d
     var membro = msg.mentions.members.first() || msg.guild.members.cache.get(args[0])
         if(!msg.member.permissions.has("ADMINISTRATOR")) {
         return msg.reply('Você precisa ter a permissão de administrador ativa!')

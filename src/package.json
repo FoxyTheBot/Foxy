@@ -1,16 +1,10 @@
 {
-<<<<<<< HEAD
   "//1": "describes your app and its dependencies",
   "//2": "https://docs.npmjs.com/files/package.json",
   "//3": "updating this file will download and update your packages",
   "name": "hello-express",
   "version": "0.0.1",
   "description": "A simple Node app built on Express, instantly up and running.",
-=======
-  "name": "foxybot",
-  "version": "2020.03.17.28-stable",
-  "description": "Simples bot para o Discord",
->>>>>>> fa1949703b749456bfd65b341678577697547e6d
   "main": "FoxyClient.js",
   "scripts": {
     "start": "node ."
@@ -21,7 +15,6 @@
     "enmap": "^5.2.1",
     "express": "^4.17.1",
     "fs": "0.0.2",
-<<<<<<< HEAD
     "google-play-scraper": "^8.0.2",
     "install": "^0.13.0",
     "ms": "^2.1.2",
@@ -34,14 +27,4 @@
   },
   "devDependencies": {},
   "author": ""
-=======
-    "ms": "^2.1.2",
-    "os": "^0.1.1"
-  },
-  "engines": {
-    "node": "10.x"
-  },
-  "devDependencies": {},
-  "author": "WinG4merBR"
->>>>>>> fa1949703b749456bfd65b341678577697547e6d
 }
