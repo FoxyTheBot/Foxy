@@ -1,5 +1,7 @@
+// Após dar git clone renomeie o config.json.example para config.json
+
 {
-"prefix": "f!",
-"token": "NzM3MDQ0ODA5NjUwMjc0MzI1.Xx3oeA.2yrdapWJM55HCbavnXjUiPiDMN8",
-"botonwer": "708493555768885338"
+"prefix": "PREFIX",
+"token": "TOKEN",
+"botonwer": "USERID"
 }
