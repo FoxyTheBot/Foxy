@@ -57,6 +57,6 @@ Não delete ou mova os arquivos da pasta src, isso pode dar erro na hora de comp
 <p> • WinG4merBR#1047 | Se não fosse ele, eu nem iria existir</p>
 <p> • ! Arthur#7264 | Por me ajudar a ficar online! </p>
 <p> • Bis❄#0001 | Por me desenhar e ajudar a me manter online <3 </p>
-<p> • ThierrY#6303 | Por me ajudar a cresce </p>
+<p> • ThierrY#6303 | Por me ajudar a crescer </p>
 
 
