@@ -43,7 +43,11 @@ client.on("ready", () => {
       `😍 Tornando seu servidor extraordinário ᕕ(ᐛ)ᕗ`,
       `🐦 Me siga no Twitter @FoxyDiscordBot`,
       `💖 Use f!donate para me ajudar a ficar online!`,
+<<<<<<< HEAD
         `🦊 What Does The Fox Say?`
+=======
+      `What Does The Fox Say?`
+>>>>>>> fa1949703b749456bfd65b341678577697547e6d
 
   ],
 
@@ -55,7 +59,11 @@ client.on("ready", () => {
     
   console.log(`Sessão Iniciada como ${client.user.tag} \nLogado com ${client.guilds.cache.size} guilds desde a inicialização.`)
   })
+<<<<<<< HEAD
 fs.readdir("./src/commands/", (err, files) => {
+=======
+fs.readdir("./commands/", (err, files) => {
+>>>>>>> fa1949703b749456bfd65b341678577697547e6d
   if (err) return console.error(err);
   files.forEach(file => {
     if (!file.endsWith(".js")) return;
