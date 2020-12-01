@@ -24,6 +24,14 @@ client.on("message", message => {
       message.channel.send(`Olá, ${message.author} eu sou a Foxy! Meu prefixo é f!`);
   };
 });
+client.on("message", (Message) => {
+  if ( Message.guild.id != "768267522670723094" ) return;
+
+  if ( Message.content.toLowerCase().startsWith("f!notificar") || Message.content.toLowerCase().startsWith("f!notify") ) {
+    if ( !Message.member.roles.cache.has("768275121290870814") ) Message.member.roles.add("768275121290870814"), Message.channel.send("Agora você vai receber todas as minhas novidades <:meow_blush:768292358458179595>")
+    else Message.member.roles.remove("768275121290870814"), Message.channel.send("Agora você não vai mais receber minhas novidades <:sad_cat_thumbs_up:768291053765525525>")
+}
+})
 client.on('message', msg => {
     if (msg.author.bot) {
         return;
