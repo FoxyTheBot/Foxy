@@ -28,8 +28,8 @@ client.on("message", message => {
 client.on("message", (Message) => {
   if ( Message.guild.id != "768267522670723094" ) return;
 
-  if ( Message.content.toLowerCase().startsWith("f!notificar") || Message.content.toLowerCase().startsWith("f!notify") ) {
-    if ( !Message.member.roles.cache.has("768275121290870814") ) Message.member.roles.add("768275121290870814"), Message.channel.send("Agora você vai receber todas as minhas novidades <:meow_blush:768292358458179595>")
+  if ( Message.content.toLowerCase().startsWith("command") || Message.content.toLowerCase().startsWith("aliase") ) {
+    if ( !Message.member.roles.cache.has("role-id") ) Message.member.roles.add("role-id"), Message.channel.send("Agora você vai receber todas as minhas novidades <:meow_blush:768292358458179595>")
     else Message.member.roles.remove("768275121290870814"), Message.channel.send("Agora você não vai mais receber minhas novidades <:sad_cat_thumbs_up:768291053765525525>")
 }
 })
@@ -80,23 +80,27 @@ fs.readdir("./commands/", (err, files) => {
     client.commands.set(commandName, props);
   });
 });
+client.on("message", (message) => {
+  if(message.channel.id != "CHANNEL-ID") return;
+  if ( !message.member.roles.cache.has("ROLE-ID") ) message.member.roles.add("ROLE-ID")
+})
 client.on("message", (Message) => {
-  if ( Message.channel.id != "779760356889198613" ) return;
+  if ( Message.channel.id != "CHANNEL-ID" ) return;
   if ( Message.content.startsWith(">") ) return;
 
   Message.react("❤")
 })
 client.on("message", (Message) => {
-  if ( Message.channel.id != "784227380108722236" ) return;
+  if ( Message.channel.id != "CHANNEL-ID" ) return;
   if ( Message.content.startsWith(">") ) return;
 
-  Message.react("<:sad_cat_thumbs_up:768291053765525525>")
+  Message.react("❤")
 })
 client.on("message", (Message) => {
-  if ( Message.channel.id != "784229832740700160" ) return;
+  if ( Message.channel.id != "CHANNEL-ID" ) return;
   if ( Message.content.startsWith(">") ) return;
 
-  Message.react("<:meowbughunter:776249240463736834>")
+  Message.react("❤")
   Message.react("🤔")
 })
 client.on("message", async message => {
