@@ -18,11 +18,11 @@ return message.reply('lembre-se de mencionar um usuário válido para lamber!');
 let avatar = message.author.displayAvatarURL({format: 'png'});
   const embed = new Discord.MessageEmbed()
         .setColor('#000000')
-        .setDescription(`${message.author} acaba de lamber ${user}`)
+        .setDescription(`${message.author} **lambeu** ${user}`)
         .setImage(rand)
         .setTimestamp()
         .setThumbnail(avatar)
-        .setFooter('Made with 💖 by WinGamer')
+        .setFooter('Made with 💖 by WinG4merBR')
         .setAuthor(message.author.tag, avatar);
-  await message.channel.send(embed);
+  await message.channel.send(`${message.author}`, embed);
 }
