@@ -6,7 +6,7 @@ exports.run = async (client, message, args) => {
     return message.reply('lembre-se de mencionar um usuário válido para beijar!');
     }
   if(user == message.author) return message.channel.send('Você não pode se beijar!')
-  if (user.bot) return message.channel.send('Nah, eu não quero te beijar')
+  if (user == client.user) return message.channel.send('Nah, eu não quero te beijar')
   message.delete().catch(O_o => {});
 var list = [
   'https://media1.tenor.com/images/78095c007974aceb72b91aeb7ee54a71/tenor.gif?itemid=5095865',
