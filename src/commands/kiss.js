@@ -1,7 +1,12 @@
 const Discord = require('discord.js');
-const config = require('../config.json')
-
 exports.run = async (client, message, args) => {
+
+  let user = message.mentions.users.first() || client.users.cache.get(args[0]);
+  if (!user) {
+    return message.reply('lembre-se de mencionar um usuário válido para beijar!');
+    }
+  if(user == message.author) return message.channel.send('Você não pode se beijar!')
+  if (user == client.user) return message.channel.send('Nah, eu não quero te beijar')
   message.delete().catch(O_o => {});
 var list = [
   'https://media1.tenor.com/images/78095c007974aceb72b91aeb7ee54a71/tenor.gif?itemid=5095865',
@@ -10,18 +15,14 @@ var list = [
 ];
 
 var rand = list[Math.floor(Math.random() * list.length)];
-let user = message.mentions.users.first() || client.users.cache.get(args[0]);
-if (!user) {
-return message.reply('lembre-se de mencionar um usuário válido para beijar!');
-}
 
 let avatar = message.author.displayAvatarURL({format: 'png'});
   const embed = new Discord.MessageEmbed()
         .setColor('#000000')
-        .setDescription(`${message.author} **beijou** ${user}`)
+        .setDescription(`${message.author} acaba de beijar ${user}`)
         .setImage(rand)
         .setTimestamp()
         .setFooter('Made with 💖 by WinG4merBR')
         .setAuthor(message.author.tag, avatar);
-  await message.channel.send(`${message.author}`, embed);
+  await message.channel.send(embed);
 }
