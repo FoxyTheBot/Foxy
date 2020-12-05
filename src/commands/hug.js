@@ -19,7 +19,7 @@ return message.reply('lembre-se de mencionar um usuário válido para abraçar!'
 let avatar = message.author.displayAvatarURL({format: 'png'});
   const embed = new Discord.MessageEmbed()
         .setColor('#000000')
-        .setDescription(`${message.author} acaba de abraçar ${user}`)
+        .setDescription(`${message.author} **abraçou** ${user}`)
         .setImage(rand)
         .setTimestamp()
         .setFooter('Made with 💖 by WinG4merBR')
