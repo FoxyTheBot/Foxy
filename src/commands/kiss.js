@@ -18,10 +18,10 @@ return message.reply('lembre-se de mencionar um usuário válido para beijar!');
 let avatar = message.author.displayAvatarURL({format: 'png'});
   const embed = new Discord.MessageEmbed()
         .setColor('#000000')
-        .setDescription(`${message.author} acaba de beijar ${user}`)
+        .setDescription(`${message.author} **beijou** ${user}`)
         .setImage(rand)
         .setTimestamp()
         .setFooter('Made with 💖 by WinG4merBR')
         .setAuthor(message.author.tag, avatar);
-  await message.channel.send(embed);
+  await message.channel.send(`${message.author}`, embed);
 }

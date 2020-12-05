@@ -20,10 +20,10 @@ return message.reply('lembre-se de mencionar um usuário válido para fazer cafu
 let avatar = message.author.displayAvatarURL({format: 'png'});
   const embed = new Discord.MessageEmbed()
         .setColor('#000000')
-        .setDescription(`${message.author} fez cafuné em ${user}`)
+        .setDescription(`${message.author} **fez cafuné em** ${user}`)
         .setImage(rand)
         .setTimestamp()
         .setFooter('Made with 💖 by WinGamer')
         .setAuthor(message.author.tag, avatar);
-  await message.channel.send(embed);
+  await message.channel.send(`${message.author}`, embed);
 }
