@@ -20,8 +20,8 @@ client.on("message", message => {
 
  
 });
-client.on("message", (msg) => {
-  if ( msg.content === `<@${client.user.id}>` || msg.content === `<@!${client.user.id}>` ) msg.channel.send(`Olá, ${message.author}! Meu prefixo é ${prefix}`)
+client.on("message", (message) => {
+  if ( message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>` ) message.channel.send(`Olá, ${message.author}! Meu prefixo é ${prefix}`)
 })
 client.on("message", (Message) => {
   if ( Message.guild.id != "768267522670723094" ) return;
@@ -112,3 +112,4 @@ if (commandfile) commandfile.run(client, message, args);
 });
 
 client.login(token);
+
