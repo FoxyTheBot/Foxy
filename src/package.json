@@ -18,8 +18,8 @@
     "google-play-scraper": "^8.0.2",
     "install": "^0.13.0",
     "ms": "^2.1.2",
-    "node-pre-gyp": "^0.16.0",
     "node-fetch": "^2.6.1",
+    "node-pre-gyp": "^0.16.0",
     "os": "^0.1.1",
     "superagent": "^6.1.0"
   },

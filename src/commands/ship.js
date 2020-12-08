@@ -5,10 +5,12 @@ const ctx = canvas.getContext('2d');
 const { createCanvas, loadImage } = require('canvas')
 
 module.exports.run = async (bot, message, args) => {//exportando o comando como ship
+  let user = message.mentions.users.first() || client.users.cache.get(args[0]);
   let membro1 = message.mentions.members.first()
     let membro2 = message.mentions.members.last()
   
   if(!membro1 || !membro2) return message.channel.send('Lembre-se de mencionar dois usuários para shippar')
+      if (membro1 || bot) return message.channel.send('🙅‍♀️ Nah, eu não tenho idade pra namorar!')
     if(membro1 === membro2) return message.channel.send('Mencione duas pessoas diferentes')
   
   const amor = Math.floor(Math.random() * 100);
@@ -43,7 +45,7 @@ module.exports.run = async (bot, message, args) => {//exportando o comando como 
     if(amor > 90) {
       desc = (":sparkling_heart: HMMM, vai rolar ou não vai? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:heart: `"+nomeship+"` Esse é o casal perfeito! :heart:");
     } else if(amor >= 70) {
-      desc = (":sparkling_heart: HMMM, vai rolar ou não vai? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"``\n:neutral_face: `"+nomeship+"` Esses aqui já tão se pegando e n contaram pra ngm! :neutral_face:");
+      desc = (":sparkling_heart: HMMM, vai rolar ou não vai? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:neutral_face: `"+nomeship+"` Esses aqui já tão se pegando e n contaram pra ngm! :neutral_face:");
     } else if(amor >= 45) {
       desc = (":sparkling_heart: HMMM, vai rolar ou não vai? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:no_mouth: `"+nomeship+"` Talvez só precisa o "+membro2.user.username+" querer... :no_mouth:");
     } else {
