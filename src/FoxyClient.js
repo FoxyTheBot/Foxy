@@ -20,8 +20,8 @@ client.on("message", message => {
 
  
 });
-client.on("message", (msg) => {
-  if ( msg.content === `<@${client.user.id}>` || msg.content === `<@!${client.user.id}>` ) msg.channel.send(`Olá, ${message.author}! Meu prefixo é ${prefix}`)
+client.on("message", (message) => {
+  if ( message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>` ) message.channel.send(`Olá, ${message.author}! Meu prefixo é ${prefix}`)
 })
 client.on("message", (Message) => {
   if ( Message.guild.id != "768267522670723094" ) return;
@@ -73,7 +73,7 @@ fs.readdir("./commands/", (err, files) => {
     let props = require(`./commands/${file}`);
 
     let commandName = file.split(".")[0];
-    console.log(` f!${commandName} está funcionando.`);
+    console.log(` ${prefix}${commandName} está operando corretamente.`);
     
     client.commands.set(commandName, props);
   });
