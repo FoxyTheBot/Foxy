@@ -18,12 +18,11 @@ const cmd = require('./resposta.json');
 client.on("message", message => {
   if (message.author.bot) return false;
 
-  if (message.content.includes("@here") || message.content.includes("@everyone")) return false;
-
-  if (message.mentions.has(client.user.id)) {
-      message.channel.send(`Olá, ${message.author} eu sou a Foxy! Meu prefixo é f!`);
-  };
+ 
 });
+client.on("message", (msg) => {
+  if ( msg.content === `<@${client.user.id}>` || msg.content === `<@!${client.user.id}>` ) msg.channel.send(`Olá, ${message.author}! Meu prefixo é ${prefix}`)
+})
 client.on("message", (Message) => {
   if ( Message.guild.id != "768267522670723094" ) return;
 
@@ -41,6 +40,8 @@ client.on('message', msg => {
         msg.channel.send(responseObject[msg.content]);
     }
 });
+ 
+  console.log(`Sessão Iniciada \nLogado com ${client.guilds.cache.size} guilds desde a inicialização.`)
 client.on("ready", () => {
     let activities = [
 `❓ Use f!help para obter ajuda`,
@@ -51,7 +52,8 @@ client.on("ready", () => {
       `😍 Tornando seu servidor extraordinário ᕕ(ᐛ)ᕗ`,
       `🐦 Me siga no Twitter @FoxyDiscordBot`,
       `💖 Use f!donate para me ajudar a ficar online!`,
-        `🦊 What Does The Fox Say?`
+        `🦊 What Does The Fox Say?`,
+        `🎅 Feliz natal a todos! ❤`
 
   ],
 
@@ -61,9 +63,9 @@ client.on("ready", () => {
     type: "WATCHING"
   }), 5000);
     
-  console.log(`Sessão Iniciada como ${client.user.tag} \nLogado com ${client.guilds.cache.size} guilds desde a inicialização.`)
+  console.log(`Sessão Iniciada \nLogado com ${client.guilds.cache.size} guilds desde a inicialização.`)
   })
-fs.readdir("./src/commands/", (err, files) => {
+fs.readdir("./commands/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
     if (!file.endsWith(".js")) return;
@@ -71,11 +73,30 @@ fs.readdir("./src/commands/", (err, files) => {
     let props = require(`./commands/${file}`);
 
     let commandName = file.split(".")[0];
-    console.log(` f!${commandName} está funcionando.`);
+    console.log(` ${prefix}${commandName} está operando corretamente.`);
     
     client.commands.set(commandName, props);
   });
 });
+client.on("message", (Message) => {
+  if ( Message.channel.id != "779760356889198613" ) return;
+  if ( Message.content.startsWith(">") ) return;
+
+  Message.react("❤")
+})
+client.on("message", (Message) => {
+  if ( Message.channel.id != "784227380108722236" ) return;
+  if ( Message.content.startsWith(">") ) return;
+
+  Message.react("<:sad_cat_thumbs_up:768291053765525525>")
+})
+client.on("message", (Message) => {
+  if ( Message.channel.id != "784229832740700160" ) return;
+  if ( Message.content.startsWith(">") ) return;
+
+  Message.react("<:meowbughunter:776249240463736834>")
+  Message.react("🤔")
+})
 client.on("message", async message => {
     
   if (message.author.bot) return;
