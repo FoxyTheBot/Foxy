@@ -16,7 +16,6 @@
     "express": "^4.17.1",
     "fs": "0.0.2",
     "google-play-scraper": "^8.0.2",
-    "install": "^0.13.0",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.1",
     "node-pre-gyp": "^0.16.0",
