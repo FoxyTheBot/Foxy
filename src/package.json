@@ -20,8 +20,7 @@
     "ms": "^2.1.2",
     "node-fetch": "^2.6.1",
     "node-pre-gyp": "^0.16.0",
-    "os": "^0.1.1",
-    "superagent": "^6.1.0"
+    "os": "^0.1.1"
   },
   "engines": {
     "node": "14.x"
