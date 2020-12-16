@@ -9,6 +9,6 @@ echo. Instalando dependências
 
 npm i
 
-echo. yay!
+echo. yay! Instalado!
 pause
 exit
