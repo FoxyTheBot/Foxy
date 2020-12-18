@@ -1,13 +1,24 @@
-const Discord = require('discord.js')
+const Discord = require('discord.js');
+const config = require('../config.json');
 
-exports.run = async (channel, message) => {
-    
-    message.delete().catch(O_o => {});
-    
-    let report = new Discord.MessageEmbed()
-    .setTitle('<:meowbughunter:776249240463736834> Envie uma sugestão, dúvida ou um bug no servidor do Foxy')
-    .setThumbnail('https://cdn.discordapp.com/attachments/743575775046926447/751181572367188128/DiscordStaff.png')
-    .setDescription('Como Fazer: \n 1- Entre no servidor \n 2- vá em qualquer canal \n 3- digite f!ticket para criar um canal para você reportar \n 4- e marque o cargo `Guarda-Costas da Foxy` \n 5- Link: https://discord.gg/nHVqcxrFmg')
-    
-    message.channel.send(report)
-};
+exports.run = async (client, message, args) => {
+    const webhookClient = new Discord.WebhookClient('WEBHOOK-ID', "WEBHOOK-TOKEN");
+    const sayMessage = args.join(' ');
+    const noargs = new Discord.MessageEmbed()
+        .setColor('BLUE')
+        .setTitle('Como usar')
+        .setDescription('<:meowbughunter:776249240463736834> **Reporte falhas para meu servidor de suporte** \n 💁‍♀️ **Exemplo:** `f!report bot retorna undefined`')
+
+    if (!sayMessage) return message.channel.send(noargs)
+    message.channel.send(`Obrigada por me ajudar ${message.author}, seu report foi enviado com sucesso!`)
+    const embed = new Discord.MessageEmbed()
+        .setTitle(`<:meowbughunter:776249240463736834> | Report para Foxy`)
+        .setColor('#0099ff')
+        .setDescription(`Autor: **${message.author.username} / ${message.author.id}** \n Servidor: ${message.guild.name} \n ${message.guild.id} \n\n **Issue:** ${sayMessage}`)
+
+    webhookClient.send( {
+        username: `${message.author.username}`,
+        avatarURL: 'https://cdn.discordapp.com/attachments/766414535396425739/789255465125150732/sad.jpeg',
+        embeds: [embed],
+    });
+}
