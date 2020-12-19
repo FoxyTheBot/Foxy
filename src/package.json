@@ -1,10 +1,7 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-  "name": "hello-express",
-  "version": "0.0.1",
-  "description": "A simple Node app built on Express, instantly up and running.",
+  "name": "Foxy",
+  "version": "SNAPSHOT-2020",
+  "description": "A Simple bot for Discord",
   "main": "FoxyClient.js",
   "scripts": {
     "start": "node ."
