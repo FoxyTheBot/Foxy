@@ -4,7 +4,6 @@ exports.run = async (client, message, args) => {
   message.delete().catch(O_o => {});
   
     const sayMessage = args.join(' ');
-    message.delete().catch(O_o => {});
 var list = [
   'https://cdn.zerotwo.dev/LAUGH/b2de3ceb-3faf-4469-8ba5-fba5497091c1.gif',
   'https://cdn.zerotwo.dev/LAUGH/5b5dba96-626f-492c-bdaa-c5e4b4675ed7.gif',

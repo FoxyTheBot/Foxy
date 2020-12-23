@@ -5,12 +5,11 @@ const ctx = canvas.getContext('2d');
 const { createCanvas, loadImage } = require('canvas')
 
 module.exports.run = async (bot, message, args) => {//exportando o comando como ship
-  let user = message.mentions.users.first() || client.users.cache.get(args[0]);
   let membro1 = message.mentions.members.first()
+  
     let membro2 = message.mentions.members.last()
   
   if(!membro1 || !membro2) return message.channel.send('Lembre-se de mencionar dois usuários para shippar')
-      if (membro1 || bot) return message.channel.send('🙅‍♀️ Nah, eu não tenho idade pra namorar!')
     if(membro1 === membro2) return message.channel.send('Mencione duas pessoas diferentes')
   
   const amor = Math.floor(Math.random() * 100);
