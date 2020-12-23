@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
-  message.delete();
+   message.delete().catch(O_o => {});
   if (!args[0])
     return message.channel.send(
       `**${message.author.username}, a sintaxe correta é:** ` +

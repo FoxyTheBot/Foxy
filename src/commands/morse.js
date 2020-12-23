@@ -1,7 +1,8 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-
+    
+ message.delete().catch(O_o => {});
     let alpha = " ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split(""),
 				morse = "/,.-,-...,-.-.,-..,.,..-.,--.,....,..,.---,-.-,.-..,--,-.,---,.--.,--.-,.-.,...,-,..-,...-,.--,-..-,-.--,--..,.----,..---,...--,....-,.....,-....,--...,---..,----.,-----".split(","),
 				text = args.join(" ").toUpperCase();

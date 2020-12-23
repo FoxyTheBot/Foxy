@@ -6,6 +6,7 @@ const { createCanvas, loadImage } = require('canvas')
 
 module.exports.run = async (bot, message, args) => {//exportando o comando como ship
 let membro1 = message.mentions.members.first()
+ message.delete().catch(O_o => {});
     let membro2 = message.mentions.members.last()
 
   if(!membro1 || !membro2) return message.channel.send('Lembre-se de mencionar dois usuários para medir')

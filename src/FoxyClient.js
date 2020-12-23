@@ -23,8 +23,29 @@ client.on("message", message => {
 client.on("message", (message) => {
     if ( message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>` ) message.channel.send(`Olá ${message.author}! Meu prefixo é ${prefix}`)
 })
+client.on('message', message => {
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+    const args = message.content.slice(prefix.length).trim().split(/ +/);
+    const command = args.shift().toLowerCase();
+
+    if (command === 'stats') {
+        const promises = [
+            client.shard.fetchClientValues('guilds.cache.size'),
+            client.shard.broadcastEval('this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)'),
+        ];
+
+        return Promise.all(promises)
+            .then(results => {
+                const totalGuilds = results[0].reduce((acc, guildCount) => acc + guildCount, 0);
+                const totalMembers = results[1].reduce((acc, memberCount) => acc + memberCount, 0);
+                return message.channel.send(`Server count: ${totalGuilds}\nMember count: ${totalMembers}`);
+            })
+            .catch(console.error);
+    }
+});
 client.on('guildCreate', async guild => {
-    const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
+    const webhookClient = new Discord.WebhookClient("790040938637819954", "N4G0WLBL3i7tG9EFF4WyZfICklM4jUgUqnTAVNUXXnWjFcmAz-2aWI_YM5yJHNrw4Xdk");
     const embed = new Discord.MessageEmbed()
         .setTitle('Logs de entrada e saída')
         .setDescription(`<:MeowPuffyMelt:776252845493977088> Fui adicionada no servidor: ${guild.name} / ${guild.id}`)
@@ -35,7 +56,7 @@ client.on('guildCreate', async guild => {
     });
 })
 client.on('guildDelete', async guild => {
-    const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
+    const webhookClient = new Discord.WebhookClient("790040938637819954", "N4G0WLBL3i7tG9EFF4WyZfICklM4jUgUqnTAVNUXXnWjFcmAz-2aWI_YM5yJHNrw4Xdk");
     const embed = new Discord.MessageEmbed()
         .setTitle('Logs de entrada e saída')
         .setDescription(`<:sad_cat_thumbs_up:768291053765525525> Fui removida do servidor: ${guild.name} / ${guild.id}`)
@@ -64,10 +85,11 @@ client.on('message', msg => {
 });
 
 client.on("ready", () => {
+
     let activities = [
             `❓ Use f!help para obter ajuda`,
             `📷 Avatar por: Bis❄#0001`,
-            `😍 Espalhando alegria em ${client.guilds.cache.size} servidores`,
+            `😍 Espalhando alegria em ${client.guilds.cache.size} servidores [Shard: ${client.shard.ids}]`,
             `😎 Eu sou open-source https://github.com/BotFoxy ＼(^o^)／`,
             `💻 Use f!commands para ver minha lista de comandos`,
             `😍 Tornando seu servidor extraordinário ᕕ(ᐛ)ᕗ`,
@@ -84,9 +106,9 @@ client.on("ready", () => {
         type: "WATCHING"
     }), 5000);
 
-    console.log(`Sessão Iniciada \n ${client.guilds.cache.size} Servidores nesta shard!`)
+    console.log(`Sessão Iniciada \nLogado com ${client.guilds.cache.size} guilds desde a inicialização.`)
 })
-fs.readdir("./src/commands/", (err, files) => {
+fs.readdir("./commands/", (err, files) => {
     if (err) return console.error(err);
     files.forEach(file => {
         if (!file.endsWith(".js")) return;

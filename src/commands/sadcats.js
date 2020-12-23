@@ -1,6 +1,6 @@
 const Discord = require("discord.js")
 exports.run = async (bot, message, argumentos, arg_texto, chat) => {
-  
+   message.delete().catch(O_o => {});
   const ajuda = new Discord.MessageEmbed()
     .setColor("GREEN")
     .setImage(`https://i.ytimg.com/vi/lkT0PJoZ_QM/maxresdefault.jpg`)

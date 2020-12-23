@@ -1,12 +1,14 @@
 
 const Discord = require('discord.js')
 const Canvas = require('canvas')
-exports.run = async (client, message, args, applyText) => {
+const webhookClient = new Discord.WebhookClient("789267102690836552", "cyDCxeAB_eDNdzNE75zP7AYkt_On8YoADzHMdN6TH27-umWMhhBtv1CVHmsy4RzIu0qb");
 
+exports.run = async (client, message, args, applyText) => {
+ message.delete().catch(O_o => {});
     const canvas = Canvas.createCanvas(500, 400);
     const ctx = canvas.getContext('2d');
   const sayMessage = args.join(' ');
-    const background = await Canvas.loadImage('./assets/fodase.jpeg');
+    const background = await Canvas.loadImage('../src/assets/fodase.jpeg');
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     ctx.strokeStyle = '#74037b';
@@ -27,4 +29,12 @@ exports.run = async (client, message, args, applyText) => {
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'respier.png');
 
     message.channel.send(attachment);
+    const embed = new Discord.MessageEmbed()
+    .setTitle('Logs de comandos')
+    .setDescription(`**Comando:** f!laranjo \n **Autor:** ${message.author.tag} / ${message.author.id} \n\n **Servidor** ${message.guild.name} / ${message.guild.id} \n\n **Mensagem:** ${sayMessage} \n\n Link: [Mensagem](${message.url})`)
+webhookClient.send( {
+    username: `Logs`,
+    avatarURL: 'https://cdn.discordapp.com/attachments/766414535396425739/789255465125150732/sad.jpeg',
+    embeds: [embed],
+});
 };

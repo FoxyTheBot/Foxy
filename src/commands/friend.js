@@ -5,6 +5,7 @@ const ctx = canvas.getContext('2d');
 const { createCanvas, loadImage } = require('canvas')
 
 module.exports.run = async (bot, message, args) => {//exportando o comando como ship
+     message.delete().catch(O_o => {});
 let membro1 = message.mentions.members.first()
     let membro2 = message.mentions.members.last()
 

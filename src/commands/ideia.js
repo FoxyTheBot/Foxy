@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async (client, message, args) => {
-message.delete();
+ message.delete().catch(O_o => {});
 const content = args.join(" ");
 
 if (!args[0]) {
