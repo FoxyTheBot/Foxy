@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 
 exports.run = async (client, message) => {
+     message.delete().catch(O_o => {});
     let nitro = new Discord.MessageEmbed()
 .setColor('PURPLE')
 .setTitle('Discord Nitro')

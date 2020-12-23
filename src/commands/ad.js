@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 exports.run = async (bot, message, argumentos, arg_texto, chat) => {
-    
+     message.delete().catch(O_o => {});
     if(!message.member.permissions.has("ADMINSTRATOR"))return message.channel.send("<:nao:749403722488217610> Somente adms")
   
   message.channel.send("Onde você quer enviar a mensagem?").then(msg1 => {

@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const config = require('../config.json')
 module.exports.run = (client, message, args) => {
- 
+  message.delete().catch(O_o => {});
  let username = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
  
 if (!message.member.hasPermission("MANAGE_ROLES")) return message.reply("Você não tem permissão `Gerenciar Cargos`") 

@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports.run = async (client, message, args) => {
+     message.delete().catch(O_o => {});
   let say = new Discord.MessageEmbed()
   .setColor('RED')
   .setTitle('Ops! Algo deu errado aqui!')

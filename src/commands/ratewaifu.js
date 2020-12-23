@@ -1,11 +1,14 @@
 const Discord = require('discord.js');
 exports.run = async (client, message, args) => {
 
-  const user = args.join(' ');
+  let user = message.mentions.users.first() || client.users.cache.get(args[0]);
+     message.delete().catch(O_o => {});
+  if (!user) {
+    return message.reply('lembre-se de mencionar um usuário válido para avaliar!');
+    }
   if(user == message.author) return message.channel.send('Você não pode se avaliar')
-  if (user == client.user) return message.channel.send('Eu dou nota **10** para <@737044809650274325> sim eu sou muito linda 😘')
-        // Caso queira adicionar algum user em específico use 
-        // if(user == ID DO USUARIO) return message.channel.send('')
+  if (user == 737044809650274325) return message.channel.send('Eu dou nota **10** para <@737044809650274325> sim eu sou muito linda 😘')
+       if(user == 758885367847190568) return message.channel.send(`Sobre ${user}... Eu dou nota **10** para essa waifu. Essa waifu é perfeita! Eu não trocaria ela por nada se fosse você! <:meow_blush:768292358458179595>`)
   message.delete().catch(O_o => {});
 var list = [
   '**1** para essa waifu. Eu não gostei <:hmmm:779010951420051457>',
