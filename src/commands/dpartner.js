@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 
 exports.run = async (client, message) => {
+     message.delete().catch(O_o => {});
     let partner = new Discord.MessageEmbed()
     .setColor('#7289DA')
 .setTitle('Discord Partner')

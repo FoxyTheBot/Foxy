@@ -1,4 +1,3 @@
-const Discord = require('discord.js')
 const { ShardingManager } = require('discord.js');
 const manager = new ShardingManager('./src/FoxyClient.js', { token: 'BOT-TOKEN', totalShards: 2 });
 

@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 
 exports.run = async (client, message) => {
+     message.delete().catch(O_o => {});
     let reports = new Discord.MessageEmbed()
     .setColor('RED')
 .setTitle('Como reportar no Discord')

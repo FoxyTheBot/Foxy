@@ -3,7 +3,7 @@ const fs = require('fs');
 const config = require('../config.json');
 
 module.exports.run = async (client, message, args) => {
-
+ message.delete().catch(O_o => {});
     if(!message.member.hasPermission('KICK_MEMBERS')) return message.reply("você não tem permissão de `KICK_MEMBERS`")
     let member = message.mentions.members.first()
 

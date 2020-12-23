@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const config = require('../config.json');
 
 exports.run = async (client, message, args) => {
+    message.delete().catch(O_o => {});
     const webhookClient = new Discord.WebhookClient('WEBHOOK-ID', "WEBHOOK-TOKEN");
     const sayMessage = args.join(' ');
     const noargs = new Discord.MessageEmbed()
