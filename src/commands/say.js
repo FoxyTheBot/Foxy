@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const webhookClient = new Discord.WebhookClient("789267102690836552", "cyDCxeAB_eDNdzNE75zP7AYkt_On8YoADzHMdN6TH27-umWMhhBtv1CVHmsy4RzIu0qb");
+const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
 module.exports.run = async (client, message, args) => {
  message.delete().catch(O_o => {});
     if (!message.member.permissions.has("MANAGE_MESSAGES"))
