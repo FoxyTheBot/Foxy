@@ -1,8 +1,8 @@
 {
   "name": "Foxy",
-  "version": "SNAPSHOT-2020",
+  "version": "2.30",
   "description": "A Simple bot for Discord",
-  "main": "FoxyClient.js",
+  "main": "shard.js",
   "scripts": {
     "start": "node ."
   },
