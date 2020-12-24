@@ -45,7 +45,11 @@ client.on('message', message => {
     }
 });
 client.on('guildCreate', async guild => {
+
+    const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
+
    const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
+
     const embed = new Discord.MessageEmbed()
         .setTitle('Logs de entrada e saída')
         .setDescription(`<:MeowPuffyMelt:776252845493977088> Fui adicionada no servidor: ${guild.name} / ${guild.id}`)
@@ -56,7 +60,11 @@ client.on('guildCreate', async guild => {
     });
 })
 client.on('guildDelete', async guild => {
+
+    const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
+
   const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
+
     const embed = new Discord.MessageEmbed()
         .setTitle('Logs de entrada e saída')
         .setDescription(`<:sad_cat_thumbs_up:768291053765525525> Fui removida do servidor: ${guild.name} / ${guild.id}`)
