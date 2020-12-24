@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const { prefix, token } = require("./config.json");
+const { prefix, token } = require("./json/config.json");
 const Enmap = require('enmap')
 const fs = require('fs');
 const express = require('express');
@@ -14,7 +14,7 @@ const listener = app.listen(process.env.PORT, function() {
     console.log('Port: ' + listener.address().port);
 });
 client.commands = new Enmap();
-const cmd = require('./resposta.json');
+const cmd = require('./json/resposta.json');
 client.on("message", message => {
     if (message.author.bot) return false;
 
