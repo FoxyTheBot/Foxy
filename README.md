@@ -43,7 +43,7 @@ Você pode tentar hospedar sua propria instancia, mas eu pessoalmente não recom
 
 * Powershell [windows] ou terminal [linux]
 > ⚠️ Você até pode usar o cmd mas não recomendo...
-* Você vai precisar baixar o nodejs 11.2.0
+* Você vai precisar baixar o nodejs 14.15.1
 * Você vai precisar ter o git instalado em sua maquina
 * Se você pretende alterar o codigo ou ajudar no desenvolvimento use o [Microsoft visual studio code](https://code.visualstudio.com/)! É de graça então você não vai precisar ficar "aaaa eu tenho que pagar por isso"
 ### `1.` 🧹 Preparando o ambiente
@@ -93,7 +93,7 @@ Parece dificil mas você **realmente** quer hospedar a Foxy? você pode usar a i
 * Verifique se tudo foi instalado na pasta node_modules
 * Se você ainda não fez... adicione o bot ao seu servidor do discord
 * Agora rode a Foxy usando `node FoxyCLient.js`
-* Apos iniciar utilize `f!ping` No seu servidor do discord.
+* Apos iniciar utilize `f!ping` No sel servidor do discord.
 * Se tudo correu bem agora ela deve estar pronta para ser usada
 
 ___
