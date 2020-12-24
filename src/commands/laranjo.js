@@ -1,7 +1,7 @@
 
 const Discord = require('discord.js')
 const Canvas = require('canvas')
-const webhookClient = new Discord.WebhookClient("789267102690836552", "cyDCxeAB_eDNdzNE75zP7AYkt_On8YoADzHMdN6TH27-umWMhhBtv1CVHmsy4RzIu0qb");
+const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
 
 exports.run = async (client, message, args, applyText) => {
  message.delete().catch(O_o => {});
