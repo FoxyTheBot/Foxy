@@ -1,25 +1,23 @@
-const Discord = require("discord.js");
-const config = require('../config.json')
+module.exports = {
+  name: "clear",
+  description: "Clears messages",
 
-exports.run = async (client, message, args) => {
-  message.delete().catch(O_o => {});
-  if (!message.member.permissions.has("MANAGE_MESSAGES"))
-    return message.reply(
-      ":Error: você é fraco, lhe falta permissão de `Gerenciar Mensagens` para usar esse comando"
-    );
-  const deleteCount = parseInt(args[0], 10);
-  if (!deleteCount || deleteCount <= 0 || deleteCount > 100)
-    return message.reply(
-      ":Alerta: forneça um número de até **100 mensagens** a serem excluídas (Você não pode apagar mensagens com mais de 14 dias!)"
-    );
+  async run (client, message, args) {
 
-  const fetched = await message.channel.messages.fetch({
-    limit: deleteCount
-  });
-  message.channel.bulkDelete(fetched);
-  message.channel
-    .send(`**${args[0]} mensagens limpas nesse chat! Se as mensagens não foram excluidas é porque tem mais de 14 dias**`).then(msg => msg.delete({timeout: 5000}))
-    .catch(error =>
-      message.channel.send(`Não foi possível deletar mensagens devido a: ${error}`)
-    )
+    const amount = args.join(" ");
+
+    if(!amount) return message.reply('Por favor, quantas mensagens eu preciso apagar?')
+
+    if(amount > 100) return message.reply(`Você não pode deletar mais de 100 mensagens`)
+
+    if(amount < 1) return message.reply(`Você precisa deletar pelo menos uma nensagem!`)
+
+    await message.channel.messages.fetch({limit: amount}).then(messages => {
+      message.channel.bulkDelete(messages
+      )});
+
+
+    message.channel.send('${amount} mensagens foram excluídas')
+
+  }
 }
