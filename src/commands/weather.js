@@ -28,7 +28,7 @@ module.exports = {
                 .addField('Temperatura', `${current.temperature}°`, true)
                 .addField('Vento', current.winddisplay, true)
                 .addField('Sensação', `${current.feelslike}°`, true)
-                .addField('Humidade', `${current.humidity}%`, true)
+                .addField('Umidade', `${current.humidity}%`, true)
 
 
             message.channel.send(weatherinfo)

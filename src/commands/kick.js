@@ -1,66 +1,43 @@
-const Discord = require('discord.js')
-const fs = require('fs');
-const config = require('../config.json');
+const Discord = require('discord.js');
 
-module.exports.run = async (client, message, args) => {
- message.delete().catch(O_o => {});
-    if(!message.member.hasPermission('KICK_MEMBERS')) return message.reply("você não tem permissão de `KICK_MEMBERS`")
-    let member = message.mentions.members.first()
+const db = require('quick.db')
 
-    const user = message.mentions.users.first();
+module.exports = {
+    name: "kick",
+    description: "Kicks a member from the server",
 
-    let prefix = config.prefix;  
+    async run (client, message, args) {
 
-    if(!member) return message.channel.send(`Use: ${prefix}kick <@Usuário> <Motivo>`)
+        if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send('Você não pode usar isto!')
+        if(!message.guild.me.hasPermission("KICK_MEMBERS")) return message.channel.send('Eu não tenho as permissões corretas para fazer isto')
 
-        if(!member.bannable)
-        return message.reply("<:sad_cat_thumbs_up:768291053765525525> Eu não posso expulsar esse usuário, ele pode ter um cargo maior que o meu.")
+        const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 
-        let reason = args.slice(1).join(' ');
+        if(!args[0]) return message.channel.send('Por favor, especifique um usuário!');
 
-   let anuncioembed = new Discord.MessageEmbed()
-   anuncioembed.setColor("ORANGE")
-   anuncioembed.setDescription(`Você está presta a expulsar o ${user.toString()} você tem certeza?`)
-   anuncioembed.setTimestamp();
-   
-   return message.channel.send(anuncioembed).then(async msg => {
-   
-        await msg.react("✅") 
+        if(!member) return message.channel.send('Eu não consigo encontrar este usuário, desculpe.');
+        if(!member.kickable) return message.channel.send('Este usuário possui um cargo maior que o meu.');
 
-       const a1 = (reaction, user) => reaction.emoji.name ==='✅' && user.id === message.author.id
-       const b1 = msg.createReactionCollector(a1, { time: 3000000 });
-       
-       b1.on("collect", c1 => {
-        msg.delete(anuncioembed)
-        if(!reason) reason = "Não informado"
+        if(member.id === message.author.id) return message.channel.send('Bruh, você não pode se expulsar');
+
+        let reason = args.slice(1).join(" ");
+
+        if(!reason) reason = 'Não especificado';
+
         member.kick(reason)
+            .catch(err => {
+                if(err) return message.channel.send('Algo deu errado')
+            })
 
-         .catch(error => message.reply(`<a:error:754144173942243378> Desculpe ${message.author} não consigo expulsar esse jogador, devido ao erro: ${error}`));
+        const kickembed = new Discord.MessageEmbed()
+            .setTitle('Alguém foi punido...')
+            .setThumbnail(member.user.displayAvatarURL())
+            .addField('Usuário expulso', member)
+            .addField('Expulso por:', message.author)
+            .addField('Motivo', reason)
+            .setFooter('Tempo:', client.user.displayAvatarURL())
+            .setTimestamp()
 
-        let pEmbed = new Discord.MessageEmbed()
-
-        .setDescription(`<:sim:749403706394411068> O jogador ${user.toString()} foi expulso. Motivo: ${reason}`)
-        .setFooter(`${message.author.tag}`, message.author.displayAvatarURL)
-        .setColor("#498bfa").setTimestamp()
-        
-         msg.channel.send(pEmbed)
-
-         const kick = new Discord.MessageEmbed()
-
-         .setTitle('Punição')
-         .setColor('#498bfa')
-         .setDescription(`Jogador punido: **${user}**\nAutor da punição: ${message.author}\nMotivo da punição: ${reason}`);
-         let kickschannel = client.channels.cache.get('741078512886087681')
-         if(!kickschannel) return message.channel.send(`${user} foi punido!`);
-  
-         message.delete().catch(O_o=>{});
-
-         kickschannel.send(kick)
-})
-  b1.on("collect", c2 => {
-    msg.delete(0) 
-    
-    })
-})
-
+        message.channel.send(kickembed);
+    }
 }
