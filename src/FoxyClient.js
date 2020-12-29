@@ -10,9 +10,6 @@ app.get('/', function(req, res) {
     res.sendStatus(200);
 });
 
-const listener = app.listen(process.env.PORT, function() {
-    console.log('Port: ' + listener.address().port);
-});
 client.commands = new Enmap();
 const cmd = require('./json/resposta.json');
 client.on("message", message => {
@@ -20,9 +17,7 @@ client.on("message", message => {
 
 
 });
-client.on("message", (message) => {
-    if ( message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>` ) message.channel.send(`Olá ${message.author}! Meu prefixo é ${prefix}`)
-})
+
 client.on('message', message => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
@@ -44,37 +39,8 @@ client.on('message', message => {
             .catch(console.error);
     }
 });
-client.on('guildCreate', async guild => {
 
-    const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
-
-   const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
-
-    const embed = new Discord.MessageEmbed()
-        .setTitle('Logs de entrada e saída')
-        .setDescription(`<:MeowPuffyMelt:776252845493977088> Fui adicionada no servidor: ${guild.name} / ${guild.id}`)
-    webhookClient.send( {
-        username: `Logs`,
-        avatarURL: 'https://cdn.discordapp.com/attachments/766414535396425739/789255465125150732/sad.jpeg',
-        embeds: [embed],
-    });
-})
-client.on('guildDelete', async guild => {
-
-    const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
-
-  const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
-
-    const embed = new Discord.MessageEmbed()
-        .setTitle('Logs de entrada e saída')
-        .setDescription(`<:sad_cat_thumbs_up:768291053765525525> Fui removida do servidor: ${guild.name} / ${guild.id}`)
-    webhookClient.send( {
-        username: `Logs`,
-        avatarURL: 'https://cdn.discordapp.com/attachments/766414535396425739/789255465125150732/sad.jpeg',
-        embeds: [embed],
-    });
-})
-client.on("message", (Message) => {
+client.on('message', Message => {
     if ( Message.channel.type == "dm" ||  Message.guild.id != "768267522670723094" ) return;
 
     if ( Message.content.toLowerCase().startsWith("f!notificar") || Message.content.toLowerCase().startsWith("f!notify") ) {
@@ -82,6 +48,7 @@ client.on("message", (Message) => {
         else Message.member.roles.remove("768275121290870814"), Message.channel.send("Agora você não vai mais receber minhas novidades <:sad_cat_thumbs_up:768291053765525525>")
     }
 })
+
 client.on('message', msg => {
     if (msg.author.bot) {
         return;
@@ -92,30 +59,6 @@ client.on('message', msg => {
     }
 });
 
-client.on("ready", () => {
-
-    let activities = [
-            `❓ Use f!help para obter ajuda`,
-            `📷 Avatar por: Bis❄#0001`,
-            `😍 Espalhando alegria em ${client.guilds.cache.size} servidores [Shard: ${client.shard.ids}]`,
-            `😎 Eu sou open-source https://github.com/BotFoxy ＼(^o^)／`,
-            `💻 Use f!commands para ver minha lista de comandos`,
-            `😍 Tornando seu servidor extraordinário ᕕ(ᐛ)ᕗ`,
-            `🐦 Me siga no Twitter @FoxyDiscordBot`,
-            `💖 Use f!donate para me ajudar a ficar online!`,
-            `🦊 What Does The Fox Say?`,
-            `🎅 Feliz natal a todos! ❤`
-
-        ],
-
-        i = 0;
-    setInterval(() => client.user.setActivity(`${activities[i++ %
-    activities.length]}`,{
-        type: "WATCHING"
-    }), 5000);
-
-    console.log(`Sessão Iniciada \nLogado com ${client.guilds.cache.size} guilds desde a inicialização.`)
-})
 fs.readdir("./commands/", (err, files) => {
     if (err) return console.error(err);
     files.forEach(file => {
@@ -124,6 +67,15 @@ fs.readdir("./commands/", (err, files) => {
 
         let commandName = file.split(".")[0];
         client.commands.set(commandName, props);
+    });
+});
+fs.readdir("./events/", (err, files) => {
+    if (err) return console.error(err);
+    files.forEach(file => {
+        const event = require(`./events/${file}`);
+        let eventName = file.split(".")[0];
+        console.log(`[EVENT] - Loaded Successfully ${eventName}`);
+        client.on(eventName, event.bind(null, client));
     });
 });
 client.on("message", (Message) => {
@@ -158,5 +110,4 @@ client.on("message", async message => {
     let commandfile = client.commands.get(cmd.slice(prefix.length));
     if (commandfile) commandfile.run(client, message, args);
 });
-
 client.login(token);
