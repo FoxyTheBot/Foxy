@@ -7,15 +7,15 @@ const express = require('express');
 const app = express();
 
 app.get('/', function(req, res) {
-    res.sendStatus(200);
+  res.sendStatus(200);
 });
 
 client.commands = new Enmap();
 const cmd = require('./json/resposta.json');
 client.on("message", message => {
-    if (message.author.bot) return false;
+  if (message.author.bot) return false;
 
-
+ 
 });
 
 client.on('message', message => {
@@ -39,16 +39,39 @@ client.on('message', message => {
             .catch(console.error);
     }
 });
-
-client.on('message', Message => {
-    if ( Message.channel.type == "dm" ||  Message.guild.id != "768267522670723094" ) return;
-
-    if ( Message.content.toLowerCase().startsWith("f!notificar") || Message.content.toLowerCase().startsWith("f!notify") ) {
-        if ( !Message.member.roles.cache.has("768275121290870814") ) Message.member.roles.add("768275121290870814"), Message.channel.send("Agora você vai receber todas as minhas novidades <:meow_blush:768292358458179595>")
-        else Message.member.roles.remove("768275121290870814"), Message.channel.send("Agora você não vai mais receber minhas novidades <:sad_cat_thumbs_up:768291053765525525>")
-    }
+client.on('rateLimit', (info) => {
+  console.log(`[RATELIMIT] Rate limit hit ${info.timeDifference ? info.timeDifference : info.timeout ? info.timeout: 'Unknown timeout '}`)
 })
+client.on('message', Message => {
+  if ( Message.channel.type == "dm" ||  Message.guild.id != "768267522670723094" ) return;
 
+  if ( Message.content.toLowerCase().startsWith("f!notificar") || Message.content.toLowerCase().startsWith("f!notify") ) {
+      if ( !Message.member.roles.cache.has("768275121290870814") ) Message.member.roles.add("768275121290870814"), Message.channel.send("Agora você vai receber todas as minhas novidades <:meow_blush:768292358458179595>")
+      else Message.member.roles.remove("768275121290870814"), Message.channel.send("Agora você não vai mais receber minhas novidades <:sad_cat_thumbs_up:768291053765525525>")
+  }
+})
+client.on("guildCreate", async guild => {
+  const webhookClient = new Discord.WebhookClient("WEBHOOK-TOKEN", "WEBHOOK-ID");
+    const embed = new Discord.MessageEmbed()
+        .setTitle('Logs de entrada e saída')
+        .setDescription(`<:MeowPuffyMelt:776252845493977088> Fui adicionada no servidor: ${guild.name} / ${guild.id}`)
+    webhookClient.send( {
+        username: `Logs`,
+        avatarURL: 'https://cdn.discordapp.com/attachments/766414535396425739/789255465125150732/sad.jpeg',
+        embeds: [embed],
+    });
+  })
+client.on("guildDelete", async guild => {
+const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
+  const embed = new Discord.MessageEmbed()
+      .setTitle('Logs de entrada e saída')
+      .setDescription(`<:sad_cat_thumbs_up:768291053765525525> Fui removida do servidor: ${guild.name} / ${guild.id}`)
+  webhookClient.send( {
+      username: `Logs`,
+      avatarURL: 'https://cdn.discordapp.com/attachments/766414535396425739/789255465125150732/sad.jpeg',
+      embeds: [embed],
+  });
+})
 client.on('message', msg => {
     if (msg.author.bot) {
         return;
@@ -60,14 +83,14 @@ client.on('message', msg => {
 });
 
 fs.readdir("./commands/", (err, files) => {
-    if (err) return console.error(err);
-    files.forEach(file => {
-        if (!file.endsWith(".js")) return;
-        let props = require(`./commands/${file}`);
+  if (err) return console.error(err);
+  files.forEach(file => {
+    if (!file.endsWith(".js")) return;
+    let props = require(`./commands/${file}`);
 
-        let commandName = file.split(".")[0];
-        client.commands.set(commandName, props);
-    });
+    let commandName = file.split(".")[0];
+    client.commands.set(commandName, props);
+  });
 });
 fs.readdir("./events/", (err, files) => {
     if (err) return console.error(err);
@@ -79,35 +102,35 @@ fs.readdir("./events/", (err, files) => {
     });
 });
 client.on("message", (Message) => {
-    if ( Message.channel.id != "779760356889198613" ) return;
-    if ( Message.content.startsWith(">") ) return;
+  if ( Message.channel.id != "779760356889198613" ) return;
+  if ( Message.content.startsWith(">") ) return;
 
-    Message.react("❤")
+  Message.react("❤")
 })
 client.on("message", (Message) => {
-    if ( Message.channel.id != "784227380108722236" ) return;
-    if ( Message.content.startsWith(">") ) return;
+  if ( Message.channel.id != "784227380108722236" ) return;
+  if ( Message.content.startsWith(">") ) return;
 
-    Message.react("<:sad_cat_thumbs_up:768291053765525525>")
+  Message.react("<:sad_cat_thumbs_up:768291053765525525>")
 })
 client.on("message", (Message) => {
-    if ( Message.channel.id != "784229832740700160" ) return;
-    if ( Message.content.startsWith(">") ) return;
+  if ( Message.channel.id != "784229832740700160" ) return;
+  if ( Message.content.startsWith(">") ) return;
 
-    Message.react("<:meowbughunter:776249240463736834>")
-    Message.react("🤔")
+  Message.react("<:meowbughunter:776249240463736834>")
+  Message.react("🤔")
 })
 client.on("message", async message => {
+    
+  if (message.author.bot) return;
+  if (message.channel.dm === "dm") return;
+  
+let messageArray = message.content.split(" ");
+let cmd = messageArray[0];
+let args = messageArray.slice(1);
 
-    if (message.author.bot) return;
-    if (message.channel.dm === "dm") return;
-
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-
-    if (!message.content.startsWith(prefix)) return;
-    let commandfile = client.commands.get(cmd.slice(prefix.length));
-    if (commandfile) commandfile.run(client, message, args);
+if (!message.content.startsWith(prefix)) return;
+let commandfile = client.commands.get(cmd.slice(prefix.length));
+if (commandfile) commandfile.run(client, message, args);
 });
 client.login(token);
