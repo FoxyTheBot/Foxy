@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
-exports.run = async (client, message, args) => {
-    message.delete().catch(O_o => {});
+module.exports.run = async (client, message, args) => {
+    
 var list = [
     'https://images3.memedroid.com/images/UPLOADED291/5aa6b3b6ead71.jpeg',
   'https://i.pinimg.com/236x/d1/1e/9f/d11e9f2ae80b1efa7a5a18bf8042b1d9.jpg',
@@ -31,4 +31,9 @@ let avatar = message.author.displayAvatarURL({format: 'png'});
         .setFooter('Made with 💖 by WinG4merBR')
         .setAuthor(message.author.tag, avatar);
   await message.channel.send(embed);
+}
+
+module.exports.help = {
+  name: "laranjomemes",
+  aliases: ["laranjom", "laranjomemes", "lm"]
 }
