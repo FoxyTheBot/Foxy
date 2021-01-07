@@ -3,7 +3,7 @@ module.exports = async(client, message) => {
 
     let activities = [
             `❓ Use f!help para obter ajuda`,
-            `📷 Avatar por: Bis❄#0001`,
+            `📷 Avatar por: Bis❄`,
             `😍 Espalhando alegria em ${client.guilds.cache.size} servidores [Shard: ${client.shard.ids}]`,
             `😎 Eu sou open-source https://github.com/BotFoxy ＼(^o^)／`,
             `💻 Use f!commands para ver minha lista de comandos`,
