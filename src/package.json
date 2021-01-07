@@ -1,22 +1,25 @@
+
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-  "name": "hello-express",
+  "name": "foxy",
   "version": "0.0.1",
-  "description": "A simple Node app built on Express, instantly up and running.",
-  "main": "FoxyClient.js",
+  "description": "Simples bot para o Discord",
+  "main": "index.js",
   "scripts": {
     "start": "node ."
   },
   "dependencies": {
+    "@sentry/node": "^5.29.2",
     "canvas": "^2.6.1",
-    "discord.js": "^12.5.1",
+    "dblapi.js": "^2.4.0",
+    "discord.js": "^12.4.1",
+    "enmap": "^5.2.1",
+    "express": "^4.17.1",
     "figlet": "^1.5.0",
     "fs": "0.0.2",
     "google-play-scraper": "^8.0.2",
     "install": "^0.13.0",
     "mathjs": "^8.1.0",
+    "mongoose": "^5.11.9",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.1",
     "node-pre-gyp": "^0.16.0",
