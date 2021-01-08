@@ -1,5 +1,5 @@
 exports.run = async (client, message, args) => {
-    if(msg.channel.type === 'dm') return
+    if(message.channel.type === 'dm') return
     if (!message.member.permissions.has("MANAGE_CHANNELS"))
     return message.reply(
       "<:WindowsShield:777579023249178625> | Você não tem permissão para executar este comando! Você precisará da permissão `Gerenciar Canais`"
