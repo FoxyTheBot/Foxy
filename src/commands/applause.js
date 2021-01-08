@@ -23,7 +23,7 @@ exports.run = async (client, message, args) => {
             .setDescription(`${message.author} está aplaudindo ${user}`)
             .setImage(rand)
             .setTimestamp()
-            .setFooter('Made with 💖 by WinGamer')
+            .setFooter('Made with 💖 by WinG4merBR')
             .setAuthor(message.author.tag, avatar);
       await message.channel.send(embed);
     }

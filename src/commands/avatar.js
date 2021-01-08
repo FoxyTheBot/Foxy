@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
     .setTitle(`Avatar carregado`)
     .setDescription(`Avatar de ${user}`) 
     .setImage(avatar) 
-    .setFooter("Made with 💖 by WinGamer");
+    .setFooter("Made with 💖 by WinG4merBR");
  await message.channel.send(embed); 
 
 };

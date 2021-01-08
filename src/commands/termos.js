@@ -2,8 +2,8 @@ const Discord = require('discord.js')
 
 exports.run = async (client, message) => {
     let termos = new Discord.MessageEmbed()
+    .setColor('BLUE')
     .setTitle('Termos de Uso')
-    .setURL('https://foxydiscordbot.wixsite.com/foxybot/termos-de-uso')
-    .setDescription('Leia meus termos no meu site')
+    .setDescription('Leia meus termos clicando [aqui](http://foxywebsite.ml/tos.html)')
     await message.channel.send(termos)
 }
