@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "YOUR-WEBHOOK-TOKEN");
+const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
 module.exports.run = async (client, message, args) => {
     if (!message.member.permissions.has("MANAGE_MESSAGES"))
     return message.reply(
@@ -12,7 +12,8 @@ module.exports.run = async (client, message, args) => {
 .setDescription('💁‍♀️ **Exemplo:** `f!say yay!` \n 🛑 **Permissões:** Você precisará da permissão `Gerenciar mensagens` para usar este comando.')
 
 if (!sayMessage) return message.channel.send(noargs)
-if(sayMessage == '@everyone' || '@here') return message.channel.send(`${message.author}, Você não pode mencionar everyone ou here, Faça isso você mesmo!`)
+if(sayMessage == '@everyone') return message.channel.send('Você não pode mencionar `@everyone`!')
+if(sayMessage == '@here') return message.channel.send('Você não pode mencionar `@here`!')
   message.channel.send(`${sayMessage} \n\n<:cat_toes:781335367764803634> *Mensagem enviada por ${message.author}*`)
     const embed = new Discord.MessageEmbed()
     .setTitle('Logs de comandos')
