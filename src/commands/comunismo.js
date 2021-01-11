@@ -1,14 +1,15 @@
 
 const Discord = require('discord.js')
 const Canvas = require('canvas')
-const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "YOUR-WEBHOOK-TOKEN");
+const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
+
 exports.run = async (client, message, args, applyText) => {
  
     const canvas = Canvas.createCanvas(500, 400);
     const ctx = canvas.getContext('2d');
   const sayMessage = args.join(' ');
     if (!sayMessage) return message.channel.send('Digite algo antes')
-    const background = await Canvas.loadImage('./assets/comunismo.png');
+    const background = await Canvas.loadImage('./src/assets/comunismo.png');
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     ctx.strokeStyle = '#74037b';

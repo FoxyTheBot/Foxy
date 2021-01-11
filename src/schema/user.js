@@ -1,5 +1,5 @@
 const mongo = require('mongoose')
-mongo.connect('YOUR-MONGODB-LINK', { 
+mongo.connect('MONGODB-URL', { 
     useNewUrlParser: true, useUnifiedTopology: true 
 }).catch((err) => {
     console.log(err)

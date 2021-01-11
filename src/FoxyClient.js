@@ -51,7 +51,7 @@ client.on('message', Message => {
   }
 })
 client.on("guildCreate", async guild => {
-  const webhookClient = new Discord.WebhookClient("790040938637819954", "N4G0WLBL3i7tG9EFF4WyZfICklM4jUgUqnTAVNUXXnWjFcmAz-2aWI_YM5yJHNrw4Xdk");
+  const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
     const embed = new Discord.MessageEmbed()
         .setTitle('Logs de entrada e saída')
         .setDescription(`<:MeowPuffyMelt:776252845493977088> Fui adicionada no servidor: ${guild.name} / ${guild.id}`)
@@ -62,7 +62,7 @@ client.on("guildCreate", async guild => {
     });
   })
 client.on("guildDelete", async guild => {
-const webhookClient = new Discord.WebhookClient("790040938637819954", "N4G0WLBL3i7tG9EFF4WyZfICklM4jUgUqnTAVNUXXnWjFcmAz-2aWI_YM5yJHNrw4Xdk");
+const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
   const embed = new Discord.MessageEmbed()
       .setTitle('Logs de entrada e saída')
       .setDescription(`<:sad_cat_thumbs_up:768291053765525525> Fui removida do servidor: ${guild.name} / ${guild.id}`)
@@ -82,7 +82,7 @@ client.on('message', msg => {
     }
 });
 
-fs.readdir("./commands/", (err, files) => {
+fs.readdir("./src/commands/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
     if (!file.endsWith(".js")) return;
@@ -92,7 +92,7 @@ fs.readdir("./commands/", (err, files) => {
     client.commands.set(commandName, props);
   });
 });
-fs.readdir("./events/", (err, files) => {
+fs.readdir("./src/events/", (err, files) => {
     if (err) return console.error(err);
     files.forEach(file => {
         const event = require(`./events/${file}`);
@@ -141,7 +141,7 @@ client.on("message", async message => {
         let banned = new Discord.MessageEmbed()
         .setColor('RED')
         .setTitle('<:DiscordBan:790934280481931286> Você foi banido(a) <:DiscordBan:790934280481931286>')
-        .setDescription('Você foi banido(a) de usar a Foxy em qualquer servidor no Discord! \n Caso seu ban foi injusto (o que eu acho muito difícil) você pode solicitar seu unban no meu [servidor de suporte](https://discord.gg/kFZzmpD)')
+        .setDescription('Você foi banido(a) de usar a Foxy em qualquer servidor no Discord! \n Caso seu ban foi injusto (o que eu acho muito difícil) você pode solicitar seu unban no meu [servidor de suporte](https://discord.gg/kFZzmpD) \n **Leia os termos em** [Termos de uso](https://foxywebsite.ml/tos.html)')
         .setFooter('Se você foi banido(a) do meu servidor de suporte ai já não é problema meu. ;-;')
         return message.author.send(banned).catch((err) => { 
           message.channel.send(banned)

@@ -42,13 +42,13 @@ module.exports.run = async (bot, message, args) => {//exportando o comando como 
 
   let desc;
     if(amor > 90) {
-      desc = (":sparkling_heart: HMMM, vai rolar ou não vai? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:heart: `"+nomeship+"` Esse é o casal perfeito! :heart:");
+      desc = (":sparkling_heart: Será que vai rolar ou não? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:heart: `"+nomeship+"` Esse é o casal perfeito! :heart:");
     } else if(amor >= 70) {
-      desc = (":sparkling_heart: HMMM, vai rolar ou não vai? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:neutral_face: `"+nomeship+"` Esses aqui já tão se pegando e n contaram pra ngm! :neutral_face:");
+      desc = (":sparkling_heart: Será que vai rolar ou não? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:neutral_face: `"+nomeship+"` Esses aqui já tão se pegando e n contaram pra ninguém! :neutral_face:");
     } else if(amor >= 45) {
-      desc = (":sparkling_heart: HMMM, vai rolar ou não vai? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:no_mouth: `"+nomeship+"` Talvez só precisa o "+membro2.user.username+" querer... :no_mouth:");
+      desc = (":sparkling_heart: Será que vai rolar ou não? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:no_mouth: `"+nomeship+"` Talvez só precisa o "+membro2.user.username+" querer... :no_mouth:");
     } else {
-      desc = (":sparkling_heart: HMMM, vai rolar ou não vai? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:cry: `"+nomeship+"`queria muito dizer que é possivel mas... :cry: ");
+      desc = (":sparkling_heart: Será que vai rolar ou não? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:cry: `"+nomeship+"`queria muito dizer que é possivel mas... :cry: ");
     }
 
   const canvas = Canvas.createCanvas(384, 128);
