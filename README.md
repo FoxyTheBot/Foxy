@@ -49,7 +49,7 @@ Você pode tentar hospedar sua propria instancia, mas eu pessoalmente não recom
 ### `1.` 🧹 Preparando o ambiente
 * Clone o repositorio com o git:
 ```bash
-git clone https://github.com/BotFoxy/FoxyBot
+git clone https://github.com/BotFoxy/Foxy
 ```
 
 ## 🚀 Regras de Selfhosting
@@ -92,16 +92,16 @@ Parece dificil mas você **realmente** quer hospedar a Foxy? você pode usar a i
 * Primeiro instale as dependencias com `npm i`
 * Verifique se tudo foi instalado na pasta node_modules
 * Se você ainda não fez... adicione o bot ao seu servidor do discord
-* Agora rode a Foxy usando `node FoxyCLient.js`
+* Agora rode a Foxy usando `node FoxyClient.js`
 * Apos iniciar utilize `f!ping` No sel servidor do discord.
 * Se tudo correu bem agora ela deve estar pronta para ser usada
 
 ___
 
 ## 💫 Menções honrosas
-<p> • WinG4merBR#5995 | Se não fosse ele, eu nem iria existir</p>
-<p> • ! Arthur#7264 | Por me ajudar a ficar online! </p>
-<p> • Bis❄#0001 | Por me desenhar </p>
-<p> • ThierrY#6303 | Por colaborar no projeto </p>
+<p> • WinG4merBR#5995 | Se não fosse ele, eu nem iria existir </p>
+<p> • ! Arthur_Kohler#7264 | Por me ajudar a ficar online! ❤ </p>
+<p> • Bis❄#2332 | Por fazer meu icon e outros desenhos ❤  </p>
+<P> • ThierrY#6303 | Por me ajudar me indicando ❤ </p>
 
 ___

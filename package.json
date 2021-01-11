@@ -1,11 +1,12 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-  "name": "hello-express",
-  "version": "0.0.1",
-  "description": "A simple Node app built on Express, instantly up and running.",
+  "name": "foxy",
+  "description": "A Simple bot for Discord",
+  "version": "2021.01.15-stable",
+  "author": "WinG4merBR",
   "main": "index.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "start": "node ."
   },
@@ -30,9 +31,14 @@
     "shelljs": "^0.8.4",
     "weather-js": "^2.0.0"
   },
-  "engines": {
-    "node": "14.x"
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BotFoxy/Foxy.git"
   },
-  "devDependencies": {},
-  "author": ""
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/BotFoxy/Foxy/issues"
+  },
+  "homepage": "https://github.com/BotFoxy/Foxy#readme"
 }

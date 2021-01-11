@@ -6,12 +6,12 @@ exports.run = async (client, message, args, level) => {
     const user = message.mentions.members.first() || message.member
 
     const embed = new Discord.MessageEmbed()
-      .setTitle(`User: ${user.user.username}`)
+      .setTitle(user.user.username)
       .setDescription(`ID: ${user.id}
 Nome: ${user.user.tag}
 Conta criada em: ${user.user.createdAt}`)
       .setThumbnail(user.user.avatarURL)
-      .setColor('RED')
+      .setColor('#eeeeee')
 
     message.channel.send(embed)
   } catch (err) {
