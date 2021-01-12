@@ -1,5 +1,6 @@
+const { mongodb } = require('../json/config.json')
 const mongo = require('mongoose')
-mongo.connect('MONGODB-URL', { 
+mongo.connect(mongodb, { 
     useNewUrlParser: true, useUnifiedTopology: true 
 }).catch((err) => {
     console.log(err)

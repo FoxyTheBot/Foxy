@@ -8,7 +8,7 @@ exports.run = async (client, message, args, applyText) => {
     const ctx = canvas.getContext('2d');
   const sayMessage = args.join(' ');
     if (!sayMessage) return message.channel.send('Digite algo antes')
-    const background = await Canvas.loadImage('./assets/laranjo.jpeg');
+    const background = await Canvas.loadImage('./src/assets/laranjo.jpeg');
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     ctx.strokeStyle = '#74037b';
