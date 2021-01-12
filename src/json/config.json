@@ -1,5 +1,9 @@
 {
-"prefix": "f!",
-"token": "BOT-TOKEN",
-"botonwer": "708493555768885338"
+"prefix": "PREFIX",
+"token": "YOUR-BOT-TOKEN",
+"canaryt": "CANARY-BOT-TOKEN", 
+"mongodb": "MONGODB-URL",
+"dbltoken": "DBL-TOKEN",
+"shard": 4,
+"canary": true
 }
