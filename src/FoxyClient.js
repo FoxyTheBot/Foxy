@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const { prefix, token } = require("./json/config.json");
+const { prefix, token, canary, canaryt} = require("./json/config.json");
 const Enmap = require('enmap')
 const fs = require('fs');
 const express = require('express');
@@ -154,4 +154,5 @@ client.on("message", async message => {
   })
 
 });
+if(canary == true) return client.login(canaryt)
 client.login(token);

@@ -22,6 +22,7 @@
     "google-play-scraper": "^8.0.2",
     "install": "^0.13.0",
     "mathjs": "^8.1.0",
+    "moment": "^2.29.1",
     "mongoose": "^5.11.10",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.1",
@@ -31,7 +32,6 @@
     "shelljs": "^0.8.4",
     "weather-js": "^2.0.0"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BotFoxy/Foxy.git"
@@ -40,5 +40,8 @@
   "bugs": {
     "url": "https://github.com/BotFoxy/Foxy/issues"
   },
-  "homepage": "https://github.com/BotFoxy/Foxy#readme"
+  "homepage": "https://github.com/BotFoxy/Foxy#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }

@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 exports.run = async (client, message, args) => {
-    const webhookClient = new Discord.WebhookClient('WEBHOOK-ID', "WEBHOOK-TOKEN");
+    const webhookClient = new Discord.WebhookClient('789243648998637588', "o4kltr2Uaq4LUinw13YZbgX0DtKtulitUan9rnZvfR9Nb2yysg-fK9tcG5ADnwdMzn6s");
     const sayMessage = args.join(' ');
           const noargs = new Discord.MessageEmbed()
 .setColor('BLUE')
