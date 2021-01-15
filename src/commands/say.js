@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-"WEBHOOK-ID", "WEBHOOK-TOKEN"
+const webhookClient =("WEBHOOK-ID", "WEBHOOK-TOKEN")
 module.exports.run = async (client, message, args) => {
     if (!message.member.permissions.has("MANAGE_MESSAGES"))
     return message.reply(

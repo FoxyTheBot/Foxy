@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-"WEBHOOK-ID", "WEBHOOK-TOKEN"
+const webhookClient =("WEBHOOK-ID", "WEBHOOK-TOKEN")
 module.exports.run = async (client, message, args) => {
   const sayMessage = args.join(' ');
   if (!sayMessage) return message.channel.send('Digite algo antes')
