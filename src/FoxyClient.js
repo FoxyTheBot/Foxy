@@ -3,17 +3,12 @@ const client = new Discord.Client();
 const { token, ctoken, canary } = require("./json/config.json");
 const Enmap = require('enmap')
 const fs = require('fs');
-const express = require('express');
-const app = express();
-app.get('/', function(req, res) {
-  res.sendStatus(200);
-});
 
 client.commands = new Enmap();
 
 
 fs.readdir("./src/commands/", (err, files) => {
-  if (err) return console.error(err);
+  if (err) return console.error(err); 
   files.forEach(file => {
     if (!file.endsWith(".js")) return;
     let props = require(`./commands/${file}`);
