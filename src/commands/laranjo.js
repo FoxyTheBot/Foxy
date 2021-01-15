@@ -1,7 +1,7 @@
 
 const Discord = require('discord.js')
 const Canvas = require('canvas')
-"WEBHOOK-ID", "WEBHOOK-TOKEN"
+const webhookClient =("WEBHOOK-ID", "WEBHOOK-TOKEN")
 exports.run = async (client, message, args, applyText) => {
     const canvas = Canvas.createCanvas(700, 600);
     const ctx = canvas.getContext('2d');
