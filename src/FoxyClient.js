@@ -3,11 +3,6 @@ const client = new Discord.Client();
 const { token, ctoken, canary } = require("./json/config.json");
 const Enmap = require('enmap')
 const fs = require('fs');
-const express = require('express');
-const app = express();
-app.get('/', function(req, res) {
-  res.sendStatus(200);
-});
 
 client.commands = new Enmap();
 
