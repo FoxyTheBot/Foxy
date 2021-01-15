@@ -23,7 +23,7 @@ exports.run = async (bot, msg, args) => {
     .setThumbnail(msg.author.displayAvatarURL(({dynamic: true}, {size: 4096})))
     .setColor("RANDOM")
     canal.send(`Servidor: ${msg.guild.name}\nRemetente: ${msg.author.tag}`,embed)
-    const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
+    "WEBHOOK-ID", "WEBHOOK-TOKEN"    
     const log = new Discord.MessageEmbed()
         .setTitle('Logs de comandos')
         .setDescription(`**Command:** f!dm \n **Author:** ${msg.author.tag} / ${msg.author.id} \n\n **Guild** ${msg.guild.name} / ${msg.guild.id} \n\n **Message:** ${fala} \n\n Link: [Message link](${msg.url}) \n\n Enviado para: ${membro}`)
