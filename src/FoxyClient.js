@@ -12,7 +12,6 @@ fs.readdir("./src/commands/", (err, files) => {
   files.forEach(file => {
     if (!file.endsWith(".js")) return;
     let props = require(`./commands/${file}`);
-
     let commandName = file.split(".")[0];
     client.commands.set(commandName, props);
   });
