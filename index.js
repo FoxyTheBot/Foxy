@@ -1,6 +1,5 @@
 const shell = require('shelljs');
 shell.exec('clear');
-const Discord = require('discord.js')
 const { ShardingManager } = require('discord.js');
 const {canaryt, token, shard } = require('./src/json/config.json')
 const manager = new ShardingManager('./src/FoxyClient.js', { token: token, totalShards: shard });
