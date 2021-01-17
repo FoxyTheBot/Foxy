@@ -96,7 +96,7 @@ Parece dificil mas você **realmente** quer hospedar a Foxy? você pode usar a i
 * Verifique se tudo foi instalado na pasta node_modules
 * Se você ainda não fez... adicione o bot ao seu servidor do discord
 * Agora rode a Foxy usando `node FoxyClient.js`
-* Apos iniciar utilize `f!ping` No sel servidor do discord.
+* Apos iniciar utilize `f!ping` No seu servidor do discord.
 * Se tudo correu bem agora ela deve estar pronta para ser usada
 
 ___
