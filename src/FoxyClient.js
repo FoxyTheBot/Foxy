@@ -29,5 +29,5 @@ fs.readdir("./src/events/", (err, files) => {
     
 });
 
-if(canary == true) return client.login(ctoken)
+if (canary) return client.login(ctoken)
 client.login(token);
