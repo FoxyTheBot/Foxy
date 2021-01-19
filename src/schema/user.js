@@ -1,4 +1,4 @@
-const { mongodb } = require('../json/config.json')
+const { mongodb } = require('../config.json')
 const mongo = require('mongoose')
 mongo.connect(mongodb, { 
     useNewUrlParser: true, useUnifiedTopology: true 

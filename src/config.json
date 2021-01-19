@@ -1,0 +1,7 @@
+{
+"prefix": "f!",
+"token": "NzM3MDQ0ODA5NjUwMjc0MzI1.Xx3oeA.fdMuFR82vJ1FiarumxunAUeGM14",
+"mongodb": "mongodb+srv://root:michaeljackson@cluster0.5uqya.mongodb.net/<dbname>?retryWrites=true&w=majority",
+"dbltoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjczNzA0NDgwOTY1MDI3NDMyNSIsImJvdCI6dHJ1ZSwiaWF0IjoxNjA0MTU5Nzc5fQ.RK7-Xh_5cab5pGJTvGPEKXHSJHhV4_3at8HlcmCJPXc",
+"shard": 4
+}
