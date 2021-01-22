@@ -6,7 +6,7 @@ module.exports = {
   cooldown: 5,
   guildOnly: false,
 
-async return(client, message, args) {
+async execute(client, message, args) {
   
   let user = message.mentions.users.first() || client.users.cache.get(args[0]) || message.author;
   
