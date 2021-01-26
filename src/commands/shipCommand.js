@@ -10,6 +10,8 @@ module.exports = {
   cooldown: 3,
   guildOnly: true,
 async execute(client, message, args) {
+  message.channel.startTyping();
+
   let membro1 = message.mentions.members.first()
   
     let membro2 = message.mentions.members.last()
@@ -76,7 +78,7 @@ let amorEmbed = new Discord.MessageEmbed()
 
 
   message.channel.send('<@'+message.author.id+'> \n'+desc, amorEmbed)
-
+    message.channel.stopTyping();
   
 }
 }

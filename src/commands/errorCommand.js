@@ -3,28 +3,31 @@ const Discord = require('discord.js')
 const Canvas = require('canvas')
 const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
 
-module.exports = { 
-    name: "esponja",
-    aliases: ['esponja', 'fodase', 'fds'],
-    cooldown: 3,
+module.exports = {
+  name: "error",
+  aliases: ['error', 'erro'],
+  cooldown: 3,
 guildOnly: false,
-  async execute(client, message, args) {
+   async execute(client, message, args, applyText) {
     message.channel.startTyping();
 
-    const canvas = Canvas.createCanvas(500, 400);
+    const canvas = Canvas.createCanvas(380, 208);
     const ctx = canvas.getContext('2d');
   const sayMessage = args.join(' ');
     if (!sayMessage) return message.channel.send('Digite algo antes')
-    const background = await Canvas.loadImage('./src/assets/fodase.jpeg');
+    const background = await Canvas.loadImage('./src/assets/Windows.png');
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
+    if(sayMessage.length > 30) return message.channel.send('Você pode digitar até 30 caracteres, obrigada :3')
+
+    
     ctx.strokeStyle = '#74037b';
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
     // Slightly smaller text placed above the member's display name
-    ctx.font = '28px sans-serif';
+    ctx.font = '15px Sans';
     ctx.fillStyle = '#000000';
-    ctx.fillText(`${sayMessage}`, canvas.width / 15.5, canvas.height / 13.5);
+    ctx.fillText(`${sayMessage}`, canvas.width / 5.3, canvas.height / 2.2);
 
     // Add an exclamation point here and below
 
@@ -33,12 +36,13 @@ guildOnly: false,
     ctx.closePath();
     ctx.clip();
 
-    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'respier.png');
+    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'error.png');
 
     message.channel.send(attachment);
     const embed = new Discord.MessageEmbed()
     .setTitle('Logs de comandos')
-    .setDescription(`**Comando:** f!laranjo \n **Autor:** ${message.author.tag} / ${message.author.id} \n\n **Servidor** ${message.guild.name} / ${message.guild.id} \n\n **Mensagem:** ${sayMessage} \n\n Link: [Mensagem](${message.url})`)
+    .setDescription(`**Comando:** f!error \n **Autor:** ${message.author.tag} / ${message.author.id} \n\n **Servidor** ${message.guild.name} / ${message.guild.id} \n\n **Mensagem:** ${sayMessage} \n\n Link: [Mensagem](${message.url})`)
+
     message.channel.stopTyping();
     webhookClient.send( {
     username: `Logs`,

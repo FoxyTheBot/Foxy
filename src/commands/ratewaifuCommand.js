@@ -12,7 +12,6 @@ guildOnly: true,
     }
 
   if (user == 737044809650274325) return message.channel.send('Eu dou nota **10** para <@737044809650274325> sim eu sou muito linda 😘')
-  
 var list = [
   '**1** para essa waifu. Eu não gostei <:hmmpepe:791151120021061662> ',
   '**5** para essa waifu. <:hmmm:779010951420051457> ',
