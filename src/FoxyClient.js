@@ -1,7 +1,10 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
-const user = require('./schema/user')
+const user = require('./models/user')
+
+const cooldowns = new Discord.Collection();
+
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
@@ -12,44 +15,19 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
+fs.readdir("./src/events/", (err, files) => {
+    if (err) return console.error(err);
+    files.forEach(file => {
+        const event = require(`./events/${file}`);
+        let eventName = file.split(".")[0];
+        console.log(`[EVENT] - Loaded Successfully ${eventName}`);
+        client.on(eventName, event.bind(null, client));
+    });
+    
+});
 
-const cooldowns = new Discord.Collection();
-client.on('ready', () => {
-    const DBL = require("dblapi.js")
-const Sentry = require('@sentry/node')
-const { prefix, dbltoken } = require('./config.json')
-   
-    const dbl = new DBL(dbltoken, client)
-    dbl.postStats(client.guilds.cache.size, client.shard.ids, client.shard.count)
-    dbl.on("error", console.error) 
-
-        console.log(`[CONNECTION SUCCESSFULLY] - Guilds ${client.guilds.cache.size}`)
-        let status = [
-            { name: `❓ Se você precisa de ajude use ${prefix}help`, type: "WATCHING" },
-            { name: `💻 Quer encontrar meus comandos use: ${prefix}commands`, type: "PLAYING" },
-            { name: "🐦 Me siga no Twitter: @FoxyDiscordBot", type: "STREAMING", url: "https://www.twitch.tv/wing4merbr" },
-            { name: `💖 Fui criada pelo WinG4merBR#5995`, type: "LISTENING" },
-            { name: `😍 Me adicione usando ${prefix}invite`, type: "WATCHING" },
-            { name: `✨ Entre no meu servidor de suporte usando ${prefix}help`, type: "STREAMING", url: "https://www.twitch.tv/wing4merbr" },
-            { name: `🐛 Se você encontrou um bug use ${prefix}report para reportar falhas`, type: "PLAYING" },
-            { name: `🍰 Minha comida preferida é bolo 💖`, type: "WATCHING"}
-        ]
-
-        setInterval(() => {
-            let randomStatus = status[Math.floor(Math.random() * status.length)]
-           client.user.setPresence({ activity: randomStatus })
-        }, 5000)
-        Sentry.init({ dsn: process.env.SENTRY_DSN })
-    }
-)
 client.on("message", message => {
-    if ( message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>` ) message.channel.send(`Olá ${message.author} eu sou a Foxy! Meu prefixo é ${prefix}, use f!help para obter ajuda.`)
-
-})
-
-
-client.on('message', message => {
-	if (!message.content.startsWith(prefix) || message.author.bot) return;
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
@@ -76,7 +54,7 @@ client.on('message', message => {
 
 		if (now < expirationTime) {
 			const timeLeft = (expirationTime - now) / 1000;
-			return message.reply(`Por favor aguarde ${timeLeft.toFixed(1)} segundos para usar o comando \`${command.name}\` novamente`);
+			return message.reply(`Por favor aguarde **${timeLeft.toFixed(0)} segundos** para usar o comando novamente`);
 		}
 	}
 
@@ -146,6 +124,5 @@ client.on('message', message => {
 		console.error(error);
 		message.reply(embed);
 	}
-});
-
+})
 client.login(token);
