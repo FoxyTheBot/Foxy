@@ -29,7 +29,8 @@ module.exports = {
         } else {
             db.add(`rep_${user.id}`, amount)
             db.set(`timeout_${author.id}to_${user.id}`, Date.now())
-            if(rep > 1) return message.channel.send(`Você deu ${amount} reputação para ${user} agora ele(a) possui ${rep} reputações`)
+            let nowrep = db.fetch(`rep_${user.id}`)
+            message.channel.send(`Você deu ${amount} reputação para ${user} agora ele(a) possui ${nowrep} reputações`)
 
         }
     }
