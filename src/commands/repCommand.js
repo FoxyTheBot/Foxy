@@ -1,4 +1,3 @@
-const { cooldown, execute } = require("./laranjoCommand");
 
 module.exports = {
     name: "rep",
@@ -28,7 +27,8 @@ module.exports = {
         } else {
             db.add(`rep_${user.id}`, amount)
             db.set(`timeout_${author.id}to_${user.id}`, Date.now())
-            if(rep > 1) return message.channel.send(`Você deu ${amount} reputação para ${user} agora ele(a) possui ${rep} reputações`)
+            let repnow = await db.fetch(`rep_${user.id}`)
+            if(rep > 1) return message.channel.send(`Você deu ${amount} reputação para ${user} agora ele(a) possui ${repnow} reputações`)
             message.channel.send(`Você deu ${amount} reputação para ${user} agora ele(a) possui 1 reputação`)
 
         }
