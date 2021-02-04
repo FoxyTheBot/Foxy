@@ -35,7 +35,7 @@ Você pode tentar hospedar sua propria instancia, mas eu pessoalmente não recom
 
 ## 📁 Estrutura do projeto (wip)
 * 📜 **FoxyClient** [`src`]
-
+ 
 > O bot com todas suas funções.
 
 ## 👨‍💻 Preparando tudo
@@ -45,10 +45,12 @@ Você pode tentar hospedar sua propria instancia, mas eu pessoalmente não recom
 ### `0.` 👷 Prerequisitos
 
 * Powershell [windows] ou terminal [linux]
+> ⚠️ A Foxy foi testada e aprovada nos seguintes sistemas: Ubuntu 20.04, Debian 10, Fedora 33, Ubuntu 20.04 no WSL2.
 > ⚠️ Você até pode usar o cmd mas não recomendo...
-* Você vai precisar baixar o nodejs 14.15.1
+* Você vai precisar baixar o [NodeJS](hhttps://nodejs.org/pt-br/)
+> Recomendamos que você use a versão LTS
 * Você vai precisar ter o git instalado em sua maquina
-* Se você pretende alterar o codigo ou ajudar no desenvolvimento use o [Microsoft visual studio code](https://code.visualstudio.com/)! É de graça então você não vai precisar ficar "aaaa eu tenho que pagar por isso"
+* Se você pretende alterar o codigo ou ajudar no desenvolvimento use o [Visual Studio Code](https://code.visualstudio.com/)! É de graça então você não vai precisar ficar "aaaa eu tenho que pagar por isso"
 ### `1.` 🧹 Preparando o ambiente
 * Clone o repositorio com o git:
 ```bash
@@ -57,13 +59,13 @@ git clone https://github.com/BotFoxy/Foxy
 
 ## 🚀 Regras de Selfhosting
 1. Mantemos o código-fonte aberto para que as pessoas possam ver, aprender e se inspirar em como a Foxy foi feita e, se quiserem, poderem ajudar o projeto com recursos e correção de bugs.
-2. Este é um projeto da comunidade, se você fizer alterações no código-fonte da Foxy, você precisa seguir a [AGPL-3.0] (LICENÇA) e manter as alterações no código-fonte aberto! E, se você quiser ajudar Foxy, por que não criar uma solicitação de pull? 😉
+2. Este é um projeto da comunidade, se você fizer alterações no código-fonte da Foxy, você precisa seguir os termos da licença [AGPL-3.0](https://github.com/BotFoxy/FoxyBot/blob/master/LICENSE) e manter as alterações no código-fonte aberto! E, se você quiser ajudar Foxy, por que não criar uma solicitação de pull? 😉
 3. Nos não damos suporte a self-hosting então ja esteja preparado para encontrar varios problemas e saber como resolve-los
 4. Não saia mentindo dizendo que "criou a Foxy" De o credito aos criadores.
 (**A foto de perfil da Foxy não pode ser usada em outras instâncias**)
-Uso da imagem da foxy **de forma não permitida** pode ser considerado violação de direitos autorais [código penal](https://vicentemaggio.jusbrasil.com.br/artigos/121942477/consideracoes-sobre-a-violacao-de-direito-autoral)
+Uso da imagem da foxy **de forma não permitida** pode ser considerado violação de direitos autorais no [código penal brasileiro](https://www.jusbrasil.com.br/topicos/10615003/artigo-184-do-decreto-lei-n-2848-de-07-de-dezembro-de-1940)
 6. Os assets da Foxy como [imagens logos entre outros] são distribuidos juntamente com o codigo
-7. Usamos ubuntu 20.04 para hospedar a Foxy, porem você pode usar outros sistemas Linux.
+7. Usamos Ubuntu 20.04 para hospedar a Foxy, porem você pode usar outros sistemas Linux.
 
 Parece dificil mas você **realmente** quer hospedar a Foxy? você pode usar a instancia publica [Clicando aqui](https://discord.com/oauth2/authorize?client_id=737044809650274325&permissions=8&scope=bot)!
 
@@ -84,12 +86,15 @@ Parece dificil mas você **realmente** quer hospedar a Foxy? você pode usar a i
 #### ⚠️ Alguns valores que você deve alterar antes de iniciar a Foxy
 ```ascii
 📄 config.json
-├──token
-├── MongoDB url
-├── prefixo
-├── Canary Token
+├── Array com os IDs dos Bot *owners*
+├── Prefixo
+├── Token
+├── URI do MongoDB
+├── Token do Discord Bot List
 ├── Número de shards
-├── Discord Bot List token
+├── Webhook para logs
+├── Webhook para registros de entrada/saída
+├── Webhook para issue reports
 ```
 
 > ⚠️ Algumas conexões acima não são necessarias mas não custa nada ja deixar elas funcionando
