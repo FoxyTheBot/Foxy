@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token, owners, logsWebhook } = require('./config.json');
+const { prefix, token, owners, logsWebhook, reportWebhook } = require('./config.json');
 const user = require('./models/user')
 
 const cooldowns = new Discord.Collection();
@@ -16,6 +16,7 @@ const client = new Discord.Client({
 });
 client.commands = new Discord.Collection();
 client.logsWebhook = new Discord.WebhookClient(logsWebhook.id, logsWebhook.token);
+client.reportWebhook = new Discord.WebhookClient(reportWebhook.id, reportWebhook.token);
 
 const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
 
@@ -25,15 +26,42 @@ for (const file of commandFiles) {
 }
 
 fs.readdir("./src/events/", (err, files) => {
-    if (err) return console.error(err);
+    if (err) return console.error('\x1b[37m\x1b[41mERROR\x1b[0m: Ocorreu um erro ao carregar os eventos!', err);
     files.forEach(file => {
         const event = require(`./events/${file}`);
         let eventName = file.split(".")[0];
-        console.log(`[EVENT] - Loaded Successfully ${eventName}`);
+        console.info(`\x1b[37m\x1b[44mINFO\x1b[0m: Carregando evento: ${file}; Bind: ${eventName}`);
         client.on(eventName, event.bind(null, client));
     });
 
 });
+
+function foxySelfReport(error, context) {
+    console.error('\x1b[37m\x1b[41mERROR\x1b[0m: Um erro ocorreu no tempo de execução!', error);
+    const errorSliced = error.stack.length > 1000 ? `${error.stack.slice(0, 1000)}...` : error.stack;
+    const reportEmbed = new Discord.MessageEmbed()
+        .setTitle(':meowbughunter: | Issue Report automático da Foxy')
+        .setColor('#5555DD')
+        .addFields(
+            { name: ":technologist: Usuário:", value: `<@${context.author.id}>` },
+            { name: ":tools: Guild:", value: `${context.guild.name}; ID: ${context.guild.id}` },
+            { name: ":wrench: Request:", value: `${context.content}` },
+            { name: ":bug_hunter: Issue:", value: `\n\`\`\`js\n${errorSliced}\`\`\`` }
+        )
+        .setFooter('Verifique o console para mais informações!');
+    const replyEmbed = new Discord.MessageEmbed()
+        .setTitle('<:BSOD:777579371870683147> | Ocorreu um erro ao usar este comando')
+        .setColor('RED')
+        .setDescription(`\`\`\`js\n${errorSliced}\`\`\``)
+        .setFooter('Não se preocupe! esse erro foi reportado automaticamente para minha equipe!');
+    client.reportWebhook.send(reportEmbed).catch(err => {
+        if(err) {
+            console.error('\x1b[37m\x1b[41mERROR\x1b[0m: O report automatico falhou! verifique o webhook de reporte!', err);
+            replyEmbed.setFooter('Reporte para minha equipe usando f!report <issue>');
+        }
+    })
+    return context.reply(replyEmbed);
+}
 
 client.on("message", message => {
     if (!message.content.startsWith(prefix) || message.author.bot || message.webhookID) return;
@@ -75,64 +103,50 @@ client.on("message", message => {
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
     try {
-        user.findOne({ userid: message.author.id }, function (erro, dados) {
-            if (dados) {
-                if (dados.userid == message.author.id) return;
-
-                if (erro) return console.log(erro);
+        user.findOne({ userid: message.author.id }, function (error, data) {
+            if (error) return foxySelfReport(error, message);
+            if (data) {
+                if (data.userid == message.author.id) return;
 
                 new user({
                     userBanned: 'not'
-                })
-                dados.save().catch((err) => {
-                    console.log(err)
-                })
+                });
+                data.save().catch((err) => {
+                    foxySelfReport(err, message);
+                });
             } else {
                 new user({
                     userid: message.author.id,
                     username: message.author.username,
                     userBanned: 'not'
                 }).save().catch((err) => {
-                    console.log(err)
-                })
+                    foxySelfReport(err, message);
+                });
             }
-        })
+        });
 
-        user.findOne({ userid: message.author.id }, function (error, dados) {
-            if (dados) {
-                if (error) return console.log(error);
+        user.findOne({ userid: message.author.id }, function (error, data) {
+            if (data) {
+                if (error) return foxySelfReport(error, message);
 
-
-
-                if (!message.content.startsWith(prefix)) return;
-
-                if (message.content.startsWith(prefix)) {
-
-                    if (dados.userBanned == 'banned') {
-                        let banned = new Discord.MessageEmbed()
-                            .setColor('RED')
-                            .setTitle('<:DiscordBan:790934280481931286> Você foi banido(a) <:DiscordBan:790934280481931286>')
-                            .setDescription('Você foi banido(a) de usar a Foxy em qualquer servidor no Discord! \n Caso seu ban foi injusto (o que eu acho muito difícil) você pode solicitar seu unban no meu [servidor de suporte](https://discord.gg/kFZzmpD) \n **Leia os termos em** [Termos de uso](https://foxywebsite.ml/tos.html)')
-                            .setFooter('You have been banned from using Foxy on other servers on Discord!')
-                        return message.author.send(banned).catch((error) => {
-                            message.channel.send(banned)
-                        })
-                    }
+                if (data.userBanned == 'banned') {
+                    let banned = new Discord.MessageEmbed()
+                        .setColor('RED')
+                        .setTitle('<:DiscordBan:790934280481931286> Você foi banido(a) <:DiscordBan:790934280481931286>')
+                        .setDescription('Você foi banido(a) de usar a Foxy em qualquer servidor no Discord! \n Caso seu ban foi injusto (o que eu acho muito difícil) você pode solicitar seu unban no meu [servidor de suporte](https://discord.gg/kFZzmpD) \n **Leia os termos em** [Termos de uso](https://foxywebsite.ml/tos.html)')
+                        .setFooter('You have been banned from using Foxy on other servers on Discord!');
+                    return message.author.send(banned).catch((error) => {
+                        message.channel.send(banned)
+                    });
                 }
-                command.execute(client, message, args)
+
+                command.execute(client, message, args);
 
             }
-        })
-
+        });
     } catch (error) {
-        const errorMessage = error.stack.length > 1100 ? `${error.stack.slice(0, 1100)}...` : error.stack
-        const embed = new Discord.MessageEmbed()
-        embed.setColor('RED')
-        embed.setTitle(`<:BSOD:777579371870683147> Ocorreu um erro ao usar este comando`)
-        embed.setDescription(`\`\`\`js\n${errorMessage}\`\`\``)
-        embed.setFooter('Reporte para minha equipe usando f!report <issue>')
-        console.error(error);
-        message.reply(embed);
+        foxySelfReport(error, message);
     }
 })
+
 client.login(token);
