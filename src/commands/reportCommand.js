@@ -1,6 +1,4 @@
 const Discord = require('discord.js');
-const { reportWebhook } = require('../config.json');
-const webhookClient = new Discord.WebhookClient(reportWebhook.id, reportWebhook.token);
 
 module.exports = {
     name: "report",
@@ -21,7 +19,7 @@ module.exports = {
             .setColor('#0099ff')
             .setDescription(`Autor: **${message.author.username} / ${message.author.id}** \n Servidor: ${message.guild.name} \n ${message.guild.id} \n\n <:bug_hunter:789668194494709761> **Issue:** ${sayMessage}`)
         let pfp = message.author.avatarURL();
-        webhookClient.send({
+        client.reportWebhook.send({
             username: `${message.author.username}`,
             avatarURL: pfp,
             embeds: [embed],
