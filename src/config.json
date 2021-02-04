@@ -1,7 +1,23 @@
 {
-"prefix": "f!",
-"token": "YOUR-TOKEN",
-"mongodb": "YOUR-MONGODB-URL",
-"dbltoken": "YOUR-DBL-TOKEN",
-"shard": 4
+    "owners": [
+        "FOO",
+        "BAR"
+    ],
+    "prefix": "f!",
+    "token": "YOUR-TOKEN",
+    "mongodb": "YOUR-MONGODB-URL",
+    "dbltoken": "YOUR-DBL-TOKEN",
+    "shard": 4,
+    "logsWebhook": {
+        "id": "YOUR-WEBHOOK-ID",
+        "token": "YOUR-WEBHOOK-TOKEN"
+    },
+    "guildsWebhook": {
+        "id": "YOUR-WEBHOOK-ID",
+        "token": "YOUR-WEBHOOK-TOKEN"
+    },
+    "reportWebhook": {
+        "id": "YOUR-WEBHOOK-ID",
+        "token": "YOUR-WEBHOOK-TOKEN"
+    }
 }
