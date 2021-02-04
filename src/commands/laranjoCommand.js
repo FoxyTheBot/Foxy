@@ -8,7 +8,6 @@ module.exports = {
   cooldown: 3,
   guildOnly: false,
   async execute(client, message, args) {
-    const webhookClient = client.webhookClient();
     message.channel.startTyping();
     const canvas = Canvas.createCanvas(700, 600);
     const ctx = canvas.getContext('2d');
@@ -41,7 +40,7 @@ module.exports = {
       .setDescription(`**Comando:** f!laranjo \n **Autor:** ${message.author.tag} / ${message.author.id} \n\n **Servidor** ${message.guild.name} / ${message.guild.id} \n\n **Mensagem:** ${sayMessage} \n\n Link: [Mensagem](${message.url})`)
 
     message.channel.stopTyping();
-    webhookClient.send({
+    client.logsWebhook.send({
       username: `Logs`,
       avatarURL: 'https://cdn.discordapp.com/attachments/766414535396425739/789255465125150732/sad.jpeg',
       embeds: [embed],

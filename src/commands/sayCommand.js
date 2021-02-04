@@ -1,11 +1,11 @@
 const Discord = require('discord.js');
+
 module.exports = {
   name: "say",
   aliases: ['say', 'falar', 'dizer'],
   cooldown: 5,
   guildOnly: false,
   async execute(client, message, args) {
-    const webhookClient = client.webhookClient();
     if (!message.member.permissions.has("MANAGE_MESSAGES"))
       return message.reply(
         "<:WindowsShield:777579023249178625> | Você não tem permissão para executar este comando! Você precisará da permissão `Gerenciar Mensagens` para usar este comando!"
@@ -23,7 +23,7 @@ module.exports = {
     const embed = new Discord.MessageEmbed()
       .setTitle('Logs de comandos')
       .setDescription(`**Comando:** f!say \n **Autor:** ${message.author.tag} / ${message.author.id} \n\n **Servidor** ${message.guild.name} / ${message.guild.id} \n\n **Mensagem:** ${sayMessage} \n\n Link: [Mensagem](${message.url})`)
-    webhookClient.send({
+    client.logsWebhook.send({
       username: `Logs`,
       avatarURL: 'https://cdn.discordapp.com/attachments/766414535396425739/789255465125150732/sad.jpeg',
       embeds: [embed],
