@@ -44,13 +44,15 @@ Você pode tentar hospedar sua propria instancia, mas eu pessoalmente não recom
 
 ### `0.` 👷 Prerequisitos
 
-* Powershell [windows] ou terminal [linux]
+* Windows Powershell para Windows ou Bash para Linux
+> Recomendamos que você hospede o bot no Linux.
+
 > ⚠️ A Foxy foi testada e aprovada nos seguintes sistemas: Ubuntu 20.04, Debian 10, Fedora 33, Ubuntu 20.04 no WSL2.
-> ⚠️ Você até pode usar o cmd mas não recomendo...
-* Você vai precisar baixar o [NodeJS](hhttps://nodejs.org/pt-br/)
-> Recomendamos que você use a versão LTS
-* Você vai precisar ter o git instalado em sua maquina
+* Você precisa instalar o [NodeJS](https://nodejs.org/pt-br/)
+> Recomendamos que você instale a versão LTS do Node.
+* Você precisa instalar o Git
 * Se você pretende alterar o codigo ou ajudar no desenvolvimento use o [Visual Studio Code](https://code.visualstudio.com/)! É de graça então você não vai precisar ficar "aaaa eu tenho que pagar por isso"
+
 ### `1.` 🧹 Preparando o ambiente
 * Clone o repositorio com o git:
 ```bash
