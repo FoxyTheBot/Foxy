@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const { reportWebhook } = require('../config.json');
+const webhookClient = new Discord.WebhookClient(reportWebhook.id, reportWebhook.token);
 
 module.exports = {
     name: "report",
@@ -7,7 +8,6 @@ module.exports = {
     cooldown: 3,
     guildOnly: true,
     async execute(client, message, args) {
-        const webhookClient = new Discord.WebhookClient(reportWebhook.id, reportWebhook.token);
         const sayMessage = args.join(' ');
         const noargs = new Discord.MessageEmbed()
             .setColor('BLUE')
