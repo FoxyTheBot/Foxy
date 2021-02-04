@@ -16,7 +16,7 @@ async execute(client, message, args) {
   let minutes = Math.floor(totalSeconds / 60);
   let seconds = totalSeconds % 60;
 
-  let uptime = ` ${days.toFixed()} dias\n ${hours.toFixed()} horas\n ${minutes.toFixed()} minutos\n ${seconds.toFixed()} segundos`;
+  let uptime = `${days.toFixed()} dias\n ${hours.toFixed()} horas\n ${minutes.toFixed()} minutos\n ${seconds.toFixed()} segundos`;
 
   const embed = new Discord.MessageEmbed()
     .setTitle(`Ativo há`)

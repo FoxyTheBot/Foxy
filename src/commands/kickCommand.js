@@ -5,65 +5,39 @@ aliases: ['kick', 'expulsar'],
 cooldown: 3,
 guildOnly: true,
 async execute(client, message, args) {
- 
-    if(!message.member.hasPermission('KICK_MEMBERS')) return message.reply("você não tem permissão de `KICK_MEMBERS`")
-    let member = message.mentions.members.first()
+  const { prefix } = require('../config.json')
+  if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('Você não tem permissão para usar isto!')
+  if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send('Eu não tenho as permissões corretas')
 
-    const user = message.mentions.users.first();
+  const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 
-    let prefix = config.prefix;  
+  if(!args[0]) return message.channel.send('Por favor especifique um usuário');
 
-    if(!member) return message.channel.send(`Use: ${prefix}kick <@Usuário> <Motivo>`)
+  if(!member) return message.channel.send('Eu não encontrei este usuário.');
+  if(!member.bannable) return message.channel.send('Eu não posso expulsar este usuário ele possui um cargo maior que o meu <:sad_cat_thumbs_up:768291053765525525>');
 
-        if(!member.bannable)
-        return message.reply("<:sad_cat_thumbs_up:768291053765525525> Eu não posso expulsar esse usuário, ele pode ter um cargo maior que o meu.")
+  if(member.id === message.author.id) return message.channel.send('Opa calma ai! Você não pode expulsar a si mesmo!');
 
-        let reason = args.slice(1).join(' ');
+  let kickReason = args.slice(1).join(" ");
 
-   let anuncioembed = new Discord.MessageEmbed()
-   anuncioembed.setColor("ORANGE")
-   anuncioembed.setDescription(`Você está presta a expulsar o ${user.toString()} você tem certeza?`)
-   anuncioembed.setTimestamp();
-   
-   return message.channel.send(anuncioembed).then(async msg => {
-   
-        await msg.react("✅") 
+  if(!kickReason) kickReason = 'Motivo não especificado';
 
-       const a1 = (reaction, user) => reaction.emoji.name ==='✅' && user.id === message.author.id
-       const b1 = msg.createReactionCollector(a1, { time: 3000000 });
-       
-       b1.on("collect", c1 => {
-        msg.delete(anuncioembed)
-        if(!reason) reason = "Não informado"
-        member.kick(reason)
+  member.kick()
+      .catch(err => {
+          if(err) return message.channel.send(`Algo deu errado ao expulsar este usuário ${err}`)
+      })
 
-         .catch(error => message.reply(`<a:error:754144173942243378> Desculpe ${message.author} não consigo expulsar esse jogador, devido ao erro: ${error}`));
+  const kickembed = new Discord.MessageEmbed()
+      .setTitle('<:DiscordBan:790934280481931286> Alguém quebrou as regras...')
+      .setThumbnail(member.user.displayAvatarURL())
+      .addField('Usuário expulso', member)
+      .addField('Punido por', message.author)
+      .addField('Motivo', kickReason)
+      .setFooter('Tempo de kick', client.user.displayAvatarURL())
+      .setTimestamp()
 
-        let pEmbed = new Discord.MessageEmbed()
+  message.channel.send(kickembed);
 
-        .setDescription(`<:sim:749403706394411068> O jogador ${user.toString()} foi expulso. Motivo: ${reason}`)
-        .setFooter(`${message.author.tag}`, message.author.displayAvatarURL)
-        .setColor("#498bfa").setTimestamp()
-        
-         msg.channel.send(pEmbed)
-
-         const kick = new Discord.MessageEmbed()
-
-         .setTitle('Punição')
-         .setColor('#498bfa')
-         .setDescription(`Jogador punido: **${user}**\nAutor da punição: ${message.author}\nMotivo da punição: ${reason}`);
-         let kickschannel = client.channels.cache.get('741078512886087681')
-         if(!kickschannel) return message.channel.send(`${user} foi punido!`);
-  
-
-         kickschannel.send(kick)
-})
-  b1.on("collect", c2 => {
-    msg.delete(0) 
-    
-    })
-})
-
-}
+    }
 
 }

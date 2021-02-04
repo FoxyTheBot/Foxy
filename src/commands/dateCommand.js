@@ -6,15 +6,10 @@ aliases: ['date','data'],
 cooldown: 3,
 guildOnly: false,
 async execute(client, message, args) {
-    const language = args.join(' ');
-    let local = moment.locale(language);
+     moment.locale('pt-br');
     let data = moment().format('LL');
     let hour = moment().format('LT');
-    const noargs = new Discord.MessageEmbed()
-.setColor('BLUE')
-.setTitle('Como usar')
-.setDescription('💁‍♀️ **Exemplo:** `f!date pt-br` \n 🛑 **Argumentos** `en`, `pt`, `en`, `fr`, `ko`, `pt-br`')
-if (!language) return message.channel.send(noargs)
+ 
     let date = new Discord.MessageEmbed()
     .setColor('RED')
     .setTitle('Data e Hora')

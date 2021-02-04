@@ -1,4 +1,3 @@
-const { translateAliases } = require("../schema/user");
 
 module.exports = { 
     name: "8ball",

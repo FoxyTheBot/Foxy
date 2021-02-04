@@ -13,7 +13,7 @@ async execute(client, message, args) {
 
         if(user.id === message.author.id) return message.channel.send("Você não pode mutar a si mesmo!");
 
-        let role = message.guild.roles.cache.find(x => x.name === "Silenciado");
+        let role = message.guild.roles.cache.find(x => x.name === "Silenciado"); 
 
         if(!role) return message.channel.send("Eu não consigo encontrar o cargo `Silenciado`");
 

@@ -11,7 +11,6 @@ async execute(client, message, args) {
 
         let countries = args.join(" ");
 
-        //Credit to Sarastro#7725 for the command :)
 
         const noArgs = new Discord.MessageEmbed()
             .setTitle('Argumentos faltando')

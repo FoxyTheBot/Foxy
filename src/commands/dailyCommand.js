@@ -5,13 +5,13 @@ module.exports = {
     guildOnly: true,
 
     async execute(client, message, args) {
-        const db = require("quick.db");
-const ms = require("parse-ms");
+   const db = require("quick.db");
+  const ms = require("parse-ms");
 
 
-let user = message.author;
+  let user = message.author;
 
-let timeout = 86400000;
+let timeout = 43200000;
 let amount = Math.floor(Math.random() * 3200);
 
 let daily = await db.fetch(`daily_${user.id}`);

@@ -51,7 +51,7 @@ async execute(client, message, args) {
     if(amor > 90) {
       desc = (":sparkling_heart: Será que vai rolar ou não? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:heart: `"+nomeship+"` Esse é o casal perfeito! :heart:");
     } else if(amor >= 70) {
-      desc = (":sparkling_heart: Será que vai rolar ou não? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:neutral_face: `"+nomeship+"` Esses aqui já tão se pegando e n contaram pra ninguém! :neutral_face:");
+      desc = (":sparkling_heart: Será que vai rolar ou não? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:neutral_face: `"+nomeship+"` Esses aqui já estão se pegando e não contaram para ninguém! :neutral_face:");
     } else if(amor >= 45) {
       desc = (":sparkling_heart: Será que vai rolar ou não? :sparkling_heart:\n`"+membro1.user.username+"`\n`"+membro2.user.username+"`\n:no_mouth: `"+nomeship+"` Talvez só precisa o "+membro2.user.username+" querer... :no_mouth:");
     } else {

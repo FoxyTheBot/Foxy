@@ -19,7 +19,7 @@ guildOnly: false,
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     if(sayMessage.length > 30) return message.channel.send('Você pode digitar até 30 caracteres, obrigada :3')
-
+    message.channel.stopTyping();
     
     ctx.strokeStyle = '#74037b';
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
@@ -43,7 +43,7 @@ guildOnly: false,
     .setTitle('Logs de comandos')
     .setDescription(`**Comando:** f!error \n **Autor:** ${message.author.tag} / ${message.author.id} \n\n **Servidor** ${message.guild.name} / ${message.guild.id} \n\n **Mensagem:** ${sayMessage} \n\n Link: [Mensagem](${message.url})`)
 
-    message.channel.stopTyping();
+
     webhookClient.send( {
     username: `Logs`,
     avatarURL: 'https://cdn.discordapp.com/attachments/766414535396425739/789255465125150732/sad.jpeg',
