@@ -5,7 +5,6 @@ module.exports = {
   cooldown: 3,
   guildOnly: false,
   async execute(client, message, args) {
-    const webhookClient = client.webhookClient();
     const sayMessage = args.join(' ');
     if (!sayMessage) return message.channel.send('Digite algo antes')
     let embed = new Discord.MessageEmbed()
@@ -16,7 +15,7 @@ module.exports = {
     const log = new Discord.MessageEmbed()
       .setTitle('Logs de comandos')
       .setDescription(`**Command:** f!putin \n **Author:** ${message.author.tag} / ${message.author.id} \n\n **Guild** ${message.guild.name} / ${message.guild.id} \n\n **Message:** ${sayMessage} \n\n Link: [Message link](${message.url})`)
-    webhookClient.send({
+    client.logsWebhook.send({
       username: `Logs`,
       avatarURL: 'https://cdn.discordapp.com/attachments/766414535396425739/789255465125150732/sad.jpeg',
       embeds: [log],
