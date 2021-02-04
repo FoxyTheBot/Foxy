@@ -1,19 +1,17 @@
 
 const Discord = require('discord.js')
 const Canvas = require('canvas')
-const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
-
 module.exports = {
   name: "comunismo",
   aliases: ['comunismo', 'nosso'],
   cooldown: 3,
-guildOnly: false,
-   async execute(client, message, args, applyText) {
+  guildOnly: false,
+  async execute(client, message, args, applyText) {
     message.channel.startTyping();
-
+    const webhookClient = client.webhookClient();
     const canvas = Canvas.createCanvas(500, 400);
     const ctx = canvas.getContext('2d');
-  const sayMessage = args.join(' ');
+    const sayMessage = args.join(' ');
     if (!sayMessage) return message.channel.send('Digite algo antes')
     const background = await Canvas.loadImage('./src/assets/comunismo.png');
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
@@ -37,13 +35,13 @@ guildOnly: false,
 
     message.channel.send(attachment);
     const embed = new Discord.MessageEmbed()
-    .setTitle('Logs de comandos')
-    .setDescription(`**Comando:** f!comunismo \n **Autor:** ${message.author.tag} / ${message.author.id} \n\n **Servidor** ${message.guild.name} / ${message.guild.id} \n\n **Mensagem:** ${sayMessage} \n\n Link: [Mensagem](${message.url})`)
+      .setTitle('Logs de comandos')
+      .setDescription(`**Comando:** f!comunismo \n **Autor:** ${message.author.tag} / ${message.author.id} \n\n **Servidor** ${message.guild.name} / ${message.guild.id} \n\n **Mensagem:** ${sayMessage} \n\n Link: [Mensagem](${message.url})`)
     message.channel.stopTyping();
-    webhookClient.send( {
-    username: `Logs`,
-    avatarURL: 'https://cdn.discordapp.com/attachments/766414535396425739/789255465125150732/sad.jpeg',
-    embeds: [embed],
-});
-}
+    webhookClient.send({
+      username: `Logs`,
+      avatarURL: 'https://cdn.discordapp.com/attachments/766414535396425739/789255465125150732/sad.jpeg',
+      embeds: [embed],
+    });
+  }
 }
