@@ -88,9 +88,9 @@ Parece dificil mas você **realmente** quer hospedar a Foxy? você pode usar a i
 ├── URI do MongoDB
 ├── Token do Discord Bot List
 ├── Quantidade de shards que vão ser spawnadas
-├── Webhook para *logs*
-├── Webhook para relatorios de Entrada/Saída
-├── Webhook para *report* de erros e bugs
+├── Webhook para logs
+├── Webhook para relatorios de entrada/saída
+├── Webhook para report de erros e bugs
 ```
 
 > ⚠️ Algumas conexões acima não são necessarias mas não custa nada ja deixar elas funcionando
