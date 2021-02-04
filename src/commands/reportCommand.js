@@ -4,9 +4,9 @@ module.exports = {
 name: "report",
 aliases: ['reportar', 'report', 'bug', 'issue'],
 cooldown: 3,
-guildOnly: false,
+guildOnly: true,
 async execute(client, message, args) {
-    const webhookClient = new Discord.WebhookClient('WEBHOOK-ID', 'WEBHOOK-TOKEN');
+    const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
     const sayMessage = args.join(' ');
           const noargs = new Discord.MessageEmbed()
 .setColor('BLUE')

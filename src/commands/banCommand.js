@@ -29,7 +29,7 @@ module.exports = {
             })
 
         const banembed = new Discord.MessageEmbed()
-            .setTitle('Alguém quebrou as regras...')
+            .setTitle('<:DiscordBan:790934280481931286> Alguém quebrou as regras...')
             .setThumbnail(member.user.displayAvatarURL())
             .addField('Usuário banido', member)
             .addField('Punido por', message.author)

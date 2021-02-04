@@ -22,7 +22,7 @@ module.exports = {
       const embed = new Discord.MessageEmbed()
       .setColor('RED')
       .setTitle('❓ Como usar')
-      .setDescription('❓ **Use:** `f!roleta <cor> <quantidade>` \n ❤ **Quais cores?** \n `Red, Black e Green`')
+      .setDescription('❓ **Use:** `f!roleta <cor> <quantidade>` \n\n ❤ **Quais cores?** \n `Red, Black e Green`')
       .setFooter('f!roleta - Economia')
       
           if (!colour)  return message.channel.send(embed);

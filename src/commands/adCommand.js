@@ -36,7 +36,7 @@ module.exports = {
                     .setDescription(desc)
                     .setFooter("Anúncio feito por: "+message.author.username, message.author.displayAvatarURL({size: 32}))
                   
-                bot.channels.cache.get(channel.id).send(anunciar)  
+                client.channels.cache.get(channel.id).send(anunciar)  
                   
                   message.channel.send("Anúncio enviado ao canal <#"+channel.id+"> com sucesso!")
                   

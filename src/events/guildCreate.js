@@ -1,6 +1,6 @@
 module.exports = async(guild) => {
     const Discord = require('discord.js')
-    const webhookClient = new Discord.WebhookClient("800007606432825365", "ZOdExM2VOHOsApqGv3lXp0NVEdutGA3IL-_7ytnD8xOO6NFkVyik8Xasb2BvNNatjSV6");
+    const webhookClient = new Discord.WebhookClient("WEBHOOK-ID", "WEBHOOK-TOKEN");
     const embed = new Discord.MessageEmbed()
         .setTitle('Logs de entrada e saída')
         .setDescription(`<:MeowPuffyMelt:776252845493977088> Fui adicionada em um servidor`)

@@ -18,7 +18,7 @@ module.exports = {
   let rep = await db.fetch(`rep_${user.id}`)
   if(rep == null) rep = 0;
   let avatar = user.avatarURL({ dynamic: true, format: "png"})
-
+let married = await db.fetch(`marry_${user.id}`)
 
   let moneyEmbed = new Discord.MessageEmbed()
   .setColor('ff0000')
@@ -28,7 +28,7 @@ module.exports = {
       {name: ":computer: ID", value: `${user.id}`},
       { name: ":coin: FoxCoins", value: `${money}`},
       {name: ":bookmark: Sobre mim:", value: `${aboutme}`},
-      {name: ":heart: Reputações:", value: `**${rep}** Reputações`}
+      {name: ":heart: Reputações:", value: `**${rep}** Reputações`},
   )
   message.channel.send(moneyEmbed)
     }

@@ -15,7 +15,6 @@ async execute(client, message, args) {
     .setThumbnail("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
 
     
-    .setFooter("Made with 💖 by WinG4merBR");
  await message.channel.send(embed); 
 
 }
