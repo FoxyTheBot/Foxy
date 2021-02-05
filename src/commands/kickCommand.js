@@ -5,7 +5,7 @@ aliases: ['kick', 'expulsar'],
 cooldown: 3,
 guildOnly: true,
 async execute(client, message, args) {
-  const { prefix } = require('../config.json')
+  const { prefix } = require('../../config.json')
   if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send('Você não tem permissão para usar isto!')
   if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send('Eu não tenho as permissões corretas')
 

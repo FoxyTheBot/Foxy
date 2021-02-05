@@ -1,7 +1,11 @@
 const shell = require('shelljs');
-shell.exec('clear');
+if (process.platform === 'win32') {
+    shell.exec('cls');
+} else {
+    shell.exec('clear');
+}
 const { ShardingManager } = require('discord.js');
-const { token, shard } = require('./src/config')
+const { token, shard } = require('./config')
 const manager = new ShardingManager('./src/FoxyClient.js', { token: token, totalShards: shard });
 
 manager.on('message', (shard, message) => {
