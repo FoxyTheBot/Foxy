@@ -26,7 +26,7 @@ return message.reply('lembre-se de mencionar um usuário válido');
 	.setTitle(`Em outro universo paralelo 🌀`)
         .setDescription(`${message.author} e ${user} são ${rand}`)
         .setTimestamp()
-        .setFooter('Made with 💖 by WinG4merBR')
+        .setFooter('')
   await message.channel.send(embed);
 }
 

@@ -22,7 +22,7 @@ let avatar = message.author.displayAvatarURL({format: 'png'});
         .setDescription(`${message.author} **abraçou** ${user}`)
         .setImage(img.url)
         .setTimestamp()
-        .setFooter('Made with 💖 by WinG4merBR')
+        .setFooter('')
   await message.channel.send(`${message.author}`, embed)
 }
 

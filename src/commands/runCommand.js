@@ -26,7 +26,7 @@ async execute(client, message, args) {
             .setDescription(`${message.author} está correndo!`)
             .setImage(rand)
             .setTimestamp()
-            .setFooter('And i ran, i ran so far away | Made with 💖 by WinG4merBR')
+            .setFooter('And i ran, i ran so far away | ')
             .setAuthor(message.author.tag, avatar);
       await message.channel.send(embed);
     }

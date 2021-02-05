@@ -32,7 +32,7 @@ let avatar = message.author.displayAvatarURL({format: 'png'});
         .setDescription(`Supimpa!`)
         .setImage(rand)
         .setTimestamp()
-        .setFooter('Made with 💖 by WinG4merBR')
+        .setFooter('')
         .setAuthor(message.author.tag, avatar);
   await message.channel.send(embed);
 }

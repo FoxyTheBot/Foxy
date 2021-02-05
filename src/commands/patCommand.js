@@ -22,7 +22,7 @@ let img = await neko.sfw.pat()
         .setDescription(`${message.author} **fez cafuné em** ${user}`)
         .setImage(img.url)
         .setTimestamp()
-        .setFooter('Made with 💖 by WinG4merBR')
+        .setFooter('')
   await message.channel.send(`${message.author}`, embed);
 }
 

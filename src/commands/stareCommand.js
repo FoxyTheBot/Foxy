@@ -28,7 +28,7 @@ async execute(client, message, args) {
             .setDescription(`${message.author} está encarando ${user}`)
             .setImage(rand)
             .setTimestamp()
-            .setFooter('Made with 💖 by WinG4merBR')
+            .setFooter('')
             .setAuthor(message.author.tag, avatar);
       await message.channel.send(embed);
     }
