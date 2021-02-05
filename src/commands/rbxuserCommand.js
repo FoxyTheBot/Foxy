@@ -43,7 +43,6 @@ module.exports = {
                   .addField(":date: Data de conta", `${info.age} Dias` || 'Sem solução', true)
                   .addField(":calendar: Data de registro", `${data}` || 'Sem solução', true)
                   .addField("User Link", `https://roblox.com/users/${id}/profile`, true)
-                  .setFooter(`Search Bot`, client.user.avatarURL)
                   message.channel.send(embed)
                 })
               }
@@ -52,7 +51,7 @@ module.exports = {
             // but what if the player is banned, or doesn't even exist?
             // houston, we have a problem.
             }).catch(function (err) {
-             message.channel.send("Ah! Eu não encontrei este usuário, ou talvez ele não exista, desculpe pera inconveniência!") // catching error
+             message.channel.send("Ah! Eu não encontrei este usuário, ou talvez ele não exista, desculpe pela inconveniência!") // catching error
            });  
         } else { message.channel.send("Por favor especifique um usuário válido") }
       
