@@ -1,4 +1,4 @@
-const { mongodb } = require('../config.json');
+const { mongodb } = require('../../config.json');
 const mongo = require('mongoose');
 
 mongo.connect(mongodb, {

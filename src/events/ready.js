@@ -1,6 +1,6 @@
 const DBL = require("dblapi.js")
 const Sentry = require('@sentry/node')
-const { prefix, dbltoken } = require('../config.json')
+const { prefix, dbltoken } = require('../../config.json')
 module.exports = async (client, config, user) => {
     const dbl = new DBL(dbltoken, client)
     dbl.postStats(client.guilds.cache.size, client.shard.ids, client.shard.count)

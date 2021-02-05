@@ -7,7 +7,7 @@ module.exports = {
     guildOnly: true,
   async execute(client, message, args) {
      
-    if(!message.member.permissions.has("ADMINSTRATOR"))return message.channel.send("<:nao:749403722488217610> Somente adms")
+    if(!message.member.hasPermission("ADMINSTRATOR"))return message.channel.send("<:nao:749403722488217610> **|** Você precisa da permissão Administrador para executar este comando!");
   
   message.channel.send("Onde você quer enviar a mensagem?").then(msg1 => {
     let canal = message.channel.createMessageCollector(c => c.author.id === message.author.id, {max: 1})

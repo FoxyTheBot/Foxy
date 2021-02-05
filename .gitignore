@@ -105,3 +105,6 @@ dist
 
 # Foxy files
 .idea/
+config.json
+json.sqlite
+package-lock.json

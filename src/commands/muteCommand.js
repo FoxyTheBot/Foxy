@@ -12,19 +12,42 @@ async execute(client, message, args) {
         if(!user) message.channel.send("Este usuário não foi encontrado");
 
         if(user.id === message.author.id) return message.channel.send("Você não pode mutar a si mesmo!");
-
         let role = message.guild.roles.cache.find(x => x.name === "Silenciado"); 
 
-        if(!role) return message.channel.send("Eu não consigo encontrar o cargo `Silenciado`");
+        if(!role) {
+          
+            message.channel.send("Como eu não consegui encontrar o cargo `Silenciado` eu irei criar um para você :)")
+            message.guild.roles.create(
+                { 
+                    data: {
+                        name: "Silenciado"
+                }, 
+                reason: 'Cargo silenciado', 
+                mentionable: false
+            });
+                    let role = message.guild.roles.cache.find(x => x.name === "Silenciado"); 
 
+            role.overwritePermissions([
+                {
+                    id: role.id,
+                    deny: ['SEND_MESSAGES', 'SPEAK'],
+                },
+            
+            ]);
+        
+        } else {
+
+       
+     
         let reason = args.slice(1).join(" ");
-        if(reason === null) reason = "Não especificado"
+        if(!reason) reason = "Não especificado"
 
         user.roles.add(role);
 
         await message.channel.send(`${user} Foi mutado por: ${reason}`)
+        message.channel.send(`${user} foi silenciado por ${reason}`) 
 
-        user.send(`Olá! Você foi silenciado em ${message.guild.name} pelo motivo: ${reason}`);
+        }
     }
 
 }
