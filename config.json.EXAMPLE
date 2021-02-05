@@ -1,0 +1,23 @@
+{
+    "owners": [
+        "OWNER-1",
+        "OWNER-2" 
+    ],
+"prefix": "PREFIX",
+"token": "BOT-TOKEN",
+"mongodb": "MONGODB-URI",
+"dbltoken": "DBL-TOKEN",
+"shard": 1,   
+ "guildsWebhook": {
+        "id": "WEBHOOK-ID",
+        "token": "WEBHOOK-TOKEN"
+    },
+    "reportWebhook": {
+        "id": "WEBHOOK-ID",
+        "token": "WEBHOOK-TOKEN"
+    },
+    "logsWebhook": {
+        "id": "WEBHOOK-ID",
+        "token": "WEBHOOK-TOKEN"
+    }
+}

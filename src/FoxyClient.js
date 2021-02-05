@@ -1,14 +1,14 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token, owners, logsWebhook, reportWebhook } = require('./config.json');
+const { prefix, token, owners, logsWebhook, reportWebhook } = require('../config.json');
 const user = require('./models/user')
 
 const cooldowns = new Discord.Collection();
 
 const foxyIntents = new Discord.Intents(Discord.Intents.ALL);
-/* Se você não for utilizar um certo Intent é recomendado que você remova-o com:
-foxyIntents.remove('Intent');
-*/
+
+foxyIntents.remove(Discord.Intents.PRIVILEGED);
+
 const client = new Discord.Client({
     ws: {
         intents: foxyIntents
@@ -40,13 +40,13 @@ function foxySelfReport(error, context) {
     console.error('\x1b[37m\x1b[41mERROR\x1b[0m: Um erro ocorreu no tempo de execução!', error);
     const errorSliced = error.stack.length > 1000 ? `${error.stack.slice(0, 1000)}...` : error.stack;
     const reportEmbed = new Discord.MessageEmbed()
-        .setTitle(':meowbughunter: | Issue Report automático da Foxy')
+        .setTitle(':bug: | Issue Report automático da Foxy')
         .setColor('#5555DD')
         .addFields(
             { name: ":technologist: Usuário:", value: `<@${context.author.id}>` },
             { name: ":tools: Guild:", value: `${context.guild.name}; ID: ${context.guild.id}` },
             { name: ":wrench: Request:", value: `${context.content}` },
-            { name: ":bug_hunter: Issue:", value: `\n\`\`\`js\n${errorSliced}\`\`\`` }
+            { name: ":bug: Issue:", value: `\n\`\`\`js\n${errorSliced}\`\`\`` }
         )
         .setFooter('Verifique o console para mais informações!');
     const replyEmbed = new Discord.MessageEmbed()

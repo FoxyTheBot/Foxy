@@ -1,6 +1,6 @@
 module.exports = async (guild) => {
     const Discord = require('discord.js')
-    const { guildsWebhook } = require('../config.json');
+    const { guildsWebhook } = require('../../config.json');
     const webhookClient = new Discord.WebhookClient(guildsWebhook.id, guildsWebhook.token);
     const embed = new Discord.MessageEmbed()
         .setTitle('Logs de entrada e saída')
