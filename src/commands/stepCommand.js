@@ -23,7 +23,7 @@ const embed = new Discord.MessageEmbed()
 .setDescription(`${message.author} pisou em ${user}`)
 .setImage(rand)
 .setTimestamp()
-.setFooter('Made With 💖 by WinG4merBR')
+.setFooter('')
 await message.channel.send(embed)
 }
 

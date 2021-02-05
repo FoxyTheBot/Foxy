@@ -22,7 +22,7 @@ let avatar = message.author.displayAvatarURL({format: 'png'});
         .setDescription(`${message.author} está rindo ` + sayMessage)
         .setImage(rand)
         .setTimestamp()
-        .setFooter('Made with 💖 by WinG4merBR | Gifs by: ByteAlex#1644')
+        .setFooter(' | Gifs by: ByteAlex#1644')
         .setAuthor(message.author.tag, avatar);
   await message.channel.send(embed);
 }

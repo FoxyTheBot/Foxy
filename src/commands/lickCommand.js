@@ -24,7 +24,7 @@ let avatar = message.author.displayAvatarURL({format: 'png'});
         .setImage(rand)
         .setTimestamp()
         .setThumbnail(avatar)
-        .setFooter('Made with 💖 by WinG4merBR')
+        .setFooter('')
         .setAuthor(message.author.tag, avatar);
   await message.channel.send(`${message.author}`, embed);
 }
