@@ -4,50 +4,53 @@ aliases: ['mute', 'silenciar', 'mutar'],
 cooldown: 3,
 guildOnly: true,
 async execute(client, message, args) {        
+    const Discord = require('discord.js')
     
-    if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send("Você não a permissão `Gerenciar Cargos` para realizar esta ação");
+    if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("Você não a permissão `Expulsar usuários` para realizar esta ação");
 
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-
         if(!user) message.channel.send("Este usuário não foi encontrado");
-
         if(user.id === message.author.id) return message.channel.send("Você não pode mutar a si mesmo!");
-        let role = message.guild.roles.cache.find(x => x.name === "Silenciado"); 
 
-        if(!role) {
-          
-            message.channel.send("Como eu não consegui encontrar o cargo `Silenciado` eu irei criar um para você :)")
-            message.guild.roles.create(
-                { 
-                    data: {
-                        name: "Silenciado"
-                }, 
-                reason: 'Cargo silenciado', 
-                mentionable: false
+        let mutedRole = message.guild.roles.cache.find((r) => r.name === 'Foxy Muted🔇');
+        if (!mutedRole) {
+            await message.guild.roles.create({
+              data: {
+                name: 'Foxy Muted🔇',
+                permissions: []
+              }
+           
             });
-                    let role = message.guild.roles.cache.find(x => x.name === "Silenciado"); 
+        }
+      
 
-            role.overwritePermissions([
-                {
-                    id: role.id,
-                    deny: ['SEND_MESSAGES', 'SPEAK'],
-                },
-            
-            ]);
+        const role = await message.guild.roles.cache.find(x => x.name === "Foxy Muted🔇"); 
+        message.guild.channels.cache.forEach(async (channel, id) => {
+            await channel.updateOverwrite(role, {
+              'SEND_MESSAGES': false,
+              'EMBED_LINKS': false,
+              'ATTACH_FILES': false,
+              'ADD_REACTIONS': false,
+              'SPEAK': false
+            });
         
-        } else {
-
-       
+          mutedRole = role;
+        })
+    
+     
      
         let reason = args.slice(1).join(" ");
         if(!reason) reason = "Não especificado"
 
         user.roles.add(role);
-
-        await message.channel.send(`${user} Foi mutado por: ${reason}`)
-        message.channel.send(`${user} foi silenciado por ${reason}`) 
-
-        }
+        const mutedembed = new Discord.MessageEmbed()
+       .setColor('RED')
+       .setTitle('Alguém foi silenciado!')
+       .addFields(
+           { name: "User:", value: `${user}`},
+           { name: "Motivo:", value: `${reason}`}
+       )
+        message.channel.send(mutedembed) 
     }
 
-}
+    }
