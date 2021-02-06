@@ -1,5 +1,5 @@
 module.exports = async (member) => {
-  const db_User = require('../models/user');
+  const db_User = require('../../models/user');
   db_User.findOne({ userid: member.id }, function (error, data) {
     if (error) return console.err('\x1b[37m\x1b[41mERROR\x1b[0m: Um erro ocorreu no tempo de execução!', error);
     if (data) {
