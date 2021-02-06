@@ -9,6 +9,10 @@ async execute(client, message, args) {
     return message.reply(
       "<:WindowsShield:777579023249178625> | Você não tem permissão para executar este comando! Você precisará da permissão `Gerenciar Mensagens` para usar este comando!"
     );
+      if (!message.guild.me.hasPermission('MANAGE_CHANNELS')) {
+            message.channel.send("Eu preciso da permissão `Gerenciar canais` para fazer isso!")
+        
+        }
     if(!args[0]) return message.channel.send("Especifique o tempo em segundos (de 1 até 21600 Segundos)")
     let duration = args[0]
     if(args[0] > 21600) return message.channel.send('Utilize apenas de 1 até 21600 segundos ')
