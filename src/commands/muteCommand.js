@@ -7,7 +7,10 @@ async execute(client, message, args) {
     const Discord = require('discord.js')
     
     if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("Você não a permissão `Expulsar usuários` para realizar esta ação");
-
+    if (!message.guild.me.hasPermission('MANAGE_ROLES')) {
+      message.channel.send("Eu preciso da permissão `Gerenciar cargos` para fazer isso!")
+  
+  }
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         if(!user) message.channel.send("Este usuário não foi encontrado");
         if(user.id === message.author.id) return message.channel.send("Você não pode mutar a si mesmo!");

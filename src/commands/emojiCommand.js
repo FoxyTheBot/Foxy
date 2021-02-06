@@ -20,10 +20,21 @@ async execute(client, message, args) {
       "`" + args[0] + "` **não é um emoji deste servidor.**"
     );
   } else if (emoji.animated === true) {
-    message.channel.send(`<a:${args[0]}:${emoji.id}>`);
+    await message.channel.send({files: [
+      {
+        attachment: emoji.url,
+        name: 'emoji_owo.gif'
+      }
+      ]});
   } else {
-    message.channel.send(`<:${args[0]}:${emoji.id}>`);
+    await message.channel.send({files: [
+      {
+        attachment: emoji.url,
+        name: 'emoji_owo.png'
+      }
+      ]});
   }
+  
 }
 
 }
