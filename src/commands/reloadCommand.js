@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'reload',
 	aliases: ['r', 'reload'],
-	ownerOnly: true,
+	ownerOnly: false,
 	execute(client, message, args) {
 
      

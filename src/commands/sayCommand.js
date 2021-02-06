@@ -4,7 +4,7 @@ module.exports = {
   name: "say",
   aliases: ['say', 'falar', 'dizer'],
   cooldown: 5,
-  guildOnly: false,
+  guildOnly: true,
   async execute(client, message, args) {
     if (!message.member.permissions.has("MANAGE_MESSAGES"))
       return message.reply(

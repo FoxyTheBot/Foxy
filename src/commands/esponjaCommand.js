@@ -5,7 +5,7 @@ module.exports = {
   name: "esponja",
   aliases: ['esponja', 'fodase', 'fds'],
   cooldown: 3,
-  guildOnly: false,
+  guildOnly: true,
   async execute(client, message, args) {
     message.channel.startTyping();
     const canvas = Canvas.createCanvas(500, 400);

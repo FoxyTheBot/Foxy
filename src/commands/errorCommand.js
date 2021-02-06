@@ -5,7 +5,7 @@ module.exports = {
   name: "error",
   aliases: ['error', 'erro'],
   cooldown: 3,
-  guildOnly: false,
+  guildOnly: true,
   async execute(client, message, args, applyText) {
     message.channel.startTyping();
 

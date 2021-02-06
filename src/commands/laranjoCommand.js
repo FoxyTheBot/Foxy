@@ -6,7 +6,7 @@ module.exports = {
   name: "laranjo",
   aiases: ['laranjo'],
   cooldown: 3,
-  guildOnly: false,
+  guildOnly: true,
   async execute(client, message, args) {
     message.channel.startTyping();
     const canvas = Canvas.createCanvas(700, 600);
