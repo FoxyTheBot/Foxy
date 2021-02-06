@@ -8,12 +8,10 @@ mongo.connect(mongodb, {
     process.exit(1);
 });
 
-// Considere consertar o banco de dados depois.
-
 const user = new mongo.Schema({
-    userid: Number, // Trocar para String: Usuarios veteranos do Discord vão ter problemas pois o id deles começam com 0.
+    userid: String,
     username: String,
-    userBanned: String // Trocar para boolean?
+    userBanned: Boolean
 });
 
 module.exports = mongo.model('user', user);
