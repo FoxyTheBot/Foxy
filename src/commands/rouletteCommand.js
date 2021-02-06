@@ -22,20 +22,19 @@ module.exports = {
       const embed = new Discord.MessageEmbed()
       .setColor('RED')
       .setTitle('❓ Como usar')
-      .setDescription('❓ **Use:** `f!roleta <cor> <quantidade>` \n\n ❤ **Quais cores?** \n `Red, Black e Green`')
+      .setDescription('❓ **Use:** `f!roleta <cor> <quantidade>` \n\n ❤ **Quais cores?** \n `Red, Black e Green` \n\n :money_with_wings: **Custo:** \n `100 FoxCoins`')
       .setFooter('f!roleta - Economia')
       
           if (!colour)  return message.channel.send(embed);
           colour = colour.toLowerCase()
-          if (!money) return message.channel.send(`Especifique uma quantia para jogar | f!roleta <cor> <quantidade>`); 
+          if (!money) return message.channel.send(`:money_with_wings: **|** Especifique uma quantia para jogar. Exemplo: \`f!roleta <cor> <quantidade>\` **o custo de cada partida é 100 FoxCoins!**`); 
           if (money > moneydb) return message.channel.send(`Você está apostando mais do que tem`);
           
           if (colour == "b" || colour.includes("black")) colour = 0;
           else if (colour == "r" || colour.includes("red")) colour = 1;
           else if (colour == "g" || colour.includes("green")) colour = 2;
           else return message.channel.send(`Especifique uma cor em inglês | Red [1.5x] Black [2x] Green [15x]`);
-          
-          
+
           
           if (random == 0 && colour == 2) { // Green
               money *= 15
@@ -56,5 +55,7 @@ module.exports = {
               db.subtract(`coins_${user.id}`, money)
               message.channel.send(`Você perdeu ${money} coins. Múltiplo: 0x`)
           }
+          db.subtract(`coins_${user.id}`, 100)
+
     }
 }
