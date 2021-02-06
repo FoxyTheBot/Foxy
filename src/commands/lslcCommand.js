@@ -1,5 +1,5 @@
 module.exports = {
-  name: "coins",
+  name: "lslc",
   aliases: ['lsx', 'coins', 'lslc'],
   cooldown: 1,
   guildOnly: true,
