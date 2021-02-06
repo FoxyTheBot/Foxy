@@ -23,7 +23,7 @@ if(rules == null) rules = "Não"
 
 let afk = message.guild.afkChannel
 if(afk == null) afk = "Não"
-var level = verification.replace("MEDIUM", 'Médio').replace("_HIGH", "Alto").replace("VERY", "Muito ").replace("LOW", "Baixo").replace("NONE", "Sem verificação")
+var level = verification.replace("MEDIUM", 'Médio').replace("_HIGH", "Alto").replace("HIGH", "Alto").replace("VERY", "Muito ").replace("LOW", "Baixo").replace("NONE", "Sem verificação")
 const embed = new Discord.MessageEmbed()
         .setColor('b2fba4')
         .setTitle(message.guild.name)
