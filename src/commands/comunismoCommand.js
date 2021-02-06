@@ -5,7 +5,7 @@ module.exports = {
   name: "comunismo",
   aliases: ['comunismo', 'nosso'],
   cooldown: 3,
-  guildOnly: false,
+  guildOnly: true,
   async execute(client, message, args, applyText) {
     message.channel.startTyping();
     const canvas = Canvas.createCanvas(500, 400);
