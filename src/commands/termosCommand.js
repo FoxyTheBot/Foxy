@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 module.exports = {
-        name: "terms",
+        name: "termos",
         aliases: ['termos', 'terms', 'tos'],
         cooldown: 3,
         guildOnly: false,

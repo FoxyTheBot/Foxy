@@ -46,14 +46,14 @@ function foxySelfReport(error, context) {
             { name: ":technologist: Usuário:", value: `<@${context.author.id}>` },
             { name: ":tools: Guild:", value: `${context.guild.name}; ID: ${context.guild.id}` },
             { name: ":wrench: Request:", value: `${context.content}` },
-            { name: ":bug: Issue:", value: `\n\`\`\`js\n${errorSliced}\`\`\`` }
+            { name: "<:bug_hunter:789668194494709761> Issue:", value: `\n\`\`\`js\n${errorSliced}\`\`\`` }
         )
         .setFooter('Verifique o console para mais informações!');
     const replyEmbed = new Discord.MessageEmbed()
         .setTitle('<:BSOD:777579371870683147> | Ocorreu um erro ao usar este comando')
         .setColor('RED')
         .setDescription(`\`\`\`js\n${errorSliced}\`\`\``)
-        .setFooter('Não se preocupe! esse erro foi reportado automaticamente para minha equipe!');
+        .setFooter('<:bug_hunter:789668194494709761> Não se preocupe! esse erro foi reportado automaticamente para minha equipe!');
     client.reportWebhook.send(reportEmbed).catch(err => {
         if(err) {
             console.error('\x1b[37m\x1b[41mERROR\x1b[0m: O report automatico falhou! verifique o webhook de reporte!', err);
@@ -95,7 +95,7 @@ client.on("message", message => {
 
         if (now < expirationTime) {
             const timeLeft = (expirationTime - now) / 1000;
-            return message.reply(`Por favor aguarde **${timeLeft.toFixed(0)} segundos** para usar o comando novamente`);
+            return message.channel.send(`:fire: **|** ${message.author}, Por favor aguarde **${timeLeft.toFixed(0)} segundos** para usar o comando novamente`);
         }
     }
 

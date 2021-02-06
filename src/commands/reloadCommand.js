@@ -17,10 +17,10 @@ module.exports = {
 		try {
 			const newCommand = require(`./${command.name}Command.js`);
 			message.client.commands.set(newCommand.name, newCommand);
-			message.channel.send(`Comando \`${command.name}\` foi recarregado`);
+			message.channel.send(`<:DiscordUpdate:790934280724414465> **|** Comando \`${command.name}\` foi atualizado`);
 		} catch (error) {
 			console.error(error);
-			message.channel.send(`Ocorreu um erro ao recarregar o comando: \`${command.name}\`:\n\`${error.message}\``);
+			message.channel.send(`<:Error:718944903886930013> **|** Ocorreu um erro ao atualizar o comando: \`${command.name}\`:\n\`${error.message}\``);
 		}
 	},
 };
