@@ -14,13 +14,19 @@ const client = new Discord.Client({
         intents: foxyIntents
     }
 });
-client.commands = new Discord.Collection();
 client.logsWebhook = new Discord.WebhookClient(logsWebhook.id, logsWebhook.token);
 client.reportWebhook = new Discord.WebhookClient(reportWebhook.id, reportWebhook.token);
+client.commands = new Discord.Collection();
+
 
 const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
 const eventFiles = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'));
 
+
+for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+    client.commands.set(command.name, command);
+}
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
