@@ -6,7 +6,7 @@ module.exports = async (client) => {
     dbl.postStats(client.guilds.cache.size, client.shard.ids, client.shard.count);
     dbl.on("error", err => console.error('\x1b[37m\x1b[41mERROR\x1b[0m: Ocorreu um erro ao se conectar com a Discord Bot List API', err));
 
-    console.info(`\x1b[37m\x1b[42mSUCCESS\x1b[0m: Foxy está pronta! Logado como: ${client.user.tag}`);
+    console.info(`\x1b[37m\x1b[42mSUCCESS\x1b[0m: Foxy is ready! Logged as: ${client.user.tag}`);
     let status = [
         { name: `❓ Se você precisa de ajude use ${prefix}help`, type: "WATCHING" },
         { name: `💻 Quer encontrar meus comandos use: ${prefix}commands`, type: "PLAYING" },
