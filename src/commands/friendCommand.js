@@ -1,8 +1,5 @@
 const Canvas = require('canvas');
 const Discord = require('discord.js')
-const canvas = Canvas.createCanvas(384, 128);
-const ctx = canvas.getContext('2d');
-const { createCanvas, loadImage } = require('canvas')
 
 module.exports = { 
     name: "friend",

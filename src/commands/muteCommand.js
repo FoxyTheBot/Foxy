@@ -12,7 +12,7 @@ async execute(client, message, args) {
   
   }
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-        if(!user) message.channel.send("Este usuário não foi encontrado");
+        if(!user) message.channel.send("Mencione um usuário!");
         if(user.id === message.author.id) return message.channel.send("Você não pode mutar a si mesmo!");
 
         let mutedRole = message.guild.roles.cache.find((r) => r.name === 'Foxy Muted🔇');

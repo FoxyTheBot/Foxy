@@ -6,7 +6,7 @@ aliases: ['dance', 'dançar'],
 cooldown: 3,
 guildOnly: false,
 async execute(client, message, args) {
-  
+  let user = message.mentions.users.first()
     const sayMessage = args.join(' ');
     
 var list = [
@@ -18,16 +18,25 @@ var list = [
 ];
 
 var rand = list[Math.floor(Math.random() * list.length)];
-
+if(user) {
+  let avatar = message.author.displayAvatarURL({format: 'png'});
+  const embed = new Discord.MessageEmbed()
+        .setColor('#000000')
+        .setDescription(`**${message.author} está dançando com ${user}!**`)
+        .setImage(rand)
+        .setTimestamp()
+        .setAuthor(message.author.tag, avatar);
+        message.channel.send(embed)
+} else {
 let avatar = message.author.displayAvatarURL({format: 'png'});
   const embed = new Discord.MessageEmbed()
         .setColor('#000000')
-        .setDescription(`${message.author} dançou ` + sayMessage)
+        .setDescription(`**${message.author} está dançando**` + sayMessage)
         .setImage(rand)
         .setTimestamp()
-        .setFooter(' | Gifs by: ByteAlex#1644')
         .setAuthor(message.author.tag, avatar);
   await message.channel.send(embed);
+}
 }
 
 }
