@@ -29,7 +29,7 @@ for (const file of commandFiles) {
 for (const file of eventFiles) {
     const event = require(`./events/${file}`);
     let eventBind = file.split('.')[0];
-    console.info(`\x1b[37m\x1b[44mINFO\x1b[0m: Carregando evento: ${file}; Bind: ${eventBind}`);
+    console.info(`\x1b[37m\x1b[44mINFO\x1b[0m: Loading event: ${file}; Bind: ${eventBind}`);
     client.on(eventBind, event.bind(null, client));
 }
 
