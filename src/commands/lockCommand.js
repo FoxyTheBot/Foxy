@@ -1,4 +1,3 @@
-const { execute } = require("./danceCommand");
 
 module.exports = {
     name: "lock",
