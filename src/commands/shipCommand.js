@@ -76,9 +76,9 @@ let amorEmbed = new Discord.MessageEmbed()
     .setDescription("**"+amor+"%** [`"+loveLevel+"`]")
   .attachFiles([amorat]).setImage('attachment://chances-image.png')
 
+  message.channel.stopTyping();
 
   message.channel.send('<@'+message.author.id+'> \n'+desc, amorEmbed)
-    message.channel.stopTyping();
   
 }
 }
