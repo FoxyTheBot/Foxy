@@ -15,10 +15,26 @@ module.exports = {
   let aboutme = await db.fetch(`aboutme_${user.id}`)
   if(aboutme == null) aboutme = "Foxy é minha amiga, você pode alterar isso usando f!aboutme";
 
+
   let rep = await db.fetch(`rep_${user.id}`)
   if(rep == null) rep = 0;
   let avatar = user.avatarURL({ dynamic: true, format: "png"})
-let married = await db.fetch(`marry_${user.id}`)
+
+  if(user == client.user.id) {
+    const embed = new Discord.MessageEmbed()
+    .setColor('ff0000')
+    .setDescription(`:star: **Sobre:** ${user}`)
+.setThumbnail(avatar)
+.addFields(
+    {name: ":computer: ID", value: `${user.id}`},
+    { name: ":coin: FoxCoins", value: `${money}`},
+    {name: ":bookmark: Sobre mim:", value: `Olá! Eu sou a Foxy, um bot fofo para o Discord com várias funcionalidades legais <:meow_blush:768292358458179595>`},
+    {name: ":heart: Reputações:", value: `**${rep}** Reputações`},
+)
+message.channel.send(embed)
+  
+
+} else {
 
   let moneyEmbed = new Discord.MessageEmbed()
   .setColor('ff0000')
@@ -32,4 +48,5 @@ let married = await db.fetch(`marry_${user.id}`)
   )
   message.channel.send(moneyEmbed)
     }
+}
 }
