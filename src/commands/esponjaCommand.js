@@ -31,12 +31,12 @@ module.exports = {
     ctx.clip();
 
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'respier.png');
+    message.channel.stopTyping();
 
     message.channel.send(attachment);
     const embed = new Discord.MessageEmbed()
       .setTitle('Logs de comandos')
       .setDescription(`**Comando:** f!laranjo \n **Autor:** ${message.author.tag} / ${message.author.id} \n\n **Servidor** ${message.guild.name} / ${message.guild.id} \n\n **Mensagem:** ${sayMessage} \n\n Link: [Mensagem](${message.url})`)
-    message.channel.stopTyping();
     client.logsWebhook.send({
       username: `Logs`,
       avatarURL: 'https://cdn.discordapp.com/attachments/766414535396425739/789255465125150732/sad.jpeg',
