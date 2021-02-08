@@ -8,6 +8,7 @@
 "mongodb": "MONGODB-URI",
 "dbltoken": "DBL-TOKEN",
 "shard": 1,   
+"canary": true,
  "guildsWebhook": {
         "id": "WEBHOOK-ID",
         "token": "WEBHOOK-TOKEN"
