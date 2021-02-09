@@ -4,6 +4,7 @@ module.exports = {
     aliases: ['8ball', 'eightball', '8', 'ask'],
     cooldown: 5,
     guildOnly: false,
+    argsRequire: true,
     async execute(client, message, args) {
     let results = ["Sim", "Não", "Talvez", "Com certeza!", "Talvez", "Provavelmente sim", "Provavelmente não", "Não entendi, pergunte novamente"]
     let result = Math.floor((Math.random() * results.length)); {}
