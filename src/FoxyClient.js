@@ -2,7 +2,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token, owners, logsWebhook, reportWebhook, canary } = require('../config.json');
 const user = require('./models/user');
-
+const active = new Map()
 const cooldowns = new Discord.Collection();
 
 const foxyIntents = new Discord.Intents(Discord.Intents.ALL);
@@ -64,9 +64,6 @@ function foxySelfReport(error, context) {
 
 client.on("message", message => {
     if (!message.content.startsWith(prefix) || message.author.bot || message.webhookID) return;
-if(canary) {
-    message.channel.send('<:meowbughunter:776249240463736834> Você está usando a versão experimental da Foxy, algumas coisas podem não funcionar, posso ficar offline a qualquer momento. Enfim, não reporte bugs na versão experimental.')
-}
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
 
@@ -109,7 +106,7 @@ if(canary) {
         timestamps.set(message.author.id, now);
         setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
-        command.execute(client, message, args);
+        command.execute(client, message, args, active);
     }
     try {
         user.findOne({ userid: message.author.id }, function (error, data) {

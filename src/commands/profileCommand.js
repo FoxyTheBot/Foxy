@@ -50,7 +50,7 @@ module.exports = {
 
 	ctx.font = '70px sans-serif'
 	ctx.fillStyle = '#ffffff';
-	ctx.fillText(`${rep} Reps`, canvas.width / 1.2, canvas.height / 6.4);
+	ctx.fillText(`${rep} Reps`, canvas.width / 1.2, canvas.height / 6.0);
 
     ctx.font = ('30px sans-serif');
 	ctx.fillStyle = '#ffffff';
@@ -59,7 +59,7 @@ module.exports = {
     
     ctx.font = ('40px sans-serif');
 	ctx.fillStyle = '#ffffff';
-	ctx.fillText(`${money} FoxCoins`, canvas.width / 6.0, canvas.height / 4.8);
+	ctx.fillText(`${money} FoxCoins`, canvas.width / 6.0, canvas.height / 4.6);
 
 	ctx.beginPath();
 	ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
