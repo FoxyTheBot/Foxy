@@ -24,7 +24,7 @@ db.add(`coins_${user.id}`, amount)
 db.set(`daily_${user.id}`, Date.now())
 
 let money = await db.fetch(`coins_${user.id}`)
-message.channel.send(`💵 **|** Você coletou seu daily você ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`)
+message.channel.send(`💵 **|** Você coletou seu daily você ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins na sua conta!`)
 
 
 }
