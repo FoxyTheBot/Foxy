@@ -21,6 +21,13 @@ module.exports = {
 
       message.channel.send(`Foram adicionados ${args[1]} FoxCoins na conta de ${user} agora ele(a) possui ${bal} FoxCoins`)
     }
-
+    if (message.content.includes('rst_bg')) {
+      db.set(`background_${user.id}`, 'default_background.png')
+      message.channel.send(`O Background de ${user} foi redefinido!`)
+    }
+    if (message.content.includes('set_background')) {
+      db.set(`background_${user.id}`, `${args[1]}`)
+      message.channel.send(`O arquivo ${args[1]} foi setado no perfil de ${user}`)
+    }
   }
 }
