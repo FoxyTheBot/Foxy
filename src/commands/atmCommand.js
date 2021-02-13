@@ -23,6 +23,8 @@ module.exports = {
                 { name: "<:BradescoLogo:810176327993917520> **|** Saldo Bancário", value: `${bank} FoxCoins`},
                 { name: "<:Santander:810177139252133938> **|** Conta Corrente", value: `${bal} FoxCoins`}
             )
+            .setFooter(`Para poder guardar envie para sua conta usando f!deposit <quantia>`)
+
             message.channel.send(embed)
         } else {
                 if(user == message.author) return message.channel.send(`💵 **|** ${user} você possui ${bal} FoxCoins`)

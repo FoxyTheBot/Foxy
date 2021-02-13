@@ -20,7 +20,7 @@ module.exports = {
                 { name: "<:BradescoLogo:810176327993917520> **|** Saldo Bancário", value: `${bal} FoxCoins`},
                 { name: "<:Santander:810177139252133938> **|** Conta Corrente", value: `${money} FoxCoins`}
             )
-            .setFooter("Você também pode ver digitando f!atm all")
+            .setFooter(`Para poder guardar envie para sua conta usando f!deposit <quantia>`)
             message.channel.send(embed)
         
       
