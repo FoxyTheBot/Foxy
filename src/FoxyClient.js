@@ -2,7 +2,6 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token, owners, logsWebhook, reportWebhook, canary } = require('../config.json');
 const user = require('./models/user');
-const active = new Map()
 const cooldowns = new Discord.Collection();
 
 const foxyIntents = new Discord.Intents(Discord.Intents.ALL);
@@ -106,7 +105,7 @@ client.on("message", message => {
         timestamps.set(message.author.id, now);
         setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
-        command.execute(client, message, args, active);
+        command.execute(client, message, args);
     }
     try {
         user.findOne({ userid: message.author.id }, function (error, data) {

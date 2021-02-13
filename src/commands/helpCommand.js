@@ -15,7 +15,7 @@ module.exports = {
         .setThumbnail('https://cdn.discordapp.com/avatars/737044809650274325/64b92e7d5e7fb48e977e1f04ef13369d.png?size=1024')
         .addField(`<:DiscordStaff:731947814246154240> Lista de comandos:`, `digite f!commands`)
         .addField(`<:DiscordDeveloper:731945244983034033> Está com dúvidas? Meu servidor de suporte`, `https://discord.gg/nHVqcxrFmg`)
-        .addField(`<:info:718944993741373511> Termos de uso`, `https://foxywebsite.ml/page3.html`)
+        .addField(`<:info:718944993741373511> Termos de uso`, `https://foxywebsite.ml/tos.html`)
         .addField(`<:ApoiadorDoDiscord:731946134720741377> Meu WebSite onde você pode me adicionar`, `https://foxywebsite.ml/`)
   
         message.channel.send(embed)
