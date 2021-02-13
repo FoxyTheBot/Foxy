@@ -6,7 +6,7 @@ if (process.platform === 'win32') {
 }
 const { ShardingManager } = require('discord.js');
 const { token, shard } = require('./config')
-const manager = new ShardingManager('./src/FoxyClient.js', { token: token, totalShards: shard, respawn: true, });
+const manager = new ShardingManager('./src/FoxyClient.js', { token: token, totalShards: shard, });
 
 manager.on('message', (shard, message) => {
     console.info(`Shard[${shard.id}] : ${message._eval} : ${message._result}`);
