@@ -11,7 +11,7 @@ module.exports = {
 
         let user = message.mentions.members.first()
 
-        let author = message.author.id; 
+        let author = message.author;
 
         if(user == author) return message.reply(`Você não pode dar reputação para si mesmo!`);
 
