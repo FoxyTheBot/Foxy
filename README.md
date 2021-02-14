@@ -111,8 +111,4 @@ ___
 <p> • Bis❄#2332 | Por fazer meu icon e outros desenhos ❤  </p>
 <P> • ThierrY#6303 | Por me ajudar me indicando ❤ </p>
 
-___
-<p align="center">
-<img width="35%" src="https://cdn.discordapp.com/attachments/776930851753426945/810534983759298560/d8g4r92-6ebeb19f-b716-4253-adea-a501b513600e.gif">
-<br>
- </p>
+
