@@ -9,7 +9,7 @@
     <img src="https://top.gg/api/widget/737044809650274325.svg" alt="Foxy" />
 </a>
   <p align="center">
-    <a href="https://jetbrains.com/?from=ChinoKafuu">
+    <a href="https://jetbrains.com/?from=Foxy">
     <img src="https://img.shields.io/badge/Powered_by_WebStorm-gray.svg?logo=webstorm&style=for-the-badge" />
   </a>
 <a href="https://github.com/BotFoxy/FoxyBot/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-AGPL%20v3-lightgray.svg"></a>
