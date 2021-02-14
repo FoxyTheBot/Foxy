@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token, owners, logsWebhook, reportWebhook, canary } = require('../config.json');
+const { prefix, token, owners, logsWebhook, reportWebhook } = require('../config.json');
 const user = require('./models/user');
 const cooldowns = new Discord.Collection();
 
@@ -13,6 +13,7 @@ const client = new Discord.Client({
         intents: foxyIntents
     }
 });
+
 client.logsWebhook = new Discord.WebhookClient(logsWebhook.id, logsWebhook.token);
 client.reportWebhook = new Discord.WebhookClient(reportWebhook.id, reportWebhook.token);
 client.commands = new Discord.Collection();
@@ -35,6 +36,7 @@ for (const file of eventFiles) {
 }
 
 function foxySelfReport(error, context) {
+
     console.error('\x1b[37m\x1b[41mERROR\x1b[0m: Um erro ocorreu no tempo de execução!', error);
     const errorSliced = error.stack.length > 1000 ? `${error.stack.slice(0, 1000)}...` : error.stack;
     const reportEmbed = new Discord.MessageEmbed()
@@ -47,21 +49,24 @@ function foxySelfReport(error, context) {
             { name: "<:bug_hunter:789668194494709761> Issue:", value: `\n\`\`\`js\n${errorSliced}\`\`\`` }
         )
         .setFooter('Verifique o console para mais informações!');
-    const replyEmbed = new Discord.MessageEmbed()
+
+        const replyEmbed = new Discord.MessageEmbed()
         .setTitle('<:BSOD:777579371870683147> | Ocorreu um erro ao usar este comando')
         .setColor('RED')
         .setDescription(`\`\`\`js\n${errorSliced}\`\`\``)
         .setFooter('<:bug_hunter:789668194494709761> Não se preocupe! esse erro foi reportado automaticamente para minha equipe!');
-    client.reportWebhook.send(reportEmbed).catch(err => {
+
+        client.reportWebhook.send(reportEmbed).catch(err => {
         if (err) {
             console.error('\x1b[37m\x1b[41mERROR\x1b[0m: O report automatico falhou! verifique o webhook de reporte!', err);
             replyEmbed.setFooter('Reporte para minha equipe usando f!report <issue>');
         }
     })
+
     return context.reply(replyEmbed);
 }
 
-client.on("message", message => {
+    client.on("message", message => {
     if (!message.content.startsWith(prefix) || message.author.bot || message.webhookID) return;
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
