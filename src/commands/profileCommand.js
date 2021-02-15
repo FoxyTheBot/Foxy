@@ -50,7 +50,7 @@ module.exports = {
 
 	ctx.font = '70px sans-serif'
 	ctx.fillStyle = '#ffffff';
-	ctx.fillText(`${rep} Reps`, canvas.width / 1.2, canvas.height / 6.0);
+	ctx.fillText(`${rep} Reps`, canvas.width / 1.3, canvas.height / 6.0);
 
     ctx.font = ('30px sans-serif');
 	ctx.fillStyle = '#ffffff';
