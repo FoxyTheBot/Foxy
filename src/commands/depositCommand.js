@@ -12,8 +12,7 @@ module.exports = {
         if(message.content.includes("-")) return message.channel.send("Você não pode depositar quantias negativas")
 
         if(message.content.includes("all")) {
-            if(money == 0) return message.channel.sen
-            d("Você não tem dinheiro para depositar!")
+            if(money == 0) return message.channel.send("Você não tem dinheiro para depositar!")
             db.add(`bal_${user.id}`, money)
             db.subtract(`coins_${user.id}`, money)
             message.channel.send("<:BradescoLogo:810176327993917520> **|** Você depositou todo seu dinheiro no banco!")
