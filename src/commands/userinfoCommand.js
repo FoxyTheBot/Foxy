@@ -11,8 +11,7 @@ guildOnly: true,
   try {
     const user = message.mentions.members.first() || message.member
     const usercreate = moment(user.user.createdAt).format('llll')
-    let avatar = user.user.avatarURL();
-    const embed = new Discord.MessageEmbed()
+    let avatar = user.user.avatarURL({ dynamic: true, format: "png", size: 1024 });    const embed = new Discord.MessageEmbed()
       .setColor('#22a7f2')
       .setTitle(user.user.username)
       .setThumbnail(avatar)
@@ -22,7 +21,7 @@ guildOnly: true,
         {name: ":bookmark: Discord ID:", value: `\`${user.user.id}\``, inline: true},
       )
 
-    message.channel.send(embed)
+    message.channel.send(`${message.author}`, embed)
   } catch (err) {
     message.channel.send(client.errors.genericError + err.stack).catch();
   }
