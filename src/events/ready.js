@@ -1,9 +1,5 @@
-const DBL = require("dblapi.js");
-const { prefix, dbltoken } = require('../../config.json');
+const { prefix } = require('../../config.json');
 module.exports = async (client) => {
-    const dbl = new DBL(dbltoken, client);
-    dbl.postStats(client.guilds.cache.size, client.shard.ids, client.shard.count);
-    dbl.on("error", err => console.error('\x1b[37m\x1b[41mERROR\x1b[0m: Ocorreu um erro ao se conectar com a Discord Bot List API', err));
 
     console.info(`\x1b[37m\x1b[42mSUCCESS\x1b[0m: Foxy is ready! Logged as: ${client.user.tag}`);
     let status = [
@@ -35,5 +31,5 @@ module.exports = async (client) => {
         let x = profilePics[Math.floor(Math.random() * profilePics.length)];
         client.user.setAvatar(x);
 	console.log("Profile Changed")
-    }, 10800000)
+    }, 18000000)
 }
