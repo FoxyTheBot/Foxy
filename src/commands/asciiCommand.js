@@ -8,7 +8,7 @@ module.exports = {
     
 async execute(client, message, args) {
         if(!args[0]) return message.channel.send('Por favor Digite algo');
-
+        if(args[0].length > 32 ) return message.channel.send("Você não pode digitar mais de 32 caracteres")
         msg = args.join(" ");
 
         figlet.text(msg, function (err, data){
