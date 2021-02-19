@@ -16,7 +16,9 @@ module.exports = {
         let aboutme = await db.fetch(`aboutme_${user.id}`)
         if(aboutme == null) aboutme = "Foxy é minha amiga, você pode alterar isso usando f!aboutme";
       
-      
+      let casado = await db.fetch(`married_${user.id}`)
+        if(casado === null) casado = 'Não';
+        if(casado != null) casado = "Sim";
         let rep = await db.fetch(`rep_${user.id}`)
         if(rep == null) rep = 0;
         let profile = db.fetch(`background_${user.id}`)
@@ -50,14 +52,14 @@ module.exports = {
 
 	ctx.font = '70px sans-serif'
 	ctx.fillStyle = '#ffffff';
-	ctx.fillText(`${rep} Reps`, canvas.width / 1.3, canvas.height / 6.0);
+	ctx.fillText(`${rep} Reps`, canvas.width / 1.3, canvas.height / 6.4);
 
     ctx.font = ('30px sans-serif');
 	ctx.fillStyle = '#ffffff';
 	ctx.fillText(aboutme, canvas.width / 55.0, canvas.height / 1.2);
+	
 
-    
-    ctx.font = ('40px sans-serif');
+            ctx.font = ('40px sans-serif');
 	ctx.fillStyle = '#ffffff';
 	ctx.fillText(`${money} FoxCoins`, canvas.width / 6.0, canvas.height / 4.6);
 
