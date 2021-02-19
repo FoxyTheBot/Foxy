@@ -11,7 +11,9 @@ mongo.connect(mongodb, {
 const user = new mongo.Schema({
     userid: String,
     username: String,
-    userBanned: Boolean
+    userBanned: Boolean,
+    premium: Boolean,
+
 });
 
 module.exports = mongo.model('user', user);
