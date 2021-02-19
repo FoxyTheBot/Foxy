@@ -132,7 +132,8 @@ function foxySelfReport(error, context) {
                 new user({
                     userid: message.author.id,
                     username: message.author.username,
-                    userBanned: false
+                    userBanned: false,
+                    premium: false,
                 }).save().catch(err => {
                     foxySelfReport(err, message);
                 });
