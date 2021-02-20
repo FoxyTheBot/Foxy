@@ -14,7 +14,10 @@ module.exports = {
         if(bank === null) bank = 0;
         if (bal === null) bal = 0;
     
-        if(message.content.includes("all")) {
+        switch(args[0]) {
+
+
+            case "all":
             const embed = new MessageEmbed()
             .setColor("f0152d")
             .setTitle("Saldo Bancário")
@@ -24,13 +27,14 @@ module.exports = {
                 { name: "<:Santander:810177139252133938> **|** Conta Corrente", value: `${bal} FoxCoins`}
             )
             .setFooter(`Para poder guardar envie para sua conta usando f!deposit <quantia>`)
+                message.channel.send(embed)
+                break
 
-            message.channel.send(embed)
-        } else {
+            default:
+
                 if(user == message.author) return message.channel.send(`💵 **|** ${user} você possui ${bal} FoxCoins`)
-      
         message.channel.send(`💵 **|** ${message.author}, ${user} possui ${bal} FoxCoins`)
-        
+
         }
     }
 }
