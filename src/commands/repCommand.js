@@ -11,16 +11,15 @@ module.exports = {
 
         let user = message.mentions.members.first()
 
-        let author = message.author;
 
-        if(user == author) return message.reply(`Você não pode dar reputação para si mesmo!`);
+        if(user == message.author.id) return message.reply(`Você não pode dar reputação para si mesmo!`);
 
         if(!user) return message.channel.send("Mencione alguém para dar reputação!")
         
             let timeout = 3600000;
             let amount = 1;
         let rep =  db.fetch(`rep_${user.id}`);
-        let out =  db.fetch(`timeout_${author.id}to_${user.id}`)
+        let out =  db.fetch(`timeout_${message.author.id}to_${user.id}`)
         if(rep !== null && timeout - (Date.now() - out) > 0 ) {
             let time = ms(timeout -(Date.now() - out));
 
@@ -28,7 +27,7 @@ module.exports = {
 
         } else {
             db.add(`rep_${user.id}`, amount)
-            db.set(`timeout_${author.id}to_${user.id}`, Date.now())
+            db.set(`timeout_${message.author.id}to_${user.id}`, Date.now())
             let nowrep = db.fetch(`rep_${user.id}`)
             message.channel.send(`Você deu ${amount} reputação para ${user} agora ele(a) possui ${nowrep} reputações`)
 
