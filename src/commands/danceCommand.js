@@ -21,7 +21,7 @@ var rand = list[Math.floor(Math.random() * list.length)];
 if(user) {
   let avatar = message.author.displayAvatarURL({format: 'png'});
   const embed = new Discord.MessageEmbed()
-        .setColor('#000000')
+        .setColor('#06bbff')
         .setDescription(`**${message.author} está dançando com ${user}!**`)
         .setImage(rand)
         .setTimestamp()
