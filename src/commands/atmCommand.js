@@ -18,15 +18,14 @@ module.exports = {
 
 
             case "all":
-            const embed = new MessageEmbed()
-            .setColor("f0152d")
-            .setTitle("Saldo Bancário")
-            .setThumbnail("https://cdn.discordapp.com/attachments/776930851753426945/810193222471122964/logo-bradesco-escudo-1024.png")
-            .addFields(
-                { name: "<:BradescoLogo:810176327993917520> **|** Saldo Bancário", value: `${bank} FoxCoins`},
-                { name: "<:Santander:810177139252133938> **|** Conta Corrente", value: `${bal} FoxCoins`}
-            )
-            .setFooter(`Para poder guardar envie para sua conta usando f!deposit <quantia>`)
+                const embed = new MessageEmbed()
+                    .setColor("f0152d")
+                    .setTitle(`Saldo de ${user.username}`)
+                    .setThumbnail("https://cdn.discordapp.com/attachments/776930851753426945/810193222471122964/logo-bradesco-escudo-1024.png")
+                    .addFields(
+                        { name: "<:BradescoLogo:810176327993917520> **|** FoxyBank", value: `${bal} FoxCoins`},
+                        { name: "<:Santander:810177139252133938> **|** Carteira", value: `${bank} FoxCoins`}
+                    )
                 message.channel.send(embed)
                 break
 

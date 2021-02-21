@@ -10,21 +10,24 @@ module.exports = {
     cooldown: 5,
 
     async execute(client, message, args) {
-        let random = Math.floor((Math.random() * 100));
+        let random = Math.floor((Math.random() * 1000));
         let user = message.mentions.members.first()
+        if(!user)  {
+        return message.channel.send("Mencione alguém para poder roubar")
+        } else {
         let targetuser = await db.fetch(`coins_${user.id}`)
         let author = await db.fetch(`rob_${message.author.id}`)
         let author2 = await db.fetch(`coins_${message.author.id}`)
 
+        if(user == message.author.id) return message.channel.send("Você não pode se roubar!")
         let timeout = 600000;
-
         if (author !== null && timeout - (Date.now() - author) > 0) {
             let time = ms(timeout - (Date.now() - author));
 
             let timeEmbed = new MessageEmbed()
                 .setColor(colors.default)
                 .setDescription(`Aguarde **${time.minutes}m ${time.seconds}s** para usar o comando`);
-            message.channel.send(timeEmbed)
+            await message.channel.send(timeEmbed)
         } else {
 
             let moneyEmbed = new MessageEmbed()
@@ -38,21 +41,22 @@ module.exports = {
             let moneyEmbed2 = new MessageEmbed()
                 .setColor(colors.default)
                 .setDescription(`${user.user.username} não tem nada que você possa roubar`);
-            if (targetuser < 0) {
+            if (targetuser <= random) 
                 return message.channel.send(moneyEmbed2)
-            }
+        
+
 
 
             let embed = new MessageEmbed()
                 .setDescription(`Você roubou ${user} e ganhou ${random} coins`)
                 .setColor(colors.default)
-            message.channel.send(embed)
+            await message.channel.send(embed)
 
             db.subtract(`coins_${user.id}`, random)
             db.add(`coins_${message.author.id}`, random)
             db.set(`rob_${message.author.id}`, Date.now())
 
-
+        }
         }
     }
 }
