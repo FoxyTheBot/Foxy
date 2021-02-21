@@ -62,7 +62,7 @@ git clone https://github.com/BotFoxy/Foxy
 (**A foto de perfil da Foxy não pode ser usada em outras instâncias**)
 Uso da imagem da foxy **de forma não permitida** pode ser considerado violação de direitos autorais no [código penal brasileiro](https://www.jusbrasil.com.br/topicos/10615003/artigo-184-do-decreto-lei-n-2848-de-07-de-dezembro-de-1940)
 6. Os assets da Foxy como [imagens logos entre outros] são distribuidos juntamente com o codigo
-7. Nós utilizamos o [Ubuntu 20.04 LTS](https://ubuntu.com/download) para hospedar a Foxy, porem você pode usar outros sistemas Linux.
+7. Nós utilizamos o [Debian 10](https://www.debian.org/index.pt.html) para hospedar a Foxy, porem você pode usar outros sistemas Linux.
 
 Parece dificil mas você **realmente** quer hospedar a Foxy? você pode usar a instancia publica [clicando aqui!](https://discord.com/oauth2/authorize?client_id=737044809650274325&permissions=8&scope=bot)
 
