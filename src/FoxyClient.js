@@ -2,6 +2,8 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token, owners, logsWebhook, reportWebhook } = require('../config.json');
 const user = require('./models/user');
+const colors = require("./structures/color")
+
 const cooldowns = new Discord.Collection();
 
 const foxyIntents = new Discord.Intents(Discord.Intents.ALL);
@@ -18,10 +20,11 @@ client.logsWebhook = new Discord.WebhookClient(logsWebhook.id, logsWebhook.token
 client.reportWebhook = new Discord.WebhookClient(reportWebhook.id, reportWebhook.token);
 client.commands = new Discord.Collection();
 
-
 const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
 const eventFiles = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'));
 
+
+client.commands = new Discord.Collection();
 
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
@@ -52,7 +55,7 @@ function foxySelfReport(error, context) {
 
         const replyEmbed = new Discord.MessageEmbed()
         .setTitle('<:BSOD:777579371870683147> | Ocorreu um erro ao usar este comando')
-        .setColor('RED')
+        .setColor(colors.error)
         .setDescription(`\`\`\`js\n${errorSliced}\`\`\``)
         .setFooter('<:bug_hunter:789668194494709761> Não se preocupe! esse erro foi reportado automaticamente para minha equipe!');
 
@@ -119,7 +122,7 @@ function foxySelfReport(error, context) {
                 if (data.userBanned) {
                     let bannedEmbed = new Discord.MessageEmbed()
                         .setTitle('<:DiscordBan:790934280481931286> Você foi banido(a) <:DiscordBan:790934280481931286>')
-                        .setColor('RED')
+                        .setColor(colors.error)
                         .setDescription('Você foi banido(a) de usar a Foxy em qualquer servidor no Discord! \n Caso seu ban foi injusto (o que eu acho muito difícil) você pode solicitar seu unban no meu [servidor de suporte](https://discord.gg/kFZzmpD) \n **Leia os termos em** [Termos de uso](https://foxywebsite.ml/tos.html)')
                         .setFooter('You\'ve been banned from using Foxy on other servers on Discord!');
                     return message.author.send(bannedEmbed).catch(() => {
