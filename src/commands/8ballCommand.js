@@ -1,14 +1,21 @@
 
-module.exports = { 
+module.exports = {
     name: "8ball",
     aliases: ['8ball', 'eightball', '8', 'ask'],
     cooldown: 5,
     guildOnly: false,
     argsRequire: true,
     async execute(client, message, args) {
-    let results = ["Sim", "Não", "Talvez", "Com certeza!", "Talvez", "Provavelmente sim", "Provavelmente não", "Não entendi, pergunte novamente"]
-    let result = Math.floor((Math.random() * results.length)); {}
+        if (!args) {
+            message.channel.send("Digite alguma pergunta")
+        } else {
+            let results = ["Sim", "Não", "Talvez", "Com certeza!", "Talvez", "Provavelmente sim", "Provavelmente não", "Não entendi, pergunte novamente"]
+        let result = Math.floor((Math.random() * results.length));
+        message.channel.send([result])
 
-    message.channel.send(results[result])}
 
+
+
+    }
+}
    }
