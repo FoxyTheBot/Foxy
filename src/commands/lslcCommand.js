@@ -51,6 +51,7 @@ module.exports = {
                   { name: "reset_background", value: "Reseta o background de algum usuário para o padrão"},
                   { name: "set_background", value: "Define o background de algum usuário"}
               )
+         message.channel.send(embed)
     }
   }
 }
