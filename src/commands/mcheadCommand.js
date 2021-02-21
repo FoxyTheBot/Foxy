@@ -1,3 +1,4 @@
+const colors = require('../structures/color')
 module.exports = {
     nome: "mchead",
     aliases: ['mchead'],
@@ -13,7 +14,7 @@ module.exports = {
 
 
         const embed = new discord.MessageEmbed()
-        .setColor('RED')
+        .setColor(colors.mine)
         .setTitle(`Cabeça de ${user}`)
         .setImage(head)
         message.channel.send(embed)
