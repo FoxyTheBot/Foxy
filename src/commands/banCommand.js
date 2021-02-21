@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-
+const colors = require('../structures/color')
 module.exports = { 
     name: "ban",
     aliases: ['ban', 'banir', 'adeus'],
@@ -31,6 +31,7 @@ module.exports = {
         const banembed = new Discord.MessageEmbed()
             .setTitle('<:DiscordBan:790934280481931286> Alguém quebrou as regras...')
             .setThumbnail(member.user.displayAvatarURL())
+            .setColor(colors.moderation)
             .addField('Usuário banido', member)
             .addField('Punido por', message.author)
             .addField('Motivo', banReason)

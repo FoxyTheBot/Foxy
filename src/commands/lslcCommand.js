@@ -28,6 +28,7 @@ module.exports = {
         db.set(`background_${user.id}`, 'default_background.png')
         db.delete(`coins_${user.id}`)
         db.delete(`coins_${user.id}`)
+        message.channel.send("Profile data deleted successfully!")
         break
 
       case "reset_background":

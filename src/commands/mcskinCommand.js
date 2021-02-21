@@ -1,9 +1,10 @@
+const colors = require('../structures/color')
 module.exports = {
     name: "mcskin",
     aliases: ['mcskin'],
     cooldown: 5,
     guildOnly: false,
-    
+
     async execute(client, message, args) {
         let user = args.join(" ")
 
@@ -16,6 +17,7 @@ module.exports = {
         .setColor('BLUE')
         .setTitle(`<:Minecraft:804858374780878868> Skin de ${user}`)
         .setImage(skin)
-        message.channel.send(embed)
+            .setColor(colors.mine)
+        await message.channel.send(embed)
     }
 }
