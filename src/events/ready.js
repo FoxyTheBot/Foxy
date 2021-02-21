@@ -1,7 +1,16 @@
-const { prefix } = require('../../config.json');
+const { prefix, statusWebhook } = require('../../config.json');
+const { WebhookClient, MessageEmbed } = require('discord.js')
+const colors = require('../structures/color')
 module.exports = async (client) => {
+    client.statusWebhook = new WebhookClient(statusWebhook.id, statusWebhook.token);
 
     console.info(`\x1b[37m\x1b[42mSUCCESS\x1b[0m: Foxy is ready! Logged as: ${client.user.tag}`);
+    const ready = new MessageEmbed()
+        .setTitle('Foxy is Ready!')
+        .setDescription(`Shard ${client.shard.ids} foi iniciada com sucesso`)
+        .setColor(colors.mine)
+        .setThumbnail('https://cdn.discordapp.com/attachments/776930851753426945/811265109728034846/Foxy.png')
+    client.statusWebhook.send(ready)
     let status = [
         { name: `❓ Se você precisa de ajuda use ${prefix}help`, type: "WATCHING" },
         { name: `💻 Quer encontrar meus comandos use: ${prefix}commands`, type: "PLAYING" },
