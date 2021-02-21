@@ -44,7 +44,7 @@ function foxySelfReport(error, context) {
     const errorSliced = error.stack.length > 1000 ? `${error.stack.slice(0, 1000)}...` : error.stack;
     const reportEmbed = new Discord.MessageEmbed()
         .setTitle(':bug: | Issue Report automático da Foxy')
-        .setColor('#5555DD')
+        .setColor(colors.error)
         .addFields(
             { name: ":technologist: Usuário:", value: `<@${context.author.id}>` },
             { name: ":tools: Guild:", value: `${context.guild.name}; ID: ${context.guild.id}` },
