@@ -7,7 +7,8 @@ module.exports = {
   guildOnly: false,
 
 async execute(client, message, args) {
-  
+  if (!message.guild.me.hasPermission('ATTACH_FILES')) return message.channel.send("Eu preciso da permissão `enviar arquvios` para fazer isso!")
+
   let user = message.mentions.users.first() || client.users.cache.get(args[0]) || message.author;
   
   let avatar = user.avatarURL({ dynamic: true, format: "png", size: 1024 });
