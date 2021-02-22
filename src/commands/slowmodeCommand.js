@@ -1,4 +1,5 @@
-const Discord = require('discord.js')
+const emotes = require('../structures/emotes.json')
+
 module.exports = {
 name: "slowmode",
 aliases: ['slowmode', 'modolento', 'lento'],
@@ -7,10 +8,10 @@ guildOnly: true,
 async execute(client, message, args) {
   if (!message.member.permissions.has("MANAGE_CHANNELS"))
     return message.reply(
-      "<:WindowsShield:777579023249178625> | Você não tem permissão para executar este comando! Você precisará da permissão `Gerenciar Mensagens` para usar este comando!"
+      `${emotes.denied} **|** Você não tem permissão para executar este comando! Você precisará da permissão \`Gerenciar Mensagens\` para usar este comando!`
     );
       if (!message.guild.me.hasPermission('MANAGE_CHANNELS')) {
-            message.channel.send("Eu preciso da permissão `Gerenciar canais` para fazer isso!")
+            message.channel.send(`${emotes.denied} **|** preciso da permissão \`Gerenciar canais\` para fazer isso!`)
         
         }
     if(!args[0]) return message.channel.send("Especifique o tempo em segundos (de 1 até 21600 Segundos)")
@@ -21,6 +22,6 @@ async execute(client, message, args) {
     .catch(() => {
       message.channel.send("Falha ao definir o modo lento neste canal, verifique o comprimento do modo lento.")
     })
-    message.channel.send(":turtle: Eu defini o modo lento para " + duration + " segundos!")
+    message.channel.send(`${emotes.slowmode} Eu defini o modo lento para ${duration} segundos!`)
 }
 }

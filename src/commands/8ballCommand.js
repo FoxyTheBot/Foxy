@@ -7,13 +7,10 @@ module.exports = {
     argsRequire: true,
     async execute(client, message, args) {
 
-            let results = ["Sim", "Não", "Talvez", "Com certeza!", "Talvez", "Provavelmente sim", "Provavelmente não", "Não entendi, pergunte novamente"]
-        let result = Math.floor((Math.random() * results.length));
+        let results = ["Sim", "Não", "Talvez", "Com certeza!", "Talvez", "Provavelmente sim", "Provavelmente não", "Não entendi, pergunte novamente"]
+        let result = results[Math.floor((Math.random() * results.length))]
         message.channel.send([result])
 
 
-
-
-    
+    }
 }
-   }

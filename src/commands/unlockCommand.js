@@ -1,5 +1,4 @@
-const { execute } = require("./danceCommand");
-
+const emotes = require('../structures/emotes.json')
 module.exports = {
     name: "unlock",
     aliases: ['unlock'],
@@ -17,7 +16,7 @@ module.exports = {
               'ATTACH_FILES': true,
               'ADD_REACTIONS': true
             });
-            message.channel.send(':unlock: **|** Canal desbloqueado com sucesso! Use f!lock para bloquear.')
+            message.channel.send(`${emotes.unlock} **|** Canal desbloqueado com sucesso! Use f!lock para bloquear. ${emotes.success}`)
 
         }
         } 

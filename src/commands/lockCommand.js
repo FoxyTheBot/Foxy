@@ -1,4 +1,4 @@
-
+const emotes = require('../structures/emotes.json')
 module.exports = {
     name: "lock",
     aliases: ['lock', 'trancar', 'bloquear'],
@@ -13,11 +13,9 @@ module.exports = {
         
             await message.channel.updateOverwrite(role, {
               'SEND_MESSAGES': false,
-              'EMBED_LINKS': false,
-              'ATTACH_FILES': false,
               'ADD_REACTIONS': false
             });
-            message.channel.send(':lock: **|** Canal bloqueado com sucesso! Use f!unlock para desbloquear.')
+            message.channel.send(`${emotes.lock} **|** Canal bloqueado com sucesso! Use f!unlock para desbloquear. ${emotes.success}`)
 
         
         }

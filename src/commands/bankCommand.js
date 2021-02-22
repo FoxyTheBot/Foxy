@@ -4,28 +4,23 @@ module.exports = {
     aliases: ['banco', 'banks', 'bank'],
     cooldown: 5,
     guildOnly: true,
-
     async execute(client, message) {
-        const db = require('quick.db')
-        let user = message.author;
-        let bal = await db.fetch(`bal_${user.id}`)
-        let money = await db.fetch(`coins_${user.id}`)
-
+        const db = require('quick.db');
+        let bal = await db.fetch(`bal_${message.author.id}`);
+        let money = await db.fetch(`coins_${message.author.id}`);
         if(user != message.author) return message.channel.send("Você não pode olhar o saldo de outros usuários!")
         if(money === null) money = 0;
         if(bal === null) bal = 0;
             const embed = new MessageEmbed()
             .setColor("f0152d")
-            .setTitle(`Saldo de ${user.username}`)
+            .setTitle(`Saldo de ${message.author.username}`)
             .setThumbnail("https://cdn.discordapp.com/attachments/776930851753426945/810193222471122964/logo-bradesco-escudo-1024.png")
             .addFields(
                 { name: "<:BradescoLogo:810176327993917520> **|** FoxyBank", value: `${bal} FoxCoins`},
                 { name: "<:Santander:810177139252133938> **|** Carteira", value: `${money} FoxCoins`}
             )
             .setFooter(`Para poder guardar envie para sua conta usando f!deposit <quantia>`)
-            message.channel.send(embed)
-        
-      
+            message.channel.send(embed);
         }
       }
  
