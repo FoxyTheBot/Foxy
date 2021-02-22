@@ -11,6 +11,7 @@ module.exports = async (client) => {
         .setColor(colors.mine)
         .setThumbnail('https://cdn.discordapp.com/attachments/776930851753426945/811265109728034846/Foxy.png')
     client.statusWebhook.send(ready)
+
     let status = [
         { name: `❓ Se você precisa de ajuda use ${prefix}help`, type: "WATCHING" },
         { name: `💻 Quer encontrar meus comandos use: ${prefix}commands`, type: "PLAYING" },
@@ -21,7 +22,7 @@ module.exports = async (client) => {
         { name: `🐛 Se você encontrou um bug use ${prefix}report para reportar falhas`, type: "PLAYING" },
         { name: `🍰 Minha comida preferida é bolo 💖`, type: "WATCHING" },
         { name: "❤ A Shiro é minha amiguinha OwO", type: "WATCHING"},
-        { name: `😍 Espalhando alegria e felicidade em ${client.guilds.cache.size} Servidores! :3`}
+        { name: `😍 Espalhando alegria e felicidade em ${client.guilds.cache.size} Servidores! [Shard: ${client.shard.ids}]:3`}
     ];
 
     setInterval(() => {
