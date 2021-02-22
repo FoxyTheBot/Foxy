@@ -11,11 +11,12 @@ module.exports = {
   guildOnly: true,
 async execute(client, message, args) {
   message.channel.startTyping();
+  if (!message.guild.me.hasPermission('ATTACH_FILES')) return message.channel.send("Eu preciso da permissão `enviar arquvios` para fazer isso!")
 
   let membro1 = message.mentions.members.first()
-  
     let membro2 = message.mentions.members.last()
-
+  
+  
   if(!membro1 || !membro2) return message.channel.send('Lembre-se de mencionar dois usuários para shippar')
     if(membro1 === membro2) return message.channel.send('Mencione duas pessoas diferentes')
  

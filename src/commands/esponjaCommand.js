@@ -7,6 +7,8 @@ module.exports = {
   cooldown: 3,
   guildOnly: true,
   async execute(client, message, args) {
+    if (!message.guild.me.hasPermission('ATTACH_FILES')) return message.channel.send("Eu preciso da permissão `enviar arquvios` para fazer isso!")
+
     message.channel.startTyping();
     const canvas = Canvas.createCanvas(500, 400);
     const ctx = canvas.getContext('2d');
