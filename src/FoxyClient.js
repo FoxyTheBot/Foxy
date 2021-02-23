@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token, owners, logsWebhook, reportWebhook } = require('../config.json');
+const { prefix, token, owners, logsWebhook, reportWebhook, suggestWebhook } = require('../config.json');
 const user = require('./models/user');
 const colors = require("./structures/color")
 
@@ -18,6 +18,7 @@ const client = new Discord.Client({
 
 client.logsWebhook = new Discord.WebhookClient(logsWebhook.id, logsWebhook.token);
 client.reportWebhook = new Discord.WebhookClient(reportWebhook.id, reportWebhook.token);
+client.suggestWebhook = new Discord.WebhookClient(suggestWebhook.id, suggestWebhook.token);
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
