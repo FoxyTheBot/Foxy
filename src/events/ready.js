@@ -29,6 +29,7 @@ module.exports = async (client) => {
         client.user.setPresence({ activity: randomStatus });
     }, 10000);
 
+
     let profilePics = [
         "https://cdn.discordapp.com/attachments/776930851753426945/811265067227545630/foxy_cake.png",
         "https://cdn.discordapp.com/attachments/776930851753426945/811265068741165056/foxybis.png",
@@ -36,9 +37,10 @@ module.exports = async (client) => {
         "https://cdn.discordapp.com/attachments/776930851753426945/811265109728034846/Foxy.png"
     ];
 
-    setInterval(() => {
-        let x = profilePics[Math.floor(Math.random() * profilePics.length)];
-        client.user.setAvatar(x);
-	console.log("Profile Changed")
-    }, 18000000)
+            setInterval(() => {
+                let x = profilePics[Math.floor(Math.random() * profilePics.length)];
+                client.user.setAvatar(x);
+                console.log("Profile Changed")
+            }, 18000000)
+
 }
