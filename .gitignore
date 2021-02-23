@@ -107,7 +107,7 @@ dist
 config.json
 json.sqlite
 package-lock.json
-
+./layout
 # IntelliJ IDEA files
 .idea/
 .gradle/
