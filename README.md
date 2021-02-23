@@ -10,9 +10,9 @@
 </a>
   <p align="center">
     <a href="https://jetbrains.com/?from=Foxy">
-    <img src="https://img.shields.io/badge/Powered_by_WebStorm-gray.svg?logo=webstorm&style=for-the-badge" />
+    <img src="https://img.shields.io/badge/Powered_by_IntelliJ%20IDEA-black.svg?logo=intellij-idea&style=for-the-badge" />
   </a>
-<a href="https://github.com/BotFoxy/FoxyBot/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-AGPL%20v3-lightgray.svg"></a>
+<a href="https://github.com/BotFoxy/FoxyBot/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-AGPL%20v3-blue.svg?style=for-the-badge&logo=gnu&labelColor=black"></a>
 </p>
 
 Todos os servidores Discord têm os mesmos problemas. Os membros querem entretenimento, os moderadores querem automação... e você só quer descansar.
