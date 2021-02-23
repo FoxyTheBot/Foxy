@@ -1,6 +1,4 @@
 const Discord = require('discord.js')
-const { execute } = require('./termosCommand')
-
 
 module.exports = {
     name: "servericon",
