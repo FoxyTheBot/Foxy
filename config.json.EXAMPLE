@@ -7,7 +7,7 @@
 "token": "BOT-TOKEN",
 "mongodb": "MONGODB-URI",
 "dbltoken": "DBL-TOKEN",
-"shard": 1,   
+"shard": "auto",
 "canary": true,
  "guildsWebhook": {
         "id": "WEBHOOK-ID",
