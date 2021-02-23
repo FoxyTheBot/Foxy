@@ -1,4 +1,4 @@
-
+const emotes = require('../structures/emotes.json')
 module.exports = {
     name: "rep",
     aliases: ['rep'],
@@ -29,7 +29,7 @@ module.exports = {
             db.add(`rep_${user.id}`, amount)
             db.set(`timeout_${message.author.id}to_${user.id}`, Date.now())
             let nowrep = db.fetch(`rep_${user.id}`)
-            message.channel.send(`Você deu ${amount} reputação para ${user} agora ele(a) possui ${nowrep} reputações`)
+            message.channel.send(`${emotes.heart} **|** deu ${amount} reputação para ${user} agora ele(a) possui ${nowrep} reputações`)
 
         }
     }

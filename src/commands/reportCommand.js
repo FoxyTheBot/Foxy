@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-
+const emotes = require('../structures/emotes.json')
 module.exports = {
     name: "report",
     aliases: ['reportar', 'report', 'bug', 'issue'],
@@ -17,7 +17,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
             .setTitle(`<:meowbughunter:776249240463736834> | Report para Foxy`)
             .setColor('#0099ff')
-            .setDescription(`Autor: **${message.author.username} / ${message.author.id}** \n Servidor: ${message.guild.name} \n ${message.guild.id} \n\n <:bug_hunter:789668194494709761> **Issue:** ${sayMessage}`)
+            .setDescription(`Autor: **${message.author.username} / ${message.author.id}** \n Servidor: ${message.guild.name} \n ${message.guild.id} \n\n ${emotes.bug} **Issue:** ${sayMessage}`)
         let pfp = message.author.avatarURL();
         client.reportWebhook.send({
             username: `${message.author.username}`,
