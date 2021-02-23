@@ -19,7 +19,6 @@ const client = new Discord.Client({
 client.logsWebhook = new Discord.WebhookClient(logsWebhook.id, logsWebhook.token);
 client.reportWebhook = new Discord.WebhookClient(reportWebhook.id, reportWebhook.token);
 client.suggestWebhook = new Discord.WebhookClient(suggestWebhook.id, suggestWebhook.token);
-client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
 const eventFiles = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'));
