@@ -10,9 +10,9 @@
 </a>
   <p align="center">
     <a href="https://jetbrains.com/?from=Foxy">
-    <img src="https://img.shields.io/badge/Powered_by_WebStorm-gray.svg?logo=webstorm&style=for-the-badge" />
+    <img src="https://img.shields.io/badge/Powered_by_IntelliJ%20IDEA-black.svg?logo=intellij-idea&style=for-the-badge" />
   </a>
-<a href="https://github.com/BotFoxy/FoxyBot/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-AGPL%20v3-lightgray.svg"></a>
+<a href="https://github.com/BotFoxy/FoxyBot/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-AGPL%20v3-blue.svg?style=for-the-badge&logo=gnu&labelColor=black"></a>
 </p>
 
 Todos os servidores Discord têm os mesmos problemas. Os membros querem entretenimento, os moderadores querem automação... e você só quer descansar.
@@ -59,8 +59,8 @@ git clone https://github.com/BotFoxy/Foxy
 2. Este é um projeto da comunidade, se você fizer alterações no código-fonte da Foxy, você precisa seguir os termos da [AGPL-3.0](LICENSE) e manter as alterações no código-fonte aberto! E, se você quiser ajudar Foxy, por que não criar uma solicitação de pull? 😉
 3. Nos não damos suporte a self-hosting então ja esteja preparado para encontrar varios problemas e saber como resolve-los
 4. Não saia mentindo dizendo que "criou a Foxy" De o credito aos criadores.
-(**A foto de perfil da Foxy não pode ser usada em outras instâncias**)
-Uso da imagem da foxy **de forma não permitida** pode ser considerado violação de direitos autorais no [código penal brasileiro](https://www.jusbrasil.com.br/topicos/10615003/artigo-184-do-decreto-lei-n-2848-de-07-de-dezembro-de-1940)
+   (**A foto de perfil da Foxy não pode ser usada em outras instâncias**)
+   Uso da imagem da foxy **de forma não permitida** pode ser considerado violação de direitos autorais no [código penal brasileiro](https://www.jusbrasil.com.br/topicos/10615003/artigo-184-do-decreto-lei-n-2848-de-07-de-dezembro-de-1940)
 6. Os assets da Foxy como [imagens logos entre outros] são distribuidos juntamente com o codigo
 7. Nós utilizamos o [Debian 10](https://www.debian.org/index.pt.html) para hospedar a Foxy, porem você pode usar outros sistemas Linux.
 
