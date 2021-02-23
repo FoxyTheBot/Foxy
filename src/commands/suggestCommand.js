@@ -4,7 +4,7 @@ const emotes = require('../structures/emotes.json')
 module.exports = {
     name: "suggest",
     aliases: ['sugerir', 'sugestão'],
-    cooldown: 5,
+    cooldown: 10,
     guildOnly: true,
 
     async execute(client, message, args) {
@@ -24,7 +24,7 @@ module.exports = {
                 .setColor(colors.rp)
                 .setTitle("Nova sugestão para a Foxy!")
                 .setThumbnail(pfp)
-                .setDescription(`${emotes.heart} **Usuário:** ${message.author.username} / ${message.author.id} \n\n ${emotes.success} **Sugestão:** **${suggestion}** \n\n ${emotes.thumbsup} **Servidor:** ${message.guild.name} / ${message.guild.id}`)
+                .setDescription(`${emotes.heart} **Usuário:** ${message.author.username} / ${message.author.id} \n\n ${emotes.success} **Sugestão:** ${suggestion} \n\n ${emotes.thumbsup} **Servidor:** ${message.guild.name} / ${message.guild.id}`)
             client.suggestWebhook.send(suggest)
 
     }
