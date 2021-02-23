@@ -31,7 +31,7 @@ module.exports = {
       const code = args.join(" ");
       const embed = new Discord.MessageEmbed()
       embed.setColor('RED')
-      embed.setTitle(`<:BSOD:777579371870683147> Ocorreu um erro durante a execução!`)
+      embed.setTitle('<:BSOD:777579371870683147> Ocorreu um erro durante a execução!')
       embed.setDescription(`Entrada: \ \ \`\`\`js\n${code}\n\`\`\` \n Saída: \`\`\`js\n${errorMessage}\`\`\``)
 
       message.channel.send(embed)
