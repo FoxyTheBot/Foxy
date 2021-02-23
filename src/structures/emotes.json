@@ -10,6 +10,8 @@
   "fox": "🦊",
   "slowmode": "🐢",
   "denied": "<:WindowsShield:777579023249178625>",
-  "developer": "<:Developer:813832825442533396>",
-  "github": "<:GitHub:746399300728258710>"
+  "dev": "<:Developer:813832825442533396>",
+  "github": "<:GitHub:746399300728258710>",
+  "thumbsup": "<:meow_thumbsup:768292477555572736>",
+  "bug": "🐛"
 }
