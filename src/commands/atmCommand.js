@@ -6,7 +6,7 @@ module.exports = {
   cooldown: 5,
   guildOnly: false,
 
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const db = require('quick.db');
     const user = message.mentions.members.first() || message.author;
 

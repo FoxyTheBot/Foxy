@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['friend', 'friends'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const membro1 = message.mentions.members.first();
     const membro2 = message.mentions.members.last();
 

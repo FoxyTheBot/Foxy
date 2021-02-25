@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['date', 'data'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     moment.locale('pt-br');
     const data = moment().format('LL');
     const hour = moment().format('LT');

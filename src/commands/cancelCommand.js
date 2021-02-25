@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['cancel', 'cancelar'],
   cooldown: 2,
   guildOnly: true,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const list = [
       'ser velho(a)',
       'ser feio(a)',

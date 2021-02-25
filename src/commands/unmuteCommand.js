@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['unmute'],
   guildOnly: true,
 
-  async execute(client, message) {
+  async run(client, message) {
     const member = message.mentions.members.first();
     const mutedRole = message.guild.roles.cache.find((r) => r.name === 'Foxy Muted🔇');
     if (!message.guild.me.hasPermission('MANAGE_ROLES')) {

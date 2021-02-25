@@ -6,7 +6,7 @@ module.exports = {
   cooldown: 5,
   guildOnly: false,
 
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const user = args.join(' ');
 
     if (!user) return message.channel.send('<:Minecraft:804858374780878868> **|** Especifique um usuário');

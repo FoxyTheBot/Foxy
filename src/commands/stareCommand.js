@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['stare', 'encarar'],
   cooldown: 3,
   guildOnly: true,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const list = [
       'https://media1.tenor.com/images/ad4684854b2b82d065aa5844033a79d1/tenor.gif?itemid=12003923',
       'https://media1.tenor.com/images/d7c762fc8149db58393f3d31fbddaad1/tenor.gif?itemid=17156744',

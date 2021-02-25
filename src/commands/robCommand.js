@@ -9,7 +9,7 @@ module.exports = {
   guildOnly: true,
   cooldown: 5,
 
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const random = Math.floor((Math.random() * 1000));
     const user = message.mentions.members.first();
     if (!user) {

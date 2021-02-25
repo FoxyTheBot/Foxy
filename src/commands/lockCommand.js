@@ -4,7 +4,7 @@ module.exports = {
   cooldown: 2,
   guildOnly: true,
 
-  async execute(client, message, args) {
+  async run(client, message, args) {
     if (!message.member.permissions.has('MANAGE_CHANNELS')) { return message.reply('Você precisa da permissão `Gerenciar canais` para fazer isso!'); }
     const role = await message.guild.roles.cache.find((x) => x.name === '@everyone');
 

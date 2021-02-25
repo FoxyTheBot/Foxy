@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['sad', 'triste'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const sayMessage = args.join(' ');
     const list = [
       'https://cdn.zerotwo.dev/SAD/2c2702a8-04bc-438d-9b86-d76a20a1de22.gif',

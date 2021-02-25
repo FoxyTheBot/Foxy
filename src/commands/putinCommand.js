@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['putin', 'walk'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const sayMessage = args.join(' ');
     if (!sayMessage) return message.channel.send('Digite algo antes');
     const embed = new Discord.MessageEmbed()

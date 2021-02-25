@@ -4,7 +4,7 @@ module.exports = {
   guildOnly: true,
   cooldown: 5,
 
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const Discord = require('discord.js');
     const db = require('quick.db');
     const ms = require('ms');

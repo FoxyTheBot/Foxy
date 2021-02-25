@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['dance', 'dançar'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const user = message.mentions.users.first();
     const sayMessage = args.join(' ');
 

@@ -4,7 +4,7 @@ module.exports = {
   cooldown: 3,
   guildOnly: true,
 
-  async execute(client, message, args) {
+  async run(client, message, args) {
     if (!message.member.hasPermission('BAN_MEMBERS')) {
       return message.channel.send(`**${message.author.username}**, Você não tem permissão para fazer isto!`);
     }

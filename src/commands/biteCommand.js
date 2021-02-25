@@ -6,7 +6,7 @@ module.exports = {
   cooldown: 3,
   guildOnly: true,
 
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const list = [
       'https://media1.tenor.com/images/f3f503705c36781b7f63c6d60c95a9d2/tenor.gif?itemid=17570122',
       'https://media1.tenor.com/images/6b42070f19e228d7a4ed76d4b35672cd/tenor.gif?itemid=9051585',

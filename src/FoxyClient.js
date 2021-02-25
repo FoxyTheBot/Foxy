@@ -1,10 +1,12 @@
 const fs = require('fs');
+
 const {
   Client, MessageEmbed, Collection, WebhookClient, Intents,
 } = require('discord.js');
 const {
   prefix, token, owners, logsWebhook, reportWebhook, suggestWebhook,
 } = require('../config.json');
+
 const user = require('./structures/DatabaseConnection');
 const colors = require('./structures/color');
 
@@ -114,7 +116,7 @@ client.on('message', (message) => {
     timestamps.set(message.author.id, now);
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
-    command.execute(client, message, args);
+    command.run(client, message, args);
   }
   try {
     user.findOne({ userid: message.author.id }, (error, data) => {

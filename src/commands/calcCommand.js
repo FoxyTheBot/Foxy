@@ -7,7 +7,7 @@ module.exports = {
   aliases: ['calc', 'calcular', 'calculadora'],
   cooldown: 1,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     if (!args[0]) return message.channel.send('Por favor digite algo!');
 
     let resp;

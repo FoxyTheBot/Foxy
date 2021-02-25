@@ -4,7 +4,7 @@ module.exports = {
   guildOnly: false,
   ownerOnly: true,
 
-  async execute(client, message) {
+  async run(client, message) {
     const DBL = require('dblapi.js');
     const { dbltoken } = require('../../config.json');
     const dbl = new DBL(dbltoken, client);

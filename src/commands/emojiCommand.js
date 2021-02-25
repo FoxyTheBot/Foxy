@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['emoji', 'emojo'],
   cooldown: 3,
   guildOnly: true,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     if (!args[0]) {
       return message.channel.send(
         `**${message.author.username}, a sintaxe correta é:** `

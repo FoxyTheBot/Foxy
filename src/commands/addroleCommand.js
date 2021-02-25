@@ -7,7 +7,7 @@ module.exports = {
   cooldown: 3,
   guildOnly: true,
 
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const username = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 
     if (!message.member.hasPermission('MANAGE_ROLES')) return message.reply('Você não tem permissão `Gerenciar Cargos`');

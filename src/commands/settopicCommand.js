@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['setartopico', 'settopic', 'topic', 'topico'],
   cooldown: 3,
   guildOnly: true,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     if (message.channel.type === 'dm') return;
     if (!message.member.permissions.has('MANAGE_CHANNELS')) {
       return message.channel.send(
