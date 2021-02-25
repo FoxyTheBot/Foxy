@@ -53,7 +53,7 @@ function foxySelfReport(error, context) {
       { name: ':technologist: Usuário:', value: `<@${context.author.id}>` },
       { name: ':tools: Guild:', value: `${context.guild.name}; ID: ${context.guild.id}` },
       { name: ':wrench: Request:', value: `${context.content}` },
-      { name: '<:bug_hunter:789668194494709761> Issue:', value: `\n\`\`\`js\n${errorSliced}\`\`\`` },
+      { name: ':bug: Issue:', value: `\n\`\`\`js\n${errorSliced}\`\`\`` },
     )
     .setFooter('Verifique o console para mais informações!');
 
