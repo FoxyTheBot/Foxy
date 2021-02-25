@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['reportar', 'report', 'bug', 'issue'],
   cooldown: 3,
   guildOnly: true,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const sayMessage = args.join(' ');
     const noargs = new Discord.MessageEmbed()
       .setColor('BLUE')

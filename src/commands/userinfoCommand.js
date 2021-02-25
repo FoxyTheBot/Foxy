@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['userinfo'],
   cooldown: 3,
   guildOnly: true,
-  async execute(client, message) {
+  async run(client, message) {
     moment.locale('pt-br');
     try {
       const user = message.mentions.members.first() || message.member;

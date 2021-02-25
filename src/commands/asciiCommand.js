@@ -6,7 +6,7 @@ module.exports = {
   cooldown: 1,
   guildOnly: false,
 
-  async execute(client, message, args) {
+  async run(client, message, args) {
     if (!args[0]) return message.channel.send('Por favor Digite algo');
     if (args[0].length > 32) return message.channel.send('Você não pode digitar mais de 32 caracteres');
     msg = args.join(' ');

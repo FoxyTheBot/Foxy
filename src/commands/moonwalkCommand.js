@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['moonwalk'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const list = [
       'https://media.tenor.com/images/8aa75a40a1f4298f98b6176ec2875654/tenor.gif',
       'https://media.tenor.com/images/20ec8644d682704ff5a7c5f7bc917104/tenor.gif',

@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['uptiime'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     let totalSeconds = client.uptime / 1000;
     const days = Math.floor(totalSeconds / 86400);
     const hours = Math.floor(totalSeconds / 3600);

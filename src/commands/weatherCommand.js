@@ -7,7 +7,7 @@ module.exports = {
   aliases: ['weather', 'clima', 'temp', 'temperatura'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     weather.find({ search: args.join(' '), degreeType: 'C' }, (error, result) => {
       if (error) return message.channel.send(error);
       if (!args[0]) return message.channel.send('Por favor, digite uma localização');

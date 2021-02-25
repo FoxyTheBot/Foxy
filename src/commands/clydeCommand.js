@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['clyde', 'clydebot'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const text = args.join(' ');
 
     if (!text) return message.reply(`${message.author} por favor digite um texto.`);

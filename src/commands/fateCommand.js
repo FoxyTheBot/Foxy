@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['fate'],
   cooldown: 3,
   guildOnly: true,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const list = [
       'namorados <3',
       'amigos :)',

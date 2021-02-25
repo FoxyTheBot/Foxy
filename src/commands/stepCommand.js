@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['step', 'pisar'],
   cooldown: 3,
   guildOnly: true,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const list = [
       'https://cdn.discordapp.com/attachments/745396328351268885/776930400990920734/6a0.gif',
       'https://cdn.discordapp.com/attachments/745396328351268885/776930405181554698/tenor_10.gif',

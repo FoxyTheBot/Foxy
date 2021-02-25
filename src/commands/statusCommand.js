@@ -8,7 +8,7 @@ module.exports = {
   aliases: ['status', 'stts'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message) {
+  async run(client, message) {
     message.channel.startTyping();
     moment.locale('pt-br');
     const promises = [

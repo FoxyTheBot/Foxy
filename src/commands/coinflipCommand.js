@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['coinflip', 'caracoroa'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const array1 = ['cara', 'coroa'];
 
     const rand = Math.floor(Math.random() * array1.length);

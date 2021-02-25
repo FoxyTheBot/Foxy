@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['mute', 'silenciar', 'mutar'],
   cooldown: 3,
   guildOnly: true,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const Discord = require('discord.js');
 
     if (!message.member.hasPermission('KICK_MEMBERS')) return message.channel.send('Você não a permissão `Expulsar usuários` para realizar esta ação');

@@ -4,7 +4,7 @@ module.exports = {
   cooldown: 5,
   guildOnly: true,
 
-  async execute(client, message) {
+  async run(client, message) {
     const db = require('quick.db');
     const ms = require('parse-ms');
 

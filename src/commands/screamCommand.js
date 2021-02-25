@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['scream', 'gritar'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const sayMessage = args.join(' ');
     const list = [
       'https://media1.tenor.com/images/323accb4d3c53c7202305f5f32225713/tenor.gif?itemid=11222953',

@@ -7,7 +7,7 @@ module.exports = {
   cooldown: 5,
   guildOnly: true,
 
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const guild = client.guilds.cache.get(args[0]) || message.guild;
 
     const servericon = guild.iconURL();

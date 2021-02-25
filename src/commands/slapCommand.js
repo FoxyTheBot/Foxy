@@ -7,7 +7,7 @@ module.exports = {
   aliases: ['slap', 'bater', ' tapa'],
   cooldown: 3,
   guildOnly: true,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
 
     const img = await neko.sfw.slap();

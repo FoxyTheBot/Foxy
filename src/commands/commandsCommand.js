@@ -7,7 +7,7 @@ module.exports = {
   aliases: ['commands', 'comandos'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     switch (args[0]) {
       case 'diversão':
         const fun = new MessageEmbed()

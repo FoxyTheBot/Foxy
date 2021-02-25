@@ -8,7 +8,7 @@ module.exports = {
   aliases: ['ship', 'shippar'],
   cooldown: 3,
   guildOnly: true,
-  async execute(client, message) {
+  async run(client, message) {
     message.channel.startTyping();
     if (!message.guild.me.hasPermission('ATTACH_FILES')) return message.channel.send('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 

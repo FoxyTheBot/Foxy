@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['git', 'github'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const embed = new Discord.MessageEmbed()
       .setColor('#4cd8b2')
       .setTitle('<:GitHub:746399300728258710> Meu GitHub <:GitHub:746399300728258710>')

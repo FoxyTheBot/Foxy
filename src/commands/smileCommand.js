@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['smile', 'sorrir'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const sayMessage = args.join(' ');
 
     const list = [
