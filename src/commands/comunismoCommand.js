@@ -7,11 +7,12 @@ module.exports = {
   cooldown: 3,
   guildOnly: true,
   async run(client, message, args, applyText) {
-    message.channel.startTyping();
     const canvas = Canvas.createCanvas(500, 400);
     const ctx = canvas.getContext('2d');
     const sayMessage = args.join(' ');
     if (!sayMessage) return message.channel.send('Digite algo antes');
+    message.channel.startTyping();
+
     const background = await Canvas.loadImage('./src/assets/comunismo.png');
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
