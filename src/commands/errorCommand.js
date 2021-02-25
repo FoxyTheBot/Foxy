@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['error', 'erro'],
   cooldown: 3,
   guildOnly: true,
-  async execute(client, message, args, applyText) {
+  async run(client, message, args, applyText) {
     if (!message.guild.me.hasPermission('ATTACH_FILES')) return message.channel.send('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 
     message.channel.startTyping();

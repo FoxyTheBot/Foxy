@@ -7,7 +7,7 @@ module.exports = {
   cooldown: 4,
   guildOnly: false,
 
-  async execute(client, message) {
+  async run(client, message) {
     const embed = new Discord.MessageEmbed()
       .setColor('7289da')
       .setTitle('<:info:718944993741373511> | __Ajuda__')

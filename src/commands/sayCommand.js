@@ -5,7 +5,9 @@ module.exports = {
   aliases: ['say', 'falar', 'dizer'],
   cooldown: 5,
   guildOnly: true,
-  async execute(client, message, args) {
+
+  // eslint-disable-next-line consistent-return
+  async run(client, message, args) {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {
       return message.reply(
         '<:WindowsShield:777579023249178625> | Você não tem permissão para executar este comando! Você precisará da permissão `Gerenciar Mensagens` para usar este comando!',
@@ -18,8 +20,8 @@ module.exports = {
       .setDescription('💁‍♀️ **Exemplo:** `f!say yay!` \n 🛑 **Permissões:** Você precisará da permissão `Gerenciar mensagens` para usar este comando.');
 
     if (!sayMessage) return message.channel.send(noargs);
-    if (sayMessage == '@everyone') return message.channel.send('Você não pode mencionar `@everyone`!');
-    if (sayMessage == '@here') return message.channel.send('Você não pode mencionar `@here`!');
+    if (sayMessage === '@everyone') return message.channel.send('Você não pode mencionar `@everyone`!');
+    if (sayMessage === '@here') return message.channel.send('Você não pode mencionar `@here`!');
     message.channel.send(`${sayMessage} \n\n<:cat_toes:781335367764803634> *Mensagem enviada por ${message.author}*`);
     const embed = new Discord.MessageEmbed()
       .setTitle('Logs de comandos')

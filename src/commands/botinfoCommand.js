@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['client', 'clientinfo', 'bot'],
   cooldown: 5,
   guildOnly: false,
-  async execute(client, message) {
+  async run(client, message) {
     let cpu = Math.round(process.cpuUsage().system / 1024 / 1024).toString();
     if (cpu < 1) {
       cpu = (process.cpuUsage().system / 1024 / 1024).toFixed();

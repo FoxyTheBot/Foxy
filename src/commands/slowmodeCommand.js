@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['slowmode', 'modolento', 'lento'],
   cooldown: 3,
   guildOnly: true,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     if (!message.member.permissions.has('MANAGE_CHANNELS')) {
       return message.reply(
         '<:WindowsShield:777579023249178625> | Você não tem permissão para executar este comando! Você precisará da permissão `Gerenciar Mensagens` para usar este comando!',

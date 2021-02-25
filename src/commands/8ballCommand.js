@@ -4,7 +4,7 @@ module.exports = {
   cooldown: 5,
   guildOnly: false,
   argsRequire: true,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const results = ['Sim', 'Não', 'Talvez', 'Com certeza!', 'Talvez', 'Provavelmente sim', 'Provavelmente não', 'Não entendi, pergunte novamente'];
     const result = Math.floor((Math.random() * results.length));
     message.channel.send(results[result]);

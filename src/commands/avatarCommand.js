@@ -6,7 +6,7 @@ module.exports = {
   cooldown: 5,
   guildOnly: false,
 
-  async execute(client, message, args) {
+  async run(client, message, args) {
     if (!message.guild.me.hasPermission('ATTACH_FILES')) return message.channel.send('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 
     const user = message.mentions.users.first() || client.users.cache.get(args[0]) || message.author;

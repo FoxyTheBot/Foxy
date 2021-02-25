@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['donate', 'doar'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const embed = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setTitle('(._.`) Sabia que a crise afeta todos nós?')

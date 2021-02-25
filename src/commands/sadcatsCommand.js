@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['sadcat', 'sadcats'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const list = [
       'https://cdn.discordapp.com/attachments/791449801735667713/791449875417530388/1.png',
       'https://cdn.discordapp.com/attachments/791449801735667713/791449876918829056/2.jpeg',

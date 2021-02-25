@@ -6,7 +6,7 @@ module.exports = {
   cooldown: 3,
   guildOnly: false,
 
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const vote = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setTitle('Discord Bot List')

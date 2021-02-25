@@ -7,7 +7,7 @@ module.exports = {
   cooldown: 3,
   guildOnly: true,
 
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const user = message.author;
 
     function isOdd(num) {

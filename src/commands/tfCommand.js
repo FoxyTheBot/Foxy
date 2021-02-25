@@ -4,7 +4,7 @@ module.exports = {
   cooldown: 3,
   guildOnly: false,
   argsRequire: true,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     if (!args) {
       message.channel.send('Digite uma pergunta');
     } else {

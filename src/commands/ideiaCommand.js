@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['ideia', 'idea'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const content = args.join(' ');
 
     if (!args[0]) {

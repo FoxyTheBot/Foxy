@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['ppt'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const acceptedReplies = ['pedra', 'papel', 'tesoura'];
     const random = Math.floor((Math.random() * acceptedReplies.length));
     const result = acceptedReplies[random];

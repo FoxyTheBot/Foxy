@@ -7,7 +7,7 @@ module.exports = {
   aliases: ['covid', 'covid19'],
   cooldown: 3,
   guildOnly: false,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const countries = args.join(' ');
 
     const noArgs = new Discord.MessageEmbed()

@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['ticket'],
   cooldown: 3,
   guildOnly: true,
-  async execute(client, message) {
+  async run(client, message) {
     if (!message.guild.me.hasPermission('MANAGE_CHANNELS')) { return message.channel.send('Não tenho permissão de gerenciar canais'); }
     if (
       message.guild.channels.cache.find((ch) => ch.name.includes(message.author.id))

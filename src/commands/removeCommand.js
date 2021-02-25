@@ -4,7 +4,7 @@ module.exports = {
   guildOnly: true,
   cooldown: 5,
 
-  async execute(client, message, args) {
+  async run(client, message, args) {
     const db = require('quick.db');
     const user = message.author;
     const bal = db.fetch(`bal_${user.id}`);

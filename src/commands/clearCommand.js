@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['clear', 'cls', 'purge'],
   cooldown: 6,
   guildOnly: true,
-  async execute(client, message, args) {
+  async run(client, message, args) {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {
       return message.reply(
         '<:meow_thumbsup:768292477555572736> você é fraco, lhe falta permissão de `Gerenciar Mensagens` para usar esse comando',
