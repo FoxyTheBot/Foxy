@@ -9,11 +9,13 @@ module.exports = {
     async run(client, message, args) {
         if (!message.guild.me.hasPermission('ATTACH_FILES')) return message.channel.send('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 
-        message.channel.startTyping();
         const canvas = Canvas.createCanvas(800, 600);
         const ctx = canvas.getContext('2d');
         const sayMessage = args.join(' ');
         if (!sayMessage) return message.channel.send('Digite algo antes');
+        if(sayMessage.length > 35) return message.channel.send("Digite até 35 caractéres")
+        message.channel.startTyping();
+
         const background = await Canvas.loadImage('./src/assets/notstonks.png');
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
