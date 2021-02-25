@@ -129,7 +129,7 @@ client.on('message', (message) => {
             .setDescription('Você foi banido(a) de usar a Foxy em qualquer servidor no Discord! \n Caso seu ban foi injusto (o que eu acho muito difícil) você pode solicitar seu unban no meu [servidor de suporte](https://gg/kFZzmpD) \n **Leia os termos em** [Termos de uso](https://foxywebsite.ml/tos.html)')
             .setFooter('You\'ve been banned from using Foxy on other servers on Discord!');
           return message.author.send(bannedEmbed).catch(() => {
-            message.channel.send(bannedEmbed);
+            message.channel.send(message.author, bannedEmbed);
           });
         }
         return foxyCommandHandler();
