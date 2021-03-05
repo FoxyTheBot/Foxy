@@ -1,3 +1,4 @@
+const emotes = require('../structures/emotes.json')
 module.exports = {
   name: 'ratewaifu',
   aliases: ['ratewaifu', 'avaliarwaifu'],
@@ -10,8 +11,9 @@ module.exports = {
       return message.reply('lembre-se de mencionar um usuário válido para avaliar!');
     }
 
-    if (user == 737044809650274325) return message.channel.send('Eu dou nota **10** para <@737044809650274325> sim eu sou muito linda 😘');
-
+    if (user == 737044809650274325) return message.channel.send(`${emotes.heart} **|** Eu dou nota **∞** para <@737044809650274325> sim eu sou muito linda 😘`);
+    if (user == 331243426941239297) return message.channel.send(`${emotes.heart} **|** Eu dou nota **∞** para ${user} minha mãe é perfeita >.<`)
+    
     const list = [
       '**1** para essa waifu. Eu não gostei <:hmmpepe:791151120021061662> ',
       '**5** para essa waifu. <:hmmm:779010951420051457> ',

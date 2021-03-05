@@ -11,7 +11,6 @@ module.exports = {
     const member = db.fetch(`coins_${message.author.id}`);
 
     if (user == message.author.id) return message.reply('Você não pode transferir coins para si mesmo');
-    if (user == client.user.id) return message.reply('Nah, eu não quero coins, mas você pode ganhar mais coins usando f!roleta!');
     if (!user) {
       return message.channel.send('Mencione alguém que deseja transferir seus coins');
     }
@@ -35,7 +34,7 @@ module.exports = {
         .then((collected) => {
           message.channel.send(`Você transferiu ${args[1]} FoxCoins para ${user.user}`);
 
-          db.add(`coins_${user.id}`, args[1]);
+          db.add(`bal_${user.id}`, args[1]);
           db.subtract(`coins_${message.author.id}`, args[1]);
         });
     });

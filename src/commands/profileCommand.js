@@ -12,6 +12,8 @@ module.exports = {
     const user = message.mentions.users.first() || message.author;
     let money = await db.fetch(`coins_${user.id}`);
     if (money === null) money = 0;
+    let bal = await db.fetch(`bal_${user.id}`)
+    if(bal === null) bal = 0;
 
     let aboutme = await db.fetch(`aboutme_${user.id}`);
     if (aboutme == null) aboutme = 'Foxy é minha amiga, você pode alterar isso usando f!aboutme';
@@ -47,11 +49,11 @@ module.exports = {
 
       ctx.font = '80px sans-serif';
       ctx.fillStyle = '#ffffff';
-      ctx.fillText(`${user.username}`, canvas.width / 6.0, canvas.height / 6.4);
+      ctx.fillText(`${user.username}`, canvas.width / 6.0, canvas.height / 8.0 );
 
       ctx.font = '70px sans-serif';
       ctx.fillStyle = '#ffffff';
-      ctx.fillText(`${rep} Reps`, canvas.width / 1.3, canvas.height / 6.4);
+      ctx.fillText(`${rep} Reps`, canvas.width / 1.3, canvas.height / 6.4 );
 
       ctx.font = ('30px sans-serif');
       ctx.fillStyle = '#ffffff';
@@ -59,14 +61,18 @@ module.exports = {
 
       ctx.font = ('40px sans-serif');
       ctx.fillStyle = '#ffffff';
-      ctx.fillText(`${money} FoxCoins`, canvas.width / 6.0, canvas.height / 4.6);
+     
+      ctx.fillText(`Carteira: ${money} FoxCoins`, canvas.width / 6.0, canvas.height / 5.5);
+      ctx.font = ('40px sans-serif');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(`FoxyBank: ${bal} FoxCoins`, canvas.width / 6.0, canvas.height / 4.3);
 
       ctx.beginPath();
       ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
       ctx.closePath();
       ctx.clip();
 
-      const avatar = await Canvas.loadImage(user.displayAvatarURL({ format: 'jpg' }));
+      const avatar = await Canvas.loadImage(user.displayAvatarURL({ format: 'png' }));
       ctx.drawImage(avatar, 25, 25, 200, 200);
 
       const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'foxy_profile.png');

@@ -33,52 +33,128 @@ module.exports = {
 
         break;
 
-      case 'windows xp':
-        if (money < 1000) return message.channel.send('Você não tem coins o suficiente para este background');
+      case 'winxp':
+        const winxp = new MessageEmbed()
+        .setTitle('Windows XP')
+        .setDescription("Deseja comprar este background?")
+        .setImage('https://cdn.discordapp.com/attachments/816457751680385044/816458182758891540/foxy_profile.png')
+        message.channel.send(winxp).then((sentMessage) => {
+          sentMessage.react('✅');
+          const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
+          sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+            .then((collected) => {
+              if (money < 1000) return message.channel.send('Você não tem coins o suficiente para este background');
+              message.channel.send(`Você comprou o background **Windows XP**, ele já foi definido`);
+    
+              db.subtract(`coins_${user.id}`, 3000);
+              db.set(`background_${user.id}`, 'windows_xp.png');
+            }).catch(collected => {
+              message.channel.send("Tempo esgotado")
+            })
+        });
 
-        message.channel.send('Você comprou o background **Windows XP** Ele já foi setado no seu perfil!');
-        db.subtract(`coins_${user.id}`, 3000);
-        return db.set(`background_${user.id}`, 'windows_xp.png');
         break;
 
-      case 'red dead':
-        if (money < 5000) return message.channel.send('Você não tem coins o suficiente para este background');
-        message.channel.send('Você comprou o background **Read Dead Redemption** Ele já foi setado no seu perfil!');
-        db.subtract(`coins_${user.id}`, 5000);
-        return db.set(`background_${user.id}`, 'red_dead.png');
-
+      case 'red':
+       const reddead = new MessageEmbed()
+       .setTitle('Red Dead Redemption 2')
+       .setDescription("Deseja comprar este background?")
+       .setImage('https://cdn.discordapp.com/attachments/816457751680385044/816458307183050803/foxy_profile.png')
+       message.channel.send(reddead).then((sentMessage) => {
+         sentMessage.react('✅');
+         const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
+         sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+           .then((collected) => {
+             if (money < 5000) return message.channel.send('Você não tem coins o suficiente para este background');
+             message.channel.send(`Você comprou o background **Red Dead Redemption 2**, ele já foi definido`);
+             db.subtract(`coins_${user.id}`, 5000);
+             db.set(`background_${user.id}`, 'red_dead.png');
+           }).catch(collected => {
+            message.channel.send("Tempo esgotado")
+          })
+       });
         break;
 
       case 'gta':
-        if (money < 9000) return message.channel.send('Você não tem coins o suficiente para este background');
-        message.channel.send('Você comprou o background **Grand Theft Auto: San Andreas** Ele já foi setado no seu perfil!');
-        db.subtract(`coins_${user.id}`, 9000);
-        return db.set(`background_${user.id}`, 'gta_san.png');
-
+       const gtasa = new MessageEmbed()
+       .setTitle('Grand Theft Auto: San Andreas')
+       .setDescription("Deseja comprar este background?")
+       .setImage('https://cdn.discordapp.com/attachments/816457751680385044/816458231207297024/foxy_profile.png')
+       message.channel.send(gtasa).then((sentMessage) => {
+         sentMessage.react('✅');
+         const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
+         sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+           .then((collected) => {
+            if (money < 9000) return message.channel.send('Você não tem coins o suficiente para este background');
+            message.channel.send(`Você comprou o background **Grand Theft Auto: San Andreas**, ele já foi definido`);
+             db.subtract(`coins_${user.id}`, 9000);
+             db.set(`background_${user.id}`, 'gta_san.png');
+           }).catch(collected => {
+            message.channel.send("Tempo esgotado")
+          })
+       });
         break;
 
       case 'fnaf':
-        if (money < 9000) return message.channel.send('Você não tem coins o suficiente para este background');
-        message.channel.send("Você comprou o background **Five Nights at Freddy's** Ele já foi setado no seu perfil!");
-        db.subtract(`coins_${user.id}`, 9000);
-        return db.set(`background_${user.id}`, 'fnaf_background.png');
+       const fnaf = new MessageEmbed()
+       .setTitle('Five Night\'s at Freddy\'s')
+       .setDescription("Deseja comprar este background?")
+       .setImage('https://cdn.discordapp.com/attachments/816457751680385044/816458379819876402/foxy_profile.png')
+       message.channel.send(fnaf).then((sentMessage) => {
+         sentMessage.react('✅');
+         const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
+         sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+           .then((collected) => {
+            if (money < 9000) return message.channel.send('Você não tem coins o suficiente para este background');
+            message.channel.send(`Você comprou o background **Five Night's at Freddy's**, ele já foi definido`);
+             db.subtract(`coins_${user.id}`, 9000);
+             db.set(`background_${user.id}`, 'fnaf_background.png');
+           }).catch(collected => {
+            message.channel.send("Tempo esgotado")
+          })
+       });
 
         break;
 
       case 'foxy':
-        if (money < 5000) return message.channel.send('Você não tem coins o suficiente para este background');
-        message.channel.send('Você comprou o background **Foxy Vlogger** Ele já foi setado no seu perfil!');
-        db.subtract(`coins_${user.id}`, 5000);
-        return db.set(`background_${user.id}`, 'foxy_vlogs.png');
-
+        const vlog = new MessageEmbed()
+        .setTitle('Foxy Vlogger')
+        .setDescription("Deseja comprar este background?")
+        .setImage('https://cdn.discordapp.com/attachments/816457751680385044/816458437134385191/foxy_profile.png')
+        message.channel.send(vlog).then((sentMessage) => {
+          sentMessage.react('✅');
+          const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
+          sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+            .then((collected) => {
+             if (money < 5000) return message.channel.send('Você não tem coins o suficiente para este background');
+             message.channel.send(`Você comprou o background **Foxy Vlogger**, ele já foi definido`);
+              db.subtract(`coins_${user.id}`, 5000);
+              db.set(`background_${user.id}`, 'foxy_vlogs.png');
+            }).catch(collected => {
+              message.channel.send("Tempo esgotado")
+            })
+        });
         break;
 
       case 'lori':
 
-        if (money < 10000) return message.channel.send('Você não tem coins o suficiente para este background');
-        message.channel.send('Você comprou o background **Loritta e Foxy** Ele já foi setado no seu perfil!');
-        db.subtract(`coins_${user.id}`, 10000);
-        return db.set(`background_${user.id}`, 'foxy_e_lori.png');
+        const lori = new MessageEmbed()
+        .setTitle('<a:loriyay:810599942888489030> Loritta e Foxy')
+        .setDescription("Deseja comprar este background?")
+        .setImage('https://cdn.discordapp.com/attachments/816457751680385044/816457895105003572/foxy_profile.png')
+        message.channel.send(lori).then((sentMessage) => {
+          sentMessage.react('✅');
+          const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
+          sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+            .then((collected) => {
+             if (money < 10000) return message.channel.send('Você não tem coins o suficiente para este background');
+             message.channel.send(`Você comprou o background **Foxy e Loritta**, ele já foi definido`);
+              db.subtract(`coins_${user.id}`, 10000);
+              db.set(`background_${user.id}`, 'foxy_e_lori.png');
+            }).catch(collected => {
+              message.channel.send("Tempo esgotado")
+            })
+        });
         break;
 
       default:
@@ -86,8 +162,8 @@ module.exports = {
 
           .setColor('RED')
           .setTitle('Lojinha de Background :D')
-          .setDescription('(Raro) **Foxy Vlogger** - 5000 FoxCoins - **Código:** foxy \n (Raro) **FNaF** - 9000 FoxCoins - **Código:** fnaf \n(Raro) **Red Dead** - 7000 FoxCoins - **Código:** red dead \n(Lendário) **GTA San Andreas** - 9000 FoxCoins - **Código:** gta \n(Lendário) **Windows XP** - 5000 FoxCoins - **Código:** windows xp \n(Lendário) **Foxy e Lori** - 10000 - **Código:** lori \n\n Use f!background reset para redefinir')
-          .setFooter('Exemplo: f!background lori | Os nomes dos backgrounds são usados em letra minúscula!');
+          .setDescription('(Raro) **Foxy Vlogger** - 5000 FoxCoins - **Código:** foxy \n (Raro) **FNaF** - 9000 FoxCoins - **Código:** fnaf \n(Raro) **Red Dead** - 7000 FoxCoins - **Código:** red \n(Lendário) **GTA San Andreas** - 9000 FoxCoins - **Código:** gta \n(Lendário) **Windows XP** - 5000 FoxCoins - **Código:** winxp \n(Lendário) **Foxy e Lori** - 10000 - **Código:** lori \n\n Use f!background reset para redefinir')
+          .setFooter('Exemplo: f!background lori');
         message.channel.send(noargs);
     }
   },
