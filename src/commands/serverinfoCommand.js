@@ -63,7 +63,7 @@ module.exports = {
         { name: '<a:sleeepy:803647820867174421> Canal AFK', value: `${afk}`, inline: true },
         { name: '<:rules:797183150475575337> Canal de regras', value: `${rules}`, inline: true },
         { name: '<:WindowsShield:777579023249178625> Nível de verificação', value: `${level}`, inline: true },
-        { name: '<:DiscordPartner:763767066150305812> Servidor Parceiro:', value: `${partner}`, inline: true },
+        { name: '<:Partner:813832825543065680> Servidor Parceiro:', value: `${partner}`, inline: true },
       )
       .setFooter('Caso não apareça o dono, peça para o dono do servidor executar o comando duas vezes ;) ');
     message.channel.send(embed);

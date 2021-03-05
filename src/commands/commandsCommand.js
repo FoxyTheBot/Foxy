@@ -37,7 +37,7 @@ module.exports = {
         const mod = new MessageEmbed()
           .setColor(colors.moderation)
           .setTitle('<:WindowsShield:777579023249178625> | Moderação')
-          .setDescription('`slowmode`, `clear`, `ban`, `addrole`, `kick`, `lock`, `unlock`, `mute`, `unmute`, `settopic`, `ticket`, `unban`');
+          .setDescription('`slowmode`, `clear`, `lock`, `unlock`, `settopic`, `ticket`');
         message.channel.send(mod);
         break;
 
@@ -45,7 +45,7 @@ module.exports = {
         const utils = new MessageEmbed()
           .setColor(colors.default)
           .setTitle('<:DiscordStaff:731947814246154240> | Utilitários')
-          .setDescription('`calc`, `translate`, `id`, `ping`, `ascii`, `morse`, `weather`, `emoji`, `servericon`, `rbuser`');
+          .setDescription('`calc`, `translate`, `ping`, `ascii`, `morse`, `weather`, `emoji`, `servericon`, `rbuser`');
         message.channel.send(utils);
         break;
 
@@ -60,7 +60,7 @@ module.exports = {
       case 'suporte':
         const support = new MessageEmbed()
           .setColor(colors.default)
-          .setTitle(`${emotes.dev} | Suporte`)
+            .setTitle(`${emotes.dev} | Suporte`)
           .setDescription('`report`, `sugerir`');
         message.channel.send(support);
         break;
@@ -69,7 +69,7 @@ module.exports = {
         const mine = new MessageEmbed()
           .setColor(colors.mine)
           .setTitle('<:Minecraft:804858374780878868> | Minecraft')
-          .setDescription('`mcbody`, `mcskin`, `mchead`');
+          .setDescription('`mcbody`, `mcskin`, `mchead`, `minerar`');
         message.channel.send(mine);
         break;
 
@@ -77,13 +77,13 @@ module.exports = {
         const social = new MessageEmbed()
           .setColor(colors.rp)
           .setTitle('<:AddMember:797181629826859029> | Social e economia')
-          .setDescription('`profile`, `pay`, `daily`, `roleta`, `rep`, `background`, `bank`, `deposit`, `remove`, `rob`');
+          .setDescription('`profile`, `pay`, `daily`, `rep`, `background`, `bank`, `deposit`, `remove`, `rob`');
         message.channel.send(social);
         break;
       case 'all':
         const commands = new MessageEmbed()
           .setColor('RED')
-          .setDescription('<:laugh:793588288765952030> **| COMANDOS DE DIVERSÃO** \n `tf`, `avatar`, `httpcat`, `say`, `attack`, `ponpon`, `fate`, `clyde`, `step`, `lick`, `8ball`, `cancel`, `coinflip`, `laranjomemes`, `ppt`, `moonwalk`, `putin`, `ratewaifu`, `sadcats`, `ship`, `friend` \n\n <:DiscordBoost:723225840548184195> **| Role-Play** \n `kiss`, `bite`, `pat`, `run`, `scream`, `laugh`, `hug`, `dance`, `attack`, `sad`, `applause`, `shy`, `smile`, `stare` \n\n <:info:718944993741373511> **| Informações** \n `ideia`, `date`, `termos`, `status`, `help`, `commands`, `uptime`, `covid`, `botinfo`, `sugerir`, `servers`, `userinfo`, `serverinfo` \n\n <:defesa:749403739676475462> **| Moderação** \n `slowmode`, `clear`, `ban`, `addrole`, `kick`, `lock`, `unlock`, `mute`, `unmute`, `settopic`, `ticket`, `unban` \n\n <:info:718944993741373511> **| Informações** \n `report`, `donate`, `remind`, `invite`, `github`, `dbl` \n\n <:DiscordStaff:731947814246154240> **| Utilitários** \n `calc`, `translate`, `id`, `ping`, `ascii`, `morse`, `weather`, `emoji`, `servericon`, `rbuser` \n\n <a:a_bongocat:768500700551315487> **| Modificação de imagem** \n `comunismo`, `error`, `esponja`, `laranjo`, `stonks`, `notstonks` \n\n <:Minecraft:804858374780878868> **| Minecraft** \n `mcbody`, `mcskin`, `mchead` \n\n<:AddMember:797181629826859029> **| Social e Economia** \n `profile`, `pay`, `daily`, `roleta`, `rep`, `background`, `bank`, `deposit`, `remove`, `rob`');
+          .setDescription('<:laugh:793588288765952030> **| COMANDOS DE DIVERSÃO** \n `tf`, `avatar`, `httpcat`, `say`, `attack`, `ponpon`, `fate`, `clyde`, `step`, `lick`, `8ball`, `cancel`, `coinflip`, `laranjomemes`, `ppt`, `moonwalk`, `putin`, `ratewaifu`, `sadcats`, `ship`, `friend` \n\n <:DiscordBoost:723225840548184195> **| Role-Play** \n `kiss`, `bite`, `pat`, `run`, `scream`, `laugh`, `hug`, `dance`, `attack`, `sad`, `applause`, `shy`, `smile`, `stare` \n\n <:info:718944993741373511> **| Informações** \n `ideia`, `date`, `termos`, `status`, `help`, `commands`, `uptime`, `covid`, `botinfo`, `sugerir`, `servers`, `userinfo`, `serverinfo` \n\n <:defesa:749403739676475462> **| Moderação** \n `slowmode`, `clear`, `ban`, `addrole`, `kick`, `lock`, `unlock`, `mute`, `unmute`, `settopic`, `ticket`, `unban` \n\n <:info:718944993741373511> **| Informações** \n `report`, `donate`, `remind`, `invite`, `github`, `dbl` \n\n <:DiscordStaff:731947814246154240> **| Utilitários** \n `calc`, `translate`, `ping`, `ascii`, `morse`, `weather`, `emoji`, `servericon`, `rbuser` \n\n <a:a_bongocat:768500700551315487> **| Modificação de imagem** \n `comunismo`, `error`, `esponja`, `laranjo`, `stonks`, `notstonks` \n\n <:Minecraft:804858374780878868> **| Minecraft** \n `mcbody`, `mcskin`, `mchead` \n\n<:AddMember:797181629826859029> **| Social e Economia** \n `profile`, `pay`, `daily`, `rep`, `background`, `bank`, `deposit`, `remove`, `rob`');
         await message.channel.send(commands);
         break;
 

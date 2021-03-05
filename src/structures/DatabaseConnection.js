@@ -7,7 +7,7 @@ mongoose.connect(config.uri, {
   if (err) return console.log('\x1b[37m\x1b[41mERROR\x1b[0m: Ocorreu um erro no cliente do mongodb! verifique se a sua URI está correta!', err);
 });
 
-const user = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   userid: String,
   username: String,
   userBanned: Boolean,
@@ -15,4 +15,4 @@ const user = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('user', user);
+module.exports = mongoose.model('user', userSchema);

@@ -9,12 +9,12 @@ module.exports = {
   async run(client, message, args, applyText) {
     if (!message.guild.me.hasPermission('ATTACH_FILES')) return message.channel.send('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 
-    message.channel.startTyping();
 
     const canvas = Canvas.createCanvas(380, 208);
     const ctx = canvas.getContext('2d');
     const sayMessage = args.join(' ');
     if (!sayMessage) return message.channel.send('Digite algo antes');
+        message.channel.startTyping();
     const background = await Canvas.loadImage('./src/assets/Windows.png');
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
