@@ -12,7 +12,6 @@ module.exports = {
     if (!user) {
       return message.reply('lembre-se de mencionar um usuário válido para beijar!');
     }
-    if (user == message.author) return message.channel.send('Você não pode se beijar, a não ser que você seja um extraterreste 👽');
     if (user == client.user) return message.channel.send('🙅‍♀️ Nah, eu não quero te beijar');
 
     const img = await neko.sfw.kiss();

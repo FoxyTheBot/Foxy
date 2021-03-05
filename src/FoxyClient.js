@@ -1,11 +1,7 @@
 const fs = require('fs');
 
-const {
-  Client, MessageEmbed, Collection, WebhookClient, Intents,
-} = require('discord.js');
-const {
-  prefix, token, owners, logsWebhook, reportWebhook, suggestWebhook,
-} = require('../config.json');
+const { Client, MessageEmbed, Collection, WebhookClient, Intents } = require('discord.js');
+const { prefix, token, owners, logsWebhook, reportWebhook, suggestWebhook } = require('../config.json');
 
 const user = require('./structures/DatabaseConnection');
 const colors = require('./structures/color');
