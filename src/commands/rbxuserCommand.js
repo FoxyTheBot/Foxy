@@ -13,19 +13,12 @@ module.exports = {
     if (!username) return message.channel.send('Especifique um usuário!');
     if (username) {
       roblox.getIdFromUsername(username).then((id) => {
-        // if an identity is found under the username then continue collecting the rest of the data
-        // sadly this means you can't search for banned users. f in the chat. maybe try using older apis
-        // yes, i just did c# styled bracketing, do not mind me trying to bless your eyes
-
         if (id) {
-          // next conditio
           roblox.getPlayerInfo(parseInt(id)).then((info) => {
-            // dates.. um. go try get a pear or a grape instead.
             moment.locale('pt-br');
             const date = new Date(info.joinDate);
             const data = moment(date).format('LL');
 
-            // create new embed and establish some settings for it, tasty.
             const embed = new discord.MessageEmbed()
               .setTitle(info.username)
               .setColor('e2231a')
@@ -42,8 +35,7 @@ module.exports = {
           });
         }
 
-        // but what if the player is banned, or doesn't even exist?
-        // houston, we have a problem.
+
       }).catch((err) => {
         message.channel.send('Ah! Eu não encontrei este usuário, ou talvez ele não exista, desculpe pela inconveniência!'); // catching error
       });
