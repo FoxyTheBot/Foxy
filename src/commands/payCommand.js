@@ -14,7 +14,9 @@ module.exports = {
     if (!user) {
       return message.channel.send('Mencione alguém que deseja transferir seus coins');
     }
+  
     if (isNaN(args[1])) return message.reply('Digite números válidos!');
+  
     if (!args[1]) {
       return message.channel.send('Especifique uma quantidade para ser transferida');
     }

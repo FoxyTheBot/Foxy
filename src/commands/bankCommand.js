@@ -6,13 +6,11 @@ module.exports = {
   cooldown: 5,
   guildOnly: true,
 
-  async run(client, message) {
+  async run(client, message, args) {
     const db = require('quick.db');
-    const user = message.author;
+    const user = client.users.cache.get(args[0]) || message.author;
     let bal = await db.fetch(`bal_${user.id}`);
     let money = await db.fetch(`coins_${user.id}`);
-
-    if (user != message.author) return message.channel.send('Você não pode olhar o saldo de outros usuários!');
     if (money === null) money = 0;
     if (bal === null) bal = 0;
     const embed = new MessageEmbed()

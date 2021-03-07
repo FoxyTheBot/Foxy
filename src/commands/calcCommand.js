@@ -5,7 +5,7 @@ const Discord = require('discord.js');
 module.exports = {
   name: 'calc',
   aliases: ['calc', 'calcular', 'calculadora'],
-  cooldown: 1,
+  cooldown: 5,
   guildOnly: false,
   async run(client, message, args) {
     if (!args[0]) return message.channel.send('Por favor digite algo!');

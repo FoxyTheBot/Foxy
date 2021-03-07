@@ -6,8 +6,8 @@ module.exports = {
   ownerOnly: true,
   async run(client, message, args) {
     const db = require('quick.db');
-    const { MessageEmbed } = require('discord.js');
-    const user = message.mentions.members.first() || message.author;
+    const { MessageEmbed, Message } = require('discord.js');
+    const user = message.mentions.members.first() || client.users.cache.get(args[1]) || message.author;
 
     switch (args[0]) {
       case 'remove_coins':
@@ -41,7 +41,24 @@ module.exports = {
         message.channel.send(`O arquivo ${args[1]} foi setado no perfil de ${user}`);
         break;
 
-      default:
+        case 'inspect_user':
+        let bank = db.fetch(`bal_${user.id}`)
+        let bucks = db.fetch(`coins_${user.id}`)
+        let background = db.fetch(`background_${user.id}`)
+        let aboutme = db.fetch(`aboutme_${user.id}`)
+        const inspect = new MessageEmbed()
+        .setColor('RED')
+        .setTitle('User Data')
+        .setDescription(`${user}'s data`)
+        .addFields(
+          { name: "FoxBank", value: `${bank}`},
+          { name: "Wallet", value: `${bucks} FoxCoins`},
+          { name: "Background", value: background},
+          { name: "About Me", value: aboutme}
+        )
+        message.channel.send(message.author, inspect)
+          break;
+        default:
         const embed = new MessageEmbed()
           .setTitle('Database Settings')
           .setDescription('Altere o valor do banco de dados')
@@ -51,6 +68,7 @@ module.exports = {
             { name: 'reset_all', value: 'Reseta todas as configurações do usuário' },
             { name: 'reset_background', value: 'Reseta o background de algum usuário para o padrão' },
             { name: 'set_background', value: 'Define o background de algum usuário' },
+            { name: "inspect_user", value: "Verifica os dados do usuário"}
           );
         message.channel.send(embed);
     }
