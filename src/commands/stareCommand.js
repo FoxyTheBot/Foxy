@@ -27,7 +27,6 @@ module.exports = {
       .setDescription(`${message.author} está encarando ${user}`)
       .setImage(rand)
       .setTimestamp()
-      .setFooter('')
       .setAuthor(message.author.tag, avatar);
     await message.channel.send(embed);
   },

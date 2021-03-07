@@ -37,7 +37,7 @@ module.exports = {
         const winxp = new MessageEmbed()
         .setTitle('Windows XP')
         .setDescription("Deseja comprar este background?")
-        .setImage('https://cdn.discordapp.com/attachments/816457751680385044/816458182758891540/foxy_profile.png')
+        .setImage('https://cdn.discordapp.com/attachments/816457751680385044/817895428338221106/foxy_profile.png')
         message.channel.send(winxp).then((sentMessage) => {
           sentMessage.react('✅');
           const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
@@ -59,7 +59,7 @@ module.exports = {
        const reddead = new MessageEmbed()
        .setTitle('Red Dead Redemption 2')
        .setDescription("Deseja comprar este background?")
-       .setImage('https://cdn.discordapp.com/attachments/816457751680385044/816458307183050803/foxy_profile.png')
+       .setImage('https://cdn.discordapp.com/attachments/816457751680385044/817895595594481674/foxy_profile.png')
        message.channel.send(reddead).then((sentMessage) => {
          sentMessage.react('✅');
          const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
@@ -79,7 +79,7 @@ module.exports = {
        const gtasa = new MessageEmbed()
        .setTitle('Grand Theft Auto: San Andreas')
        .setDescription("Deseja comprar este background?")
-       .setImage('https://cdn.discordapp.com/attachments/816457751680385044/816458231207297024/foxy_profile.png')
+       .setImage('https://cdn.discordapp.com/attachments/816457751680385044/817895541013872700/foxy_profile.png')
        message.channel.send(gtasa).then((sentMessage) => {
          sentMessage.react('✅');
          const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
@@ -99,7 +99,7 @@ module.exports = {
        const fnaf = new MessageEmbed()
        .setTitle('Five Night\'s at Freddy\'s')
        .setDescription("Deseja comprar este background?")
-       .setImage('https://cdn.discordapp.com/attachments/816457751680385044/816458379819876402/foxy_profile.png')
+       .setImage('https://cdn.discordapp.com/attachments/816457751680385044/817895665274191923/foxy_profile.png')
        message.channel.send(fnaf).then((sentMessage) => {
          sentMessage.react('✅');
          const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
@@ -120,7 +120,7 @@ module.exports = {
         const vlog = new MessageEmbed()
         .setTitle('Foxy Vlogger')
         .setDescription("Deseja comprar este background?")
-        .setImage('https://cdn.discordapp.com/attachments/816457751680385044/816458437134385191/foxy_profile.png')
+        .setImage('https://cdn.discordapp.com/attachments/816457751680385044/817895700196229190/foxy_profile.png')
         message.channel.send(vlog).then((sentMessage) => {
           sentMessage.react('✅');
           const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
@@ -140,8 +140,8 @@ module.exports = {
 
         const lori = new MessageEmbed()
         .setTitle('<a:loriyay:810599942888489030> Loritta e Foxy')
-        .setDescription("Deseja comprar este background?")
-        .setImage('https://cdn.discordapp.com/attachments/816457751680385044/816457895105003572/foxy_profile.png')
+        .setDescription("Deseja comprar este background? \n\n Loritta foi criada por **MrPowerGamerBR#4185** Você pode adicionar a Loritta clicando [aqui](https://loritta.website)")
+        .setImage('https://cdn.discordapp.com/attachments/816457751680385044/817895343193718784/foxy_profile.png')
         message.channel.send(lori).then((sentMessage) => {
           sentMessage.react('✅');
           const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
