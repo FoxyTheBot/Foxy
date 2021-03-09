@@ -18,9 +18,8 @@ module.exports = {
     let aboutme = await db.fetch(`aboutme_${user.id}`);
     if (aboutme == null) aboutme = 'Foxy é minha amiga, você pode alterar isso usando f!aboutme';
 
-    let casado = await db.fetch(`married_${user.id}`);
-    if (casado === null) casado = 'Não';
-    if (casado != null) casado = 'Sim';
+    const casado = await db.fetch(`married_${user.id}`);
+    
     let rep = await db.fetch(`rep_${user.id}`);
     if (rep == null) rep = 0;
     const profile = db.fetch(`background_${user.id}`);
@@ -47,25 +46,29 @@ module.exports = {
       ctx.strokeStyle = '#74037b';
       ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
+
       ctx.font = '80px sans-serif';
       ctx.fillStyle = '#ffffff';
       ctx.fillText(`${user.username}`, canvas.width / 6.0, canvas.height / 8.0 );
 
-      ctx.font = '70px sans-serif';
+      ctx.font = '40px sans-serif';
       ctx.fillStyle = '#ffffff';
-      ctx.fillText(`${rep} Reps`, canvas.width / 1.3, canvas.height / 6.4 );
+      ctx.fillText(`Reps: ${rep} \nCarteira: ${money} \nFoxyBank: ${bal}`, canvas.width / 1.5, canvas.height / 8.0);
+
+      if(casado !== null) {
+        let user2 = await client.users.fetch(casado)
+      ctx.font = '40px sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(`Casado com: ${user2.tag}`, canvas.width / 6.0, canvas.height / 5.5);
+    }
 
       ctx.font = ('30px sans-serif');
       ctx.fillStyle = '#ffffff';
       ctx.fillText(aboutme, canvas.width / 55.0, canvas.height / 1.2);
 
-      ctx.font = ('40px sans-serif');
-      ctx.fillStyle = '#ffffff';
+
      
-      ctx.fillText(`Carteira: ${money} FoxCoins`, canvas.width / 6.0, canvas.height / 5.5);
-      ctx.font = ('40px sans-serif');
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText(`FoxyBank: ${bal} FoxCoins`, canvas.width / 6.0, canvas.height / 4.3);
+     
 
       ctx.beginPath();
       ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
