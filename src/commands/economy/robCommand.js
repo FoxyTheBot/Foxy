@@ -1,7 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const ms = require('parse-ms');
 const db = require('quick.db');
-const colors = require('../structures/color');
 
 module.exports = {
   name: 'rob',
@@ -25,25 +24,25 @@ module.exports = {
       const time = ms(timeout - (Date.now() - author));
 
       const timeEmbed = new MessageEmbed()
-        .setColor(colors.default)
+        .setColor(client.colors.default)
         .setDescription(`Aguarde **${time.minutes}m ${time.seconds}s** para usar o comando`);
       await message.channel.send(timeEmbed);
     } else {
       const moneyEmbed = new MessageEmbed()
-        .setColor(colors.default)
+        .setColor(client.colors.default)
         .setDescription('Você precisa de pelo menos 200 coins em sua carteira para roubar alguém');
 
       if (author2 < 200) {
         return message.channel.send(moneyEmbed);
       }
       const moneyEmbed2 = new MessageEmbed()
-        .setColor(colors.default)
+        .setColor(client.colors.default)
         .setDescription(`${user.user.username} não tem nada que você possa roubar`);
       if (targetuser <= random) { return message.channel.send(moneyEmbed2); }
 
       const embed = new MessageEmbed()
         .setDescription(`Você roubou ${user} e ganhou ${random} coins`)
-        .setColor(colors.default);
+        .setColor(client.colors.default);
       await message.channel.send(embed);
 
       db.subtract(`coins_${user.id}`, random);

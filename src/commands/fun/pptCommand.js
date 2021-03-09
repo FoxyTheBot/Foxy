@@ -1,4 +1,3 @@
-const { prefix } = require('../../config.json');
 
 module.exports = {
   name: 'ppt',
@@ -11,7 +10,7 @@ module.exports = {
     const result = acceptedReplies[random];
 
     const choice = args[0];
-    if (!choice) return message.channel.send(`Como jogar \`${prefix}ppt <pedra|papel|tesoura\``);
+    if (!choice) return message.channel.send(`Como jogar \`${client.config.prefix}ppt <pedra|papel|tesoura\``);
     if (!acceptedReplies.includes(choice)) return message.channel.send(`Apenas estas respostas são aceitas: \`${acceptedReplies.join(', ')}\``);
 
     if (result === choice) return message.reply('Ei, dessa vez deu empate');

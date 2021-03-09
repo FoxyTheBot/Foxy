@@ -1,22 +1,22 @@
-const colors = require('../structures/color');
-
 module.exports = {
-  name: 'mcbody',
-  aliases: ['mcbody'],
+  name: 'mcskin',
+  aliases: ['mcskin'],
   cooldown: 5,
   guildOnly: false,
 
   async run(client, message, args) {
     const user = args.join(' ');
+
     if (!user) return message.channel.send('<:Minecraft:804858374780878868> **|** Especifique um usuário');
+    const skin = `https://mc-heads.net/skin/${user}`;
 
     const discord = require('discord.js');
-    const body = `https://mc-heads.net/body/${user}`;
 
     const embed = new discord.MessageEmbed()
-      .setColor(colors.mine)
-      .setTitle(`Corpo de ${user}`)
-      .setImage(body);
-    message.channel.send(embed);
+      .setColor('BLUE')
+      .setTitle(`<:Minecraft:804858374780878868> Skin de ${user}`)
+      .setImage(skin)
+      .setColor(client.colors.mine);
+    await message.channel.send(embed);
   },
 };
