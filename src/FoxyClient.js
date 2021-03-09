@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const { Client, MessageEmbed, Collection, WebhookClient, Intents } = require('discord.js');
-const { prefix, token, owners, logsWebhook, reportWebhook, suggestWebhook } = require('../config.json');
+const { prefix, token, owners, logsWebhook, reportWebhook, suggestWebhook, statusWebhook } = require('../config.json');
 
 const user = require('./structures/DatabaseConnection');
 const colors = require('./structures/color');
@@ -21,6 +21,7 @@ const client = new Client({
 client.logsWebhook = new WebhookClient(logsWebhook.id, logsWebhook.token);
 client.reportWebhook = new WebhookClient(reportWebhook.id, reportWebhook.token);
 client.suggestWebhook = new WebhookClient(suggestWebhook.id, suggestWebhook.token);
+client.statusWebhook = new WebhookClient(statusWebhook.id, suggestWebhook.token)
 client.emotes = require('./structures/emotes.json')
 client.colors = require('./structures/color.json')
 client.config = require('../config.json')
@@ -143,6 +144,7 @@ client.on('message', (message) => {
         username: message.author.username,
         userBanned: false,
         premium: false,
+        married: false,
       }).save().catch((err) => {
         foxySelfReport(err, message);
       });
