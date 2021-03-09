@@ -1,5 +1,3 @@
-const colors = require('../structures/color');
-
 module.exports = {
   nome: 'mchead',
   aliases: ['mchead'],
@@ -14,7 +12,7 @@ module.exports = {
     const head = `https://mc-heads.net/head/${user}`;
 
     const embed = new discord.MessageEmbed()
-      .setColor(colors.mine)
+      .setColor(client.colors.mine)
       .setTitle(`Cabeça de ${user}`)
       .setImage(head);
     message.channel.send(embed);

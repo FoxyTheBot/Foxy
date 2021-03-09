@@ -21,16 +21,23 @@ const client = new Client({
 client.logsWebhook = new WebhookClient(logsWebhook.id, logsWebhook.token);
 client.reportWebhook = new WebhookClient(reportWebhook.id, reportWebhook.token);
 client.suggestWebhook = new WebhookClient(suggestWebhook.id, suggestWebhook.token);
+client.emotes = require('./structures/emotes.json')
+client.colors = require('./structures/color.json')
+client.config = require('../config.json')
 
-const commandFiles = fs.readdirSync('./src/commands').filter((file) => file.endsWith('.js'));
+const commandFolders = fs.readdirSync('./src/commands');
 const eventFiles = fs.readdirSync('./src/events').filter((file) => file.endsWith('.js'));
 
 client.commands = new Collection();
 
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  client.commands.set(command.name, command);
+for (const folder of commandFolders) {
+	const commandFiles = fs.readdirSync(`./src/commands/${folder}`).filter(file => file.endsWith('.js'));
+	for (const file of commandFiles) {
+		const command = require(`./commands/${folder}/${file}`);
+		client.commands.set(command.name, command);
+	}
 }
+
 
 for (const file of eventFiles) {
   const event = require(`./events/${file}`);
