@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js');
-const colors = require('../structures/color.json');
 
 module.exports = {
   name: 'httpcats',
@@ -14,7 +13,7 @@ module.exports = {
       return choices[index];
     }
     const embed = new MessageEmbed()
-      .setColor(colors.default)
+      .setColor(client.colors.default)
       .setImage(`https://http.cat/${choose(codes)}`);
     await message.channel.send(embed);
   },

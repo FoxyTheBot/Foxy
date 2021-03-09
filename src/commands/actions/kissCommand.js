@@ -2,19 +2,19 @@ const Discord = require('discord.js');
 const client = require('nekos.life');
 
 const neko = new client();
+
 module.exports = {
-  name: 'kiss',
+    name: 'kiss',
   aliases: ['kiss', 'beijar'],
   cooldown: 3,
   guildOnly: true,
   async run(client, message, args) {
+    const img = await neko.sfw.kiss();
+
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
     if (!user) {
       return message.reply('lembre-se de mencionar um usuário válido para beijar!');
     }
-    if (user == client.user) return message.channel.send('🙅‍♀️ Nah, eu não quero te beijar');
-
-    const img = await neko.sfw.kiss();
 
     const embed = new Discord.MessageEmbed()
       .setColor('#000000')
