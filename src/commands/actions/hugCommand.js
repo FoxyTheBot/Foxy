@@ -20,8 +20,10 @@ module.exports = {
       .setDescription(`${message.author} **abraçou** ${user}`)
       .setImage(img.url)
       .setTimestamp()
-      .setFooter('');
-    await message.reply(`${message.author}`, embed);
+      .setFooter('Reaja com ❤ para retribuir');
+    await message.reply(`${message.author}`, embed)
+    })
+
   },
 
 };
