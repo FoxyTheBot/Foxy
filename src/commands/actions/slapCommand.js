@@ -18,7 +18,7 @@ module.exports = {
       .setDescription(`${client.user} deu um tapa bem dado em ${message.author}`)
       .setImage(img.url);
 
-    if (user === client.user) return message.channel.send(foxyslap);
+    if (user === client.user) return message.reply(foxyslap);
 
     const avatar = message.author.displayAvatarURL({ format: 'png' });
     const embed = new Discord.MessageEmbed()
@@ -28,7 +28,7 @@ module.exports = {
       .setTimestamp()
       .setFooter('😱😱')
       .setAuthor(message.author.tag, avatar);
-    await message.channel.send(embed);
+    await message.reply(embed);
   },
 
 };

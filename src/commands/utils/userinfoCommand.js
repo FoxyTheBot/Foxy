@@ -21,9 +21,9 @@ module.exports = {
           { name: ':bookmark: Discord ID:', value: `\`${user.user.id}\``, inline: true },
         );
 
-      message.channel.send(`${message.author}`, embed);
+      message.reply(`${message.author}`, embed);
     } catch (err) {
-      message.channel.send(client.errors.genericError + err.stack).catch();
+      message.reply(client.errors.genericError + err.stack).catch();
     }
   },
 };

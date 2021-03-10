@@ -24,7 +24,7 @@ module.exports = {
         .setTitle('<:Developer:813832825442533396> Comando executado com sucesso!')
         .setDescription(`Entrada: \ \ \`\`\`js\n${code}\n\`\`\` \n Saída: \ \ \`\`\`xl\n${clean(evaled)}\n\`\`\``);
 
-      message.channel.send(sucess);
+      message.reply(sucess);
     } catch (err) {
       const errorMessage = err.stack.length > 1800 ? `${err.stack.slice(0, 1800)}...` : err.stack;
       const code = args.join(' ');
@@ -33,7 +33,7 @@ module.exports = {
       embed.setTitle('<:BSOD:777579371870683147> Ocorreu um erro durante a execução!');
       embed.setDescription(`Entrada: \ \ \`\`\`js\n${code}\n\`\`\` \n Saída: \`\`\`js\n${errorMessage}\`\`\``);
 
-      message.channel.send(embed);
+      message.reply(embed);
     }
   },
 };

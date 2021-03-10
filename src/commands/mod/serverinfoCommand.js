@@ -66,6 +66,6 @@ module.exports = {
         { name: '<:Partner:813832825543065680> Servidor Parceiro:', value: `${partner}`, inline: true },
       )
       .setFooter('Caso não apareça o dono, peça para o dono do servidor executar o comando duas vezes ;) ');
-    message.channel.send(embed);
+    message.reply(embed);
   },
 };

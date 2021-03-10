@@ -9,13 +9,13 @@ module.exports = {
   cooldown: 3,
   guildOnly: true,
   async run(client, message) {
-    if (!message.guild.me.hasPermission('ATTACH_FILES')) return message.channel.send('Eu preciso da permissão `enviar arquvios` para fazer isso!');
+    if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.reply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 
     const membro1 = message.mentions.members.first();
     const membro2 = message.mentions.members.last();
 
-    if (!membro1 || !membro2) return message.channel.send('Lembre-se de mencionar dois usuários para shippar');
-    if (membro1 === membro2) return message.channel.send('Mencione duas pessoas diferentes');
+    if (!membro1 || !membro2) return message.reply('Lembre-se de mencionar dois usuários para shippar');
+    if (membro1 === membro2) return message.reply('Mencione duas pessoas diferentes');
     message.channel.startTyping();
 
     const amor = Math.floor(Math.random() * 100);
@@ -77,6 +77,6 @@ module.exports = {
 
     message.channel.stopTyping();
 
-    message.channel.send(`<@${message.author.id}> \n${desc}`, amorEmbed);
+    message.reply(`<@${message.author.id}> \n${desc}`, amorEmbed);
   },
 };

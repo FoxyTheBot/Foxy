@@ -17,7 +17,7 @@ module.exports = {
     if (!user) {
       return message.reply('lembre-se de mencionar um usuário válido para cancelar!');
     }
-    await message.channel.send(`${message.author} cancelou ${user} por ${rand}`);
+    await message.reply(`${message.author} cancelou ${user} por ${rand}`);
   },
 
 };

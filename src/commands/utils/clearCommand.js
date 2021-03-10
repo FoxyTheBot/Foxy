@@ -24,7 +24,7 @@ module.exports = {
     message.channel.bulkDelete(fetched);
     message.channel
       .send(`**${args[0]} mensagens limpas nesse chat! Se as mensagens não foram excluidas é porque tem mais de 14 dias**`).then((msg) => msg.delete({ timeout: 5000 }))
-      .catch((error) => message.channel.send(`Não foi possível deletar mensagens devido a: ${error}`));
+      .catch((error) => message.reply(`Não foi possível deletar mensagens devido a: ${error}`));
   },
 
 };

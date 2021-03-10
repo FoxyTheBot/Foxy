@@ -48,7 +48,7 @@ module.exports = {
       .setTitle('O Mais Triste dos Tristes')
       .setImage(rand)
       .setTimestamp();
-    await message.channel.send(`${message.author}`, embed);
+    await message.reply(`${message.author}`, embed);
   },
 
 };

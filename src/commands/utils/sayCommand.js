@@ -19,9 +19,9 @@ module.exports = {
       .setTitle('Como usar')
       .setDescription('💁‍♀️ **Exemplo:** `f!say yay!` \n 🛑 **Permissões:** Você precisará da permissão `Gerenciar mensagens` para usar este comando.');
 
-    if (!sayMessage) return message.channel.send(noargs);
-    if (message.content.includes('@')) return message.channel.send('Você não pode mencionar pessoas ou cargos!');
-    message.channel.send(`${sayMessage} \n\n<:cat_toes:781335367764803634> *Mensagem enviada por ${message.author}*`);
+    if (!sayMessage) return message.reply(noargs);
+    if (message.content.includes('@')) return message.reply('Você não pode mencionar pessoas ou cargos!');
+    message.reply(`${sayMessage} \n\n<:cat_toes:781335367764803634> *Mensagem enviada por ${message.author}*`);
     message.delete()
     const embed = new Discord.MessageEmbed()
       .setTitle('Logs de comandos')

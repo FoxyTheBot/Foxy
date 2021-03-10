@@ -12,7 +12,7 @@ module.exports = {
 
     if (user == message.author.id) return message.reply('Você não pode dar reputação para si mesmo!');
 
-    if (!user) return message.channel.send('Mencione alguém para dar reputação!');
+    if (!user) return message.reply('Mencione alguém para dar reputação!');
 
     const timeout = 3600000;
     const amount = 1;
@@ -21,12 +21,12 @@ module.exports = {
     if (rep !== null && timeout - (Date.now() - out) > 0) {
       const time = ms(timeout - (Date.now() - out));
 
-      message.channel.send(`Você precisa esperar **${time.hours}h ${time.minutes}m ${time.seconds}s** para dar reputação para ${user} novamente`);
+      message.reply(`Você precisa esperar **${time.hours}h ${time.minutes}m ${time.seconds}s** para dar reputação para ${user} novamente`);
     } else {
       db.add(`rep_${user.id}`, amount);
       db.set(`timeout_${message.author.id}to_${user.id}`, Date.now());
       const nowrep = db.fetch(`rep_${user.id}`);
-      message.channel.send(`${client.emotes.heart} **|** deu ${amount} reputação para ${user} agora ele(a) possui ${nowrep} reputações`);
+      message.reply(`${client.emotes.heart} **|** deu ${amount} reputação para ${user} agora ele(a) possui ${nowrep} reputações`);
     }
   },
 };

@@ -17,16 +17,16 @@ module.exports = {
       .addFields(
         { name: ':bell: Exemplo:', value: '`f!remind 10s Atualizar o Windows`' },
       );
-    if (!timeuser) return message.channel.send(example);
-    if (!reason) return message.channel.send(':no_bell: Você precisa digitar o lembrete');
+    if (!timeuser) return message.reply(example);
+    if (!reason) return message.reply(':no_bell: Você precisa digitar o lembrete');
 
     db.set(`remind_${message.author.id}`, Date.now() + ms(timeuser));
 
-    message.channel.send(`:bell: **|** Ok! Eu irei te lembrar de \`${reason}\` em \`${timeuser}\``);
+    message.reply(`:bell: **|** Ok! Eu irei te lembrar de \`${reason}\` em \`${timeuser}\``);
     const interval = setInterval(() => {
       if (Date.now() > db.fetch(`remind_${message.author.id}`)) {
         db.delete(`remind_${message.author.id}`);
-        message.channel.send(`:bell: **|** Hey ${message.author}! Lembrete: \`${reason}\``)
+        message.reply(`:bell: **|** Hey ${message.author}! Lembrete: \`${reason}\``)
           .catch((e) => console.log(e));
         clearInterval(interval);
       }
