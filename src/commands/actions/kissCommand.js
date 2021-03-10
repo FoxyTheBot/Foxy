@@ -24,7 +24,22 @@ module.exports = {
       .setDescription(`${message.author} **beijou** ${user}`)
       .setImage(img.url)
       .setTimestamp();
-    await message.reply(`${message.author}`, embed);
+    await message.reply(`${message.author}`, embed).then((msg) => {
+      msg.react('😘')
+
+      const filter = (reaction, usuario) => reaction.emoji.name === '😘' && usuario.id === user.id;
+
+      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000});
+      collector.on('collect', () => {
+        const repeat = new Discord.MessageEmbed()
+        .setColor(client.colors.default)
+        .setDescription(`😽 ${user} **Beijou** ${message.author}`)
+        .setImage(img.url)
+  
+        message.reply(repeat)
+      })
+
+    })
   },
 
 };
