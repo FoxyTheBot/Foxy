@@ -27,6 +27,7 @@ module.exports = {
       .setImage(img.url)
       .setTimestamp()
       .setFooter('😱😱')
+      .setFooter('Reaja com 😡 para retribuir')
       .setAuthor(message.author.tag, avatar);
     await message.reply(embed).then((msg) => {
       msg.react('😡')

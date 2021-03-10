@@ -21,9 +21,24 @@ module.exports = {
       .setImage(img.url)
       .setTimestamp()
       .setFooter('Reaja com ❤ para retribuir');
-    await message.reply(`${message.author}`, embed)
+    await message.reply(`${message.author}`, embed).then((msg) => {
+      msg.react('❤')
+
+      const filter = (reaction, usuario) => reaction.emoji.name === '❤' && usuario.id === user.id;
+
+      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000});
+      collector.on('collect', () => {
+        const repeat = new Discord.MessageEmbed()
+        .setColor(client.colors.default)
+        .setDescription(`😽 ${user} **Abraçou** ${message.author}`)
+        .setImage(img.url)
+  
+        message.reply(repeat)
+      })
+
     })
+    }
 
-  },
+  }
 
-};
+
