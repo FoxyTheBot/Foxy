@@ -24,9 +24,24 @@ module.exports = {
       .setDescription(`${message.author} atacou ${user}`)
       .setImage(rand)
       .setTimestamp()
-      .setFooter(' | Gifs by: ByteAlex#1644')
+      .setFooter('Reaga com 🌟 para retribuir| Gifs by: ByteAlex#1644')
       .setAuthor(message.author.tag, avatar);
-    await message.reply(embed);
+    await message.reply(embed).then((msg) => {
+      msg.react('🌟')
+
+      const filter = (reaction, usuario) => reaction.emoji.name === '🌟' && usuario.id === user.id;
+
+      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000});
+      collector.on('collect', () => {
+        const repeat = new Discord.MessageEmbed()
+        .setColor(client.colors.default)
+        .setDescription(`😽 ${user} **Abraçou** ${message.author}`)
+        .setImage(img.url)
+  
+        message.reply(repeat)
+      })
+
+    })
   },
 
 };
