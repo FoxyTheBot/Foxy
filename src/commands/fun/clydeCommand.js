@@ -21,6 +21,6 @@ module.exports = {
       .setFooter(`Enviado por ${message.author.username}`)
       .setColor('BLUE');
 
-    message.channel.send(embed);
+    message.reply(embed);
   },
 };

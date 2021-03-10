@@ -7,7 +7,7 @@ module.exports = {
   async run(client, message, args) {
     const user = args.join(' ');
 
-    if (!user) return message.channel.send('<:Minecraft:804858374780878868> **|** Especifique um usuário');
+    if (!user) return message.reply('<:Minecraft:804858374780878868> **|** Especifique um usuário');
     const skin = `https://mc-heads.net/skin/${user}`;
 
     const discord = require('discord.js');
@@ -17,6 +17,6 @@ module.exports = {
       .setTitle(`<:Minecraft:804858374780878868> Skin de ${user}`)
       .setImage(skin)
       .setColor(client.colors.mine);
-    await message.channel.send(embed);
+    await message.reply(embed);
   },
 };

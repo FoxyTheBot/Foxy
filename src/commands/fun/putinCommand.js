@@ -7,12 +7,12 @@ module.exports = {
   guildOnly: false,
   async run(client, message, args) {
     const sayMessage = args.join(' ');
-    if (!sayMessage) return message.channel.send('Digite algo antes');
+    if (!sayMessage) return message.reply('Digite algo antes');
     const embed = new Discord.MessageEmbed()
       .setDescription(sayMessage)
       .setImage('https://media1.tenor.com/images/20af5cca901f8fe316c93174da43c4e8/tenor.gif')
       .setFooter(`Comando solicitado por ${message.author.tag}`);
-    await message.channel.send(embed);
+    await message.reply(embed);
     const log = new Discord.MessageEmbed()
       .setTitle('Logs de comandos')
       .setDescription(`**Command:** f!putin \n **Author:** ${message.author.tag} / ${message.author.id} \n\n **Guild** ${message.guild.name} / ${message.guild.id} \n\n **Message:** ${sayMessage} \n\n Link: [Message link](${message.url})`);

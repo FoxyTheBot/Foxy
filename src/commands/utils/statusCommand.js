@@ -32,7 +32,7 @@ module.exports = {
             .addField(('discord.js:'), `\`\`\`${version}\`\`\``, true)
             .setFooter(`${totalGuilds} Servidores e ${totalMembers} Usuários`);
           message.channel.stopTyping();
-          message.channel.send(status);
+          message.reply(status);
         });
       }).catch(console.error);
   },

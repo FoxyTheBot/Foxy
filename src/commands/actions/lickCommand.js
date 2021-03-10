@@ -27,7 +27,7 @@ module.exports = {
       .setThumbnail(avatar)
       .setFooter('')
       .setAuthor(message.author.tag, avatar);
-    await message.channel.send(`${message.author}`, embed);
+    await message.reply(`${message.author}`, embed);
   },
 
 };

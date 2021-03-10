@@ -21,7 +21,7 @@ module.exports = {
       .setColor('BLUE')
       .setDescription(`**Estou online há:**\n${uptime}`);
 
-    message.channel.send(embed);
+    message.reply(embed);
   },
 
 };

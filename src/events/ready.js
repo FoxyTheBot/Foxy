@@ -14,7 +14,8 @@ module.exports = async (client) => {
     { name: `🐛 | Se você encontrou um bug use ${prefix}report para reportar falhas`, type: 'PLAYING' },
     { name: '🍰 | Minha comida preferida é bolo 💖', type: 'WATCHING' },
     { name: `😍 | Espalhando alegria e felicidade em ${client.guilds.cache.size} Servidores! :3`, type: 'WATCHING' },
-    { name: 'Minecraft com o Win', type: 'PLAYING' }
+    { name: 'Minecraft com o Win', type: 'PLAYING' },
+    { name: "😍 | Obrigada a Luxanna#5757 por me ajudar a ser quem sou hoje ❤", type: "LISTENING"}
   ];
 
   setInterval(() => {

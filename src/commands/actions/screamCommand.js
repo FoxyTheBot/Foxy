@@ -22,7 +22,7 @@ module.exports = {
       .setTimestamp()
       .setFooter('')
       .setAuthor(message.author.tag, avatar);
-    await message.channel.send(embed);
+    await message.reply(embed);
   },
 
 };

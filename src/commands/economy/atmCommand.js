@@ -25,13 +25,13 @@ module.exports = {
             { name: '<:BradescoLogo:810176327993917520> **|** FoxyBank', value: `${bal} FoxCoins` },
             { name: '<:Santander:810177139252133938> **|** Carteira', value: `${bank} FoxCoins` },
           );
-        message.channel.send(embed);
+        message.reply(embed);
         break;
 
       default:
 
-        if (user == message.author) return message.channel.send(`💵 **|** ${user} você possui ${bal} FoxCoins`);
-        message.channel.send(`💵 **|** ${message.author}, ${user} possui ${bal} FoxCoins`);
+        if (user == message.author) return message.reply(`💵 **|** ${user} você possui ${bal} FoxCoins`);
+        message.reply(`💵 **|** ${message.author}, ${user} possui ${bal} FoxCoins`);
     }
   },
 };

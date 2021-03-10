@@ -24,7 +24,7 @@ module.exports = {
       .setImage(rand)
       .setTimestamp()
       .setFooter('');
-    await message.channel.send(embed);
+    await message.reply(embed);
   },
 
 };

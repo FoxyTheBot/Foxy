@@ -22,6 +22,7 @@ client.logsWebhook = new WebhookClient(logsWebhook.id, logsWebhook.token);
 client.reportWebhook = new WebhookClient(reportWebhook.id, reportWebhook.token);
 client.suggestWebhook = new WebhookClient(suggestWebhook.id, suggestWebhook.token);
 client.statusWebhook = new WebhookClient(statusWebhook.id, suggestWebhook.token)
+
 client.emotes = require('./structures/emotes.json')
 client.colors = require('./structures/color.json')
 client.config = require('../config.json')
@@ -63,7 +64,7 @@ function foxySelfReport(error, context) {
 
   const replyEmbed = new MessageEmbed()
     .setTitle('<:BSOD:777579371870683147> | Ocorreu um erro ao usar este comando')
-    .setColor(colors.error)
+    .setColor(client.colors.error)
     .setDescription(`\`\`\`js\n${errorSliced}\`\`\``)
     .setFooter('<:bug_hunter:789668194494709761> Não se preocupe! esse erro foi reportado automaticamente para minha equipe!');
 
@@ -85,19 +86,19 @@ client.on('message', (message) => {
   const command = client.commands.get(commandName)
         || client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
 
-  if (!command) return message.channel.send(`<a:foxy_see:817493038053326858> **|** Desculpe a inconveniência mas este comando não existe!`)
+  if (!command) return message.reply(`<a:foxy_see:817493038053326858> **|** Desculpe a inconveniência mas este comando não existe!`)
 
   function foxyCommandHandler() {
     if (command.guildOnly && message.channel.type === 'dm') {
-      return message.channel.send(`<:Error:718944903886930013> | ${message.author} Esse comando não pode ser executado em mensagens diretas!`);
+      return message.reply(`<:Error:718944903886930013> | ${message.author} Esse comando não pode ser executado em mensagens diretas!`);
     }
 
     if (command.ownerOnly && !owners.includes(message.author.id)) {
-      return message.channel.send(`<:Error:718944903886930013> | ${message.author} Você não tem permissão para fazer isso! <:meow_thumbsup:768292477555572736>`);
+      return message.reply(`<:Error:718944903886930013> | ${message.author} Você não tem permissão para fazer isso! <:meow_thumbsup:768292477555572736>`);
     }
 
     if (command.argsRequired && !args.length) {
-      return message.channel.send(`<:Error:718944903886930013> | ${message.author} Esse comando precisa de argumentos para ser executado!`);
+      return message.reply(`<:Error:718944903886930013> | ${message.author} Esse comando precisa de argumentos para ser executado!`);
     }
 
     if (!cooldowns.has(command.name)) {
@@ -113,7 +114,7 @@ client.on('message', (message) => {
 
       if (now < expirationTime) {
         const timeLeft = (expirationTime - now) / 1000;
-        return message.channel.send(`:fire: **|** ${message.author}, Por favor aguarde **${timeLeft.toFixed(0)} segundos** para usar o comando novamente`);
+        return message.reply(`:fire: **|** ${message.author}, Por favor aguarde **${timeLeft.toFixed(0)} segundos** para usar o comando novamente`);
       }
     }
 
@@ -134,7 +135,7 @@ client.on('message', (message) => {
             .setDescription('Você foi banido(a) de usar a Foxy em qualquer servidor no Discord! \n Caso seu ban foi injusto (o que eu acho muito difícil) você pode solicitar seu unban no meu [servidor de suporte](https://gg/kFZzmpD) \n **Leia os termos em** [Termos de uso](https://foxywebsite.ml/tos.html)')
             .setFooter('You\'ve been banned from using Foxy on other servers on Discord!');
           return message.author.send(bannedEmbed).catch(() => {
-            message.channel.send(message.author, bannedEmbed);
+            message.reply(message.author, bannedEmbed);
           });
         }
         return foxyCommandHandler();

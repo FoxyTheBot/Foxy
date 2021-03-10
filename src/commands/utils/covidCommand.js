@@ -16,7 +16,7 @@ module.exports = {
       .setDescription('Você esqueceu alguns argumentos: (ex: f!covid all || f!covid Canada)')
       .setTimestamp();
 
-    if (!args[0]) return message.channel.send(noArgs);
+    if (!args[0]) return message.reply(noArgs);
 
     if (args[0] === 'all') {
       fetch('https://covid19.mathdro.id/api')
@@ -32,7 +32,7 @@ module.exports = {
             .addField('Recuperados', recovered)
             .addField('Mortes', deaths);
 
-          message.channel.send(embed);
+          message.reply(embed);
         });
     } else {
       fetch(`https://covid19.mathdro.id/api/countries/${countries}`)
@@ -48,8 +48,8 @@ module.exports = {
             .addField('Recuperados', recovered)
             .addField('Mortes', deaths);
 
-          message.channel.send(embed);
-        }).catch((e) => message.channel.send('País inválido'));
+          message.reply(embed);
+        }).catch((e) => message.reply('País inválido'));
     }
   },
 

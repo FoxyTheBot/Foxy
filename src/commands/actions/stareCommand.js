@@ -28,7 +28,7 @@ module.exports = {
       .setImage(rand)
       .setTimestamp()
       .setAuthor(message.author.tag, avatar);
-    await message.channel.send(embed);
+    await message.reply(embed);
   },
 
 };
