@@ -11,8 +11,11 @@ module.exports = {
   async run(client, message, args) {
     const img = await neko.sfw.kiss();
 
-    const user = message.mentions.users.first() || client.users.cache.get(args[0]);
-    if (!user) {
+    
+  const user = message.mentions.users.first() || client.users.cache.get(args[0]);
+  
+  if(user == client.user) return message.channel.send("🙅‍♀️ **|** Nah, eu não quero te beijar!")
+  if (!user) {
       return message.reply('lembre-se de mencionar um usuário válido para beijar!');
     }
 
