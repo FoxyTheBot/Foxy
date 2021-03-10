@@ -28,7 +28,22 @@ module.exports = {
       .setTimestamp()
       .setFooter('😱😱')
       .setAuthor(message.author.tag, avatar);
-    await message.reply(embed);
+    await message.reply(embed).then((msg) => {
+      msg.react('😡')
+
+      const filter = (reaction, usuario) => reaction.emoji.name === '😡' && usuario.id === user.id;
+
+      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000});
+      collector.on('collect', () => {
+        const repeat = new Discord.MessageEmbed()
+        .setColor(client.colors.default)
+        .setDescription(`${user} **Bateu em** ${message.author}`)
+        .setImage(img.url)
+  
+        message.reply(repeat)
+      })
+
+    })
   },
 
 };
