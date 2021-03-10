@@ -28,7 +28,7 @@ module.exports = {
             .addField(('Memória Utilizada:'), `\`\`\`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB\`\`\``, true)
             .addField(('CPU:'), `\`\`\`${percent.toFixed(2)}%\`\`\``, true)
             .addField(('Plataforma:'), `\`\`\`${os.platform()} ${os.arch()}\`\`\``, true)
-            .addField(('Versão:'), `\`\`\`${require('../../package.json').version}\`\`\``, true)
+            .addField(('Versão:'), `\`\`\`${require('../../../package.json').version}\`\`\``, true)
             .addField(('discord.js:'), `\`\`\`${version}\`\`\``, true)
             .setFooter(`${totalGuilds} Servidores e ${totalMembers} Usuários`);
           message.channel.stopTyping();
