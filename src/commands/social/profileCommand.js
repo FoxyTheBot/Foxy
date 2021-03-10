@@ -47,17 +47,17 @@ module.exports = {
       ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
 
-      ctx.font = '80px sans-serif';
+      ctx.font = '70px sans-serif';
       ctx.fillStyle = '#ffffff';
-      ctx.fillText(`${user.username}`, canvas.width / 6.0, canvas.height / 8.0 );
+      ctx.fillText(`${user.username}`, canvas.width / 6.0, canvas.height / 9.5);
 
       ctx.font = '40px sans-serif';
       ctx.fillStyle = '#ffffff';
-      ctx.fillText(`Reps: ${rep} \nCarteira: ${money} \nFoxyBank: ${bal}`, canvas.width / 1.5, canvas.height / 8.0);
+      ctx.fillText(`Reps: ${rep} \nCarteira: ${money} \nFoxyBank: ${bal}`, canvas.width / 1.5, canvas.height / 7.0);
 
       if(casado !== null) {
         let user2 = await client.users.fetch(casado)
-      ctx.font = '40px sans-serif';
+      ctx.font = '30px sans-serif';
       ctx.fillStyle = '#ffffff';
       ctx.fillText(`Casado com: ${user2.tag}`, canvas.width / 6.0, canvas.height / 5.5);
     }
