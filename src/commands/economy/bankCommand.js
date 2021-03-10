@@ -22,6 +22,6 @@ module.exports = {
         { name: '<:Santander:810177139252133938> **|** Carteira', value: `${money} FoxCoins` },
       )
       .setFooter('Para poder guardar envie para sua conta usando f!deposit <quantia>');
-    message.channel.send(embed);
+    message.reply(embed);
   },
 };

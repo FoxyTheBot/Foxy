@@ -9,17 +9,17 @@ module.exports = {
         '<:WindowsShield:777579023249178625> | Você não tem permissão para executar este comando! Você precisará da permissão `Gerenciar Mensagens` para usar este comando!',
       );
     }
-    if (!message.guild.me.hasPermission('MANAGE_CHANNELS')) {
-      message.channel.send('Eu preciso da permissão `Gerenciar canais` para fazer isso!');
+    if (!message.guild.me.permissions.has('MANAGE_CHANNELS')) {
+      message.reply('Eu preciso da permissão `Gerenciar canais` para fazer isso!');
     }
-    if (!args[0]) return message.channel.send('Especifique o tempo em segundos (de 1 até 21600 Segundos)');
+    if (!args[0]) return message.reply('Especifique o tempo em segundos (de 1 até 21600 Segundos)');
     const duration = args[0];
-    if (args[0] > 21600) return message.channel.send('Utilize apenas de 1 até 21600 segundos ');
-    if (isNaN(args[0])) return message.channel.send('Utilize apenas números');
+    if (args[0] > 21600) return message.reply('Utilize apenas de 1 até 21600 segundos ');
+    if (isNaN(args[0])) return message.reply('Utilize apenas números');
     message.channel.setRateLimitPerUser(duration)
       .catch(() => {
-        message.channel.send('Falha ao definir o modo lento neste canal, verifique o comprimento do modo lento.');
+        message.reply('Falha ao definir o modo lento neste canal, verifique o comprimento do modo lento.');
       });
-    message.channel.send(`:turtle: Eu defini o modo lento para ${duration} segundos!`);
+    message.reply(`:turtle: Eu defini o modo lento para ${duration} segundos!`);
   },
 };

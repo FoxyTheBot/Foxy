@@ -6,14 +6,14 @@ module.exports = {
   argsRequire: true,
   async run(client, message, args) {
     if (!args) {
-      message.channel.send('Digite uma pergunta');
+      message.reply('Digite uma pergunta');
     } else {
       const results = ['Verdade', 'Falso'];
       const result = Math.floor((Math.random() * results.length));
       {
       }
 
-      message.channel.send(results[result]);
+      message.reply(results[result]);
     }
   },
 };

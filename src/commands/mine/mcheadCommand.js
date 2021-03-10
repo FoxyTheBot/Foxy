@@ -6,7 +6,7 @@ module.exports = {
 
   async run(client, message, args) {
     const user = args.join(' ');
-    if (!user) return message.channel.send('<:Minecraft:804858374780878868> **|** Especifique um usuário');
+    if (!user) return message.reply('<:Minecraft:804858374780878868> **|** Especifique um usuário');
 
     const discord = require('discord.js');
     const head = `https://mc-heads.net/head/${user}`;
@@ -15,6 +15,6 @@ module.exports = {
       .setColor(client.colors.mine)
       .setTitle(`Cabeça de ${user}`)
       .setImage(head);
-    message.channel.send(embed);
+    message.reply(embed);
   },
 };

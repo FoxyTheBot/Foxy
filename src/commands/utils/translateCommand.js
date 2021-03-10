@@ -23,6 +23,6 @@ module.exports = {
       .setTitle(':map: | Translator')
       .setDescription(`\ \ \`\`\`\n${result.text}\n\`\`\``);
 
-    message.channel.send(`${message.author}`, embed);
+    message.reply(`${message.author}`, embed);
   },
 };

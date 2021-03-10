@@ -10,9 +10,9 @@ module.exports = {
       return message.reply('lembre-se de mencionar um usuário válido para avaliar!');
     }
 
-    if(user == 737044809650274325) return message.channel.send(`${client.emotes.heart} **|** Eu dou nota **∞** para <@737044809650274325> sim eu sou muito linda 😘`);
-    if(user == 331243426941239297) return message.channel.send(`${client.emotes.heart} **|** Eu dou nota **∞** para ${user} minha mãe é perfeita >.<`)
-    if(user == 727650596563189811) return message.channel.send(`${client.emotes.heart} **|** Eu dou nota **∞** para ${user}, a ${user.username} é perfeita >.<`)
+    if(user == 737044809650274325) return message.reply(`${client.emotes.heart} **|** Eu dou nota **∞** para <@737044809650274325> sim eu sou muito linda 😘`);
+    if(user == 331243426941239297) return message.reply(`${client.emotes.heart} **|** Eu dou nota **∞** para ${user} minha mãe é perfeita >.<`)
+    if(user == 727650596563189811) return message.reply(`${client.emotes.heart} **|** Eu dou nota **∞** para ${user}, a ${user.username} é perfeita >.<`)
     const list = [
       '**1** para essa waifu. Eu não gostei <:hmmpepe:791151120021061662> ',
       '**5** para essa waifu. <:hmmm:779010951420051457> ',
@@ -26,6 +26,6 @@ module.exports = {
 
     const rand = list[Math.floor(Math.random() * list.length)];
 
-    await message.channel.send(`Sobre ${user}... Eu dou nota ${rand}`);
+    await message.reply(`Sobre ${user}... Eu dou nota ${rand}`);
   },
 };

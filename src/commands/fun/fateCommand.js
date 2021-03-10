@@ -26,7 +26,7 @@ module.exports = {
       .setDescription(`${message.author} e ${user} são ${rand}`)
       .setTimestamp()
       .setFooter('');
-    await message.channel.send(embed);
+    await message.reply(embed);
   },
 
 };

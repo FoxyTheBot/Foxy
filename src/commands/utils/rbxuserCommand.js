@@ -10,7 +10,7 @@ module.exports = {
     const moment = require('moment');
 
     const username = args[0];
-    if (!username) return message.channel.send('Especifique um usuário!');
+    if (!username) return message.reply('Especifique um usuário!');
     if (username) {
       roblox.getIdFromUsername(username).then((id) => {
         if (id) {
@@ -31,14 +31,14 @@ module.exports = {
               .addField(':date: Data de conta', `${info.age} Dias` || 'Sem solução', true)
               .addField(':calendar: Data de registro', `${data}` || 'Sem solução', true)
               .addField('User Link', `https://roblox.com/users/${id}/profile`, true);
-            message.channel.send(embed);
+            message.reply(embed);
           });
         }
 
 
       }).catch((err) => {
-        message.channel.send('Ah! Eu não encontrei este usuário, ou talvez ele não exista, desculpe pela inconveniência!'); // catching error
+        message.reply('Ah! Eu não encontrei este usuário, ou talvez ele não exista, desculpe pela inconveniência!'); // catching error
       });
-    } else { message.channel.send('Por favor especifique um usuário válido'); }
+    } else { message.reply('Por favor especifique um usuário válido'); }
   },
 };

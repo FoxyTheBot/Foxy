@@ -15,30 +15,30 @@ module.exports = {
         if (isNaN(args[1])) return;
         db.subtract(`coins_${user.id}`, args[1]);
         const now = await db.fetch(`coins_${user.id}`);
-        message.channel.send(`Removido ${args[1]} FoxCoins de ${user} agora ele(a) possui ${now} FoxCoins`);
+        message.reply(`Removido ${args[1]} FoxCoins de ${user} agora ele(a) possui ${now} FoxCoins`);
         break;
 
       case 'add_coins':
         db.add(`coins_${user.id}`, args[1]);
         const bal = await db.fetch(`coins_${user.id}`);
-        message.channel.send(`Foram adicionados ${args[1]} FoxCoins na conta de ${user} agora ele(a) possui ${bal} FoxCoins`);
+        message.reply(`Foram adicionados ${args[1]} FoxCoins na conta de ${user} agora ele(a) possui ${bal} FoxCoins`);
         break;
 
       case 'reset_all':
         db.set(`background_${user.id}`, 'default_background.png');
         db.delete(`coins_${user.id}`);
         db.delete(`coins_${user.id}`);
-        message.channel.send('Profile data deleted successfully!');
+        message.reply('Profile data deleted successfully!');
         break;
 
       case 'reset_background':
         db.set(`background_${user.id}`, 'default_background.png');
-        message.channel.send(`O Background de ${user} foi redefinido!`);
+        message.reply(`O Background de ${user} foi redefinido!`);
         break;
 
       case 'set_background':
         db.set(`background_${user.id}`, `${args[1]}`);
-        message.channel.send(`O arquivo ${args[1]} foi setado no perfil de ${user}`);
+        message.reply(`O arquivo ${args[1]} foi setado no perfil de ${user}`);
         break;
 
         case 'inspect_user':
@@ -56,7 +56,7 @@ module.exports = {
           { name: "Background", value: background},
           { name: "About Me", value: aboutme}
         )
-        message.channel.send(message.author, inspect)
+        message.reply(message.author, inspect)
           break;
         default:
         const embed = new MessageEmbed()
@@ -70,7 +70,7 @@ module.exports = {
             { name: 'set_background', value: 'Define o background de algum usuário' },
             { name: "inspect_user", value: "Verifica os dados do usuário"}
           );
-        message.channel.send(embed);
+        message.reply(embed);
     }
   },
 };

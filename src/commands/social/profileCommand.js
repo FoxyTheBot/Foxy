@@ -25,7 +25,7 @@ module.exports = {
     const profile = db.fetch(`background_${user.id}`);
     if (profile == null) {
       db.set(`background_${user.id}`, 'default_background.png');
-      message.channel.send('O perfil foi criado! Digite o comando novamente :3');
+      message.reply('O perfil foi criado! Digite o comando novamente :3');
     } else {
       const applyText = (canvas, text) => {
         const ctx = canvas.getContext('2d');
@@ -80,7 +80,7 @@ module.exports = {
 
       const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'foxy_profile.png');
       message.channel.stopTyping();
-      message.channel.send(attachment);
+      message.reply(attachment);
     }
   },
 };

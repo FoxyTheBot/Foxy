@@ -21,7 +21,7 @@ module.exports = {
       .setDescription(`${message.author} **beijou** ${user}`)
       .setImage(img.url)
       .setTimestamp();
-    await message.channel.send(`${message.author}`, embed);
+    await message.reply(`${message.author}`, embed);
   },
 
 };

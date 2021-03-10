@@ -14,7 +14,7 @@ module.exports = {
       ATTACH_FILES: false,
       ADD_REACTIONS: false,
     });
-    message.channel.send(':lock: **|** Canal bloqueado com sucesso! Use f!unlock para desbloquear.');
+    message.reply(':lock: **|** Canal bloqueado com sucesso! Use f!unlock para desbloquear.');
   },
 
 };

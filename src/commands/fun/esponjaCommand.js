@@ -7,12 +7,12 @@ module.exports = {
   cooldown: 3,
   guildOnly: true,
   async run(client, message, args) {
-    if (!message.guild.me.hasPermission('ATTACH_FILES')) return message.channel.send('Eu preciso da permissão `enviar arquvios` para fazer isso!');
+    if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.reply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 
     const canvas = Canvas.createCanvas(500, 400);
     const ctx = canvas.getContext('2d');
     const sayMessage = args.join(' ');
-    if (!sayMessage) return message.channel.send('Digite algo antes');
+    if (!sayMessage) return message.reply('Digite algo antes');
     message.channel.startTyping();
 
     const background = await Canvas.loadImage('./src/assets/fodase.jpeg');
@@ -36,7 +36,7 @@ module.exports = {
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'respier.png');
     message.channel.stopTyping();
 
-    message.channel.send(attachment);
+    message.reply(attachment);
     const embed = new Discord.MessageEmbed()
       .setTitle('Logs de comandos')
       .setDescription(`**Comando:** f!laranjo \n **Autor:** ${message.author.tag} / ${message.author.id} \n\n **Servidor** ${message.guild.name} / ${message.guild.id} \n\n **Mensagem:** ${sayMessage} \n\n Link: [Mensagem](${message.url})`);

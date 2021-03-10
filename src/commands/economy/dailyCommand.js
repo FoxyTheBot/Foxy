@@ -17,13 +17,13 @@ module.exports = {
     if (daily !== null && timeout - (Date.now() - daily) > 0) {
       const time = ms(timeout - (Date.now() - daily));
 
-      message.channel.send(`💸 **|** Você já pegou seu daily hoje! Tente novamente em **${time.hours}h ${time.minutes}m ${time.seconds}s**`);
+      message.reply(`💸 **|** Você já pegou seu daily hoje! Tente novamente em **${time.hours}h ${time.minutes}m ${time.seconds}s**`);
     } else {
       db.add(`coins_${user.id}`, amount);
       db.set(`daily_${user.id}`, Date.now());
 
       const money = await db.fetch(`coins_${user.id}`);
-      message.channel.send(`💵 **|** Você coletou seu daily você ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins na sua conta!`);
+      message.reply(`💵 **|** Você coletou seu daily você ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins na sua conta!`);
     }
   },
 };

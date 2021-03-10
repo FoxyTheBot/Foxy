@@ -4,7 +4,7 @@ module.exports = {
     cooldown: 3,
     guildOnly: true,
     async run(client, message, args) {
-            message.channel.send('<@485831009619804161> é gay')
+            message.reply('<@485831009619804161> é gay')
     },
 
 };

@@ -15,6 +15,6 @@ module.exports = {
     const embed = new MessageEmbed()
       .setColor(client.colors.default)
       .setImage(`https://http.cat/${choose(codes)}`);
-    await message.channel.send(embed);
+    await message.reply(embed);
   },
 };

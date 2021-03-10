@@ -10,8 +10,8 @@ module.exports = {
     const result = acceptedReplies[random];
 
     const choice = args[0];
-    if (!choice) return message.channel.send(`Como jogar \`${client.config.prefix}ppt <pedra|papel|tesoura\``);
-    if (!acceptedReplies.includes(choice)) return message.channel.send(`Apenas estas respostas são aceitas: \`${acceptedReplies.join(', ')}\``);
+    if (!choice) return message.reply(`Como jogar \`${client.config.prefix}ppt <pedra|papel|tesoura\``);
+    if (!acceptedReplies.includes(choice)) return message.reply(`Apenas estas respostas são aceitas: \`${acceptedReplies.join(', ')}\``);
 
     if (result === choice) return message.reply('Ei, dessa vez deu empate');
 
@@ -29,7 +29,7 @@ module.exports = {
         return message.reply('OwO você venceu! ^^');
       }
       default: {
-        return message.channel.send(`Apenas estas respostas são aceitas: \`${acceptedReplies.join(', ')}\``);
+        return message.reply(`Apenas estas respostas são aceitas: \`${acceptedReplies.join(', ')}\``);
       }
     }
   },

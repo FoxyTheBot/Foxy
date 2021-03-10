@@ -13,6 +13,6 @@ module.exports = {
       ATTACH_FILES: true,
       ADD_REACTIONS: true,
     });
-    message.channel.send(':unlock: **|** Canal desbloqueado com sucesso! Use f!lock para bloquear.');
+    message.reply(':unlock: **|** Canal desbloqueado com sucesso! Use f!lock para bloquear.');
   },
 };

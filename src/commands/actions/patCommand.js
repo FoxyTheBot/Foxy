@@ -21,7 +21,7 @@ module.exports = {
       .setImage(img.url)
       .setTimestamp()
       .setFooter('');
-    await message.channel.send(`${message.author}`, embed);
+    await message.reply(`${message.author}`, embed);
   },
 
 };
