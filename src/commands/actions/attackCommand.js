@@ -35,7 +35,7 @@ module.exports = {
       collector.on('collect', () => {
         const repeat = new Discord.MessageEmbed()
         .setColor(client.colors.default)
-        .setDescription(`😽 ${user} **Abraçou** ${message.author}`)
+        .setDescription(`${user} **Atacou** ${message.author}`)
         .setImage(img.url)
   
         message.reply(repeat)
