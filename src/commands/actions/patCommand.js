@@ -20,8 +20,23 @@ module.exports = {
       .setDescription(`${message.author} **fez cafuné em** ${user}`)
       .setImage(img.url)
       .setTimestamp()
-      .setFooter('');
-    await message.reply(`${message.author}`, embed);
+      .setFooter('Reaga com 🤩 para retribuir');
+    await message.reply(`${message.author}`, embed).then((msg) => {
+      msg.react('🤩')
+
+      const filter = (reaction, usuario) => reaction.emoji.name === '🤩' && usuario.id === user.id;
+
+      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000});
+      collector.on('collect', () => {
+        const repeat = new Discord.MessageEmbed()
+        .setColor(client.colors.default)
+        .setDescription(`${user} **Lambeu** ${message.author}`)
+        .setImage(img.url)
+  
+        message.reply(repeat)
+      })
+
+    })
   },
 
 };
