@@ -4,18 +4,19 @@ const client = require('nekos.life');
 const neko = new client();
 
 module.exports = {
-    name: 'kiss',
+  name: 'kiss',
   aliases: ['kiss', 'beijar'],
   cooldown: 3,
   guildOnly: true,
   async run(client, message, args) {
     const img = await neko.sfw.kiss();
 
-    
-  const user = message.mentions.users.first() || client.users.cache.get(args[0]);
-  
-  if(user == client.user) return message.channel.send("🙅‍♀️ **|** Nah, eu não quero te beijar!")
-  if (!user) {
+    const img2 = await neko.sfw.kiss();
+
+    const user = message.mentions.users.first() || client.users.cache.get(args[0]);
+
+    if (user == client.user) return message.channel.send("🙅‍♀️ **|** Nah, eu não quero te beijar!")
+    if (!user) {
       return message.reply('lembre-se de mencionar um usuário válido para beijar!');
     }
 
@@ -30,13 +31,13 @@ module.exports = {
 
       const filter = (reaction, usuario) => reaction.emoji.name === '😘' && usuario.id === user.id;
 
-      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000});
+      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000 });
       collector.on('collect', () => {
         const repeat = new Discord.MessageEmbed()
-        .setColor(client.colors.default)
-        .setDescription(`😽 ${user} **Beijou** ${message.author}`)
-        .setImage(img.url)
-  
+          .setColor(client.colors.default)
+          .setDescription(`😽 ${user} **Beijou** ${message.author}`)
+          .setImage(img2.url)
+
         message.reply(repeat)
       })
 

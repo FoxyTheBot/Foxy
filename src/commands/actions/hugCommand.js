@@ -14,6 +14,8 @@ module.exports = {
     }
 
     const img = await neko.sfw.hug();
+    const img2 = await neko.sfw.hug();
+
     const avatar = message.author.displayAvatarURL({ format: 'png' });
     const embed = new Discord.MessageEmbed()
       .setColor('#000000')
@@ -31,7 +33,7 @@ module.exports = {
         const repeat = new Discord.MessageEmbed()
         .setColor(client.colors.default)
         .setDescription(`${user} **Abraçou** ${message.author}`)
-        .setImage(img.url)
+        .setImage(img2.url)
   
         message.reply(repeat)
       })
