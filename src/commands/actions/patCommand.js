@@ -14,6 +14,7 @@ module.exports = {
     }
 
     const img = await neko.sfw.pat();
+    const img2 = await neko.sfw.pat();
 
     const embed = new Discord.MessageEmbed()
       .setColor('#000000')
@@ -26,13 +27,13 @@ module.exports = {
 
       const filter = (reaction, usuario) => reaction.emoji.name === '🤩' && usuario.id === user.id;
 
-      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000});
+      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000 });
       collector.on('collect', () => {
         const repeat = new Discord.MessageEmbed()
-        .setColor(client.colors.default)
-        .setDescription(`${user} **Lambeu** ${message.author}`)
-        .setImage(img.url)
-  
+          .setColor(client.colors.default)
+          .setDescription(`${user} **Fez cafuné** ${message.author}`)
+          .setImage(img2.url)
+
         message.reply(repeat)
       })
 
