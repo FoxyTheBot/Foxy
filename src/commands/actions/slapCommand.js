@@ -11,6 +11,7 @@ module.exports = {
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
 
     const img = await neko.sfw.slap();
+    const img2 = await neko.sfw.slap();
 
     const foxyslap = new Discord.MessageEmbed()
       .setColor('RED')
@@ -39,7 +40,7 @@ module.exports = {
         const repeat = new Discord.MessageEmbed()
         .setColor(client.colors.default)
         .setDescription(`${user} **Bateu em** ${message.author}`)
-        .setImage(img.url)
+        .setImage(img2.url)
   
         message.reply(repeat)
       })

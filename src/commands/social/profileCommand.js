@@ -13,13 +13,13 @@ module.exports = {
     let money = await db.fetch(`coins_${user.id}`);
     if (money === null) money = 0;
     let bal = await db.fetch(`bal_${user.id}`)
-    if(bal === null) bal = 0;
+    if (bal === null) bal = 0;
 
     let aboutme = await db.fetch(`aboutme_${user.id}`);
     if (aboutme == null) aboutme = 'Foxy é minha amiga, você pode alterar isso usando f!aboutme';
 
     const casado = await db.fetch(`married_${user.id}`);
-    
+
     let rep = await db.fetch(`rep_${user.id}`);
     if (rep == null) rep = 0;
     const profile = db.fetch(`background_${user.id}`);
@@ -55,20 +55,20 @@ module.exports = {
       ctx.fillStyle = '#ffffff';
       ctx.fillText(`Reps: ${rep} \nCarteira: ${money} \nFoxyBank: ${bal}`, canvas.width / 1.5, canvas.height / 7.0);
 
-      if(casado !== null) {
+      if (casado !== null) {
         let user2 = await client.users.fetch(casado)
-      ctx.font = '30px sans-serif';
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText(`Casado com: ${user2.tag}`, canvas.width / 6.0, canvas.height / 5.5);
-    }
+        ctx.font = '30px sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(`Casado com: ${user2.tag}`, canvas.width / 6.0, canvas.height / 5.5);
+      }
 
       ctx.font = ('30px sans-serif');
       ctx.fillStyle = '#ffffff';
       ctx.fillText(aboutme, canvas.width / 55.0, canvas.height / 1.2);
 
 
-     
-     
+
+
 
       ctx.beginPath();
       ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
