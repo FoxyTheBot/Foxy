@@ -29,16 +29,19 @@ module.exports = {
 
     if (args[1] > fetchValue) return message.reply('Você não tem coins suficiente');
 
-    message.reply(`Você quer mesmo transferir ${args[1]} FoxCoins para ${user.user}?`).then((sentMessage) => {
+    message.reply(`💸 **|** Você deseja mesmo transferir ${args[1]} FoxCoins para ${user.user}? \nA Equipe da Foxy **Não se responsabiliza** pelas FoxCoins perdidas, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de FoxCoins!`).then((sentMessage) => {
       sentMessage.react('✅');
-      const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
-      sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
-        .then((collected) => {
-          message.reply(`Você transferiu ${args[1]} FoxCoins para ${user.user}`);
+      const filter = (reaction, usuario) => reaction.emoji.name === '✅' && usuario.id === message.author.id;
+      const Collector = sentMessage.createReactionCollector(filter, { max: 1, time: 60000 });
 
-          db.add(`bal_${user.id}`, args[1]);
-          db.subtract(`coins_${message.author.id}`, args[1]);
-        });
+      sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+        
+      Collector.on('collect', () => {
+        message.reply(`Você fez uma transação de ${args[1]} FoxCoins para ${user.user}`);
+        db.add(`coins_${user.id}`, args[1]);
+        db.subtract(`coins_${message.author.id}`, args[1]);    
+      })
+
     });
   },
 };
