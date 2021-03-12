@@ -51,9 +51,9 @@ module.exports = {
       ctx.fillStyle = '#ffffff';
       ctx.fillText(`${user.username}`, canvas.width / 6.0, canvas.height / 9.5);
 
-      ctx.font = '40px sans-serif';
+      ctx.font = '45px sans-serif';
       ctx.fillStyle = '#ffffff';
-      ctx.fillText(`Reps: ${rep} \nCarteira: ${money} \nFoxyBank: ${bal}`, canvas.width / 1.5, canvas.height / 7.0);
+      ctx.fillText(`Reps: ${rep} \nCarteira: ${money}`, canvas.width / 1.5, canvas.height / 7.0);
 
       if (casado !== null) {
         let user2 = await client.users.fetch(casado)
