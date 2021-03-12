@@ -85,7 +85,7 @@ client.on('message', (message) => {
   const command = client.commands.get(commandName)
     || client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
 
-  if (!command) return message.reply(`<a:foxy_see:817493038053326858> **|** Desculpe a inconveniência mas este comando não existe!`)
+  if (!command) return message.reply(`${client.emotes.notfound} **|** Desculpe a inconveniência mas este comando não existe!`)
 
   function foxyCommandHandler() {
     if (command.guildOnly && message.channel.type === 'dm') {
