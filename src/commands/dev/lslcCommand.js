@@ -42,7 +42,7 @@ module.exports = {
         break;
 
         case 'inspect_user':
-        let bank = db.fetch(`bal_${user.id}`)
+        
         let bucks = db.fetch(`coins_${user.id}`)
         let background = db.fetch(`background_${user.id}`)
         let aboutme = db.fetch(`aboutme_${user.id}`)
@@ -51,7 +51,6 @@ module.exports = {
         .setTitle('User Data')
         .setDescription(`${user}'s data`)
         .addFields(
-          { name: "FoxBank", value: `${bank}`},
           { name: "Wallet", value: `${bucks} FoxCoins`},
           { name: "Background", value: background},
           { name: "About Me", value: aboutme}
