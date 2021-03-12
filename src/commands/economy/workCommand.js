@@ -16,14 +16,14 @@ module.exports = {
         if(author !== null && timeout - (Date.now() - author) > 0) {
             let time = ms(timeout - (Date.now() - author));
 
-            message.reply(`😴 **|** Você trabalhou hoje, tente novamente em **${time.minutes}m ${time.seconds}s**`)
+            message.reply(`😴 **|** Você já trabalhou, descanse um pouco. Tente novamente em **${time.minutes}m ${time.seconds}s**`)
 
         } else {
              
             let replies = ['Programador', 'Construtor', 'Garçom', 'Chefe', 'Mecânico']
 
             let result = Math.floor((Math.random() * replies.length));
-            let amount = 20 * 80 + 1;
+            let amount = 500;
 
             message.reply(`🌟 **|** Você trabalhou como ${replies[result]} e ganhou ${amount} FoxCoins!`)
 
