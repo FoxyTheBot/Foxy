@@ -15,6 +15,7 @@ module.exports = {
     const embed = new Discord.MessageEmbed()
       .setColor('#4cd8b2')
       .setTitle(`Avatar de ${user.username}`)
+        .setDescription(`Clique [aqui](https://www.youtube.com/watch?v=DLzxrzFCyOs) para baixar o avatar`)
       .setImage(avatar);
     await message.reply(embed);
   },

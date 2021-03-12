@@ -1,6 +1,5 @@
 const db = require("quick.db")
 const ms = require('parse-ms')
-
 module.exports = {
     name: "work",
     aliases: ['work', 'trabalhar', 'trabalho', 'wr'],
@@ -25,6 +24,7 @@ module.exports = {
 
             let result = Math.floor((Math.random() * replies.length));
             let amount = 20 * 80 + 1;
+
             message.reply(`🌟 **|** Você trabalhou como ${replies[result]} e ganhou ${amount} FoxCoins!`)
 
             db.add(`coins_${user.id}`, amount)
