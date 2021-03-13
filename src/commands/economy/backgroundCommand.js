@@ -1,6 +1,6 @@
 module.exports = {
   name: 'background',
-  aliases: ['background'],
+  aliases: ['background', 'backgrounds', 'wallpaper', 'wallpapers'],
   cooldown: 5,
   guildOnly: false,
 
