@@ -6,7 +6,7 @@ module.exports = async (client, guild) => {
     return   webhookClient.send(`<:meow_blush:768292358458179595> **|** Fui adicionada no servidor \`${guild.id}\``);
   }
 
-  webhookClient.send(`<:meow_blush:768292358458179595> **|** Fui adicionada no servidor \`${guild.name}\``);
+  webhookClient.send(`<:meow_blush:768292358458179595> **|** Fui adicionada no servidor \`${guild.name}\`/${guild.id}`);
 
 
 }
