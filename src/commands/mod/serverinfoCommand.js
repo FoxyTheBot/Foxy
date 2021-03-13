@@ -52,7 +52,7 @@ module.exports = {
       .setTitle(guild.name)
       .setThumbnail(servericon)
       .addFields(
-        { name: ':crown: Owner', value: `${guild.owner}`, inline: true },
+        { name: ':crown: Owner', value: `${guild.owner.tag}`, inline: true },
         { name: '<:info:718944993741373511> Owner ID', value: `\`${guild.ownerID}\``, inline: true },
         { name: ':earth_americas: Região', value: `${region[guild.region]}`, inline: true },
         { name: ':computer: Server ID', value: `\`${guild.id}\``, inline: true },
@@ -65,7 +65,7 @@ module.exports = {
         { name: '<:WindowsShield:777579023249178625> Nível de verificação', value: `${level}`, inline: true },
         { name: '<:Partner:813832825543065680> Servidor Parceiro:', value: `${partner}`, inline: true },
       )
-      .setFooter('Caso não apareça o dono, peça para o dono do servidor executar o comando duas vezes ;) ');
+      .setFooter('Caso o Owner esteja null é porque o dono não está registrado na Foxy, peça para o dono executar um comando');
     message.reply(embed);
   },
 };

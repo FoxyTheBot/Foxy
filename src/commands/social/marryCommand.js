@@ -7,6 +7,7 @@ module.exports = {
     guildOnly: true,
 
     async run(client, message, args) {
+        
         const authordata = db.fetch(`married_${message.author.id}`)
 
         const mentioned = message.mentions.users.first();

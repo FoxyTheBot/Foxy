@@ -25,11 +25,11 @@ client.statusWebhook = new WebhookClient(statusWebhook.id, suggestWebhook.token)
 client.emotes = require('./structures/emotes.json')
 client.colors = require('./structures/color.json')
 client.config = require('../config.json')
+client.commands = new Collection();
 
 const commandFolders = fs.readdirSync('./src/commands');
 const eventFiles = fs.readdirSync('./src/events').filter((file) => file.endsWith('.js'));
 
-client.commands = new Collection();
 
 for (const folder of commandFolders) {
   const commandFiles = fs.readdirSync(`./src/commands/${folder}`).filter(file => file.endsWith('.js'));
