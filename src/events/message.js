@@ -1,4 +1,3 @@
 module.exports = async (client, message) => {
-  const { prefix } = require('../../config.json');
-  if (message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) message.reply(`Olá ${message.author} eu sou a ${client.user.username}! Use ${prefix}help para obter ajuda <:meow_blush:768292358458179595>`);
+  if (message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) message.channel.send(`Olá ${message.author}! Eu sou a ${client.user.username}! Meu prefixo é ${client.config.prefix}, use ${client.config.prefix}help para obter ajuda ${client.emotes.success}`);
 };
