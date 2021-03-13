@@ -157,12 +157,52 @@ module.exports = {
         });
         break;
 
-      default:
+        case 'sad_cat':
+          const sadcat = new MessageEmbed()
+          .setTitle('Sad Cat')
+          .setDescription("Deseja comprar este background?")
+          .setImage('https://cdn.discordapp.com/attachments/817835933914103828/820425860967825479/foxy_profile.png')
+          message.reply(sadcat).then((sentMessage) => {
+            sentMessage.react('✅');
+            const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
+            sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+            .then((collected) => {
+              if(money < 5000) return message.reply('Você não tem coins o suficiente para este background');
+              message.reply(`Você comprou o background **Sad Cat**, ele já foi definido`);
+              db.subtract(`coins_${user.id}`, 5000);
+              db.set(`background_${user.id}`, 'sad_cat.png')
+
+            }).catch(collected => {
+              message.reply("Tempo esgotado, você demorou para reagir!")
+            })
+          })
+          break;
+
+          case 'sad_cat_money':
+            const money = new MessageEmbed()
+            .setTitle('Sad Cat Money')
+            .setDescription('Deseja comprar este background?')
+            .setImage('https://cdn.discordapp.com/attachments/817835933914103828/820427411739901982/foxy_profile.png')
+            message.reply(money).then((sentMessage) => {
+              sentMessage.react('✅');
+              const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
+              sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time']})
+              .then((collected) => {
+                if(money < 10000) return message.reply('Você não tem coins o suficiente para este background');
+                message.reply('Você comprou o background **Sad Cat Money**, ele já foi definido');
+                db.subtract(`coins_${user.id}`, 10000);
+                db.set(`background_${user.id}`, 'sad_cat_money.png')
+              }).catch(collected => {
+                message.reply("Tempo esgotado, você demorou para reagir")
+              })
+            })
+            break;
+          default:
         const noargs = new MessageEmbed()
 
           .setColor('RED')
           .setTitle('Lojinha de Background :D')
-          .setDescription('(Raro) **Foxy Vlogger** - 5000 FoxCoins - **Código:** foxy \n (Raro) **FNaF** - 9000 FoxCoins - **Código:** fnaf \n(Raro) **Red Dead** - 7000 FoxCoins - **Código:** red \n(Lendário) **GTA San Andreas** - 9000 FoxCoins - **Código:** gta \n(Lendário) **Windows XP** - 5000 FoxCoins - **Código:** winxp \n(Lendário) **Foxy e Lori** - 10000 - **Código:** lori \n\n Use f!background reset para redefinir')
+          .setDescription('(Comum) **Sad Cat** - 5000 FoxCoins - **Código:** sad_cat \n (Raro) **Foxy Vlogger** - 5000 FoxCoins - **Código:** foxy \n (Raro) **FNaF** - 9000 FoxCoins - **Código:** fnaf \n(Raro) **Red Dead** - 7000 FoxCoins - **Código:** red \n(Lendário) **GTA San Andreas** - 9000 FoxCoins - **Código:** gta \n(Lendário) **Windows XP** - 5000 FoxCoins - **Código:** winxp \n(Lendário) **Foxy e Lori** - 10000 FoxCoins - **Código:** lori \n(Lendário) **Sad Cat Money** - 10000 FoxCoins - **Código:** sad_cat_money \n\n Use f!background reset para redefinir')
           .setFooter('Exemplo: f!background lori');
         message.reply(noargs);
     }
