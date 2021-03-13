@@ -36,7 +36,7 @@ module.exports = {
         const repeat = new Discord.MessageEmbed()
         .setColor(client.colors.default)
         .setDescription(`${user} **Atacou** ${message.author}`)
-        .setImage(img.url)
+        .setImage(rand)
   
         message.reply(repeat)
       })
