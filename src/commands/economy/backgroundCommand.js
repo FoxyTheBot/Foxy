@@ -11,7 +11,7 @@ module.exports = {
     const { MessageEmbed } = require('discord.js');
 
     const user = message.author;
-    const timeout = 3600000;
+    const timeout = 31200000;
     const background2 = await db.fetch(`background_${user.id}`);
     const money = await db.fetch(`coins_${user.id}`);
 
@@ -41,7 +41,7 @@ module.exports = {
         message.reply(winxp).then((sentMessage) => {
           sentMessage.react('✅');
           const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
-          sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+          sentMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time'] })
             .then((collected) => {
               if (money < 1000) return message.reply('Você não tem coins o suficiente para este background');
               message.reply(`Você comprou o background **Windows XP**, ele já foi definido`);
@@ -63,7 +63,7 @@ module.exports = {
         message.reply(reddead).then((sentMessage) => {
           sentMessage.react('✅');
           const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
-          sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+          sentMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time'] })
             .then((collected) => {
               if (money < 5000) return message.reply('Você não tem coins o suficiente para este background');
               message.reply(`Você comprou o background **Red Dead Redemption 2**, ele já foi definido`);
@@ -83,7 +83,7 @@ module.exports = {
         message.reply(gtasa).then((sentMessage) => {
           sentMessage.react('✅');
           const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
-          sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+          sentMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time'] })
             .then((collected) => {
               if (money < 9000) return message.reply('Você não tem coins o suficiente para este background');
               message.reply(`Você comprou o background **Grand Theft Auto: San Andreas**, ele já foi definido`);
@@ -103,7 +103,7 @@ module.exports = {
         message.reply(fnaf).then((sentMessage) => {
           sentMessage.react('✅');
           const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
-          sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+          sentMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time'] })
             .then((collected) => {
               if (money < 9000) return message.reply('Você não tem coins o suficiente para este background');
               message.reply(`Você comprou o background **Five Night's at Freddy's**, ele já foi definido`);
@@ -124,14 +124,14 @@ module.exports = {
         message.reply(vlog).then((sentMessage) => {
           sentMessage.react('✅');
           const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
-          sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+          sentMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time'] })
             .then((collected) => {
               if (money < 5000) return message.reply('Você não tem coins o suficiente para este background');
               message.reply(`Você comprou o background **Foxy Vlogger**, ele já foi definido`);
               db.subtract(`coins_${user.id}`, 5000);
               db.set(`background_${user.id}`, 'foxy_vlogs.png');
             }).catch(collected => {
-              message.reply("Tempo esgotado")
+              message.reply("Tempo esgotado, você demorou para reagir!")
             })
         });
         break;
@@ -145,7 +145,7 @@ module.exports = {
         message.reply(lori).then((sentMessage) => {
           sentMessage.react('✅');
           const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
-          sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+          sentMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time'] })
             .then((collected) => {
               if (money < 10000) return message.reply('Você não tem coins o suficiente para este background');
               message.reply(`Você comprou o background **Foxy e Loritta**, ele já foi definido`);
@@ -165,7 +165,7 @@ module.exports = {
           message.reply(sadcat).then((sentMessage) => {
             sentMessage.react('✅');
             const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
-            sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+            sentMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time'] })
             .then((collected) => {
               if(money < 5000) return message.reply('Você não tem coins o suficiente para este background');
               message.reply(`Você comprou o background **Sad Cat**, ele já foi definido`);
@@ -179,14 +179,14 @@ module.exports = {
           break;
 
           case 'sad_cat_money':
-            const money = new MessageEmbed()
+            const money2 = new MessageEmbed()
             .setTitle('Sad Cat Money')
             .setDescription('Deseja comprar este background?')
             .setImage('https://cdn.discordapp.com/attachments/817835933914103828/820427411739901982/foxy_profile.png')
-            message.reply(money).then((sentMessage) => {
+            message.reply(money2).then((sentMessage) => {
               sentMessage.react('✅');
               const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
-              sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time']})
+              sentMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time']})
               .then((collected) => {
                 if(money < 10000) return message.reply('Você não tem coins o suficiente para este background');
                 message.reply('Você comprou o background **Sad Cat Money**, ele já foi definido');
