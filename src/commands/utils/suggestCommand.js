@@ -5,7 +5,7 @@ module.exports = {
   cooldown: 10,
   guildOnly: true,
 
-  async run(client, message, args) {
+  run(client, message, args) {
     const suggestion = args.join(' ');
     const embed = new MessageEmbed()
       .setColor(client.colors.default)
