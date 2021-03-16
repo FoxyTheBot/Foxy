@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
   username: String,
   userBanned: Boolean,
   premium: Boolean,
-
+  afk: Boolean,
+  afkR: String
 });
 
 module.exports = mongoose.model('user', userSchema);
