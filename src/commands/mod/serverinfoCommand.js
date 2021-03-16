@@ -52,7 +52,7 @@ module.exports = {
       .setTitle(guild.name)
       .setThumbnail(servericon)
       .addFields(
-        { name: ':crown: Owner', value: `${guild.owner.tag}`, inline: true },
+        { name: ':crown: Owner', value: `${guild.owner}`, inline: true },
         { name: '<:info:718944993741373511> Owner ID', value: `\`${guild.ownerID}\``, inline: true },
         { name: ':earth_americas: Região', value: `${region[guild.region]}`, inline: true },
         { name: ':computer: Server ID', value: `\`${guild.id}\``, inline: true },
