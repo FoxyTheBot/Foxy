@@ -1,6 +1,6 @@
 module.exports = {
-  name: 'lslc',
-  aliases: ['lslc'],
+  name: 'fslc',
+  aliases: ['fslc'],
   cooldown: 1,
   guildOnly: true,
   ownerOnly: true,
