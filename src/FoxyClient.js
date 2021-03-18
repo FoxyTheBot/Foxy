@@ -1,19 +1,17 @@
 const fs = require('fs');
-const { Client, Collection, WebhookClient, Intents } = require('discord.js');
-const foxyIntents = new Intents(Intents.ALL);
-
-foxyIntents.remove(Intents.PRIVILEGED);
+const { Client, Collection, WebhookClient } = require('discord.js');
+const Intents = require('./config/IntentsManager')
 
 const client = new Client({
   ws: {
-    intents: foxyIntents,
+    intents: Intents(),
   },
 });
 
 client.commands = new Collection();
 client.emotes = require('./structures/emotes.json')
 client.colors = require('./structures/color.json')
-client.config = require('../config.json')
+client.config = require('./config/config.json')
 
 client.logsWebhook = new WebhookClient(client.config.logs.id, client.config.logs.token);
 client.reportWebhook = new WebhookClient(client.config.report.id, client.config.report.token);
@@ -37,6 +35,5 @@ for (const file of eventFiles) {
   console.info(`\x1b[37m\x1b[44mINFO\x1b[0m: Loading event: ${file}; Bind: ${eventBind}`);
   client.on(eventBind, event.bind(null, client));
 }
-
 
 client.login(client.config.token);
