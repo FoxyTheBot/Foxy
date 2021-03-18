@@ -104,7 +104,7 @@ dist
 .tern-port
 
 # Foxy files
-config.json
+src/config/config.json
 json.sqlite
 package-lock.json
 src/layout
