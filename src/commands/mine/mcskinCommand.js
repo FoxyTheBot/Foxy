@@ -8,6 +8,7 @@ module.exports = {
     const user = args.join(' ');
 
     if (!user) return message.reply('<:Minecraft:804858374780878868> **|** Especifique um usuário');
+    if(user.length > 20) return message.reply('Digite no mínimo 20 caractéres')
     const skin = `https://mc-heads.net/skin/${user}`;
 
     const discord = require('discord.js');
