@@ -42,21 +42,36 @@ module.exports = {
         break;
 
         case 'inspect_user':
-        
-        let bucks = db.fetch(`coins_${user.id}`)
-        let background = db.fetch(`background_${user.id}`)
-        let aboutme = db.fetch(`aboutme_${user.id}`)
+          let userdata = await client.users.fetch(args[1])
+        let bucks = db.fetch(`coins_${userdata.id}`)
+        let background = db.fetch(`background_${userdata.id}`)
+        let aboutme = db.fetch(`aboutme_${userdata.id}`)
         const inspect = new MessageEmbed()
         .setColor('RED')
         .setTitle('User Data')
-        .setDescription(`${user}'s data`)
+        .setDescription(`${userdata.username}'s data`)
         .addFields(
           { name: "Wallet", value: `${bucks} FoxCoins`},
           { name: "Background", value: background},
           { name: "About Me", value: aboutme}
         )
-        message.reply(message.author, inspect)
+        message.reply(message.author, inspect).catch(err => {
+          console.clear()
+          message.reply(err)
+        })
           break;
+
+        case 'find_user':
+          const data2 = new MessageEmbed()
+          .setColor(client.colors.default)
+          .setTitle('User Info')
+          .setDescription(`${usedata.tag}`)
+          message.reply(data2).catch(err => {
+            console.clear()
+            message.reply(err)
+          })
+        break;
+
         default:
         const embed = new MessageEmbed()
           .setTitle('Database Settings')
