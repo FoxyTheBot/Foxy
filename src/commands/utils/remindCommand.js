@@ -17,6 +17,7 @@ module.exports = {
       .addFields(
         { name: ':bell: Exemplo:', value: '`f!remind 10s Atualizar o Windows`' },
       );
+      if(message.content.includes("@")) return message.reply("Você não pode mencionar usuários ou cargos!")
     if (!timeuser) return message.reply(example);
     if (!reason) return message.reply(':no_bell: Você precisa digitar o lembrete');
 

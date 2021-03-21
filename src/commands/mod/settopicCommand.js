@@ -12,8 +12,7 @@ module.exports = {
     }
     if (!message.guild.me.permissions.has('MANAGE_CHANNELS')) return message.reply('Não tenho permissão gerenciar canais!');
     const topic = args.join(' ');
-    if (topic == '@everyone') return message.reply('Você não pode usar everyone nos tópicos!');
-    if (topic == '@here') return message.reply('Você não pode usar here no tópico!');
+    if(message.content.includes("@")) return message.reply('Você não pode mencionar cargos ou usuários!')
     message.channel.setTopic(topic);
     await message.reply(`Tópico alterado para "**${topic}**"`);
   },
