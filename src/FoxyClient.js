@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { Client, Collection, WebhookClient } = require('discord.js');
-const Intents = require('./config/IntentsManager')
+const Intents = require('./utils/IntentsManager');
 
 const client = new Client({
   ws: {
