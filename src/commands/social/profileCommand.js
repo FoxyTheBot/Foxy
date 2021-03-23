@@ -16,7 +16,7 @@ module.exports = {
     if (bal === null) bal = 0;
 
     let aboutme = await db.fetch(`aboutme_${user.id}`);
-    if (aboutme == null) aboutme = 'Foxy é minha amiga, você pode alterar isso usando f!aboutme';
+    if (aboutme == null) aboutme = `Olá, Eu sou ${message.author.username}! Seja bem vindo ao meu perfil. (Você pode alterar isso usando f!aboutme)`;
 
     const casado = await db.fetch(`married_${user.id}`);
 
@@ -79,7 +79,7 @@ module.exports = {
       ctx.drawImage(avatar, 25, 25, 200, 200);
 
       const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'foxy_profile.png');
-      message.channel.stopTyping();
+      message.channel.stopTyping(true);
       message.reply(attachment);
     }
   },

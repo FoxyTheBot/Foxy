@@ -1,5 +1,5 @@
 const db = require('quick.db')
-
+const { MessageEmbed } = require('discord.js')
 module.exports = {
     name: "marry",
     aliases: ['casar', ' marry'],
@@ -7,12 +7,22 @@ module.exports = {
     guildOnly: true,
 
     async run(client, message, args) {
-        
+        const marryEmbed = new MessageEmbed()
+            .setColor('RED')
+            .setTitle('❤ | `f!marry`')
+            .setDescription(' Case com sua Webnamorada, você ama essa pessoa? Case com ela! Vocês não precisam de FoxCoins para casar, apenas sejam felizes! \n\n 📚 **Exemplos**')
+            .addFields(
+                { name: "🔹 Faz um pedido para a pessoa mencionada", value: "`f!marry @WinG4merBR#5995`"},
+                { name: "ℹ Aliases:", value: "`casar`"}
+                )
+
+            .setFooter(`• Autor: ${message.author.tag} - Social`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));
+
         const authordata = db.fetch(`married_${message.author.id}`)
 
         const mentioned = message.mentions.users.first();
 
-        if (!mentioned) return message.reply(`${client.emotes.error} **|** Mencione alguém para casar!`)
+        if (!mentioned) return message.reply(marryEmbed)
         if (mentioned === client.user) return message.reply(`Nhe, eu não quero casar com você, aliás eu nem idade para casar tenho! ${client.emotes.rage}`)
         if (mentioned.id === message.author.id) return message.reply(`${client.emotes.error} **|** Ué amiguinho? Por que você quer casar com você mesmo? Uma hora você vai achar o amor da sua vida, eu confio em você! ${client.emotes.heart}`)
 

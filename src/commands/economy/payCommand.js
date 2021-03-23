@@ -1,3 +1,6 @@
+const { MessageEmbed } = require('discord.js')
+const db = require('quick.db');
+
 module.exports = {
   name: 'pay',
   aliases: ['pay', 'pagar'],
@@ -5,18 +8,26 @@ module.exports = {
   guildOnly: true,
 
   async run(client, message, args) {
-    const db = require('quick.db');
-    const user = message.mentions.members.first();
+    const payEmbed = new MessageEmbed()
+      .setColor(client.colors.green)
+      .setTitle('💸 | `f!pay`')
+      .setDescription("Você deve estar devendo alguma coisa, ou querendo ajudar um amigo, de FoxCoins a ele :D\n\n 📚 **Exemplos**")
+      .addFields(
+      { name: "🔹 Pagar pessoa via menção", value: "`f!pay @WinG4merBR#5995 500`"},
+      { name: "🔹 Pagar 1000 FoxCoins", value: "`f!pay @WinG4merBR#5995 1000`"},
+      { name: "ℹ Aliases:", value: "`pagar`"}
+      ) 
+      .setFooter(`• Autor: ${message.author.tag} - Economia`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));
 
-    const member = db.fetch(`coins_${message.author.id}`);
+    const user = message.mentions.members.first();
 
     if (user == message.author.id) return message.reply('Você não pode transferir coins para si mesmo');
     if (!user) {
-      return message.reply('Mencione alguém que deseja transferir seus coins');
+      return message.reply(payEmbed);
     }
-  
+
     if (isNaN(args[1])) return message.reply('Digite números válidos!');
-  
+
     if (!args[1]) {
       return message.reply('Especifique uma quantidade para ser transferida');
     }
@@ -35,11 +46,11 @@ module.exports = {
       const Collector = sentMessage.createReactionCollector(filter, { max: 1, time: 60000 });
 
       sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
-        
+
       Collector.on('collect', () => {
         message.reply(`Você fez uma transação de ${args[1]} FoxCoins para ${user.user}`);
         db.add(`coins_${user.id}`, args[1]);
-        db.subtract(`coins_${message.author.id}`, args[1]);    
+        db.subtract(`coins_${message.author.id}`, args[1]);
       })
 
     });

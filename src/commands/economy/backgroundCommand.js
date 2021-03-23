@@ -197,12 +197,33 @@ module.exports = {
               })
             })
             break;
+
+            case 'levi':
+              const money3 = new MessageEmbed()
+              .setTitle('Levi / Ata Shingeki No Kyojin')
+              .setDescription('Deseja comprar este background?')
+              .setImage('https://cdn.discordapp.com/attachments/810597092993007649/823604139451482172/foxy_profile.png')
+              message.reply(money3).then((sentMessage) => {
+                sentMessage.react('✅');
+                const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
+                sentMessage.awaitReactions(filter, { max: 1, time: 120000, erros: ['time']})
+                .then((collected) => {
+                  if(money < 10000) return message.reply('Você não tem coins o suficiente para este background')
+                  message.reply('Você comprou o background **Ata Shingeki No Kyojin**, ele já foi definido')
+                  db.subtract(`coins_${user.id}`, 10000)
+                  db.set(`background_${user.id}`, 'levi_kyojin.png')
+                }).catch(collected => {
+                  message.reply("Tempo esgotado, você demorou para reagir!")
+                })
+              })
+              break;
+              
           default:
         const noargs = new MessageEmbed()
 
           .setColor('RED')
           .setTitle('Lojinha de Background :D')
-          .setDescription('(Comum) **Sad Cat** - 5000 FoxCoins - **Código:** sad_cat \n (Raro) **Foxy Vlogger** - 5000 FoxCoins - **Código:** foxy \n (Raro) **FNaF** - 9000 FoxCoins - **Código:** fnaf \n(Raro) **Red Dead** - 7000 FoxCoins - **Código:** red \n(Lendário) **GTA San Andreas** - 9000 FoxCoins - **Código:** gta \n(Lendário) **Windows XP** - 5000 FoxCoins - **Código:** winxp \n(Lendário) **Foxy e Lori** - 10000 FoxCoins - **Código:** lori \n(Lendário) **Sad Cat Money** - 10000 FoxCoins - **Código:** sad_cat_money \n\n Use f!background reset para redefinir')
+          .setDescription('(Comum) **Sad Cat** - 5000 FoxCoins - **Código:** sad_cat \n (Raro) **Foxy Vlogger** - 5000 FoxCoins - **Código:** foxy \n (Raro) **FNaF** - 9000 FoxCoins - **Código:** fnaf \n(Raro) **Red Dead** - 7000 FoxCoins - **Código:** red \n(Lendário) **GTA San Andreas** - 9000 FoxCoins - **Código:** gta \n(Lendário) **Windows XP** - 5000 FoxCoins - **Código:** winxp \n(Lendário) **Foxy e Lori** - 10000 FoxCoins - **Código:** lori \n(Lendário) **Sad Cat Money** - 10000 FoxCoins - **Código:** sad_cat_money \n(Lendário) **Ata Shingeki No Kyojin** - 10000 FoxCoins - **Código:** levi \n\n Use f!background reset para redefinir')
           .setFooter('Exemplo: f!background lori');
         message.reply(noargs);
     }
