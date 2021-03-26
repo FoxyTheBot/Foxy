@@ -185,7 +185,7 @@ module.exports = {
               message.reply(money3).then((sentMessage) => {
                 sentMessage.react('✅');
                 const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
-                sentMessage.awaitReactions(filter, { max: 1, time: 120000, erros: ['time']})
+                sentMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time']})
                 .then((collected) => {
                   if(money < 10000) return message.reply('Você não tem coins o suficiente para este background')
                   message.reply('Você comprou o background **Ata Shingeki No Kyojin**, ele já foi definido')
