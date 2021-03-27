@@ -16,12 +16,14 @@ module.exports = {
 
     if (!text) return message.reply('Insira um texto');
 
-    const result = await translate(text, { to: language });
+    const result = await translate(text, { to: language }).catch(err => {
+      message.reply(`${client.emotes.error} **|** Ocorreu um erro ao executar o comando! \`${err}\``)
+    })
 
     const embed = new Discord.MessageEmbed()
       .setColor('58bbf5')
       .setTitle(':map: | Translator')
-      .setDescription(`\ \ \`\`\`\n${result.text}\n\`\`\``);
+      .setDescription(`\ \ \`\`\`\n${result.text}\n\`\`\``)
 
     message.reply(`${message.author}`, embed);
   },
