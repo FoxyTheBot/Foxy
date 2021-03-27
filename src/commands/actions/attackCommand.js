@@ -31,17 +31,18 @@ module.exports = {
 
       const filter = (reaction, usuario) => reaction.emoji.name === '🌟' && usuario.id === user.id;
 
-      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000});
+      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000 });
       collector.on('collect', () => {
         const repeat = new Discord.MessageEmbed()
-        .setColor(client.colors.default)
-        .setDescription(`${user} **Atacou** ${message.author}`)
-        .setImage(rand)
-  
+          .setColor(client.colors.default)
+          .setDescription(`${user} **Atacou** ${message.author}`)
+          .setImage(rand)
+
         message.reply(repeat)
       })
 
     })
-  },
+  }
 
 };
+
