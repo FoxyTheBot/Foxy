@@ -13,8 +13,8 @@ module.exports = {
         .setTitle('💸 | `f!bet`')
         .setDescription("Aposte com um(a) amigx na sorte\n\n 📚 **Exemplos**")
         .addFields(
-            { name: "🔹 Apostando Cara com 1000 FoxCoins", value: "`f!bet @Win#8379 cara 1000`"},
-            { name: "🔹 Apostando Coroa com 2000 FoxCoins", value: "`f!bet @Win#8379 coroa 2000`"},
+            { name: "🔹 Apostando Cara com 1000 FoxCoins", value: "`f!bet WinG4merBR#8379 cara 1000`"},
+            { name: "🔹 Apostando Coroa com 2000 FoxCoins", value: "`f!bet WinG4merBR#8379 coroa 2000`"},
             { name: "ℹ Aliases:", value: "`apostar`"}
 
             )
