@@ -13,7 +13,7 @@ module.exports = {
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
 
-    const uptime = `${days.toFixed()} dias\n ${hours.toFixed()} horas\n ${minutes.toFixed()} minutos\n ${seconds.toFixed()} segundos`;
+    const uptime = `${days.toFixed()} dias\n${hours.toFixed()} horas\n${minutes.toFixed()} minutos\n${seconds.toFixed()} segundos`;
 
     const embed = new Discord.MessageEmbed()
       .setTitle('Ativo há')

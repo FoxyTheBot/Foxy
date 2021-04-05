@@ -1,4 +1,10 @@
+const DBL = require("dblapi.js");
+
 module.exports = async (client) => {
+
+  const dbl = new DBL(client.config.dbltoken, client);
+  dbl.postStats(client.guilds.cache.size, client.shard.ids, client.shard.count);
+
   console.info(`\x1b[37m\x1b[42mSUCCESS\x1b[0m: Foxy is ready! Logged as: ${client.user.tag}`);
 
   const status = [
