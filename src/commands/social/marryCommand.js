@@ -12,7 +12,7 @@ module.exports = {
             .setTitle('❤ | `f!marry`')
             .setDescription(' Case com sua Webnamorada, você ama essa pessoa? Case com ela! Vocês não precisam de FoxCoins para casar, apenas sejam felizes! \n\n 📚 **Exemplos**')
             .addFields(
-                { name: "🔹 Faz um pedido para a pessoa mencionada", value: "`f!marry @WinG4merBR#5995`"},
+                { name: "🔹 Faz um pedido para a pessoa mencionada", value: "`f!marry @Win#8379`"},
                 { name: "ℹ Aliases:", value: "`casar`"}
                 )
 
