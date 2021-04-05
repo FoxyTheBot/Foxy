@@ -40,9 +40,9 @@ module.exports = {
             { name: '<:DiscordExplore:790934280611037196> Servidor de Suporte', value: '[Entre no meu servidor](https://discord.gg/gK42WTs)', inline: true },
             { name: ' <:Twitter:797184287816286209> Meu Twitter', value: '[@FoxyDiscordBot](https://twitter.com/FoxyDiscordBot)', inline: true },
             { name: '<:paypal:776965353904930826> Doe para mim', value: '[Doe para mim clicando aqui](https://www.paypal.com/donate/?hosted_button_id=J7Y747Q38UEKN)', inline: true },
-            { name: '👑 Menções Incríveis', value: `• **WinG4merBR#5995** | Se não fosse ele, eu nem iria existir \n • **Bis❄#2332** | Por fazer meu icon e outros desenhos :heart: \n • **Arthur Kohler** | Por me ajudar a ficar online! :heart: \n • **ThierrY** | Por me ajudar fazendo divulgações :3 :heart: \n • Todas as **${totalMembers}** pessoas que usaram meus comandos \n • E você ${message.author} que está falando comigo!` },
+            { name: '👑 Menções Incríveis', value: `• **Win#8379** | Se não fosse ele, eu nem iria existir \n • **Bis❄#2332** | Por fazer meu icon e outros desenhos :heart: \n • **Arthur Kohler** | Por me ajudar a ficar online! :heart: \n • **ThierrY** | Por me ajudar fazendo divulgações :3 :heart: \n • Todas as **${totalMembers}** pessoas que usaram meus comandos \n • E você ${message.author} que está falando comigo!` },
           )
-          .setFooter('Foxy foi criada por WinG4merBR#5995', 'https://cdn.discordapp.com/attachments/776930851753426945/797186564747690024/WinG4merBR.png');
+          .setFooter('Foxy foi criada por Win#8379', 'https://cdn.discordapp.com/attachments/776930851753426945/797186564747690024/Win.png');
 
         message.reply(ajuda);
       });

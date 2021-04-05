@@ -2,7 +2,7 @@
   "name": "foxy",
   "description": "A Simple bot for Discord",
   "version": "2021.01.16-alpha",
-  "author": "WinG4merBR",
+  "author": "Win",
   "main": "index.js",
   "engines": {
     "node": "14.x"
