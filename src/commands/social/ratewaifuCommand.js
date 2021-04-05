@@ -15,7 +15,7 @@ module.exports = {
 
     const list = [
       '**1** para essa waifu. Eu não gostei <:hmmpepe:791151120021061662> ',
-      '**5** para essa waifu. <:hmmm:779010951420051457> ',
+      '**5** para essa waifu. <:hmmpepe:791151120021061662>',
       '**7** para essa waifu. Achei ela bonitinha <:MeowPuffyMelt:776252845493977088> ',
       '**4** para essa waifu. Bonitinha <:hmmpepe:791151120021061662>',
       '**3** para essa waifu. Bonitinha, mas acho que pode melhorar *na minha opinião*',
