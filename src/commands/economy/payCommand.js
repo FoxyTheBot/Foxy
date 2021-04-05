@@ -13,8 +13,8 @@ module.exports = {
       .setTitle('💸 | `f!pay`')
       .setDescription("Você deve estar devendo alguma coisa, ou querendo ajudar um amigo, de FoxCoins a ele :D\n\n 📚 **Exemplos**")
       .addFields(
-      { name: "🔹 Pagar pessoa via menção", value: "`f!pay @WinG4merBR#5995 500`"},
-      { name: "🔹 Pagar 1000 FoxCoins", value: "`f!pay @WinG4merBR#5995 1000`"},
+      { name: "🔹 Pagar pessoa via menção", value: "`f!pay @Win#8379 500`"},
+      { name: "🔹 Pagar 1000 FoxCoins", value: "`f!pay @Win#8379 1000`"},
       { name: "ℹ Aliases:", value: "`pagar`"}
       ) 
       .setFooter(`• Autor: ${message.author.tag} - Economia`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));
