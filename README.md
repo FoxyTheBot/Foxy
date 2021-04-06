@@ -34,7 +34,7 @@ Você pode tentar hospedar sua propria instancia, mas eu pessoalmente não recom
 
 
 ## 💫 Menções honrosas
-<p> • Win#8379 | Se não fosse ele, eu nem iria existir </p>
+<p> • WinG4merBR#8379 | Se não fosse ele, eu nem iria existir </p>
 <p> • Arthur_Kohler | Por me ajudar a ficar online! ❤ </p>
 <p> • Bis❄#2332 | Por fazer meu icon e outros desenhos ❤  </p>
 <P> • ThierrY#6303 | Por me ajudar me indicando ❤ </p>
