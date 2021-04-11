@@ -3,18 +3,17 @@ const Discord = require('discord.js')
 const cooldowns = new Discord.Collection()
 
 module.exports = async (client, message) => {
-  if (message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) message.channel.send(`Olá ${message.author}! Eu sou a ${client.user.username}! Meu prefixo é ${client.config.prefix}, use ${client.config.prefix}help para obter ajuda ${client.emotes.success}`);
+  if (message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) message.channel.send(`Olá ${message.author}! Meu nome é ${client.user.username}, meu prefixo é \`${client.config.prefix}\`, Utilize \`${client.config.prefix}help\` para obter ajuda! ${client.emotes.success}`);
 
   if (!message.content.startsWith(client.config.prefix) || message.author.bot || message.webhookID) return;
   const args = message.content.slice(client.config.prefix.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
 
-  const command = client.commands.get(commandName)
-    || client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
+  const command = client.commands.get(commandName) || client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
 
   if (!command) return message.reply(`${client.emotes.notfound} **|** Desculpe a inconveniência mas este comando não existe!`)
 
-  function foxyCommandHandler() {
+  function FoxyHandler() {
     if (command.guildOnly && message.channel.type === 'dm') {
       return message.reply(`<:Error:718944903886930013> | ${message.author} Esse comando não pode ser executado em mensagens diretas!`);
     }
@@ -41,8 +40,8 @@ module.exports = async (client, message) => {
       if (now < expirationTime) {
         const timeLeft = (expirationTime - now) / 1000;
         let time = `${timeLeft.toFixed(0)} segundos`
-        if(time <= 0) time = "Alguns Milisegundos"
-        return message.reply(`:fire: **|** ${message.author}, Por favor aguarde **${time}** para usar o comando novamente`);
+        if (time <= 0) time = "Alguns milisegundos"
+        return message.reply(`${client.emotes.scared} **|** ${message.author}, Por favor aguarde **${time}** para usar o comando novamente`);
       }
     }
 
@@ -59,7 +58,7 @@ module.exports = async (client, message) => {
   }
   try {
     user.findOne({ userid: message.author.id }, (error, data) => {
-      if (error) return foxySelfReport(error, message);
+      if (error) return console.log(`Algo deu errado! ${error} | ${message}`)
       if (data) {
         if (data.userBanned) {
           const bannedEmbed = new Discord.MessageEmbed()
@@ -71,7 +70,7 @@ module.exports = async (client, message) => {
             message.reply(message.author, bannedEmbed);
           });
         }
-        return foxyCommandHandler();
+        return FoxyHandler();
       }
       new user({
         userid: message.author.id,
@@ -81,7 +80,7 @@ module.exports = async (client, message) => {
       }).save().catch((err) => {
         console.log('[MONGO ERROR] - ' + err)
       });
-      return foxyCommandHandler();
+      return FoxyHandler();
     });
   } catch (error) {
     console.log('[HANDLER ERROR] - ' + error, message);
