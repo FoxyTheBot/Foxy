@@ -14,7 +14,7 @@ module.exports = {
     const ctx = canvas.getContext('2d');
     const sayMessage = args.join(' ');
     if (!sayMessage) return message.reply('Digite algo antes');
-    message.channel.startTyping();
+    
 
     const background = await Canvas.loadImage('./src/assets/laranjo.jpeg');
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
@@ -35,7 +35,7 @@ module.exports = {
     ctx.clip();
 
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'laranjo.png');
-    message.channel.stopTyping();
+    
 
     message.reply(attachment);
     const embed = new Discord.MessageEmbed()

@@ -37,7 +37,7 @@ module.exports = {
 
         return ctx.font;
       };
-      message.channel.startTyping();
+      
       const canvas = Canvas.createCanvas(1436, 884);
       const ctx = canvas.getContext('2d');
       const background = await Canvas.loadImage(`./src/layout/${profile}`);
@@ -79,7 +79,6 @@ module.exports = {
       ctx.drawImage(avatar, 25, 25, 200, 200);
 
       const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'foxy_profile.png');
-      message.channel.stopTyping(true);
       message.reply(attachment);
     }
   },
