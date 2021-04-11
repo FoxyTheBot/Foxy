@@ -40,7 +40,9 @@ module.exports = async (client, message) => {
 
       if (now < expirationTime) {
         const timeLeft = (expirationTime - now) / 1000;
-        return message.reply(`:fire: **|** ${message.author}, Por favor aguarde **${timeLeft.toFixed(0)} segundos** para usar o comando novamente`);
+        let time = `${timeLeft.toFixed(0)} segundos`
+        if(time <= 0) time = "Alguns Milisegundos"
+        return message.reply(`:fire: **|** ${message.author}, Por favor aguarde **${time}** para usar o comando novamente`);
       }
     }
 
