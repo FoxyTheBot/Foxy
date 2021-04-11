@@ -14,12 +14,12 @@ module.exports = {
     const ctx = canvas.getContext('2d');
     const sayMessage = args.join(' ');
     if (!sayMessage) return message.reply('Digite algo antes');
-        message.channel.startTyping();
+        
     const background = await Canvas.loadImage('./src/assets/Windows.png');
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     if (sayMessage.length > 30) return message.reply('Você pode digitar até 30 caracteres, obrigada :3');
-    message.channel.stopTyping();
+    
 
     ctx.strokeStyle = '#74037b';
     ctx.strokeRect(0, 0, canvas.width, canvas.height);

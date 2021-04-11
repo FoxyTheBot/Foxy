@@ -9,7 +9,7 @@ module.exports = {
   cooldown: 3,
   guildOnly: false,
   async run(client, message) {
-    message.channel.startTyping();
+    
     moment.locale('pt-br');
     const promises = [
       client.shard.fetchClientValues('guilds.cache.size'),
@@ -31,7 +31,7 @@ module.exports = {
             .addField(('Versão:'), `\`\`\`${require('../../../package.json').version}\`\`\``, true)
             .addField(('discord.js:'), `\`\`\`${version}\`\`\``, true)
             .setFooter(`${totalGuilds} Servidores e ${totalMembers} Usuários`);
-          message.channel.stopTyping();
+          
           message.reply(status);
         });
       }).catch(console.error);

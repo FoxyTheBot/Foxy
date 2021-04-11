@@ -23,21 +23,22 @@ module.exports = {
               .setTitle(info.username)
               .setColor('e2231a')
               .setThumbnail(`https://www.roblox.com/bust-thumbnail/image?userId=${id}&width=420&height=420&format=png`)
-
-              .addField('<:robloxlogo:804814541631914035> Username', `\`${info.username}\`` || 'Sem solução', true)
-              .addField(':computer: User ID', id || 'Sem solução', true)
-              .addField(':blue_book: Sobre mim', info.blurb || 'Nada', true)
-              .addField(':star: Status', info.status || 'Nada', true)
-              .addField(':date: Data de conta', `${info.age} Dias` || 'Sem solução', true)
-              .addField(':calendar: Data de registro', `${data}` || 'Sem solução', true)
-              .addField('User Link', `https://roblox.com/users/${id}/profile`, true);
+              .addFields(
+                { name: "<:robloxlogo:804814541631914035> Username", value: `\`${info.username}\``, inline: true },
+                { name: ":computer: User ID", value: id || "Sem solução", inline: true },
+                { name: ":blue_book: Sobre mim", value: info.blurb || 'Nada', inline: true },
+                { name: ":star: Status", value: info.status || 'Nada', inline: true },
+                { name: ":date: Data da Conta", value: `${info.age} Dias` || 'Sem solução', inline: true },
+                { name: ':calendar: Data de registro', value: data || 'Sem solução', inline: true },
+                { name: "Link do usuário", value: `https://roblox.com/users/${id}/profile`, inline: true }
+              )
             message.reply(embed);
           });
         }
 
 
       }).catch((err) => {
-        message.reply('Ah! Eu não encontrei este usuário, ou talvez ele não exista, desculpe pela inconveniência!'); // catching error
+        message.reply('Ah! Eu não encontrei este usuário, ou talvez ele não exista, desculpe pela inconveniência!');
       });
     } else { message.reply('Por favor especifique um usuário válido'); }
   },
