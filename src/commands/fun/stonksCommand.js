@@ -14,7 +14,7 @@ module.exports = {
         const sayMessage = args.join(' ');
         if (!sayMessage) return message.reply('Digite algo antes');
         if(sayMessage.length > 33) return message.reply("Digite até 35 caractéres")
-        message.channel.startTyping();
+        
 
         const background = await Canvas.loadImage('./src/assets/stonks.png');
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
@@ -35,7 +35,7 @@ module.exports = {
         ctx.clip();
 
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'stonks.png');
-        message.channel.stopTyping();
+        
 
         message.reply(attachment);
         const embed = new Discord.MessageEmbed()

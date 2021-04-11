@@ -1,5 +1,3 @@
-const Discord = require('discord.js');
-
 module.exports = {
   name: 'cancel',
   aliases: ['cancel', 'cancelar'],

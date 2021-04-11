@@ -16,7 +16,7 @@ module.exports = {
 
     if (!membro1 || !membro2) return message.reply('Lembre-se de mencionar dois usuários para shippar');
     if (membro1 === membro2) return message.reply('Mencione duas pessoas diferentes');
-    message.channel.startTyping();
+    
 
     const amor = Math.floor(Math.random() * 100);
     const loveIndex = Math.floor(amor / 10);
@@ -75,7 +75,7 @@ module.exports = {
       .attachFiles([amorat])
       .setImage('attachment://chances-image.png');
 
-    message.channel.stopTyping();
+    
 
     message.reply(`<@${message.author.id}> \n${desc}`, amorEmbed);
   },

@@ -47,8 +47,13 @@ module.exports = async (client, message) => {
     timestamps.set(message.author.id, now);
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
-    command.run(client, message, args);
+    function runCommands() {
+      message.channel.startTyping()
+      command.run(client, message, args)
+      message.channel.stopTyping()
+    }
 
+    runCommands()
   }
   try {
     user.findOne({ userid: message.author.id }, (error, data) => {
