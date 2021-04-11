@@ -28,19 +28,19 @@ module.exports = {
 
       const filter = (reaction, usuario) => reaction.emoji.name === '❤' && usuario.id === user.id;
 
-      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000});
+      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000 });
       collector.on('collect', () => {
         const repeat = new Discord.MessageEmbed()
-        .setColor(client.colors.default)
-        .setDescription(`${user} **Abraçou** ${message.author}`)
-        .setImage(img2.url)
-  
+          .setColor(client.colors.default)
+          .setDescription(`${user} **Abraçou** ${message.author}`)
+          .setImage(img2.url)
+
         message.reply(repeat)
       })
 
     })
-    }
-
   }
+
+}
 
 

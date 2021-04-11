@@ -22,10 +22,11 @@ module.exports = {
 
     let rep = await db.fetch(`rep_${user.id}`);
     if (rep == null) rep = 0;
+
     const profile = db.fetch(`background_${user.id}`);
     if (profile == null) {
       db.set(`background_${user.id}`, 'default_background.png');
-      message.reply('O perfil foi criado! Digite o comando novamente :3');
+      message.reply('Parece que você não tem um perfil, seu perfil foi criado, digite o comando novamente.');
     } else {
       const applyText = (canvas, text) => {
         const ctx = canvas.getContext('2d');
@@ -65,10 +66,6 @@ module.exports = {
       ctx.font = ('30px sans-serif');
       ctx.fillStyle = '#ffffff';
       ctx.fillText(aboutme, canvas.width / 55.0, canvas.height / 1.2);
-
-
-
-
 
       ctx.beginPath();
       ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
