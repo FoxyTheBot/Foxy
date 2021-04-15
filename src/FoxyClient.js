@@ -8,6 +8,8 @@ const client = new Client({
   },
 });
 
+require('./structures/InlineReply');
+
 client.commands = new Collection();
 client.emotes = require('./structures/emotes.json');
 client.colors = require('./structures/color.json');
