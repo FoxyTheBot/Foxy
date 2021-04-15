@@ -12,6 +12,6 @@ module.exports = {
       .setColor('RED')
       .setTitle(`Icone de ${message.guild.name}`)
       .setImage(icon);
-    message.reply(embed);
+    message.inlineReply(embed);
   },
 };

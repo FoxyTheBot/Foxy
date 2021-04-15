@@ -34,7 +34,7 @@ module.exports = {
       .setTimestamp()
       .setFooter('')
       .setAuthor(message.author.tag, avatar);
-    await message.reply(embed);
+    await message.inlineReply(embed);
   },
 
 };

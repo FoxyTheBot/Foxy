@@ -7,8 +7,8 @@ module.exports = {
   async run(client, message, args) {
     const user = args.join(' ');
 
-    if (!user) return message.reply('<:Minecraft:804858374780878868> **|** Especifique um usuário');
-    if(user.length > 20) return message.reply('Digite no mínimo 20 caractéres')
+    if (!user) return message.inlineReply('<:Minecraft:804858374780878868> **|** Especifique um usuário');
+    if(user.length > 20) return message.inlineReply('Digite no mínimo 20 caractéres')
     const skin = `https://mc-heads.net/skin/${user}`;
 
     const discord = require('discord.js');
@@ -18,6 +18,6 @@ module.exports = {
       .setTitle(`<:Minecraft:804858374780878868> Skin de ${user}`)
       .setImage(skin)
       .setColor(client.colors.mine);
-    await message.reply(embed);
+    await message.inlineReply(embed);
   },
 };

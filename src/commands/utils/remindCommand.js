@@ -17,17 +17,17 @@ module.exports = {
       .addFields(
         { name: ':bell: Exemplo:', value: '`f!remind 10s Atualizar o Windows`' },
       );
-      if(message.content.includes("@")) return message.reply("Você não pode mencionar usuários ou cargos!")
-    if (!timeuser) return message.reply(example);
-    if (!reason) return message.reply(':no_bell: Você precisa digitar o lembrete');
+      if(message.content.includes("@")) return message.inlineReply("Você não pode mencionar usuários ou cargos!")
+    if (!timeuser) return message.inlineReply(example);
+    if (!reason) return message.inlineReply(':no_bell: Você precisa digitar o lembrete');
 
     db.set(`remind_${message.author.id}`, Date.now() + ms(timeuser));
 
-    message.reply(`:bell: **|** Ok! Eu irei te lembrar de \`${reason}\` em \`${timeuser}\``);
+    message.inlineReply(`:bell: **|** Ok! Eu irei te lembrar de \`${reason}\` em \`${timeuser}\``);
     const interval = setInterval(() => {
       if (Date.now() > db.fetch(`remind_${message.author.id}`)) {
         db.delete(`remind_${message.author.id}`);
-        message.reply(`:bell: **|** Hey ${message.author}! Lembrete: \`${reason}\``)
+        message.inlineReply(`:bell: **|** Hey ${message.author}! Lembrete: \`${reason}\``)
           .catch((e) => console.log(e));
         clearInterval(interval);
       }

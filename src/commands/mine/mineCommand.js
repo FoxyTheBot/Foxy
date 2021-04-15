@@ -30,27 +30,27 @@ module.exports = {
                     { name: "<:esmeralda:816844349706600450> Esmeraldas", value: status3},
                     { name: "<:diamond:816844342743531541> Diamantes", value: status4}
                 )
-          return message.reply(status)
+          return message.inlineReply(status)
         } 
        const mine = await db.fetch(`mine_${message.author.id}`);
     if (mine !== null && timeout - (Date.now() - mine) > 0) {
       const time = ms(timeout - (Date.now() - mine));
 
-      message.reply(`:x: **|** Você minerou e está cansado tente novamente em **${time.hours}h ${time.minutes}m ${time.seconds}s**`);
+      message.inlineReply(`:x: **|** Você minerou e está cansado tente novamente em **${time.hours}h ${time.minutes}m ${time.seconds}s**`);
     } else {
 
        switch(args[0]) {
 
             case "madeira":
                 db.add(`coal_${message.author.id}`, coal)
-                message.reply(`<:Minecraft:804858374780878868> **|** Você minerou e conseguiu ${coal} Carvões`)
+                message.inlineReply(`<:Minecraft:804858374780878868> **|** Você minerou e conseguiu ${coal} Carvões`)
                 db.set(`mine_${message.author.id}`, Date.now());
                 break
 
             case "pedra":
                 db.add(`coal_${message.author.id}`, coal)
                 db.add(`iron_${message.author.id}`, iron)
-                message.reply(`<:Minecraft:804858374780878868> **|** Você minerou e conseguiu ${coal} Carvões, ${iron} Ferros`)
+                message.inlineReply(`<:Minecraft:804858374780878868> **|** Você minerou e conseguiu ${coal} Carvões, ${iron} Ferros`)
                 db.set(`mine_${message.author.id}`, Date.now());
 
             break
@@ -60,7 +60,7 @@ module.exports = {
             db.add(`iron_${message.author.id}`, iron)
             db.add(`diamond_${message.author.id}`, diamond)
             db.add(`emerald_${message.author.id}`, emerald)
-            message.reply(`<:Minecraft:804858374780878868> **|** Você minerou e conseguiu ${coal} Carvões, ${iron} Ferros, ${emerald} Esmeraldas, ${diamond} Diamantes`)
+            message.inlineReply(`<:Minecraft:804858374780878868> **|** Você minerou e conseguiu ${coal} Carvões, ${iron} Ferros, ${emerald} Esmeraldas, ${diamond} Diamantes`)
             db.set(`mine_${message.author.id}`, Date.now());
 
             break
@@ -74,7 +74,7 @@ module.exports = {
                     { name: "<:stone:816843972835278858> **|** `f!mine pedra`", value: "**Minérios:** <:Carvao:816844940642484235> Carvão, <:iron:816844359684718623> Ferro"},
                     { name: "<:Iron_Pickaxe_JE3_BE2:816843963213545474> **|** `f!mine ferro`", value: "**Minérios**: <:Carvao:816844940642484235> Carvão, <:iron:816844359684718623> Ferro, <:esmeralda:816844349706600450> Esmeralda, <:diamond:816844342743531541> Diamante"}
                 )
-                message.reply(mine)
+                message.inlineReply(mine)
 
         }
     }

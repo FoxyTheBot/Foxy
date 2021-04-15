@@ -11,19 +11,19 @@ module.exports = async (client, message) => {
 
   const command = client.commands.get(commandName) || client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
 
-  if (!command) return message.reply(`${client.emotes.notfound} **|** Desculpe a inconveniência mas este comando não existe!`)
+  if (!command) return message.inlineReply(`${client.emotes.notfound} **|** Desculpe a inconveniência mas este comando não existe!`)
 
   function FoxyHandler() {
     if (command.guildOnly && message.channel.type === 'dm') {
-      return message.reply(`<:Error:718944903886930013> | ${message.author} Esse comando não pode ser executado em mensagens diretas!`);
+      return message.inlineReply(`<:Error:718944903886930013> | ${message.author} Esse comando não pode ser executado em mensagens diretas!`);
     }
 
     if (command.ownerOnly && !client.config.owners.includes(message.author.id)) {
-      return message.reply(`<:Error:718944903886930013> | ${message.author} Você não tem permissão para fazer isso! <:meow_thumbsup:768292477555572736>`);
+      return message.inlineReply(`<:Error:718944903886930013> | ${message.author} Você não tem permissão para fazer isso! <:meow_thumbsup:768292477555572736>`);
     }
 
     if (command.argsRequired && !args.length) {
-      return message.reply(`<:Error:718944903886930013> | ${message.author} Esse comando precisa de argumentos para ser executado!`);
+      return message.inlineReply(`<:Error:718944903886930013> | ${message.author} Esse comando precisa de argumentos para ser executado!`);
     }
 
     if (!cooldowns.has(command.name)) {
@@ -41,7 +41,7 @@ module.exports = async (client, message) => {
         const timeLeft = (expirationTime - now) / 1000;
         let time = `${timeLeft.toFixed(0)} segundos`
         if (time <= 0) time = "Alguns milisegundos"
-        return message.reply(`${client.emotes.scared} **|** ${message.author}, Por favor aguarde **${time}** para usar o comando novamente`);
+        return message.inlineReply(`${client.emotes.scared} **|** ${message.author}, Por favor aguarde **${time}** para usar o comando novamente`);
       }
     }
 
@@ -67,7 +67,7 @@ module.exports = async (client, message) => {
             .setDescription('Você foi banido(a) de usar a Foxy em qualquer servidor no Discord! \n Caso seu ban foi injusto (o que eu acho muito difícil) você pode solicitar seu unban no meu [servidor de suporte](https://gg/kFZzmpD) \n **Leia os termos em** [Termos de uso](https://foxywebsite.ml/tos.html)')
             .setFooter('You\'ve been banned from using Foxy on other servers on Discord!');
           return message.author.send(bannedEmbed).catch(() => {
-            message.reply(message.author, bannedEmbed);
+            message.inlineReply(message.author, bannedEmbed);
           });
         }
         return FoxyHandler();

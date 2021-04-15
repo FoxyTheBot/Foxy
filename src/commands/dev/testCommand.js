@@ -4,7 +4,7 @@ module.exports = {
     cooldown: 3,
     guildOnly: true,
     async run(client, message, args) {
-            message.reply('idk')
+            message.inlineReply('idk')
     },
 
 };

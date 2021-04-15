@@ -7,18 +7,18 @@ module.exports = {
   cooldown: 3,
   guildOnly: true,
   async run(client, message, args, applyText) {
-    if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.reply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
+    if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.inlineReply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 
 
     const canvas = Canvas.createCanvas(380, 208);
     const ctx = canvas.getContext('2d');
     const sayMessage = args.join(' ');
-    if (!sayMessage) return message.reply('Digite algo antes');
+    if (!sayMessage) return message.inlineReply('Digite algo antes');
 
     const background = await Canvas.loadImage('./src/assets/Windows.png');
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-    if (sayMessage.length > 30) return message.reply('Você pode digitar até 30 caracteres, obrigada :3');
+    if (sayMessage.length > 30) return message.inlineReply('Você pode digitar até 30 caracteres, obrigada :3');
 
 
     ctx.strokeStyle = '#74037b';
@@ -38,7 +38,7 @@ module.exports = {
 
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'error.png');
 
-    message.reply(attachment);
+    message.inlineReply(attachment);
     client.hook.logsHook()
 
   },

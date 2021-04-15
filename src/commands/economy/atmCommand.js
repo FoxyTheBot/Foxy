@@ -13,7 +13,7 @@ module.exports = {
     let bal = db.fetch(`coins_${user.id}`);
     if (bal === null) bal = 0;
 
-        if (user == message.author) return message.reply(`💵 **|** ${user} você possui ${bal} FoxCoins`);
-        message.reply(`💵 **|** ${message.author}, ${user} possui ${bal} FoxCoins`);
+        if (user == message.author) return message.inlineReply(`💵 **|** ${user} você possui ${bal} FoxCoins`);
+        message.inlineReply(`💵 **|** ${message.author}, ${user} possui ${bal} FoxCoins`);
   },
 };

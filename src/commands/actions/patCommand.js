@@ -10,7 +10,7 @@ module.exports = {
   async run(client, message, args) {
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
     if (!user) {
-      return message.reply('lembre-se de mencionar um usuário válido para fazer cafuné!');
+      return message.inlineReply('lembre-se de mencionar um usuário válido para fazer cafuné!');
     }
 
     const img = await neko.sfw.pat();
@@ -22,7 +22,7 @@ module.exports = {
       .setImage(img.url)
       .setTimestamp()
       .setFooter('Reaga com 🤩 para retribuir');
-    await message.reply(`${message.author}`, embed).then((msg) => {
+    await message.inlineReply(`${message.author}`, embed).then((msg) => {
       msg.react('🤩')
 
       const filter = (reaction, usuario) => reaction.emoji.name === '🤩' && usuario.id === user.id;
@@ -34,7 +34,7 @@ module.exports = {
           .setDescription(`${user} **Fez cafuné** ${message.author}`)
           .setImage(img2.url)
 
-        message.reply(repeat)
+        message.inlineReply(repeat)
       })
 
     })

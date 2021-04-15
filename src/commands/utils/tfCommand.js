@@ -6,14 +6,14 @@ module.exports = {
   argsRequire: true,
   async run(client, message, args) {
     if (!args) {
-      message.reply('Digite uma pergunta');
+      message.inlineReply('Digite uma pergunta');
     } else {
       const results = ['Verdade', 'Falso'];
       const result = Math.floor((Math.random() * results.length));
       {
       }
 
-      message.reply(results[result]);
+      message.inlineReply(results[result]);
     }
   },
 };
