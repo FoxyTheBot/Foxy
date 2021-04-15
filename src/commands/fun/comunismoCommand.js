@@ -10,7 +10,7 @@ module.exports = {
     const canvas = Canvas.createCanvas(500, 400);
     const ctx = canvas.getContext('2d');
     const sayMessage = args.join(' ');
-    if (!sayMessage) return message.reply('Digite algo antes');
+    if (!sayMessage) return message.inlineReply('Digite algo antes');
     
 
     const background = await Canvas.loadImage('./src/assets/comunismo.png');
@@ -34,7 +34,7 @@ module.exports = {
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'nosso.png');
     
 
-    message.reply(attachment);
+    message.inlineReply(attachment);
 
     client.hook.logsHook()
   },

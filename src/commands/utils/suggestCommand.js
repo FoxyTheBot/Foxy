@@ -13,9 +13,9 @@ module.exports = {
       .setDescription('Este comando é utilizado para deixar uma sugestão para a Foxy! Para usar use `f!sugerir <sugestão>`')
       .setFooter('Não use este comando para brincadeiras, você poderá ser banido de usar a Foxy se fazer isto!');
 
-    if (!suggestion) return message.reply(embed);
+    if (!suggestion) return message.inlineReply(embed);
 
-    message.reply(`Obrigada por me ajudar ${message.author}, sua sugestão foi enviada com sucesso! <:meow_blush:768292358458179595>`);
+    message.inlineReply(`Obrigada por me ajudar ${message.author}, sua sugestão foi enviada com sucesso! <:meow_blush:768292358458179595>`);
 
     client.hook.suggestHook()
   },

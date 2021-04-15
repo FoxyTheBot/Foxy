@@ -15,7 +15,7 @@ module.exports = {
     const rand = list[Math.floor(Math.random() * list.length)];
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
     if (!user) {
-      return message.reply('lembre-se de mencionar um usuário válido para atacar!');
+      return message.inlineReply('lembre-se de mencionar um usuário válido para atacar!');
     }
 
     const avatar = message.author.displayAvatarURL({ format: 'png' });
@@ -26,7 +26,7 @@ module.exports = {
       .setTimestamp()
       .setFooter('Reaga com 🌟 para retribuir| Gifs by: ByteAlex#1644')
       .setAuthor(message.author.tag, avatar);
-    await message.reply(embed).then((msg) => {
+    await message.inlineReply(embed).then((msg) => {
       msg.react('🌟')
 
       const filter = (reaction, usuario) => reaction.emoji.name === '🌟' && usuario.id === user.id;
@@ -38,7 +38,7 @@ module.exports = {
           .setDescription(`${user} **Atacou** ${message.author}`)
           .setImage(rand)
 
-        message.reply(repeat)
+        message.inlineReply(repeat)
       })
 
     })

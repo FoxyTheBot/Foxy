@@ -19,25 +19,25 @@ module.exports = {
 
             )
             .setFooter(`• Autor: ${message.author.tag} - Economia`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));
-        if(!user) return message.reply(noargs)
+        if(!user) return message.inlineReply(noargs)
         let reply = `${user}, Você deseja fazer uma aposta de ${args[2]} FoxCoins com ${message.author}?`
 
         const authorbal = await db.fetch(`coins_${message.author.id}`)
         const userbal = await db.fetch(`coins_${user.id}`)
     
         if(userbal < args[2]) {
-            return message.reply(`💸 **|** ${user} Não tem FoxCoins suficientes para apostar`)
+            return message.inlineReply(`💸 **|** ${user} Não tem FoxCoins suficientes para apostar`)
         } 
 
         if(authorbal < args[2]) {
-            return message.reply(`Você não tem FoxCoins o suficiente para fazer apostas`)
+            return message.inlineReply(`Você não tem FoxCoins o suficiente para fazer apostas`)
         }
 
-        if(!args[2]) return message.reply(noargs)
+        if(!args[2]) return message.inlineReply(noargs)
 
-        if(isNaN(args[2])) return message.reply('Digite números válidos!')
+        if(isNaN(args[2])) return message.inlineReply('Digite números válidos!')
         if(user == client.user) reply = "Opa, vamos apostar então!"
-        message.reply(reply).then((msg) => {
+        message.inlineReply(reply).then((msg) => {
 
             setTimeout(() => msg.react('✅'),
             1000);
@@ -51,16 +51,16 @@ module.exports = {
                 const rand = Math.floor(Math.random() * array1.length);
         
                 if (!args[1] || (args[1].toLowerCase() !== 'cara' && args[1].toLowerCase() !== 'coroa')) {
-                    message.reply(noargs);
+                    message.inlineReply(noargs);
         
                   } else if (args[1].toLowerCase() == array1[rand]) {
         
-                    message.reply(`💸 **|** Deu **${array1[rand]}**, você ganhou dessa vez! Financiado por ${user} rs`);
+                    message.inlineReply(`💸 **|** Deu **${array1[rand]}**, você ganhou dessa vez! Financiado por ${user} rs`);
                     db.add(`coins_${message.author.id}`, args[2])
                     db.subtract(`coins_${user.id}`, args[2])
         
                   } else if (args[1].toLowerCase() != array1[rand]) {
-                    message.reply(`💸 **|** Deu **${array1[rand]}**, você perdeu dessa vez! ${user} Você ganhou ${args[2]} FoxCoins, Financiado por ${message.author} rs`);
+                    message.inlineReply(`💸 **|** Deu **${array1[rand]}**, você perdeu dessa vez! ${user} Você ganhou ${args[2]} FoxCoins, Financiado por ${message.author} rs`);
                     db.add(`coins_${user.id}`, args[2])
                     db.subtract(`coins_${message.author.id}`, args[2])
                   }

@@ -22,16 +22,16 @@ module.exports = {
 
         const mentioned = message.mentions.users.first();
 
-        if (!mentioned) return message.reply(marryEmbed)
-        if (mentioned === client.user) return message.reply(`Nhe, eu não quero casar com você, aliás eu nem idade para casar tenho! ${client.emotes.rage}`)
-        if (mentioned.id === message.author.id) return message.reply(`${client.emotes.error} **|** Ué amiguinho? Por que você quer casar com você mesmo? Uma hora você vai achar o amor da sua vida, eu confio em você! ${client.emotes.heart}`)
+        if (!mentioned) return message.inlineReply(marryEmbed)
+        if (mentioned === client.user) return message.inlineReply(`Nhe, eu não quero casar com você, aliás eu nem idade para casar tenho! ${client.emotes.rage}`)
+        if (mentioned.id === message.author.id) return message.inlineReply(`${client.emotes.error} **|** Ué amiguinho? Por que você quer casar com você mesmo? Uma hora você vai achar o amor da sua vida, eu confio em você! ${client.emotes.heart}`)
 
-        if (authordata && authordata !== 'null') return message.reply(`${client.emotes.rage} **|** Você já está casado! Nem pense em trair!`)
+        if (authordata && authordata !== 'null') return message.inlineReply(`${client.emotes.rage} **|** Você já está casado! Nem pense em trair!`)
 
         const user2 = await db.fetch(`married_${mentioned.id}`)
 
-        if (user2 && user2 !== 'null') return message.reply(`${client.emotes.rage} **|** **${mentioned.username}** Já está casado`);
-        message.reply(`${client.emotes.heart} **|** ${mentioned} Você recebeu um pedido de casamento de ${message.author}, você tem 1 minuto para aceitar!`).then((msg) => {
+        if (user2 && user2 !== 'null') return message.inlineReply(`${client.emotes.rage} **|** **${mentioned.username}** Já está casado`);
+        message.inlineReply(`${client.emotes.heart} **|** ${mentioned} Você recebeu um pedido de casamento de ${message.author}, você tem 1 minuto para aceitar!`).then((msg) => {
 
             setTimeout(() => msg.react('❌'),
                 1000);
@@ -43,11 +43,11 @@ module.exports = {
             const noCollector = msg.createReactionCollector(filterNo, { max: 1, time: 60000 })
 
             noCollector.on('collect', () => {
-                return message.reply(`${client.emotes.broken} **|** Me desculpe ${message.author}, mas seu pedido de casamento foi rejeitado ${client.emotes.sob}`)
+                return message.inlineReply(`${client.emotes.broken} **|** Me desculpe ${message.author}, mas seu pedido de casamento foi rejeitado ${client.emotes.sob}`)
             })
 
             yesCollector.on('collect', () => {
-                message.reply(`${client.emotes.heart} **|** ${message.author} e ${mentioned}, Vocês agora estão casados, felicidades para vocês dois! ${client.emotes.heart}`)
+                message.inlineReply(`${client.emotes.heart} **|** ${message.author} e ${mentioned}, Vocês agora estão casados, felicidades para vocês dois! ${client.emotes.heart}`)
 
                 db.set(`married_${message.author.id}`, mentioned.id)
                 db.set(`married_${mentioned.id}`, message.author.id)
