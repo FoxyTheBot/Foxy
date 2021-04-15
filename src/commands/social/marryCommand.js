@@ -30,7 +30,7 @@ module.exports = {
 
         const user2 = await db.fetch(`married_${mentioned.id}`)
 
-        if (user2 && user2 !== 'null') return message.reply(`${client.emotes.rage} **|** Opa! Calma ai, já ouviu essa frase "Talarico morre cedo"? Toma cuidado! ( **${mentioned.username}** Já está casado)`);
+        if (user2 && user2 !== 'null') return message.reply(`${client.emotes.rage} **|** **${mentioned.username}** Já está casado`);
         message.reply(`${client.emotes.heart} **|** ${mentioned} Você recebeu um pedido de casamento de ${message.author}, você tem 1 minuto para aceitar!`).then((msg) => {
 
             setTimeout(() => msg.react('❌'),

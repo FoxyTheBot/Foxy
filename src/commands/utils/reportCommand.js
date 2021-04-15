@@ -13,16 +13,8 @@ module.exports = {
 
     if (!sayMessage) return message.reply(noargs);
     message.reply(`Obrigada por me ajudar ${message.author}, seu report foi enviado com sucesso! <:meow_blush:768292358458179595>`);
-    const embed = new Discord.MessageEmbed()
-      .setTitle('<:meowbughunter:776249240463736834> | Report para Foxy')
-      .setColor('#0099ff')
-      .setDescription(`Autor: **${message.author.username} / ${message.author.id}** \n Servidor: ${message.guild.name} \n ${message.guild.id} \n\n ${client.emotes.bug} **Issue:** ${sayMessage}`);
-    const pfp = message.author.avatarURL();
-    client.reportWebhook.send({
-      username: `${message.author.username}`,
-      avatarURL: pfp,
-      embeds: [embed],
-    });
+    
+    client.hook.reportHook()
   },
 
 };
