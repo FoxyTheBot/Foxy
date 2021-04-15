@@ -8,13 +8,13 @@ const client = new Client({
   },
 });
 
+require('./structures/InlineReply');
+
 client.commands = new Collection();
 client.emotes = require('./structures/emotes.json');
 client.colors = require('./structures/color.json');
 client.config = require('./config/config.json');
 client.hook = require('./utils/WebHookManager');
-
-require('./InlineReply');
 
 const commandFolders = fs.readdirSync('./src/commands');
 const eventFiles = fs.readdirSync('./src/events').filter((file) => file.endsWith('.js'));
