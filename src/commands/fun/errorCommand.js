@@ -14,12 +14,12 @@ module.exports = {
     const ctx = canvas.getContext('2d');
     const sayMessage = args.join(' ');
     if (!sayMessage) return message.reply('Digite algo antes');
-        
+
     const background = await Canvas.loadImage('./src/assets/Windows.png');
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     if (sayMessage.length > 30) return message.reply('Você pode digitar até 30 caracteres, obrigada :3');
-    
+
 
     ctx.strokeStyle = '#74037b';
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
@@ -39,14 +39,7 @@ module.exports = {
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'error.png');
 
     message.reply(attachment);
-    const embed = new Discord.MessageEmbed()
-      .setTitle('Logs de comandos')
-      .setDescription(`**Comando:** f!error \n **Autor:** ${message.author.tag} / ${message.author.id} \n\n **Servidor** ${message.guild.name} / ${message.guild.id} \n\n **Mensagem:** ${sayMessage} \n\n Link: [Mensagem](${message.url})`);
+    client.hook.logsHook()
 
-    client.logsWebhook.send({
-      username: 'Logs',
-      avatarURL: 'https://cdn.discordapp.com/attachments/766414535396425739/789255465125150732/sad.jpeg',
-      embeds: [embed],
-    });
   },
 };
