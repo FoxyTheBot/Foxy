@@ -6,16 +6,16 @@ module.exports = {
 
   async run(client, message, args) {
     const user = args.join(' ');
-    if (!user) return message.reply('<:Minecraft:804858374780878868> **|** Especifique um usuário');
+    if (!user) return message.inlineReply('<:Minecraft:804858374780878868> **|** Especifique um usuário');
 
     const discord = require('discord.js');
-    if(user.length > 20) return message.reply('Digite no mínimo 20 caractéres')
+    if(user.length > 20) return message.inlineReply('Digite no mínimo 20 caractéres')
     const body = `https://mc-heads.net/body/${user}`;
 
     const embed = new discord.MessageEmbed()
       .setColor(client.colors.mine)
       .setTitle(`Corpo de ${user}`)
       .setImage(body);
-    message.reply(embed);
+    message.inlineReply(embed);
   },
 };

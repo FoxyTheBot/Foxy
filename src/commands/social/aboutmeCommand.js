@@ -16,12 +16,12 @@ module.exports = {
     .addField("Alterar o Sobre Mim", "`f!aboutme Olá eu sou amigo da Foxy!`")
     .addField("ℹ Aliases:", "`sobremim`")
     .setFooter(`• Autor: ${message.author.tag} - Social`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));
-    if (!aboutme) return message.reply(aboutmeEmbed);
+    if (!aboutme) return message.inlineReply(aboutmeEmbed);
 
     const user = message.author;
     db.set(`aboutme_${user.id}`, aboutme);
-    if (message.content.includes('@')) return message.reply("Você não pode mencionar ninguém!")
+    if (message.content.includes('@')) return message.inlineReply("Você não pode mencionar ninguém!")
 
-    message.reply(`Alterei sua mensagem de perfil para \`${aboutme}\``);
+    message.inlineReply(`Alterei sua mensagem de perfil para \`${aboutme}\``);
   },
 };

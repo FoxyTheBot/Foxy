@@ -7,13 +7,13 @@ module.exports = {
     cooldown: 3,
     guildOnly: true,
     async run(client, message, args) {
-        if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.reply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
+        if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.inlineReply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 
         const canvas = Canvas.createCanvas(800, 600);
         const ctx = canvas.getContext('2d');
         const sayMessage = args.join(' ');
-        if (!sayMessage) return message.reply('Digite algo antes');
-        if(sayMessage.length > 35) return message.reply("Digite até 35 caractéres")
+        if (!sayMessage) return message.inlineReply('Digite algo antes');
+        if(sayMessage.length > 35) return message.inlineReply("Digite até 35 caractéres")
         
 
         const background = await Canvas.loadImage('./src/assets/notstonks.png');
@@ -37,7 +37,7 @@ module.exports = {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'stonks.png');
         
 
-        message.reply(attachment);
+        message.inlineReply(attachment);
         
         client.hook.logsHook()
 

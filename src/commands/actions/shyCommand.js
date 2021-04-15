@@ -23,6 +23,6 @@ module.exports = {
       .setTimestamp()
       .setFooter(' | Gifs by: ByteAlex#1644')
       .setAuthor(message.author.tag, avatar);
-    await message.reply(embed);
+    await message.inlineReply(embed);
   },
 };

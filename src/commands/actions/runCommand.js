@@ -27,7 +27,7 @@ module.exports = {
       .setTimestamp()
       .setFooter('And i ran, i ran so far away | ')
       .setAuthor(message.author.tag, avatar);
-    await message.reply(embed);
+    await message.inlineReply(embed);
   },
 
 };

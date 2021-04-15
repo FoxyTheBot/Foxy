@@ -18,7 +18,7 @@ module.exports = {
             { name: "<:info:718944993741373511> **| Informações**", value: "`ideia`, `termos`, `status`, `help`, `commands`, `uptime`, `botinfo`, `sugerir`, `userinfo`, `serverinfo`", inline: true},
             { name: "<:DiscordStaff:731947814246154240> **| Utilitários**", value: "`report`, `donate`, `remind`, `invite`, `github`, `dbl`, `calc`, `translate`, `ping`, `ascii`, `morse`, `weather`, `emoji`, `servericon`, `rbuser`", inline: true}
             )
-          message.reply(CommandsEmbed);
+          message.inlineReply(CommandsEmbed);
 
   },
 };

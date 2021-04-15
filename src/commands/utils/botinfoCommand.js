@@ -44,7 +44,7 @@ module.exports = {
           )
           .setFooter('Foxy foi criada por WinG4merBR#8379', 'https://cdn.discordapp.com/attachments/776930851753426945/797186564747690024/Win.png');
 
-        message.reply(ajuda);
+        message.inlineReply(ajuda);
       });
   },
 

@@ -26,7 +26,7 @@ module.exports = {
         .setImage(rand)
         .setTimestamp()
         .setAuthor(message.author.tag, avatar);
-      message.reply(embed);
+      message.inlineReply(embed);
     } else {
       const avatar = message.author.displayAvatarURL({ format: 'png' });
       const embed = new Discord.MessageEmbed()
@@ -35,7 +35,7 @@ module.exports = {
         .setImage(rand)
         .setTimestamp()
         .setAuthor(message.author.tag, avatar);
-      await message.reply(embed);
+      await message.inlineReply(embed);
     }
   },
 
