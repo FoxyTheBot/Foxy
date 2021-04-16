@@ -13,9 +13,9 @@ module.exports = {
       .setDescription('Este comando é utilizado para deixar uma sugestão para a Foxy! Para usar use `f!sugerir <sugestão>`')
       .setFooter('Não use este comando para brincadeiras, você poderá ser banido de usar a Foxy se fazer isto!');
 
-    if (!suggestion) return message.inlineReply(embed);
+    if (!suggestion) return message.FoxyReply(embed);
 
-    message.inlineReply(`Obrigada por me ajudar ${message.author}, sua sugestão foi enviada com sucesso! <:meow_blush:768292358458179595>`);
+    message.FoxyReply(`Obrigada por me ajudar ${message.author}, sua sugestão foi enviada com sucesso! <:meow_blush:768292358458179595>`);
 
     const pfp = message.author.avatarURL();
     const suggest = new MessageEmbed()

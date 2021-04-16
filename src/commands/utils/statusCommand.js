@@ -32,7 +32,7 @@ module.exports = {
             .addField(('discord.js:'), `\`\`\`${version}\`\`\``, true)
             .setFooter(`${totalGuilds} Servidores e ${totalMembers} Usuários`);
           
-          message.inlineReply(status);
+          message.FoxyReply(status);
         });
       }).catch(console.error);
   },

@@ -12,6 +12,6 @@ module.exports = {
       .setDescription('https://github.com/BotFoxy')
       .setThumbnail('https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png');
 
-    await message.inlineReply(embed);
+    await message.FoxyReply(embed);
   },
 };

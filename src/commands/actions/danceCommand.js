@@ -26,7 +26,7 @@ module.exports = {
         .setImage(rand)
         .setTimestamp()
         .setAuthor(message.author.tag, avatar);
-      message.inlineReply(embed);
+      message.FoxyReply(embed);
     } else {
       const avatar = message.author.displayAvatarURL({ format: 'png' });
       const embed = new Discord.MessageEmbed()
@@ -35,7 +35,7 @@ module.exports = {
         .setImage(rand)
         .setTimestamp()
         .setAuthor(message.author.tag, avatar);
-      await message.inlineReply(embed);
+      await message.FoxyReply(embed);
     }
   },
 

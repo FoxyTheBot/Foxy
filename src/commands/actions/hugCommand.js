@@ -10,7 +10,7 @@ module.exports = {
   async run(client, message, args) {
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
     if (!user) {
-      return message.inlineReply('lembre-se de mencionar um usuário válido para abraçar!');
+      return message.FoxyReply('lembre-se de mencionar um usuário válido para abraçar!');
     }
 
     const img = await neko.sfw.hug();
@@ -23,7 +23,7 @@ module.exports = {
       .setImage(img.url)
       .setTimestamp()
       .setFooter('Reaja com ❤ para retribuir');
-    await message.inlineReply(`${message.author}`, embed).then((msg) => {
+    await message.FoxyReply(`${message.author}`, embed).then((msg) => {
       msg.react('❤')
 
       const filter = (reaction, usuario) => reaction.emoji.name === '❤' && usuario.id === user.id;
@@ -35,7 +35,7 @@ module.exports = {
           .setDescription(`${user} **Abraçou** ${message.author}`)
           .setImage(img2.url)
 
-        message.inlineReply(repeat)
+        message.FoxyReply(repeat)
       })
 
     })

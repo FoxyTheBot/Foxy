@@ -8,7 +8,7 @@ const client = new Client({
   },
 });
 
-require('./structures/InlineReply');
+require('./structures/FoxyReply');
 
 client.commands = new Collection();
 client.emotes = require('./structures/emotes.json');

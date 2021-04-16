@@ -10,26 +10,26 @@ module.exports = {
     const result = acceptedReplies[random];
 
     const choice = args[0];
-    if (!choice) return message.inlineReply(`Como jogar \`${client.config.prefix}ppt <pedra|papel|tesoura\``);
-    if (!acceptedReplies.includes(choice)) return message.inlineReply(`Apenas estas respostas são aceitas: \`${acceptedReplies.join(', ')}\``);
+    if (!choice) return message.FoxyReply(`Como jogar \`${client.config.prefix}ppt <pedra|papel|tesoura\``);
+    if (!acceptedReplies.includes(choice)) return message.FoxyReply(`Apenas estas respostas são aceitas: \`${acceptedReplies.join(', ')}\``);
 
-    if (result === choice) return message.inlineReply('Ei, dessa vez deu empate');
+    if (result === choice) return message.FoxyReply('Ei, dessa vez deu empate');
 
     switch (choice) {
       case 'pedra': {
-        if (result === 'papel') return message.inlineReply('Eu ganhei :3');
-        return message.inlineReply('Yayyy você venceu!');
+        if (result === 'papel') return message.FoxyReply('Eu ganhei :3');
+        return message.FoxyReply('Yayyy você venceu!');
       }
       case 'papel': {
-        if (result === 'tesoura') return message.inlineReply('Eu ganhei :3');
-        return message.inlineReply('Yeeey você venceu!');
+        if (result === 'tesoura') return message.FoxyReply('Eu ganhei :3');
+        return message.FoxyReply('Yeeey você venceu!');
       }
       case 'tesoura': {
-        if (result === 'pedra') return message.inlineReply('Eu ganhei OwO');
-        return message.inlineReply('OwO você venceu! ^^');
+        if (result === 'pedra') return message.FoxyReply('Eu ganhei OwO');
+        return message.FoxyReply('OwO você venceu! ^^');
       }
       default: {
-        return message.inlineReply(`Apenas estas respostas são aceitas: \`${acceptedReplies.join(', ')}\``);
+        return message.FoxyReply(`Apenas estas respostas são aceitas: \`${acceptedReplies.join(', ')}\``);
       }
     }
   },

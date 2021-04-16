@@ -9,10 +9,10 @@ module.exports = {
   guildOnly: false,
   async run(client, message, args) {
     weather.find({ search: args.join(' '), degreeType: 'C' }, (error, result) => {
-      if (error) return message.inlineReply(error);
-      if (!args[0]) return message.inlineReply('Por favor, digite uma localização');
+      if (error) return message.FoxyReply(error);
+      if (!args[0]) return message.FoxyReply('Por favor, digite uma localização');
 
-      if (result === undefined || result.length === 0) return message.inlineReply('Localização inválida!');
+      if (result === undefined || result.length === 0) return message.FoxyReply('Localização inválida!');
 
       const { current } = result[0];
       const { location } = result[0];
@@ -29,7 +29,7 @@ module.exports = {
         .addField('Sensação', `${current.feelslike}°`, true)
         .addField('Umidade', `${current.humidity}%`, true);
 
-      message.inlineReply(weatherinfo);
+      message.FoxyReply(weatherinfo);
     });
   },
 

@@ -18,7 +18,7 @@ module.exports = {
     const rand = list[Math.floor(Math.random() * list.length)];
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
     if (!user) {
-      return message.inlineReply('lembre-se de mencionar um usuário válido');
+      return message.FoxyReply('lembre-se de mencionar um usuário válido');
     }
     const embed = new Discord.MessageEmbed()
       .setColor('#000000')
@@ -26,7 +26,7 @@ module.exports = {
       .setDescription(`${message.author} e ${user} são ${rand}`)
       .setTimestamp()
       .setFooter('');
-    await message.inlineReply(embed);
+    await message.FoxyReply(embed);
   },
 
 };

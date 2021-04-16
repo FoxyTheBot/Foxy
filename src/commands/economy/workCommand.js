@@ -16,7 +16,7 @@ module.exports = {
         if(author !== null && timeout - (Date.now() - author) > 0) {
             let time = ms(timeout - (Date.now() - author));
 
-            message.inlineReply(`😴 **|** Você já trabalhou, descanse um pouco. Tente novamente em **${time.minutes}m ${time.seconds}s**`)
+            message.FoxyReply(`😴 **|** Você já trabalhou, descanse um pouco. Tente novamente em **${time.minutes}m ${time.seconds}s**`)
 
         } else {
              
@@ -25,7 +25,7 @@ module.exports = {
             let result = Math.floor((Math.random() * replies.length));
             let amount = 500;
 
-            message.inlineReply(`🌟 **|** Você trabalhou como ${replies[result]} e ganhou ${amount} FoxCoins!`)
+            message.FoxyReply(`🌟 **|** Você trabalhou como ${replies[result]} e ganhou ${amount} FoxCoins!`)
 
             db.add(`coins_${user.id}`, amount)
             db.set(`work_${user.id}`, Date.now())

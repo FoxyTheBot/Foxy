@@ -11,8 +11,8 @@ module.exports = {
       .setTitle('Como usar')
       .setDescription('<:meowbughunter:776249240463736834> **Reporte falhas para meu servidor de suporte** \n 💁‍♀️ **Exemplo:** `f!report bot retorna undefined`');
 
-    if (!sayMessage) return message.inlineReply(noargs);
-    message.inlineReply(`Obrigada por me ajudar ${message.author}, seu report foi enviado com sucesso! <:meow_blush:768292358458179595>`);
+    if (!sayMessage) return message.FoxyReply(noargs);
+    message.FoxyReply(`Obrigada por me ajudar ${message.author}, seu report foi enviado com sucesso! <:meow_blush:768292358458179595>`);
     
     const embed = new Discord.MessageEmbed()
     .setTitle('<:meowbughunter:776249240463736834> | Report para Foxy')
