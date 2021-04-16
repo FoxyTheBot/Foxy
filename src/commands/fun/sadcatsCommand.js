@@ -48,7 +48,7 @@ module.exports = {
       .setTitle('O Mais Triste dos Tristes')
       .setImage(rand)
       .setTimestamp();
-    await message.inlineReply(`${message.author}`, embed);
+    await message.FoxyReply(`${message.author}`, embed);
   },
 
 };

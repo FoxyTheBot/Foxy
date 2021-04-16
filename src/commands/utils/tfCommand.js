@@ -6,14 +6,14 @@ module.exports = {
   argsRequire: true,
   async run(client, message, args) {
     if (!args) {
-      message.inlineReply('Digite uma pergunta');
+      message.FoxyReply('Digite uma pergunta');
     } else {
       const results = ['Verdade', 'Falso'];
       const result = Math.floor((Math.random() * results.length));
       {
       }
 
-      message.inlineReply(results[result]);
+      message.FoxyReply(results[result]);
     }
   },
 };

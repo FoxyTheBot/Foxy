@@ -10,9 +10,9 @@ module.exports = {
 
     const user = message.mentions.members.first();
 
-    if (user == message.author.id) return message.inlineReply('Você não pode dar reputação para si mesmo!');
+    if (user == message.author.id) return message.FoxyReply('Você não pode dar reputação para si mesmo!');
 
-    if (!user) return message.inlineReply('Mencione alguém para dar reputação!');
+    if (!user) return message.FoxyReply('Mencione alguém para dar reputação!');
 
     const timeout = 3600000;
     const amount = 1;
@@ -21,12 +21,12 @@ module.exports = {
     if (rep !== null && timeout - (Date.now() - out) > 0) {
       const time = ms(timeout - (Date.now() - out));
 
-      message.inlineReply(`Você precisa esperar **${time.hours}h ${time.minutes}m ${time.seconds}s** para dar reputação para ${user} novamente`);
+      message.FoxyReply(`Você precisa esperar **${time.hours}h ${time.minutes}m ${time.seconds}s** para dar reputação para ${user} novamente`);
     } else {
       db.add(`rep_${user.id}`, amount);
       db.set(`timeout_${message.author.id}to_${user.id}`, Date.now());
       const nowrep = db.fetch(`rep_${user.id}`);
-      message.inlineReply(`${client.emotes.heart} **|** deu ${amount} reputação para ${user} agora ele(a) possui ${nowrep} reputações`);
+      message.FoxyReply(`${client.emotes.heart} **|** deu ${amount} reputação para ${user} agora ele(a) possui ${nowrep} reputações`);
     }
   },
 };

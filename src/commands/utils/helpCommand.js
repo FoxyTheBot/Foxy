@@ -17,6 +17,6 @@ module.exports = {
       .addField('<:info:718944993741373511> Termos de uso', 'https://foxywebsite.ml/tos.html')
       .addField('<:ApoiadorDoDiscord:731946134720741377> Meu WebSite onde você pode me adicionar', 'https://foxywebsite.ml/');
 
-    message.inlineReply(embed);
+    message.FoxyReply(embed);
   },
 };

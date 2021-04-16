@@ -10,7 +10,7 @@ module.exports = {
     const moment = require('moment');
 
     const username = args[0];
-    if (!username) return message.inlineReply('Especifique um usuário!');
+    if (!username) return message.FoxyReply('Especifique um usuário!');
     if (username) {
       roblox.getIdFromUsername(username).then((id) => {
         if (id) {
@@ -32,14 +32,14 @@ module.exports = {
                 { name: ':calendar: Data de registro', value: data || 'Sem solução', inline: true },
                 { name: "Link do usuário", value: `https://roblox.com/users/${id}/profile`, inline: true }
               )
-            message.inlineReply(embed);
+            message.FoxyReply(embed);
           });
         }
 
 
       }).catch((err) => {
-        message.inlineReply('Ah! Eu não encontrei este usuário, ou talvez ele não exista, desculpe pela inconveniência!');
+        message.FoxyReply('Ah! Eu não encontrei este usuário, ou talvez ele não exista, desculpe pela inconveniência!');
       });
-    } else { message.inlineReply('Por favor especifique um usuário válido'); }
+    } else { message.FoxyReply('Por favor especifique um usuário válido'); }
   },
 };

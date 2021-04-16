@@ -7,13 +7,13 @@ module.exports = {
     cooldown: 3,
     guildOnly: true,
     async run(client, message, args) {
-        if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.inlineReply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
+        if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.FoxyReply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 
         const canvas = Canvas.createCanvas(800, 600);
         const ctx = canvas.getContext('2d');
         const sayMessage = args.join(' ');
-        if (!sayMessage) return message.inlineReply('Digite algo antes');
-        if(sayMessage.length > 33) return message.inlineReply("Digite até 35 caractéres")
+        if (!sayMessage) return message.FoxyReply('Digite algo antes');
+        if(sayMessage.length > 33) return message.FoxyReply("Digite até 35 caractéres")
         
 
         const background = await Canvas.loadImage('./src/assets/stonks.png');
@@ -37,7 +37,7 @@ module.exports = {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'stonks.png');
         
 
-        message.inlineReply(attachment);
+        message.FoxyReply(attachment);
         
         const logs = new Discord.MessageEmbed()
         .setTitle('Logs de comandos')
