@@ -14,7 +14,6 @@ client.commands = new Collection();
 client.emotes = require('./structures/emotes.json');
 client.colors = require('./structures/color.json');
 client.config = require('./config/config.json');
-client.hook = require('./utils/WebhookManager');
 
 client.suggestWebhook = new WebhookClient(client.config.suggest.id, client.config.suggest.token);
 client.logsWebhook = new WebhookClient(client.config.logs.id, client.config.logs.token);
