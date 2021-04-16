@@ -20,7 +20,7 @@ manager.on('shardCreate', shard => {
 manager.spawn();
 
 process.on('SIGINT', () => {
-    console.info('\n\x1b[37m\x1b[44mINFO\x1b[0m: Foxy está a mimir');
+    console.info('\n\x1b[37m\x1b[44mINFO\x1b[0m: Foxy está sendo encerrada');
     process.exit(1)
 });
 
