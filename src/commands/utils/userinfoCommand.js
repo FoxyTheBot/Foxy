@@ -21,9 +21,9 @@ module.exports = {
           { name: ':bookmark: Discord ID:', value: `\`${user.user.id}\``, inline: true },
         );
 
-      message.inlineReply(`${message.author}`, embed);
+      message.FoxyReply(`${message.author}`, embed);
     } catch (err) {
-      message.inlineReply(client.errors.genericError + err.stack).catch();
+      message.FoxyReply(client.errors.genericError + err.stack).catch();
     }
   },
 };

@@ -10,14 +10,14 @@ module.exports = {
     const language = args[0];
     const text = args.slice(1).join(' ');
 
-    if (!language) return message.inlineReply('Especifique um idioma');
+    if (!language) return message.FoxyReply('Especifique um idioma');
 
-    if (language.length !== 2) return message.inlineReply('Use apenas abreviações. Exemplo: `f!language en Olá Mundo!`');
+    if (language.length !== 2) return message.FoxyReply('Use apenas abreviações. Exemplo: `f!language en Olá Mundo!`');
 
-    if (!text) return message.inlineReply('Insira um texto');
+    if (!text) return message.FoxyReply('Insira um texto');
 
     const result = await translate(text, { to: language }).catch(err => {
-      message.inlineReply(`${client.emotes.error} **|** Ocorreu um erro ao executar o comando! \`${err}\``)
+      message.FoxyReply(`${client.emotes.error} **|** Ocorreu um erro ao executar o comando! \`${err}\``)
     })
 
     const embed = new Discord.MessageEmbed()
@@ -25,6 +25,6 @@ module.exports = {
       .setTitle(':map: | Translator')
       .setDescription(`\ \ \`\`\`\n${result.text}\n\`\`\``)
 
-    message.inlineReply(`${message.author}`, embed);
+    message.FoxyReply(`${message.author}`, embed);
   },
 };

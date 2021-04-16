@@ -26,7 +26,7 @@ module.exports = {
     const profile = db.fetch(`background_${user.id}`);
     if (profile == null) {
       db.set(`background_${user.id}`, 'default_background.png');
-      message.inlineReply('Parece que você não tem um perfil, seu perfil foi criado, digite o comando novamente.');
+      message.FoxyReply('Parece que você não tem um perfil, seu perfil foi criado, digite o comando novamente.');
     } else {
       const applyText = (canvas, text) => {
         const ctx = canvas.getContext('2d');
@@ -76,7 +76,7 @@ module.exports = {
       ctx.drawImage(avatar, 25, 25, 200, 200);
 
       const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'foxy_profile.png');
-      message.inlineReply(attachment);
+      message.FoxyReply(attachment);
     }
   },
 };

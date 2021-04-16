@@ -18,7 +18,7 @@ module.exports = {
     const rand = list[Math.floor(Math.random() * list.length)];
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
     if (!user) {
-      return message.inlineReply('lembre-se de mencionar um usuário válido para apaludir');
+      return message.FoxyReply('lembre-se de mencionar um usuário válido para apaludir');
     }
 
     const avatar = message.author.displayAvatarURL({ format: 'png' });
@@ -29,7 +29,7 @@ module.exports = {
       .setTimestamp()
       .setFooter('')
       .setAuthor(message.author.tag, avatar);
-    await message.inlineReply(embed);
+    await message.FoxyReply(embed);
   },
 
 };

@@ -21,7 +21,7 @@ module.exports = {
       .setTimestamp()
       .setFooter('')
       .setAuthor(message.author.tag, avatar);
-    await message.inlineReply(embed);
+    await message.FoxyReply(embed);
   },
 
 };

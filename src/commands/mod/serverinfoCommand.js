@@ -66,6 +66,6 @@ module.exports = {
         { name: '<:Partner:813832825543065680> Servidor Parceiro:', value: `${partner}`, inline: true },
       )
       .setFooter('Caso o Owner esteja null é porque o dono não está registrado na Foxy, peça para o dono executar um comando');
-    message.inlineReply(embed);
+    message.FoxyReply(embed);
   },
 };

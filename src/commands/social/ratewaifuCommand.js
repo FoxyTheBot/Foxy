@@ -7,11 +7,11 @@ module.exports = {
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
 
     if (!user) {
-      return message.inlineReply('lembre-se de mencionar um usuário válido para avaliar!');
+      return message.FoxyReply('lembre-se de mencionar um usuário válido para avaliar!');
     }
 
-    if (user == 737044809650274325) return message.inlineReply(`${client.emotes.heart} **|** Eu dou nota **∞** para <@737044809650274325> sim eu sou muito linda 😘`);
-    if (user == 331243426941239297) return message.inlineReply(`${client.emotes.heart} **|** Eu dou nota **∞** para ${user} minha mãe é perfeita >.<`)
+    if (user == 737044809650274325) return message.FoxyReply(`${client.emotes.heart} **|** Eu dou nota **∞** para <@737044809650274325> sim eu sou muito linda 😘`);
+    if (user == 331243426941239297) return message.FoxyReply(`${client.emotes.heart} **|** Eu dou nota **∞** para ${user} minha mãe é perfeita >.<`)
 
     const list = [
       '**1** para essa waifu. Eu não gostei <:hmmpepe:791151120021061662> ',
@@ -26,6 +26,6 @@ module.exports = {
 
     const rand = list[Math.floor(Math.random() * list.length)];
 
-    await message.inlineReply(`Sobre ${user}... Eu dou nota ${rand}`);
+    await message.FoxyReply(`Sobre ${user}... Eu dou nota ${rand}`);
   },
 };

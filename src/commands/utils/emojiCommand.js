@@ -7,7 +7,7 @@ module.exports = {
   guildOnly: true,
   async run(client, message, args) {
     if (!args[0]) {
-      return message.inlineReply(
+      return message.FoxyReply(
         `**${message.author.username}, a sintaxe correta é:** `
         + '`'
         + 'f!emoji nomedoemoji`',
@@ -16,11 +16,11 @@ module.exports = {
     const emoji = message.guild.emojis.cache.find((emoji) => emoji.name === args[0]);
 
     if (!emoji) {
-      message.inlineReply(
+      message.FoxyReply(
         `\`${args[0]}\` **não é um emoji deste servidor.**`,
       );
     } else if (emoji.animated === true) {
-      await message.inlineReply({
+      await message.FoxyReply({
         files: [
           {
             attachment: emoji.url,
@@ -29,7 +29,7 @@ module.exports = {
         ],
       });
     } else {
-      await message.inlineReply({
+      await message.FoxyReply({
         files: [
           {
             attachment: emoji.url,

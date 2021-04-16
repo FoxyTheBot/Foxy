@@ -19,7 +19,7 @@ module.exports = {
       .setDescription(`${client.user} deu um tapa bem dado em ${message.author}`)
       .setImage(img.url);
 
-    if (user === client.user) return message.inlineReply(foxyslap);
+    if (user === client.user) return message.FoxyReply(foxyslap);
 
     const avatar = message.author.displayAvatarURL({ format: 'png' });
     const embed = new Discord.MessageEmbed()
@@ -30,7 +30,7 @@ module.exports = {
       .setFooter('😱😱')
       .setFooter('Reaja com 😡 para retribuir')
       .setAuthor(message.author.tag, avatar);
-    await message.inlineReply(embed).then((msg) => {
+    await message.FoxyReply(embed).then((msg) => {
       msg.react('😡')
 
       const filter = (reaction, usuario) => reaction.emoji.name === '😡' && usuario.id === user.id;
@@ -42,7 +42,7 @@ module.exports = {
         .setDescription(`${user} **Bateu em** ${message.author}`)
         .setImage(img2.url)
   
-        message.inlineReply(repeat)
+        message.FoxyReply(repeat)
       })
 
     })

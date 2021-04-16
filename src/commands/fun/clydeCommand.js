@@ -9,7 +9,7 @@ module.exports = {
   async run(client, message, args) {
     const text = args.join(' ');
 
-    if (!text) return message.inlineReply(`${message.author} por favor digite um texto.`);
+    if (!text) return message.FoxyReply(`${message.author} por favor digite um texto.`);
 
     const data = await fetch(
       `https://nekobot.xyz/api/imagegen?type=clyde&text=${text}`,
@@ -21,6 +21,6 @@ module.exports = {
       .setFooter(`Enviado por ${message.author.username}`)
       .setColor('BLUE');
 
-    message.inlineReply(embed);
+    message.FoxyReply(embed);
   },
 };
