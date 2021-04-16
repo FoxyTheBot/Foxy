@@ -17,7 +17,13 @@ module.exports = {
 
     message.inlineReply(`Obrigada por me ajudar ${message.author}, sua sugestão foi enviada com sucesso! <:meow_blush:768292358458179595>`);
 
-    client.hook.suggestHook()
+    const pfp = message.author.avatarURL();
+    const suggest = new MessageEmbed()
+        .setColor(client.colors.rp)
+        .setTitle('Nova sugestão para a Foxy!')
+        .setThumbnail(pfp)
+        .setDescription(`${client.emotes.heart} **Usuário:** ${message.author.username} / ${message.author.id} \n\n ${client.emotes.success} **Sugestão:** ${suggestion} \n\n ${client.emotes.thumbsup} **Servidor:** ${message.guild.name} / ${message.guild.id}`);
+    client.suggestWebhook.send(suggest);
   },
 
 };
