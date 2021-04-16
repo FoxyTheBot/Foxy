@@ -19,12 +19,9 @@ module.exports = {
     ctx.strokeStyle = '#74037b';
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
-    // Slightly smaller text placed above the member's display name
     ctx.font = '28px sans-serif';
     ctx.fillStyle = '#000000';
     ctx.fillText(`${sayMessage}`, canvas.width / 15.5, canvas.height / 13.5);
-
-    // Add an exclamation point here and below
 
     ctx.beginPath();
     ctx.arc(125, 125, 100, 6, Math.PI * 2, true);
