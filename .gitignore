@@ -111,3 +111,5 @@ src/layout
 # IntelliJ IDEA files
 .idea/
 .gradle/
+# Visual Studio Code files
+.vscode/
