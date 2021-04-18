@@ -22,7 +22,6 @@ module.exports = {
     if (!sayMessage) return message.FoxyReply(noargs);
     if (message.content.includes('@')) return message.FoxyReply('Você não pode mencionar pessoas ou cargos!');
     message.FoxyReply(`${sayMessage} \n\n<:cat_toes:781335367764803634> *Mensagem enviada por ${message.author}*`);
-    message.delete()
 
     const logs = new Discord.MessageEmbed()
       .setTitle('Logs de comandos')
