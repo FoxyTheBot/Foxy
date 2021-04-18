@@ -15,8 +15,7 @@ manager.on('message', (shard, message) => {
 
 manager.on('shardCreate', shard => {
     console.info(`\x1b[37m\x1b[105mSHARD\x1b[0m: Iniciando Shard ${shard.id}`)
-}
-);
+});
 manager.spawn();
 
 process.on('SIGINT', () => {

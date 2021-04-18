@@ -74,8 +74,7 @@ module.exports = {
 
         default:
         const embed = new MessageEmbed()
-          .setTitle('Database Settings')
-          .setDescription('Altere o valor do banco de dados')
+          .setDescription('**Comandos:**')
           .addFields(
             { name: 'remove_coins', value: 'Remove as coins de algum usuário' },
             { name: 'add_coins', value: 'Adiciona coins a mais para um usuário' },
