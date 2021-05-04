@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 const cooldowns = new Discord.Collection()
 
 function verifyPrefix(m, prefix = "f!", id) {
-    if ( content.startsWith(prefix) ) return "f!";
+    if ( m.trim().startsWith(prefix) ) return "f!";
     let content = m.trim();
     let content1 = content.split(/ +/g);
     let content2 = content1[0];
