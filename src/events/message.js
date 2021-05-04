@@ -2,15 +2,17 @@ const user = require('../structures/DatabaseConnection')
 const Discord = require('discord.js')
 const cooldowns = new Discord.Collection()
 
-function verifyPrefix(content, prefix = "f!", id) {
+function verifyPrefix(m, prefix = "f!", id) {
     if ( content.startsWith(prefix) ) return "f!";
-    content = content.trim();
-    content = content.split(/ +/g);
-    content = content[0];
-    content = content.replace(/[<@!>]/g, "");
-    content = content.slice(0, id.length);
-    if ( content != id ) return false;
-    return "f!";
+    let content = m.trim();
+    let content1 = content.split(/ +/g);
+    let content2 = content1[0];
+    let content3 = content2.replace(/[<@!>]/g, "");
+    let content4 = content3.slice(0, id.length);
+    if ( content4 != id ) return false;
+    let string = content2.slice(0, `<@!${id}>`.length);
+    if ( string != `<@!${id}>` ) string = `<@${id}>`;
+    return string;
 };
 
 module.exports = async (client, message) => {
