@@ -2,10 +2,21 @@ const user = require('../structures/DatabaseConnection')
 const Discord = require('discord.js')
 const cooldowns = new Discord.Collection()
 
+function verifyPrefix(content, prefix = "f!", id) {
+    if ( content.startsWith(prefix) ) return true;
+    content = content.trim();
+    content = content.split(/ +/g);
+    content = content[0];
+    content = content.replace(/[<@!>]/g, "");
+    content = content.slice(0, id.length);
+    if ( content != id ) return false;
+    return true;
+};
+
 module.exports = async (client, message) => {
   if (message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) message.channel.send(`Olá ${message.author}! Meu nome é ${client.user.username}, meu prefixo é \`${client.config.prefix}\`, Utilize \`${client.config.prefix}help\` para obter ajuda! ${client.emotes.success}`);
 
-  if (!message.content.startsWith(client.config.prefix) || message.author.bot || message.webhookID) return;
+  if (!verifyPrefix(message.content, client.config.prefix, client.user.id) || message.author.bot || message.webhookID) return;
   const args = message.content.slice(client.config.prefix.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
 
