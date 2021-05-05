@@ -13,10 +13,10 @@ module.exports = {
       .setTitle('💸 | `f!pay`')
       .setDescription("Você deve estar devendo alguma coisa, ou querendo ajudar um amigo, de FoxCoins a ele :D\n\n 📚 **Exemplos**")
       .addFields(
-      { name: "🔹 Pagar pessoa via menção", value: "`f!pay WinG4merBR#8379 500`"},
-      { name: "🔹 Pagar 1000 FoxCoins", value: "`f!pay WinG4merBR#8379 1000`"},
-      { name: "ℹ Aliases:", value: "`pagar`"}
-      ) 
+        { name: "🔹 Pagar pessoa via menção", value: "`f!pay WinG4merBR#8379 500`" },
+        { name: "🔹 Pagar 1000 FoxCoins", value: "`f!pay WinG4merBR#8379 1000`" },
+        { name: "ℹ Aliases:", value: "`pagar`" }
+      )
       .setFooter(`• Autor: ${message.author.tag} - Economia`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));
 
     const user = message.mentions.members.first();
@@ -32,7 +32,7 @@ module.exports = {
       return message.FoxyReply('Especifique uma quantidade para ser transferida');
     }
 
-    if (parseInt(args[1]) < 0) {
+    if (message.content.includes('-')) {
       return message.FoxyReply('Você não pode transferir coins negativas');
     }
 
