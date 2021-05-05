@@ -18,8 +18,14 @@ module.exports = {
         { name: ':bell: Exemplo:', value: '`f!remind 10s Atualizar o Windows`' },
       );
       if(message.content.includes("@")) return message.FoxyReply("Você não pode mencionar usuários ou cargos!")
-    if (!timeuser) return message.FoxyReply(example);
-    if (!reason) return message.FoxyReply(':no_bell: Você precisa digitar o lembrete');
+      if(isNaN(timeuser)) {
+        message.FoxyReply(`${client.emotes.error} **|** Por favor, digite um número válido!`)
+
+      } else if(!timeuser) {
+        return message.FoxyReply(example)
+      }
+
+      if (!reason) return message.FoxyReply(':no_bell: Você precisa digitar o lembrete');
 
     db.set(`remind_${message.author.id}`, Date.now() + ms(timeuser));
 

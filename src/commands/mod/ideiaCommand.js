@@ -13,7 +13,6 @@ module.exports = {
     } if (content.length > 1000) {
       return message.FoxyReply(`${message.author.username}, forneça uma sugestão de no máximo 1000 caracteres.`);
     }
-    const canal = message.guild.channels.cache.find((ch) => ch.id === '699780010235527278');
     const msg = await message.FoxyReply(
       new Discord.MessageEmbed()
         .setColor('#FFFFF1')

@@ -5,6 +5,7 @@ module.exports = {
   guildOnly: false,
   argsRequire: true,
   async run(client, message, args) {
+
     if (!args) {
       message.FoxyReply('Digite uma pergunta');
     } else {

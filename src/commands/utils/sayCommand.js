@@ -6,7 +6,6 @@ module.exports = {
   cooldown: 5,
   guildOnly: true,
 
-  // eslint-disable-next-line consistent-return
   async run(client, message, args) {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {
       return message.FoxyReply(
