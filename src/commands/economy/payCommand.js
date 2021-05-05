@@ -32,7 +32,7 @@ module.exports = {
       return message.FoxyReply('Especifique uma quantidade para ser transferida');
     }
 
-    if (message.content.includes('-')) {
+    if (parseInt(args[1]) < 0) {
       return message.FoxyReply('Você não pode transferir coins negativas');
     }
 
