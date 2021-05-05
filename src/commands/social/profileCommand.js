@@ -60,7 +60,7 @@ module.exports = {
         let user2 = await client.users.fetch(casado)
         ctx.font = '30px sans-serif';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(`Casado com: ${user2.tag}`, canvas.width / 6.0, canvas.height / 5.5);
+        ctx.fillText(`💍 Casado com: ${user2.tag}`, canvas.width / 6.0, canvas.height / 5.5);
       }
 
       ctx.font = ('30px sans-serif');

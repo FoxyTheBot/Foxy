@@ -2,26 +2,9 @@ const user = require('../structures/DatabaseConnection')
 const Discord = require('discord.js')
 const cooldowns = new Discord.Collection()
 
-function resolveMessage(message, client, prefix) {
-    message = message.trim();
-
-    if ( message.slice(0, `<@${client.user.id}>`.length) == `<@${client.user.id}>` ) {
-        message = message.replace(`<@${client.user.id}>`, prefix);
-    };
-    if ( message.slice(0, `<@!${client.user.id}>`.length) == `<@!${client.user.id}>` ) {
-        message = message.replace(`<@!${client.user.id}>`, prefix);
-    };
-    
-    if ( message[2] == " " ) delete message[2];
-
-    return message;
-};
-
 module.exports = async (client, message) => {
   if (message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) message.channel.send(`Olá ${message.author}! Meu nome é ${client.user.username}, meu prefixo é \`${client.config.prefix}\`, Utilize \`${client.config.prefix}help\` para obter ajuda! ${client.emotes.success}`);
 
-  message.content = resolveMessage(message.content, client, client.config.prefix);
-  
   if (!message.content.startsWith(client.config.prefix) || message.author.bot || message.webhookID) return;
   const args = message.content.slice(client.config.prefix.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
@@ -65,9 +48,9 @@ module.exports = async (client, message) => {
     timestamps.set(message.author.id, now);
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
-    function runCommands() {
+   async function runCommands() {
       message.channel.startTyping()
-      command.run(client, message, args)
+      await command.run(client, message, args)
       message.channel.stopTyping()
     }
 

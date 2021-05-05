@@ -13,6 +13,7 @@ module.exports = {
       'inimigos >:3',
       'irmãos :3',
       'primos :3',
+      'dois maconheiros <:maconha:831551544427544626>'
     ];
 
     const rand = list[Math.floor(Math.random() * list.length)];
