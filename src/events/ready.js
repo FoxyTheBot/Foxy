@@ -5,7 +5,7 @@ module.exports = async (client) => {
   const dbl = new DBL(client.config.dbltoken, client);
   dbl.postStats(client.guilds.cache.size, client.shard.ids, client.shard.count);
 
-  console.info(`\x1b[37m\x1b[42mSUCCESS\x1b[0m: Foxy is ready! Logged as: ${client.user.tag}`);
+  console.info(`\x1b[37m\x1b[42mSUCCESS\x1b[0m: Shard ${client.shard.ids} ready! ${client.guilds.cache.size} Guilds`);
 
   const status = [
     { name: `❓ | Se você precisa de ajuda use ${client.config.prefix}help`, type: 'WATCHING' },
@@ -16,8 +16,7 @@ module.exports = async (client) => {
     { name: `✨ | Entre no meu servidor de suporte usando ${client.config.prefix}help`, type: 'STREAMING', url: 'https://www.twitch.tv/wing4merbr' },
     { name: `🐛 | Se você encontrou um bug use ${client.config.prefix}report para reportar falhas`, type: 'PLAYING' },
     { name: '🍰 | Minha comida preferida é bolo 💖', type: 5 },
-    { name: `😍 | Espalhando alegria e felicidade em ${client.guilds.cache.size} Servidores! :3`, type: 'WATCHING' },
-    { name: "😍 | Obrigada a Luxanna#5757 por me ajudar a ser quem sou hoje ❤", type: "LISTENING" }
+    { name: `😍 | Espalhando alegria e felicidade em ${client.guilds.cache.size} Servidores! :3`, type: 'WATCHING' }
   ];
 
   setInterval(() => {
