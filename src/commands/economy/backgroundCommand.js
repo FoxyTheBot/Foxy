@@ -157,47 +157,47 @@ module.exports = {
         });
         break;
 
-          case 'sad_cat_money':
-            const money2 = new MessageEmbed()
-            .setTitle('Sad Cat Money')
-            .setDescription('Deseja comprar este background?')
-            .setImage('https://cdn.discordapp.com/attachments/817835933914103828/820427411739901982/foxy_profile.png')
-            message.FoxyReply(money2).then((sentMessage) => {
-              sentMessage.react('✅');
-              const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
-              sentMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time']})
-              .then((collected) => {
-                if(money < 10000) return message.FoxyReply('Você não tem coins o suficiente para este background');
-                message.FoxyReply('Você comprou o background **Sad Cat Money**, ele já foi definido');
-                db.subtract(`coins_${user.id}`, 10000);
-                db.set(`background_${user.id}`, 'sad_cat_money.png')
-              }).catch(collected => {
-                message.FoxyReply("Tempo esgotado, você demorou para reagir")
-              })
+      case 'sad_cat_money':
+        const money2 = new MessageEmbed()
+          .setTitle('Sad Cat Money')
+          .setDescription('Deseja comprar este background?')
+          .setImage('https://cdn.discordapp.com/attachments/817835933914103828/820427411739901982/foxy_profile.png')
+        message.FoxyReply(money2).then((sentMessage) => {
+          sentMessage.react('✅');
+          const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
+          sentMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time'] })
+            .then((collected) => {
+              if (money < 10000) return message.FoxyReply('Você não tem coins o suficiente para este background');
+              message.FoxyReply('Você comprou o background **Sad Cat Money**, ele já foi definido');
+              db.subtract(`coins_${user.id}`, 10000);
+              db.set(`background_${user.id}`, 'sad_cat_money.png')
+            }).catch(collected => {
+              message.FoxyReply("Tempo esgotado, você demorou para reagir")
             })
-            break;
+        })
+        break;
 
-            case 'levi':
-              const money3 = new MessageEmbed()
-              .setTitle('Levi / Ata Shingeki No Kyojin')
-              .setDescription('Deseja comprar este background?')
-              .setImage('https://cdn.discordapp.com/attachments/810597092993007649/823604139451482172/foxy_profile.png')
-              message.FoxyReply(money3).then((sentMessage) => {
-                sentMessage.react('✅');
-                const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
-                sentMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time']})
-                .then((collected) => {
-                  if(money < 10000) return message.FoxyReply('Você não tem coins o suficiente para este background')
-                  message.FoxyReply('Você comprou o background **Ata Shingeki No Kyojin**, ele já foi definido')
-                  db.subtract(`coins_${user.id}`, 10000)
-                  db.set(`background_${user.id}`, 'levi_kyojin.png')
-                }).catch(collected => {
-                  message.FoxyReply("Tempo esgotado, você demorou para reagir!")
-                })
-              })
-              break;
-              
-          default:
+      case 'levi':
+        const money3 = new MessageEmbed()
+          .setTitle('Levi / Ata Shingeki No Kyojin')
+          .setDescription('Deseja comprar este background?')
+          .setImage('https://cdn.discordapp.com/attachments/810597092993007649/823604139451482172/foxy_profile.png')
+        message.FoxyReply(money3).then((sentMessage) => {
+          sentMessage.react('✅');
+          const filter = (reaction, user) => ['✅'].includes(reaction.emoji.name) && user.id === message.author.id;
+          sentMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time'] })
+            .then((collected) => {
+              if (money < 10000) return message.FoxyReply('Você não tem coins o suficiente para este background')
+              message.FoxyReply('Você comprou o background **Ata Shingeki No Kyojin**, ele já foi definido')
+              db.subtract(`coins_${user.id}`, 10000)
+              db.set(`background_${user.id}`, 'levi_kyojin.png')
+            }).catch(collected => {
+              message.FoxyReply("Tempo esgotado, você demorou para reagir!")
+            })
+        })
+        break;
+
+      default:
         const noargs = new MessageEmbed()
 
           .setColor('RED')

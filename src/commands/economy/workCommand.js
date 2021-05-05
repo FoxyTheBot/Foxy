@@ -7,19 +7,19 @@ module.exports = {
     cooldown: 5,
 
     async run(client, message, args) {
-    
+
         let user = message.author;
         let author = await db.fetch(`work_${user.id}`)
 
         let timeout = 600000;
 
-        if(author !== null && timeout - (Date.now() - author) > 0) {
+        if (author !== null && timeout - (Date.now() - author) > 0) {
             let time = ms(timeout - (Date.now() - author));
 
             message.FoxyReply(`😴 **|** Você já trabalhou, descanse um pouco. Tente novamente em **${time.minutes}m ${time.seconds}s**`)
 
         } else {
-             
+
             let replies = ['Programador', 'Construtor', 'Garçom', 'Chefe', 'Mecânico']
 
             let result = Math.floor((Math.random() * replies.length));

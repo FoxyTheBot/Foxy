@@ -5,7 +5,9 @@ module.exports = {
   aliases: ['putin', 'walk'],
   cooldown: 3,
   guildOnly: false,
+
   async run(client, message, args) {
+  
     const sayMessage = args.join(' ');
     if (!sayMessage) return message.FoxyReply('Digite algo antes');
     const embed = new Discord.MessageEmbed()
