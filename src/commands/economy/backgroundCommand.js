@@ -15,7 +15,7 @@ module.exports = {
     const background2 = await db.fetch(`background_${user.id}`);
     const money = await db.fetch(`coins_${user.id}`);
 
-    switch (args[0]) {
+    switch (args[0]?.toLowerCase()) {
       case 'reset':
         if (background2 == null) return message.FoxyReply('Você não tem nenhum background para redefinir!');
         if (background2 == 'default_background.png') return message.FoxyReply('Você não tem nenhum background para redefinir!');
