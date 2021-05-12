@@ -49,8 +49,9 @@ module.exports = async (client, message) => {
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
    async function runCommands() {
-      await message.channel.startTyping()
+      message.channel.startTyping()
       await command.run(client, message, args)
+      message.channel.stopTyping()
     }
 
     runCommands()
