@@ -5,8 +5,10 @@ const cooldowns = new Discord.Collection()
 module.exports = async (client, message) => {
   if (message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) message.channel.send(`Olá ${message.author}! Meu nome é ${client.user.username}, meu prefixo é \`${client.config.prefix}\`, Utilize \`${client.config.prefix}help\` para obter ajuda! ${client.emotes.success}`);
 
-  if (!message.content.startsWith(client.config.prefix) || message.author.bot || message.webhookID) return;
-  const args = message.content.slice(client.config.prefix.length).trim().split(/ +/);
+  const prefixRegex = new RegExp(`^(${client.config.prefix}|<@!?${client.user.id}>)( )*`, "gi");
+
+  if (!message.content.match(prefixRegex) || message.author.bot || message.webhookID) return;
+  const args = message.content.replace(prefixRegex, "").trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
 
   const command = client.commands.get(commandName) || client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
