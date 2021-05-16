@@ -1,3 +1,5 @@
+const partner = require('../../utils/partnersGuilds.json')
+
 module.exports = {
   name: 'daily',
   aliases: ['daily'],
@@ -11,7 +13,11 @@ module.exports = {
     const user = message.author;
 
     const timeout = 43200000;
-    const amount = Math.floor(Math.random() * 3200);
+    var amount = Math.floor(Math.random() * 3200);
+
+    if (partner.guilds.includes(message.guild.id)) {
+      amount = Math.floor(Math.random() * 6400)
+    }
 
     const daily = await db.fetch(`daily_${user.id}`);
     if (daily !== null && timeout - (Date.now() - daily) > 0) {
@@ -19,11 +25,17 @@ module.exports = {
 
       message.FoxyReply(`💸 **|** Você já pegou seu daily hoje! Tente novamente em **${time.hours}h ${time.minutes}m ${time.seconds}s**`);
     } else {
+
       db.add(`coins_${user.id}`, amount);
       db.set(`daily_${user.id}`, Date.now());
 
       const money = await db.fetch(`coins_${user.id}`);
-      message.FoxyReply(`💵 **|** Você coletou seu daily você ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins na sua conta!`);
+      if (partner.guilds.includes(message.guild.id)){
+
+        message.FoxyReply(`${client.emotes.success} **|** Você coletou seu daily no servidor: ${message.guild.name}! Sabia que você ganhou o dobro de FoxCoins porque pegou daily em um dos servidores parceiros? Você ganhou ${amount} FoxCoins!`);
+      } else {
+        message.FoxyReply(`💵 **|** Você coletou seu daily você ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins na sua conta!`);
+      }
     }
   },
 };

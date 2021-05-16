@@ -6,6 +6,8 @@ module.exports = {
   aliases: ['clyde', 'clydebot'],
   cooldown: 3,
   guildOnly: false,
+  clientPerms: ['ATTACH_FILES'],
+  
   async run(client, message, args) {
     const text = args.join(' ');
 

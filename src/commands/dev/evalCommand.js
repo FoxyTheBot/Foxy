@@ -5,6 +5,8 @@ module.exports = {
   aliases: ['eval', 'evaluate', 'e'],
   guildOnly: false,
   ownerOnly: true,
+  clientPerms: ['EMBED_LINKS'],
+
   async run(client, message, args) {
     const clean = (text) => {
       if (typeof (text) === 'string') { return text.replace(/`/g, `\`${String.fromCharCode(8203)}`).replace(/@/g, `@${String.fromCharCode(8203)}`); }

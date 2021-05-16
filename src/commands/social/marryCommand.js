@@ -5,6 +5,7 @@ module.exports = {
     aliases: ['casar', ' marry'],
     cooldown: 5,
     guildOnly: true,
+    clientPerms: ['ADD_REACTIONS'],
 
     async run(client, message, args) {
         const marryEmbed = new MessageEmbed()
@@ -12,7 +13,7 @@ module.exports = {
             .setTitle('❤ | `f!marry`')
             .setDescription(' Case com sua Webnamorada, você ama essa pessoa? Case com ela! Vocês não precisam de FoxCoins para casar, apenas sejam felizes! \n\n 📚 **Exemplos**')
             .addFields(
-                { name: "🔹 Faz um pedido para a pessoa mencionada", value: "`f!marry WinG4merBR#8379`" },
+                { name: "🔹 Faz um pedido para a pessoa mencionada", value: "`f!marry WinG4merBR#7661`" },
                 { name: "ℹ Aliases:", value: "`casar`" }
             )
 

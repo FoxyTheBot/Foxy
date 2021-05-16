@@ -5,6 +5,8 @@ module.exports = {
   aliases: ['laranjomemes', 'laranjom'],
   cooldown: 5,
   guildOnly: false,
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
+
   async run(client, message, args) {
     const list = [
       'https://images3.memedroid.com/images/UPLOADED291/5aa6b3b6ead71.jpeg',

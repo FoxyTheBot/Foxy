@@ -5,6 +5,8 @@ module.exports = {
   aliases: ['step', 'pisar'],
   cooldown: 3,
   guildOnly: true,
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
+  
   async run(client, message, args) {
     const list = [
       'https://cdn.discordapp.com/attachments/745396328351268885/776930400990920734/6a0.gif',

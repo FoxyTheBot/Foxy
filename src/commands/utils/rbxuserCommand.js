@@ -3,6 +3,7 @@ module.exports = {
   aliases: ['rbxuser', 'rbuser', 'robloxuser', 'robloxu', 'rbuser'],
   cooldown: 5,
   guildOnly: true,
+  clientPerms: ['EMBED_LINKS'],
 
   async run(client, message, args) {
     const discord = require('discord.js');

@@ -3,6 +3,7 @@ module.exports = {
   aliases: ['background', 'backgrounds', 'wallpaper', 'wallpapers'],
   cooldown: 5,
   guildOnly: false,
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
 
   async run(client, message, args) {
     const db = require('quick.db');

@@ -5,6 +5,8 @@ module.exports = {
   aliases: ['scream', 'gritar'],
   cooldown: 3,
   guildOnly: false,
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
+
   async run(client, message, args) {
     const sayMessage = args.join(' ');
     const list = [

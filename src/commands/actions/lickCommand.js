@@ -5,6 +5,8 @@ module.exports = {
   aliases: ['lamber'],
   cooldown: 3,
   guildOnly: true,
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
+
   async run(client, message, args) {
     const list = [
       'https://i.pinimg.com/originals/56/42/0d/56420de595681d55e4ea2cc9dcc48db9.gif',

@@ -7,6 +7,8 @@ module.exports = {
   aliases: ['pat', 'cafuné'],
   cooldown: 3,
   guildOnly: true,
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
+
   async run(client, message, args) {
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
     if (!user) {

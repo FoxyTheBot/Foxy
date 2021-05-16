@@ -1,8 +1,8 @@
 {
-  "default": "#24292e",
+  "default": "#5890f2",
   "mine": "#00d600",
   "error": "#ff1900",
-  "moderation": "#c1001d",
   "rp": "#53dc80", 
-  "green": "#12bc5f"
+  "green": "#12bc5f",
+  "blurple": "#5865f2"
 }

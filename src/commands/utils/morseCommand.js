@@ -5,6 +5,8 @@ module.exports = {
   aliases: ['morse'],
   cooldown: 3,
   guildOnly: false,
+  clientPerms: ['EMBED_LINKS'],
+
   async run(client, message, args) {
     const alpha = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'.split('');
     const morse = '/,.-,-...,-.-.,-..,.,..-.,--.,....,..,.---,-.-,.-..,--,-.,---,.--.,--.-,.-.,...,-,..-,...-,.--,-..-,-.--,--..,.----,..---,...--,....-,.....,-....,--...,---..,----.,-----'.split(',');

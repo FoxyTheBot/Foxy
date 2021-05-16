@@ -3,6 +3,7 @@ module.exports = {
   aliases: ['ponpon', 'pon', 'ponponpon'],
   cooldown: 5,
   guildOnly: true,
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
 
   async run(client, message, args) {
     const { MessageEmbed } = require('discord.js');
