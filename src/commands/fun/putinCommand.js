@@ -5,6 +5,7 @@ module.exports = {
   aliases: ['putin', 'walk'],
   cooldown: 3,
   guildOnly: false,
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
 
   async run(client, message, args) {
   

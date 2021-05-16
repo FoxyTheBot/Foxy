@@ -6,6 +6,8 @@ module.exports = {
   aliases: ['userinfo'],
   cooldown: 3,
   guildOnly: true,
+  clientPerms: ['EMBED_LINKS'],
+
   async run(client, message) {
     moment.locale('pt-br');
     try {

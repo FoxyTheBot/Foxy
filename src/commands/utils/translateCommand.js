@@ -4,6 +4,8 @@ module.exports = {
   aliases: ['translate', 'traduzir'],
   cooldown: 3,
   guildOnly: false,
+  clientPerms: ['EMBED_LINKS'],
+
   async run(client, message, args) {
     const translate = require('@k3rn31p4nic/google-translate-api');
     const Discord = require('discord.js');

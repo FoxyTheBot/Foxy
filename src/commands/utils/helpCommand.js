@@ -5,6 +5,7 @@ module.exports = {
   aliases: ['help', 'ajuda'],
   cooldown: 4,
   guildOnly: false,
+  clientPerms: ['EMBED_LINKS'],
 
   async run(client, message) {
     const embed = new Discord.MessageEmbed()

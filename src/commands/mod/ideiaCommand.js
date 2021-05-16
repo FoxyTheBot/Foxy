@@ -5,6 +5,8 @@ module.exports = {
   aliases: ['ideia', 'idea'],
   cooldown: 3,
   guildOnly: false,
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
+
   async run(client, message, args) {
     const content = args.join(' ');
 

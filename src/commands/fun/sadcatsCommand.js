@@ -5,6 +5,8 @@ module.exports = {
   aliases: ['sadcat', 'sadcats'],
   cooldown: 3,
   guildOnly: false,
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
+
   async run(client, message, args) {
     const list = [
       'https://cdn.discordapp.com/attachments/791449801735667713/791449875417530388/1.png',

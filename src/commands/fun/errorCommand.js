@@ -6,6 +6,8 @@ module.exports = {
   aliases: ['error', 'erro'],
   cooldown: 3,
   guildOnly: true,
+  clientPerms: ['ATTACH_FILES'],
+
   async run(client, message, args, applyText) {
     if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.FoxyReply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 

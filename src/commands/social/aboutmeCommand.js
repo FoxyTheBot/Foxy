@@ -9,6 +9,7 @@ module.exports = {
   async run(client, message, args) {
     const aboutme = args.join(' ');
 
+    if(aboutme.length > 62) return message.FoxyReply('Você digitou mais de 62 caracteres, O limite de caracteres é 62, bobinho')
     const aboutmeEmbed = new MessageEmbed()
     .setColor('RED')
     .setTitle('ℹ | `f!aboutme`')

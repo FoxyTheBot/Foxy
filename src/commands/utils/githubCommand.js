@@ -5,6 +5,8 @@ module.exports = {
   aliases: ['git', 'github'],
   cooldown: 3,
   guildOnly: false,
+  clientPerms: ['EMBED_LINKS'],
+
   async run(client, message, args) {
     const embed = new Discord.MessageEmbed()
       .setColor('#4cd8b2')

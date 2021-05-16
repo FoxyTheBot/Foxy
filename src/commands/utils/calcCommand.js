@@ -7,6 +7,8 @@ module.exports = {
   aliases: ['calc', 'calcular', 'calculadora'],
   cooldown: 5,
   guildOnly: false,
+  clientPerms: ['EMBED_LINKS'],
+
   async run(client, message, args) {
     if (!args[0]) return message.FoxyReply('Por favor digite algo!');
 
