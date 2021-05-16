@@ -8,6 +8,8 @@ module.exports = {
   aliases: ['status', 'stts'],
   cooldown: 3,
   guildOnly: false,
+  clientPerms: ['EMBED_LINKS'],
+
   async run(client, message) {
     
     moment.locale('pt-br');

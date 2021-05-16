@@ -4,6 +4,8 @@ module.exports = {
   aliases: ['ping', 'p'],
   cooldown: 5,
   guildOnly: false,
+  clientPerms: ['READ_MESSAGE_HISTORY'],
+  
   async run(client, message, args) {
     message.FoxyReply(`:ping_pong: **| Pong!** \n:watch: **| Gateway:** \`${Date.now() - message.createdTimestamp}ms\`\n:zap: **| API Ping:** \`${Math.round(
       client.ws.ping,

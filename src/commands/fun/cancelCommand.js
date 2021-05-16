@@ -3,11 +3,14 @@ module.exports = {
   aliases: ['cancel', 'cancelar'],
   cooldown: 2,
   guildOnly: true,
+  clientPerms: ['SEND_MESSAGES', 'EMBED_LINKS'],
+  
   async run(client, message, args) {
     const list = [
       'ser velho(a)',
       'ser feio(a)',
       'fazer nada',
+      'ser maconheiro(a) <:makonia:843151559269679164>'
     ];
 
     const rand = list[Math.floor(Math.random() * list.length)];

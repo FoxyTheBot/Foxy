@@ -6,7 +6,8 @@ module.exports = {
   aliases: ['profile', 'perfil'],
   cooldown: 5,
   guildOnly: true,
-
+  clientPerms: ['ATTACH_FILES'],
+  
   async run(client, message, args) {
     const db = require('quick.db');
     const user = message.mentions.users.first() || message.author;

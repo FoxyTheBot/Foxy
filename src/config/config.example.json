@@ -1,28 +1,27 @@
 {
-  "owners": [
-    "OWNER-1",
-    "OWNER-2-OPTIONAL"
-  ],
-  "prefix": "PREFIX",
-  "token": "BOT-TOKEN",
-  "uri": "MONGODB-URI",
-  "dbltoken": "DISCORD-BOT-LIST-TOKEN",
-  "shard": "auto",
-
-  "guilds": {
-    "id": "WEBHOOK-ID",
-    "token": "WEBHOOK-TOKEN"
-  },
-  "report": {
-    "id": "WEBHOOK-ID",
-    "token": "WEBHOOK-TOKEN"
-  },
-  "logs": {
-    "id": "WEBHOOK-ID",
-    "token": "WEBHOOK-TOKEN"
-  },
-  "suggest": {
-    "id": "WEBHOOK-ID",
-    "token": "WEBHOOK-TOKEN"
-  }
+    "owners": [
+        "OWNER-1",
+        "OWNER-2-OPTIONAL"
+    ],
+    "prefix": "PREFIX",
+    "token": "BOT-TOKEN",
+    "uri": "MONGODB-URI",
+    "dbltoken": "DISCORD-BOT-LIST-TOKEN",
+    "shard": "auto",
+    "guilds": {
+        "id": "WEBHOOK-ID",
+        "token": "WEBHOOK-TOKEN"
+    },
+    "report": {
+        "id": "WEBHOOK-ID",
+        "token": "WEBHOOK-TOKEN"
+    },
+    "logs": {
+        "id": "WEBHOOK-ID",
+        "token": "WEBHOOK-TOKEN"
+    },
+    "suggest": {
+        "id": "WEBHOOK-ID",
+        "token": "WEBHOOK-TOKEN"
+    }
 }

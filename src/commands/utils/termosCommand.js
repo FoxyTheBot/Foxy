@@ -5,6 +5,8 @@ module.exports = {
   aliases: ['termos', 'terms', 'tos'],
   cooldown: 3,
   guildOnly: false,
+  clientPerms: ['EMBED_LINKS'],
+
   async run(client, message) {
     const termos = new Discord.MessageEmbed()
       .setTitle('Termos de Uso')

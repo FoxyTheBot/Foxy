@@ -3,6 +3,8 @@ module.exports = {
   aliases: ['slowmode', 'modolento', 'lento'],
   cooldown: 3,
   guildOnly: true,
+  clientPerms: ['MANAGE_CHANNELS'],
+
   async run(client, message, args) {
     if (!message.member.permissions.has('MANAGE_CHANNELS')) {
       return message.FoxyReply(

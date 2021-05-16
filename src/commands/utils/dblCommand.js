@@ -5,6 +5,7 @@ module.exports = {
   aliases: ['dbl', 'upvote', 'votar', 'vote'],
   cooldown: 3,
   guildOnly: false,
+  clientPerms: ['EMBED_LINKS'],
 
   async run(client, message, args) {
     const vote = new Discord.MessageEmbed()

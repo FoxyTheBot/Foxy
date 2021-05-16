@@ -4,6 +4,8 @@ module.exports = {
   aliases: ['ppt'],
   cooldown: 3,
   guildOnly: false,
+  clientPerms: ['SEND_MESSAGES'],
+
   async run(client, message, args) {
     const acceptedReplies = ['pedra', 'papel', 'tesoura'];
     const random = Math.floor((Math.random() * acceptedReplies.length));

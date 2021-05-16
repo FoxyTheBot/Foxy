@@ -3,6 +3,7 @@ module.exports = {
   aliases: ['mchead'],
   cooldown: 5,
   guildOnly: false,
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
 
   async run(client, message, args) {
     const user = args.join(' ');

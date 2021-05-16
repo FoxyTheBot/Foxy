@@ -5,6 +5,7 @@ module.exports = {
   aliases: ['app', 'aplause'],
   cooldown: 2,
   guildOnly: true,
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
 
   async run(client, message, args) {
     const list = [

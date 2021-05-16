@@ -13,7 +13,7 @@ module.exports = async (client, message) => {
 
   const command = client.commands.get(commandName) || client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
 
-  if (!command) return message.FoxyReply(`${client.emotes.notfound} **|** Desculpe a inconveniência mas este comando não existe!`)
+  if (!command) return;
 
   function FoxyHandler() {
     if (command.guildOnly && message.channel.type === 'dm') {
@@ -24,10 +24,26 @@ module.exports = async (client, message) => {
       return message.FoxyReply(`<:Error:718944903886930013> | ${message.author} Você não tem permissão para fazer isso! <:meow_thumbsup:768292477555572736>`);
     }
 
-    if (command.argsRequired && !args.length) {
-      return message.FoxyReply(`<:Error:718944903886930013> | ${message.author} Esse comando precisa de argumentos para ser executado!`);
-    }
+    if (command.clientPerms && !message.guild.members.cache.get(client.user.id).permissions.has(command.clientPerms)) {
 
+      let clientPermissions = [];
+
+      if (command.clientPerms.includes('MANAGE_CHANNELS')) clientPermissions.push('`Gerenciar Canais`');
+      if (command.clientPerms.includes('CREATE_INSTANT_INVITE')) clientPermissions.push('`Criar convite`');
+      if (command.clientPerms.includes('CHANGE_NICKNAME')) clientPermissions.push('`Alterar apelido`');
+      if (command.clientPerms.includes('VIEW_CHANNEL')) clientPermissions.push('`Ver canais`');
+      if (command.clientPerms.includes('SEND_MESSAGES')) clientPermissions.push('`Enviar mensagens`');
+      if (command.clientPerms.includes('MANAGE_MESSAGES')) clientPermissions.push('`Gerenciar mensagens`');
+      if (command.clientPerms.includes('EMBED_LINKS')) clientPermissions.push('`Inserir links`');
+      if (command.clientPerms.includes('ATTACH_FILES')) clientPermissions.push('`Anexar arquivos`');
+      if (command.clientPerms.includes('READ_MESSAGE_HISTORY')) clientPermissions.push('`Ver histórico de mensagens`');
+      if (command.clientPerms.includes('USE_EXTERNAL_EMOJIS')) clientPermissions.push('`Usar emojis externos`');
+      if (command.clientPerms.includes('ADD_REACTIONS')) clientPermissions.push('`Adicionar reações`');
+      if (command.clientPerms.includes('CONNECT')) clientPermissions.push('`Conectar`');
+      if (command.clientPerms.includes('SPEAK')) clientPermissions.push('`Falar`');
+
+      return message.FoxyReply(`${client.emotes.error} **|** ${message.author} Aparentemente está faltando as permissões ${clientPermissions.join(", ")} para executar esse comando!`)
+    };
     if (!cooldowns.has(command.name)) {
       cooldowns.set(command.name, new Discord.Collection());
     }
@@ -50,7 +66,7 @@ module.exports = async (client, message) => {
     timestamps.set(message.author.id, now);
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
-   async function runCommands() {
+    async function runCommands() {
       message.channel.startTyping()
       await command.run(client, message, args)
       message.channel.stopTyping()

@@ -5,6 +5,7 @@ module.exports = {
     aliases: ['divorce','divorciar'],
     cooldown: 5,
     guildOnly: true,
+    clientPerms: ['ADD_REACTIONS'],
     
     async run(client, message, args) {       
         

@@ -107,6 +107,7 @@ ___
 
 ## 💫 Menções honrosas
 <p> • WinG4merBR#5995 | Se não fosse ele, eu nem iria existir </p>
+<p> • zEneeergy#2521#2521 | Um dos meus desenvolvedores foofs </p>
 <p> • ! Arthur_Kohler#7264 | Por me ajudar a ficar online! ❤ </p>
 <p> • Bis❄#2332 | Por fazer meu icon e outros desenhos ❤  </p>
 <P> • ThierrY#6303 | Por me ajudar me indicando ❤ </p>

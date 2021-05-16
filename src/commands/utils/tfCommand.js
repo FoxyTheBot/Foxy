@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['tf'],
   cooldown: 3,
   guildOnly: false,
-  argsRequire: true,
+
   async run(client, message, args) {
 
     if (!args) {

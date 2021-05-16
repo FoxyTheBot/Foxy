@@ -5,6 +5,8 @@ module.exports = {
   aliases: ['correr', 'run'],
   cooldown: 3,
   guildOnly: false,
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
+
   async run(client, message, args) {
     const list = [
       'https://media1.tenor.com/images/db41d2a91102a4e24df9aa98fe7f97b6/tenor.gif?itemid=15082392',

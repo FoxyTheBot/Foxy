@@ -6,7 +6,8 @@ module.exports = {
   aliases: ['serverinfo', 'aboutserver'],
   cooldown: 5,
   guildOnly: true,
-
+  clientPerms: ['EMBED_LINKS'],
+  
   async run(client, message, args) {
     const guild = client.guilds.cache.get(args[0]) || message.guild;
 

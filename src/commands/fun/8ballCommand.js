@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['8ball', 'eightball', '8', 'ask'],
   cooldown: 5,
   guildOnly: false,
-  argsRequire: true,
+  clientPerms: ['SEND_MESSAGES'],
   async run(client, message, args) {
     let arg = args.join(" ")
 

@@ -14,19 +14,19 @@ module.exports = {
             .setTitle('💸 | `f!bet`')
             .setDescription("Aposte com um(a) amigo(a) na sorte\n\n 📚 **Exemplos**")
             .addFields(
-                { name: "🔹 Apostando Cara com 1000 FoxCoins", value: "`f!bet WinG4merBR#8379 cara 1000`" },
-                { name: "🔹 Apostando Coroa com 2000 FoxCoins", value: "`f!bet WinG4merBR#8379 coroa 2000`" },
+                { name: "🔹 Apostando Cara com 1000 FoxCoins", value: "`f!bet WinG4merBR#7661 cara 1000`" },
+                { name: "🔹 Apostando Coroa com 2000 FoxCoins", value: "`f!bet WinG4merBR#7661 coroa 2000`" },
                 { name: "ℹ Aliases:", value: "`apostar`" }
 
             )
             .setFooter(`• Autor: ${message.author.tag} - Economia`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));
-      
-            if (!user || args[2]) {
-             message.FoxyReply(noargs)
-        } else if(args[2].includes("-")) {
+
+        if (!user || args[2]) {
+            message.FoxyReply(noargs)
+        } else if (args[2].includes("-")) {
             message.FoxyReply("Você não pode apostar FoxCoins negativos, bobinho")
         }
-        
+
         let reply = `${user}, Você deseja fazer uma aposta de ${args[2]} FoxCoins com ${message.author}?`
 
         const authorbal = await db.fetch(`coins_${message.author.id}`)
@@ -34,7 +34,7 @@ module.exports = {
 
         if (userbal < args[2]) {
             return message.FoxyReply(`💸 **|** ${user} Não tem FoxCoins suficientes para apostar`)
-        } 
+        }
 
         if (authorbal < args[2]) {
             return message.FoxyReply(`Você não tem FoxCoins o suficiente para fazer apostas`)
