@@ -6,7 +6,7 @@ module.exports = {
     aliases: ['mine', 'minerar'],
     guildOnly: true,
     cooldown: 5,
-    clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'USE_EXTERNAL_EMOJIS'],
+    clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'USE_EXTERNAL_EMOJIS', 'READ_MESSAGE_HISTORY'],
 
     async run(client, message, args) {
         const ms = require('parse-ms')

@@ -4,7 +4,7 @@ module.exports = {
   aliases: ['translate', 'traduzir'],
   cooldown: 3,
   guildOnly: false,
-  clientPerms: ['EMBED_LINKS'],
+  clientPerms: ['EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message, args) {
     const translate = require('@k3rn31p4nic/google-translate-api');

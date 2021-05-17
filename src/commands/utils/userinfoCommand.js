@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['userinfo'],
   cooldown: 3,
   guildOnly: true,
-  clientPerms: ['EMBED_LINKS'],
+  clientPerms: ['EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message) {
     moment.locale('pt-br');

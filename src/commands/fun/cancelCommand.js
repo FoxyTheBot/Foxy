@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['cancel', 'cancelar'],
   cooldown: 2,
   guildOnly: true,
-  clientPerms: ['SEND_MESSAGES', 'EMBED_LINKS'],
+  clientPerms: ['SEND_MESSAGES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
   
   async run(client, message, args) {
     const list = [

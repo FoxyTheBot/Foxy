@@ -5,7 +5,7 @@ module.exports = {
     aliases: ['casar', ' marry'],
     cooldown: 5,
     guildOnly: true,
-    clientPerms: ['ADD_REACTIONS'],
+    clientPerms: ['ADD_REACTIONS', 'READ_MESSAGE_HISTORY'],
 
     async run(client, message, args) {
         const marryEmbed = new MessageEmbed()

@@ -5,7 +5,8 @@ module.exports = {
   aliases: ['say', 'falar', 'dizer'],
   cooldown: 5,
   guildOnly: true,
-
+  clientPerms: ['READ_MESSAGE_HISTORY'],
+  
   async run(client, message, args) {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {
       return message.FoxyReply(

@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['client', 'clientinfo', 'bot'],
   cooldown: 5,
   guildOnly: false,
-  clientPerms: ['EMBED_LINKS'],
+  clientPerms: ['EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message) {
     let cpu = Math.round(process.cpuUsage().system / 1024 / 1024).toString();

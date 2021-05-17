@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['mcbody'],
   cooldown: 5,
   guildOnly: false,
-  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message, args) {
     const user = args.join(' ');

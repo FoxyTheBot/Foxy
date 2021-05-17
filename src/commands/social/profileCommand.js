@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['profile', 'perfil'],
   cooldown: 5,
   guildOnly: true,
-  clientPerms: ['ATTACH_FILES'],
+  clientPerms: ['ATTACH_FILES', 'READ_MESSAGE_HISTORY'],
   
   async run(client, message, args) {
     const db = require('quick.db');

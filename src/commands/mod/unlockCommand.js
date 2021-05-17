@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['unlock'],
   cooldown: 2,
   guildOnly: true,
-  clientPerms: ['MANAGE_CHANNELS'],
+  clientPerms: ['MANAGE_CHANNELS', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message) {
     if (!message.member.permissions.has('MANAGE_CHANNELS')) { return message.FoxyReply('Você precisa da permissão `Gerenciar canais` para fazer isso!'); }

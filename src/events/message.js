@@ -42,7 +42,7 @@ module.exports = async (client, message) => {
       if (command.clientPerms.includes('CONNECT')) clientPermissions.push('`Conectar`');
       if (command.clientPerms.includes('SPEAK')) clientPermissions.push('`Falar`');
 
-      return message.FoxyReply(`${client.emotes.error} **|** ${message.author} Aparentemente está faltando as permissões ${clientPermissions.join(", ")} para executar esse comando!`)
+      return message.channel.send(`${client.emotes.error} **|** ${message.author} Aparentemente está faltando as permissões ${clientPermissions.join(", ")} para executar esse comando!`)
     };
     if (!cooldowns.has(command.name)) {
       cooldowns.set(command.name, new Discord.Collection());

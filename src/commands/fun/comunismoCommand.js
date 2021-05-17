@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['comunismo', 'nosso'],
   cooldown: 3,
   guildOnly: true,
-  clientPerms: ['ATTACH_FILES'],
+  clientPerms: ['ATTACH_FILES', 'READ_MESSAGE_HISTORY'],
   
   async run(client, message, args, applyText) {
     const canvas = Canvas.createCanvas(500, 400);

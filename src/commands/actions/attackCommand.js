@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['atacar', 'attack'],
   cooldown: 5,
   guildOnly: true,
-  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message, args) {
     const list = [
