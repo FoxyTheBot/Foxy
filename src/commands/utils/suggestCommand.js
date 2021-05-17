@@ -4,6 +4,7 @@ module.exports = {
   aliases: ['sugerir', 'sugestão'],
   cooldown: 10,
   guildOnly: true,
+  clientPerms: ['READ_MESSAGE_HISTORY'],
 
   run(client, message, args) {
     const suggestion = args.join(' ');
@@ -19,10 +20,10 @@ module.exports = {
 
     const pfp = message.author.avatarURL();
     const suggest = new MessageEmbed()
-        .setColor(client.colors.rp)
-        .setTitle('Nova sugestão para a Foxy!')
-        .setThumbnail(pfp)
-        .setDescription(`${client.emotes.heart} **Usuário:** ${message.author.username} / ${message.author.id} \n\n ${client.emotes.success} **Sugestão:** ${suggestion} \n\n ${client.emotes.thumbsup} **Servidor:** ${message.guild.name} / ${message.guild.id}`);
+      .setColor(client.colors.rp)
+      .setTitle('Nova sugestão para a Foxy!')
+      .setThumbnail(pfp)
+      .setDescription(`${client.emotes.heart} **Usuário:** ${message.author.username} / ${message.author.id} \n\n ${client.emotes.success} **Sugestão:** ${suggestion} \n\n ${client.emotes.thumbsup} **Servidor:** ${message.guild.name} / ${message.guild.id}`);
     client.suggestWebhook.send(suggest);
   },
 

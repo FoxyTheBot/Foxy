@@ -4,7 +4,7 @@ module.exports = {
   aliases: ['ppt'],
   cooldown: 3,
   guildOnly: false,
-  clientPerms: ['SEND_MESSAGES'],
+  clientPerms: ['SEND_MESSAGES', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message, args) {
     const acceptedReplies = ['pedra', 'papel', 'tesoura'];

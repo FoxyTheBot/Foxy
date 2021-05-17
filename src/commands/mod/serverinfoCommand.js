@@ -7,7 +7,7 @@ module.exports = {
   cooldown: 5,
   guildOnly: true,
   clientPerms: ['EMBED_LINKS'],
-  
+
   async run(client, message, args) {
     const guild = client.guilds.cache.get(args[0]) || message.guild;
 
@@ -34,6 +34,9 @@ module.exports = {
       southafrica: 'South Africa',
     };
 
+    const ownerid = await guild.ownerID;
+    const owner = await client.users.fetch(`${ownerid}`)
+
     const verification = guild.verificationLevel;
     let partner = guild.partnered;
     if (partner == false) partner = 'Não';
@@ -53,8 +56,8 @@ module.exports = {
       .setTitle(guild.name)
       .setThumbnail(servericon)
       .addFields(
-        { name: ':crown: Owner', value: `${guild.owner}`, inline: true },
-        { name: '<:info:718944993741373511> Owner ID', value: `\`${guild.ownerID}\``, inline: true },
+        { name: ':crown: Owner', value: `\`${owner.tag}\``, inline: true },
+        { name: '<:info:718944993741373511> Owner ID', value: `\`${ownerid}\``, inline: true },
         { name: ':earth_americas: Região', value: `${region[guild.region]}`, inline: true },
         { name: ':computer: Server ID', value: `\`${guild.id}\``, inline: true },
         { name: ':busts_in_silhouette: Membros', value: `${guild.memberCount}`, inline: true },
@@ -66,7 +69,6 @@ module.exports = {
         { name: '<:WindowsShield:777579023249178625> Nível de verificação', value: `${level}`, inline: true },
         { name: '<:Partner:813832825543065680> Servidor Parceiro:', value: `${partner}`, inline: true },
       )
-      .setFooter('Caso o Owner esteja null é porque o dono não está registrado na Foxy, peça para o dono executar um comando');
     message.FoxyReply(embed);
   },
 };

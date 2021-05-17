@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['slowmode', 'modolento', 'lento'],
   cooldown: 3,
   guildOnly: true,
-  clientPerms: ['MANAGE_CHANNELS'],
+  clientPerms: ['MANAGE_CHANNELS', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message, args) {
     if (!message.member.permissions.has('MANAGE_CHANNELS')) {

@@ -7,7 +7,7 @@ module.exports = {
   aliases: ['slap', 'bater', ' tapa'],
   cooldown: 3,
   guildOnly: true,
-  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
+  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
   
   async run(client, message, args) {
     const user = message.mentions.users.first()

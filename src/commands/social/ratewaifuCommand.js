@@ -3,6 +3,8 @@ module.exports = {
   aliases: ['ratewaifu', 'avaliarwaifu'],
   cooldown: 3,
   guildOnly: true,
+  clientPerms: ['READ_MESSAGE_HISTORY'],
+  
   async run(client, message, args) {
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
 

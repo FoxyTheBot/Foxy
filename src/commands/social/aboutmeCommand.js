@@ -5,7 +5,8 @@ module.exports = {
   aliases: ['aboutme', 'sobremim'],
   cooldown: 5,
   guildOnly: false,
-
+  clientPerms: ['READ_MESSAGE_HISTORY'],
+  
   async run(client, message, args) {
     const aboutme = args.join(' ');
 
