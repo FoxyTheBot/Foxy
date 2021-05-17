@@ -3,7 +3,8 @@ module.exports = {
   aliases: ['remind', 'lembrar', 'lembrete'],
   guildOnly: true,
   cooldown: 5,
-
+  clientPerms: ['READ_MESSAGE_HISTORY'],
+  
   async run(client, message, args) {
     const Discord = require('discord.js');
     const db = require('quick.db');

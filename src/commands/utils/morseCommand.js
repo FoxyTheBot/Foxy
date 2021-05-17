@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['morse'],
   cooldown: 3,
   guildOnly: false,
-  clientPerms: ['EMBED_LINKS'],
+  clientPerms: ['EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message, args) {
     const alpha = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'.split('');

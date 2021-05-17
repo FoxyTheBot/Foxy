@@ -5,6 +5,8 @@ module.exports = {
   aliases: ['fate'],
   cooldown: 3,
   guildOnly: true,
+  clientPerms: ['READ_MESSAGE_HISTORY'],
+  
   async run(client, message, args) {
     const list = [
       'namorados <3',

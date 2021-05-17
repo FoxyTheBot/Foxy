@@ -4,6 +4,7 @@ module.exports = {
   aliases: ['reportar', 'report', 'bug', 'issue'],
   cooldown: 3,
   guildOnly: true,
+  clientPerms: ['READ_MESSAGE_HISTORY'],
   async run(client, message, args) {
     const sayMessage = args.join(' ');
     const noargs = new Discord.MessageEmbed()

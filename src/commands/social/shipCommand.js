@@ -8,7 +8,7 @@ module.exports = {
   aliases: ['ship', 'shippar'],
   cooldown: 3,
   guildOnly: true,
-  clientPerms: ['EMBED_LINKS', 'ATTACH_FILES'],
+  clientPerms: ['EMBED_LINKS', 'ATTACH_FILES', 'READ_MESSAGE_HISTORY'],
   
   async run(client, message) {
     if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.FoxyReply('Eu preciso da permissão `enviar arquvios` para fazer isso!');

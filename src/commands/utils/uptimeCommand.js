@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['uptiime'],
   cooldown: 3,
   guildOnly: false,
-  clientPerms: ['EMBED_LINKS'],
+  clientPerms: ['EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message, args) {
     let totalSeconds = client.uptime / 1000;

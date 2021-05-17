@@ -5,6 +5,8 @@ module.exports = {
   aliases: ['coinflip', 'caracoroa'],
   cooldown: 3,
   guildOnly: false,
+  clientPerms: ['READ_MESSAGE_HISTORY'],
+  
   async run(client, message, args) {
     const array1 = ['cara', 'coroa'];
 

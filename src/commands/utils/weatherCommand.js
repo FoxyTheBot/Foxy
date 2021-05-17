@@ -7,7 +7,7 @@ module.exports = {
   aliases: ['weather', 'clima', 'temp', 'temperatura'],
   cooldown: 3,
   guildOnly: false,
-  clientPerms: ['EMBED_LINKS'],
+  clientPerms: ['EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message, args) {
     weather.find({ search: args.join(' '), degreeType: 'C' }, (error, result) => {

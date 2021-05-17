@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['termos', 'terms', 'tos'],
   cooldown: 3,
   guildOnly: false,
-  clientPerms: ['EMBED_LINKS'],
+  clientPerms: ['EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message) {
     const termos = new Discord.MessageEmbed()
