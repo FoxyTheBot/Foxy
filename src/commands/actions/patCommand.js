@@ -12,7 +12,7 @@ module.exports = {
   async run(client, message, args) {
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
     if (!user) {
-      return message.FoxyReply('lembre-se de mencionar um usuário válido para fazer cafuné!');
+      return message.foxyReply('lembre-se de mencionar um usuário válido para fazer cafuné!');
     }
 
     const img = await neko.sfw.pat();
@@ -23,8 +23,8 @@ module.exports = {
       .setDescription(`${message.author} **fez cafuné em** ${user}`)
       .setImage(img.url)
       .setTimestamp()
-      .setFooter('Reaga com 🤩 para retribuir');
-    await message.FoxyReply(`${message.author}`, embed).then((msg) => {
+      .setFooter('Reaja com 🤩 para retribuir');
+    await message.foxyReply(`${message.author}`, embed).then((msg) => {
       msg.react('🤩')
 
       const filter = (reaction, usuario) => reaction.emoji.name === '🤩' && usuario.id === user.id;
@@ -36,7 +36,7 @@ module.exports = {
           .setDescription(`${user} **Fez cafuné** ${message.author}`)
           .setImage(img2.url)
 
-        message.FoxyReply(repeat)
+        message.foxyReply(repeat)
       })
 
     })

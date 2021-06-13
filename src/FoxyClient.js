@@ -8,7 +8,8 @@ const client = new Client({
   },
 });
 
-require('./structures/FoxyReply');
+require('discord-buttons')(client)
+require('./structures/ProtoTypes');
 
 client.commands = new Collection();
 client.emotes = require('./structures/emotes.json');

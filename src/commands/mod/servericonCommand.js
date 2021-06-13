@@ -6,13 +6,13 @@ module.exports = {
   cooldown: 5,
   guildOnly: true,
   clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
-  
+
   async run(client, message) {
     const icon = message.guild.iconURL({ dynamic: true, format: 'png', size: 1024 });
     const embed = new Discord.MessageEmbed()
       .setColor('RED')
       .setTitle(`Icone de ${message.guild.name}`)
       .setImage(icon);
-    message.FoxyReply(embed);
+    message.foxyReply(embed);
   },
 };

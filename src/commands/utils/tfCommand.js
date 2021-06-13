@@ -8,14 +8,14 @@ module.exports = {
   async run(client, message, args) {
 
     if (!args) {
-      message.FoxyReply('Digite uma pergunta');
+      message.foxyReply('Digite uma pergunta');
     } else {
       const results = ['Verdade', 'Falso'];
       const result = Math.floor((Math.random() * results.length));
       {
       }
 
-      message.FoxyReply(results[result]);
+      message.foxyReply(results[result]);
     }
   },
 };

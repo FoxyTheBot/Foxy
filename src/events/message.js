@@ -1,8 +1,32 @@
 const user = require('../structures/DatabaseConnection')
 const Discord = require('discord.js')
 const cooldowns = new Discord.Collection()
+const db = require('quick.db')
 
 module.exports = async (client, message) => {
+
+  async function checkInvite() {
+
+    const regex = /(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|club)|discordapp\.com\/invite|discord\.com\/invite)\/.+[a-z]/gi;
+
+    if (message.channel.type !== 'dm') {
+      var channelid = db.fetch(`guild_${message.guild.id}`)
+    }
+
+    if (channelid === null || message.channel.id === channelid) {
+      return;
+    } else {
+      if (regex.exec(message.content)) {
+        await message.delete({ timeout: 1000 });
+        await message.reply(`Você não pode divulgar links de outros servidores aqui!`);
+      }
+    }
+  }
+
+  checkInvite()
+
+  var banuser = await user.findOne({ userid: message.author.id });
+
   if (message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) message.channel.send(`Olá ${message.author}! Meu nome é ${client.user.username}, meu prefixo é \`${client.config.prefix}\`, Utilize \`${client.config.prefix}help\` para obter ajuda! ${client.emotes.success}`);
 
   const prefixRegex = new RegExp(`^(${client.config.prefix}|<@!?${client.user.id}>)( )*`, "gi");
@@ -15,13 +39,14 @@ module.exports = async (client, message) => {
 
   if (!command) return;
 
+
   function FoxyHandler() {
     if (command.guildOnly && message.channel.type === 'dm') {
-      return message.FoxyReply(`<:Error:718944903886930013> | ${message.author} Esse comando não pode ser executado em mensagens diretas!`);
+      return message.foxyReply(`<:Error:718944903886930013> | ${message.author} Esse comando não pode ser executado em mensagens diretas!`);
     }
 
     if (command.ownerOnly && !client.config.owners.includes(message.author.id)) {
-      return message.FoxyReply(`<:Error:718944903886930013> | ${message.author} Você não tem permissão para fazer isso! <:meow_thumbsup:768292477555572736>`);
+      return message.foxyReply(`<:Error:718944903886930013> | ${message.author} Você não tem permissão para fazer isso! <:meow_thumbsup:768292477555572736>`);
     }
 
     if (command.clientPerms && !message.guild.members.cache.get(client.user.id).permissions.has(command.clientPerms)) {
@@ -59,7 +84,7 @@ module.exports = async (client, message) => {
         const timeLeft = (expirationTime - now) / 1000;
         let time = `${timeLeft.toFixed(0)} segundos`
         if (time <= 0) time = "Alguns milisegundos"
-        return message.FoxyReply(`${client.emotes.scared} **|** ${message.author}, Por favor aguarde **${time}** para usar o comando novamente`);
+        return message.foxyReply(`${client.emotes.scared} **|** ${message.author}, Por favor aguarde **${time}** para usar o comando novamente`);
       }
     }
 
@@ -74,6 +99,7 @@ module.exports = async (client, message) => {
 
     runCommands()
   }
+
   try {
     user.findOne({ userid: message.author.id }, (error, data) => {
       if (error) return console.log(`Algo deu errado! ${error} | ${message}`)
@@ -83,18 +109,21 @@ module.exports = async (client, message) => {
             .setTitle('<:DiscordBan:790934280481931286> Você foi banido(a) <:DiscordBan:790934280481931286>')
             .setColor(client.colors.error)
             .setDescription('Você foi banido(a) de usar a Foxy em qualquer servidor no Discord! \n Caso seu ban foi injusto (o que eu acho muito difícil) você pode solicitar seu unban no meu [servidor de suporte](https://gg/kFZzmpD) \n **Leia os termos em** [Termos de uso](https://foxywebsite.ml/tos.html)')
+            .addFields(
+              { name: "Motivo do Ban:", value: banuser.banReason, inline: true },
+              { name: "Banido por", value: banuser.bannedBy }
+            )
             .setFooter('You\'ve been banned from using Foxy on other servers on Discord!');
-          return message.author.send(bannedEmbed).catch(() => {
-            message.FoxyReply(message.author, bannedEmbed);
-          });
+          return message.foxyReply(bannedEmbed)
         }
         return FoxyHandler();
       }
       new user({
         userid: message.author.id,
         username: message.author.username,
+        banReason: null,
+        bannedBy: null,
         userBanned: false,
-        premium: false,
       }).save().catch((err) => {
         console.log('[MONGO ERROR] - ' + err)
       });

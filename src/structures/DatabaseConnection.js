@@ -12,8 +12,9 @@ mongoose.connect(config.uri, {
 const userSchema = new mongoose.Schema({
     userid: String,
     username: String,
-    userBanned: Boolean,
-    premium: Boolean
+    banReason: String,
+    bannedBy: String,
+    userBanned: Boolean
 });
 
 module.exports = mongoose.model('user', userSchema);

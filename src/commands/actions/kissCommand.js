@@ -19,7 +19,7 @@ module.exports = {
 
     if (user == client.user) return message.channel.send("🙅‍♀️ **|** Nah, eu não quero te beijar!")
     if (!user) {
-      return message.FoxyReply('lembre-se de mencionar um usuário válido para beijar!');
+      return message.foxyReply('lembre-se de mencionar um usuário válido para beijar!');
     }
 
     const embed = new Discord.MessageEmbed()
@@ -28,7 +28,7 @@ module.exports = {
       .setImage(img.url)
       .setFooter('Reaja com 😘 para retribuir')
       .setTimestamp();
-    await message.FoxyReply(`${message.author}`, embed).then((msg) => {
+    await message.foxyReply(`${message.author}`, embed).then((msg) => {
       msg.react('😘')
 
       const filter = (reaction, usuario) => reaction.emoji.name === '😘' && usuario.id === user.id;
@@ -40,7 +40,7 @@ module.exports = {
           .setDescription(`😽 ${user} **Beijou** ${message.author}`)
           .setImage(img2.url)
 
-        message.FoxyReply(repeat)
+        message.foxyReply(repeat)
       })
 
     })

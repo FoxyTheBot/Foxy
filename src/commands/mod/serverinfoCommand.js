@@ -32,6 +32,7 @@ module.exports = {
       hongkong: 'Hong Kong',
       russia: 'Russia',
       southafrica: 'South Africa',
+      europe: "Europa"
     };
 
     const ownerid = await guild.ownerID;
@@ -63,12 +64,13 @@ module.exports = {
         { name: ':busts_in_silhouette: Membros', value: `${guild.memberCount}`, inline: true },
         { name: ':calendar: Criado em:', value: `${joinDiscord}`, inline: true },
         { name: ':star: Entrei aqui em:', value: `${clientjoin}`, inline: true },
-        { name: ':computer: Shard ID', value: `${guild.shardID}`, inline: true },
+        { name: ':computer: Shard ID', value: `${guild.shardID + 1}`, inline: true },
         { name: '<a:sleeepy:803647820867174421> Canal AFK', value: `${afk}`, inline: true },
         { name: '<:rules:797183150475575337> Canal de regras', value: `${rules}`, inline: true },
         { name: '<:WindowsShield:777579023249178625> Nível de verificação', value: `${level}`, inline: true },
         { name: '<:Partner:813832825543065680> Servidor Parceiro:', value: `${partner}`, inline: true },
-      )
-    message.FoxyReply(embed);
+        { name: '<a:impulso:756507043854024784> Impulsos:', value: guild.premiumSubscriptionCount, inline: true }
+        )
+    message.foxyReply(embed);
   },
 };
