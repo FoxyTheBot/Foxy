@@ -8,14 +8,14 @@ module.exports = {
   async run(client, message, args) {
     if (message.channel.type === 'dm') return;
     if (!message.member.permissions.has('MANAGE_CHANNELS')) {
-      return message.FoxyReply(
+      return message.foxyReply(
         `<:WindowsShield:777579023249178625> **|** ${message.author} Você não tem permissão para executar este comando! Você precisará da permissão \`Gerenciar Canais\``,
       );
     }
-    if (!message.guild.me.permissions.has('MANAGE_CHANNELS')) return message.FoxyReply('Não tenho permissão gerenciar canais!');
+    if (!message.guild.me.permissions.has('MANAGE_CHANNELS')) return message.foxyReply('Não tenho permissão gerenciar canais!');
     const topic = args.join(' ');
-    if(message.content.includes("@")) return message.FoxyReply('Você não pode mencionar cargos ou usuários!')
+    if(message.content.includes("@")) return message.foxyReply('Você não pode mencionar cargos ou usuários!')
     message.channel.setTopic(topic);
-    await message.FoxyReply(`Tópico alterado para "**${topic}**"`);
+    await message.foxyReply(`Tópico alterado para "**${topic}**"`);
   },
 };

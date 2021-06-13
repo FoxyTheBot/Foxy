@@ -7,7 +7,7 @@ module.exports = {
   cooldown: 5,
   guildOnly: true,
   clientPerms: ['ATTACH_FILES', 'READ_MESSAGE_HISTORY'],
-  
+
   async run(client, message, args) {
     const db = require('quick.db');
     const user = message.mentions.users.first() || message.author;
@@ -24,60 +24,59 @@ module.exports = {
     let rep = await db.fetch(`rep_${user.id}`);
     if (rep == null) rep = 0;
 
-    const profile = db.fetch(`background_${user.id}`);
+    const profile = await db.fetch(`background_${user.id}`);
     if (profile == null) {
-      db.set(`background_${user.id}`, 'default_background.png');
-      message.FoxyReply('Parece que você não tem um perfil, seu perfil foi criado, digite o comando novamente.');
-    } else {
-      const applyText = (canvas, text) => {
-        const ctx = canvas.getContext('2d');
-        let fontSize = 70;
-
-        do {
-          ctx.font = `${fontSize -= 10}px sans-serif`;
-        } while (ctx.measureText(text).width > canvas.width - 300);
-
-        return ctx.font;
-      };
-      
-      const canvas = Canvas.createCanvas(1436, 884);
-      const ctx = canvas.getContext('2d');
-      const background = await Canvas.loadImage(`./src/layout/${profile}`);
-      ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-      ctx.strokeStyle = '#74037b';
-      ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
-
-      ctx.font = '70px sans-serif';
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText(`${user.username}`, canvas.width / 6.0, canvas.height / 9.5);
-
-      ctx.font = '40px sans-serif';
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText(`Reps: ${rep} \nCarteira: ${money}`, canvas.width / 1.5, canvas.height / 7.0);
-
-      if (casado !== null) {
-        let user2 = await client.users.fetch(casado)
-        ctx.font = '30px sans-serif';
-        ctx.fillStyle = '#ffffff';
-        ctx.fillText(`💍 Casado com: ${user2.tag}`, canvas.width / 6.0, canvas.height / 5.5);
-      }
-
-      ctx.font = ('30px sans-serif');
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText(aboutme, canvas.width / 55.0, canvas.height / 1.2);
-
-      ctx.beginPath();
-      ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
-      ctx.closePath();
-      ctx.clip();
-
-      const avatar = await Canvas.loadImage(user.displayAvatarURL({ format: 'png' }));
-      ctx.drawImage(avatar, 25, 25, 200, 200);
-
-      const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'foxy_profile.png');
-      message.FoxyReply(attachment);
+      await db.set(`background_${user.id}`, 'default_background.png');
+      message.foxyReply('Parece que você não tem um perfil, Acabei de criar um para você! :3');
     }
+    const applyText = (canvas, text) => {
+      const ctx = canvas.getContext('2d');
+      let fontSize = 70;
+
+      do {
+        ctx.font = `${fontSize -= 10}px sans-serif`;
+      } while (ctx.measureText(text).width > canvas.width - 300);
+
+      return ctx.font;
+    };
+
+    const canvas = Canvas.createCanvas(1436, 884);
+    const ctx = canvas.getContext('2d');
+    const background = await Canvas.loadImage(`./src/layout/${db.fetch(`background_${user.id}`)}`);
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+    ctx.strokeStyle = '#74037b';
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+
+    ctx.font = '70px sans-serif';
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(`${user.username}`, canvas.width / 6.0, canvas.height / 9.5);
+
+    ctx.font = '40px sans-serif';
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(`Reps: ${rep} \nCarteira: ${money}`, canvas.width / 1.5, canvas.height / 7.0);
+
+    if (casado !== null) {
+      let user2 = await client.users.fetch(casado)
+      ctx.font = '30px sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(`💍 Casado com: ${user2.tag}`, canvas.width / 6.0, canvas.height / 5.5);
+    }
+
+    ctx.font = ('30px sans-serif');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(aboutme, canvas.width / 55.0, canvas.height / 1.2);
+
+    ctx.beginPath();
+    ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
+    ctx.closePath();
+    ctx.clip();
+
+    const avatar = await Canvas.loadImage(user.displayAvatarURL({ format: 'png' }));
+    ctx.drawImage(avatar, 25, 25, 200, 200);
+
+    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'foxy_profile.png');
+    message.foxyReply(attachment);
   },
 };

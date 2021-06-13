@@ -9,7 +9,7 @@ module.exports = {
   
   async run(client, message, args) {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {
-      return message.FoxyReply(
+      return message.foxyReply(
         '<:WindowsShield:777579023249178625> | Você não tem permissão para executar este comando! Você precisará da permissão `Gerenciar Mensagens` para usar este comando!',
       );
     }
@@ -19,9 +19,9 @@ module.exports = {
       .setTitle('Como usar')
       .setDescription('💁‍♀️ **Exemplo:** `f!say yay!` \n 🛑 **Permissões:** Você precisará da permissão `Gerenciar mensagens` para usar este comando.');
 
-    if (!sayMessage) return message.FoxyReply(noargs);
-    if (message.content.includes('@')) return message.FoxyReply('Você não pode mencionar pessoas ou cargos!');
-    message.FoxyReply(`${sayMessage} \n\n<:cat_toes:781335367764803634> *Mensagem enviada por ${message.author}*`);
+    if (!sayMessage) return message.foxyReply(noargs);
+    if (message.content.includes('@')) return message.foxyReply('Você não pode mencionar pessoas ou cargos!');
+    message.foxyReply(`${sayMessage} \n\n<:cat_toes:781335367764803634> *Mensagem enviada por ${message.author}*`);
 
     const logs = new Discord.MessageEmbed()
       .setTitle('Logs de comandos')

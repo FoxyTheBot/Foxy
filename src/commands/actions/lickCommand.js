@@ -17,7 +17,7 @@ module.exports = {
     const rand = list[Math.floor(Math.random() * list.length)];
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
     if (!user) {
-      return message.FoxyReply('lembre-se de mencionar um usuário válido para lamber!');
+      return message.foxyReply('lembre-se de mencionar um usuário válido para lamber!');
     }
 
     const avatar = message.author.displayAvatarURL({ format: 'png' });
@@ -29,7 +29,7 @@ module.exports = {
       .setThumbnail(avatar)
       .setFooter('')
       .setAuthor(message.author.tag, avatar);
-    await message.FoxyReply(`${message.author}`, embed).then((msg) => {
+    await message.foxyReply(`${message.author}`, embed).then((msg) => {
       msg.react('😝')
 
       const filter = (reaction, usuario) => reaction.emoji.name === '😝' && usuario.id === user.id;
@@ -41,7 +41,7 @@ module.exports = {
           .setDescription(`${user} **Lambeu** ${message.author}`)
           .setImage(rand)
 
-        message.FoxyReply(repeat)
+        message.foxyReply(repeat)
       })
 
     })

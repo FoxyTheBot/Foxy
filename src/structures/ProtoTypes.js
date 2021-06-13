@@ -1,7 +1,7 @@
 const { APIMessage, Structures } = require("discord.js");
 
 class Message extends Structures.get("Message") {
-    async FoxyReply(content, options) {
+    async foxyReply(content, options) {
         const mentionRepliedUser = typeof ((options || content || {}).allowedMentions || {}).repliedUser === "undefined" ? true : ((options || content).allowedMentions).repliedUser;
         delete ((options || content || {}).allowedMentions || {}).repliedUser;
 
@@ -17,7 +17,7 @@ class Message extends Structures.get("Message") {
             return Promise.all(apiMessage.split().map(x => {
                 x.data.allowed_mentions = apiMessage.data.allowed_mentions;
                 return x;
-            }).map(this.FoxyReply.bind(this)));
+            }).map(this.foxyReply.bind(this)));
         }
 
         const { data, files } = await apiMessage.resolveFiles();

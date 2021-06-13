@@ -11,6 +11,4 @@ module.exports = async (client, guild) => {
     .setFooter(`ID do Servidor: ${guild.id}`)
 
   webhookClient.send(guildCreate);
-
-
 }

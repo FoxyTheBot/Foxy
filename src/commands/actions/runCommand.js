@@ -27,9 +27,8 @@ module.exports = {
       .setDescription(`${message.author} está correndo!`)
       .setImage(rand)
       .setTimestamp()
-      .setFooter('And i ran, i ran so far away | ')
       .setAuthor(message.author.tag, avatar);
-    await message.FoxyReply(embed);
+    await message.foxyReply(embed);
   },
 
 };

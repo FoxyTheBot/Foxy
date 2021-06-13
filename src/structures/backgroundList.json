@@ -1,0 +1,98 @@
+{
+    "default": {
+        "name": "Background padrão",
+        "rarity": "Comum",
+        "foxcoins": 0,
+        "filename": "default_background.png",
+        "description": "Background padrão da Foxy",
+        "onlydevs": false
+    },
+    "fnaf": {
+        "name": "Five Nights at Freddy's",
+        "rarity": "Comum",
+        "foxcoins": 9000,
+        "filename": "fnaf_background.png",
+        "description": "owo o jogo em que a foxy e baseada",
+        "onlydevs": false
+    },
+    "gtasa": {
+        "name": "GTA: San Andreas",
+        "rarity": "Raro",
+        "foxcoins": 5000,
+        "description": "bruh",
+        "filename": "gta_san.png",
+        "onlydevs": false
+    },
+    "foxytube": {
+        "name": "Foxy Vlogger",
+        "rarity": "Raro",
+        "foxcoins": 5000,
+        "filename": "foxy_vlogs.png",
+        "description": "Fala galerinha aqui do YouTube quem ta falando com vocês e a sua amiguinha Foxy e hoje eu to aqui com meu amigo Wumpus para gravar um desafio :D e o desafio de hoje sera: logar no Discord as 3:00 da manhã",
+        "onlydevs": false
+    },
+    "foxylori": {
+        "name": "Foxy e Lori",
+        "rarity": "Lendário",
+        "foxcoins": 10000,
+        "description": "Loritta foi criada por [MrPowerGamerBR](https://mrpowergamerbr.com) adicione a Loritta clicando [aqui](https://lorittwebsite.ml)",
+        "filename": "foxy_e_lori.png",
+        "onlydevs": false
+    },
+    "levi": {
+        "name": "Levi / Ata Shingeki No Kyojin",
+        "rarity": "Lendário",
+        "foxcoins": 10000,
+        "filename": "levi_kyokin.png",
+        "description": "bruh",
+        "onlydevs": false
+    },
+    "reddead": {
+        "name": "Red Dead Redemption 2",
+        "rarity": "Lendário",
+        "foxcoins": 10000,
+        "filename": "red_dead.png",
+        "description": "bruh",
+        "onydevs": false
+    },
+    "sadcatmoney": {
+        "name": "Sad Cat Money",
+        "rarity": "Lendário",
+        "foxcoins": 10000,
+        "filename": "sad_cat_money.png",
+        "description": "El muchacho de los ojos tristes, estás rico e puede comprar muchas ganjas",
+        "onlydevs": false
+    },
+    "sadcat": {
+        "name": "Sad Cat",
+        "rarity": "Lendário",
+        "foxcoins": 10000,
+        "filename": "sad_cat.png",
+        "description": "El muchacho de los ojos tristes se quedó sin ganjah",
+        "onlydevs": false
+    },
+    "windowsxp": {
+        "name": "Windows XP",
+        "rarity": "Lendário",
+        "foxcoins": 10000,
+        "filename": "windows_xp.png",
+        "description": "Madobe Saseko passou por aqui!",
+        "onlydevs": false
+    },
+    "windowsseven": {
+        "name": "Windows 7",
+        "rarity": "Lendário",
+        "foxcoins": 11000,
+        "filename": "windows_seven.png",
+        "description": "Madobe Nanami passou por aqui!",
+        "onlydevs": false
+    },
+    "bis_foxy": {
+        "name": "Bis e Foxy",
+        "rarity": "Unknown",
+        "foxcoins": "undefined",
+        "filename": "bis_e_foxy.png",
+        "description": "Bis e a Foxy apenas ;3",
+        "onlydevs": true
+    }
+}

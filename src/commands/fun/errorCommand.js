@@ -9,18 +9,18 @@ module.exports = {
   clientPerms: ['ATTACH_FILES', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message, args, applyText) {
-    if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.FoxyReply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
+    if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.foxyReply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 
 
     const canvas = Canvas.createCanvas(380, 208);
     const ctx = canvas.getContext('2d');
     const sayMessage = args.join(' ');
-    if (!sayMessage) return message.FoxyReply('Digite algo antes');
+    if (!sayMessage) return message.foxyReply('Digite algo antes');
 
     const background = await Canvas.loadImage('./src/assets/Windows.png');
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-    if (sayMessage.length > 30) return message.FoxyReply('Você pode digitar até 30 caracteres, obrigada :3');
+    if (sayMessage.length > 30) return message.foxyReply('Você pode digitar até 30 caracteres, obrigada :3');
 
 
     ctx.strokeStyle = '#74037b';
@@ -37,7 +37,7 @@ module.exports = {
 
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'error.png');
 
-    message.FoxyReply(attachment);
+    message.foxyReply(attachment);
     const logs = new Discord.MessageEmbed()
     .setTitle('Logs de comandos')
     .setDescription(`**Comando:** errorCommand \n **Autor:** ${message.author.tag} / ${message.author.id} \n\n **Servidor** ${message.guild.name} / ${message.guild.id} \n\n **Mensagem:** ${message.content} \n\n Link: [Mensagem](${message.url})`);

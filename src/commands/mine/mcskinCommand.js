@@ -8,8 +8,8 @@ module.exports = {
   async run(client, message, args) {
     const user = args.join(' ');
 
-    if (!user) return message.FoxyReply('<:Minecraft:804858374780878868> **|** Especifique um usuário');
-    if(user.length > 20) return message.FoxyReply('Digite no mínimo 20 caractéres')
+    if (!user) return message.foxyReply('<:Minecraft:804858374780878868> **|** Especifique um usuário');
+    if (user.length > 20) return message.foxyReply('Digite no mínimo 20 caractéres')
     const skin = `https://mc-heads.net/skin/${user}`;
 
     const discord = require('discord.js');
@@ -19,6 +19,6 @@ module.exports = {
       .setTitle(`<:Minecraft:804858374780878868> Skin de ${user}`)
       .setImage(skin)
       .setColor(client.colors.mine);
-    await message.FoxyReply(embed);
+    await message.foxyReply(embed);
   },
 };

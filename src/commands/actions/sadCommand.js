@@ -23,9 +23,8 @@ module.exports = {
       .setDescription(`${message.author} está triste ${sayMessage}`)
       .setImage(rand)
       .setTimestamp()
-      .setFooter(' | Gifs by: ByteAlex#1644')
       .setAuthor(message.author.tag, avatar);
-    await message.FoxyReply(embed);
+    await message.foxyReply(embed);
   },
 
 };

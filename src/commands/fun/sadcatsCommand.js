@@ -44,13 +44,12 @@ module.exports = {
 
     const rand = list[Math.floor(Math.random() * list.length)];
 
-    const avatar = message.author.displayAvatarURL({ format: 'png' });
     const embed = new Discord.MessageEmbed()
       .setColor('#000000')
       .setTitle('O Mais Triste dos Tristes')
       .setImage(rand)
       .setTimestamp();
-    await message.FoxyReply(`${message.author}`, embed);
+    await message.foxyReply(`${message.author}`, embed);
   },
 
 };
