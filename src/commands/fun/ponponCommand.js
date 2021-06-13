@@ -22,6 +22,6 @@ module.exports = {
       .setDescription(`${message.author} **Está dançando ponpon**`)
       .setImage(rand);
 
-    message.FoxyReply(embed);
+    message.foxyReply(embed);
   },
 };

@@ -21,9 +21,8 @@ module.exports = {
       .setDescription(`${message.author} Fez o moonwalk`)
       .setImage(rand)
       .setTimestamp()
-      .setFooter('')
       .setAuthor(message.author.tag, avatar);
-    await message.FoxyReply(embed);
+    await message.foxyReply(embed);
   },
 
 };

@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: 'donate',
@@ -8,11 +8,12 @@ module.exports = {
   clientPerms: ['EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message, args) {
-    const embed = new Discord.MessageEmbed()
-      .setColor('BLUE')
+    const donateEmbed = new MessageEmbed()
+      .setColor(client.colors.blurple)
       .setTitle('(._.`) Sabia que a crise afeta todos nós?')
-      .setDescription('Eu preciso de dinheiro para ficar online<a:bugcat_sleepy:776250262146515006> \nVocê pode doar para mim clicando [aqui](https://www.paypal.com/donate/?hosted_button_id=J7Y747Q38UEKN) 90% do dinheiro é para pagar a hospedagem e 10% é para o desenvolvedor, lembrando que eu também aceito doações via cartão de crédito e PayPal<:paypal:776965353904930826>');
+      .setDescription("Eu preciso de dinheiro para ficar online<a:bugcat_sleepy:776250262146515006> \nVocê pode doar para mim usando [PayPal](https://www.paypal.com/donate/?hosted_button_id=J7Y747Q38UEKN) 90% do dinheiro é para pagar a hospedagem e 10% é para os desenvolvedores (mas as taxas do PayPal), agora a Foxy suporta Pix <:pix:848593788959850496>!")
+      .setFooter("Chave Pix: 7abb33af-cb49-4d39-aaac-bb9ff24b7b87")
 
-    message.FoxyReply(embed);
+    message.foxyReply(donateEmbed)
   },
 };

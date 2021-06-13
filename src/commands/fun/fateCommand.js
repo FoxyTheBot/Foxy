@@ -14,14 +14,13 @@ module.exports = {
       'casados <3',
       'inimigos >:3',
       'irmãos :3',
-      'primos :3',
-      'dois maconheiros <:makonia:843151559269679164>'
+      'primos :3'
     ];
 
     const rand = list[Math.floor(Math.random() * list.length)];
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
     if (!user) {
-      return message.FoxyReply('lembre-se de mencionar um usuário válido');
+      return message.foxyReply('lembre-se de mencionar um usuário válido');
     }
     const embed = new Discord.MessageEmbed()
       .setColor('#000000')
@@ -29,7 +28,7 @@ module.exports = {
       .setDescription(`${message.author} e ${user} são ${rand}`)
       .setTimestamp()
       .setFooter('');
-    await message.FoxyReply(embed);
+    await message.foxyReply(embed);
   },
 
 };

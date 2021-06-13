@@ -11,11 +11,11 @@ module.exports = {
     const content = args.join(' ');
 
     if (!args[0]) {
-      return message.FoxyReply(`${message.author.username}, escreva a sugestão após o comando`);
+      return message.foxyReply(`${message.author.username}, escreva a sugestão após o comando`);
     } if (content.length > 1000) {
-      return message.FoxyReply(`${message.author.username}, forneça uma sugestão de no máximo 1000 caracteres.`);
+      return message.foxyReply(`${message.author.username}, forneça uma sugestão de no máximo 1000 caracteres.`);
     }
-    const msg = await message.FoxyReply(
+    const msg = await message.foxyReply(
       new Discord.MessageEmbed()
         .setColor('#FFFFF1')
         .addField('Autor:', message.author)
@@ -23,7 +23,7 @@ module.exports = {
         .setFooter(`ID do Autor: ${message.author.id}`)
         .setTimestamp(),
     );
-    await message.FoxyReply(`${message.author} a mensagem foi enviada com sucesso!`);
+    await message.foxyReply(`${message.author} a mensagem foi enviada com sucesso!`);
 
     const emojis = ['✔️', '❎'];
 

@@ -15,9 +15,15 @@
 <a href="https://github.com/BotFoxy/FoxyBot/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-AGPL%20v3-blue.svg?style=for-the-badge&logo=gnu&labelColor=black"></a>
 </p>
 
-Todos os servidores Discord têm os mesmos problemas. Os membros querem entretenimento, os moderadores querem automação... e você só quer descansar.
 
-Sua vida é muito preciosa para gastar seu tempo com coisas inúteis, deixe-me cuidar das partes chatas enquanto você se diverte no seu servidor!
+<h1 style="color:#348BDB"align="left">Quem sou eu?</h1>
+
+ </p>
+ <p align="left">
+  Olá, meu nome é Foxy e sou mais um simples bot do Discord
+
+
+Se divirta no seu servidor e deixe-me fazer as coisas chatas para você :3
 
 Com recursos para entreter e envolver seus membros, recursos de moderação para manter seu servidor sempre seguro e agradável
 
@@ -25,12 +31,20 @@ E tudo graças a uma raposinha
 
 Tornar seu servidor único e extraordinário nunca foi tão fácil!
 
-Have Fun~
-## 🤔 Como eu posso adicionar a Foxy?
 
-Você pode adicionar a instancia publica [clicando aqui](https://discord.com/oauth2/authorize?client_id=737044809650274325&permissions=8&scope=bot)! Recomendamos usar a instancia publica por que né... é mais estavel e você não vai ter dor de cabeça
+ <p align="right">
 
-Você pode tentar hospedar sua propria instancia, mas eu pessoalmente não recomendo ja que não damos suporte a self-hosting então pelo menos saiba solucionar problemas e não venha no servidor de suporte pedir pra te ajudarmos com seu self-host
+Eu posso entreter seu servidor com meus comandos de entretenimento, economia etc :D
+</p>
+</br>
+
+<h1 style="color:#348BDB"align="left">Regras Self-hosting</h1>
+
+De acordo com a [LICENÇA](https://github.com/BotFoxy/Foxy/blob/development/LICENSE) A Foxy suporta Self-host mas **NÃO** damos suporte para self-host
+
+## Regras
+
+De maneira alguma, você pode usar a imagem da Foxy no seu bot, a imagem da Foxy pertence a equipe da Foxy, e não pode ser utilizada em qualquer outra instância!
 
 ## 📁 Estrutura do projeto (wip)
 * 📜 **FoxyClient** [`src`]
@@ -47,40 +61,14 @@ Você pode tentar hospedar sua propria instancia, mas eu pessoalmente não recom
 > ⚠️ Você até pode usar o cmd mas não recomendo...
 * Você vai precisar baixar o [NodeJS](https://nodejs.org/pt-br)
 * Você vai precisar ter o [Git](https://git-scm.com/) instalado em sua maquina
-* Se você pretende alterar o codigo ou ajudar no desenvolvimento use o [Visual Studio Code](https://code.visualstudio.com/)! É de graça então você não vai precisar ficar "aaaa eu tenho que pagar por isso"
+* Se você pretende alterar o codigo ou ajudar no desenvolvimento use o [Visual Studio Code](https://code.visualstudio.com/)! É de graça então você não vai precisar ficar "aaaah preciso pagar por isso"
 ### `1.` 🧹 Preparando o ambiente
 * Clone o repositorio com o git:
 ```bash
 git clone https://github.com/BotFoxy/Foxy
 ```
 
-## 🚀 Regras de Selfhosting
-1. Mantemos o código-fonte aberto para que as pessoas possam ver, aprender e se inspirar em como a Foxy foi feita e, se quiserem, poderem ajudar o projeto com recursos e correção de bugs.
-2. Este é um projeto da comunidade, se você fizer alterações no código-fonte da Foxy, você precisa seguir os termos da [AGPL-3.0](LICENSE) e manter as alterações no código-fonte aberto! E, se você quiser ajudar Foxy, por que não criar uma solicitação de pull? 😉
-3. Nos não damos suporte a self-hosting então ja esteja preparado para encontrar varios problemas e saber como resolve-los
-4. Não saia mentindo dizendo que "criou a Foxy" De o credito aos criadores.
-(**A foto de perfil da Foxy não pode ser usada em outras instâncias**)
-Uso da imagem da foxy **de forma não permitida** pode ser considerado violação de direitos autorais no [código penal brasileiro](https://www.jusbrasil.com.br/topicos/10615003/artigo-184-do-decreto-lei-n-2848-de-07-de-dezembro-de-1940)
-6. Os assets da Foxy como [imagens logos entre outros] são distribuidos juntamente com o codigo
-7. Nós utilizamos o [Debian 10](https://www.debian.org/index.pt.html) para hospedar a Foxy, porem você pode usar outros sistemas Linux.
-
-Parece dificil mas você **realmente** quer hospedar a Foxy? você pode usar a instancia publica [clicando aqui!](https://discord.com/oauth2/authorize?client_id=737044809650274325&permissions=8&scope=bot)
-
-### `0.` 👷 Pre-requisitos
-
-* Você vai precisar dos prerequisitos da sessão preparando tudo
-
-### `1.` 🧹 Preparando o ambiente
-* Crie uma pasta vazia no seu computador, apenas para arrumar as coisas e deixar organizado
-
-### `2.` 🧹 Colocando tudo no lugar
-* Pegue a pasta src e mova ela para dentro da pasta que você criou **Caso retire os arquivos da pasta será necessário modificar alguns arquivos!**
-
-### `3.` 🚶 Quase pronto...
-
-* Abra o config.json para alterar algumas coisas como Token, Prefix e ID
-
-#### ⚠️ Alguns valores que você deve alterar antes de iniciar a Foxy
+## Algumas coisas que você precisará mudar antes de rodar a Foxy!
 ```ascii
 📄 config.json
 ├── Prefixo
@@ -92,24 +80,25 @@ Parece dificil mas você **realmente** quer hospedar a Foxy? você pode usar a i
 ├── Webhook para relatorios de entrada/saída
 ├── Webhook para report de erros e bugs
 ```
-
-> ⚠️ Algumas conexões acima não são necessarias mas não custa nada ja deixar elas funcionando
-
 ### `4.` 🏃‍♂️ Iniciando a Foxy
 * Primeiro instale as dependencias com `npm i`
 * Verifique se tudo foi instalado na pasta node_modules
 * Se você ainda não fez... adicione o bot ao seu servidor do discord
+* Antes de tudo, autorize seu endereço de IP no [Mongo DB](https://mongodb.com)
 * Agora rode a Foxy usando `node index.js`
 * Apos iniciar utilize `f!ping` No seu servidor do discord.
 * Se tudo correu bem agora ela deve estar pronta para ser usada
 
 ___
+<br>
+<p align="right">
+  <h1 style="color:#348BDB" align="right">Comunidade</h1>
+  Você sabe o que as pessoas que gostam bastante de alguma coisa fazem? Eles começam a falar cada vez mais.
 
-## 💫 Menções honrosas
-<p> • WinG4merBR#5995 | Se não fosse ele, eu nem iria existir </p>
-<p> • zEneeergy#2521#2521 | Um dos meus desenvolvedores foofs </p>
-<p> • ! Arthur_Kohler#7264 | Por me ajudar a ficar online! ❤ </p>
-<p> • Bis❄#2332 | Por fazer meu icon e outros desenhos ❤  </p>
-<P> • ThierrY#6303 | Por me ajudar me indicando ❤ </p>
+Por algum motivo, as pessoas resolveram fazer esse Fã-Clube na minha toca... Quem teve a ideia de criar isso dentro do minha toca? Às vezes gosto de ficar sozinha, sabe?
 
-
+Brincadeira, todos são bem-vindos ao meu servidor Discord! Se você quer falar sobre mim, relatar bugs que precisam ser corrigidos, dar algumas sugestões incríveis ou talvez apenas falar sobre o seu dia então você veio ao lugar certo! 
+<div class="pure-u-1 pure-u-md-1-4" style="text-align: left;">
+		<a target="_blank" onclick="trackCampaignWebClick('', 'description');" rel="nofollow" href="https://discord.gg/https://discord.gg/W6XtYyqKkg"><img class="animate-on-scroll-left animated fadeInLeft" src="https://discordapp.com/api/guilds/768267522670723094/embed.png?style=banner4&amp;t=1515755028514" alt="Foto da Foxy" style="width: 35%;"></a>
+	</div>
+  </p>

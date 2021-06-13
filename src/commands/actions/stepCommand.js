@@ -17,7 +17,7 @@ module.exports = {
     const rand = list[Math.floor(Math.random() * list.length)];
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
     if (!user) {
-      return message.FoxyReply('Lembre-se de mencionar um usuário válido para pisar!');
+      return message.foxyReply('Lembre-se de mencionar um usuário válido para pisar!');
     }
 
     const embed = new Discord.MessageEmbed()
@@ -26,7 +26,7 @@ module.exports = {
       .setImage(rand)
       .setTimestamp()
       .setFooter('');
-    await message.FoxyReply(embed);
+    await message.foxyReply(embed);
   },
 
 };

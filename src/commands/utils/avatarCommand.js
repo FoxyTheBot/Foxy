@@ -8,7 +8,7 @@ module.exports = {
   clientPerms: ['EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message, args) {
-    if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.FoxyReply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
+    if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.foxyReply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 
     const user = message.mentions.users.first() || client.users.cache.get(args[0]) || message.author;
 
@@ -18,7 +18,7 @@ module.exports = {
       .setTitle(`Avatar de ${user.username}`)
       .setDescription(`Clique [aqui](${avatar}) para baixar o avatar`)
       .setImage(avatar);
-    await message.FoxyReply(embed);
+    await message.foxyReply(embed);
   },
 
 };
