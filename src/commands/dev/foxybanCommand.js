@@ -12,6 +12,8 @@ module.exports = {
 
         const userban = await user.findOne({ userid: args[1] })
 
+        if(!userban) return message.foxyReply("Ain não achei ninguém UnU");
+        
         const userfetch = await client.users.fetch(args[1]).catch();
 
         switch (args[0]) {
