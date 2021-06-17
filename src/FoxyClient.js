@@ -1,24 +1,24 @@
 const fs = require('fs');
-const { Client, Collection, WebhookClient } = require('discord.js');
-const Intents = require('./utils/IntentsManager');
+const { Client, Collection, WebhookClient, Intents } = require('discord.js');
 
 const client = new Client({
   ws: {
-    intents: Intents(),
+    intents: Intents.NON_PRIVILEGED,
   },
 });
 
-require('discord-buttons')(client)
-require('./structures/ProtoTypes');
+require('discord-buttons')(client);
+require('./structures/inlineReply');
 
 client.commands = new Collection();
-client.emotes = require('./structures/emotes.json');
-client.colors = require('./structures/color.json');
-client.config = require('./config/config.json');
+client.emotes = require('./json/emotes.json');
+client.colors = require('./json/color.json');
+client.config = require('../config.json');
 
 client.suggestWebhook = new WebhookClient(client.config.suggest.id, client.config.suggest.token);
 client.logsWebhook = new WebhookClient(client.config.logs.id, client.config.logs.token);
 client.reportWebhook = new WebhookClient(client.config.report.id, client.config.report.token);
+client.guildWebhook = new WebhookClient(client.config.guilds.id, client.config.guilds.token);
 
 const commandFolders = fs.readdirSync('./src/commands');
 const eventFiles = fs.readdirSync('./src/events').filter((file) => file.endsWith('.js'));

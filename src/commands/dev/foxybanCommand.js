@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js')
-const user = require('../../structures/DatabaseConnection')
+const user = require('../../structures/databaseConnection')
 
 module.exports = {
     name: "foxyban",
