@@ -1,8 +1,8 @@
-const partner = require('../../utils/partnersGuilds.json')
+const partner = require('../../json/partnersGuilds.json')
 
 module.exports = {
   name: 'daily',
-  aliases: ['daily', 'ganhapão', 'ganhapao', 'bolsafamília', 'bolsafamilia', 'auxilio', 'auxilioemergencial', 'auxílioemergencial', 'mesada', 'medadinheiro'],
+  aliases: ['daily', 'ganhapão', 'ganhapao', 'bolsafamília', 'bolsafamilia', 'auxilio', 'auxilioemergencial', 'auxílioemergencial', 'mesada', 'medadinheiro', "esmola"],
   cooldown: 5,
   guildOnly: true,
 

@@ -1,14 +1,11 @@
 const { MessageEmbed, WebhookClient } = require('discord.js')
-const { guilds } = require('../config/config.json');
-const webhookClient = new WebhookClient(guilds.id, guilds.token);
 
 module.exports = async (client, guild) => {
-
   const guildCreate = new MessageEmbed()
     .setTitle(`${client.emotes.success} | Fui adicionada em um servidor! :3`)
     .setThumbnail('https://cdn.discordapp.com/attachments/782995363548102676/839517480640577536/yay_fast.gif')
     .setDescription(`<a:cat_explosion:831146965479063553> Fui adicionada no servidor **${guild.name}**`)
     .setFooter(`ID do Servidor: ${guild.id}`)
 
-  webhookClient.send(guildCreate);
+    client.guildWebhook.send(guildCreate);
 }

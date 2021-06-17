@@ -1,10 +1,10 @@
-const user = require('../structures/DatabaseConnection')
+const user = require('../structures/databaseConnection')
 const Discord = require('discord.js')
 const cooldowns = new Discord.Collection()
 const db = require('quick.db')
+const { permissionsLocale } = require("../json/permissionsLocale.json");
 
 module.exports = async (client, message) => {
-
   async function checkInvite() {
 
     const regex = /(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|club)|discordapp\.com\/invite|discord\.com\/invite)\/.+[a-z]/gi;
@@ -49,26 +49,21 @@ module.exports = async (client, message) => {
       return message.foxyReply(`<:Error:718944903886930013> | ${message.author} Você não tem permissão para fazer isso! <:meow_thumbsup:768292477555572736>`);
     }
 
+    const guildMember = message.guild.members.cache.get(client.user.id);
+
     if (command.clientPerms && !message.guild.members.cache.get(client.user.id).permissions.has(command.clientPerms)) {
+      // Com certeza isso deve ter uma solução melhor, mas por enquanto vai desse jeito mesmo.
+      let missingPermissions = [];
+      for(const permission of command.clientPerms){
+        if(!guildMember.permissions.has(permission)){
+          const permissionName = permissionsLocale.find((index) => index.id == permission);
+          missingPermissions.push(permissionName);
+        }
+      }
 
-      let clientPermissions = [];
-
-      if (command.clientPerms.includes('MANAGE_CHANNELS')) clientPermissions.push('`Gerenciar Canais`');
-      if (command.clientPerms.includes('CREATE_INSTANT_INVITE')) clientPermissions.push('`Criar convite`');
-      if (command.clientPerms.includes('CHANGE_NICKNAME')) clientPermissions.push('`Alterar apelido`');
-      if (command.clientPerms.includes('VIEW_CHANNEL')) clientPermissions.push('`Ver canais`');
-      if (command.clientPerms.includes('SEND_MESSAGES')) clientPermissions.push('`Enviar mensagens`');
-      if (command.clientPerms.includes('MANAGE_MESSAGES')) clientPermissions.push('`Gerenciar mensagens`');
-      if (command.clientPerms.includes('EMBED_LINKS')) clientPermissions.push('`Inserir links`');
-      if (command.clientPerms.includes('ATTACH_FILES')) clientPermissions.push('`Anexar arquivos`');
-      if (command.clientPerms.includes('READ_MESSAGE_HISTORY')) clientPermissions.push('`Ver histórico de mensagens`');
-      if (command.clientPerms.includes('USE_EXTERNAL_EMOJIS')) clientPermissions.push('`Usar emojis externos`');
-      if (command.clientPerms.includes('ADD_REACTIONS')) clientPermissions.push('`Adicionar reações`');
-      if (command.clientPerms.includes('CONNECT')) clientPermissions.push('`Conectar`');
-      if (command.clientPerms.includes('SPEAK')) clientPermissions.push('`Falar`');
-
-      return message.channel.send(`${client.emotes.error} **|** ${message.author} Aparentemente está faltando as permissões ${clientPermissions.join(", ")} para executar esse comando!`)
+      return message.channel.send(`${client.emotes.error} **|** ${message.author} Aparentemente está faltando as permissões ${missingPermissions.join(", ")} para executar esse comando!`)
     };
+    
     if (!cooldowns.has(command.name)) {
       cooldowns.set(command.name, new Discord.Collection());
     }

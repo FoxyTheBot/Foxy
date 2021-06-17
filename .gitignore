@@ -104,10 +104,9 @@ dist
 .tern-port
 
 # Foxy files
-src/config/config.json
+config.json
 json.sqlite
-package-lock.json
-src/layout
+src/assets/backgrounds
 # IntelliJ IDEA files
 .idea/
 .gradle/
