@@ -42,7 +42,7 @@ module.exports = {
 
     const canvas = Canvas.createCanvas(1436, 884);
     const ctx = canvas.getContext('2d');
-    const background = await Canvas.loadImage(`./src/layout/${db.fetch(`background_${user.id}`)}`);
+    const background = await Canvas.loadImage(`./src/assets/backgrounds/${db.fetch(`background_${user.id}`)}`);
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     ctx.strokeStyle = '#74037b';
