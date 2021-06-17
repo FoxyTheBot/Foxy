@@ -11,13 +11,13 @@ module.exports = {
   clientPerms: ['EMBED_LINKS', 'ATTACH_FILES', 'READ_MESSAGE_HISTORY'],
   
   async run(client, message) {
-    if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.FoxyReply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
+    if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.foxyReply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 
     const membro1 = message.mentions.members.first();
     const membro2 = message.mentions.members.last();
 
-    if (!membro1 || !membro2) return message.FoxyReply('Lembre-se de mencionar dois usuários para shippar');
-    if (membro1 === membro2) return message.FoxyReply('Mencione duas pessoas diferentes');
+    if (!membro1 || !membro2) return message.foxyReply('Lembre-se de mencionar dois usuários para shippar');
+    if (membro1 === membro2) return message.foxyReply('Mencione duas pessoas diferentes');
 
 
     const amor = Math.floor(Math.random() * 100);
@@ -79,6 +79,6 @@ module.exports = {
 
 
 
-    message.FoxyReply(`<@${message.author.id}> \n${desc}`, amorEmbed);
+    message.foxyReply(`<@${message.author.id}> \n${desc}`, amorEmbed);
   },
 };
