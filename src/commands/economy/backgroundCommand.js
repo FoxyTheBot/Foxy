@@ -11,8 +11,8 @@ module.exports = {
   clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
   async run(client, message, args) {
     const timeout = 31200000;
-    const background2 = await db.fetch(`background_${message.author.id}`);
-    const money = await db.fetch(`coins_${message.author.id}`);
+    const userBackground = await db.fetch(`background_${message.author.id}`);
+    const userBalance = await db.fetch(`coins_${message.author.id}`);
 
     function sendHelp() {
       const bgHelp = new MessageEmbed()
@@ -34,7 +34,7 @@ module.exports = {
     }
 
     if (args[0].toLowerCase() == "reset") {
-      if (background2 == null || background2 == 'default_background.png') return message.foxyReply('Você não tem nenhum background para redefinir!');
+      if (userBackground == null || userBackground == 'default.png') return message.foxyReply('Você não tem nenhum background para redefinir!');
 
       const time = await db.fetch(`time_${message.author.id}`);
       
@@ -71,7 +71,7 @@ module.exports = {
     if(bExampleExists){
       bgInfo.attachFiles(`./src/assets/backgrounds/examples/${hBackground.filename}`).setImage(`attachment://${hBackground.filename}`);
     } else {
-      bgInfo.attachFiles(`./src/assets/backgrounds/examples/missing.png`).setImage(`attachment://missing.png`);
+      bgInfo.attachFiles(`./src/assets/backgrounds/${hBackground.filename}`).setImage(`attachment://${hBackground.filename}`);
     }
 
     message.foxyReply(bgInfo).then((hMessage) => {
@@ -80,12 +80,11 @@ module.exports = {
       const filter = (reaction, user) => user.id === message.author.id;
       hMessage.awaitReactions(filter, {max: 1, time: 120000, errors: ['time']}).then((reactionData) => {
         if(reactionData.first().emoji.name === "✅"){
-          if(money < hBackground.foxcoins) {
+          if(userBalance < hBackground.foxcoins) {
             return hMessage.foxyReply("Você não tem coins o suficiente para este background!");
           } else {
             db.subtract(`coins_${message.author.id}`, hBackground.foxcoins);
             db.set(`background_${message.author.id}`, hBackground.filename);
-            // db.set(`background_${message.author.id}.default`, hBackground.filename);
             hMessage.foxyReply(`Você comprou o background **${hBackground.name}**, ele já foi definido`);
           }
         } else if(reactionData.first().emoji.name === "❌"){
