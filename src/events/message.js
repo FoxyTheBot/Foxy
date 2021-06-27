@@ -49,10 +49,9 @@ module.exports = async (client, message) => {
       return message.foxyReply(`<:Error:718944903886930013> | ${message.author} Você não tem permissão para fazer isso! <:meow_thumbsup:768292477555572736>`);
     }
 
-    const guildMember = message.guild.members.cache.get(client.user.id);
+    const guildMember = Object(message.guild.members.cache.get(client.user.id));
 
     if (command.clientPerms && !message.guild.members.cache.get(client.user.id).permissions.has(command.clientPerms)) {
-      // Com certeza isso deve ter uma solução melhor, mas por enquanto vai desse jeito mesmo.
       let missingPermissions = [];
       for(const permission of command.clientPerms){
         if(!guildMember.permissions.has(permission)){

@@ -8,7 +8,6 @@ module.exports = {
     const db = require('quick.db');
     const { MessageEmbed } = require('discord.js');
     const user = message.mentions.members.first() || client.users.cache.get(args[1]) || message.author;
-
     switch (args[0]) {
       case 'remove_coins':
 

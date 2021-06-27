@@ -1,0 +1,12 @@
+{
+    "backgroundFix": [
+        {
+            "old": "default_background.png",
+            "new": "default.png"
+        },
+        {
+            "old": "fnaf_background.png",
+            "new": "fnaf.png"
+        }
+    ]
+}
