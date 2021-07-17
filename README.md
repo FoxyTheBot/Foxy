@@ -99,6 +99,6 @@ Por algum motivo, as pessoas resolveram fazer esse Fã-Clube na minha toca... Qu
 
 Brincadeira, todos são bem-vindos ao meu servidor Discord! Se você quer falar sobre mim, relatar bugs que precisam ser corrigidos, dar algumas sugestões incríveis ou talvez apenas falar sobre o seu dia então você veio ao lugar certo! 
 <div class="pure-u-1 pure-u-md-1-4" style="text-align: left;">
-		<a target="_blank" onclick="trackCampaignWebClick('', 'description');" rel="nofollow" href="https://discord.gg/https://discord.gg/W6XtYyqKkg"><img class="animate-on-scroll-left animated fadeInLeft" src="https://discordapp.com/api/guilds/768267522670723094/embed.png?style=banner4&amp;t=1515755028514" alt="Foto da Foxy" style="width: 35%;"></a>
+		<a target="_blank" onclick="trackCampaignWebClick('', 'description');" rel="nofollow" href="https://discord.gg/W6XtYyqKkg"><img class="animate-on-scroll-left animated fadeInLeft" src="https://discordapp.com/api/guilds/768267522670723094/embed.png?style=banner4&amp;t=1515755028514" alt="Foto da Foxy" style="width: 35%;"></a>
 	</div>
   </p>
