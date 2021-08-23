@@ -64,7 +64,7 @@ module.exports = {
         const data2 = new MessageEmbed()
           .setColor(client.colors.default)
           .setTitle('User Info')
-          .setDescription(`${usedata.tag}`)
+          .setDescription(`${userdata.tag}`)
         message.foxyReply(data2).catch(err => {
           console.clear()
           message.foxyReply(err)
