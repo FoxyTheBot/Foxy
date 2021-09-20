@@ -23,13 +23,7 @@ module.exports = {
         .setFooter(`ID do Autor: ${message.author.id}`)
         .setTimestamp(),
     );
-    await message.foxyReply(`${message.author} a mensagem foi enviada com sucesso!`);
-
-    const emojis = ['✔️', '❎'];
-
-    for (const i in emojis) {
-      await msg.react(emojis[i]);
-    }
+    await message.foxyReply(`${message.author} a mensagem foi enviada com sucesso!`).then((msg) => msg.react('✔️'), setTimeout(message.react('❎'), 1000));
   },
 
 };

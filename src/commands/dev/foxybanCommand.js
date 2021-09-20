@@ -12,8 +12,8 @@ module.exports = {
 
         const userban = await user.findOne({ userid: args[1] })
 
-        if(!userban) return message.foxyReply("Ain não achei ninguém UnU");
-        
+        if (!userban) return message.foxyReply("Ain não achei ninguém UnU");
+
         const userfetch = await client.users.fetch(args[1]).catch();
 
         switch (args[0]) {
@@ -40,23 +40,23 @@ module.exports = {
             }
 
             case 'find': {
-                if (!user || user === null) return message.foxyReply("Eu não encontrei esse usuário :( COLOCA A ID CORRETA PORRA")
-                const findEmbed = new MessageEmbed()
-                    .setColor(client.colors.blurple)
-                    .setTitle("Ban Info")
-                    .addFields(
-                        { name: "User:", value: `${userfetch.tag} - ${userfetch.id}`, inline: true },
-                        { name: "Banned:", value: userban.userBanned, inline: false },
-                        { name: "Ban Info", value: userban.banReason, inline: false },
-                        { name: "Banido por", value: userban.bannedBy, inline: false }
-                    )
+                if (!user || user === null) return message.foxyReply("Eu não encontrei esse usuário :( COLOCA A ID CORRETA PORRA");
+                const findEmbed = new MessageEmbed();
+                findEmbed.setColor(client.colors.blurple);
+                findEmbed.setTitle("Ban Info");
+                findEmbed.addFields(
+                    { name: "User:", value: `${userfetch.tag} - ${userfetch.id}`, inline: true },
+                    { name: "Banned:", value: userban.userBanned, inline: false },
+                    { name: "Ban Info", value: userban.banReason, inline: false },
+                    { name: "Banido por", value: userban.bannedBy, inline: false }
+                )
                 message.foxyReply(findEmbed)
                 break;
             }
 
             default: {
-                message.foxyReply("Nhe, as opções são: `add`, `find`, `remove`")
+                message.foxyReply("Nhe, as opções são: `add`, `find`, `remove`");
             }
         }
-    }
-}
+    },
+};

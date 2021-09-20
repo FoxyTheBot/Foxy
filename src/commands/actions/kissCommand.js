@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const client = require('nekos.life');
 
 const neko = new client();
@@ -22,7 +22,7 @@ module.exports = {
       return message.foxyReply('lembre-se de mencionar um usuário válido para beijar!');
     }
 
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
       .setColor('#000000')
       .setDescription(`${message.author} **beijou** ${user}`)
       .setImage(img.url)
@@ -35,7 +35,7 @@ module.exports = {
 
       const collector = msg.createReactionCollector(filter, { max: 1, time: 60000 });
       collector.on('collect', () => {
-        const repeat = new Discord.MessageEmbed()
+        const repeat = new MessageEmbed()
           .setColor(client.colors.default)
           .setDescription(`😽 ${user} **Beijou** ${message.author}`)
           .setImage(img2.url)

@@ -33,16 +33,6 @@ module.exports = {
       await db.set(`background_${user.id}`, 'default_background.png');
       message.foxyReply('Parece que você não tem um perfil, Acabei de criar um para você! :3');
     }
-    /*const applyText = (canvas, text) => {
-      const ctx = canvas.getContext('2d');
-      let fontSize = 70;
-
-      do {
-        ctx.font = `${fontSize -= 10}px sans-serif`;
-      } while (ctx.measureText(text).width > canvas.width - 300);
-
-      return ctx.font;
-    };*/
 
     const canvas = Canvas.createCanvas(1436, 884);
     const ctx = canvas.getContext('2d');

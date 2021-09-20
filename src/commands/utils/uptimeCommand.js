@@ -7,7 +7,7 @@ module.exports = {
   guildOnly: false,
   clientPerms: ['EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
-  async run(client, message, args) {
+  async run(client, message) {
     let totalSeconds = client.uptime / 1000;
     const days = Math.floor(totalSeconds / 86400);
     const hours = Math.floor(totalSeconds / 3600);

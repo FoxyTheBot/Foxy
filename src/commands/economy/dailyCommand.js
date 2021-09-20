@@ -34,7 +34,7 @@ module.exports = {
 
         message.foxyReply(`${client.emotes.success} **|** Você coletou seu daily no servidor: ${message.guild.name}! Sabia que você ganhou o dobro de FoxCoins porque pegou daily em um dos servidores relacionados a Foxy? Você ganhou ${amount} FoxCoins!`);
       } else {
-        message.foxyReply(`💵 **|** Você coletou seu daily você ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins na sua conta!`);
+        message.foxyReply(`💵 **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`);
       }
     }
   },

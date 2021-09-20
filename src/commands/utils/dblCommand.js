@@ -7,7 +7,7 @@ module.exports = {
   guildOnly: false,
   clientPerms: ['EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
-  async run(client, message, args) {
+  async run(client, message) {
     const vote = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setTitle('Discord Bot List')

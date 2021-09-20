@@ -7,7 +7,7 @@ module.exports = {
   guildOnly: false,
   clientPerms: ['EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
-  async run(client, message, args) {
+  async run(client, message) {
     const donateEmbed = new MessageEmbed()
       .setColor(client.colors.blurple)
       .setTitle('(._.`) Sabia que a crise afeta todos nós?')

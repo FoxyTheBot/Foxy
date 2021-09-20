@@ -11,7 +11,9 @@ module.exports = {
   async run(client, message) {
     moment.locale('pt-br');
     try {
-      const user = message.mentions.members.first() || message.member;
+      const user = message.mentions.members.first() || message.member
+
+      if(!user) return message.foxyReply("Eu não encontrei esse usuário desculpe " + client.emotes.error);
       const usercreate = moment(user.user.createdAt).format('llll');
       const avatar = user.user.avatarURL({ dynamic: true, format: 'png', size: 1024 }); const embed = new Discord.MessageEmbed()
         .setColor('#22a7f2')

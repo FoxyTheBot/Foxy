@@ -6,7 +6,7 @@ module.exports = {
     guildOnly: true,
     cooldown: 5,
 
-    async run(client, message, args) {
+    async run(client, message) {
 
         const user = message.author;
         const author = await db.fetch(`work_${user.id}`)

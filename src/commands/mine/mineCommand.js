@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 const db = require('quick.db')
 const { MessageEmbed } = require('discord.js')
 

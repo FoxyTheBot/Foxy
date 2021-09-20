@@ -1,5 +1,6 @@
-const fs = require('fs');
+/* eslint-disable no-unused-vars */
 const { Client, Collection, WebhookClient, Intents } = require('discord.js');
+const fs = require('fs');
 
 const client = new Client({
   ws: {
@@ -7,7 +8,6 @@ const client = new Client({
   },
 });
 
-require('discord-buttons')(client);
 require('./structures/inlineReply');
 
 client.commands = new Collection();

@@ -50,7 +50,7 @@
             "name": "Levi / Ata Shingeki No Kyojin",
             "rarity": "Lendário",
             "foxcoins": 10000,
-            "filename": "levi_kyokin.png",
+            "filename": "levi_kyojin.png",
             "description": "bruh",
             "onlydevs": false
         },
@@ -97,6 +97,24 @@
             "foxcoins": 11000,
             "filename": "windows_seven.png",
             "description": "Madobe Nanami passou por aqui!",
+            "onlydevs": false
+        },
+        {
+            "id": "win11light",
+            "name": "Windows 11 Light Theme",
+            "rarity": "Lendário",
+            "foxcoins": 11000,
+            "filename": "windows11light.png",
+            "description": ":eyes:",
+            "onlydevs": false
+        },
+        {
+            "id": "win11dark",
+            "name": "Windows 11 Dark Theme",
+            "rarity": "Lendário",
+            "foxcoins": 11000,
+            "filename": "windows11dark.png",
+            "description": ":eyes:",
             "onlydevs": false
         },
         {
