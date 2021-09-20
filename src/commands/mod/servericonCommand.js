@@ -9,10 +9,10 @@ module.exports = {
 
   async run(client, message) {
     const icon = message.guild.iconURL({ dynamic: true, format: 'png', size: 1024 });
-    const embed = new Discord.MessageEmbed()
-      .setColor('RED')
-      .setTitle(`Icone de ${message.guild.name}`)
-      .setImage(icon);
+    const embed = new Discord.MessageEmbed();
+      embed.setColor('RED');
+      embed.setTitle(`Icone de ${message.guild.name}`);
+      embed.setImage(icon);
     message.foxyReply(embed);
   },
 };

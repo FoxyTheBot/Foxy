@@ -16,9 +16,7 @@
     "canvas": "^2.6.1",
     "cpu-stat": "^2.0.1",
     "dblapi.js": "^2.4.0",
-    "discord-buttons": "^3.0.1",
-    "discord.js": "^12.4.1",
-    "eslint": "^7.20.0",
+    "discord.js": "12.4.1",
     "figlet": "^1.5.0",
     "mathjs": "^8.1.0",
     "moment": "^2.29.1",
@@ -44,6 +42,7 @@
   },
   "homepage": "https://github.com/BotFoxy/Foxy#readme",
   "devDependencies": {
+    "eslint": "^7.30.0",
     "nodemon": "^2.0.7"
   }
 }

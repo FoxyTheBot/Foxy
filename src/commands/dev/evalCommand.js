@@ -9,15 +9,6 @@ module.exports = {
 
   async run(client, message, args) {
 
-    if(args[0].includes('?')) {
-      const help = new MessageEmbed();
-      embed.setColor(client.colors.blurple);
-      embed.setTitle("`f!eval`");
-      embed.setDescription("Executa códigos em JavaScript");
-      embed.addField('❓ Aliases: ', "`eval`, `evaljs`, `evaluate`, `evaluatejs`", true)
-      message.foxyReply(help)
-    }
-    
     const clean = (text) => {
       if (typeof (text) === 'string') { return text.replace(/`/g, `\`${String.fromCharCode(8203)}`).replace(/@/g, `@${String.fromCharCode(8203)}`); }
       return text;
@@ -26,6 +17,7 @@ module.exports = {
     try {
       const util = require('util');
       const code = args.join(' ');
+      if(!code) return message.foxyReply("Executar nenhum código? WTF?! Como assim?");
       let evaled = eval(code);
       evaled = util.inspect(evaled, { depth: 1 });
       evaled = evaled.replace(new RegExp('Error', 'g'), undefined);
@@ -34,7 +26,7 @@ module.exports = {
       const sucess = new MessageEmbed()
         .setColor('RED')
         .setTitle('<:Developer:813832825442533396> Comando executado com sucesso!')
-        .setDescription(`Entrada: \ \ \`\`\`js\n${code}\n\`\`\` \n Saída: \ \ \`\`\`xl\n${clean(evaled)}\n\`\`\``);
+        .setDescription(`\ \ \`\`\`xl\n${clean(evaled)}\n\`\`\``);
 
       message.foxyReply(sucess);
     } catch (err) {
@@ -43,7 +35,7 @@ module.exports = {
       const embed = new MessageEmbed();
       embed.setColor('RED');
       embed.setTitle(`${client.emotes.scared} Ocorreu um erro durante a execução!`);
-      embed.setDescription(`Entrada: \ \ \`\`\`js\n${code}\n\`\`\` \n Saída: \`\`\`js\n${errorMessage}\`\`\``);
+      embed.setDescription(`Saída: \`\`\`js\n${errorMessage}\`\`\``);
 
       message.foxyReply(embed);
     }

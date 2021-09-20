@@ -22,7 +22,6 @@ module.exports = {
       .setDescription(`${message.author} gritou ${sayMessage}`)
       .setImage(rand)
       .setTimestamp()
-      .setFooter('')
       .setAuthor(message.author.tag, avatar);
     await message.foxyReply(embed);
   },

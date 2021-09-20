@@ -21,7 +21,7 @@ module.exports = {
         .setFooter('Exemplo: f!background lori');
       var bgDesc = "";
       for (const bgHandle of bglist) {
-        if(bgHandle.onlydevs) continue;
+        if (bgHandle.onlydevs) continue;
         bgDesc = bgDesc + `(${bgHandle.rarity}) **${bgHandle.name}** - ${bgHandle.foxcoins} FoxCoins - **Código:** ${bgHandle.id} \n`;
       }
       bgHelp.setDescription(bgDesc);
@@ -29,7 +29,7 @@ module.exports = {
       return null;
     }
 
-    if(!args[0]){
+    if (!args[0]) {
       return sendHelp();
     }
 
@@ -37,7 +37,7 @@ module.exports = {
       if (userBackground == null || userBackground == 'default.png') return message.foxyReply('Você não tem nenhum background para redefinir!');
 
       const time = await db.fetch(`time_${message.author.id}`);
-      
+
       if (time !== null && timeout - (Date.now() - time) > 0) {
         const times = ms(timeout - (Date.now() - time));
         message.foxyReply(`Você não pode redefinir seu background! Tente novamente em **${times.hours}h ${times.minutes}m ${times.seconds}s**`);
@@ -45,7 +45,7 @@ module.exports = {
         db.add(`coins_${message.author.id}`, 9000);
         db.set(`background_${message.author.id}`, 'default_background.png');
         db.set(`time_${message.author.id}`, Date.now());
-        message.foxyReply('Desculpe pela incoveniência, eu redefini seu background para o padrão! Você recebeu 9000 FoxCoins de compensação'); 
+        message.foxyReply('Desculpe pela incoveniência, eu redefini seu background para o padrão! Você recebeu 9000 FoxCoins de compensação');
       }
       return null;
     }
@@ -56,7 +56,7 @@ module.exports = {
       return sendHelp();
     }
 
-    if(hBackground.onlydevs && !client.config.owners.includes(message.author.id)){
+    if (hBackground.onlydevs && !client.config.owners.includes(message.author.id)) {
       return sendHelp();
     }
 
@@ -67,8 +67,8 @@ module.exports = {
       .setFooter(`Raridade: ${hBackground.rarity}`);
 
     const bExampleExists = await fs.existsSync(`./src/assets/backgrounds/examples/${hBackground.filename}`);
-    
-    if(bExampleExists){
+
+    if (bExampleExists) {
       bgInfo.attachFiles(`./src/assets/backgrounds/examples/${hBackground.filename}`).setImage(`attachment://${hBackground.filename}`);
     } else {
       bgInfo.attachFiles(`./src/assets/backgrounds/${hBackground.filename}`).setImage(`attachment://${hBackground.filename}`);
@@ -78,16 +78,16 @@ module.exports = {
       hMessage.react("✅");
       setTimeout(() => hMessage.react("❌"), 1000);
       const filter = (reaction, user) => user.id === message.author.id;
-      hMessage.awaitReactions(filter, {max: 1, time: 120000, errors: ['time']}).then((reactionData) => {
-        if(reactionData.first().emoji.name === "✅"){
-          if(userBalance < hBackground.foxcoins) {
+      hMessage.awaitReactions(filter, { max: 1, time: 120000, errors: ['time'] }).then((reactionData) => {
+        if (reactionData.first().emoji.name === "✅") {
+          if (userBalance < hBackground.foxcoins) {
             return hMessage.foxyReply("Você não tem coins o suficiente para este background!");
           } else {
             db.subtract(`coins_${message.author.id}`, hBackground.foxcoins);
             db.set(`background_${message.author.id}`, hBackground.filename);
             hMessage.foxyReply(`Você comprou o background **${hBackground.name}**, ele já foi definido`);
           }
-        } else if(reactionData.first().emoji.name === "❌"){
+        } else if (reactionData.first().emoji.name === "❌") {
           hMessage.delete();
           hMessage.channel.send("Operação cancelada");
         }

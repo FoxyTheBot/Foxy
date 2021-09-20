@@ -27,7 +27,7 @@ module.exports = {
       .setImage(rand)
       .setTimestamp()
       .setThumbnail(avatar)
-      .setFooter('')
+      
       .setAuthor(message.author.tag, avatar);
     await message.foxyReply(`${message.author}`, embed).then((msg) => {
       msg.react('😝')

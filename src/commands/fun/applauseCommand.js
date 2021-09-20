@@ -24,11 +24,10 @@ module.exports = {
 
     const avatar = message.author.displayAvatarURL({ format: 'png' });
     const embed = new Discord.MessageEmbed()
-      .setColor('#000000')
       .setDescription(`${message.author} está aplaudindo ${user}`)
       .setImage(rand)
       .setTimestamp()
-      .setFooter('')
+      
       .setAuthor(message.author.tag, avatar);
     await message.foxyReply(embed);
   },

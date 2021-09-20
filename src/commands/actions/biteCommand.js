@@ -27,7 +27,7 @@ module.exports = {
       .setDescription(`${message.author} mordeu ${user}`)
       .setImage(rand)
       .setTimestamp()
-      .setFooter('');
+      
     await message.foxyReply(embed);
   },
 
