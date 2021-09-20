@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: true,
   clientPerms: ['ATTACH_FILES', 'READ_MESSAGE_HISTORY'],
 
-  async run(client, message, args, applyText) {
+  async run(client, message, args) {
     const canvas = Canvas.createCanvas(500, 400);
     const ctx = canvas.getContext('2d');
     const sayMessage = args.join(' ');

@@ -5,7 +5,7 @@ module.exports = {
   guildOnly: true,
   clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
-  async run(client, message, args) {
+  async run(client, message) {
     const { MessageEmbed } = require('discord.js');
     const ponpon = [
       'https://cdn.discordapp.com/attachments/776930851753426945/809837318331695165/tenor.gif',

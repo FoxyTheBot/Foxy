@@ -10,7 +10,7 @@ module.exports = {
   async run(client, message, args) {
     if (!args[0]) return message.foxyReply('Por favor Digite algo');
     if (args[0].length > 32) return message.foxyReply('Você não pode digitar mais de 32 caracteres');
-    let msg = args.join(' ');
+    const msg = args.join(' ');
 
     figlet.text(msg, (err, data) => {
       if (err) {

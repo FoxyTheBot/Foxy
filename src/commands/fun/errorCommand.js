@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: true,
   clientPerms: ['ATTACH_FILES', 'READ_MESSAGE_HISTORY'],
 
-  async run(client, message, args, applyText) {
+  async run(client, message, args) {
     if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.foxyReply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
 
 

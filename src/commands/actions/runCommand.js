@@ -7,7 +7,7 @@ module.exports = {
   guildOnly: false,
   clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
 
-  async run(client, message, args) {
+  async run(client, message) {
     const list = [
       'https://media1.tenor.com/images/db41d2a91102a4e24df9aa98fe7f97b6/tenor.gif?itemid=15082392',
       'https://media1.tenor.com/images/3b3911b649cc6bb52ccee6e90ab298a4/tenor.gif?itemid=13574320',

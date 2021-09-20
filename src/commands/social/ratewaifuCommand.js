@@ -13,7 +13,6 @@ module.exports = {
     }
 
     if (user == client.user.id) return message.foxyReply(`${client.emotes.heart} **|** Eu dou nota **∞** para <@737044809650274325> sim eu sou muito linda 😘`);
-    if (user == 331243426941239297) return message.foxyReply(`${client.emotes.heart} **|** Eu dou nota **∞** para ${user} minha mãe é perfeita >.<`)
 
     const list = [
       '**1** para essa waifu. Eu não gostei <:hmmpepe:791151120021061662> ',

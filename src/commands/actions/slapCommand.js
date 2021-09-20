@@ -8,8 +8,8 @@ module.exports = {
   cooldown: 3,
   guildOnly: true,
   clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
-  
-  async run(client, message, args) {
+
+  async run(client, message) {
     const user = message.mentions.users.first()
 
     const img = await neko.sfw.slap();
@@ -37,13 +37,13 @@ module.exports = {
 
       const filter = (reaction, usuario) => reaction.emoji.name === '😡' && usuario.id === user.id;
 
-      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000});
+      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000 });
       collector.on('collect', () => {
         const repeat = new Discord.MessageEmbed()
-        .setColor(client.colors.default)
-        .setDescription(`${user} **Bateu em** ${message.author}`)
-        .setImage(img2.url)
-  
+          .setColor(client.colors.default)
+          .setDescription(`${user} **Bateu em** ${message.author}`)
+          .setImage(img2.url)
+
         message.foxyReply(repeat)
       })
 

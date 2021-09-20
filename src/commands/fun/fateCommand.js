@@ -27,7 +27,7 @@ module.exports = {
       .setTitle('Em outro universo paralelo 🌀')
       .setDescription(`${message.author} e ${user} são ${rand}`)
       .setTimestamp()
-      .setFooter('');
+      
     await message.foxyReply(embed);
   },
 

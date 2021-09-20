@@ -1,21 +1,6 @@
 const { MessageEmbed } = require('discord.js');
-const fs = require('fs');
 
 module.exports = async (client, guild) => {
-  if(guild.id === "653631572360036374"){
-    const wingemerbrazil = client.users.cache.get("708493555768885338");
-    const energiadaletraz = client.users.cache.get("832102362263978084");
-    energiadaletraz.send("Oi onee-chan, salvei as informações do servidor do capeta na minha pastinha UwU 👉👈");
-    wingemerbrazil.send("Oi maconheiro, salvei as informações do servidor de Zion ☮🍁");
-    console.log(guild);
-    fs.writeFileSync(`./Debug-${Date.now()}.log`, JSON.stringify(guild), function(err) {
-      if(err){
-        return console.error(err);
-      }
-      console.log("Oi onee-chan, salvei as informações do servidor do capeta na minha pastinha UwU 👉👈");
-    })
-    return null;
-  }
 
   const guildDelete = new MessageEmbed()
     .setTitle('<:sad_cat_thumbs_up:768291053765525525> | Fui removida de um servidor :(')

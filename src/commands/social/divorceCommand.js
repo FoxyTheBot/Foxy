@@ -7,7 +7,7 @@ module.exports = {
     guildOnly: true,
     clientPerms: ['ADD_REACTIONS', 'READ_MESSAGE_HISTORY'],
 
-    async run(client, message, args) {
+    async run(client, message) {
 
         const user2 = await db.fetch(`married_${message.author.id}`)
         if (user2 == null) return message.foxyReply(`${client.emotes.broken} Você não está casadx!`);
