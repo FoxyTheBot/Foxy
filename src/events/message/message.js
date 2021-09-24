@@ -1,7 +1,7 @@
-const user = require('../structures/databaseConnection')
+const user = require('../../structures/databaseConnection')
 const Discord = require('discord.js')
 const cooldowns = new Discord.Collection()
-const { permissionsLocale } = require("../json/permissionsLocale.json");
+const { permissionsLocale } = require("../../json/permissionsLocale.json");
 
 module.exports = async (client, message) => {
 
