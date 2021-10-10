@@ -1,53 +1,26 @@
-const Discord = require('discord.js');
-const nekoslife = require('nekos.life');
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageEmbed } = require('discord.js');
+const client = require('nekos.life');
+const neko = new client();
 
-const neko = new nekoslife();
 module.exports = {
-  name: 'slap',
-  aliases: ['slap', 'bater', ' tapa'],
-  cooldown: 3,
-  guildOnly: true,
-  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
+    data: new SlashCommandBuilder()
+        .setName('slap')
+        .setDescription('bata alguém')
+        .addUserOption(option =>
+            option.setName('user')
+                .setDescription('O usuário que você quer bater')
+                .setRequired(true)),
 
-  async run(client, message) {
-    const user = message.mentions.users.first()
+    async execute(client, interaction) {
+        const img = await neko.sfw.slap();
+        const user = interaction.options.getUser('user');
 
-    const img = await neko.sfw.slap();
-    const img2 = await neko.sfw.slap();
-
-    const foxyslap = new Discord.MessageEmbed()
-      .setColor('RED')
-      .setTitle('😡 Como ousa bater numa raposinha como eu >:c')
-      .setDescription(`${client.user} deu um tapa bem dado em ${message.author}`)
-      .setImage(img.url);
-
-    if (user === client.user) return message.foxyReply(foxyslap);
-
-    const avatar = message.author.displayAvatarURL({ format: 'png' });
-    const embed = new Discord.MessageEmbed()
-      .setColor('#000000')
-      .setDescription(`😱${message.author} **bateu em** ${user}`)
-      .setImage(img.url)
-      .setTimestamp()
-      .setFooter('😱😱')
-      .setFooter('Reaja com 😡 para retribuir')
-      .setAuthor(message.author.tag, avatar);
-    await message.foxyReply(embed).then((msg) => {
-      msg.react('😡')
-
-      const filter = (reaction, usuario) => reaction.emoji.name === '😡' && usuario.id === user.id;
-
-      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000 });
-      collector.on('collect', () => {
-        const repeat = new Discord.MessageEmbed()
-          .setColor(client.colors.default)
-          .setDescription(`${user} **Bateu em** ${message.author}`)
-          .setImage(img2.url)
-
-        message.foxyReply(repeat)
-      })
-
-    })
-  },
-
-};
+        const slapEmbed = new MessageEmbed()
+            .setColor("RED")
+            .setTitle("Eita")
+            .setDescription(`${interaction.user} **bateu** ${user}`)
+            .setImage(img.url)
+        await interaction.reply({ embeds: [slapEmbed] });
+    }
+}

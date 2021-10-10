@@ -1,30 +1,39 @@
-const { MessageEmbed } = require('discord.js')
-const db = require('quick.db');
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const user = require('../../utils/DatabaseConnection');
+
 module.exports = {
-  name: 'aboutme',
-  aliases: ['aboutme', 'sobremim'],
-  cooldown: 5,
-  guildOnly: false,
-  clientPerms: ['READ_MESSAGE_HISTORY'],
+    data: new SlashCommandBuilder()
+        .setName("aboutme")
+        .setDescription("Troque sua mensagem no sobre mim")
+        .addStringOption(option =>
+            option.setName("mensagem")
+                .setDescription("Digite sua mensagem do aboutme")
+                .setRequired(true)),
 
-  async run(client, message, args) {
-    const aboutme = args.join(' ');
+    async execute(client, interaction) {
+        const aboutme = interaction.options.getString("mensagem");
+        const userData = await user.findOne({ user: interaction.user.id });
 
-    if (aboutme.length > 62) return message.foxyReply('Você digitou mais de 62 caracteres, O limite de caracteres é 62, bobinho')
-    const aboutmeEmbed = new MessageEmbed()
-      .setColor('RED')
-      .setTitle('ℹ | `f!aboutme`')
-      .setDescription('Altere sua mensagem de perfil do `f!profile` \n\n 📚 **Exemplos**')
-      .addField("Alterar o Sobre Mim", "`f!aboutme Olá eu sou amigo da Foxy!`")
-      .addField("ℹ Aliases:", "`sobremim`")
-      .setFooter(`• Autor: ${message.author.tag} - Social`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));
-    
-      if (!aboutme) return message.foxyReply(aboutmeEmbed);
+        if (!userData) {
+            interaction.reply({ content: "Parece que você não está no meu banco de dados, execute o comando novamente!", ephemeral: true });
+            return new user({
+                user: interaction.member.id,
+                coins: 0,
+                lastDaily: null,
+                reps: 0,
+                lastRep: null,
+                backgrounds: ['default.png'],
+                background: 'default.png',
+                aboutme: null,
+                marry: null,
+                premium: false,
+            }).save().catch(err => console.log(err));
+        }
 
-    const user = message.author;
-    db.set(`aboutme_${user.id}`, aboutme);
-    if (message.content.includes('@')) return message.foxyReply("Você não pode mencionar ninguém!")
+        userData.aboutme = aboutme;
+        userData.save().catch(err => console.log(err));
 
-    message.foxyReply(`Alterei sua mensagem de perfil para \`${aboutme}\``);
-  },
-};
+        interaction.reply({ content: `Sua mensagem de perfil foi definida para ${aboutme}`, ephemeral: true });
+
+    }
+}

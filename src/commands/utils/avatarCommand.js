@@ -1,24 +1,23 @@
-const Discord = require('discord.js');
+const { MessageEmbed } = require('discord.js');
+const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
-  name: 'avatar',
-  aliases: ['avatar', 'pfp'],
-  cooldown: 5,
-  guildOnly: false,
-  clientPerms: ['EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
+    data: new SlashCommandBuilder()
+        .setName('avatar')
+        .setDescription('Veja o avatar de algum usuário do Discord')
+        .addUserOption(option =>
+            option.setName('user')
+                .setDescription('Mencione algum usuário')),
 
-  async run(client, message, args) {
-    if (!message.guild.me.permissions.has('ATTACH_FILES')) return message.foxyReply('Eu preciso da permissão `enviar arquvios` para fazer isso!');
+    async execute(client, interaction) {
+        const user = await interaction.options.getUser('user') || interaction.user;
 
-    const user = message.mentions.users.first() || client.users.cache.get(args[0]) || message.author;
-
-    const avatar = user.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 });
-    const embed = new Discord.MessageEmbed()
-      .setColor('#4cd8b2')
-      .setTitle(`Avatar de ${user.username}`)
-      .setDescription(`Clique [aqui](${avatar}) para baixar o avatar`)
-      .setImage(avatar);
-    await message.foxyReply(embed);
-  },
-
-};
+        const avatar = user.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 });
+        const embed = new MessageEmbed()
+            .setColor('#4cd8b2')
+            .setTitle(`Avatar de ${user.username}`)
+            .setDescription(`Clique [aqui](${avatar}) para baixar o avatar`)
+            .setImage(avatar);
+        interaction.reply({ embeds: [embed] });
+    }
+}

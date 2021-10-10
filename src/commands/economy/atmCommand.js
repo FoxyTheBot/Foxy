@@ -1,17 +1,36 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const user = require('../../utils/DatabaseConnection');
+
 module.exports = {
-  name: 'atm',
-  aliases: ['money', 'atm'],
-  cooldown: 5,
-  guildOnly: false,
+    data: new SlashCommandBuilder()
+        .setName("atm")
+        .setDescription("Veja a quantia de FoxCoins que você possui")
+        .addUserOption(option =>
+            option.setName("user")
+                .setDescription("Veja a quantia de FoxCoins de outra pessoa")),
 
-  async run(client, message, args) {
-    const db = require('quick.db');
-    const user = message.mentions.members.first() || message.author;
+    async execute(client, interaction) {
+        const getMention = interaction.options.getUser("user") || interaction.user;
 
-    let bal = db.fetch(`coins_${user.id}`);
-    if (bal === null) bal = 0;
+        const userData = await user.findOne({ user: getMention.id });
 
-    if (user == message.author) return message.foxyReply(`💵 **|** ${user} você possui ${bal} FoxCoins`);
-    message.foxyReply(`💵 **|** ${message.author}, ${user} possui ${bal} FoxCoins`);
-  },
-};
+        if (!userData) {
+            interaction.reply({ content: "Parece que você não está no meu banco de dados, execute o comando novamente!", ephemeral: true });
+            return new user({
+                user: getMention.id,
+                coins: 0,
+                lastDaily: null,
+                reps: 0,
+                lastRep: null,
+                backgrounds: ['default.png'],
+                background: 'default.png',
+                aboutme: null,
+                marry: null,
+                premium: false,
+            }).save().catch(err => console.log(err));
+        }
+
+        await interaction.reply(`${getMention} tem ${userData.coins} FoxCoins!`);
+
+    }
+}

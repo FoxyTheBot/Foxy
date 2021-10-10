@@ -41,7 +41,7 @@
             "name": "Foxy e Lori",
             "rarity": "Lendário",
             "foxcoins": 10000,
-            "description": "Loritta foi criada por [MrPowerGamerBR](https://mrpowergamerbr.com) adicione a Loritta clicando [aqui](https://lorittwebsite.ml)",
+            "description": "Loritta foi criada por [MrPowerGamerBR](https://mrpowergamerbr.com) adicione a Loritta clicando [aqui](https://loritta.website/)",
             "filename": "foxy_e_lori.png",
             "onlydevs": false
         },
@@ -97,6 +97,15 @@
             "foxcoins": 11000,
             "filename": "windows_seven.png",
             "description": "Madobe Nanami passou por aqui!",
+            "onlydevs": false
+        },
+        {
+            "id": "win10",
+            "name": "Windows 10 Legacy",
+            "rarity": "Lendário",
+            "foxcoins": 12000,
+            "filename": "windows10_legacy.png",
+            "description": "Madobe Touko passou por aqui!",
             "onlydevs": false
         },
         {

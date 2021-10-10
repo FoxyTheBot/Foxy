@@ -1,45 +1,26 @@
-const Discord = require('discord.js');
-const nekoslife = require('nekos.life');
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageEmbed } = require('discord.js');
+const client = require('nekos.life');
+const neko = new client();
 
-const neko = new nekoslife();
 module.exports = {
-  name: 'pat',
-  aliases: ['pat', 'cafuné'],
-  cooldown: 3,
-  guildOnly: true,
-  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
+    data: new SlashCommandBuilder()
+        .setName('pat')
+        .setDescription('Faça cafuné em alguém, que fofo :3')
+        .addUserOption(option =>
+            option.setName('user')
+                .setDescription('O usuário que você quer fazer cafuné')
+                .setRequired(true)),
 
-  async run(client, message, args) {
-    const user = message.mentions.users.first() || client.users.cache.get(args[0]);
-    if (!user) {
-      return message.foxyReply('lembre-se de mencionar um usuário válido para fazer cafuné!');
+    async execute(client, interaction) {
+        const img = await neko.sfw.pat();
+        const user = interaction.options.getUser('user');
+
+        const patEmbed = new MessageEmbed()
+            .setColor("RED")
+            .setTitle("Que fofo -w-")
+            .setDescription(`${interaction.user} **Fez cafuné** ${user}`)
+            .setImage(img.url)
+        await interaction.reply({ embeds: [patEmbed] });
     }
-
-    const img = await neko.sfw.pat();
-    const img2 = await neko.sfw.pat();
-
-    const embed = new Discord.MessageEmbed()
-      .setColor('#000000')
-      .setDescription(`${message.author} **fez cafuné em** ${user}`)
-      .setImage(img.url)
-      .setTimestamp()
-      .setFooter('Reaja com 🤩 para retribuir');
-    await message.foxyReply(`${message.author}`, embed).then((msg) => {
-      msg.react('🤩')
-
-      const filter = (reaction, usuario) => reaction.emoji.name === '🤩' && usuario.id === user.id;
-
-      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000 });
-      collector.on('collect', () => {
-        const repeat = new Discord.MessageEmbed()
-          .setColor(client.colors.default)
-          .setDescription(`${user} **Fez cafuné** ${message.author}`)
-          .setImage(img2.url)
-
-        message.foxyReply(repeat)
-      })
-
-    })
-  },
-
-};
+}

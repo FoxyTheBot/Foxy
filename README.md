@@ -1,5 +1,5 @@
 <p align="center">
-<img width="35%" src="https://cdn.discordapp.com/attachments/776930851753426945/777176123221082142/Foxy.png">
+<img width="35%" src="https://foxywebsite.ml/assets/images/Foxy.png">
 <br>
 <h1 align="center">Foxy</h1>
 
@@ -9,9 +9,6 @@
     <img src="https://top.gg/api/widget/737044809650274325.svg" alt="Foxy" />
 </a>
   <p align="center">
-    <a href="https://jetbrains.com/?from=Foxy">
-    <img src="https://img.shields.io/badge/Powered_by_IntelliJ%20IDEA-black.svg?logo=intellij-idea&style=for-the-badge" />
-  </a>
 <a href="https://github.com/BotFoxy/FoxyBot/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-AGPL%20v3-blue.svg?style=for-the-badge&logo=gnu&labelColor=black"></a>
 </p>
 
@@ -65,7 +62,7 @@ De maneira alguma, você pode usar a imagem da Foxy no seu bot, a imagem da Foxy
 ### `1.` 🧹 Preparando o ambiente
 * Clone o repositorio com o git:
 ```bash
-git clone https://github.com/BotFoxy/Foxy
+git clone https://github.com/FoxyTheBot/Foxy
 ```
 
 ## Algumas coisas que você precisará mudar antes de rodar a Foxy!
@@ -76,15 +73,14 @@ git clone https://github.com/BotFoxy/Foxy
 ├── URI do MongoDB
 ├── Token do Discord Bot List
 ├── Quantidade de shards que vão ser spawnadas
-├── Webhook para logs
 ├── Webhook para relatorios de entrada/saída
-├── Webhook para report de erros e bugs
 ```
 ### `4.` 🏃‍♂️ Iniciando a Foxy
 * Primeiro instale as dependencias com `npm i`
 * Verifique se tudo foi instalado na pasta node_modules
 * Se você ainda não fez... adicione o bot ao seu servidor do discord
 * Antes de tudo, autorize seu endereço de IP no [Mongo DB](https://mongodb.com)
+* Atualize os slashs commands usando `node ./src/deploy-commands.js`
 * Agora rode a Foxy usando `node index.js`
 * Apos iniciar utilize `f!ping` No seu servidor do discord.
 * Se tudo correu bem agora ela deve estar pronta para ser usada
@@ -98,7 +94,4 @@ ___
 Por algum motivo, as pessoas resolveram fazer esse Fã-Clube na minha toca... Quem teve a ideia de criar isso dentro do minha toca? Às vezes gosto de ficar sozinha, sabe?
 
 Brincadeira, todos são bem-vindos ao meu servidor Discord! Se você quer falar sobre mim, relatar bugs que precisam ser corrigidos, dar algumas sugestões incríveis ou talvez apenas falar sobre o seu dia então você veio ao lugar certo! 
-<div class="pure-u-1 pure-u-md-1-4" style="text-align: left;">
-		<a target="_blank" onclick="trackCampaignWebClick('', 'description');" rel="nofollow" href="https://discord.gg/W6XtYyqKkg"><img class="animate-on-scroll-left animated fadeInLeft" src="https://discordapp.com/api/guilds/768267522670723094/embed.png?style=banner4&amp;t=1515755028514" alt="Foto da Foxy" style="width: 35%;"></a>
-	</div>
   </p>
