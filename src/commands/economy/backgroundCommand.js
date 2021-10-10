@@ -52,7 +52,10 @@ module.exports = {
     if (!background) {
       return sendHelp();
     }
-
+    
+    const bg = await userData.backgrounds;
+    if(bg.includes(background.filename)) return message.foxyReply("Você já tem esse background!");
+    
     if (background.onlydevs && !client.config.owners.includes(message.author.id)) {
       message.foxyReply("Desculpe, mas esse background só pode ser comprado por desenvolvedores.");
       return;
