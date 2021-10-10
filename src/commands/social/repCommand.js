@@ -47,7 +47,7 @@ module.exports = {
             authorData.lastRep = Date.now();
             await userData.save();
             await authorData.save();
-            return message.foxyReply(`${client.emotes.check} **|** Você deu reputação ao usuário ${userMention}`);
+            return message.foxyReply(`${client.emotes.heart} **|** Você deu reputação ao usuário ${userMention}`);
         }
     },
 };
