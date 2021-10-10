@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Canvas = require('canvas');
-const { backgroundFix } = require('../../json/backgroundFix.json');
+const user = require('../../structures/databaseConnection');
 
 module.exports = {
   name: 'profile',
@@ -10,45 +10,39 @@ module.exports = {
   clientPerms: ['ATTACH_FILES', 'READ_MESSAGE_HISTORY'],
 
   async run(client, message) {
-    const db = require('quick.db');
-    const user = message.mentions.users.first() || message.author;
-    let money = await db.fetch(`coins_${user.id}`);
-    if (money === null) money = 0;
-    let bal = await db.fetch(`bal_${user.id}`)
-    if (bal === null) bal = 0;
+    const userMention = message.mentions.users.first() || message.author;
+    const userData = await user.findOne({ user: userMention.id });
 
-    let aboutme = await db.fetch(`aboutme_${user.id}`);
-    if (aboutme == null) {
-      db.set(`aboutme_${user.id}`,"Foxy é minha amiga (você pode alterar isso usando f!aboutme)!");
-      aboutme = "Foxy é minha amiga (você pode alterar isso usando f!aboutme)!";
-    } 
+    if (!userData) {
+      message.foxyReply("Parece que você não está no meu banco de dados, execute o comando novamente!");
+      return new user({
+        user: userMention.id,
+        coins: 0,
+        lastDaily: null,
+        reps: 0,
+        lastRep: null,
+        backgrounds: ['default.png'],
+        background: 'default.png',
+        aboutme: null,
+        marry: null,
+        premium: false,
+      }).save().catch(err => console.log(err));
 
-    const userPartner = await db.fetch(`married_${user.id}`);
+    }
+    const userMoney = await userData.coins;
+    const userReps = await userData.reps;
+    const userBackground = await userData.background;
+    var userAboutMe = await userData.aboutme;
+    const userMarry = await userData.marry;
 
-    let rep = await db.fetch(`rep_${user.id}`);
-    if (rep == null) rep = 0;
-
-    const profile = await db.fetch(`background_${user.id}`);
-    if (profile == null) {
-      await db.set(`background_${user.id}`, 'default_background.png');
-      message.foxyReply('Parece que você não tem um perfil, Acabei de criar um para você! :3');
+    if (userAboutMe == null) {
+      userAboutMe = "Foxy é minha amiga (você pode alterar isso usando f!aboutme)!";
     }
 
     const canvas = Canvas.createCanvas(1436, 884);
     const ctx = canvas.getContext('2d');
 
-    function TemporaryFix(){
-      const bgFile = String(db.fetch(`background_${user.id}`));
-      const background = backgroundFix.find((index) => index.old == bgFile);
-      if(background){
-        db.set(`background_${message.author.id}`, background.new);
-        return background.new;
-      } else {
-        return bgFile;
-      }
-    }
-
-    const background = await Canvas.loadImage(`./src/assets/backgrounds/${TemporaryFix()}`);
+    const background = await Canvas.loadImage(`./src/assets/backgrounds/${userBackground}`);
 
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
@@ -58,32 +52,38 @@ module.exports = {
 
     ctx.font = '70px sans-serif';
     ctx.fillStyle = '#ffffff';
-    ctx.fillText(`${user.username}`, canvas.width / 6.0, canvas.height / 9.5);
+    ctx.fillText(`${userMention.username}`, canvas.width / 6.0, canvas.height / 9.5);
 
     ctx.font = '40px sans-serif';
     ctx.fillStyle = '#ffffff';
-    ctx.fillText(`Reps: ${rep} \nCarteira: ${money}`, canvas.width / 1.5, canvas.height / 7.0);
+    ctx.fillText(`Reps: ${userReps} \nCarteira: ${userMoney}`, canvas.width / 1.5, canvas.height / 7.0);
 
-    if (userPartner !== null) {
-      let user2 = await client.users.fetch(userPartner)
+    if (userMarry !== null) {
+      let user2 = await userData.marry;
+      const discordProfile = await client.users.fetch(user2);
       ctx.font = '30px sans-serif';
       ctx.fillStyle = '#ffffff';
-      ctx.fillText(`💍 Casado com: ${user2.tag}`, canvas.width / 6.0, canvas.height / 5.5);
+      ctx.fillText(`💍 Casado com: ${discordProfile.tag}`, canvas.width / 6.0, canvas.height / 6.0);
     }
 
+    if(userData.premium) {
+      ctx.font = '30px sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(`🔑 Premium`, canvas.width / 6.0, canvas.height / 4.5);
+    }
     ctx.font = ('30px sans-serif');
     ctx.fillStyle = '#ffffff';
-    ctx.fillText(aboutme, canvas.width / 55.0, canvas.height / 1.2);
+    ctx.fillText(userAboutMe, canvas.width / 55.0, canvas.height / 1.2);
 
     ctx.beginPath();
     ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
     ctx.closePath();
     ctx.clip();
 
-    const avatar = await Canvas.loadImage(user.displayAvatarURL({ format: 'png' }));
+    const avatar = await Canvas.loadImage(userMention.displayAvatarURL({ format: 'png' }));
     ctx.drawImage(avatar, 25, 25, 200, 200);
 
-    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), `Foxy${Date.now()}.png`);
+    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), `foxy_profile.png`);
     message.foxyReply(attachment);
   },
 };

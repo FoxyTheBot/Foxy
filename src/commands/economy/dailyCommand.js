@@ -1,4 +1,4 @@
-const partner = require('../../json/partnersGuilds.json')
+const user = require('../../structures/databaseConnection');
 
 module.exports = {
   name: 'daily',
@@ -7,35 +7,39 @@ module.exports = {
   guildOnly: true,
 
   async run(client, message) {
-    const db = require('quick.db');
-    const ms = require('parse-ms');
+    const ms = require('ms');
+    const userData = await user.findOne({ user: message.author.id });
 
-    const user = message.author;
-
-    const timeout = 43200000;
-    var amount = Math.floor(Math.random() * 3200);
-
-    if (partner.guilds.includes(message.guild.id)) {
-      amount = Math.floor(Math.random() * 6400)
+    if (!userData) {
+      message.foxyReply("Parece que você não está no meu banco de dados, execute o comando novamente!");
+      return new user({
+        user: message.author.id,
+        coins: 0,
+        lastDaily: null,
+        reps: 0,
+        lastRep: null,
+        backgrounds: ['default.png'],
+        background: 'default.png',
+        aboutme: null,
+        marry: null,
+        premium: false,
+      }).save().catch(err => console.log(err));
     }
+    const timeout = 43200000;
+    var amount = 40000;
 
-    const daily = await db.fetch(`daily_${user.id}`);
+    const daily = await userData.lastDaily;
     if (daily !== null && timeout - (Date.now() - daily) > 0) {
-      const time = ms(timeout - (Date.now() - daily));
-
-      message.foxyReply(`💸 **|** Você já pegou seu daily hoje! Tente novamente em **${time.hours}h ${time.minutes}m ${time.seconds}s**`);
+      return message.foxyReply(`💸 **|** Você já pegou seu daily, tente novamente mais tarde!`);
     } else {
 
-      db.add(`coins_${user.id}`, amount);
-      db.set(`daily_${user.id}`, Date.now());
+      userData.coins += amount;
+      userData.lastDaily = Date.now();
+      userData.save().catch(err => console.log(err));
 
-      const money = await db.fetch(`coins_${user.id}`);
-      if (partner.guilds.includes(message.guild.id)) {
+      const money = await userData.coins;
 
-        message.foxyReply(`${client.emotes.success} **|** Você coletou seu daily no servidor: ${message.guild.name}! Sabia que você ganhou o dobro de FoxCoins porque pegou daily em um dos servidores relacionados a Foxy? Você ganhou ${amount} FoxCoins!`);
-      } else {
-        message.foxyReply(`💵 **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`);
-      }
+     message.foxyReply(`💵 **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`);
     }
   },
 };

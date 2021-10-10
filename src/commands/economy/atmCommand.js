@@ -1,3 +1,4 @@
+const user = require('../../structures/databaseConnection');
 module.exports = {
   name: 'atm',
   aliases: ['money', 'atm'],
@@ -5,13 +6,24 @@ module.exports = {
   guildOnly: false,
 
   async run(client, message, args) {
-    const db = require('quick.db');
-    const user = message.mentions.members.first() || message.author;
+    const userMention = message.mentions.users.first() || message.author;
+    const userData = await user.findOne({ user: userMention.id });
 
-    let bal = db.fetch(`coins_${user.id}`);
-    if (bal === null) bal = 0;
-
-    if (user == message.author) return message.foxyReply(`💵 **|** ${user} você possui ${bal} FoxCoins`);
-    message.foxyReply(`💵 **|** ${message.author}, ${user} possui ${bal} FoxCoins`);
-  },
-};
+    if (!userData) {
+      message.foxyReply("Parece que você não está no meu banco de dados, execute o comando novamente!");
+      return new user({
+        user: userMention.id,
+        coins: 0,
+        lastDaily: null,
+        reps: 0,
+        lastRep: null,
+        backgrounds: ['default.png'],
+        background: 'default.png',
+        aboutme: null,
+        marry: null,
+        premium: false,
+      }).save().catch(err => console.log(err));
+    }
+    await message.foxyReply(`${userMention} tem ${userData.coins} FoxCoins!`);
+  }
+}

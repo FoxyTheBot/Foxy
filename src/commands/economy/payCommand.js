@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js')
-const db = require('quick.db');
+const user = require('../../structures/databaseConnection');
 
 module.exports = {
   name: 'pay',
@@ -8,6 +8,23 @@ module.exports = {
   guildOnly: true,
 
   async run(client, message, args) {
+    const userData = await user.findOne({ user: message.author.id });
+
+    if (!userData) {
+      message.foxyReply("Parece que você não está no meu banco de dados, execute o comando novamente!");
+      return new user({
+        user: message.author.id,
+        coins: 0,
+        lastDaily: null,
+        reps: 0,
+        lastRep: null,
+        backgrounds: ['default.png'],
+        background: 'default.png',
+        aboutme: null,
+        marry: null,
+        premium: false,
+      }).save().catch(err => console.log(err));
+    }
     const payEmbed = new MessageEmbed()
       .setColor(client.colors.green)
       .setTitle('💸 | `f!pay`')
@@ -19,7 +36,12 @@ module.exports = {
       )
       .setFooter(`• Autor: ${message.author.tag} - Economia`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));
 
-    const user = message.mentions.members.first();
+    const userMention = message.mentions.members.first();
+
+    if(!userMention) return message.foxyReply(payEmbed);
+    const mentionData = await user.findOne({ user: userMention.id });
+
+    if (!mentionData) return message.foxyReply(`${client.emotes.error} **|** Este usuário não está no meu banco de dados, bobinho`)
 
     if (user == message.author.id) return message.foxyReply('Você não pode transferir coins para si mesmo');
     if (!user) {
@@ -36,11 +58,11 @@ module.exports = {
       return message.foxyReply('Você não pode transferir coins negativas');
     }
 
-    const fetchValue = db.fetch(`coins_${message.author.id}`);
+    if (args[1] > userData.coins) {
+      return message.foxyReply('Você não tem FoxCoins suficientes para transferir');
+    }
 
-    if (args[1] > fetchValue) return message.foxyReply('Você não tem coins suficiente');
-
-    message.foxyReply(`💸 **|** Você deseja mesmo transferir ${args[1]} FoxCoins para ${user.user}? \nA Equipe da Foxy **Não se responsabiliza** pelas FoxCoins perdidas, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de FoxCoins!`).then((sentMessage) => {
+    message.foxyReply(`💸 **|** Você deseja mesmo transferir ${args[1]} FoxCoins para ${userMention.user}? \nA Equipe da Foxy **Não se responsabiliza** pelas FoxCoins perdidas, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de FoxCoins!`).then((sentMessage) => {
       sentMessage.react('✅');
       const filter = (reaction, usuario) => reaction.emoji.name === '✅' && usuario.id === message.author.id;
       const Collector = sentMessage.createReactionCollector(filter, { max: 1, time: 60000 });
@@ -48,11 +70,12 @@ module.exports = {
       sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
 
       Collector.on('collect', () => {
-        message.foxyReply(`Você fez uma transação de ${args[1]} FoxCoins para ${user.user}`);
-        db.add(`coins_${user.id}`, args[1]);
-        db.subtract(`coins_${message.author.id}`, args[1]);
+        message.foxyReply(`Você fez uma transação de ${args[1]} FoxCoins para ${userMention.user}`);
+        mentionData.coins += args[1];
+        userData.coins -= args[1];
+        userData.save().catch(err => console.log(err));
+        mentionData.save().catch(err => console.log(err));
       })
-
     });
   },
 };

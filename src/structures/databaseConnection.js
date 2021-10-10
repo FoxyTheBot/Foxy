@@ -1,20 +1,22 @@
 const mongoose = require('mongoose');
-const config = require('../../config.json');
+const { uri } = require('../../config.json');
 
-mongoose.connect(config.uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-}, (err) => {
-    if (err) return console.log('\x1b[37m\x1b[41mERROR\x1b[0m: Ocorreu um erro no cliente do mongodb! verifique se a sua URI está correta!', err);
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+    if (err) return console.log('[ERROR] - Ocorreu um erro no cliente do mongodb! verifique se a sua URI est� correta!', stderr);
 });
 
 const userSchema = new mongoose.Schema({
-    userid: String,
-    username: String,
-    banReason: String,
-    bannedBy: String,
-    userBanned: Boolean
+    user: String,
+    coins: Number,
+    lastDaily: String,
+    reps: Number,
+    lastRep: String,
+    backgrounds: Array,
+    background: String,
+    aboutme: String,
+    marry: String,
+    work: String,
+    premium: Boolean,
 });
 
 module.exports = mongoose.model('user', userSchema);

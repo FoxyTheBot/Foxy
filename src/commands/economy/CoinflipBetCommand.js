@@ -1,5 +1,5 @@
-const db = require('quick.db')
 const { MessageEmbed } = require('discord.js')
+const user = require('../../structures/databaseConnection');
 
 module.exports = {
     name: "bet",
@@ -7,8 +7,24 @@ module.exports = {
     guildOnly: true,
     cooldown: 10,
     async run(client, message, args) {
-        const user = message.mentions.users.first()
-        if (user == message.author) return message.foxyReply(`${client.emotes.error} **|** Você não pode apostar consigo mesmo, bobinho`)
+        const userData = await user.findOne({ user: message.author.id });
+        if (!userData) {
+            message.foxyReply("Parece que você não está no meu banco de dados, execute o comando novamente!");
+            return new user({
+                user: message.author.id,
+                coins: 0,
+                lastDaily: null,
+                reps: 0,
+                lastRep: null,
+                backgrounds: ['default.png'],
+                background: 'default.png',
+                aboutme: null,
+                marry: null,
+                premium: false,
+            }).save().catch(err => console.log(err));
+        }
+        const userMention = message.mentions.users.first()
+        if (userMention == message.author) return message.foxyReply(`${client.emotes.error} **|** Você não pode apostar consigo mesmo, bobinho`)
         const noargs = new MessageEmbed()
             .setColor(client.colors.default)
             .setTitle('💸 | `f!bet`')
@@ -21,7 +37,8 @@ module.exports = {
             )
             .setFooter(`• Autor: ${message.author.tag} - Economia`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));
 
-        if (!user) return message.foxyReply(noargs)
+        if (!userMention) return message.foxyReply(noargs)
+        const mentionData = await user.findOne({ user: userMention.id });
         if (!args[2]) return message.foxyReply(noargs)
 
         if (isNaN(args[2])) {
@@ -30,10 +47,11 @@ module.exports = {
             message.foxyReply("Você não pode apostar FoxCoins negativos, bobinho")
         }
 
-        let reply = `${user}, Você deseja fazer uma aposta de ${args[2]} FoxCoins com ${message.author}?`
+        const userbal = await user.findOne({ user: userMention.id });
+        const authorbal = await user.findOne({ user: message.author.id });
 
-        const authorbal = await db.fetch(`coins_${message.author.id}`)
-        const userbal = await db.fetch(`coins_${user.id}`)
+        let reply = `${userMention}, Você deseja fazer uma aposta de ${args[2]} FoxCoins com ${message.author}?`
+
 
         if (userbal < args[2]) {
             return message.foxyReply(`💸 **|** ${user} Não tem FoxCoins suficientes para apostar`)
@@ -43,7 +61,7 @@ module.exports = {
             return message.foxyReply(`Você não tem FoxCoins o suficiente para fazer apostas`)
         }
 
-        if (user == client.user) reply = "Opa, vamos apostar então!"
+        if (userMention == client.user) reply = "Opa, vamos apostar então!"
         message.foxyReply(reply).then((msg) => {
 
             setTimeout(() => msg.react('✅'),
@@ -63,17 +81,17 @@ module.exports = {
                 } else if (args[1].toLowerCase() == array1[rand]) {
 
                     message.foxyReply(`💸 **|** Deu **${array1[rand]}**, você ganhou dessa vez! Financiado por ${user} rs`);
-                    db.add(`coins_${message.author.id}`, args[2])
-                    db.subtract(`coins_${user.id}`, args[2])
-
+                    userData.coins += args[2]
+                    userData.save()
+                    mentionData.coins -= args[2]
+                    mentionData.save()
                 } else if (args[1].toLowerCase() != array1[rand]) {
                     message.foxyReply(`💸 **|** Deu **${array1[rand]}**, você perdeu dessa vez! ${user} Você ganhou ${args[2]} FoxCoins, Financiado por ${message.author} rs`);
-                    db.add(`coins_${user.id}`, args[2])
-                    db.subtract(`coins_${message.author.id}`, args[2])
+                    userData.coins -= args[2]
+                    mentionData.coins += args[2]
+                    mentionData.save()
+                    userData.save()
                 }
-
-
-
             })
         })
 
