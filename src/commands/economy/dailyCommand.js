@@ -29,7 +29,7 @@ module.exports = {
     const timeout = 43200000;
     var amount = Math.floor(Math.random() * 3200);
 
-    if (userData.premium) amount = Math.floor(Math.random() * 3200) + 1000;
+    if (userData.premium) amount = Math.floor(Math.random() * 3200) + 4628;
 
     const daily = await userData.lastDaily;
     if (daily !== null && timeout - (Date.now() - daily) > 0) {
@@ -42,7 +42,7 @@ module.exports = {
 
       const money = await userData.coins;
       if(userData.premium) {
-        message.foxyReply(`💵 **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Sabia que você ganhou mais FoxCoins por ser um usuário premium? `)
+        message.foxyReply(`💵 **|** Você ia ganhar ${amount - 1000} FoxCoins mas graças ao seu premium você ganhou ${amount} FoxCoins`)
       } else {
         message.foxyReply(`💵 **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`);
       }
