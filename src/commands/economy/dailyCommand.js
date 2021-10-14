@@ -42,7 +42,7 @@ module.exports = {
 
       const money = await userData.coins;
       if(userData.premium) {
-        message.foxyReply(`💵 **|** Você ia ganhar ${amount - 1000} FoxCoins mas graças ao seu premium você ganhou ${amount} FoxCoins`)
+        message.foxyReply(`💵 **|** Você ia ganhar ${amount - 4628} FoxCoins mas graças ao seu premium você ganhou ${amount} FoxCoins e tem ${money} FoxCoins`)
       } else {
         message.foxyReply(`💵 **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`);
       }
