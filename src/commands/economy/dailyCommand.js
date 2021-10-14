@@ -25,6 +25,7 @@ module.exports = {
         premium: false,
       }).save().catch(err => console.log(err));
     }
+
     const timeout = 43200000;
     var amount = Math.floor(Math.random() * 3200);
 
@@ -40,8 +41,11 @@ module.exports = {
       userData.save().catch(err => console.log(err));
 
       const money = await userData.coins;
-
-      message.foxyReply(`💵 **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`);
+      if(userData.premium) {
+        message.foxyReply(`💵 **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Sabia que você ganhou mais FoxCoins por ser um usuário premium? `)
+      } else {
+        message.foxyReply(`💵 **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`);
+      }
     }
   },
 };
