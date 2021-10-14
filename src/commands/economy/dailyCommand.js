@@ -26,7 +26,9 @@ module.exports = {
       }).save().catch(err => console.log(err));
     }
     const timeout = 43200000;
-    var amount = 40000;
+    var amount = Math.floor(Math.random() * 3200);
+
+    if (userData.premium) amount = Math.floor(Math.random() * 3200) + 1000;
 
     const daily = await userData.lastDaily;
     if (daily !== null && timeout - (Date.now() - daily) > 0) {
@@ -39,7 +41,7 @@ module.exports = {
 
       const money = await userData.coins;
 
-     message.foxyReply(`💵 **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`);
+      message.foxyReply(`💵 **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`);
     }
   },
 };

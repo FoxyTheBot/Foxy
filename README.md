@@ -1,7 +1,7 @@
 <p align="center">
 <img width="35%" src="https://cdn.discordapp.com/attachments/776930851753426945/777176123221082142/Foxy.png">
 <br>
-<h1 align="center">Foxy</h1>
+<h1 align="center">[DEPRECATED] Foxy</h1>
 
  </p>
 <p align="center">
