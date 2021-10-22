@@ -3,7 +3,7 @@
   "description": "Simples bot para o Discord",
   "version": "2022.01.01-unstable",
   "author": "Win",
-  "main": "index.js",
+  "main": "Shard.js",
   "engines": {
     "node": "16.x"
   },

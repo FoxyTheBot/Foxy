@@ -1,14 +1,15 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('eval')
         .setDescription('Evaluate')
         .addStringOption(option =>
-            option.name('code')
+            option.setName('code')
                 .setDescription('Código para ser executado')
                 .setRequired(true)),
-
+    onlyDevs: true,
     async execute(client, interaction) {
         const code = interaction.options.getString('code');
 
@@ -31,7 +32,7 @@ module.exports = {
                 .setTitle('<:Developer:813832825442533396> Comando executado com sucesso!')
                 .setDescription(`\ \ \`\`\`xl\n${clean(evaled)}\n\`\`\``);
 
-            interaction.reply(success);
+            interaction.reply({ embeds: [success] });
 
         } catch (err) {
             const errorMessage = err.stack.length > 1800 ? `${err.stack.slice(0, 1800)}...` : err.stack;
@@ -40,7 +41,7 @@ module.exports = {
             embed.setTitle(`${client.emotes.scared} Ocorreu um erro durante a execução!`);
             embed.setDescription(`Saída: \`\`\`js\n${errorMessage}\`\`\``);
 
-            interaction.reply(errorMessage);
+            interaction.reply({ embeds: [errorMessage] });
         }
     }
 }

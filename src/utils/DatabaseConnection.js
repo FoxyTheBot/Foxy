@@ -8,12 +8,14 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, (err)
 const userSchema = new mongoose.Schema({
     user: String,
     coins: Number,
-    lastDaily: Date,
+    lastDaily: String,
     reps: Number,
+    lastRep: String,
     backgrounds: Array,
     background: String,
     aboutme: String,
-    marry: String
+    marry: String,
+    premium: Boolean,
 });
 
 module.exports = mongoose.model('user', userSchema);

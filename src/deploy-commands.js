@@ -6,13 +6,13 @@ const fs = require('fs');
 const commands = [];
 const commandFolders = fs.readdirSync('./src/commands');
 
-const clientId = '889918153931517983';
+const clientId = '772554697298673677';
 
 for (const folder of commandFolders) {
     const commandFiles = fs.readdirSync(`./src/commands/${folder}`).filter(file => file.endsWith('.js'));
     for (const file of commandFiles) {
         const command = require(`./commands/${folder}/${file}`);
-        console.log(`A porra do comando ${command.data.name} foi carregado, agora vai tomar no seu cu`)
+        console.log(`[SLASH] - Comando ${command.data.name} foi carregado`)
         commands.push(command.data.toJSON());
     }
 }

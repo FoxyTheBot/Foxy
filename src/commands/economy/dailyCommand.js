@@ -26,8 +26,13 @@ module.exports = {
             }).save().catch(err => console.log(err));
         }
 
+
         const timeout = 43200000;
         var amount = 40000;
+
+        if (userData.premium) {
+            amount = amount * 4200;
+        }
 
         const daily = await userData.lastDaily;
         if (daily !== null && timeout - (Date.now() - daily) > 0) {

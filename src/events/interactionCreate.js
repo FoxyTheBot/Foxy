@@ -1,16 +1,16 @@
 const user = require('../utils/DatabaseConnection');
 
 module.exports = async (client, interaction) => {
-    const command = client.commands.get(interaction.commandName);
     if (!interaction.isCommand()) return;
+    const command = client.commands.get(interaction.commandName);
 
     function FoxyHandler() {
-        if (command.devOnly && !client.config.owners.includes(interaction.member.id)) {
+        if (command.onlyDevs && !client.config.owners.includes(interaction.member.id)) {
             return interaction.reply({ content: "Esse comando é só para meu desenvolvedor, bobinho", ephemeral: true });
         }
 
         try {
-         command.execute(client, interaction);
+            command.execute(client, interaction);
         } catch (err) {
             return interaction.reply({ content: `Ocorreu um erro ao executar esse comando! Erro: ${err}`, ephemeral: true });
         }
@@ -19,8 +19,8 @@ module.exports = async (client, interaction) => {
     try {
         user.findOne({ user: interaction.member.id }, (err, data) => {
             if (err) return console.error(`Algo deu errado! ${err}`);
-            if(data) return FoxyHandler();
-            
+            if (data) return FoxyHandler();
+
             new user({
                 user: interaction.member.id,
                 coins: 0,

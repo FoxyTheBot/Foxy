@@ -10,7 +10,7 @@ module.exports = {
         .setDescription("Compre outro background da Foxy :D")
         .addStringOption(option =>
             option.setName("code")
-                .setDescription("Código do background")
+                .setDescription("Código do background ou list para listar os backgrounds")
                 .setRequired(true)),
 
     async execute(client, interaction) {
@@ -35,7 +35,20 @@ module.exports = {
 
         const userCoins = userData.coins;
 
-
+        if (code === "list") {
+            const bgHelp = new MessageEmbed()
+                .setTitle('Lojinha de Background :D')
+                .setFooter('Exemplo: f!background lori');
+            var bgDesc = "";
+            for (const bgHandle of bglist) {
+                if (bgHandle.onlydevs) continue;
+                bgDesc = bgDesc + `(${bgHandle.rarity}) **${bgHandle.name}** - ${bgHandle.foxcoins} FoxCoins - **Código:** ${bgHandle.id} \n`;
+            }
+            bgHelp.setDescription(bgDesc);
+            interaction.reply({ embeds: [bgHelp] });
+            return;
+        }
+        
         const background = bglist.find((index) => index.id == code?.toLowerCase());
         if (!background) return interaction.reply({ content: "Eu não encontrei nenhum background", ephemeral: true });
 

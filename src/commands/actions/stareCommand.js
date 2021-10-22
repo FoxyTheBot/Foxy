@@ -23,12 +23,12 @@ module.exports = {
         ];
 
         const rand = list[Math.floor(Math.random() * list.length)];
-        const user = interaction.options.getUser('user');
+        const userMention = interaction.options.getUser('user');
 
         const attackEmbed = new MessageEmbed()
             .setColor("RED")
             .setTitle("Que sus")
-            .setDescription(`${interaction.user} **Encarou** ${user.username}`)
+            .setDescription(`${interaction.user} **Encarou** ${userMention.username}`)
             .setImage(rand)
         await interaction.reply({ embeds: [attackEmbed] });
     }
