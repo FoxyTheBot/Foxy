@@ -84,6 +84,8 @@ module.exports = {
     ctx.drawImage(avatar, 25, 25, 200, 200);
 
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), `foxy_profile.png`);
-    message.foxyReply(attachment);
+    message.channel.startTyping();
+    await message.foxyReply(attachment);
+    message.channel.stopTyping();
   },
 };

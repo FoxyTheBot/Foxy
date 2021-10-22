@@ -4,8 +4,7 @@ const { exec } = require('shelljs');
 module.exports = {
     name: "sh",
     aliases: ['shell', 'shell32'],
-    ownerOnly: true,
-    guildOnly: true,
+    onlyDevs: true,
     async run(client, message, args) {
         const commandBlock = args.join(' ');
 

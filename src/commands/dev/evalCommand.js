@@ -4,7 +4,7 @@ module.exports = {
   name: 'eval',
   aliases: ['eval', 'evaljs', 'evaluate', 'evaluatejs'],
   guildOnly: false,
-  ownerOnly: true,
+  onlyDevs: true,
   clientPerms: ['EMBED_LINKS'],
 
   async run(client, message, args) {

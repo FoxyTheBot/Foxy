@@ -19,11 +19,8 @@ module.exports = async (client, message) => {
 
 
   function FoxyHandler() {
-    if (command.guildOnly && message.channel.type === 'dm') {
-      return message.foxyReply(`<:Error:718944903886930013> | ${message.author} Esse comando não pode ser executado em mensagens diretas!`);
-    }
 
-    if (command.ownerOnly && !client.config.owners.includes(message.author.id)) {
+    if (command.onlyDevs && !client.config.owners.includes(message.author.id)) {
       return message.foxyReply(`<:Error:718944903886930013> | ${message.author} Você não tem permissão para fazer isso! <:meow_thumbsup:768292477555572736>`);
     }
 
@@ -31,8 +28,8 @@ module.exports = async (client, message) => {
 
     if (command.clientPerms && !message.guild.members.cache.get(client.user.id).permissions.has(command.clientPerms)) {
       let missingPermissions = [];
-      for(const permission of command.clientPerms){
-        if(!guildMember.permissions.has(permission)){
+      for (const permission of command.clientPerms) {
+        if (!guildMember.permissions.has(permission)) {
           const permissionName = permissionsLocale.find((index) => index.id == permission);
           missingPermissions.push(permissionName);
         }
@@ -40,7 +37,7 @@ module.exports = async (client, message) => {
 
       return message.channel.send(`${client.emotes.error} **|** ${message.author} Aparentemente está faltando as permissões ${missingPermissions.join(", ")} para executar esse comando!`)
     };
-    
+
     if (!cooldowns.has(command.name)) {
       cooldowns.set(command.name, new Discord.Collection());
     }
@@ -63,20 +60,14 @@ module.exports = async (client, message) => {
     timestamps.set(message.author.id, now);
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
-    async function runCommands() {
-      message.channel.startTyping()
-      await command.run(client, message, args)
-      message.channel.stopTyping()
-    }
-
-    runCommands()
+    command.run(client, message, args)
   }
 
   try {
     user.findOne({ userid: message.author.id }, (error, data) => {
       if (error) return console.log(`Algo deu errado! ${error} | ${message}`)
       if (data) return FoxyHandler();
-      
+
       new user({
         user: message.author.id,
         coins: 0,
