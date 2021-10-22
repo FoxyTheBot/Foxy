@@ -37,7 +37,9 @@ module.exports = {
                 .setFooter("Coloque o nome do arquivo do seu background")
 
             return message.foxyReply(embed);
+            
         } else {
+
             const background = await bglist.find((index) => index.filename == args[0]?.toLowerCase());
             if (!background) return message.foxyReply('Este código não existe!');
             const backgroundList = userData.backgrounds;

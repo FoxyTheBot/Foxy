@@ -1,7 +1,8 @@
 const user = require('../structures/databaseConnection')
-const Discord = require('discord.js');
+const Discord = require('discord.js')
+const cooldowns = new Discord.Collection()
 const { permissionsLocale } = require("../json/permissionsLocale.json");
-const cooldowns = new Discord.Collection();
+
 module.exports = async (client, message) => {
 
   if (message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) message.channel.send(`Olá ${message.author}! Meu nome é ${client.user.username}, meu prefixo é \`${client.config.prefix}\`, Utilize \`${client.config.prefix}help\` para obter ajuda! ${client.emotes.success}`);
@@ -26,37 +27,20 @@ module.exports = async (client, message) => {
       return message.foxyReply(`<:Error:718944903886930013> | ${message.author} Você não tem permissão para fazer isso! <:meow_thumbsup:768292477555572736>`);
     }
 
-    if (message.channel.type !== 'dm' || message.channel.type === 'text') {
-      const guildMember = Object(message.guild.members.cache.get(client.user.id));
-      const userMember = Object(message.guild.members.cache.get(message.author.id));
+    const guildMember = Object(message.guild.members.cache.get(client.user.id));
 
-      if (command.clientPerms && !message.guild.members.cache.get(client.user.id).permissions.has(command.clientPerms)) {
-        let missingPermissions = [];
-        for (const permission of command.clientPerms) {
-          if (!guildMember.permissions.has(permission)) {
-            const permissionName = permissionsLocale.find((index) => index.id == permission);
-            missingPermissions.push(permissionName.name);
-          }
+    if (command.clientPerms && !message.guild.members.cache.get(client.user.id).permissions.has(command.clientPerms)) {
+      let missingPermissions = [];
+      for(const permission of command.clientPerms){
+        if(!guildMember.permissions.has(permission)){
+          const permissionName = permissionsLocale.find((index) => index.id == permission);
+          missingPermissions.push(permissionName);
         }
-
-        return message.channel.send(`${client.emotes.error} **|** ${message.author} Infelizmente esse comando não pode ser executado, eu preciso das permissões: \`${missingPermissions.join(", ")}\` :c`);
       }
 
-
-      if (command.userPerms && !message.guild.members.cache.get(message.author.id).permissions.has(command.userPerms)) {
-        let missingPermissions = [];
-        for (const permission of command.userPerms) {
-          if (!userMember.permissions.has(permission)) {
-            const permissionName = permissionsLocale.find((index) => index.id == permission);
-            missingPermissions.push(permissionName.name)
-          }
-        }
-
-        return message.channel.send(`${client.emotes.otter} **|** ${message.author} Você precisa das permissões ${missingPermissions.join(", ")} para executar esse comando!`)
-      }
-    }
-
-
+      return message.channel.send(`${client.emotes.error} **|** ${message.author} Aparentemente está faltando as permissões ${missingPermissions.join(", ")} para executar esse comando!`)
+    };
+    
     if (!cooldowns.has(command.name)) {
       cooldowns.set(command.name, new Discord.Collection());
     }
@@ -70,22 +54,29 @@ module.exports = async (client, message) => {
 
       if (now < expirationTime) {
         const timeLeft = (expirationTime - now) / 1000;
-        let time = `${timeLeft.toFixed(0)} segundos`;
-        if (time <= 0) time = "Alguns milisegundos";
-        return;
+        let time = `${timeLeft.toFixed(0)} segundos`
+        if (time <= 0) time = "Alguns milisegundos"
+        return message.foxyReply(`${client.emotes.scared} **|** ${message.author}, Por favor aguarde **${time}** para usar o comando novamente`);
       }
     }
 
     timestamps.set(message.author.id, now);
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
-    command.run(client, message, args);
+    async function runCommands() {
+      message.channel.startTyping()
+      await command.run(client, message, args)
+      message.channel.stopTyping()
+    }
 
-  } try {
-    user.findOne({ user: message.author.id }, (stderr, data) => {
-      if (stderr) return console.error(`Algo deu errado! ${stderr}`);
+    runCommands()
+  }
+
+  try {
+    user.findOne({ userid: message.author.id }, (error, data) => {
+      if (error) return console.log(`Algo deu errado! ${error} | ${message}`)
       if (data) return FoxyHandler();
-
+      
       new user({
         user: message.author.id,
         coins: 0,
@@ -97,10 +88,12 @@ module.exports = async (client, message) => {
         aboutme: null,
         marry: null,
         premium: false,
-      }).save().catch(err => console.log(err));
+      }).save().catch((err) => {
+        console.log('[MONGO ERROR] - ' + err)
+      });
+      return FoxyHandler();
     });
-    return FoxyHandler();
   } catch (error) {
-    console.log(error);
+    console.log('[HANDLER ERROR] - ' + error, message);
   }
 };
