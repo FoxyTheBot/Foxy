@@ -15,7 +15,6 @@ const userSchema = new mongoose.Schema({
     background: String,
     aboutme: String,
     marry: String,
-    work: String,
     premium: Boolean,
 });
 
