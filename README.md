@@ -69,7 +69,7 @@ git clone https://github.com/FoxyTheBot/Foxy
 ```ascii
 📄 config.json
 ├── Prefixo
-├── Token do Bot
+├── Token do Bot (No futuro não será mais necessário já que o Discord lançou os Slashs Commands)
 ├── URI do MongoDB
 ├── Token do Discord Bot List
 ├── Quantidade de shards que vão ser spawnadas
