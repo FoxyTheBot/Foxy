@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 
+client.emotes = require('./utils/emotes.json');
 client.config = require('../config.json');
 client.commands = new Collection();
 
