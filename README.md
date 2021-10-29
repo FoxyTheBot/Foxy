@@ -81,8 +81,8 @@ git clone https://github.com/FoxyTheBot/Foxy
 * Se você ainda não fez... adicione o bot ao seu servidor do discord
 * Antes de tudo, autorize seu endereço de IP no [Mongo DB](https://mongodb.com)
 * Atualize os slashs commands usando `node ./src/deploy-commands.js`
-* Agora rode a Foxy usando `node index.js`
-* Apos iniciar utilize `f!ping` No seu servidor do discord.
+* Agora rode a Foxy usando `node Shard.js`
+* Apos iniciar utilize `/ping` No seu servidor do discord.
 * Se tudo correu bem agora ela deve estar pronta para ser usada
 
 ___
