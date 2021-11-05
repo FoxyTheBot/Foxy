@@ -49,7 +49,7 @@ module.exports = {
       .setTitle('O Mais Triste dos Tristes')
       .setImage(rand)
       .setTimestamp();
-    await message.foxyReply(`${message.author}`, embed);
+    await message.reply(`${message.author}`, embed);
   },
 
 };

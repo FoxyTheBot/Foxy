@@ -9,10 +9,10 @@ module.exports = {
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
 
     if (!user) {
-      return message.foxyReply('lembre-se de mencionar um usuário válido para avaliar!');
+      return message.reply('lembre-se de mencionar um usuário válido para avaliar!');
     }
 
-    if (user == client.user.id) return message.foxyReply(`${client.emotes.heart} **|** Eu dou nota **∞** para <@737044809650274325> sim eu sou muito linda 😘`);
+    if (user == client.user.id) return message.reply(`${client.emotes.heart} **|** Eu dou nota **∞** para <@737044809650274325> sim eu sou muito linda 😘`);
 
     const list = [
       '**1** para essa waifu. Eu não gostei <:hmmpepe:791151120021061662> ',
@@ -27,6 +27,6 @@ module.exports = {
 
     const rand = list[Math.floor(Math.random() * list.length)];
 
-    await message.foxyReply(`Sobre ${user}... Eu dou nota ${rand}`);
+    await message.reply(`Sobre ${user}... Eu dou nota ${rand}`);
   },
 };

@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js')
-const user = require('../../structures/databaseConnection');
 
 module.exports = {
     name: "bet",
@@ -7,24 +6,10 @@ module.exports = {
     guildOnly: true,
     cooldown: 10,
     async run(client, message, args) {
-        const userData = await user.findOne({ user: message.author.id });
-        if (!userData) {
-            message.foxyReply("Parece que você não está no meu banco de dados, execute o comando novamente!");
-            return new user({
-                user: message.author.id,
-                coins: 0,
-                lastDaily: null,
-                reps: 0,
-                lastRep: null,
-                backgrounds: ['default.png'],
-                background: 'default.png',
-                aboutme: null,
-                marry: null,
-                premium: false,
-            }).save().catch(err => console.log(err));
-        }
+        const userData = await client.db.getDocument(message.author.id);
+
         const userMention = message.mentions.users.first()
-        if (userMention == message.author) return message.foxyReply(`${client.emotes.error} **|** Você não pode apostar consigo mesmo, bobinho`)
+        if (userMention == message.author) return message.reply(`${client.emotes.error} **|** Você não pode apostar consigo mesmo, bobinho`)
         const noargs = new MessageEmbed()
             .setColor(client.colors.default)
             .setTitle('💸 | `f!bet`')
@@ -37,32 +22,32 @@ module.exports = {
             )
             .setFooter(`• Autor: ${message.author.tag} - Economia`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));
 
-        if (!userMention) return message.foxyReply(noargs)
-        const mentionData = await user.findOne({ user: userMention.id });
-        if (!args[2]) return message.foxyReply(noargs)
+        if (!userMention) return message.reply(noargs)
+        const mentionData = await client.db.getDocument(userMention.id);
+        if (!args[2]) return message.reply(noargs)
 
         if (isNaN(args[2])) {
-            return message.foxyReply(noargs)
+            return message.reply(noargs)
         } else if (args[2].includes("-")) {
-            message.foxyReply("Você não pode apostar FoxCoins negativos, bobinho")
+            message.reply("Você não pode apostar FoxCoins negativos, bobinho")
         }
 
-        const userbal = await user.findOne({ user: userMention.id });
-        const authorbal = await user.findOne({ user: message.author.id });
+        const userbal = await client.db.getDocument(userMention.id);
+        const authorbal = await client.db.getDocument(message.author.id);
 
         let reply = `${userMention}, Você deseja fazer uma aposta de ${args[2]} FoxCoins com ${message.author}?`
 
 
         if (userbal < args[2]) {
-            return message.foxyReply(`💸 **|** ${user} Não tem FoxCoins suficientes para apostar`)
+            return message.reply(`💸 **|** ${user} Não tem FoxCoins suficientes para apostar`)
         }
 
         if (authorbal < args[2]) {
-            return message.foxyReply(`Você não tem FoxCoins o suficiente para fazer apostas`)
+            return message.reply(`Você não tem FoxCoins o suficiente para fazer apostas`)
         }
 
         if (userMention == client.user) reply = "Opa, vamos apostar então!"
-        message.foxyReply(reply).then((msg) => {
+        message.reply(reply).then((msg) => {
 
             setTimeout(() => msg.react('✅'),
                 1000);
@@ -76,19 +61,19 @@ module.exports = {
                 const rand = Math.floor(Math.random() * array1.length);
 
                 if (!args[1] || (args[1].toLowerCase() !== 'cara' && args[1].toLowerCase() !== 'coroa')) {
-                    message.foxyReply(noargs);
+                    message.reply(noargs);
 
                 } else if (args[1].toLowerCase() == array1[rand]) {
 
-                    message.foxyReply(`💸 **|** Deu **${array1[rand]}**, você ganhou dessa vez! Financiado por ${user} rs`);
-                    userData.coins += args[2]
+                    message.reply(`💸 **|** Deu **${array1[rand]}**, você ganhou dessa vez! Financiado por ${user} rs`);
+                    userData.balance += args[2]
                     userData.save()
-                    mentionData.coins -= args[2]
+                    mentionData.balance -= args[2]
                     mentionData.save()
                 } else if (args[1].toLowerCase() != array1[rand]) {
-                    message.foxyReply(`💸 **|** Deu **${array1[rand]}**, você perdeu dessa vez! ${user} Você ganhou ${args[2]} FoxCoins, Financiado por ${message.author} rs`);
-                    userData.coins -= args[2]
-                    mentionData.coins += args[2]
+                    message.reply(`💸 **|** Deu **${array1[rand]}**, você perdeu dessa vez! ${user} Você ganhou ${args[2]} FoxCoins, Financiado por ${message.author} rs`);
+                    userData.balance -= args[2]
+                    mentionData.balance += args[2]
                     mentionData.save()
                     userData.save()
                 }

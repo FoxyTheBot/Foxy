@@ -13,7 +13,7 @@ module.exports = {
     try {
       const user = message.mentions.members.first() || message.member
 
-      if(!user) return message.foxyReply("Eu não encontrei esse usuário desculpe " + client.emotes.error);
+      if(!user) return message.reply("Eu não encontrei esse usuário desculpe " + client.emotes.error);
       const usercreate = moment(user.user.createdAt).format('llll');
       const avatar = user.user.avatarURL({ dynamic: true, format: 'png', size: 1024 }); const embed = new Discord.MessageEmbed()
         .setColor('#22a7f2')
@@ -25,9 +25,9 @@ module.exports = {
           { name: ':bookmark: Discord ID:', value: `\`${user.user.id}\``, inline: true },
         );
 
-      message.foxyReply(`${message.author}`, embed);
+      message.reply(`${message.author}`, embed);
     } catch (err) {
-      message.foxyReply(client.errors.genericError + err.stack).catch();
+      message.reply(client.errors.genericError + err.stack).catch();
     }
   },
 };

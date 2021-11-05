@@ -11,10 +11,10 @@ module.exports = {
 
   async run(client, message, args) {
     weather.find({ search: args.join(' '), degreeType: 'C' }, (error, result) => {
-      if (error) return message.foxyReply(error);
-      if (!args[0]) return message.foxyReply('Por favor, digite uma localização');
+      if (error) return message.reply(error);
+      if (!args[0]) return message.reply('Por favor, digite uma localização');
 
-      if (result === undefined || result.length === 0) return message.foxyReply('Localização inválida!');
+      if (result === undefined || result.length === 0) return message.reply('Localização inválida!');
 
       const { current } = result[0];
       const { location } = result[0];
@@ -31,7 +31,7 @@ module.exports = {
         .addField('Sensação', `${current.feelslike}°`, true)
         .addField('Umidade', `${current.humidity}%`, true);
 
-      message.foxyReply(weatherinfo);
+      message.reply(weatherinfo);
     });
   },
 

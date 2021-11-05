@@ -23,7 +23,7 @@ module.exports = {
       .setColor('BLUE')
       .setDescription(`**Estou online há:**\n${uptime}`);
 
-    message.foxyReply(embed);
+    message.reply(embed);
   },
 
 };

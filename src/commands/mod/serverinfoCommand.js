@@ -71,6 +71,6 @@ module.exports = {
         { name: '<:Partner:813832825543065680> Servidor Parceiro:', value: `${partner}`, inline: true },
         { name: '<a:impulso:756507043854024784> Impulsos:', value: guild.premiumSubscriptionCount, inline: true }
         )
-    message.foxyReply(embed);
+    message.reply(embed);
   },
 };

@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
 const { Client, Collection, WebhookClient, Intents } = require('discord.js');
+const DatabaseConnection = require("./structures/databaseConnection");
 const fs = require('fs');
 
 const client = new Client({
@@ -15,10 +15,10 @@ client.emotes = require('./json/emotes.json');
 client.colors = require('./json/color.json');
 client.config = require('../config.json');
 
-client.suggestWebhook = new WebhookClient(client.config.suggest.id, client.config.suggest.token);
 client.logsWebhook = new WebhookClient(client.config.logs.id, client.config.logs.token);
-client.reportWebhook = new WebhookClient(client.config.report.id, client.config.report.token);
 client.guildWebhook = new WebhookClient(client.config.guilds.id, client.config.guilds.token);
+
+client.db = new DatabaseConnection(client.config.uri, { useNewUrlParser: true, useUnifiedTopology: true, writeConcern: "majority" }, client);
 
 const commandFolders = fs.readdirSync('./src/commands');
 const eventFiles = fs.readdirSync('./src/events').filter((file) => file.endsWith('.js'));

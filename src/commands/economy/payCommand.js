@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js')
-const user = require('../../structures/databaseConnection');
 
 module.exports = {
   name: 'pay',
@@ -8,23 +7,8 @@ module.exports = {
   guildOnly: true,
 
   async run(client, message, args) {
-    const userData = await user.findOne({ user: message.author.id });
+    const userData = await client.db.getDocument(message.author.id);
 
-    if (!userData) {
-      message.foxyReply("Parece que você não está no meu banco de dados, execute o comando novamente!");
-      return new user({
-        user: message.author.id,
-        coins: 0,
-        lastDaily: null,
-        reps: 0,
-        lastRep: null,
-        backgrounds: ['default.png'],
-        background: 'default.png',
-        aboutme: null,
-        marry: null,
-        premium: false,
-      }).save().catch(err => console.log(err));
-    }
     const payEmbed = new MessageEmbed()
       .setColor(client.colors.green)
       .setTitle('💸 | `f!pay`')
@@ -38,31 +22,31 @@ module.exports = {
 
     const userMention = message.mentions.members.first();
 
-    if(!userMention) return message.foxyReply(payEmbed);
-    const mentionData = await user.findOne({ user: userMention.id });
+    if(!userMention) return message.reply(payEmbed);
+    const mentionData = await client.db.getDocument(userMention.id);
 
-    if (!mentionData) return message.foxyReply(`${client.emotes.error} **|** Este usuário não está no meu banco de dados, bobinho`)
+    if (!mentionData) return message.reply(`${client.emotes.error} **|** Este usuário não está no meu banco de dados, bobinho`)
 
-    if (user == message.author.id) return message.foxyReply('Você não pode transferir coins para si mesmo');
+    if (user == message.author.id) return message.reply('Você não pode transferir coins para si mesmo');
     if (!user) {
-      return message.foxyReply(payEmbed);
+      return message.reply(payEmbed);
     }
 
-    if (isNaN(args[1])) return message.foxyReply('Digite números válidos!');
+    if (isNaN(args[1])) return message.reply('Digite números válidos!');
 
     if (!args[1]) {
-      return message.foxyReply('Especifique uma quantidade para ser transferida');
+      return message.reply('Especifique uma quantidade para ser transferida');
     }
 
     if (message.content.includes('-')) {
-      return message.foxyReply('Você não pode transferir coins negativas');
+      return message.reply('Você não pode transferir coins negativas');
     }
 
-    if (args[1] > userData.coins) {
-      return message.foxyReply('Você não tem FoxCoins suficientes para transferir');
+    if (args[1] > userData.balance) {
+      return message.reply('Você não tem FoxCoins suficientes para transferir');
     }
 
-    message.foxyReply(`💸 **|** Você deseja mesmo transferir ${args[1]} FoxCoins para ${userMention.user}? \nA Equipe da Foxy **Não se responsabiliza** pelas FoxCoins perdidas, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de FoxCoins!`).then((sentMessage) => {
+    message.reply(`💸 **|** Você deseja mesmo transferir ${args[1]} FoxCoins para ${userMention.user}? \nA Equipe da Foxy **Não se responsabiliza** pelas FoxCoins perdidas, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de FoxCoins!`).then((sentMessage) => {
       sentMessage.react('✅');
       const filter = (reaction, usuario) => reaction.emoji.name === '✅' && usuario.id === message.author.id;
       const Collector = sentMessage.createReactionCollector(filter, { max: 1, time: 60000 });
@@ -70,9 +54,9 @@ module.exports = {
       sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
 
       Collector.on('collect', () => {
-        message.foxyReply(`Você fez uma transação de ${args[1]} FoxCoins para ${userMention.user}`);
-        mentionData.coins += args[1];
-        userData.coins -= args[1];
+        message.reply(`Você fez uma transação de ${args[1]} FoxCoins para ${userMention.user}`);
+        mentionData.balance += args[1];
+        userData.balance -= args[1];
         userData.save().catch(err => console.log(err));
         mentionData.save().catch(err => console.log(err));
       })

@@ -34,7 +34,7 @@ module.exports = {
             .addField(('discord.js:'), `\`\`\`${version}\`\`\``, true)
             .setFooter(`${totalGuilds} Servidores e ${totalMembers} Usuários`);
           
-          message.foxyReply(status);
+          message.reply(status);
         });
       }).catch(console.error);
   },

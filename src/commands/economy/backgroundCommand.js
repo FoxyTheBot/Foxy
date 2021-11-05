@@ -1,5 +1,4 @@
 const { bglist } = require('../../json/backgroundList.json');
-const user = require('../../structures/databaseConnection');
 const { MessageEmbed } = require('discord.js');
 const fs = require("fs");
 
@@ -10,23 +9,7 @@ module.exports = {
   guildOnly: false,
   clientPerms: ['ATTACH_FILES', 'EMBED_LINKS'],
   async run(client, message, args) {
-    const userData = await user.findOne({ user: message.author.id });
-
-    if (!userData) {
-      message.foxyReply("Parece que você não está no meu banco de dados, execute o comando novamente!");
-      return new user({
-        user: message.author.id,
-        coins: 0,
-        lastDaily: null,
-        reps: 0,
-        lastRep: null,
-        backgrounds: ['default.png'],
-        background: 'default.png',
-        aboutme: null,
-        marry: null,
-        premium: false,
-      }).save().catch(err => console.log(err));
-    }
+    const userData = await client.db.getDocument(message.author.id);
 
     function sendHelp() {
       const bgHelp = new MessageEmbed()
@@ -39,7 +22,7 @@ module.exports = {
         bgDesc = bgDesc + `(${bgHandle.rarity}) **${bgHandle.name}** - ${bgHandle.foxcoins} FoxCoins - **Código:** ${bgHandle.id} \n`;
       }
       bgHelp.setDescription(bgDesc);
-      message.foxyReply(bgHelp);
+      message.reply(bgHelp);
       return null;
     }
 
@@ -54,10 +37,10 @@ module.exports = {
     }
     
     const bg = await userData.backgrounds;
-    if(bg.includes(background.filename)) return message.foxyReply("Você já tem esse background!");
+    if(bg.includes(background.filename)) return message.reply("Você já tem esse background!");
     
     if (background.onlydevs && !client.config.owners.includes(message.author.id)) {
-      message.foxyReply("Desculpe, mas esse background só pode ser comprado por desenvolvedores.");
+      message.reply("Desculpe, mas esse background só pode ser comprado por desenvolvedores.");
       return;
     }
 
@@ -75,16 +58,16 @@ module.exports = {
       bgInfo.attachFiles(`./src/assets/backgrounds/${background.filename}`).setImage(`attachment://${background.filename}`);
     }
 
-    message.foxyReply(bgInfo).then((msg) => {
+    message.reply(bgInfo).then((msg) => {
       msg.react("✅");
       setTimeout(() => msg.react("❌"), 1000);
       const filter = (reaction, user) => user.id === message.author.id;
       msg.awaitReactions(filter, { max: 1, time: 120000, errors: ['time'] }).then((reactionData) => {
         if (reactionData.first().emoji.name === "✅") {
-          if (userData.coins < background.foxcoins) {
+          if (userData.balance < background.foxcoins) {
             return msg.foxyReply("Você não tem coins o suficiente para este background!");
           } else {
-            userData.coins -= background.foxcoins;
+            userData.balance -= background.foxcoins;
             userData.background = background.filename;
             userData.backgrounds.push(background.filename);
             userData.save().catch(err => console.log(err));

@@ -15,14 +15,14 @@ module.exports = {
                     .setTitle(':x: ┃ Comando executado porém ele retornou um erro!')
                     .setDescription(`Comando Executado: \`\`\`x1\n${commandBlock}\n\`\`\` \n Valor Retornado: \`\`\`\n${stderr}\n\`\`\``)
                     .setFooter('Verifique o console para mais informações sobre o erro. | Digite f!help para obter ajuda.');
-                return message.foxyReply(errorMessageEmbed);
+                return message.reply(errorMessageEmbed);
             }
             const returnMessageEmbed = new Discord.MessageEmbed()
                 .setColor('#5555DD')
                 .setTitle(':tools: ┃ Comando executado sem retornar erros!')
                 .setDescription(`Comando Executado: \`\`\`x1\n${commandBlock}\n\`\`\` \n Valor Retornado: \`\`\`\n${stdout}\n\`\`\``)
                 .setFooter('Digite f!help para obter ajuda.');
-            return message.foxyReply(returnMessageEmbed);
+            return message.reply(returnMessageEmbed);
         })
     }
 }

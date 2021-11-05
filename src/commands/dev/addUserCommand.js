@@ -1,31 +1,34 @@
-const user = require('../../structures/databaseConnection');
-
 module.exports = {
     name: 'adduser',
     aliases: ['au'],
     onlyDevs: true,
     async run(client, message, args) {
-        const id = args[0];
-
         if (!id) return message.reply('Insira uma ID');
 
-        const userData = await user.findOne({ user: id });
-        if (!userData) {
+        const userData = client.users.fetch(args[0])
+
+        if (!userData) message.reply("Você só pode adicionar usuarios que eu conheço no meu DB");
+
+        const userDocument = await client.db.getDocument(userData.id);
+        if (!userDocument) {
             new user({
-                user: id,
-                coins: 0,
-                lastDaily: null,
-                reps: 0,
-                lastRep: null,
-                backgrounds: ['default.png'],
-                background: 'default.png',
-                aboutme: null,
-                marry: null,
+                _id: userData.id,
+                userCreationTimestamp: Date.now(),
                 premium: false,
+                isBanned: false,
+                banData: null,
+                aboutme: null,
+                balance: 0,
+                lastDaily: null,
+                marriedWith: null,
+                repCount: 0,
+                lastRep: null,
+                background: "default.png",
+                backgrounds: ["default.png"]
             }).save().catch(err => console.log(err));
-            message.foxyReply("Usuário adicionado ao banco de dados!")
+            message.reply("Usuário adicionado ao banco de dados!")
         } else {
-            message.foxyReply('Usuário já existe!');
+            message.reply('Usuário já existe!');
         }
     }
 }

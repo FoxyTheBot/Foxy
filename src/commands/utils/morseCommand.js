@@ -13,7 +13,7 @@ module.exports = {
     const morse = '/,.-,-...,-.-.,-..,.,..-.,--.,....,..,.---,-.-,.-..,--,-.,---,.--.,--.-,.-.,...,-,..-,...-,.--,-..-,-.--,--..,.----,..---,...--,....-,.....,-....,--...,---..,----.,-----'.split(',');
     let text = args.join(' ').toUpperCase();
     
-    if (!text) return message.foxyReply('Insira um texto ou um código para ser decodificado ou codificado'); // but you can change the answer :)
+    if (!text) return message.reply('Insira um texto ou um código para ser decodificado ou codificado'); // but you can change the answer :)
 
     while (text.includes('Ä') || text.includes('Ö') || text.includes('Ü')) {
       text = text.replace('Ä', 'AE').replace('Ö', 'OE').replace('Ü', 'UE');
@@ -37,7 +37,7 @@ module.exports = {
       .setColor('BLUE')
       .setTitle('Tradutor de Código Morse')
       .setDescription(`:point_right::radio: Resultado foi: \n \`\`\`${text}\`\`\``);
-    await message.foxyReply(morsereader);
+    await message.reply(morsereader);
   },
 
 };

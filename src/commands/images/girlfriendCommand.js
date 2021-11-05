@@ -20,7 +20,7 @@ module.exports = {
         ctx.drawImage(wallpaper, 0, 0, canva.width, canva.height);
         ctx.drawImage(avatar, 20, 170, 200, 200);
         const attach = new Discord.MessageAttachment(canva.toBuffer(), `${user.tag}.png`);
-        message.foxyReply(attach);
+        message.reply(attach);
 
     }
 }

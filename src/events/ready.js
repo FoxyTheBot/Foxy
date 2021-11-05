@@ -1,9 +1,9 @@
-const DBL = require("dblapi.js");
+//const DBL = require("dblapi.js");
 
 module.exports = async (client) => {
 
-  const dbl = new DBL(client.config.dbltoken, client);
-  dbl.postStats(client.guilds.cache.size);
+  /*const dbl = new DBL(client.config.dbltoken, client);
+  dbl.postStats(client.guilds.cache.size);*/
 
   console.info(`\x1b[37m\x1b[42mSUCCESS\x1b[0m: Ready! ${client.guilds.cache.size} Guilds`);
 

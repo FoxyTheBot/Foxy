@@ -8,10 +8,10 @@ module.exports = {
   async run(client, message, args) {
     if (message.channel.type === 'dm') return;
 
-    if (!message.guild.me.permissions.has('MANAGE_CHANNELS')) return message.foxyReply('Não tenho permissão gerenciar canais!');
+    if (!message.guild.me.permissions.has('MANAGE_CHANNELS')) return message.reply('Não tenho permissão gerenciar canais!');
     const topic = args.join(' ');
-    if(message.content.includes("@")) return message.foxyReply('Você não pode mencionar cargos ou usuários!')
+    if(message.content.includes("@")) return message.reply('Você não pode mencionar cargos ou usuários!')
     message.channel.setTopic(topic);
-    await message.foxyReply(`Tópico alterado para "**${topic}**"`);
+    await message.reply(`Tópico alterado para "**${topic}**"`);
   },
 };

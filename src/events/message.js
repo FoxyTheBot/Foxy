@@ -1,4 +1,3 @@
-const user = require('../structures/databaseConnection')
 const Discord = require('discord.js')
 const cooldowns = new Discord.Collection()
 const { permissionsLocale } = require("../json/permissionsLocale.json");
@@ -21,7 +20,7 @@ module.exports = async (client, message) => {
   function FoxyHandler() {
 
     if (command.onlyDevs && !client.config.owners.includes(message.author.id)) {
-      return message.foxyReply(`<:Error:718944903886930013> | ${message.author} Você não tem permissão para fazer isso! <:meow_thumbsup:768292477555572736>`);
+      return message.reply(`<:Error:718944903886930013> | ${message.author} Você não tem permissão para fazer isso! <:meow_thumbsup:768292477555572736>`);
     }
 
     const guildMember = Object(message.guild.members.cache.get(client.user.id));
@@ -53,7 +52,7 @@ module.exports = async (client, message) => {
         const timeLeft = (expirationTime - now) / 1000;
         let time = `${timeLeft.toFixed(0)} segundos`
         if (time <= 0) time = "Alguns milisegundos"
-        return message.foxyReply(`${client.emotes.scared} **|** ${message.author}, Por favor aguarde **${time}** para usar o comando novamente`);
+        return message.reply(`${client.emotes.scared} **|** ${message.author}, Por favor aguarde **${time}** para usar o comando novamente`);
       }
     }
 
@@ -64,27 +63,15 @@ module.exports = async (client, message) => {
   }
 
   try {
-    user.findOne({ userid: message.author.id }, (error, data) => {
-      if (error) return console.log(`Algo deu errado! ${error} | ${message}`)
-      if (data) return FoxyHandler();
+    const document = await client.db.getDocument(message.author.id);
 
-      new user({
-        user: message.author.id,
-        coins: 0,
-        lastDaily: null,
-        reps: 0,
-        lastRep: null,
-        backgrounds: ['default.png'],
-        background: 'default.png',
-        aboutme: null,
-        marry: null,
-        premium: false,
-      }).save().catch((err) => {
-        console.log('[MONGO ERROR] - ' + err)
-      });
-      return FoxyHandler();
-    });
+    if(document.isBanned) {
+      message.reply("FOXY_BAN_MESSAGE");
+      return;
+    }
+
+    FoxyHandler();
   } catch (error) {
-    console.log('[HANDLER ERROR] - ' + error, message);
+    console.log('[HANDLER ERROR] - ' + error);
   }
 };

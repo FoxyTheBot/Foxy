@@ -22,7 +22,7 @@ module.exports = {
       .setImage(rand)
       .setTimestamp()
       .setAuthor(message.author.tag, avatar);
-    await message.foxyReply(embed);
+    await message.reply(embed);
   },
 
 };

@@ -13,6 +13,6 @@ module.exports = {
       embed.setColor('RED');
       embed.setTitle(`Icone de ${message.guild.name}`);
       embed.setImage(icon);
-    message.foxyReply(embed);
+    message.reply(embed);
   },
 };

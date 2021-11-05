@@ -25,6 +25,6 @@ module.exports = {
       .setTimestamp()
       .setFooter(' | Gifs by: ByteAlex#1644')
       .setAuthor(message.author.tag, avatar);
-    await message.foxyReply(embed);
+    await message.reply(embed);
   },
 };

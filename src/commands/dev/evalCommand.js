@@ -17,7 +17,7 @@ module.exports = {
     try {
       const util = require('util');
       const code = args.join(' ');
-      if(!code) return message.foxyReply("Executar nenhum código? WTF?! Como assim?");
+      if(!code) return message.reply("Executar nenhum código? WTF?! Como assim?");
       let evaled = eval(code);
       evaled = util.inspect(evaled, { depth: 1 });
       evaled = evaled.replace(new RegExp('Error', 'g'), undefined);
@@ -28,7 +28,7 @@ module.exports = {
         .setTitle('<:Developer:813832825442533396> Comando executado com sucesso!')
         .setDescription(`\ \ \`\`\`xl\n${clean(evaled)}\n\`\`\``);
 
-      message.foxyReply(sucess);
+      message.reply(sucess);
     } catch (err) {
       const errorMessage = err.stack.length > 1800 ? `${err.stack.slice(0, 1800)}...` : err.stack;
       const code = args.join(' ');
@@ -37,7 +37,7 @@ module.exports = {
       embed.setTitle(`${client.emotes.scared} Ocorreu um erro durante a execução!`);
       embed.setDescription(`Saída: \`\`\`js\n${errorMessage}\`\`\``);
 
-      message.foxyReply(embed);
+      message.reply(embed);
     }
   },
 };

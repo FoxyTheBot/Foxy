@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const Canvas = require('canvas');
-const user = require('../../structures/databaseConnection');
 
 module.exports = {
   name: 'profile',
@@ -11,29 +10,16 @@ module.exports = {
 
   async run(client, message) {
     const userMention = message.mentions.users.first() || message.author;
-    const userData = await user.findOne({ user: userMention.id });
+    const userData = await client.db.getDocument(userMention.id);
 
-    if (!userData) {
-      message.foxyReply("Parece que você não está no meu banco de dados, execute o comando novamente!");
-      return new user({
-        user: userMention.id,
-        coins: 0,
-        lastDaily: null,
-        reps: 0,
-        lastRep: null,
-        backgrounds: ['default.png'],
-        background: 'default.png',
-        aboutme: null,
-        marry: null,
-        premium: false,
-      }).save().catch(err => console.log(err));
+    if(!userData) return message.reply(`${client.emotes.error} **|** Este usuário não está no meu banco de dados, bobinho`);
 
-    }
-    const userMoney = await userData.coins;
-    const userReps = await userData.reps;
+    const userMoney = await userData.balance;
+    const userReps = await userData.repCount;
     const userBackground = await userData.background;
+    const userMarry = await userData.marriedWith;
+
     var userAboutMe = await userData.aboutme;
-    const userMarry = await userData.marry;
 
     if (userAboutMe == null) {
       userAboutMe = "Foxy é minha amiga (você pode alterar isso usando f!aboutme)!";
@@ -59,8 +45,7 @@ module.exports = {
     ctx.fillText(`Reps: ${userReps} \nCarteira: ${userMoney}`, canvas.width / 1.5, canvas.height / 7.0);
 
     if (userMarry !== null) {
-      let user2 = await userData.marry;
-      const discordProfile = await client.users.fetch(user2);
+      const discordProfile = await client.users.fetch(userMarry);
       ctx.font = '30px sans-serif';
       ctx.fillStyle = '#ffffff';
       ctx.fillText(`💍 Casado com: ${discordProfile.tag}`, canvas.width / 6.0, canvas.height / 6.0);
@@ -71,6 +56,7 @@ module.exports = {
       ctx.fillStyle = '#ffffff';
       ctx.fillText(`🔑 Premium`, canvas.width / 6.0, canvas.height / 4.5);
     }
+    
     ctx.font = ('30px sans-serif');
     ctx.fillStyle = '#ffffff';
     ctx.fillText(userAboutMe, canvas.width / 55.0, canvas.height / 1.2);
@@ -85,7 +71,7 @@ module.exports = {
 
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), `foxy_profile.png`);
     message.channel.startTyping();
-    await message.foxyReply(attachment);
+    await message.reply(attachment);
     message.channel.stopTyping();
   },
 };

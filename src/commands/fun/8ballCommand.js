@@ -7,9 +7,9 @@ module.exports = {
   async run(client, message, args) {
     const arg = args.join(" ")
 
-    if(!arg) return message.foxyReply(`${client.emotes.success} **|** Digite algo para que eu possa responder`)
+    if(!arg) return message.reply(`${client.emotes.success} **|** Digite algo para que eu possa responder`)
     const results = ['Sim', 'Não', 'Talvez', 'Com certeza!', 'Provavelmente sim', 'Provavelmente não', 'Não entendi, pergunte novamente'];
     const result = Math.floor((Math.random() * results.length));
-    message.foxyReply(results[result]);
+    message.reply(results[result]);
   },
 };

@@ -21,7 +21,7 @@ module.exports = {
         { name: "<:DiscordStaff:731947814246154240> **| Utilitários**", value: "`report`, `donate`, `remind`, `invite`, `dbl`, `calc`, `translate`, `ping`, `ascii`, `morse`, `weather`, `servericon`, `rbuser`", inline: true }
       )
       .setFooter('Alguns comandos podem não ser exibidos porque são privados')
-    message.foxyReply(CommandsEmbed);
+    message.reply(CommandsEmbed);
 
   },
 };

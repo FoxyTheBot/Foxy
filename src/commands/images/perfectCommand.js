@@ -31,6 +31,6 @@ module.exports = {
 
         const attachment = new MessageAttachment(canvas.toBuffer(), 'pf.png');
 
-        await message.foxyReply(attachment);
+        await message.reply(attachment);
     }
 }

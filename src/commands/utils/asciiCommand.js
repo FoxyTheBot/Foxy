@@ -8,18 +8,18 @@ module.exports = {
   clientPerms: ['READ_MESSAGE_HISTORY'],
 
   async run(client, message, args) {
-    if (!args[0]) return message.foxyReply('Por favor Digite algo');
-    if (args[0].length > 32) return message.foxyReply('Você não pode digitar mais de 32 caracteres');
+    if (!args[0]) return message.reply('Por favor Digite algo');
+    if (args[0].length > 32) return message.reply('Você não pode digitar mais de 32 caracteres');
     const msg = args.join(' ');
 
     figlet.text(msg, (err, data) => {
       if (err) {
-        message.foxyReply('Algo deu errado ao executar este comando');
-        message.foxyReply(err);
+        message.reply('Algo deu errado ao executar este comando');
+        message.reply(err);
       }
-      if (data.length > 2000) return message.foxyReply('Por favor digite algo com menos de 2000 caractéres!');
+      if (data.length > 2000) return message.reply('Por favor digite algo com menos de 2000 caractéres!');
 
-      message.foxyReply(`\`\`\`${data}\`\`\``);
+      message.reply(`\`\`\`${data}\`\`\``);
     });
   },
 

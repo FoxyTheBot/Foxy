@@ -15,9 +15,9 @@ module.exports = {
     const rand = list[Math.floor(Math.random() * list.length)];
     const user = message.mentions.users.first() || client.users.cache.get(args[0]);
     if (!user) {
-      return message.foxyReply('lembre-se de mencionar um usuário válido para cancelar!');
+      return message.reply('lembre-se de mencionar um usuário válido para cancelar!');
     }
-    await message.foxyReply(`${message.author} cancelou ${user} por ${rand}`);
+    await message.reply(`${message.author} cancelou ${user} por ${rand}`);
   },
 
 };

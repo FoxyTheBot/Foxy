@@ -10,12 +10,12 @@ module.exports = {
   async run(client, message, args) {
   
     const sayMessage = args.join(' ');
-    if (!sayMessage) return message.foxyReply('Digite algo antes');
+    if (!sayMessage) return message.reply('Digite algo antes');
     const embed = new Discord.MessageEmbed()
       .setDescription(sayMessage)
       .setImage('https://media1.tenor.com/images/20af5cca901f8fe316c93174da43c4e8/tenor.gif')
       .setFooter(`Comando solicitado por ${message.author.tag}`);
-    await message.foxyReply(embed);
+    await message.reply(embed);
     
     const logs = new Discord.MessageEmbed()
     .setTitle('Logs de comandos')

@@ -107,7 +107,7 @@ dist
 # Foxy files
 config.json
 json.sqlite
-src/assets/backgrounds
+src/assets
 # IntelliJ IDEA files
 .idea/
 .gradle/

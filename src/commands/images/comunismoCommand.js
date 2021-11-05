@@ -12,7 +12,7 @@ module.exports = {
     const canvas = Canvas.createCanvas(500, 400);
     const ctx = canvas.getContext('2d');
     const sayMessage = args.join(' ');
-    if (!sayMessage) return message.foxyReply('Digite algo antes');
+    if (!sayMessage) return message.reply('Digite algo antes');
 
 
     const background = await Canvas.loadImage('./src/assets/comunismo.png');
@@ -33,7 +33,7 @@ module.exports = {
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'nosso.png');
 
 
-    message.foxyReply(attachment);
+    message.reply(attachment);
 
     const logs = new Discord.MessageEmbed()
       .setTitle('Logs de comandos')
