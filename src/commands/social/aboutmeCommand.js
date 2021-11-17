@@ -19,7 +19,7 @@ module.exports = {
       return message.reply(aboutmeEmbed);
     }
 
-    const userData = await client.db.getDocument(message.author.name);
+    const userData = await client.db.getDocument(message.author.id);
 
     const aboutme = args.join(' ');
 
