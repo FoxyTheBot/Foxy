@@ -31,7 +31,7 @@ module.exports = {
         var amount = 40000;
 
         if (userData.premium) {
-            amount = amount * 4200;
+            amount = amount + 4628;
         }
 
         const daily = await userData.lastDaily;
