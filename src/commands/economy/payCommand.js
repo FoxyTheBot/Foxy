@@ -1,5 +1,4 @@
-const { MessageEmbed } = require('discord.js')
-const user = require('../../structures/databaseConnection');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: 'pay',
@@ -21,7 +20,7 @@ module.exports = {
 
     const userMention = message.mentions.members.first();
     const foxCoins = args[1];
-    const mentionData = await user.findOne({ _id: userMention.id });
+    const mentionData = await client.db.getDocument(userMention.id);
     const value = Math.round(foxCoins);
 
     if (!userMention || user == message.author.id) return message.foxyReply(payEmbed);
