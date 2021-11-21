@@ -1,0 +1,18 @@
+Foxy - Mais um bot para Discord
+===============================
+
+É vedado o uso da imagem e do nome da Foxy em instâncias privadas, o código publicado aqui é destinado aos contribuidores da Foxy, portanto nós da equipe de desenvolvimento da Foxy NÃO PRESTAMOS SUPORTE ao código publicado aqui.
+
+A licença diz que se você for modificar o source code da Foxy você tem que deixar o source code público incluindo as mudanças
+
+
+
+Preparando o Ambiente da Foxy:
+
+* Para rodar uma instância da Foxy você precisarar os seguintes softwares de terceiros: git, nodejs, npm.
+Consulte a documentação do seu SO para instalar.
+
+- Baixe o source code utilizando o git: git clone https://github.com/FoxyTheBot/Foxy
+- Instale as dependencias com o npm: npm i
+- Configure a Foxy utilizando o config.json.EXAMPLE de template
+- Pronto! A Foxy está pronta pra ser executada: node .
