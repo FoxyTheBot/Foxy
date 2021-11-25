@@ -1,0 +1,31 @@
+{
+  "name": "foxy",
+  "version": "2022.07.26-unstable",
+  "description": "Um simples bot para o Discord",
+  "main": "Main.js",
+  "scripts": {
+    "test": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FoxyTheBot/Foxy.git"
+  },
+  "keywords": [
+    "seu-servidor",
+    "foxy",
+    "javascript"
+  ],
+  "author": "WinG4merBR",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/FoxyTheBot/Foxy/issues"
+  },
+  "homepage": "https://github.com/FoxyTheBot/Foxy#readme",
+  "dependencies": {
+    "@discordjs/builders": "^0.8.2",
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "discord-api-types": "^0.24.0",
+    "discord.js": "^13.3.1",
+    "mongoose": "^6.0.13"
+  }
+}

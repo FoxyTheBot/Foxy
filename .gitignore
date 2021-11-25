@@ -1,0 +1,6 @@
+## Node files
+node_modules
+package-lock.json
+
+## Confidential files
+config.json
