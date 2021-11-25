@@ -29,4 +29,5 @@ Consulte a documentação do seu Sistema Operacional para instalar.
 - Baixe o source code utilizando o git: git clone https://github.com/FoxyTheBot/Foxy
 - Instale as dependencias com o npm: npm i
 - Configure a Foxy utilizando o config.json.EXAMPLE de template
+- Registre os comandos usando: node register.js
 - Pronto! A Foxy está pronta pra ser executada: node .
