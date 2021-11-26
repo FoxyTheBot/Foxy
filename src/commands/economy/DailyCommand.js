@@ -30,11 +30,11 @@ module.exports = class DailyCommand extends Command {
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
             const time = ms(timeout - (Date.now() - daily));
 
-            return interaction.reply(`💸 **|** Você já pegou seu daily hoje! Tente novamente em **${time.hours}h ${time.minutes}m ${time.seconds}s**`);
+            return interaction.reply(`💸 **|** Você já pegou seu daily hoje! Tente novamente mais tarde`);
 
         } else {
 
-            userData.balance = + amount;
+            userData.balance += amount;
             userData.lastDaily = Date.now();
             userData.save().catch(err => console.log(err));
 
