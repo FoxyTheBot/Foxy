@@ -7,9 +7,10 @@ module.exports = class FoxyClient extends Client {
     constructor(options) {
         super(options);
         this.commands = new Collection();
+        this.emotes = require("./structures/emotes.json")
         this.config = require("../config.json");
         this.database = new DatabaseConnection(this.config.uri, { useNewUrlParser: true, useUnifiedTopology: true, writeConcern: "majority" }, this);
-        this.slashs = new RegisterCommands(this, "<id-do-bot-de-testes>", this.config.token);
+        this.slashs = new RegisterCommands(this, "889918153931517983", this.config.token);
     }
 
     login(token) {
