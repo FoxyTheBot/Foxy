@@ -18,7 +18,7 @@ module.exports = class KissCommand extends Command {
 
     async execute(interaction) {
         const img = await neko.sfw.kiss();
-        const img2 = await neko.sfw.kiss()
+        const img2 = await neko.sfw.kiss();
         const user = await interaction.options.getUser("user");
 
         if (user == this.client.user) return interaction.reply("🙅‍♀️ **|** Nah, eu não quero te beijar!");
@@ -40,7 +40,6 @@ module.exports = class KissCommand extends Command {
         await interaction.reply({ embeds: [embed], components: [row] });
 
         const filter = i => i.customId === 'primary' && i.user.id === user.id;
-
         const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 
         collector.on('collect', async i => {
@@ -48,7 +47,7 @@ module.exports = class KissCommand extends Command {
                 .setColor('#000000')
                 .setDescription(`${user} **Beijou** ${interaction.user}`)
                 .setImage(img2.url)
-                await interaction.followUp({ embeds: [kissEmbed] });
+            await interaction.followUp({ embeds: [kissEmbed] });
         });
     }
 }
