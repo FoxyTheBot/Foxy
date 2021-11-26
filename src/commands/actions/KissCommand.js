@@ -48,6 +48,7 @@ module.exports = class KissCommand extends Command {
                 .setDescription(`${user} **Beijou** ${interaction.user}`)
                 .setImage(img2.url)
             await interaction.followUp({ embeds: [kissEmbed] });
+            i.deferUpdate();
         });
     }
 }
