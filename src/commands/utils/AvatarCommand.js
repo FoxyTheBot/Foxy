@@ -20,7 +20,7 @@ module.exports = class AvatarCommand extends Command {
         const avatarEmbed = new MessageEmbed()
             .setColor("#0099ff")
             .setTitle(`Avatar de ${user.username}`)
-            .setImage(user.displayAvatarURL({ dynamic: true, size: 2048 }))
+            .setImage(user.displayAvatarURL({ dynamic: true, format: "png", size: 2048 }))
             .setFooter("Avatar lindo! :3")
         interaction.reply({ embeds: [avatarEmbed] });
     }
