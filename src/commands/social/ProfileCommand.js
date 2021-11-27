@@ -19,19 +19,20 @@ module.exports = class ProfileCommand extends Command {
     async execute(interaction) {
         const user = interaction.options.getUser("user") || interaction.user;
         const userData = await this.client.database.getDocument(user.id);
-
-        const userMoney = await userData.balance;
-        const userReps = await userData.repCount;
-        const userBackground = await userData.background;
-        const userMarry = await userData.marriedWith;
-
         var userAboutme = await userData.aboutme;
+
+        await interaction.deferReply();
 
         if(!userAboutme) userAboutme = "Foxy é minha amiga (você pode alterar isso usando /aboutme)!";
     
+        if(userAboutme.length > 85) {
+            const aboutme = userAboutme.match(/.{1,95}/g);
+            userAboutme = aboutme.join("\n");
+        }
+        
         const canvas = Canvas.createCanvas(1436, 884);
         const ctx = canvas.getContext("2d");
-        const background = await Canvas.loadImage(`./src/assets/backgrounds/${userBackground}`);
+        const background = await Canvas.loadImage(`./src/assets/backgrounds/${userData.background}`);
 
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
@@ -45,10 +46,10 @@ module.exports = class ProfileCommand extends Command {
 
         ctx.font = '40px sans-serif';
     ctx.fillStyle = '#ffffff';
-    ctx.fillText(`Reps: ${userReps} \nCarteira: ${userMoney}`, canvas.width / 1.5, canvas.height / 7.0);
+    ctx.fillText(`Reps: ${userData.repCount} \nCarteira: ${userData.balance}`, canvas.width / 1.5, canvas.height / 7.0);
 
-    if (userMarry !== null) {
-        const discordProfile = await client.users.fetch(userMarry);
+    if (userData.marriedWith !== null) {
+        const discordProfile = await this.client.users.fetch(userData.marriedWith);
         ctx.font = '30px sans-serif';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`💍 Casado com: ${discordProfile.tag}`, canvas.width / 6.0, canvas.height / 6.0);
@@ -74,7 +75,7 @@ module.exports = class ProfileCommand extends Command {
 
       const attachment = new MessageAttachment(canvas.toBuffer(), 'foxy_profile.png');
 
-      await interaction.reply({ files: [attachment] });
+      await interaction.editReply({ files: [attachment] });
 
     }
 }
