@@ -7,6 +7,7 @@ module.exports = class HelpCommand extends Command {
         super(client, {
             name: "help",
             description: "Mostra o menu de ajuda",
+            category: "Utils",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("help")

@@ -6,6 +6,7 @@ module.exports = class AtmCommand extends Command {
         super(client, {
             name: "atm",
             description: "Mostra o seu saldo",
+            category: "Economia",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("atm")

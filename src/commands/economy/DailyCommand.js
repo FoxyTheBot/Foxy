@@ -7,6 +7,7 @@ module.exports = class DailyCommand extends Command {
         super(client, {
             name: "daily",
             description: "Receba suas FoxCoins diárias",
+            category: "Economia",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("daily")

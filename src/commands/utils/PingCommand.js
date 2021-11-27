@@ -6,6 +6,7 @@ module.exports = class PingCommand extends Command {
         super(client, {
             name: "ping",
             description: "Veja a latência da Foxy",
+            category: "Utils",
             dev: false,
             data: new SlashCommandBuilder()
             .setName("ping")

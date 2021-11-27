@@ -7,6 +7,7 @@ module.exports = class UserinfoCommand extends Command {
         super(client, {
             name: "userinfo",
             description: "Mostra informações de um usuário",
+            category: "Utils",
             dev: false,
             data: new SlashCommandBuilder()
             .setName("userinfo")

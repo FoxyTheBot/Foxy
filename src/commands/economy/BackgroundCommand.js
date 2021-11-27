@@ -9,6 +9,7 @@ module.exports = class BackgroundCommand extends Command {
         super(client, {
             name: "background",
             description: "Adicione um background para o seu perfil",
+            category: "Economia",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("background")
@@ -47,11 +48,7 @@ module.exports = class BackgroundCommand extends Command {
                 new MessageButton()
                     .setCustomId("yes")
                     .setLabel("💵 Comprar")
-                    .setStyle("SUCCESS"),
-                new MessageButton()
-                    .setCustomId("no")
-                    .setLabel("❌ Cancelar")
-                    .setStyle("DANGER")
+                    .setStyle("SUCCESS")
             );
 
         const bgInfo = new MessageEmbed()
@@ -77,7 +74,7 @@ module.exports = class BackgroundCommand extends Command {
 
         interaction.reply({ embeds: [bgInfo], components: [row], files: [attachment] });
 
-        const filter = i => i.customId === 'yes' || 'no' && i.user.id === interaction.user.id;
+        const filter = i => i.customId === 'yes' && i.user.id === interaction.user.id;
         const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 
         collector.on('collect', async i => {

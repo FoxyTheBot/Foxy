@@ -7,6 +7,7 @@ module.exports = class BotInfoCommand extends Command {
         super(client, {
             name: 'botinfo',
             description: "Mostra as informações do bot",
+            category: "Utils",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("botinfo")
