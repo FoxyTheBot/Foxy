@@ -28,8 +28,6 @@ module.exports = class DailyCommand extends Command {
 
         const daily = await userData.lastDaily;
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
-            const time = ms(timeout - (Date.now() - daily));
-
             return interaction.reply(`💸 **|** Você já pegou seu daily hoje! Tente novamente mais tarde`);
 
         } else {
