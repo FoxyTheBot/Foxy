@@ -10,7 +10,7 @@ module.exports = class FoxyClient extends Client {
         this.emotes = require("./structures/emotes.json")
         this.config = require("../config.json");
         this.database = new DatabaseConnection(this.config.uri, { useNewUrlParser: true, useUnifiedTopology: true, writeConcern: "majority" }, this);
-        this.slashs = new RegisterCommands(this, "889918153931517983", this.config.token);
+        this.slashs = new RegisterCommands(this, "772554697298673677", this.config.token);
     }
 
     login(token) {
@@ -23,8 +23,7 @@ module.exports = class FoxyClient extends Client {
             const commandFiles = fs.readdirSync(`${global.dir}/src/commands/${folder}`);
             for (const file of commandFiles) {
                 const command = new (require(`${global.dir}/src/commands/${folder}/${file}`))(this);
-                const commandBind = file.toLowerCase().replace('command', '').split(".")[0];
-                this.commands.set(commandBind, command);
+                this.commands.set(command.config.name, command);
             }
         }
     }
@@ -34,7 +33,7 @@ module.exports = class FoxyClient extends Client {
         for (const file of eventFiles) {
             const event = new (require(`./events/${file}`))(this);
             const eventBind = file.split(".")[0];
-            console.info(`[EVENTS] - ${eventBind} Carregado!`);
+            console.info(`\x1b[37m\x1b[44mINFO\x1b[0m: Loading event: ${file}; Bind: ${eventBind}`);
             this.on(eventBind, (...args) => event.run(...args));
         }
         return this;
