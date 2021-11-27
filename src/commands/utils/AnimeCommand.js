@@ -20,6 +20,7 @@ module.exports = class AnimeCommand extends Command {
     async execute(interaction) {
         const search = await interaction.options.getString("anime");
 
+        interaction.deferReply();
         malScraper.getInfoFromName(search).then(async data => {
             const animeEmbed = new MessageEmbed()
                 .setTitle(data.title)
@@ -35,9 +36,9 @@ module.exports = class AnimeCommand extends Command {
                     { name: "Gêneros", value: data.genres.join(", ") },
                 )
 
-                await interaction.reply({ embeds: [animeEmbed] });
+                await interaction.editReply({ embeds: [animeEmbed] });
         }).catch(err => {
-            interaction.reply("Eu não consegui encontrar esse anime :/");
+            interaction.editReply("Eu não consegui encontrar esse anime :/");
         })
     }
 }
