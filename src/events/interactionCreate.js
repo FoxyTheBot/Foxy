@@ -10,8 +10,6 @@ module.exports = class InteractionCreate {
         const command = this.client.commands.get(interaction.commandName);
 
         function FoxyHandler() {
-            if (command.config.dev && !this.client.config.devs.includes(interaction.user.id)) return interaction.reply(`<:Error:718944903886930013> | ${interaction.author} Você não tem permissão para fazer isso! <:meow_thumbsup:768292477555572736>`);
-
             new Promise((res, rej) => {
                 try {
                     command.execute(interaction)
@@ -41,7 +39,9 @@ module.exports = class InteractionCreate {
 
             FoxyHandler();
         } catch (err) {
-            return interaction.reply({ content: `Ocorreu um erro ao executar esse comando! Erro: ${err}`, ephemeral: true });
+            console.error(err);
+            errorEmbed.setDescription(`\`\`\`js\n${err}\n\`\`\``)
+            return interaction.reply({ embeds: [errorEmbed], ephemeral: true });
         }
     }
 }
