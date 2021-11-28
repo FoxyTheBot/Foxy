@@ -61,7 +61,7 @@ module.exports = class GenerateImage {
         const avatar = await Canvas.loadImage(this.user.displayAvatarURL({ format: 'png' }));
         ctx.drawImage(avatar, 25, 25, 200, 200);
 
-        const attachment = new MessageAttachment(canvas.toBuffer(), 'foxy_profile.png');
+        const attachment = canvas.toBuffer();
         return attachment;
     }
 }
