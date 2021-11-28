@@ -5,7 +5,7 @@ module.exports = class Command {
       this.config = {
         name: options.name || null,
         aliases: options.aliases || [],
-        category: options.category || "util",
+        category: options.category || "utils",
         description: options.description || "indefinido",
         userPermission: options.userPermission || [],
         clientPermission: options.clientPermission || [],
