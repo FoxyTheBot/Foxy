@@ -26,12 +26,11 @@ module.exports = class HelpCommand extends Command {
                 { name: `<a:a_bongocat:768500700551315487> Imagens (${this.getSize("images")})`, value: this.getCategory("images"), inline: true },
                 { name: `${this.client.emotes.denied} Moderação (${this.getSize("mod")})`, value: this.getCategory("mod"), inline: true },
                 { name: `⛏ Minecraft (${this.getSize("mine")})`, value: this.getCategory("mine"), inline: true },
-                { name: `<:cute_yay:901111399328124928> Entretenimento (${this.getSize("entretainment")})`, value: this.getCategory("entretainment"), inline: true },
+                { name: `<:cute_yay:901111399328124928> Entretenimento (${this.getSize("entertainment")})`, value: this.getCategory("entertainment"), inline: true },
                 { name: `<:DiscordStaff:731947814246154240> Utilitários (${this.getSize("utils")})`, value: this.getCategory("utils"), inline: true },
             )
 
             await interaction.reply({ embeds: [embed] });
-
     }
 
     getCategory(category) {
