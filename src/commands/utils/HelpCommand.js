@@ -21,13 +21,13 @@ module.exports = class HelpCommand extends Command {
             .setDescription("Aqui estão todos os comandos disponíveis para você usar")
             .addFields(
                 { name: `💵 Economia (${this.getSize("economy")})`, value: this.getCategory("economy"), inline: true },
-                { name: `🗣 Social (${this.getSize("social")})`, value: this.getCategory("social"), inline: true },
-                { name: `💥 Ações (${this.getSize("actions")})`, value: this.getCategory("actions"), inline: true },
-                { name: `🖼 Imagens (${this.getSize("images")})`, value: this.getCategory("images"), inline: true },
-                { name: `🛡 Moderação (${this.getSize("mod")})`, value: this.getCategory("mod"), inline: true },
-                { name: `⛏ Minecraft (${this.getSize("mod")})`, value: this.getCategory("mod"), inline: true },
+                { name: `<:DiscordStaff:731947814246154240> Social e Economia (${this.getSize("social")})`, value: this.getCategory("social"), inline: true },
+                { name: `<:DiscordBoost:723225840548184195> Ações (${this.getSize("actions")})`, value: this.getCategory("actions"), inline: true },
+                { name: `<a:a_bongocat:768500700551315487> Imagens (${this.getSize("images")})`, value: this.getCategory("images"), inline: true },
+                { name: `${this.client.emotes.denied} Moderação (${this.getSize("mod")})`, value: this.getCategory("mod"), inline: true },
+                { name: `⛏ Minecraft (${this.getSize("mine")})`, value: this.getCategory("mine"), inline: true },
                 { name: `<:cute_yay:901111399328124928> Entretenimento (${this.getSize("entretainment")})`, value: this.getCategory("entretainment"), inline: true },
-                { name: `🔧 Utilitários (${this.getSize("utils")})`, value: this.getCategory("utils"), inline: true },
+                { name: `<:DiscordStaff:731947814246154240> Utilitários (${this.getSize("utils")})`, value: this.getCategory("utils"), inline: true },
             )
 
             await interaction.reply({ embeds: [embed] });
