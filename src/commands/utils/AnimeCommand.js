@@ -8,7 +8,7 @@ module.exports = class AnimeCommand extends Command {
         super(client, {
             name: "anime",
             description: "Pesquise por um anime",
-            category: "Utils",
+            category: "utils",
             dev: false,
             data: new SlashCommandBuilder()
             .setName("anime")

@@ -8,7 +8,7 @@ module.exports = class ProfileCommand extends Command {
         super(client, {
             name: "profile",
             description: "Veja seu perfil",
-            category: "Social",
+            category: "social",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("profile")

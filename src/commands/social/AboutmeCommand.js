@@ -7,7 +7,7 @@ module.exports = class AboutmeCommand extends Command {
         super(client, {
             name: 'aboutme',
             description: "Altera seu sobre mim",
-            category: "Social",
+            category: "social",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName('aboutme')

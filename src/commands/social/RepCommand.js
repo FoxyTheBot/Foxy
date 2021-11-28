@@ -7,7 +7,7 @@ module.exports = class RepCommand extends Command {
         super(client, {
             name: "rep",
             description: "Dê reputações para alguém",
-            category: "Social",
+            category: "social",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("rep")

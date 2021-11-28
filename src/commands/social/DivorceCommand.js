@@ -7,7 +7,7 @@ module.exports = class DivorceCommand extends Command {
         super(client, {
             name: "divorce",
             description: "Divorciar-se",
-            category: "Social",
+            category: "social",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("divorce")

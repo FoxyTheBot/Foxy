@@ -8,6 +8,7 @@ module.exports = class KissCommand extends Command {
         super(client, {
             name: "kiss",
             description: "Beijar alguém",
+            category: "actions",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("kiss")

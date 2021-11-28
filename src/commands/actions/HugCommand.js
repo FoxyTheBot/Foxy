@@ -8,6 +8,7 @@ module.exports = class HugCommand extends Command {
         super(client, {
             name: "hug",
             description: "Abraçar alguém",
+            category: "actions",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("hug")

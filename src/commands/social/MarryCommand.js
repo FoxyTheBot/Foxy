@@ -7,7 +7,7 @@ module.exports = class MarryCommand extends Command {
         super(client, {
             name: "marry",
             description: "Case com algum usuário",
-            category: "Social",
+            category: "social",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("marry")

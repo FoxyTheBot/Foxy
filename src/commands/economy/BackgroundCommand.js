@@ -9,7 +9,7 @@ module.exports = class BackgroundCommand extends Command {
         super(client, {
             name: "background",
             description: "Adicione um background para o seu perfil",
-            category: "Economia",
+            category: "economy",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("background")

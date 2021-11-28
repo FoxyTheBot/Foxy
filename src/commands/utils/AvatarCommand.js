@@ -7,7 +7,7 @@ module.exports = class AvatarCommand extends Command {
         super(client, {
             name: "avatar",
             description: "Mostra o avatar de um usuário",
-            category: "Utils",
+            category: "utils",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("avatar")
