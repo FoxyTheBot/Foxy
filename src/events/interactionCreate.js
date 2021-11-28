@@ -14,6 +14,7 @@ module.exports = class InteractionCreate {
                 try {
                     command.execute(interaction)
                 } catch(e) {
+                    console.error(e);
                     const errorEmbed = new MessageEmbed()
                     .setColor("RED")
                     .setTitle("Erro ao executar comando!")
