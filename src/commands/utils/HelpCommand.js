@@ -20,8 +20,17 @@ module.exports = class HelpCommand extends Command {
             .setTitle("Menu de ajuda")
             .setDescription("Aqui estão todos os comandos disponíveis para você usar")
             .addFields(
-                { name: ""}
+                { name: `💵 Economia (${this.getSize("economy")})`, value: this.getCategory("economy"), inline: true },
+                { name: `🗣 Social (${this.getSize("social")})`, value: this.getCategory("social"), inline: true },
+                { name: `💥 Ações (${this.getSize("actions")})`, value: this.getCategory("actions"), inline: true },
+                { name: `🖼 Imagens (${this.getSize("images")})`, value: this.getCategory("images"), inline: true },
+                { name: `🛡 Moderação (${this.getSize("mod")})`, value: this.getCategory("mod"), inline: true },
+                { name: `⛏ Minecraft (${this.getSize("mod")})`, value: this.getCategory("mod"), inline: true },
+                { name: `<:cute_yay:901111399328124928> Entretenimento (${this.getSize("entretainment")})`, value: this.getCategory("entretainment"), inline: true },
+                { name: `🔧 Utilitários (${this.getSize("utils")})`, value: this.getCategory("utils"), inline: true },
             )
+
+            await interaction.reply({ embeds: [embed] });
 
     }
 
