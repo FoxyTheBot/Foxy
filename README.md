@@ -32,14 +32,15 @@ Crie um arquivo de configuração para a Foxy chamado config.json e use o seguin
 
 ```json
 {
-  "prefix": "<prefixo>",
-  "token": "<token>",
+  "devs": ["<ID-do-desenvolvedor"],
+  "prefix": "<prefixo-do-bot> (Não é necessário)",
+  "token": "<token-do-bot>",
   "uri": "<uri-do-mongodb>",
 
-  "logsWebhook": {
-    "id": "<id-do-webhook>",
-    "token": "<token-do-webhook>"
-  }
+  "webhooks": {
+    "guilds": "<url-do-webhook>",
+    "suggestions": "<url-do-webhook>"
+  } 
 }
 ```
 
