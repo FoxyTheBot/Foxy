@@ -1,5 +1,4 @@
 const Canvas = require("canvas");
-const { MessageAttachment } = require("discord.js");
 
 module.exports = class GenerateImage {
     constructor(client, user, data, width, height) {
@@ -10,7 +9,7 @@ module.exports = class GenerateImage {
         this.height = height;
     }
 
-    async createProfile() {
+    async renderProfile() {
         var userAboutme = this.data.aboutme;
         if (!userAboutme) userAboutme = "Foxy é minha amiga (você pode alterar isso usando /aboutme)!";
 
@@ -21,7 +20,7 @@ module.exports = class GenerateImage {
 
         const canvas = Canvas.createCanvas(this.width, this.height);
         const ctx = canvas.getContext("2d");
-        const background = await Canvas.loadImage(`./src/assets/backgrounds/${this.data.background}`);
+        const background = await Canvas.loadImage(`https://cdn.foxywebsite.ml/backgrounds/${this.data.background}`);
 
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
