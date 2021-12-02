@@ -27,7 +27,7 @@ module.exports = class HugCommand extends Command {
             .setColor("RANDOM")
             .setDescription(`${interaction.user} abraçou ${user}`)
             .setImage(img.url)
-            
+
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
