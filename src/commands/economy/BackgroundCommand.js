@@ -40,7 +40,7 @@ module.exports = class BackgroundCommand extends Command {
         if (!background) return interaction.reply("Código inválido");
 
         const bg = await userData.backgrounds;
-        if (bg.includes(background.filename)) return interaction.reply("Você já tem esse background, bobinho");
+        if (bg.includes(codeString)) return interaction.reply("Você já tem esse background, bobinho");
         if (background.onlydevs && !this.client.config.owners.includes(interaction.user.id)) return interaction.reply("Desculpe, mas esse background só pode ser comprado por desenvolvedores.");
 
         const row = new MessageActionRow()
@@ -58,17 +58,7 @@ module.exports = class BackgroundCommand extends Command {
             .addField("💵 Preço", `${background.foxcoins} FoxCoins`, true)
             .setFooter(`Raridade: ${background.rarity}`);
 
-        const bExampleExists = await fs.existsSync(`./src/assets/backgrounds/examples/${background.filename}`);
-
-        var img;
-
-        if (bExampleExists) {
-            img = `./src/assets/backgrounds/examples/${background.filename}`;
-        } else {
-            img = `./src/assets/backgrounds/${background.filename}`;
-        }
-
-        const attachment = await new MessageAttachment(img, 'background.png');
+        const attachment = await new MessageAttachment(`https://cdn.foxywebsite.ml/backgrounds/${codeString}`, 'background.png');
 
         bgInfo.setImage("attachment://background.png");
 
@@ -85,8 +75,8 @@ module.exports = class BackgroundCommand extends Command {
                     return;
                 } else {
                     userData.balance -= background.foxcoins;
-                    userData.background = background.filename;
-                    userData.backgrounds.push(background.filename);
+                    userData.background = codeString;
+                    userData.backgrounds.push(codeString);
                     userData.save();
                     interaction.followUp({ content: "Você comprou o background, ele foi definido automaticamente :D", ephemeral: true });
                     i.deferUpdate();
