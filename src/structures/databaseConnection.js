@@ -45,8 +45,8 @@ module.exports = class DatabaseConnection {
                 marriedWith: null,
                 repCount: 0,
                 lastRep: null,
-                background: "default.png",
-                backgrounds: ["default.png"]
+                background: "default",
+                backgrounds: ["default"]
             }).save();
         }
 
