@@ -17,7 +17,7 @@ module.exports = class AtmCommand extends Command {
 
     async execute(interaction) {
         const user = await interaction.options.getUser("user") || interaction.user;
-        const userData = await this.client.database.getDocument(user.id);
+        const userData = await this.client.database.getUser(user.id);
         const money = await userData.balance;
 
         interaction.reply(`💵 **|** ${user} possui ${money} FoxCoins`);

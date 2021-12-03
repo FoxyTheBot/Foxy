@@ -25,7 +25,7 @@ module.exports = class DatabaseConnection {
         this.user = mongoose.model('user', userSchema);
         this.client = client;
     }
-    async getDocument(userID) {
+    async getUser(userID) {
         const user = await this.client.users.fetch(userID);
 
         if (!user) return null;

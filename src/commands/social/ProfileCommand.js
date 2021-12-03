@@ -20,7 +20,7 @@ module.exports = class ProfileCommand extends Command {
     async execute(interaction) {
         const user = interaction.options.getUser("user") || interaction.user;
         interaction.reply("Gerando perfil...")
-        const userData = await this.client.database.getDocument(user.id);
+        const userData = await this.client.database.getUser(user.id);
         const canvasGenerator = new GenerateImage(this.client, user, userData, 1436, 884);
         const profile = new MessageAttachment(await canvasGenerator.renderProfile(), "foxy_profile.png");
 

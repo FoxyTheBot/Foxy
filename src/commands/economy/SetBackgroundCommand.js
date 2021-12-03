@@ -17,7 +17,7 @@ module.exports = class SetBackgroundCommand extends Command {
 
     async execute(interaction) {
         const string = interaction.options.getString("background");
-        const userData = await this.client.database.getDocument(interaction.user.id)
+        const userData = await this.client.database.getUser(interaction.user.id)
 
         if (string === "list") {
             const bgs = userData.backgrounds;

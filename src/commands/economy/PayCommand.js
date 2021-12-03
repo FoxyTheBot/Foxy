@@ -19,8 +19,8 @@ module.exports = class PayCommand extends Command {
     async execute(interaction) {
         const amount = interaction.options.getNumber("amount");
         const user = interaction.options.getUser("user");
-        const userData = await this.client.database.getDocument(interaction.user.id);
-        const mentionData = await this.client.database.getDocument(user.id);
+        const userData = await this.client.database.getUser(interaction.user.id);
+        const mentionData = await this.client.database.getUser(user.id);
         const foxCoins = amount;
         const value = Math.round(foxCoins);
 

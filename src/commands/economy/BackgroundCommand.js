@@ -20,7 +20,7 @@ module.exports = class BackgroundCommand extends Command {
 
     async execute(interaction) {
         const codeString = await interaction.options.getString("code");
-        const userData = await this.client.database.getDocument(interaction.user.id);
+        const userData = await this.client.database.getUser(interaction.user.id);
 
         var bgDesc = "";
         const bgList = new MessageEmbed()

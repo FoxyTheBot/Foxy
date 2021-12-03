@@ -18,7 +18,7 @@ module.exports = class DailyCommand extends Command {
     }
 
     async execute(interaction) {
-        const userData = await this.client.database.getDocument(interaction.user.id);
+        const userData = await this.client.database.getUser(interaction.user.id);
 
         const timeout = 43200000;
         var amount = Math.floor(Math.random() * 3200);

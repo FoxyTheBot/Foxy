@@ -20,20 +20,20 @@ module.exports = class RepCommand extends Command {
         const user = await interaction.options.getUser("user");
         if (user === interaction.user) return interaction.reply(`${this.client.emotes.error} | Você não pode dar reputação para si mesmo!`);
 
-        const userData = await this.client.database.getDocument(user.id);
-        const authorData = await this.client.database.getDocument(interaction.user.id);
+        const userData = await this.client.database.getUser(user.id);
+        const authorData = await this.client.database.getUser(interaction.user.id);
 
         const repCooldown = 3600000;
 
         if (repCooldown - (Date.now() - authorData.lastRep) > 0) {
-        const currentCooldown = ms(repCooldown - (Date.now() - authorData.lastRep));
-        return interaction.reply(`${this.client.emotes.error} | Você já deu reputação para alguém tente novamente em **${currentCooldown}**`)  
-    } else {
-        userData.repCount++;
-        authorData.lastRep = Date.now();
-        await userData.save();
-        await authorData.save();
-        return interaction.reply(`${this.client.emotes.success} | Você deu reputação para ${user.username}!`);
-    }
+            const currentCooldown = ms(repCooldown - (Date.now() - authorData.lastRep));
+            return interaction.reply(`${this.client.emotes.error} | Você já deu reputação para alguém tente novamente em **${currentCooldown}**`)
+        } else {
+            userData.repCount++;
+            authorData.lastRep = Date.now();
+            await userData.save();
+            await authorData.save();
+            return interaction.reply(`${this.client.emotes.success} | Você deu reputação para ${user.username}!`);
+        }
     }
 }

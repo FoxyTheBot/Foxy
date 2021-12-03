@@ -18,7 +18,7 @@ module.exports = class AboutmeCommand extends Command {
 
     async execute(interaction) {
         const aboutme = await interaction.options.getString('aboutme');
-        const userData = await this.client.database.getDocument(interaction.user.id);
+        const userData = await this.client.database.getUser(interaction.user.id);
 
         userData.aboutme = aboutme;
         userData.save();

@@ -20,12 +20,12 @@ module.exports = class MarryCommand extends Command {
         const user = await interaction.options.getUser("user");
 
         if (user === interaction.user) return interaction.reply(`${this.client.emotes.error} | Você não pode casar com si mesmo!`);
-        const authorData = await this.client.database.getDocument(interaction.user.id);
+        const authorData = await this.client.database.getUser(interaction.user.id);
         if (authorData.marriedWith) return interaction.reply(`${this.client.emotes.error} | Você já está casado com alguém!`);
         if (user === this.client.user) return interaction.reply(`${this.client.emotes.scared} | Nah! Eu não quero casar com você`);
         if (user.id === authorData.marriedWith) return interaction.reply(`${this.client.emotes.error} | Você já está casado com ${user.username}`);
 
-        const userData = await this.client.database.getDocument(user.id);
+        const userData = await this.client.database.getUser(user.id);
         if (userData.marriedWith) return interaction.reply(`${this.client.emotes.error} | ${user.username} já está casado com alguém!`);
 
         const row = new MessageActionRow()
