@@ -40,7 +40,11 @@ module.exports = class DailyCommand extends Command {
 
             const money = await userData.balance;
 
-            interaction.reply(`${this.client.emotes.daily} **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`);
+            if (userData.premium) {
+                interaction.reply(`${this.client.emotes.daily} **|** Você ia ganhar ${amount - 4628} FoxCoins mas graças ao seu premium você ganhou ${amount} FoxCoins e tem ${money} FoxCoins`)
+            } else {
+                interaction.reply(`${this.client.emotes.daily} **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`);
+            }
         }
     }
 }
