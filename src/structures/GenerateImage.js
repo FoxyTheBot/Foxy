@@ -14,7 +14,7 @@ module.exports = class GenerateImage {
         if (!userAboutme) userAboutme = "Foxy é minha amiga (você pode alterar isso usando /aboutme)!";
 
         if (userAboutme.length > 85) {
-            const aboutme = userAboutme.match(/.{1,95}/g);
+            const aboutme = userAboutme.match(/.{1,85}/g);
             userAboutme = aboutme.join("\n");
         }
 
