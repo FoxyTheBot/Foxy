@@ -11,7 +11,7 @@ module.exports = class SetBackgroundCommand extends Command {
             data: new SlashCommandBuilder()
                 .setName("setbackground")
                 .setDescription("Define o fundo do seu perfil.")
-                .addStringOption(option => option.setName("background").setDescription("Define o fundo do seu perfil.").setRequired(true))
+                .addStringOption(option => option.setName("background").setDescription("Define o fundo do seu perfil.").setRequired(false))
         })
     }
 
@@ -19,7 +19,7 @@ module.exports = class SetBackgroundCommand extends Command {
         const string = interaction.options.getString("background");
         const userData = await this.client.database.getUser(interaction.user.id)
 
-        if (string === "list") {
+        if (!string) {
             const bgs = userData.backgrounds;
             const bgList = bgs.join('\n');
             const embed = new MessageEmbed()
