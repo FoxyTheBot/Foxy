@@ -14,9 +14,9 @@ module.exports = class RegisterCommands {
         const commandFolders = fs.readdirSync(`${global.dir}/src/commands/`);
 
         for (const folder of commandFolders) {
-            const commandFiles = fs.readdirSync(global.dir+`/src/commands/${folder}`);
+            const commandFiles = fs.readdirSync(global.dir + `/src/commands/${folder}`);
             for (const file of commandFiles) {
-                const command = new (require(global.dir+`/src/commands/${folder}/${file}`))(this);
+                const command = new (require(global.dir + `/src/commands/${folder}/${file}`))(this);
                 commands.push(command.config.data.toJSON());
             }
         }
@@ -28,7 +28,7 @@ module.exports = class RegisterCommands {
                 console.info("[SLASH] - Registrando comandos...");
 
                 await rest.put(
-                    Routes.applicationGuildCommands(this.clientId, "<id-do-servidor>"),
+                    Routes.applicationGuildCommands(this.clientId, "768267522670723094"),
                     // Se quiser registrar comandos globais troque "apllicationGuildCommands(this.clientId, "id do servidor")" para "applicationCommands(this.clientId)"
                     { body: commands },
                 );

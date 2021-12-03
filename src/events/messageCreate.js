@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageButton, MessageAttachment } = require('discord.js');
+const { MessageActionRow, MessageButton, MessageAttachment } = require('discord.js');
 
 module.exports = class MessageCreate {
     constructor(client) {
@@ -16,7 +16,7 @@ module.exports = class MessageCreate {
         );
         const attachment = new MessageAttachment("https://cdn.foxywebsite.ml/alert/error.mp4", "sejaslash.mp4");
         if (message.content.startsWith(this.client.config.prefix)) {
-            return message.reply({ files: [attachment], components: [row], ephemeral: true });
+            return message.reply({ files: [attachment], components: [row] });
         }
     }
 }

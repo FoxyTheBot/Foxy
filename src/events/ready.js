@@ -11,7 +11,6 @@ module.exports = class Ready {
             { name: "💖 | Fui criada pelo Win#6611", type: "LISTENING" },
             { name: `😍 | Me adicione usando /invite`, type: "WATCHING" },
             { name: `🤔 | Precisa de ajuda? Utilize /help`, type: "STREAMING", url: "https://www.twitch.tv/wing4merbr" },
-            { name: `🐛 | Se você encontrou um bug use /report para reportar falhas`, type: "PLAYING" },
             { name: "🍰 | Minha comida preferida é bolo 💖", type: 5 },
         ];
 
