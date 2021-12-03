@@ -38,10 +38,10 @@ module.exports = class MarryCommand extends Command {
         interaction.reply({ content: `${this.client.emotes.heart} | ${user} Você recebeu um pedido de casamento de ${interaction.user}, você tem 1 minuto para aceitar!`, components: [row] });
 
         const filter = i => i.customId === 'accept' && i.user.id === user.id;
-        const collector = interaction.channel.createMessageCollector(filter, { time: 60000 });
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000, max: 1 });
 
         collector.on("collect", async i => {
-            interaction.reply(`${this.client.emotes.success} | Vocês estão casados! Felicidades para o casal! ^^`);
+            interaction.followUp(`${this.client.emotes.success} | Vocês estão casados! Felicidades para o casal! ^^`);
             userData.marriedWith = interaction.user.id;
             authorData.marriedWith = user.id;
             await userData.save();
