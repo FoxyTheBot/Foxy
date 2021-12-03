@@ -13,19 +13,19 @@ module.exports = class InteractionCreate {
             new Promise((res, rej) => {
                 try {
                     command.execute(interaction)
-                } catch(e) {
+                } catch (e) {
                     console.error(e);
                     const errorEmbed = new MessageEmbed()
-                    .setColor("RED")
-                    .setTitle("Erro ao executar comando!")
-                    .setDescription(`\ \ \`\`\`js\n${e}\n\`\`\``)
+                        .setColor("RED")
+                        .setTitle("Erro ao executar comando!")
+                        .setDescription(`\ \ \`\`\`js\n${e}\n\`\`\``)
                     interaction.reply({ embeds: [errorEmbed], ephemeral: true })
                 }
             })
         }
 
         try {
-            const document = await this.client.database.getDocument(interaction.user.id);
+            const document = await this.client.database.getUser(interaction.user.id);
 
             if (document.isBanned) {
                 const bannedEmbed = new MessageEmbed()
