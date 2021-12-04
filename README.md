@@ -1,5 +1,5 @@
 <p align="center">
-<img width="25%" style="border-radius: 50%;" src="https://foxywebsite.ml/assets/images/Foxy.png">
+<img width="25%" src="https://foxywebsite.ml/assets/images/Foxy.png">
 <br>
 <h1 align="center">Foxy</h1>
 
