@@ -30,6 +30,7 @@
     "mongoose": "^6.0.13",
     "ms": "^2.1.3",
     "nekos.life": "^2.0.7",
+    "noblox.js": "^4.12.0",
     "weather-js": "^2.0.0"
   },
   "devDependencies": {
