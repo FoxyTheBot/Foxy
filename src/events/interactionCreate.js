@@ -10,9 +10,9 @@ module.exports = class InteractionCreate {
         const command = this.client.commands.get(interaction.commandName);
 
         function FoxyHandler() {
-            new Promise((res, rej) => {
+            new Promise(async (res, rej) => {
                 try {
-                    command.execute(interaction)
+                    await command.execute(interaction)
                 } catch (e) {
                     console.error(e);
                     const errorEmbed = new MessageEmbed()
