@@ -24,7 +24,7 @@ module.exports = class DailyCommand extends Command {
         var amount = Math.floor(Math.random() * 3200);
 
         if (userData.premium) {
-            amount = amount + 4628;
+            amount = amount + 500;
         }
 
         const daily = await userData.lastDaily;
@@ -41,7 +41,7 @@ module.exports = class DailyCommand extends Command {
             const money = await userData.balance;
 
             if (userData.premium) {
-                interaction.reply(`${this.client.emotes.daily} **|** Você ia ganhar ${amount - 4628} FoxCoins mas graças ao seu premium você ganhou ${amount} FoxCoins e tem ${money} FoxCoins`)
+                interaction.reply(`${this.client.emotes.daily} **|** Você ia ganhar ${amount - 500} FoxCoins mas graças ao seu premium você ganhou ${amount} FoxCoins e tem ${money} FoxCoins`)
             } else {
                 interaction.reply(`${this.client.emotes.daily} **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`);
             }
