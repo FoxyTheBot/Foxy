@@ -2,7 +2,7 @@
   "name": "foxy",
   "version": "2022.07.26-unstable",
   "description": "Um simples bot para o Discord",
-  "main": "Main.js",
+  "main": "shard.js",
   "scripts": {
     "test": "node ."
   },
