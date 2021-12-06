@@ -32,7 +32,7 @@ module.exports = class HelpCommand extends Command {
                     { name: `<:cute_yay:901111399328124928> Entretenimento (${this.getSize("entertainment")})`, value: this.getCategory("entertainment"), inline: true },
                     { name: `<:DiscordStaff:731947814246154240> Utilitários (${this.getSize("utils")})`, value: this.getCategory("utils"), inline: true },
                 )
-
+                .setFooter("Alguns comandos podem não aparecer por serem sub comandos")
             await interaction.reply({ embeds: [embed] });
         } else if (subcommand === "bot") {
             const embed = new MessageEmbed()
