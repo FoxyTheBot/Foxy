@@ -17,23 +17,24 @@ module.exports = class GirlfriendCommand extends Command {
 
     async execute(interaction) {
         const user = interaction.options.getUser("user");
+        await interaction.deferReply();
 
         var avatar;
         if (!user) {
             avatar = "https://cdn.discordapp.com/attachments/784852925989126215/862127934332338176/unknown.png";
         } else {
-            avatar = user.displayAvatarURL({ dynamic: false, format: 'png' });
+            avatar = user.displayAvatarURL({ dynamic: true, format: 'png' });
         }
 
-        const background = await Canvas.loadImage("./src/assets/namorada.png");
-        const userAvatar = avatar;
+        const background = await Canvas.loadImage("https://cdn.foxywebsite.ml/memes/namorada.png");
+        const avatarImg = await Canvas.loadImage(avatar);
         const canvas = Canvas.createCanvas(500, 510);
         const ctx = canvas.getContext('2d');
 
-        ctx.drawImage(background, 0, 0, canva.width, canva.height);
-        ctx.drawImage(userAvatar, 20, 170, 200, 200);
+        ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(avatarImg, 20, 170, 200, 200);
 
         const attachment = new MessageAttachment(canvas.toBuffer(), 'minha_namorada.png');
-        await interaction.reply({ files: [attachment] });
+        await interaction.editReply({ files: [attachment] });
     }
 }

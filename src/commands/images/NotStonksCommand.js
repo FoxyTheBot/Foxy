@@ -20,7 +20,8 @@ module.exports = class NotStonks extends Command {
         const canvas = Canvas.createCanvas(800, 600);
         const ctx = canvas.getContext('2d');
 
-        const background = await Canvas.loadImage('./src/assets/notstonks.png');
+        await interaction.deferReply();
+        const background = await Canvas.loadImage('https://cdn.foxywebsite.ml/memes/notstonks.png');
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         ctx.strokeStyle = '#74037b';
@@ -37,6 +38,6 @@ module.exports = class NotStonks extends Command {
 
         const attachment = new MessageAttachment(canvas.toBuffer(), 'notstonks.png');
 
-        await interaction.reply({ files: [attachment] });
+        await interaction.editReply({ files: [attachment] });
     }
 }

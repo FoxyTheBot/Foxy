@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command");
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { MessageAttachment } = require("discord.js");
 const Canvas = require("canvas");
 
 module.exports = class PerfectCommand extends Command {
@@ -17,6 +18,7 @@ module.exports = class PerfectCommand extends Command {
     async execute(interaction) {
         const user = interaction.options.getUser("user");
 
+        await interaction.deferReply();
         const canvas = Canvas.createCanvas(467, 400);
         const ctx = canvas.getContext('2d');
 
@@ -27,14 +29,14 @@ module.exports = class PerfectCommand extends Command {
             avatar = user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 })
         }
 
-        const background = await canvas.loadImage("./src/assets/perfeito.png");
+        const background = await Canvas.loadImage('https://cdn.foxywebsite.ml/memes/perfeito.png');
         ctx.drawImage(background, 0, 0, 467, 400);
 
-        const userAvatar = await canvas.loadImage(avatar);
+        const userAvatar = await Canvas.loadImage(avatar);
         ctx.drawImage(userAvatar, 400 - 177, 30 + 20, 400 - 178, 400 - 179)
 
         const attachment = new MessageAttachment(canvas.toBuffer(), 'pf.png');
 
-        await interaction.reply({ files: [attachment] });
+        await interaction.editReply({ files: [attachment] });
     }
 }

@@ -20,7 +20,8 @@ module.exports = class ErrorCommand extends Command {
         const canvas = Canvas.createCanvas(380, 208);
         const ctx = canvas.getContext("2d");
 
-        const background = await Canvas.loadImage("./src/assets/Windows.png");
+        await interaction.deferReply();
+        const background = await Canvas.loadImage("https://cdn.foxywebsite.ml/memes/windows.png");
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 
@@ -44,6 +45,6 @@ module.exports = class ErrorCommand extends Command {
 
         const attachment = await new MessageAttachment(canvas.toBuffer(), 'error.png');
 
-        await interaction.reply({ files: [attachment] });
+        await interaction.editReply({ files: [attachment] });
     }
 }

@@ -20,7 +20,8 @@ module.exports = class LaranjoCommand extends Command {
         const canvas = Canvas.createCanvas(700, 600);
         const ctx = canvas.getContext('2d');
 
-        const background = await Canvas.loadImage('./src/assets/laranjo.jpeg');
+        await interaction.deferReply();
+        const background = await Canvas.loadImage('https://cdn.foxywebsite.ml/memes/laranjo.png');
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         ctx.strokeStyle = '#74037b';
@@ -37,6 +38,6 @@ module.exports = class LaranjoCommand extends Command {
 
         const attachment = new MessageAttachment(canvas.toBuffer(), 'laranja_laranjo.png');
 
-        await interaction.reply({ files: [attachment] });
+        await interaction.editReply({ files: [attachment] });
     }
 }
