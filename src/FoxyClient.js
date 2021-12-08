@@ -7,10 +7,10 @@ module.exports = class FoxyClient extends Client {
     constructor(options) {
         super(options);
         this.commands = new Collection();
-        this.emotes = require("./structures/emotes.json")
+        this.emotes = require("./structures/emotes.json");
         this.config = require("../config.json");
         this.database = new DatabaseConnection(this.config.uri, { useNewUrlParser: true, useUnifiedTopology: true, writeConcern: "majority" }, this);
-        this.webhookClient = new WebhookClient(this)
+        this.webhookClient = new WebhookClient(this);
     }
 
     login(token) {
