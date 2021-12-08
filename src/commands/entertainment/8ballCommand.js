@@ -15,8 +15,8 @@ module.exports = class EightBallCommand extends Command {
 
     async execute(interaction) {
         const results = ['Sim', 'Não', 'Talvez', 'Com certeza!', 'Provavelmente sim', 'Provavelmente não', 'Não entendi, pergunte novamente'];
-        const result = Math.floor((Math.random() * results.length));
+        const result = results[Math.floor(Math.random() * results.length)];
 
-        await interaction.reply(results[result])
+        await interaction.reply(result)
     }
 }
