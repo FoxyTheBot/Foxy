@@ -4,6 +4,6 @@ module.exports = class ShardDisconnect {
     }
 
     async run(shard) {
-        console.warn(`Shard ${shard} foi desconectada do Discord`);
+        console.warn(`Shard ${Number(shard) + 1} foi desconectada do Discord`);
     }
 }
