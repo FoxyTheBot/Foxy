@@ -43,7 +43,7 @@ module.exports = class DivorceCommand extends Command {
             await userData.save();
             await marriedData.save();
             i.deferUpdate();
-            return interaction.followUp("Você se divorciou com sucesso!");
+            return interaction.followUp(`${this.client.emotes.error} **|** ...Então é isso, se divorciar é sim uma coisa triste, Da próxima vez ame alguém que realmente mereça e respeite você, sim isso parece ser difícil pois o amor é algo cego e incontrolável... Mas é melhor estar sozinho do que mal acompanhado, eu confio em você! :heart:`);
         });
     }
 }
