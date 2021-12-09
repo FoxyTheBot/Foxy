@@ -4,6 +4,6 @@ module.exports = class ShardError {
     }
 
     async run(shard, err) {
-        console.error(`[SHARD] Ocorreu um erro na shard ${Number(shard) + 1}! | ${err}`);
+        console.error(`\x1b[37m\x1b[105mSHARD\x1b[0m: Ocorreu um erro na shard ${Number(shard) + 1}! | ${err}`);
     }
 }
