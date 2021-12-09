@@ -4,6 +4,6 @@ module.exports = class ShardError {
     }
 
     async run(shard, err) {
-        console.error(`[SHARD] Ocorreu um erro na shard ${shard.id}! | ${err}`);
+        console.error(`[SHARD] Ocorreu um erro na shard ${shard}! | ${err}`);
     }
 }

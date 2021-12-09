@@ -4,6 +4,6 @@ module.exports = class ShardReconnecting {
     }
 
  async run(shard) {
-     console.info(`Shard ${shard.id} está tentando se reconectar ao Discord`);
+     console.info(`Shard ${shard} está tentando se reconectar ao Discord`);
  }
 }
