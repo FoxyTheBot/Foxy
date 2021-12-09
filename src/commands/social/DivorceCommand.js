@@ -18,14 +18,11 @@ module.exports = class DivorceCommand extends Command {
     async execute(interaction) {
         const userData = await this.client.database.getUser(interaction.user.id);
         const marriedId = await userData.marriedWith;
-
-        if (!marriedId) {
-            return interaction.reply("Você não está casado!");
-        }
+        if (!marriedId) return interaction.reply("Você não está casado!");
 
         const marriedData = await this.client.database.getUser(marriedId);
         if(!marriedData) return interaction.reply(`O usuário não está no banco de dados!`);
-        
+
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
