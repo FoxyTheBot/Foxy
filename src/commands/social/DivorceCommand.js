@@ -21,7 +21,7 @@ module.exports = class DivorceCommand extends Command {
         if (!marriedId) return interaction.reply("Você não está casado!");
 
         const marriedData = await this.client.database.getUser(marriedId);
-        if(!marriedData) return interaction.reply(`O usuário não está no banco de dados!`);
+        if (!marriedData) return interaction.reply(`O usuário não está no banco de dados!`);
 
         const row = new MessageActionRow()
             .addComponents(
