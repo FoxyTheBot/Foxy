@@ -46,7 +46,6 @@ module.exports = class WebhookManager {
                 { name: "❌ | Problema", value: `\`${content}\`` }
             )
 
-        console.log(this.client.config.webhooks.issues)
         const issueWebhook = new WebhookClient({ url: this.client.config.webhooks.issues, disableEveryone: true });
         issueWebhook.send({
             username: interaction.user.username,
