@@ -39,7 +39,7 @@ module.exports = class UserCommand extends Command {
                 const row = new MessageActionRow()
                     .addComponents(
                         new MessageButton()
-                            .setLabel("Abrir no navegador")
+                            .setLabel("Abrir avatar no navegador")
                             .setStyle("LINK")
                             .setURL(`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=2048`)
                     )

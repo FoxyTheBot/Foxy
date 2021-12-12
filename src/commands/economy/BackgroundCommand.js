@@ -65,7 +65,7 @@ module.exports = class BackgroundCommand extends Command {
         interaction.reply({ embeds: [bgInfo], components: [row], files: [attachment] });
 
         const filter = i => i.customId === 'yes' && i.user.id === interaction.user.id;
-        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000, max: 1 });
 
         collector.on('collect', async i => {
             if (i.customId === 'yes') {

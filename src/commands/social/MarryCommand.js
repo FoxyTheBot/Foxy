@@ -41,7 +41,8 @@ module.exports = class MarryCommand extends Command {
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000, max: 1 });
 
         collector.on("collect", async i => {
-            interaction.followUp(`${this.client.emotes.success} | Vocês estão casados! Felicidades para o casal! ^^`);
+            i.deferUpdate();
+            i.followUp(`${this.client.emotes.success} | Vocês estão casados! Felicidades para o casal! ^^`);
             userData.marriedWith = interaction.user.id;
             authorData.marriedWith = user.id;
             await userData.save();
