@@ -32,16 +32,19 @@ Crie um arquivo de configuração para a Foxy chamado config.json e use o seguin
 
 ```json
 {
-  "devs": ["<ID-do-desenvolvedor"],
-  "prefix": "<prefixo-do-bot> (Não é necessário)",
-  "token": "<token-do-bot>",
-  "uri": "<uri-do-mongodb>",
+  "ownerId": "<SUA-ID>",
+  "clientId": "<ID-DO-BOT",
+  "prefix": "<Prefixo-do-bot",
+  "token": "<Token-do-bot>",
+  "mongouri": "<URI-do-MongoDB>",
+  "dblauth": "<Auth-do-Discordbotlist>",
 
-  "webhooks": {
-    "guilds": "<url-do-webhook>",
-    "suggestions": "<url-do-webhook>"
-  } 
-}
+    "webhooks": {
+        "guilds": "URL DO WEBHOOK",
+        "suggestions": "URL DO WEBHOOK",
+        "issues": "URL DO WEBHOOK"
+    }
+  }
 ```
 
 ### Configurando para primeiro uso:
