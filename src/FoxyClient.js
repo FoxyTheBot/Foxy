@@ -1,7 +1,7 @@
 const { Client, Collection } = require("discord.js");
 const fs = require("fs");
 const DatabaseConnection = require("./structures/databaseConnection");
-const WebhookClient = require("./structures/WebhookClient");
+const WebhookManager = require("./structures/WebhookManager");
 
 module.exports = class FoxyClient extends Client {
     constructor(options) {
@@ -9,8 +9,8 @@ module.exports = class FoxyClient extends Client {
         this.commands = new Collection();
         this.emotes = require("./structures/emotes.json");
         this.config = require("../config.json");
-        this.database = new DatabaseConnection(this.config.uri, { useNewUrlParser: true, useUnifiedTopology: true, writeConcern: "majority" }, this);
-        this.webhookClient = new WebhookClient(this);
+        this.database = new DatabaseConnection(this.config.mongouri, { useNewUrlParser: true, useUnifiedTopology: true, writeConcern: "majority" }, this);
+        this.WebhookManager = new WebhookManager(this);
     }
 
     login(token) {

@@ -4,6 +4,6 @@ module.exports = class GuildCreate {
     }
 
     async run(guild) {
-        this.client.webhookClient.guildCreate(guild);
+        this.client.WebhookManager.guildCreate(guild);
     }
 }

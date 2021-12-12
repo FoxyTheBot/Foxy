@@ -1,6 +1,6 @@
 const { WebhookClient, MessageEmbed } = require('discord.js');
 
-module.exports = class webhookClient {
+module.exports = class WebhookManager {
     constructor(client) {
         this.client = client;
     }
@@ -35,5 +35,23 @@ module.exports = class webhookClient {
 
         const guildWebhook = new WebhookClient({ url: this.client.config.webhooks.guilds, disableEveryone: true });
         guildWebhook.send({ embeds: [guildEmbed] });
+    }
+
+    async sendIssue(interaction, content) {
+        const issueEmbed = new MessageEmbed()
+            .setTitle(`${this.client.emotes.error} | Um erro foi reportado por um usuário`)
+            .addFields(
+                { name: "👤 | Usuário", value: `\`${interaction.user.tag} / ${interaction.user.id}\`` },
+                { name: "✨ | Servidor", value: `\`${interaction.guild.name} / ${interaction.guild.id}\`` },
+                { name: "❌ | Problema", value: `\`${content}\`` }
+            )
+
+        console.log(this.client.config.webhooks.issues)
+        const issueWebhook = new WebhookClient({ url: this.client.config.webhooks.issues, disableEveryone: true });
+        issueWebhook.send({
+            username: interaction.user.username,
+            avatarURL: interaction.user.displayAvatarURL(),
+            embeds: [issueEmbed]
+        });
     }
 }
