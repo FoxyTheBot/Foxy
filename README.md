@@ -32,9 +32,9 @@ Crie um arquivo de configuração para a Foxy chamado config.json e use o seguin
 
 ```json
 {
-  "ownerId": "<SUA-ID>",
-  "clientId": "<ID-DO-BOT",
-  "prefix": "<Prefixo-do-bot",
+  "ownerId": "<Sua-ID>",
+  "clientId": "<ID-Do-BOT>",
+  "prefix": "<Prefixo-do-bot>",
   "token": "<Token-do-bot>",
   "mongouri": "<URI-do-MongoDB>",
   "dblauth": "<Auth-do-Discordbotlist>",
