@@ -9,6 +9,10 @@ module.exports = class InteractionCreate {
         if (!interaction.isCommand()) return;
         const command = this.client.commands.get(interaction.commandName);
 
+        if (command.config.dev && !interaction.user.id.includes(this.client.config.ownerId)) {
+            return interaction.reply({ content: `:x: **|** Este comando é apenas para o meu desenvolvedor, bobinho!`, ephemeral: true });
+        }
+
         function FoxyHandler() {
             new Promise(async (res, rej) => {
                 try {
@@ -29,13 +33,13 @@ module.exports = class InteractionCreate {
 
             if (document.isBanned) {
                 const bannedEmbed = new MessageEmbed()
-                    .setTitle('Você foi banido(a) :DiscordBan:')
+                    .setTitle(`❌ | Você esta **banido(a)**`)
                     .setColor("RED")
-                    .setDescription('Você foi banido(a) de usar a Foxy em qualquer servidor no Discord! \n Caso seu ban foi injusto (o que eu acho muito difícil) você pode solicitar seu unban no meu [servidor de suporte](https://gg/kFZzmpD) \n **Leia os termos em** [Termos de uso](https://foxywebsite.ml/tos.html)')
-                    .addFields(
-                        { name: "Motivo do Ban:", value: document.banReason, inline: true }
-                    )
-                return interaction.reply({ embeds: [bannedEmbed] });
+                    .setDescription("Se você quiser fazer um apelo de ban você pode preencher este formulário (linkdoform) \n\n Recomendado você ler os [termos de uso](https://foxywebsite.ml/privacy)")
+                    .addField("Motivo do banimento:", document.banReason, true)
+                    .addField("Data do banimento", document.banData.toLocaleString())
+                    .setFooter("Será que você ainda pode se desculpar?")
+                return interaction.reply({ embeds: [bannedEmbed], ephemeral: true });
             }
 
             FoxyHandler();
