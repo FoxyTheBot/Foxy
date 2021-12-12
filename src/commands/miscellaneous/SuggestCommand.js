@@ -6,7 +6,7 @@ module.exports = class SuggestCommand extends Command {
         super(client, {
             name: "suggest",
             description: "Envia um sugestão para o desenvolvedor.",
-            category: "utils",
+            category: "misc",
             data: new SlashCommandBuilder()
                 .setName("suggest")
                 .setDescription("Envia um sugestão para o desenvolvedor.")
@@ -16,7 +16,7 @@ module.exports = class SuggestCommand extends Command {
 
     async execute(interaction) {
         const suggestion = interaction.options.getString("suggestion");
-        this.client.webhookClient.sendSuggestion(interaction, suggestion);
+        this.client.WebhookManager.sendSuggestion(interaction, suggestion);
         await interaction.reply(`Obrigada por me ajudar ${interaction.user}, sua sugestão foi enviada com sucesso! <:meow_blush:768292358458179595>`)
     }
 }

@@ -7,7 +7,7 @@ module.exports = class InviteCommand extends Command {
         super(client, {
             name: "invite",
             description: "Mostra o link para convidar o bot.",
-            category: "utils",
+            category: "misc",
             data: new SlashCommandBuilder()
                 .setName("invite")
                 .setDescription("Mostra o link para convidar o bot.")
