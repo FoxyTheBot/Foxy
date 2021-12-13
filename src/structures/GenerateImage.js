@@ -31,21 +31,25 @@ module.exports = class GenerateImage {
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`${this.user.username}`, canvas.width / 6.0, canvas.height / 9.5)
 
+        ctx.font = '60px sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(`Reps: ${this.data.repCount}`, canvas.width / 1.4, canvas.height / 10.5);
+
         ctx.font = '40px sans-serif';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(`Reps: ${this.data.repCount} \nFoxCoins: ${this.data.balance}`, canvas.width / 1.5, canvas.height / 7.0);
+        ctx.fillText(`💵 FoxCoins: ${this.data.balance}`, canvas.width / 6.0, canvas.height / 4.3);
 
         if (this.data.marriedWith) {
             const discordProfile = await this.client.users.fetch(this.data.marriedWith);
             ctx.font = '30px sans-serif';
             ctx.fillStyle = '#ffffff';
-            ctx.fillText(`💍 Casado com: ${discordProfile.tag}`, canvas.width / 6.0, canvas.height / 6.0);
+            ctx.fillText(`💍 Casado com: ${discordProfile.tag}\nDesde: ${this.data.marriedDate.toLocaleString()}`, canvas.width / 1.4, canvas.height / 6.8);
         }
 
         if (this.data.premium) {
             ctx.font = '30px sans-serif';
             ctx.fillStyle = '#ffffff';
-            ctx.fillText(`🔑 Premium`, canvas.width / 6.0, canvas.height / 4.5);
+            ctx.fillText(`🔑 Premium desde: ${this.data.premiumDate.toLocaleString()}`, canvas.width / 6.0, canvas.height / 6.0);
         }
 
         ctx.font = ('30px sans-serif');
