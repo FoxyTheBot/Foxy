@@ -5,7 +5,7 @@ module.exports = class TestCommand extends Command {
     constructor(client) {
         super(client, {
             name: "foxyban",
-            category: "utils",
+            category: "dev",
             dev: true,
             data: new SlashCommandBuilder()
                 .setName("foxyban")
