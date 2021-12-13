@@ -17,16 +17,16 @@ module.exports = class MarryCommand extends Command {
     }
 
     async execute(interaction) {
-        const user = await interaction.options.getUser("user");
+        const mentionedUser = await interaction.options.getUser("user");
 
-        if (user === interaction.user) return interaction.reply(`${this.client.emotes.error} | Você não pode casar com si mesmo!`);
+        if (mentionedUser === interaction.user) return interaction.reply(`${this.client.emotes.error} | Você não pode casar com si mesmo!`);
         const authorData = await this.client.database.getUser(interaction.user.id);
         if (authorData.marriedWith) return interaction.reply(`${this.client.emotes.error} | Você já está casado com alguém!`);
-        if (user === this.client.user) return interaction.reply(`${this.client.emotes.scared} | Nah! Eu não quero casar com você`);
-        if (user.id === authorData.marriedWith) return interaction.reply(`${this.client.emotes.error} | Você já está casado com ${user.username}`);
+        if (mentionedUser === this.client.user) return interaction.reply(`${this.client.emotes.scared} | Nah! Eu não quero casar com você`);
+        if (mentionedUser.id === authorData.marriedWith) return interaction.reply(`${this.client.emotes.error} | Você já está casado com ${user.username}`);
 
-        const userData = await this.client.database.getUser(user.id);
-        if (userData.marriedWith) return interaction.reply(`${this.client.emotes.error} | ${user.username} já está casado com alguém!`);
+        const userData = await this.client.database.getUser(mentionedUser.id);
+        if (userData.marriedWith) return interaction.reply(`${this.client.emotes.error} | ${mentionedUser.username} já está casado com alguém!`);
 
         const row = new MessageActionRow()
             .addComponents(
@@ -35,17 +35,17 @@ module.exports = class MarryCommand extends Command {
                     .setLabel(`Aceitar`)
                     .setStyle("SUCCESS"),
             )
-        interaction.reply({ content: `${this.client.emotes.heart} | ${user} Você recebeu um pedido de casamento de ${interaction.user}, você tem 1 minuto para aceitar!`, components: [row] });
+        interaction.reply({ content: `${this.client.emotes.heart} | ${mentionedUser} Você recebeu um pedido de casamento de ${interaction.user}, você tem 1 minuto para aceitar!`, components: [row] });
 
-        const filter = i => i.customId === 'accept' && i.user.id === user.id;
-        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000, max: 1 });
+        const filter = i => i.customId === 'accept' && i.user.id === mentionedUser.id;
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
 
         collector.on("collect", async i => {
             i.deferUpdate();
             i.followUp(`${this.client.emotes.success} | Vocês estão casados! Felicidades para o casal! ^^`);
             userData.marriedWith = interaction.user.id;
             userData.marriedDate = new Date();
-            authorData.marriedWith = user.id;
+            authorData.marriedWith = mentionedUser.id;
             authorData.marriedDate = new Date();
             await userData.save();
             await authorData.save();
