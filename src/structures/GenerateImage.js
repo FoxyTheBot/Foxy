@@ -43,7 +43,7 @@ module.exports = class GenerateImage {
             const discordProfile = await this.client.users.fetch(this.data.marriedWith);
             ctx.font = '30px sans-serif';
             ctx.fillStyle = '#ffffff';
-            ctx.fillText(`💍 Casado com: ${discordProfile.tag}\nDesde: ${this.data.marriedDate.toLocaleString()}`, canvas.width / 1.4, canvas.height / 6.8);
+            ctx.fillText(`💍 Casado com: ${discordProfile.tag}\nDesde: ${this.data.marriedDate.toLocaleString()}`, canvas.width / 1.4, canvas.height / 6.3);
         }
 
         if (this.data.premium) {
