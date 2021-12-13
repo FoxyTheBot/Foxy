@@ -44,7 +44,9 @@ module.exports = class MarryCommand extends Command {
             i.deferUpdate();
             i.followUp(`${this.client.emotes.success} | Vocês estão casados! Felicidades para o casal! ^^`);
             userData.marriedWith = interaction.user.id;
+            userData.marriedDate = new Date();
             authorData.marriedWith = user.id;
+            authorData.marriedDate = new Date();
             await userData.save();
             await authorData.save();
         });
