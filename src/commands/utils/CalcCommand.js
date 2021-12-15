@@ -11,7 +11,7 @@ module.exports = class CalcCommand extends Command {
             category: "utils",
             data: new SlashCommandBuilder()
                 .setName("calc")
-                .setDescription("Calcula uma expressão matemática.")
+                .setDescription("[🛠 Utils] Calcula uma expressão matemática.")
                 .addStringOption(option => option.setName("expression").setDescription("Expressão matemática").setRequired(true))
         })
     }

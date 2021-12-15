@@ -10,7 +10,7 @@ module.exports = class InviteCommand extends Command {
             category: "misc",
             data: new SlashCommandBuilder()
                 .setName("invite")
-                .setDescription("Mostra o link para convidar o bot.")
+                .setDescription("[🎉 Misc] Mostra o link para convidar o bot.")
         })
     }
 

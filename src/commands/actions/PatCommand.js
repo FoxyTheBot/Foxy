@@ -11,7 +11,7 @@ module.exports = class PatCommand extends Command {
             category: "actions",
             data: new SlashCommandBuilder()
                 .setName("pat")
-                .setDescription("Faça cafuné em alguém")
+                .setDescription("[👏 Roleplay] Faça cafuné em alguém")
                 .addUserOption(option => option.setName("user").setRequired(true).setDescription("O usuário que você quer pat"))
         })
     }

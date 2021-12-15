@@ -12,7 +12,7 @@ module.exports = class HugCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("hug")
-                .setDescription("Abraçar alguém")
+                .setDescription("[👏 Roleplay] Abraçar alguém")
                 .addUserOption(option => option.setName("user").setDescription("Mencione um usuário").setRequired(true))
         })
     }

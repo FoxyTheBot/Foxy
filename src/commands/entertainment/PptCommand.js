@@ -8,7 +8,7 @@ module.exports = class PptCommand extends Command {
             category: "entertainment",
             data: new SlashCommandBuilder()
             .setName("ppt")
-            .setDescription("Pedra papel tesoooooooowoura!")
+            .setDescription("[✨ Entertainment] Pedra papel tesoooooooowoura!")
             .addStringOption(option => option.setName("text").setDescription("Insira pedra papel ou tesoura").setRequired(true))
         })
     }

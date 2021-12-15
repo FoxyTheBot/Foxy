@@ -10,7 +10,7 @@ module.exports = class OurCommand extends Command {
             category: "image",
             data: new SlashCommandBuilder()
                 .setName("comunismo")
-                .setDescription("John Xina")
+                .setDescription("[🖼 Images] John Xina")
                 .addStringOption(option => option.setName("text").setDescription("Texto que será inserido na imagem").setRequired(true))
         })
     }

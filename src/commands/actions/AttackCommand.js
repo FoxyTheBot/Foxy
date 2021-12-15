@@ -9,7 +9,7 @@ module.exports = class AttackCommand extends Command {
             category: "actions",
             data: new SlashCommandBuilder()
                 .setName("attack")
-                .setDescription("Ataque alguém")
+                .setDescription("[👏 Roleplay] Ataque alguém")
                 .addUserOption(option => option.setName("user").setDescription("O usuário que você deseja atacar").setRequired(true))
         })
     }

@@ -11,7 +11,7 @@ module.exports = class WeatherCommand extends Command {
             category: "utils",
             data: new SlashCommandBuilder()
                 .setName("weather")
-                .setDescription("Mostra o clima de uma cidade.")
+                .setDescription("[🛠 Utils] Mostra o clima de uma cidade.")
                 .addStringOption(option => option.setName("cidade").setRequired(true).setDescription("Cidade para consultar o clima."))
         })
     }

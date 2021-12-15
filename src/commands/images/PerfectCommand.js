@@ -10,7 +10,7 @@ module.exports = class PerfectCommand extends Command {
             category: "image",
             data: new SlashCommandBuilder()
                 .setName("perfect")
-                .setDescription("Existe algo perfeito?")
+                .setDescription("[🖼 Images] Existe algo perfeito?")
                 .addUserOption(option => option.setName("user").setDescription("Mencione um usuário").setRequired(false))
         })
     }

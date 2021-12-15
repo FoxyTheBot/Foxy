@@ -8,7 +8,7 @@ module.exports = class RatewaifuCommand extends Command {
             category: "social",
             data: new SlashCommandBuilder()
                 .setName("ratewaifu")
-                .setDescription("Avalie uma waifu")
+                .setDescription("[👥 Social] Avalie uma waifu")
                 .addUserOption(option => option.setName("user").setDescription("Mencione alguém").setRequired(true))
         })
     }

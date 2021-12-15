@@ -11,7 +11,7 @@ module.exports = class RepCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("rep")
-                .setDescription("Dê reputações para alguém")
+                .setDescription("[👥 Social] Dê reputações para alguém")
                 .addUserOption(option => option.setName("user").setDescription("Mencione um usuário").setRequired(true))
         })
     }

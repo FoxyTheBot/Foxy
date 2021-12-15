@@ -10,7 +10,7 @@ module.exports = class ErrorCommand extends Command {
             category: "image",
             data: new SlashCommandBuilder()
                 .setName("error")
-                .setDescription("Crie uma mensagem de erro do Windows")
+                .setDescription("[🖼 Images] Crie uma mensagem de erro do Windows")
                 .addStringOption(option => option.setName("text").setDescription("Texto que será inserido na imagem").setRequired(true))
         })
     }

@@ -9,7 +9,7 @@ module.exports = class StepCommand extends Command {
             category: "actions",
             data: new SlashCommandBuilder()
                 .setName("step")
-                .setDescription("Pise em alguém")
+                .setDescription("[👏 Roleplay] Pise em alguém")
                 .addUserOption(option => option.setName("user").setDescription("O usuário que você quer pisar").setRequired(true))
         })
     }

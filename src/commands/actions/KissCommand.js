@@ -12,7 +12,7 @@ module.exports = class KissCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("kiss")
-                .setDescription("Beijar alguém")
+                .setDescription("[👏 Roleplay] Beijar alguém")
                 .addUserOption(option => option.setName("user").setDescription("Mencione um usuário").setRequired(true))
         })
     }

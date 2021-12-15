@@ -9,7 +9,7 @@ module.exports = class CoinflipCommand extends Command {
             category: "utils",
             data: new SlashCommandBuilder()
                 .setName("coinflip")
-                .setDescription("Joga uma moeda.")
+                .setDescription("[🛠 Utils] Joga uma moeda.")
         })
     }
 

@@ -9,7 +9,7 @@ module.exports = class TestCommand extends Command {
             dev: true,
             data: new SlashCommandBuilder()
                 .setName("foxyban")
-                .setDescription("urer")
+                .setDescription("[🔑 Dev] Bane um usuário de usar a Foxy")
                 .addUserOption(option => option.setName("user").setDescription("Usuário que será banido").setRequired(true))
                 .addBooleanOption(option => option.setName("banned").setDescription("Definir o status como banido ou não").setRequired(true))
                 .addStringOption(option => option.setName("reason").setDescription("Motivo do banimento").setRequired(true))

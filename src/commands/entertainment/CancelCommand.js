@@ -8,7 +8,7 @@ module.exports = class CancelCommand extends Command {
             category: "entertainment",
             data: new SlashCommandBuilder()
                 .setName("cancel")
-                .setDescription("Cancele alguém")
+                .setDescription("[✨ Entertainment] Cancele alguém")
                 .addUserOption(option => option.setName("user").setDescription("Mencione alguém").setRequired(true))
                 .addStringOption(option => option.setName("text").setDescription("Texto do cancelamento").setRequired(true))
         })

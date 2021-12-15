@@ -10,7 +10,7 @@ module.exports = class SetPremiumCommand extends Command {
             dev: true,
             data: new SlashCommandBuilder()
                 .setName("premium")
-                .setDescription("Verifica o premium de um usuário")
+                .setDescription("[🔑 Dev] Verifica o premium de um usuário")
                 .addSubcommand(command => command.setName("add").setDescription("Adiciona premium em um usuário").addUserOption(option => option.setName("user").setDescription("A ID ou menção").setRequired(true)))
                 .addSubcommand(command => command.setName("remove").setDescription("Remove o premium de um usuário").addUserOption(option => option.setName("user").setDescription("A ID ou menção").setRequired(true)))
                 .addSubcommand(command => command.setName("check").setDescription("Verifica o estado premium de um usuário").addUserOption(option => option.setName("user").setDescription("A ID ou menção").setRequired(true)))

@@ -11,7 +11,7 @@ module.exports = class BotInfoCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("botinfo")
-                .setDescription("Mostra as informações do bot")
+                .setDescription("[🛠 Utils] Mostra as informações do bot")
         })
     }
 

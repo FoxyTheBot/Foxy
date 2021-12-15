@@ -10,7 +10,7 @@ module.exports = class MorseCommand extends Command {
             category: 'utils',
             data: new SlashCommandBuilder()
                 .setName('morse')
-                .setDescription('Converte texto em morse.')
+                .setDescription('[🛠 Utils] Converte texto em morse.')
                 .addStringOption(option => option.setName('texto').setDescription('Texto a ser convertido').setRequired(true))
         })
     }

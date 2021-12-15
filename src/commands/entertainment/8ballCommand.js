@@ -8,7 +8,7 @@ module.exports = class EightBallCommand extends Command {
             category: "image",
             data: new SlashCommandBuilder()
             .setName("8ball")
-            .setDescription("Não sou um oráculo, mas posso te responder algumas coisas")
+            .setDescription("[✨ Entertainment] Não sou um oráculo, mas posso te responder algumas coisas")
             .addStringOption(option => option.setName("pergunta").setDescription("Sua pergunta").setRequired(true))
         })
     }

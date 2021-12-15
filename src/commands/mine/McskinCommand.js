@@ -9,7 +9,7 @@ module.exports = class McskinCommand extends Command {
             category: "mine",
             data: new SlashCommandBuilder()
                 .setName("mcskin")
-                .setDescription("Veja uma skin do Minecraft")
+                .setDescription("[⛏ Minecraft] Veja uma skin do Minecraft")
                 .addStringOption(option => option.setName("user").setDescription("O usuário que deseja").setRequired(true))
         })
     }

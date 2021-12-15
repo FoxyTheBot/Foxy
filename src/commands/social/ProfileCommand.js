@@ -12,7 +12,7 @@ module.exports = class ProfileCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("profile")
-                .setDescription("Veja seu perfil")
+                .setDescription("[👥 Social] Veja seu perfil")
                 .addUserOption(option => option.setName("user").setRequired(false).setDescription("Veja perfil de outra pessoa"))
         })
     }

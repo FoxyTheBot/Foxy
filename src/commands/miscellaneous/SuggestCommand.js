@@ -9,7 +9,7 @@ module.exports = class SuggestCommand extends Command {
             category: "misc",
             data: new SlashCommandBuilder()
                 .setName("suggest")
-                .setDescription("Envia um sugestão para o desenvolvedor.")
+                .setDescription("[🎉 Misc] Envia um sugestão para o desenvolvedor.")
                 .addStringOption(option => option.setName("suggestion").setRequired(true).setDescription("A sugestão."))
         })
     }

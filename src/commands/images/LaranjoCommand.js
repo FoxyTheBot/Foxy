@@ -10,7 +10,7 @@ module.exports = class LaranjoCommand extends Command {
             category: "image",
             data: new SlashCommandBuilder()
                 .setName("laranjo")
-                .setDescription("Laranja Laranjo")
+                .setDescription("[🖼 Images] Laranja Laranjo")
                 .addStringOption(option => option.setName("text").setDescription("Texto que vai na imagem").setRequired(true))
         })
     }

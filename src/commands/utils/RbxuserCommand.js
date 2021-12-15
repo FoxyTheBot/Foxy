@@ -11,7 +11,7 @@ module.exports = class RbxuserCommand extends Command {
             category: "utils",
             data: new SlashCommandBuilder()
                 .setName("roblox")
-                .setDescription("Procure algumas coisas no Roblox")
+                .setDescription("[🛠 Utils] Procure algumas coisas no Roblox")
                 .addSubcommand(command => command.setName("user").setDescription("Procure um usuário no Roblox").addStringOption(option => option.setName("user").setRequired(true).setDescription("O nome do usuário")))
         })
     }

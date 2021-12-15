@@ -11,7 +11,7 @@ module.exports = class AboutmeCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName('aboutme')
-                .setDescription('Altera seu sobre mim')
+                .setDescription('[👥 Social] Altera seu sobre mim')
                 .addStringOption(option => option.setName('aboutme').setDescription('Nova descrição').setRequired(true))
         })
     }

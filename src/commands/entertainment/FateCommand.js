@@ -8,7 +8,7 @@ module.exports = class FateCommand extends Command {
             category: "entertainment",
             data: new SlashCommandBuilder()
                 .setName("fate")
-                .setDescription("Veja o que a pessoa é sua em outro universo")
+                .setDescription("[✨ Entertainment] Veja o que a pessoa é sua em outro universo")
                 .addUserOption(option => option.setName("user").setDescription("Mencione alguém").setRequired(true))
         })
     }

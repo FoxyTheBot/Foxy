@@ -10,7 +10,7 @@ module.exports = class StonksCommand extends Command {
             category: "image",
             data: new SlashCommandBuilder()
                 .setName("stonks")
-                .setDescription("Cria um meme stonks")
+                .setDescription("[🖼 Images] Cria um meme stonks")
                 .addStringOption(option => option.setName("text").setRequired(true).setDescription("Texto do meme"))
         })
     }

@@ -10,7 +10,7 @@ module.exports = class AtmCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("atm")
-                .setDescription("Mostra as suas FoxCoins ou de alguém")
+                .setDescription("[💵 Economy] Mostra as suas FoxCoins ou de alguém")
                 .addUserOption(option => option.setName("user").setDescription("Mencione um usuário").setRequired(false))
         })
     }

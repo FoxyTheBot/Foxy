@@ -10,7 +10,7 @@ module.exports = class SlapCommand extends Command {
             category: "actions",
             data: new SlashCommandBuilder()
                 .setName("slap")
-                .setDescription("Bata em alguém")
+                .setDescription("[👏 Roleplay] Bata em alguém")
                 .addUserOption(option => option.setName("user").setDescription("O usuário que você deseja bater").setRequired(true))
         })
     }

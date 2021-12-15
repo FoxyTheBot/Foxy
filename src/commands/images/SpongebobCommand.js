@@ -9,7 +9,7 @@ module.exports = class SpongebobCommand extends Command {
             category: 'image',
             data: new SlashCommandBuilder()
                 .setName('esponja')
-                .setDescription('Bob Esponja foda-se')
+                .setDescription('[🖼 Images] Bob Esponja foda-se')
                 .addStringOption(option => option.setName("text").setDescription("Texto que será inserido na imagem").setRequired(true))
         })
     }

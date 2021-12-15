@@ -11,7 +11,7 @@ module.exports = class PingCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("ping")
-                .setDescription("Veja a latência da Foxy")
+                .setDescription("[🛠 Utils] Veja a latência da Foxy")
         });
     }
 

@@ -10,7 +10,7 @@ module.exports = class DblCommand extends Command {
             category: 'utils',
             data: new SlashCommandBuilder()
                 .setName('upvote')
-                .setDescription('Link para meu perfil na Discord Bot List')
+                .setDescription('[🛠 Utils] Link para meu perfil na Discord Bot List')
         })
     }
 

@@ -9,7 +9,7 @@ module.exports = class McheadCommand extends Command {
             category: "mine",
             data: new SlashCommandBuilder()
                 .setName("mchead")
-                .setDescription("Veja a cabeça de um player do Minecraft")
+                .setDescription("[⛏ Minecraft] Veja a cabeça de um player do Minecraft")
                 .addStringOption(option => option.setName("user").setDescription("O usuário que deseja").setRequired(true))
         })
     }

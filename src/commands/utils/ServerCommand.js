@@ -10,7 +10,7 @@ module.exports = class ServerCommand extends Command {
             category: "utils",
             data: new SlashCommandBuilder()
                 .setName("server")
-                .setDescription("Veja informações sobre o servidor.")
+                .setDescription("[🛠 Utils] Veja informações sobre o servidor.")
                 .addSubcommand(option => option.setName("info").setDescription("Veja informações sobre o servidor.").addStringOption(
                     option => option.setName("id").setDescription("ID do servidor.").setRequired(false)))
                 .addSubcommand(option => option.setName("icon").setDescription("Veja o ícone do servidor.").addStringOption(

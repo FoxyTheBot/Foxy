@@ -10,7 +10,7 @@ module.exports = class AsciiCommand extends Command {
             category: 'utils',
             data: new SlashCommandBuilder()
                 .setName("ascii")
-                .setDescription("Mostra uma mensagem em ASCII art.")
+                .setDescription("[🛠 Utils] Mostra uma mensagem em ASCII art.")
                 .addStringOption(option => option.setName("text").setRequired(true).setDescription("Texto para ser convertido em ASCII art."))
         })
     }

@@ -11,7 +11,7 @@ module.exports = class DivorceCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("divorce")
-                .setDescription("Divorciar-se")
+                .setDescription("[👥 Social] Divorciar-se")
         })
     }
 

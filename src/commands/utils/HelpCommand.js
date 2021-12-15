@@ -11,7 +11,7 @@ module.exports = class HelpCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("help")
-                .setDescription("Mostra o menu de ajuda")
+                .setDescription("[🛠 Utils] Mostra o menu de ajuda")
                 .addSubcommand(subcommand => subcommand.setName("commands").setDescription("Mostra a lista de comandos"))
                 .addSubcommand(subcommand => subcommand.setName("bot").setDescription("Mostra a ajuda sobre o bot"))
         })

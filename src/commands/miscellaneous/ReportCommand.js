@@ -8,7 +8,7 @@ module.exports = class ReportCommand extends Command {
             category: "misc",
             data: new SlashCommandBuilder()
             .setName("report")
-            .setDescription("Reporte algum problema para o meu desenvolvedor")
+            .setDescription("[🎉 Misc] Reporte algum problema para o meu desenvolvedor")
             .addStringOption(option => option.setName("problema").setDescription("The issue to send").setRequired(true))
         })
     }

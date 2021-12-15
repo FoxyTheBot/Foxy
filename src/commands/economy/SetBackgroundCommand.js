@@ -10,7 +10,7 @@ module.exports = class SetBackgroundCommand extends Command {
             category: "economy",
             data: new SlashCommandBuilder()
                 .setName("setbackground")
-                .setDescription("Define o fundo do seu perfil.")
+                .setDescription("[💵 Economy] Define um background que você já possui")
                 .addStringOption(option => option.setName("background").setDescription("Define o fundo do seu perfil.").setRequired(false))
         })
     }

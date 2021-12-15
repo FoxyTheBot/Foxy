@@ -12,7 +12,7 @@ module.exports = class AnimeCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
             .setName("anime")
-            .setDescription("Pesquise por um anime")
+            .setDescription("[🛠 Utils] Pesquise por um anime")
             .addStringOption(option => option.setName("anime").setDescription("Nome do anime").setRequired(true))
         })
     }

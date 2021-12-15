@@ -11,7 +11,7 @@ module.exports = class DailyCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("daily")
-                .setDescription("Receba suas FoxCoins diárias")
+                .setDescription("[💵 Economy] Receba suas FoxCoins diárias")
 
         })
 

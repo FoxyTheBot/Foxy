@@ -11,7 +11,7 @@ module.exports = class MarryCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("marry")
-                .setDescription("Case com algum usuário")
+                .setDescription("[👥 Social] Case com algum usuário")
                 .addUserOption(option => option.setName("user").setDescription("Mencione um usuário").setRequired(true))
         })
     }

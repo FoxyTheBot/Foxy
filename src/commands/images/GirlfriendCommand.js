@@ -10,7 +10,7 @@ module.exports = class GirlfriendCommand extends Command {
             category: "image",
             data: new SlashCommandBuilder()
                 .setName("girlfriend")
-                .setDescription("Quem é a sua namorada?")
+                .setDescription("[🖼 Images] Quem é a sua namorada?")
                 .addUserOption(option => option.setName("user").setDescription("Mencione alguém").setRequired(false))
         })
     }

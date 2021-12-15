@@ -13,7 +13,7 @@ module.exports = class BackgroundCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("background")
-                .setDescription("Adicione um background para o seu perfil")
+                .setDescription("[💵 Economy] Adicione um background para o seu perfil")
                 .addStringOption(option => option.setName("code").setDescription("Código do background").setRequired(false))
         })
     }
