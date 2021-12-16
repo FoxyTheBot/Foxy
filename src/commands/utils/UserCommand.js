@@ -10,10 +10,10 @@ module.exports = class UserCommand extends Command {
             data: new SlashCommandBuilder()
                 .setName("user")
                 .setDescription("[🛠 Utils] Veja informação de um usuário.")
-                .addSubcommand(option => option.setName("info").setDescription("Veja informação de um usuário.").addUserOption(
+                .addSubcommand(option => option.setName("info").setDescription("[🛠 Utils] Veja informação de um usuário.").addUserOption(
                     option => option.setName("user").setDescription("O usuário que você deseja ver a informação").setRequired(false)
                 ))
-                .addSubcommand(option => option.setName("avatar").setDescription("Veja o avatar de um usuário.").addUserOption(
+                .addSubcommand(option => option.setName("avatar").setDescription("[🛠 Utils] Veja o avatar de um usuário.").addUserOption(
                     option => option.setName("user").setDescription("O usuário que você deseja ver a informação").setRequired(false)
                 ))
         });
