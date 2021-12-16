@@ -12,7 +12,7 @@ module.exports = class DivorceCommand extends Command {
             data: new SlashCommandBuilder()
                 .setName("divorce")
                 .setDescription("[👥 Social] Divorciar-se")
-        })
+        });
     }
 
     async execute(interaction) {

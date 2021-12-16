@@ -12,7 +12,7 @@ module.exports = class MorseCommand extends Command {
                 .setName('morse')
                 .setDescription('[🛠 Utils] Converte texto em morse.')
                 .addStringOption(option => option.setName('texto').setDescription('Texto a ser convertido').setRequired(true))
-        })
+        });
     }
     async execute(interaction) {
         const alpha = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'.split('');

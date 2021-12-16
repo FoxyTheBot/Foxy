@@ -10,7 +10,7 @@ module.exports = class EightBallCommand extends Command {
             .setName("8ball")
             .setDescription("[✨ Entertainment] Não sou um oráculo, mas posso te responder algumas coisas")
             .addStringOption(option => option.setName("pergunta").setDescription("Sua pergunta").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

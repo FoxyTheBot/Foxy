@@ -13,7 +13,7 @@ module.exports = class MarryCommand extends Command {
                 .setName("marry")
                 .setDescription("[👥 Social] Case com algum usuário")
                 .addUserOption(option => option.setName("user").setDescription("Mencione um usuário").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

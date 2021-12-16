@@ -14,7 +14,7 @@ module.exports = class AnimeCommand extends Command {
             .setName("anime")
             .setDescription("[🛠 Utils] Pesquise por um anime")
             .addStringOption(option => option.setName("anime").setDescription("Nome do anime").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

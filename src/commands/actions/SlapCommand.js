@@ -12,7 +12,7 @@ module.exports = class SlapCommand extends Command {
                 .setName("slap")
                 .setDescription("[👏 Roleplay] Bata em alguém")
                 .addUserOption(option => option.setName("user").setDescription("O usuário que você deseja bater").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

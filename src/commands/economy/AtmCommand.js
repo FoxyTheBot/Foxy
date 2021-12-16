@@ -12,7 +12,7 @@ module.exports = class AtmCommand extends Command {
                 .setName("atm")
                 .setDescription("[💵 Economy] Mostra as suas FoxCoins ou de alguém")
                 .addUserOption(option => option.setName("user").setDescription("Mencione um usuário").setRequired(false))
-        })
+        });
     }
 
     async execute(interaction) {

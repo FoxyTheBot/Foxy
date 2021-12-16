@@ -10,7 +10,7 @@ module.exports = class PptCommand extends Command {
             .setName("ppt")
             .setDescription("[✨ Entertainment] Pedra papel tesoooooooowoura!")
             .addStringOption(option => option.setName("text").setDescription("Insira pedra papel ou tesoura").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

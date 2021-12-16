@@ -11,7 +11,7 @@ module.exports = class SuggestCommand extends Command {
                 .setName("suggest")
                 .setDescription("[🎉 Misc] Envia um sugestão para o desenvolvedor.")
                 .addStringOption(option => option.setName("suggestion").setRequired(true).setDescription("A sugestão."))
-        })
+        });
     }
 
     async execute(interaction) {

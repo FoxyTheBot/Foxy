@@ -14,7 +14,7 @@ module.exports = class HelpCommand extends Command {
                 .setDescription("[🛠 Utils] Mostra o menu de ajuda")
                 .addSubcommand(subcommand => subcommand.setName("commands").setDescription("Mostra a lista de comandos"))
                 .addSubcommand(subcommand => subcommand.setName("bot").setDescription("Mostra a ajuda sobre o bot"))
-        })
+        });
     }
 
     async execute(interaction) {

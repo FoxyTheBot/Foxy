@@ -10,7 +10,7 @@ module.exports = class RatewaifuCommand extends Command {
                 .setName("ratewaifu")
                 .setDescription("[👥 Social] Avalie uma waifu")
                 .addUserOption(option => option.setName("user").setDescription("Mencione alguém").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

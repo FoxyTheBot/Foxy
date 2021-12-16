@@ -11,7 +11,7 @@ module.exports = class BiteCommand extends Command {
                 .setName("bite")
                 .setDescription("[👏 Roleplay] Morde alguém")
                 .addUserOption(option => option.setName("user").setDescription("O usuário que você deseja morder").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

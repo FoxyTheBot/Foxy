@@ -11,7 +11,7 @@ module.exports = class McskinCommand extends Command {
                 .setName("mcskin")
                 .setDescription("[⛏ Minecraft] Veja uma skin do Minecraft")
                 .addStringOption(option => option.setName("user").setDescription("O usuário que deseja").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

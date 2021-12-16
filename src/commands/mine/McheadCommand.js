@@ -11,7 +11,7 @@ module.exports = class McheadCommand extends Command {
                 .setName("mchead")
                 .setDescription("[⛏ Minecraft] Veja a cabeça de um player do Minecraft")
                 .addStringOption(option => option.setName("user").setDescription("O usuário que deseja").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

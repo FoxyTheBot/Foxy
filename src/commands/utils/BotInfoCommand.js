@@ -12,7 +12,7 @@ module.exports = class BotInfoCommand extends Command {
             data: new SlashCommandBuilder()
                 .setName("botinfo")
                 .setDescription("[🛠 Utils] Mostra as informações do bot")
-        })
+        });
     }
 
     async execute(interaction) {

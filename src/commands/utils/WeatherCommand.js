@@ -13,7 +13,7 @@ module.exports = class WeatherCommand extends Command {
                 .setName("weather")
                 .setDescription("[🛠 Utils] Mostra o clima de uma cidade.")
                 .addStringOption(option => option.setName("cidade").setRequired(true).setDescription("Cidade para consultar o clima."))
-        })
+        });
     }
 
     async execute(interaction) {

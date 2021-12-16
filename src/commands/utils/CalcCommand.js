@@ -13,7 +13,7 @@ module.exports = class CalcCommand extends Command {
                 .setName("calc")
                 .setDescription("[🛠 Utils] Calcula uma expressão matemática.")
                 .addStringOption(option => option.setName("expression").setDescription("Expressão matemática").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

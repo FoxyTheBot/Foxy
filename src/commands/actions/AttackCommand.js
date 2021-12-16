@@ -11,7 +11,7 @@ module.exports = class AttackCommand extends Command {
                 .setName("attack")
                 .setDescription("[👏 Roleplay] Ataque alguém")
                 .addUserOption(option => option.setName("user").setDescription("O usuário que você deseja atacar").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

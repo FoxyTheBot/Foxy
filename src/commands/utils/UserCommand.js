@@ -16,7 +16,7 @@ module.exports = class UserCommand extends Command {
                 .addSubcommand(option => option.setName("avatar").setDescription("Veja o avatar de um usuário.").addUserOption(
                     option => option.setName("user").setDescription("O usuário que você deseja ver a informação").setRequired(false)
                 ))
-        })
+        });
     }
 
     async execute(interaction) {

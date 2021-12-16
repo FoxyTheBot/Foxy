@@ -14,7 +14,7 @@ module.exports = class KissCommand extends Command {
                 .setName("kiss")
                 .setDescription("[👏 Roleplay] Beijar alguém")
                 .addUserOption(option => option.setName("user").setDescription("Mencione um usuário").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

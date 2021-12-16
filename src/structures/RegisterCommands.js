@@ -29,7 +29,7 @@ module.exports = class RegisterCommands {
                 console.info("[SLASH] - Registrando comandos...");
 
                 await rest.put(
-                    Routes.applicationGuildCommands(this.clientId, "901558860131749899"),
+                    Routes.applicationGuildCommands(this.clientId, "653631572360036374"),
                     // Se quiser registrar comandos globais troque "apllicationGuildCommands(this.clientId, "id do servidor")" para "applicationCommands(this.clientId)"
                     { body: commands },
                 );

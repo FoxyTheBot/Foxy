@@ -11,7 +11,7 @@ module.exports = class CancelCommand extends Command {
                 .setDescription("[✨ Entertainment] Cancele alguém")
                 .addUserOption(option => option.setName("user").setDescription("Mencione alguém").setRequired(true))
                 .addStringOption(option => option.setName("text").setDescription("Texto do cancelamento").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

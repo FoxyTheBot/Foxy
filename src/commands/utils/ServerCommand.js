@@ -15,7 +15,7 @@ module.exports = class ServerCommand extends Command {
                     option => option.setName("id").setDescription("ID do servidor.").setRequired(false)))
                 .addSubcommand(option => option.setName("icon").setDescription("Veja o ícone do servidor.").addStringOption(
                     option => option.setName("id").setDescription("ID do servidor.").setRequired(false)))
-        })
+        });
     }
 
     async execute(interaction) {

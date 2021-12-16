@@ -14,7 +14,7 @@ module.exports = class ProfileCommand extends Command {
                 .setName("profile")
                 .setDescription("[👥 Social] Veja seu perfil")
                 .addUserOption(option => option.setName("user").setRequired(false).setDescription("Veja perfil de outra pessoa"))
-        })
+        });
     }
 
     async execute(interaction) {

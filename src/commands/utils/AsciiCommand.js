@@ -12,7 +12,7 @@ module.exports = class AsciiCommand extends Command {
                 .setName("ascii")
                 .setDescription("[🛠 Utils] Mostra uma mensagem em ASCII art.")
                 .addStringOption(option => option.setName("text").setRequired(true).setDescription("Texto para ser convertido em ASCII art."))
-        })
+        });
     }
 
     async execute(interaction) {

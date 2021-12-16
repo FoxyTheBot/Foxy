@@ -10,7 +10,7 @@ module.exports = class FateCommand extends Command {
                 .setName("fate")
                 .setDescription("[✨ Entertainment] Veja o que a pessoa é sua em outro universo")
                 .addUserOption(option => option.setName("user").setDescription("Mencione alguém").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

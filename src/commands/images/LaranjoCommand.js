@@ -12,7 +12,7 @@ module.exports = class LaranjoCommand extends Command {
                 .setName("laranjo")
                 .setDescription("[🖼 Images] Laranja Laranjo")
                 .addStringOption(option => option.setName("text").setDescription("Texto que vai na imagem").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

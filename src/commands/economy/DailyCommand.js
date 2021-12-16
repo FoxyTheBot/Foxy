@@ -13,7 +13,7 @@ module.exports = class DailyCommand extends Command {
                 .setName("daily")
                 .setDescription("[💵 Economy] Receba suas FoxCoins diárias")
 
-        })
+        });
 
     }
 

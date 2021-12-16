@@ -11,7 +11,7 @@ module.exports = class McbodyCommand extends Command {
                 .setName("mcbody")
                 .setDescription("[⛏ Minecraft] Veja uma skin do Minecraft")
                 .addStringOption(option => option.setName("user").setDescription("A conta do Minecraft que deseja olhar a skin").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

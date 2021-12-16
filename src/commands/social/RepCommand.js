@@ -13,7 +13,7 @@ module.exports = class RepCommand extends Command {
                 .setName("rep")
                 .setDescription("[👥 Social] Dê reputações para alguém")
                 .addUserOption(option => option.setName("user").setDescription("Mencione um usuário").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

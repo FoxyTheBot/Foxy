@@ -10,7 +10,7 @@ module.exports = class CoinflipCommand extends Command {
             data: new SlashCommandBuilder()
                 .setName("coinflip")
                 .setDescription("[🛠 Utils] Joga uma moeda.")
-        })
+        });
     }
 
     async execute(interaction) {

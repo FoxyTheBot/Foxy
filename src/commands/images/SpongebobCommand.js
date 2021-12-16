@@ -11,7 +11,7 @@ module.exports = class SpongebobCommand extends Command {
                 .setName('esponja')
                 .setDescription('[🖼 Images] Bob Esponja foda-se')
                 .addStringOption(option => option.setName("text").setDescription("Texto que será inserido na imagem").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

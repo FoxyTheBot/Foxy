@@ -12,7 +12,7 @@ module.exports = class GirlfriendCommand extends Command {
                 .setName("girlfriend")
                 .setDescription("[🖼 Images] Quem é a sua namorada?")
                 .addUserOption(option => option.setName("user").setDescription("Mencione alguém").setRequired(false))
-        })
+        });
     }
 
     async execute(interaction) {

@@ -13,7 +13,7 @@ module.exports = class ShipCommand extends Command {
                 .setDescription("[👥 Social] Faça ship com alguém")
                 .addUserOption(option => option.setName("user").setDescription("Mencione alguém para fazer ship").setRequired(true))
                 .addUserOption(option => option.setName("user2").setDescription("Mencione outra pessoa").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

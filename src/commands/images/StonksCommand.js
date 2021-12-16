@@ -12,7 +12,7 @@ module.exports = class StonksCommand extends Command {
                 .setName("stonks")
                 .setDescription("[🖼 Images] Cria um meme stonks")
                 .addStringOption(option => option.setName("text").setRequired(true).setDescription("Texto do meme"))
-        })
+        });
     }
 
     async execute(interaction) {

@@ -12,7 +12,7 @@ module.exports = class NotStonks extends Command {
                 .setName("notstonks")
                 .setDescription("[🖼 Images] Cria um meme com Not Stonks")
                 .addStringOption(option => option.setName("text").setDescription("Texto que vai na imagem").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

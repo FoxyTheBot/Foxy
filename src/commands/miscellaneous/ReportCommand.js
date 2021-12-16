@@ -10,7 +10,7 @@ module.exports = class ReportCommand extends Command {
             .setName("report")
             .setDescription("[🎉 Misc] Reporte algum problema para o meu desenvolvedor")
             .addStringOption(option => option.setName("problema").setDescription("The issue to send").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

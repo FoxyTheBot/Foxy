@@ -14,7 +14,7 @@ module.exports = class HugCommand extends Command {
                 .setName("hug")
                 .setDescription("[👏 Roleplay] Abraçar alguém")
                 .addUserOption(option => option.setName("user").setDescription("Mencione um usuário").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

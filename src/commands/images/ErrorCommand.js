@@ -12,7 +12,7 @@ module.exports = class ErrorCommand extends Command {
                 .setName("error")
                 .setDescription("[🖼 Images] Crie uma mensagem de erro do Windows")
                 .addStringOption(option => option.setName("text").setDescription("Texto que será inserido na imagem").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

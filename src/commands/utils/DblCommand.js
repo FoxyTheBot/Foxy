@@ -11,7 +11,7 @@ module.exports = class DblCommand extends Command {
             data: new SlashCommandBuilder()
                 .setName('upvote')
                 .setDescription('[🛠 Utils] Link para meu perfil na Discord Bot List')
-        })
+        });
     }
 
     async execute(interaction) {

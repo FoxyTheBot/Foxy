@@ -13,7 +13,7 @@ module.exports = class AboutmeCommand extends Command {
                 .setName('aboutme')
                 .setDescription('[👥 Social] Altera seu sobre mim')
                 .addStringOption(option => option.setName('aboutme').setDescription('Nova descrição').setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

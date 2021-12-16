@@ -11,7 +11,7 @@ module.exports = class InviteCommand extends Command {
             data: new SlashCommandBuilder()
                 .setName("invite")
                 .setDescription("[🎉 Misc] Mostra o link para convidar o bot.")
-        })
+        });
     }
 
     async execute(interaction) {

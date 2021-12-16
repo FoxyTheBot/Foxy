@@ -11,7 +11,7 @@ module.exports = class StepCommand extends Command {
                 .setName("step")
                 .setDescription("[👏 Roleplay] Pise em alguém")
                 .addUserOption(option => option.setName("user").setDescription("O usuário que você quer pisar").setRequired(true))
-        })
+        });
     }
 
     async execute(interaction) {

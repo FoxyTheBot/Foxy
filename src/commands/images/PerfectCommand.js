@@ -12,7 +12,7 @@ module.exports = class PerfectCommand extends Command {
                 .setName("perfect")
                 .setDescription("[🖼 Images] Existe algo perfeito?")
                 .addUserOption(option => option.setName("user").setDescription("Mencione um usuário").setRequired(false))
-        })
+        });
     }
 
     async execute(interaction) {

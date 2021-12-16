@@ -13,7 +13,7 @@ module.exports = class PayCommand extends Command {
                 .setDescription("[💵 Economy] Envie FoxCoins para alguém")
                 .addNumberOption(option => option.setName("amount").setRequired(true).setDescription("Quantia a pagar."))
                 .addUserOption(option => option.setName("user").setRequired(true).setDescription("Usuário a ser pago."))
-        })
+        });
     }
 
     async execute(interaction) {

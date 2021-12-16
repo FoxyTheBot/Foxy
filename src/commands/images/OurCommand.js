@@ -12,7 +12,7 @@ module.exports = class OurCommand extends Command {
                 .setName("comunismo")
                 .setDescription("[🖼 Images] John Xina")
                 .addStringOption(option => option.setName("text").setDescription("Texto que será inserido na imagem").setRequired(true))
-        })
+        });
     }
     async execute(interaction) {
         const string = interaction.options.getString("text");

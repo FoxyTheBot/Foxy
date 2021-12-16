@@ -13,7 +13,7 @@ module.exports = class PatCommand extends Command {
                 .setName("pat")
                 .setDescription("[👏 Roleplay] Faça cafuné em alguém")
                 .addUserOption(option => option.setName("user").setRequired(true).setDescription("O usuário que você quer pat"))
-        })
+        });
     }
 
     async execute(interaction) {
