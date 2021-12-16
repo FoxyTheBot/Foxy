@@ -11,9 +11,9 @@ module.exports = class ServerCommand extends Command {
             data: new SlashCommandBuilder()
                 .setName("server")
                 .setDescription("[🛠 Utils] Veja informações sobre o servidor.")
-                .addSubcommand(option => option.setName("info").setDescription("Veja informações sobre o servidor.").addStringOption(
+                .addSubcommand(option => option.setName("info").setDescription("[🛠 Utils] Veja informações sobre o servidor.").addStringOption(
                     option => option.setName("id").setDescription("ID do servidor.").setRequired(false)))
-                .addSubcommand(option => option.setName("icon").setDescription("Veja o ícone do servidor.").addStringOption(
+                .addSubcommand(option => option.setName("icon").setDescription("[🛠 Utils] Veja o ícone do servidor.").addStringOption(
                     option => option.setName("id").setDescription("ID do servidor.").setRequired(false)))
         });
     }
