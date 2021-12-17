@@ -7,10 +7,10 @@ module.exports = class Ready {
         console.info(`\x1b[37m\x1b[42mSUCCESS\x1b[0m: Shard ${Number(this.client.shard.ids) + 1} Está conectada com ${this.client.guilds.cache.size} Servidores!`);
 
         const status = [
-            { name: "🐦 | Me siga no Twitter: @FoxyDiscordBot", type: "STREAMING", url: "https://www.twitch.tv/WinG4merBR" },
-            { name: "💖 | Fui criada pelo Win#6611", type: "LISTENING" },
+            { name: "🐦 | Me siga no Twitter: @FoxyDiscordBot", type: "STREAMING", url: "https://www.twitch.tv/wing4merbr1" },
+            { name: "💖 | Fui criada pelo WinG4merBR#6611", type: "LISTENING" },
             { name: `😍 | Me adicione usando /invite`, type: "WATCHING" },
-            { name: `🤔 | Precisa de ajuda? Utilize /help`, type: "STREAMING", url: "https://www.twitch.tv/wing4merbr" },
+            { name: `🤔 | Precisa de ajuda? Utilize /help`, type: "STREAMING", url: "https://www.twitch.tv/wing4merbr1" },
             { name: "🍰 | Minha comida preferida é bolo 💖", type: 5 },
         ];
 
