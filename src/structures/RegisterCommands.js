@@ -30,7 +30,7 @@ module.exports = class RegisterCommands {
 
                 await rest.put(
                     Routes.applicationCommands(this.clientId),
-                    // Se quiser registrar comandos globais troque "apllicationGuildCommands(this.clientId, "id do servidor")" para "applicationCommands(this.clientId)"
+                    // Se quiser registrar comandos em um servidor específico, basta trocar a função applicationCommands(this.clientId) para applicationGuildCommands(this.clientId, "Id do servidor")
                     { body: commands },
                 );
 
