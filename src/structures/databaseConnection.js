@@ -8,7 +8,7 @@ module.exports = class DatabaseConnection {
 
         const userSchema = new mongoose.Schema({
             _id: String,
-            userCreation: Date,
+            userCreationTimestamp: Date,
             premium: Boolean,
             premiumDate: Date,
             isBanned: Boolean,
