@@ -6,6 +6,8 @@ module.exports = class MessageCreate {
     }
 
     async run(message) {
+        if (message.content === `<@${this.client.user.id}>` || message.content === `<@!${this.client.user.id}>`) message.channel.send(`Olá ${message.author}! Meu nome é ${this.client.user.username}, meu prefixo é \`${client.config.prefix}\`, Utilize \`/help(Slash command)\` para obter ajuda! ${this.client.emotes.success}`);
+
         if (message.author.bot) return;
         const row = new MessageActionRow();
         row.addComponents(
