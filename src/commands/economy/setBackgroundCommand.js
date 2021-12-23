@@ -17,11 +17,11 @@ module.exports = {
             const embed = new MessageEmbed()
                 .setTitle('Lista de backgrounds')
                 .setDescription(bgList)
-                .setFooter("Coloque o nome do arquivo do seu background")
+                .setFooter("Coloque o código do seu background")
             return message.reply(embed);
             
         } else {
-            const background = await bglist.find((index) => index.filename == args[0]?.toLowerCase());
+            const background = await bglist.find((index) => index.id == args[0]?.toLowerCase());
             if (!background) return message.reply('Este código não existe!');
             const backgroundList = userData.backgrounds;
             if (backgroundList.includes(bgCode)) {

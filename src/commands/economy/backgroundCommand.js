@@ -1,6 +1,5 @@
 const { bglist } = require('../../json/backgroundList.json');
 const { MessageEmbed } = require('discord.js');
-const fs = require("fs");
 
 module.exports = {
   name: 'background',
@@ -37,7 +36,7 @@ module.exports = {
     }
     
     const bg = await userData.backgrounds;
-    if(bg.includes(background.filename)) return message.reply("Você já tem esse background!");
+    if(bg.includes(background.id)) return message.reply("Você já tem esse background!");
     
     if (background.onlydevs && !client.config.owners.includes(message.author.id)) {
       message.reply("Desculpe, mas esse background só pode ser comprado por desenvolvedores.");
@@ -48,15 +47,8 @@ module.exports = {
       .setTitle(background.name)
       .setDescription(background.description)
       .addField("💵 Preço", `${background.foxcoins} FoxCoins`, true)
-      .setFooter(`Raridade: ${background.rarity}`);
-
-    const bExampleExists = await fs.existsSync(`./src/assets/backgrounds/examples/${background.filename}`);
-
-    if (bExampleExists) {
-      bgInfo.attachFiles(`./src/assets/backgrounds/examples/${background.filename}`).setImage(`attachment://${background.filename}`);
-    } else {
-      bgInfo.attachFiles(`./src/assets/backgrounds/${background.filename}`).setImage(`attachment://${background.filename}`);
-    }
+      .setFooter(`Raridade: ${background.rarity}`)
+      .attachFiles(`https://cdn.foxywebsite.ml/backgrounds/${background.id}`)
 
     message.reply(bgInfo).then((msg) => {
       msg.react("✅");
@@ -68,8 +60,8 @@ module.exports = {
             return msg.foxyReply("Você não tem coins o suficiente para este background!");
           } else {
             userData.balance -= background.foxcoins;
-            userData.background = background.filename;
-            userData.backgrounds.push(background.filename);
+            userData.background = background.id;
+            userData.backgrounds.push(background.id);
             userData.save().catch(err => console.log(err));
             msg.foxyReply(`Você comprou o background **${background.name}**, ele já foi definido`);
           }

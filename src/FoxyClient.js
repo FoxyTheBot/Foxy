@@ -14,10 +14,8 @@ client.commands = new Collection();
 client.emotes = require('./json/emotes.json');
 client.colors = require('./json/color.json');
 client.config = require('../config.json');
-
 client.logsWebhook = new WebhookClient(client.config.logs.id, client.config.logs.token);
 client.guildWebhook = new WebhookClient(client.config.guilds.id, client.config.guilds.token);
-
 client.db = new DatabaseConnection(client.config.uri, { useNewUrlParser: true, useUnifiedTopology: true, writeConcern: "majority" }, client);
 
 const commandFolders = fs.readdirSync('./src/commands');

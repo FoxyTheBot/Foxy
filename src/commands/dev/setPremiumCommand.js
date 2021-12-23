@@ -15,6 +15,7 @@ module.exports = {
         if(!userData) return message.reply("Essa pessoa não está no meu banco de dados");
         
         userData.premium = premium;
+        userData.premiumDte = Date.now();
         
         await userData.save();
 

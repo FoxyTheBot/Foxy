@@ -50,7 +50,9 @@ module.exports = {
 
             yesCollector.on('collect', async () => {
                 userData.marriedWith = mentioned.id;
+                userData.marriedDate = Date.now();
                 mentionData.marriedWith = message.author.id;
+                mentionData.marriedDate = Date.now();
                 userData.save();
                 mentionData.save();
 

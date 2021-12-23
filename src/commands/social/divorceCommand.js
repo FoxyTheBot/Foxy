@@ -25,7 +25,9 @@ module.exports = {
                 msg.delete();
 
                 userData.marriedWith = null;
+                userData.marriedDate = null;
                 marriedUser.marriedWith = null;
+                marriedUser.marriedDate = null;
                 userData.save().catch(err => console.log(err));
                 marriedUser.save().catch(err => console.log(err));
 

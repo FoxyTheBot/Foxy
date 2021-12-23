@@ -8,17 +8,17 @@ module.exports = class DatabaseConnection {
 
         const userSchema = new mongoose.Schema({
             _id: String,
-            userCreation: Date,
+            userCreationTimestamp: Date,
             premium: Boolean,
+            premiumDate: Date,
             isBanned: Boolean,
-            banData: {
-                moderator: String,
-                reason: String
-            },
+            banData: Date,
+            banReason: String,
             aboutme: String,
             balance: Number,
             lastDaily: Date,
             marriedWith: String,
+            marriedDate: Date,
             repCount: Number,
             lastRep: Date,
             background: String,
@@ -40,16 +40,19 @@ module.exports = class DatabaseConnection {
                 _id: userID,
                 userCreationTimestamp: Date.now(),
                 premium: false,
+                premiumDate: null,
                 isBanned: false,
                 banData: null,
+                banReason: null,
                 aboutme: null,
                 balance: 0,
                 lastDaily: null,
                 marriedWith: null,
+                marriedDate: null,
                 repCount: 0,
                 lastRep: null,
-                background: "default.png",
-                backgrounds: ["default.png"]
+                background: "default",
+                backgrounds: ["default"]
             }).save();
         }
 

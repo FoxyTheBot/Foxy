@@ -59,7 +59,7 @@ module.exports = {
       .addFields(
         { name: ':crown: Owner', value: `\`${owner.tag}\``, inline: true },
         { name: '<:info:718944993741373511> Owner ID', value: `\`${ownerid}\``, inline: true },
-        { name: ':earth_americas: Região', value: `${region[guild.region]}`, inline: true },
+        { name: ':earth_americas: Região', value: `${region[guild.region] || "Unknown Region"}`, inline: true },
         { name: ':computer: Server ID', value: `\`${guild.id}\``, inline: true },
         { name: ':busts_in_silhouette: Membros', value: `${guild.memberCount}`, inline: true },
         { name: ':calendar: Criado em:', value: `${joinDiscord}`, inline: true },
