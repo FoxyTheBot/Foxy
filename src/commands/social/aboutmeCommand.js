@@ -1,35 +1,28 @@
-const { MessageEmbed } = require('discord.js')
+const Command = require('../../structures/Command');
+const { MessageEmbed } = require('discord.js');
+const { SlashCommandBuilder } = require('@discordjs/builders');
 
-module.exports = {
-  name: 'aboutme',
-  aliases: ['aboutme', 'sobremim'],
-  cooldown: 5,
-  guildOnly: false,
-  clientPerms: ['READ_MESSAGE_HISTORY'],
-
-  async run(client, message, args) {
-    if(!args){
-      const aboutmeEmbed = new MessageEmbed()
-      .setColor('RED')
-      .setTitle('ℹ | `f!aboutme`')
-      .setDescription('Altere sua mensagem de perfil do `f!profile` \n\n 📚 **Exemplos**')
-      .addField("Alterar o Sobre Mim", "`f!aboutme Olá eu sou amigo da Foxy!`")
-      .addField("ℹ Aliases:", "`sobremim`")
-      .setFooter(`• Autor: ${message.author.tag} - Social`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));
-      return message.reply(aboutmeEmbed);
+module.exports = class AboutmeCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: 'aboutme',
+            description: "Altera seu sobre mim",
+            category: "social",
+            dev: false,
+            data: new SlashCommandBuilder()
+                .setName('aboutme')
+                .setDescription('[👥 Social] Altera seu sobre mim')
+                .addStringOption(option => option.setName('aboutme').setDescription('Nova descrição').setRequired(true))
+        });
     }
 
-    const userData = await client.db.getDocument(message.author.id);
+    async execute(interaction) {
+        const aboutme = await interaction.options.getString('aboutme');
+        const userData = await this.client.database.getUser(interaction.user.id);
 
-    const aboutme = args.join(' ');
+        userData.aboutme = aboutme;
+        userData.save();
 
-    if (aboutme.length > 60) return message.reply('Você digitou mais de 60 caracteres, O limite de caracteres é 60, bobinho')
-
-    if (message.content.includes('@')) return message.reply("Você não pode mencionar ninguém!")    // This line of code should be replaced with a better solution
-
-    userData.aboutme = aboutme;
-    userData.save().catch(err => console.log(err));
-
-    message.reply(`Alterei sua mensagem de perfil para \`${aboutme}\``);
-  },
-};
+        interaction.reply(`Seu Sobre mim foi alterado para \`${aboutme}\``);
+    }
+}

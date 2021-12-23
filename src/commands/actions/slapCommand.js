@@ -1,53 +1,48 @@
-const Discord = require('discord.js');
-const nekoslife = require('nekos.life');
+const Command = require("../../structures/Command");
+const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const neko = new (require("nekos.life"));
 
-const neko = new nekoslife();
-module.exports = {
-  name: 'slap',
-  aliases: ['slap', 'bater', ' tapa'],
-  cooldown: 3,
-  guildOnly: true,
-  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
+module.exports = class SlapCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: "slap",
+            category: "actions",
+            data: new SlashCommandBuilder()
+                .setName("slap")
+                .setDescription("[👏 Roleplay] Bata em alguém")
+                .addUserOption(option => option.setName("user").setDescription("O usuário que você deseja bater").setRequired(true))
+        });
+    }
 
-  async run(client, message) {
-    const user = message.mentions.users.first()
+    async execute(interaction) {
+        const user = interaction.options.getUser("user");
 
-    const img = await neko.sfw.slap();
-    const img2 = await neko.sfw.slap();
+        const slap = await neko.sfw.slap();
+        const slap2 = await neko.sfw.slap();
+        const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setLabel("Retribuir")
+                    .setCustomId("slap")
+                    .setStyle("PRIMARY")
+            )
 
-    const foxyslap = new Discord.MessageEmbed()
-      .setColor('RED')
-      .setTitle('😡 Como ousa bater numa raposinha como eu >:c')
-      .setDescription(`${client.user} deu um tapa bem dado em ${message.author}`)
-      .setImage(img.url);
+        const embed = new MessageEmbed()
+            .setDescription(`${interaction.user} **bateu** em ${user}`)
+            .setImage(slap.url)
+        await interaction.reply({ embeds: [embed], components: [row] });
 
-    if (user === client.user) return message.reply(foxyslap);
+        const filter = i => i.customId === "slap" && i.user.id === user.id;
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
 
-    const avatar = message.author.displayAvatarURL({ format: 'png' });
-    const embed = new Discord.MessageEmbed()
-      .setColor('#000000')
-      .setDescription(`😱${message.author} **bateu em** ${user}`)
-      .setImage(img.url)
-      .setTimestamp()
-      .setFooter('😱😱')
-      .setFooter('Reaja com 😡 para retribuir')
-      .setAuthor(message.author.tag, avatar);
-    await message.reply(embed).then((msg) => {
-      msg.react('😡')
+        collector.on("collect", async i => {
+            const embed2 = new MessageEmbed()
+                .setDescription(`${user} **bateu** em ${interaction.user}`)
+                .setImage(slap2.url)
 
-      const filter = (reaction, usuario) => reaction.emoji.name === '😡' && usuario.id === user.id;
-
-      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000 });
-      collector.on('collect', () => {
-        const repeat = new Discord.MessageEmbed()
-          .setColor(client.colors.default)
-          .setDescription(`${user} **Bateu em** ${message.author}`)
-          .setImage(img2.url)
-
-        message.reply(repeat)
-      })
-
-    })
-  },
-
-};
+            await interaction.followUp({ embeds: [embed2] });
+            i.deferUpdate();
+        })
+    }
+}

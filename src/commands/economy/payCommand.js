@@ -1,47 +1,53 @@
-const { MessageEmbed } = require('discord.js');
+const Command = require("../../structures/Command");
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const { MessageActionRow, MessageButton } = require("discord.js");
 
-module.exports = {
-  name: 'pay',
-  aliases: ['pay', 'pagar'],
-  cooldown: 5,
-  guildOnly: true,
+module.exports = class PayCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: "pay",
+            description: "Paga alguém.",
+            category: "economy",
+            data: new SlashCommandBuilder()
+                .setName("pay")
+                .setDescription("[💵 Economy] Envie FoxCoins para alguém")
+                .addNumberOption(option => option.setName("amount").setRequired(true).setDescription("Quantia a pagar."))
+                .addUserOption(option => option.setName("user").setRequired(true).setDescription("Usuário a ser pago."))
+        });
+    }
 
-  async run(client, message, args) {
-    const userData = await client.db.getDocument(message.author.id);
+    async execute(interaction) {
+        const amount = interaction.options.getNumber("amount");
+        const user = interaction.options.getUser("user");
+        const userData = await this.client.database.getUser(interaction.user.id);
+        const mentionData = await this.client.database.getUser(user.id);
+        const foxCoins = amount;
+        const value = Math.round(foxCoins);
 
-    const payEmbed = new MessageEmbed()
-      .setColor(client.colors.green)
-      .setTitle('💸 | `f!pay`')
-      .setDescription("Você deve estar devendo alguma coisa, ou querendo ajudar um amigo? Você pode dar FoxCoins a ele! \n\n 📚 **Exemplos**")
-      .addFields(
-        { name: "🔹 Pagar a pessoa via menção", value: "`f!pay <@menção> <quantidade>`" },
-      )
-      .setFooter(`• Autor: ${message.author.tag} - Economia`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));    // const payEmbed = new MessageEmbed()
+        const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setStyle("SUCCESS")
+                    .setLabel("Pagar")
+                    .setCustomId("pay")
+            )
+        if (user === interaction.user) {
+            interaction.channel.send("Você não pode pagar você mesmo!");
+            return;
+        }
 
-    const userMention = message.mentions.members.first();
-    const foxCoins = args[1];
-    const mentionData = await client.db.getDocument(userMention.id);
-    const value = Math.round(foxCoins);
+        await interaction.reply({ content: `💸 **|** Você deseja mesmo transferir ${amount} FoxCoins para ${user.username}? \nA Equipe da Foxy **Não se responsabiliza** pelas FoxCoins perdidas, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de FoxCoins!`, components: [row] });
 
-    if (!userMention || user == message.author.id) return message.foxyReply(payEmbed);
-    if (!mentionData) return message.foxyReply(`${client.emotes.error} **|** Este usuário não está no meu banco de dados, bobinho`);
-    if (isNaN(Number(args[1])) || Number(args[1]) === Infinity) return message.foxyReply(payEmbed);
-    if (!foxCoins || message.content.includes('-') || foxCoins > userData.coins) return message.foxyReply(":x: | Você não tem FoxCoins o suficiente para transferir!");
+        const filter = i => i.customId === "pay" && i.user.id === interaction.user.id;
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
 
-    message.foxyReply(`💸 **|** Você deseja mesmo transferir ${args[1]} FoxCoins para ${userMention.user}? \nA Equipe da Foxy **Não se responsabiliza** pelas FoxCoins perdidas, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de FoxCoins!`).then(sentMessage => {
-      sentMessage.react("✅");
-      const filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
-      const collector = sentMessage.createReactionCollector(filter, { max: 1, time: 60000});
-
-      sentMessage.awaitReactions(filter, { max: 1, time: 60000, errors: ['time']});
-
-      collector.on('collect', () => {
-        message.foxyReply(`Você transferiu ${foxCoins} FoxCoins para ${userMention.user}`);
-        mentionData.balance += value;
-        userData.balance -= value;
-        userData.save();
-        mentionData.save();
-      });
-    });
-  },
-};
+        collector.on("collect", async i => {
+            interaction.followUp(`Você transferiu ${foxCoins} FoxCoins para ${user.username}`);
+            mentionData.balance += value;
+            userData.balance -= value;
+            userData.save();
+            mentionData.save();
+            i.deferUpdate();
+        })
+    }
+}

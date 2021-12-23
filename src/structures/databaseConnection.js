@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const { premium } = require("./premium.json")
 module.exports = class DatabaseConnection {
     constructor(uri, parameters, client) {
         mongoose.connect(uri, parameters, (stderr) => {
@@ -36,11 +36,19 @@ module.exports = class DatabaseConnection {
         let document = await this.user.findOne({ _id: userID });
 
         if (!document) {
+            let premium = false
+            let premiumDate = null
+
+            if (premium.includes(userID)) {
+                premium = true
+                premiumDate = new Date()
+            }
+
             document = new this.user({
                 _id: userID,
                 userCreationTimestamp: Date.now(),
-                premium: false,
-                premiumDate: null,
+                premium: premium,
+                premiumDate: premiumDate,
                 isBanned: false,
                 banData: null,
                 banReason: null,

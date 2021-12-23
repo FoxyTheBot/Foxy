@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -113,3 +114,12 @@ src/assets
 .gradle/
 # Visual Studio Code files
 .vscode/
+=======
+## Node files
+node_modules
+package-lock.json
+
+## Confidential files
+config.json
+src/assets/
+>>>>>>> 83482c1112c64f03e74695a4414bc15d904cfc26

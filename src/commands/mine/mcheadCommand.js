@@ -1,22 +1,28 @@
-module.exports = {
-  nome: 'mchead',
-  aliases: ['mchead'],
-  cooldown: 5,
-  guildOnly: false,
-  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
+const Command = require("../../structures/Command");
+const { MessageEmbed } = require("discord.js");
+const { SlashCommandBuilder } = require("@discordjs/builders");
 
-  async run(client, message, args) {
-    const user = args.join(' ');
-    if (!user) return message.reply('<:Minecraft:804858374780878868> **|** Especifique um usuário');
+module.exports = class McheadCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: "mchead",
+            category: "mine",
+            data: new SlashCommandBuilder()
+                .setName("mchead")
+                .setDescription("[⛏ Minecraft] Veja a cabeça de um player do Minecraft")
+                .addStringOption(option => option.setName("user").setDescription("O usuário que deseja").setRequired(true))
+        });
+    }
 
-    const discord = require('discord.js');
-    if (user.length > 20) return message.reply('Digite no mínimo 20 caractéres')
-    const head = `https://mc-heads.net/head/${user}`;
+    async execute(interaction) {
+        const user = interaction.options.getString("user");
+        if (user.length > 20) return interaction.reply("Digite no mínimo 20 caractéres");
 
-    const embed = new discord.MessageEmbed()
-      .setColor(client.colors.mine)
-      .setTitle(`Cabeça de ${user}`)
-      .setImage(head);
-    message.reply(embed);
-  },
-};
+        const embed = new MessageEmbed()
+            .setColor("GREEN")
+            .setTitle(`Skin de ${user}`)
+            .setImage(`https://mc-heads.net/head/${user}`)
+
+        await interaction.reply({ embeds: [embed] });
+    }
+}

@@ -1,15 +1,21 @@
-module.exports = {
-  name: 'ping',
-  description: 'Ping!',
-  aliases: ['ping', 'p'],
-  cooldown: 5,
-  guildOnly: false,
-  clientPerms: ['READ_MESSAGE_HISTORY'],
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const { MessageEmbed } = require("discord.js");
+const Command = require("../../structures/Command");
 
-  async run(client, message) {
-    message.reply(`:ping_pong: **| Pong!** \n:watch: **| Gateway:** \`${Date.now() - message.createdTimestamp}ms\`\n:zap: **| API Ping:** \`${Math.round(
-      client.ws.ping,
-    )}ms\` \n<:info:718944993741373511> **| Shard:** \`${Number(client.shard.ids)+1}/${client.shard.count}\``);
-  },
+module.exports = class PingCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: "ping",
+            description: "Veja a latência da Foxy",
+            category: "utils",
+            dev: false,
+            data: new SlashCommandBuilder()
+                .setName("ping")
+                .setDescription("[🛠 Utils] Veja a latência da Foxy")
+        });
+    }
 
-};
+    async execute(interaction) {
+        interaction.reply(`:ping_pong: **| Pong!** \n:watch: **| Gateway Ping:** \`${Math.round(this.client.ws.ping)}ms\` \n:zap: **| API Ping:** \`${Date.now() - interaction.createdTimestamp}ms\` \n${this.client.emotes.foxyhi} **| Shard:** \`${Number(this.client.shard.ids) + 1}/${this.client.shard.count}\``);
+    }
+}

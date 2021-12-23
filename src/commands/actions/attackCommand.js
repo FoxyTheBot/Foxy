@@ -1,48 +1,53 @@
-const Discord = require('discord.js');
+const Command = require("../../structures/Command");
+const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { SlashCommandBuilder } = require("@discordjs/builders");
 
-module.exports = {
-  name: 'attack',
-  aliases: ['atacar', 'attack'],
-  cooldown: 5,
-  guildOnly: true,
-  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
-
-  async run(client, message, args) {
-    const list = [
-      'https://cdn.zerotwo.dev/PUNCH/38a3ab62-17f4-4682-873a-121e886d7bce.gif',
-      'https://cdn.zerotwo.dev/PUNCH/84c082d0-24e7-491e-bcfc-be03ee46125c.gif',
-      'https://cdn.zerotwo.dev/PUNCH/3a5b2598-a973-4e6f-a1d0-9b87a2c35a18.gif',
-    ];
-
-    const rand = list[Math.floor(Math.random() * list.length)];
-    const user = message.mentions.users.first() || client.users.cache.get(args[0]);
-    if (!user) {
-      return message.reply('lembre-se de mencionar um usuário válido para atacar!');
+module.exports = class AttackCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: "attack",
+            category: "actions",
+            data: new SlashCommandBuilder()
+                .setName("attack")
+                .setDescription("[👏 Roleplay] Ataque alguém")
+                .addUserOption(option => option.setName("user").setDescription("O usuário que você deseja atacar").setRequired(true))
+        });
     }
 
-    const avatar = message.author.displayAvatarURL({ format: 'png' });
-    const embed = new Discord.MessageEmbed()
-      .setColor('#000000')
-      .setDescription(`${message.author} atacou ${user}`)
-      .setImage(rand)
-      .setTimestamp()
-      .setFooter('Reaja com 🌟 para retribuir| Gifs by: ByteAlex#1644')
-      .setAuthor(message.author.tag, avatar);
-    await message.reply(embed).then((msg) => {
-      msg.react('🌟')
+    async execute(interaction) {
+        const user = interaction.options.getUser("user");
+        const list = [
+            'https://cdn.zerotwo.dev/PUNCH/38a3ab62-17f4-4682-873a-121e886d7bce.gif',
+            'https://cdn.zerotwo.dev/PUNCH/84c082d0-24e7-491e-bcfc-be03ee46125c.gif',
+            'https://cdn.zerotwo.dev/PUNCH/3a5b2598-a973-4e6f-a1d0-9b87a2c35a18.gif',
+        ]
 
-      const filter = (reaction, usuario) => reaction.emoji.name === '🌟' && usuario.id === user.id;
+        const rand = list[Math.floor(Math.random() * list.length)];
+        const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setLabel(":crossed_swords: Atacar")
+                    .setCustomId("attack")
+                    .setStyle("PRIMARY")
+            )
 
-      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000 });
-      collector.on('collect', () => {
-        const repeat = new Discord.MessageEmbed()
-          .setColor(client.colors.default)
-          .setDescription(`${user} **Atacou** ${message.author}`)
-          .setImage(rand)
+        const embed = new MessageEmbed()
+            .setColor('#ff0000')
+            .setDescription(`${interaction.user} atacou ${user}`)
+            .setImage(rand)
 
-        message.reply(repeat)
-      })
+        await interaction.reply({ embeds: [embed], components: [row] });
 
-    })
-  }
-};
+        const filter = i => i.customid === "attack" && i.user.id === interaction.user.id;
+        const collector = interaction.channel.createMessageCompomentCollector(filter, { time: 15000, max: 1 });
+
+        collector.on("collect", async i => {
+            const embed = new MessageEmbed()
+                .setColor('#ff0000')
+                .setDescription(`${user} atacou ${interaction.user}`)
+                .setImage(rand)
+                i.deferUpdate();
+            await interaction.reply({ embeds: [embed] });
+        })
+    }
+}

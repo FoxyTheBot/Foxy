@@ -1,47 +1,53 @@
-const Discord = require('discord.js');
-const nekolife = require('nekos.life');
+const Command = require("../../structures/Command");
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const neko = new (require("nekos.life"));
 
-const neko = new nekolife();
-module.exports = {
-  name: 'hug',
-  aliases: ['hug', 'abraçar'],
-  cooldown: 3,
-  guildOnly: true,
-  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
-
-  async run(client, message, args) {
-    const user = message.mentions.users.first() || client.users.cache.get(args[0]);
-    if (!user) {
-      return message.reply('lembre-se de mencionar um usuário válido para abraçar!');
+module.exports = class HugCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: "hug",
+            description: "Abraçar alguém",
+            category: "actions",
+            dev: false,
+            data: new SlashCommandBuilder()
+                .setName("hug")
+                .setDescription("[👏 Roleplay] Abraçar alguém")
+                .addUserOption(option => option.setName("user").setDescription("Mencione um usuário").setRequired(true))
+        });
     }
 
-    const img = await neko.sfw.hug();
-    const img2 = await neko.sfw.hug();
+    async execute(interaction) {
+        const user = await interaction.options.getUser("user");
 
-    const embed = new Discord.MessageEmbed()
-      .setColor('#000000')
-      .setDescription(`${message.author} **abraçou** ${user}`)
-      .setImage(img.url)
-      .setTimestamp()
-      .setFooter('Reaja com ❤ para retribuir');
-    await message.reply(`${message.author}`, embed).then((msg) => {
-      msg.react('❤')
+        const img = await neko.sfw.hug();
+        const img2 = await neko.sfw.hug();
 
-      const filter = (reaction, usuario) => reaction.emoji.name === '❤' && usuario.id === user.id;
+        const hugEmbed = new MessageEmbed()
+            .setColor("RANDOM")
+            .setDescription(`${interaction.user} abraçou ${user}`)
+            .setImage(img.url)
 
-      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000 });
-      collector.on('collect', () => {
-        const repeat = new Discord.MessageEmbed()
-          .setColor(client.colors.default)
-          .setDescription(`${user} **Abraçou** ${message.author}`)
-          .setImage(img2.url)
+        const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setCustomId("primary")
+                    .setLabel("💞 Retribuir")
+                    .setStyle("PRIMARY")
+            )
 
-        message.reply(repeat)
-      })
+        await interaction.reply({ embeds: [hugEmbed], components: [row] });
 
-    })
-  }
+        const filter = i => i.customId === 'primary' && i.user.id === user.id;
+        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000, max: 1 });
 
+        collector.on('collect', async i => {
+            const hugEmbed = new MessageEmbed()
+                .setColor("RANDOM")
+                .setDescription(`${user} abraçou ${interaction.user}`)
+                .setImage(img2.url)
+            await interaction.followUp({ embeds: [hugEmbed] });
+            i.deferUpdate();
+        });
+    }
 }
-
-

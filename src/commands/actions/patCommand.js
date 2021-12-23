@@ -1,45 +1,51 @@
-const Discord = require('discord.js');
-const nekoslife = require('nekos.life');
+const Command = require("../../structures/Command");
+const { MessageEmbed, MessageActionRow, MessageButton, Message } = require("discord.js");
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const neko = new (require("nekos.life"));
 
-const neko = new nekoslife();
-module.exports = {
-  name: 'pat',
-  aliases: ['pat', 'cafuné'],
-  cooldown: 3,
-  guildOnly: true,
-  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
-
-  async run(client, message, args) {
-    const user = message.mentions.users.first() || client.users.cache.get(args[0]);
-    if (!user) {
-      return message.reply('lembre-se de mencionar um usuário válido para fazer cafuné!');
+module.exports = class PatCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: "pat",
+            description: "Faça cafuné em alguém",
+            category: "actions",
+            data: new SlashCommandBuilder()
+                .setName("pat")
+                .setDescription("[👏 Roleplay] Faça cafuné em alguém")
+                .addUserOption(option => option.setName("user").setRequired(true).setDescription("O usuário que você quer pat"))
+        });
     }
 
-    const img = await neko.sfw.pat();
-    const img2 = await neko.sfw.pat();
+    async execute(interaction) {
+        const user = interaction.options.getUser("user");
+        const gif = await neko.sfw.pat();
+        const gif2 = await neko.sfw.pat();
 
-    const embed = new Discord.MessageEmbed()
-      .setColor('#000000')
-      .setDescription(`${message.author} **fez cafuné em** ${user}`)
-      .setImage(img.url)
-      .setTimestamp()
-      .setFooter('Reaja com 🤩 para retribuir');
-    await message.reply(`${message.author}`, embed).then((msg) => {
-      msg.react('🤩')
+        const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setLabel("Retribuir")
+                    .setCustomId("pat")
+                    .setStyle("PRIMARY")
+            )
 
-      const filter = (reaction, usuario) => reaction.emoji.name === '🤩' && usuario.id === user.id;
+        const embed = new MessageEmbed()
+            .setColor("RANDOM")
+            .setDescription(`${interaction.user} fez cafuné em ${user}`)
+            .setImage(gif.url)
 
-      const collector = msg.createReactionCollector(filter, { max: 1, time: 60000 });
-      collector.on('collect', () => {
-        const repeat = new Discord.MessageEmbed()
-          .setColor(client.colors.default)
-          .setDescription(`${user} **Fez cafuné** ${message.author}`)
-          .setImage(img2.url)
+        await interaction.reply({ embeds: [embed], components: [row] });
 
-        message.reply(repeat)
-      })
+        const filter = i => i.customId == "pat" && i.user.id == user.id;
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000, max: 1 });
 
-    })
-  },
-
-};
+        collector.on("collect", async i => {
+            const embed = new MessageEmbed()
+                .setColor("RANDOM")
+                .setDescription(`${user} retribuiu ${interaction.user}`)
+                .setImage(gif2.url)
+            i.deferUpdate();
+            await interaction.followUp({ embeds: [embed] });
+        })
+    }
+}

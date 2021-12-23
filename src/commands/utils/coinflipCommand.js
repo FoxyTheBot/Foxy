@@ -1,22 +1,22 @@
-module.exports = {
-  name: 'coinflip',
-  aliases: ['coinflip', 'caracoroa'],
-  cooldown: 3,
-  guildOnly: false,
-  clientPerms: ['READ_MESSAGE_HISTORY'],
+const Command = require("../../structures/Command");
+const { SlashCommandBuilder } = require("@discordjs/builders");
 
-  async run(client, message, args) {
-    const array1 = ['cara', 'coroa'];
-
-    const rand = Math.floor(Math.random() * array1.length);
-
-    if (!args[0] || (args[0].toLowerCase() !== 'cara' && args[0].toLowerCase() !== 'coroa')) {
-      message.reply('insira **cara** ou **coroa** na frente do comando.');
-    } else if (args[0].toLowerCase() == array1[rand]) {
-      message.reply(`Deu **${array1[rand]}**, você ganhou dessa vez!`);
-    } else if (args[0].toLowerCase() != array1[rand]) {
-      message.reply(`Deu **${array1[rand]}**, você perdeu dessa vez!`);
+module.exports = class CoinflipCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: "coinflip",
+            description: "Joga uma moeda.",
+            category: "utils",
+            data: new SlashCommandBuilder()
+                .setName("coinflip")
+                .setDescription("[🛠 Utils] Joga uma moeda.")
+        });
     }
-  },
 
-};
+    async execute(interaction) {
+        const coinflip = ["cara", "coroa"];
+        const random = Math.floor(Math.random() * coinflip.length);
+
+        await interaction.reply(`A moeda caiu em **${coinflip[random]}**!`);
+    }
+}

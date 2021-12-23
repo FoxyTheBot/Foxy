@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { MessageEmbed } = require('discord.js');
 
 module.exports = async (client, guild) => {
@@ -10,3 +11,14 @@ module.exports = async (client, guild) => {
   
   client.guildWebhook.send(guildDelete);
 };
+=======
+module.exports = class GuildDelete {
+    constructor(client) {
+        this.client = client;
+    }
+
+    async run(guild) {
+        this.client.WebhookManager.guildDelete(guild);
+    }
+}
+>>>>>>> 83482c1112c64f03e74695a4414bc15d904cfc26

@@ -1,24 +1,29 @@
-module.exports = {
-  name: 'mcskin',
-  aliases: ['mcskin'],
-  cooldown: 5,
-  guildOnly: false,
-  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
+const Command = require("../../structures/Command");
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const { MessageEmbed } = require("discord.js");
 
-  async run(client, message, args) {
-    const user = args.join(' ');
+module.exports = class McskinCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: "mcskin",
+            category: "mine",
+            data: new SlashCommandBuilder()
+                .setName("mcskin")
+                .setDescription("[⛏ Minecraft] Veja uma skin do Minecraft")
+                .addStringOption(option => option.setName("user").setDescription("O usuário que deseja").setRequired(true))
+        });
+    }
 
-    if (!user) return message.reply('<:Minecraft:804858374780878868> **|** Especifique um usuário');
-    if (user.length > 20) return message.reply('Digite no mínimo 20 caractéres')
-    const skin = `https://mc-heads.net/skin/${user}`;
+    async execute(interaction) {
+        const user = interaction.options.getString("user");
+        if (user.length > 20) return interaction.reply("Digite no mínimo 20 caractéres");
 
-    const discord = require('discord.js');
+        const embed = new MessageEmbed()
+            .setColor("GREEN")
+            .setTitle(`Skin de ${user}`)
+            .setImage(`https://mc-heads.net/skin/${user}`)
 
-    const embed = new discord.MessageEmbed()
-      .setColor('BLUE')
-      .setTitle(`<:Minecraft:804858374780878868> Skin de ${user}`)
-      .setImage(skin)
-      .setColor(client.colors.mine);
-    await message.reply(embed);
-  },
-};
+        await interaction.reply({ embeds: [embed] });
+
+    }
+}

@@ -1,22 +1,26 @@
-module.exports = {
-  name: 'mcbody',
-  aliases: ['mcbody'],
-  cooldown: 5,
-  guildOnly: false,
-  clientPerms: ['ATTACH_FILES', 'EMBED_LINKS', 'READ_MESSAGE_HISTORY'],
+const Command = require("../../structures/Command");
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const { MessageEmbed } = require("discord.js");
 
-  async run(client, message, args) {
-    const user = args.join(' ');
-    if (!user) return message.reply('<:Minecraft:804858374780878868> **|** Especifique um usuário');
+module.exports = class McbodyCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: "mcbody",
+            category: "mine",
+            data: new SlashCommandBuilder()
+                .setName("mcbody")
+                .setDescription("[⛏ Minecraft] Veja uma skin do Minecraft")
+                .addStringOption(option => option.setName("user").setDescription("A conta do Minecraft que deseja olhar a skin").setRequired(true))
+        });
+    }
 
-    const discord = require('discord.js');
-    if (user.length > 20) return message.reply('Digite no mínimo 20 caractéres')
-    const body = `https://mc-heads.net/body/${user}`;
+    async execute(interaction) {
+        const user = interaction.options.getString("user");
+        if (user.length > 20) return interaction.reply("Digite no mínimo 20 caractéres");
 
-    const embed = new discord.MessageEmbed()
-      .setColor(client.colors.mine)
-      .setTitle(`Corpo de ${user}`)
-      .setImage(body);
-    message.reply(embed);
-  },
-};
+        const embed = new MessageEmbed()
+            .setTitle(`Skin de ${user}`)
+            .setImage(`https://mc-heads.net/body/${user}`)
+        await interaction.reply({ embeds: [embed] });
+    }
+}

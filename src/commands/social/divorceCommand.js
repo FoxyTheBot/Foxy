@@ -1,43 +1,49 @@
+const Command = require("../../structures/Command");
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const { MessageActionRow, MessageButton } = require("discord.js");
 
-module.exports = {
-    name: "divorce",
-    aliases: ['divorce', 'divorciar'],
-    cooldown: 5,
-    guildOnly: true,
-    clientPerms: ['ADD_REACTIONS', 'READ_MESSAGE_HISTORY'],
+module.exports = class DivorceCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: "divorce",
+            description: "Divorciar-se",
+            category: "social",
+            dev: false,
+            data: new SlashCommandBuilder()
+                .setName("divorce")
+                .setDescription("[👥 Social] Divorciar-se")
+        });
+    }
 
-    async run(client, message, args) {
-        const userData = await client.db.getDocument(message.author.id)
+    async execute(interaction) {
+        const userData = await this.client.database.getUser(interaction.user.id);
+        const marriedId = await userData.marriedWith;
+        if (!marriedId) return interaction.reply("Você não está casado!");
 
-        if(!userData.marriedWith) return message.reply("Você não está casado!");
+        const marriedData = await this.client.database.getUser(marriedId);
+        if (!marriedData) return interaction.reply(`O usuário não está no banco de dados!`);
 
-        const marriedUser = await client.db.getDocument(userData.marriedWith);
-        if (!marriedUser) console.error("[Social] - What the fuck, como que ele está casado com algúem que não está no banco de dados!????");
+        const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setCustomId("yes")
+                    .setLabel("💔 Sim")
+                    .setStyle("DANGER"),
+            )
 
-        const married = await client.users.fetch(userData.marriedWith);
-        message.reply(`${client.emotes.broken} **|** Então é o fim? Você quer realmente se divorciar de **${married.username}**?`).then((msg) => {
-            msg.react('💔');
-            const filterYes = (reaction, usuario) => reaction.emoji.name === '💔' && usuario.id === message.author.id;
+        interaction.reply({ content: "Você tem certeza que deseja divorciar-se?", components: [row] });
 
-            const yesCollector = msg.createReactionCollector(filterYes, { max: 1, time: 60000 });
+        const filter = i => i.customId === 'yes' && i.user.id === interaction.user.id;
 
-            yesCollector.on('collect', () => {
-                msg.delete();
+        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 60000, max: 1 });
 
-                userData.marriedWith = null;
-                userData.marriedDate = null;
-                marriedUser.marriedWith = null;
-                marriedUser.marriedDate = null;
-                userData.save().catch(err => console.log(err));
-                marriedUser.save().catch(err => console.log(err));
-
-                return message.reply(`${client.emotes.broken} **|** ${message.author} ...Então é isso, se divorciar é sim uma coisa triste, Da próxima vez ame alguém que realmente mereça e respeite você, sim isso parece ser difícil pois o amor é algo cego e incontrolável... Mas é melhor estar sozinho do que mal acompanhado, eu confio em você! :heart:`)
-            })
-
-            yesCollector.on("end", () => {
-                return msg.delete();
-            })
-        }
-        )
+        collector.on("collect", async i => {
+            userData.marriedWith = null;
+            marriedData.marriedWith = null;
+            await userData.save();
+            await marriedData.save();
+            i.deferUpdate();
+            return interaction.followUp(`${this.client.emotes.error} **|** ...Então é isso, se divorciar é sim uma coisa triste, Da próxima vez ame alguém que realmente mereça e respeite você, sim isso parece ser difícil pois o amor é algo cego e incontrolável... Mas é melhor estar sozinho do que mal acompanhado, eu confio em você! :heart:`);
+        });
     }
 }

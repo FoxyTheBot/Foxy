@@ -1,64 +1,54 @@
-const { MessageEmbed } = require('discord.js');
+const Command = require("../../structures/Command");
+const { MessageActionRow, MessageButton } = require("discord.js");
+const { SlashCommandBuilder } = require("@discordjs/builders");
 
-module.exports = {
-    name: "marry",
-    aliases: ['casar', ' marry'],
-    cooldown: 5,
-    guildOnly: true,
-    clientPerms: ['ADD_REACTIONS', 'READ_MESSAGE_HISTORY'],
+module.exports = class MarryCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: "marry",
+            description: "Case com algum usuário",
+            category: "social",
+            dev: false,
+            data: new SlashCommandBuilder()
+                .setName("marry")
+                .setDescription("[👥 Social] Case com algum usuário")
+                .addUserOption(option => option.setName("user").setDescription("Mencione um usuário").setRequired(true))
+        });
+    }
 
-    async run(client, message, args) {
-        const userData = await client.db.getDocument(message.author.id);
+    async execute(interaction) {
+        const mentionedUser = await interaction.options.getUser("user");
 
-        if (userData.marriedWith) return message.reply("Você já está casado com alguém!");
-        const mentioned = message.mentions.users.first();
+        if (mentionedUser === interaction.user) return interaction.reply(`${this.client.emotes.error} | Você não pode casar com si mesmo!`);
+        const authorData = await this.client.database.getUser(interaction.user.id);
+        if (authorData.marriedWith) return interaction.reply(`${this.client.emotes.error} | Você já está casado com alguém!`);
+        if (mentionedUser === this.client.user) return interaction.reply(`${this.client.emotes.scared} | Nah! Eu não quero casar com você`);
+        if (mentionedUser.id === authorData.marriedWith) return interaction.reply(`${this.client.emotes.error} | Você já está casado com ${user.username}`);
 
-        if (!mentioned || !args) {
-            const marryEmbed = new MessageEmbed().setColor('RED').setTitle('❤ | `f!marry`')
-                .setDescription(' Case com sua Webnamorada, você ama essa pessoa? Case com ela! Vocês não precisam de FoxCoins para casar, apenas sejam felizes! \n\n 📚 **Exemplos**')
-                .addFields(
-                    { name: "🔹 Faz um pedido para a pessoa mencionada", value: "`f!marry WinG4merBR#7661`" },
-                    { name: "ℹ Aliases:", value: "`casar`" }
-                )
-                .setFooter(`• Autor: ${message.author.tag} - Social`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));
+        const userData = await this.client.database.getUser(mentionedUser.id);
+        if (userData.marriedWith) return interaction.reply(`${this.client.emotes.error} | ${mentionedUser.username} já está casado com alguém!`);
 
-            return message.reply(marryEmbed)
-        }
+        const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setCustomId('accept')
+                    .setLabel(`Aceitar`)
+                    .setStyle("SUCCESS"),
+            )
+        interaction.reply({ content: `${this.client.emotes.heart} | ${mentionedUser} Você recebeu um pedido de casamento de ${interaction.user}, você tem 1 minuto para aceitar!`, components: [row] });
 
-        if (mentioned === client.user) return message.reply(`Nhe, eu não quero casar com você, aliás eu nem idade para casar tenho! ${client.emotes.rage}`);
-        if (mentioned.id === message.author.id) return message.reply(`${client.emotes.error} **|** Ué amiguinho? Por que você quer casar com você mesmo? Uma hora você vai achar o amor da sua vida, eu confio em você! ${client.emotes.heart}`);
-        if (mentioned.id === userData.marriedWith) return message.reply(`${client.emotes.error} **|** Você já está casado com ${mentioned.username}!`);
+        const filter = i => i.customId === 'accept' && i.user.id === mentionedUser.id;
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
 
-        const mentionData = await client.db.getDocument(mentioned.id);
-        if (!mentionData) return message.reply(`${client.emotes.error} **|** Este usuário não está no meu banco de dados, bobinho`)
-        if (mentionData.marriedWith) return message.reply(`${client.emotes.error} **|** ${mentioned.username} já está casado com alguém!`);
-
-        message.reply(`${client.emotes.heart} **|** ${mentioned} Você recebeu um pedido de casamento de ${message.author}, você tem 1 minuto para aceitar!`).then((msg) => {
-            msg.react('💍');
-            setTimeout(() => msg.react('❌'), 1000);
-
-            const filterYes = (reaction, usuario) => reaction.emoji.name === '💍' && usuario.id === mentioned.id;
-            const filterNo = (reaction, usuario) => reaction.emoji.name === '❌' && usuario.id === mentioned.id;
-
-            const yesCollector = msg.createReactionCollector(filterYes, { max: 1, time: 60000 });
-            const noCollector = msg.createReactionCollector(filterNo, { max: 1, time: 60000 });
-
-            noCollector.on('collect', async () => {
-                await msg.delete()
-                return message.reply(`${client.emotes.broken} **|** Me desculpe ${message.author}, mas seu pedido de casamento foi rejeitado ${client.emotes.sob}`);
-            })
-
-            yesCollector.on('collect', async () => {
-                userData.marriedWith = mentioned.id;
-                userData.marriedDate = Date.now();
-                mentionData.marriedWith = message.author.id;
-                mentionData.marriedDate = Date.now();
-                userData.save();
-                mentionData.save();
-
-                await msg.delete();
-                return message.reply(`${client.emotes.heart} **|** ${message.author} e ${mentioned}, Vocês agora estão casados, felicidades para vocês dois! ${client.emotes.heart}`);
-            })
-        })
+        collector.on("collect", async i => {
+            i.deferUpdate();
+            i.followUp(`${this.client.emotes.success} | Vocês estão casados! Felicidades para o casal! ^^`);
+            userData.marriedWith = interaction.user.id;
+            userData.marriedDate = new Date();
+            authorData.marriedWith = mentionedUser.id;
+            authorData.marriedDate = new Date();
+            await userData.save();
+            await authorData.save();
+        });
     }
 }
