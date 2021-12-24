@@ -23,8 +23,6 @@ module.exports = {
 
     const aboutme = args.join(' ');
 
-    if (aboutme.length > 60) return message.reply('Você digitou mais de 60 caracteres, O limite de caracteres é 60, bobinho')
-
     if (message.content.includes('@')) return message.reply("Você não pode mencionar ninguém!")    // This line of code should be replaced with a better solution
 
     userData.aboutme = aboutme;

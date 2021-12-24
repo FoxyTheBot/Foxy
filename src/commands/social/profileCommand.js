@@ -11,7 +11,7 @@ module.exports = {
   async run(client, message) {
     const user = message.mentions.users.first() || message.author;
     const userData = await client.db.getDocument(user.id);
-    const canvasGenerator = new GenerateImage(this.client, user, userData, 1436, 884);
+    const canvasGenerator = new GenerateImage(client, user, userData, 1436, 884);
     const profile = new MessageAttachment(await canvasGenerator.genProfile(), "foxy_profile.png");
 
     message.reply(profile);

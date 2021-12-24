@@ -19,11 +19,11 @@ module.exports = {
       .setFooter(`• Autor: ${message.author.tag} - Economia`, message.author.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 }));    // const payEmbed = new MessageEmbed()
 
     const userMention = message.mentions.members.first();
+    if (!userMention || user == message.author.id) return message.foxyReply(payEmbed);
     const foxCoins = args[1];
     const mentionData = await client.db.getDocument(userMention.id);
     const value = Math.round(foxCoins);
 
-    if (!userMention || user == message.author.id) return message.foxyReply(payEmbed);
     if (!mentionData) return message.foxyReply(`${client.emotes.error} **|** Este usuário não está no meu banco de dados, bobinho`);
     if (isNaN(Number(args[1])) || Number(args[1]) === Infinity) return message.foxyReply(payEmbed);
     if (!foxCoins || message.content.includes('-') || foxCoins > userData.coins) return message.foxyReply(":x: | Você não tem FoxCoins o suficiente para transferir!");
