@@ -58,4 +58,11 @@ module.exports = class DatabaseConnection {
 
         return document;
     }
+
+    getAllUsers() {
+        this.user.find({}).exec(async function(err, users) {
+            const list = await users.map(user => user._id);
+            return list;
+        });
+    }
 }
