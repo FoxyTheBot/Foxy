@@ -61,7 +61,7 @@ module.exports = class DatabaseConnection {
 
     getAllUsers() {
         this.user.find({}).exec(async function(err, users) {
-            const list = await users.map(user => user._id);
+            const list = await users.map(user => user.toJSON());
             return list;
         });
     }
