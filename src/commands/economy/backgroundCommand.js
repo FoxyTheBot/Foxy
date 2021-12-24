@@ -1,5 +1,5 @@
 const { bglist } = require('../../json/backgroundList.json');
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, MessageAttachment } = require('discord.js');
 
 module.exports = {
   name: 'background',
@@ -43,12 +43,13 @@ module.exports = {
       return;
     }
 
+    const attach = await new MessageAttachment(`https://cdn.foxywebsite.ml/backgrounds/${background.id}`, 'background.png');
     const bgInfo = new MessageEmbed()
       .setTitle(background.name)
       .setDescription(background.description)
       .addField("💵 Preço", `${background.foxcoins} FoxCoins`, true)
       .setFooter(`Raridade: ${background.rarity}`)
-      .attachFiles(`https://cdn.foxywebsite.ml/backgrounds/${background.id}`)
+      .setImage(attach.url)
 
     message.reply(bgInfo).then((msg) => {
       msg.react("✅");
@@ -57,13 +58,13 @@ module.exports = {
       msg.awaitReactions(filter, { max: 1, time: 120000, errors: ['time'] }).then((reactionData) => {
         if (reactionData.first().emoji.name === "✅") {
           if (userData.balance < background.foxcoins) {
-            return msg.foxyReply("Você não tem coins o suficiente para este background!");
+            return msg.reply("Você não tem coins o suficiente para este background!");
           } else {
             userData.balance -= background.foxcoins;
             userData.background = background.id;
             userData.backgrounds.push(background.id);
             userData.save().catch(err => console.log(err));
-            msg.foxyReply(`Você comprou o background **${background.name}**, ele já foi definido`);
+            msg.reply(`Você comprou o background **${background.name}**, ele já foi definido`);
           }
         } else if (reactionData.first().emoji.name === "❌") {
           msg.delete();
