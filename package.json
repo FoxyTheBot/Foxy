@@ -1,6 +1,6 @@
 {
   "name": "foxy",
-  "version": "2022.07.26-prerelease",
+  "version": "2022.07.26-stable",
   "description": "A simple bot for Discord",
   "main": "shard.js",
   "scripts": {

@@ -1,4 +1,4 @@
-const { MessageActionRow, MessageButton, MessageAttachment } = require('discord.js');
+const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 
 module.exports = class MessageCreate {
     constructor(client) {
@@ -6,7 +6,7 @@ module.exports = class MessageCreate {
     }
 
     async run(message) {
-        if (message.content === `<@${this.client.user.id}>` || message.content === `<@!${this.client.user.id}>`) message.channel.send(`Olá ${message.author}! Meu nome é ${this.client.user.username}, meu prefixo é \`${client.config.prefix}\`, Utilize \`/help(Slash command)\` para obter ajuda! ${this.client.emotes.success}`);
+        if (message.content === `<@${this.client.user.id}>` || message.content === `<@!${this.client.user.id}>`) message.channel.send(`Olá ${message.author}! Meu nome é ${this.client.user.username}, meu prefixo é \`/(Slash Commands)\`, Utilize \`/help\` para obter ajuda! ${this.client.emotes.success}`);
 
         if (message.author.bot) return;
         const row = new MessageActionRow();
@@ -16,9 +16,15 @@ module.exports = class MessageCreate {
                 .setLabel('Atualize minhas permissões')
                 .setStyle('LINK'),
         );
-        const attachment = new MessageAttachment("https://cdn.foxywebsite.ml/alert/error.mp4", "sejaslash.mp4");
+        const messageError = new MessageEmbed();
+        messageError.setColor("#ff0000");
+        messageError.setTitle("Não é possível mais usar os comandos tradicionais da Foxy!");
+        messageError.setDescription("Estou respondendo apenas Slash Commands (Comandos de barra /). Digite /ping caso não apareça os meus comandos atualize minhas permissões no seu servidor! \n\n **Maneiras de atualizar: **" +
+        "Para atualizar você pode atualizar pelo [link](https://discord.com/oauth2/authorize?client_id=737044809650274325&scope=bot+applications.commands&permissions=269872255) ou usando a nova função do Discord:");
+        messageError.setImage("https://i.imgur.com/GBoGyrC.gif");
+            
         if (message.content.startsWith(this.client.config.prefix)) {
-            return message.reply({ files: [attachment], components: [row] });
+            return message.reply({ embeds: [messageError] });
         }
     }
 }
