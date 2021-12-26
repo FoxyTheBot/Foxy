@@ -49,4 +49,4 @@ Crie um arquivo de configuração para a Foxy chamado config.json e use o seguin
 
 ### Configurando para primeiro uso:
 - Registre os comandos de / utilizando: node register.js
-- Pronto! A Foxy está pronta para ser executada! Use node . e digite /ping no seu servidor!
+- Pronto! A Foxy está pronta para ser executada! Use node . e digite /ping ou /help no seu servidor!
