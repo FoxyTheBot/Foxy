@@ -16,7 +16,7 @@ module.exports = class RatewaifuCommand extends Command {
     async execute(interaction) {
         const user = interaction.options.getUser("user");
 
-        if (user == client.user.id) return message.reply(`${client.emotes.heart} **|** Eu dou nota **∞** para <@737044809650274325> sim eu sou muito linda 😘`);
+        if (user == this.client.user.id) return message.reply(`${this.client.emotes.heart} **|** Eu dou nota **∞** para <@737044809650274325> sim eu sou muito linda 😘`);
 
         const list = [
             '**1** para essa waifu. Eu não gostei <:hmmpepe:791151120021061662> ',
