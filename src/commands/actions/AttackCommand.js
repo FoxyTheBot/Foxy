@@ -36,7 +36,7 @@ module.exports = class AttackCommand extends Command {
             .setDescription(`${interaction.user} atacou ${user}`)
             .setImage(rand)
 
-        await interaction.reply({ embeds: [embed], components: [row] });
+        await interaction.editReply({ embeds: [embed], components: [row] });
 
         const filter = i => i.customid === "attack" && i.user.id === interaction.user.id;
         const collector = interaction.channel.createMessageCompomentCollector(filter, { time: 15000, max: 1 });
@@ -47,7 +47,7 @@ module.exports = class AttackCommand extends Command {
                 .setDescription(`${user} atacou ${interaction.user}`)
                 .setImage(rand)
                 i.deferUpdate();
-            await interaction.reply({ embeds: [embed] });
+            await interaction.editReply({ embeds: [embed] });
         })
     }
 }

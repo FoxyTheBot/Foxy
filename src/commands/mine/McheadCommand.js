@@ -16,13 +16,13 @@ module.exports = class McheadCommand extends Command {
 
     async execute(interaction) {
         const user = interaction.options.getString("user");
-        if (user.length > 20) return interaction.reply("Digite no mínimo 20 caractéres");
+        if (user.length > 20) return interaction.editReply("Digite no mínimo 20 caractéres");
 
         const embed = new MessageEmbed()
             .setColor("GREEN")
             .setTitle(`Skin de ${user}`)
             .setImage(`https://mc-heads.net/head/${user}`)
 
-        await interaction.reply({ embeds: [embed] });
+        await interaction.editReply({ embeds: [embed] });
     }
 }

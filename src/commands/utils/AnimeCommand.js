@@ -20,7 +20,6 @@ module.exports = class AnimeCommand extends Command {
     async execute(interaction) {
         const search = await interaction.options.getString("anime");
 
-        interaction.deferReply();
         malScraper.getInfoFromName(search).then(async data => {
             const animeEmbed = new MessageEmbed()
                 .setTitle(data.title)

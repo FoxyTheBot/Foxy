@@ -20,8 +20,7 @@ module.exports = class ErrorCommand extends Command {
         const canvas = Canvas.createCanvas(380, 208);
         const ctx = canvas.getContext("2d");
 
-        await interaction.deferReply();
-        const background = await Canvas.loadImage("https://cdn.foxywebsite.ml/memes/windows.png");
+        const background = await Canvas.loadImage("https://cdn.foxywebsite.xyz/memes/windows.png");
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 
@@ -29,7 +28,7 @@ module.exports = class ErrorCommand extends Command {
             const check = string.match(/.{1,35}/g);
             string = check.join("\n");
         }
-        if(string.length > 100) return interaction.reply("Você não pode digitar mais de 100 caractéres!")
+        if(string.length > 100) return interaction.editReply("Você não pode digitar mais de 100 caractéres!")
 
         ctx.strokeStyle = '#74037b';
         ctx.strokeRect(0, 0, canvas.width, canvas.height);

@@ -30,6 +30,6 @@ module.exports = class StepCommand extends Command {
             .setDescription(`${interaction.user} **pisou** em ${user}`)
             .setImage(rand)
 
-        await interaction.reply({ embeds: [embed] });
+        await interaction.editReply({ embeds: [embed] });
     }
 }

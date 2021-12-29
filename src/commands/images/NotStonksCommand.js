@@ -20,8 +20,7 @@ module.exports = class NotStonks extends Command {
         const canvas = Canvas.createCanvas(800, 600);
         const ctx = canvas.getContext('2d');
 
-        await interaction.deferReply();
-        const background = await Canvas.loadImage('https://cdn.foxywebsite.ml/memes/notstonks.png');
+        const background = await Canvas.loadImage('https://cdn.foxywebsite.xyz/memes/notstonks.png');
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         ctx.strokeStyle = '#74037b';

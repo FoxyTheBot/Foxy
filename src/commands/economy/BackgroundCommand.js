@@ -38,15 +38,15 @@ module.exports = class BackgroundCommand extends Command {
                     bgDesc = bgDesc + `(${bgHandle.rarity}) **${bgHandle.name}** - ${bgHandle.foxcoins} FoxCoins - **Código:** ${bgHandle.id} \n`;
                 }
                 bgList.setDescription(bgDesc);
-                if (!codeString) return interaction.reply({ embeds: [bgList] });
+                if (!codeString) return interaction.editReply({ embeds: [bgList] });
 
                 const background = await bglist.find((index) => index.id === codeString?.toLowerCase());
 
-                if (!background) return interaction.reply("Código inválido");
+                if (!background) return interaction.editReply("Código inválido");
 
                 const bg = await userData.backgrounds;
-                if (bg.includes(codeString)) return interaction.reply("Você já tem esse background, bobinho");
-                if (background.onlydevs && !this.client.config.owners.includes(interaction.user.id)) return interaction.reply("Desculpe, mas esse background só pode ser comprado por desenvolvedores.");
+                if (bg.includes(codeString)) return interaction.editReply("Você já tem esse background, bobinho");
+                if (background.onlydevs && !this.client.config.owners.includes(interaction.user.id)) return interaction.editReply("Desculpe, mas esse background só pode ser comprado por desenvolvedores.");
 
                 const row = new MessageActionRow()
                     .addComponents(
@@ -63,11 +63,11 @@ module.exports = class BackgroundCommand extends Command {
                     .addField("💵 Preço", `${background.foxcoins} FoxCoins`, true)
                     .setFooter(`Raridade: ${background.rarity}`);
 
-                const attachment = await new MessageAttachment(`https://cdn.foxywebsite.ml/backgrounds/${codeString}`, 'background.png');
+                const attachment = await new MessageAttachment(`https://cdn.foxywebsite.xyz/backgrounds/${codeString}`, 'background.png');
 
                 bgInfo.setImage("attachment://background.png");
 
-                interaction.reply({ embeds: [bgInfo], components: [row], files: [attachment] });
+                interaction.editReply({ embeds: [bgInfo], components: [row], files: [attachment] });
 
                 const filter = i => i.customId === 'yes' && i.user.id === interaction.user.id;
                 const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000, max: 1 });
@@ -104,17 +104,17 @@ module.exports = class BackgroundCommand extends Command {
                         .setDescription(bgList)
                         .setFooter("Coloque o nome do arquivo do seu background")
 
-                    await interaction.reply({ embeds: [embed] });
+                    await interaction.editReply({ embeds: [embed] });
                 } else {
                     const background = await bglist.find((index) => index.id === string?.toLowerCase());
-                    if (!background) return await interaction.reply("Background não encontrado");
+                    if (!background) return await interaction.editReply("Background não encontrado");
                     const backgroundList = userData.backgrounds;
                     if (backgroundList.includes(string)) {
                         userData.background = string;
                         userData.save();
-                        await interaction.reply("Background alterado com sucesso");
+                        await interaction.editReply("Background alterado com sucesso");
                     } else {
-                        await interaction.reply("Você não tem esse background");
+                        await interaction.editReply("Você não tem esse background");
                     }
                 }
             }

@@ -17,6 +17,6 @@ module.exports = class CoinflipCommand extends Command {
         const coinflip = ["cara", "coroa"];
         const random = Math.floor(Math.random() * coinflip.length);
 
-        await interaction.reply(`A moeda caiu em **${coinflip[random]}**!`);
+        await interaction.editReply(`A moeda caiu em **${coinflip[random]}**!`);
     }
 }

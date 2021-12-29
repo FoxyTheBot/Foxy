@@ -19,7 +19,7 @@ module.exports = class WeatherCommand extends Command {
     async execute(interaction) {
         const city = interaction.options.getString("cidade");
         weather.find({ search: city, degreeType: 'C' }, async (error, result) => {
-            if (error) return interaction.reply("Não foi possível encontrar a cidade.");
+            if (error) return interaction.editReply("Não foi possível encontrar a cidade.");
 
             if (result === undefined || result.length === 0) return message.reply('Localização inválida!');
 
@@ -38,7 +38,7 @@ module.exports = class WeatherCommand extends Command {
                 .addField('Sensação', `${current.feelslike}°`, true)
                 .addField('Umidade', `${current.humidity}%`, true);
 
-            await interaction.reply({ embeds: [weatherinfo] });
+            await interaction.editReply({ embeds: [weatherinfo] });
         })
     }
 }

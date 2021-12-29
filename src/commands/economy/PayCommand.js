@@ -36,7 +36,7 @@ module.exports = class PayCommand extends Command {
             return;
         }
 
-        await interaction.reply({ content: `💸 **|** Você deseja mesmo transferir ${amount} FoxCoins para ${user.username}? \nA Equipe da Foxy **Não se responsabiliza** pelas FoxCoins perdidas, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de FoxCoins!`, components: [row] });
+        await interaction.editReply({ content: `💸 **|** Você deseja mesmo transferir ${amount} FoxCoins para ${user.username}? \nA Equipe da Foxy **Não se responsabiliza** pelas FoxCoins perdidas, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de FoxCoins!`, components: [row] });
 
         const filter = i => i.customId === "pay" && i.user.id === interaction.user.id;
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });

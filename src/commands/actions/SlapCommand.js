@@ -31,7 +31,7 @@ module.exports = class SlapCommand extends Command {
         const embed = new MessageEmbed()
             .setDescription(`${interaction.user} **bateu** em ${user}`)
             .setImage(slap.url)
-        await interaction.reply({ embeds: [embed], components: [row] });
+        await interaction.editReply({ embeds: [embed], components: [row] });
 
         const filter = i => i.customId === "slap" && i.user.id === user.id;
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });

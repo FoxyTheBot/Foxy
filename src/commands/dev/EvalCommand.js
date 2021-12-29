@@ -24,7 +24,7 @@ module.exports = class EvalCommand extends Command {
           try {
             const util = require('util');
             const code = interaction.options.getString("code");
-            if(!code) return interaction.reply("Executar nenhum código? WTF?! Como assim?");
+            if(!code) return interaction.editReply("Executar nenhum código? WTF?! Como assim?");
             let evaled = eval(code);
             evaled = util.inspect(evaled, { depth: 1 });
             evaled = evaled.replace(new RegExp('Error', 'g'), undefined);
@@ -35,7 +35,7 @@ module.exports = class EvalCommand extends Command {
               .setTitle('<:Developer:813832825442533396> Comando executado com sucesso!')
               .setDescription(`\ \ \`\`\`xl\n${clean(evaled)}\n\`\`\``);
       
-            interaction.reply({ embeds: [success] });
+            interaction.editReply({ embeds: [success] });
           } catch(err) {
             const errorMessage = err.stack.length > 1800 ? `${err.stack.slice(0, 1800)}...` : err.stack;
             const embed = new MessageEmbed();
@@ -43,7 +43,7 @@ module.exports = class EvalCommand extends Command {
             embed.setTitle(`${this.client.emotes.scared} Ocorreu um erro durante a execução!`);
             embed.setDescription(`Saída: \`\`\`js\n${errorMessage}\`\`\``);
       
-            interaction.reply({ embeds: [embed], ephemeral: true });
+            interaction.editReply({ embeds: [embed], ephemeral: true });
           }
     }
 }

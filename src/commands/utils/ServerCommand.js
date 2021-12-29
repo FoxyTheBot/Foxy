@@ -23,7 +23,7 @@ module.exports = class ServerCommand extends Command {
         var server = interaction.guild;
         if (interaction.options.getString("id")) {
             server = await this.client.guilds.cache.get(interaction.options.getString("id"));
-            if (!server) return interaction.reply(`${this.client.emotes.error} **|** Não conheço nenhum servidor com a ID \`${interaction.options.getString("id")}\``);
+            if (!server) return interaction.editReply(`${this.client.emotes.error} **|** Não conheço nenhum servidor com a ID \`${interaction.options.getString("id")}\``);
         }
         const owner = await this.client.users.fetch(server.ownerId);
 
@@ -54,7 +54,7 @@ module.exports = class ServerCommand extends Command {
 
 
                     )
-                await interaction.reply({ embeds: [embed] });
+                await interaction.editReply({ embeds: [embed] });
                 break;
             }
             case "icon": {
@@ -69,7 +69,7 @@ module.exports = class ServerCommand extends Command {
                     .setTitle(server.name)
                     .setImage(server.iconURL({ dynamic: true, size: 2048 }))
 
-                await interaction.reply({ embeds: [embed], components: [row] });
+                await interaction.editReply({ embeds: [embed], components: [row] });
                 break;
             }
         }

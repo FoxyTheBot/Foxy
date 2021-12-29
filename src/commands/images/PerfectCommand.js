@@ -17,8 +17,6 @@ module.exports = class PerfectCommand extends Command {
 
     async execute(interaction) {
         const user = interaction.options.getUser("user");
-
-        await interaction.deferReply();
         const canvas = Canvas.createCanvas(467, 400);
         const ctx = canvas.getContext('2d');
 
@@ -29,7 +27,7 @@ module.exports = class PerfectCommand extends Command {
             avatar = user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 })
         }
 
-        const background = await Canvas.loadImage('https://cdn.foxywebsite.ml/memes/perfeito.png');
+        const background = await Canvas.loadImage('https://cdn.foxywebsite.xyz/memes/perfeito.png');
         ctx.drawImage(background, 0, 0, 467, 400);
 
         const userAvatar = await Canvas.loadImage(avatar);

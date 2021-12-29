@@ -17,8 +17,6 @@ module.exports = class AsciiCommand extends Command {
 
     async execute(interaction) {
         const string = interaction.options.getString("text");
-
-        await interaction.deferReply();
         figlet.text(string, async (err, data) => {
             if(err) console.log(err)
             await interaction.editReply(`\`\`\`${data}\`\`\``);

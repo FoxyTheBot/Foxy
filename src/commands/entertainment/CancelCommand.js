@@ -18,6 +18,6 @@ module.exports = class CancelCommand extends Command {
         const user = interaction.options.getUser("user");
         const string = interaction.options.getString("text");
 
-        await interaction.reply(`${interaction.user} cancelou ${user} por ${string}`);
+        await interaction.editReply(`${interaction.user} cancelou ${user} por ${string}`);
     }
 }

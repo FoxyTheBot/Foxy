@@ -45,6 +45,6 @@ module.exports = class MorseCommand extends Command {
             .setTitle('Tradutor de Código Morse')
             .setDescription(`:point_right::radio: Resultado foi: \n \`\`\`${text}\`\`\``);
 
-        await interaction.reply({ embeds: [morseReader] });
+        await interaction.editReply({ embeds: [morseReader] });
     }
 }

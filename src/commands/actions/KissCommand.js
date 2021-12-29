@@ -22,8 +22,8 @@ module.exports = class KissCommand extends Command {
         const img2 = await neko.sfw.kiss();
         const user = await interaction.options.getUser("user");
 
-        if (user == this.client.user) return interaction.reply("🙅‍♀️ **|** Nah, eu não quero te beijar!");
-        if (!user) return interaction.reply('lembre-se de mencionar um usuário válido para beijar!');
+        if (user == this.client.user) return interaction.editReply("🙅‍♀️ **|** Nah, eu não quero te beijar!");
+        if (!user) return interaction.editReply('lembre-se de mencionar um usuário válido para beijar!');
 
         const row = new MessageActionRow()
             .addComponents(
@@ -38,7 +38,7 @@ module.exports = class KissCommand extends Command {
             .setDescription(`${interaction.user} **beijou** ${user}`)
             .setImage(img.url)
             .setTimestamp();
-        await interaction.reply({ embeds: [embed], components: [row] });
+        await interaction.editReply({ embeds: [embed], components: [row] });
 
         const filter = i => i.customId === 'primary' && i.user.id === user.id;
         const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000, max: 1 });

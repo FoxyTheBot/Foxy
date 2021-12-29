@@ -20,6 +20,6 @@ module.exports = class AtmCommand extends Command {
         const userData = await this.client.database.getUser(user.id);
         const money = await userData.balance;
 
-        interaction.reply(`💵 **|** ${user} possui ${money} FoxCoins`);
+        interaction.editReply(`💵 **|** ${user} possui ${money} FoxCoins`);
     }
 }

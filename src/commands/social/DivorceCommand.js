@@ -18,10 +18,10 @@ module.exports = class DivorceCommand extends Command {
     async execute(interaction) {
         const userData = await this.client.database.getUser(interaction.user.id);
         const marriedId = await userData.marriedWith;
-        if (!marriedId) return interaction.reply("Você não está casado!");
+        if (!marriedId) return interaction.editReply("Você não está casado!");
 
         const marriedData = await this.client.database.getUser(marriedId);
-        if (!marriedData) return interaction.reply(`O usuário não está no banco de dados!`);
+        if (!marriedData) return interaction.editReply(`O usuário não está no banco de dados!`);
 
         const row = new MessageActionRow()
             .addComponents(
@@ -31,7 +31,7 @@ module.exports = class DivorceCommand extends Command {
                     .setStyle("DANGER"),
             )
 
-        interaction.reply({ content: "Você tem certeza que deseja divorciar-se?", components: [row] });
+        interaction.editReply({ content: "Você tem certeza que deseja divorciar-se?", components: [row] });
 
         const filter = i => i.customId === 'yes' && i.user.id === interaction.user.id;
 

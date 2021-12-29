@@ -43,11 +43,11 @@ module.exports = class RbxuserCommand extends Command {
                             { name: ":star: Status", value: info.status || 'Status não definido', inline: true },
                             { name: ':calendar: Data de registro', value: date.toString() || 'Sem solução', inline: true }
                         )
-                    interaction.reply({ embeds: [embed], components: [row] });
+                    interaction.editReply({ embeds: [embed], components: [row] });
                 })
             }
         }).catch(err => {
-            interaction.reply("<:robloxlogo:804814541631914035> | Eu não consegui encontrar esse usuário, talvez ele não existe :/");
+            interaction.editReply("<:robloxlogo:804814541631914035> | Eu não consegui encontrar esse usuário, talvez ele não existe :/");
         })
     }
 }

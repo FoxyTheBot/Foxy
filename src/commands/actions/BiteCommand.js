@@ -25,8 +25,8 @@ module.exports = class BiteCommand extends Command {
                     .setStyle("DANGER")
             )
 
-        if (user === interaction.user) return interaction.reply(`${interaction.user} mordeu a si mesmo agora está machucado`);
-        if (user === this.client.user) return interaction.reply(`${interaction.user} tentou me morder e ganhou uma marca de mordida no braço 😘`)
+        if (user === interaction.user) return interaction.editReply(`${interaction.user} mordeu a si mesmo agora está machucado`);
+        if (user === this.client.user) return interaction.editReply(`${interaction.user} tentou me morder e ganhou uma marca de mordida no braço 😘`)
 
         const list = [
             'https://media1.tenor.com/images/f3f503705c36781b7f63c6d60c95a9d2/tenor.gif?itemid=17570122',
@@ -44,7 +44,7 @@ module.exports = class BiteCommand extends Command {
             .setDescription(`${interaction.user} **mordeu** ${user}`)
             .setImage(rand)
 
-        await interaction.reply({ embeds: [embed], components: [row] });
+        await interaction.editReply({ embeds: [embed], components: [row] });
 
         const filter = i => i.customId === "bite" && i.user.id === user.id;
         const collector = interaction.channel.createMessageComponentCollector({ filter, max: 1, time: 30000 });

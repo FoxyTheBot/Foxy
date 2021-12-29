@@ -73,6 +73,6 @@ module.exports = class ShipCommand extends Command {
         const shipEmbed = new MessageEmbed()
             .setDescription(`**${love}%** [\`${loveLevel}\`]`)
             .setImage("attachment://ship.png")
-        interaction.reply({ content: desc, embeds: [shipEmbed], files: [img] });
+        interaction.editReply({ content: desc, embeds: [shipEmbed], files: [img] });
     }
 }

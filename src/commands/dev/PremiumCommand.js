@@ -27,7 +27,7 @@ module.exports = class SetPremiumCommand extends Command {
                 userData.premium = true;
                 userData.premiumDate = new Date();
                 userData.save();
-                await interaction.reply(`${this.client.emotes.success} **|** ${user.tag} agora possui premium!`);
+                await interaction.editReply(`${this.client.emotes.success} **|** ${user.tag} agora possui premium!`);
                 break;
             }
 
@@ -35,7 +35,7 @@ module.exports = class SetPremiumCommand extends Command {
                 userData.premium = false;
                 userData.premiumDate = null;
                 userData.save();
-                await interaction.reply(`${this.client.emotes.error} **|** Agora ${user.tag} não possui mais premium!`);
+                await interaction.editReply(`${this.client.emotes.error} **|** Agora ${user.tag} não possui mais premium!`);
             }
 
             case "check": {
@@ -45,7 +45,7 @@ module.exports = class SetPremiumCommand extends Command {
                         { name: "É premium?", value: userData.premium.toString(), inline: true },
                         { name: `Tempo de premium`, value: userData.premiumDate.toString() || "Não possui data", inline: true }
                     )
-                await interaction.reply({ embeds: [embed] });
+                await interaction.editReply({ embeds: [embed] });
             }
         }
     }

@@ -28,7 +28,7 @@ module.exports = class TestCommand extends Command {
                 userData.banReason = reason;
                 userData.banData = new Date();
                 userData.save();
-                await interaction.reply(`${this.client.emotes.success} **|** **${userBanned.tag}** foi banido!`);
+                await interaction.editReply(`${this.client.emotes.success} **|** **${userBanned.tag}** foi banido!`);
                 break;
             }
 
@@ -37,7 +37,7 @@ module.exports = class TestCommand extends Command {
                 userData.banReason = null;
                 userData.banData = null;
                 userData.save();
-                await interaction.reply(`${this.client.emotes.success} **|** **${user.tag}** foi desbanido`);
+                await interaction.editReply(`${this.client.emotes.success} **|** **${user.tag}** foi desbanido`);
             }
         }
     }

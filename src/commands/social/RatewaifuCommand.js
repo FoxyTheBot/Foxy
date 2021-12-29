@@ -31,6 +31,6 @@ module.exports = class RatewaifuCommand extends Command {
 
         const rand = list[Math.floor(Math.random() * list.length)];
 
-        await interaction.reply(`Sobre ${user}... Eu dou nota ${rand}`);
+        await interaction.editReply(`Sobre ${user}... Eu dou nota ${rand}`);
     }
 }

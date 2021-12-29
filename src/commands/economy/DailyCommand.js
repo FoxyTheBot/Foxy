@@ -30,7 +30,7 @@ module.exports = class DailyCommand extends Command {
         const daily = await userData.lastDaily;
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
             const currentCooldown = ms(timeout - (Date.now() - daily));
-            return interaction.reply(`💸 **|** Você já pegou seu daily hoje! Tente novamente em **${currentCooldown}**`);
+            return interaction.editReply(`💸 **|** Você já pegou seu daily hoje! Tente novamente em **${currentCooldown}**`);
 
         } else {
 
@@ -41,9 +41,9 @@ module.exports = class DailyCommand extends Command {
             const money = await userData.balance;
 
             if (userData.premium) {
-                interaction.reply(`${this.client.emotes.daily} **|** Você ia ganhar ${amount - 500} FoxCoins mas graças ao seu premium você ganhou ${amount} FoxCoins e tem ${money} FoxCoins`)
+                interaction.editReply(`${this.client.emotes.daily} **|** Você ia ganhar ${amount - 500} FoxCoins mas graças ao seu premium você ganhou ${amount} FoxCoins e tem ${money} FoxCoins`)
             } else {
-                interaction.reply(`${this.client.emotes.daily} **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`);
+                interaction.editReply(`${this.client.emotes.daily} **|** Você coletou seu daily e ganhou ${amount} FoxCoins! Agora você possui ${money} FoxCoins`);
             }
         }
     }

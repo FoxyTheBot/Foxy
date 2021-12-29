@@ -16,6 +16,6 @@ module.exports = class ReportCommand extends Command {
     async execute(interaction) {
         const content = interaction.options.getString("problema");
         this.client.WebhookManager.sendIssue(interaction, content);
-        await interaction.reply({ content: `${this.client.emotes.success} **|** Obrigada ${interaction.user} seu problema: \`${content}\` foi enviado para o meu desenvolvedor`, ephemeral: true});
+        await interaction.editReply({ content: `${this.client.emotes.success} **|** Obrigada ${interaction.user} seu problema: \`${content}\` foi enviado para o meu desenvolvedor`, ephemeral: true});
     }
 }

@@ -10,12 +10,13 @@ module.exports = class InteractionCreate {
         const command = this.client.commands.get(interaction.commandName);
 
         if (command.config.dev && !interaction.user.id.includes(this.client.config.ownerId)) {
-            return interaction.reply({ content: `:x: **|** Este comando é apenas para o meu desenvolvedor, bobinho!`, ephemeral: true });
+            return interaction.editReply({ content: `:x: **|** Este comando é apenas para o meu desenvolvedor, bobinho!`, ephemeral: true });
         }
 
         function FoxyHandler() {
             new Promise(async (res, rej) => {
                 try {
+                    await interaction.deferReply();
                     await command.execute(interaction)
                 } catch (e) {
                     console.error(e);
@@ -23,7 +24,7 @@ module.exports = class InteractionCreate {
                         .setColor("RED")
                         .setTitle("Erro ao executar comando!")
                         .setDescription(`\ \ \`\`\`js\n${e}\n\`\`\``)
-                    interaction.reply({ embeds: [errorEmbed], ephemeral: true })
+                    interaction.editReply({ embeds: [errorEmbed], ephemeral: true })
                 }
             })
         }
@@ -35,18 +36,18 @@ module.exports = class InteractionCreate {
                 const bannedEmbed = new MessageEmbed()
                     .setTitle(`❌ | Você esta **banido(a)**`)
                     .setColor("RED")
-                    .setDescription("Se você quiser fazer um apelo de ban você pode preencher este formulário (linkdoform) \n\n Recomendado você ler os [termos de uso](https://foxywebsite.ml/privacy)")
+                    .setDescription("Se você quiser fazer um apelo de ban você pode preencher este formulário (linkdoform) \n\n Recomendado você ler os [termos de uso](https://foxywebsite.xyz/privacy)")
                     .addField("Motivo do banimento:", document.banReason, true)
                     .addField("Data do banimento", document.banData.toLocaleString())
                     .setFooter("Será que você ainda pode se desculpar?")
-                return interaction.reply({ embeds: [bannedEmbed], ephemeral: true });
+                return interaction.editReply({ embeds: [bannedEmbed], ephemeral: true });
             }
 
             FoxyHandler();
         } catch (err) {
             console.error(err);
             errorEmbed.setDescription(`\`\`\`js\n${err}\n\`\`\``)
-            return interaction.reply({ embeds: [errorEmbed], ephemeral: true });
+            return interaction.editReply({ embeds: [errorEmbed], ephemeral: true });
         }
     }
 }

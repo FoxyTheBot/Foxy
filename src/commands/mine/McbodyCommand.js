@@ -16,11 +16,11 @@ module.exports = class McbodyCommand extends Command {
 
     async execute(interaction) {
         const user = interaction.options.getString("user");
-        if (user.length > 20) return interaction.reply("Digite no mínimo 20 caractéres");
+        if (user.length > 20) return interaction.editReply("Digite no mínimo 20 caractéres");
 
         const embed = new MessageEmbed()
             .setTitle(`Skin de ${user}`)
             .setImage(`https://mc-heads.net/body/${user}`)
-        await interaction.reply({ embeds: [embed] });
+        await interaction.editReply({ embeds: [embed] });
     }
 }

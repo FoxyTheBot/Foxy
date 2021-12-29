@@ -30,6 +30,6 @@ module.exports = class StatusCommand extends Command {
                 { name: "📊 | Ping", value: `\`\`\`${Math.round(this.client.ws.ping)}ms / Shard: [${Number(this.client.shard.ids) + 1}/${this.client.shard.count}]\`\`\``, inline: true },
             )
 
-        interaction.reply({ embeds: [embed] });
+        interaction.editReply({ embeds: [embed] });
     }
 }

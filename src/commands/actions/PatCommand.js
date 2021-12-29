@@ -34,7 +34,7 @@ module.exports = class PatCommand extends Command {
             .setDescription(`${interaction.user} fez cafuné em ${user}`)
             .setImage(gif.url)
 
-        await interaction.reply({ embeds: [embed], components: [row] });
+        await interaction.editReply({ embeds: [embed], components: [row] });
 
         const filter = i => i.customId == "pat" && i.user.id == user.id;
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000, max: 1 });

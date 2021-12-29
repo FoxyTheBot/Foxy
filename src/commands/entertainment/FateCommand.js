@@ -26,6 +26,6 @@ module.exports = class FateCommand extends Command {
         ];
 
         const rand = list[Math.floor(Math.random() * list.length)];
-        await interaction.reply(`Em outro universo paralelo ${interaction.user} e ${user} são **${rand}**`)
+        await interaction.editReply(`Em outro universo paralelo ${interaction.user} e ${user} são **${rand}**`)
     }
 }

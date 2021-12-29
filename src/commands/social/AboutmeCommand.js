@@ -23,6 +23,6 @@ module.exports = class AboutmeCommand extends Command {
         userData.aboutme = aboutme;
         userData.save();
 
-        interaction.reply(`Seu Sobre mim foi alterado para \`${aboutme}\``);
+        interaction.editReply(`Seu Sobre mim foi alterado para \`${aboutme}\``);
     }
 }

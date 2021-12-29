@@ -31,7 +31,7 @@ module.exports = class UserCommand extends Command {
                     .addField(":date: Conta criada", `\`${user.createdAt.toLocaleString()}\``, true)
                     .addField(":computer: ID do Usuário", `\`${user.id}\``, true)
 
-                await interaction.reply({ embeds: [userEmbed] });
+                await interaction.editReply({ embeds: [userEmbed] });
                 break;
             }
 
@@ -48,7 +48,7 @@ module.exports = class UserCommand extends Command {
                     .setTitle(`Avatar de ${user.username}`)
                     .setImage(user.displayAvatarURL({ dynamic: true, format: "png", size: 2048 }))
                     .setFooter("Avatar lindo! :3")
-                interaction.reply({ embeds: [avatarEmbed], components: [row] });
+                interaction.editReply({ embeds: [avatarEmbed], components: [row] });
                 break;
             }
         }
