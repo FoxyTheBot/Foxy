@@ -17,7 +17,7 @@ module.exports = class InteractionCreate {
             new Promise(async (res, rej) => {
                 try {
                     await interaction.deferReply();
-                    await command.execute(interaction)
+                    command.execute(interaction)
                 } catch (e) {
                     console.error(e);
                     const errorEmbed = new MessageEmbed()
