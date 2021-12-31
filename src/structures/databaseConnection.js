@@ -28,16 +28,16 @@ module.exports = class DatabaseConnection {
         this.user = mongoose.model('user', userSchema);
         this.client = client;
     }
-    async getUser(userID) {
-        const user = await this.client.users.fetch(userID);
+    async getUser(UserId) {
+        const user = await this.client.users.fetch(UserId);
 
         if (!user) return null;
 
-        let document = await this.user.findOne({ _id: userID });
+        let document = await this.user.findOne({ _id: UserId });
 
         if (!document) {
             document = new this.user({
-                _id: userID,
+                _id: UserId,
                 userCreationTimestamp: Date.now(),
                 premium: false,
                 premiumDate: null,
