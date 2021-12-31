@@ -1,8 +1,7 @@
 const Command = require("../../structures/Command");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed, MessageActionRow, MessageButton, MessageAttachment } = require("discord.js");
-const fs = require("fs");
-const { bglist } = require('../../structures/backgroundList.json');
+const { bglist } = require('../../structures/json/backgroundList.json');
 
 module.exports = class BackgroundCommand extends Command {
     constructor(client) {
