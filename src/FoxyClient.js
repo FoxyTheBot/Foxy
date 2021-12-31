@@ -24,7 +24,6 @@ module.exports = class FoxyClient extends Client {
             for (const file of commandFiles) {
                 const command = new (require(path + `/${folder}/${file}`))(this);
                 this.commands.set(command.config.name, command);
-                console.log(command.config.name)
             }
         }
     }
