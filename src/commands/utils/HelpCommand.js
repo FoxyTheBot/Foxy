@@ -34,9 +34,7 @@ module.exports = class HelpCommand extends Command {
                         { name: `<:cute_yay:901111399328124928> Entretenimento (${this.getSize("entertainment")})`, value: this.getCategory("entertainment"), inline: true },
                         { name: `<:DiscordStaff:731947814246154240> Utilitários (${this.getSize("utils")})`, value: this.getCategory("utils"), inline: true },
                     )
-                    .setFooter("Alguns comandos podem não aparecer por serem sub comandos")
                 await interaction.editReply({ embeds: [embed] });
-
                 break;
             }
 
@@ -48,7 +46,7 @@ module.exports = class HelpCommand extends Command {
                     .setThumbnail('https://cdn.discordapp.com/avatars/737044809650274325/64b92e7d5e7fb48e977e1f04ef13369d.png?size=1024')
                     .addField('<:DiscordStaff:731947814246154240> Lista de comandos:', 'Digite /help commands')
                     .addField(`${this.client.emotes.dev} Está com dúvidas? Meu servidor de suporte`, 'https://discord.gg/W6XtYyqKkg')
-                    .addField('<:info:718944993741373511> Termos de uso', 'https://foxywebsite.xyz/tos.html')
+                    .addField('<:info:718944993741373511> Termos de uso', 'https://foxywebsite.xyz/privacy')
                     .addField('<:ApoiadorDoDiscord:731946134720741377> Meu Website onde você pode me adicionar', 'https://foxywebsite.xyz/');
 
                 await interaction.editReply({ embeds: [embed] });
