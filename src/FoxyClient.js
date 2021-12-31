@@ -17,21 +17,22 @@ module.exports = class FoxyClient extends Client {
         super.login(token);
     }
 
-    loadCommands() {
-        const commandFolders = fs.readdirSync(`${global.dir}/src/commands/`);
+    loadCommands(path) {
+        const commandFolders = fs.readdirSync(path);
         for (const folder of commandFolders) {
-            const commandFiles = fs.readdirSync(`${global.dir}/src/commands/${folder}`);
+            const commandFiles = fs.readdirSync(path + `/${folder}`);
             for (const file of commandFiles) {
-                const command = new (require(`${global.dir}/src/commands/${folder}/${file}`))(this);
+                const command = new (require(path + `/${folder}/${file}`))(this);
                 this.commands.set(command.config.name, command);
+                console.log(command.config.name)
             }
         }
     }
 
-    loadEvents() {
-        const eventFiles = fs.readdirSync("./src/events").filter(file => file.endsWith("js"));
+    loadEvents(path) {
+        const eventFiles = fs.readdirSync(path).filter(file => file.endsWith("js"));
         for (const file of eventFiles) {
-            const event = new (require(`./events/${file}`))(this);
+            const event = new (require(`${path}/${file}`))(this);
             const eventBind = file.split(".")[0];
             console.info(`\x1b[37m\x1b[44mINFO\x1b[0m: Loading event: ${file}; Bind: ${eventBind}`);
             this.on(eventBind, (...args) => event.run(...args));
