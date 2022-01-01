@@ -30,7 +30,7 @@ module.exports = class BackgroundCommand extends Command {
                 const bgList = new MessageEmbed()
                     .setColor("BLURPLE")
                     .setTitle("Loja de Backgrounds")
-                    .setFooter("Use /background code: <código-do-background> | Caso queira ver a lista use /list")
+                    .setFooter({ text: "Use /background buy <código do background> para comprar | para ver a sua lista use /background set sem nenhuma opção :3"})
 
                 for (const bgHandle of bglist) {
                     if (bgHandle.onlydevs) continue;
@@ -60,9 +60,8 @@ module.exports = class BackgroundCommand extends Command {
                     .setDescription(background.description)
                     .setColor("BLURPLE")
                     .addField("💵 Preço", `${background.foxcoins} FoxCoins`, true)
-                    .setFooter(`Raridade: ${background.rarity}`);
 
-                const attachment = await new MessageAttachment(`https://cdn.foxywebsite.xyz/backgrounds/${codeString}`, 'background.png');
+                    const attachment = await new MessageAttachment(`https://cdn.foxywebsite.xyz/backgrounds/${codeString}`, 'background.png');
 
                 bgInfo.setImage("attachment://background.png");
 
@@ -101,7 +100,6 @@ module.exports = class BackgroundCommand extends Command {
                     const embed = new MessageEmbed()
                         .setTitle('Lista de backgrounds')
                         .setDescription(bgList)
-                        .setFooter("Coloque o nome do arquivo do seu background")
 
                     await interaction.editReply({ embeds: [embed] });
                 } else {
