@@ -17,27 +17,28 @@ module.exports = class TFCCommand extends Command {
 
     async execute(interaction) {
         const value = interaction.options.getNumber("quantia");
+        const foxcoins = Math.round(value);
         const userData = await this.client.database.getUser(interaction.user.id);
         const data = await this.client.simulator.getDataById(interaction.user.id);
 
         switch (interaction.options.getSubcommand()) {
             case "pizzaria": {
-                if(userData.balance < value) return interaction.editReply({ content: "Você não tem coins o suficiente para transferir para fazer isso", ephemeral: true });
-                userData.balance -= value;
-                data.foxcoins += value;
+                if(userData.balance < foxcoins) return interaction.editReply({ content: "Você não tem coins o suficiente para transferir para fazer isso", ephemeral: true });
+                userData.balance -= foxcoins;
+                data.foxcoins += foxcoins;
                 data.save();
                 userData.save();
-                await interaction.editReply(`${this.client.emotes.daily} **|** Você transferiu **${value}** para a pizzaria`)
+                await interaction.editReply(`${this.client.emotes.daily} **|** Você transferiu **${foxcoins}** para a pizzaria`)
                 break;
             }
             
             case "foxy": {
-                if(data.foxcoins < value) return interaction.editReply({ content: "Você não tem coins o suficiente para transferir para fazer isso", ephemeral: true });
-                userData.balance += value;
-                data.foxcoins -= value;
+                if(data.foxcoins < foxcoins) return interaction.editReply({ content: "Você não tem coins o suficiente para transferir para fazer isso", ephemeral: true });
+                userData.balance += foxcoins;
+                data.foxcoins -= foxcoins;
                 userData.save();
                 data.save();
-                await interaction.editReply(`${this.client.emotes.daily} **|** Você transferiu **${value}** para a sua conta da Foxy`);
+                await interaction.editReply(`${this.client.emotes.daily} **|** Você transferiu **${foxcoins}** para a sua conta da Foxy`);
             }
         }
     }
