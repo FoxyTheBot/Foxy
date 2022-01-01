@@ -25,7 +25,19 @@ module.exports = class DatabaseConnection {
             backgrounds: Array
         }, { versionKey: false, id: false });
 
+        const pizzariaSchema = new mongoose.Schema({
+            _id: String,
+            name: String,
+            description: String,
+            animatronics: Array,
+            foxcoins: Number,
+            minigames: Array,
+            createdAt: Date,
+
+        }, { versionKey: false, id: false });
+
         this.user = mongoose.model('user', userSchema);
+        this.shop = mongoose.model('Pizzarias', pizzariaSchema)
         this.client = client;
     }
     async getUser(UserId) {
@@ -59,10 +71,37 @@ module.exports = class DatabaseConnection {
         return document;
     }
 
-    getAllUsers() {
-        this.user.find({}).exec(async function (err, users) {
-            const list = await users.map(user => user.toJSON());
-            return list;
-        });
+    async getAllUsers() {
+        let usersData = await this.user.find({});
+        return usersData.map(user => user.toJSON());
+    }
+
+    async getPizzariaInfoById(userId) {
+        const document = await this.shop.findOne({ _id: userId });
+        return document;
+    }
+
+    async getPizzariaInfoByName(name) {
+        const document = await this.shop.findOne({ name: name });
+        return document;
+    }
+
+    async registerPizzaria(name, description, id) {
+        let document = await this.shop.findOne({ _id: id });
+        if (document) return true;
+
+        const pizzariaName = await this.shop.findOne({ name: name });
+        if (pizzariaName) return false;
+
+        document = new this.shop({
+            _id: id,
+            name: name,
+            description: description,
+            animatronics: [],
+            foxcoins: 0,
+            minigames: [],
+            createdAt: new Date()
+        }).save();
+        return document;
     }
 }
