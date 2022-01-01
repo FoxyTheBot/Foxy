@@ -1,6 +1,7 @@
 const Command = require("../../structures/Command");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
+const { inspect } = require('util');
 
 module.exports = class EvalCommand extends Command {
     constructor(client) {
@@ -16,34 +17,28 @@ module.exports = class EvalCommand extends Command {
     }
 
     async execute(interaction) {
-        const clean = (text) => {
-            if (typeof (text) === 'string') { return text.replace(/`/g, `\`${String.fromCharCode(8203)}`).replace(/@/g, `@${String.fromCharCode(8203)}`); }
-            return text;
-          };
+        let client = this.client,
+            code = interaction.options.getString("code"),
+            evaled, hasError = false,
+            embed = new MessageEmbed();
 
-          try {
-            const util = require('util');
-            const code = interaction.options.getString("code");
-            if(!code) return interaction.editReply("Executar nenhum código? WTF?! Como assim?");
-            let evaled = eval(code);
-            evaled = util.inspect(evaled, { depth: 1 });
-            evaled = evaled.replace(new RegExp('Error', 'g'), undefined);
-      
-            if (evaled.length > 1800) evaled = `${evaled.slice(0, 1800)}...`;
-            const success = new MessageEmbed()
-              .setColor('RED')
-              .setTitle('<:Developer:813832825442533396> Comando executado com sucesso!')
-              .setDescription(`\ \ \`\`\`xl\n${clean(evaled)}\n\`\`\``);
-      
-            interaction.editReply({ embeds: [success] });
-          } catch(err) {
-            const errorMessage = err.stack.length > 1800 ? `${err.stack.slice(0, 1800)}...` : err.stack;
-            const embed = new MessageEmbed();
-            embed.setColor('RED');
-            embed.setTitle(`${this.client.emotes.scared} Ocorreu um erro durante a execução!`);
-            embed.setDescription(`Saída: \`\`\`js\n${errorMessage}\`\`\``);
-      
-            interaction.editReply({ embeds: [embed], ephemeral: true });
-          }
+        if (!code) return interaction.editReply("Executar nenhum código? WTF?! Como assim?");
+
+        try {
+            evaled = await eval(code.includes('await') ? `async function kur() { ${code} }; kur()` : code);
+
+            embed
+                .setColor('GREEN')
+                .setTitle(':Developer: Comando executado com sucesso!')
+                .setDescription(`\ \ \`\`\`js\n${String(inspect(evaled, { depth: 1 })).slice(0, 2000)}\n\`\`\``);
+        } catch (err) {
+            embed
+                .setColor('RED')
+                .setTitle(`${this.client.emotes.scared} Ocorreu um erro durante a execução!`)
+                .setDescription(`Saída: \`\`\`js\n${String(err).slice(0, 2000)}\`\`\``);
+            hasError = true
+        } finally {
+            interaction.editReply({ embeds: [embed], ephemeral: hasError });
+        }
     }
 }
