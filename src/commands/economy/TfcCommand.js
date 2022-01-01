@@ -19,7 +19,7 @@ module.exports = class TFCCommand extends Command {
         const value = interaction.options.getNumber("quantia");
         const foxcoins = Math.round(value);
         const userData = await this.client.database.getUser(interaction.user.id);
-        const data = await this.client.simulator.getDataById(interaction.user.id);
+        const data = await this.client.database.getPizzariaInfoById(interaction.user.id);
 
         if(foxcoins < 200) return interaction.editReply("Você pode transferir acima de 200 FoxCoins");
 

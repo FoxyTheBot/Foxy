@@ -16,7 +16,7 @@ module.exports = class ShopCommand extends Command {
 
     async execute(interaction) {
         const command = interaction.options.getSubcommand();
-        const pizzariaData = await this.client.simulator.getDataById(interaction.user.id);
+        const pizzariaData = await this.client.database.getPizzariaInfoById(interaction.user.id);
         const code = interaction.options.getString("code");
 
         switch (command) {

@@ -11,17 +11,7 @@ module.exports = class PizzariaSimulator {
     }
 
     async getPizzariaInventory(userId) {
-        const data = await this.getDataById(userId);
-        return data;
-    }
-
-    async getDataById(id) {
-        const data = await this.client.database.getPizzariaInfoById(id);
-        return data;
-    }
-
-    async getDataByName(name) {
-        const data = await this.client.database.getPizzariaInfoByName(name)
+        const data = await this.client.database.getPizzariaInfoById(userId);
         return data;
     }
 }
