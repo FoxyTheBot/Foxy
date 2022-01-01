@@ -33,9 +33,14 @@ module.exports = class DatabaseConnection {
             foxcoins: Number,
             minigames: Array,
             createdAt: Date,
-
         }, { versionKey: false, id: false });
 
+        const achievementSchema = new mongoose.Schema({
+            _id: String,
+            achievements: Array
+        });
+
+        this.achievement = mongoose.model('achievements', achievementSchema);
         this.user = mongoose.model('user', userSchema);
         this.shop = mongoose.model('Pizzarias', pizzariaSchema)
         this.client = client;

@@ -70,26 +70,5 @@
             "danger": 20,
             "url": "https://static.wikia.nocookie.net/pizzaria-freddy-fazbear/images/0/07/RockstarFoxy.png/revision/latest?cb=20171209120355&path-prefix=pt-br"
         }
-    ],
-
-    "minigames": [
-        {
-            "name": "BB's Air Adventure",
-            "price": 100,
-            "new": false,
-            "category": "minigame"
-        },
-        {
-            "name": "Mangle's Quest",
-            "price": 100,
-            "new": false,
-            "category": "minigame"
-        },
-        {
-            "name": "Chica's Party",
-            "price": 100,
-            "new": false,
-            "category": "minigame"
-        }
     ]
 }

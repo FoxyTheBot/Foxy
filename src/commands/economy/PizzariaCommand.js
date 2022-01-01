@@ -54,7 +54,6 @@ module.exports = class PizzariaCommand extends Command {
                     .setDescription(`${data.description}`)
                     .addFields(
                         { name: "Animatronics", value: `${data.animatronics.join(", ")}` || "Nenhum" },
-                        { name: "Minigames", value: `${data.minigames.join(", ")}` || "Nenhum" },
                         { name: "Carteira", value: `${data.foxcoins}` }
                     )
                 await interaction.editReply({ embeds: [embed] });
