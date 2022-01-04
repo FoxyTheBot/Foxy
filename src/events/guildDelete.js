@@ -4,6 +4,7 @@ module.exports = class GuildDelete {
     }
 
     async run(guild) {
+        if(!guild) return;
         this.client.WebhookManager.guildDelete(guild);
     }
 }
