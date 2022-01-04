@@ -26,14 +26,14 @@ module.exports = class RankCommand extends Command {
 
         if (currentPage < 0 || currentPage > 5) return interaction.editReply({ content: 'Você pode escolher a página de 1 a 5', ephemeral: true });
 
-        embed.setTitle('FoxCoins Global Rank')
+        embed.setTitle(`${this.client.emotes.daily} | FoxCoins Global Rank`)
             .setColor('BLURPLE')
-            .setDescription(`Você está na ${`${position}º` || 'Sad™'} posição no Rank global!`)
+            .setDescription(`${this.client.emotes.sunglass} | Você está na ${`${position}º` || 'Sad™'} posição no Rank global!`)
         for (let i in data) {
             i = Number(i) + (currentPage * 5);
             if ((Number(i) - currentPage * 5) > 4) break;
             let user = await (this.client.users.cache.has(data[i]._id) ? this.client.users.cache.get(data[i]._id) : this.client.users.fetch(data[i]._id));
-            embed.addField(`\`${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º -\` ${user.tag}`, `\`${parseInt(data[i].balance)}\` Foxcoins`);
+            embed.addField(`${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - \`${user.tag}\``, `**${parseInt(data[i].balance)}** FoxCoins`);
         }
         interaction.editReply({ embeds: [embed] }).catch(() => { });
     }

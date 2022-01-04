@@ -4,7 +4,7 @@
   "description": "A simple bot for Discord",
   "main": "shard.js",
   "scripts": {
-    "test": "node ."
+    "start": "clear && node ."
   },
   "repository": {
     "type": "git",
