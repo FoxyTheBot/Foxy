@@ -24,7 +24,7 @@ module.exports = class RankCommand extends Command {
         let position = parseInt(data.map(m => m._id).indexOf(interaction.user.id)) + 1,
             currentPage = parseInt(!interaction.options.getNumber('page') ? 0 : interaction.options.getNumber('page') - 1);
 
-        if (currentPage < 0 || currentPage > 5) return interaction.editReply({ content: 'vai com calma seu otário, o rank só vai até o numero 5', ephemeral: true });
+        if (currentPage < 0 || currentPage > 5) return interaction.editReply({ content: 'Você pode escolher a página de 1 a 5', ephemeral: true });
 
         embed.setTitle('FoxCoins Global Rank')
             .setColor('BLURPLE')
