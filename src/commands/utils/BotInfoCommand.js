@@ -32,7 +32,6 @@ module.exports = class BotInfoCommand extends Command {
             )
             .setThumbnail(this.client.user.displayAvatarURL({ format: "png", dynamic: true }))
             .setImage("https://c.tenor.com/GaBV0ykyRLYAAAAC/kawaii-fnaf.gif")
-            .setFooter({ text: `${this.client.user.username} foi criada por ${botOwner.tag} em 26 de Julho de 2020`, iconURL: botOwner.displayAvatarURL()})
 
         interaction.editReply({ embeds: [embed] });
     }

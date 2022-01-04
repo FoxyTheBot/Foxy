@@ -30,7 +30,6 @@ module.exports = class BackgroundCommand extends Command {
                 const bgList = new MessageEmbed()
                     .setColor("BLURPLE")
                     .setTitle("Loja de Backgrounds")
-                    .setFooter({ text: "Use /background buy <código do background> para comprar | para ver a sua lista use /background set sem nenhuma opção :3"})
 
                 for (const bgHandle of bglist) {
                     if (bgHandle.onlydevs) continue;

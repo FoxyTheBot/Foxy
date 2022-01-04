@@ -29,10 +29,6 @@ module.exports = class RankCommand extends Command {
         embed.setTitle('FoxCoins Global Rank')
             .setColor('BLURPLE')
             .setDescription(`Você está na ${`${position}º` || 'Sad™'} posição no Rank global!`)
-            .setFooter({
-                text: position === 1 ? `Uau você é a pessoa que tem mais FoxCoins yay!` : `Você precisa de mais ${data[position - 2].balance - data[position].balance} FoxCoins para chegar à ${position - 1}º posição`,
-                iconURL: interaction.user.displayAvatarURL({ format: 'jpg' })
-            });
         for (let i in data) {
             i = Number(i) + (currentPage * 5);
             if ((Number(i) - currentPage * 5) > 4) break;

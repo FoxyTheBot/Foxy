@@ -47,7 +47,6 @@ module.exports = class UserCommand extends Command {
                     .setColor("#0099ff")
                     .setTitle(`Avatar de ${user.username}`)
                     .setImage(user.displayAvatarURL({ dynamic: true, format: "png", size: 2048 }))
-                    .setFooter({ text: "Avatar lindo! :3" })
                 interaction.editReply({ embeds: [avatarEmbed], components: [row] });
                 break;
             }
