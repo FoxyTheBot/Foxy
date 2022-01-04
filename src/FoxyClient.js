@@ -34,9 +34,8 @@ module.exports = class FoxyClient extends Client {
         const eventFiles = fs.readdirSync(path).filter(file => file.endsWith("js"));
         for (const file of eventFiles) {
             const event = new (require(`${path}/${file}`))(this);
-            const eventBind = file.split(".")[0];
-            console.info( '[' + color("INFO", 34) + ']' + ` Loading event: ${file}; Bind: ${eventBind}`);
-            this.on(eventBind, (...args) => event.run(...args));
+            console.info('[' + color("EVENTS", 34) + ']' + ` Loading event: ${file.split(".")[0]}`);
+            this.on(file.split(".")[0], (...args) => event.run(...args));
         }
         return this;
     }
