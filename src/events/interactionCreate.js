@@ -6,8 +6,8 @@ module.exports = class InteractionCreate {
     }
 
     async run(interaction) {
+       await interaction.deferReply();
         if (!interaction.isCommand()) return;
-        await interaction.deferReply();
         const command = this.client.commands.get(interaction.commandName);
 
         if (command.config.dev && !interaction.user.id.includes(this.client.config.ownerId)) {

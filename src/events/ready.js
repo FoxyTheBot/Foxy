@@ -4,7 +4,7 @@ module.exports = class Ready {
     }
 
     async run() {
-        console.info(`\x1b[37m\x1b[42mSUCCESS\x1b[0m: Shard ${Number(this.client.shard.ids) + 1} Está conectada com ${this.client.guilds.cache.size} Servidores!`);
+        console.info('[' + color("READY", 32) + '] ' + `Shard ${Number(this.client.shard.ids) + 1} Está conectada com ${this.client.guilds.cache.size} Servidores!`);
 
         const status = [
             { name: "🐦 | Me siga no Twitter: @FoxyDiscordBot", type: 0 },

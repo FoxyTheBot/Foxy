@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 module.exports = class DatabaseConnection {
-    constructor(uri, parameters, client) {
-        mongoose.connect(uri, parameters, (stderr) => {
-            if (stderr) return console.log('[ERROR] - Ocorreu um erro no cliente do mongodb! verifique se a sua URI está correta!', stderr);
+    constructor(auth, params, client) {
+        mongoose.connect(auth, params, (err) => {
+            if (err) return console.log('[' + color("SHARD", 31) + '] ' +'Ocorreu um erro no cliente do mongodb! verifique se a sua URI está correta!', stderr);
         });
 
         const userSchema = new mongoose.Schema({
@@ -35,12 +35,6 @@ module.exports = class DatabaseConnection {
             createdAt: Date,
         }, { versionKey: false, id: false });
 
-        const achievementSchema = new mongoose.Schema({
-            _id: String,
-            achievements: Array
-        });
-
-        this.achievement = mongoose.model('achievements', achievementSchema);
         this.user = mongoose.model('user', userSchema);
         this.shop = mongoose.model('Pizzarias', pizzariaSchema)
         this.client = client;

@@ -35,9 +35,16 @@ module.exports = class FoxyClient extends Client {
         for (const file of eventFiles) {
             const event = new (require(`${path}/${file}`))(this);
             const eventBind = file.split(".")[0];
-            console.info(`\x1b[37m\x1b[44mINFO\x1b[0m: Loading event: ${file}; Bind: ${eventBind}`);
+            console.info( '[' + color("INFO", 34) + ']' + ` Loading event: ${file}; Bind: ${eventBind}`);
             this.on(eventBind, (...args) => event.run(...args));
         }
         return this;
     }
+}
+
+global.color = (s, c) => {
+    if (process.stdout.isTTY) {
+        return `\x1B[${c}m${s}\x1B[0m`;
+    }
+    return s;
 }

@@ -4,6 +4,6 @@ module.exports = class ShardReady {
     }
 
     async run(shard) {
-        console.info(`\x1b[37m\x1b[105mSHARD\x1b[0m: Shard ${Number(shard) + 1} se conectou ao Discord!`);
+        console.info('[' + color("SHARD", 35) + '] ' + `Shard ${Number(shard) + 1} se conectou ao Discord!`);
     }
 }
