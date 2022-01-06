@@ -6,7 +6,6 @@ module.exports = class InteractionCreate {
     }
 
     async run(interaction) {
-        await interaction.deferReply();
         if (!interaction.isCommand()) return;
         const command = this.client.commands.get(interaction.commandName);
 
@@ -17,6 +16,7 @@ module.exports = class InteractionCreate {
         function FoxyHandler() {
             new Promise(async (res, rej) => {
                 try {
+                    await interaction.deferReply();
                     command.execute(interaction)
                 } catch (e) {
                     console.error(e);

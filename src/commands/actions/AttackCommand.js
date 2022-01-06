@@ -26,7 +26,8 @@ module.exports = class AttackCommand extends Command {
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
-                    .setLabel(":crossed_swords: Atacar")
+                    .setLabel("Atacar")
+                    .setEmoji("928710998964174949")
                     .setCustomId("attack")
                     .setStyle("PRIMARY")
             )
@@ -39,7 +40,7 @@ module.exports = class AttackCommand extends Command {
         await interaction.editReply({ embeds: [embed], components: [row] });
 
         const filter = i => i.customid === "attack" && i.user.id === interaction.user.id;
-        const collector = interaction.channel.createMessageCompomentCollector(filter, { time: 15000, max: 1 });
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000, max: 1 });
 
         collector.on("collect", async i => {
             const embed = new MessageEmbed()
@@ -47,7 +48,7 @@ module.exports = class AttackCommand extends Command {
                 .setDescription(`${user} atacou ${interaction.user}`)
                 .setImage(rand)
                 i.deferUpdate();
-            await interaction.editReply({ embeds: [embed] });
+            await interaction.followUp({ embeds: [embed] });
         })
     }
 }
