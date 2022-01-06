@@ -38,7 +38,7 @@ module.exports = class MarryCommand extends Command {
         interaction.editReply({ content: `${this.client.emotes.heart} | ${mentionedUser} Você recebeu um pedido de casamento de ${interaction.user}, você tem 1 minuto para aceitar!`, components: [row] });
 
         const filter = i => i.customId === 'accept' && i.user.id === mentionedUser.id;
-        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000, max: 1 });
 
         collector.on("collect", async i => {
             i.deferUpdate();

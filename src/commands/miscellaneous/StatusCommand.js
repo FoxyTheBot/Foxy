@@ -19,7 +19,7 @@ module.exports = class StatusCommand extends Command {
             .setColor("#0099ff")
             .setTitle("🦊 | Status da Foxy")
             .addFields(
-                { name: "💻 | Modelo do processador", value: `\`\`\`${os.cpus().map(c => c.model)}\`\`\`` },
+                { name: "💻 | Modelo do processador", value: `\`\`\`${os.cpus().map(c => c.model)[0]}\`\`\`` },
                 { name: "💙 | Servidores", value: `\`\`\`${this.client.guilds.cache.size}\`\`\``, inline: true },
                 { name: "💛 | Membros em cache", value: `\`\`\`${this.client.users.cache.size}\`\`\``, inline: true },
                 { name: "✨ | Memória RAM", value: `\`\`\`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB\`\`\``, inline: true },

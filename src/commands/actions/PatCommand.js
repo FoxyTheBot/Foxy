@@ -44,8 +44,8 @@ module.exports = class PatCommand extends Command {
                 .setColor("RANDOM")
                 .setDescription(`${user} retribuiu ${interaction.user}`)
                 .setImage(gif2.url)
+            await i.followUp({ embeds: [embed] });
             i.deferUpdate();
-            await interaction.followUp({ embeds: [embed] });
         })
     }
 }

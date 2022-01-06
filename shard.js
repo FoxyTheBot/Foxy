@@ -1,5 +1,5 @@
 const { ShardingManager } = require("discord.js");
-const shard = new ShardingManager("./Foxy.js", {
+const shard = new ShardingManager("./index.js", {
     respawn: true,
     totalShards: 1,
 });

@@ -1,5 +1,5 @@
 <p align="center">
-<img width="25%" src="https://foxywebsite.xyz/assets/images/Foxy.png">
+<img width="25%" src="https://bot.to/wp-content/uploads/2020/09/foxy_5f74b66cd07a4.png">
 <br>
 <h1 align="center">Foxy</h1>
 
