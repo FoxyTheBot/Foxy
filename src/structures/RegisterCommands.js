@@ -17,7 +17,7 @@ module.exports = class RegisterCommands {
             const commandFiles = fs.readdirSync(global.dir + `/src/commands/${folder}`);
             for (const file of commandFiles) {
                 const command = new (require(global.dir + `/src/commands/${folder}/${file}`))(this);
-                console.info('[' + color("SLASH", 34) + '] ' +`Carregando ${command.config.data.name}`);
+                console.info('[' + color("SLASH", 34) + '] ' + `Carregando ${command.config.data.name}`);
                 commands.push(command.config.data.toJSON());
             }
         }
@@ -26,7 +26,7 @@ module.exports = class RegisterCommands {
 
         (async () => {
             try {
-                console.info('[' + color("REGISTER", 33) + '] ' +"Registrando comandos...");
+                console.info('[' + color("REGISTER", 33) + '] ' + "Registrando comandos...");
 
                 await rest.put(
                     Routes.applicationCommands(this.clientId),
@@ -34,7 +34,7 @@ module.exports = class RegisterCommands {
                     { body: commands },
                 );
 
-                console.info('[' + color("READY", 32) + '] ' +"Comandos atualizados!");
+                console.info('[' + color("READY", 32) + '] ' + "Comandos atualizados!");
                 process.exit(1);
             } catch (error) {
                 console.error(error);
