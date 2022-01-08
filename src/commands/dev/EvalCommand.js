@@ -25,7 +25,7 @@ module.exports = class EvalCommand extends Command {
         if (!code) return interaction.editReply("Executar nenhum código? WTF?! Como assim?");
 
         try {
-            evaled = await eval(code.includes('await') ? `async function kur() { ${code} }; kur()` : code);
+            evaled = await eval(code.includes('await') ? `async function foxyExec() { ${code} }; foxyExec()` : code);
 
             embed
                 .setColor('GREEN')
