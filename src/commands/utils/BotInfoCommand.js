@@ -16,8 +16,6 @@ module.exports = class BotInfoCommand extends Command {
     }
 
     async execute(interaction) {
-        const botOwner = await this.client.users.fetch("687867247116812378");
-
         const embed = new MessageEmbed()
             .setColor("BLURPLE")
             .setTitle(":fox: Foxy")
