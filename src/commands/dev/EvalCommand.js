@@ -29,7 +29,7 @@ module.exports = class EvalCommand extends Command {
 
             embed
                 .setColor('GREEN')
-                .setTitle(':Developer: Comando executado com sucesso!')
+                .setTitle('<a:2303_Rainbow_Weeb:728688748736544898> Comando executado com sucesso!')
                 .setDescription(`\ \ \`\`\`js\n${String(inspect(evaled, { depth: 1 })).slice(0, 2000)}\n\`\`\``);
         } catch (err) {
             embed
