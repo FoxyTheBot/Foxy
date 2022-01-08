@@ -25,7 +25,7 @@ module.exports = class BotInfoCommand extends Command {
                 { name: "<:AddMember:797181629826859029> Me adicione", value: "[Me adicione clicando aqui](https://discord.com/oauth2/authorize?client_id=737044809650274325&scope=bot+applications.commands&permissions=269872255)", inline: true },
                 { name: "<:DiscordExplore:790934280611037196> Servidor de Suporte", value: "[Entre no meu servidor](https://discord.gg/W6XtYyqKkg)", inline: true },
                 { name: "<:Twitter:797184287816286209> Meu Twitter", value: "[@Foxy](https://twitter.com/FoxyDiscordBot)", inline: true },
-                { name: "<:Github:797184400688976640> Meu Github", value: "[Foxy](https://github.com/FoxyTheBot/Foxy)", inline: true },
+                { name: "<:GitHub:746399300728258710> Meu Github", value: "[Foxy](https://github.com/FoxyTheBot/Foxy)", inline: true },
                 { name: '<:paypal:776965353904930826> Doe para mim', value: '[Doe para mim clicando aqui](https://www.paypal.com/donate/?hosted_button_id=J7Y747Q38UEKN)', inline: true },
             )
             .setThumbnail(this.client.user.displayAvatarURL({ format: "png", dynamic: true }))
