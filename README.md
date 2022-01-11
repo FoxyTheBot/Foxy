@@ -5,7 +5,7 @@
 
  </p>
   <p align="center">
-<a href="https://github.com/FoxyTheBot/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-AGPL%20v3-blue.svg?style=for-the-badge&logo=gnu&labelColor=black"></a>
+
 </p>
 
 ## Quem sou eu?
