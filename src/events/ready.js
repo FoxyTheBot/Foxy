@@ -11,7 +11,7 @@ module.exports = class Ready {
             { name: "💖 | Fui criada pelo WinG4merBR#6611", type: 3 },
             { name: `😍 | Me adicione usando /invite`, type: 1 },
             { name: `🤔 | Precisa de ajuda? Utilize /help`, type: 2 },
-            { name: "🍰 | Minha comida preferida é bolo 💖", type: 5 },
+            { name: "🍰 | Minha comida preferida é bolo 💖", type: 5 }
         ];
 
         setInterval(() => {
