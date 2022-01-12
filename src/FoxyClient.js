@@ -2,7 +2,6 @@ const { Client, Collection } = require("discord.js");
 const fs = require("fs");
 const DatabaseConnection = require("./structures/databaseConnection");
 const WebhookManager = require("./structures/WebhookManager");
-const PizzariaSimulator = require("./structures/PizzariaSimulator");
 
 module.exports = class FoxyClient extends Client {
     constructor(options) {
@@ -12,7 +11,6 @@ module.exports = class FoxyClient extends Client {
         this.config = require("../config.json");
         this.database = new DatabaseConnection(this.config.mongouri, { useNewUrlParser: true, useUnifiedTopology: true, writeConcern: "majority" }, this);
         this.WebhookManager = new WebhookManager(this);
-        this.simulator = new PizzariaSimulator(this);
     }
 
     login(token) {
