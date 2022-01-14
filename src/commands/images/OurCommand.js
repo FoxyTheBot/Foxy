@@ -19,7 +19,7 @@ module.exports = class OurCommand extends Command {
         const canvas = Canvas.createCanvas(500, 400);
         const ctx = canvas.getContext('2d');
 
-        const background = await Canvas.loadImage('https://cdn.foxywebsite.xyz/memes/comunismo.png');
+        const background = await Canvas.loadImage('https://foxywebsite.xyz/api/memes/comunismo.png');
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         ctx.strokeStyle = '#74037b';

@@ -21,7 +21,7 @@ module.exports = class StonksCommand extends Command {
         const canvas = Canvas.createCanvas(800, 600);
         const ctx = canvas.getContext('2d');
 
-        const background = await Canvas.loadImage('https://cdn.foxywebsite.xyz/memes/stonks.png');
+        const background = await Canvas.loadImage('https://foxywebsite.xyz/api/memes/stonks.png');
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         ctx.strokeStyle = '#74037b';

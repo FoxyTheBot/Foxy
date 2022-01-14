@@ -20,7 +20,7 @@ module.exports = class LaranjoCommand extends Command {
         const canvas = Canvas.createCanvas(700, 600);
         const ctx = canvas.getContext('2d');
 
-        const background = await Canvas.loadImage('https://cdn.foxywebsite.xyz/memes/laranjo.png');
+        const background = await Canvas.loadImage('https://foxywebsite.xyz/api/memes/laranjo.png');
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         ctx.strokeStyle = '#74037b';

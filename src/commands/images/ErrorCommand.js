@@ -20,7 +20,7 @@ module.exports = class ErrorCommand extends Command {
         const canvas = Canvas.createCanvas(380, 208);
         const ctx = canvas.getContext("2d");
 
-        const background = await Canvas.loadImage("https://cdn.foxywebsite.xyz/memes/windows.png");
+        const background = await Canvas.loadImage("https://foxywebsite.xyz/api/memes/windows.png");
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 

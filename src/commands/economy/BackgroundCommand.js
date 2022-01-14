@@ -60,7 +60,7 @@ module.exports = class BackgroundCommand extends Command {
                     .setColor("BLURPLE")
                     .addField("💵 Preço", `${background.foxcoins} FoxCoins`, true)
 
-                    const attachment = await new MessageAttachment(`https://cdn.foxywebsite.xyz/backgrounds/${codeString}`, 'background.png');
+                    const attachment = await new MessageAttachment(`https://foxywebsite.xyz/api/backgrounds/${codeString}`, 'background.png');
 
                 bgInfo.setImage("attachment://background.png");
 

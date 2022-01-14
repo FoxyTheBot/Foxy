@@ -20,7 +20,7 @@ module.exports = class SpongebobCommand extends Command {
         const canvas = Canvas.createCanvas(500, 400);
         const ctx = canvas.getContext('2d');
 
-        const background = await Canvas.loadImage('https://cdn.foxywebsite.xyz/memes/fodase.png');
+        const background = await Canvas.loadImage('https://foxywebsite.xyz/api/memes/fodase.png');
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         ctx.strokeStyle = '#74037b';
