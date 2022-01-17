@@ -38,7 +38,7 @@ module.exports = class InteractionCreate {
                     .setColor("RED")
                     .setDescription("Se você quiser fazer um apelo de ban você pode preencher este formulário (linkdoform) \n\n Recomendado você ler os [termos de uso](https://foxywebsite.xyz/privacy)")
                     .addField("Motivo do banimento:", document.banReason, true)
-                    .addField("Data do banimento", document.banData.toLocaleString())
+                    .addField("Data do banimento", document.banData.toLocaleString('pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute:'2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }))
                 return interaction.editReply({ embeds: [bannedEmbed], ephemeral: true });
             }
 

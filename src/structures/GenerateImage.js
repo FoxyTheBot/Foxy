@@ -43,13 +43,13 @@ module.exports = class GenerateImage {
             const discordProfile = await this.client.users.fetch(this.data.marriedWith);
             ctx.font = '30px sans-serif';
             ctx.fillStyle = '#ffffff';
-            ctx.fillText(`💍 Casado com: ${discordProfile.tag}\nDesde: ${this.data.marriedDate.toLocaleString()}`, canvas.width / 1.4, canvas.height / 6.3);
+            ctx.fillText(`💍 Casado com: ${discordProfile.tag}\nDesde: ${this.data.marriedDate.toLocaleString('pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute:'2-digit', year: 'numeric', month: 'numeric', day: 'numeric' })}`, canvas.width / 1.5, canvas.height / 6.3);
         }
 
         if (this.data.premium) {
             ctx.font = '30px sans-serif';
             ctx.fillStyle = '#ffffff';
-            ctx.fillText(`🔑 Premium desde: ${this.data.premiumDate.toLocaleString()}`, canvas.width / 6.0, canvas.height / 6.0);
+            ctx.fillText(`🔑 Premium desde: ${this.data.premiumDate.toLocaleString('pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute:'2-digit', year: 'numeric', month: 'numeric', day: 'numeric' })}`, canvas.width / 6.0, canvas.height / 6.0);
         }
 
         ctx.font = ('30px sans-serif');

@@ -43,8 +43,8 @@ module.exports = class ServerCommand extends Command {
                     .addFields(
                         { name: ":crown: Dono", value: `\`${owner.tag}\``, inline: true },
                         { name: ":computer: ID", value: `\`${server.id}\``, inline: true },
-                        { name: ":calendar: Criado em", value: `\`${server.createdAt.toLocaleString()}\``, inline: true },
-                        { name: ":star: Entrei em", value: `\`${server.joinedAt.toLocaleString()}\`` || "Não estou no servidor :(", inline: true },
+                        { name: ":calendar: Criado em", value: `\`${server.createdAt.toLocaleString('pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute:'2-digit', year: 'numeric', month: 'numeric', day: 'numeric' })}\``, inline: true },
+                        { name: ":star: Entrei em", value: `\`${server.joinedAt.toLocaleString('pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute:'2-digit', year: 'numeric', month: 'numeric', day: 'numeric' })}\`` || "Não estou no servidor :(", inline: true },
                         { name: ":speech_balloon: Canais", value: `\`${server.channels.cache.size}\``, inline: true },
                         { name: '<a:impulso:756507043854024784> Impulsos:', value: server.premiumSubscriptionCount.toString(), inline: true },
                         { name: ":busts_in_silhouette: Membros", value: `\`${server.memberCount}\``, inline: true },

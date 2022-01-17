@@ -28,7 +28,7 @@ module.exports = class UserCommand extends Command {
                     .setTitle(user.username)
                     .setThumbnail(user.displayAvatarURL())
                     .addField(":bookmark: Discord User", `\`${user.tag}\``, true)
-                    .addField(":date: Conta criada", `\`${user.createdAt.toLocaleString()}\``, true)
+                    .addField(":date: Conta criada", `\`${user.createdAt.toLocaleString('pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute:'2-digit', year: 'numeric', month: 'numeric', day: 'numeric' })}\``, true)
                     .addField(":computer: ID do Usuário", `\`${user.id}\``, true)
 
                 await interaction.editReply({ embeds: [userEmbed] });
