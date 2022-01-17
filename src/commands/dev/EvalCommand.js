@@ -17,7 +17,8 @@ module.exports = class EvalCommand extends Command {
     }
 
     async execute(interaction) {
-        let code = interaction.options.getString("code"),
+        let client = this.client,
+            code = interaction.options.getString("code"),
             evaled, hasError = false,
             embed = new MessageEmbed();
 
