@@ -17,8 +17,7 @@ module.exports = class EvalCommand extends Command {
     }
 
     async execute(interaction) {
-        let client = this.client,
-            code = interaction.options.getString("code"),
+        let code = interaction.options.getString("code"),
             evaled, hasError = false,
             embed = new MessageEmbed();
 
@@ -27,13 +26,11 @@ module.exports = class EvalCommand extends Command {
         try {
             evaled = await eval(code.includes('await') ? `async function foxyExec() { ${code} }; foxyExec()` : code);
 
-            embed
-                .setColor('GREEN')
+            embed.setColor('GREEN')
                 .setTitle('<a:2303_Rainbow_Weeb:728688748736544898> Comando executado com sucesso!')
                 .setDescription(`\ \ \`\`\`js\n${String(inspect(evaled, { depth: 1 })).slice(0, 2000)}\n\`\`\``);
         } catch (err) {
-            embed
-                .setColor('RED')
+            embed.setColor('RED')
                 .setTitle(`${this.client.emotes.scared} Ocorreu um erro durante a execução!`)
                 .setDescription(`Saída: \`\`\`js\n${String(err).slice(0, 2000)}\`\`\``);
             hasError = true
