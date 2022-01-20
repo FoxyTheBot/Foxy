@@ -19,7 +19,7 @@ module.exports = class MessageCreate {
         const messageError = new MessageEmbed();
         messageError.setColor("#ff0000");
         messageError.setTitle("Não é possível mais usar os comandos tradicionais da Foxy!");
-        messageError.setDescription("Estou respondendo apenas Slash Commands (Comandos de barra /). Digite /ping caso não apareça os meus comandos atualize minhas permissões no seu servidor! \n\n **Maneiras de atualizar: **" +
+        messageError.setDescription("Os comandos tradicionais foram descontinuados e substituidos pelos Slash Commands (Comandos de /).\nDigite `/ping` e verifique se aparece o meu comando de ping, caso não apareça atualize minhas permissões no seu servidor me re-convidando para o servidor :3" +
         "Para atualizar você pode atualizar pelo [link](https://discord.com/oauth2/authorize?client_id=737044809650274325&scope=bot+applications.commands&permissions=269872255) ou usando a nova função do Discord:");
         messageError.setImage("https://i.imgur.com/GBoGyrC.gif");
             
