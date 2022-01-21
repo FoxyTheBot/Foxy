@@ -2,8 +2,6 @@ import Command from "../../structures/BaseCommand";
 import { SlashCommandBuilder } from '@discordjs/builders';
 
 export default class PingCommand extends Command {
-    public client: any;
-
     constructor(client) {
         super(client, {
             name: "ping",
