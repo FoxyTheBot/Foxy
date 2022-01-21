@@ -98,5 +98,5 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "src/structures/json/*.json", "*.ts"]
+  "include": ["src/**/*.ts", "src/structures/json/*.json", "*.ts", "src/locales/**/*.json"]
 }

@@ -8,45 +8,76 @@
 
 </p>
 
-## Quem sou eu?
-Olá! Eu sou a Foxy, irei entreter seu servidor com meus comandos de economia, entretenimento, entre outros!
+# 🤔 | Who am I?
+Hi, I'm Foxy! I will entertain your server with my commands
 
 <br>
 
-## Preparando ambiente
+## 🏗 | Preparing the environment
 
-### Termos:
-É vedado o uso da imagem e do nome da Foxy em instâncias privadas, o código publicado aqui é destinado aos contribuidores da Foxy, portanto nós da equipe de desenvolvimento da Foxy <strong>NÃO PRESTAMOS SUPORTE</strong> ao código publicado aqui.
+### 📕 | Terms:
+You cannot use the Foxy's image in privates or public instances, the code in this repository is intended for Foxy contributors, If you want to run Foxy by yourself as self-host, you can, but WE DO NOT SUPPORT self-host.
+At your own risk
 
-De acordo com a licença você pode modificar o código fonte da Foxy mas você é obrigado a deixar o código público incluindo as modificações.
+Pursuant to the license, you may modify Foxy's source code, but you are required to make the code public including the modifications.
 <br>
 
-## Como executar a Foxy:
+### ⚠ | Requirements:
 
-- Para rodar uma instância da Foxy você precisarar os seguintes softwares de terceiros: git, nodejs, npm. Consulte a documentação do seu Sistema Operacional para instalar.
-- Baixe o código fonte da Foxy usando: git clone https://github.com/FoxyTheBot/Foxy
-- Instale as dependências usando: npm install
+- NodeJS v16.x or higher
+- Git
+- npm
 
+<br>
 
-Crie um arquivo de configuração para a Foxy chamado config.json e use o seguinte template:
+## 🤔 | How can I run Foxy?
+<br>
+<p>You need to install TSC (TypeScript Compiler)</p>
+
+```bash
+npm i -g typescript
+```
+
+## Values that you need to change
+<br>
 
 ```json
 {
-  "ownerId": "<Sua-ID>",
-  "clientId": "<ID-Do-BOT>",
-  "prefix": "<Prefixo-do-bot>",
-  "token": "<Token-do-bot>",
-  "mongouri": "<URI-do-MongoDB>",
-  "dblauth": "<Auth-do-Discordbotlist>",
+  "ownerId": "<YOUR-ID>", 
+  "clientId": "<BOT-ID>", 
+  "prefix": "<BOT-PREFIX>", 
+  "token": "<BOT-TOKEN>", 
+  "mongouri": "<MONGODB-URI>", 
+  "dblauth": "<TOPGG-AUTH>", 
 
     "webhooks": {
-        "guilds": "URL DO WEBHOOK",
-        "suggestions": "URL DO WEBHOOK",
-        "issues": "URL DO WEBHOOK"
+        "guilds": "URL", 
+        "suggestions": "URL", 
+        "issues": "URL" 
     }
   }
 ```
+<br>
 
-### Configurando para primeiro uso:
-- Registre os comandos de / utilizando: node register.js
-- Pronto! A Foxy está pronta para ser executada! Use node . e digite /ping ou /help no seu servidor!
+## ✨ | Install all required dependencies
+```bash
+npm i
+```
+
+## 💻 | Compiling Foxy
+
+```bash
+npm run build
+```
+
+<br>
+
+<p>Check the console to see if there are any errors... Well, we hope that there are none.</a></p>
+
+## 🤩 | Starting Foxy
+- You need to register slash commands running: npm run register
+
+Now you can run Foxy using:
+```bash
+node .
+```

@@ -1,3 +1,4 @@
+import i18next from 'i18next';
 import { MessageEmbed } from "discord.js";
 
 export default class InteractionCreate {
@@ -8,6 +9,9 @@ export default class InteractionCreate {
     }
 
     async run(interaction) {
+        const user = await this.client.database.getUser(interaction.user.id);
+        let locale = global.t = i18next.getFixedT(user.lang || 'pt-BR');
+
         if (!interaction.isCommand()) return;
         const command = this.client.commands.get(interaction.commandName);
 
@@ -19,7 +23,7 @@ export default class InteractionCreate {
             new Promise(async (res, rej) => {
                 try {
                     await interaction.deferReply();
-                    command.execute(interaction)
+                    command.execute(interaction, locale)
                 } catch (e) {
                     console.error(e);
                     const errorEmbed = new MessageEmbed()

@@ -5,7 +5,7 @@ const manager = new ShardingManager("./build/index.js", {
 });
 
 manager.on("shardCreate", (shard: any) => {
-    console.info(`[SHARD] - Shard ${Number(shard.id) + 1} foi criada`);
+    console.info(`[SHARD] - Shard ${Number(shard.id) + 1} has been created!`);
 });
 
 manager.spawn();
