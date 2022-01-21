@@ -4,7 +4,9 @@
   "description": "A multi-purpose bot for Discord developed using TypeScript",
   "main": "build/shard.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node .",
+    "register": "node build/register.js"
   },
   "repository": {
     "type": "git",
