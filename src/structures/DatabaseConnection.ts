@@ -32,16 +32,16 @@ export default class DatabaseConnection {
         this.client = client;
     }
 
-    async getUser(UserId) {
-        const user = await this.client.users.fetch(UserId);
+    async getUser(userId: string) {
+        const user = await this.client.users.fetch(userId);
 
         if (!user) return null;
 
-        let document = await this.user.findOne({ _id: UserId });
+        let document = await this.user.findOne({ _id: userId });
 
         if (!document) {
             document = new this.user({
-                _id: UserId,
+                _id: userId,
                 userCreationTimestamp: Date.now(),
                 premium: false,
                 premiumDate: null,
