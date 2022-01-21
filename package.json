@@ -1,8 +1,8 @@
 {
   "name": "foxy",
-  "version": "2022.07.26-stable",
-  "description": "A simple bot for Discord",
-  "main": "shard.js",
+  "version": "2022.08.16-unstable",
+  "description": "A multi-purpose bot for Discord developed using TypeScript",
+  "main": "build/shard.js",
   "scripts": {
     "start": "clear && node ."
   },
@@ -13,7 +13,7 @@
   "keywords": [
     "seu-servidor",
     "foxy",
-    "javascript"
+    "typescript"
   ],
   "author": "WinG4merBR",
   "license": "AGPL-3.0",
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/FoxyTheBot/Foxy#readme",
   "dependencies": {
+    "@types/node": "^17.0.10",
     "canvas": "^2.8.0",
     "discord.js": "^13.3.1",
     "figlet": "^1.5.2",
