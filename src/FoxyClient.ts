@@ -16,7 +16,7 @@ export default class FoxyClient extends Client {
         super(options);
         this.commands = new Collection();
         this.emotes = require("./structures/json/emotes.json");
-        this.config = require("./config.json");
+        this.config = require("../config.json");
         this.database = new DatabaseConnection(this.config.mongouri, { useNewUrlParser: true, useUnifiedTopology: true, writeConcern: "majority" }, this);
         this.WebhookManager = new WebhookManager(this);
     }
@@ -32,15 +32,17 @@ export default class FoxyClient extends Client {
             for (const file of commandFiles) {
                 const commandFile = await import(`${path}/${folder}/${file}`);
                 const command = new commandFile.default(this);
+                console.info(`[SLASH] - Carregando ${command.config.name}`);
                 this.commands.set(command.config.name, command);
             }
         }
     }
 
     async loadEvents(path: string): Promise<any> {
-        const eventFiles = fs.readdirSync(path).filter(file => file.endsWith(".ts"));
+        const eventFiles = fs.readdirSync(path);
         for (const file of eventFiles) {
-            const event = new (require(`${path}/${file}`))(this);
+            const eventFile = await import(`${path}/${file}`);
+            const event = new eventFile.default(this);
             console.info(`Loading event: ${file.split(".")[0]}`);
             this.on(file.split(".")[0], (...args) => event.run(...args));
         }

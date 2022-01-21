@@ -7,5 +7,5 @@ client.loadEvents(__dirname + "/src/events");
 client.login(token);
 
 process.on("unhandledRejection", async (reason, p) => {
-    console.log("Houve uma rejeição não capturada:\n" + reason);
+    console.log(reason);
  });

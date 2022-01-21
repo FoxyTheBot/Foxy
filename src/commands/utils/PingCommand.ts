@@ -6,7 +6,7 @@ export default class PingCommand extends Command {
 
     constructor(client) {
         super(client, {
-            name: "ping",
+            name: "pinguwu",
             description: "Veja a latência da Foxy",
             category: "utils",
             dev: false,

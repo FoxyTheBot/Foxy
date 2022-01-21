@@ -1,5 +1,5 @@
 import { ShardingManager } from 'discord.js';
-const manager = new ShardingManager("./index.ts", {
+const manager = new ShardingManager("./build/index.js", {
     respawn: true,
     totalShards: 1,
 });
