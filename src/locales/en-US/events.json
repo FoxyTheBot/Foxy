@@ -10,7 +10,6 @@
         "reason": "Ban reason:",
         "date": "Ban date:"
     },
-
     "messageCreate": {
         "hello": "Hey, I'm Foxy! My prefix is `/ (Slash Commands)`, use `/help` for help!"
     }

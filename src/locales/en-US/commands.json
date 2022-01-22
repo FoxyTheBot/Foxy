@@ -14,12 +14,10 @@
             "donate2": "Buy me a pizza :3"
         }
     },
-
     "lang": {
         "title": "Choose your language",
         "default": "Your default language is set to English"
     },
-
     "anime": {
         "info": {
             "status": "Status",
@@ -41,15 +39,55 @@
         "click": "Click here",
         "nothing": "Nothing"
     },
-
     "coinflip": {
         "heads": "heads",
         "tails": "tails",
         "flipped": "You flipped a coin and got",
         "result": "Result"
     },
-
     "upvote": {
         "description": "Help me to increase servers count and keep me alive voting me on <:discordbotlist:778011345542578238> Discord Bot List, \n<:catblush:768292358458179595> Votes helps me to get more servers and more users on Discord! Vote me [clicking here](https://top.gg/bot/737044809650274325) :heart:"
+    },
+    "profile": {
+        "your": "📝 | Your profile",
+        "noAboutme": "Foxy is so cute ><! You can change this message using /aboutme command",
+        "marriedWith": "💍 Married With {{user}}\n Since {{date}}",
+        "premium": "🔑 Premium since {{date}}"
+    },
+    "help": {
+        "commands": {
+            "title": "🎮 | Command list",
+            "category": {
+                "economy": "Economy",
+                "social": "Social",
+                "entertainment": "Entertainment",
+                "image": "Images",
+                "misc": "Misc",
+                "utils": "Utils",
+                "rp": "Roleplay"
+            }
+        },
+        "bot": {
+            "title": "Hey, I'm Foxy!",
+            "description": "Hi {{user}}, I'm Foxy, I have features to entertain your server, like economy commands :3",
+            "fields": {
+                "list": {
+                    "title": "If you want see all commands type",
+                    "value": "`/help`"
+                },
+                "guild": "Support server",
+                "privacy": "Privacy",
+                "website": "My website (only Portuguese yet)"
+            }
+        }
+    },
+    "roblox": {
+        "aboutme": "About me",
+        "register": "Register date",
+        "undefined": "Undefined",
+        "noAboutme": "This user has no about me",
+        "noStatus": "This user has no status",
+        "error": "<:robloxlogo:804814541631914035> | I can't find this user... Probably this user doesn't exist :/",
+        "button": "View on Roblox"
     }
 }

@@ -10,7 +10,6 @@
         "reason": "Motivo do banimento:",
         "date": "Data do banimento:"
     },
-
     "messageCreate": {
         "hello": "Oie, Meu nome é Foxy, meu prefixo é `/ (Slash Commands)`, utilize `/help` para obter ajuda!"
     }
