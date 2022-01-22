@@ -12,6 +12,6 @@
     },
 
     "messageCreate": {
-        "hello": "Oie, Meu nome é Foxy, meu prefixo é `/ Slash Commands`, utilize `/help` para obter ajuda!"
+        "hello": "Oie, Meu nome é Foxy, meu prefixo é `/ (Slash Commands)`, utilize `/help` para obter ajuda!"
     }
 }
