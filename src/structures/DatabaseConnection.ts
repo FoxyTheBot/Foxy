@@ -3,10 +3,11 @@ import { Schema, connect, model } from 'mongoose';
 export default class DatabaseConnection {
     private user: any;
     private client: any;
+    private locale: any;
 
     constructor(auth: string, params: any, client: any) {
         connect(auth, params, (err) => {
-            if (err) return console.log('Ocorreu um erro no cliente do mongodb! verifique se a sua URI está correta!', err);
+            if (err) return console.error('Ocorreu um erro no cliente do mongodb! verifique se a sua URI está correta!', err);
         });
 
         const userSchema = new Schema({
@@ -28,7 +29,13 @@ export default class DatabaseConnection {
             backgrounds: Array
         }, { versionKey: false, id: false });
 
+        const localeSchema = new Schema({
+            _id: String,
+            locale: String
+        });
+
         this.user = model('user', userSchema);
+        this.locale = model('locale', localeSchema);
         this.client = client;
     }
 
@@ -68,4 +75,20 @@ export default class DatabaseConnection {
         return usersData.map(user => user.toJSON());
     }
 
+    async getUserLocale(userId) {
+        const user = await this.client.users.fetch(userId);
+
+        if (!user) return null;
+
+        let document = await this.locale.findOne({ _id: userId });
+
+        if (!document) {
+            document = new this.locale({
+                _id: userId,
+                locale: 'pt-BR'
+            }).save();
+        }
+
+        return document;
+    }
 }

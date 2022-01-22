@@ -8,5 +8,5 @@ client.loadLocales(__dirname + "/src/locales");
 client.login(token);
 
 process.on("unhandledRejection", async (reason, p) => {
-    console.log(reason);
+    console.error(reason);
  });

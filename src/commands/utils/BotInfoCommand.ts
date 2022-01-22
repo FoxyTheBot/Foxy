@@ -20,7 +20,7 @@ export default class BotInfoCommand extends Command {
         const embed = new MessageEmbed()
             .setColor("BLURPLE")
             .setTitle(t('botinfo.title'))
-            .setDescription(`${t('botinfo.desc')} \n${t('botinfo.desc2')} ${this.client.guilds.cache.size} ${t('botinfo.fields.server')}`)
+            .setDescription(t('botinfo.description', { client: this.client, guilds: this.client.guilds.cache.size.toString() }))
             .addFields(
                 { name: t('botinfo.fields.addme'), value: `[${t('botinfo.fields.add')}](https://discord.com/oauth2/authorize?client_id=737044809650274325&scope=bot+applications.commands&permissions=269872255)`, inline: true },
                 { name: t('botinfo.fields.support'), value: `[${t('botinfo.fields.server2')}](https://discord.gg/W6XtYyqKkg)`, inline: true },

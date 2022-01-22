@@ -1,0 +1,55 @@
+{
+    "botinfo": {
+        "title": ":fox: Foxy",
+        "description": "Hi, I'm Foxy! I'm a simple economy and entertainment bot for Discord! I'm in {{guilds}} guilds :heart:!",
+        "fields": {
+            "addme": "<:AddMember:797181629826859029> Add me to your server!",
+            "server": "Guilds :heart:",
+            "server2": "Enter in my support server clicking here!",
+            "add": "<:DiscordExplore:790934280611037196> Add me clicking here",
+            "support": "Support server",
+            "twitter": "<:Twitter:797184287816286209> My Twitter",
+            "github": "<:GitHub:746399300728258710> My Github",
+            "donate": "<:paypal:776965353904930826> Donate me clicking here",
+            "donate2": "Buy me a pizza :3"
+        }
+    },
+
+    "lang": {
+        "title": "Choose your language",
+        "default": "Your default language is set to English"
+    },
+
+    "anime": {
+        "info": {
+            "status": "Status",
+            "score": "Score",
+            "episodes": "Episodes",
+            "type": "Type",
+            "aired": "Aired",
+            "genres": "Genres",
+            "source": "Source",
+            "studios": "Studios",
+            "duration": "Duration",
+            "rating": "Rating",
+            "scoreStats": "Score stats",
+            "popularity": "Popularity",
+            "premiered": "Premiered",
+            "broadcast": "Broadcast"
+        },
+        "notFound": "Anime not found",
+        "click": "Click here",
+        "nothing": "Nothing"
+    },
+
+    "coinflip": {
+        "heads": "heads",
+        "tails": "tails",
+        "flipped": "You flipped a coin and got",
+        "result": "Result"
+    },
+
+    "upvote": {
+        "description": "Help me to increase servers count and keep me alive voting me on <:discordbotlist:778011345542578238> Discord Bot List, \n<:catblush:768292358458179595> Votes helps me to get more servers and more users on Discord! Vote me [clicking here](https://top.gg/bot/737044809650274325) :heart:"
+    }
+}

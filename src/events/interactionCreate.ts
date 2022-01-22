@@ -9,14 +9,14 @@ export default class InteractionCreate {
     }
 
     async run(interaction) {
-        const user = await this.client.database.getUser(interaction.user.id);
-        let locale = global.t = i18next.getFixedT(user.lang || 'pt-BR');
+        const user = await this.client.database.getUserLocale(interaction.user.id);
+        let locale = global.t = i18next.getFixedT(user.locale || 'pt-BR');
 
         if (!interaction.isCommand()) return;
         const command = this.client.commands.get(interaction.commandName);
 
         if (command.config.dev && !interaction.user.id.includes(this.client.config.ownerId)) {
-            return interaction.editReply({ content: `:x: **|** Este comando é apenas para o meu desenvolvedor, bobinho!`, ephemeral: true });
+            return interaction.editReply({ content: locale('permissions:ONLY_DEVS'), ephemeral: true });
         }
 
         function FoxyHandler() {
@@ -40,11 +40,11 @@ export default class InteractionCreate {
 
             if (document.isBanned) {
                 const bannedEmbed = new MessageEmbed()
-                    .setTitle(`❌ | Você esta **banido(a)**`)
+                    .setTitle(locale('events:ban.title'))
                     .setColor("RED")
-                    .setDescription("Se você quiser fazer um apelo de ban você pode preencher este formulário (linkdoform) \n\n Recomendado você ler os [termos de uso](https://foxywebsite.xyz/privacy)")
-                    .addField("Motivo do banimento:", document.banReason, true)
-                    .addField("Data do banimento", document.banData.toLocaleString('pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }))
+                    .setDescription(locale('events:ban.description'))
+                    .addField(locale('events:ban.reason'), document.banReason, true)
+                    .addField(locale('events:ban.date'), document.banData.toLocaleString('pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }))
                 return interaction.editReply({ embeds: [bannedEmbed], ephemeral: true });
             }
 

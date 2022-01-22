@@ -6,7 +6,7 @@ export default class Ready {
     }
 
     async run() {
-        console.info(`Shard ${Number(this.client.shard.ids) + 1} Está conectada com ${this.client.guilds.cache.size} Servidores!`);
+        console.info(`[READY] - Shard ${Number(this.client.shard.ids) + 1} Está conectada com ${this.client.guilds.cache.size} Servidores!`);
 
         const status = [
             { name: "🐦 | Me siga no Twitter: @FoxyDiscordBot", type: 0 },

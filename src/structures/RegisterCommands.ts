@@ -34,7 +34,7 @@ export default class RegisterCommands {
             console.info("Registrando comandos...");
 
                 await rest.put(
-                    Routes.applicationCommands(this.clientId),
+                    Routes.applicationGuildCommands(this.clientId, "709847600467148801"),
                     // Se quiser registrar comandos em um servidor específico, basta trocar a função applicationCommands(this.clientId) para applicationGuildCommands(this.clientId, "Id do servidor")
                     { body: commands },
                 );
