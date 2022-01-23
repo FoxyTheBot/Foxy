@@ -26,7 +26,7 @@ export default class GenerateImage {
 
         const canvas = Canvas.createCanvas(this.width, this.height);
         const ctx = canvas.getContext("2d");
-        const background = await Canvas.loadImage(`https://cdn.foxywebsite.xyz/backgrounds/${this.data.background}`);
+        const background = await Canvas.loadImage(`https://foxywebsite.xyz/api/backgrounds/${this.data.background}`);
 
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
