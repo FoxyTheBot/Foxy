@@ -89,5 +89,38 @@
         "noStatus": "This user has no status",
         "error": "<:robloxlogo:804814541631914035> | I can't find this user... Probably this user doesn't exist :/",
         "button": "View on Roblox"
+    },
+
+    "aboutme": {
+        "set": "Your about me has been changed to `{{aboutme}}`"
+    },
+
+    "server": {
+        "owner": "Owner",
+        "createdAt": "Created at",
+        "clientJoin": "I joined this server at",
+        "channels": "Channels",
+        "premium": "Boosts",
+        "memberCount": "Members",
+        "afk": "AFK channel",
+        "click": "View on Browser",
+        "no": "No",
+        "yes": "Yes",
+        "notFound": "I didn't find any guild with the ID `{{id}}`",
+        "partner": "Discord Partner"
+    },
+    
+    "user": {
+        "info": {
+            "tag": "User Tag",
+            "createdAt": "Created at",
+            "userId": "User ID"
+        },
+
+        "avatar": {
+            "click": "View on browser",
+            "title": "{{user}}'s Avatar",
+            "footer": "So cute >3<"
+        }
     }
 }

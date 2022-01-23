@@ -94,5 +94,38 @@
         "noStatus": "Não há status",
         "error": "<:robloxlogo:804814541631914035> | Não foi possível encontrar esse usuário... Provavelmente a conta não existe :/",
         "button": "Ver perfil"
+    },
+
+    "aboutme": {
+        "set": "Seu sobre mim foi alterado para `{{aboutme}}`"
+    },
+
+    "server": {
+        "owner": "Dono",
+        "createdAt": "Criado em",
+        "clientJoin": "Entrei em",
+        "channels": "Canais",
+        "premium": "Impulsos",
+        "memberCount": "Membros",
+        "afk": "Canal AFK",
+        "click": "Veja o ícone no seu navegador",
+        "no": "Não",
+        "yes": "Sim",
+        "notFound": "Não encontrei nenhum servidor com a id `{{id}}`",
+        "partner": "Parceiro do Discord"
+    },
+
+    "user": {
+        "info": {
+            "tag": "Tag do usuário",
+            "createdAt": "Criado em",
+            "userId": "ID do usuário"
+        },
+
+        "avatar": {
+            "click": "Veja o ícone no seu navegador",
+            "title": "Avatar de {{user}}",
+            "footer": "Achei fofo :3"
+        }
     }
 }
