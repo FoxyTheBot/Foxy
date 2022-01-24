@@ -12,7 +12,7 @@ export default class ProfileCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("profile")
-                .setDescription("[🛠 Social] View your profile")
+                .setDescription("[👥 Social] View your profile")
                 .addUserOption(option => option.setName("user").setRequired(false).setDescription("The user to view"))
         });
     }
