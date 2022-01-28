@@ -21,7 +21,7 @@ module.exports = class WeatherCommand extends Command {
         weather.find({ search: city, degreeType: 'C' }, async (error, result) => {
             if (error) return interaction.editReply("Não foi possível encontrar a cidade.");
 
-            if (result === undefined || result.length === 0) return message.reply('Localização inválida!');
+            if (result === undefined || result.length === 0) return interaction.editReply('Localização inválida!');
 
             const { current } = result[0];
             const { location } = result[0];

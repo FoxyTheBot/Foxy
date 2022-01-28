@@ -5,7 +5,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = class DblCommand extends Command {
     constructor(client) {
         super(client, {
-            name: 'dbl',
+            name: 'upvote',
             description: "Link para meu perfil na Discord Bot List",
             category: 'utils',
             data: new SlashCommandBuilder()
