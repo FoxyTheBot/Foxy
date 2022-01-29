@@ -27,7 +27,7 @@ export default class LanguageCommand extends Command {
             new MessageButton()
             .setLabel("Português")
             .setCustomId("pt")
-            .setStyle("PRIMARY")
+            .setStyle("PRIMARY"),
         )
 
         const embed = new MessageEmbed()

@@ -1,4 +1,4 @@
-export interface FoxyCommand {
+export interface FoxyCommands {
     config: any,
 }
 

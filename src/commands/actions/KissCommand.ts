@@ -1,0 +1,56 @@
+import Command from "../../structures/BaseCommand";
+import { SlashCommandBuilder } from "@discordjs/builders";
+import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
+import nekosLife from "nekos.life";
+
+export default class KissCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: "kiss",
+            description: "Kiss someone",
+            category: "actions",
+            dev: false,
+            data: new SlashCommandBuilder()
+                .setName("kiss")
+                .setDescription("[🎮 Roleplay] Kiss someone")
+                .addUserOption(option => option.setName("user").setRequired(true).setDescription("User you want to kiss"))
+        });
+    }
+
+    async execute(interaction, t) {
+        const neko = new nekosLife();
+
+        const img = await neko.sfw.kiss();
+        const img2 = await neko.sfw.kiss();
+        const user = await interaction.options.getUser("user");
+
+        if (user == this.client.user) return interaction.editReply(t('commands:kiss.self'));
+
+        const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setCustomId("primary")
+                    .setLabel(t("commands:kiss.button"))
+                    .setStyle("PRIMARY")
+            )
+
+        const embed = new MessageEmbed()
+            .setColor('#000000')
+            .setDescription(t('commands:kiss.success', { user: user.username, author: interaction.user.username }))
+            .setImage(img.url)
+            .setTimestamp();
+        await interaction.editReply({ embeds: [embed], components: [row] });
+
+        const filter = i => i.customId === 'primary' && i.user.id === user.id;
+        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000, max: 1 });
+
+        collector.on('collect', async i => {
+            i.deferUpdate();
+            const kissEmbed = new MessageEmbed()
+                .setColor('#000000')
+                .setDescription(t('commands:kiss.success', { user: interaction.user.username, author: user.username }))
+                .setImage(img2.url)
+            await interaction.followUp({ embeds: [kissEmbed] });
+        });
+    }
+}

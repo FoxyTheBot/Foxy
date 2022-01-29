@@ -122,5 +122,176 @@
             "title": "{{user}}'s Avatar",
             "footer": "So cute >3<"
         }
+    },
+
+    "ship": {
+        "question": "Is this couple possible?",
+        "perfectCouple": "They are a perfect couple!",
+        "uwu": "They're already dating, but no one knows!",
+        "probably": "It's possible if {{user}} wants",
+        "cry": "I'd like to say that it's possible..."
+    },
+
+    "rep": {
+        "cooldown": "You already gave this user +1 rep, wait **{{cooldown}}**",
+        "success": ":heart: | You gave a rep to **{{user}}**",
+        "self": ":x: | You can't rep yourself"
+    },
+
+    "marry": {
+        "self": ":x: | You can't marry yourself",
+        "alreadyMarried": ":x: | {{user}} is already married",
+        "bot": ":x: | No, i don't want to marry you",
+        "alreadyMarriedWithSomeone": ":x: | You are already married someone",
+        "alreadyMarriedWithUser": ":x: | You are already married with {{user}}"
+    },
+
+    "divorce": {
+        "notMarried": ":x: | You aren't married",
+        "confirm": "Are you sure you want to divorce?\nThis action can't be undone",
+        "divorced": ":broken_heart: | You are divorced now!"
+    },
+
+    "suggest": {
+        "success": ":white_check_mark: | Your suggestion has been sent to the developer, thank you for your help! :heart:"
+    },
+
+    "report": {
+        "success":":white_check_mark: | Your report has been sent to the developer, thank you for your help! :heart:"
+    },
+
+    "status": {
+        "model": "CPU Model",
+        "guilds": "Guilds",
+        "users": "Users",
+        "ram": "RAM",
+        "cpuUsage": "CPU Usage",
+        "node": "Node.js",
+        "arch": "Architecture",
+        "platform": "Platform"
+    },
+
+    "invite": {
+        "description": "Do you want to invite me to your server?\nThank you so much, you can add me [clicking here](https://discord.com/oauth2/authorize?client_id=737044809650274325&scope=bot+applications.commands&permissions=269872255)"
+    },
+    
+    "rps": {
+        "replies": {
+            "rock": "Rock",
+            "paper": "Paper",
+            "scissors": "Scissors"
+        },
+        "tie": "It's a tie!",
+        "invalidChoice": "Invalid choice",
+        "clientWon": "{{result}}! You lost!",
+        "won3": "You won :3",
+        "won2": "You won >:3",
+        "won": "You won :D"
+    },
+
+    "fate": {
+        "couple": "Couple",
+        "enemy": "Enemy",
+        "lover": "Lover",
+        "sibling": "Sibling",
+        "parent": "Parents",
+        "married": "Married",
+        "friend": "Friend",
+        "result": ":sparkles: | In a parallel universe {{user}} and {{mention}} are {{fate}}"
+    },
+
+    "cancel": {
+        "result": ":sob: | {{user}} canceled {{mention}} for reason `{{string}}`"
+    },
+
+    "8ball": {
+        "yes": "Yes",
+        "no": "No",
+        "maybe": "Maybe",
+        "idk": "I don't know",
+        "idk2": "IDK :/",
+        "probably": "Probably",
+        "probablyyes": "Probably yes",
+        "probablyno": "Probably no"
+    },
+
+    "rank": {
+        "wrongPage": ":x: | This page doesn't exist",
+        "youAreIn": "You are in the position",
+        "position": "Position"
+    },
+
+    "pay": {
+        "self": ":x: | You can't pay yourself",
+        "notEnough": ":x: | You don't have enough money",
+        "alert": "💸 **|** Do you really want send {{amount}} FoxCoins to {{user}}? \nFoxy Team **Not responsible** for lost FoxCoins, so make sure you are transferring to a trusted person! \nTrading NSFW(+18) content in exchange for FoxCoins is prohibited!",
+        "success": ":moneybag: | Você transferiu {{amount}} FoxCoins para {{user}}",
+        "pay": "Pagar"
+    },
+
+    "daily": {
+        "cooldown": ":x: | You already got your daily, wait **{{cooldown}}**",
+        "premium": "You would win **{{normalMoney}} FoxCoins** but you are a premium user and you won **{{amount}} FoxCoins** and now has {{money}} FoxCoins",
+        "daily": "You won **{{amount}} FoxCoins** and now has {{money}} FoxCoins"
+    },
+
+    "background": {
+        "buy": {
+            "title": ":moneybag: | Background Store :3",
+            "invalid": ":x: | Invalid Code",
+            "alreadyOwned": ":x: | You already own this background",
+            "onlyDevs": ":x: | Only the developers can buy this background",
+            "purchase": "Purchase",
+            "price": "Price",
+            "noMoney": ":x: | You don't have enough FoxCoins",
+            "sucess": ":moneybag: | You bought the background {{name}} for {{price}} FoxCoins, and it has already been set automatically in your profile! ;3"
+        },
+
+        "set": {
+            "title": "🖼 | Background inventory",
+            "notOwned": ":x: | You don't own this background",
+            "success": ":white_check_mark: | Your background has been set to {{name}}",
+            "description": "📝 | Your list: {{bgList}}"
+        }
+    },
+
+    "atm": {
+        "success": ":moneybag: | **{{user}}** have {{balance}} FoxCoins"
+    },
+
+    "step": {
+        "success": "You stepped on {{user}}"
+    },
+
+    "slap": {
+        "button": "Slap",
+        "success": "{{author}} slapped {{target}}"
+    },
+
+    "pat": {
+        "button": "Pat",
+        "sucess": "{{author}} patted {{user}}"
+    },
+
+    "kiss": {
+        "button": "Kiss",
+        "success": "{{author}} kissed {{user}}"
+    },
+
+    "hug": {
+        "button": "Hug",
+        "success": "{{author}} hugged {{user}}"
+    },
+
+    "bite": {
+        "self": "☠ | You bit yourself, but you bit too hard, and now you're hurt, you didn't know you're a wolf with sharp teeth :/",
+        "client": "☠ | You tried to bite a fox, but it bit your face too hard, and you got hurt!",
+        "success": "{{user}} bit {{target}}",
+        "button": "Bit"
+    },
+
+    "attack": {
+       "attack": "{{user}} attacked {{target}}",
+       "button": "Attack" 
     }
 }

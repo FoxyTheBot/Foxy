@@ -127,5 +127,193 @@
             "title": "Avatar de {{user}}",
             "footer": "Achei fofo :3"
         }
+    },
+
+    "ship": {
+        "question": "Será que vai rolar ou não?",
+        "perfectCouple": "Esse é o casal perfeito!",
+        "uwu": "Esses aqui já estão se pegando e não contaram para ninguém!",
+        "probably": "Talvez só precisa o {{user}} querer...",
+        "cry": "Queria muito dizer que é possível mas..."
+    },
+
+    "rep": {
+        "cooldown": "Você já deu reputação para algúem, espere **{{cooldown}}**",
+        "success": ":heart: | Você deu reputação para **{{user}}**",
+        "self": ":x: | Você não pode dar reputação para você mesmo"
+    },
+
+    "marry": {
+        "self": ":x: | Você não pode casar com você mesmo",
+        "alreadyMarried": ":x: | {{user}} já está casado",
+        "bot": ":x: | Não, eu não quero casar com você!",
+        "alreadyMarriedWithSomeone": ":x: | Você já está casado com alguém",
+        "alreadyMarriedWithUser": ":x: | Você já está casado com {{user}}"
+    },
+
+    "divorce": {
+        "notMarried": ":x: | Você não está casado",
+        "confirm": "Você tem certeza que quer divorciar?",
+        "divorced": ":heart: | ...Então é isso, se divorciar é sim uma coisa triste, Da próxima vez ame alguém que realmente mereça e respeite você, sim isso parece ser difícil pois o amor é algo cego e incontrolável... Mas é melhor estar sozinho do que mal acompanhado, eu confio em você! :heart:"
+    },
+
+    "suggest": {
+        "success": "Obrigada por me ajudar {{user}}, sua sugestão `{{content}}` foi enviada para o meu desenvolvedor <3"
+    },
+
+    "report": {
+        "success":"Obrigada por me ajudar {{user}}, seu report `{{content}}` foi enviado para o meu desenvolvedor <3"
+    },
+
+    "status": {
+        "model": "Modelo do processador",
+        "guilds": "Servidores",
+        "users": "Usuários",
+        "ram": "Memória RAM",
+        "cpuUsage": "Uso do processador",
+        "node": "Node.js",
+        "arch": "Arquitetura",
+        "platform": "Plataforma"
+    },
+
+    "invite": {
+        "description": "Você quer me adicionar em outros servidores/guilds do Discord? \n Então [clique aqui](https://discord.com/oauth2/authorize?client_id=737044809650274325&scope=bot+applications.commands&permissions=269872255) para me adicionar em outro servidor! \n Caso precise obter suporte entre no meu servidor de suporte [clicando aqui](https://discord.gg/W6XtYyqKkg) \n\n || A permissão é de administrador, mas eu acho que você confia em mim :D ||"
+    },
+
+    "mcskin": {
+        "title": "Skin de {{user}}"
+    },
+
+    "mchead": {
+        "title": "Cabeça de {{user}}"
+    },
+
+    "mcbody": {
+        "title": "Corpo de {{user}}"
+    },
+
+    "error": {
+        "tooLong": ":x: | O conteúdo é muito longo, o limite é de **{{limit}}** caracteres"
+    },
+
+    "rps": {
+        "replies": {
+            "rock": "Pedra",
+            "paper": "Papel",
+            "scissors": "Tesoura"
+        },
+        "tie": "Deu empate, vamos de novo! >:D",
+        "invalidChoice": ":x: | Escolha inválida, escolha {{choice}}",
+        "clientWon": "Deu {{result}}, eu ganhei >:3",
+        "won3": "Você ganhou :3",
+        "won2": "Você ganhou >:3",
+        "won": "Você ganhou :D"
+    },
+
+    "fate": {
+        "couple": "Casal",
+        "enemy": "Inimigo",
+        "lover": "Amor",
+        "sibling": "Irmão",
+        "parent": "Pai e filho",
+        "married": "Casal",
+        "friend": "Amigos",
+        "result": ":sparkles: | Em um universo paralelo {{user}} e {{mention}} são {{fate}}"
+    },
+
+    "cancel": {
+        "result": ":sob: | {{user}} cancelou {{mention}} por `{{string}}`"
+    },
+
+    "8ball": {
+        "yes": "Sim",
+        "no": "Não",
+        "maybe": "Talvez",
+        "idk": "Não sei",
+        "idk2": "Não sei :/",
+        "probably": "Provavelmente",
+        "probablyyes": "Provavelmente sim",
+        "probablyno": "Provavelmente não"
+    },
+
+    "rank": {
+        "wrongPage": ":x: | Esta página não existe",
+        "youAreIn": "Você está na posição",
+        "position": "Posição"
+    },
+
+    "pay": {
+        "self": ":x: | Você não pode pagar você mesmo",
+        "notEnough": ":x: | Você não tem FoxCoins suficiente",
+        "alert": "💸 **|** Você deseja mesmo transferir {{amount}} FoxCoins para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelas FoxCoins perdidas, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de FoxCoins!",
+        "success": ":moneybag: | Você transferiu {{amount}} FoxCoins para {{user}}",
+        "pay": "Pagar"
+    },
+
+    "daily": {
+        "cooldown": ":x: | Você já pegou suas FoxCoins hoje, espere **{{time}}**",
+        "premium": "Você iria ganhar **{{normalMoney}} FoxCoins** mas já que você é premium você ganhou **{{amount}} FoxCoins** e agora possui {{money}} FoxCoins",
+        "daily": "Você ganhou **{{amount}} FoxCoins** agora você possui {{money}} FoxCoins"
+    },
+
+    "background": {
+        "buy": {
+            "title": ":moneybag: | Lojinha de background :3",
+            "invalid": ":x: | Código inválido",
+            "alreadyOwned": ":x: | Você já possui esse background",
+            "onlyDevs": ":x: | Somente os desenvolvedores podem comprar backgrounds",
+            "purchase": "Comprar",
+            "price": "Preço",
+            "noMoney": ":x: | Você não tem FoxCoins suficiente",
+            "success": ":moneybag: | Você comprou o background {{name}} por {{price}} FoxCoins, ele já foi definido automaticamente no seu perfil! ;3"
+        },
+
+        "set": {
+            "title": "🖼 | Definir background",
+            "notOwned": ":x: | Você não possui esse background",
+            "success": ":white_check_mark: | Você definiu o background {{name}}",
+            "description": "📝 | Seus backgrounds são: {{bgList}}"
+        }
+    },
+
+    
+    "atm": {
+        "success": ":moneybag: | **{{user}}** possui {{balance}} FoxCoins"
+    },
+
+    "step": {
+        "success": "Você pisou em {{user}}"
+    },
+
+    "slap": {
+        "button": "Retribuir",
+        "success": "{{author}} deu um tapa em {{user}}"
+    },
+
+    "pat": {
+        "button": "Retribuir",
+        "success": "{{author}} fez cafuné em {{user}}"
+    },
+
+    "kiss": {
+        "button": "Retribuir",
+        "success": "{{author}} deu um beijo em {{user}}"
+    },
+
+    "hug": {
+        "button": "Retribuir",
+        "success": "{{author}} deu um abraço em {{user}}"
+    },
+
+    "bite": {
+        "self": "☠ | Você se mordeu porem mordeu forte demais e agora está machucado, mal sabia você que você é um lobo com dentes afiados :/",
+        "client": "☠ | Você tentou morder uma raposa porém ela mordeu seu rosto com muita força e você se machucou!",
+        "success": "{{user}} mordeu {{target}}",
+        "button": "Retribuir"
+    },
+
+    "attack": {
+       "attack": "{{user}} atacou {{target}}",
+       "button": "Atacar" 
     }
 }

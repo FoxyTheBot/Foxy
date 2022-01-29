@@ -1,14 +1,14 @@
 import { Client, Collection } from 'discord.js';
-import * as fs from 'fs';
-import { FoxyCommand } from './structures/BaseCommand';
+import { FoxyCommands } from './structures/BaseCommand';
 import DatabaseConnection from './structures/DatabaseConnection';
 import WebhookManager from './structures/WebhookManager';
 import Config from './structures/Config';
 import i18next from "i18next";
 import i18nbackend from "i18next-fs-backend";
+import * as fs from 'fs';
 
 export default class FoxyClient extends Client {
-    public commands = new Collection<string, FoxyCommand>();
+    public commands = new Collection<string, FoxyCommands>();
     public emotes: any;
     public config: Config;
     public database: any;
