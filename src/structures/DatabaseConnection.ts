@@ -4,6 +4,7 @@ export default class DatabaseConnection {
     private user: any;
     private client: any;
     private locale: any;
+    public guild: any;
 
     constructor(auth: string, params: any, client: any) {
         connect(auth, params, (err) => {
@@ -29,6 +30,13 @@ export default class DatabaseConnection {
             backgrounds: Array
         }, { versionKey: false, id: false });
 
+        const guildSchema = new Schema({
+            _id: String,
+            guildCreationTimestamp: Date,
+            disabledCommands: Array,
+            disabledChannels: Array
+        }, { versionKey: false, id: false });
+
         const localeSchema = new Schema({
             _id: String,
             locale: String
@@ -36,6 +44,7 @@ export default class DatabaseConnection {
 
         this.user = model('user', userSchema);
         this.locale = model('locale', localeSchema);
+        this.guild = model('guild', guildSchema);
         this.client = client;
     }
 
@@ -68,6 +77,26 @@ export default class DatabaseConnection {
         }
 
         return document;
+    }
+
+    async registerGuild(guildId: string) {
+        let document = await this.guild.findOne({ _id: guildId });
+
+        if (!document) {
+            document = new this.guild({
+                _id: guildId,
+                guildCreationTimestamp: Date.now(),
+                disabledCommands: [],
+                disabledChannels: []
+            }).save();
+        }
+
+        return document;
+    }
+
+    async deleteGuild(guildId: string) {
+        const guildData = await this.guild.findOne({ _id: guildId });
+        return guildData.remove();
     }
 
     async getAllUsers() {

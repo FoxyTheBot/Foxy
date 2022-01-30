@@ -6,5 +6,6 @@ export default class GuildCreate {
 
     async run(guild) {
         this.client.WebhookManager.guildCreate(guild);
+        this.client.database.registerGuild(guild.id);
     }
 }

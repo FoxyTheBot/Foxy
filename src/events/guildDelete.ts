@@ -6,5 +6,6 @@ export default class GuildDelete {
 
     async run(guild) {
         this.client.WebhookManager.guildDelete(guild);
+        this.client.database.deleteGuild(guild.id);
     }
 }
