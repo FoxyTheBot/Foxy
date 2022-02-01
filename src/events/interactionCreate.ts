@@ -19,6 +19,8 @@ export default class InteractionCreate {
             return interaction.editReply({ content: locale('permissions:ONLY_DEVS'), ephemeral: true });
         }
 
+        this.client.database.getGuild(interaction.guild.id);
+
         function FoxyHandler() {
             new Promise(async (res, rej) => {
                 try {

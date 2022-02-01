@@ -33,8 +33,10 @@ export default class DatabaseConnection {
         const guildSchema = new Schema({
             _id: String,
             guildCreationTimestamp: Date,
+            partner: Boolean,
             disabledCommands: Array,
-            disabledChannels: Array
+            disabledChannels: Array,
+            lang: String
         }, { versionKey: false, id: false });
 
         const localeSchema = new Schema({
@@ -79,15 +81,17 @@ export default class DatabaseConnection {
         return document;
     }
 
-    async registerGuild(guildId: string) {
+    async getGuild(guildId: string) {
         let document = await this.guild.findOne({ _id: guildId });
 
         if (!document) {
             document = new this.guild({
                 _id: guildId,
                 guildCreationTimestamp: Date.now(),
+                partner: false,
                 disabledCommands: [],
-                disabledChannels: []
+                disabledChannels: [],
+                lang: 'pt-BR'
             }).save();
         }
 
