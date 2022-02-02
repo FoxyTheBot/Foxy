@@ -22,7 +22,11 @@ export default class WebhookManager {
             .setTitle(`${this.client.emotes.success} | Fui adicionada em um servidor! :3`)
             .setThumbnail('https://cdn.discordapp.com/attachments/782995363548102676/839517480640577536/yay_fast.gif')
             .setDescription(`<a:cat_explosion:831146965479063553> Fui adicionada no servidor **${guild.name} / ${guild.id}**`)
-
+            .addFields(
+                { name: "❤ | Nome", value: `\`${guild.name}\`` },
+                { name: "💻 | ID", value: `\`${guild.id}\`` },
+                { name: "📅 | Criado em", value: `\`${guild.createdAt.toLocaleString()}\`` },
+            )
         const guildWebhook = new WebhookClient({ url: this.client.config.webhooks.guilds });
         guildWebhook.send({ embeds: [guildEmbed] });
     }

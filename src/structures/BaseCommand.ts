@@ -1,10 +1,10 @@
 export interface FoxyCommands {
-    config: any,
+    config: Object,
 }
 
 export default class Command {
     public client: any;
-    public config: any;
+    public config: Object;
 
     constructor(client, options) {
         this.client = client;
