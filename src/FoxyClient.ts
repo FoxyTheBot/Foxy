@@ -9,7 +9,7 @@ import * as fs from 'fs';
 
 export default class FoxyClient extends Client {
     public commands = new Collection<string, FoxyCommands>();
-    public emotes: any;
+    public emotes: Object;
     public config: Config;
     public database: any;
     public WebhookManager: any;
