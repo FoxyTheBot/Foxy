@@ -1,4 +1,4 @@
-export default interface Config {
+export interface FoxySettings {
     ownerId: string;
     clientId: string;
     prefix: string;

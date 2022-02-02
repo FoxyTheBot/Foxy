@@ -1,8 +1,8 @@
-import { Client, Collection } from 'discord.js';
+import { Client, ClientOptions, Collection } from 'discord.js';
 import { FoxyCommands } from './structures/BaseCommand';
+import { FoxySettings } from './structures/ClientSettings';
 import DatabaseConnection from './structures/DatabaseConnection';
 import WebhookManager from './structures/WebhookManager';
-import Config from './structures/Config';
 import i18next from "i18next";
 import i18nbackend from "i18next-fs-backend";
 import * as fs from 'fs';
@@ -10,12 +10,12 @@ import * as fs from 'fs';
 export default class FoxyClient extends Client {
     public commands = new Collection<string, FoxyCommands>();
     public emotes: Object;
-    public config: Config;
+    public config: FoxySettings;
     public database: any;
-    public WebhookManager: any;
+    public WebhookManager: Object;
 
-    constructor(options: any) {
-        super(options);
+    constructor(options: ClientOptions) {
+        super(options );
         this.commands = new Collection();
         this.emotes = require("./structures/json/emotes.json");
         this.config = require("../config.json");
@@ -27,7 +27,7 @@ export default class FoxyClient extends Client {
         super.login(token);
     }
 
-    async loadLocales(path: string) {
+    async loadLocales(path: string): Promise<void> {
         try {
             await i18next.use(i18nbackend).init({
                 ns: ["commands", "events", "permissions"],

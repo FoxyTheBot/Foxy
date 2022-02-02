@@ -108,7 +108,7 @@ export default class DatabaseConnection {
         return usersData.map(user => user.toJSON());
     }
 
-    async getUserLocale(userId) {
+    async getUserLocale(userId: string) {
         const user = await this.client.users.fetch(userId);
 
         if (!user) return null;

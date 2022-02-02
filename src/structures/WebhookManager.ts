@@ -7,7 +7,7 @@ export default class WebhookManager {
         this.client = client;
     }
 
-    async sendSuggestion(interaction, suggestion) {
+    async sendSuggestion(interaction, suggestion): Promise<void> {
         const suggest = new MessageEmbed()
             .setTitle('Nova sugestão para a Foxy!')
             .setThumbnail(interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
@@ -17,7 +17,7 @@ export default class WebhookManager {
         suggestWebhook.send({ embeds: [suggest] });
     }
 
-    async guildCreate(guild) {
+    async guildCreate(guild): Promise<void> {
         const guildEmbed = new MessageEmbed()
             .setTitle(`${this.client.emotes.success} | Fui adicionada em um servidor! :3`)
             .setThumbnail('https://cdn.discordapp.com/attachments/782995363548102676/839517480640577536/yay_fast.gif')
@@ -31,7 +31,7 @@ export default class WebhookManager {
         guildWebhook.send({ embeds: [guildEmbed] });
     }
 
-    async guildDelete(guild) {
+    async guildDelete(guild): Promise<void> {
         const guildEmbed = new MessageEmbed()
             .setTitle(`${this.client.emotes.error} | Fui removida de um servidor! :c`)
             .setThumbnail('https://cdn.discordapp.com/attachments/791449801735667713/791450113649410078/tenor.gif')
@@ -41,7 +41,7 @@ export default class WebhookManager {
         guildWebhook.send({ embeds: [guildEmbed] });
     }
 
-    async sendIssue(interaction, content) {
+    async sendIssue(interaction, content): Promise<void> {
         const issueEmbed = new MessageEmbed()
             .setTitle(`${this.client.emotes.error} | Um erro foi reportado por um usuário`)
             .addFields(
