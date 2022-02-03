@@ -20,7 +20,7 @@ export default class MorseCommand extends Command {
         const alpha = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'.split('');
         const morse = '/,.-,-...,-.-.,-..,.,..-.,--.,....,..,.---,-.-,.-..,--,-.,---,.--.,--.-,.-.,...,-,..-,...-,.--,-..-,-.--,--..,.----,..---,...--,....-,.....,-....,--...,---..,----.,-----'.split(',');
 
-        var text = interaction.options.getString('texto').toUpperCase();
+        var text = interaction.options.getString('text').toUpperCase();
 
         while (text.includes('Ä') || text.includes('Ö') || text.includes('Ü')) {
             text = text.replace('Ä', 'AE').replace('Ö', 'OE').replace('Ü', 'UE');
