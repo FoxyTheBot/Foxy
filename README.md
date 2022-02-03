@@ -66,8 +66,10 @@ npm i
 
 ## 💻 | Compiling Foxy
 
+Just type:
+
 ```bash
-npm run build
+tsc
 ```
 
 <br>

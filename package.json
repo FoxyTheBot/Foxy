@@ -1,10 +1,9 @@
 {
   "name": "foxy",
-  "version": "2022.08.16-unstable",
+  "version": "2022.08.16-prerelease",
   "description": "A multi-purpose bot for Discord developed using TypeScript",
   "main": "build/shard.js",
   "scripts": {
-    "build": "tsc",
     "start": "node .",
     "register": "node build/register.js"
   },

@@ -13,9 +13,9 @@ export default class FoxyClient extends Client {
     public database: Object;
     public WebhookManager: Object;
     public config: FoxySettings;
-  
+
     constructor(options: ClientOptions) {
-        super(options );
+        super(options);
         this.commands = new Collection();
         this.emotes = require("./structures/json/emotes.json");
         this.config = require("../config.json");
