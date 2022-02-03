@@ -10,10 +10,10 @@ import * as fs from 'fs';
 export default class FoxyClient extends Client {
     public commands = new Collection<string, FoxyCommands>();
     public emotes: Object;
-    public config: FoxySettings;
-    public database: any;
+    public database: Object;
     public WebhookManager: Object;
-
+    public config: FoxySettings;
+  
     constructor(options: ClientOptions) {
         super(options );
         this.commands = new Collection();
