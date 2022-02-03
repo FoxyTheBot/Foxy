@@ -1,7 +1,6 @@
 import { Client, Collection } from 'discord.js';
 import { FoxyCommands } from './structures/BaseCommand';
 import { FoxySettings, FoxyOptions } from './structures/ClientSettings';
-import FoxyEvent from './structures/Events';
 import DatabaseConnection from './structures/DatabaseConnection';
 import WebhookManager from './structures/WebhookManager';
 import i18next from "i18next";
@@ -54,7 +53,7 @@ export default class FoxyClient extends Client {
         for (const folder of commandFolders) {
             const commandFiles = fs.readdirSync(path + `/${folder}`);
             for (const file of commandFiles) {
-                const commandFile: FoxyEvent = await import(`${path}/${folder}/${file}`);
+                const commandFile = await import(`${path}/${folder}/${file}`);
                 const command = new commandFile.default(this);
                 this.commands.set(command.config.name, command);
             }
