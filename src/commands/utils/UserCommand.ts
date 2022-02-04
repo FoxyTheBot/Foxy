@@ -30,7 +30,7 @@ export default class ProfileCommand extends Command {
                 const userEmbed = new MessageEmbed()
                     .setThumbnail(user.avatarURL({ format: "png", dynamic: true, size: 1024 }))
                     .addField(`:bookmark: ${t('commands:user.info.tag')}`, `\`${user.tag}\``, true)
-                    .addField(`:date: ${t('commands:user.info.createdAt')}`, `\`${user.createdAt.toLocaleString('pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' })}\``, true)
+                    .addField(`:date: ${t('commands:user.info.createdAt')}`, `\`${user.createdAt.toLocaleString(t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' })}\``, true)
                     .addField(`:computer: ${t('commands:user.info.userId')}`, `\`${user.id}\``, true)
 
                 await interaction.editReply({ embeds: [userEmbed] });
