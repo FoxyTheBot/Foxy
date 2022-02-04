@@ -1,5 +1,4 @@
 import { BitFieldResolvable, ClientOptions, IntentsString } from "discord.js";
-import FoxyClient from '../FoxyClient';
 
 export interface FoxySettings {
     ownerId: string;
