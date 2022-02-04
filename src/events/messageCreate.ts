@@ -8,9 +8,9 @@ export default class MessageCreate {
     }
 
     async run(message) {
-        if(message.author.bot) return;
+        if (message.author.bot) return;
         const user = await this.client.database.getUserLocale(message.author.id);
-        let t = global.t = i18next.getFixedT(user.locale|| 'en-US');
+        let t = global.t = i18next.getFixedT(user.locale || 'en-US');
 
         if (message.content === `<@${this.client.user.id}>` || message.content === `<@!${this.client.user.id}>`) message.channel.send(`${message.author} ${t('events:messageCreate.hello')}!`);
 

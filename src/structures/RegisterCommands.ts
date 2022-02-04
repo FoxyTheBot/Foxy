@@ -31,7 +31,7 @@ export default class RegisterCommands {
 
         (async () => {
             try {
-            console.info("Registrando comandos...");
+                console.info("Registrando comandos...");
 
                 await rest.put(
                     Routes.applicationGuildCommands(this.clientId, "709847600467148801"),

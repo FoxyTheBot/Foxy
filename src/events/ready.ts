@@ -11,9 +11,9 @@ export default class Ready {
         console.info(`[READY] - Shard ${Number(this.client.shard.ids) + 1} Está conectada com ${this.client.guilds.cache.size} Servidores!`);
 
         // if your bot is in top.gg you can uncomment this
-        
+
         // const dbl = AutoPoster(this.client.config.dblauth, this.client);
-        
+
         // dbl.on('posted', () => {
         //     console.info('[DBL] - Informações atualizadas');
         // });
