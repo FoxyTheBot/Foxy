@@ -30,7 +30,6 @@
     "i18next": "^21.6.7",
     "i18next-fs-backend": "^1.1.4",
     "mal-scraper": "^2.11.3",
-    "mathjs": "^10.0.0",
     "mongoose": "^6.0.13",
     "ms": "^2.1.3",
     "nekos.life": "^2.0.7",
