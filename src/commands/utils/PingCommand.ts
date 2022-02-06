@@ -5,12 +5,12 @@ export default class PingCommand extends Command {
     constructor(client) {
         super(client, {
             name: "ping",
-            description: "Veja a latência da Foxy",
+            description: "Show the Foxy's Latency",
             category: "utils",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("ping")
-                .setDescription("[🛠 Utils] Veja a latência da Foxy")
+                .setDescription("[🛠 Utils] Show the Foxy's Latency")
         })
     }
 
