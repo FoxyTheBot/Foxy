@@ -7,12 +7,12 @@ export default class BotInfoCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'botinfo',
-            description: 'Veja informações sobre o bot',
+            description: 'Show the Foxy\'s info',
             category: 'utils',
             dev: false,
             data: new SlashCommandBuilder()
                 .setName('botinfo')
-                .setDescription('[🛠 Utils] Veja informações sobre o bot')
+                .setDescription('[🛠 Utils] Show the Foxy\'s info')
         });
     }
 
