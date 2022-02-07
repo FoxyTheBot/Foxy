@@ -1,5 +1,3 @@
-import { BitFieldResolvable, ClientOptions, IntentsString } from "discord.js";
-
 export interface FoxySettings {
     ownerId: string;
     clientId: string;
@@ -14,8 +12,9 @@ export interface FoxySettings {
     issues: string,
 }
 
-export interface FoxyOptions extends ClientOptions {
-    intents: BitFieldResolvable<IntentsString, number>;
-    shards?: number | number[] | 'auto';
-    shardCount?: number;
+export interface FoxyOptions {
+    commands: string;
+    events: string;
+    locales: string;
+    token: string;
 }

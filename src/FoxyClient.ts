@@ -1,4 +1,4 @@
-import { Client, Collection } from 'discord.js';
+import { Client, ClientOptions, Collection } from 'discord.js';
 import { FoxyCommands } from './structures/BaseCommand';
 import { FoxySettings, FoxyOptions } from './structures/ClientSettings';
 import DatabaseConnection from './structures/DatabaseConnection';
@@ -14,7 +14,7 @@ export default class FoxyClient extends Client {
     public WebhookManager: Object;
     public config: FoxySettings;
 
-    constructor(options: FoxyOptions) {
+    constructor(options: ClientOptions) {
         super(options);
         this.commands = new Collection();
         this.emotes = require("./structures/json/emotes.json");
@@ -23,8 +23,11 @@ export default class FoxyClient extends Client {
         this.WebhookManager = new WebhookManager(this);
     }
 
-    login(token: string): any {
-        super.login(token);
+    startFoxy(options: FoxyOptions) {
+        this.loadLocales(options.locales);
+        this.loadCommands(options.commands);
+        this.loadEvents(options.events);
+        super.login(options.token);
     }
 
     async loadLocales(path: string) {
