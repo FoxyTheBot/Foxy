@@ -8,13 +8,13 @@ export default class WebhookManager {
     }
 
     async sendSuggestion(interaction, suggestion): Promise<void> {
-        const suggest = new MessageEmbed()
+        const suggestEmbed = new MessageEmbed()
             .setTitle('Nova sugestão para a Foxy!')
             .setThumbnail(interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
             .setDescription(`${this.client.emotes.heart} **Usuário:** ${interaction.user.tag} / ${interaction.user.id} \n\n ${this.client.emotes.success} **Sugestão:** ${suggestion} \n\n ${this.client.emotes.thumbsup} **Servidor:** ${interaction.guild.name} / ${interaction.guild.id}`)
 
         const suggestWebhook = new WebhookClient({ url: this.client.config.webhooks.suggestions });
-        suggestWebhook.send({ embeds: [suggest] });
+        suggestWebhook.send({ embeds: [suggestEmbed] });
     }
 
     async guildCreate(guild): Promise<void> {
