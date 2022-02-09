@@ -3,8 +3,8 @@ import { FoxyCommands } from './structures/BaseCommand';
 import { FoxySettings, FoxyOptions } from './structures/ClientSettings';
 import DatabaseConnection from './structures/DatabaseConnection';
 import WebhookManager from './structures/WebhookManager';
-import i18next from "i18next";
-import i18nbackend from "i18next-fs-backend";
+import i18next from 'i18next';
+import i18nbackend from 'i18next-fs-backend';
 import * as fs from 'fs';
 
 export default class FoxyClient extends Client {
