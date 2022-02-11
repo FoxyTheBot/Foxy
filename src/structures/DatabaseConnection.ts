@@ -8,7 +8,7 @@ export default class DatabaseConnection {
 
     constructor(auth: string, params: any, client: any) {
         connect(auth, params, (err) => {
-            if (err) return console.error('Ocorreu um erro no cliente do mongodb! verifique se a sua URI está correta!', err);
+            if (err) return console.error('Ocorreu um erro ao se conectar no Atlas do MongoDB!', err);
         });
 
         const userSchema = new Schema({
