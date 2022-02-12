@@ -52,7 +52,7 @@ export default class LanguageCommand extends Command {
                     userData.save();
                 } else if(i.customId === "pt") {
                     i.deferUpdate();
-                    interaction.followUp(`:flag_br: **| Linguagem alterada para Português do Brasil ou seja vamos assitir Roberto Carlos na Globo nesse fim de ano?**`);
+                    interaction.followUp(`:flag_br: **| Linguagem alterada para Português do Brasil!**`);
                     userData.locale = "pt-BR";
                     userData.save();
                 }
