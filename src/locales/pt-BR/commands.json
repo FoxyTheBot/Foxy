@@ -315,5 +315,19 @@
     "attack": {
        "attack": "{{user}} atacou {{target}}",
        "button": "Atacar" 
+    },
+
+    "bet": {
+        "self": ":x: | Você não pode apostar consigo mesmo!",
+        "not-enough": ":x: | Você não tem FoxCoins suficientes",
+        "not-enough-mention": ":x: | {{user}} não tem FoxCoins suficientes",
+        "placeholder": "Selecione uma opção",
+        "heads": "cara",
+        "tails": "coroa",
+        "accept": "Aceitar",
+        "choose": "Escolha uma opção para apostar",
+        "ask": "{{user}}, {{author}} quer fazer uma aposta de {{amount}} FoxCoinss",
+        "win": ":moneybag: | {{author}} ganhou {{amount}} FoxCoins! Financiado por {{user}}",
+        "lose": ":moneybag: | {{user}} ganhp {{amount}} FoxCoins! Financiado por {{author}}"
     }
 }

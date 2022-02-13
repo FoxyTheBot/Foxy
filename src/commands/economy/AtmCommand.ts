@@ -20,6 +20,6 @@ export default class AtmCommand extends Command {
         const userData = await this.client.database.getUser(user.id);
         const balance = userData.balance;
         
-        await interaction.editReply(t('commands:atm.success', { user: user.tag, balance }));
+        await interaction.editReply(t('commands:atm.success', { user: user.tag, balance: balance.toString() }));
     }
 }
