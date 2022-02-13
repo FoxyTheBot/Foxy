@@ -46,7 +46,7 @@ export default class InteractionCreate {
                     .setColor("RED")
                     .setDescription(locale('events:ban.description'))
                     .addField(locale('events:ban.reason'), document.banReason, true)
-                    .addField(locale('events:ban.date'), document.banData.toLocaleString('pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }))
+                    .addField(locale('events:ban.date'), document.banData.toLocaleString(global.t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }))
                 return interaction.editReply({ embeds: [bannedEmbed], ephemeral: true });
             }
 
