@@ -20,10 +20,10 @@ export default class Ready {
 
         const status = [
             { name: "🐦 | Me siga no Twitter: @FoxyDiscordBot", type: 0 },
-            { name: "💖 | Fui criada pelo Win#6611", type: 3 },
+            { name: "💖 | Fui criada pelo WinG4merBR#6611", type: 3 },
             { name: `😍 | Me adicione usando /invite`, type: 1 },
             { name: `🤔 | Precisa de ajuda? Utilize /help`, type: 2 },
-            { name: "🍰 | Minha comida preferida é bolo 💖", type: 5 }
+            { name: "🍰 | Minha comida preferida é pizza e bolo :3 💖", type: 5 }
         ];
 
         setInterval(() => {
