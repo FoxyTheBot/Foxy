@@ -18,7 +18,7 @@ export default class StatusCommand extends Command {
 
     async execute(interaction, t) {
         const embed = new MessageEmbed()
-            .setTitle(t('commands:status.title'))
+            .setTitle("🦊 | Foxy Status")
             .addFields(
                 { name: `💻 | ${t('commands:status.model')}`, value: `\`\`\`${os.cpus().map(c => c.model)[0]}\`\`\`` },
                 { name: `💙 | ${t('commands:status.guilds')}`, value: `\`\`\`${this.client.guilds.cache.size}\`\`\``, inline: true },
