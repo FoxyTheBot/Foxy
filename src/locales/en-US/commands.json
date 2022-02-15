@@ -3,7 +3,7 @@
         "title": ":fox: Foxy",
         "description": "Hi, I'm Foxy! I'm a simple economy and entertainment bot for Discord! I'm in {{guilds}} guilds :heart:!",
         "fields": {
-            "addme": "<:AddMember:797181629826859029> Add me to your server!",
+            "addme": "Add me to your server!",
             "server": "Guilds :heart:",
             "server2": "Enter in my support server clicking here!",
             "add": "<:DiscordExplore:790934280611037196> Add me clicking here",

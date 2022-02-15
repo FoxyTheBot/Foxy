@@ -3,7 +3,7 @@
         "title": ":fox: Foxy",
         "description": "Olá, eu sou a {{client.user.username}}! Eu sou um simples bot brasileiro de economia e entretenimento para o seu servidor! Estou espalhando alegria em {{guilds}} servidores :heart:",
         "fields": {
-            "addme": "<:AddMember:797181629826859029> Me adicione",
+            "addme": "Me adicione",
             "server": "Servidores :heart:",
             "server2": "Entre no meu servidor clicando aqui",
             "add": "<:DiscordExplore:790934280611037196> Me adicione clicando aqui",
