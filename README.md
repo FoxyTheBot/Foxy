@@ -6,6 +6,10 @@
  </p>
   <p align="center">
 
+ <a href="https://jetbrains.com/?from=FoxyTheBot">
+    <img src="https://img.shields.io/badge/Powered_by_WebStorm-gray.svg?logo=webstorm&style=for-the-badge" />
+  </a>
+
 </p>
 
 # 🤔 | Who am I?
@@ -74,7 +78,7 @@ tsc
 
 <br>
 
-<p>Check the console to see if there are any errors... Well, we hope that there are none.</a></p>
+<p>Check the console to see if there are any errors... Well, we hope that there are none.</p>
 
 ## 🤩 | Starting Foxy
 - You need to register slash commands running: npm run register
