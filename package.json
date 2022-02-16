@@ -3,10 +3,6 @@
   "version": "2022.08.16-prerelease",
   "description": "A multi-purpose bot for Discord developed using TypeScript",
   "main": "build/shard.js",
-  "scripts": {
-    "start": "node .",
-    "register": "node build/register.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FoxyTheBot/Foxy.git"

@@ -19,7 +19,7 @@ export default class DailyCommand extends Command {
         const userData = await this.client.database.getUser(interaction.user.id);
 
         const timeout = 43200000;
-        var amount = Math.floor(Math.random() * 3200);
+        let amount = Math.floor(Math.random() * 2200);
 
         if (userData.premium) {
             amount = amount + 500;
