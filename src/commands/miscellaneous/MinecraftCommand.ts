@@ -1,6 +1,6 @@
 import Command from '../../structures/BaseCommand';
-import {SlashCommandBuilder} from '@discordjs/builders';
-import {MessageEmbed} from 'discord.js';
+import { SlashCommandBuilder } from '@discordjs/builders';
+import { MessageEmbed } from 'discord.js';
 
 export default class MinecraftCommand extends Command {
     constructor(client) {
