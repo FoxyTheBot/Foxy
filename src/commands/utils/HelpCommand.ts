@@ -30,7 +30,6 @@ export default class HelpCommand extends Command {
                         { name: `<:DiscordBoost:723225840548184195> ${t('commands:help.commands.category.rp')} (${this.getSize("actions")})`, value: this.getCategory("actions"), inline: true },
                         { name: `<a:a_bongocat:768500700551315487> ${t('commands:help.commands.category.image')} (${this.getSize("image")})`, value: this.getCategory("image"), inline: true },
                         { name: `:robot: | ${t('commands:help.commands.category.misc')} (${this.getSize("misc")})`, value: this.getCategory("misc"), inline: true },
-                        { name: `⛏ Minecraft (${this.getSize("mine")})`, value: this.getCategory("mine"), inline: true },
                         { name: `<:cute_yay:901111399328124928> ${t('commands:help.commands.category.entertainment')} (${this.getSize("entertainment")})`, value: this.getCategory("entertainment"), inline: true },
                         { name: `<:DiscordStaff:731947814246154240> ${t('commands:help.commands.category.utils')} (${this.getSize("utils")})`, value: this.getCategory("utils"), inline: true },
                     )
