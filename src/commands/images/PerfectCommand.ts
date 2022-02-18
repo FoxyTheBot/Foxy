@@ -22,7 +22,7 @@ export default class PerfectCommand extends Command {
         const canvas = Canvas.createCanvas(467, 400);
         const ctx = canvas.getContext("2d");
 
-        var avatar: string;
+        let avatar: string;
         if (!user) {
             avatar = this.client.user.displayAvatarURL({ format: "png", size: 1024 });
         } else {
