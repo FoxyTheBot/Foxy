@@ -1,15 +1,11 @@
 <p align="center">
-<img width="25%" src="https://bot.to/wp-content/uploads/2020/09/foxy_5f74b66cd07a4.png">
-<br>
+<img src="https://socialify.git.ci/FoxyTheBot/Foxy/image?description=1&descriptionEditable=%F0%9F%A6%8A%20Foxy%20is%20a%20multi-purpose%20bot%20for%20Discord%20developed%20in%20TypeScript&font=Inter&language=1&logo=https%3A%2F%2Fcdn.discordapp.com%2Favatars%2F737044809650274325%2F9f719a2567aac7db3f811e5b34a84551.png%3Fsize%3D2048&name=1&owner=1&pattern=Circuit%20Board&theme=Dark">
 <h1 align="center">Foxy</h1>
-
- </p>
   <p align="center">
 
  <a href="https://jetbrains.com/?from=FoxyTheBot">
     <img src="https://img.shields.io/badge/Powered_by_WebStorm-gray.svg?logo=webstorm&style=for-the-badge" />
   </a>
-
 </p>
 
 # 🤔 | Who am I?
