@@ -37,7 +37,7 @@ export default class LanguageCommand extends Command {
             .addFields(
                 { name: ":flag_br:", value: "Brazilian Portuguese", inline: true },
                 { name: ":flag_us:", value: "English", inline: true }
-            ) 
+            )
 
             interaction.editReply({ embeds: [embed], components: [row], ephemeral: true });
 
@@ -45,13 +45,12 @@ export default class LanguageCommand extends Command {
             const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000 });
 
             collector.on('collect', i => {
+                i.deferUpdate();
                 if(i.customId === "en") {
-                    i.deferUpdate();
                     interaction.followUp(`:flag_us: **| Language changed to English**`);
                     userData.locale = "en-US";
                     userData.save();
                 } else if(i.customId === "pt") {
-                    i.deferUpdate();
                     interaction.followUp(`:flag_br: **| Linguagem alterada para Português do Brasil!**`);
                     userData.locale = "pt-BR";
                     userData.save();
