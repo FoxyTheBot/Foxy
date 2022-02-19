@@ -29,7 +29,7 @@ export default class RegisterCommands {
 
         const rest = new REST({ version: '9' }).setToken(this.token);
 
-        (async () => {
+        await (async () => {
             try {
                 console.info("Registrando comandos...");
 
