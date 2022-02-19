@@ -14,7 +14,7 @@ export default class WebhookManager {
             .setDescription(`${this.client.emotes.heart} **Usuário:** ${interaction.user.tag} / ${interaction.user.id} \n\n ${this.client.emotes.success} **Sugestão:** ${suggestion} \n\n ${this.client.emotes.thumbsup} **Servidor:** ${interaction.guild.name} / ${interaction.guild.id}`)
 
         const suggestWebhook = new WebhookClient({ url: this.client.config.webhooks.suggestions });
-        suggestWebhook.send({ embeds: [suggestEmbed] });
+        await suggestWebhook.send({embeds: [suggestEmbed]});
     }
 
     async guildCreate(guild): Promise<void> {
@@ -28,7 +28,7 @@ export default class WebhookManager {
                 { name: "📅 | Criado em", value: `\`${guild.createdAt.toLocaleString()}\`` },
             )
         const guildWebhook = new WebhookClient({ url: this.client.config.webhooks.guilds });
-        guildWebhook.send({ embeds: [guildEmbed] });
+        await guildWebhook.send({embeds: [guildEmbed]});
     }
 
     async guildDelete(guild): Promise<void> {
@@ -38,7 +38,7 @@ export default class WebhookManager {
             .setDescription(`Fui removida do servidor **${guild.name} / ${guild.id}**`)
 
         const guildWebhook = new WebhookClient({ url: this.client.config.webhooks.guilds });
-        guildWebhook.send({ embeds: [guildEmbed] });
+        await guildWebhook.send({embeds: [guildEmbed]});
     }
 
     async sendIssue(interaction, content): Promise<void> {
@@ -51,7 +51,7 @@ export default class WebhookManager {
             )
 
         const issueWebhook = new WebhookClient({ url: this.client.config.webhooks.issues });
-        issueWebhook.send({
+        await issueWebhook.send({
             username: interaction.user.username,
             avatarURL: interaction.user.displayAvatarURL(),
             embeds: [issueEmbed]
