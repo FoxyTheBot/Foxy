@@ -17,7 +17,7 @@ export default class LanguageCommand extends Command {
 
     async execute(interaction, t) {
         const userData = await this.client.database.getUserLocale(interaction.user.id);
-
+        
         const row = new MessageActionRow()
         .addComponents(
             new MessageButton()
