@@ -53,7 +53,8 @@ npm i -g typescript
     "webhooks": {
         "guilds": "URL", 
         "suggestions": "URL", 
-        "issues": "URL" 
+        "issues": "URL",
+        "dbl": "URL"
     }
   }
 ```

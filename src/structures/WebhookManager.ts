@@ -57,4 +57,15 @@ export default class WebhookManager {
             embeds: [issueEmbed]
         });
     }
+
+    async sendLog(stats) {
+        const dblEmbed = new MessageEmbed()
+            .setTitle("Informações atualizadas na DBL")
+            .setDescription(`A quantidade de servidores foram atualizadas para ${stats.serverCount}`)
+        const dblWebhook = new WebhookClient({ url: this.client.config.webhooks.dbl });
+        await dblWebhook.send({
+            username: "AutoPoster",
+            embeds: [dblEmbed]
+        });
+    }
 }
