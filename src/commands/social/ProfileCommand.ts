@@ -21,7 +21,7 @@ export default class ProfileCommand extends Command {
         const user = interaction.options.getUser("user") || interaction.user;
         const userData = await this.client.database.getUser(user.id);
         const canvasGenerator = new GenerateImage(this.client, user, userData, 1436, 884);
-        const profile = new MessageAttachment(await canvasGenerator.renderProfile(t), "profile.png");
+        const profile = new MessageAttachment(await canvasGenerator.renderProfile(t), "foxy_profile.png");
 
         await interaction.editReply({ content: t('commands:profile.your'), files: [profile.attachment] });
     }
