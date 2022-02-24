@@ -43,7 +43,6 @@ export default class SlapCommand extends Command {
             const embed2 = new MessageEmbed()
                 .setDescription(t('commands:slap.success', { target: interaction.user.username, author: user.username }))
                 .setImage(slap2.url)
-
             await interaction.followUp({ embeds: [embed2] });
             i.deferUpdate();
         })
