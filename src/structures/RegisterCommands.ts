@@ -34,7 +34,7 @@ export default class RegisterCommands {
                 console.info("Registrando comandos...");
 
                 await rest.put(
-                    Routes.applicationGuildCommands(this.clientId, "709847600467148801"),
+                    Routes.applicationCommands(this.clientId),
                     // If you want to register global commands, change the function `applicationGuildCommands(this.clientId, <guild-id>)` to `applicationCommands(this.clientId)`
                     { body: commands },
                 );
