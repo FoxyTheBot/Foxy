@@ -45,13 +45,14 @@ export default class LanguageCommand extends Command {
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000 });
 
         collector.on('collect', i => {
-            i.deferUpdate();
             if (i.customId === "en") {
                 interaction.followUp(`:flag_us: **| Language changed to English**`);
+                i.deferUpdate();
                 userData.locale = "en-US";
                 userData.save();
             } else if (i.customId === "pt") {
                 interaction.followUp(`:flag_br: **| Linguagem alterada para Português do Brasil!**`);
+                i.deferUpdate();
                 userData.locale = "pt-BR";
                 userData.save();
             }
