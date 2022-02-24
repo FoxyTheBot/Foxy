@@ -26,10 +26,15 @@ export default class BackgroundCommand extends Command {
                 const code: string = await interaction.options.getString("code");
                 const userData = await this.client.database.getUser(interaction.user.id);
 
+                var bgDesc = "";
                 const bgList = new MessageEmbed()
                     .setColor("BLURPLE")
                     .setTitle(t('commands:background.buy.title'))
 
+                for (const bg of bglist) {
+                    bgDesc = bgDesc + `(${bg.rarity}) **${bg.name}** - ${bg.description}`;
+                }
+                bgList.setDescription(bgDesc);
                 if (!code) return interaction.editReply({ embeds: [bgList] });
 
                 const background = await bglist.find((index) => index.id === code?.toLowerCase());
