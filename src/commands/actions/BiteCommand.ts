@@ -57,8 +57,8 @@ export default class BiteCommand extends Command {
                 .setTitle("Nhau")
                 .setDescription(t("commands:bite.success", { user: user.username, target: interaction.user.username }))
                 .setImage(rand)
-            i.deferUpdate();
             await interaction.followUp({ embeds: [embed] });
+            i.deferUpdate();
         })
     }
 }

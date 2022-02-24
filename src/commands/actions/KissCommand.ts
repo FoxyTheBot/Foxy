@@ -45,12 +45,12 @@ export default class KissCommand extends Command {
         const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000, max: 1 });
 
         collector.on('collect', async i => {
-            i.deferUpdate();
             const kissEmbed = new MessageEmbed()
                 .setColor('#000000')
                 .setDescription(t('commands:kiss.success', { user: interaction.user.username, author: user.username }))
                 .setImage(img2.url)
             await interaction.followUp({ embeds: [kissEmbed] });
+            i.deferUpdate();
         });
     }
 }

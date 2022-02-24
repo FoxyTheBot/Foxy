@@ -50,8 +50,8 @@ export default class AttachCommand extends Command {
                 .setColor('#ff0000')
                 .setDescription(t('commands:attack.description', { user: user.username, target: interaction.user.username }))
                 .setImage(rand)
-                i.deferUpdate();
             await interaction.followUp({ embeds: [embed] });
+            i.deferUpdate();
         })
     }
 }
