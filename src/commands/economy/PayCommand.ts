@@ -35,14 +35,14 @@ export default class PayCommand extends Command {
 
         if (user === interaction.user) return interaction.editReply(t('commands:pay.self'));
 
-        await interaction.editReply({ content: t('commands:pay.alert', { amount: value, user: user.username }), components: [row] });
+        await interaction.editReply({ content: t('commands:pay.alert', { amount: value.toString(), user: user.username }), components: [row] });
 
         const filter = i => i.customId === 'pay' && i.user.id === interaction.user.id;
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000 });
 
         collector.on('collect', async i => {
             i.deferUpdate();
-            interaction.followUp(t('commands:pay.success', { user: user.tag, amount: value }));
+            interaction.followUp(t('commands:pay.success', { user: user.tag, amount: value.toString() }));
             userData.balance += value;
             authorData.balance -= value;
             userData.save();
