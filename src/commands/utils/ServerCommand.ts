@@ -25,7 +25,7 @@ export default class ServerCommand extends Command {
         var server = interaction.guild;
         if (interaction.options.getString("id")) {
             server = await this.client.guilds.cache.get(interaction.options.getString("id"));
-            if (!server) return interaction.editReply(`${this.client.emotes.error} **|** ${t("commands:server.notFound"), { guildId: interaction.options.getString("id") }}`);
+            if (!server) return interaction.editReply(`${this.client.emotes.error} **|** ${t("commands:server.notFound", { guildId: interaction.options.getString("id") })}`);
         }
         const owner = await this.client.users.fetch(server.ownerId);
 
