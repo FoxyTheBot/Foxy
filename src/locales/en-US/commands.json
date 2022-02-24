@@ -293,5 +293,19 @@
     "attack": {
        "attack": "{{user}} attacked {{target}}",
        "button": "Attack" 
+    },
+
+    "bet": {
+        "self": ":x: | You can't bet yourself",
+        "not-enough": ":x: | You don't have enough FoxCoins",
+        "not-enough-mention": ":x: | {{user}} doesn't have enough FoxCoins",
+        "placeholder": "Choose an option",
+        "heads": "heads",
+        "tails": "tails",
+        "accept": "Accept",
+        "choose": "Choose an option",
+        "ask": "{{user}}, {{author}} wants to bet with you with {{amount}} FoxCoins",
+        "win": ":moneybag: | {{author}} won {{amount}} FoxCoins! By {{user}}",
+        "lose": ":moneybag: | {{user}} won {{amount}} FoxCoins! By {{author}}"
     }
 }
