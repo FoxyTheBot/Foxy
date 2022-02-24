@@ -17,18 +17,18 @@ export default class LanguageCommand extends Command {
 
     async execute(interaction, t) {
         const userData = await this.client.database.getUserLocale(interaction.user.id);
-        
+
         const row = new MessageActionRow()
-        .addComponents(
-            new MessageButton()
-            .setLabel("English")
-            .setCustomId("en")
-            .setStyle("PRIMARY"),
-            new MessageButton()
-            .setLabel("Português")
-            .setCustomId("pt")
-            .setStyle("PRIMARY"),
-        )
+            .addComponents(
+                new MessageButton()
+                    .setLabel("English")
+                    .setCustomId("en")
+                    .setStyle("PRIMARY"),
+                new MessageButton()
+                    .setLabel("Português")
+                    .setCustomId("pt")
+                    .setStyle("PRIMARY"),
+            )
 
         const embed = new MessageEmbed()
             .setColor("BLURPLE")
@@ -39,22 +39,22 @@ export default class LanguageCommand extends Command {
                 { name: ":flag_us:", value: "English", inline: true }
             )
 
-            interaction.editReply({ embeds: [embed], components: [row], ephemeral: true });
+        interaction.editReply({ embeds: [embed], components: [row], ephemeral: true });
 
-            const filter = i => i.user.id === interaction.user.id;
-            const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000 });
+        const filter = i => i.user.id === interaction.user.id;
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000 });
 
-            collector.on('collect', i => {
-                i.deferUpdate();
-                if(i.customId === "en") {
-                    interaction.followUp(`:flag_us: **| Language changed to English**`);
-                    userData.locale = "en-US";
-                    userData.save();
-                } else if(i.customId === "pt") {
-                    interaction.followUp(`:flag_br: **| Linguagem alterada para Português do Brasil!**`);
-                    userData.locale = "pt-BR";
-                    userData.save();
-                }
-            });
+        collector.on('collect', i => {
+            i.deferUpdate();
+            if (i.customId === "en") {
+                interaction.followUp(`:flag_us: **| Language changed to English**`);
+                userData.locale = "en-US";
+                userData.save();
+            } else if (i.customId === "pt") {
+                interaction.followUp(`:flag_br: **| Linguagem alterada para Português do Brasil!**`);
+                userData.locale = "pt-BR";
+                userData.save();
+            }
+        });
     }
 }

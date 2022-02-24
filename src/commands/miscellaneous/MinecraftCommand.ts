@@ -28,10 +28,10 @@ export default class MinecraftCommand extends Command {
 
                 const embed = new MessageEmbed()
                     .setColor("BLURPLE")
-                    .setTitle(t('commands:mcbody.title', {user: user}))
+                    .setTitle(t('commands:mcbody.title', { user: user }))
                     .setImage(`https://mc-heads.net/body/${user}`)
 
-                await interaction.editReply({embeds: [embed]});
+                await interaction.editReply({ embeds: [embed] });
                 break;
             }
 
@@ -41,10 +41,10 @@ export default class MinecraftCommand extends Command {
 
                 const embed = new MessageEmbed()
                     .setColor("BLURPLE")
-                    .setTitle(t('commands:mchead.title', {user: user}))
+                    .setTitle(t('commands:mchead.title', { user: user }))
                     .setImage(`https://mc-heads.net/head/${user}`)
 
-                await interaction.editReply({embeds: [embed]});
+                await interaction.editReply({ embeds: [embed] });
                 break;
             }
 
@@ -54,10 +54,10 @@ export default class MinecraftCommand extends Command {
 
                 const embed = new MessageEmbed()
                     .setColor("BLURPLE")
-                    .setTitle(t('commands:mcskin.title', {user: user}))
+                    .setTitle(t('commands:mcskin.title', { user: user }))
                     .setImage(`https://mc-heads.net/body/${user}`)
 
-                await interaction.editReply({embeds: [embed]});
+                await interaction.editReply({ embeds: [embed] });
                 break;
             }
         }
