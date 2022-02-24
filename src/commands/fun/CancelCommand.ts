@@ -19,6 +19,6 @@ export default class CancelCommand extends Command {
         const user = interaction.options.getUser("user");
         const string = interaction.options.getString("text");
 
-        await interaction.editReply(t('commands:cancel.result', { user: user.username, reason: string, mention: user }));
+        await interaction.editReply(t('commands:cancel.result', { user: user.username, reason: string, mention: `<@!${user.id}>` }));
     }
 }
