@@ -30,7 +30,7 @@ export default class FoxyClient extends Client {
         super.login(options.token);
     }
 
-    async loadLocales(path: string) {
+    async loadLocales(path: string): Promise<void> {
         try {
             await i18next.use(i18nbackend).init({
                 ns: ["commands", "events", "permissions"],
@@ -51,7 +51,7 @@ export default class FoxyClient extends Client {
         }
     }
 
-    async loadCommands(path: string) {
+    async loadCommands(path: string): Promise<void> {
         const commandFolders = fs.readdirSync(path);
         for (const folder of commandFolders) {
             const commandFiles = fs.readdirSync(path + `/${folder}`);
@@ -63,7 +63,7 @@ export default class FoxyClient extends Client {
         }
     }
 
-    async loadEvents(path: string) {
+    async loadEvents(path: string): Promise<void> {
         const eventFiles = fs.readdirSync(path);
         for (const file of eventFiles) {
             const eventFile = await import(`${path}/${file}`);
