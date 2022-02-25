@@ -38,12 +38,12 @@ export default class DivorceCommand extends Command {
         const collector = await interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 60000 });
 
         collector.on("collect", async i => {
-            i.deferUpdate();
             userData.marriedWith = null;
             marriedData.marriedWith = null;
             await userData.save();
             await marriedData.save();
-            return interaction.followUp(`${this.client.emotes.error} **|** ${t('commands:divorce.divorced')}`);
+            interaction.followUp(`${this.client.emotes.error} **|** ${t('commands:divorce.divorced')}`);
+            return i.deferUpdate();
         });
     }
 }

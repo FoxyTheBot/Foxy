@@ -41,8 +41,8 @@ export default class MarryCommand extends Command {
         const collector = await interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 60000 });
 
         collector.on("collect", async i => {
-            i.deferUpdate();
             i.followUp(`${this.client.emotes.success} | ${t('commands:marry.accepted')}`);
+            i.deferUpdate();
             userData.marriedWith = interaction.user.id;
             userData.marriedDate = new Date();
             authorData.marriedWith = mentionedUser.id;
