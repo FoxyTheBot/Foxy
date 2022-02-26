@@ -23,12 +23,13 @@ export default class Ready {
             this.client.user.setPresence({ activities: [randomStatus] });
         }, 10000);
 
-        // If your bot isn't in top.gg(dbl) or you're running on local host, you can comment this
-        // setInterval(() => {
-        //     const dbl = AutoPoster(this.client.config.dblauth, this.client);
-        //     dbl.on('posted', (stats) => {
-        //         this.client.WebhookManager.sendLog(stats);
-        //     });
-        // });
+        // If your bot is in top.gg, you can uncomment this
+
+        /* setInterval(() => {
+            const dbl = AutoPoster(this.client.config.dblauth, this.client);
+            dbl.on('posted', (stats) => {
+                this.client.WebhookManager.sendLog(stats);
+            });
+        }); */ 
     }
 }
