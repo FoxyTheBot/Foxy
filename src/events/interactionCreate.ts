@@ -16,7 +16,7 @@ export default class InteractionCreate {
         const command = this.client.commands.get(interaction.commandName);
 
         if (command.config.dev && !interaction.user.id.includes(this.client.config.ownerId)) {
-            return interaction.editReply({ content: locale('permissions:ONLY_DEVS'), ephemeral: true });
+            return interaction.reply({ content: locale('permissions:ONLY_DEVS'), ephemeral: true });
         }
 
         this.client.database.getGuild(interaction.guild.id);
@@ -47,7 +47,7 @@ export default class InteractionCreate {
                     .setDescription(locale('events:ban.description'))
                     .addField(locale('events:ban.reason'), document.banReason, true)
                     .addField(locale('events:ban.date'), document.banData.toLocaleString(global.t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }))
-                return interaction.editReply({ embeds: [bannedEmbed], ephemeral: true });
+                return interaction.followUp({ embeds: [bannedEmbed], ephemeral: true });
             }
 
             FoxyHandler();
