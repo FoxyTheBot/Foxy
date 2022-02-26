@@ -18,7 +18,7 @@ export default class BackgroundCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const command = interaction.options.getSubcommand();
 
         switch (command) {

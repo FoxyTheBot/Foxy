@@ -17,7 +17,7 @@ export default class PatCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const neko = new nekosLife();
 
         const user = interaction.options.getUser("user");

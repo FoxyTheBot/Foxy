@@ -16,7 +16,7 @@ export default class BotInfoCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const embed = new MessageEmbed()
             .setColor("BLURPLE")
             .setTitle(t('botinfo.title'))

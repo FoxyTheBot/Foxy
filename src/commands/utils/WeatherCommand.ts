@@ -17,7 +17,7 @@ export default class WeatherCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const region = interaction.options.getString("region");
         weather.find({ search: region, degreeType: 'C' }, async (err, result) => {
             if (err) return interaction.reply(t('commands:weather.error'));

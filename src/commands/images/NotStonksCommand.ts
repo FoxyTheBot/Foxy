@@ -17,7 +17,7 @@ export default class NotStonks extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const string = interaction.options.getString("text");
         const canvas = Canvas.createCanvas(800, 600);
         const ctx = canvas.getContext('2d');

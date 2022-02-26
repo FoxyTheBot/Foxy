@@ -19,7 +19,7 @@ export default class ServerCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const subcommand = interaction.options.getSubcommand();
 
         var server = interaction.guild;

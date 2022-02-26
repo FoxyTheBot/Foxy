@@ -16,7 +16,7 @@ export default class AttachCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const user = await interaction.options.getUser('user');
 
         const list = [

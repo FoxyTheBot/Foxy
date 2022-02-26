@@ -17,7 +17,7 @@ export default class PayCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const amount: number = interaction.options.getNumber('amount');
         const user: any = interaction.options.getUser('user');
         const userData = await this.client.database.getUser(user.id);

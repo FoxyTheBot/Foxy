@@ -17,7 +17,7 @@ export default class HelpCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const subcommand = interaction.options.getSubcommand();
 
         switch (subcommand) {

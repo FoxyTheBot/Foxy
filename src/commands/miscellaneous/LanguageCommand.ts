@@ -15,7 +15,7 @@ export default class LanguageCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const userData = await this.client.database.getUserLocale(interaction.user.id);
 
         const row = new MessageActionRow()

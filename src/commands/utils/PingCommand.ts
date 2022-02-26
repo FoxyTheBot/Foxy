@@ -14,7 +14,7 @@ export default class PingCommand extends Command {
         })
     }
 
-    async execute(interaction) {
+    async execute(interaction): Promise<void> {
         interaction.editReply(`:ping_pong: **| Pong!** \n:watch: **| Gateway Ping:** \`${Math.round(this.client.ws.ping)}ms\` \n:zap: **| API Ping:** \`${Date.now() - interaction.createdTimestamp}ms\` \n${this.client.emotes.foxyhi} **| Shard:** \`${Number(this.client.shard.ids) + 1}/${this.client.shard.count}\``);
     }
 }

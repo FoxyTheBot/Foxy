@@ -15,7 +15,7 @@ export default class SuggestCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const content: string = interaction.options.getString("suggestion");
         this.client.WebhookManager.sendSuggestion(interaction, content);
         await interaction.editReply(t('commands:suggest.success', { content: content, user: interaction.user }));

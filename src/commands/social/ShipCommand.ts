@@ -18,7 +18,7 @@ export default class ShipCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
         const user2 = interaction.options.getUser("user2");
         const love = Math.floor(Math.random() * 100);

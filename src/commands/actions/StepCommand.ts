@@ -16,7 +16,7 @@ export default class StepCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
 
         const list = [

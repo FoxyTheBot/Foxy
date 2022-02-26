@@ -17,7 +17,7 @@ export default class FoxyBanCommand extends Command {
         });
     }
 
-    async execute(interaction) {
+    async execute(interaction): Promise<void> {
         const bool = interaction.options.getBoolean("banned");
         const userBanned = interaction.options.getUser("user");
         const reason = interaction.options.getString("reason");

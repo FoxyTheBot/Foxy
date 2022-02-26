@@ -17,7 +17,7 @@ export default class HugCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const neko = new nekosLife();
         const user = await interaction.options.getUser("user");
 

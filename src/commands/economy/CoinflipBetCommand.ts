@@ -17,7 +17,7 @@ export default class CoinflipBetCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
         const userData = await this.client.database.getUser(interaction.user.id);
         const value: number = interaction.options.getNumber("amount");

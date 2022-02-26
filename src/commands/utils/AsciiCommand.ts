@@ -16,7 +16,7 @@ export default class AsciiCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const string = interaction.options.getString("text");
         figlet.text(string, async (err, data) => {
             if(err) console.log(err)

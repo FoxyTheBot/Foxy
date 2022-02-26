@@ -17,7 +17,7 @@ export default class KissCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const neko = new nekosLife();
 
         const img = await neko.sfw.kiss();

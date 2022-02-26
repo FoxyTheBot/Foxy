@@ -16,7 +16,7 @@ export default class StatusCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const embed = new MessageEmbed()
             .setTitle("🦊 | Foxy Status")
             .addFields(

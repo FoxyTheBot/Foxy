@@ -17,7 +17,7 @@ export default class StonksCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const content: string = interaction.options.getString("text");
 
         const canvas = Canvas.createCanvas(800, 600);

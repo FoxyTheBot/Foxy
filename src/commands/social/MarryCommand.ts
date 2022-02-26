@@ -16,7 +16,7 @@ export default class MarryCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const mentionedUser = await interaction.options.getUser("user");
 
         if (mentionedUser === interaction.user) return interaction.editReply(t("commands:marry.self"));

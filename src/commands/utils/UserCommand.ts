@@ -21,7 +21,7 @@ export default class ProfileCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const command = interaction.options.getSubcommand();
         const user = interaction.options.getUser("user") || interaction.user;
 

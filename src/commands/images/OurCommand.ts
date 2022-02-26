@@ -17,7 +17,7 @@ export default class PerfectCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const content: string = interaction.options.getString("text");
         const canvas = Canvas.createCanvas(500,400);
         const ctx = canvas.getContext('2d');

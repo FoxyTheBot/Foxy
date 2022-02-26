@@ -17,7 +17,7 @@ export default class EvalCommand extends Command {
         });
     }
 
-    async execute(interaction) {
+    async execute(interaction): Promise<void> {
         let client = this.client,
             code = interaction.options.getString("code"),
             evaled, hasError = false,

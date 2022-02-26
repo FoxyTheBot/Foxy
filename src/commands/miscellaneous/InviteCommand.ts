@@ -15,7 +15,7 @@ export default class InviteCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const embed = new MessageEmbed()
             .setColor("BLURPLE")
             .setDescription(t('commands:invite.description'))

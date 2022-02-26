@@ -15,7 +15,7 @@ export default class EightBallCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const results = [
             t('commands:8ball.yes'),
             t('commands:8ball.no'),

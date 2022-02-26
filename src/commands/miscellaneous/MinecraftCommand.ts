@@ -18,7 +18,7 @@ export default class MinecraftCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const commands = interaction.options.getSubcommand();
 
         switch (commands) {

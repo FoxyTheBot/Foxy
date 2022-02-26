@@ -17,7 +17,7 @@ export default class AnimeCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const search = await interaction.options.getString("anime");
 
         malScraper.getInfoFromName(search).then(async (data) => {

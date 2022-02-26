@@ -15,7 +15,7 @@ export default class CancelCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
         const string = interaction.options.getString("text");
 

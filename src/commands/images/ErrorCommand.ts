@@ -17,7 +17,7 @@ export default class ErrorCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         var string = interaction.options.getString("text");
         const canvas = Canvas.createCanvas(380, 208);
         const ctx = canvas.getContext("2d");

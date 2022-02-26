@@ -15,7 +15,7 @@ export default class DailyCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const userData = await this.client.database.getUser(interaction.user.id);
 
         const timeout = 43200000;

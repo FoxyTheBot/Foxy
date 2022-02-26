@@ -18,7 +18,7 @@ export default class PremiumCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const command = interaction.options.getSubcommand()
         const user = interaction.options.getUser("user");
         const userData = await this.client.database.getUser(user.id);

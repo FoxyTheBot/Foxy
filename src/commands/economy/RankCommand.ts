@@ -16,7 +16,7 @@ export default class RankCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         let data = await this.client.database.getAllUsers(),
             embed = new MessageEmbed();
         data = data.sort((a, b) => b.balance - a.balance);

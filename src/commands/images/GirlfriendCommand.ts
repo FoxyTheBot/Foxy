@@ -17,7 +17,7 @@ export default class GirlfriendCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
 
         var avatar;

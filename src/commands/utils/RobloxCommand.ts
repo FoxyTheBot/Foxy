@@ -17,7 +17,7 @@ export default class RbxuserCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
+    async execute(interaction, t): Promise<void> {
         const string = interaction.options.getString("user");
 
         noblox.getIdFromUsername(string).then(async (id: any) => {
