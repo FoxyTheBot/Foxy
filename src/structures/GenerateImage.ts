@@ -15,7 +15,7 @@ export default class GenerateImage {
         this.height = height;
     }
 
-    async renderProfile(t) {
+    async renderProfile(t): Promise<Buffer> {
         var userAboutme: string = this.data.aboutme;
         if (!userAboutme) userAboutme = `${t("commands:profile.noAboutme")}`;
 

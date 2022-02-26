@@ -50,7 +50,7 @@ export default class DatabaseConnection {
         this.client = client;
     }
 
-    async getUser(userId: string) {
+    async getUser(userId: string): Promise<any> {
         const user = await this.client.users.fetch(userId);
 
         if (!user) return null;
@@ -81,7 +81,7 @@ export default class DatabaseConnection {
         return document;
     }
 
-    async getGuild(guildId: string) {
+    async getGuild(guildId: string): Promise<any> {
         let document = await this.guild.findOne({ _id: guildId });
 
         if (!document) {
@@ -98,17 +98,17 @@ export default class DatabaseConnection {
         return document;
     }
 
-    async deleteGuild(guildId: string) {
+    async deleteGuild(guildId: string): Promise<any> {
         const guildData = await this.guild.findOne({ _id: guildId });
         return guildData.remove();
     }
 
-    async getAllUsers() {
+    async getAllUsers(): Promise<any> {
         let usersData = await this.user.find({});
         return usersData.map(user => user.toJSON());
     }
 
-    async getUserLocale(userId: string) {
+    async getUserLocale(userId: string): Promise<any> {
         const user = await this.client.users.fetch(userId);
 
         if (!user) return null;

@@ -58,7 +58,7 @@ export default class WebhookManager {
         });
     }
 
-    async sendLog(stats) {
+    async sendLog(stats): Promise<void> {
         const dblEmbed = new MessageEmbed()
             .setTitle("Informações atualizadas na DBL")
             .setDescription(`A quantidade de servidores foram atualizadas para ${stats.serverCount}`)

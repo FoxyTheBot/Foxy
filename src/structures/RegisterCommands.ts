@@ -13,7 +13,7 @@ export default class RegisterCommands {
         this.token = token;
     }
 
-    async register(path: string) {
+    async register(path: string): Promise<void> {
         const commands = [];
         const commandFolders = fs.readdirSync(path);
 

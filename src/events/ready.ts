@@ -7,7 +7,7 @@ export default class Ready {
         this.client = client;
     }
 
-    async run() {
+    async run(): Promise<void> {
         console.info(`[READY] - Shard ${Number(this.client.shard.ids) + 1} Está conectada com ${this.client.guilds.cache.size} Servidores!`);
 
         const status = [

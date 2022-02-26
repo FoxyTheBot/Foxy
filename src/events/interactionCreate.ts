@@ -8,7 +8,7 @@ export default class InteractionCreate {
         this.client = client;
     }
 
-    async run(interaction) {
+    async run(interaction): Promise<any> {
         const user = await this.client.database.getUserLocale(interaction.user.id);
         let locale = global.t = i18next.getFixedT(user.locale || 'pt-BR');
 

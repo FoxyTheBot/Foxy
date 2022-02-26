@@ -7,7 +7,7 @@ export default class MessageCreate {
         this.client = client;
     }
 
-    async run(message) {
+    async run(message): Promise<any> {
         if (message.author.bot) return;
         const user = await this.client.database.getUserLocale(message.author.id);
         let t = global.t = i18next.getFixedT(user.locale || 'en-US');
