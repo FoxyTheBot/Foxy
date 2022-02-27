@@ -307,5 +307,9 @@
         "ask": "{{user}}, {{author}} wants to bet with you with {{amount}} FoxCoins",
         "win": ":moneybag: | {{author}} won {{amount}} FoxCoins! By {{user}}",
         "lose": ":moneybag: | {{user}} won {{amount}} FoxCoins! By {{author}}"
+    },
+
+    "global" : {
+        "noUser": ":x: | User not found"
     }
 }
