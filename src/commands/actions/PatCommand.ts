@@ -21,6 +21,8 @@ export default class PatCommand extends Command {
         const neko = new nekosLife();
 
         const user = interaction.options.getUser("user");
+        if(!user) return interaction.editReply(t('commands:global.noUser'));
+
         const gif = await neko.sfw.pat();
         const gif2 = await neko.sfw.pat();
 

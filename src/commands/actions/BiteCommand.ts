@@ -18,6 +18,7 @@ export default class BiteCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
+        if(!user) return interaction.editReply(t('commands:global.noUser'));
 
         const row = new MessageActionRow()
             .addComponents(

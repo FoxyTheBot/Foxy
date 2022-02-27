@@ -19,6 +19,8 @@ export default class SlapCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
+        if(!user) return interaction.editReply(t('commands:global.noUser'));
+
         const neko = new nekosLife();
 
         const slap = await neko.sfw.slap();

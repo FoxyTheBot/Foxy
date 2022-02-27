@@ -18,6 +18,7 @@ export default class StepCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
+        if(!user) return interaction.editReply(t('commands:global.noUser'));
 
         const list = [
             'https://cdn.discordapp.com/attachments/745396328351268885/776930400990920734/6a0.gif',

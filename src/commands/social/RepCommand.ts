@@ -17,6 +17,7 @@ export default class RepCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = await interaction.options.getUser("user");
+        if(!user) return interaction.editReply(t('commands:global.noUser'));
         if (user === interaction.user) return interaction.editReply(t("commands:rep.self"));
 
         const userData = await this.client.database.getUser(user.id);

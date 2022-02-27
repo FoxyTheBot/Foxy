@@ -20,6 +20,7 @@ export default class HugCommand extends Command {
     async execute(interaction, t): Promise<void> {
         const neko = new nekosLife();
         const user = await interaction.options.getUser("user");
+        if(!user) return interaction.editReply(t('commands:global.noUser'));
 
         const img = await neko.sfw.hug();
         const img2 = await neko.sfw.hug();

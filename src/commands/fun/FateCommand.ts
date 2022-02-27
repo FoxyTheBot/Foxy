@@ -17,6 +17,7 @@ export default class FateCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
+        if(!user) return interaction.editReply(t('commands:global.noUser'));
 
         const list = [
             t('commands:fate.couple'),

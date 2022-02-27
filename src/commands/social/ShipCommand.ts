@@ -21,6 +21,8 @@ export default class ShipCommand extends Command {
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
         const user2 = interaction.options.getUser("user2");
+        if(!user || user2) return interaction.editReply(t('commands:global.noUser'));
+
         const love = Math.floor(Math.random() * 100);
 
         const loveIndex = Math.floor(love / 10);

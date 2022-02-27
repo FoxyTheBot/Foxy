@@ -24,6 +24,7 @@ export default class ProfileCommand extends Command {
     async execute(interaction, t): Promise<void> {
         const command = interaction.options.getSubcommand();
         const user = interaction.options.getUser("user") || interaction.user;
+        if(!user) return interaction.editReply(t('commands:global.noUser'));
 
         switch (command) {
             case "info": {

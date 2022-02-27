@@ -17,6 +17,7 @@ export default class AtmCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = await interaction.options.getUser('user') || interaction.user;
+        if(!user) return interaction.editReply(t('commands:global.noUser'));
         const userData = await this.client.database.getUser(user.id);
         const balance = userData.balance;
         
