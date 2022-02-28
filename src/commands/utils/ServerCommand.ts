@@ -22,7 +22,7 @@ export default class ServerCommand extends Command {
     async execute(interaction, t): Promise<void> {
         const subcommand = interaction.options.getSubcommand();
 
-        var server = interaction.guild;
+        let server = interaction.guild;
         if (interaction.options.getString("id")) {
             server = await this.client.guilds.cache.get(interaction.options.getString("id"));
             if (!server) return interaction.editReply(`${this.client.emotes.error} **|** ${t("commands:server.notFound", { id: interaction.options.getString("id") })}`);
