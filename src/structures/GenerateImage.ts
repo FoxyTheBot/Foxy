@@ -1,7 +1,8 @@
 import Canvas from 'canvas';
+import FoxyClient from '../FoxyClient';
 
 export default class GenerateImage {
-    private client: any;
+    private client: FoxyClient;
     private user: any;
     private data: any;
     private readonly width: number;
