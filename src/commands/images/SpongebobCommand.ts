@@ -7,12 +7,12 @@ export default class SpongebobCommand extends Command {
     constructor(client) {
         super(client, {
             name: "spongebob",
-            description: "Get spongebob fodase meme",
+            description: "Get spongebob meme",
             category: "image",
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("spongebob")
-                .setDescription("[🖼 Image] Get spongebob fodase meme")
+                .setDescription("[🖼 Image] Get spongebob meme")
                 .addStringOption(option => option.setName("text").setRequired(true).setDescription("The text you want to put on the spongebob meme"))
         });
     }
