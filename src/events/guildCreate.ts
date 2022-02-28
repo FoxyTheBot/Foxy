@@ -6,6 +6,6 @@ export default class GuildCreate {
 
     async run(guild): Promise<void> {
         this.client.WebhookManager.guildCreate(guild);
-        this.client.database.getGuild(guild.id);
+        await this.client.database.getGuild(guild.id);
     }
 }
