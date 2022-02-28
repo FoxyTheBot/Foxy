@@ -13,7 +13,7 @@ export default class Command {
             name: options.name || null,
             aliases: options.aliases || [],
             category: options.category || "utils",
-            description: options.description || "indefinido",
+            description: options.description || "undefined",
             userPermission: options.userPermission || [],
             clientPermission: options.clientPermission || [],
             dev: options.dev || false,
