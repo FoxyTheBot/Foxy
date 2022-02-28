@@ -72,7 +72,7 @@ export default class CoinflipBetCommand extends Command {
 
         menuCollector.on('collect', async i => {
             interaction.followUp({ content: t('commands:bet.ask', { user: `<@!${user.id}>`, author: interaction.user.username, amount: `${value}` }), components: [buttonRow] });
-            var selectmenu = i.values[0];
+            const selectMenu = i.values[0];
             i.deferUpdate();
             menuCollector.stop();
 
@@ -83,7 +83,7 @@ export default class CoinflipBetCommand extends Command {
                 let choices = ['heads', 'tails'];
                 const rand = Math.floor(Math.random() * choices.length);
 
-                if (selectmenu === choices[rand]) {
+                if (selectMenu === choices[rand]) {
                     interaction.followUp({ content: t('commands:bet.win', { user: user.username, author: interaction.user.username, choice: t(`commands:bet.${choices[rand]}`), amount: `${value}` }) });
                     userData.balance += value;
                     mentionData.balance -= value;
@@ -92,7 +92,7 @@ export default class CoinflipBetCommand extends Command {
                     i.deferUpdate();
                     resultCollector.stop();
 
-                } else if (selectmenu !== choices[rand]) {
+                } else if (selectMenu !== choices[rand]) {
                     interaction.followUp({ content: t('commands:bet.lose', { user: user.username, author: interaction.user.username, choice: t(`commands:bet.${choices[rand]}`), amount: `${value}` }) });
                     userData.balance -= value;
                     mentionData.balance += value;
