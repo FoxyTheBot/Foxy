@@ -1,6 +1,6 @@
 import Command from "../../structures/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
+import { MessageEmbed, MessageActionRow, MessageSelectMenu } from "discord.js";
 
 export default class LanguageCommand extends Command {
     constructor(client) {
@@ -20,14 +20,21 @@ export default class LanguageCommand extends Command {
 
         const row = new MessageActionRow()
             .addComponents(
-                new MessageButton()
-                    .setLabel("English")
-                    .setCustomId("en")
-                    .setStyle("PRIMARY"),
-                new MessageButton()
-                    .setLabel("Português")
-                    .setCustomId("pt")
-                    .setStyle("PRIMARY"),
+                new MessageSelectMenu()
+                    .setCustomId('select')
+                    .setPlaceholder("Select your default language")
+                    .addOptions([
+                        {
+                            label: "English",
+                            value: "en",
+                            emoji: "🇬🇧"
+                        },
+                        {
+                            label: "Português do Brasil",
+                            value: "pt",
+                            emoji: "🇧🇷"
+                        }
+                    ])
             )
 
         const embed = new MessageEmbed()
@@ -35,22 +42,23 @@ export default class LanguageCommand extends Command {
             .setTitle(t('lang.title'))
             .setDescription(t('lang.default'))
             .addFields(
-                { name: ":flag_br:", value: "Brazilian Portuguese", inline: true },
-                { name: ":flag_us:", value: "English", inline: true }
+                { name: ":flag_br:", value: "Português do Brasil", inline: true },
+                { name: ":flag_gb:", value: "English", inline: true }
             )
 
         interaction.editReply({ embeds: [embed], components: [row], ephemeral: true });
 
-        const filter = i => i.user.id === interaction.user.id;
+        const filter = (choice, user) => user.id === interaction.user.id && interaction.customId === 'select';
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000 });
 
         collector.on('collect', i => {
-            if (i.customId === "en") {
+            const selectMenuValue = i.values[0];
+            if (selectMenuValue === "en") {
                 interaction.followUp(`:flag_us: **| Language changed to English**`);
                 i.deferUpdate();
                 userData.locale = "en-US";
                 userData.save();
-            } else if (i.customId === "pt") {
+            } else if (selectMenuValue === "pt") {
                 interaction.followUp(`:flag_br: **| Linguagem alterada para Português do Brasil!**`);
                 i.deferUpdate();
                 userData.locale = "pt-BR";
