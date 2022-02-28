@@ -1,11 +1,11 @@
 import Canvas from 'canvas';
 
 export default class GenerateImage {
-    public client: any;
-    public user: any;
-    public data: any;
-    public width: number;
-    public height: number;
+    private client: any;
+    private user: any;
+    private data: any;
+    private readonly width: number;
+    private readonly height: number;
 
     constructor(client, user, data, width, height) {
         this.client = client;
@@ -16,7 +16,7 @@ export default class GenerateImage {
     }
 
     async renderProfile(t): Promise<Buffer> {
-        var userAboutme: string = this.data.aboutme;
+        let userAboutme: string = this.data.aboutme;
         if (!userAboutme) userAboutme = `${t("commands:profile.noAboutme")}`;
 
         if (userAboutme.length > 85) {
@@ -70,7 +70,6 @@ export default class GenerateImage {
         const avatar = await Canvas.loadImage(this.user.displayAvatarURL({ format: 'png' }));
         ctx.drawImage(avatar, 25, 25, 200, 200);
 
-        const attachment = canvas.toBuffer();
-        return attachment;
+        return canvas.toBuffer();
     }
 }

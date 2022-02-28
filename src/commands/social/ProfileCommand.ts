@@ -24,6 +24,6 @@ export default class ProfileCommand extends Command {
         const canvasGenerator = new GenerateImage(this.client, user, userData, 1436, 884);
         const profile = new MessageAttachment(await canvasGenerator.renderProfile(t), "foxy_profile.png");
 
-        await interaction.editReply({ content: t('commands:profile.your'), files: [profile.attachment] });
+        await interaction.editReply({ content: t('commands:profile.your'), files: [profile] });
     }
 }
