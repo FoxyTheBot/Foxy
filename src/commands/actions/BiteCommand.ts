@@ -60,6 +60,7 @@ export default class BiteCommand extends Command {
                 .setImage(rand)
             await interaction.followUp({ embeds: [embed] });
             i.deferUpdate();
+            return collector.stop();
         })
     }
 }

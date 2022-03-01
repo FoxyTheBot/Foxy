@@ -1,7 +1,7 @@
 import Command from "../../structures/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
-import nekosLife from "nekos.life";
+import NekosLife from "nekos.life";
 
 export default class KissCommand extends Command {
     constructor(client) {
@@ -18,7 +18,7 @@ export default class KissCommand extends Command {
     }
 
     async execute(interaction, t): Promise<void> {
-        const neko = new nekosLife();
+        const neko = new NekosLife();
 
         const img = await neko.sfw.kiss();
         const img2 = await neko.sfw.kiss();
@@ -52,6 +52,7 @@ export default class KissCommand extends Command {
                 .setImage(img2.url)
             await interaction.followUp({ embeds: [kissEmbed] });
             i.deferUpdate();
+            return collector.stop();
         });
     }
 }

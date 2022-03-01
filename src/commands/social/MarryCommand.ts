@@ -20,11 +20,12 @@ export default class MarryCommand extends Command {
         const mentionedUser = await interaction.options.getUser("user");
         if(!mentionedUser) return interaction.editReply(t('commands:global.noUser'));
 
+        if (mentionedUser === this.client.user) return interaction.editReply(t('commands:marry.bot'));
         if (mentionedUser === interaction.user) return interaction.editReply(t("commands:marry.self"));
         const authorData = await this.client.database.getUser(interaction.user.id);
-        if (authorData.marriedWith) return interaction.editReply(t("commands:marry.alreadyMarried", { user: mentionedUser }));
+        if (authorData.marriedWith) return interaction.editReply(t("commands:marry.alreadyMarried", { user: mentionedUser.username }));
         if (mentionedUser === this.client.user) return interaction.editReply(t('commands:marry.bot'));
-        if (mentionedUser.id === authorData.marriedWith) return interaction.editReply(t('commands:marry.alreadyMarriedWithUser', { user: mentionedUser }));
+        if (mentionedUser.id === authorData.marriedWith) return interaction.editReply(t('commands:marry.alreadyMarriedWithUser', { user: mentionedUser.username }));
 
         const userData = await this.client.database.getUser(mentionedUser.id);
         if (userData.marriedWith) return interaction.editReply(t("commands:marry.alreadyMarriedWithSomeone"));
@@ -36,13 +37,13 @@ export default class MarryCommand extends Command {
                     .setLabel(t("commands:marry.accept"))
                     .setStyle("SUCCESS"),
             )
-        interaction.editReply({ content: `${this.client.emotes.heart} | ${t('commands:marry.ask', { user: mentionedUser.username, author: interaction.user })}`, components: [row] });
+        interaction.editReply({ content: `${this.client.emotes.heart} | ${t('commands:marry.ask', { user: mentionedUser.username, author: interaction.user.username })}`, components: [row] });
 
         const filter = i => i.customId === "accept" && i.user.id === mentionedUser.id;
         const collector = await interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 60000 });
 
         collector.on("collect", async i => {
-            i.followUp(`${this.client.emotes.success} | ${t('commands:marry.accepted')}`);
+            interaction.followUp(t('commands:marry.accepted', { user: mentionedUser.username, author: interaction.user.username }));
             i.deferUpdate();
             userData.marriedWith = interaction.user.id;
             userData.marriedDate = new Date();
@@ -50,6 +51,7 @@ export default class MarryCommand extends Command {
             authorData.marriedDate = new Date();
             await userData.save();
             await authorData.save();
+            return collector.stop();
         });
     }
 }

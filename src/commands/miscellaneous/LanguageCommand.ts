@@ -49,7 +49,7 @@ export default class LanguageCommand extends Command {
         interaction.editReply({ embeds: [embed], components: [row], ephemeral: true });
 
         const filter = (choice, user) => user.id === interaction.user.id && interaction.customId === 'select';
-        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000 });
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000, max: 1 });
 
         collector.on('collect', i => {
             const selectMenuValue = i.values[0];
@@ -58,11 +58,13 @@ export default class LanguageCommand extends Command {
                 i.deferUpdate();
                 userData.locale = "en-US";
                 userData.save();
+                return collector.stop();
             } else if (selectMenuValue === "pt") {
                 interaction.followUp(`:flag_br: **| Linguagem alterada para Português do Brasil!**`);
                 i.deferUpdate();
                 userData.locale = "pt-BR";
                 userData.save();
+                return collector.stop();
             }
         });
     }

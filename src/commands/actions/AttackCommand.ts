@@ -53,6 +53,7 @@ export default class AttachCommand extends Command {
                 .setImage(rand)
             await interaction.followUp({ embeds: [embed] });
             i.deferUpdate();
+            return collector.stop();
         })
     }
 }

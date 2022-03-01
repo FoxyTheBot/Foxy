@@ -1,7 +1,7 @@
 import Command from "../../structures/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
-import nekosLife from "nekos.life";
+import NekosLife from "nekos.life";
 
 export default class SlapCommand extends Command {
     constructor(client) {
@@ -21,7 +21,7 @@ export default class SlapCommand extends Command {
         const user = interaction.options.getUser("user");
         if(!user) return interaction.editReply(t('commands:global.noUser'));
 
-        const neko = new nekosLife();
+        const neko = new NekosLife();
 
         const slap = await neko.sfw.slap();
         const slap2 = await neko.sfw.slap();
@@ -47,6 +47,7 @@ export default class SlapCommand extends Command {
                 .setImage(slap2.url)
             await interaction.followUp({ embeds: [embed2] });
             i.deferUpdate();
+            return collector.stop();
         })
     }
 }

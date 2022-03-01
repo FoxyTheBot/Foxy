@@ -1,7 +1,7 @@
 import Command from "../../structures/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
-import nekosLife from "nekos.life";
+import NekosLife from "nekos.life";
 
 export default class PatCommand extends Command {
     constructor(client) {
@@ -18,7 +18,7 @@ export default class PatCommand extends Command {
     }
 
     async execute(interaction, t): Promise<void> {
-        const neko = new nekosLife();
+        const neko = new NekosLife();
 
         const user = interaction.options.getUser("user");
         if(!user) return interaction.editReply(t('commands:global.noUser'));
@@ -51,6 +51,7 @@ export default class PatCommand extends Command {
                 .setImage(gif2.url)
             await i.followUp({ embeds: [embed] });
             i.deferUpdate();
+            return collector.stop();
         })
     }
 }

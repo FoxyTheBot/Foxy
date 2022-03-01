@@ -143,13 +143,17 @@
         "alreadyMarried": ":x: | {{user}} is already married",
         "bot": ":x: | No, i don't want to marry you",
         "alreadyMarriedWithSomeone": ":x: | You are already married someone",
-        "alreadyMarriedWithUser": ":x: | You are already married with {{user}}"
+        "alreadyMarriedWithUser": ":x: | You are already married with {{user}}",
+        "ask": "{{user}} Do you want to marry {{author}}?",
+        "accept": "Accept",
+        "accepted": ":heart: | You and {{user}} are now married"
     },
 
     "divorce": {
         "notMarried": ":x: | You aren't married",
-        "confirm": "Are you sure you want to divorce?\nThis action can't be undone",
-        "divorced": ":broken_heart: | You are divorced now!"
+        "confirm2": "Are you sure you want to divorce?\nThis action can't be undone",
+        "divorced": "You are divorced now!",
+        "confirm": "Confirm"
     },
 
     "suggest": {

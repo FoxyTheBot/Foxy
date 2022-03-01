@@ -73,7 +73,7 @@ export default class BackgroundCommand extends Command {
                         if (userData.balance < background.foxcoins) {
                             interaction.followUp({ content: t('commands:background.buy.noMoney'), ephemeral: true });
                             i.deferUpdate();
-                            return;
+                            return collector.stop();
                         } else {
                             userData.balance -= background.foxcoins;
                             userData.background = code;
@@ -81,7 +81,7 @@ export default class BackgroundCommand extends Command {
                             userData.save();
                             interaction.followUp({ content: t('commands:background.buy.success', { name: background.name, price: background.foxcoins }), ephemeral: true });
                             i.deferUpdate();
-
+                            return collector.stop();
                         }
                     }
                 });

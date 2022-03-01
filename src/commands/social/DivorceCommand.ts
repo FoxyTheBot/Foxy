@@ -32,18 +32,19 @@ export default class DivorceCommand extends Command {
             .setStyle("DANGER")
         )
 
-        interaction.editReply({ content: t('commands:divorce.confirm2', { user: userInfo.username }), actions: [row] });
+        interaction.editReply({ content: t('commands:divorce.confirm2', { user: userInfo.username }), components: [row] });
 
         const filter = i => i.customId === "divorce" && i.user.id === interaction.user.id;
         const collector = await interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 60000 });
 
         collector.on("collect", async i => {
+            interaction.followUp(`${this.client.emotes.error} **|** ${t('commands:divorce.divorced')}`);
+            i.deferUpdate();
             userData.marriedWith = null;
             marriedData.marriedWith = null;
             await userData.save();
             await marriedData.save();
-            interaction.followUp(`${this.client.emotes.error} **|** ${t('commands:divorce.divorced')}`);
-            return i.deferUpdate();
+            return collector.stop();
         });
     }
 }
