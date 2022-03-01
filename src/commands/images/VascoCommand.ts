@@ -18,7 +18,7 @@ export default class VascoCommand extends Command {
     }
 
     async execute(interaction, t) {
-        const vasco = await Canvas.loadImage("https://foxywebsite.xyz/api/memes/vasco.jpg");
+        const vasco = await Canvas.loadImage("https://cdn.discordapp.com/attachments/944770979060650014/947296868977762314/44e07dcf1a217dca8e8ec73a41dab0143f66f286e153524cd9340d1ca4bd746d_1.png");
         const canvas = Canvas.createCanvas(vasco.width, vasco.height);
         const ctx = canvas.getContext("2d");
         

@@ -36,7 +36,7 @@ export default class KissCommand extends Command {
             )
 
         const embed = new MessageEmbed()
-            .setColor('#000000')
+            .setColor('#06c5ef')
             .setDescription(t('commands:kiss.success', { user: user.username, author: interaction.user.username }))
             .setImage(img.url)
             .setTimestamp();
@@ -47,7 +47,7 @@ export default class KissCommand extends Command {
 
         collector.on('collect', async i => {
             const kissEmbed = new MessageEmbed()
-                .setColor('#000000')
+                .setColor('#b354ff')
                 .setDescription(t('commands:kiss.success', { user: interaction.user.username, author: user.username }))
                 .setImage(img2.url)
             await interaction.followUp({ embeds: [kissEmbed] });
