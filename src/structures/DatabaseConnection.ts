@@ -6,7 +6,7 @@ export default class DatabaseConnection {
     private locale: any;
     public guild: any;
 
-    constructor(auth: string, params: any, client: any) {
+    constructor(auth: string, params: Object, client: any) {
         connect(auth, params, (err) => {
             if (err) return console.error('Ocorreu um erro ao se conectar no Atlas do MongoDB!', err);
         });
@@ -50,7 +50,7 @@ export default class DatabaseConnection {
         this.client = client;
     }
 
-    async getUser(userId: string): Promise<any> {
+    async getUser(userId: string): Promise<void> {
         const user = await this.client.users.fetch(userId);
 
         if (!user) return null;
@@ -81,7 +81,7 @@ export default class DatabaseConnection {
         return document;
     }
 
-    async getGuild(guildId: string): Promise<any> {
+    async getGuild(guildId: string): Promise<void> {
         let document = await this.guild.findOne({ _id: guildId });
 
         if (!document) {
@@ -98,17 +98,17 @@ export default class DatabaseConnection {
         return document;
     }
 
-    async deleteGuild(guildId: string): Promise<any> {
+    async deleteGuild(guildId: string): Promise<void> {
         const guildData = await this.guild.findOne({ _id: guildId });
         return guildData.remove();
     }
 
-    async getAllUsers(): Promise<any> {
+    async getAllUsers(): Promise<void> {
         let usersData = await this.user.find({});
         return usersData.map(user => user.toJSON());
     }
 
-    async getUserLocale(userId: string): Promise<any> {
+    async getUserLocale(userId: string): Promise<void> {
         const user = await this.client.users.fetch(userId);
 
         if (!user) return null;
