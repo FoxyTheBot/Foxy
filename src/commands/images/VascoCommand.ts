@@ -12,7 +12,7 @@ export default class VascoCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("vasco")
-                .setDescription("[🖼 Images] Afeta o vaixco? (Create a vasco meme)")
+                .setDescription("[🖼 Images] Afeta o vaixco? (Meme creator)")
                 .addUserOption(option => option.setName("user").setDescription("User you want to send to Vasco").setRequired(true))
         });
     }
@@ -34,7 +34,6 @@ export default class VascoCommand extends Command {
         ctx.fillText(user.username,  270,  200);
 
         interaction.editReply({ files: [new MessageAttachment(canvas.toBuffer(), "vasco.png")] });
-
         interaction.followUp({ files: [new MessageAttachment('https://cdn.discordapp.com/attachments/948014291863359520/948231838118334474/y2mate.com_-_HINO_DO_VASCO_DA_GAMA.mp3', 'vasco.mp3')], ephemeral: true });
     }
 }
