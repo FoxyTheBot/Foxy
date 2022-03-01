@@ -5,8 +5,10 @@ package-lock.json
 ## Confidential files
 config.json
 
-## JetBrains IDE folders
+## IDE files
 .idea
+.vscode
+.vs
 
 ## Compiled files
 build
