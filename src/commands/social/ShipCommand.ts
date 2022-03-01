@@ -34,24 +34,24 @@ export default class ShipCommand extends Command {
         const calc1 = firstName - 4;
         const calc2 = secondName - 4;
 
-        let nomeship;
+        let shipName;
         if (love > 60) {
-            nomeship = user.username.slice(0, 3) + user2.username.slice(0, 3);
+            shipName = user.username.slice(0, 3) + user2.username.slice(0, 3);
         } else if (love >= 40) {
-            nomeship = user.username.slice(0, calc1) + user2.username.slice(0, calc2);
+            shipName = user.username.slice(0, calc1) + user2.username.slice(0, calc2);
         } else {
-            nomeship = user.username.slice(calc1, firstName) + user2.username.slice(calc2, secondName);
+            shipName = user.username.slice(calc1, firstName) + user2.username.slice(calc2, secondName);
         }
 
         let desc;
         if (love > 90) {
-            desc = (`:sparkling_heart: ${t('commands:ship.question')} :sparkling_heart:\n\`${user.username}\`\n\`${user2.username}\`\n:heart: \`${nomeship}\` ${t('commands:ship.perfectCouple')} :heart:`);
+            desc = (`:sparkling_heart: ${t('commands:ship.question')} :sparkling_heart:\n\`${user.username}\`\n\`${user2.username}\`\n:heart: \`${shipName}\` ${t('commands:ship.perfectCouple')} :heart:`);
         } else if (love >= 70) {
-            desc = (`:sparkling_heart: ${t('commands:ship.question')} :sparkling_heart:\n\`${user.username}\`\n\`${user2.username}\`\n:neutral_face: \`${nomeship}\` ${t('commands:ship.uwu')} :neutral_face:`);
+            desc = (`:sparkling_heart: ${t('commands:ship.question')} :sparkling_heart:\n\`${user.username}\`\n\`${user2.username}\`\n:neutral_face: \`${shipName}\` ${t('commands:ship.uwu')} :neutral_face:`);
         } else if (love >= 45) {
-            desc = (`:sparkling_heart: ${t('commands:ship.question')} :sparkling_heart:\n\`${user.username}\`\n\`${user2.username}\`\n:no_mouth: \`${nomeship}\` ${t('commands:ship.probably', { user: user2.username})} :no_mouth:`);
+            desc = (`:sparkling_heart: ${t('commands:ship.question')} :sparkling_heart:\n\`${user.username}\`\n\`${user2.username}\`\n:no_mouth: \`${shipName}\` ${t('commands:ship.probably', { user: user2.username})} :no_mouth:`);
         } else {
-            desc = (`:sparkling_heart: ${t('commands:ship.question')} :sparkling_heart:\n\`${user.username}\`\n\`${user2.username}\`\n:cry: \`${nomeship}\` ${t('commands:ship.cry')} :cry: `);
+            desc = (`:sparkling_heart: ${t('commands:ship.question')} :sparkling_heart:\n\`${user.username}\`\n\`${user2.username}\`\n:cry: \`${shipName}\` ${t('commands:ship.cry')} :cry: `);
         }
 
         let emoticon;
