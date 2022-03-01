@@ -23,11 +23,11 @@ export default class MessageCreate {
                 .setStyle('LINK'),
         );
 
-        const messageError = new MessageEmbed();
-        messageError.setColor("#ff0000");
-        messageError.setTitle(t('events:slash.title'));
-        messageError.setDescription(t('events:slash.description'));
-        messageError.setImage("https://i.imgur.com/GBoGyrC.gif");
+        const messageError = new MessageEmbed()
+            .setColor("#ff0000")
+            .setTitle(t('events:slash.title'))
+            .setDescription(t('events:slash.description'))
+            .setImage("https://i.imgur.com/GBoGyrC.gif")
 
         if (message.content.startsWith(this.client.config.prefix)) {
             return message.reply({ embeds: [messageError], components: [row] });
