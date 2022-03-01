@@ -109,7 +109,7 @@
         "notFound": "I didn't find any guild with the ID `{{id}}`",
         "partner": "Discord Partner"
     },
-    
+
     "user": {
         "info": {
             "tag": "User Tag",
@@ -161,7 +161,7 @@
     },
 
     "report": {
-        "success":":white_check_mark: | Your report has been sent to the developer, thank you for your help! :heart:"
+        "success": ":white_check_mark: | Your report has been sent to the developer, thank you for your help! :heart:"
     },
 
     "status": {
@@ -178,7 +178,7 @@
     "invite": {
         "description": "Do you want to invite me to your server?\nThank you so much, you can add me [clicking here](https://discord.com/oauth2/authorize?client_id=737044809650274325&scope=bot+applications.commands&permissions=269872255)"
     },
-    
+
     "rps": {
         "replies": {
             "rock": "Rock",
@@ -295,8 +295,8 @@
     },
 
     "attack": {
-       "attack": "{{user}} attacked {{target}}",
-       "button": "Attack" 
+        "attack": "{{user}} attacked {{target}}",
+        "button": "Attack"
     },
 
     "bet": {
@@ -313,7 +313,7 @@
         "lose": ":moneybag: | {{user}} won {{amount}} FoxCoins! By {{author}}"
     },
 
-    "global" : {
+    "global": {
         "noUser": ":x: | User not found"
     }
 }

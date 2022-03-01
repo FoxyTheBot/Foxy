@@ -23,18 +23,18 @@ export default class VascoCommand extends Command {
         const ctx = canvas.getContext("2d");
 
         const user = interaction.options.getUser("user");
-        if(!user) return interaction.editReply(t('commands:global.noUser'));
+        if (!user) return interaction.editReply(t('commands:global.noUser'));
         const avatar = await Canvas.loadImage(user.displayAvatarURL({ format: "png", size: 512 }))
 
-        ctx.drawImage(vasco,  0, 0, canvas.width, canvas.height);
-        ctx.drawImage(avatar,  50, 75, 200, 200);
+        ctx.drawImage(vasco, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(avatar, 50, 75, 200, 200);
 
         ctx.font = "bold 30px sans-serif";
         ctx.fillStyle = "white";
-        ctx.fillText(user.username,  270,  200);
+        ctx.fillText(user.username, 270, 200);
 
         interaction.editReply({ files: [new MessageAttachment(canvas.toBuffer(), "vasco.png")] });
-        if(user === this.client.user) {
+        if (user === this.client.user) {
             interaction.followUp({ content: 'Isso afeta o Vasco?', files: [new MessageAttachment('https://cdn.discordapp.com/attachments/948014291863359520/948231838118334474/y2mate.com_-_HINO_DO_VASCO_DA_GAMA.mp3', 'vasco.mp3')], ephemeral: true });
         }
     }

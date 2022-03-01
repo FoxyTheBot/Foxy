@@ -23,7 +23,7 @@ export default class PremiumCommand extends Command {
         const user = interaction.options.getUser("user");
         const userData = await this.client.database.getUser(user.id);
 
-        if(!userData) return interaction.editReply({ content: "Não encontrei esse usuário", ephemeral: true });
+        if (!userData) return interaction.editReply({ content: "Não encontrei esse usuário", ephemeral: true });
         switch (command) {
             case "add": {
                 userData.premium = true;

@@ -79,7 +79,7 @@
                     "value": "`/help`"
                 },
 
-                "guild": "Serivdor de suporte", 
+                "guild": "Serivdor de suporte",
                 "privacy": "Política de privacidade",
                 "website": "Meu website onde você pode acessar a dashboard"
             }
@@ -166,7 +166,7 @@
     },
 
     "report": {
-        "success":"Obrigada por me ajudar {{user}}, seu report `{{content}}` foi enviado para o meu desenvolvedor <3"
+        "success": "Obrigada por me ajudar {{user}}, seu report `{{content}}` foi enviado para o meu desenvolvedor <3"
     },
 
     "status": {
@@ -280,7 +280,7 @@
         }
     },
 
-    
+
     "atm": {
         "success": ":moneybag: | **{{user}}** possui {{balance}} FoxCoins"
     },
@@ -317,8 +317,8 @@
     },
 
     "attack": {
-       "attack": "{{user}} atacou {{target}}",
-       "button": "Atacar" 
+        "attack": "{{user}} atacou {{target}}",
+        "button": "Atacar"
     },
 
     "bet": {
@@ -335,7 +335,7 @@
         "lose": ":moneybag: | {{user}} ganhp {{amount}} FoxCoins! Financiado por {{author}}"
     },
 
-    "global" : {
+    "global": {
         "noUser": ":x: | Usuário não encontrado"
     }
 }

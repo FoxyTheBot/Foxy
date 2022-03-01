@@ -26,7 +26,7 @@ export default class EightBallCommand extends Command {
             t('commands:8ball.probablyno'),
             t('commands:8ball.probably')
         ];
-        
+
         const result = results[Math.floor(Math.random() * results.length)];
 
         await interaction.editReply(result)

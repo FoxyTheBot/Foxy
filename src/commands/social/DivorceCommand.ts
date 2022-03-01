@@ -19,18 +19,18 @@ export default class DivorceCommand extends Command {
         const userData = await this.client.database.getUser(interaction.user.id);
         const marriedId = await userData.marriedWith;
 
-        if(!marriedId) return interaction.editReply(t("commands:divorce.notMarried"));
+        if (!marriedId) return interaction.editReply(t("commands:divorce.notMarried"));
 
         const userInfo = await this.client.users.fetch(marriedId);
         const marriedData = await this.client.database.getUser(marriedId);
 
         const row = new MessageActionRow()
-        .addComponents(
-            new MessageButton()
-            .setCustomId("divorce")
-            .setLabel(t("commands:divorce.confirm"))
-            .setStyle("DANGER")
-        )
+            .addComponents(
+                new MessageButton()
+                    .setCustomId("divorce")
+                    .setLabel(t("commands:divorce.confirm"))
+                    .setStyle("DANGER")
+            )
 
         interaction.editReply({ content: t('commands:divorce.confirm2', { user: userInfo.username }), components: [row] });
 

@@ -21,7 +21,7 @@ export default class ShipCommand extends Command {
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
         const user2 = interaction.options.getUser("user2");
-        if(!user || user2) return interaction.editReply(t('commands:global.noUser'));
+        if (!user || user2) return interaction.editReply(t('commands:global.noUser'));
 
         const love = Math.floor(Math.random() * 100);
 
@@ -49,7 +49,7 @@ export default class ShipCommand extends Command {
         } else if (love >= 70) {
             desc = (`:sparkling_heart: ${t('commands:ship.question')} :sparkling_heart:\n\`${user.username}\`\n\`${user2.username}\`\n:neutral_face: \`${shipName}\` ${t('commands:ship.uwu')} :neutral_face:`);
         } else if (love >= 45) {
-            desc = (`:sparkling_heart: ${t('commands:ship.question')} :sparkling_heart:\n\`${user.username}\`\n\`${user2.username}\`\n:no_mouth: \`${shipName}\` ${t('commands:ship.probably', { user: user2.username})} :no_mouth:`);
+            desc = (`:sparkling_heart: ${t('commands:ship.question')} :sparkling_heart:\n\`${user.username}\`\n\`${user2.username}\`\n:no_mouth: \`${shipName}\` ${t('commands:ship.probably', { user: user2.username })} :no_mouth:`);
         } else {
             desc = (`:sparkling_heart: ${t('commands:ship.question')} :sparkling_heart:\n\`${user.username}\`\n\`${user2.username}\`\n:cry: \`${shipName}\` ${t('commands:ship.cry')} :cry: `);
         }

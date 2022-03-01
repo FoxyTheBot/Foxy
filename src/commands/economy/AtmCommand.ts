@@ -3,7 +3,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 
 export default class AtmCommand extends Command {
     constructor(client) {
-        super(client , {
+        super(client, {
             name: "atm",
             description: "View your balance",
             category: "economy",
@@ -17,10 +17,10 @@ export default class AtmCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = await interaction.options.getUser('user') || interaction.user;
-        if(!user) return interaction.editReply(t('commands:global.noUser'));
+        if (!user) return interaction.editReply(t('commands:global.noUser'));
         const userData = await this.client.database.getUser(user.id);
         const balance = userData.balance;
-        
+
         await interaction.editReply(t('commands:atm.success', { user: user.tag, balance: balance.toString() }));
     }
 }

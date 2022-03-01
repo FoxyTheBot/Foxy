@@ -1,6 +1,5 @@
 {
-    "bglist": [
-        {
+    "bglist": [{
             "id": "default",
             "name": "Background padrão",
             "rarity": "Comum",

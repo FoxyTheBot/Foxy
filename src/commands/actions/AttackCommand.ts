@@ -18,7 +18,7 @@ export default class AttachCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = await interaction.options.getUser('user');
-        if(!user) return interaction.editReply(t('commands:global.noUser'));
+        if (!user) return interaction.editReply(t('commands:global.noUser'));
 
         const list = [
             'https://cdn.zerotwo.dev/PUNCH/38a3ab62-17f4-4682-873a-121e886d7bce.gif',

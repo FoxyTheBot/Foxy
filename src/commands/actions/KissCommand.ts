@@ -23,7 +23,7 @@ export default class KissCommand extends Command {
         const img = await neko.sfw.kiss();
         const img2 = await neko.sfw.kiss();
         const user = await interaction.options.getUser("user");
-        if(!user) return interaction.editReply(t('commands:global.noUser'));
+        if (!user) return interaction.editReply(t('commands:global.noUser'));
 
         if (user == this.client.user) return interaction.editReply(t('commands:kiss.self'));
 

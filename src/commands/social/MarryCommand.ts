@@ -18,7 +18,7 @@ export default class MarryCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const mentionedUser = await interaction.options.getUser("user");
-        if(!mentionedUser) return interaction.editReply(t('commands:global.noUser'));
+        if (!mentionedUser) return interaction.editReply(t('commands:global.noUser'));
 
         if (mentionedUser === this.client.user) return interaction.editReply(t('commands:marry.bot'));
         if (mentionedUser === interaction.user) return interaction.editReply(t("commands:marry.self"));

@@ -17,9 +17,9 @@ export default class DblCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const embed = new MessageEmbed()
-        .setColor("BLURPLE")
-        .setTitle(":sparkles: Discord Bot List")
-        .setDescription(`<a:happy_shuffle:768500897483325493> ${t("commands:upvote.description")}`)
+            .setColor("BLURPLE")
+            .setTitle(":sparkles: Discord Bot List")
+            .setDescription(`<a:happy_shuffle:768500897483325493> ${t("commands:upvote.description")}`)
 
         await interaction.editReply({ embeds: [embed] });
     }

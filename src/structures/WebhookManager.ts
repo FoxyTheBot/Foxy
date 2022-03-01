@@ -14,7 +14,7 @@ export default class WebhookManager {
             .setDescription(`${this.client.emotes.heart} **Usuário:** ${interaction.user.tag} / ${interaction.user.id} \n\n ${this.client.emotes.success} **Sugestão:** ${suggestion} \n\n ${this.client.emotes.thumbsup} **Servidor:** ${interaction.guild.name} / ${interaction.guild.id}`)
 
         const suggestWebhook = new WebhookClient({ url: this.client.config.webhooks.suggestions });
-        await suggestWebhook.send({embeds: [suggestEmbed]});
+        await suggestWebhook.send({ embeds: [suggestEmbed] });
     }
 
     async guildCreate(guild): Promise<void> {
@@ -28,7 +28,7 @@ export default class WebhookManager {
                 { name: "📅 | Criado em", value: `\`${guild.createdAt.toLocaleString()}\`` },
             )
         const guildWebhook = new WebhookClient({ url: this.client.config.webhooks.guilds });
-        await guildWebhook.send({embeds: [guildEmbed]});
+        await guildWebhook.send({ embeds: [guildEmbed] });
     }
 
     async guildDelete(guild): Promise<void> {
@@ -36,9 +36,14 @@ export default class WebhookManager {
             .setTitle(`${this.client.emotes.error} | Fui removida de um servidor! :c`)
             .setThumbnail('https://cdn.discordapp.com/attachments/791449801735667713/791450113649410078/tenor.gif')
             .setDescription(`Fui removida do servidor **${guild.name} / ${guild.id}**`)
+            .addFields(
+                { name: "❤ | Nome", value: `\`${guild.name}\`` },
+                { name: "💻 | ID", value: `\`${guild.id}\`` },
+                { name: "📅 | Criado em", value: `\`${guild.createdAt.toLocaleString()}\`` },
+            )
 
         const guildWebhook = new WebhookClient({ url: this.client.config.webhooks.guilds });
-        await guildWebhook.send({embeds: [guildEmbed]});
+        await guildWebhook.send({ embeds: [guildEmbed] });
     }
 
     async sendIssue(interaction, content): Promise<void> {
