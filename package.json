@@ -3,21 +3,32 @@
   "version": "2022.08.16-prerelease",
   "description": "A multi-purpose bot for Discord developed using TypeScript",
   "main": "build/shard.js",
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FoxyTheBot/Foxy.git"
   },
+
   "keywords": [
-    "seu-servidor",
-    "foxy",
-    "typescript"
+    "nodejs",
+    "i18n",
+    "typescript",
+    "bot",
+    "fun",
+    "canvas",
+    "discord",
+    "slash-commands",
+    "multilanguage"
   ],
+
   "author": "WinG4merBR",
   "license": "AGPL-3.0",
+
   "bugs": {
     "url": "https://github.com/FoxyTheBot/Foxy/issues"
   },
   "homepage": "https://github.com/FoxyTheBot/Foxy#readme",
+
   "dependencies": {
     "@types/i18next-fs-backend": "^1.1.2",
     "canvas": "^2.8.0",
@@ -33,6 +44,7 @@
     "topgg-autoposter": "^2.0.1",
     "weather-js": "^2.0.0"
   },
+  
   "devDependencies": {
     "@discordjs/builders": "^0.8.2",
     "@discordjs/rest": "^0.1.0-canary.0",
