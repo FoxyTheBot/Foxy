@@ -27,7 +27,7 @@ export default class LanguageCommand extends Command {
                         {
                             label: "English",
                             value: "en",
-                            emoji: "🇬🇧"
+                            emoji: "🇺🇸"
                         },
                         {
                             label: "Português do Brasil",
@@ -43,7 +43,7 @@ export default class LanguageCommand extends Command {
             .setDescription(t('lang.default'))
             .addFields(
                 { name: ":flag_br:", value: "Português do Brasil", inline: true },
-                { name: ":flag_gb:", value: "English", inline: true }
+                { name: ":flag_us:", value: "English", inline: true }
             )
 
         interaction.editReply({ embeds: [embed], components: [row], ephemeral: true });
