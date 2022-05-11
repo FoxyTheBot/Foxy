@@ -91,7 +91,7 @@
         "button": "View on Roblox"
     },
     "aboutme": {
-        "set": "Your about me has been changed to `{{aboutme}}`"
+        "set": "<:ShiroFoxy:934469525997518848> **|** Your about me has been changed to `{{aboutme}}`"
     },
     "server": {
         "owner": "Owner",
