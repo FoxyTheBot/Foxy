@@ -11,7 +11,7 @@ export default class ProfileCommand extends Command {
             data: new SlashCommandBuilder()
                 .setName("aboutme")
                 .setDescription("[👥 Social] Set your aboutme")
-                .addStringOption(option => option.setName("aboutme").setRequired(true).setDescription("The aboutme"))
+                .addStringOption(option => option.setName("text").setRequired(true).setDescription("Insert something about you"))
         });
     }
 
