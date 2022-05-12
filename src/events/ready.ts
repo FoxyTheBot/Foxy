@@ -28,7 +28,7 @@ export default class Ready {
         /* setInterval(() => {
             const dbl = AutoPoster(this.client.config.dblauth, this.client);
             dbl.on('posted', (stats) => {
-                this.client.WebhookManager.sendLog(stats);
+               console.info("[DBL] - Stats posted!");
             });
         }); */
     }

@@ -7,13 +7,17 @@ export default class GenerateImage {
     private data: any;
     private readonly width: number;
     private readonly height: number;
+    private testMode: boolean;
+    private background: string;
 
-    constructor(client, user, data, width, height) {
+    constructor(client, user, data, width, height, testMode?, background?) {
         this.client = client;
         this.user = user;
         this.data = data;
         this.width = width;
         this.height = height;
+        this.testMode = testMode;
+        this.background = background;
     }
 
     async renderProfile(t): Promise<Buffer> {
@@ -27,8 +31,12 @@ export default class GenerateImage {
 
         const canvas = Canvas.createCanvas(this.width, this.height);
         const ctx = canvas.getContext("2d");
-        const background = await Canvas.loadImage(`https://foxywebsite.xyz/api/backgrounds/${this.data.background}`);
+        var background = await Canvas.loadImage(`https://foxywebsite.xyz/api/backgrounds/${this.data.background}`);
 
+        if (this.testMode) {
+            background = await Canvas.loadImage(`https://foxywebsite.xyz/api/backgrounds/${this.background}`);
+            userAboutme = `${t("commands:profile.testMode")}`;
+        }
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         ctx.strokeStyle = '#74037b';

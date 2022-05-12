@@ -8,7 +8,7 @@
         "title": "❌ | You have been **BANNED**",
         "description": "If you want to do a ban appeal, you need to do this form: (linkdoform) \n\nYou need to read Foxy's [ToS](https://foxywebsite.xyz/privacy)",
         "reason": "Ban reason:",
-        "date": "Ban date:"
+        "date": "Banned since:"
     },
     "messageCreate": {
         "hello": "Hey, I'm Foxy! My prefix is `/ (Slash Commands)`, use `/help` for help!"

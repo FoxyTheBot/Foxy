@@ -2,6 +2,7 @@ import Command from "../../structures/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageEmbed, MessageActionRow, MessageButton, MessageAttachment } from "discord.js";
 import { bglist } from "../../structures/json/backgroundList.json";
+import GenerateImage from "../../structures/GenerateImage";
 
 export default class BackgroundCommand extends Command {
     constructor(client) {
@@ -59,11 +60,11 @@ export default class BackgroundCommand extends Command {
                     .setColor("BLURPLE")
                     .addField(t('commands:background.buy.price'), `${background.foxcoins} FoxCoins`, true)
 
-                const attachment = await new MessageAttachment(`https://foxywebsite.xyz/api/backgrounds/${code}`, 'background.png');
+                const canvasGenerator = new GenerateImage(this.client, interaction.user, userData, 1436, 884, true, code);
+                const attachment = new MessageAttachment(await canvasGenerator.renderProfile(t), "foxy_profile.png");
 
-                bgInfo.setImage("attachment://background.png");
-
-                interaction.editReply({ embeds: [bgInfo], components: [row], files: [attachment] });
+                interaction.editReply({ embeds: [bgInfo], components: [row] });
+                interaction.followUp({ content: t("commands:background.buy.preview"), files: [attachment], ephemeral: true });
 
                 const filter = i => i.customId === 'yes' && i.user.id === interaction.user.id;
                 const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000, max: 1 });

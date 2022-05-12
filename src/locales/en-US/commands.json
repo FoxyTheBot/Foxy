@@ -52,7 +52,8 @@
         "your": "📝 | Your profile",
         "noAboutme": "Foxy is so cute ><! You can change this message using /aboutme command",
         "marriedWith": "💍 Married With {{user}}\n Since {{date}}",
-        "premium": "🔑 Premium since {{date}}"
+        "premium": "🔑 Premium since {{date}}",
+        "testMode": "Your about me will be displayed here"
     },
     "help": {
         "commands": {
@@ -227,6 +228,7 @@
             "onlyDevs": ":x: | Only the developers can buy this background",
             "purchase": "Purchase",
             "price": "Price",
+            "preview": "🖼 | Background Preview",
             "noMoney": ":x: | You don't have enough FoxCoins",
             "sucess": ":moneybag: | You bought the background {{name}} for {{price}} FoxCoins, and it has already been set automatically in your profile! ;3"
         },
