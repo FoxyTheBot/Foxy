@@ -230,7 +230,7 @@
             "price": "Price",
             "preview": "🖼 | Background Preview",
             "noMoney": ":x: | You don't have enough FoxCoins",
-            "sucess": ":moneybag: | You bought the background {{name}} for {{price}} FoxCoins, and it has already been set automatically in your profile! ;3"
+            "success": ":moneybag: | You bought the background {{name}} for {{price}} FoxCoins, and it has already been set automatically in your profile! ;3"
         },
         "set": {
             "title": "🖼 | Background inventory",

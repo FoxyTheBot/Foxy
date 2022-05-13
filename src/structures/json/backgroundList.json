@@ -1,12 +1,12 @@
 {
-    "bglist": [{
+    "bglist": [
+        {
             "id": "default",
             "name": "Background padrão",
             "rarity": "Comum",
             "foxcoins": 0,
             "filename": "default.png",
-            "description": "Background padrão da Foxy",
-            "onlydevs": false
+            "description": "Background padrão da Foxy"
         },
         {
             "id": "fnaf",
@@ -14,8 +14,7 @@
             "rarity": "Comum",
             "foxcoins": 9000,
             "filename": "fnaf.png",
-            "description": "owo o jogo em que a foxy e baseada",
-            "onlydevs": false
+            "description": "owo o jogo em que a foxy eh baseada"
         },
         {
             "id": "gtasa",
@@ -23,8 +22,7 @@
             "rarity": "Raro",
             "foxcoins": 5000,
             "description": "bruh",
-            "filename": "gta_san.png",
-            "onlydevs": false
+            "filename": "gta_san.png"
         },
         {
             "id": "foxyvlogs",
@@ -32,8 +30,7 @@
             "rarity": "Raro",
             "foxcoins": 5000,
             "filename": "foxy_vlogs.png",
-            "description": "Fala galerinha aqui do YouTube quem ta falando com vocês e a sua amiguinha Foxy e hoje eu to aqui com meu amigo Wumpus para gravar um desafio :D e o desafio de hoje sera: logar no Discord as 3:00 da manhã",
-            "onlydevs": false
+            "description": "Fala galerinha aqui do YouTube quem ta falando com vocês e a sua amiguinha Foxy e hoje eu to aqui com meu amigo Wumpus para gravar um desafio :D e o desafio de hoje sera: logar no Discord as 3:00 da manhã"
         },
         {
             "id": "loritta",
@@ -41,8 +38,7 @@
             "rarity": "Lendário",
             "foxcoins": 10000,
             "description": "Loritta foi criada por [MrPowerGamerBR](https://mrpowergamerbr.com) adicione a Loritta clicando [aqui](https://loritta.website/)",
-            "filename": "foxy_e_lori.png",
-            "onlydevs": false
+            "filename": "foxy_e_lori.png"
         },
         {
             "id": "cadeirante",
@@ -50,8 +46,7 @@
             "rarity": "Lendário",
             "foxcoins": 10000,
             "filename": "levi_kyojin.png",
-            "description": "bruh",
-            "onlydevs": false
+            "description": "bruh"
         },
         {
             "id": "red",
@@ -59,8 +54,7 @@
             "rarity": "Lendário",
             "foxcoins": 10000,
             "filename": "red_dead.png",
-            "description": "bruh",
-            "onydevs": false
+            "description": "bruh"
         },
         {
             "id": "silviosantos",
@@ -68,8 +62,7 @@
             "rarity": "Lendário",
             "foxcoins": 10000,
             "filename": "sad_cat_money.png",
-            "description": "El muchacho de los ojos tristes, estás rico e puede comprar muchas REDACTED",
-            "onlydevs": false
+            "description": "El muchacho de los ojos tristes, estás rico e puede comprar muchas REDACTED"
         },
         {
             "id": "sadcat",
@@ -77,8 +70,7 @@
             "rarity": "Lendário",
             "foxcoins": 10000,
             "filename": "sad_cat.png",
-            "description": "El muchacho de los ojos tristes se quedó sin REDACTED",
-            "onlydevs": false
+            "description": "El muchacho de los ojos tristes se quedó sin REDACTED"
         },
         {
             "id": "winxp",
@@ -86,8 +78,7 @@
             "rarity": "Lendário",
             "foxcoins": 10000,
             "filename": "windows_xp.png",
-            "description": "Madobe Saseko passou por aqui!",
-            "onlydevs": false
+            "description": "Madobe Saseko passou por aqui!"
         },
         {
             "id": "win7",
@@ -95,8 +86,7 @@
             "rarity": "Lendário",
             "foxcoins": 11000,
             "filename": "windows_seven.png",
-            "description": "Madobe Nanami passou por aqui!",
-            "onlydevs": false
+            "description": "Madobe Nanami passou por aqui!"
         },
         {
             "id": "win10",
@@ -104,8 +94,7 @@
             "rarity": "Lendário",
             "foxcoins": 12000,
             "filename": "windows10_legacy.png",
-            "description": "Madobe Touko passou por aqui!",
-            "onlydevs": false
+            "description": "Madobe Touko passou por aqui!"
         },
         {
             "id": "win11light",
@@ -113,8 +102,7 @@
             "rarity": "Lendário",
             "foxcoins": 11000,
             "filename": "windows11light.png",
-            "description": ":eyes:",
-            "onlydevs": false
+            "description": ":eyes:"
         },
         {
             "id": "win11dark",
@@ -122,17 +110,15 @@
             "rarity": "Lendário",
             "foxcoins": 11000,
             "filename": "windows11dark.png",
-            "description": ":eyes:",
-            "onlydevs": false
+            "description": ":eyes:"
         },
         {
             "id": "bisfoxy",
             "name": "Bis e Foxy",
             "rarity": "Unknown",
-            "foxcoins": 666,
+            "foxcoins": 1000,
             "filename": "bis_foxy.png",
-            "description": "Bis e a Foxy apenas ;3",
-            "onlydevs": true
+            "description": "Bis e a Foxy apenas ;3"
         }
     ]
 }

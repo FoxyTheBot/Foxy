@@ -33,7 +33,7 @@ export default class BackgroundCommand extends Command {
                     .setTitle(t('commands:background.buy.title'))
 
                 for (const bg of bglist) {
-                    bgDesc = bgDesc + `(${bg.rarity}) **${bg.name}** - ${bg.description}`;
+                    bgDesc = bgDesc + `(${bg.rarity}) **${bg.name}** - **Código:** ${bg.id} - ${bg.foxcoins} FoxCoins\n`;
                 }
                 bgList.setDescription(bgDesc);
                 if (!code) return interaction.editReply({ embeds: [bgList] });
@@ -44,7 +44,6 @@ export default class BackgroundCommand extends Command {
 
                 const bg = await userData.backgrounds;
                 if (bg.includes(code)) return interaction.editReply(t('commands:background.buy.alreadyOwned'));
-                if (background.onlydevs && !this.client.config.owners.includes(interaction.user.id)) return interaction.editReply(t('commands:background.buy.onlyDevs'));
 
                 const row = new MessageActionRow()
                     .addComponents(
