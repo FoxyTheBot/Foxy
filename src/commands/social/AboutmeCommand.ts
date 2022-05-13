@@ -16,7 +16,7 @@ export default class ProfileCommand extends Command {
     }
 
     async execute(interaction, t): Promise<void> {
-        const aboutme = interaction.options.getString("aboutme");
+        const aboutme = interaction.options.getString("text");
         const userData = await this.client.database.getUser(interaction.user.id);
 
         userData.aboutme = aboutme;
