@@ -79,7 +79,7 @@ export default class BackgroundCommand extends Command {
                             userData.background = code;
                             userData.backgrounds.push(code);
                             userData.save();
-                            interaction.followUp({ content: t('commands:background.buy.success', { name: background.name, price: background.foxcoins }), ephemeral: true });
+                            interaction.followUp({ content: t('commands:background.buy.success', { name: background.name, price: background.foxcoins.toString() }), ephemeral: true });
                             i.deferUpdate();
                             return collector.stop();
                         }
@@ -105,7 +105,7 @@ export default class BackgroundCommand extends Command {
                     if (!background) return interaction.editReply(t('commands:background.buy.invalid'));
                     const backgrounds = await userData.backgrounds;
 
-                    if (backgrounds.include(code)) {
+                    if (backgrounds.includes(code)) {
                         userData.background = code;
                         userData.save();
                         interaction.editReply(t('commands:background.set.success', { name: background.name }));
