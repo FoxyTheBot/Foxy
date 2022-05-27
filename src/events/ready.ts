@@ -25,11 +25,11 @@ export default class Ready {
 
         // If your bot is in top.gg, you can uncomment this
 
-        /* setInterval(() => {
+        setInterval(() => {
             const dbl = AutoPoster(this.client.config.dblauth, this.client);
             dbl.on('posted', (stats) => {
-               console.info("[DBL] - Stats posted!");
+                console.info("[DBL] - Stats posted!");
             });
-        }); */
+        }, 86400000);
     }
 }

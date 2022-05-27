@@ -61,7 +61,7 @@
                 "economy": "Economia",
                 "social": "Social",
                 "fun": "Diversão",
-                "images": "Imagens",
+                "image": "Imagens",
                 "misc": "Outros",
                 "utils": "Utilitários",
                 "rp": "Roleplay"
@@ -180,9 +180,9 @@
     },
     "rps": {
         "replies": {
-            "rock": "Pedra",
-            "paper": "Papel",
-            "scissors": "Tesoura"
+            "rock": "pedra",
+            "paper": "papel",
+            "scissors": "tesoura"
         },
         "tie": "Deu empate, vamos de novo! >:D",
         "invalidChoice": ":x: | Escolha inválida, escolha {{choice}}",

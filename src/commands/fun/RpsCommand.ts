@@ -16,7 +16,7 @@ export default class RpsCommand extends Command {
     }
 
     async execute(interaction, t): Promise<void> {
-        const string = interaction.options.getString("text");
+        const string = await interaction.options.getString("choice").toLowerCase();
         const acceptedReplies = [t('commands:rps.replies.rock'), t('commands:rps.replies.paper'), t('commands:rps.replies.scissors')];
 
         const random = Math.floor((Math.random() * acceptedReplies.length));

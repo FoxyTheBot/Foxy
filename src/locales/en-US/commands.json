@@ -169,9 +169,9 @@
     },
     "rps": {
         "replies": {
-            "rock": "Rock",
-            "paper": "Paper",
-            "scissors": "Scissors"
+            "rock": "rock",
+            "paper": "paper",
+            "scissors": "scissors"
         },
         "tie": "It's a tie!",
         "invalidChoice": "Invalid choice",
