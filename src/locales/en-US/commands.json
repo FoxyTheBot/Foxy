@@ -240,7 +240,7 @@
         }
     },
     "atm": {
-        "success": ":moneybag: | **{{user}}** have {{balance}} FoxCoins"
+        "success": ":moneybag: | **{{user}}** has {{balance}} FoxCoins"
     },
     "step": {
         "success": "You stepped on {{user}}"
