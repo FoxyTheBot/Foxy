@@ -1,7 +1,6 @@
 import Command from "../../structures/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
-import axios from "axios";
 
 export default class FoxCoins extends Command {
     constructor(client) {

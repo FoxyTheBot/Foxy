@@ -13,6 +13,5 @@ export default class MessageCreate {
         let t = global.t = i18next.getFixedT(user.locale || 'en-US');
 
         if (message.content === `<@${this.client.user.id}>` || message.content === `<@!${this.client.user.id}>`) message.channel.send(`${message.author} ${t('events:messageCreate.hello')}!`);
-
     }
 }
