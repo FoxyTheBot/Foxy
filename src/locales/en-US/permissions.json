@@ -37,5 +37,7 @@
     "CREATE_PRIVATE_THREADS": "Create Private Threads",
     "USE_EXTERNAL_STICKERS": "Use External Stickers",
     "START_EMBEDDED_ACTIVITIES": "Start Embedded Activities",
-    "MODERATE_MEMBERS": "Moderate Members"
+    "MODERATE_MEMBERS": "Moderate Members",
+    "SEND_MESSAGES_IN_THREADS": "Send Messages in Threads",
+    "USE_APPLICATION_COMMANDS": "Use Application Commands"
 }

@@ -37,5 +37,7 @@
   "CREATE_PRIVATE_THREADS": "Criar Tópicos Privados",
   "USE_EXTERNAL_STICKERS": "Usar Stickers Externos",
   "START_EMBEDDED_ACTIVITIES": "Iniciar Atividades Integradas",
-  "MODERATE_MEMBERS": "Moderar Membros"
+  "MODERATE_MEMBERS": "Moderar Membros",
+  "SEND_MESSAGES_IN_THREADS": "Enviar Mensagens em Tópicos",
+  "USE_APPLICATION_COMMANDS": "Usar Comandos de Aplicação"
 }
