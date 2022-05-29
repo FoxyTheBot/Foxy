@@ -99,7 +99,7 @@ export default class ProfileCommand extends Command {
                         const permissions = member.permissions.toArray();
                         const embed = new MessageEmbed()
                             .setTitle(t('commands:user.member.permissions.title', { user: user.username }))
-                            .setDescription(permissions.map(p => `\`${p}\``).join(", "))
+                            .setDescription(permissions.map(p => `\`${t(`permissions:${p}`)}\``).join(", "))
                             .setColor(0x00ff00)
                         interaction.followUp({ embeds: [embed], ephemeral: true });
                         i.deferUpdate();
