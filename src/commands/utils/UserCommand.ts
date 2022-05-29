@@ -77,7 +77,7 @@ export default class ProfileCommand extends Command {
                 }
 
                 const filter = i => i.customId === 'avatar' && i.user.id === interaction.user.id;
-                const avatarCollector = interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 15000 });
+                const avatarCollector = interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 5000 });
 
                 avatarCollector.on('collect', async i => {
                     if (i.customId === 'avatar') {
