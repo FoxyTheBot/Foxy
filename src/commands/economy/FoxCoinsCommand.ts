@@ -13,7 +13,7 @@ export default class FoxCoins extends Command {
                 .setName("foxcoins")
                 .setDescription("[💰 Economy] Subcommands for FoxCoins")
                 .addSubcommand(subcommand => subcommand.setName("atm").setDescription("[💰 Economy] See your FoxCoins").addUserOption(option => option.setName("user").setDescription("User you want to see the balance")))
-                .addSubcommand(subcommand => subcommand.setName("rank").setDescription("[💰 Economy] Get the FoxCoins rank").addNumberOption(option => option.setName("page").setDescription("Rank page").setRequired(false)))
+                .addSubcommand(subcommand => subcommand.setName("rank").setDescription("[💰 Economy] Get the FoxCoins rank"))
                 .addSubcommand(subcommand => subcommand.setName("transfer").setDescription("[💰 Economy] Transfer your FoxCoins to another user").addUserOption(option => option.setName("user").setDescription("User you want to transfer the balance").setRequired(true)).addNumberOption(option => option.setName("amount").setDescription("Amount of FoxCoins").setRequired(true)))
         });
     }
@@ -35,21 +35,18 @@ export default class FoxCoins extends Command {
                 const embed = new MessageEmbed();
 
                 data = data.sort((a, b) => b.balance - a.balance);
-                let position = parseInt(data.map(m => m._id).indexOf(interaction.user.id)) + 1,
-                    currentPage = Number(!interaction.options.getNumber('page') ? 0 : interaction.options.getNumber('page') - 1);
-
-                if (currentPage < 0 || currentPage > 5) return interaction.reply({ content: t('commands:rank.wrongPage'), ephemeral: true });
+                let position = parseInt(data.map(m => m._id).indexOf(interaction.user.id)) + 1;
 
                 embed.setTitle(`${this.client.emotes.daily} | FoxCoins Global Rank`)
                     .setColor('BLURPLE')
                     .setDescription(`${this.client.emotes.sunglass} | ${t('commands:rank.youAreIn')} ${`${position}º` || 'Sad™'} ${t('commands:rank.position')}`)
                 for (let i in data) {
-                    i = i + (currentPage * 5);
-                    if ((Number(i) - currentPage * 5) > 4) break;
+                    if (Number(i) > 14) break;
                     let user = await this.client.users.fetch(data[i]._id);
-                    embed.addField(`${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - \`${user.tag}\``, `**${parseInt(data[i].balance)}** FoxCoins`);
+                    embed.addField(`${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - \`${user.tag}\``, `**${parseInt(data[i].balance)}** FoxCoins`, true);
                 }
-                interaction.reply({ embeds: [embed] });
+                await interaction.deferReply();
+                await interaction.editReply({ embeds: [embed] });
                 break;
             }
 
