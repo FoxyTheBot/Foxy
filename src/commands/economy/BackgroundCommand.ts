@@ -66,7 +66,7 @@ export default class BackgroundCommand extends Command {
                 interaction.followUp({ content: t("commands:background.buy.preview"), files: [attachment], ephemeral: true });
 
                 const filter = i => i.customId === 'yes' && i.user.id === interaction.user.id;
-                const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000, max: 1 });
+                const collector = interaction.channel.createMessageComponentCollector({ filter, time: 5000, max: 1 });
 
                 collector.on('collect', async i => {
                     if (i.customId === 'yes') {

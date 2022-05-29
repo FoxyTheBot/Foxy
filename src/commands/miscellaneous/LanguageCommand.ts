@@ -40,16 +40,12 @@ export default class LanguageCommand extends Command {
         const embed = new MessageEmbed()
             .setColor("BLURPLE")
             .setTitle(t('lang.title'))
-            .setDescription(t('lang.default'))
-            .addFields(
-                { name: ":flag_br:", value: "Português do Brasil", inline: true },
-                { name: ":flag_us:", value: "English", inline: true }
-            )
+            .setDescription(`${t('lang.default')} \n\n :flag_br: Português do Brasil\n :flag_us: English`)
 
         interaction.reply({ embeds: [embed], components: [row], ephemeral: true });
 
         const filter = (choice, user) => user.id === interaction.user.id && interaction.customId === 'select';
-        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000, max: 1 });
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 5000, max: 1 });
 
         collector.on('collect', i => {
             const selectMenuValue = i.values[0];
