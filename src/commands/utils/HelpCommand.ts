@@ -34,7 +34,7 @@ export default class HelpCommand extends Command {
                         { name: `<:DiscordStaff:731947814246154240> ${t('commands:help.commands.category.utils')} (${this.getSize("utils")})`, value: this.getCategory("utils"), inline: true },
                     )
 
-                await interaction.editReply({ embeds: [embed] });
+                await interaction.reply({ embeds: [embed] });
                 break;
             }
 
@@ -49,7 +49,7 @@ export default class HelpCommand extends Command {
                     .addField(t('commands:help.bot.fields.privacy'), 'https://foxywebsite.xyz/privacy')
                     .addField(t('commands:help.bot.fields.website'), 'https://foxywebsite.xyz/');
 
-                await interaction.editReply({ embeds: [embed] });
+                await interaction.reply({ embeds: [embed] });
             }
         }
     }

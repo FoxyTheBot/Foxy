@@ -19,7 +19,7 @@ export default class GirlfriendCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
-        if (!user) return interaction.editReply(t('commands:global.noUser'));
+        if (!user) return interaction.reply(t('commands:global.noUser'));
 
         var avatar;
         if (!user) {
@@ -37,6 +37,6 @@ export default class GirlfriendCommand extends Command {
         ctx.drawImage(avatarImg, 20, 170, 200, 200);
 
         const attachment = new MessageAttachment(canvas.toBuffer(), 'minha_namorada.png');
-        await interaction.editReply({ files: [attachment] });
+        await interaction.reply({ files: [attachment] });
     }
 }

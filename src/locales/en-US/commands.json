@@ -112,12 +112,31 @@
         "info": {
             "tag": "User Tag",
             "createdAt": "Created at",
-            "userId": "User ID"
+            "userId": "User ID",
+            "avatar": "View user avatar",
+            "viewMember": "View member info",
+            "noMember": "This user is not in this server"
         },
         "avatar": {
             "click": "View on browser",
             "title": "{{user}}'s Avatar",
             "footer": "So cute >3<"
+        },
+        "banner": {
+            "click": "View on browser",
+            "title": "{{user}}'s Banner"
+        },
+        "member": {
+            "title": "{{user}}'s Member info",
+            "joinedAt": ":sparkles: Joined At",
+            "role": "👮‍♂️ Roles",
+            "nickname": "<:foxyhearteyes:979812541519765514> Nickname in this server",
+            "noNickname": "This user has no nickname in this server",
+            "permissions": {
+                "button": "Permissions",
+                "list": "Permissions list",
+                "title": "{{user}}'s permissions"
+            }
         }
     },
     "ship": {
@@ -191,7 +210,7 @@
         "result": ":sparkles: | In a parallel universe {{user}} and {{mention}} are {{fate}}"
     },
     "cancel": {
-        "result": ":sob: | {{user}} canceled {{mention}} for reason `{{string}}`"
+        "result": ":sob: | {{user}} canceled {{mention}} for reason `{{reason}}`"
     },
     "8ball": {
         "yes": "Yes",

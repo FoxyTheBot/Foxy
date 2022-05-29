@@ -40,6 +40,6 @@ export default class SpongebobCommand extends Command {
 
         const attachment = new MessageAttachment(canvas.toBuffer(), 'esponja.png');
 
-        await interaction.editReply({ files: [attachment] });
+        await interaction.reply({ files: [attachment] });
     }
 }

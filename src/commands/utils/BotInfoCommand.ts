@@ -31,6 +31,6 @@ export default class BotInfoCommand extends Command {
             .setThumbnail(this.client.user.displayAvatarURL({ format: "png", dynamic: true }))
             .setImage("https://c.tenor.com/GaBV0ykyRLYAAAAC/kawaii-fnaf.gif")
 
-        interaction.editReply({ embeds: [embed] });
+        interaction.reply({ embeds: [embed] });
     }
 }

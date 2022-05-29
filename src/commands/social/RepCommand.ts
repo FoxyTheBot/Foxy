@@ -17,8 +17,8 @@ export default class RepCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = await interaction.options.getUser("user");
-        if (!user) return interaction.editReply(t('commands:global.noUser'));
-        if (user === interaction.user) return interaction.editReply(t("commands:rep.self"));
+        if (!user) return interaction.reply(t('commands:global.noUser'));
+        if (user === interaction.user) return interaction.reply(t("commands:rep.self"));
 
         const userData = await this.client.database.getUser(user.id);
         const authorData = await this.client.database.getUser(interaction.user.id);
@@ -27,13 +27,13 @@ export default class RepCommand extends Command {
 
         if (repCooldown - (Date.now() - authorData.lastRep) > 0) {
             const currentCooldown = ms(repCooldown - (Date.now() - authorData.lastRep));
-            return interaction.editReply(t("commands:rep.cooldown", { cooldown: currentCooldown }));
+            return interaction.reply(t("commands:rep.cooldown", { cooldown: currentCooldown }));
         } else {
             userData.repCount++;
             authorData.lastRep = Date.now();
             authorData.save();
             userData.save();
-            return interaction.editReply(t("commands:rep.success", { user: user.username }));
+            return interaction.reply(t("commands:rep.success", { user: user.username }));
         }
     }
 }

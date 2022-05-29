@@ -20,6 +20,6 @@ export default class InviteCommand extends Command {
             .setColor("BLURPLE")
             .setDescription(t('commands:invite.description'))
 
-        await interaction.editReply({ embeds: [embed] });
+        await interaction.reply({ embeds: [embed] });
     }
 }

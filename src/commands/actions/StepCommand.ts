@@ -18,7 +18,7 @@ export default class StepCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
-        if (!user) return interaction.editReply(t('commands:global.noUser'));
+        if (!user) return interaction.reply(t('commands:global.noUser'));
 
         const list = [
             'https://cdn.discordapp.com/attachments/745396328351268885/776930400990920734/6a0.gif',
@@ -33,6 +33,6 @@ export default class StepCommand extends Command {
             .setDescription(t('commands:step.success', { user: user.username }))
             .setImage(rand)
 
-        await interaction.editReply({ embeds: [embed] });
+        await interaction.reply({ embeds: [embed] });
     }
 }

@@ -21,7 +21,7 @@ export default class AnimeCommand extends Command {
         const search = await interaction.options.getString("anime");
 
         malScraper.getInfoFromName(search).then(async (data) => {
-            if (!data) return interaction.editReply(t("commands:anime.notFound"));
+            if (!data) return interaction.reply(t("commands:anime.notFound"));
             const embed = new MessageEmbed()
                 .setTitle(data.title)
                 .setURL(data.url)
@@ -43,9 +43,9 @@ export default class AnimeCommand extends Command {
                 .addField(t("commands:anime.info.premiered"), data.premiered || t("commands:anime.nothing"), true)
                 .addField(t("commands:anime.info.broadcast"), data.broadcast || t("commands:anime.nothing"), true)
 
-            interaction.editReply({ embeds: [embed] });
+            interaction.reply({ embeds: [embed] });
         }).catch((err) => {
-            interaction.editReply(t("commands:anime.notFound"));
+            interaction.reply(t("commands:anime.notFound"));
         });
 
     }

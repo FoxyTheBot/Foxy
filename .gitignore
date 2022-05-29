@@ -12,3 +12,6 @@ config.json
 
 ## Compiled files
 build
+
+## Assets
+/src/assets

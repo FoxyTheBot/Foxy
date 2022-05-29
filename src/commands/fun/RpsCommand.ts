@@ -22,21 +22,21 @@ export default class RpsCommand extends Command {
         const random = Math.floor((Math.random() * acceptedReplies.length));
         const result = acceptedReplies[random];
 
-        if (!acceptedReplies.includes(string)) return interaction.editReply(t('commands:rps.invalidChoice', { choice: acceptedReplies.join(', ') }));
-        if (result === string) return interaction.editReply(t('commands:rps.tie'));
+        if (!acceptedReplies.includes(string)) return interaction.reply(t('commands:rps.invalidChoice', { choice: acceptedReplies.join(', ') }));
+        if (result === string) return interaction.reply(t('commands:rps.tie'));
 
         switch (string) {
             case t('commands:rps.replies.rock'): {
-                if (result === t('commands:rps.replies.paper')) return interaction.editReply(t('commands:rps.clientWon', { result: result }));
-                return interaction.editReply(t('commands:rps.won3'));
+                if (result === t('commands:rps.replies.paper')) return interaction.reply(t('commands:rps.clientWon', { result: result }));
+                return interaction.reply(t('commands:rps.won3'));
             }
             case t('commands:rps.replies.paper'): {
-                if (result === t('commands:rps.replies.scissors')) return interaction.editReply(t('commands:rps.clientWon', { result: result }));
-                return interaction.editReply(t('commands:rps.won2'));
+                if (result === t('commands:rps.replies.scissors')) return interaction.reply(t('commands:rps.clientWon', { result: result }));
+                return interaction.reply(t('commands:rps.won2'));
             }
             case t('commands:rps.replies.scissors'): {
-                if (result === t('commands:rps.replies.rock')) return interaction.editReply(t('commands:rps.clientWon', { result: result }));
-                return interaction.editReply(t('commands:rps.won'));
+                if (result === t('commands:rps.replies.rock')) return interaction.reply(t('commands:rps.clientWon', { result: result }));
+                return interaction.reply(t('commands:rps.won'));
             }
         }
     }

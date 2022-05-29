@@ -40,6 +40,6 @@ export default class StonksCommand extends Command {
 
         const attachment = new MessageAttachment(canvas.toBuffer(), 'stonks.png');
 
-        await interaction.editReply({ files: [attachment] });
+        await interaction.reply({ files: [attachment] });
     }
 }

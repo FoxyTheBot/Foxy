@@ -19,7 +19,7 @@ export default class SlapCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
-        if (!user) return interaction.editReply(t('commands:global.noUser'));
+        if (!user) return interaction.reply(t('commands:global.noUser'));
 
         const neko = new NekosLife();
 
@@ -36,7 +36,7 @@ export default class SlapCommand extends Command {
         const embed = new MessageEmbed()
             .setDescription(t('commands:slap.success', { target: user.username, author: interaction.user.username }))
             .setImage(slap.url)
-        await interaction.editReply({ embeds: [embed], components: [row] });
+        await interaction.reply({ embeds: [embed], components: [row] });
 
         const filter = i => i.customId === "slap" && i.user.id === user.id;
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });

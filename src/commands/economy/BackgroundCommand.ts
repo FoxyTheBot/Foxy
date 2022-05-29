@@ -36,14 +36,14 @@ export default class BackgroundCommand extends Command {
                     bgDesc = bgDesc + `(${bg.rarity}) **${bg.name}** - **Código:** ${bg.id} - ${bg.foxcoins} FoxCoins\n`;
                 }
                 bgList.setDescription(bgDesc);
-                if (!code) return interaction.editReply({ embeds: [bgList] });
+                if (!code) return interaction.reply({ embeds: [bgList] });
 
                 const background = await bglist.find((index) => index.id === code?.toLowerCase());
 
-                if (!background) return interaction.editReply(t('commands:background.buy.invalid'));
+                if (!background) return interaction.reply(t('commands:background.buy.invalid'));
 
                 const bg = await userData.backgrounds;
-                if (bg.includes(code)) return interaction.editReply(t('commands:background.buy.alreadyOwned'));
+                if (bg.includes(code)) return interaction.reply(t('commands:background.buy.alreadyOwned'));
 
                 const row = new MessageActionRow()
                     .addComponents(
@@ -62,7 +62,7 @@ export default class BackgroundCommand extends Command {
                 const canvasGenerator = new GenerateImage(this.client, interaction.user, userData, 1436, 884, true, code);
                 const attachment = new MessageAttachment(await canvasGenerator.renderProfile(t), "foxy_profile.png");
 
-                interaction.editReply({ embeds: [bgInfo], components: [row] });
+                interaction.reply({ embeds: [bgInfo], components: [row] });
                 interaction.followUp({ content: t("commands:background.buy.preview"), files: [attachment], ephemeral: true });
 
                 const filter = i => i.customId === 'yes' && i.user.id === interaction.user.id;
@@ -99,18 +99,18 @@ export default class BackgroundCommand extends Command {
                         .setTitle(t('commands:background.set.title'))
                         .setDescription(t('commands:background.set.description', { bgList }))
 
-                    await interaction.editReply({ embeds: [embed] });
+                    await interaction.reply({ embeds: [embed] });
                 } else {
                     const background = await bglist.find((index) => index.id === code?.toLowerCase());
-                    if (!background) return interaction.editReply(t('commands:background.buy.invalid'));
+                    if (!background) return interaction.reply(t('commands:background.buy.invalid'));
                     const backgrounds = await userData.backgrounds;
 
                     if (backgrounds.includes(code)) {
                         userData.background = code;
                         userData.save();
-                        interaction.editReply(t('commands:background.set.success', { name: background.name }));
+                        interaction.reply(t('commands:background.set.success', { name: background.name }));
                     } else {
-                        interaction.editReply(t('commands:background.set.notOwned'));
+                        interaction.reply(t('commands:background.set.notOwned'));
                     }
 
                 }

@@ -6,6 +6,5 @@ export default class GuildDelete {
 
     async run(guild): Promise<void> {
         this.client.WebhookManager.guildDelete(guild);
-        await this.client.database.deleteGuild(guild.id);
     }
 }

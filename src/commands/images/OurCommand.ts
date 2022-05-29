@@ -38,6 +38,6 @@ export default class PerfectCommand extends Command {
         ctx.clip();
 
         const attachment = new MessageAttachment(canvas.toBuffer(), 'ourchip.png');
-        await interaction.editReply({ files: [attachment] });
+        await interaction.reply({ files: [attachment] });
     }
 }

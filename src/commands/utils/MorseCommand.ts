@@ -46,6 +46,6 @@ export default class MorseCommand extends Command {
         const morseEmbed = new MessageEmbed()
             .setDescription(`:point_right::radio: \n \`\`\`${text}\`\`\``);
 
-        await interaction.editReply({ embeds: [morseEmbed] });
+        await interaction.reply({ embeds: [morseEmbed] });
     }
 }

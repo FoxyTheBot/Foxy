@@ -19,7 +19,7 @@ export default class DivorceCommand extends Command {
         const userData = await this.client.database.getUser(interaction.user.id);
         const marriedId = await userData.marriedWith;
 
-        if (!marriedId) return interaction.editReply(t("commands:divorce.notMarried"));
+        if (!marriedId) return interaction.reply(t("commands:divorce.notMarried"));
 
         const userInfo = await this.client.users.fetch(marriedId);
         const marriedData = await this.client.database.getUser(marriedId);
@@ -32,7 +32,7 @@ export default class DivorceCommand extends Command {
                     .setStyle("DANGER")
             )
 
-        interaction.editReply({ content: t('commands:divorce.confirm2', { user: userInfo.username }), components: [row] });
+        interaction.reply({ content: t('commands:divorce.confirm2', { user: userInfo.username }), components: [row] });
 
         const filter = i => i.customId === "divorce" && i.user.id === interaction.user.id;
         const collector = await interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 60000 });

@@ -21,7 +21,7 @@ export default class PatCommand extends Command {
         const neko = new NekosLife();
 
         const user = interaction.options.getUser("user");
-        if (!user) return interaction.editReply(t('commands:global.noUser'));
+        if (!user) return interaction.reply(t('commands:global.noUser'));
 
         const gif = await neko.sfw.pat();
         const gif2 = await neko.sfw.pat();
@@ -39,7 +39,7 @@ export default class PatCommand extends Command {
             .setDescription(t('commands:pat.success', { user: user.username, author: interaction.user.username }))
             .setImage(gif.url)
 
-        await interaction.editReply({ embeds: [embed], components: [row] });
+        await interaction.reply({ embeds: [embed], components: [row] });
 
         const filter = i => i.customId == "pat" && i.user.id == user.id;
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000, max: 1 });

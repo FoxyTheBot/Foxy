@@ -17,7 +17,7 @@ export default class FateCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
-        if (!user) return interaction.editReply(t('commands:global.noUser'));
+        if (!user) return interaction.reply(t('commands:global.noUser'));
 
         const list = [
             t('commands:fate.couple'),
@@ -30,6 +30,6 @@ export default class FateCommand extends Command {
         ]
 
         const rand = list[Math.floor(Math.random() * list.length)];
-        await interaction.editReply(t('commands:fate.result', { user: user.username, fate: rand, mention: user }));
+        await interaction.reply(t('commands:fate.result', { user: user.username, fate: rand, mention: user }));
     }
 }

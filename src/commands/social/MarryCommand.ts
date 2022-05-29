@@ -18,17 +18,17 @@ export default class MarryCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const mentionedUser = await interaction.options.getUser("user");
-        if (!mentionedUser) return interaction.editReply(t('commands:global.noUser'));
+        if (!mentionedUser) return interaction.reply(t('commands:global.noUser'));
 
-        if (mentionedUser === this.client.user) return interaction.editReply(t('commands:marry.bot'));
-        if (mentionedUser === interaction.user) return interaction.editReply(t("commands:marry.self"));
+        if (mentionedUser === this.client.user) return interaction.reply(t('commands:marry.bot'));
+        if (mentionedUser === interaction.user) return interaction.reply(t("commands:marry.self"));
         const authorData = await this.client.database.getUser(interaction.user.id);
-        if (authorData.marriedWith) return interaction.editReply(t("commands:marry.alreadyMarried", { user: mentionedUser.username }));
-        if (mentionedUser === this.client.user) return interaction.editReply(t('commands:marry.bot'));
-        if (mentionedUser.id === authorData.marriedWith) return interaction.editReply(t('commands:marry.alreadyMarriedWithUser', { user: mentionedUser.username }));
+        if (authorData.marriedWith) return interaction.reply(t("commands:marry.alreadyMarried", { user: mentionedUser.username }));
+        if (mentionedUser === this.client.user) return interaction.reply(t('commands:marry.bot'));
+        if (mentionedUser.id === authorData.marriedWith) return interaction.reply(t('commands:marry.alreadyMarriedWithUser', { user: mentionedUser.username }));
 
         const userData = await this.client.database.getUser(mentionedUser.id);
-        if (userData.marriedWith) return interaction.editReply(t("commands:marry.alreadyMarriedWithSomeone"));
+        if (userData.marriedWith) return interaction.reply(t("commands:marry.alreadyMarriedWithSomeone"));
 
         const row = new MessageActionRow()
             .addComponents(
@@ -37,7 +37,7 @@ export default class MarryCommand extends Command {
                     .setLabel(t("commands:marry.accept"))
                     .setStyle("SUCCESS"),
             )
-        interaction.editReply({ content: `${this.client.emotes.heart} | ${t('commands:marry.ask', { user: mentionedUser.username, author: interaction.user.username })}`, components: [row] });
+        interaction.reply({ content: `${this.client.emotes.heart} | ${t('commands:marry.ask', { user: mentionedUser.username, author: interaction.user.username })}`, components: [row] });
 
         const filter = i => i.customId === "accept" && i.user.id === mentionedUser.id;
         const collector = await interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 60000 });

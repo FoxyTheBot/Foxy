@@ -21,6 +21,6 @@ export default class DblCommand extends Command {
             .setTitle(":sparkles: Discord Bot List")
             .setDescription(`<a:happy_shuffle:768500897483325493> ${t("commands:upvote.description")}`)
 
-        await interaction.editReply({ embeds: [embed] });
+        await interaction.reply({ embeds: [embed] });
     }
 }

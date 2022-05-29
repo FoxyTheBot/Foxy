@@ -81,28 +81,6 @@ export default class DatabaseConnection {
         return document;
     }
 
-    async getGuild(guildId: string): Promise<void> {
-        let document = await this.guild.findOne({ _id: guildId });
-
-        if (!document) {
-            document = new this.guild({
-                _id: guildId,
-                guildCreationTimestamp: Date.now(),
-                partner: false,
-                disabledCommands: [],
-                disabledChannels: [],
-                lang: 'pt-BR'
-            }).save();
-        }
-
-        return document;
-    }
-
-    async deleteGuild(guildId: string): Promise<void> {
-        const guildData = await this.guild.findOne({ _id: guildId });
-        return guildData.remove();
-    }
-
     async getAllUsers(): Promise<void> {
         let usersData = await this.user.find({});
         return usersData.map(user => user.toJSON());

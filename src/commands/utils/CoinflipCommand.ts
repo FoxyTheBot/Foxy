@@ -18,6 +18,6 @@ export default class CoinflipCommand extends Command {
         const coinflip = ["heads", "tails"];
         const coin = coinflip[Math.floor(Math.random() * coinflip.length)];
 
-        await interaction.editReply(`${t("commands:coinflip.flipped")} **${t(`commands:coinflip.${coin}`)}**`);
+        await interaction.reply(`${t("commands:coinflip.flipped")} **${t(`commands:coinflip.${coin}`)}**`);
     }
 }

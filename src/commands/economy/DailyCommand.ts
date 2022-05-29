@@ -29,7 +29,7 @@ export default class DailyCommand extends Command {
         const daily = await userData.lastDaily;
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
             const currentCooldown = ms(timeout - (Date.now() - daily));
-            return interaction.editReply(t('commands:daily.cooldown', { time: currentCooldown }));
+            return interaction.reply(t('commands:daily.cooldown', { time: currentCooldown }));
 
         } else {
 
@@ -40,9 +40,9 @@ export default class DailyCommand extends Command {
             const money = await userData.balance;
 
             if (userData.premium) {
-                interaction.editReply(`${this.client.emotes.daily} **|** ${t('commands:daily.premium', { amount: amount.toString(), money: money.toString(), normalMoney: `${amount - 500}` })}`);
+                interaction.reply(`${this.client.emotes.daily} **|** ${t('commands:daily.premium', { amount: amount.toString(), money: money.toString(), normalMoney: `${amount - 500}` })}`);
             } else {
-                interaction.editReply(`${this.client.emotes.daily} **|** ${t('commands:daily.daily', { amount: amount.toString(), money: money.toString() })}`)
+                interaction.reply(`${this.client.emotes.daily} **|** ${t('commands:daily.daily', { amount: amount.toString(), money: money.toString() })}`)
             }
         }
     }

@@ -34,7 +34,7 @@ export default class WeatherCommand extends Command {
                 .addField(t('commands:weather.feelslike'), `${result.current.feelslike}°`, true)
                 .addField(t('commands:weather.humidity'), `${result.current.humidity}%`, true);
 
-            await interaction.editReply({ embeds: [weatherEmbed] });
+            await interaction.reply({ embeds: [weatherEmbed] });
         });
     }
 }

@@ -20,7 +20,7 @@ export default class HugCommand extends Command {
     async execute(interaction, t): Promise<void> {
         const neko = new NekosLife();
         const user = await interaction.options.getUser("user");
-        if (!user) return interaction.editReply(t('commands:global.noUser'));
+        if (!user) return interaction.reply(t('commands:global.noUser'));
 
         const img = await neko.sfw.hug();
         const img2 = await neko.sfw.hug();
@@ -38,7 +38,7 @@ export default class HugCommand extends Command {
                     .setStyle("PRIMARY")
             )
 
-        await interaction.editReply({ embeds: [hugEmbed], components: [row] });
+        await interaction.reply({ embeds: [hugEmbed], components: [row] });
 
         const filter = i => i.customId === 'primary' && i.user.id === user.id;
         const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000, max: 1 });

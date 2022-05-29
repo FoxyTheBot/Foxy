@@ -21,7 +21,7 @@ export default class ShipCommand extends Command {
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
         const user2 = interaction.options.getUser("user2");
-        if (!user || user2) return interaction.editReply(t('commands:global.noUser'));
+        if (!user || !user2) return interaction.reply(t('commands:global.noUser'));
 
         const love = Math.floor(Math.random() * 100);
 
@@ -77,6 +77,6 @@ export default class ShipCommand extends Command {
         const shipEmbed = new MessageEmbed()
             .setDescription(`**${love}%** [\`${loveLevel}\`]`)
             .setImage("attachment://ship.png")
-        interaction.editReply({ content: desc, embeds: [shipEmbed], files: [img] });
+        interaction.reply({ content: desc, embeds: [shipEmbed], files: [img] });
     }
 }

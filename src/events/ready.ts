@@ -1,4 +1,5 @@
 import { AutoPoster } from 'topgg-autoposter'
+import axios from 'axios'
 
 export default class Ready {
     private client: any;

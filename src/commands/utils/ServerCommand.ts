@@ -25,7 +25,7 @@ export default class ServerCommand extends Command {
         let server = interaction.guild;
         if (interaction.options.getString("id")) {
             server = await this.client.guilds.cache.get(interaction.options.getString("id"));
-            if (!server) return interaction.editReply(`${this.client.emotes.error} **|** ${t("commands:server.notFound", { id: interaction.options.getString("id") })}`);
+            if (!server) return interaction.reply(`${this.client.emotes.error} **|** ${t("commands:server.notFound", { id: interaction.options.getString("id") })}`);
         }
         const owner = await this.client.users.fetch(server.ownerId);
 
@@ -55,7 +55,7 @@ export default class ServerCommand extends Command {
                         { name: ':computer: Shard ID', value: `${server.shardId + 1}`, inline: true },
                     )
 
-                await interaction.editReply({ embeds: [embed] });
+                await interaction.reply({ embeds: [embed] });
                 break;
             }
 
@@ -71,7 +71,7 @@ export default class ServerCommand extends Command {
                     .setTitle(server.name)
                     .setImage(server.iconURL({ format: "png", size: 2048 }))
 
-                await interaction.editReply({ embeds: [embed], components: [row] });
+                await interaction.reply({ embeds: [embed], components: [row] });
                 break;
             }
         }

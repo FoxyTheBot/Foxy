@@ -39,6 +39,6 @@ export default class LaranjoCommand extends Command {
 
         const attachment = new MessageAttachment(canvas.toBuffer(), 'laranja_laranjo.png');
 
-        await interaction.editReply({ files: [attachment] });
+        await interaction.reply({ files: [attachment] });
     }
 }

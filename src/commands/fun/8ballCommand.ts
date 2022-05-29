@@ -29,6 +29,6 @@ export default class EightBallCommand extends Command {
 
         const result = results[Math.floor(Math.random() * results.length)];
 
-        await interaction.editReply(result)
+        await interaction.reply(result)
     }
 }

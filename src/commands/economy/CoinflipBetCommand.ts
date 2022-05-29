@@ -19,12 +19,12 @@ export default class CoinflipBetCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
-        if (!user) return interaction.editReply(t('commands:global.noUser'));
+        if (!user) return interaction.reply(t('commands:global.noUser'));
 
         const userData = await this.client.database.getUser(interaction.user.id);
         const value: number = interaction.options.getNumber("amount");
 
-        if (user == interaction.user) return interaction.editReply(t('commands:bet.self'));
+        if (user == interaction.user) return interaction.reply(t('commands:bet.self'));
 
         const mentionData = await this.client.database.getUser(user.id);
 
@@ -32,11 +32,11 @@ export default class CoinflipBetCommand extends Command {
         const mentionBal = await mentionData.balance;
 
         if (userBal < value) {
-            return interaction.editReply(t('commands:bet.not-enough', { amount: `${value}`, user: interaction.user.username }));
+            return interaction.reply(t('commands:bet.not-enough', { amount: `${value}`, user: interaction.user.username }));
         }
 
         if (mentionBal < value) {
-            return interaction.editReply(t('commands:bet.not-enough-mention', { amount: `${value}`, user: user.username }));
+            return interaction.reply(t('commands:bet.not-enough-mention', { amount: `${value}`, user: user.username }));
         }
 
         const row = new MessageActionRow()

@@ -78,7 +78,7 @@ tsc
 <p>Check the console to see if there are any errors... Well, we hope that there are none.</p>
 
 ## 🤩 | Starting Foxy
-- You need to register slash commands running: npm run register
+- You need to register slash commands running: node build/register.js
 
 Now you can run Foxy using:
 ```bash

@@ -22,6 +22,6 @@ export default class ProfileCommand extends Command {
         userData.aboutme = aboutme;
         userData.save();
 
-        await interaction.editReply(t("commands:aboutme.set", { aboutme: aboutme }));
+        await interaction.reply(t("commands:aboutme.set", { aboutme: aboutme }));
     }
 }

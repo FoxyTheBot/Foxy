@@ -24,40 +24,40 @@ export default class MinecraftCommand extends Command {
         switch (commands) {
             case 'body': {
                 const user = interaction.options.getString("player");
-                if (user.length > 20) return interaction.editReply(t('commands:mcbody.tooLong'));
+                if (user.length > 20) return interaction.reply(t('commands:mcbody.tooLong'));
 
                 const embed = new MessageEmbed()
                     .setColor("BLURPLE")
                     .setTitle(t('commands:mcbody.title', { user: user }))
                     .setImage(`https://mc-heads.net/body/${user}`)
 
-                await interaction.editReply({ embeds: [embed] });
+                await interaction.reply({ embeds: [embed] });
                 break;
             }
 
             case 'head': {
                 const user = interaction.options.getString("player");
-                if (user.length > 20) return interaction.editReply(t('commands:mchead.tooLong'));
+                if (user.length > 20) return interaction.reply(t('commands:mchead.tooLong'));
 
                 const embed = new MessageEmbed()
                     .setColor("BLURPLE")
                     .setTitle(t('commands:mchead.title', { user: user }))
                     .setImage(`https://mc-heads.net/head/${user}`)
 
-                await interaction.editReply({ embeds: [embed] });
+                await interaction.reply({ embeds: [embed] });
                 break;
             }
 
             case 'skin': {
                 const user = interaction.options.getString("player");
-                if (user.length > 20) return interaction.editReply(t('commands:mcskin.tooLong'));
+                if (user.length > 20) return interaction.reply(t('commands:mcskin.tooLong'));
 
                 const embed = new MessageEmbed()
                     .setColor("BLURPLE")
                     .setTitle(t('commands:mcskin.title', { user: user }))
                     .setImage(`https://mc-heads.net/body/${user}`)
 
-                await interaction.editReply({ embeds: [embed] });
+                await interaction.reply({ embeds: [embed] });
                 break;
             }
         }

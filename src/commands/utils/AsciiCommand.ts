@@ -20,7 +20,7 @@ export default class AsciiCommand extends Command {
         const string = interaction.options.getString("text");
         figlet.text(string, async (err, data) => {
             if (err) console.log(err)
-            await interaction.editReply(`\`\`\`${data}\`\`\``);
+            await interaction.reply(`\`\`\`${data}\`\`\``);
         })
     }
 }

@@ -19,11 +19,12 @@ export default class ProfileCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user") || interaction.user;
-        if (!user) return interaction.editReply(t('commands:global.noUser'));
+        if (!user) return interaction.reply(t('commands:global.noUser'));
         const userData = await this.client.database.getUser(user.id);
         const canvasGenerator = new GenerateImage(this.client, user, userData, 1436, 884);
         const profile = new MessageAttachment(await canvasGenerator.renderProfile(t), "foxy_profile.png");
 
+        await interaction.deferReply();
         await interaction.editReply({ content: t('commands:profile.your'), files: [profile] });
     }
 }

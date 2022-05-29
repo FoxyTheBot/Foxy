@@ -39,6 +39,6 @@ export default class NotStonks extends Command {
 
         const attachment = new MessageAttachment(canvas.toBuffer(), 'notstonks.png');
 
-        await interaction.editReply({ files: [attachment] });
+        await interaction.reply({ files: [attachment] });
     }
 }

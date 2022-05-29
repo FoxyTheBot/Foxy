@@ -14,23 +14,5 @@ export default class MessageCreate {
 
         if (message.content === `<@${this.client.user.id}>` || message.content === `<@!${this.client.user.id}>`) message.channel.send(`${message.author} ${t('events:messageCreate.hello')}!`);
 
-        if (message.author.bot) return;
-        const row = new MessageActionRow();
-        row.addComponents(
-            new MessageButton()
-                .setURL("https://discord.com/oauth2/authorize?client_id=737044809650274325&scope=bot+applications.commands&permissions=269872255")
-                .setLabel(t('events:slash.button'))
-                .setStyle('LINK'),
-        );
-
-        const messageError = new MessageEmbed()
-            .setColor("#ff0000")
-            .setTitle(t('events:slash.title'))
-            .setDescription(t('events:slash.description'))
-            .setImage("https://i.imgur.com/GBoGyrC.gif")
-
-        if (message.content.startsWith(this.client.config.prefix)) {
-            return message.reply({ embeds: [messageError], components: [row] });
-        }
     }
 }

@@ -18,7 +18,7 @@ export default class BiteCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
-        if (!user) return interaction.editReply(t('commands:global.noUser'));
+        if (!user) return interaction.reply(t('commands:global.noUser'));
 
         const row = new MessageActionRow()
             .addComponents(
@@ -28,8 +28,8 @@ export default class BiteCommand extends Command {
                     .setStyle("DANGER")
             )
 
-        if (user === interaction.user) return interaction.editReply(t("commands:bite.self"));
-        if (user === this.client.user) return interaction.editReply(t("commands:bite.client"));
+        if (user === interaction.user) return interaction.reply(t("commands:bite.self"));
+        if (user === this.client.user) return interaction.reply(t("commands:bite.client"));
 
         const list = [
             'https://media1.tenor.com/images/f3f503705c36781b7f63c6d60c95a9d2/tenor.gif?itemid=17570122',
@@ -47,7 +47,7 @@ export default class BiteCommand extends Command {
             .setDescription(t('commands:bite.success', { user: interaction.user.username, target: user.username }))
             .setImage(rand)
 
-        await interaction.editReply({ embeds: [embed], components: [row] });
+        await interaction.reply({ embeds: [embed], components: [row] });
 
         const filter = i => i.customId === "bite" && i.user.id === user.id;
         const collector = interaction.channel.createMessageComponentCollector({ filter, max: 1, time: 30000 });

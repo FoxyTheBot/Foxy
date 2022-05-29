@@ -18,6 +18,6 @@ export default class ReportCommand extends Command {
     async execute(interaction, t): Promise<void> {
         const content: string = interaction.options.getString("issue");
         this.client.WebhookManager.sendIssue(interaction, content);
-        await interaction.editReply(t('commands:report.success', { content: content, user: interaction.user }));
+        await interaction.reply(t('commands:report.success', { content: content, user: interaction.user }));
     }
 }

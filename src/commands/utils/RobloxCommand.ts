@@ -43,11 +43,11 @@ export default class RbxuserCommand extends Command {
                             { name: ":star: Status", value: info.status || t('commands:roblox.noStatus'), inline: true },
                             { name: `:calendar: ${t('commands:roblox.register')}`, value: date.toLocaleString(t.lng, { timeZone: 'America/Sao_Paulo' }) || t('commands:roblox.undefined'), inline: true }
                         )
-                    await interaction.editReply({ embeds: [embed], components: [row] });
+                    await interaction.reply({ embeds: [embed], components: [row] });
                 });
             }
         }).catch(err => {
-            interaction.editReply(t('commands:roblox.error'));
+            interaction.reply(t('commands:roblox.error'));
         })
     }
 }

@@ -30,7 +30,7 @@ export default class ErrorCommand extends Command {
             const check = string.match(/.{1,35}/g);
             string = check.join("\n");
         }
-        if (string.length > 100) return interaction.editReply(t('commands:error.tooLong', { limit: 100 }));
+        if (string.length > 100) return interaction.reply(t('commands:error.tooLong', { limit: 100 }));
 
         ctx.strokeStyle = '#74037b';
         ctx.strokeRect(0, 0, canvas.width, canvas.height);
@@ -46,6 +46,6 @@ export default class ErrorCommand extends Command {
 
         const attachment = await new MessageAttachment(canvas.toBuffer(), 'error.png');
 
-        await interaction.editReply({ files: [attachment] });
+        await interaction.reply({ files: [attachment] });
     }
 }

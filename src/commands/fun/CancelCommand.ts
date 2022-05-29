@@ -12,14 +12,15 @@ export default class CancelCommand extends Command {
                 .setName("cancel")
                 .setDescription("[🤖 Fun] Cancel a user")
                 .addUserOption(option => option.setName("user").setDescription("User to cancel").setRequired(true))
+                .addStringOption(option => option.setName("text").setDescription("Reason for canceling").setRequired(true))
         });
     }
 
     async execute(interaction, t): Promise<void> {
         const user = interaction.options.getUser("user");
-        if (!user) return interaction.editReply(t('commands:global.noUser'));
+        if (!user) return interaction.reply(t('commands:global.noUser'));
         const string = interaction.options.getString("text");
 
-        await interaction.editReply(t('commands:cancel.result', { user: user.username, reason: string, mention: `<@!${user.id}>` }));
+        await interaction.reply(t('commands:cancel.result', { user: user.username, reason: string, mention: `<@!${user.id}>` }));
     }
 }
