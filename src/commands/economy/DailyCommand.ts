@@ -23,7 +23,8 @@ export default class DailyCommand extends Command {
         amount = Math.round(amount / 10) * 10;
 
         if (userData.premium) {
-            amount = amount + 500;
+            var oldAmount = amount;
+            amount = amount * 2;
         }
 
         const daily = await userData.lastDaily;
@@ -40,7 +41,7 @@ export default class DailyCommand extends Command {
             const money = await userData.balance;
 
             if (userData.premium) {
-                interaction.reply(`${this.client.emotes.daily} **|** ${t('commands:daily.premium', { amount: amount.toString(), money: money.toString(), normalMoney: `${amount - 500}` })}`);
+                interaction.reply(`${this.client.emotes.daily} **|** ${t('commands:daily.premium', { amount: amount.toString(), money: money.toString(), normalMoney: `${oldAmount}` })}`);
             } else {
                 interaction.reply(`${this.client.emotes.daily} **|** ${t('commands:daily.daily', { amount: amount.toString(), money: money.toString() })}`)
             }

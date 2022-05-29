@@ -236,7 +236,7 @@
     },
     "daily": {
         "cooldown": ":x: | You already got your daily, wait **{{time}}**",
-        "premium": "You would win **{{normalMoney}} FoxCoins** but you are a premium user and you won **{{amount}} FoxCoins** and now has {{money}} FoxCoins",
+        "premium": "You would win **{{normalMoney}} FoxCoins** but you are a premium user and you won 2x more, **{{amount}} FoxCoins** and now has {{money}} FoxCoins",
         "daily": "You won **{{amount}} FoxCoins** and now has {{money}} FoxCoins"
     },
     "background": {
