@@ -39,5 +39,9 @@
   "START_EMBEDDED_ACTIVITIES": "Iniciar Atividades Integradas",
   "MODERATE_MEMBERS": "Moderar Membros",
   "SEND_MESSAGES_IN_THREADS": "Enviar Mensagens em Tópicos",
-  "USE_APPLICATION_COMMANDS": "Usar Comandos de Aplicação"
+  "USE_APPLICATION_COMMANDS": "Usar Comandos de Aplicação",
+  "PRIORITY_SPEAKER": "Prioridade de Fala",
+  "STREAM": "Transmitir",
+  "MANAGE_EMOJIS_AND_STICKERS": "Gerenciar Emojis e Stickers",
+  "VIEW_GUILD_INSIGHTS": "Ver Insights do Servidor"
 }

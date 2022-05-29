@@ -39,5 +39,9 @@
     "START_EMBEDDED_ACTIVITIES": "Start Embedded Activities",
     "MODERATE_MEMBERS": "Moderate Members",
     "SEND_MESSAGES_IN_THREADS": "Send Messages in Threads",
-    "USE_APPLICATION_COMMANDS": "Use Application Commands"
+    "USE_APPLICATION_COMMANDS": "Use Application Commands",
+    "PRIORITY_SPEAKER": "Priority Speaker",
+    "STREAM": "Stream",
+    "MANAGE_EMOJIS_AND_STICKERS": "Manage Emojis and Stickers",
+    "VIEW_GUILD_INSIGHTS": "View Guild Insights"
 }
