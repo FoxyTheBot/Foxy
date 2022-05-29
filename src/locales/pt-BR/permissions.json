@@ -27,5 +27,15 @@
   "MANAGE_ROLES": "Gerenciar Cargos",
   "MANAGE_WEBHOOKS": "Gerenciar Webhooks",
   "MANAGE_EMOJIS": "Gerenciar Emojis",
-  "ONLY_DEVS": ":x: **|** Este comando é apenas para o meu desenvolvedor, bobinho!"
+  "ONLY_DEVS": ":x: **|** Este comando é apenas para o meu desenvolvedor, bobinho!",
+  "REQUEST_TO_SPEAK": "Pedir para Falar",
+  "MANAGE_EVENTS": "Gerenciar Eventos",
+  "MANAGE_THREADS": "Gerenciar Tópicos",
+  "USE_PUBLIC_THREADS": "Usar Tópicos Públicos",
+  "USE_PRIVATE_THREADS": "Usar Tópicos Privados",
+  "CREATE_PUBLIC_THREADS": "Criar Tópicos Públicos",
+  "CREATE_PRIVATE_THREADS": "Criar Tópicos Privados",
+  "USE_EXTERNAL_STICKERS": "Usar Stickers Externos",
+  "START_EMBEDDED_ACTIVITIES": "Iniciar Atividades Integradas",
+  "MODERATE_MEMBERS": "Moderar Membros"
 }
