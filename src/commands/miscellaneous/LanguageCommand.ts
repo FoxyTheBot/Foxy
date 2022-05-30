@@ -45,10 +45,11 @@ export default class LanguageCommand extends Command {
         interaction.reply({ embeds: [embed], components: [row], ephemeral: true });
 
         const filter = (choice, user) => user.id === interaction.user.id && interaction.customId === 'select';
-        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000, max: 1 });
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 5000, max: 1 });
 
         collector.on('collect', i => {
             const selectMenuValue = i.values[0];
+            if (!selectMenuValue) return collector.stop();
             if (selectMenuValue === "en") {
                 interaction.followUp(`:flag_us: **| Language changed to English**`);
                 i.deferUpdate();
