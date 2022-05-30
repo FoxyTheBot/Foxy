@@ -40,7 +40,7 @@ export default class MarryCommand extends Command {
         interaction.reply({ content: `${this.client.emotes.heart} | ${t('commands:marry.ask', { user: mentionedUser.username, author: interaction.user.username })}`, components: [row] });
 
         const filter = i => i.customId === "accept" && i.user.id === mentionedUser.id;
-        const collector = await interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 5000 });
+        const collector = await interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 60000 });
 
         collector.on("collect", async i => {
             interaction.followUp(t('commands:marry.accepted', { user: mentionedUser.username, author: interaction.user.username }));

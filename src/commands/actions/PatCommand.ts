@@ -42,7 +42,7 @@ export default class PatCommand extends Command {
         await interaction.reply({ embeds: [embed], components: [row] });
 
         const filter = i => i.customId == "pat" && i.user.id == user.id;
-        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 5000, max: 1 });
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 60000, max: 1 });
 
         collector.on("collect", async i => {
             const embed = new MessageEmbed()
