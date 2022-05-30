@@ -49,6 +49,7 @@ export default class LanguageCommand extends Command {
 
         collector.on('collect', i => {
             const selectMenuValue = i.values[0];
+            if (!selectMenuValue) return collector.stop();
             if (selectMenuValue === "en") {
                 interaction.followUp(`:flag_us: **| Language changed to English**`);
                 i.deferUpdate();
