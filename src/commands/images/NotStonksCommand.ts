@@ -12,7 +12,7 @@ export default class NotStonks extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("notstonks")
-                .setDescription("[🖼 Image] Get a not stonks image")
+                .setDescription("[Images] Get a not stonks image")
                 .addStringOption(option => option.setName("text").setDescription("The text").setRequired(true))
         });
     }

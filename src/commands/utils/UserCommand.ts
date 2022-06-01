@@ -11,11 +11,11 @@ export default class ProfileCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("user")
-                .setDescription("[🛠 Utils] Get user information")
-                .addSubcommand(option => option.setName("info").setDescription("[🛠 Utils] Get some user informtion").addUserOption(
+                .setDescription("[Utils] Get user information")
+                .addSubcommand(option => option.setName("info").setDescription("[Utils] Get some user informtion").addUserOption(
                     option => option.setName("user").setDescription("The user ID or mention").setRequired(false)
                 ))
-                .addSubcommand(option => option.setName("avatar").setDescription("[🛠 Utils] Get some user's avatar").addUserOption(
+                .addSubcommand(option => option.setName("avatar").setDescription("[Utils] Get some user's avatar").addUserOption(
                     option => option.setName("user").setDescription("The user ID or mention").setRequired(false)
                 ))
         });

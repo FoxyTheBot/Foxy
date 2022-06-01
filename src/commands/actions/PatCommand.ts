@@ -12,7 +12,7 @@ export default class PatCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("pat")
-                .setDescription("[🎮 Roleplay] Pat someone")
+                .setDescription("[Roleplay] Pat someone")
                 .addUserOption(option => option.setName("user").setRequired(true).setDescription("User you want to pat"))
         });
     }

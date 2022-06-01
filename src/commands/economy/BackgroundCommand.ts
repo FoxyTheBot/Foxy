@@ -13,9 +13,9 @@ export default class BackgroundCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("background")
-                .setDescription("[💰 Economy] Buy a new background")
-                .addSubcommand(command => command.setName("buy").setDescription("[💵 Economy] Buy a new background for your profile").addStringOption(option => option.setName("code").setDescription("Background code")))
-                .addSubcommand(command => command.setName("set").setDescription("[💵 Economy] Set a background").addStringOption(option => option.setName("background").setDescription("Background code")))
+                .setDescription("[Economy] Buy a new background")
+                .addSubcommand(command => command.setName("buy").setDescription("[Economy] Buy a new background for your profile").addStringOption(option => option.setName("code").setDescription("Background code")))
+                .addSubcommand(command => command.setName("set").setDescription("[Economy] Set a background").addStringOption(option => option.setName("background").setDescription("Background code")))
         });
     }
 

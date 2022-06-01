@@ -10,7 +10,7 @@ export default class RpsCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("rps")
-                .setDescription("[🤖 Fun] Rock, paper, scissors")
+                .setDescription("[Entertainment] Rock, paper, scissors")
                 .addStringOption(option => option.setName("choice").setDescription("Rock, paper or scissors").setRequired(true))
         });
     }

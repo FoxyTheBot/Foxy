@@ -12,7 +12,7 @@ export default class StonksCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("stonks")
-                .setDescription("[🖼 Image] Get a stonks image")
+                .setDescription("[Images] Get a stonks image")
                 .addStringOption(option => option.setName("text").setRequired(true).setDescription("The text you want to put on the stonks"))
         });
     }

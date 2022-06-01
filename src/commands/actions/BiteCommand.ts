@@ -11,7 +11,7 @@ export default class BiteCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("bite")
-                .setDescription("[🎮 Roleplay] Bite someone")
+                .setDescription("[Roleplay] Bite someone")
                 .addUserOption(option => option.setName("user").setRequired(true).setDescription("User you want to bite"))
         });
     }

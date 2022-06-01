@@ -10,7 +10,7 @@ export default class EightBallCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("8ball")
-                .setDescription("[🤖 Fun] Magic 8-ball")
+                .setDescription("[Entertainment] Magic 8-ball")
                 .addStringOption(option => option.setName("text").setDescription("Question").setRequired(true))
         });
     }

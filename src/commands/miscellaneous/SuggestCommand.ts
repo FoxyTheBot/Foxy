@@ -10,7 +10,7 @@ export default class SuggestCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("suggest")
-                .setDescription("[🛠 Misc] Suggest something to the bot")
+                .setDescription("[Misc] Suggest something to the bot")
                 .addStringOption(option => option.setName("suggestion").setRequired(true).setDescription("The suggestion you want to send"))
         });
     }

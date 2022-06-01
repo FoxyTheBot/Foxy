@@ -10,7 +10,7 @@ export default class CoinflipCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("coinflip")
-                .setDescription("[🛠 Utils] Flip a coin")
+                .setDescription("[Utils] Flip a coin")
         });
     }
 

@@ -12,7 +12,7 @@ export default class SlapCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("slap")
-                .setDescription("[🎮 Roleplay] Slaps someone")
+                .setDescription("[Roleplay] Slaps someone")
                 .addUserOption(option => option.setName("user").setRequired(true).setDescription("User you want to slap"))
         });
     }

@@ -11,10 +11,10 @@ export default class FoxCoins extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("foxcoins")
-                .setDescription("[💰 Economy] Subcommands for FoxCoins")
-                .addSubcommand(subcommand => subcommand.setName("atm").setDescription("[💰 Economy] See your FoxCoins").addUserOption(option => option.setName("user").setDescription("User you want to see the balance")))
-                .addSubcommand(subcommand => subcommand.setName("rank").setDescription("[💰 Economy] Get the FoxCoins rank"))
-                .addSubcommand(subcommand => subcommand.setName("transfer").setDescription("[💰 Economy] Transfer your FoxCoins to another user").addUserOption(option => option.setName("user").setDescription("User you want to transfer the balance").setRequired(true)).addNumberOption(option => option.setName("amount").setDescription("Amount of FoxCoins").setRequired(true)))
+                .setDescription("[Economy] Subcommands for FoxCoins")
+                .addSubcommand(subcommand => subcommand.setName("atm").setDescription("[Economy] See your FoxCoins").addUserOption(option => option.setName("user").setDescription("User you want to see the balance")))
+                .addSubcommand(subcommand => subcommand.setName("rank").setDescription("[Economy] Get the FoxCoins rank"))
+                .addSubcommand(subcommand => subcommand.setName("transfer").setDescription("[Economy] Transfer your FoxCoins to another user").addUserOption(option => option.setName("user").setDescription("User you want to transfer the balance").setRequired(true)).addNumberOption(option => option.setName("amount").setDescription("Amount of FoxCoins").setRequired(true)))
         });
     }
 
@@ -26,7 +26,7 @@ export default class FoxCoins extends Command {
                 const userData = await this.client.database.getUser(user.id);
                 const balance = userData.balance;
 
-                await interaction.reply(t('commands:atm.success', { user: user.tag, balance: balance.toString() }));
+                await interaction.reply(t('commands:atm.success', { user: user.username, balance: balance.toString() }));
                 break;
             }
 

@@ -11,7 +11,7 @@ export default class DblCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("upvote")
-                .setDescription("[🛠 Utils] Vote Foxy in DBL")
+                .setDescription("[Utils] Vote Foxy in DBL")
         });
     }
 

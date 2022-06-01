@@ -11,10 +11,10 @@ export default class MinecraftCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("mine")
-                .setDescription("[🛠 Misc] - Show Minecraft's account info")
-                .addSubcommand(command => command.setName("body").setDescription("[🛠 Misc] - Get the body of a Minecraft Player").addStringOption(opt => opt.setName("player").setDescription("The player you want to get the body of").setRequired(true)))
-                .addSubcommand(command => command.setName("skin").setDescription("[🛠 Misc] - Get the skin of a Minecraft player").addStringOption(opt => opt.setName("player").setDescription("The player you want to get the skin of").setRequired(true)))
-                .addSubcommand(command => command.setName("head").setDescription("[🛠 Misc] - Get the head of a Minecraft player").addStringOption(opt => opt.setName("player").setDescription("The player you want to get the head of").setRequired(true)))
+                .setDescription("[Misc] - Show Minecraft's account info")
+                .addSubcommand(command => command.setName("body").setDescription("[Misc] - Get the body of a Minecraft Player").addStringOption(opt => opt.setName("player").setDescription("The player you want to get the body of").setRequired(true)))
+                .addSubcommand(command => command.setName("skin").setDescription("[Misc] - Get the skin of a Minecraft player").addStringOption(opt => opt.setName("player").setDescription("The player you want to get the skin of").setRequired(true)))
+                .addSubcommand(command => command.setName("head").setDescription("[Misc] - Get the head of a Minecraft player").addStringOption(opt => opt.setName("player").setDescription("The player you want to get the head of").setRequired(true)))
         });
     }
 

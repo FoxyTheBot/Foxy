@@ -10,7 +10,7 @@ export default class PingCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("ping")
-                .setDescription("[🛠 Utils] Show the Foxy's Latency")
+                .setDescription("[Utils] Show the Foxy's Latency")
         })
     }
 

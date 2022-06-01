@@ -11,7 +11,7 @@ export default class AttachCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("attack")
-                .setDescription("[🎮 Roleplay] Attack someone")
+                .setDescription("[Roleplay] Attack someone")
                 .addUserOption(option => option.setName("user").setRequired(true).setDescription("User you want to attack"))
         });
     }

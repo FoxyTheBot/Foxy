@@ -12,7 +12,7 @@ export default class KissCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("kiss")
-                .setDescription("[🎮 Roleplay] Kiss someone")
+                .setDescription("[Roleplay] Kiss someone")
                 .addUserOption(option => option.setName("user").setRequired(true).setDescription("User you want to kiss"))
         });
     }
@@ -33,6 +33,7 @@ export default class KissCommand extends Command {
                     .setCustomId("primary")
                     .setLabel(t("commands:kiss.button"))
                     .setStyle("PRIMARY")
+                    .setEmoji("<:heartuwu:978732409170309240>")
             )
 
         const embed = new MessageEmbed()

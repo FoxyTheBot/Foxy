@@ -11,7 +11,7 @@ export default class LanguageCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("language")
-                .setDescription("[🛠 Misc] Change the bot's language")
+                .setDescription("[Misc] Change the bot's language")
         });
     }
 

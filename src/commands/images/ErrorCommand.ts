@@ -12,7 +12,7 @@ export default class ErrorCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("error")
-                .setDescription("[🖼 Image] Get a Windows error message")
+                .setDescription("[Images] Get a Windows error message")
                 .addStringOption(option => option.setName("text").setDescription("The text of the error").setRequired(true))
         });
     }

@@ -11,7 +11,7 @@ export default class MarryCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("marry")
-                .setDescription("[👥 Social] Marry with love of your life")
+                .setDescription("[Social] Marry with love of your life")
                 .addUserOption(option => option.setName("user").setRequired(true).setDescription("The user to marry"))
         });
     }

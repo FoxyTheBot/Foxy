@@ -12,7 +12,7 @@ export default class GirlfriendCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("girlfriend")
-                .setDescription("[🖼 Image] Who is your girlfriend?")
+                .setDescription("[Images] Who is your girlfriend?")
                 .addUserOption(option => option.setName("user").setDescription("Mention some user").setRequired(false))
         });
     }

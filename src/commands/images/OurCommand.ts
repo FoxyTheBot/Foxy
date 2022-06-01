@@ -12,7 +12,7 @@ export default class PerfectCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("our")
-                .setDescription("[🖼 Image] Get a comunism image")
+                .setDescription("[Images] Get a comunism image")
                 .addStringOption(option => option.setName("text").setDescription("The text").setRequired(true))
         });
     }

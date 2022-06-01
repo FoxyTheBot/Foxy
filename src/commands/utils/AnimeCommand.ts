@@ -12,7 +12,7 @@ export default class AnimeCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("anime")
-                .setDescription("[🛠 Utils] See information about an anime")
+                .setDescription("[Utils] See information about an anime")
                 .addStringOption(option => option.setName("anime").setRequired(true).setDescription("The name of the anime"))
         });
     }

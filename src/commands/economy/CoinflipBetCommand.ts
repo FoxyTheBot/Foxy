@@ -11,7 +11,7 @@ export default class CoinflipBetCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName('bet')
-                .setDescription('[💰 Economy] Bet on a coinflip')
+                .setDescription('[Economy] Bet on a coinflip')
                 .addUserOption(user => user.setName("user").setDescription("The user to bet on").setRequired(true))
                 .addNumberOption(number => number.setName("amount").setDescription("The amount to bet").setRequired(true))
         });

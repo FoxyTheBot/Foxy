@@ -10,7 +10,7 @@ export default class FateCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("fate")
-                .setDescription("[🤖 Fun] What is your fate with mentioned user?")
+                .setDescription("[Entertainment] What is your fate with mentioned user?")
                 .addUserOption(option => option.setName("user").setDescription("User to check fate with").setRequired(true))
         });
     }

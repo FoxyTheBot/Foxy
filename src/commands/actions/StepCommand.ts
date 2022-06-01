@@ -11,7 +11,7 @@ export default class StepCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("step")
-                .setDescription("[🎮 Roleplay] Step on a user")
+                .setDescription("[Roleplay] Step on a user")
                 .addUserOption(option => option.setName("user").setRequired(true).setDescription("User you want to step on"))
         });
     }

@@ -11,7 +11,7 @@ export default class MorseCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("morse")
-                .setDescription("[🛠 Utils] Convert text to morse code")
+                .setDescription("[Utils] Convert text to morse code")
                 .addStringOption(option => option.setName("text").setRequired(true).setDescription("The text to convert"))
         });
     }

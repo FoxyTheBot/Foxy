@@ -11,7 +11,7 @@ export default class AsciiCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("ascii")
-                .setDescription("[🛠 Utils] Transform your text in ASCII art")
+                .setDescription("[Utils] Transform your text in ASCII art")
                 .addStringOption(option => option.setName("text").setRequired(true).setDescription("The text to be converted"))
         });
     }

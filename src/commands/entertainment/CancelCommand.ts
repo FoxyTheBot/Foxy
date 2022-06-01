@@ -10,7 +10,7 @@ export default class CancelCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("cancel")
-                .setDescription("[🤖 Fun] Cancel a user")
+                .setDescription("[Entertainment] Cancel a user")
                 .addUserOption(option => option.setName("user").setDescription("User to cancel").setRequired(true))
                 .addStringOption(option => option.setName("text").setDescription("Reason for canceling").setRequired(true))
         });

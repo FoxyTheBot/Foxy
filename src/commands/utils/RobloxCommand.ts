@@ -12,8 +12,8 @@ export default class RbxuserCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName('roblox')
-                .setDescription('[🛠 Utils] View a Roblox user\'s profile')
-                .addSubcommand(command => command.setName("user").setDescription("[🛠 Utils] Search a user on Roblox").addStringOption(option => option.setName("user").setRequired(true).setDescription("O nome do usuário")))
+                .setDescription('[Utils] View a Roblox user\'s profile')
+                .addSubcommand(command => command.setName("user").setDescription("[Utils] Search a user on Roblox").addStringOption(option => option.setName("user").setRequired(true).setDescription("O nome do usuário")))
         });
     }
 

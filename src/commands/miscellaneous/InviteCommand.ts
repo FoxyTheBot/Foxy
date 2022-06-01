@@ -11,7 +11,7 @@ export default class InviteCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("invite")
-                .setDescription("[🛠 Misc] Invite the bot to your server")
+                .setDescription("[Misc] Invite the bot to your server")
         });
     }
 

@@ -11,7 +11,7 @@ export default class RepCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("rep")
-                .setDescription("[👥 Social] Give someone a reputation point")
+                .setDescription("[Social] Give someone a reputation point")
         });
     }
 

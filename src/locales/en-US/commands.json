@@ -61,7 +61,7 @@
             "category": {
                 "economy": "Economy",
                 "social": "Social",
-                "fun": "Fun",
+                "fun": "Entertainment",
                 "image": "Images",
                 "misc": "Misc",
                 "utils": "Utils",
@@ -266,19 +266,19 @@
     },
     "slap": {
         "button": "Slap",
-        "success": "{{author}} slapped {{target}}"
+        "success": "**{{author}}** slapped **{{target}}**"
     },
     "pat": {
         "button": "Pat",
-        "sucess": "{{author}} patted {{user}}"
+        "sucess": "**{{author}}** patted **{{user}}**"
     },
     "kiss": {
         "button": "Kiss",
-        "success": "{{author}} kissed {{user}}"
+        "success": "**{{author}}** kissed **{{user}}**"
     },
     "hug": {
         "button": "Hug",
-        "success": "{{author}} hugged {{user}}"
+        "success": "**{{author}}** hugged **{{user}}**"
     },
     "bite": {
         "self": "☠ | You bit yourself, but you bit too hard, and now you're hurt, you didn't know you're a wolf with sharp teeth :/",
@@ -287,7 +287,7 @@
         "button": "Bit"
     },
     "attack": {
-        "attack": "{{user}} attacked {{target}}",
+        "attack": "**{{user}}** attacked **{{target}}**",
         "button": "Attack"
     },
     "bet": {

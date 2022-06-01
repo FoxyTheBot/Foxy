@@ -11,9 +11,9 @@ export default class HelpCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("help")
-                .setDescription("[🛠 Utils] Use this command to get help")
-                .addSubcommand(command => command.setName("commands").setDescription("[🛠 Utils] List all commands"))
-                .addSubcommand(command => command.setName("bot").setDescription("[🛠 Utils] List bot information"))
+                .setDescription("[Utils] Use this command to get help")
+                .addSubcommand(command => command.setName("commands").setDescription("[Utils] List all commands"))
+                .addSubcommand(command => command.setName("bot").setDescription("[Utils] List bot information"))
         });
     }
 

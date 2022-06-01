@@ -12,7 +12,7 @@ export default class LaranjoCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("laranjo")
-                .setDescription("[🖼 Image] Get a laranjo image")
+                .setDescription("[Images] Get a laranjo image")
                 .addStringOption(option => option.setName("text").setDescription("The text").setRequired(true))
         });
     }

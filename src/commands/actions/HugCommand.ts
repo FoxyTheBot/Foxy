@@ -12,7 +12,7 @@ export default class HugCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("hug")
-                .setDescription("[🎮 Roleplay] Hug someone")
+                .setDescription("[Roleplay] Hug someone")
                 .addUserOption(option => option.setName("user").setRequired(true).setDescription("User you want to hug"))
         });
     }
@@ -36,6 +36,7 @@ export default class HugCommand extends Command {
                     .setCustomId("primary")
                     .setLabel(t("commands:hug.button"))
                     .setStyle("PRIMARY")
+                    .setEmoji("<:ztLove:978732042160332850>")
             )
 
         await interaction.reply({ embeds: [hugEmbed], components: [row] });

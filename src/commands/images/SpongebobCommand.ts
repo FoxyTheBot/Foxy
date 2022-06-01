@@ -12,7 +12,7 @@ export default class SpongebobCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("spongebob")
-                .setDescription("[🖼 Image] Get spongebob meme")
+                .setDescription("[Images] Get spongebob meme")
                 .addStringOption(option => option.setName("text").setRequired(true).setDescription("The text you want to put on the spongebob meme"))
         });
     }

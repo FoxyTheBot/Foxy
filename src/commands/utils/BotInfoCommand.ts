@@ -12,7 +12,7 @@ export default class BotInfoCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName('botinfo')
-                .setDescription('[🛠 Utils] Show the Foxy\'s info')
+                .setDescription('[Utils] Show the Foxy\'s info')
         });
     }
 

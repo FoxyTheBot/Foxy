@@ -11,7 +11,7 @@ export default class DailyCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("daily")
-                .setDescription("[💰 Economy] Get your daily FoxCoins")
+                .setDescription("[Economy] Get your daily FoxCoins")
         });
     }
 

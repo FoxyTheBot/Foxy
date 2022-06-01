@@ -11,7 +11,7 @@ export default class DivorceCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("divorce")
-                .setDescription("[👥 Social] Divorce your partner")
+                .setDescription("[Social] Divorce your partner")
         });
     }
 

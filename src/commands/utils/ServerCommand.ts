@@ -11,10 +11,10 @@ export default class ServerCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("server")
-                .setDescription("[🛠 Utils] Get information about the server")
-                .addSubcommand(option => option.setName("info").setDescription("[🛠 Utils] Get information about a Discord Server").addStringOption(
+                .setDescription("[Utils] Get information about the server")
+                .addSubcommand(option => option.setName("info").setDescription("[Utils] Get information about a Discord Server").addStringOption(
                     option => option.setName("id").setDescription("ID do servidor.").setRequired(false)))
-                .addSubcommand(option => option.setName("icon").setDescription("[🛠 Utils] Get the server's icon").addStringOption(
+                .addSubcommand(option => option.setName("icon").setDescription("[Utils] Get the server's icon").addStringOption(
                     option => option.setName("id").setDescription("ID do servidor.").setRequired(false)))
         });
     }

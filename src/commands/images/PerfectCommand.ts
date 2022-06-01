@@ -12,7 +12,7 @@ export default class PerfectCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("perfect")
-                .setDescription("[🖼 Image] Who is the perfect person?")
+                .setDescription("[Images] Who is the perfect person?")
                 .addUserOption(option => option.setName("user").setDescription("Mention some user").setRequired(false))
         });
     }

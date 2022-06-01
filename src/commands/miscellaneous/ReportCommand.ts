@@ -10,7 +10,7 @@ export default class ReportCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("report")
-                .setDescription("[🛠 Misc] Report a bug")
+                .setDescription("[Misc] Report a bug")
                 .addStringOption(option => option.setName("issue").setRequired(true).setDescription("The issue you want to report"))
         });
     }

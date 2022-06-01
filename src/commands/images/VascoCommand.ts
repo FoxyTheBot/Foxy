@@ -12,7 +12,7 @@ export default class VascoCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("vasco")
-                .setDescription("[🖼 Images] Afeta o vaixco? (Meme creator)")
+                .setDescription("[Imagess] Afeta o vaixco? (Meme creator)")
                 .addUserOption(option => option.setName("user").setDescription("User you want to send to Vasco").setRequired(true))
         });
     }

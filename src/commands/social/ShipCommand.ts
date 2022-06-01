@@ -12,7 +12,7 @@ export default class ShipCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("ship")
-                .setDescription("[👥 Social] Ship someone")
+                .setDescription("[Social] Ship someone")
                 .addUserOption(option => option.setName("user").setDescription("Mentions someone").setRequired(true))
                 .addUserOption(option => option.setName("user2").setDescription("Mentions someone again").setRequired(true))
         });

@@ -60,7 +60,7 @@
             "category": {
                 "economy": "Economia",
                 "social": "Social",
-                "fun": "Diversão",
+                "fun": "Entretenimento",
                 "image": "Imagens",
                 "misc": "Outros",
                 "utils": "Utilitários",
@@ -277,28 +277,28 @@
     },
     "slap": {
         "button": "Retribuir",
-        "success": "{{author}} deu um tapa em {{user}}"
+        "success": "**{{author}}** deu um tapa em **{{user}}**"
     },
     "pat": {
         "button": "Retribuir",
-        "success": "{{author}} fez cafuné em {{user}}"
+        "success": "**{{author}}** fez cafuné em **{{user}}**"
     },
     "kiss": {
         "button": "Retribuir",
-        "success": "{{author}} deu um beijo em {{user}}"
+        "success": "**{{author}}** deu um beijo em **{{user}}**"
     },
     "hug": {
         "button": "Retribuir",
-        "success": "{{author}} deu um abraço em {{user}}"
+        "success": "**{{author}}** deu um abraço em **{{user}}**"
     },
     "bite": {
         "self": "☠ **|** Você se mordeu porem mordeu forte demais e agora está machucado, mal sabia você que você é um lobo com dentes afiados :/",
         "client": "☠ **|** Você tentou morder uma raposa porém ela mordeu seu rosto com muita força e você se machucou!",
-        "success": "{{user}} mordeu {{target}}",
+        "success": "**{{user}}** mordeu **{{target}}**",
         "button": "Retribuir"
     },
     "attack": {
-        "attack": "{{user}} atacou {{target}}",
+        "attack": "**{{user}}** atacou **{{target}}**",
         "button": "Atacar"
     },
     "bet": {
@@ -310,9 +310,9 @@
         "tails": "coroa",
         "accept": "Aceitar",
         "choose": "Escolha uma opção para apostar",
-        "ask": "{{user}}, {{author}} quer fazer uma aposta de {{amount}} FoxCoinss",
+        "ask": "**{{user}}**, **{{author}}** quer fazer uma aposta de {{amount}} FoxCoinss",
         "win": ":moneybag: **|** {{author}} ganhou {{amount}} FoxCoins! Financiado por {{user}}",
-        "lose": ":moneybag: **|** {{user}} ganhp {{amount}} FoxCoins! Financiado por {{author}}"
+        "lose": ":moneybag: **|** {{user}} ganhou {{amount}} FoxCoins! Financiado por {{author}}"
     },
     "global": {
         "noUser": ":x: **|** Usuário não encontrado"

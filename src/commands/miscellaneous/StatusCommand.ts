@@ -12,7 +12,7 @@ export default class StatusCommand extends Command {
             dev: false,
             data: new SlashCommandBuilder()
                 .setName("status")
-                .setDescription("[🛠 Misc] Get the bot's status")
+                .setDescription("[Misc] Get the bot's status")
         });
     }
 
