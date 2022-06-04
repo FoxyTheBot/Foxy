@@ -1,6 +1,5 @@
 import i18next from 'i18next';
 import { MessageEmbed } from "discord.js";
-import { bglist } from "../structures/json/backgroundList.json";
 
 export default class InteractionCreate {
     private client: any
