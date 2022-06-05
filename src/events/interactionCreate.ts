@@ -23,8 +23,8 @@ export default class InteractionCreate {
                     console.error(e);
                     const errorEmbed = new MessageEmbed()
                         .setColor("RED")
-                        .setTitle("Erro ao executar comando!")
-                        .setDescription(`\ \ \`\`\`js\n${e}\n\`\`\``)
+                        .setTitle(locale('events:interactionCreate.error.title'))
+                        .setDescription(`${locale('events:interactionCreate.error.description')} \n\n \ \ \`\`\`js\n${e}\n\`\`\``)
                     interaction.reply({ embeds: [errorEmbed], ephemeral: true })
                 }
             })

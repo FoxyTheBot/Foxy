@@ -12,5 +12,12 @@
     },
     "messageCreate": {
         "hello": "Hey, I'm Foxy! My prefix is `/ (Slash Commands)`, use `/help` for help!"
+    },
+
+    "interactionCreate": {
+        "error": {
+            "title": "<:foxymedu:890688173951315988> | An error has occurred when trying to run the command",
+            "description": "This error has been logged, please use `/report` and tell us what you did to cause this error."
+        }
     }
 }
