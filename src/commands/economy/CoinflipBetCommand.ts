@@ -80,26 +80,28 @@ export default class CoinflipBetCommand extends Command {
             const resultCollector = interaction.channel.createMessageComponentCollector(resultFilter, { max: 1 });
 
             resultCollector.on('collect', async i => {
-                let choices = ['heads', 'tails'];
-                const rand = Math.floor(Math.random() * choices.length);
+                if (i.customId === 'accept') {
+                    let choices = ['heads', 'tails'];
+                    const rand = Math.floor(Math.random() * choices.length);
 
-                if (selectMenu === choices[rand]) {
-                    interaction.followUp({ content: t('commands:bet.win', { user: user.username, author: interaction.user.username, choice: t(`commands:bet.${choices[rand]}`), amount: `${value}` }) });
-                    userData.balance += value;
-                    mentionData.balance -= value;
-                    userData.save();
-                    mentionData.save();
-                    i.deferUpdate();
-                    resultCollector.stop();
+                    if (selectMenu === choices[rand]) {
+                        interaction.followUp({ content: t('commands:bet.win', { user: user.username, author: interaction.user.username, choice: t(`commands:bet.${choices[rand]}`), amount: `${value}` }) });
+                        userData.balance += value;
+                        mentionData.balance -= value;
+                        userData.save();
+                        mentionData.save();
+                        i.deferUpdate();
+                        resultCollector.stop();
 
-                } else if (selectMenu !== choices[rand]) {
-                    interaction.followUp({ content: t('commands:bet.lose', { user: user.username, author: interaction.user.username, choice: t(`commands:bet.${choices[rand]}`), amount: `${value}` }) });
-                    userData.balance -= value;
-                    mentionData.balance += value;
-                    userData.save();
-                    mentionData.save();
-                    i.deferUpdate();
-                    resultCollector.stop();
+                    } else if (selectMenu !== choices[rand]) {
+                        interaction.followUp({ content: t('commands:bet.lose', { user: user.username, author: interaction.user.username, choice: t(`commands:bet.${choices[rand]}`), amount: `${value}` }) });
+                        userData.balance -= value;
+                        mentionData.balance += value;
+                        userData.save();
+                        mentionData.save();
+                        i.deferUpdate();
+                        resultCollector.stop();
+                    }
                 }
             })
         });

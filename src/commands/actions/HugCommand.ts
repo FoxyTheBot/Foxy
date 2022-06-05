@@ -33,7 +33,7 @@ export default class HugCommand extends Command {
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
-                    .setCustomId("primary")
+                    .setCustomId("hug")
                     .setLabel(t("commands:hug.button"))
                     .setStyle("PRIMARY")
                     .setEmoji("<:ztLove:978732042160332850>")
@@ -45,13 +45,15 @@ export default class HugCommand extends Command {
         const collector = interaction.channel.createMessageComponentCollector({ filter, time: 5000, max: 1 });
 
         collector.on('collect', async i => {
-            const hugEmbed = new MessageEmbed()
-                .setColor("RANDOM")
-                .setDescription(t('commands:hug.success', { user: interaction.user.username, author: user.username }))
-                .setImage(img2.url)
-            await interaction.followUp({ embeds: [hugEmbed] });
-            i.deferUpdate();
-            return collector.stop();
+            if (i.customId === 'hug') {
+                const hugEmbed = new MessageEmbed()
+                    .setColor("RANDOM")
+                    .setDescription(t('commands:hug.success', { user: interaction.user.username, author: user.username }))
+                    .setImage(img2.url)
+                await interaction.followUp({ embeds: [hugEmbed] });
+                i.deferUpdate();
+                return collector.stop();
+            }
         });
     }
 }

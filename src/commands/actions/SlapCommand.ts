@@ -42,12 +42,14 @@ export default class SlapCommand extends Command {
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 5000, max: 1 });
 
         collector.on("collect", async i => {
-            const embed2 = new MessageEmbed()
-                .setDescription(t('commands:slap.success', { target: interaction.user.username, author: user.username }))
-                .setImage(slap2.url)
-            await interaction.followUp({ embeds: [embed2] });
-            i.deferUpdate();
-            return collector.stop();
+            if (i.customId === "slap") {
+                const embed2 = new MessageEmbed()
+                    .setDescription(t('commands:slap.success', { target: interaction.user.username, author: user.username }))
+                    .setImage(slap2.url)
+                await interaction.followUp({ embeds: [embed2] });
+                i.deferUpdate();
+                return collector.stop();
+            }
         })
     }
 }

@@ -53,14 +53,16 @@ export default class BiteCommand extends Command {
         const collector = interaction.channel.createMessageComponentCollector({ filter, max: 1, time: 30000 });
 
         collector.on("collect", async i => {
-            const embed = new MessageEmbed()
-                .setColor("#ff0000")
-                .setTitle("Nhau")
-                .setDescription(t("commands:bite.success", { user: user.username, target: interaction.user.username }))
-                .setImage(rand)
-            await interaction.followUp({ embeds: [embed] });
-            i.deferUpdate();
-            return collector.stop();
+            if (i.customId === "bite") {
+                const embed = new MessageEmbed()
+                    .setColor("#ff0000")
+                    .setTitle("rawr")
+                    .setDescription(t("commands:bite.success", { user: user.username, target: interaction.user.username }))
+                    .setImage(rand)
+                await interaction.followUp({ embeds: [embed] });
+                i.deferUpdate();
+                return collector.stop();
+            }
         })
     }
 }

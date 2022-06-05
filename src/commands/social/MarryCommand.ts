@@ -43,15 +43,17 @@ export default class MarryCommand extends Command {
         const collector = await interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 5000 });
 
         collector.on("collect", async i => {
-            interaction.followUp(t('commands:marry.accepted', { user: mentionedUser.username, author: interaction.user.username }));
-            i.deferUpdate();
-            userData.marriedWith = interaction.user.id;
-            userData.marriedDate = new Date();
-            authorData.marriedWith = mentionedUser.id;
-            authorData.marriedDate = new Date();
-            await userData.save();
-            await authorData.save();
-            return collector.stop();
+            if (i.customId === 'accept') {
+                interaction.followUp(t('commands:marry.accepted', { user: mentionedUser.username, author: interaction.user.username }));
+                i.deferUpdate();
+                userData.marriedWith = interaction.user.id;
+                userData.marriedDate = new Date();
+                authorData.marriedWith = mentionedUser.id;
+                authorData.marriedDate = new Date();
+                await userData.save();
+                await authorData.save();
+                return collector.stop();
+            }
         });
     }
 }

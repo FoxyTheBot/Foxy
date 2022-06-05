@@ -47,13 +47,15 @@ export default class AttachCommand extends Command {
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 5000, max: 1 });
 
         collector.on("collect", async i => {
-            const embed = new MessageEmbed()
-                .setColor('#ff0000')
-                .setDescription(t('commands:attack.description', { user: user.username, target: interaction.user.username }))
-                .setImage(rand)
-            await interaction.followUp({ embeds: [embed] });
-            i.deferUpdate();
-            return collector.stop();
+            if (i.customId === 'attack') {
+                const embed = new MessageEmbed()
+                    .setColor('#ff0000')
+                    .setDescription(t('commands:attack.description', { user: user.username, target: interaction.user.username }))
+                    .setImage(rand)
+                await interaction.followUp({ embeds: [embed] });
+                i.deferUpdate();
+                return collector.stop();
+            }
         })
     }
 }
