@@ -7,8 +7,8 @@ export default class GenerateImage {
     private data: any;
     private readonly width: number;
     private readonly height: number;
-    private testMode: boolean;
-    private background: string;
+    private readonly testMode: boolean;
+    private readonly background: string;
 
     constructor(client, user, data, width, height, testMode?, background?) {
         this.client = client;
@@ -31,7 +31,7 @@ export default class GenerateImage {
 
         const canvas = Canvas.createCanvas(this.width, this.height);
         const ctx = canvas.getContext("2d");
-        var background = await Canvas.loadImage(`https://foxywebsite.xyz/api/backgrounds/${this.data.background}`);
+        let background = await Canvas.loadImage(`https://foxywebsite.xyz/api/backgrounds/${this.data.background}`);
 
         if (this.testMode) {
             background = await Canvas.loadImage(`https://foxywebsite.xyz/api/backgrounds/${this.background}`);
