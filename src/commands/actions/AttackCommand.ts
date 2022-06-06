@@ -2,7 +2,7 @@ import Command from "../../structures/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
 
-export default class AttachCommand extends Command {
+export default class AttackCommand extends Command {
     constructor(client) {
         super(client, {
             name: "attack",
@@ -44,18 +44,22 @@ export default class AttachCommand extends Command {
         await interaction.reply({ embeds: [embed], components: [row] });
 
         const filter = i => i.customid === "attack" && i.user.id === interaction.user.id;
-        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 5000, max: 1 });
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 10000 });
 
-        collector.on("collect", async i => {
-            if (i.customId === 'attack') {
+        collector.on('collect', async i => {
+            if (i.customId === "attack") {
                 const embed = new MessageEmbed()
                     .setColor('#ff0000')
-                    .setDescription(t('commands:attack.description', { user: user.username, target: interaction.user.username }))
+                    .setDescription(t('commands:attack.attack', {
+                        user: user.username,
+                        target: interaction.user.username
+                    }))
                     .setImage(rand)
+
                 await interaction.followUp({ embeds: [embed] });
                 i.deferUpdate();
                 return collector.stop();
             }
-        })
+        });
     }
 }
