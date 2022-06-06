@@ -37,7 +37,7 @@ export default class AttackCommand extends Command {
             )
 
         const embed = new MessageEmbed()
-            .setColor('#ff0000')
+            .setColor('#0fe6fc')
             .setDescription(t('commands:attack.attack', { user: interaction.user.username, target: user.username }))
             .setImage(rand)
 
@@ -49,7 +49,7 @@ export default class AttackCommand extends Command {
         collector.on('collect', async i => {
             if (i.customId === "attack") {
                 const embed = new MessageEmbed()
-                    .setColor('#ff0000')
+                    .setColor('#0637fd')
                     .setDescription(t('commands:attack.attack', {
                         user: user.username,
                         target: interaction.user.username
