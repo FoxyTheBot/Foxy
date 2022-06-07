@@ -211,14 +211,14 @@
         "won": "Você ganhou :D"
     },
     "fate": {
-        "couple": "Casal",
-        "enemy": "Inimigo",
-        "lover": "Amor",
-        "sibling": "Irmão",
+        "couple": "casal",
+        "enemy": "inimigos",
+        "lover": "amantes",
+        "sibling": "irmãos",
         "parent": "Pai e filho",
-        "married": "Casal",
+        "married": "casados",
         "friend": "Amigos",
-        "result": ":sparkles: **|** Em um universo paralelo {{user}} e {{mention}} são {{fate}}"
+        "result": ":sparkles: **|** Em um universo paralelo <@{{user}}> e <@{{mention}}> são {{fate}}"
     },
     "cancel": {
         "result": ":sob: **|** {{user}} cancelou {{mention}} por `{{reason}}`"

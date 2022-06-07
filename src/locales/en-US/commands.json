@@ -200,14 +200,14 @@
         "won": "You won :D"
     },
     "fate": {
-        "couple": "Couple",
-        "enemy": "Enemy",
-        "lover": "Lover",
-        "sibling": "Sibling",
-        "parent": "Parents",
-        "married": "Married",
-        "friend": "Friend",
-        "result": ":sparkles: | In a parallel universe {{user}} and {{mention}} are {{fate}}"
+        "couple": "couple",
+        "enemy": "enemies",
+        "lover": "lover",
+        "sibling": "sibling",
+        "parent": "parents",
+        "married": "married",
+        "friend": "friend",
+        "result": ":sparkles: | In a parallel universe <@{{user}}> and <@{{mention}}> are {{fate}}"
     },
     "cancel": {
         "result": ":sob: | {{user}} canceled {{mention}} for reason `{{reason}}`"

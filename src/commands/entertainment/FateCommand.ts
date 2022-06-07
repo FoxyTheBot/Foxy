@@ -30,6 +30,6 @@ export default class FateCommand extends Command {
         ]
 
         const rand = list[Math.floor(Math.random() * list.length)];
-        await interaction.reply(t('commands:fate.result', { user: user.username, fate: rand, mention: user }));
+        await interaction.reply(t('commands:fate.result', { user: interaction.user.id, fate: rand, mention: user.id }));
     }
 }
