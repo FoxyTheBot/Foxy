@@ -39,7 +39,7 @@ export default class BackgroundCommand extends Command {
                     const code: string = await interaction.options.getString("background");
                     const userData = await this.client.database.getUser(interaction.user.id);
                     const background = await bglist.find((index) => index.id === code?.toLowerCase());
-                    await interaction.deferReply();
+                    await interaction.deferReply({ ephemeral: true });
                     const bg = await userData.backgrounds;
                     if (bg.includes(code)) return await interaction.editReply(t('commands:background.buy.alreadyOwned'));
 
@@ -60,7 +60,7 @@ export default class BackgroundCommand extends Command {
                     const canvasGenerator = new GenerateImage(this.client, interaction.user, userData, 1436, 884, true, code);
                     const attachment = new MessageAttachment(await canvasGenerator.renderProfile(t), "foxy_profile.png");
 
-                    interaction.editReply({ embeds: [bgInfo] });
+                    interaction.editReply({ embeds: [bgInfo], ephemeral: true});
                     await interaction.followUp({
                         content: t("commands:background.buy.preview"),
                         files: [attachment],
