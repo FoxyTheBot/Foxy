@@ -123,7 +123,8 @@
         },
         "banner": {
             "click": "Veja o banner no seu navegador",
-            "title": "Banner de {{user}}"
+            "title": "Banner de {{user}}",
+            "noBanner": "Não há banner"
         },
         "member": {
             "title": "Sobre {{user}}",

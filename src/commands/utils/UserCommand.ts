@@ -18,6 +18,9 @@ export default class ProfileCommand extends Command {
                 .addSubcommand(option => option.setName("avatar").setDescription("[Utils] Get some user's avatar").addUserOption(
                     option => option.setName("user").setDescription("The user ID or mention").setRequired(false)
                 ))
+                .addSubcommand(option => option.setName("banner").setDescription("[Utils] Get some user's banner").addUserOption(
+                    option => option.setName("user").setDescription("The user ID or mention").setRequired(false)
+                ))
         });
     }
 

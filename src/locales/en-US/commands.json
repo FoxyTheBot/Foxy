@@ -124,7 +124,8 @@
         },
         "banner": {
             "click": "View on browser",
-            "title": "{{user}}'s Banner"
+            "title": "{{user}}'s Banner",
+            "noBanner": "This user has no banner"
         },
         "member": {
             "title": "{{user}}'s Member info",
