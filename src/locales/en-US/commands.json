@@ -130,14 +130,18 @@
         "member": {
             "title": "{{user}}'s Member info",
             "joinedAt": ":sparkles: Joined At",
-            "role": "👮‍♂️ Roles",
-            "nickname": "<:foxyhearteyes:979812541519765514> Nickname in this server",
+            "role": "<:foxysunglasses:890688144280784926> Roles",
+            "nickname": "<:foxyhearteyes:984596954526920794> Nickname in this server",
             "noNickname": "This user has no nickname in this server",
             "permissions": {
                 "button": "Permissions",
                 "list": "Permissions list",
                 "title": "{{user}}'s permissions"
-            }
+            },
+            "highestRole": "<:foxysunglasses:890688144280784926> Highest role",
+            "premiumSince": "<:foxyboost:984596808921673768> Booster since",
+            "noRoles": "This user has no roles in this server",
+            "noPermissions": "This user has no permissions in this server"
         }
     },
     "ship": {

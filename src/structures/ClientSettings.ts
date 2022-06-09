@@ -18,3 +18,8 @@ export interface FoxyOptions {
     locales: string;
     token: string;
 }
+
+export default function convertDate(date) {
+    const dateToString = date.toString().substring(0, 10);
+    return `<t:${dateToString}> (<t:${dateToString}:R>)`;
+}

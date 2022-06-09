@@ -129,14 +129,18 @@
         "member": {
             "title": "Sobre {{user}}",
             "joinedAt": ":sparkles: Entrou em",
-            "role": "👮‍♂️ Cargos",
-            "nickname": "<:foxyhearteyes:979812541519765514> Apelido no servidor",
+            "role": "<:foxysunglasses:890688144280784926> Cargos",
+            "nickname": "<:foxyhearteyes:984596954526920794> Apelido no servidor",
             "noNickname": "Não há apelido no servidor",
             "permissions": {
                 "button": "Permissões",
                 "list": "Lista de permissões",
                 "title": "Permissões de {{user}}"
-            }
+            },
+            "highestRole": "<:foxysunglasses:890688144280784926> Maior cargo",
+            "premiumSince": "<:foxyboost:984596808921673768> Impulsiona o servidor desde",
+            "noRoles": "Não há cargos",
+            "noPermissions": "Não há permissões"
         }
     },
     "ship": {
