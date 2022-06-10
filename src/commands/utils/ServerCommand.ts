@@ -1,6 +1,7 @@
 import Command from "../../structures/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
+import convertDate from "../../structures/ClientSettings";
 
 export default class ServerCommand extends Command {
     constructor(client) {
@@ -45,8 +46,8 @@ export default class ServerCommand extends Command {
                     .addFields(
                         { name: `:crown: ${t('commands:server.owner')}`, value: `\`${owner.tag}\``, inline: true },
                         { name: `:computer: ID`, value: `\`${server.id}\``, inline: true },
-                        { name: `:calendar: ${t('commands:server.createdAt')}`, value: `\`${server.createdAt.toLocaleString(t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' })}\``, inline: true },
-                        { name: `:star: ${t('commands:server.clientJoin')}`, value: `\`${server.joinedAt.toLocaleString(t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' })}\`` || "Não estou no servidor :(", inline: true },
+                        { name: `:calendar: ${t('commands:server.createdAt')}`, value: `${convertDate(server.createdTimestamp)}`, inline: true },
+                        { name: `:star: ${t('commands:server.clientJoin')}`, value: `${convertDate(server.joinedTimestamp)}`, inline: true },
                         { name: `:speech_balloon: ${t('commands:server.channels')}`, value: `\`${server.channels.cache.size}\``, inline: true },
                         { name: `<a:impulso:756507043854024784> ${t('commands:server.premium')}:`, value: server.premiumSubscriptionCount.toString(), inline: true },
                         { name: `:busts_in_silhouette: ${t('commands:server.memberCount')}`, value: `\`${server.memberCount}\``, inline: true },

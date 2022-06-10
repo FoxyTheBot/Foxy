@@ -1,4 +1,5 @@
 import { WebhookClient, MessageEmbed } from 'discord.js';
+import convertDate from './ClientSettings';
 
 export default class WebhookManager {
     public client: any;
@@ -25,7 +26,7 @@ export default class WebhookManager {
             .addFields(
                 { name: "❤ | Nome", value: `\`${guild.name}\`` },
                 { name: "💻 | ID", value: `\`${guild.id}\`` },
-                { name: "📅 | Criado em", value: `\`${guild.createdAt.toLocaleString()}\`` },
+                { name: "📅 | Criado em", value: `\`${convertDate(guild.createdTimestamp)}\`` },
             )
         const guildWebhook = new WebhookClient({ url: this.client.config.webhooks.guilds });
         await guildWebhook.send({ embeds: [guildEmbed] });
@@ -39,7 +40,7 @@ export default class WebhookManager {
             .addFields(
                 { name: "❤ | Nome", value: `\`${guild.name}\`` },
                 { name: "💻 | ID", value: `\`${guild.id}\`` },
-                { name: "📅 | Criado em", value: `\`${guild.createdAt.toLocaleString()}\`` },
+                { name: "📅 | Criado em", value: `\`${convertDate(guild.createdTimestamp)}\`` },
             )
 
         const guildWebhook = new WebhookClient({ url: this.client.config.webhooks.guilds });
