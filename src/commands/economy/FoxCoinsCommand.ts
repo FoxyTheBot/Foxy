@@ -66,6 +66,7 @@ export default class FoxCoins extends Command {
                             .setLabel(t('commands:pay.pay'))
                             .setCustomId('pay')
                             .setStyle('SUCCESS')
+                            .setEmoji("<:foxydaily:915736630495686696>")
                     )
 
                 if (user === interaction.user) return interaction.reply(t('commands:pay.self'));

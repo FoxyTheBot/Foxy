@@ -26,6 +26,7 @@ export default class BiteCommand extends Command {
                     .setCustomId("bite")
                     .setLabel(t('commands:bite.button'))
                     .setStyle("DANGER")
+                    .setEmoji("<:heheheheh:985197497968373810>")
             )
 
         if (user === interaction.user) return interaction.reply(t("commands:bite.self"));

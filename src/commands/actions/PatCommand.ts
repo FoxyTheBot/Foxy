@@ -32,6 +32,7 @@ export default class PatCommand extends Command {
                     .setLabel(t('commands:pat.button'))
                     .setCustomId("pat")
                     .setStyle("PRIMARY")
+                    .setEmoji("<:heheheheh:985197497968373810>")
             )
 
         const embed = new MessageEmbed()

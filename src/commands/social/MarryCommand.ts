@@ -35,7 +35,8 @@ export default class MarryCommand extends Command {
                 new MessageButton()
                     .setCustomId("accept")
                     .setLabel(t("commands:marry.accept"))
-                    .setStyle("SUCCESS"),
+                    .setStyle("SUCCESS")
+                    .setEmoji("💓")
             )
         interaction.reply({ content: `${this.client.emotes.heart} | ${t('commands:marry.ask', { user: mentionedUser.username, author: interaction.user.username })}`, components: [row] });
 

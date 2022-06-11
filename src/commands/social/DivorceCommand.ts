@@ -29,7 +29,8 @@ export default class DivorceCommand extends Command {
                 new MessageButton()
                     .setCustomId("divorce")
                     .setLabel(t("commands:divorce.confirm"))
-                    .setStyle("DANGER")
+                    .setStyle("PRIMARY")
+                    .setEmoji("💔")
             )
 
         interaction.reply({ content: t('commands:divorce.confirm2', { user: userInfo.username }), components: [row] });

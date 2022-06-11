@@ -49,6 +49,7 @@ export default class BackgroundCommand extends Command {
                                 .setCustomId("yes")
                                 .setLabel(t('commands:background.buy.purchase'))
                                 .setStyle("SUCCESS")
+                                .setEmoji("<:foxydaily:915736630495686696>")
                         );
 
                     const bgInfo = new MessageEmbed()
@@ -60,7 +61,7 @@ export default class BackgroundCommand extends Command {
                     const canvasGenerator = new GenerateImage(this.client, interaction.user, userData, 1436, 884, true, code);
                     const attachment = new MessageAttachment(await canvasGenerator.renderProfile(t), "foxy_profile.png");
 
-                    interaction.editReply({ embeds: [bgInfo], ephemeral: true});
+                    interaction.editReply({ embeds: [bgInfo], ephemeral: true });
                     await interaction.followUp({
                         content: t("commands:background.buy.preview"),
                         files: [attachment],
