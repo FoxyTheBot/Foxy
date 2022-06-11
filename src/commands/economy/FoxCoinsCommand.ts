@@ -64,7 +64,7 @@ export default class FoxCoins extends Command {
                     .addComponents(
                         new MessageButton()
                             .setLabel(t('commands:pay.pay'))
-                            .setCustomId('pay')
+                            .setCustomId('transfer')
                             .setStyle('SUCCESS')
                             .setEmoji("<:foxydaily:915736630495686696>")
                     )
@@ -73,11 +73,11 @@ export default class FoxCoins extends Command {
 
                 await interaction.reply({ content: t('commands:pay.alert', { amount: value.toString(), user: user.username }), components: [row] });
 
-                const filter = i => i.customId === 'pay' && i.user.id === interaction.user.id;
-                const collector = interaction.channel.createMessageComponentCollector(filter, { time: 5000 });
+                const filter = i => i.customId === 'transfer' && i.user.id === interaction.user.id;
+                const collector = await interaction.channel.createMessageComponentCollector(filter, { time: 15000 });
 
-                collector.on('collect', async i => {
-                    if (interaction.customId === 'pay') {
+                  collector.on('collect', async i => {
+                    if (i.customId === 'transfer') {
                         i.deferUpdate();
                         interaction.followUp(t('commands:pay.success', { user: user.tag, amount: value.toString() }));
                         userData.balance += value;
