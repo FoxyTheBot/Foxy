@@ -54,11 +54,13 @@ export default class ProfileCommand extends Command {
                             new MessageButton()
                                 .setLabel(t('commands:user.member.permissions.button'))
                                 .setCustomId("permissions")
-                                .setStyle("PRIMARY"),
+                                .setStyle("PRIMARY")
+                                .setEmoji("<:sus:985332743464439809>"),
                             new MessageButton()
                                 .setLabel(t('commands:user.info.avatar'))
                                 .setCustomId("avatar")
                                 .setStyle("PRIMARY")
+                                .setEmoji("<:ShiroFoxy:934469525997518848>")
                         )
 
                     const memberEmbed = new MessageEmbed()
@@ -83,6 +85,7 @@ export default class ProfileCommand extends Command {
                                 .setLabel(t('commands:user.info.avatar'))
                                 .setCustomId("avatar")
                                 .setStyle("PRIMARY")
+                                .setEmoji("<:ShiroFoxy:934469525997518848>")
                         )
                     interaction.reply({ embeds: [userEmbed], components: [avatarRow] });
                 }
