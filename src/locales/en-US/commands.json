@@ -70,15 +70,15 @@
         },
         "bot": {
             "title": "Hey, I'm Foxy!",
-            "description": "Hi {{user}}, I'm Foxy, I have features to entertain your server, like economy commands :3",
+            "description": "Hi {{user}}, I'm Foxy, I have features to entertain your server, like economy commands :3, also I have image modification commands, and some other fun commands :3",
             "fields": {
                 "list": {
-                    "title": "If you want see all commands type",
+                    "title": "<:foxy_cake:979569740471230584> If you want see all commands type",
                     "value": "`/help`"
                 },
-                "guild": "Support server",
-                "privacy": "Privacy",
-                "website": "My website (only Portuguese yet)"
+                "guild": "<:foxy_cake:979569740471230584> Support server",
+                "privacy": "<:foxy_cake:979569740471230584> Privacy",
+                "website": "<:foxy_cake:979569740471230584> My website (only Portuguese yet)"
             }
         }
     },

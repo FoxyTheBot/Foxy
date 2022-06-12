@@ -43,7 +43,7 @@ export default class HelpCommand extends Command {
                     .setColor('#7289da')
                     .setTitle(t('commands:help.bot.title'))
                     .setDescription(t('commands:help.bot.description', { user: interaction.user.username }))
-                    .setThumbnail('https://cdn.discordapp.com/avatars/737044809650274325/64b92e7d5e7fb48e977e1f04ef13369d.png?size=1024')
+                    .setThumbnail(this.client.user.displayAvatarURL({ dynamic: true, size: 2048, format: 'png' }))
                     .addField(t('commands:help.bot.fields.list.title'), t('commands:help.bot.fields.list.value'))
                     .addField(t('commands:help.bot.fields.guild'), 'https://discord.gg/W6XtYyqKkg')
                     .addField(t('commands:help.bot.fields.privacy'), 'https://foxywebsite.xyz/privacy')

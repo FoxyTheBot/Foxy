@@ -69,15 +69,15 @@
         },
         "bot": {
             "title": "Oie, eu sou a Foxy",
-            "description": "Olá {{user}}, eu sou a Foxy, tenho recursos para entreter e envolver seus membros, recursos de moderação para manter seu servidor seguro",
+            "description": "Olá {{user}}, eu sou a Foxy, tenho recursos para entreter e envolver seus membros, comandos de economia, modificação de imagem e muito mais! :3",
             "fields": {
                 "list": {
-                    "title": "Para ver a lista de comandos use",
+                    "title": "<:foxysunglasses:890688144280784926> Para ver a lista de comandos use",
                     "value": "`/help`"
                 },
-                "guild": "Serivdor de suporte",
-                "privacy": "Política de privacidade",
-                "website": "Meu website onde você pode acessar a dashboard"
+                "guild": "<:foxysunglasses:890688144280784926> Serivdor de suporte",
+                "privacy": "<:foxy_cake:979569740471230584> Política de privacidade",
+                "website": "<:foxy_cake:979569740471230584> Meu website onde você pode acessar a dashboard"
             }
         }
     },
