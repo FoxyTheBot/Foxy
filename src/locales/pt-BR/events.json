@@ -13,11 +13,7 @@
     "messageCreate": {
         "hello": "Oie, Meu nome é Foxy, meu prefixo é `/ (Slash Commands)`, utilize `/help` para obter ajuda!"
     },
-
     "interactionCreate": {
-        "error": {
-            "title": "<:foxymedu:890688173951315988> | Ocorreu um erro ao executar o comando!",
-            "description": "Ocorreu um erro ao executar o comando e isso já foi reportado para o meu desenvolvedor, use `/report` e explique o que você fez para causar este erro."
-        }
+        "error": "Infelizmente ocorreu um erro e não consegui executar esse comando, desculpa <:foxymedu:890688173951315988>, mas o erro já foi reportado para o meu desenvolvedor <:foxysunglasses:890688144280784926>"
     }
 }

@@ -21,11 +21,7 @@ export default class InteractionCreate {
                     }
                 } catch (e) {
                     console.error(e);
-                    const errorEmbed = new MessageEmbed()
-                        .setColor("RED")
-                        .setTitle(locale('events:interactionCreate.error.title'))
-                        .setDescription(`${locale('events:interactionCreate.error.description')} \n\n \ \ \`\`\`js\n${e}\n\`\`\``)
-                    interaction.reply({ embeds: [errorEmbed], ephemeral: true })
+                    interaction.reply({ content: locale('events:interactionCreate.commandError'), ephemeral: true })
                 }
             })
         }
