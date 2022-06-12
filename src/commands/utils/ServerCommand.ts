@@ -51,9 +51,9 @@ export default class ServerCommand extends Command {
                         { name: `:speech_balloon: ${t('commands:server.channels')}`, value: `\`${server.channels.cache.size}\``, inline: true },
                         { name: `<a:impulso:756507043854024784> ${t('commands:server.premium')}:`, value: server.premiumSubscriptionCount.toString(), inline: true },
                         { name: `:busts_in_silhouette: ${t('commands:server.memberCount')}`, value: `\`${server.memberCount}\``, inline: true },
-                        { name: `<a:sleeepy:803647820867174421> ${t('commands:server.partner')}`, value: `\`${partner}\``, inline: true },
+                        { name: `<a:sleeepy:803647820867174421> ${t('commands:server.partner')}`, value: `${partner}`, inline: true },
                         { name: `<a:sleeepy:803647820867174421> ${t('commands:server.afk')}`, value: `${afk}`, inline: true },
-                        { name: ':computer: Shard ID', value: `${server.shardId + 1}`, inline: true },
+                        { name: ':computer: Shard ID', value: `\`${server.shardId + 1}\``, inline: true },
                     )
 
                 await interaction.reply({ embeds: [embed] });

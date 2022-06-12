@@ -117,7 +117,6 @@ export default class BackgroundCommand extends Command {
                     } else {
                         interaction.reply(t('commands:background.set.notOwned'));
                     }
-
                 }
             }
         }
