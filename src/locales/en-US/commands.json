@@ -1,4 +1,7 @@
 {
+    "foxyGlobal": {
+        "noPermission": "<a:foxy_see:817493038053326858> **|** Wait! What are you doing? You are not {{user}}, you can't do that!"
+    },
     "botinfo": {
         "title": ":fox: Foxy",
         "description": "Hi, I'm Foxy! I'm a simple economy and entertainment bot for Discord! I'm in {{guilds}} guilds :heart:!",

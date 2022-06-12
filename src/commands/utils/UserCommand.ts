@@ -28,7 +28,6 @@ export default class ProfileCommand extends Command {
     async execute(interaction, t): Promise<void> {
         const command = interaction.options.getSubcommand();
         const user = interaction.options.getUser("user") || interaction.user;
-        if (!user) return interaction.reply(t('commands:global.noUser'));
 
         switch (command) {
             case "info": {
@@ -95,6 +94,10 @@ export default class ProfileCommand extends Command {
 
                 avatarCollector.on('collect', async i => {
                     if (i.customId === 'avatar') {
+                        if (i.user.id !== interaction.user.id) {
+                            i.deferUpdate();
+                            return i.user.send({ content: t('commands:foxyGlobal.noPermission', { user: `<@${interaction.user.id}>` }) });
+                        }
                         const avatarEmbed = new MessageEmbed()
                             .setTitle(t('commands:user.avatar.title', { user: user.username }))
                             .setImage(user.displayAvatarURL({ dynamic: true, size: 1024 }))
@@ -110,6 +113,10 @@ export default class ProfileCommand extends Command {
                         i.deferUpdate();
                         avatarCollector.stop();
                     } else if (i.customId === 'permissions') {
+                        if (i.user.id !== interaction.user.id) {
+                            i.deferUpdate();
+                            return i.user.send({ content: t('commands:foxyGlobal.noPermission', { user: `<@${interaction.user.id}>` }) });
+                        }
                         const permissions = member.permissions.toArray();
                         const embed = new MessageEmbed()
                             .setTitle(t('commands:user.member.permissions.title', { user: user.username }))
