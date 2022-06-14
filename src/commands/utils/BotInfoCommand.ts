@@ -26,7 +26,7 @@ export default class BotInfoCommand extends Command {
                 { name: t('botinfo.fields.support'), value: `[${t('botinfo.fields.server2')}](https://discord.gg/W6XtYyqKkg)`, inline: true },
                 { name: t('botinfo.fields.twitter'), value: "[@Foxy](https://twitter.com/FoxyDiscordBot)", inline: true },
                 { name: t('botinfo.fields.github'), value: "[Foxy](https://github.com/FoxyTheBot/Foxy)", inline: true },
-                { name: t('botinfo.fields.donate'), value: `[${t('botinfo.fields.donate2')}](https://www.paypal.com/donate/?hosted_button_id=J7Y747Q38UEKN)`, inline: true },
+                { name: t('botinfo.fields.donate'), value: `[${t('botinfo.fields.donate2')}](https://ko-fi.com/wing4merbr)`, inline: true },
             )
             .setThumbnail(this.client.user.displayAvatarURL({ format: "png", dynamic: true }))
             .setImage("https://c.tenor.com/GaBV0ykyRLYAAAAC/kawaii-fnaf.gif")
