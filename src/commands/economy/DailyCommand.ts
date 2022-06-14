@@ -33,7 +33,6 @@ export default class DailyCommand extends Command {
             return interaction.reply(t('commands:daily.cooldown', { time: currentCooldown }));
 
         } else {
-
             userData.balance += amount;
             userData.lastDaily = Date.now();
             userData.save().catch(err => console.log(err));
