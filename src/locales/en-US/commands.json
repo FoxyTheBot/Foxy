@@ -42,6 +42,15 @@
         "click": "Click here",
         "nothing": "Nothing"
     },
+    "role": {
+        "description": "Role permissions",
+        "id": "Role ID",
+        "color": "Role Color",
+        "position": "Role Position",
+        "noPermissions": "No permissions",
+        "roleMention": "Role mention",
+        "createdAt": "Created at"
+    },
     "coinflip": {
         "heads": "heads",
         "tails": "tails",

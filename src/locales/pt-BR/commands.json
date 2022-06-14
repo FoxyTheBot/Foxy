@@ -96,6 +96,15 @@
     "aboutme": {
         "set": "Seu sobre mim foi alterado para `{{aboutme}}`"
     },
+    "role": {
+        "description": "Permissões do cargo",
+        "id": "ID do cargo",
+        "color": "Cor do cargo",
+        "position": "Posição do cargo",
+        "noPermissions": "O cargo não tem permissões",
+        "roleMention": "Menção do cargo",
+        "createdAt": "Criado em"
+    },
     "server": {
         "owner": "Dono",
         "createdAt": "Criado em",
