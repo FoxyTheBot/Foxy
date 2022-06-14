@@ -6,11 +6,11 @@
         "title": ":fox: Foxy",
         "description": "Olá, eu sou a {{client.user.username}}! Eu sou um simples bot brasileiro de economia e entretenimento para o seu servidor! Estou espalhando alegria em {{guilds}} servidores :heart:",
         "fields": {
-            "addme": "<:DiscordExplore:790934280611037196> Me adicione",
+            "addme": "<:roseWumpusGift:919356424667140138> Me adicione",
             "server": "Servidores :heart:",
             "server2": "Entre no meu servidor clicando aqui",
             "add": "Me adicione clicando aqui",
-            "support": "Servidor de suporte",
+            "support": "<:foxyhearteyes:984596954526920794> Servidor de suporte",
             "twitter": "<:Twitter:797184287816286209> Meu Twitter",
             "github": "<:GitHub:746399300728258710> Meu Github",
             "donate": "<:kofi:986386611900153886> Doe para mim",
