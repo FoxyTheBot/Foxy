@@ -26,7 +26,7 @@ export default class WebhookManager {
             .addFields(
                 { name: "❤ | Nome", value: `\`${guild.name}\`` },
                 { name: "💻 | ID", value: `\`${guild.id}\`` },
-                { name: "📅 | Criado em", value: `\`${convertDate(guild.createdTimestamp)}\`` },
+                { name: "📅 | Criado em", value: `${convertDate(guild.createdTimestamp)}` },
             )
         const guildWebhook = new WebhookClient({ url: this.client.config.webhooks.guilds });
         await guildWebhook.send({ embeds: [guildEmbed] });
@@ -40,7 +40,7 @@ export default class WebhookManager {
             .addFields(
                 { name: "❤ | Nome", value: `\`${guild.name}\`` },
                 { name: "💻 | ID", value: `\`${guild.id}\`` },
-                { name: "📅 | Criado em", value: `\`${convertDate(guild.createdTimestamp)}\`` },
+                { name: "📅 | Criado em", value: `${convertDate(guild.createdTimestamp)}` },
             )
 
         const guildWebhook = new WebhookClient({ url: this.client.config.webhooks.guilds });
