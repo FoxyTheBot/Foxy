@@ -4,7 +4,7 @@
   <p align="center">
 
  <a href="https://jetbrains.com/?from=FoxyTheBot">
-    <img src="https://img.shields.io/badge/Powered_by_IntelliJ-gray.svg?logo=intellijidea&style=for-the-badge" />
+    <img src="https://img.shields.io/badge/Powered_by_Webstorm-gray.svg?logo=webstorm&style=for-the-badge" />
   </a>
 </p>
 
