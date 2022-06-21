@@ -1,17 +1,16 @@
-import { Schema, connect, model } from 'mongoose';
+import mongoose, { ConnectOptions } from 'mongoose';
+import { mongouri } from '../../config.json';
 
 export default class DatabaseConnection {
-    private user: any;
     private client: any;
-    private locale: any;
-    public guild: any;
+    private user: any;
 
-    constructor(auth: string, params: Object, client: any) {
-        connect(auth, params, (err) => {
+    constructor(client) {
+        mongoose.connect(mongouri, { useNewUrlParser: true, useUnifiedTopology: true, writeConcern: "majority" } as ConnectOptions, (err) => {
             if (err) return console.error('Ocorreu um erro ao se conectar no Atlas do MongoDB!', err);
         });
 
-        const userSchema = new Schema({
+        const userSchema = new mongoose.Schema({
             _id: String,
             userCreationTimestamp: Date,
             premium: Boolean,
@@ -27,26 +26,12 @@ export default class DatabaseConnection {
             repCount: Number,
             lastRep: Date,
             background: String,
-            backgrounds: Array
+            backgrounds: Array,
+            premiumType: String,
+            language: String,
         }, { versionKey: false, id: false });
 
-        const guildSchema = new Schema({
-            _id: String,
-            guildCreationTimestamp: Date,
-            partner: Boolean,
-            disabledCommands: Array,
-            disabledChannels: Array,
-            lang: String
-        }, { versionKey: false, id: false });
-
-        const localeSchema = new Schema({
-            _id: String,
-            locale: String
-        });
-
-        this.user = model('user', userSchema);
-        this.locale = model('locale', localeSchema);
-        this.guild = model('guild', guildSchema);
+        this.user = mongoose.model('user', userSchema);
         this.client = client;
     }
 
@@ -74,7 +59,9 @@ export default class DatabaseConnection {
                 repCount: 0,
                 lastRep: null,
                 background: "default",
-                backgrounds: ["default"]
+                backgrounds: ["default"],
+                premiumType: null,
+                language: 'pt-BR'
             }).save();
         }
 
@@ -84,22 +71,5 @@ export default class DatabaseConnection {
     async getAllUsers(): Promise<void> {
         let usersData = await this.user.find({});
         return usersData.map(user => user.toJSON());
-    }
-
-    async getUserLocale(userId: string): Promise<void> {
-        const user = await this.client.users.fetch(userId);
-
-        if (!user) return null;
-
-        let document = await this.locale.findOne({ _id: userId });
-
-        if (!document) {
-            document = new this.locale({
-                _id: userId,
-                locale: 'pt-BR'
-            }).save();
-        }
-
-        return document;
     }
 }

@@ -28,7 +28,17 @@ export default class ProfileCommand extends Command {
     async execute(interaction, t): Promise<void> {
         const command = interaction.options.getSubcommand();
         const user = interaction.options.getUser("user") || interaction.user;
+        const data = await this.client.api.users(user.id).get();
 
+        if (data.banner) {
+            var banner = data.banner.startsWith("a_") ? ".gif?size=4096" : ".png?size=4096";
+            banner = `https://cdn.discordapp.com/banners/${user.id}/${data.banner}${banner}`;
+        }
+        if (data.avatar) {
+            var avatar = data.banner.startsWith("a_") ? ".gif?size=2048" : ".png?size=2048";
+            avatar = `https://cdn.discordapp.com/avatars/${user.id}/${data.avatar}${avatar}`
+
+        }
         switch (command) {
             case "info": {
                 const data = await this.client.api.users(user.id).get();
@@ -65,7 +75,7 @@ export default class ProfileCommand extends Command {
                     const memberEmbed = new MessageEmbed()
                         .setColor(user.hexAccentColor)
                         .setTitle(t('commands:user.member.title', { user: user.username }))
-                        .setThumbnail(user.displayAvatarURL({ dynamic: true, size: 1024 }))
+                        .setThumbnail(avatar)
                         .addFields(
                             { name: t('commands:user.member.joinedAt'), value: convertDate(member.joinedTimestamp) },
                             { name: t('commands:user.member.nickname'), value: member.displayName },
@@ -100,13 +110,13 @@ export default class ProfileCommand extends Command {
                         }
                         const avatarEmbed = new MessageEmbed()
                             .setTitle(t('commands:user.avatar.title', { user: user.username }))
-                            .setImage(user.displayAvatarURL({ dynamic: true, size: 1024 }))
+                            .setImage(avatar)
                         const row = new MessageActionRow()
                             .addComponents(
                                 new MessageButton()
                                     .setLabel(t('commands:user.avatar.click'))
                                     .setStyle("LINK")
-                                    .setURL(user.displayAvatarURL({ size: 1024 })),
+                                    .setURL(avatar),
 
                             )
                         await interaction.followUp({ embeds: [avatarEmbed], ephemeral: true, components: [row] });
@@ -138,12 +148,12 @@ export default class ProfileCommand extends Command {
                         new MessageButton()
                             .setLabel(t('commands:user.avatar.click'))
                             .setStyle("LINK")
-                            .setURL(user.displayAvatarURL({ size: 1024 })),
+                            .setURL(avatar),
 
                     )
                 const avatarEmbed = new MessageEmbed()
                     .setTitle(t('commands:user.avatar.title', { user: user.username }))
-                    .setImage(user.displayAvatarURL({ size: 2048 }))
+                    .setImage(avatar)
                     .setFooter({ text: t('commands:user.avatar.footer') })
 
                 await interaction.reply({ embeds: [avatarEmbed], components: [row] });
@@ -151,12 +161,6 @@ export default class ProfileCommand extends Command {
             }
 
             case "banner": {
-                const data = await this.client.api.users(user.id).get();
-
-                if (data.banner) {
-                    var banner = data.banner.startsWith("a_") ? ".gif?size=4096" : ".png?size=4096";
-                    banner = `https://cdn.discordapp.com/banners/${user.id}/${data.banner}${banner}`;
-                }
                 if (!data.banner) return interaction.reply(t('commands:user.banner.noBanner'));
 
                 const row = new MessageActionRow()

@@ -43,7 +43,9 @@ export default class DivorceCommand extends Command {
                 interaction.followUp(`${this.client.emotes.error} **|** ${t('commands:divorce.divorced')}`);
                 i.deferUpdate();
                 userData.marriedWith = null;
+                userData.marriedDate = null;
                 marriedData.marriedWith = null;
+                marriedData.marriedDate = null;
                 await userData.save();
                 await marriedData.save();
                 return collector.stop();

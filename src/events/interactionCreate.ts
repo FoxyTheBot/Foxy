@@ -9,8 +9,8 @@ export default class InteractionCreate {
     }
 
     async run(interaction): Promise<any> {
-        const user = await this.client.database.getUserLocale(interaction.user.id);
-        let locale = global.t = i18next.getFixedT(user.locale || 'pt-BR');
+        const user = await this.client.database.getUser(interaction.user.id);
+        let locale = global.t = i18next.getFixedT(user.language || 'pt-BR');
 
         const command = this.client.commands.get(interaction.commandName);
         function FoxyHandler() {

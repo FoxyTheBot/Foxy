@@ -16,7 +16,7 @@ export default class LanguageCommand extends Command {
     }
 
     async execute(interaction, t): Promise<void> {
-        const userData = await this.client.database.getUserLocale(interaction.user.id);
+        const userData = await this.client.database.getUser(interaction.user.id);
 
         const row = new MessageActionRow()
             .addComponents(
@@ -45,7 +45,7 @@ export default class LanguageCommand extends Command {
         interaction.reply({ embeds: [embed], components: [row], ephemeral: true });
 
         const filter = (user) => user.id === interaction.user.id && interaction.customId === 'select';
-        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 5000, max: 1 });
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
 
         collector.on('collect', i => {
             const selectMenuValue = i.values[0];
@@ -53,13 +53,13 @@ export default class LanguageCommand extends Command {
             if (selectMenuValue === "en") {
                 interaction.followUp(`:flag_us: **| Language changed to English**`);
                 i.deferUpdate();
-                userData.locale = "en-US";
+                userData.language = "en-US";
                 userData.save();
                 return collector.stop();
             } else if (selectMenuValue === "pt") {
                 interaction.followUp(`:flag_br: **| Linguagem alterada para Português do Brasil!**`);
                 i.deferUpdate();
-                userData.locale = "pt-BR";
+                userData.language = "pt-BR";
                 userData.save();
                 return collector.stop();
             }

@@ -19,7 +19,7 @@ export default class FoxyClient extends Client {
         this.commands = new Collection();
         this.emotes = require("./structures/json/emotes.json");
         this.config = require("../config.json");
-        this.database = new DatabaseConnection(this.config.mongouri, { useNewUrlParser: true, useUnifiedTopology: true, writeConcern: "majority" }, this);
+        this.database = new DatabaseConnection(this);
         this.WebhookManager = new WebhookManager(this);
     }
 

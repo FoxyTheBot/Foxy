@@ -62,9 +62,32 @@ export default class GenerateImage {
         }
 
         if (this.data.premium) {
+            var badge;
+            switch (this.data.premiumType) {
+                case "INFINITY_ESSENTIALS": {
+                    badge = "✨"
+                    break;
+                }
+
+                case "INFINITY_PRO": {
+                    badge = "💎"
+                    break;
+                }
+
+                case "INFINITY_TURBO": {
+                    badge = "🔥"
+                    break;
+                }
+
+                case "VETERAN": {
+                    badge = "💪"
+                    break;
+                }
+            }
+
             ctx.font = '30px sans-serif';
             ctx.fillStyle = '#ffffff';
-            ctx.fillText(t("commands:profile.premium", { date: this.data.premiumDate.toLocaleString(t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }), canvas.width / 6.0, canvas.height / 6.0);
+            ctx.fillText(t("commands:profile.premium", { badge: badge, date: this.data.premiumDate.toLocaleString(t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }), canvas.width / 6.0, canvas.height / 6.0);
         }
 
         ctx.font = ('30px sans-serif');
