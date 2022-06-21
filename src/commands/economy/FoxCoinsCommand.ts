@@ -23,7 +23,7 @@ export default class FoxCoins extends Command {
             case 'atm': {
                 const user = await interaction.options.getUser('user') || interaction.user;
                 if (!user) return interaction.reply(t('commands:global.noUser'));
-                const userData = await this.client.database.getUser(user.id);
+                const userData = await this.client.database.getUserByID(user.id);
                 const balance = userData.balance;
 
                 await interaction.reply(t('commands:atm.success', { user: user.username, balance: balance.toString() }));
@@ -31,6 +31,7 @@ export default class FoxCoins extends Command {
             }
 
             case 'rank': {
+                await interaction.deferReply();
                 let data = await this.client.database.getAllUsers();
                 const embed = new MessageEmbed();
 
@@ -45,7 +46,6 @@ export default class FoxCoins extends Command {
                     let user = await this.client.users.fetch(data[i]._id);
                     embed.addField(`${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - \`${user.tag}\``, `**${parseInt(data[i].balance)}** FoxCoins`, true);
                 }
-                await interaction.deferReply();
                 await interaction.editReply({ embeds: [embed] });
                 break;
             }
@@ -55,8 +55,8 @@ export default class FoxCoins extends Command {
                 const user: any = interaction.options.getUser('user');
                 if (!user) return interaction.reply(t('commands:global.noUser'));
 
-                const userData = await this.client.database.getUser(user.id);
-                const authorData = await this.client.database.getUser(interaction.user.id);
+                const userData = await this.client.database.getUserByID(user.id);
+                const authorData = await this.client.database.getUserByID(interaction.user.id);
                 const coins = amount;
                 const value = Math.round(coins);
 
@@ -76,7 +76,7 @@ export default class FoxCoins extends Command {
                 const filter = i => i.customId === 'transfer' && i.user.id === interaction.user.id;
                 const collector = await interaction.channel.createMessageComponentCollector(filter, { time: 15000 });
 
-                  collector.on('collect', async i => {
+                collector.on('collect', async i => {
                     if (i.customId === 'transfer') {
                         i.deferUpdate();
                         interaction.followUp(t('commands:pay.success', { user: user.tag, amount: value.toString() }));

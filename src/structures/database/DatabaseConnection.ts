@@ -8,7 +8,7 @@ export default class DatabaseConnection {
     public premium; any;
 
     constructor() {
-        mongoose.connect(config.mongouri, { useNewUrlParser: true, useUnifiedTopology: true } as ConnectOptions, (err) => {
+        mongoose.connect(config.mongouri, { useNewUrlParser: true, useUnifiedTopology: true, writeConcern: "majority" } as ConnectOptions, (err) => {
             if (err) {
                 return console.error(err);
             }
@@ -18,15 +18,15 @@ export default class DatabaseConnection {
         this.premium = mongoose.model("key", premium);
     }
 
-    getUserByIDByID(id: string) {
-        return this.getUserByID(id);
+    getUserByID(id: string) {
+        return this.getUser({ id });
     }
 
-    getUserByID(...args) {
+    getUser(...args) {
         return this.user.findOne(...args);
     }
 
-    async getUserByIDAndDelete(id) {
+    async getUserAndDelete(id) {
         const data = await this.getUserByID(id);
         if (data) {
             return this.user.findOneAndDelete({ id });

@@ -1,7 +1,7 @@
 import { Schema } from 'mongoose';
 
 const User = new Schema({
-    _id: { type: String, index: { unique: true } },
+    _id: { type: String },
     userCreationTimestamp: { type: Date, default: Date.now() },
     premium: { type: Boolean, default: false },
     premiumDate: { type: Date, default: null },
@@ -19,6 +19,6 @@ const User = new Schema({
     background: { type: String, default: "default" },
     backgrounds: { type: Array, default: ["default"] },
     language: { type: String, default: "pt-BR" },
-});
+}, { versionKey: false, id: false });
 
 export default User
