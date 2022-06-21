@@ -64,7 +64,7 @@
         "your": "📝 | Your profile",
         "noAboutme": "Foxy is so cute ><! You can change this message using /aboutme command",
         "marriedWith": "💍 Married With {{user}}\n Since {{date}}",
-        "premium": "{{badge}} Premium since {{date}}",
+        "premium": "🔑 Premium since {{date}}",
         "testMode": "Your about me will be displayed here"
     },
     "help": {
@@ -253,7 +253,7 @@
     },
     "daily": {
         "cooldown": ":x: | You already got your daily, wait **{{time}}**",
-        "premium": "You would win **{{normalMoney}} FoxCoins** but you are a **{{premiumType}}** subscriber and you won **{{doubleValue}}** more, **{{amount}} FoxCoins** and now has {{money}} FoxCoins",
+        "premium": "You would win **{{normalMoney}} FoxCoins** but you are a premium user and you won 2x more, **{{amount}} FoxCoins** and now has {{money}} FoxCoins",
         "daily": "You won **{{amount}} FoxCoins** and now has {{money}} FoxCoins"
     },
     "background": {

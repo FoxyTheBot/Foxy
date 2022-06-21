@@ -1,7 +1,7 @@
 import { Client, ClientOptions, Collection } from 'discord.js';
 import { FoxyCommands } from './structures/BaseCommand';
 import { FoxySettings, FoxyOptions } from './structures/ClientSettings';
-import DatabaseConnection from './structures/database/DatabaseConnection';
+import DatabaseConnection from './structures/DatabaseConnection';
 import WebhookManager from './structures/WebhookManager';
 import i18next from 'i18next';
 import i18nbackend from 'i18next-fs-backend';
@@ -19,7 +19,7 @@ export default class FoxyClient extends Client {
         this.commands = new Collection();
         this.emotes = require("./structures/json/emotes.json");
         this.config = require("../config.json");
-        this.database = new DatabaseConnection();
+        this.database = new DatabaseConnection(this.config.mongouri, { useNewUrlParser: true, useUnifiedTopology: true, writeConcern: "majority" }, this);
         this.WebhookManager = new WebhookManager(this);
     }
 
@@ -33,7 +33,7 @@ export default class FoxyClient extends Client {
     async loadLocales(path: string): Promise<void> {
         try {
             await i18next.use(i18nbackend).init({
-                ns: ["commands", "events", "permissions", "subscription"],
+                ns: ["commands", "events", "permissions"],
                 defaultNS: "commands",
                 preload: fs.readdirSync(path),
                 fallbackLng: "pt-BR",

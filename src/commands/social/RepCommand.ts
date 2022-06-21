@@ -20,8 +20,8 @@ export default class RepCommand extends Command {
         if (!user) return interaction.reply(t('commands:global.noUser'));
         if (user === interaction.user) return interaction.reply(t("commands:rep.self"));
 
-        const userData = await this.client.database.getUserByID(user.id);
-        const authorData = await this.client.database.getUserByID(interaction.user.id);
+        const userData = await this.client.database.getUser(user.id);
+        const authorData = await this.client.database.getUser(interaction.user.id);
 
         const repCooldown = 3600000;
 

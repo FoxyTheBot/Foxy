@@ -16,7 +16,7 @@ export default class DailyCommand extends Command {
     }
 
     async execute(interaction, t): Promise<void> {
-        const userData = await this.client.database.getUserByID(interaction.user.id);
+        const userData = await this.client.database.getUser(interaction.user.id);
 
         const timeout = 43200000;
         let amount = Math.floor(Math.random() * 8000);
@@ -24,32 +24,7 @@ export default class DailyCommand extends Command {
 
         if (userData.premium) {
             var oldAmount = amount;
-            var type;
-            switch (userData.premiumType) {
-                case "INFINITY_ESSENTIALS": {
-                    amount = amount * 1.25;
-                    type = "1.25x";
-                    break;
-                }
-
-                case "INFINITY_PRO": {
-                    amount = amount * 1.5;
-                    type = "1.5x";
-                    break;
-                }
-
-                case "INFINITY_TURBO": {
-                    amount = amount * 2;
-                    type = "2x";
-                    break;
-                }
-
-                case "VETERAN": {
-                    amount = amount * 2;
-                    type = "2x";
-                    break;
-                }
-            }
+            amount = amount * 2;
         }
 
         const daily = await userData.lastDaily;
@@ -65,7 +40,7 @@ export default class DailyCommand extends Command {
             const money = await userData.balance;
 
             if (userData.premium) {
-                interaction.reply(`${this.client.emotes.daily} **|** ${t('commands:daily.premium', { amount: amount.toString(), money: money.toString(), normalMoney: `${oldAmount}`, doubleValue: type, premiumType: t(`subscription:${userData.premiumType}`) })}`);
+                interaction.reply(`${this.client.emotes.daily} **|** ${t('commands:daily.premium', { amount: amount.toString(), money: money.toString(), normalMoney: `${oldAmount}` })}`);
             } else {
                 interaction.reply(`${this.client.emotes.daily} **|** ${t('commands:daily.daily', { amount: amount.toString(), money: money.toString() })}`)
             }

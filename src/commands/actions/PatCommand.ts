@@ -42,8 +42,8 @@ export default class PatCommand extends Command {
 
         await interaction.reply({ embeds: [embed], components: [row] });
 
-        const filter = i => i.customId == "pat" && user.id == user.id;
-        const collector = await interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
+        const filter = i => i.customId == "pat" && i.user.id == user.id;
+        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 5000, max: 1 });
 
         collector.on("collect", async i => {
             if (i.customId == "pat") {
@@ -51,7 +51,7 @@ export default class PatCommand extends Command {
                     .setColor("RANDOM")
                     .setDescription(t('commands:pat.success', { user: interaction.user.username, author: user.username }))
                     .setImage(gif2.url)
-                i.followUp({ embeds: [embed] });
+                await i.followUp({ embeds: [embed] });
                 i.deferUpdate();
                 return collector.stop();
             }

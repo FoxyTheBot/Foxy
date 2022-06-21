@@ -22,12 +22,12 @@ export default class MarryCommand extends Command {
 
         if (mentionedUser === this.client.user) return interaction.reply(t('commands:marry.bot'));
         if (mentionedUser === interaction.user) return interaction.reply(t("commands:marry.self"));
-        const authorData = await this.client.database.getUserByID(interaction.user.id);
+        const authorData = await this.client.database.getUser(interaction.user.id);
         if (authorData.marriedWith) return interaction.reply(t("commands:marry.alreadyMarried", { user: mentionedUser.username }));
         if (mentionedUser === this.client.user) return interaction.reply(t('commands:marry.bot'));
         if (mentionedUser.id === authorData.marriedWith) return interaction.reply(t('commands:marry.alreadyMarriedWithUser', { user: mentionedUser.username }));
 
-        const userData = await this.client.database.getUserByID(mentionedUser.id);
+        const userData = await this.client.database.getUser(mentionedUser.id);
         if (userData.marriedWith) return interaction.reply(t("commands:marry.alreadyMarriedWithSomeone"));
 
         const row = new MessageActionRow()
@@ -41,7 +41,7 @@ export default class MarryCommand extends Command {
         interaction.reply({ content: `${this.client.emotes.heart} | ${t('commands:marry.ask', { user: mentionedUser.username, author: interaction.user.username })}`, components: [row] });
 
         const filter = i => i.customId === "accept" && i.user.id === mentionedUser.id;
-        const collector = await interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 15000 });
+        const collector = await interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 5000 });
 
         collector.on("collect", async i => {
             if (i.customId === 'accept') {
