@@ -30,6 +30,6 @@ export default class Ready {
         //     dbl.on('posted', (stats) => {
         //         this.client.WebhookManager.sendLog(stats);
         //     });
-        // }, 10000);
+        // }, 600000);
     }
 }
