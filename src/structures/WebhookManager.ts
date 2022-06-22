@@ -70,7 +70,6 @@ export default class WebhookManager {
             .setDescription(`A quantidade de servidores foram atualizadas para ${stats.serverCount}`)
         const dblWebhook = new WebhookClient({ url: this.client.config.webhooks.dbl });
         await dblWebhook.send({
-            username: "AutoPoster",
             embeds: [dblEmbed]
         });
     }

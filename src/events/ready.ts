@@ -12,10 +12,10 @@ export default class Ready {
 
         const status = [
             { name: "🐦 | Me siga no Twitter: @FoxyDiscordBot", type: 0 },
-            { name: "💖 | Fui criada pelo WinG4merBR#6611", type: 3 },
-            { name: `😍 | Me adicione usando /invite`, type: 1 },
+            { name: `😍 | Me adicione clicando no meu perfil`, type: 1 },
             { name: `🤔 | Precisa de ajuda? Utilize /help`, type: 2 },
-            { name: "🍰 | Minha comida preferida é pizza e bolo :3 💖", type: 5 }
+            { name: "🍰 | Minha comida preferida é bolo :3 💖", type: 5 },
+            { name: `🐱 | Em ${this.client.guilds.cache.size} servidores`, type: 0 }
         ];
 
         setInterval(() => {
@@ -26,7 +26,10 @@ export default class Ready {
         // If your bot is in top.gg, you can uncomment this
 
         setInterval(() => {
-            AutoPoster(this.client.config.dblauth, this.client);
-        }, 86400000);
+            const dbl = AutoPoster(this.client.config.dblauth, this.client);
+            dbl.on('posted', (stats) => {
+                this.client.WebhookManager.sendLog(stats);
+            });
+        });
     }
 }
