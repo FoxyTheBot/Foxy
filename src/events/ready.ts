@@ -8,7 +8,7 @@ export default class Ready {
     }
 
     async run(): Promise<void> {
-        console.info(`[READY] - Shard ${Number(this.client.shard.ids) + 1} Está conectada com ${this.client.guilds.cache.size} Servidores!`);
+        console.info(`[READY] - Shard ${Number(this.client.shard.ids) + 1} is ready to go!`);
 
         const status = [
             { name: "🐦 | Me siga no Twitter: @FoxyDiscordBot", type: 0 },
@@ -25,11 +25,11 @@ export default class Ready {
 
         // If your bot is in top.gg, you can uncomment this
 
-        setInterval(() => {
-            const dbl = AutoPoster(this.client.config.dblauth, this.client);
-            dbl.on('posted', (stats) => {
-                this.client.WebhookManager.sendLog(stats);
-            });
-        });
+        // setInterval(() => {
+        //     const dbl = AutoPoster(this.client.config.dblauth, this.client);
+        //     dbl.on('posted', (stats) => {
+        //         this.client.WebhookManager.sendLog(stats);
+        //     });
+        // }, 10000);
     }
 }

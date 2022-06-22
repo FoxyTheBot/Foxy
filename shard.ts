@@ -11,11 +11,11 @@ manager.on("shardCreate", (shard: any) => {
 manager.spawn();
 
 process.on('uncaughtException', err => {
-    console.error('Um erro inesperado e GRAVE ocorreu!\n', err);
+    console.error('A Uncaught Exception has occurred\n', err);
     process.exit(1);
 
 });
 
 process.on('unhandledRejection', err => {
-    console.error('Um erro inesperado ocorreu!\n', err);
+    console.error('A Unhandled Rejection has occurred\n', err);
 });

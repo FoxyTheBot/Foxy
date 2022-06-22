@@ -33,7 +33,7 @@ export default class FoxyClient extends Client {
     async loadLocales(path: string): Promise<void> {
         try {
             await i18next.use(i18nbackend).init({
-                ns: ["commands", "events", "permissions"],
+                ns: ["commands", "events", "permissions", "subscriptions"],
                 defaultNS: "commands",
                 preload: fs.readdirSync(path),
                 fallbackLng: "pt-BR",
@@ -45,7 +45,7 @@ export default class FoxyClient extends Client {
                 returnEmptyString: false,
                 returnObjects: true
             });
-            return console.info(`[LOCALES] - Carregados ${i18next.languages.length} locales`);
+            return console.info(`[LOCALES] - Loaded ${i18next.languages.length} languages`);
         } catch (error) {
             return console.error(`Erro ao carregar locales: `, error);
         }
