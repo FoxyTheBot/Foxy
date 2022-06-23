@@ -1,86 +1,32 @@
 <p align="center">
-<img src="https://socialify.git.ci/FoxyTheBot/Foxy/image?language=1&logo=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F74120553%3Fs%3D200%26v%3D4&name=1&owner=1&pattern=Circuit%20Board&stargazers=1&theme=Dark">
-<h1 align="center">Foxy</h1>
-  <p align="center">
+<img height="150" src="https://cdn.discordapp.com/attachments/789266900852408351/989589378861002852/foxyoculos.png" align="center">
+<h1 align="center">🦊 Foxy</h1>
 
- <a href="https://jetbrains.com/?from=FoxyTheBot">
-    <img src="https://img.shields.io/badge/Powered_by_Webstorm-gray.svg?logo=webstorm&style=for-the-badge" />
-  </a>
+<p align="center">
+
+<a align="center" href="https://discordbots.org/bot/737044809650274325?utm_source=widget">
+<img src="https://discordbots.org/api/widget/737044809650274325.png" alt="Discord Bots" />
+</a>
+ </p>
+<p align="center">
+<a href="https://foxywebsite.xyz"><img src="https://img.shields.io/badge/website-foxy-purple.svg"></a>
+</a>
+<a href="https://ko-fi.com/wing4merbr"><img src="https://img.shields.io/badge/donate-foxy-red.svg"></a>
+<a href="https://foxywebsite.xyz/discord"><img src="https://discordapp.com/api/guilds/768267522670723094/widget.png"></a>
 </p>
 
-# 🤔 | Who am I?
+## 🤔 | Who am I?
 Hi, I'm Foxy! I will entertain your server with my commands
 
 <br>
 
-## 🏗 | Preparing the environment
+## 💜 | Inviting Foxy to your server 
+Use the public instance without hosting stuff, If you're here to see or use the code, why don't you try Foxy's public version? It's recommended using the public instance
 
-### 📕 | Terms:
-You cannot use the Foxy's image in privates or public instances, the code in this repository is intended for Foxy contributors, If you want to run Foxy by yourself as self-host, you can, but WE DO NOT SUPPORT self-host.
-At your own risk
+## 💻 | Self-hosting
+If you want to self-host Foxy by yourself you can read thhe tutorial by [clicking here](https://github.com/FoxyTheBot/Foxy/blob/master/docs/SELF-HOSTING.md), We won't give support for people that are trying to self-host, so you should at least know how to troubleshoot issues, if you find.
 
-Pursuant to the license, you may modify Foxy's source code, but you are required to make the code public including the modifications.
-<br>
+## 🤔 | Need help?
+- If you need help, you can enter in My Discord Server!
 
-### ⚠ | Requirements:
-
-- NodeJS v16.x or higher
-- Git
-- npm
-
-<br>
-
-## 🤔 | How can I run Foxy?
-<br>
-<p>You need to install TSC (TypeScript Compiler)</p>
-
-```bash
-npm i -g typescript
-```
-
-## Values that you need to change
-<br>
-
-```json
-{
-  "ownerId": "<YOUR-ID>", 
-  "clientId": "<BOT-ID>", 
-  "prefix": "<BOT-PREFIX>", 
-  "token": "<BOT-TOKEN>", 
-  "mongouri": "<MONGODB-URI>", 
-  "dblauth": "<TOPGG-AUTH>", 
-
-    "webhooks": {
-        "guilds": "URL", 
-        "suggestions": "URL", 
-        "issues": "URL",
-        "dbl": "URL"
-    }
-  }
-```
-<br>
-
-## ✨ | Install all required dependencies
-```bash
-npm i
-```
-
-## 💻 | Compiling Foxy
-
-Just type:
-
-```bash
-tsc
-```
-
-<br>
-
-<p>Check the console to see if there are any errors... Well, we hope that there are none.</p>
-
-## 🤩 | Starting Foxy
-- You need to register slash commands running: node build/register.js
-
-Now you can run Foxy using:
-```bash
-node .
-```
+<a href="https://foxywebsite.xyz/discord"><img src="https://discordapp.com/api/guilds/768267522670723094/widget.png?style=banner3"></a>
