@@ -8,12 +8,6 @@
 <img src="https://discordbots.org/api/widget/737044809650274325.png" alt="Discord Bots" />
 </a>
  </p>
-<p align="center">
-<a href="https://foxywebsite.xyz"><img src="https://img.shields.io/badge/website-foxy-purple.svg"></a>
-</a>
-<a href="https://ko-fi.com/wing4merbr"><img src="https://img.shields.io/badge/donate-foxy-red.svg"></a>
-<a href="https://foxywebsite.xyz/discord"><img src="https://discordapp.com/api/guilds/768267522670723094/widget.png"></a>
-</p>
 
 ## 🤔 | Who am I?
 Hi, I'm Foxy! I will entertain your server with my commands
