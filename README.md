@@ -18,7 +18,7 @@ Hi, I'm Foxy! I will entertain your server with my commands
 Use the public instance without hosting stuff, If you're here to see or use the code, why don't you try Foxy's public version? It's recommended using the public instance
 
 ## 💻 | Self-hosting
-If you want to self-host Foxy by yourself you can read thhe tutorial by [clicking here](https://github.com/FoxyTheBot/Foxy/blob/master/docs/SELF-HOSTING.md), We won't give support for people that are trying to self-host, so you should at least know how to troubleshoot issues, if you find.
+If you want to self-host Foxy by yourself you can read the tutorial by [clicking here](https://github.com/FoxyTheBot/Foxy/blob/master/docs/SELF-HOSTING.md), We won't give support for people that are trying to self-host, so you should at least know how to troubleshoot issues, if you find.
 
 ## 🤔 | Need help?
 - If you need help, you can enter in My Discord Server!
