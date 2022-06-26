@@ -11,24 +11,24 @@ export default class DatabaseConnection {
         });
 
         const userSchema = new mongoose.Schema({
-            _id: String,
+            _id: string,
             userCreationTimestamp: Date,
             premium: Boolean,
             premiumDate: Date,
             isBanned: Boolean,
             banData: Date,
-            banReason: String,
-            aboutme: String,
+            banReason: string,
+            aboutme: string,
             balance: Number,
             lastDaily: Date,
-            marriedWith: String,
+            marriedWith: string,
             marriedDate: Date,
             repCount: Number,
             lastRep: Date,
-            background: String,
+            background: string,
             backgrounds: Array,
-            premiumType: String,
-            language: String,
+            premiumType: string,
+            language: string,
         }, { versionKey: false, id: false });
 
         this.user = mongoose.model('user', userSchema);

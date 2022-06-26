@@ -1,4 +1,4 @@
-import { WebhookClient, MessageEmbed } from 'discord.js';
+import { WebhookClient, MessageEmbed, Interaction, Guild } from 'discord.js';
 import convertDate from './ClientSettings';
 
 export default class WebhookManager {
@@ -8,7 +8,7 @@ export default class WebhookManager {
         this.client = client;
     }
 
-    async sendSuggestion(interaction, suggestion): Promise<void> {
+    async sendSuggestion(interaction: Interaction, suggestion: string): Promise<void> {
         const suggestEmbed = new MessageEmbed()
             .setTitle('Nova sugestão para a Foxy!')
             .setThumbnail(interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
@@ -18,7 +18,7 @@ export default class WebhookManager {
         await suggestWebhook.send({ embeds: [suggestEmbed] });
     }
 
-    async guildCreate(guild): Promise<void> {
+    async guildCreate(guild: Guild): Promise<void> {
         const guildEmbed = new MessageEmbed()
             .setTitle(`${this.client.emotes.success} | Fui adicionada em um servidor! :3`)
             .setThumbnail('https://cdn.discordapp.com/attachments/782995363548102676/839517480640577536/yay_fast.gif')
@@ -32,7 +32,7 @@ export default class WebhookManager {
         await guildWebhook.send({ embeds: [guildEmbed] });
     }
 
-    async guildDelete(guild): Promise<void> {
+    async guildDelete(guild: Guild): Promise<void> {
         const guildEmbed = new MessageEmbed()
             .setTitle(`${this.client.emotes.error} | Fui removida de um servidor! :c`)
             .setThumbnail('https://cdn.discordapp.com/attachments/791449801735667713/791450113649410078/tenor.gif')
@@ -47,7 +47,7 @@ export default class WebhookManager {
         await guildWebhook.send({ embeds: [guildEmbed] });
     }
 
-    async sendIssue(interaction, content): Promise<void> {
+    async sendIssue(interaction: Interaction, content: string): Promise<void> {
         const issueEmbed = new MessageEmbed()
             .setTitle(`${this.client.emotes.error} | Um erro foi reportado por um usuário`)
             .addFields(
@@ -64,7 +64,7 @@ export default class WebhookManager {
         });
     }
 
-    async sendLog(stats): Promise<void> {
+    async sendLog(stats: any): Promise<void> {
         const dblEmbed = new MessageEmbed()
             .setTitle("Informações atualizadas na DBL")
             .setDescription(`A quantidade de servidores foram atualizadas para ${stats.serverCount}`)
