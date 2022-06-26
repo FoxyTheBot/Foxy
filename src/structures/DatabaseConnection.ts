@@ -11,31 +11,31 @@ export default class DatabaseConnection {
         });
 
         const userSchema = new mongoose.Schema({
-            _id: string,
+            _id: String,
             userCreationTimestamp: Date,
             premium: Boolean,
             premiumDate: Date,
             isBanned: Boolean,
             banData: Date,
-            banReason: string,
-            aboutme: string,
+            banReason: String,
+            aboutme: String,
             balance: Number,
             lastDaily: Date,
-            marriedWith: string,
+            marriedWith: String,
             marriedDate: Date,
             repCount: Number,
             lastRep: Date,
-            background: string,
+            background: String,
             backgrounds: Array,
-            premiumType: string,
-            language: string,
+            premiumType: String,
+            language: String,
         }, { versionKey: false, id: false });
 
         this.user = mongoose.model('user', userSchema);
         this.client = client;
     }
 
-    async getUser(userId: string): Promise<void> {
+    async getUser(userId: String): Promise<void> {
         const user = await this.client.users.fetch(userId);
 
         if (!user) return null;
