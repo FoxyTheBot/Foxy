@@ -1,4 +1,4 @@
-import Command from "../../structures/BaseCommand";
+import Command from "../../structures/command/BaseCommand";
 import * as Canvas from "canvas";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageAttachment } from "discord.js";

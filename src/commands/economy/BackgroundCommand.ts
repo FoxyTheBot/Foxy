@@ -1,4 +1,4 @@
-import Command from "../../structures/BaseCommand";
+import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageEmbed, MessageActionRow, MessageButton, MessageAttachment } from "discord.js";
 import { bglist } from "../../structures/json/backgroundList.json";

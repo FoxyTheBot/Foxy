@@ -1,4 +1,4 @@
-import Command from "../../structures/BaseCommand";
+import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageEmbed, MessageActionRow, MessageSelectMenu } from "discord.js";
 

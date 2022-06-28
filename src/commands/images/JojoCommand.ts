@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { MessageAttachment } from "discord.js";
-import Command from '../../structures/BaseCommand';
+import Command from '../../structures/command/BaseCommand';
 import * as Canvas from 'canvas';
 
 export default class JojoCommand extends Command {

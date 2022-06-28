@@ -291,7 +291,8 @@
     },
     "kiss": {
         "button": "Kiss",
-        "success": "**{{author}}** kissed **{{user}}**"
+        "success": "**{{author}}** kissed **{{user}}**",
+        "self": "<:foxyscared:890688173951315988> | I don't want to kiss you! I love you as a friend :3"
     },
     "hug": {
         "button": "Hug",

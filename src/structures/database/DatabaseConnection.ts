@@ -1,5 +1,5 @@
 import mongoose, { ConnectOptions } from 'mongoose';
-import { mongouri } from '../../config.json';
+import { mongouri } from '../../../config.json';
 
 export default class DatabaseConnection {
     private client: any;

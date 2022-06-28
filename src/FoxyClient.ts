@@ -1,7 +1,7 @@
 import { Client, ClientOptions, Collection } from 'discord.js';
-import { FoxyCommands } from './structures/BaseCommand';
+import { FoxyCommands } from './structures/command/BaseCommand';
 import { FoxySettings, FoxyOptions } from './structures/ClientSettings';
-import DatabaseConnection from './structures/DatabaseConnection';
+import DatabaseConnection from './structures/database/DatabaseConnection';
 import WebhookManager from './structures/WebhookManager';
 import i18next from 'i18next';
 import i18nbackend from 'i18next-fs-backend';
@@ -17,10 +17,10 @@ export default class FoxyClient extends Client {
     constructor(options: ClientOptions) {
         super(options);
         this.commands = new Collection();
-        this.emotes = require("./structures/json/emotes.json");
         this.config = require("../config.json");
         this.database = new DatabaseConnection(this);
         this.WebhookManager = new WebhookManager(this);
+
     }
 
     startFoxy(options: FoxyOptions) {

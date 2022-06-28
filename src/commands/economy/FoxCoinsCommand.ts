@@ -1,4 +1,4 @@
-import Command from "../../structures/BaseCommand";
+import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
 
@@ -59,6 +59,8 @@ export default class FoxCoins extends Command {
                 const authorData = await this.client.database.getUser(interaction.user.id);
                 const coins = amount;
                 const value = Math.round(coins);
+                if (user === interaction.user) return interaction.reply(t('commands:pay.self'));
+                if (value !== authorData.balance) return interaction.reply(t('commands:pay.notEnough'))
 
                 const row = new MessageActionRow()
                     .addComponents(
@@ -76,7 +78,7 @@ export default class FoxCoins extends Command {
                 const filter = i => i.customId === 'transfer' && i.user.id === interaction.user.id;
                 const collector = await interaction.channel.createMessageComponentCollector(filter, { time: 15000 });
 
-                  collector.on('collect', async i => {
+                collector.on('collect', async i => {
                     if (i.customId === 'transfer') {
                         i.deferUpdate();
                         interaction.followUp(t('commands:pay.success', { user: user.tag, amount: value.toString() }));

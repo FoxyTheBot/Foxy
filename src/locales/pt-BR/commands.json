@@ -287,7 +287,7 @@
         }
     },
     "atm": {
-        "success": ":moneybag: **|** **{{user}}** possui {{balance}} FoxCoins"
+        "success": "<:foxydaily:915736630495686696> **|** **{{user}}** possui {{balance}} FoxCoins"
     },
     "step": {
         "success": "Você pisou em {{user}}"
@@ -302,7 +302,8 @@
     },
     "kiss": {
         "button": "Retribuir",
-        "success": "**{{author}}** deu um beijo em **{{user}}**"
+        "success": "**{{author}}** deu um beijo em **{{user}}**",
+        "self": "<:foxyscared:890688173951315988> | Eu não quero te beijar, oxi? Somos apenas amigos!"
     },
     "hug": {
         "button": "Retribuir",
