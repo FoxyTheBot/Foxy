@@ -57,6 +57,11 @@
         "premium": "{{badge}} Premium desde {{date}}",
         "testMode": "Seu sobre mim será exibido assim!"
     },
+    "kick": {
+        "self": "<:ShiroFoxy:934469525997518848> | Deixa outra pessoa fazer isso para você, é mais fácil",
+        "client": "<:ShiroFoxy:934469525997518848> | * Foxy se agacha e você passa direto e da de cara com uma parede *",
+        "success": "**{{user}}** meteu uma voadora em **{{target}}**"
+    },
     "help": {
         "commands": {
             "title": "🎮**|** Lista de comandos",

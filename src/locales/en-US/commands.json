@@ -51,6 +51,11 @@
         "roleMention": "Role mention",
         "createdAt": "Created at"
     },
+    "kick": {
+        "self": "<:ShiroFoxy:934469525997518848> | Another person can do this for you, ask the person to do this",
+        "client": "<:ShiroFoxy:934469525997518848> | * Foxy crouches and you run into a wall*",
+        "success": "**{{user}}** Did a flying kick in **{{target}}**"
+    },
     "coinflip": {
         "heads": "heads",
         "tails": "tails",
