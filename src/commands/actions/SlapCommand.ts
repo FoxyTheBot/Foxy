@@ -34,7 +34,7 @@ export default class SlapCommand extends Command {
             )
 
         const embed = new MessageEmbed()
-            .setDescription(t('commands:slap.success', { target: user.username, author: interaction.user.username }))
+            .setDescription(t('commands:slap.success', { user: user.username, author: interaction.user.username }))
             .setImage(slap.url)
         await interaction.reply({ embeds: [embed], components: [row] });
 
@@ -44,7 +44,7 @@ export default class SlapCommand extends Command {
         collector.on("collect", async i => {
             if (i.customId === "slap") {
                 const embed2 = new MessageEmbed()
-                    .setDescription(t('commands:slap.success', { target: interaction.user.username, author: user.username }))
+                    .setDescription(t('commands:slap.success', { user: interaction.user.username, author: user.username }))
                     .setImage(slap2.url)
                 await interaction.followUp({ embeds: [embed2] });
                 i.deferUpdate();
