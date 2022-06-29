@@ -40,15 +40,19 @@ export default class DivorceCommand extends Command {
 
         collector.on("collect", async i => {
             if (i.customId === 'divorce') {
-                interaction.followUp(`${this.client.emotes.error} **|** ${t('commands:divorce.divorced')}`);
+                if (await this.client.ctx.checkUser(interaction, i, 1)) {
+                    interaction.followUp(`:broken_heart: **|** ${t('commands:divorce.divorced')}`);
+                    i.deferUpdate();
+                    userData.marriedWith = null;
+                    userData.marriedDate = null;
+                    marriedData.marriedWith = null;
+                    marriedData.marriedDate = null;
+                    await userData.save();
+                    await marriedData.save();
+                    return collector.stop();
+                }
+            } else {
                 i.deferUpdate();
-                userData.marriedWith = null;
-                userData.marriedDate = null;
-                marriedData.marriedWith = null;
-                marriedData.marriedDate = null;
-                await userData.save();
-                await marriedData.save();
-                return collector.stop();
             }
         });
     }

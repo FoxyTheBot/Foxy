@@ -79,14 +79,18 @@ export default class FoxCoins extends Command {
                 const collector = await interaction.channel.createMessageComponentCollector(filter, { time: 15000 });
 
                 collector.on('collect', async i => {
-                    if (i.customId === 'transfer') {
+                    if (await this.client.ctx.checkUser(interaction, i, 1)) {
+                        if (i.customId === 'transfer') {
+                            i.deferUpdate();
+                            interaction.followUp(t('commands:pay.success', { user: user.tag, amount: value.toString() }));
+                            userData.balance += value;
+                            authorData.balance -= value;
+                            userData.save();
+                            authorData.save();
+                            collector.stop();
+                        }
+                    } else {
                         i.deferUpdate();
-                        interaction.followUp(t('commands:pay.success', { user: user.tag, amount: value.toString() }));
-                        userData.balance += value;
-                        authorData.balance -= value;
-                        userData.save();
-                        authorData.save();
-                        collector.stop();
                     }
                 });
             }

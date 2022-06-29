@@ -46,13 +46,17 @@ export default class HugCommand extends Command {
 
         collector.on('collect', async i => {
             if (i.customId === 'hug') {
-                const hugEmbed = new MessageEmbed()
-                    .setColor("RANDOM")
-                    .setDescription(t('commands:hug.success', { user: interaction.user.username, author: user.username }))
-                    .setImage(img2.url)
-                await interaction.followUp({ embeds: [hugEmbed] });
+                if (await this.client.ctx.checkUser(interaction, i, 2, user)) {
+                    const hugEmbed = new MessageEmbed()
+                        .setColor("RANDOM")
+                        .setDescription(t('commands:hug.success', { user: interaction.user.username, author: user.username }))
+                        .setImage(img2.url)
+                    await interaction.followUp({ embeds: [hugEmbed] });
+                    i.deferUpdate();
+                    return collector.stop();
+                }
+            } else {
                 i.deferUpdate();
-                return collector.stop();
             }
         });
     }

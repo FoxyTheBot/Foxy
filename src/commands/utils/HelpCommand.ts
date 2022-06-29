@@ -25,7 +25,7 @@ export default class HelpCommand extends Command {
                 const embed = new MessageEmbed()
                     .setTitle(t("commands:help.commands.title"))
                     .addFields(
-                        { name: `${this.client.emotes.daily} ${t('commands:help.commands.category.economy')} (${this.getSize("economy")})`, value: this.getCategory("economy"), inline: true },
+                        { name: `<:foxydaily:915736630495686696> ${t('commands:help.commands.category.economy')} (${this.getSize("economy")})`, value: this.getCategory("economy"), inline: true },
                         { name: `<:DiscordStaff:731947814246154240> ${t('commands:help.commands.category.social')} (${this.getSize("social")})`, value: this.getCategory("social"), inline: true },
                         { name: `<:DiscordBoost:723225840548184195> ${t('commands:help.commands.category.rp')} (${this.getSize("actions")})`, value: this.getCategory("actions"), inline: true },
                         { name: `<a:a_bongocat:768500700551315487> ${t('commands:help.commands.category.image')} (${this.getSize("image")})`, value: this.getCategory("image"), inline: true },

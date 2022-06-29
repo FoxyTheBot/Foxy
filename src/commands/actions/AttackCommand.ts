@@ -37,7 +37,7 @@ export default class AttackCommand extends Command {
             )
 
         const embed = new MessageEmbed()
-            .setColor('#26FFB1FF')
+            .setColor('BLURPLE')
             .setDescription(t('commands:attack.attack', { user: interaction.user.username, target: user.username }))
             .setImage(rand)
 
@@ -48,17 +48,21 @@ export default class AttackCommand extends Command {
 
         collector.on('collect', async i => {
             if (i.customId === "attack") {
-                const embed = new MessageEmbed()
-                    .setColor('#26ffb1')
-                    .setDescription(t('commands:attack.attack', {
-                        user: user.username,
-                        target: interaction.user.username
-                    }))
-                    .setImage(rand)
+                if (await this.client.ctx.checkUser(interaction, i, 2, user)) {
+                    const embed = new MessageEmbed()
+                        .setColor('#26ffb1')
+                        .setDescription(t('commands:attack.attack', {
+                            user: user.username,
+                            target: interaction.user.username
+                        }))
+                        .setImage(rand)
 
-                await interaction.followUp({ embeds: [embed] });
-                i.deferUpdate();
-                return collector.stop();
+                    await interaction.followUp({ embeds: [embed] });
+                    i.deferUpdate();
+                    return collector.stop();
+                } else {
+                    i.deferUpdate();
+                }
             }
         });
     }

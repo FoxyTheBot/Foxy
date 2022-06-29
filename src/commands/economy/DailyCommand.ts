@@ -65,9 +65,9 @@ export default class DailyCommand extends Command {
             const money = await userData.balance;
 
             if (userData.premium) {
-                interaction.reply(`${this.client.emotes.daily} **|** ${t('commands:daily.premium', { amount: amount.toString(), money: money.toString(), normalMoney: `${oldAmount}`, doubleValue: type, premiumType: t(`subscription:${userData.premiumType}`) })}`);
+                interaction.reply(t('commands:daily.premium', { amount: amount.toString(), money: money.toString(), normalMoney: `${oldAmount}`, doubleValue: type, premiumType: t(`subscription:${userData.premiumType}`) }));
             } else {
-                interaction.reply(`${this.client.emotes.daily} **|** ${t('commands:daily.daily', { amount: amount.toString(), money: money.toString() })}`)
+                interaction.reply(t('commands:daily.daily', { amount: amount.toString(), money: money.toString() }));
             }
         }
     }

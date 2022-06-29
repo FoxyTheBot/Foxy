@@ -17,18 +17,18 @@ export default class MarryCommand extends Command {
     }
 
     async execute(interaction, t): Promise<void> {
-        const mentionedUser = await interaction.options.getUser("user");
-        if (!mentionedUser) return interaction.reply(t('commands:global.noUser'));
+        const user = await interaction.options.getUser("user");
+        if (!user) return interaction.reply(t('commands:global.noUser'));
 
-        if (mentionedUser === this.client.user) return interaction.reply(t('commands:marry.bot'));
-        if (mentionedUser === interaction.user) return interaction.reply(t("commands:marry.self"));
+        if (user === this.client.user) return interaction.reply(t('commands:marry.bot'));
+        if (user === interaction.user) return interaction.reply(t("commands:marry.self"));
         const authorData = await this.client.database.getUser(interaction.user.id);
-        if (authorData.marriedWith) return interaction.reply(t("commands:marry.alreadyMarried", { user: mentionedUser.username }));
-        if (mentionedUser === this.client.user) return interaction.reply(t('commands:marry.bot'));
-        if (mentionedUser.id === authorData.marriedWith) return interaction.reply(t('commands:marry.alreadyMarriedWithUser', { user: mentionedUser.username }));
-
-        const userData = await this.client.database.getUser(mentionedUser.id);
+        const userData = await this.client.database.getUser(user.id);
         if (userData.marriedWith) return interaction.reply(t("commands:marry.alreadyMarriedWithSomeone"));
+        if (authorData.marriedWith) return interaction.reply(t("commands:marry.alreadyMarried", { user: user.username }));
+        if (user === this.client.user) return interaction.reply(t('commands:marry.bot'));
+        if (user.id === authorData.marriedWith) return interaction.reply(t('commands:marry.alreadyMarriedWithUser', { user: user.username }));
+
 
         const row = new MessageActionRow()
             .addComponents(
@@ -38,22 +38,26 @@ export default class MarryCommand extends Command {
                     .setStyle("SUCCESS")
                     .setEmoji("💓")
             )
-        interaction.reply({ content: `${this.client.emotes.heart} | ${t('commands:marry.ask', { user: mentionedUser.username, author: interaction.user.username })}`, components: [row] });
+        interaction.reply({ content: `${this.client.emotes.heart} | ${t('commands:marry.ask', { user: user.username, author: interaction.user.username })}`, components: [row] });
 
-        const filter = i => i.customId === "accept" && i.user.id === mentionedUser.id;
+        const filter = i => i.customId === "accept" && i.user.id === user.id;
         const collector = await interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 5000 });
 
         collector.on("collect", async i => {
             if (i.customId === 'accept') {
-                interaction.followUp(t('commands:marry.accepted', { user: mentionedUser.username, author: interaction.user.username }));
-                i.deferUpdate();
-                userData.marriedWith = interaction.user.id;
-                userData.marriedDate = new Date();
-                authorData.marriedWith = mentionedUser.id;
-                authorData.marriedDate = new Date();
-                await userData.save();
-                await authorData.save();
-                return collector.stop();
+                if (await this.client.ctx.checkUser(interaction, i, 2, user)) {
+                    interaction.followUp(t('commands:marry.accepted', { user: user.username, author: interaction.user.username }));
+                    i.deferUpdate();
+                    userData.marriedWith = interaction.user.id;
+                    userData.marriedDate = new Date();
+                    authorData.marriedWith = user.id;
+                    authorData.marriedDate = new Date();
+                    await userData.save();
+                    await authorData.save();
+                    return collector.stop();
+                } else {
+                    i.deferUpdate();
+                }
             }
         });
     }

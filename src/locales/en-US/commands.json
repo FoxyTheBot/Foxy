@@ -175,7 +175,7 @@
     },
     "marry": {
         "self": ":x: | You can't marry yourself",
-        "alreadyMarried": ":x: | {{user}} is already married",
+        "alreadyMarried": ":x: | You're already married!",
         "bot": ":x: | No, i don't want to marry you",
         "alreadyMarriedWithSomeone": ":x: | You are already married someone",
         "alreadyMarriedWithUser": ":x: | You are already married with {{user}}",

@@ -174,11 +174,11 @@
     },
     "marry": {
         "self": ":x: **|** Você não pode casar com você mesmo",
-        "alreadyMarried": ":x: **|** {{user}} já está casado",
+        "alreadyMarried": ":x: **|** Você já está casado com alguém!",
         "bot": ":x: **|** Não, eu não quero casar com você!",
         "alreadyMarriedWithSomeone": ":x: **|** Você já está casado com alguém",
-        "alreadyMarriedWithUser": ":x: **|** Você já está casado com {{user}}",
-        "ask": "{{user}} Você quer casar com {{author}}?",
+        "alreadyMarriedWithUser": ":x: **|** Você já está casado com **{{user}}**",
+        "ask": "{{user}} Você quer casar com **{{author}}**?",
         "accept": "Aceitar",
         "accepted": ":heart: **|** Vocês estão casados! Felicidades para o casal <3"
     },
@@ -264,13 +264,13 @@
         "self": ":x: **|** Você não pode pagar você mesmo",
         "notEnough": ":x: **|** Você não tem FoxCoins suficiente",
         "alert": "💸 **|** Você deseja mesmo transferir {{amount}} FoxCoins para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelas FoxCoins perdidas, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de FoxCoins!",
-        "success": ":moneybag: **|** Você transferiu {{amount}} FoxCoins para {{user}}",
+        "success": "<:foxydaily:915736630495686696> **|** Você transferiu {{amount}} FoxCoins para {{user}}",
         "pay": "Pagar"
     },
     "daily": {
         "cooldown": ":x: **|** Você já pegou suas FoxCoins hoje, espere **{{time}}**",
-        "premium": "Você iria ganhar **{{normalMoney}} FoxCoins** mas já que você é assinante do **{{premiumType}}** você ganhou **{{doubleValue}}** mais FoxCoins, **{{amount}} FoxCoins**! Agora possui {{money}} FoxCoins",
-        "daily": "Você ganhou **{{amount}} FoxCoins** agora você possui {{money}} FoxCoins"
+        "premium": "<:foxydaily:915736630495686696> **|** Você iria ganhar **{{normalMoney}} FoxCoins** mas já que você é assinante do **{{premiumType}}** você ganhou **{{doubleValue}}** mais FoxCoins, **{{amount}} FoxCoins**! Agora possui {{money}} FoxCoins",
+        "daily": "<:foxydaily:915736630495686696> **|** Você ganhou **{{amount}} FoxCoins** agora você possui {{money}} FoxCoins"
     },
     "background": {
         "buy": {

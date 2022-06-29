@@ -43,12 +43,16 @@ export default class SlapCommand extends Command {
 
         collector.on("collect", async i => {
             if (i.customId === "slap") {
-                const embed2 = new MessageEmbed()
-                    .setDescription(t('commands:slap.success', { user: interaction.user.username, author: user.username }))
-                    .setImage(slap2.url)
-                await interaction.followUp({ embeds: [embed2] });
-                i.deferUpdate();
-                return collector.stop();
+                if (await this.client.ctx.checkUser(interaction, i, 2, user)) {
+                    const embed2 = new MessageEmbed()
+                        .setDescription(t('commands:slap.success', { user: interaction.user.username, author: user.username }))
+                        .setImage(slap2.url)
+                    await interaction.followUp({ embeds: [embed2] });
+                    i.deferUpdate();
+                    return collector.stop();
+                } else {
+                    i.deferReply();
+                }
             }
         })
     }

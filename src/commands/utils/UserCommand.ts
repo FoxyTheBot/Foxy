@@ -104,39 +104,43 @@ export default class ProfileCommand extends Command {
 
                 avatarCollector.on('collect', async i => {
                     if (i.customId === 'avatar') {
-                        if (i.user.id !== interaction.user.id) {
-                            i.deferUpdate();
-                            return i.user.send({ content: t('commands:foxyGlobal.noPermission', { user: `<@${interaction.user.id}>` }) });
-                        }
-                        const avatarEmbed = new MessageEmbed()
-                            .setTitle(t('commands:user.avatar.title', { user: user.username }))
-                            .setImage(avatar)
-                        const row = new MessageActionRow()
-                            .addComponents(
-                                new MessageButton()
-                                    .setLabel(t('commands:user.avatar.click'))
-                                    .setStyle("LINK")
-                                    .setURL(avatar),
+                        if (await this.client.ctx.checkUser(interaction, i, 1)) {
+                            if (i.user.id !== interaction.user.id) {
+                                i.deferUpdate();
+                                return i.user.send({ content: t('commands:foxyGlobal.noPermission', { user: `<@${interaction.user.id}>` }) });
+                            }
+                            const avatarEmbed = new MessageEmbed()
+                                .setTitle(t('commands:user.avatar.title', { user: user.username }))
+                                .setImage(avatar)
+                            const row = new MessageActionRow()
+                                .addComponents(
+                                    new MessageButton()
+                                        .setLabel(t('commands:user.avatar.click'))
+                                        .setStyle("LINK")
+                                        .setURL(avatar),
 
-                            )
-                        await interaction.followUp({ embeds: [avatarEmbed], ephemeral: true, components: [row] });
-                        i.deferUpdate();
-                        avatarCollector.stop();
-                    } else if (i.customId === 'permissions') {
-                        if (i.user.id !== interaction.user.id) {
+                                )
+                            await interaction.followUp({ embeds: [avatarEmbed], ephemeral: true, components: [row] });
                             i.deferUpdate();
-                            return i.user.send({ content: t('commands:foxyGlobal.noPermission', { user: `<@${interaction.user.id}>` }) });
+                            avatarCollector.stop();
                         }
-                        const permissions = member.permissions.toArray();
-                        const embed = new MessageEmbed()
-                            .setTitle(t('commands:user.member.permissions.title', { user: user.username }))
-                            .addFields([
-                                { name: t('commands:user.member.role'), value: `${member._roles.map(r => `<@&${r}>`).join(", ") || t('commands:user.member.noRoles')}` },
-                                { name: t('commands:user.member.permissions.title', { user: user.username }), value: `${permissions.map(p => `\`${t(`permissions:${p}`)}\``).join(", ") || t('commands:user.member.noPermissions')}` }
-                            ])
-                        interaction.followUp({ embeds: [embed], ephemeral: true });
-                        i.deferUpdate();
-                        avatarCollector.stop();
+                    } else if (i.customId === 'permissions') {
+                        if (await this.client.ctx.checkUser(interaction, i, 1)) {
+                            if (i.user.id !== interaction.user.id) {
+                                i.deferUpdate();
+                                return i.user.send({ content: t('commands:foxyGlobal.noPermission', { user: `<@${interaction.user.id}>` }) });
+                            }
+                            const permissions = member.permissions.toArray();
+                            const embed = new MessageEmbed()
+                                .setTitle(t('commands:user.member.permissions.title', { user: user.username }))
+                                .addFields([
+                                    { name: t('commands:user.member.role'), value: `${member._roles.map(r => `<@&${r}>`).join(", ") || t('commands:user.member.noRoles')}` },
+                                    { name: t('commands:user.member.permissions.title', { user: user.username }), value: `${permissions.map(p => `\`${t(`permissions:${p}`)}\``).join(", ") || t('commands:user.member.noPermissions')}` }
+                                ])
+                            interaction.followUp({ embeds: [embed], ephemeral: true });
+                            i.deferUpdate();
+                            avatarCollector.stop();
+                        }
                     }
                 });
                 break;

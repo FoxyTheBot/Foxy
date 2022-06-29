@@ -48,13 +48,17 @@ export default class KissCommand extends Command {
 
         collector.on('collect', async i => {
             if (i.customId === 'primary') {
-                const kissEmbed = new MessageEmbed()
-                    .setColor('#b354ff')
-                    .setDescription(t('commands:kiss.success', { user: interaction.user.username, author: user.username }))
-                    .setImage(img2.url)
-                await interaction.followUp({ embeds: [kissEmbed] });
+                if (await this.client.ctx.checkUser(interaction, i, 2, user)) {
+                    const kissEmbed = new MessageEmbed()
+                        .setColor('#b354ff')
+                        .setDescription(t('commands:kiss.success', { user: interaction.user.username, author: user.username }))
+                        .setImage(img2.url)
+                    await interaction.followUp({ embeds: [kissEmbed] });
+                    i.deferUpdate();
+                    return collector.stop();
+                }
+            } else {
                 i.deferUpdate();
-                return collector.stop();
             }
         });
     }
