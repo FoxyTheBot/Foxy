@@ -30,7 +30,7 @@ export default class InteractionManager {
             }
 
             default: {
-                throw Error("You must to select between 1 or 2!")
+                throw Error("You must select between 1 or 2!")
             }
         }
     }
