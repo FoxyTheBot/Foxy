@@ -44,7 +44,6 @@ export default class BiteCommand extends Command {
 
         const embed = new MessageEmbed()
             .setColor("#ff0000")
-            .setTitle("rawr")
             .setDescription(t('commands:bite.success', { user: interaction.user.username, target: user.username }))
             .setImage(rand)
 
