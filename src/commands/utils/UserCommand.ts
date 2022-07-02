@@ -34,20 +34,9 @@ export default class ProfileCommand extends Command {
             var banner = data.banner.startsWith("a_") ? ".gif?size=4096" : ".png?size=4096";
             banner = `https://cdn.discordapp.com/banners/${user.id}/${data.banner}${banner}`;
         }
-        if (data.avatar) {
-            var avatar = data.banner.startsWith("a_") ? ".gif?size=2048" : ".png?size=2048";
-            avatar = `https://cdn.discordapp.com/avatars/${user.id}/${data.avatar}${avatar}`
 
-        }
         switch (command) {
             case "info": {
-                const data = await this.client.api.users(user.id).get();
-
-                if (data.banner) {
-                    var banner = data.banner.startsWith("a_") ? ".gif?size=4096" : ".png?size=4096";
-                    banner = `https://cdn.discordapp.com/banners/${user.id}/${data.banner}${banner}`;
-                }
-
                 const userEmbed = new MessageEmbed()
                     .setColor(user.hexAccentColor)
                     .setThumbnail(user.avatarURL({ dynamic: true, size: 1024 }))
@@ -75,7 +64,7 @@ export default class ProfileCommand extends Command {
                     const memberEmbed = new MessageEmbed()
                         .setColor(user.hexAccentColor)
                         .setTitle(t('commands:user.member.title', { user: user.username }))
-                        .setThumbnail(avatar)
+                        .setThumbnail(user.avatarURL({ dynamic: true, size: 1024 }))
                         .addFields(
                             { name: t('commands:user.member.joinedAt'), value: convertDate(member.joinedTimestamp) },
                             { name: t('commands:user.member.nickname'), value: member.displayName },
@@ -111,13 +100,13 @@ export default class ProfileCommand extends Command {
                             }
                             const avatarEmbed = new MessageEmbed()
                                 .setTitle(t('commands:user.avatar.title', { user: user.username }))
-                                .setImage(avatar)
+                                .setImage(user.avatarURL({ dynamic: true, size: 1024 }))
                             const row = new MessageActionRow()
                                 .addComponents(
                                     new MessageButton()
                                         .setLabel(t('commands:user.avatar.click'))
                                         .setStyle("LINK")
-                                        .setURL(avatar),
+                                        .setURL(user.avatarURL({ dynamic: true, size: 1024 })),
 
                                 )
                             await interaction.followUp({ embeds: [avatarEmbed], ephemeral: true, components: [row] });
@@ -152,12 +141,12 @@ export default class ProfileCommand extends Command {
                         new MessageButton()
                             .setLabel(t('commands:user.avatar.click'))
                             .setStyle("LINK")
-                            .setURL(avatar),
+                            .setURL(user.avatarURL({ dynamic: true, size: 1024 })),
 
                     )
                 const avatarEmbed = new MessageEmbed()
                     .setTitle(t('commands:user.avatar.title', { user: user.username }))
-                    .setImage(avatar)
+                    .setImage(user.avatarURL({ dynamic: true, size: 1024 }))
                     .setFooter({ text: t('commands:user.avatar.footer') })
 
                 await interaction.reply({ embeds: [avatarEmbed], components: [row] });
