@@ -28,18 +28,18 @@ npm i -g typescript
 
 ```json
 {
-  "ownerId": "<YOUR-ID>", 
-  "clientId": "<BOT-ID>", 
-  "prefix": "<BOT-PREFIX>", 
-  "token": "<BOT-TOKEN>", 
-  "mongouri": "<MONGODB-URI>", 
-  "dblauth": "<TOPGG-AUTH>", 
+  "ownerId": "<YOUR-ID>", // Insert your Discord Account ID
+  "clientId": "<BOT-ID>", // Insert your bot ID
+  "prefix": "<BOT-PREFIX>", // Insert the prefix (optional)
+  "token": "<BOT-TOKEN>",  // Insert your bot token
+  "mongouri": "<MONGODB-URI>", // Insert your mongoDB access URI
+  "dblauth": "<TOPGG-AUTH>",  // Insert your Discord Bot List token (optional)
 
     "webhooks": {
-        "guilds": "URL", 
-        "suggestions": "URL", 
-        "issues": "URL",
-        "dbl": "URL"
+        "guilds": "URL", // Insert your webhook url 
+        "suggestions": "URL", // Insert your webhook url
+        "issues": "URL",// Insert your webhook url
+        "dbl": "URL" // Insert your webhook url
     }
   }
 ```
