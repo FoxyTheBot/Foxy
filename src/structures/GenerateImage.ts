@@ -37,7 +37,7 @@ export default class GenerateImage {
         let background = await Canvas.loadImage(`http://localhost:8081/backgrounds/${this.data.background}`)
         if (this.testMode && !this.mask) {
             background = await Canvas.loadImage(`http://localhost:8081/backgrounds/${this.code}`);
-            userAboutme = `${t("commands:profile.testMode")}`;
+            userAboutme = t("commands:profile.testMode");
         }
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
         ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
