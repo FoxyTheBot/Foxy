@@ -14,8 +14,7 @@ export default class Ready {
             { name: "🐦 | Me siga no Twitter: @FoxyDiscordBot", type: 0 },
             { name: `😍 | Me adicione clicando no meu perfil`, type: 1 },
             { name: `🤔 | Precisa de ajuda? Utilize /help`, type: 2 },
-            { name: "🍰 | Minha comida preferida é bolo :3 💖", type: 5 },
-            { name: `🐱 | Em ${this.client.guilds.cache.size} servidores`, type: "STREAMING", url: "https://twitch.tv/wing4merbr" }
+            { name: "🍰 | Minha comida preferida é bolo :3 💖", type: 5 }
         ];
 
         setInterval(() => {
