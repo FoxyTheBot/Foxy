@@ -29,6 +29,9 @@ export default class DatabaseConnection {
             backgrounds: Array,
             premiumType: String,
             language: String,
+            mask: String,
+            masks: Array,
+            layout: String
         }, { versionKey: false, id: false });
 
         this.user = mongoose.model('user', userSchema);
@@ -61,7 +64,10 @@ export default class DatabaseConnection {
                 background: "default",
                 backgrounds: ["default"],
                 premiumType: null,
-                language: 'pt-BR'
+                language: 'pt-BR',
+                mask: null,
+                masks: [],
+                layout: "default"
             }).save();
         }
 

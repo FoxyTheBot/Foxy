@@ -1,12 +1,14 @@
 import { Client, ClientOptions, Collection } from 'discord.js';
 import { FoxyCommands } from './structures/command/BaseCommand';
 import { FoxySettings, FoxyOptions } from './structures/ClientSettings';
+import { App } from './structures/server/Server';
 import DatabaseConnection from './structures/database/DatabaseConnection';
 import WebhookManager from './structures/WebhookManager';
 import i18next from 'i18next';
 import InteractionManager from './structures/command/InteractionManager'
 import i18nbackend from 'i18next-fs-backend';
 import * as fs from 'fs';
+const app = new App(8081);
 
 export default class FoxyClient extends Client {
     public commands = new Collection<string, FoxyCommands>();
@@ -30,6 +32,7 @@ export default class FoxyClient extends Client {
         this.loadLocales(options.locales);
         this.loadCommands(options.commands);
         this.loadEvents(options.events);
+        app.startServer();
         super.login(options.token);
     }
 

@@ -68,9 +68,39 @@
     "profile": {
         "your": "📝 | Your profile",
         "noAboutme": "Foxy is so cute ><! You can change this message using /aboutme command",
-        "marriedWith": "💍 Married With {{user}}\n Since {{date}}",
+        "tooLong": "The character limit is 225, you typed {{length}}, plz type something smaller",
+        "marriedWith": "💍 Married with {{user}} since {{date}}",
         "premium": "{{badge}} Premium since {{date}}",
         "testMode": "Your about me will be displayed here"
+    },
+    "masks": {
+        "ears": "Cat ears",
+        "horns": "Horns",
+        "halo": "Halo",
+        "cowboy": "Cowboy's hat",
+        "topper": "Topper",
+        "buy": {
+            "success": "<:foxydaily:915736630495686696> **|** You have purchased the profile mask!",
+            "noMoney": "You don't have enough FoxCoins",
+            "preview": "Preview",
+            "purchase": "Purchase",
+            "premium": "<:foxydaily:915736630495686696> **|** You're premium subscriber you don't need to pay for the masks"
+        },
+        "set": {
+            "success": "<:foxydaily:915736630495686696> **|** Your mask has changed :3",
+            "notOwned": "You don't have this mask",
+            "invalid": ":x: **|** Invalid code"
+        },
+        "alreadyOwned": "You already have this mask"
+    },
+    "layouts": {
+        "default": "Default",
+        "red": "Red",
+        "blue": "Blue",
+        "purple": "Purple",
+        "cyan": "Cyan",
+        "chaged": "<:foxy_wow:853366914054881310> **|** Your layout has been changed",
+        "notFound": "Layout not found"
     },
     "help": {
         "commands": {

@@ -53,9 +53,29 @@
     "profile": {
         "your": "📝 **|** Seu Perfil",
         "noAboutme": "Foxy é minha amiga você pode alterar isso usando /aboutme",
-        "marriedWith": "💍 Casado com {{user}}\n Desde {{date}}",
+        "marriedWith": "💍 Casado com {{user}} desde {{date}}",
         "premium": "{{badge}} Premium desde {{date}}",
         "testMode": "Seu sobre mim será exibido assim!"
+    },
+    "masks": {
+        "ears": "Orelhas de gato",
+        "horns": "Chifrinhos",
+        "halo": "Aréola",
+        "cowboy": "Chapéu de vaqueiro",
+        "topper": "Cartola",
+        "buy": {
+            "success": "<:foxydaily:915736630495686696> **|** Você comprou a máscara para seu avatar!",
+            "noMoney": "Você não tem FoxCoins o suficiente para adquirir esta máscara",
+            "preview": "Pré-visualização",
+            "purchase": "Comprar",
+            "premium": "<:foxydaily:915736630495686696> **|** Como você é assinante premium você ganha todas as máscaras de avatar gratuitamente"
+        },
+        "set": {
+            "success": "<:foxydaily:915736630495686696> **|** Máscara alterada com sucesso :3",
+            "notOwned": "Você não possui essa máscara",
+            "invalid": ":x: **|** Código inválido"
+        },
+        "alreadyOwned": "Você já possui essa máscara"
     },
     "kick": {
         "self": "<:ShiroFoxy:934469525997518848> | Deixa outra pessoa fazer isso para você, é mais fácil",
@@ -99,7 +119,17 @@
         "button": "Ver perfil"
     },
     "aboutme": {
-        "set": "Seu sobre mim foi alterado para `{{aboutme}}`"
+        "set": "Seu sobre mim foi alterado para `{{aboutme}}`",
+        "tooLong": "O limite de caracteres é 225 e você digitou {{length}}, digita algo menor pfv :3"
+    },
+    "layouts": {
+        "default": "Padrão",
+        "red": "Vermelho",
+        "blue": "Azul",
+        "purple": "Roxo",
+        "cyan": "Ciano",
+        "changed": "<:foxy_wow:853366914054881310> **|** Você alterou o layout do seu perfil",
+        "notFound": "Layout não encontrado"
     },
     "role": {
         "description": "Permissões do cargo",

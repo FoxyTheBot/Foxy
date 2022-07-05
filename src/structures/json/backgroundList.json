@@ -116,9 +116,33 @@
             "id": "bisfoxy",
             "name": "Bis e Foxy",
             "rarity": "Unknown",
-            "foxcoins": 1000,
+            "foxcoins": 100000,
             "filename": "bis_foxy.png",
             "description": "Bis e a Foxy apenas ;3"
+        },
+        {
+            "id": "mine",
+            "name": "Minecraft World",
+            "rarity": "Lendário",
+            "foxcoins": 20000,
+            "filename": "mine.png",
+            "description": "Just world."
+        },
+        {
+            "id": "klee",
+            "name": "Klee yay",
+            "rarity": "Lendário",
+            "foxcoins": 30000,
+            "filename": "kleeyay.png",
+            "description": "Klee is so happy today"
+        },
+        {
+            "id": "spring",
+            "name": "Spring Trap",
+            "rarity": "Lendário",
+            "foxcoins": 10000,
+            "filename": "springtrap.png",
+            "description": "The man behind the slaughter"
         }
     ]
 }

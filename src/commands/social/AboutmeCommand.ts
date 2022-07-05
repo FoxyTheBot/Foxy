@@ -19,6 +19,7 @@ export default class ProfileCommand extends Command {
         const aboutme = interaction.options.getString("text");
         const userData = await this.client.database.getUser(interaction.user.id);
 
+        if (aboutme.length > 225) return interaction.reply(t('commands:aboutme.tooLong', { length: aboutme.length.toString() }))
         userData.aboutme = aboutme;
         userData.save();
 

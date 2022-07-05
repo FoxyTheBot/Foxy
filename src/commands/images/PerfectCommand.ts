@@ -30,7 +30,7 @@ export default class PerfectCommand extends Command {
             avatar = user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 })
         }
 
-        const background = await Canvas.loadImage('https://foxywebsite.xyz/api/memes/perfeito.png');
+        const background = await Canvas.loadImage('http://localhost:8081/memes/perfeito.png');
         ctx.drawImage(background, 0, 0, 467, 400);
 
         const userAvatar = await Canvas.loadImage(avatar);

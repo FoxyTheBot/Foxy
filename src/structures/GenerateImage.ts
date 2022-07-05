@@ -8,61 +8,45 @@ export default class GenerateImage {
     private readonly width: number;
     private readonly height: number;
     private readonly testMode: boolean;
-    private readonly background: string;
+    private readonly code: string;
+    private readonly mask: boolean;
 
-    constructor(client, user, data, width, height, testMode?, background?) {
+    constructor(client, user, data, width, height, testMode?, code?, mask?) {
         this.client = client;
         this.user = user;
         this.data = data;
         this.width = width;
         this.height = height;
         this.testMode = testMode;
-        this.background = background;
+        this.code = code;
+        this.mask = mask;
     }
 
     async renderProfile(t): Promise<Buffer> {
         let userAboutme: string = this.data.aboutme;
         if (!userAboutme) userAboutme = `${t("commands:profile.noAboutme")}`;
 
-        if (userAboutme.length > 85) {
-            const aboutme = userAboutme.match(/.{1,85}/g);
+        if (userAboutme.length > 84) {
+            const aboutme = userAboutme.match(/.{1,84}/g);
             userAboutme = aboutme.join("\n");
         }
 
         const canvas = Canvas.createCanvas(this.width, this.height);
         const ctx = canvas.getContext("2d");
-        let background = await Canvas.loadImage(`https://foxywebsite.xyz/api/backgrounds/${this.data.background}`);
-
-        if (this.testMode) {
-            background = await Canvas.loadImage(`https://foxywebsite.xyz/api/backgrounds/${this.background}`);
+        let layout = await Canvas.loadImage(`http://localhost:8081/layouts/${this.data.layout}`);
+        let background = await Canvas.loadImage(`http://localhost:8081/backgrounds/${this.data.background}`)
+        if (this.testMode && !this.mask) {
+            background = await Canvas.loadImage(`http://localhost:8081/backgrounds/${this.code}`);
             userAboutme = `${t("commands:profile.testMode")}`;
         }
-        ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
+        ctx.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
         ctx.strokeStyle = '#74037b';
         ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
-        ctx.font = '70px sans-serif';
-        ctx.fillStyle = '#ffffff';
-        ctx.fillText(`${this.user.username}`, canvas.width / 6.0, canvas.height / 9.5)
-
-        ctx.font = '60px sans-serif';
-        ctx.fillStyle = '#ffffff';
-        ctx.fillText(`Reps: ${this.data.repCount}`, canvas.width / 1.4, canvas.height / 10.5);
-
-        ctx.font = '40px sans-serif';
-        ctx.fillStyle = '#ffffff';
-        ctx.fillText(`💵 FoxCoins: ${this.data.balance}`, canvas.width / 6.0, canvas.height / 4.3);
-
-        if (this.data.marriedWith) {
-            const discordProfile = await this.client.users.fetch(this.data.marriedWith);
-            ctx.font = '30px sans-serif';
-            ctx.fillStyle = '#ffffff';
-            ctx.fillText(t("commands:profile.marriedWith", { user: discordProfile.tag, date: this.data.marriedDate.toLocaleString(t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }), canvas.width / 1.5, canvas.height / 6.3);
-        }
-
+        var badge = "";
         if (this.data.premium) {
-            var badge;
             switch (this.data.premiumType) {
                 case "INFINITY_ESSENTIALS": {
                     badge = "✨"
@@ -80,28 +64,53 @@ export default class GenerateImage {
                 }
 
                 case "VETERAN": {
-                    badge = "💪"
+                    badge = "🪐"
                     break;
                 }
             }
+        }
 
-            ctx.font = '30px sans-serif';
+        ctx.font = '70px sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(`${this.user.username} ${badge}`, canvas.width / 5.8, canvas.height / 1.3)
+
+        ctx.font = '60px sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(`${this.data.repCount} Reps`, canvas.width / 1.2, canvas.height / 10.5);
+
+        ctx.font = '40px sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(`FoxCoins: \n${this.data.balance}`, canvas.width / 1.2, canvas.height / 1.4);
+
+        if (this.data.marriedWith) {
+            const discordProfile = await this.client.users.fetch(this.data.marriedWith);
+            ctx.font = ('30px sans-serif');
             ctx.fillStyle = '#ffffff';
-            ctx.fillText(t("commands:profile.premium", { badge: badge, date: this.data.premiumDate.toLocaleString(t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }), canvas.width / 6.0, canvas.height / 6.0);
+            ctx.fillText(t("commands:profile.marriedWith", { user: discordProfile.tag, date: this.data.marriedDate.toLocaleString(t.lng, { timeZone: "America/Sao_Paulo", year: 'numeric', month: 'numeric', day: 'numeric' }) }), canvas.width / 50, canvas.height - 15 / 1);
         }
 
         ctx.font = ('30px sans-serif');
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(userAboutme, canvas.width / 55.0, canvas.height / 1.2);
+        ctx.fillText(userAboutme, canvas.width / 6.1, canvas.height / 1.2);
+        ctx.save();
 
         ctx.beginPath();
-        ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
+        ctx.arc(125, 700, 100, 0, Math.PI * 2, true);
         ctx.closePath();
         ctx.clip();
-
         const avatar = await Canvas.loadImage(this.user.displayAvatarURL({ format: 'png' }));
-        ctx.drawImage(avatar, 25, 25, 200, 200);
+        ctx.drawImage(avatar, 25, 600, 200, 200);
+        ctx.restore();
 
+        if (this.data.mask && !this.mask) {
+            const mask = await Canvas.loadImage(`http://localhost:8081/masks/${this.data.mask}`);
+            ctx.drawImage(mask, canvas.width / 55.0, canvas.height / 1.69, 200, 200)
+        }
+
+        if (this.testMode && this.mask) {
+            const mask = await Canvas.loadImage(`http://localhost:8081/masks/${this.code}`);
+            ctx.drawImage(mask, canvas.width / 55.0, canvas.height / 1.69, 200, 200)
+        }
         return canvas.toBuffer();
     }
 }
