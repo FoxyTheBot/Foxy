@@ -12,6 +12,7 @@ export default class RepCommand extends Command {
             data: new SlashCommandBuilder()
                 .setName("rep")
                 .setDescription("[Social] Give someone a reputation point")
+                .addUserOption(option => option.setName("user").setDescription("Mentions someone or use the ID").setRequired(true))
         });
     }
 

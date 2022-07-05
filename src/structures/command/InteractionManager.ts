@@ -19,7 +19,7 @@ export default class InteractionManager {
 
             case 2: { // Use in interactions where the mentioned user has to press the button
                 if (interaction.user.id !== user.id) {
-                    if (interaction.user.id === i.user.id) {
+                    if (interaction.user.id === i.user.id || i.user.id !== user.id) {
                         return null;
                     } else if (interaction.user.id !== i.user.id) {
                         return true;

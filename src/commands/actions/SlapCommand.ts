@@ -51,7 +51,7 @@ export default class SlapCommand extends Command {
                     i.deferUpdate();
                     return collector.stop();
                 } else {
-                    i.deferReply();
+                    i.deferUpdate();
                 }
             }
         })
