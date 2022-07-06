@@ -33,10 +33,10 @@ export default class GenerateImage {
 
         const canvas = Canvas.createCanvas(this.width, this.height);
         const ctx = canvas.getContext("2d");
-        let layout = await Canvas.loadImage(`http://localhost:8081/layouts/${this.data.layout}`);
-        let background = await Canvas.loadImage(`http://localhost:8081/backgrounds/${this.data.background}`)
+        let layout = await Canvas.loadImage(`http://localhost:8080/layouts/${this.data.layout}`);
+        let background = await Canvas.loadImage(`http://localhost:8080/backgrounds/${this.data.background}`)
         if (this.testMode && !this.mask) {
-            background = await Canvas.loadImage(`http://localhost:8081/backgrounds/${this.code}`);
+            background = await Canvas.loadImage(`http://localhost:8080/backgrounds/${this.code}`);
             userAboutme = t("commands:profile.testMode");
         }
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
@@ -49,7 +49,7 @@ export default class GenerateImage {
         if (this.data.premium) {
             switch (this.data.premiumType) {
                 case "INFINITY_ESSENTIALS": {
-                    badge = "✨"
+                    badge = " "
                     break;
                 }
 
@@ -103,12 +103,12 @@ export default class GenerateImage {
         ctx.restore();
 
         if (this.data.mask && !this.mask) {
-            const mask = await Canvas.loadImage(`http://localhost:8081/masks/${this.data.mask}`);
+            const mask = await Canvas.loadImage(`http://localhost:8080/masks/${this.data.mask}`);
             ctx.drawImage(mask, canvas.width / 55.0, canvas.height / 1.69, 200, 200)
         }
 
         if (this.testMode && this.mask) {
-            const mask = await Canvas.loadImage(`http://localhost:8081/masks/${this.code}`);
+            const mask = await Canvas.loadImage(`http://localhost:8080/masks/${this.code}`);
             ctx.drawImage(mask, canvas.width / 55.0, canvas.height / 1.69, 200, 200)
         }
         return canvas.toBuffer();

@@ -23,7 +23,7 @@ export default class StonksCommand extends Command {
         const canvas = Canvas.createCanvas(800, 600);
         const ctx = canvas.getContext("2d");
 
-        const background = await Canvas.loadImage("http://localhost:8081/memes/stonks.png");
+        const background = await Canvas.loadImage("http://localhost:8080/memes/stonks.png");
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         ctx.strokeStyle = '#74037b';

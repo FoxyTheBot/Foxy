@@ -28,7 +28,7 @@ export default class GirlfriendCommand extends Command {
             avatar = user.displayAvatarURL({ dynamic: true, format: 'png' });
         }
 
-        const background = await Canvas.loadImage("http://localhost:8081/memes/namorada.png");
+        const background = await Canvas.loadImage("http://localhost:8080/memes/namorada.png");
         const avatarImg = await Canvas.loadImage(avatar);
         const canvas = Canvas.createCanvas(500, 510);
         const ctx = canvas.getContext('2d');

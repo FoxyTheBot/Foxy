@@ -8,7 +8,7 @@ import i18next from 'i18next';
 import InteractionManager from './structures/command/InteractionManager'
 import i18nbackend from 'i18next-fs-backend';
 import * as fs from 'fs';
-const app = new App(8081);
+const app = new App(8080);
 
 export default class FoxyClient extends Client {
     public commands = new Collection<string, FoxyCommands>();

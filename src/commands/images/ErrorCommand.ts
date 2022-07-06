@@ -22,7 +22,7 @@ export default class ErrorCommand extends Command {
         const canvas = Canvas.createCanvas(380, 208);
         const ctx = canvas.getContext("2d");
 
-        const background = await Canvas.loadImage("http://localhost:8081/memes/windows.png");
+        const background = await Canvas.loadImage("http://localhost:8080/memes/windows.png");
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 

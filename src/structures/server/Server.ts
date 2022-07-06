@@ -10,7 +10,7 @@ export class App {
         const app: Application = express();
 
         app.use('/', require('./routes/FileControl'));
-        app.listen(8081, () => {
+        app.listen(8080, () => {
             console.info("[SERVER] - Server is running")
         });
     }
