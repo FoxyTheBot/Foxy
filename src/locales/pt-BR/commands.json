@@ -53,7 +53,7 @@
     "profile": {
         "your": "📝 **|** Seu Perfil",
         "noAboutme": "Foxy é minha amiga você pode alterar isso usando /aboutme",
-        "marriedWith": "💍 Casado com {{user}} desde {{date}}",
+        "marriedWith": "💍 Casado com {{user}} desde {{date}} ({{relativeTime}})",
         "premium": "{{badge}} Premium desde {{date}}",
         "testMode": "Seu sobre mim será exibido assim!"
     },

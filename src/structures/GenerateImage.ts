@@ -1,5 +1,6 @@
 import Canvas from 'canvas';
 import FoxyClient from '../FoxyClient';
+import moment from 'moment';
 
 export default class GenerateImage {
     private client: FoxyClient;
@@ -83,10 +84,13 @@ export default class GenerateImage {
         ctx.fillText(`FoxCoins: \n${this.data.balance}`, canvas.width / 1.2, canvas.height / 1.4);
 
         if (this.data.marriedWith) {
+            moment.locale(t.lng)
             const discordProfile = await this.client.users.fetch(this.data.marriedWith);
             ctx.font = ('30px sans-serif');
             ctx.fillStyle = '#ffffff';
-            ctx.fillText(t("commands:profile.marriedWith", { user: discordProfile.tag, date: this.data.marriedDate.toLocaleString(t.lng, { timeZone: "America/Sao_Paulo", year: 'numeric', month: 'numeric', day: 'numeric' }) }), canvas.width / 50, canvas.height - 15 / 1);
+            ctx.fillText(t("commands:profile.marriedWith", {
+                user: discordProfile.tag, relativeTime: moment(this.data.marriedDate, "YYYYMMDD").fromNow(), date: this.data.marriedDate.toLocaleString(t.lng, { timeZone: "America/Sao_Paulo", year: 'numeric', month: 'numeric', day: 'numeric' })
+            }), canvas.width / 50, canvas.height - 15 / 1);
         }
 
         ctx.font = ('30px sans-serif');
