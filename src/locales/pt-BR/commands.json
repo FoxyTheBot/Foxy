@@ -171,7 +171,7 @@
         "banner": {
             "click": "Veja o banner no seu navegador",
             "title": "Banner de {{user}}",
-            "noBanner": "Não há banner"
+            "noBanner": "<:foxyscared:890688173951315988> **|** Esse usuário não tem banner <a:foxylick:987381814622560277>"
         },
         "member": {
             "title": "Sobre {{user}}",

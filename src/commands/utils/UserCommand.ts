@@ -147,7 +147,6 @@ export default class ProfileCommand extends Command {
                 const avatarEmbed = new MessageEmbed()
                     .setTitle(t('commands:user.avatar.title', { user: user.username }))
                     .setImage(user.avatarURL({ dynamic: true, size: 1024 }))
-                    .setFooter({ text: t('commands:user.avatar.footer') })
 
                 await interaction.reply({ embeds: [avatarEmbed], components: [row] });
                 break;

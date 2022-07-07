@@ -32,6 +32,7 @@ export default class FoxCoins extends Command {
 
             case 'rank': {
                 let data = await this.client.database.getAllUsers();
+                await interaction.deferReply();
                 const embed = new MessageEmbed();
 
                 data = data.sort((a, b) => b.balance - a.balance);
@@ -45,7 +46,6 @@ export default class FoxCoins extends Command {
                     let user = await this.client.users.fetch(data[i]._id);
                     embed.addField(`${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - \`${user.tag}\``, `**${parseInt(data[i].balance)}** FoxCoins`, true);
                 }
-                await interaction.deferReply();
                 await interaction.editReply({ embeds: [embed] });
                 break;
             }
