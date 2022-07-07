@@ -39,7 +39,7 @@ export default class FoxyClient extends Client {
     async loadLocales(path: string): Promise<void> {
         try {
             await i18next.use(i18nbackend).init({
-                ns: ["commands", "events", "permissions", "subscriptions"],
+                ns: ["commands", "events", "permissions", "subscription"],
                 defaultNS: "commands",
                 preload: fs.readdirSync(path),
                 fallbackLng: "pt-BR",
