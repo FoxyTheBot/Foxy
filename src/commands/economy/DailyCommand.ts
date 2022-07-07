@@ -16,7 +16,7 @@ export default class DailyCommand extends Command {
     }
 
     async execute(interaction, t): Promise<void> {
-        const userData = await this.client.database.getUserByID(interaction.user.id);
+        const userData = await this.client.database.getUser(interaction.user.id);
 
         const timeout = 43200000;
         let amount = Math.floor(Math.random() * 8000);
