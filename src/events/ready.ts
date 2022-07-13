@@ -11,11 +11,7 @@ export default class Ready {
         console.info(`[READY] - Shard ${Number(this.client.shard.ids) + 1} is ready to go!`);
 
         const status = [
-            { name: "🐦 | Me siga no Twitter: @FoxyDiscordBot", type: 0 },
-            { name: `😍 | Me adicione clicando no meu perfil`, type: 1 },
-            { name: `🤔 | Precisa de ajuda? Utilize /help`, type: 2 },
-            { name: "🍰 | Minha comida preferida é bolo :3 💖", type: 5 },
-            { name: "🌟 | Me ajude a crescer votando em mim :3 Use /upvote" }
+            { name: "owo", type: "PLAYING" }
         ];
 
         setInterval(() => {
