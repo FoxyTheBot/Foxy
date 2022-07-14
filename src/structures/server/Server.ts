@@ -11,7 +11,7 @@ export class App {
 
         app.use('/', require('./routes/FileControl'));
         app.listen(8080, () => {
-            console.info("[SERVER] - Server is running")
+            console.info(`${new Date().toLocaleString()} [SERVER] - Server is running http://localhost:8080`)
         });
     }
 }

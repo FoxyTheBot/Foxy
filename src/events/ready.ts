@@ -9,7 +9,7 @@ export default class Ready {
     }
 
     async run(): Promise<void> {
-        console.info(`[READY] - Shard ${Number(this.client.shard.ids) + 1} is ready to go!`);
+        console.info(`${new Date().toLocaleString()} [READY] - Shard ${Number(this.client.shard.ids) + 1} is ready to go!`);
 
         const status = [
             { name: "owo", type: "PLAYING" }

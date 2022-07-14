@@ -51,9 +51,9 @@ export default class FoxyClient extends Client {
                 returnEmptyString: false,
                 returnObjects: true
             });
-            return console.info(`[LOCALES] - Loaded ${i18next.languages.length} languages`);
+            return console.info(`${new Date().toLocaleString()} [LOCALES] - Loaded ${i18next.languages.length} languages`);
         } catch (error) {
-            return console.error(`Erro ao carregar locales: `, error);
+            return console.error(`${new Date().toLocaleString()} Erro ao carregar locales: `, error);
         }
     }
 
@@ -63,7 +63,7 @@ export default class FoxyClient extends Client {
             const commandFiles = fs.readdirSync(path + `/${folder}`);
             for (const file of commandFiles) {
                 const commandFile = await import(`${path}/${folder}/${file}`);
-                const command = new commandFile.default(this);
+                var command = new commandFile.default(this);
                 this.commands.set(command.config.name, command);
             }
         }
@@ -74,7 +74,7 @@ export default class FoxyClient extends Client {
         for (const file of eventFiles) {
             const eventFile = await import(`${path}/${file}`);
             const event = new eventFile.default(this);
-            console.info(`[EVENTS] - Loaded ${file.split(".")[0]}`);
+            console.info(`${new Date().toLocaleString()} [EVENTS] - Loaded ${file.split(".")[0]}`);
             this.on(file.split(".")[0], (...args) => event.run(...args));
         }
     }
