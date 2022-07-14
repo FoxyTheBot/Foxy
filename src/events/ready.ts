@@ -1,4 +1,5 @@
 import { AutoPoster } from 'topgg-autoposter'
+import { readdirSync } from 'fs';
 
 export default class Ready {
     private client: any;
@@ -18,6 +19,13 @@ export default class Ready {
             const randomStatus = status[Math.floor(Math.random() * status.length)];
             this.client.user.setPresence({ activities: [randomStatus] });
         }, 10000);
+
+        const profilePictures = readdirSync('./assets/avatars');
+
+        setInterval(() => {
+            const x = profilePictures[(Math.floor(Math.random() * profilePictures.length))];
+            this.client.user.setAvatar(`./assets/avatars/${x}`)
+        }, 10800000)
 
         // If your bot is in top.gg, you can uncomment this
 
