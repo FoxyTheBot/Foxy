@@ -7,9 +7,7 @@ export interface FoxySettings {
     dblauth: string;
 
     // Webhooks
-    guilds: string,
-    suggestions: string,
-    issues: string,
+    guilds: string
 }
 
 export interface FoxyOptions {
