@@ -37,7 +37,6 @@ export default class AttackCommand extends Command {
             )
 
         const embed = new MessageEmbed()
-            .setColor('BLURPLE')
             .setDescription(t('commands:attack.attack', { user: interaction.user.username, target: user.username }))
             .setImage(rand)
 
