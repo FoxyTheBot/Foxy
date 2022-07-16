@@ -47,7 +47,7 @@ export default class AttackCommand extends Command {
 
         collector.on('collect', async i => {
             if (i.customId === "attack") {
-                if (await this.client.ctx.checkUser(interaction, i, 2, user)) {
+                if (await this.client.ctx.getContext(interaction, i, 2, user)) {
                     const embed = new MessageEmbed()
                         .setColor('#26ffb1')
                         .setDescription(t('commands:attack.attack', {

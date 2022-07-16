@@ -93,7 +93,7 @@ export default class ProfileCommand extends Command {
 
                 avatarCollector.on('collect', async i => {
                     if (i.customId === 'avatar') {
-                        if (await this.client.ctx.checkUser(interaction, i, 1)) {
+                        if (await this.client.ctx.getContext(interaction, i, 1)) {
                             if (i.user.id !== interaction.user.id) {
                                 i.deferUpdate();
                                 return i.user.send({ content: t('commands:foxyGlobal.noPermission', { user: `<@${interaction.user.id}>` }) });
@@ -114,7 +114,7 @@ export default class ProfileCommand extends Command {
                             avatarCollector.stop();
                         }
                     } else if (i.customId === 'permissions') {
-                        if (await this.client.ctx.checkUser(interaction, i, 1)) {
+                        if (await this.client.ctx.getContext(interaction, i, 1)) {
                             if (i.user.id !== interaction.user.id) {
                                 i.deferUpdate();
                                 return i.user.send({ content: t('commands:foxyGlobal.noPermission', { user: `<@${interaction.user.id}>` }) });

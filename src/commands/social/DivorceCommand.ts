@@ -40,7 +40,7 @@ export default class DivorceCommand extends Command {
 
         collector.on("collect", async i => {
             if (i.customId === 'divorce') {
-                if (await this.client.ctx.checkUser(interaction, i, 1)) {
+                if (await this.client.ctx.getContext(interaction, i, 1)) {
                     interaction.followUp(`:broken_heart: **|** ${t('commands:divorce.divorced')}`);
                     i.deferUpdate();
                     userData.marriedWith = null;

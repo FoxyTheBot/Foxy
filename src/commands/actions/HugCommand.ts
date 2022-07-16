@@ -46,7 +46,7 @@ export default class HugCommand extends Command {
 
         collector.on('collect', async i => {
             if (i.customId === 'hug') {
-                if (await this.client.ctx.checkUser(interaction, i, 2, user)) {
+                if (await this.client.ctx.getContext(interaction, i, 2, user)) {
                     const hugEmbed = new MessageEmbed()
                         .setColor("RANDOM")
                         .setDescription(t('commands:hug.success', { user: interaction.user.username, author: user.username }))

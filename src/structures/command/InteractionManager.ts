@@ -7,7 +7,7 @@ export default class InteractionManager {
         this.client = client;
     }
 
-    public async checkUser(interaction: any, i, type, user?) {
+    public async getContext(interaction: any, i, type, user?) {
         switch (type) {
             case 1: { // Use in interactions where the author of the command has to press the button
                 if (interaction.user.id === i.user.id) {

@@ -45,7 +45,7 @@ export default class MarryCommand extends Command {
 
         collector.on("collect", async i => {
             if (i.customId === 'accept') {
-                if (await this.client.ctx.checkUser(interaction, i, 2, user)) {
+                if (await this.client.ctx.getContext(interaction, i, 2, user)) {
                     interaction.followUp(t('commands:marry.accepted', { user: user.username, author: interaction.user.username }));
                     i.deferUpdate();
                     userData.marriedWith = interaction.user.id;

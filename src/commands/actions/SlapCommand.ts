@@ -43,7 +43,7 @@ export default class SlapCommand extends Command {
 
         collector.on("collect", async i => {
             if (i.customId === "slap") {
-                if (await this.client.ctx.checkUser(interaction, i, 2, user)) {
+                if (await this.client.ctx.getContext(interaction, i, 2, user)) {
                     const embed2 = new MessageEmbed()
                         .setDescription(t('commands:slap.success', { user: interaction.user.username, author: user.username }))
                         .setImage(slap2.url)

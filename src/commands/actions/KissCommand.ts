@@ -48,7 +48,7 @@ export default class KissCommand extends Command {
 
         collector.on('collect', async i => {
             if (i.customId === 'primary') {
-                if (await this.client.ctx.checkUser(interaction, i, 2, user)) {
+                if (await this.client.ctx.getContext(interaction, i, 2, user)) {
                     const kissEmbed = new MessageEmbed()
                         .setColor('#b354ff')
                         .setDescription(t('commands:kiss.success', { user: interaction.user.username, author: user.username }))

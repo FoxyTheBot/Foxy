@@ -47,7 +47,7 @@ export default class PatCommand extends Command {
 
         collector.on("collect", async i => {
             if (i.customId == "pat") {
-                if (await this.client.ctx.checkUser(interaction, i, 2, user)) {
+                if (await this.client.ctx.getContext(interaction, i, 2, user)) {
                     const embed = new MessageEmbed()
                         .setColor("RANDOM")
                         .setDescription(t('commands:pat.success', { user: interaction.user.username, author: user.username }))

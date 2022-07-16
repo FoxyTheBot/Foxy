@@ -54,7 +54,7 @@ export default class BiteCommand extends Command {
 
         collector.on("collect", async i => {
             if (i.customId === "bite") {
-                if (await this.client.ctx.checkUser(interaction, i, 2, user)) {
+                if (await this.client.ctx.getContext(interaction, i, 2, user)) {
                     const embed = new MessageEmbed()
                         .setColor("#ff0000")
                         .setDescription(t("commands:bite.success", { user: user.username, target: interaction.user.username }))
