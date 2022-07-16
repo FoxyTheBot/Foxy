@@ -308,6 +308,15 @@
             "notOwned": ":x: | You don't own this background",
             "success": ":white_check_mark: | Your background has been set to {{name}}",
             "description": "📝 | Your list: {{bgList}}"
+        },
+        "custom": {
+            "noPremium": "🦊 **|** You need to have a premium subscription",
+            "success": "🦊 **|** Background updated! Thanks to be premium >w<",
+            "save": "Save",
+            "title": "🖼  **|** Custom Background",
+            "alert": "By submitting, you confirm that the background does not have NSFW and that it may be banned if it contains content that violates Foxy and/or Discord terms",
+            "tooLarge": "This file is to large, the maximum supported is 8MB",
+            "invalidFormat": "Invalid format, send a `.png`, `.jpg` or `.jpeg` file"
         }
     },
     "atm": {

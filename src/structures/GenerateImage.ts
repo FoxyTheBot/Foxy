@@ -1,3 +1,4 @@
+import { TextChannel } from "discord.js";
 import Canvas from 'canvas';
 import FoxyClient from '../FoxyClient';
 import moment from 'moment';
@@ -31,11 +32,19 @@ export default class GenerateImage {
             const aboutme = userAboutme.match(/.{1,84}/g);
             userAboutme = aboutme.join("\n");
         }
+        let background;
+
+        if (!isNaN(Number(this.data.background))) {
+            background = (await (this.client.channels.cache.get('997953006391795753') as TextChannel)
+                .messages.fetch(this.data.background)).attachments.first().attachment
+        }
+        else background = `http://localhost:8080/backgrounds/${this.data.background}`
 
         const canvas = Canvas.createCanvas(this.width, this.height);
         const ctx = canvas.getContext("2d");
         let layout = await Canvas.loadImage(`http://localhost:8080/layouts/${this.data.layout}`);
-        let background = await Canvas.loadImage(`http://localhost:8080/backgrounds/${this.data.background}`)
+        background = await Canvas.loadImage(background);
+
         if (this.testMode && !this.mask) {
             background = await Canvas.loadImage(`http://localhost:8080/backgrounds/${this.code}`);
             userAboutme = t("commands:profile.testMode");

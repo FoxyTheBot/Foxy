@@ -33,7 +33,7 @@ export default class DivorceCommand extends Command {
                     .setEmoji("💔")
             )
 
-        interaction.reply({ content: t('commands:divorce.confirm2', { user: userInfo.username }), components: [row] });
+        interaction.reply({ content: t('commands:divorce.confirm2', { user: userInfo.username }), components: [row], flags: 64 });
 
         const filter = i => i.customId === "divorce" && i.user.id === interaction.user.id;
         const collector = await interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 5000 });
@@ -41,7 +41,7 @@ export default class DivorceCommand extends Command {
         collector.on("collect", async i => {
             if (i.customId === 'divorce') {
                 if (await this.client.ctx.getContext(interaction, i, 1)) {
-                    interaction.followUp(`:broken_heart: **|** ${t('commands:divorce.divorced')}`);
+                    interaction.followUp({ content: `:broken_heart: **|** ${t('commands:divorce.divorced')}`, flags: 64 });
                     i.deferUpdate();
                     userData.marriedWith = null;
                     userData.marriedDate = null;

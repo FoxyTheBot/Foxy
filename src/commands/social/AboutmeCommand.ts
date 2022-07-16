@@ -23,6 +23,6 @@ export default class ProfileCommand extends Command {
         userData.aboutme = aboutme;
         userData.save();
 
-        await interaction.reply(t("commands:aboutme.set", { aboutme: aboutme }));
+        await interaction.reply({ content: t("commands:aboutme.set", { aboutme: aboutme }), flags: 64 });
     }
 }

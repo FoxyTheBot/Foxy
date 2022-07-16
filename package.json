@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/FoxyTheBot/Foxy#readme",
   "dependencies": {
+    "@discordjs/builders": "^0.15.0",
     "@types/express": "^4.17.13",
     "@types/i18next-fs-backend": "^1.1.2",
     "canvas": "^2.8.0",
@@ -42,7 +43,6 @@
     "topgg-autoposter": "^2.0.1"
   },
   "devDependencies": {
-    "@discordjs/builders": "^0.12.0",
     "@discordjs/rest": "^0.3.0",
     "@types/ms": "^0.7.31"
   }
