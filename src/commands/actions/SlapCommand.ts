@@ -23,8 +23,8 @@ export default class SlapCommand extends Command {
 
         const neko = new NekosLife();
 
-        const slap = await neko.sfw.slap();
-        const slap2 = await neko.sfw.slap();
+        const slap = await neko.slap();
+        const slap2 = await neko.slap();
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()

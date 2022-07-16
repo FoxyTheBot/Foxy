@@ -20,8 +20,8 @@ export default class KissCommand extends Command {
     async execute(interaction, t): Promise<void> {
         const neko = new NekosLife();
 
-        const img = await neko.sfw.kiss();
-        const img2 = await neko.sfw.kiss();
+        const img = await neko.kiss();
+        const img2 = await neko.kiss();
         const user = await interaction.options.getUser("user");
         if (!user) return interaction.reply(t('commands:global.noUser'));
 

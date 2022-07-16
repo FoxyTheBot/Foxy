@@ -22,8 +22,8 @@ export default class HugCommand extends Command {
         const user = await interaction.options.getUser("user");
         if (!user) return interaction.reply(t('commands:global.noUser'));
 
-        const img = await neko.sfw.hug();
-        const img2 = await neko.sfw.hug();
+        const img = await neko.hug();
+        const img2 = await neko.hug();
 
         const hugEmbed = new MessageEmbed()
             .setColor("RANDOM")

@@ -23,8 +23,8 @@ export default class PatCommand extends Command {
         const user = interaction.options.getUser("user");
         if (!user) return interaction.reply(t('commands:global.noUser'));
 
-        const gif = await neko.sfw.pat();
-        const gif2 = await neko.sfw.pat();
+        const gif = await neko.pat();
+        const gif2 = await neko.pat();
 
         const row = new MessageActionRow()
             .addComponents(
