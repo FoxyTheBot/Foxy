@@ -75,7 +75,7 @@ export default class FoxCoins extends Command {
 
                 await interaction.reply({ content: t('commands:pay.alert', { amount: value.toString(), user: user.username }), components: [row] });
 
-                const filter = i => i.customId === 'transfer' && i.user.id === interaction.user.id;
+                const filter = i => i.customId === 'transfer' && i.user.id === interaction.user.id && i.message.id === interaction.message.id;
                 const collector = await interaction.channel.createMessageComponentCollector(filter, { time: 15000 });
 
                 collector.on('collect', async i => {

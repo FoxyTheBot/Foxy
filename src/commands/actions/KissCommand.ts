@@ -43,7 +43,7 @@ export default class KissCommand extends Command {
             .setTimestamp();
         await interaction.reply({ embeds: [embed], components: [row] });
 
-        const filter = i => i.customId === 'primary' && i.user.id === user.id;
+        const filter = i => i.customId === 'primary' && i.user.id === user.id && i.message.id === interaction.message.id;
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
 
         collector.on('collect', async i => {

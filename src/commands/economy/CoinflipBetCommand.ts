@@ -65,7 +65,7 @@ export default class CoinflipBetCommand extends Command {
                     .setCustomId('accept')
             )
 
-        const filter = (choice, user) => user.id === user.id && interaction.customId === 'select';
+        const filter = (i, choice, user) => user.id === user.id && interaction.customId === 'select' && i.message.id === interaction.message.id;
         const menuCollector = interaction.channel.createMessageComponentCollector(filter, { max: 1 });
 
         interaction.followUp({ content: t('commands:bet.choose'), components: [row], ephemeral: true });

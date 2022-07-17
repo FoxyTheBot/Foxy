@@ -49,7 +49,7 @@ export default class BiteCommand extends Command {
 
         await interaction.reply({ embeds: [embed], components: [row] });
 
-        const filter = i => i.customId === "bite" && i.user.id === user.id;
+        const filter = i => i.customId === "bite" && i.user.id === user.id && i.message.id === interaction.message.id;
         const collector = interaction.channel.createMessageComponentCollector({ filter, max: 1, time: 30000 });
 
         collector.on("collect", async i => {

@@ -88,7 +88,7 @@ export default class ProfileCommand extends Command {
                     interaction.reply({ embeds: [userEmbed], components: [avatarRow] });
                 }
 
-                const filter = i => i.customId === 'avatar' && i.user.id === interaction.user.id;
+                const filter = i => i.customId === 'avatar' && i.user.id === interaction.user.id && i.message.id === interaction.message.id;
                 const avatarCollector = interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 5000 });
 
                 avatarCollector.on('collect', async i => {

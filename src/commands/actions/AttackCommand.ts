@@ -42,7 +42,7 @@ export default class AttackCommand extends Command {
 
         await interaction.reply({ embeds: [embed], components: [row] });
 
-        const filter = i => i.customid === "attack" && i.user.id === interaction.user.id;
+        const filter = i => i.customid === "attack" && i.user.id === interaction.user.id && i.message.id === interaction.message.id;
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 10000 });
 
         collector.on('collect', async i => {
