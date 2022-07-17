@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 
 export default class FlyingKickCommand extends Command {
     constructor(client) {
@@ -32,7 +32,7 @@ export default class FlyingKickCommand extends Command {
 
         const rand = list[Math.floor(Math.random() * list.length)];
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor("#ff0000")
             .setDescription(t('commands:kick.success', { user: interaction.user.username, target: user.username }))
             .setImage(rand)

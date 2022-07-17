@@ -1,6 +1,6 @@
 import Command from '../../structures/command/BaseCommand';
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { MessageActionRow, MessageButton, MessageEmbed, MessageAttachment } from 'discord.js';
+import { ActionRowBuilder, ButtonBuilder, EmbedBuilder, AttachmentBuilder, ButtonStyle, InteractionType } from 'discord.js';
 import { masks } from '../../structures/json/layoutList.json';
 import GenerateImage from "../../structures/GenerateImage";
 
@@ -20,7 +20,7 @@ export default class MaskCommand extends Command {
 
     async execute(interaction, t): Promise<void> {
         const command = interaction.options.getSubcommand();
-        if (interaction.isAutocomplete()) {
+        if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
             if (command == "buy") {
                 return await interaction.respond(await masks.map(data => Object({ name: t(`commands:masks.${data.id}`), value: data.id })));
             } else if (command == "set") {
@@ -31,7 +31,7 @@ export default class MaskCommand extends Command {
             }
         }
 
-        if (interaction.isCommand()) {
+        if (interaction.type === InteractionType.ApplicationCommand) {
             switch (command) {
                 case 'buy': {
                     const code: string = await interaction.options.getString("mask");
@@ -41,20 +41,20 @@ export default class MaskCommand extends Command {
                     const msk = await userData.masks
                     if (msk.includes(code)) return await interaction.editReply(t('commands:masks.alreadyOwned'));
 
-                    const row = new MessageActionRow()
+                    const row = new ActionRowBuilder()
                         .addComponents(
-                            new MessageButton()
+                            new ButtonBuilder()
                                 .setCustomId('yes')
                                 .setLabel(t('commands:masks.buy.purchase'))
-                                .setStyle("SUCCESS")
+                                .setStyle(ButtonStyle.Success)
                                 .setEmoji("<:foxydaily:915736630495686696>")
                         )
 
-                    const mskInfo = new MessageEmbed()
+                    const mskInfo = new EmbedBuilder()
                         .setDescription(mask.price.toString())
 
                     const canvasGenerator = new GenerateImage(this.client, interaction.user, userData, 1436, 884, true, code, true);
-                    const attachment = new MessageAttachment(await canvasGenerator.renderProfile(t), "foxy_profile.png");
+                    const attachment = new AttachmentBuilder(await canvasGenerator.renderProfile(t));
 
 
                     interaction.editReply({ embeds: [mskInfo], ephemeral: true });

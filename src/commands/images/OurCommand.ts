@@ -1,6 +1,6 @@
 import Command from '../../structures/command/BaseCommand';
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { MessageAttachment } from 'discord.js';
+import { AttachmentBuilder } from 'discord.js';
 import * as Canvas from 'canvas';
 
 export default class PerfectCommand extends Command {
@@ -37,7 +37,7 @@ export default class PerfectCommand extends Command {
         ctx.closePath();
         ctx.clip();
 
-        const attachment = new MessageAttachment(canvas.toBuffer(), 'ourchip.png');
+        const attachment = new AttachmentBuilder(canvas.toBuffer());
         await interaction.reply({ files: [attachment] });
     }
 }

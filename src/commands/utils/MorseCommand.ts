@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 
 export default class MorseCommand extends Command {
     constructor(client) {
@@ -43,7 +43,7 @@ export default class MorseCommand extends Command {
         }
 
 
-        const morseEmbed = new MessageEmbed()
+        const morseEmbed = new EmbedBuilder()
             .setDescription(`:point_right::radio: \n \`\`\`${text}\`\`\``);
 
         await interaction.reply({ embeds: [morseEmbed] });

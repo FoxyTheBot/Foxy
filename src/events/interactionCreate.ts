@@ -1,5 +1,5 @@
 import i18next from 'i18next';
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder, InteractionType } from "discord.js";
 
 export default class InteractionCreate {
     private client: any
@@ -16,7 +16,7 @@ export default class InteractionCreate {
         function FoxyHandler() {
             new Promise(async (res, rej) => {
                 try {
-                    if (interaction.isCommand() || interaction.isAutocomplete()) {
+                    if (interaction.type === InteractionType.ApplicationCommand || interaction.type === InteractionType.ApplicationCommandAutocomplete) {
                         command.execute(interaction, locale)
                     }
                 } catch (e) {
@@ -30,12 +30,14 @@ export default class InteractionCreate {
             const document = await this.client.database.getUser(interaction.user.id);
 
             if (document.isBanned) {
-                const bannedEmbed = new MessageEmbed()
+                const bannedEmbed = new EmbedBuilder()
                     .setTitle(locale('events:ban.title'))
-                    .setColor("RED")
+                    .setColor("#ED4245")
                     .setDescription(locale('events:ban.description'))
-                    .addField(locale('events:ban.reason'), document.banReason, true)
-                    .addField(locale('events:ban.date'), document.banData.toLocaleString(global.t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }))
+                    .addFields([
+                        { name: locale('events:ban.reason'), value: document.banReason, inline: true },
+                        { name: locale('events:ban.date'), value: document.banData.toLocaleString(global.t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }
+                    ])
                 return interaction.reply({ embeds: [bannedEmbed], ephemeral: true });
             }
 

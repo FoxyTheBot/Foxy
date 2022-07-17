@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageAttachment } from "discord.js";
+import { AttachmentBuilder } from "discord.js";
 import * as Canvas from "canvas";
 
 export default class ErrorCommand extends Command {
@@ -44,7 +44,7 @@ export default class ErrorCommand extends Command {
         ctx.closePath();
         ctx.clip();
 
-        const attachment = await new MessageAttachment(canvas.toBuffer(), 'error.png');
+        const attachment = await new AttachmentBuilder(canvas.toBuffer());
 
         await interaction.reply({ files: [attachment] });
     }

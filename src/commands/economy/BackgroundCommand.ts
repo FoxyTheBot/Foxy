@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, MessageActionRow, MessageButton, MessageAttachment, AutocompleteInteraction, CommandInteraction } from "discord.js";
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, AttachmentBuilder, AutocompleteInteraction, CommandInteraction, ButtonStyle, InteractionType } from "discord.js";
 import { bglist } from "../../structures/json/backgroundList.json";
 import GenerateImage from "../../structures/GenerateImage";
 
@@ -38,12 +38,12 @@ export default class BackgroundCommand extends Command {
         });
     }
 
-    async execute(interaction: CommandInteraction<'cached'> | AutocompleteInteraction, t): Promise<any> {
+    async execute(interaction, t): Promise<any> {
 
         const command = interaction.options.getSubcommand()
         const user = await this.client.database.getUser(interaction.user.id);
 
-        if (interaction.isAutocomplete()) {
+        if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
             if (command === "buy") interaction
                 .respond(bglist.map(data => Object({ name: data.name, value: data.id })));
 
@@ -53,7 +53,7 @@ export default class BackgroundCommand extends Command {
                     .map(b => Object({ name: b.name, value: b.id })));
         }
 
-        if (interaction.isCommand()) {
+        if (interaction.type === InteractionType.ApplicationCommand) {
             switch (command) {
                 case 'buy': {
                     const code: string = await interaction.options.getString("background"),
@@ -65,25 +65,27 @@ export default class BackgroundCommand extends Command {
                     if (user.backgrounds.includes(code))
                         return interaction.editReply(t('commands:background.buy.alreadyOwned'));
 
-                    const row = new MessageActionRow()
+                    const row = new ActionRowBuilder()
                         .addComponents(
-                            new MessageButton()
+                            new ButtonBuilder()
                                 .setCustomId("yes")
                                 .setLabel(t('commands:background.buy.purchase'))
-                                .setStyle("SUCCESS")
+                                .setStyle(ButtonStyle.Success)
                                 .setEmoji("<:foxydaily:915736630495686696>")
                         );
 
-                    const bgInfo = new MessageEmbed()
+                    const bgInfo = new EmbedBuilder()
                         .setTitle(background.name)
                         .setDescription(background.description)
-                        .setColor("BLURPLE")
-                        .addField(t('commands:background.buy.price'), `${background.foxcoins} FoxCoins`, true)
+                        .setColor("#5865F2")
+                        .addFields(
+                            { name: t('commands:background.buy.price'), value: `${background.foxcoins} FoxCoins`, inline: true }
+                        )
 
                     interaction.editReply({ embeds: [bgInfo] });
 
                     const canvasGenerator = new GenerateImage(this.client, interaction.user, user, 1436, 884, true, code);
-                    const attachment = new MessageAttachment(await canvasGenerator.renderProfile(t), "foxy_profile.png");
+                    const attachment = new AttachmentBuilder(await canvasGenerator.renderProfile(t));
 
                     await interaction.followUp({
                         content: t("commands:background.buy.preview"),
@@ -148,16 +150,16 @@ export default class BackgroundCommand extends Command {
                         if (!['image/png', 'image/jpg', 'image/jpeg'].includes(attach.contentType))
                             return await interaction.editReply(t('commands:background.invalidFormat'));
 
-                        const embed = new MessageEmbed()
+                        const embed = new EmbedBuilder()
                             .setTitle(t('commands:background.custom.title'))
                             .setDescription(t('commands:background.custom.alert')),
 
-                            row = new MessageActionRow()
+                            row = new ActionRowBuilder()
                                 .addComponents(
-                                    new MessageButton()
+                                    new ButtonBuilder()
                                         .setCustomId('send')
                                         .setLabel(t('commands:background.custom.save'))
-                                        .setStyle("SUCCESS")
+                                        .setStyle(ButtonStyle.Success)
                                 )
 
                         await interaction.editReply({ embeds: [embed], components: [row] });

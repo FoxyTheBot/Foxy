@@ -1,6 +1,6 @@
 import Command from '../../structures/command/BaseCommand';
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { MessageActionRow, MessageButton, MessageSelectMenu } from 'discord.js';
+import { ActionRowBuilder, ButtonBuilder, SelectMenuBuilder, ButtonStyle } from 'discord.js';
 
 export default class CoinflipBetCommand extends Command {
     constructor(client) {
@@ -39,9 +39,9 @@ export default class CoinflipBetCommand extends Command {
             return interaction.reply(t('commands:bet.not-enough-mention', { amount: `${value}`, user: user.username }));
         }
 
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder()
             .addComponents(
-                new MessageSelectMenu()
+                new SelectMenuBuilder()
                     .setCustomId('select')
                     .setPlaceholder(t('commands:bet.placeholder'))
                     .addOptions([
@@ -57,11 +57,11 @@ export default class CoinflipBetCommand extends Command {
                     ])
             )
 
-        const buttonRow = new MessageActionRow()
+        const buttonRow = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setLabel(t('commands:bet.accept'))
-                    .setStyle('SUCCESS')
+                    .setStyle(ButtonStyle.Success)
                     .setCustomId('accept')
             )
 

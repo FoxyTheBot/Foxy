@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 
 export default class BiteCommand extends Command {
     constructor(client) {
@@ -20,12 +20,12 @@ export default class BiteCommand extends Command {
         const user = interaction.options.getUser("user");
         if (!user) return interaction.reply(t('commands:global.noUser'));
 
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setCustomId("bite")
                     .setLabel(t('commands:bite.button'))
-                    .setStyle("DANGER")
+                    .setStyle(ButtonStyle.Secondary)
                     .setEmoji("<:heheheheh:985197497968373810>")
             )
 
@@ -42,7 +42,7 @@ export default class BiteCommand extends Command {
 
         const rand = list[Math.floor(Math.random() * list.length)];
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor("#ff0000")
             .setDescription(t('commands:bite.success', { user: interaction.user.username, target: user.username }))
             .setImage(rand)
@@ -55,7 +55,7 @@ export default class BiteCommand extends Command {
         collector.on("collect", async i => {
             if (i.customId === "bite") {
                 if (await this.client.ctx.getContext(interaction, i, 2, user)) {
-                    const embed = new MessageEmbed()
+                    const embed = new EmbedBuilder()
                         .setColor("#ff0000")
                         .setDescription(t("commands:bite.success", { user: user.username, target: interaction.user.username }))
                         .setImage(rand)

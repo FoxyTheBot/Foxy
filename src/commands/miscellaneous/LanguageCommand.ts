@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, MessageActionRow, MessageSelectMenu } from "discord.js";
+import { EmbedBuilder, ActionRowBuilder, SelectMenuBuilder } from "discord.js";
 
 export default class LanguageCommand extends Command {
     constructor(client) {
@@ -18,9 +18,9 @@ export default class LanguageCommand extends Command {
     async execute(interaction, t): Promise<void> {
         const userData = await this.client.database.getUser(interaction.user.id);
 
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder()
             .addComponents(
-                new MessageSelectMenu()
+                new SelectMenuBuilder()
                     .setCustomId('select')
                     .setPlaceholder("Select your default language")
                     .addOptions([
@@ -37,8 +37,8 @@ export default class LanguageCommand extends Command {
                     ])
             )
 
-        const embed = new MessageEmbed()
-            .setColor("BLURPLE")
+        const embed = new EmbedBuilder()
+            .setColor("#5865F2")
             .setTitle(t('lang.title'))
             .setDescription(`${t('lang.default')} \n\n :flag_br: Português do Brasil\n :flag_us: English`)
 

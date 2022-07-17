@@ -1,4 +1,4 @@
-import { WebhookClient, MessageEmbed, Interaction, Guild } from 'discord.js';
+import { WebhookClient, EmbedBuilder, Interaction, Guild } from 'discord.js';
 import convertDate from './ClientSettings';
 
 export default class WebhookManager {
@@ -9,9 +9,9 @@ export default class WebhookManager {
     }
 
     async sendSuggestion(interaction: Interaction, suggestion: string): Promise<void> {
-        const suggestEmbed = new MessageEmbed()
+        const suggestEmbed = new EmbedBuilder()
             .setTitle('Nova sugestão para a Foxy!')
-            .setThumbnail(interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }))
+            .setThumbnail(interaction.user.displayAvatarURL({ size: 2048 }))
             .setDescription(`${this.client.emotes.heart} **Usuário:** ${interaction.user.tag} / ${interaction.user.id} \n\n ${this.client.emotes.success} **Sugestão:** ${suggestion} \n\n ${this.client.emotes.thumbsup} **Servidor:** ${interaction.guild.name} / ${interaction.guild.id}`)
 
         const suggestWebhook = new WebhookClient({ url: this.client.config.webhooks.suggestions });
@@ -19,7 +19,7 @@ export default class WebhookManager {
     }
 
     async guildCreate(guild: Guild): Promise<void> {
-        const guildEmbed = new MessageEmbed()
+        const guildEmbed = new EmbedBuilder()
             .setTitle(`${this.client.emotes.success} | Fui adicionada em um servidor! :3`)
             .setThumbnail('https://cdn.discordapp.com/attachments/782995363548102676/839517480640577536/yay_fast.gif')
             .setDescription(`<a:cat_explosion:831146965479063553> Fui adicionada no servidor **${guild.name} / ${guild.id}**`)
@@ -33,7 +33,7 @@ export default class WebhookManager {
     }
 
     async guildDelete(guild: Guild): Promise<void> {
-        const guildEmbed = new MessageEmbed()
+        const guildEmbed = new EmbedBuilder()
             .setTitle(`${this.client.emotes.error} | Fui removida de um servidor! :c`)
             .setThumbnail('https://cdn.discordapp.com/attachments/791449801735667713/791450113649410078/tenor.gif')
             .setDescription(`Fui removida do servidor **${guild.name} / ${guild.id}**`)
@@ -48,7 +48,7 @@ export default class WebhookManager {
     }
 
     async sendIssue(interaction: Interaction, content: string): Promise<void> {
-        const issueEmbed = new MessageEmbed()
+        const issueEmbed = new EmbedBuilder()
             .setTitle(`${this.client.emotes.error} | Um erro foi reportado por um usuário`)
             .addFields(
                 { name: "👤 | Usuário", value: `\`${interaction.user.tag} / ${interaction.user.id}\`` },
@@ -65,7 +65,7 @@ export default class WebhookManager {
     }
 
     async sendLog(stats: any): Promise<void> {
-        const dblEmbed = new MessageEmbed()
+        const dblEmbed = new EmbedBuilder()
             .setTitle("Informações atualizadas na DBL")
             .setDescription(`A quantidade de servidores foram atualizadas para ${stats.serverCount}`)
         const dblWebhook = new WebhookClient({ url: this.client.config.webhooks.dbl });

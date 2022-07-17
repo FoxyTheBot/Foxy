@@ -8,14 +8,15 @@ export default class Ready {
         this.client = client;
     }
 
-    async run(): Promise<void> {
+    async run(): Promise<any> {
         console.info(`${new Date().toLocaleString()} [READY] - Shard ${Number(this.client.shard.ids) + 1} is ready to go!`);
         const status = [
-            { name: "🐦 | Me siga no Twitter: @FoxyDiscordBot", type: 0 },
-            { name: `😍 | Me adicione clicando no meu perfil`, type: 1 },
-            { name: `🤔 | Precisa de ajuda? Utilize /help`, type: 2 },
-            { name: "🍰 | Minha comida preferida é bolo :3 💖", type: 5 },
-            { name: "🌟 | Me ajude a crescer votando em mim :3 Use /upvote" }
+            { name: "Howdy Discord.js V14!", type: 0 }
+            // { name: "🐦 | Me siga no Twitter: @FoxyDiscordBot", type: 0 },
+            // { name: `😍 | Me adicione clicando no meu perfil`, type: 1 },
+            // { name: `🤔 | Precisa de ajuda? Utilize /help`, type: 2 },
+            // { name: "🍰 | Minha comida preferida é bolo :3 💖", type: 5 },
+            // { name: "🌟 | Me ajude a crescer votando em mim :3 Use /upvote" }
         ];
 
         setInterval(() => {

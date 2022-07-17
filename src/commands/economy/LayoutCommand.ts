@@ -1,6 +1,7 @@
 import Command from "../../structures/command/BaseCommand";
 import { lylist } from '../../structures/json/layoutList.json';
 import { SlashCommandBuilder } from '@discordjs/builders';
+import { InteractionType } from "discord.js";
 
 export default class LayoutCommand extends Command {
     constructor(client) {
@@ -18,14 +19,14 @@ export default class LayoutCommand extends Command {
     async execute(interaction, t): Promise<void> {
         const command = interaction.options.getSubcommand();
 
-        if (interaction.isAutocomplete()) {
+        if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
             if (command == "set") {
                 return await interaction.respond(await lylist.map(data => Object({ name: t(`commands:layouts.${data.id}`), value: data.id })));
             }
         }
 
 
-        if (interaction.isCommand()) {
+        if (interaction.type === InteractionType.ApplicationCommand) {
             const code: string = await interaction.options.getString("layout");
 
             const layouts = await lylist.map(data => data.id);

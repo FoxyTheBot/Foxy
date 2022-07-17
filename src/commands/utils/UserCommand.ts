@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 import convertDate from "../../structures/ClientSettings";
 
 export default class ProfileCommand extends Command {
@@ -37,31 +37,33 @@ export default class ProfileCommand extends Command {
 
         switch (command) {
             case "info": {
-                const userEmbed = new MessageEmbed()
+                const userEmbed = new EmbedBuilder()
                     .setColor(user.hexAccentColor)
                     .setThumbnail(user.avatarURL({ dynamic: true, size: 1024 }))
-                    .addField(`:bookmark: ${t('commands:user.info.tag')}`, `\`${user.tag}\``)
-                    .addField(`:date: ${t('commands:user.info.createdAt')}`, convertDate(user.createdTimestamp))
-                    .addField(`:computer: ${t('commands:user.info.userId')}`, `\`${user.id}\``)
+                    .addFields([
+                        { name: `:bookmark: ${t('commands:user.info.tag')}`, value: `\`${user.tag}\`` },
+                        { name: `:date: ${t('commands:user.info.createAt')}`, value: convertDate(user.createdTimestamp) },
+                        { name: `:computer: ${t('commands:user.info.userId')}`, value: `\`${user.id}\`` }
+                    ])
                     .setImage(banner)
 
                 const member = interaction.guild.members.cache.get(user.id);
                 if (member) {
-                    const memberRow = new MessageActionRow()
+                    const memberRow = new ActionRowBuilder()
                         .addComponents(
-                            new MessageButton()
+                            new ButtonBuilder()
                                 .setLabel(t('commands:user.member.permissions.button'))
                                 .setCustomId("permissions")
-                                .setStyle("PRIMARY")
+                                .setStyle(ButtonStyle.Secondary)
                                 .setEmoji("<:sus:985332743464439809>"),
-                            new MessageButton()
+                            new ButtonBuilder()
                                 .setLabel(t('commands:user.info.avatar'))
                                 .setCustomId("avatar")
-                                .setStyle("PRIMARY")
+                                .setStyle(ButtonStyle.Secondary)
                                 .setEmoji("<:ShiroFoxy:934469525997518848>")
                         )
 
-                    const memberEmbed = new MessageEmbed()
+                    const memberEmbed = new EmbedBuilder()
                         .setColor(user.hexAccentColor)
                         .setTitle(t('commands:user.member.title', { user: user.username }))
                         .setThumbnail(user.avatarURL({ dynamic: true, size: 1024 }))
@@ -70,19 +72,25 @@ export default class ProfileCommand extends Command {
                             { name: t('commands:user.member.nickname'), value: member.displayName },
                         )
                     if (member.roles.highest.name !== "@everyone") {
-                        memberEmbed.addField(t('commands:user.member.highestRole'), `${member.roles.highest}`);
+                        memberEmbed.addFields([
+                            {
+                                name: `${t('commands:user.member.highestRole')}`, value: `${member.roles.highest}`
+                            },
+                        ])
                     }
                     if (member.premiumSinceTimestamp) {
-                        memberEmbed.addField(t('commands:user.member.premiumSince'), convertDate(member.premiumSinceTimestamp));
+                        memberEmbed.addFields([
+                            { name: `${t('commands:user.member.premiumSince')}`, value: convertDate(member.premiumSinceTimestamp) },
+                        ])
                     }
                     interaction.reply({ embeds: [userEmbed, memberEmbed], components: [memberRow] });
                 } else {
-                    const avatarRow = new MessageActionRow()
+                    const avatarRow = new ActionRowBuilder()
                         .addComponents(
-                            new MessageButton()
+                            new ButtonBuilder()
                                 .setLabel(t('commands:user.info.avatar'))
                                 .setCustomId("avatar")
-                                .setStyle("PRIMARY")
+                                .setStyle(ButtonStyle.Secondary)
                                 .setEmoji("<:ShiroFoxy:934469525997518848>")
                         )
                     interaction.reply({ embeds: [userEmbed], components: [avatarRow] });
@@ -98,14 +106,14 @@ export default class ProfileCommand extends Command {
                                 i.deferUpdate();
                                 return i.user.send({ content: t('commands:foxyGlobal.noPermission', { user: `<@${interaction.user.id}>` }) });
                             }
-                            const avatarEmbed = new MessageEmbed()
+                            const avatarEmbed = new EmbedBuilder()
                                 .setTitle(t('commands:user.avatar.title', { user: user.username }))
                                 .setImage(user.avatarURL({ dynamic: true, size: 1024 }))
-                            const row = new MessageActionRow()
+                            const row = new ActionRowBuilder()
                                 .addComponents(
-                                    new MessageButton()
+                                    new ButtonBuilder()
                                         .setLabel(t('commands:user.avatar.click'))
-                                        .setStyle("LINK")
+                                        .setStyle(ButtonStyle.Link)
                                         .setURL(user.avatarURL({ dynamic: true, size: 1024 })),
 
                                 )
@@ -120,7 +128,7 @@ export default class ProfileCommand extends Command {
                                 return i.user.send({ content: t('commands:foxyGlobal.noPermission', { user: `<@${interaction.user.id}>` }) });
                             }
                             const permissions = member.permissions.toArray();
-                            const embed = new MessageEmbed()
+                            const embed = new EmbedBuilder()
                                 .setTitle(t('commands:user.member.permissions.title', { user: user.username }))
                                 .addFields([
                                     { name: t('commands:user.member.role'), value: `${member._roles.map(r => `<@&${r}>`).join(", ") || t('commands:user.member.noRoles')}` },
@@ -136,15 +144,15 @@ export default class ProfileCommand extends Command {
             }
 
             case "avatar": {
-                const row = new MessageActionRow()
+                const row = new ActionRowBuilder()
                     .addComponents(
-                        new MessageButton()
+                        new ButtonBuilder()
                             .setLabel(t('commands:user.avatar.click'))
-                            .setStyle("LINK")
+                            .setStyle(ButtonStyle.Link)
                             .setURL(user.avatarURL({ dynamic: true, size: 1024 })),
 
                     )
-                const avatarEmbed = new MessageEmbed()
+                const avatarEmbed = new EmbedBuilder()
                     .setTitle(t('commands:user.avatar.title', { user: user.username }))
                     .setImage(user.avatarURL({ dynamic: true, size: 1024 }))
 
@@ -155,15 +163,15 @@ export default class ProfileCommand extends Command {
             case "banner": {
                 if (!data.banner) return interaction.reply(t('commands:user.banner.noBanner'));
 
-                const row = new MessageActionRow()
+                const row = new ActionRowBuilder()
                     .addComponents(
-                        new MessageButton()
+                        new ButtonBuilder()
                             .setLabel(t('commands:user.banner.click'))
-                            .setStyle("LINK")
+                            .setStyle(ButtonStyle.Link)
                             .setURL(banner),
                     )
                 if (!banner) return interaction.reply(t('commands:user.banner.noBanner'));
-                const bannerEmbed = new MessageEmbed()
+                const bannerEmbed = new EmbedBuilder()
                     .setTitle(t('commands:user.banner.title', { user: user.username }))
                     .setImage(banner)
 

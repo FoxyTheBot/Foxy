@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 import os from "os";
 
 export default class StatusCommand extends Command {
@@ -17,7 +17,7 @@ export default class StatusCommand extends Command {
     }
 
     async execute(interaction, t): Promise<void> {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setTitle("🦊 | Foxy Status")
             .addFields(
                 { name: `💻 | ${t('commands:status.model')}`, value: `\`\`\`${os.cpus().map(c => c.model)[0]}\`\`\`` },

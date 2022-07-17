@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageAttachment } from "discord.js";
+import { AttachmentBuilder } from "discord.js";
 import GenerateImage from "../../structures/GenerateImage";
 
 export default class ProfileCommand extends Command {
@@ -23,7 +23,8 @@ export default class ProfileCommand extends Command {
         await interaction.deferReply();
         const userData = await this.client.database.getUser(user.id);
         const canvasGenerator = new GenerateImage(this.client, user, userData, 1436, 884);
-        const profile = new MessageAttachment(await canvasGenerator.renderProfile(t), "foxy_profile.png");
+        const profile = new AttachmentBuilder(await canvasGenerator.renderProfile(t));
+
 
         await interaction.editReply({ content: t('commands:profile.your'), files: [profile] });
     }

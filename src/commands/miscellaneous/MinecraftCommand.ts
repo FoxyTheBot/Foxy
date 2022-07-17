@@ -1,6 +1,6 @@
 import Command from '../../structures/command/BaseCommand';
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 export default class MinecraftCommand extends Command {
     constructor(client) {
@@ -26,8 +26,8 @@ export default class MinecraftCommand extends Command {
                 const user = interaction.options.getString("player");
                 if (user.length > 20) return interaction.reply(t('commands:mcbody.tooLong'));
 
-                const embed = new MessageEmbed()
-                    .setColor("BLURPLE")
+                const embed = new EmbedBuilder()
+                    .setColor("#5865F2")
                     .setTitle(t('commands:mcbody.title', { user: user }))
                     .setImage(`https://mc-heads.net/body/${user}`)
 
@@ -39,8 +39,8 @@ export default class MinecraftCommand extends Command {
                 const user = interaction.options.getString("player");
                 if (user.length > 20) return interaction.reply(t('commands:mchead.tooLong'));
 
-                const embed = new MessageEmbed()
-                    .setColor("BLURPLE")
+                const embed = new EmbedBuilder()
+                    .setColor("#5865F2")
                     .setTitle(t('commands:mchead.title', { user: user }))
                     .setImage(`https://mc-heads.net/head/${user}`)
 
@@ -52,8 +52,8 @@ export default class MinecraftCommand extends Command {
                 const user = interaction.options.getString("player");
                 if (user.length > 20) return interaction.reply(t('commands:mcskin.tooLong'));
 
-                const embed = new MessageEmbed()
-                    .setColor("BLURPLE")
+                const embed = new EmbedBuilder()
+                    .setColor("#5865F2")
                     .setTitle(t('commands:mcskin.title', { user: user }))
                     .setImage(`https://mc-heads.net/body/${user}`)
 

@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, MessageAttachment } from "discord.js";
+import { EmbedBuilder, AttachmentBuilder } from "discord.js";
 import * as Canvas from "canvas";
 
 export default class ShipCommand extends Command {
@@ -72,9 +72,9 @@ export default class ShipCommand extends Command {
         ctx.drawImage(emotes, 125, 0, 128, 128);
         ctx.drawImage(avatar1, -10, 0, 128, 128);
         ctx.drawImage(avatar2, 260, 0, 128, 128);
-        const img = await new MessageAttachment(canvas.toBuffer(), 'ship.png')
+        const img = await new AttachmentBuilder(canvas.toBuffer())
 
-        const shipEmbed = new MessageEmbed()
+        const shipEmbed = new EmbedBuilder()
             .setDescription(`**${love}%** [\`${loveLevel}\`]`)
             .setImage("attachment://ship.png")
         interaction.reply({ content: desc, embeds: [shipEmbed], files: [img] });

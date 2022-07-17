@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 import NekosLife from "nekos.life";
 
 export default class HugCommand extends Command {
@@ -25,17 +25,17 @@ export default class HugCommand extends Command {
         const img = await neko.hug();
         const img2 = await neko.hug();
 
-        const hugEmbed = new MessageEmbed()
-            .setColor("RANDOM")
+        const hugEmbed = new EmbedBuilder()
+            .setColor("#57F287")
             .setDescription(t('commands:hug.success', { user: user.username, author: interaction.user.username }))
             .setImage(img.url)
 
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setCustomId("hug")
                     .setLabel(t("commands:hug.button"))
-                    .setStyle("PRIMARY")
+                    .setStyle(ButtonStyle.Primary)
                     .setEmoji("<:ztLove:978732042160332850>")
             )
 
@@ -47,8 +47,8 @@ export default class HugCommand extends Command {
         collector.on('collect', async i => {
             if (i.customId === 'hug') {
                 if (await this.client.ctx.getContext(interaction, i, 2, user)) {
-                    const hugEmbed = new MessageEmbed()
-                        .setColor("RANDOM")
+                    const hugEmbed = new EmbedBuilder()
+                        .setColor("#57F287")
                         .setDescription(t('commands:hug.success', { user: interaction.user.username, author: user.username }))
                         .setImage(img2.url)
                     await interaction.followUp({ embeds: [hugEmbed] });

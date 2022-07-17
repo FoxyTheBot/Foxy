@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 
 export default class HelpCommand extends Command {
     constructor(client) {
@@ -22,9 +22,9 @@ export default class HelpCommand extends Command {
 
         switch (subcommand) {
             case "commands": {
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setTitle(t("commands:help.commands.title"))
-                    .addFields(
+                    .addFields([
                         { name: `<:foxydaily:915736630495686696> ${t('commands:help.commands.category.economy')} (${this.getSize("economy")})`, value: this.getCategory("economy"), inline: true },
                         { name: `<:DiscordStaff:731947814246154240> ${t('commands:help.commands.category.social')} (${this.getSize("social")})`, value: this.getCategory("social"), inline: true },
                         { name: `<:DiscordBoost:723225840548184195> ${t('commands:help.commands.category.rp')} (${this.getSize("actions")})`, value: this.getCategory("actions"), inline: true },
@@ -32,23 +32,24 @@ export default class HelpCommand extends Command {
                         { name: `:robot: | ${t('commands:help.commands.category.misc')} (${this.getSize("misc")})`, value: this.getCategory("misc"), inline: true },
                         { name: `<:cute_yay:901111399328124928> ${t('commands:help.commands.category.fun')} (${this.getSize("fun")})`, value: this.getCategory("fun"), inline: true },
                         { name: `<:DiscordStaff:731947814246154240> ${t('commands:help.commands.category.utils')} (${this.getSize("utils")})`, value: this.getCategory("utils"), inline: true },
-                    )
+                    ])
 
                 await interaction.reply({ embeds: [embed] });
                 break;
             }
 
             case "bot": {
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setColor('#7289da')
                     .setTitle(t('commands:help.bot.title'))
                     .setDescription(t('commands:help.bot.description', { user: interaction.user.username }))
                     .setThumbnail(this.client.user.displayAvatarURL({ dynamic: true, size: 2048, format: 'png' }))
-                    .addField(t('commands:help.bot.fields.list.title'), t('commands:help.bot.fields.list.value'))
-                    .addField(t('commands:help.bot.fields.guild'), 'https://discord.gg/W6XtYyqKkg')
-                    .addField(t('commands:help.bot.fields.privacy'), 'http://localhost:8080/privacy')
-                    .addField(t('commands:help.bot.fields.website'), 'http://localhost:8080/');
-
+                    .addFields([
+                        { name: t('commands:help.bot.fields.list.title'), value: t('commands:help.bot.fields.list.value') },
+                        { name: t('commands:help.bot.fields.guild'), value: 'https://discord.gg/W6XtYyqKkg' },
+                        { name: t('commands:help.bot.fields.privacy'), value: 'https://foxywebsite.xyz/privacy' },
+                        { name: t('commands:help.bot.fields.website'), value: 'http://foxywebsite.xyz' }
+                    ])
                 await interaction.reply({ embeds: [embed] });
             }
         }

@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 
 export default class StepCommand extends Command {
     constructor(client) {
@@ -28,8 +28,8 @@ export default class StepCommand extends Command {
 
         const rand = list[Math.floor(Math.random() * list.length)];
 
-        const embed = new MessageEmbed()
-            .setColor("BLURPLE")
+        const embed = new EmbedBuilder()
+            .setColor("#5865F2")
             .setDescription(t('commands:step.success', { user: user.username }))
             .setImage(rand)
 

@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 
 export default class AttackCommand extends Command {
     constructor(client) {
@@ -27,16 +27,16 @@ export default class AttackCommand extends Command {
         ]
 
         const rand = list[Math.floor(Math.random() * list.length)];
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setLabel(t('commands:attack.button'))
                     .setEmoji("928710998964174949")
                     .setCustomId("attack")
-                    .setStyle("PRIMARY")
+                    .setStyle(ButtonStyle.Success)
             )
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setDescription(t('commands:attack.attack', { user: interaction.user.username, target: user.username }))
             .setImage(rand)
 
@@ -48,7 +48,7 @@ export default class AttackCommand extends Command {
         collector.on('collect', async i => {
             if (i.customId === "attack") {
                 if (await this.client.ctx.getContext(interaction, i, 2, user)) {
-                    const embed = new MessageEmbed()
+                    const embed = new EmbedBuilder()
                         .setColor('#26ffb1')
                         .setDescription(t('commands:attack.attack', {
                             user: user.username,

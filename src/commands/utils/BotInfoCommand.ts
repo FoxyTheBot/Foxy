@@ -1,6 +1,6 @@
 import Command from '../../structures/command/BaseCommand';
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 export default class BotInfoCommand extends Command {
     public client: any;
@@ -17,8 +17,8 @@ export default class BotInfoCommand extends Command {
     }
 
     async execute(interaction, t): Promise<void> {
-        const embed = new MessageEmbed()
-            .setColor("BLURPLE")
+        const embed = new EmbedBuilder()
+            .setColor("#5865F2")
             .setTitle(t('botinfo.title'))
             .setDescription(t('botinfo.description', { client: this.client, guilds: this.client.guilds.cache.size.toString() }))
             .addFields(

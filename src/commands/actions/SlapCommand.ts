@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 import NekosLife from "nekos.life";
 
 export default class SlapCommand extends Command {
@@ -25,15 +25,15 @@ export default class SlapCommand extends Command {
 
         const slap = await neko.slap();
         const slap2 = await neko.slap();
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setLabel(t('commands:slap.button'))
                     .setCustomId("slap")
-                    .setStyle("PRIMARY")
+                    .setStyle(ButtonStyle.Primary)
             )
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setDescription(t('commands:slap.success', { user: user.username, author: interaction.user.username }))
             .setImage(slap.url)
         await interaction.reply({ embeds: [embed], components: [row] });
@@ -44,7 +44,7 @@ export default class SlapCommand extends Command {
         collector.on("collect", async i => {
             if (i.customId === "slap") {
                 if (await this.client.ctx.getContext(interaction, i, 2, user)) {
-                    const embed2 = new MessageEmbed()
+                    const embed2 = new EmbedBuilder()
                         .setDescription(t('commands:slap.success', { user: interaction.user.username, author: user.username }))
                         .setImage(slap2.url)
                     await interaction.followUp({ embeds: [embed2] });

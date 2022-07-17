@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { MessageAttachment } from "discord.js";
+import { AttachmentBuilder } from "discord.js";
 import Command from '../../structures/command/BaseCommand';
 import * as Canvas from 'canvas';
 
@@ -35,7 +35,7 @@ export default class JojoCommand extends Command {
         ctx.drawImage(avatar, 150, 2, 100, 100);
         ctx.drawImage(avatar2, 500, 135, 74, 75);
 
-        const attachment = new MessageAttachment(canvas.toBuffer(), 'jojo.png');
+        const attachment = new AttachmentBuilder(canvas.toBuffer());
         await interaction.editReply({ files: [attachment] });
     }
 }

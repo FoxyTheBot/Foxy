@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 import NekosLife from "nekos.life";
 
 export default class PatCommand extends Command {
@@ -26,17 +26,17 @@ export default class PatCommand extends Command {
         const gif = await neko.pat();
         const gif2 = await neko.pat();
 
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setLabel(t('commands:pat.button'))
                     .setCustomId("pat")
-                    .setStyle("PRIMARY")
+                    .setStyle(ButtonStyle.Primary)
                     .setEmoji("<:heheheheh:985197497968373810>")
             )
 
-        const embed = new MessageEmbed()
-            .setColor("RANDOM")
+        const embed = new EmbedBuilder()
+            .setColor("#57F287")
             .setDescription(t('commands:pat.success', { user: user.username, author: interaction.user.username }))
             .setImage(gif.url)
 
@@ -48,8 +48,8 @@ export default class PatCommand extends Command {
         collector.on("collect", async i => {
             if (i.customId == "pat") {
                 if (await this.client.ctx.getContext(interaction, i, 2, user)) {
-                    const embed = new MessageEmbed()
-                        .setColor("RANDOM")
+                    const embed = new EmbedBuilder()
+                        .setColor("#57F287")
                         .setDescription(t('commands:pat.success', { user: interaction.user.username, author: user.username }))
                         .setImage(gif2.url)
                     await interaction.followUp({ embeds: [embed] });

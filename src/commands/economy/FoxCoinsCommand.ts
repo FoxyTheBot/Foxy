@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 
 export default class FoxCoins extends Command {
     constructor(client) {
@@ -33,18 +33,22 @@ export default class FoxCoins extends Command {
             case 'rank': {
                 let data = await this.client.database.getAllUsers();
                 await interaction.deferReply();
-                const embed = new MessageEmbed();
+                const embed = new EmbedBuilder();
 
                 data = data.sort((a, b) => b.balance - a.balance);
                 let position = parseInt(data.map(m => m._id).indexOf(interaction.user.id)) + 1;
 
                 embed.setTitle(`${this.client.emotes.daily} | FoxCoins Global Rank`)
-                    .setColor('BLURPLE')
+                    .setColor('#5865F2')
                     .setDescription(`${this.client.emotes.sunglass} | ${t('commands:rank.youAreIn')} ${`${position}º` || 'Sad™'} ${t('commands:rank.position')}`)
                 for (let i in data) {
                     if (Number(i) > 14) break;
                     let user = await this.client.users.fetch(data[i]._id);
-                    embed.addField(`${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - \`${user.tag}\``, `**${parseInt(data[i].balance)}** FoxCoins`, true);
+                    embed.addFields([
+                        {
+                            name: `${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - \`${user.tag}\``, value: `**${parseInt(data[i].balance)}** FoxCoins`, inline: true
+                        },
+                    ]);
                 }
                 await interaction.editReply({ embeds: [embed] });
                 break;
@@ -62,12 +66,12 @@ export default class FoxCoins extends Command {
                 if (user === interaction.user) return interaction.reply(t('commands:pay.self'));
                 if (value !== authorData.balance) return interaction.reply(t('commands:pay.notEnough'))
 
-                const row = new MessageActionRow()
+                const row = new ActionRowBuilder()
                     .addComponents(
-                        new MessageButton()
+                        new ButtonBuilder()
                             .setLabel(t('commands:pay.pay'))
                             .setCustomId('transfer')
-                            .setStyle('SUCCESS')
+                            .setStyle(ButtonStyle.Success)
                             .setEmoji("<:foxydaily:915736630495686696>")
                     )
 

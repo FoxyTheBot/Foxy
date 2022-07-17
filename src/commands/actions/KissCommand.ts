@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 import NekosLife from "nekos.life";
 
 export default class KissCommand extends Command {
@@ -27,29 +27,29 @@ export default class KissCommand extends Command {
 
         if (user == this.client.user) return interaction.reply(t('commands:kiss.self'));
 
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
-                    .setCustomId("primary")
+                new ButtonBuilder()
+                    .setCustomId("1")
                     .setLabel(t("commands:kiss.button"))
-                    .setStyle("PRIMARY")
+                    .setStyle(ButtonStyle.Primary)
                     .setEmoji("<:heartuwu:978732409170309240>")
             )
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor('#06c5ef')
             .setDescription(t('commands:kiss.success', { user: user.username, author: interaction.user.username }))
             .setImage(img.url)
             .setTimestamp();
         await interaction.reply({ embeds: [embed], components: [row] });
 
-        const filter = i => i.customId === 'primary' && i.user.id === user.id && i.message.id === interaction.message.id;
+        const filter = i => i.customId === '1' && i.user.id === user.id && i.message.id === interaction.message.id;
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
 
         collector.on('collect', async i => {
-            if (i.customId === 'primary') {
+            if (i.customId === '1') {
                 if (await this.client.ctx.getContext(interaction, i, 2, user)) {
-                    const kissEmbed = new MessageEmbed()
+                    const kissEmbed = new EmbedBuilder()
                         .setColor('#b354ff')
                         .setDescription(t('commands:kiss.success', { user: interaction.user.username, author: user.username }))
                         .setImage(img2.url)

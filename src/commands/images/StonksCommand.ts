@@ -1,7 +1,7 @@
 import Command from "../../structures/command/BaseCommand";
 import * as Canvas from "canvas";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageAttachment } from "discord.js";
+import { AttachmentBuilder } from "discord.js";
 
 export default class StonksCommand extends Command {
     constructor(client) {
@@ -38,7 +38,7 @@ export default class StonksCommand extends Command {
         ctx.closePath();
         ctx.clip();
 
-        const attachment = new MessageAttachment(canvas.toBuffer(), 'stonks.png');
+        const attachment = new AttachmentBuilder(canvas.toBuffer());
 
         await interaction.reply({ files: [attachment] });
     }

@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageAttachment } from "discord.js";
+import { AttachmentBuilder } from "discord.js";
 import * as Canvas from "canvas";
 
 export default class GirlfriendCommand extends Command {
@@ -36,7 +36,7 @@ export default class GirlfriendCommand extends Command {
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
         ctx.drawImage(avatarImg, 20, 170, 200, 200);
 
-        const attachment = new MessageAttachment(canvas.toBuffer(), 'minha_namorada.png');
+        const attachment = new AttachmentBuilder(canvas.toBuffer());
         await interaction.reply({ files: [attachment] });
     }
 }

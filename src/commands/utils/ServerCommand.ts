@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 import convertDate from "../../structures/ClientSettings";
 
 export default class ServerCommand extends Command {
@@ -40,7 +40,7 @@ export default class ServerCommand extends Command {
 
         switch (subcommand) {
             case "info": {
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setTitle(server.name)
                     .setThumbnail(server.iconURL())
                     .addFields(
@@ -61,14 +61,14 @@ export default class ServerCommand extends Command {
             }
 
             case "icon": {
-                const row = new MessageActionRow()
+                const row = new ActionRowBuilder()
                     .addComponents(
-                        new MessageButton()
+                        new ButtonBuilder()
                             .setLabel(t("commands:server.click"))
-                            .setStyle("LINK")
+                            .setStyle(ButtonStyle.Link)
                             .setURL(server.iconURL({ format: "png", size: 2048 }))
                     )
-                const embed = new MessageEmbed()
+                const embed = new EmbedBuilder()
                     .setTitle(server.name)
                     .setImage(server.iconURL({ format: "png", size: 2048 }))
 

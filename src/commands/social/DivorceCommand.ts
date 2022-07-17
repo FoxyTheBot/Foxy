@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageActionRow, MessageButton } from "discord.js";
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 
 export default class DivorceCommand extends Command {
     constructor(client) {
@@ -24,12 +24,12 @@ export default class DivorceCommand extends Command {
         const userInfo = await this.client.users.fetch(marriedId);
         const marriedData = await this.client.database.getUser(marriedId);
 
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setCustomId("divorce")
                     .setLabel(t("commands:divorce.confirm"))
-                    .setStyle("PRIMARY")
+                    .setStyle(ButtonStyle.Primary)
                     .setEmoji("💔")
             )
 

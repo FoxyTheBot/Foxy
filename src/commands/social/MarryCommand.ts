@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageActionRow, MessageButton } from "discord.js";
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 
 export default class MarryCommand extends Command {
     constructor(client) {
@@ -30,12 +30,12 @@ export default class MarryCommand extends Command {
         if (user.id === authorData.marriedWith) return interaction.reply(t('commands:marry.alreadyMarriedWithUser', { user: user.username }));
 
 
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setCustomId("accept")
                     .setLabel(t("commands:marry.accept"))
-                    .setStyle("SUCCESS")
+                    .setStyle(ButtonStyle.Success)
                     .setEmoji("💓")
             )
         interaction.reply({ content: `${this.client.emotes.heart} | ${t('commands:marry.ask', { user: user.username, author: interaction.user.username })}`, components: [row] });

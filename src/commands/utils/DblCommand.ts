@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 
 export default class DblCommand extends Command {
     constructor(client) {
@@ -16,8 +16,8 @@ export default class DblCommand extends Command {
     }
 
     async execute(interaction, t): Promise<void> {
-        const embed = new MessageEmbed()
-            .setColor("BLURPLE")
+        const embed = new EmbedBuilder()
+            .setColor("#5865F2")
             .setTitle(":sparkles: Discord Bot List")
             .setDescription(`<a:happy_shuffle:768500897483325493> ${t("commands:upvote.description")}`)
 

@@ -1,6 +1,6 @@
 import Command from "../../structures/command/BaseCommand";
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 import convertDate from "../../structures/ClientSettings";
 
 export default class RoleInfoCommand extends Command {
@@ -21,7 +21,7 @@ export default class RoleInfoCommand extends Command {
         const role = interaction.options.getRole("role");
         const rolePermissions = role.permissions.toArray();
 
-        const roleEmbed = new MessageEmbed()
+        const roleEmbed = new EmbedBuilder()
             .setColor(role.hexColor)
             .setTitle(role.name)
             .setDescription(t("commands:role.description") + "\n\n" + rolePermissions.map(p => `\`${t(`permissions:${p}`)}\``).join(", ") || t('commands:role.noPermissions'))
