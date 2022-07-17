@@ -43,11 +43,11 @@ export default class KissCommand extends Command {
             .setTimestamp();
         await interaction.reply({ embeds: [embed], components: [row] });
 
-        const filter = i => i.customId === '1' && i.user.id === user.id && i.message.id === interaction.message.id;
+        const filter = i => i.customId === 'primary' && i.user.id === user.id && i.message.id === interaction.message.id;
         const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
 
         collector.on('collect', async i => {
-            if (i.customId === '1') {
+            if (i.customId === 'primary') {
                 if (await this.client.ctx.getContext(interaction, i, 2, user)) {
                     const kissEmbed = new EmbedBuilder()
                         .setColor('#b354ff')
