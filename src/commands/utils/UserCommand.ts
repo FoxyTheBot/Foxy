@@ -28,7 +28,7 @@ export default class ProfileCommand extends Command {
     async execute(interaction, t): Promise<void> {
         const command = interaction.options.getSubcommand();
         const user = interaction.options.getUser("user") || interaction.user;
-        const data = await this.client.api.users(user.id).get();
+        const data = await this.client.users.fetch(user.id, { force: true });
 
         if (data.banner) {
             var banner = data.banner.startsWith("a_") ? ".gif?size=4096" : ".png?size=4096";
