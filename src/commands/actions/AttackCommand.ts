@@ -31,7 +31,7 @@ export default class AttackCommand extends Command {
             .addComponents(
                 new ButtonBuilder()
                     .setLabel(t('commands:attack.button'))
-                    .setEmoji("928710998964174949")
+                    .setEmoji("<:sword:928710998964174949>")
                     .setCustomId("attack")
                     .setStyle(ButtonStyle.Success)
             )
