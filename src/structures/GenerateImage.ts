@@ -111,7 +111,7 @@ export default class GenerateImage {
         ctx.arc(125, 700, 100, 0, Math.PI * 2, true);
         ctx.closePath();
         ctx.clip();
-        const avatar = await Canvas.loadImage(this.user.displayAvatarURL({ format: 'png' }));
+        const avatar = await Canvas.loadImage(this.user.avatarURL().replace('.webp', '.png'));
         ctx.drawImage(avatar, 25, 600, 200, 200);
         ctx.restore();
 
