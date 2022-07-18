@@ -35,7 +35,7 @@ export default class JojoCommand extends Command {
         ctx.drawImage(avatar, 150, 2, 100, 100);
         ctx.drawImage(avatar2, 500, 135, 74, 75);
 
-        const attachment = new AttachmentBuilder(canvas.toBuffer());
+        const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: "jojo.png" });
         await interaction.editReply({ files: [attachment] });
     }
 }

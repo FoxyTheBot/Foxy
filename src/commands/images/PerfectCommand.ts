@@ -36,7 +36,7 @@ export default class PerfectCommand extends Command {
         const userAvatar = await Canvas.loadImage(avatar);
         ctx.drawImage(userAvatar, 400 - 177, 30 + 20, 400 - 178, 400 - 179)
 
-        const attachment = new AttachmentBuilder(canvas.toBuffer());
+        const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: "perfect.png" });
 
         await interaction.reply({ files: [attachment] });
     }

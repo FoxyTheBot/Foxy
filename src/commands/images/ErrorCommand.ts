@@ -44,7 +44,7 @@ export default class ErrorCommand extends Command {
         ctx.closePath();
         ctx.clip();
 
-        const attachment = await new AttachmentBuilder(canvas.toBuffer());
+        const attachment = await new AttachmentBuilder(canvas.toBuffer(), { name: "error.png" });
 
         await interaction.reply({ files: [attachment] });
     }

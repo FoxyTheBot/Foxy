@@ -36,7 +36,7 @@ export default class GirlfriendCommand extends Command {
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
         ctx.drawImage(avatarImg, 20, 170, 200, 200);
 
-        const attachment = new AttachmentBuilder(canvas.toBuffer());
+        const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: "girlfriend.png" });
         await interaction.reply({ files: [attachment] });
     }
 }

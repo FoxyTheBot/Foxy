@@ -37,7 +37,7 @@ export default class PerfectCommand extends Command {
         ctx.closePath();
         ctx.clip();
 
-        const attachment = new AttachmentBuilder(canvas.toBuffer());
+        const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: "our.png" });
         await interaction.reply({ files: [attachment] });
     }
 }

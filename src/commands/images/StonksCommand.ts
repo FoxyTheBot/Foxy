@@ -38,7 +38,7 @@ export default class StonksCommand extends Command {
         ctx.closePath();
         ctx.clip();
 
-        const attachment = new AttachmentBuilder(canvas.toBuffer());
+        const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: "stonks.png" });
 
         await interaction.reply({ files: [attachment] });
     }

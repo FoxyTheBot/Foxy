@@ -38,7 +38,7 @@ export default class SpongebobCommand extends Command {
         ctx.closePath();
         ctx.clip();
 
-        const attachment = new AttachmentBuilder(canvas.toBuffer());
+        const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: "spongebob.png" });
 
         await interaction.reply({ files: [attachment] });
     }

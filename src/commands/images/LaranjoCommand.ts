@@ -37,7 +37,7 @@ export default class LaranjoCommand extends Command {
         ctx.closePath();
         ctx.clip();
 
-        const attachment = new AttachmentBuilder(canvas.toBuffer());
+        const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: "laranjo.png" });
 
         await interaction.reply({ files: [attachment] });
     }
