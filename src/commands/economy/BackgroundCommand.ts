@@ -141,7 +141,7 @@ export default class BackgroundCommand extends Command {
 
                 case 'custom': {
                     if (user.premiumType === "INFINITY_PRO" || user.premiumType === "INFINITY_TURBO" || user.premiumType === "VETERAN") {
-                        await interaction.deferReply({ ephemeral: true });
+                        // await interaction.deferReply({ ephemeral: true });
                         const attach = interaction.options.getAttachment('image');
 
                         if (attach.size > 8388606)

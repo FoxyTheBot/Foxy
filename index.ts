@@ -10,6 +10,6 @@ client.startFoxy({
     token: token,
 });
 
-process.on("unhandledRejection", async (reason, p) => {
-    console.error(reason);
+process.on("unhandledRejection", async (err: Error) => {
+    console.error(err.message);
 });
