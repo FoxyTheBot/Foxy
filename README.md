@@ -1,9 +1,14 @@
 <p align="center">
-<img height="150" src="https://cdn.discordapp.com/attachments/789266900852408351/989589378861002852/foxyoculos.png" align="center">
-<h1 align="center">🦊 Foxy</h1>
+<img height="150" src="https://cdn.discordapp.com/attachments/789266900852408351/989589378861002852/foxyoculos.png" align="left">
 
-<p align="center">
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/H2H4D9T3S)
 
+<h1 align="left">🦊 Foxy</h1>
+
+
+
+<p align="left">
+<br>
 <a align="center" href="https://discordbots.org/bot/737044809650274325?utm_source=widget">
 <img src="https://discordbots.org/api/widget/737044809650274325.png" alt="Discord Bots" />
 </a>
