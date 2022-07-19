@@ -17,35 +17,35 @@ export default class ErrorCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        var string = interaction.options.getString("text");
+    async execute(ctx, t): Promise<void> {
+        var string = ctx.options.getString("text");
         const canvas = Canvas.createCanvas(380, 208);
-        const ctx = canvas.getContext("2d");
+        const imageContext = canvas.getContext("2d");
 
         const background = await Canvas.loadImage("http://localhost:8080/memes/windows.png");
-        ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+        imageContext.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 
         if (string.length > 30) {
             const check = string.match(/.{1,35}/g);
             string = check.join("\n");
         }
-        if (string.length > 100) return interaction.reply(t('commands:error.tooLong', { limit: 100 }));
+        if (string.length > 100) return ctx.reply(t('commands:error.tooLong', { limit: 100 }));
 
-        ctx.strokeStyle = '#74037b';
-        ctx.strokeRect(0, 0, canvas.width, canvas.height);
+        imageContext.strokeStyle = '#74037b';
+        imageContext.strokeRect(0, 0, canvas.width, canvas.height);
 
-        ctx.font = '15px Sans';
-        ctx.fillStyle = '#000000';
-        ctx.fillText(`${string}`, canvas.width / 5.3, canvas.height / 2.2);
+        imageContext.font = '15px Sans';
+        imageContext.fillStyle = '#000000';
+        imageContext.fillText(`${string}`, canvas.width / 5.3, canvas.height / 2.2);
 
-        ctx.beginPath();
-        ctx.arc(125, 125, 100, 6, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.clip();
+        imageContext.beginPath();
+        imageContext.arc(125, 125, 100, 6, Math.PI * 2, true);
+        imageContext.closePath();
+        imageContext.clip();
 
         const attachment = await new AttachmentBuilder(canvas.toBuffer(), { name: "error.png" });
 
-        await interaction.reply({ files: [attachment] });
+        await ctx.reply({ files: [attachment] });
     }
 }

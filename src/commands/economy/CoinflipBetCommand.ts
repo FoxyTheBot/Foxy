@@ -17,14 +17,14 @@ export default class CoinflipBetCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const user = interaction.options.getUser("user");
-        if (!user) return interaction.reply(t('commands:global.noUser'));
+    async execute(ctx, t): Promise<void> {
+        const user = ctx.options.getUser("user");
+        if (!user) return ctx.reply(t('commands:global.noUser'));
 
-        const userData = await this.client.database.getUser(interaction.user.id);
-        const value: number = interaction.options.getNumber("amount");
+        const userData = await this.client.database.getUser(ctx.user.id);
+        const value: number = ctx.options.getNumber("amount");
 
-        if (user == interaction.user) return interaction.reply(t('commands:bet.self'));
+        if (user == ctx.user) return ctx.reply(t('commands:bet.self'));
 
         const mentionData = await this.client.database.getUser(user.id);
 
@@ -32,11 +32,11 @@ export default class CoinflipBetCommand extends Command {
         const mentionBal = await mentionData.balance;
 
         if (userBal < value) {
-            return interaction.reply(t('commands:bet.not-enough', { amount: `${value}`, user: interaction.user.username }));
+            return ctx.reply(t('commands:bet.not-enough', { amount: `${value}`, user: ctx.user.username }));
         }
 
         if (mentionBal < value) {
-            return interaction.reply(t('commands:bet.not-enough-mention', { amount: `${value}`, user: user.username }));
+            return ctx.reply(t('commands:bet.not-enough-mention', { amount: `${value}`, user: user.username }));
         }
 
         const row = new ActionRowBuilder()
@@ -65,19 +65,19 @@ export default class CoinflipBetCommand extends Command {
                     .setCustomId('accept')
             )
 
-        const filter = (i, choice, user) => user.id === user.id && interaction.customId === 'select' && i.message.id === interaction.message.id;
-        const menuCollector = interaction.channel.createMessageComponentCollector(filter, { max: 1 });
+        const filter = (i, choice, user) => user.id === user.id && ctx.customId === 'select' && i.message.id === ctx.message.id;
+        const menuCollector = ctx.channel.createMessageComponentCollector(filter, { max: 1 });
 
-        interaction.followUp({ content: t('commands:bet.choose'), components: [row], ephemeral: true });
+        ctx.followUp({ content: t('commands:bet.choose'), components: [row], ephemeral: true });
 
         menuCollector.on('collect', async i => {
-            interaction.followUp({ content: t('commands:bet.ask', { user: `<@!${user.id}>`, author: interaction.user.username, amount: `${value}` }), components: [buttonRow] });
+            ctx.followUp({ content: t('commands:bet.ask', { user: `<@!${user.id}>`, author: ctx.user.username, amount: `${value}` }), components: [buttonRow] });
             const selectMenu = i.values[0];
             i.deferUpdate();
             menuCollector.stop();
 
-            const resultFilter = (user) => user.id === user.id && interaction.customId === 'accept';
-            const resultCollector = interaction.channel.createMessageComponentCollector(resultFilter, { max: 1 });
+            const resultFilter = (user) => user.id === user.id && ctx.customId === 'accept';
+            const resultCollector = ctx.channel.createMessageComponentCollector(resultFilter, { max: 1 });
 
             resultCollector.on('collect', async i => {
                 if (i.customId === 'accept') {
@@ -85,7 +85,7 @@ export default class CoinflipBetCommand extends Command {
                     const rand = Math.floor(Math.random() * choices.length);
 
                     if (selectMenu === choices[rand]) {
-                        interaction.followUp({ content: t('commands:bet.win', { user: user.username, author: interaction.user.username, choice: t(`commands:bet.${choices[rand]}`), amount: `${value}` }) });
+                        ctx.followUp({ content: t('commands:bet.win', { user: user.username, author: ctx.user.username, choice: t(`commands:bet.${choices[rand]}`), amount: `${value}` }) });
                         userData.balance += value;
                         mentionData.balance -= value;
                         userData.save();
@@ -94,7 +94,7 @@ export default class CoinflipBetCommand extends Command {
                         resultCollector.stop();
 
                     } else if (selectMenu !== choices[rand]) {
-                        interaction.followUp({ content: t('commands:bet.lose', { user: user.username, author: interaction.user.username, choice: t(`commands:bet.${choices[rand]}`), amount: `${value}` }) });
+                        ctx.followUp({ content: t('commands:bet.lose', { user: user.username, author: ctx.user.username, choice: t(`commands:bet.${choices[rand]}`), amount: `${value}` }) });
                         userData.balance -= value;
                         mentionData.balance += value;
                         userData.save();

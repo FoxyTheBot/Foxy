@@ -20,13 +20,13 @@ export default class ServerCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const subcommand = interaction.options.getSubcommand();
+    async execute(ctx, t): Promise<void> {
+        const subcommand = ctx.options.getSubcommand();
 
-        let server = interaction.guild;
-        if (interaction.options.getString("id")) {
-            server = await this.client.guilds.cache.get(interaction.options.getString("id"));
-            if (!server) return interaction.reply(`${this.client.emotes.error} **|** ${t("commands:server.notFound", { id: interaction.options.getString("id") })}`);
+        let server = ctx.guild;
+        if (ctx.options.getString("id")) {
+            server = await this.client.guilds.cache.get(ctx.options.getString("id"));
+            if (!server) return ctx.reply(`${this.client.emotes.error} **|** ${t("commands:server.notFound", { id: ctx.options.getString("id") })}`);
         }
         const owner = await this.client.users.fetch(server.ownerId);
 
@@ -56,7 +56,7 @@ export default class ServerCommand extends Command {
                         { name: ':computer: Shard ID', value: `\`${server.shardId + 1}\``, inline: true },
                     )
 
-                await interaction.reply({ embeds: [embed] });
+                await ctx.reply({ embeds: [embed] });
                 break;
             }
 
@@ -72,7 +72,7 @@ export default class ServerCommand extends Command {
                     .setTitle(server.name)
                     .setImage(server.iconURL({ format: "png", size: 2048 }))
 
-                await interaction.reply({ embeds: [embed], components: [row] });
+                await ctx.reply({ embeds: [embed], components: [row] });
                 break;
             }
         }

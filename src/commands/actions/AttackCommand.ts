@@ -16,9 +16,9 @@ export default class AttackCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const user = await interaction.options.getUser('user');
-        if (!user) return interaction.reply(t('commands:global.noUser'));
+    async execute(ctx, t): Promise<void> {
+        const user = await ctx.options.getUser('user');
+        if (!user) return ctx.reply(t('commands:global.noUser'));
 
         const list = [
             'https://cdn.zerotwo.dev/PUNCH/38a3ab62-17f4-4682-873a-121e886d7bce.gif',
@@ -37,26 +37,26 @@ export default class AttackCommand extends Command {
             )
 
         const embed = new EmbedBuilder()
-            .setDescription(t('commands:attack.attack', { user: interaction.user.username, target: user.username }))
+            .setDescription(t('commands:attack.attack', { user: ctx.user.username, target: user.username }))
             .setImage(rand)
 
-        await interaction.reply({ embeds: [embed], components: [row] });
+        await ctx.reply({ embeds: [embed], components: [row] });
 
-        const filter = i => i.customid === "attack" && i.user.id === interaction.user.id && i.message.id === interaction.message.id;
-        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 10000 });
+        const filter = i => i.customid === "attack" && i.user.id === ctx.user.id && i.message.id === ctx.message.id;
+        const collector = ctx.channel.createMessageComponentCollector(filter, { time: 10000 });
 
         collector.on('collect', async i => {
             if (i.customId === "attack") {
-                if (await this.client.ctx.getContext(interaction, i, 2, user)) {
+                if (ctx.getContext(i, 2, user)) {
                     const embed = new EmbedBuilder()
                         .setColor('#26ffb1')
                         .setDescription(t('commands:attack.attack', {
                             user: user.username,
-                            target: interaction.user.username
+                            target: ctx.user.username
                         }))
                         .setImage(rand)
 
-                    await interaction.followUp({ embeds: [embed] });
+                    await ctx.followUp({ embeds: [embed] });
                     i.deferUpdate();
                     return collector.stop();
                 } else {

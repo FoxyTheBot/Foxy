@@ -18,28 +18,28 @@ export default class MaskCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const command = interaction.options.getSubcommand();
-        if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
+    async execute(ctx, t, interaction): Promise<void> {
+        const command = ctx.options.getSubcommand();
+        if (ctx.type === InteractionType.ApplicationCommandAutocomplete) {
             if (command == "buy") {
                 return await interaction.respond(await masks.map(data => Object({ name: t(`commands:masks.${data.id}`), value: data.id })));
             } else if (command == "set") {
-                const userInfo = await this.client.database.getUser(interaction.user.id);
+                const userInfo = await this.client.database.getUser(ctx.user.id);
                 const userMask = await userInfo.masks;
                 const bgList = await masks.filter(data => userMask.includes(data.id));
                 return await interaction.respond(await bgList.map(data => Object({ name: t(`commands:masks.${data.id}`), value: data.id })));
             }
         }
 
-        if (interaction.type === InteractionType.ApplicationCommand) {
+        if (ctx.type === InteractionType.ApplicationCommand) {
             switch (command) {
                 case 'buy': {
-                    const code: string = await interaction.options.getString("mask");
-                    const userData = await this.client.database.getUser(interaction.user.id);
+                    const code: string = await ctx.options.getString("mask");
+                    const userData = await this.client.database.getUser(ctx.user.id);
                     const mask = masks.find(index => index.id === code?.toLowerCase());
-                    await interaction.deferReply({ ephemeral: true });
+                    await ctx.deferReply({ ephemeral: true });
                     const msk = await userData.masks
-                    if (msk.includes(code)) return await interaction.editReply(t('commands:masks.alreadyOwned'));
+                    if (msk.includes(code)) return await ctx.reply(t('commands:masks.alreadyOwned'));
 
                     const row = new ActionRowBuilder()
                         .addComponents(
@@ -53,20 +53,20 @@ export default class MaskCommand extends Command {
                     const mskInfo = new EmbedBuilder()
                         .setDescription(mask.price.toString())
 
-                    const canvasGenerator = new GenerateImage(this.client, interaction.user, userData, 1436, 884, true, code, true);
+                    const canvasGenerator = new GenerateImage(this.client, ctx.user, userData, 1436, 884, true, code, true);
                     const attachment = new AttachmentBuilder(await canvasGenerator.renderProfile(t));
 
 
-                    interaction.editReply({ embeds: [mskInfo], ephemeral: true });
-                    await interaction.followUp({
+                    ctx.reply({ embeds: [mskInfo], ephemeral: true });
+                    await ctx.followUp({
                         content: t("commands:masks.buy.preview"),
                         files: [attachment],
                         ephemeral: true,
                         components: [row]
                     });
 
-                    const filter = i => i.customId === 'yes' && i.user.id === interaction.user.id && i.message.id === interaction.message.id;
-                    const collector = interaction.channel.createMessageComponentCollector({
+                    const filter = i => i.customId === 'yes' && i.user.id === ctx.user.id && i.message.id === ctx.message.id;
+                    const collector = ctx.channel.createMessageComponentCollector({
                         filter,
                         time: 15000,
                         max: 1
@@ -78,12 +78,12 @@ export default class MaskCommand extends Command {
                                 userData.mask = code;
                                 userData.masks.push(code);
                                 userData.save();
-                                interaction.followUp(t('commands:masks.buy.premium'));
+                                ctx.followUp(t('commands:masks.buy.premium'));
                                 i.deferUpdate();
                                 return collector.stop();
                             } else {
                                 if (userData.balance < mask.price) {
-                                    interaction.followUp({ content: t('commands:masks.buy.noMoney'), ephemeral: true });
+                                    ctx.followUp({ content: t('commands:masks.buy.noMoney'), ephemeral: true });
                                     i.deferUpdate();
                                     return collector.stop();
                                 } else {
@@ -91,7 +91,7 @@ export default class MaskCommand extends Command {
                                     userData.mask = code;
                                     userData.masks.push(code);
                                     userData.save();
-                                    interaction.followUp(t('commands:masks.buy.success'));
+                                    ctx.followUp(t('commands:masks.buy.success'));
                                     i.deferUpdate();
                                     return collector.stop();
                                 }
@@ -102,19 +102,19 @@ export default class MaskCommand extends Command {
                 }
 
                 case 'set': {
-                    const code: string = await interaction.options.getString("mask");
-                    const userData = await this.client.database.getUser(interaction.user.id);
+                    const code: string = await ctx.options.getString("mask");
+                    const userData = await this.client.database.getUser(ctx.user.id);
 
                     const mask = await masks.find(index => index.id === code?.toLowerCase());
-                    if (!mask) return interaction.reply(t('commands:masks.set.invalid'));
+                    if (!mask) return ctx.reply(t('commands:masks.set.invalid'));
                     const maskData = await userData.masks
 
                     if (maskData.includes(code)) {
                         userData.mask = code;
                         userData.save();
-                        interaction.reply(t('commands:masks.set.success'));
+                        ctx.reply(t('commands:masks.set.success'));
                     } else {
-                        interaction.reply(t('commands:masks.set.notOwned'))
+                        ctx.reply(t('commands:masks.set.notOwned'))
                     }
                     break;
                 }

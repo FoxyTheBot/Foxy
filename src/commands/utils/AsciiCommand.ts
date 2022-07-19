@@ -16,11 +16,11 @@ export default class AsciiCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const string = interaction.options.getString("text");
+    async execute(ctx, t): Promise<void> {
+        const string = ctx.options.getString("text");
         figlet.text(string, async (err, data) => {
             if (err) console.log(err)
-            await interaction.reply(`\`\`\`${data}\`\`\``);
+            await ctx.reply(`\`\`\`${data}\`\`\``);
         })
     }
 }

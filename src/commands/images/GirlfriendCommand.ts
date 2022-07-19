@@ -17,9 +17,9 @@ export default class GirlfriendCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const user = interaction.options.getUser("user");
-        if (!user) return interaction.reply(t('commands:global.noUser'));
+    async execute(ctx, t): Promise<void> {
+        const user = ctx.options.getUser("user");
+        if (!user) return ctx.reply(t('commands:global.noUser'));
 
         var avatar;
         if (!user) {
@@ -31,12 +31,12 @@ export default class GirlfriendCommand extends Command {
         const background = await Canvas.loadImage("http://localhost:8080/memes/namorada.png");
         const avatarImg = await Canvas.loadImage(avatar);
         const canvas = Canvas.createCanvas(500, 510);
-        const ctx = canvas.getContext('2d');
+        const imageContext = canvas.getContext('2d');
 
-        ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-        ctx.drawImage(avatarImg, 20, 170, 200, 200);
+        imageContext.drawImage(background, 0, 0, canvas.width, canvas.height);
+        imageContext.drawImage(avatarImg, 20, 170, 200, 200);
 
         const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: "girlfriend.png" });
-        await interaction.reply({ files: [attachment] });
+        await ctx.reply({ files: [attachment] });
     }
 }

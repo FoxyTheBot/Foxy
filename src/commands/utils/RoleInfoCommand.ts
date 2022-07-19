@@ -17,8 +17,8 @@ export default class RoleInfoCommand extends Command {
         });
     }
 
-    async execute(interaction, t) {
-        const role = interaction.options.getRole("role");
+    async execute(ctx, t) {
+        const role = ctx.options.getRole("role");
         const rolePermissions = role.permissions.toArray();
 
         const roleEmbed = new EmbedBuilder()
@@ -35,6 +35,6 @@ export default class RoleInfoCommand extends Command {
         if (role.icon) {
             roleEmbed.setThumbnail(role.iconURL({ dynamic: true, size: 1024 }));
         }
-        await interaction.reply({ embeds: [roleEmbed] });
+        await ctx.reply({ embeds: [roleEmbed] });
     }
 }

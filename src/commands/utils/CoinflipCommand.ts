@@ -14,10 +14,10 @@ export default class CoinflipCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
+    async execute(ctx, t): Promise<void> {
         const coinflip = ["heads", "tails"];
         const coin = coinflip[Math.floor(Math.random() * coinflip.length)];
 
-        await interaction.reply(`${t("commands:coinflip.flipped")} **${t(`commands:coinflip.${coin}`)}**`);
+        await ctx.reply(`${t("commands:coinflip.flipped")} **${t(`commands:coinflip.${coin}`)}**`);
     }
 }

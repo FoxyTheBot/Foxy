@@ -17,11 +17,11 @@ export default class AnimeCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const search = await interaction.options.getString("anime");
+    async execute(ctx, t): Promise<void> {
+        const search = await ctx.options.getString("anime");
 
         malScraper.getInfoFromName(search).then(async (data) => {
-            if (!data) return interaction.reply(t("commands:anime.notFound"));
+            if (!data) return ctx.reply(t("commands:anime.notFound"));
             const embed = new EmbedBuilder()
                 .setTitle(data.title)
                 .setURL(data.url)
@@ -45,9 +45,9 @@ export default class AnimeCommand extends Command {
                     { name: t("commands:anime.info.broadcast"), value: data.broadcast || t("commands:anime.nothing"), inline: true }
                 ])
 
-            interaction.reply({ embeds: [embed] });
+            ctx.reply({ embeds: [embed] });
         }).catch((err) => {
-            interaction.reply(t("commands:anime.notFound"));
+            ctx.reply(t("commands:anime.notFound"));
         });
 
     }

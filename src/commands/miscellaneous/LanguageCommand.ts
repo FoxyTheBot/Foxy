@@ -15,8 +15,8 @@ export default class LanguageCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const userData = await this.client.database.getUser(interaction.user.id);
+    async execute(ctx, t): Promise<void> {
+        const userData = await this.client.database.getUser(ctx.user.id);
 
         const row = new ActionRowBuilder()
             .addComponents(
@@ -42,22 +42,22 @@ export default class LanguageCommand extends Command {
             .setTitle(t('lang.title'))
             .setDescription(`${t('lang.default')} \n\n :flag_br: Português do Brasil\n :flag_us: English`)
 
-        interaction.reply({ embeds: [embed], components: [row], ephemeral: true });
+        ctx.reply({ embeds: [embed], components: [row], ephemeral: true });
 
-        const filter = (user) => user.id === interaction.user.id && interaction.customId === 'select';
-        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
+        const filter = (user) => user.id === ctx.user.id && ctx.customId === 'select';
+        const collector = ctx.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
 
         collector.on('collect', i => {
             const selectMenuValue = i.values[0];
             if (!selectMenuValue) return collector.stop();
             if (selectMenuValue === "en") {
-                interaction.followUp(`:flag_us: **| Language changed to English**`);
+                ctx.followUp(`:flag_us: **| Language changed to English**`);
                 i.deferUpdate();
                 userData.language = "en-US";
                 userData.save();
                 return collector.stop();
             } else if (selectMenuValue === "pt") {
-                interaction.followUp(`:flag_br: **| Linguagem alterada para Português do Brasil!**`);
+                ctx.followUp(`:flag_br: **| Linguagem alterada para Português do Brasil!**`);
                 i.deferUpdate();
                 userData.language = "pt-BR";
                 userData.save();

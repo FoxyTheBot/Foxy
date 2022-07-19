@@ -17,14 +17,14 @@ export default class ProfileCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const user = interaction.options.getUser("user") || interaction.user;
-        if (!user) return interaction.reply(t('commands:global.noUser'));
-        await interaction.deferReply();
+    async execute(ctx, t): Promise<void> {
+        const user = ctx.options.getUser("user") || ctx.user;
+        if (!user) return ctx.reply(t('commands:global.noUser'));
+        await ctx.deferReply();
         const userData = await this.client.database.getUser(user.id);
         const canvasGenerator = new GenerateImage(this.client, user, userData, 1436, 884);
         const profile = new AttachmentBuilder(await canvasGenerator.renderProfile(t), { name: "foxy_profile.png" });
 
-        await interaction.editReply({ content: t('commands:profile.your'), files: [profile] });
+        await ctx.reply({ content: t('commands:profile.your'), files: [profile] });
     }
 }

@@ -15,12 +15,12 @@ export default class DblCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
+    async execute(ctx, t): Promise<void> {
         const embed = new EmbedBuilder()
             .setColor("#5865F2")
             .setTitle(":sparkles: Discord Bot List")
             .setDescription(`<a:happy_shuffle:768500897483325493> ${t("commands:upvote.description")}`)
 
-        await interaction.reply({ embeds: [embed] });
+        await ctx.reply({ embeds: [embed] });
     }
 }

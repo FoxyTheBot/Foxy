@@ -17,28 +17,28 @@ export default class LaranjoCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const string = interaction.options.getString("text");
+    async execute(ctx, t): Promise<void> {
+        const string = ctx.options.getString("text");
         const canvas = Canvas.createCanvas(700, 600);
-        const ctx = canvas.getContext('2d');
+        const imageContext = canvas.getContext('2d');
 
         const background = await Canvas.loadImage('http://localhost:8080/memes/laranjo.png');
-        ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+        imageContext.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-        ctx.strokeStyle = '#74037b';
-        ctx.strokeRect(0, 0, canvas.width, canvas.height);
+        imageContext.strokeStyle = '#74037b';
+        imageContext.strokeRect(0, 0, canvas.width, canvas.height);
 
-        ctx.font = '33px sans-serif';
-        ctx.fillStyle = '#000000';
-        ctx.fillText(`${string}`, canvas.width / 15.5, canvas.height / 13.5);
+        imageContext.font = '33px sans-serif';
+        imageContext.fillStyle = '#000000';
+        imageContext.fillText(`${string}`, canvas.width / 15.5, canvas.height / 13.5);
 
-        ctx.beginPath();
-        ctx.arc(125, 125, 100, 6, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.clip();
+        imageContext.beginPath();
+        imageContext.arc(125, 125, 100, 6, Math.PI * 2, true);
+        imageContext.closePath();
+        imageContext.clip();
 
         const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: "laranjo.png" });
 
-        await interaction.reply({ files: [attachment] });
+        await ctx.reply({ files: [attachment] });
     }
 }

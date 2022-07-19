@@ -18,10 +18,10 @@ export default class ShipCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const user = interaction.options.getUser("user");
-        const user2 = interaction.options.getUser("user2");
-        if (!user || !user2) return interaction.reply(t('commands:global.noUser'));
+    async execute(ctx, t): Promise<void> {
+        const user = ctx.options.getUser("user");
+        const user2 = ctx.options.getUser("user2");
+        if (!user || !user2) return ctx.reply(t('commands:global.noUser'));
 
         const love = Math.floor(Math.random() * 100);
 
@@ -64,19 +64,19 @@ export default class ShipCommand extends Command {
         }
 
         const canvas = Canvas.createCanvas(384, 128);
-        const ctx = canvas.getContext('2d');
+        const imageContext = canvas.getContext('2d');
         const emotes = await Canvas.loadImage(emoticon);
         const avatar1 = await Canvas.loadImage(user.displayAvatarURL({ format: "png" }));
         const avatar2 = await Canvas.loadImage(user2.displayAvatarURL({ format: "png" }));
 
-        ctx.drawImage(emotes, 125, 0, 128, 128);
-        ctx.drawImage(avatar1, -10, 0, 128, 128);
-        ctx.drawImage(avatar2, 260, 0, 128, 128);
+        imageContext.drawImage(emotes, 125, 0, 128, 128);
+        imageContext.drawImage(avatar1, -10, 0, 128, 128);
+        imageContext.drawImage(avatar2, 260, 0, 128, 128);
         const img = await new AttachmentBuilder(canvas.toBuffer())
 
         const shipEmbed = new EmbedBuilder()
             .setDescription(`**${love}%** [\`${loveLevel}\`]`)
             .setImage("attachment://ship.png")
-        interaction.reply({ content: desc, embeds: [shipEmbed], files: [img] });
+        ctx.reply({ content: desc, embeds: [shipEmbed], files: [img] });
     }
 }

@@ -16,7 +16,7 @@ export default class StatusCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
+    async execute(ctx, t): Promise<void> {
         const embed = new EmbedBuilder()
             .setTitle("🦊 | Foxy Status")
             .addFields(
@@ -31,6 +31,6 @@ export default class StatusCommand extends Command {
                 { name: `📊 | Ping`, value: `\`\`\`${Math.round(this.client.ws.ping)}ms / Shard: [${Number(this.client.shard.ids) + 1}/${this.client.shard.count}]\`\`\``, inline: true },
             )
 
-        interaction.reply({ embeds: [embed] });
+        ctx.reply({ embeds: [embed] });
     }
 }

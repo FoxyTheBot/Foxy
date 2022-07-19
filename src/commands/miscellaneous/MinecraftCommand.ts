@@ -18,46 +18,46 @@ export default class MinecraftCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const commands = interaction.options.getSubcommand();
+    async execute(ctx, t): Promise<void> {
+        const commands = ctx.options.getSubcommand();
 
         switch (commands) {
             case 'body': {
-                const user = interaction.options.getString("player");
-                if (user.length > 20) return interaction.reply(t('commands:mcbody.tooLong'));
+                const user = ctx.options.getString("player");
+                if (user.length > 20) return ctx.reply(t('commands:mcbody.tooLong'));
 
                 const embed = new EmbedBuilder()
                     .setColor("#5865F2")
                     .setTitle(t('commands:mcbody.title', { user: user }))
                     .setImage(`https://mc-heads.net/body/${user}`)
 
-                await interaction.reply({ embeds: [embed] });
+                await ctx.reply({ embeds: [embed] });
                 break;
             }
 
             case 'head': {
-                const user = interaction.options.getString("player");
-                if (user.length > 20) return interaction.reply(t('commands:mchead.tooLong'));
+                const user = ctx.options.getString("player");
+                if (user.length > 20) return ctx.reply(t('commands:mchead.tooLong'));
 
                 const embed = new EmbedBuilder()
                     .setColor("#5865F2")
                     .setTitle(t('commands:mchead.title', { user: user }))
                     .setImage(`https://mc-heads.net/head/${user}`)
 
-                await interaction.reply({ embeds: [embed] });
+                await ctx.reply({ embeds: [embed] });
                 break;
             }
 
             case 'skin': {
-                const user = interaction.options.getString("player");
-                if (user.length > 20) return interaction.reply(t('commands:mcskin.tooLong'));
+                const user = ctx.options.getString("player");
+                if (user.length > 20) return ctx.reply(t('commands:mcskin.tooLong'));
 
                 const embed = new EmbedBuilder()
                     .setColor("#5865F2")
                     .setTitle(t('commands:mcskin.title', { user: user }))
                     .setImage(`https://mc-heads.net/body/${user}`)
 
-                await interaction.reply({ embeds: [embed] });
+                await ctx.reply({ embeds: [embed] });
                 break;
             }
         }

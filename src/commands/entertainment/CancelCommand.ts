@@ -16,11 +16,11 @@ export default class CancelCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const user = interaction.options.getUser("user");
-        if (!user) return interaction.reply(t('commands:global.noUser'));
-        const string = interaction.options.getString("text");
+    async execute(ctx, t): Promise<void> {
+        const user = ctx.options.getUser("user");
+        if (!user) return ctx.reply(t('commands:global.noUser'));
+        const string = ctx.options.getString("text");
 
-        await interaction.reply(t('commands:cancel.result', { user: user.username, reason: string, mention: `<@!${user.id}>` }));
+        await ctx.reply(t('commands:cancel.result', { user: user.username, reason: string, mention: `<@!${user.id}>` }));
     }
 }

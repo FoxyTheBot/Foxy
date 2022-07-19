@@ -15,7 +15,7 @@ export default class EightBallCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
+    async execute(ctx, t): Promise<void> {
         const results = [
             t('commands:8ball.yes'),
             t('commands:8ball.no'),
@@ -29,6 +29,6 @@ export default class EightBallCommand extends Command {
 
         const result = results[Math.floor(Math.random() * results.length)];
 
-        await interaction.reply(result)
+        await ctx.reply(result)
     }
 }

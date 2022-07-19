@@ -16,9 +16,9 @@ export default class BiteCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const user = interaction.options.getUser("user");
-        if (!user) return interaction.reply(t('commands:global.noUser'));
+    async execute(ctx, t): Promise<void> {
+        const user = ctx.options.getUser("user");
+        if (!user) return ctx.reply(t('commands:global.noUser'));
 
         const row = new ActionRowBuilder()
             .addComponents(
@@ -29,8 +29,8 @@ export default class BiteCommand extends Command {
                     .setEmoji("<:heheheheh:985197497968373810>")
             )
 
-        if (user === interaction.user) return interaction.reply(t("commands:bite.self"));
-        if (user === this.client.user) return interaction.reply(t("commands:bite.client"));
+        if (user === ctx.user) return ctx.reply(t("commands:bite.self"));
+        if (user === this.client.user) return ctx.reply(t("commands:bite.client"));
 
         const list = [
             'https://media1.tenor.com/images/f3f503705c36781b7f63c6d60c95a9d2/tenor.gif?itemid=17570122',
@@ -44,22 +44,22 @@ export default class BiteCommand extends Command {
 
         const embed = new EmbedBuilder()
             .setColor("#ff0000")
-            .setDescription(t('commands:bite.success', { user: interaction.user.username, target: user.username }))
+            .setDescription(t('commands:bite.success', { user: ctx.user.username, target: user.username }))
             .setImage(rand)
 
-        await interaction.reply({ embeds: [embed], components: [row] });
+        await ctx.reply({ embeds: [embed], components: [row] });
 
-        const filter = i => i.customId === "bite" && i.user.id === user.id && i.message.id === interaction.message.id;
-        const collector = interaction.channel.createMessageComponentCollector({ filter, max: 1, time: 30000 });
+        const filter = i => i.customId === "bite" && i.user.id === user.id && i.message.id === ctx.message.id;
+        const collector = ctx.channel.createMessageComponentCollector({ filter, max: 1, time: 30000 });
 
         collector.on("collect", async i => {
             if (i.customId === "bite") {
-                if (await this.client.ctx.getContext(interaction, i, 2, user)) {
+                if (await ctx.getContext(i, 2, user)) {
                     const embed = new EmbedBuilder()
                         .setColor("#ff0000")
-                        .setDescription(t("commands:bite.success", { user: user.username, target: interaction.user.username }))
+                        .setDescription(t("commands:bite.success", { user: user.username, target: ctx.user.username }))
                         .setImage(rand)
-                    await interaction.followUp({ embeds: [embed] });
+                    await ctx.followUp({ embeds: [embed] });
                     i.deferUpdate();
                     return collector.stop();
 

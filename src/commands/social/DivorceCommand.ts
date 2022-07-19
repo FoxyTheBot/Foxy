@@ -15,11 +15,11 @@ export default class DivorceCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const userData = await this.client.database.getUser(interaction.user.id);
+    async execute(ctx, t): Promise<void> {
+        const userData = await this.client.database.getUser(ctx.user.id);
         const marriedId = await userData.marriedWith;
 
-        if (!marriedId) return interaction.reply(t("commands:divorce.notMarried"));
+        if (!marriedId) return ctx.reply(t("commands:divorce.notMarried"));
 
         const userInfo = await this.client.users.fetch(marriedId);
         const marriedData = await this.client.database.getUser(marriedId);
@@ -33,15 +33,15 @@ export default class DivorceCommand extends Command {
                     .setEmoji("💔")
             )
 
-        interaction.reply({ content: t('commands:divorce.confirm2', { user: userInfo.username }), components: [row], flags: 64 });
+        ctx.reply({ content: t('commands:divorce.confirm2', { user: userInfo.username }), components: [row], flags: 64 });
 
-        const filter = i => i.customId === "divorce" && i.user.id === interaction.user.id && i.message.id === interaction.message.id;
-        const collector = await interaction.channel.createMessageComponentCollector(filter, { max: 1, time: 5000 });
+        const filter = i => i.customId === "divorce" && i.user.id === ctx.user.id && i.message.id === ctx.message.id;
+        const collector = await ctx.channel.createMessageComponentCollector(filter, { max: 1, time: 5000 });
 
         collector.on("collect", async i => {
             if (i.customId === 'divorce') {
-                if (await this.client.ctx.getContext(interaction, i, 1)) {
-                    interaction.followUp({ content: `:broken_heart: **|** ${t('commands:divorce.divorced')}`, flags: 64 });
+                if (await ctx.getContext(ctx, i, 1)) {
+                    ctx.followUp({ content: `:broken_heart: **|** ${t('commands:divorce.divorced')}`, flags: 64 });
                     i.deferUpdate();
                     userData.marriedWith = null;
                     userData.marriedDate = null;

@@ -83,7 +83,7 @@ export default class ProfileCommand extends Command {
                             { name: `${t('commands:user.member.premiumSince')}`, value: convertDate(member.premiumSinceTimestamp) },
                         ])
                     }
-                    ctx.foxyReply({ embeds: [userEmbed, memberEmbed], components: [memberRow] });
+                    ctx.reply({ embeds: [userEmbed, memberEmbed], components: [memberRow] });
                 } else {
                     const avatarRow = new ActionRowBuilder()
                         .addComponents(
@@ -93,7 +93,7 @@ export default class ProfileCommand extends Command {
                                 .setStyle(ButtonStyle.Secondary)
                                 .setEmoji("<:ShiroFoxy:934469525997518848>")
                         )
-                    ctx.foxyReply({ embeds: [userEmbed], components: [avatarRow] });
+                    ctx.reply({ embeds: [userEmbed], components: [avatarRow] });
                 }
 
                 const filter = i => i.customId === 'avatar' && i.user.id === ctx.user.id && i.message.id === ctx.message.id;

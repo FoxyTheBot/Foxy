@@ -38,12 +38,12 @@ export default class BackgroundCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<any> {
+    async execute(ctx, t, interaction): Promise<any> {
 
-        const command = interaction.options.getSubcommand()
-        const user = await this.client.database.getUser(interaction.user.id);
+        const command = ctx.options.getSubcommand()
+        const user = await this.client.database.getUser(ctx.user.id);
 
-        if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
+        if (ctx.type === InteractionType.ApplicationCommandAutocomplete) {
             if (command === "buy") interaction
                 .respond(bglist.map(data => Object({ name: data.name, value: data.id })));
 
@@ -53,17 +53,17 @@ export default class BackgroundCommand extends Command {
                     .map(b => Object({ name: b.name, value: b.id })));
         }
 
-        if (interaction.type === InteractionType.ApplicationCommand) {
+        if (ctx.type === InteractionType.ApplicationCommand) {
             switch (command) {
                 case 'buy': {
-                    const code: string = await interaction.options.getString("background"),
+                    const code: string = await ctx.options.getString("background"),
                         background = await bglist
                             .find((b) => b.id === code?.toLowerCase());
 
-                    await interaction.deferReply({ ephemeral: true });
+                    await ctx.deferReply({ ephemeral: true });
 
                     if (user.backgrounds.includes(code))
-                        return interaction.editReply(t('commands:background.buy.alreadyOwned'));
+                        return ctx.reply(t('commands:background.buy.alreadyOwned'));
 
                     const row = new ActionRowBuilder()
                         .addComponents(
@@ -82,20 +82,20 @@ export default class BackgroundCommand extends Command {
                             { name: t('commands:background.buy.price'), value: `${background.foxcoins} FoxCoins`, inline: true }
                         )
 
-                    interaction.editReply({ embeds: [bgInfo] });
+                    ctx.reply({ embeds: [bgInfo] });
 
-                    const canvasGenerator = new GenerateImage(this.client, interaction.user, user, 1436, 884, true, code);
+                    const canvasGenerator = new GenerateImage(this.client, ctx.user, user, 1436, 884, true, code);
                     const attachment = new AttachmentBuilder(await canvasGenerator.renderProfile(t));
 
-                    await interaction.followUp({
+                    await ctx.followUp({
                         content: t("commands:background.buy.preview"),
                         files: [attachment],
                         ephemeral: true,
                         components: [row]
                     });
 
-                    const collector = interaction.channel.createMessageComponentCollector({
-                        filter: i => i.customId === 'yes' && i.user.id === interaction.user.id,
+                    const collector = ctx.channel.createMessageComponentCollector({
+                        filter: i => i.customId === 'yes' && i.user.id === ctx.user.id,
                         time: 15_000,
                         max: 1
                     });
@@ -103,13 +103,13 @@ export default class BackgroundCommand extends Command {
                     collector.on('collect', async i => {
                         if (i.customId === 'yes') {
                             if (user.balance < background.foxcoins) {
-                                interaction.followUp({ content: t('commands:background.buy.noMoney'), ephemeral: true });
+                                ctx.followUp({ content: t('commands:background.buy.noMoney'), ephemeral: true });
                             } else {
                                 user.balance -= background.foxcoins;
                                 user.background = code;
                                 user.backgrounds.push(code);
                                 user.save();
-                                interaction.followUp({
+                                ctx.followUp({
                                     content: t('commands:background.buy.success', {
                                         name: background.name,
                                         price: background.foxcoins.toString()
@@ -124,31 +124,31 @@ export default class BackgroundCommand extends Command {
                 }
 
                 case 'set': {
-                    const code: string = interaction.options.getString("background"),
+                    const code: string = ctx.options.getString("background"),
                         background = bglist.find((b) => b.id === code?.toLowerCase());
 
                     if (!background)
-                        return interaction.reply(t('commands:background.buy.invalid'));
+                        return ctx.reply(t('commands:background.buy.invalid'));
 
                     if (user.backgrounds.includes(code)) {
                         user.background = code;
                         user.save();
-                        interaction.reply(t('commands:background.set.success', { name: background.name }));
+                        ctx.reply(t('commands:background.set.success', { name: background.name }));
                     }
-                    else interaction.reply(t('commands:background.set.notOwned'));
+                    else ctx.reply(t('commands:background.set.notOwned'));
                     break;
                 }
 
                 case 'custom': {
                     if (user.premiumType === "INFINITY_PRO" || user.premiumType === "INFINITY_TURBO" || user.premiumType === "VETERAN") {
-                        // await interaction.deferReply({ ephemeral: true });
-                        const attach = interaction.options.getAttachment('image');
+                        await ctx.deferReply({ ephemeral: true });
+                        const attach = ctx.options.getAttachment('image');
 
                         if (attach.size > 8388606)
-                            return await interaction.editReply(t('commands:background.tooLarge'));
+                            return ctx.reply({ content: t('commands:background.custom.tooLarge'), ephemeral: true });
 
                         if (!['image/png', 'image/jpg', 'image/jpeg'].includes(attach.contentType))
-                            return await interaction.editReply(t('commands:background.invalidFormat'));
+                            return ctx.reply({ content: t('commands:background.invalidType') });
 
                         const embed = new EmbedBuilder()
                             .setTitle(t('commands:background.custom.title'))
@@ -162,10 +162,10 @@ export default class BackgroundCommand extends Command {
                                         .setStyle(ButtonStyle.Success)
                                 )
 
-                        await interaction.editReply({ embeds: [embed], components: [row] });
+                        ctx.reply({ embeds: [embed], components: [row] });
 
-                        const collector = interaction.channel.createMessageComponentCollector({
-                            filter: i => i.customId === 'send' && i.user.id === interaction.user.id,
+                        const collector = ctx.channel.createMessageComponentCollector({
+                            filter: i => i.customId === 'send' && i.user.id === ctx.user.id,
                             time: 30000,
                             max: 1
                         });
@@ -175,12 +175,12 @@ export default class BackgroundCommand extends Command {
                             await i.deferUpdate();
                             let id = (await this.client.channels.cache.get("997953006391795753")
                                 .send({ files: [attach.attachment] })).id;
-                            interaction.followUp(t('commands:background.custom.success'));
+                            ctx.followUp({ content: t('commands:background.custom.success'), ephemeral: true });
                             user.background = id;
                             user.save();
                         })
                     } else {
-                        interaction.reply(t('commands:background.custom.noPremium'))
+                        ctx.reply({ content: t('commands:background.custom.noPremium'), ephemeral: true });
                     }
                     break;
                 }

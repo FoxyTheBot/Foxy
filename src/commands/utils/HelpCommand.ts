@@ -17,8 +17,8 @@ export default class HelpCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const subcommand = interaction.options.getSubcommand();
+    async execute(ctx, t): Promise<void> {
+        const subcommand = ctx.options.getSubcommand();
 
         switch (subcommand) {
             case "commands": {
@@ -34,7 +34,7 @@ export default class HelpCommand extends Command {
                         { name: `<:DiscordStaff:731947814246154240> ${t('commands:help.commands.category.utils')} (${this.getSize("utils")})`, value: this.getCategory("utils"), inline: true },
                     ])
 
-                await interaction.reply({ embeds: [embed] });
+                await ctx.reply({ embeds: [embed] });
                 break;
             }
 
@@ -42,7 +42,7 @@ export default class HelpCommand extends Command {
                 const embed = new EmbedBuilder()
                     .setColor('#7289da')
                     .setTitle(t('commands:help.bot.title'))
-                    .setDescription(t('commands:help.bot.description', { user: interaction.user.username }))
+                    .setDescription(t('commands:help.bot.description', { user: ctx.user.username }))
                     .setThumbnail(this.client.user.displayAvatarURL({ dynamic: true, size: 2048, format: 'png' }))
                     .addFields([
                         { name: t('commands:help.bot.fields.list.title'), value: t('commands:help.bot.fields.list.value') },
@@ -50,7 +50,7 @@ export default class HelpCommand extends Command {
                         { name: t('commands:help.bot.fields.privacy'), value: 'https://foxywebsite.xyz/privacy' },
                         { name: t('commands:help.bot.fields.website'), value: 'http://foxywebsite.xyz' }
                     ])
-                await interaction.reply({ embeds: [embed] });
+                await ctx.reply({ embeds: [embed] });
             }
         }
     }

@@ -15,14 +15,14 @@ export default class ProfileCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const aboutme = interaction.options.getString("text");
-        const userData = await this.client.database.getUser(interaction.user.id);
+    async execute(ctx, t): Promise<void> {
+        const aboutme = ctx.options.getString("text");
+        const userData = await this.client.database.getUser(ctx.user.id);
 
-        if (aboutme.length > 225) return interaction.reply(t('commands:aboutme.tooLong', { length: aboutme.length.toString() }))
+        if (aboutme.length > 225) return ctx.reply(t('commands:aboutme.tooLong', { length: aboutme.length.toString() }))
         userData.aboutme = aboutme;
         userData.save();
 
-        await interaction.reply({ content: t("commands:aboutme.set", { aboutme: aboutme }), flags: 64 });
+        await ctx.reply({ content: t("commands:aboutme.set", { aboutme: aboutme }), flags: 64 });
     }
 }

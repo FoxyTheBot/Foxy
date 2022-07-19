@@ -17,11 +17,11 @@ export default class PatCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
+    async execute(ctx, t): Promise<void> {
         const neko = new NekosLife();
 
-        const user = interaction.options.getUser("user");
-        if (!user) return interaction.reply(t('commands:global.noUser'));
+        const user = ctx.options.getUser("user");
+        if (!user) return ctx.reply(t('commands:global.noUser'));
 
         const gif = await neko.pat();
         const gif2 = await neko.pat();
@@ -37,22 +37,22 @@ export default class PatCommand extends Command {
 
         const embed = new EmbedBuilder()
             .setColor("#57F287")
-            .setDescription(t('commands:pat.success', { user: user.username, author: interaction.user.username }))
+            .setDescription(t('commands:pat.success', { user: user.username, author: ctx.user.username }))
             .setImage(gif.url)
 
-        await interaction.reply({ embeds: [embed], components: [row] });
+        await ctx.reply({ embeds: [embed], components: [row] });
 
-        const filter = i => i.customId == "pat" && i.user.id == user.id && i.message.id === interaction.message.id;
-        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
+        const filter = i => i.customId == "pat" && i.user.id == user.id && i.message.id === ctx.message.id;
+        const collector = ctx.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
 
         collector.on("collect", async i => {
             if (i.customId == "pat") {
-                if (await this.client.ctx.getContext(interaction, i, 2, user)) {
+                if (await ctx.getContext(i, 2, user)) {
                     const embed = new EmbedBuilder()
                         .setColor("#57F287")
-                        .setDescription(t('commands:pat.success', { user: interaction.user.username, author: user.username }))
+                        .setDescription(t('commands:pat.success', { user: ctx.user.username, author: user.username }))
                         .setImage(gif2.url)
-                    await interaction.followUp({ embeds: [embed] });
+                    await ctx.followUp({ embeds: [embed] });
                     i.deferUpdate();
                     return collector.stop();
                 } else {

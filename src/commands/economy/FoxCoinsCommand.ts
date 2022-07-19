@@ -18,25 +18,25 @@ export default class FoxCoins extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        switch (interaction.options.getSubcommand()) {
+    async execute(ctx, t): Promise<void> {
+        switch (ctx.options.getSubcommand()) {
             case 'atm': {
-                const user = await interaction.options.getUser('user') || interaction.user;
-                if (!user) return interaction.reply(t('commands:global.noUser'));
+                const user = await ctx.options.getUser('user') || ctx.user;
+                if (!user) return ctx.reply(t('commands:global.noUser'));
                 const userData = await this.client.database.getUser(user.id);
                 const balance = userData.balance;
 
-                await interaction.reply(t('commands:atm.success', { user: user.username, balance: balance.toString() }));
+                await ctx.reply(t('commands:atm.success', { user: user.username, balance: balance.toString() }));
                 break;
             }
 
             case 'rank': {
                 let data = await this.client.database.getAllUsers();
-                await interaction.deferReply();
+                await ctx.deferReply();
                 const embed = new EmbedBuilder();
 
                 data = data.sort((a, b) => b.balance - a.balance);
-                let position = parseInt(data.map(m => m._id).indexOf(interaction.user.id)) + 1;
+                let position = parseInt(data.map(m => m._id).indexOf(ctx.user.id)) + 1;
 
                 embed.setTitle(`${this.client.emotes.daily} | FoxCoins Global Rank`)
                     .setColor('#5865F2')
@@ -50,21 +50,21 @@ export default class FoxCoins extends Command {
                         },
                     ]);
                 }
-                await interaction.editReply({ embeds: [embed] });
+                await ctx.reply({ embeds: [embed] });
                 break;
             }
 
             case 'transfer': {
-                const amount: number = interaction.options.getNumber('amount');
-                const user: any = interaction.options.getUser('user');
-                if (!user) return interaction.reply(t('commands:global.noUser'));
+                const amount: number = ctx.options.getNumber('amount');
+                const user: any = ctx.options.getUser('user');
+                if (!user) return ctx.reply(t('commands:global.noUser'));
 
                 const userData = await this.client.database.getUser(user.id);
-                const authorData = await this.client.database.getUser(interaction.user.id);
+                const authorData = await this.client.database.getUser(ctx.user.id);
                 const coins = amount;
                 const value = Math.round(coins);
-                if (user === interaction.user) return interaction.reply(t('commands:pay.self'));
-                if (value !== authorData.balance) return interaction.reply(t('commands:pay.notEnough'))
+                if (user === ctx.user) return ctx.reply(t('commands:pay.self'));
+                if (value !== authorData.balance) return ctx.reply(t('commands:pay.notEnough'))
 
                 const row = new ActionRowBuilder()
                     .addComponents(
@@ -75,18 +75,18 @@ export default class FoxCoins extends Command {
                             .setEmoji("<:foxydaily:915736630495686696>")
                     )
 
-                if (user === interaction.user) return interaction.reply(t('commands:pay.self'));
+                if (user === ctx.user) return ctx.reply(t('commands:pay.self'));
 
-                await interaction.reply({ content: t('commands:pay.alert', { amount: value.toString(), user: user.username }), components: [row] });
+                await ctx.reply({ content: t('commands:pay.alert', { amount: value.toString(), user: user.username }), components: [row] });
 
-                const filter = i => i.customId === 'transfer' && i.user.id === interaction.user.id && i.message.id === interaction.message.id;
-                const collector = await interaction.channel.createMessageComponentCollector(filter, { time: 15000 });
+                const filter = i => i.customId === 'transfer' && i.user.id === ctx.user.id && i.message.id === ctx.message.id;
+                const collector = await ctx.channel.createMessageComponentCollector(filter, { time: 15000 });
 
                 collector.on('collect', async i => {
-                    if (await this.client.ctx.getContext(interaction, i, 1)) {
+                    if (await ctx.getContext(i, 1)) {
                         if (i.customId === 'transfer') {
                             i.deferUpdate();
-                            interaction.followUp(t('commands:pay.success', { user: user.tag, amount: value.toString() }));
+                            ctx.followUp(t('commands:pay.success', { user: user.tag, amount: value.toString() }));
                             userData.balance += value;
                             authorData.balance -= value;
                             userData.save();

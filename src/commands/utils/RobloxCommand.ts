@@ -17,8 +17,8 @@ export default class RbxuserCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const string = interaction.options.getString("user");
+    async execute(ctx, t): Promise<void> {
+        const string = ctx.options.getString("user");
 
         noblox.getIdFromUsername(string).then(async (id: any) => {
             if (id) {
@@ -43,11 +43,11 @@ export default class RbxuserCommand extends Command {
                             { name: ":star: Status", value: info.status || t('commands:roblox.noStatus'), inline: true },
                             { name: `:calendar: ${t('commands:roblox.register')}`, value: date.toLocaleString(t.lng, { timeZone: 'America/Sao_Paulo' }) || t('commands:roblox.undefined'), inline: true }
                         ])
-                    await interaction.reply({ embeds: [embed], components: [row] });
+                    await ctx.reply({ embeds: [embed], components: [row] });
                 });
             }
         }).catch(err => {
-            interaction.reply(t('commands:roblox.error'));
+            ctx.reply(t('commands:roblox.error'));
         })
     }
 }

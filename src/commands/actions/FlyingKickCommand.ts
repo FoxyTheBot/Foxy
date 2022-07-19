@@ -15,12 +15,12 @@ export default class FlyingKickCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const user = await interaction.options.getUser("user");
-        if (!user) return interaction.reply(t('commands:global.noUser'));
+    async execute(ctx, t): Promise<void> {
+        const user = await ctx.options.getUser("user");
+        if (!user) return ctx.reply(t('commands:global.noUser'));
 
-        if (user === interaction.user) return interaction.reply(t('commands:kick.self'))
-        if (user === this.client.user) return interaction.reply(t('commands:kick.client'));
+        if (user === ctx.user) return ctx.reply(t('commands:kick.self'))
+        if (user === this.client.user) return ctx.reply(t('commands:kick.client'));
 
         const list = [
             "https://tenor.com/view/kick-anime-gif-7779674",
@@ -34,10 +34,10 @@ export default class FlyingKickCommand extends Command {
 
         const embed = new EmbedBuilder()
             .setColor("#ff0000")
-            .setDescription(t('commands:kick.success', { user: interaction.user.username, target: user.username }))
+            .setDescription(t('commands:kick.success', { user: ctx.user.username, target: user.username }))
             .setImage(rand)
 
-        await interaction.reply({ embeds: [embed] });
+        await ctx.reply({ embeds: [embed] });
 
     }
 }

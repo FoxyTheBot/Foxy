@@ -16,11 +16,11 @@ export default class MorseCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
+    async execute(ctx, t): Promise<void> {
         const alpha = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'.split('');
         const morse = '/,.-,-...,-.-.,-..,.,..-.,--.,....,..,.---,-.-,.-..,--,-.,---,.--.,--.-,.-.,...,-,..-,...-,.--,-..-,-.--,--..,.----,..---,...--,....-,.....,-....,--...,---..,----.,-----'.split(',');
 
-        var text = interaction.options.getString('text').toUpperCase();
+        var text = ctx.options.getString('text').toUpperCase();
 
         while (text.includes('Ä') || text.includes('Ö') || text.includes('Ü')) {
             text = text.replace('Ä', 'AE').replace('Ö', 'OE').replace('Ü', 'UE');
@@ -46,6 +46,6 @@ export default class MorseCommand extends Command {
         const morseEmbed = new EmbedBuilder()
             .setDescription(`:point_right::radio: \n \`\`\`${text}\`\`\``);
 
-        await interaction.reply({ embeds: [morseEmbed] });
+        await ctx.reply({ embeds: [morseEmbed] });
     }
 }

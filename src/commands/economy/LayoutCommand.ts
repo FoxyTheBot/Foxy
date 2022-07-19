@@ -16,25 +16,25 @@ export default class LayoutCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const command = interaction.options.getSubcommand();
+    async execute(ctx, t, interaction): Promise<void> {
+        const command = ctx.options.getSubcommand();
 
-        if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
+        if (ctx.type === InteractionType.ApplicationCommandAutocomplete) {
             if (command == "set") {
                 return await interaction.respond(await lylist.map(data => Object({ name: t(`commands:layouts.${data.id}`), value: data.id })));
             }
         }
 
 
-        if (interaction.type === InteractionType.ApplicationCommand) {
-            const code: string = await interaction.options.getString("layout");
+        if (ctx.type === InteractionType.ApplicationCommand) {
+            const code: string = await ctx.options.getString("layout");
 
             const layouts = await lylist.map(data => data.id);
-            if (!layouts.includes(code)) return await interaction.editReply(t('commands:layouts.notFound'));
-            const data = await this.client.database.getUser(interaction.user.id);
+            if (!layouts.includes(code)) return await ctx.reply(t('commands:layouts.notFound'));
+            const data = await this.client.database.getUser(ctx.user.id);
             data.layout = code;
             await data.save();
-            await interaction.reply(t('commands:layouts.changed'));
+            await ctx.reply(t('commands:layouts.changed'));
         }
     }
 }

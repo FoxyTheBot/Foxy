@@ -17,17 +17,17 @@ export default class HugCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
+    async execute(ctx, t): Promise<void> {
         const neko = new NekosLife();
-        const user = await interaction.options.getUser("user");
-        if (!user) return interaction.reply(t('commands:global.noUser'));
+        const user = await ctx.options.getUser("user");
+        if (!user) return ctx.reply(t('commands:global.noUser'));
 
         const img = await neko.hug();
         const img2 = await neko.hug();
 
         const hugEmbed = new EmbedBuilder()
             .setColor("#57F287")
-            .setDescription(t('commands:hug.success', { user: user.username, author: interaction.user.username }))
+            .setDescription(t('commands:hug.success', { user: user.username, author: ctx.user.username }))
             .setImage(img.url)
 
         const row = new ActionRowBuilder()
@@ -39,19 +39,19 @@ export default class HugCommand extends Command {
                     .setEmoji("<:ztLove:978732042160332850>")
             )
 
-        await interaction.reply({ embeds: [hugEmbed], components: [row] });
+        await ctx.reply({ embeds: [hugEmbed], components: [row] });
 
-        const filter = i => i.customId === 'hug' && i.user.id === user.id && i.message.id === interaction.message.id;
-        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
+        const filter = i => i.customId === 'hug' && i.user.id === user.id && i.message.id === ctx.message.id;
+        const collector = ctx.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
 
         collector.on('collect', async i => {
             if (i.customId === 'hug') {
-                if (await this.client.ctx.getContext(interaction, i, 2, user)) {
+                if (await ctx.getContext(i, 2, user)) {
                     const hugEmbed = new EmbedBuilder()
                         .setColor("#57F287")
-                        .setDescription(t('commands:hug.success', { user: interaction.user.username, author: user.username }))
+                        .setDescription(t('commands:hug.success', { user: ctx.user.username, author: user.username }))
                         .setImage(img2.url)
-                    await interaction.followUp({ embeds: [hugEmbed] });
+                    await ctx.followUp({ embeds: [hugEmbed] });
                     i.deferUpdate();
                     return collector.stop();
                 }

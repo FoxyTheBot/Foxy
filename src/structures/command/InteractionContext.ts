@@ -1,5 +1,5 @@
 import FoxyClient from "../../FoxyClient";
-import { CommandInteraction, Guild, InteractionReplyOptions, Message, MessagePayload, TextBasedChannel, User } from "discord.js";
+import { ApplicationCommandOptionChoiceData, CommandInteraction, Guild, InteractionReplyOptions, Message, MessagePayload, TextBasedChannel, User } from "discord.js";
 import { APIMessage } from "discord-api-types/v10";
 
 export default class InteractionContext {
@@ -20,6 +20,10 @@ export default class InteractionContext {
         return this.interaction.options;
     }
 
+    get type() {
+        return this.interaction.type;
+    }
+
     get guild(): Guild {
         return this.interaction.guild;
     }
@@ -36,7 +40,7 @@ export default class InteractionContext {
         return this.interaction.user;
     }
 
-    async deferReply(options?: MessagePayload | InteractionReplyOptions, ephemeral = false): Promise<void> {
+    async deferReply(ephemeral, options?: MessagePayload | InteractionReplyOptions): Promise<void> {
         if (this.interaction.deferred && options) {
             await this.followUp(options);
             return;
@@ -45,15 +49,15 @@ export default class InteractionContext {
         await this.interaction.deferReply({ ephemeral });
     }
 
-    async foxyReply(options: InteractionReplyOptions): Promise<Message> {
+    async reply(options: InteractionReplyOptions): Promise<Message> {
         if (this.interaction.replied || this.interaction.deferred) {
-            return this.resolveMessage(await this.interaction.editReply(options));
+            return this.checkReply(await this.interaction.editReply(options));
         }
 
-        return this.resolveMessage(await this.interaction.reply({ ...options, fetchReply: true }))
+        return this.checkReply(await this.interaction.reply({ ...options, fetchReply: true }))
     }
 
-    private resolveMessage(message: Message | APIMessage | null): Message | null {
+    private checkReply(message: Message | APIMessage | null): Message | null {
         if (!message) return null;
         if (message instanceof Message) return message;
         // @ts-expect-error Message constructor is private
@@ -61,11 +65,11 @@ export default class InteractionContext {
     }
 
     async followUp(options: MessagePayload | InteractionReplyOptions): Promise<Message> {
-        return this.resolveMessage(await this.interaction.followUp(options))
+        return this.checkReply(await this.interaction.followUp(options))
     }
 
     async fetchReply(): Promise<Message> {
-        return this.resolveMessage(await this.interaction.fetchReply());
+        return this.checkReply(await this.interaction.fetchReply());
     }
 
     public async getContext(i, type, user?) {

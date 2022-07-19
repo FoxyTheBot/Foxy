@@ -17,11 +17,11 @@ export default class PerfectCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const user = interaction.options.getUser("user");
-        if (!user) return interaction.reply(t('commands:global.noUser'));
+    async execute(ctx, t): Promise<void> {
+        const user = ctx.options.getUser("user");
+        if (!user) return ctx.reply(t('commands:global.noUser'));
         const canvas = Canvas.createCanvas(467, 400);
-        const ctx = canvas.getContext("2d");
+        const imageContext = canvas.getContext("2d");
 
         let avatar: string;
         if (!user) {
@@ -31,13 +31,13 @@ export default class PerfectCommand extends Command {
         }
 
         const background = await Canvas.loadImage('http://localhost:8080/memes/perfeito.png');
-        ctx.drawImage(background, 0, 0, 467, 400);
+        imageContext.drawImage(background, 0, 0, 467, 400);
 
         const userAvatar = await Canvas.loadImage(avatar);
-        ctx.drawImage(userAvatar, 400 - 177, 30 + 20, 400 - 178, 400 - 179)
+        imageContext.drawImage(userAvatar, 400 - 177, 30 + 20, 400 - 178, 400 - 179)
 
         const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: "perfect.png" });
 
-        await interaction.reply({ files: [attachment] });
+        await ctx.reply({ files: [attachment] });
     }
 }

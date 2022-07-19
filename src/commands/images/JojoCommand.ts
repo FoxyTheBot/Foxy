@@ -17,25 +17,25 @@ export default class JojoCommand extends Command {
         })
     }
 
-    async execute(interaction, t): Promise<void> {
-        const user = interaction.options.getUser('user');
-        let user2 = interaction.options.getUser('user2');
-        if (!user2) user2 = interaction.user;
-        if (!user) return interaction.reply(t('commands:global.noUser'));
-        await interaction.deferReply();
+    async execute(ctx, t): Promise<void> {
+        const user = ctx.options.getUser('user');
+        let user2 = ctx.options.getUser('user2');
+        if (!user2) user2 = ctx.user;
+        if (!user) return ctx.reply(t('commands:global.noUser'));
+        await ctx.deferReply();
 
         const canvas = Canvas.createCanvas(800, 450);
-        const ctx = canvas.getContext('2d');
+        const imageContext = canvas.getContext('2d');
         const background = await Canvas.loadImage('https://cdn.discordapp.com/attachments/789266900852408351/983485873704271972/4k9p6a.png');
-        ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+        imageContext.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         const avatar = await Canvas.loadImage(user.displayAvatarURL({ dynamic: true, format: 'png' }));
         const avatar2 = await Canvas.loadImage(user2.displayAvatarURL({ dynamic: true, format: 'png' }));
 
-        ctx.drawImage(avatar, 150, 2, 100, 100);
-        ctx.drawImage(avatar2, 500, 135, 74, 75);
+        imageContext.drawImage(avatar, 150, 2, 100, 100);
+        imageContext.drawImage(avatar2, 500, 135, 74, 75);
 
         const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: "jojo.png" });
-        await interaction.editReply({ files: [attachment] });
+        await ctx.reply({ files: [attachment] });
     }
 }

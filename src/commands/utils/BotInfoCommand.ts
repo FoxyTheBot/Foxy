@@ -16,7 +16,7 @@ export default class BotInfoCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
+    async execute(ctx, t): Promise<void> {
         const embed = new EmbedBuilder()
             .setColor("#5865F2")
             .setTitle(t('botinfo.title'))
@@ -31,6 +31,6 @@ export default class BotInfoCommand extends Command {
             .setThumbnail(this.client.user.displayAvatarURL({ format: "png", dynamic: true }))
             .setImage("https://c.tenor.com/GaBV0ykyRLYAAAAC/kawaii-fnaf.gif")
 
-        interaction.reply({ embeds: [embed] });
+        ctx.reply({ embeds: [embed] });
     }
 }

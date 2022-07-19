@@ -17,9 +17,9 @@ export default class SlapCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const user = interaction.options.getUser("user");
-        if (!user) return interaction.reply(t('commands:global.noUser'));
+    async execute(ctx, t): Promise<void> {
+        const user = ctx.options.getUser("user");
+        if (!user) return ctx.reply(t('commands:global.noUser'));
 
         const neko = new NekosLife();
 
@@ -34,20 +34,20 @@ export default class SlapCommand extends Command {
             )
 
         const embed = new EmbedBuilder()
-            .setDescription(t('commands:slap.success', { user: user.username, author: interaction.user.username }))
+            .setDescription(t('commands:slap.success', { user: user.username, author: ctx.user.username }))
             .setImage(slap.url)
-        await interaction.reply({ embeds: [embed], components: [row] });
+        await ctx.reply({ embeds: [embed], components: [row] });
 
-        const filter = i => i.customId === "slap" && i.user.id === user.id && i.message.id === interaction.message.id;
-        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
+        const filter = i => i.customId === "slap" && i.user.id === user.id && i.message.id === ctx.message.id;
+        const collector = ctx.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
 
         collector.on("collect", async i => {
             if (i.customId === "slap") {
-                if (await this.client.ctx.getContext(interaction, i, 2, user)) {
+                if (await ctx.getContext(i, 2, user)) {
                     const embed2 = new EmbedBuilder()
-                        .setDescription(t('commands:slap.success', { user: interaction.user.username, author: user.username }))
+                        .setDescription(t('commands:slap.success', { user: ctx.user.username, author: user.username }))
                         .setImage(slap2.url)
-                    await interaction.followUp({ embeds: [embed2] });
+                    await ctx.followUp({ embeds: [embed2] });
                     i.deferUpdate();
                     return collector.stop();
                 } else {

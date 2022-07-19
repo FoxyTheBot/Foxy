@@ -15,8 +15,8 @@ export default class DailyCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
-        const userData = await this.client.database.getUser(interaction.user.id);
+    async execute(ctx, t): Promise<void> {
+        const userData = await this.client.database.getUser(ctx.user.id);
 
         const timeout = 43200000;
         let amount = Math.floor(Math.random() * 8000);
@@ -55,7 +55,7 @@ export default class DailyCommand extends Command {
         const daily = await userData.lastDaily;
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
             const currentCooldown = ms(timeout - (Date.now() - daily));
-            return interaction.reply(t('commands:daily.cooldown', { time: currentCooldown }));
+            return ctx.reply(t('commands:daily.cooldown', { time: currentCooldown }));
 
         } else {
             userData.balance += amount;
@@ -65,9 +65,9 @@ export default class DailyCommand extends Command {
             const money = await userData.balance;
 
             if (userData.premium) {
-                interaction.reply(t('commands:daily.premium', { amount: amount.toString(), money: money.toString(), normalMoney: `${oldAmount}`, doubleValue: type, premiumType: t(`subscription:${userData.premiumType}`) }));
+                ctx.reply(t('commands:daily.premium', { amount: amount.toString(), money: money.toString(), normalMoney: `${oldAmount}`, doubleValue: type, premiumType: t(`subscription:${userData.premiumType}`) }));
             } else {
-                interaction.reply(t('commands:daily.daily', { amount: amount.toString(), money: money.toString() }));
+                ctx.reply(t('commands:daily.daily', { amount: amount.toString(), money: money.toString() }));
             }
         }
     }

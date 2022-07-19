@@ -17,15 +17,15 @@ export default class KissCommand extends Command {
         });
     }
 
-    async execute(interaction, t): Promise<void> {
+    async execute(ctx, t): Promise<void> {
         const neko = new NekosLife();
 
         const img = await neko.kiss();
         const img2 = await neko.kiss();
-        const user = await interaction.options.getUser("user");
-        if (!user) return interaction.reply(t('commands:global.noUser'));
+        const user = await ctx.options.getUser("user");
+        if (!user) return ctx.reply(t('commands:global.noUser'));
 
-        if (user == this.client.user) return interaction.reply(t('commands:kiss.self'));
+        if (user == this.client.user) return ctx.reply(t('commands:kiss.self'));
 
         const row = new ActionRowBuilder()
             .addComponents(
@@ -38,22 +38,22 @@ export default class KissCommand extends Command {
 
         const embed = new EmbedBuilder()
             .setColor('#06c5ef')
-            .setDescription(t('commands:kiss.success', { user: user.username, author: interaction.user.username }))
+            .setDescription(t('commands:kiss.success', { user: user.username, author: ctx.user.username }))
             .setImage(img.url)
             .setTimestamp();
-        await interaction.reply({ embeds: [embed], components: [row] });
+        await ctx.reply({ embeds: [embed], components: [row] });
 
-        const filter = i => i.customId === 'primary' && i.user.id === user.id && i.message.id === interaction.message.id;
-        const collector = interaction.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
+        const filter = i => i.customId === 'primary' && i.user.id === user.id && i.message.id === ctx.message.id;
+        const collector = ctx.channel.createMessageComponentCollector(filter, { time: 15000, max: 1 });
 
         collector.on('collect', async i => {
             if (i.customId === 'primary') {
-                if (await this.client.ctx.getContext(interaction, i, 2, user)) {
+                if (await ctx.getContext(i, 2, user)) {
                     const kissEmbed = new EmbedBuilder()
                         .setColor('#b354ff')
-                        .setDescription(t('commands:kiss.success', { user: interaction.user.username, author: user.username }))
+                        .setDescription(t('commands:kiss.success', { user: ctx.user.username, author: user.username }))
                         .setImage(img2.url)
-                    await interaction.followUp({ embeds: [kissEmbed] });
+                    await ctx.followUp({ embeds: [kissEmbed] });
                     i.deferUpdate();
                     return collector.stop();
                 }
