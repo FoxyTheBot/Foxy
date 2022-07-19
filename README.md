@@ -7,7 +7,7 @@
 
 
 
-<p align="left">
+<p align="center">
 <br>
 <a align="center" href="https://discordbots.org/bot/737044809650274325?utm_source=widget">
 <img src="https://discordbots.org/api/widget/737044809650274325.png" alt="Discord Bots" />
