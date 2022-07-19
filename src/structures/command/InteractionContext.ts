@@ -1,5 +1,5 @@
 import FoxyClient from "../../FoxyClient";
-import { CommandInteraction, Guild, InteractionReplyOptions, Message, MessagePayload, TextBasedChannel, User } from "discord.js";
+import { CommandInteraction, Guild, InteractionReplyOptions, Message, MessagePayload, TextBasedChannel, User, InteractionType } from "discord.js";
 import { APIMessage } from "discord-api-types/v10";
 
 export default class InteractionContext {
@@ -20,7 +20,7 @@ export default class InteractionContext {
         return this.interaction.options;
     }
 
-    get type() {
+    get type(): InteractionType {
         return this.interaction.type;
     }
 
