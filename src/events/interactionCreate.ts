@@ -1,5 +1,6 @@
 import i18next from 'i18next';
 import { EmbedBuilder, InteractionType } from "discord.js";
+import InteractionManager from '../structures/command/InteractionContext';
 
 export default class InteractionCreate {
     private client: any
@@ -9,7 +10,8 @@ export default class InteractionCreate {
     }
 
     async run(interaction): Promise<any> {
-        const user = await this.client.database.getUser(interaction.user.id);
+        const ctx = new InteractionManager(interaction);
+        const user = await this.client.database.getUser(ctx.user.id);
         let locale = global.t = i18next.getFixedT(user.language || 'pt-BR');
 
         const command = this.client.commands.get(interaction.commandName);
@@ -17,7 +19,7 @@ export default class InteractionCreate {
             new Promise(async (res, rej) => {
                 try {
                     if (interaction.type === InteractionType.ApplicationCommand || interaction.type === InteractionType.ApplicationCommandAutocomplete) {
-                        command.execute(interaction, locale)
+                        command.execute(ctx, locale)
                     }
                 } catch (e) {
                     console.error(e);

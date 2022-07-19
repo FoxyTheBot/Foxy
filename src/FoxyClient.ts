@@ -5,7 +5,6 @@ import { App } from './structures/server/Server';
 import DatabaseConnection from './structures/database/DatabaseConnection';
 import WebhookManager from './structures/WebhookManager';
 import i18next from 'i18next';
-import InteractionManager from './structures/command/InteractionManager'
 import i18nbackend from 'i18next-fs-backend';
 import * as fs from 'fs';
 const app = new App(8080);
@@ -16,7 +15,6 @@ export default class FoxyClient extends Client {
     public database: Object;
     public WebhookManager: Object;
     public config: FoxySettings;
-    public ctx: InteractionManager;
 
     constructor(options: ClientOptions) {
         super(options);
@@ -24,7 +22,6 @@ export default class FoxyClient extends Client {
         this.config = require("../config.json");
         this.database = new DatabaseConnection(this);
         this.WebhookManager = new WebhookManager(this);
-        this.ctx = new InteractionManager(this);
         this.emotes = require("./structures/json/emotes.json");
     }
 
