@@ -1,0 +1,56 @@
+{
+    "lylist": [
+        {
+            "id": "default",
+            "price": "free",
+            "filename": "default.png"
+        },
+        {
+            "id": "red",
+            "price": "free",
+            "filename": "red.png"
+        },
+        {
+            "id": "blue",
+            "price": "free",
+            "filename": "blue.png"
+        },
+        {
+            "id": "purple",
+            "price": "free",
+            "filename": "purple.png"
+        },
+        {
+            "id": "cyan",
+            "price": "free",
+            "filename": "cyan.png"
+        }
+    ],
+    "masks": [
+        {
+            "id": "ears",
+            "filename": "ears.png",
+            "price": 50000
+        },
+        {
+            "id": "horns",
+            "filename": "horns.png",
+            "price": 50000
+        },
+        {
+            "id": "halo",
+            "filename": "halo.png",
+            "price": 50000
+        },
+        {
+            "id": "cowboy",
+            "filename": "cowboy.png",
+            "price": 50000
+        },
+        {
+            "id": "topper",
+            "filename": "topper.png",
+            "price": 50000
+        }
+    ]
+}

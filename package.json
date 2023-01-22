@@ -1,0 +1,45 @@
+{
+  "name": "foxy",
+  "version": "2022.08.16-prerelease",
+  "description": "A multi-purpose bot for Discord developed using TypeScript",
+  "main": "build/src/FoxyClient.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FoxyTheBot/Foxy.git"
+  },
+  "keywords": [
+    "nodejs",
+    "i18n",
+    "typescript",
+    "bot",
+    "fun",
+    "canvas",
+    "discord",
+    "slash-commands",
+    "multilanguage"
+  ],
+  "author": "WinG4merBR",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/FoxyTheBot/Foxy/issues"
+  },
+  "homepage": "https://github.com/FoxyTheBot/Foxy#readme",
+  "dependencies": {
+    "@types/i18next": "^13.0.0",
+    "@types/i18next-fs-backend": "^1.1.2",
+    "canvas": "^2.11.0",
+    "discordeno": "^17.1.0",
+    "express": "^4.18.2",
+    "i18next": "^22.4.9",
+    "i18next-fs-backend": "^2.1.1",
+    "mongoose": "^6.8.3",
+    "nekos.life": "^3.0.0",
+    "noblox.js": "^4.13.1",
+    "topgg-autoposter": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.4"
+  }
+}

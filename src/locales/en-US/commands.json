@@ -1,0 +1,371 @@
+{
+    "foxyGlobal": {
+        "noPermission": "<a:foxy_see:817493038053326858> **|** Wait! What are you doing? You are not {{user}}, you can't do that!"
+    },
+    "botinfo": {
+        "title": ":fox: Foxy",
+        "description": "Hi, I'm Foxy! I'm a simple economy and entertainment bot for Discord! I'm in {{guilds}} guilds :heart:!",
+        "fields": {
+            "addme": "<:roseWumpusGift:919356424667140138> Add me to your server!",
+            "server": "Guilds :heart:",
+            "server2": "Enter in my support server clicking here!",
+            "add": "Add me clicking here",
+            "support": "<:foxyhearteyes:984596954526920794> Support server",
+            "twitter": "<:Twitter:797184287816286209> My Twitter",
+            "github": "<:GitHub:746399300728258710> My Github",
+            "donate": "<:kofi:986386611900153886> Donate me clicking here",
+            "donate2": "Support me on Ko-fi!"
+        }
+    },
+    "lang": {
+        "title": "Choose your language",
+        "default": "Your default language is set to English"
+    },
+    "anime": {
+        "info": {
+            "status": "Status",
+            "score": "Score",
+            "episodes": "Episodes",
+            "type": "Type",
+            "aired": "Aired",
+            "genres": "Genres",
+            "source": "Source",
+            "studios": "Studios",
+            "duration": "Duration",
+            "rating": "Rating",
+            "scoreStats": "Score stats",
+            "popularity": "Popularity",
+            "premiered": "Premiered",
+            "broadcast": "Broadcast"
+        },
+        "notFound": "Anime not found",
+        "click": "Click here",
+        "nothing": "Nothing"
+    },
+    "role": {
+        "description": "Role permissions",
+        "id": "Role ID",
+        "color": "Role Color",
+        "position": "Role Position",
+        "noPermissions": "No permissions",
+        "roleMention": "Role mention",
+        "createdAt": "Created at"
+    },
+    "kick": {
+        "self": "<:ShiroFoxy:934469525997518848> | Another person can do this for you, ask the person to do this",
+        "client": "<:ShiroFoxy:934469525997518848> | * Foxy crouches and you run into a wall*",
+        "success": "**{{user}}** Did a flying kick in **{{target}}**"
+    },
+    "coinflip": {
+        "heads": "heads",
+        "tails": "tails",
+        "flipped": "You flipped a coin and got",
+        "result": "Result"
+    },
+    "upvote": {
+        "description": "Help me to increase servers count and keep me alive voting me on <:discordbotlist:778011345542578238> Discord Bot List, \n<:catblush:768292358458179595> Votes helps me to get more servers and more users on Discord! Vote me [clicking here](https://top.gg/bot/737044809650274325) :heart:"
+    },
+    "profile": {
+        "your": "📝 | Your profile",
+        "noAboutme": "Foxy is so cute ><! You can change this message using /aboutme command",
+        "tooLong": "The character limit is 225, you typed {{length}}, plz type something smaller",
+        "marriedWith": "💍 Married with {{user}} since {{date}} ({{relativeTime}})",
+        "premium": "{{badge}} Premium since {{date}}",
+        "testMode": "Your about me will be displayed here"
+    },
+    "masks": {
+        "ears": "Cat ears",
+        "horns": "Horns",
+        "halo": "Halo",
+        "cowboy": "Cowboy's hat",
+        "topper": "Topper",
+        "buy": {
+            "success": "<:foxydaily:915736630495686696> **|** You have purchased the profile mask!",
+            "noMoney": "You don't have enough FoxCoins",
+            "preview": "Preview",
+            "purchase": "Purchase",
+            "premium": "<:foxydaily:915736630495686696> **|** You're premium subscriber you don't need to pay for the masks"
+        },
+        "set": {
+            "success": "<:foxydaily:915736630495686696> **|** Your mask has changed :3",
+            "notOwned": "You don't have this mask",
+            "invalid": ":x: **|** Invalid code"
+        },
+        "alreadyOwned": "You already have this mask"
+    },
+    "layouts": {
+        "default": "Default",
+        "red": "Red",
+        "blue": "Blue",
+        "purple": "Purple",
+        "cyan": "Cyan",
+        "chaged": "<:foxy_wow:853366914054881310> **|** Your layout has been changed",
+        "notFound": "Layout not found"
+    },
+    "help": {
+        "commands": {
+            "title": "🎮 | Command list",
+            "category": {
+                "economy": "Economy",
+                "social": "Social",
+                "fun": "Entertainment",
+                "image": "Images",
+                "misc": "Misc",
+                "utils": "Utils",
+                "rp": "Roleplay"
+            }
+        },
+        "bot": {
+            "title": "Hey, I'm Foxy!",
+            "description": "Hi {{user}}, I'm Foxy, I have features to entertain your server, like economy commands :3, also I have image modification commands, and some other fun commands :3",
+            "fields": {
+                "list": {
+                    "title": "<:foxy_cake:979569740471230584> If you want see all commands type",
+                    "value": "`/help`"
+                },
+                "guild": "<:foxy_cake:979569740471230584> Support server",
+                "privacy": "<:foxy_cake:979569740471230584> Privacy",
+                "website": "<:foxy_cake:979569740471230584> My website (only Portuguese yet)"
+            }
+        }
+    },
+    "roblox": {
+        "aboutme": "About me",
+        "register": "Register date",
+        "undefined": "Undefined",
+        "noAboutme": "This user has no about me",
+        "noStatus": "This user has no status",
+        "error": "<:robloxlogo:804814541631914035> | I can't find this user... Probably this user doesn't exist :/",
+        "button": "View on Roblox"
+    },
+    "aboutme": {
+        "set": "<:ShiroFoxy:934469525997518848> **|** Your about me has been changed to `{{aboutme}}`"
+    },
+    "server": {
+        "owner": "Owner",
+        "createdAt": "Created at",
+        "clientJoin": "I joined this server at",
+        "channels": "Channels",
+        "premium": "Boosts",
+        "memberCount": "Members",
+        "afk": "AFK channel",
+        "click": "View on Browser",
+        "no": "No",
+        "yes": "Yes",
+        "notFound": "I didn't find any guild with the ID `{{id}}`",
+        "partner": "Discord Partner"
+    },
+    "user": {
+        "info": {
+            "tag": "User Tag",
+            "createdAt": "Created at",
+            "userId": "User ID",
+            "avatar": "View user avatar",
+            "viewMember": "View member info",
+            "noMember": "This user is not in this server"
+        },
+        "avatar": {
+            "click": "View on browser",
+            "title": "{{user}}'s Avatar",
+            "footer": "So cute >3<"
+        },
+        "banner": {
+            "click": "View on browser",
+            "title": "{{user}}'s Banner",
+            "noBanner": "This user has no banner"
+        },
+        "member": {
+            "title": "{{user}}'s Member info",
+            "joinedAt": ":sparkles: Joined At",
+            "role": "<:foxysunglasses:890688144280784926> Roles",
+            "nickname": "<:foxyhearteyes:984596954526920794> Nickname in this server",
+            "noNickname": "This user has no nickname in this server",
+            "permissions": {
+                "button": "Permissions",
+                "list": "Permissions list",
+                "title": "{{user}}'s permissions"
+            },
+            "highestRole": "<:foxysunglasses:890688144280784926> Highest role",
+            "premiumSince": "<:foxyboost:984596808921673768> Booster since",
+            "noRoles": "This user has no roles in this server",
+            "noPermissions": "This user has no permissions in this server"
+        }
+    },
+    "ship": {
+        "question": "Is this couple possible?",
+        "perfectCouple": "They are a perfect couple!",
+        "uwu": "They're already dating, but no one knows!",
+        "probably": "It's possible if {{user}} wants",
+        "cry": "I'd like to say that it's possible..."
+    },
+    "rep": {
+        "cooldown": "You already gave this user +1 rep, wait **{{cooldown}}**",
+        "success": ":heart: | You gave a rep to **{{user}}**",
+        "self": ":x: | You can't rep yourself"
+    },
+    "marry": {
+        "self": ":x: | You can't marry yourself",
+        "alreadyMarried": ":x: | You're already married!",
+        "bot": ":x: | No, i don't want to marry you",
+        "alreadyMarriedWithSomeone": ":x: | You are already married someone",
+        "alreadyMarriedWithUser": ":x: | You are already married with {{user}}",
+        "ask": "{{user}} Do you want to marry {{author}}?",
+        "accept": "Accept",
+        "accepted": ":heart: | You and {{user}} are now married"
+    },
+    "divorce": {
+        "notMarried": ":x: | You aren't married",
+        "confirm2": "Are you sure you want to divorce?\nThis action can't be undone",
+        "divorced": "You are divorced now!",
+        "confirm": "Confirm"
+    },
+    "suggest": {
+        "success": ":white_check_mark: | Your suggestion has been sent to the developer, thank you for your help! :heart:"
+    },
+    "report": {
+        "success": ":white_check_mark: | Your report has been sent to the developer, thank you for your help! :heart:"
+    },
+    "status": {
+        "model": "CPU Model",
+        "guilds": "Guilds",
+        "users": "Users",
+        "ram": "RAM",
+        "cpuUsage": "CPU Usage",
+        "node": "Node.js",
+        "arch": "Architecture",
+        "platform": "Platform"
+    },
+    "invite": {
+        "description": "Do you want to invite me to your server?\nThank you so much, you can add me [clicking here](https://discord.com/oauth2/authorize?client_id=737044809650274325&scope=bot+applications.commands&permissions=269872255)"
+    },
+    "rps": {
+        "replies": {
+            "rock": "rock",
+            "paper": "paper",
+            "scissors": "scissors"
+        },
+        "tie": "It's a tie!",
+        "invalidChoice": "Invalid choice",
+        "clientWon": "{{result}}! You lost!",
+        "won3": "You won :3",
+        "won2": "You won >:3",
+        "won": "You won :D"
+    },
+    "fate": {
+        "couple": "couple",
+        "enemy": "enemies",
+        "lover": "lover",
+        "sibling": "sibling",
+        "parent": "parents",
+        "married": "married",
+        "friend": "friend",
+        "result": ":sparkles: | In a parallel universe <@{{user}}> and <@{{mention}}> are {{fate}}"
+    },
+    "cancel": {
+        "result": ":sob: | {{user}} canceled {{mention}} for reason `{{reason}}`"
+    },
+    "8ball": {
+        "yes": "Yes",
+        "no": "No",
+        "maybe": "Maybe",
+        "idk": "I don't know",
+        "idk2": "IDK :/",
+        "probably": "Probably",
+        "probablyyes": "Probably yes",
+        "probablyno": "Probably no"
+    },
+    "rank": {
+        "wrongPage": ":x: | This page doesn't exist",
+        "youAreIn": "You are in the position",
+        "position": "Position"
+    },
+    "pay": {
+        "self": ":x: | You can't pay yourself",
+        "notEnough": ":x: | You don't have enough money",
+        "alert": "💸 **|** Do you really want send {{amount}} FoxCoins to {{user}}? \nFoxy Team **Not responsible** for lost FoxCoins, so make sure you are transferring to a trusted person! \nTrading NSFW(+18) content in exchange for FoxCoins is prohibited!",
+        "success": ":moneybag: | Você transferiu {{amount}} FoxCoins para {{user}}",
+        "pay": "Pay"
+    },
+    "daily": {
+        "cooldown": ":x: | You already got your daily, wait **{{time}}**",
+        "premium": "You would win **{{normalMoney}} FoxCoins** but you are a **{{premiumType}}** subscriber and you won **{{doubleValue}}** more, **{{amount}} FoxCoins** and now has {{money}} FoxCoins",
+        "daily": "You won **{{amount}} FoxCoins** and now has {{money}} FoxCoins"
+    },
+    "background": {
+        "buy": {
+            "title": ":moneybag: | Background Store :3",
+            "invalid": ":x: | Invalid Code",
+            "alreadyOwned": ":x: | You already own this background",
+            "onlyDevs": ":x: | Only the developers can buy this background",
+            "purchase": "Purchase",
+            "price": "Price",
+            "preview": "🖼 | Background Preview",
+            "noMoney": ":x: | You don't have enough FoxCoins",
+            "success": ":moneybag: | You bought the background {{name}} for {{price}} FoxCoins, and it has already been set automatically in your profile! ;3"
+        },
+        "set": {
+            "title": "🖼 | Background inventory",
+            "notOwned": ":x: | You don't own this background",
+            "success": ":white_check_mark: | Your background has been set to {{name}}",
+            "description": "📝 | Your list: {{bgList}}"
+        },
+        "custom": {
+            "noPremium": "🦊 **|** You need to have a premium subscription",
+            "success": "🦊 **|** Background updated! Thanks to be premium >w<",
+            "save": "Save",
+            "title": "🖼  **|** Custom Background",
+            "alert": "By submitting, you confirm that the background does not have NSFW and that it may be banned if it contains content that violates Foxy and/or Discord terms",
+            "tooLarge": "This file is to large, the maximum supported is 8MB",
+            "invalidFormat": "Invalid format, send a `.png`, `.jpg` or `.jpeg` file"
+        }
+    },
+    "atm": {
+        "success": ":moneybag: | **{{user}}** has {{balance}} FoxCoins"
+    },
+    "step": {
+        "success": "You stepped on {{user}}"
+    },
+    "slap": {
+        "button": "Slap",
+        "success": "**{{author}}** slapped **{{target}}**"
+    },
+    "pat": {
+        "button": "Pat",
+        "sucess": "**{{author}}** patted **{{user}}**"
+    },
+    "kiss": {
+        "button": "Kiss",
+        "success": "**{{author}}** kissed **{{user}}**",
+        "self": "<:foxyscared:890688173951315988> | I don't want to kiss you! I love you as a friend :3"
+    },
+    "hug": {
+        "button": "Hug",
+        "success": "**{{author}}** hugged **{{user}}**"
+    },
+    "bite": {
+        "self": "☠ | You bit yourself, but you bit too hard, and now you're hurt, you didn't know you're a wolf with sharp teeth :/",
+        "client": "☠ | You tried to bite a fox, but it bit your face too hard, and you got hurt!",
+        "success": "{{user}} bit {{target}}",
+        "button": "Bit"
+    },
+    "attack": {
+        "attack": "**{{user}}** attacked **{{target}}**",
+        "button": "Attack"
+    },
+    "bet": {
+        "self": ":x: | You can't bet yourself",
+        "not-enough": ":x: | You don't have enough FoxCoins",
+        "not-enough-mention": ":x: | {{user}} doesn't have enough FoxCoins",
+        "placeholder": "Choose an option",
+        "heads": "heads",
+        "tails": "tails",
+        "accept": "Accept",
+        "choose": "Choose an option",
+        "ask": "{{user}}, {{author}} wants to bet with you with {{amount}} FoxCoins",
+        "win": ":moneybag: | {{author}} won {{amount}} FoxCoins! By {{user}}",
+        "lose": ":moneybag: | {{user}} won {{amount}} FoxCoins! By {{author}}"
+    },
+    "global": {
+        "noUser": ":x: | User not found"
+    }
+}
