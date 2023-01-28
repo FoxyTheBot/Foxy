@@ -36,10 +36,10 @@ npm i -g typescript
   "dblauth": "<TOPGG-AUTH>",  // Insert your Discord Bot List token (optional)
 
     "webhooks": {
-        "guilds": "URL", // Insert your webhook url 
-        "suggestions": "URL", // Insert your webhook url
-        "issues": "URL",// Insert your webhook url
-        "dbl": "URL" // Insert your webhook url
+        "guilds" {
+          "id": // Webhook ID
+          "token": // Webhook Token
+        }
     }
   }
 ```
@@ -52,20 +52,20 @@ npm i
 
 ## 💻 | Compiling Foxy
 
-Just type:
+- If you want to compile only server, type: `yarn build:server`
+- If you want to compile only Foxy client, type: `yarn build:client`
 
-```bash
-tsc
-```
+- To build all, type: `yarn build:all`
 
 <br>
 
 <p>Check the console to see if there are any errors... Well, we hope that there are none.</p>
 
-## 🤩 | Starting Foxy
-- You need to register slash commands running: node build/register.js
+## 🤩 | starting Foxy
+- I recommend you to start two terminals one for client and another one for server
 
-Now you can run Foxy using:
-```bash
-node .
-```
+- In the first terminal you start the Foxy Web Server (Not the website): `yarn run:server`
+- In the second terminal you start the Foxy Client: `yarn run:client`
+
+If you want to start all at once, just type:
+`yarn run:all`
