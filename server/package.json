@@ -1,0 +1,16 @@
+{
+  "name": "@foxy/server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/server/index.js",
+  "scripts": {
+    "build": "npx tsc --project tsconfig.json",
+    "start": "node build/server/index.js",
+    "debug": "node --inspect-brk build/server/index.js"
+  },
+  "author": "WinG4merBR",
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
