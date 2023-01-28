@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./build",
+    "baseUrl": "src",
+    "target": "ES2022",
+    "module": "commonJS",
+    "moduleResolution": "Node",
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/structures/json/*.json",
+    "*.ts",
+    "src/locales/**/*.json"
+  ]
+}
