@@ -47,7 +47,7 @@ npm i -g typescript
 
 ## ✨ | Install all required dependencies
 ```bash
-npm i
+yarn add
 ```
 
 ## 💻 | Compiling Foxy
