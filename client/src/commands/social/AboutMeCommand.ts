@@ -34,6 +34,6 @@ const AboutMeCommand = createCommand({
         userData.aboutme = text;
         await userData.save();
 
-        ctx.prettyResponse("✔", t("commands:aboutme.set", { aboutme: text }) );
+        ctx.prettyReply("✔", t("commands:aboutme.set", { aboutme: text }) );
     }
 });

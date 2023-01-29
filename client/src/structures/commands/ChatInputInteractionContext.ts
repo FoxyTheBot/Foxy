@@ -42,8 +42,8 @@ export default class {
         return this.interaction.channelId ?? 0n;
     }
 
-    prettyResponse(emoji: any, text: string, translateOptions = {}): string {
-        return `${emoji || '🐛'} **|** ${this.locale(text, translateOptions)}`;
+    prettyReply(emoji: any, text: string): string {
+        return `${emoji || '🐛'} **|** ${text}`;
     }
 
     async followUp(options: InteractionCallbackData): Promise<void> {

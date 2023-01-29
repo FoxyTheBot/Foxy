@@ -36,7 +36,7 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
         return this.interaction.data.customId.split('|').slice(3);
     }
 
-    prettyResponse(emoji: any, text: any, translateOptions = {}): string {
+    prettyReply(emoji: any, text: any, translateOptions = {}): string {
         return `${emoji || '🐛'} **|** ${this.locale(text, translateOptions)}`;
     }
 
