@@ -14,4 +14,5 @@ export interface FoxyClient extends Bot {
   isProduction: boolean;
   database: any;
   emotes: any;
+  config: Object;
 }

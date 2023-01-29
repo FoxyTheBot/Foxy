@@ -12,7 +12,7 @@ const setupFoxy = (client: FoxyClient): void => {
     client.isProduction = config.productionEnv;
     client.database = new DatabaseConnection(client);
     client.emotes = require("../json/emotes.json")
-    
+    client.config = require("../../../config.json")
     loadCommands();
 }
 
