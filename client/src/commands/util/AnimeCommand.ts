@@ -25,7 +25,7 @@ const AnimeCommand = createCommand({
         const anime = ctx.getOption<string>('anime', false);
 
         scraper.getInfoFromName(anime).then((data) => {
-            if (!data) return ctx.prettyResponse("🚫", t('commands:anime.notFound'));
+            if (!data) return ctx.prettyReply("🚫", t('commands:anime.notFound'));
 
             const embed = createEmbed({
                 title: data.title,
