@@ -15,4 +15,5 @@ export interface FoxyClient extends Bot {
   database: any;
   emotes: any;
   config: Object;
+  locale: any;
 }
