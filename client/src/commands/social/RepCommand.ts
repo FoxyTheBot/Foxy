@@ -19,7 +19,8 @@ const RepCommand = createCommand({
             descriptionLocalizations: {
                 "en-US": "The user you want to give reputation"
             },
-            type: ApplicationCommandOptionTypes.User
+            type: ApplicationCommandOptionTypes.User,
+            required: true
         }
     ],
     authorDataFields: [],
@@ -32,7 +33,9 @@ const RepCommand = createCommand({
         }
 
         if (user.id === ctx.author.id) {
-            ctx.prettyReply("🚫", t('commands:rep.self'));
+            ctx.foxyReply({
+                content: ctx.prettyReply("🚫", t('commands:rep.self'))
+            })
             return finishCommand();
         }
 
@@ -42,13 +45,19 @@ const RepCommand = createCommand({
 
         if (repCooldown - (Date.now() - authorData.lastRep) > 0) {
             const currentCooldown = ms(repCooldown - (Date.now() - authorData.lastRep));
-            return ctx.prettyReply(bot.emotes.error, t('commands:rep.cooldown', { cooldown: currentCooldown }))
+            ctx.foxyReply({
+                content: ctx.prettyReply(bot.emotes.error, t('commands:rep.cooldown', { cooldown: currentCooldown }))
+            })
+            finishCommand();
         } else {
             userData.repCount++;
             authorData.lastRep = Date.now();
             authorData.save();
             userData.save();
-            return ctx.prettyReply(bot.emotes.success, t('commands:rep.success', { user: user.username }))
+            ctx.foxyReply({
+                content: ctx.prettyReply(bot.emotes.success, t('commands:rep.success', { user: user.username }))
+            })
+            finishCommand();
         }
     }
 });

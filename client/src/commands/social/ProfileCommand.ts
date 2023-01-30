@@ -36,7 +36,7 @@ const ProfileCommand = createCommand({
         const profile = canvasGenerator.renderProfile();
 
         ctx.foxyReply({
-            content: t('commands:profile.your', { user: user.username }),
+            content: ctx.prettyReply("🖼", t('commands:profile.your', { user: user.username })),
             file: [{ name: 'profile.png', blob: await profile }]
         })
         finishCommand();
