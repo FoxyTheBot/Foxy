@@ -2,7 +2,6 @@ import { ImageSize, routes } from 'discordeno';
 import { User } from 'discordeno/transformers';
 import { bot } from "../../index";
 
-
 const getUserAvatar = (
   user: User,
   { size = 256, enableGif }: { size?: ImageSize; enableGif?: boolean } = {},
@@ -15,8 +14,8 @@ const getUserAvatar = (
       enableGif && hash.startsWith('a_') ? 'gif' : 'png',
     );
   }
-
-  return bot.utils.formatImageURL(routes.USER_DEFAULT_AVATAR(0));
+  
+  return bot.utils.formatImageURL(routes.USER_DEFAULT_AVATAR(Number(user.discriminator) % 5));
 };
 
 const mentionUser = (userId: bigint | string): string => `<@${userId}>`;
