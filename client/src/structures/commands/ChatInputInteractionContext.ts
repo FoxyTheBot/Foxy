@@ -63,11 +63,10 @@ export default class {
 
         this.replied = true;
 
-        await bot.helpers
-            .sendInteractionResponse(this.interaction.id, this.interaction.token, {
-                type: InteractionResponseTypes.ChannelMessageWithSource,
-                data: options,
-            })
+        await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
+            type: InteractionResponseTypes.ChannelMessageWithSource,
+            data: options,
+        })
     }
 
     getSubCommandGroup(required = false): string {

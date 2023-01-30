@@ -1,11 +1,6 @@
 import { InteractionResponseTypes, InteractionCallbackData } from 'discordeno';
 import { User } from 'discordeno/transformers';
-import { TFunction } from 'i18next';
-
 import { ComponentInteraction } from '../types/interaction';
-// import { logger } from '../../utils/logger';
-// import { EMOJIS } from '../constants';
-// import { Translation } from '../../types/i18next';
 import { bot } from "../../index";
 ;
 
@@ -14,7 +9,7 @@ export type CanResolve = 'users' | 'members' | false;
 export default class <InteractionType extends ComponentInteraction = ComponentInteraction> {
     private replied = false;
 
-    constructor(public interaction: InteractionType, public i18n: TFunction) { }
+    constructor(public interaction: InteractionType) { }
 
     get user(): User {
         return this.interaction.user;
@@ -36,8 +31,8 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
         return this.interaction.data.customId.split('|').slice(3);
     }
 
-    prettyReply(emoji: any, text: any, translateOptions = {}): string {
-        return `${emoji || '🐛'} **|** ${this.locale(text, translateOptions)}`;
+    prettyReply(emoji: any, text: any): string {
+        return `${emoji || '🐛'} **|** ${text}`;
     }
 
     async followUp(options: InteractionCallbackData): Promise<void> {
@@ -71,15 +66,12 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
             })
     }
 
-    async respondInteraction(
-        options: InteractionCallbackData & { attachments?: unknown[] },
-    ): Promise<void> {
+    async respondInteraction(options: InteractionCallbackData & { attachments?: unknown[] },): Promise<void> {
         if (!this.replied) {
-            await bot.helpers
-                .sendInteractionResponse(this.interaction.id, this.interaction.token, {
-                    type: InteractionResponseTypes.ChannelMessageWithSource,
-                    data: options,
-                })
+            await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
+                type: InteractionResponseTypes.ChannelMessageWithSource,
+                data: options,
+            })
             this.replied = true;
             return;
         }
@@ -91,19 +83,13 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
     async foxyReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
         if (!this.replied) {
             this.replied = true;
-            await bot.helpers
-                .sendInteractionResponse(this.interaction.id, this.interaction.token, {
-                    type: InteractionResponseTypes.UpdateMessage,
-                    data: options,
-                })
+            await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
+                type: InteractionResponseTypes.UpdateMessage,
+                data: options,
+            })
             return;
         }
 
-        await bot.helpers
-            .editOriginalInteractionResponse(this.interaction.token, options)
-    }
-
-    locale(text: any, options: Record<string, unknown> = {}): string {
-        return this.i18n(text, options);
+        await bot.helpers.editOriginalInteractionResponse(this.interaction.token, options)
     }
 }

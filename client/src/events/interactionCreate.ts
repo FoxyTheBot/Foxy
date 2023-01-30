@@ -3,17 +3,27 @@ import { MessageFlags } from '../utils/discord/Message';
 import { bot } from '../index';
 import ChatInputInteractionContext from '../structures/commands/ChatInputInteractionContext';
 import { createEmbed } from '../utils/discord/Embed';
+import { InteractionTypes } from 'discordeno/types';
+import { componentExecutor } from '../structures/commands/ComponentExecutor';
+
 module.exports = async (client, interaction) => {
 
     const user = await bot.database.getUser(interaction.user.id);
     const locale = global.t = i18next.getFixedT(user.language || 'pt-BR');
+    bot.locale = locale;
     const command = bot.commands.get(interaction.data?.name);
     const ctx = new ChatInputInteractionContext(
         interaction,
         user
     )
-    function FoxyHandler() {
-        new Promise(async (res, rej) => {
+
+    if (interaction.type === InteractionTypes.MessageComponent || interaction.type === InteractionTypes.ModalSubmit) {
+        componentExecutor(interaction);
+        return;
+    }
+
+    async function FoxyHandler() {
+        await new Promise(async (res) => {
             try {
                 command.execute(ctx, res, locale);
             } catch (e) {

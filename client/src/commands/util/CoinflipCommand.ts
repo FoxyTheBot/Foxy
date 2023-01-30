@@ -2,7 +2,10 @@ import { createCommand } from "../../structures/commands/createCommand";
 
 const CoinflipCommand = createCommand({
     path: '',
-    name: "coinflip",
+    name: "caracoroa",
+    nameLocalizations: {
+        "en-US": "coinflip"
+    },
     description: "Jogue cara ou coroa",
     descriptionLocalizations: {
         "en-US": "Play heads or tails"

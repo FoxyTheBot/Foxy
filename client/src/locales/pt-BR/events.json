@@ -15,5 +15,9 @@
     },
     "interactionCreate": {
         "commandError": "Infelizmente ocorreu um erro e não consegui executar esse comando, desculpa <:foxymedu:890688173951315988>, mas o erro já foi reportado para o meu desenvolvedor <:foxysunglasses:890688144280784926>"
+    },
+
+    "error": {
+        "title": "Ocorreu um erro no comando `{{cmd}}`! Isso foi reportado para o meu desenvolvedor!"
     }
 }

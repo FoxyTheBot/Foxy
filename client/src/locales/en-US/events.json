@@ -15,5 +15,8 @@
     },
     "interactionCreate": {
         "commandError": "Unfortunately, an error has occurred when trying to run this command, sorry <:foxymedu:890688173951315988>, the error also was sent to the developer <:foxysunglasses:890688144280784926>"
+    },
+    "error": {
+        "title": "An error has occured while running `{{cmd}} command` command! This error was sent to the developer."
     }
 }

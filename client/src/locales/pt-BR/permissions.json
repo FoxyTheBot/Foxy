@@ -44,5 +44,7 @@
   "PrioritySpeaker": "Prioridade de Fala",
   "Stream": "Transmitir",
   "ManageEmojisAndStickers": "Gerenciar Emojis e Stickers",
-  "ViewGuildInsights": "Ver Insights do Servidor"
+  "ViewGuildInsights": "Ver Insights do Servidor",
+  "NOT_INTERACTION_OWNER": "❌ **|** Eii! você não é {{owner}} para pressionar esse botão!",
+  "UNKNOWN_INTERACTION": "❌ **|** Hm... Eu não reconheço essa interação!"
 }

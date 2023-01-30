@@ -107,7 +107,7 @@ export default class GenerateImage {
         ctx.arc(125, 700, 100, 0, Math.PI * 2, true);
         ctx.closePath();
         ctx.clip();
-        let getAvatar = getUserAvatar(this.user.id, { size: 2048 });
+        let getAvatar = getUserAvatar(this.user, { size: 2048 });
         if (getAvatar.includes(".jpg")) {
             getAvatar = getAvatar.replace(".jpg", "");
         }
