@@ -7,7 +7,7 @@ import { createActionRow, createButton, createCustomId } from "../../utils/disco
 
 const executeDivorce = async (ctx: ComponentInteractionContext) => {
     const userData = await bot.database.getUser(ctx.user.id);
-    const partnerId = await bot.database.getUser(userData.marriedWith);
+    const partnerId = await userData.marriedWith;
 
     if (!partnerId) {
         ctx.foxyReply({
@@ -17,14 +17,15 @@ const executeDivorce = async (ctx: ComponentInteractionContext) => {
         return;
     }
 
+    const partnerData = await bot.database.getUser(partnerId);
     const userInfo = await bot.helpers.getUser(userData.marriedWith);
 
     userData.marriedWith = null;
     userData.marriedDate = null;
-    partnerId.marriedWith = null;
-    partnerId.marriedDate = null;
+    partnerData.marriedWith = null;
+    partnerData.marriedDate = null;
     await userData.save();
-    await partnerId.save();
+    await partnerData.save();
 
     ctx.foxyReply({
         content: ctx.prettyReply(bot.emotes.error, bot.locale("commands:divorce.divorced", { user: userInfo.username })),
@@ -33,10 +34,10 @@ const executeDivorce = async (ctx: ComponentInteractionContext) => {
             label: bot.locale("commands:divorce.confirmed"),
             style: ButtonStyles.Danger,
             disabled: true
-        })])],       
-        
+        })])],
+
     })
-    
+
 }
 
 const DivorceCommand = createCommand({
@@ -54,24 +55,26 @@ const DivorceCommand = createCommand({
     commandRelatedExecutions: [executeDivorce],
     execute: async (ctx, finishCommand, t) => {
         const userData = await bot.database.getUser(ctx.author.id);
-        const partnerId = await bot.database.getUser(userData.marriedWith);
+        const partnerId = await userData.marriedWith;
 
         if (!partnerId) {
-            ctx.prettyReply(bot.emotes.error, t("commands:divorce.notMarried"));
+            ctx.foxyReply({
+                content: ctx.prettyReply(bot.emotes.error, t("commands:divorce.notMarried")),
+                flags: MessageFlags.EPHEMERAL
+            })
             return finishCommand();
         }
 
         const userInfo = await bot.helpers.getUser(userData.marriedWith);
 
-        const confirmButton = createButton({
-            customId: createCustomId(0, ctx.author.id, ctx.commandId),
-            label: t("commands:divorce.confirm"),
-            style: ButtonStyles.Danger
-        });
-
         ctx.foxyReply({
             content: t("commands:divorce.confirm2", { user: userInfo.username }),
-            components: [createActionRow([confirmButton])],
+            components: [createActionRow([createButton({
+                customId: createCustomId(0, ctx.author.id, ctx.commandId),
+                label: t("commands:divorce.confirm"),
+                style: ButtonStyles.Danger
+            }),
+            ])],
             flags: MessageFlags.EPHEMERAL
         })
 
