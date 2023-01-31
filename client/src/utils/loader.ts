@@ -18,7 +18,7 @@ export async function loadLocales(path: string): Promise<void> {
             returnEmptyString: false,
             returnObjects: true
         });
-        return logger.localeSuccess(`Loaded ${i18next.languages.length} languages!`);
+        return logger.success(`Loaded ${i18next.languages.length} languages!`, "LOCALES");
     } catch (error) {
         return logger.error(`failed to load locales: `, error);
     }

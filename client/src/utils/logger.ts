@@ -7,16 +7,8 @@ const logger = {
         console.info(`\u001b[94m[INFO]\u001b[0m -`, ...args);
     },
 
-    success: (...args: any[]): void => {
-        console.info(`\u001b[32m[READY]\u001b[0m -`, ...args);
-    },
-
-    databaseSuccess: (...args: any[]): void => {
-        console.info(`\u001b[32m[DATABASE]\u001b[0m -`, ...args);
-    },
-
-    localeSuccess: (...args: any[]): void => {
-        console.info(`\u001b[32m[LOCALES]\u001b[0m -`, ...args);
+    success: (eventDescription: string, eventName?: string): void => {
+        console.info(`\u001b[32m[${eventName || "READY"}]\u001b[0m -`, eventDescription);
     },
 
     warn: (...args: any[]): void => {

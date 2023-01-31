@@ -18,7 +18,7 @@ const updateApplicationCommands = async (): Promise<void> => {
             return p;
         }, []);
         await bot.helpers.upsertGlobalApplicationCommands(allCommands);
-        logger.success(`Loaded ${allCommands.length} commands`)
+        logger.success(`Loaded ${allCommands.length} commands`, "COMMANDS")
     
     } catch (e) {
         logger.error('Error while registering commands', e);

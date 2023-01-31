@@ -2,10 +2,8 @@ import { InteractionResponseTypes, InteractionCallbackData } from 'discordeno';
 import { User } from 'discordeno/transformers';
 import { ComponentInteraction } from '../types/interaction';
 import { bot } from "../../index";
-;
 
 export type CanResolve = 'users' | 'members' | false;
-
 export default class <InteractionType extends ComponentInteraction = ComponentInteraction> {
     private replied = false;
 
@@ -32,15 +30,14 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
     }
 
     prettyReply(emoji: any, text: any): string {
-        return `${emoji || '🐛'} **|** ${text}`;
+        return `${emoji || '🦊'} **|** ${text}`;
     }
 
     async followUp(options: InteractionCallbackData): Promise<void> {
-        await bot.helpers
-            .sendFollowupMessage(this.interaction.token, {
-                type: InteractionResponseTypes.ChannelMessageWithSource,
-                data: options,
-            })
+        await bot.helpers.sendFollowupMessage(this.interaction.token, {
+            type: InteractionResponseTypes.ChannelMessageWithSource,
+            data: options,
+        })
     }
 
     async respondWithModal(options: InteractionCallbackData): Promise<void> {
@@ -48,22 +45,10 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
 
         this.replied = true;
 
-        await bot.helpers
-            .sendInteractionResponse(this.interaction.id, this.interaction.token, {
-                type: InteractionResponseTypes.Modal,
-                data: options,
-            })
-    }
-
-    async ack(): Promise<void> {
-        if (this.replied) return;
-
-        this.replied = true;
-
-        await bot.helpers
-            .sendInteractionResponse(this.interaction.id, this.interaction.token, {
-                type: InteractionResponseTypes.DeferredUpdateMessage,
-            })
+        await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
+            type: InteractionResponseTypes.Modal,
+            data: options,
+        })
     }
 
     async respondInteraction(options: InteractionCallbackData & { attachments?: unknown[] },): Promise<void> {
@@ -76,8 +61,7 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
             return;
         }
 
-        await bot.helpers
-            .editOriginalInteractionResponse(this.interaction.token, options)
+        await bot.helpers.editOriginalInteractionResponse(this.interaction.token, options)
     }
 
     async foxyReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {

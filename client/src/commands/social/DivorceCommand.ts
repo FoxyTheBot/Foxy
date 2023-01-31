@@ -1,4 +1,5 @@
 import { ButtonStyles } from "discordeno/types";
+import { MessageFlags } from "../../utils/discord/Message";
 import { bot } from "../../index";
 import ComponentInteractionContext from "../../structures/commands/ComponentInteractionContext";
 import { createCommand } from "../../structures/commands/createCommand";
@@ -10,7 +11,8 @@ const executeDivorce = async (ctx: ComponentInteractionContext) => {
 
     if (!partnerId) {
         ctx.foxyReply({
-            content: ctx.prettyReply(bot.emotes.error, bot.locale("commands:divorce.notMarried"))
+            content: ctx.prettyReply(bot.emotes.error, bot.locale("commands:divorce.notMarried")),
+            flags: MessageFlags.EPHEMERAL
         });
         return;
     }
@@ -24,9 +26,17 @@ const executeDivorce = async (ctx: ComponentInteractionContext) => {
     await userData.save();
     await partnerId.save();
 
-    ctx.prettyReply(bot.emotes.error, bot.locale("commands:divorce.divorced", { user: userInfo.username }));
-    const getButton = ctx.interaction.message.components[0].components[0];
-    getButton.disabled = true;
+    ctx.foxyReply({
+        content: ctx.prettyReply(bot.emotes.error, bot.locale("commands:divorce.divorced", { user: userInfo.username })),
+        components: [createActionRow([createButton({
+            customId: createCustomId(0, ctx.user.id, ctx.commandId),
+            label: bot.locale("commands:divorce.confirm"),
+            style: ButtonStyles.Danger,
+            disabled: true
+        })])],       
+        
+    })
+    
 }
 
 const DivorceCommand = createCommand({
@@ -61,7 +71,8 @@ const DivorceCommand = createCommand({
 
         ctx.foxyReply({
             content: t("commands:divorce.confirm2", { user: userInfo.username }),
-            components: [createActionRow([confirmButton])]
+            components: [createActionRow([confirmButton])],
+            flags: MessageFlags.EPHEMERAL
         })
 
         finishCommand();

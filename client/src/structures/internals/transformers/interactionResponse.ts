@@ -26,7 +26,6 @@ const transformInteraction = (
           embeds: payload.data.embeds?.map((embed) => bot.transformers.reverse.embed(bot, embed)),
           allowed_mentions: bot.transformers.reverse.allowedMentions(
             bot,
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             payload.data.allowedMentions!,
           ),
           components: payload.data.components?.map((component) =>
