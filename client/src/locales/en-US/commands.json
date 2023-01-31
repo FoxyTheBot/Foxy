@@ -219,7 +219,8 @@
         "notMarried": "You aren't married",
         "confirm2": "Are you sure you want to divorce?\nThis action can't be undone",
         "divorced": "You are divorced now!",
-        "confirm": "Confirm"
+        "confirm": "Divorce",
+        "confirmed": "Divorced"
     },
     "suggest": {
         "success": "Your suggestion has been sent to the developer, thank you for your help! :heart:"

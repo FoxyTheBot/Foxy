@@ -30,7 +30,7 @@ const executeDivorce = async (ctx: ComponentInteractionContext) => {
         content: ctx.prettyReply(bot.emotes.error, bot.locale("commands:divorce.divorced", { user: userInfo.username })),
         components: [createActionRow([createButton({
             customId: createCustomId(0, ctx.user.id, ctx.commandId),
-            label: bot.locale("commands:divorce.confirm"),
+            label: bot.locale("commands:divorce.confirmed"),
             style: ButtonStyles.Danger,
             disabled: true
         })])],       

@@ -217,7 +217,8 @@
         "notMarried": "Você não está casado",
         "confirm2": "Você tem certeza que quer divorciar?",
         "divorced": "...Então é isso, se divorciar é sim uma coisa triste, Da próxima vez ame alguém que realmente mereça e respeite você, sim isso parece ser difícil pois o amor é algo cego e incontrolável... Mas é melhor estar sozinho do que mal acompanhado, eu confio em você! :heart:",
-        "confirm": "Confimar"
+        "confirm": "Divorciar",
+        "confirmed": "Divorciado"
     },
     "suggest": {
         "success": "Obrigada por me ajudar {{user}}, sua sugestão `{{content}}` foi enviada para o meu desenvolvedor <3"
