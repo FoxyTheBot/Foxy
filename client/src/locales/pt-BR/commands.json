@@ -19,7 +19,10 @@
     },
     "lang": {
         "title": "Escolha seu idioma",
-        "default": "Seu idioma está definido como Português do Brasil"
+        "default": "Seu idioma está definido como Português do Brasil",
+        "pt-BR": "Seu idioma foi alterado para Português do Brasil",
+        "en-US": "Your language has been changed to English",
+        "placeholder": "Idioma alterado"
     },
     "anime": {
         "info": {

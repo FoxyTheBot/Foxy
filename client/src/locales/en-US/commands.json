@@ -19,7 +19,10 @@
     },
     "lang": {
         "title": "Choose your language",
-        "default": "Your default language is set to English"
+        "default": "Your default language is set to English",
+        "en-US": "Your language has been changed to English",
+        "pt-BR": "Sua linguagem foi alterada para Português do Brasil",
+        "placeholder": "Language changed"
     },
     "anime": {
         "info": {
