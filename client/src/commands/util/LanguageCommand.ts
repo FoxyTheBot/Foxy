@@ -37,9 +37,9 @@ const LanguageCommand = createCommand({
     nameLocalizations: {
         'en-US': 'language'
     },
-    description: "Altere o idioma do bot",
+    description: "Altere o idioma da Foxy",
     descriptionLocalizations: {
-        "en-US": "Change the bot's language"
+        "en-US": "Change the Foxy's language"
     },
     category: 'social',
     authorDataFields: [],
