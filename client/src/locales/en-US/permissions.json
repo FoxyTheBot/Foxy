@@ -45,6 +45,6 @@
     "Stream": "Stream",
     "ManageEmojisAndStickers": "Manage Emojis and Stickers",
     "ViewGuildInsights": "View Guild Insights",
-    "NOT_INTERACTION_OWNER": "❌ **|** Hold up! You're not {{owner}} to do this!",
-    "UNKNOWN_INTERACTION": "❌ **|** Hm... I don't recognize this interaction!"
+    "NOT_INTERACTION_OWNER": "Hold up! You're not {{owner}} to do this!",
+    "UNKNOWN_INTERACTION": "Hm... I don't recognize this interaction!"
 }

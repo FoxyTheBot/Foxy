@@ -75,5 +75,4 @@ router.get("/memes/namorada.png", (req, res) => {
 router.get("/memes/perfeito.png", (req, res) => {
     res.sendFile("perfeito.png", { root: "../assets" })
 })
-
 module.exports = router;

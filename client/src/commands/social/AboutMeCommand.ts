@@ -17,6 +17,9 @@ const AboutMeCommand = createCommand({
     options: [
         {
             name: "text",
+            nameLocalizations: {
+                'pt-BR': 'texto',
+            },
             description: "O texto que você quer definir",
             descriptionLocalizations: {
                 "en-US": "The text you want to set"

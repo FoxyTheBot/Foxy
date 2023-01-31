@@ -784,7 +784,7 @@
 
 "@top-gg/sdk@^3.1.3":
   version "3.1.3"
-  resolved "https://registry.npmjs.org/@top-gg/sdk/-/sdk-3.1.3.tgz"
+  resolved "https://registry.yarnpkg.com/@top-gg/sdk/-/sdk-3.1.3.tgz#197e2726c76cb80ec19b83d7e2a68e212ee913e7"
   integrity sha512-jvj3jH8BY35AXKFXkap2cJRuFMOz1yBvBvCvNq90gfvplKWDYqGPQKt+nOhT/hdYc+XcKskY/c5OOWDX0xbg2Q==
   dependencies:
     node-fetch "^2.6.1"
@@ -1322,7 +1322,7 @@ etag@~1.8.1:
 
 express@^4.18.2:
   version "4.18.2"
-  resolved "https://registry.npmjs.org/express/-/express-4.18.2.tgz"
+  resolved "https://registry.yarnpkg.com/express/-/express-4.18.2.tgz#3fabe08296e930c796c19e3c516979386ba9fd59"
   integrity sha512-5/PsL6iGPdfQ/lKM1UuielYgv3BUoJfz1aUwU9vHZ+J7gyvwdQXFEBIEIaxeGf0GIcreATNyBExtalisDbuMqQ==
   dependencies:
     accepts "~1.3.8"
@@ -1862,9 +1862,9 @@ ms@2.1.2:
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-ms@2.1.3:
+ms@2.1.3, ms@^2.1.3:
   version "2.1.3"
-  resolved "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
 nan@^2.17.0:
@@ -2331,7 +2331,7 @@ toidentifier@1.0.1:
 
 topgg-autoposter@^2.0.1:
   version "2.0.1"
-  resolved "https://registry.npmjs.org/topgg-autoposter/-/topgg-autoposter-2.0.1.tgz"
+  resolved "https://registry.yarnpkg.com/topgg-autoposter/-/topgg-autoposter-2.0.1.tgz#321d295836743cb19b90a434e7cbb319f9f3cc69"
   integrity sha512-zoiNqXdcZiTC2C3U1Yz8QI4kibsbKBcSn6Kexf9pKs2RfHgDD3DOhZGUqENkXA7p2yKbk13e1mw5mWGa7Wpyfw==
   dependencies:
     "@jpbberry/typed-emitter" "^1.0.1"

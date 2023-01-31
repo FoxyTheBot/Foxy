@@ -3,7 +3,6 @@ import { bot } from '../../index';
 import { createCommand } from '../../structures/commands/createCommand';
 import { User } from 'discordeno/transformers';
 import GenerateImage from '../../structures/GenerateImage';
-import blobutil from 'blob-util';
 
 const ProfileCommand = createCommand({
     path: '',
@@ -15,6 +14,7 @@ const ProfileCommand = createCommand({
     options: [
         {
             name: 'user',
+            nameLocalizations: { "pt-BR": 'usuário' },
             type: ApplicationCommandOptionTypes.User,
             description: 'Usuário que você quer ver o perfil',
             descriptionLocalizations: { 'en-US': 'User you want to see the profile' },

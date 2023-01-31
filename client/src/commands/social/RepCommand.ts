@@ -15,6 +15,7 @@ const RepCommand = createCommand({
     options: [
         {
             name: "user",
+            nameLocalizations: { "pt-BR": "usuário" },
             description: "O usuário que você quer dar reputação",
             descriptionLocalizations: {
                 "en-US": "The user you want to give reputation"

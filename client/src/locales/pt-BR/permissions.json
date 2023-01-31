@@ -45,6 +45,6 @@
   "Stream": "Transmitir",
   "ManageEmojisAndStickers": "Gerenciar Emojis e Stickers",
   "ViewGuildInsights": "Ver Insights do Servidor",
-  "NOT_INTERACTION_OWNER": "❌ **|** Eii! você não é {{owner}} para pressionar esse botão!",
-  "UNKNOWN_INTERACTION": "❌ **|** Hm... Eu não reconheço essa interação!"
+  "NOT_INTERACTION_OWNER": "Eii! você não é {{owner}} para pressionar esse botão!",
+  "UNKNOWN_INTERACTION": "Hm... Eu não reconheço essa interação!"
 }
