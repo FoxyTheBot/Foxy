@@ -47,10 +47,9 @@ const LanguageCommand = createCommand({
 
     execute: async (ctx, finishCommand, t) => {        
         ctx.foxyReply({
-            content: ctx.prettyReply("🦊", "Select your default language"),
             components: [createActionRow([createSelectMenu({
                 customId: createCustomId(0, ctx.author.id, ctx.commandId),
-                placeholder: "Language list",
+                placeholder: "Select a language",
                 options: [
                     {
                         label: "Português do Brasil",
