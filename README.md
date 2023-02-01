@@ -1,8 +1,6 @@
 <p align="center">
 <img height="150" src="https://cdn.discordapp.com/attachments/782995363548102676/1066111279611261010/foxysunglasses.png" align="left">
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/H2H4D9T3S)
-
 <h1 align="left">🦊 Foxy</h1>
 
 
