@@ -47,6 +47,7 @@ const MarryCommand = createCommand({
             "en-US": "User you want to marry"
         },
         type: ApplicationCommandOptionTypes.User,
+        required: true
     }],
     category: "social",
     authorDataFields: [],
