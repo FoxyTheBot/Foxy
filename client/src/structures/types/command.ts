@@ -2,7 +2,7 @@ import { CreateSlashApplicationCommand } from 'discordeno';
 import ComponentInteractionContext from '../commands/ComponentInteractionContext';
 import ChatInputInteractionContext from '../commands/ChatInputInteractionContext';
 
-type CommandCategory = 'economy' | 'roleplay' | 'fun' | 'actions' | 'info' | 'social' | 'util';
+type CommandCategory = 'economy' | 'roleplay' | 'fun' | 'actions' | 'social' | 'util';
 
 export interface ChatInputCommandConfig extends CreateSlashApplicationCommand {
   devsOnly?: true;
@@ -20,15 +20,6 @@ export interface ChatInputInteractionCommand extends Readonly<ChatInputCommandCo
   ) => Promise<unknown>;
 
   readonly commandRelatedExecutions?: ((
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ctx: ComponentInteractionContext<any>,
   ) => Promise<unknown>)[];
-}
-
-export interface UsedCommandData {
-  authorId: string;
-  guildId: string;
-  commandName: string;
-  data: number;
-  args: unknown[];
 }
