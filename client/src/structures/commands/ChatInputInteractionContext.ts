@@ -42,7 +42,7 @@ export default class {
         return this.interaction.channelId ?? 0n;
     }
 
-    prettyReply(emoji: any, text: string): string {
+    makeReply(emoji: any, text: string): string {
         return `${emoji || '🐛'} **|** ${text}`;
     }
 

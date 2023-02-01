@@ -46,7 +46,7 @@ const cancelCommand = createCommand({
         const string = ctx.getOption<string>('reason', false);
 
         ctx.foxyReply({
-            content: ctx.prettyReply("❌", t('commands:cancel.result', { user: user.username, reason: string, mention: `<@!${user.id}>` }))
+            content: ctx.makeReply("❌", t('commands:cancel.result', { user: user.username, reason: string, mention: `<@!${user.id}>` }))
         })
     
         finishCommand();

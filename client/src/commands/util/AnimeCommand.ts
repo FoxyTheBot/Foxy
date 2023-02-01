@@ -27,7 +27,7 @@ const AnimeCommand = createCommand({
         await ctx.defer();
         scraper.getInfoFromName(anime).then(async (data) => {
             if (!data) return ctx.foxyReply({
-                content: ctx.prettyReply("🚫", t('commands:anime.notFound'))
+                content: ctx.makeReply("🚫", t('commands:anime.notFound'))
             })
 
             const embed = createEmbed({

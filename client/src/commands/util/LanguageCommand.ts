@@ -11,7 +11,7 @@ const changeLanguage = async (ctx: ComponentInteractionContext) => {
     await userData.save();
 
     await ctx.foxyReply({
-        content: ctx.prettyReply("🦊", bot.locale(`commands:lang.${language}`)),
+        content: ctx.makeReply("🦊", bot.locale(`commands:lang.${language}`)),
         flags: MessageFlags.EPHEMERAL,
         components: [createActionRow([createSelectMenu({
             customId: createCustomId(0, ctx.user.id, ctx.commandId),

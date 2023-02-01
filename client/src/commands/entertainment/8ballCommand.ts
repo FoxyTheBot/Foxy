@@ -39,7 +39,7 @@ const eightBallCommand = createCommand({
         const result = results[Math.floor(Math.random() * results.length)];
 
         ctx.foxyReply({
-            content: ctx.prettyReply('🎱', result)
+            content: ctx.makeReply('🎱', result)
         });
         finishCommand();
     }

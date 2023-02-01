@@ -11,7 +11,7 @@ const executeDivorce = async (ctx: ComponentInteractionContext) => {
 
     if (!partnerId) {
         ctx.foxyReply({
-            content: ctx.prettyReply(bot.emotes.error, bot.locale("commands:divorce.notMarried")),
+            content: ctx.makeReply(bot.emotes.error, bot.locale("commands:divorce.notMarried")),
             flags: MessageFlags.EPHEMERAL
         });
         return;
@@ -28,7 +28,7 @@ const executeDivorce = async (ctx: ComponentInteractionContext) => {
     await partnerData.save();
 
     ctx.foxyReply({
-        content: ctx.prettyReply(bot.emotes.error, bot.locale("commands:divorce.divorced", { user: userInfo.username })),
+        content: ctx.makeReply(bot.emotes.error, bot.locale("commands:divorce.divorced", { user: userInfo.username })),
         components: [createActionRow([createButton({
             customId: createCustomId(0, ctx.user.id, ctx.commandId),
             label: bot.locale("commands:divorce.confirmed"),
@@ -59,7 +59,7 @@ const DivorceCommand = createCommand({
 
         if (!partnerId) {
             ctx.foxyReply({
-                content: ctx.prettyReply(bot.emotes.error, t("commands:divorce.notMarried")),
+                content: ctx.makeReply(bot.emotes.error, t("commands:divorce.notMarried")),
                 flags: MessageFlags.EPHEMERAL
             })
             return finishCommand();

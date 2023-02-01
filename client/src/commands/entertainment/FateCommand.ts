@@ -32,7 +32,7 @@ const FateCommand = createCommand({
     
         if (!user) {
             ctx.foxyReply({
-                content: ctx.prettyReply(bot.emotes.scared, t('commands:global.noUser'))
+                content: ctx.makeReply(bot.emotes.scared, t('commands:global.noUser'))
             })
         }
 
@@ -48,7 +48,7 @@ const FateCommand = createCommand({
 
         const rand = list[Math.floor(Math.random() * list.length)];
         await ctx.foxyReply({
-            content: ctx.prettyReply(bot.emotes.success, t('commands:fate.result', { user: ctx.author.id, fate: rand, mention: user.id }))
+            content: ctx.makeReply(bot.emotes.success, t('commands:fate.result', { user: ctx.author.id, fate: rand, mention: user.id }))
         });
 
         finishCommand();

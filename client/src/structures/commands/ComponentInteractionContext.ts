@@ -13,7 +13,7 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
         return this.interaction.user;
     }
 
-    get commandAuthor(): User {
+    get author(): User {
         return this.interaction.message?.interaction?.user as User;
     }
 
@@ -29,26 +29,8 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
         return this.interaction.data.customId.split('|').slice(3);
     }
 
-    prettyReply(emoji: any, text: any): string {
+    makeReply(emoji: any, text: any): string {
         return `${emoji || '🦊'} **|** ${text}`;
-    }
-
-    async followUp(options: InteractionCallbackData): Promise<void> {
-        await bot.helpers.sendFollowupMessage(this.interaction.token, {
-            type: InteractionResponseTypes.ChannelMessageWithSource,
-            data: options,
-        })
-    }
-
-    async respondWithModal(options: InteractionCallbackData): Promise<void> {
-        if (this.replied) return;
-
-        this.replied = true;
-
-        await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
-            type: InteractionResponseTypes.Modal,
-            data: options,
-        })
     }
 
     async respondInteraction(options: InteractionCallbackData & { attachments?: unknown[] },): Promise<void> {

@@ -6,18 +6,18 @@ import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
 import { User } from "discordeno/transformers";
 
 const executeMarry = async (ctx: ComponentInteractionContext) => {
-    const userData = await bot.database.getUser(ctx.commandAuthor.id);
+    const userData = await bot.database.getUser(ctx.author.id);
     const partnerData = await bot.database.getUser(ctx.interaction.user.id);
 
     userData.marriedWith = ctx.user.id;
     userData.marriedDate = new Date();
-    partnerData.marriedWith = ctx.commandAuthor.id;
+    partnerData.marriedWith = ctx.author.id;
     partnerData.marriedDate = new Date();
     await userData.save();
     await partnerData.save();
 
     ctx.foxyReply({
-        content: ctx.prettyReply("❤", bot.locale("commands:marry.accepted")),
+        content: ctx.makeReply("❤", bot.locale("commands:marry.accepted")),
         components: [createActionRow([createButton({
             customId: createCustomId(0, ctx.interaction.data.targetId, ctx.commandId),
             label: bot.locale("commands:marry.accept"),
@@ -57,21 +57,21 @@ const MarryCommand = createCommand({
 
         if (!user) {
             ctx.foxyReply({
-                content: ctx.prettyReply(bot.emotes.error, t('commands:global.noUser'))
+                content: ctx.makeReply(bot.emotes.error, t('commands:global.noUser'))
             })
             return finishCommand();
         }
 
         if (user.id === ctx.author.id) {
             ctx.foxyReply({
-                content: ctx.prettyReply(bot.emotes.error, t('commands:marry.self'))
+                content: ctx.makeReply(bot.emotes.error, t('commands:marry.self'))
             })
             return finishCommand();
         }
 
         if (user.id === bot.id) {
             ctx.foxyReply({
-                content: ctx.prettyReply(bot.emotes.error, t('commands:marry.bot'))
+                content: ctx.makeReply(bot.emotes.error, t('commands:marry.bot'))
             })
             return finishCommand();
         }
@@ -81,27 +81,27 @@ const MarryCommand = createCommand({
 
         if (futurePartnerData.marriedWith) {
             ctx.foxyReply({
-                content: ctx.prettyReply(bot.emotes.error, t('commands:marry.alreadyMarriedWithSomeone'))
+                content: ctx.makeReply(bot.emotes.error, t('commands:marry.alreadyMarriedWithSomeone'))
             })
             return finishCommand();
         }
 
         if (userData.marriedWith) {
             ctx.foxyReply({
-                content: ctx.prettyReply(bot.emotes.error, t('commands:marry.alreadyMarried'))
+                content: ctx.makeReply(bot.emotes.error, t('commands:marry.alreadyMarried'))
             })
             return finishCommand();
         }
 
         if (user.id === userData.marriedWith) {
             ctx.foxyReply({
-                content: ctx.prettyReply(bot.emotes.error, t('commands:marry.alreadyMarriedWithUser', { user: user.username }))
+                content: ctx.makeReply(bot.emotes.error, t('commands:marry.alreadyMarriedWithUser', { user: user.username }))
             })
             return finishCommand();
         }
 
         ctx.foxyReply({
-            content: ctx.prettyReply("❤", t('commands:marry.ask', { user: user.username, author: ctx.author.username })),
+            content: ctx.makeReply("❤", t('commands:marry.ask', { user: user.username, author: ctx.author.username })),
             components: [createActionRow([createButton({
                 customId: createCustomId(0, user.id, ctx.commandId),
                 label: t('commands:marry.accept'),

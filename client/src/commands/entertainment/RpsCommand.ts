@@ -34,12 +34,12 @@ const RpsCommand = createCommand({
 
         if (!acceptedReplies.includes(string)) {
             return ctx.foxyReply({
-                content: ctx.prettyReply("❌", t('commands:rps.invalidChoice', { choice: acceptedReplies.join(', ') }))
+                content: ctx.makeReply("❌", t('commands:rps.invalidChoice', { choice: acceptedReplies.join(', ') }))
             });
         }
         if (result === string) {
             return ctx.foxyReply({
-                content: ctx.prettyReply("❌", t('commands:rps.tie'))
+                content: ctx.makeReply("❌", t('commands:rps.tie'))
             });
         }
 
