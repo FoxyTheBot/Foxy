@@ -1,13 +1,15 @@
 import { Client, ClientOptions, Collection } from 'discord.js';
-import { FoxyCommands } from './structures/command/BaseCommand';
-import { FoxySettings, FoxyOptions } from './structures/ClientSettings';
-import { App } from './structures/server/Server';
-import DatabaseConnection from './structures/database/DatabaseConnection';
-import WebhookManager from './structures/WebhookManager';
+import fs from 'fs';
 import i18next from 'i18next';
+import Backend from 'i18next-fs-backend';
+
+import { FoxyCommands } from './structures/command/BaseCommand';
 import InteractionManager from './structures/command/InteractionManager'
-import i18nbackend from 'i18next-fs-backend';
-import * as fs from 'fs';
+import { FoxySettings, FoxyOptions } from './structures/ClientSettings';
+import DatabaseConnection from './structures/database/DatabaseConnection';
+import { App } from './structures/server/Server';
+import WebhookManager from './structures/WebhookManager';
+
 const app = new App(8080);
 
 export default class FoxyClient extends Client {
@@ -38,7 +40,7 @@ export default class FoxyClient extends Client {
 
     async loadLocales(path: string): Promise<void> {
         try {
-            await i18next.use(i18nbackend).init({
+            await i18next.use(Backend).init({
                 ns: ["commands", "events", "permissions", "subscription"],
                 defaultNS: "commands",
                 preload: fs.readdirSync(path),
