@@ -86,7 +86,7 @@ export default class GenerateImage {
 
         ctx.font = '40px sans-serif';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(`FoxCoins: \n${this.data.balance}`, canvas.width / 1.2, canvas.height / 1.4);
+        ctx.fillText(`Paws: \n${this.data.balance}`, canvas.width / 1.2, canvas.height / 1.4);
 
         if (this.data.marriedWith) {
             moment.locale(this.locale.lng)
