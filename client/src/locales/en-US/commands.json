@@ -86,7 +86,7 @@
         "topper": "Topper",
         "buy": {
             "success": "You have purchased the profile mask!",
-            "noMoney": "You don't have enough FoxCoins",
+            "noMoney": "You don't have enough Paws",
             "preview": "Preview",
             "purchase": "Purchase",
             "premium": "You're premium subscriber you don't need to pay for the masks"
@@ -288,14 +288,14 @@
     "pay": {
         "self": "You can't pay yourself",
         "notEnough": "You don't have enough money",
-        "alert": "Do you really want send {{amount}} FoxCoins to {{user}}? \nFoxy Team **Not responsible** for lost FoxCoins, so make sure you are transferring to a trusted person! \nTrading NSFW(+18) content in exchange for FoxCoins is prohibited!",
-        "success": "Você transferiu {{amount}} FoxCoins para {{user}}",
+        "alert": "Do you really want send {{amount}} Paws to {{user}}? \nFoxy Team **Not responsible** for lost Paws, so make sure you are transferring to a trusted person! \nTrading NSFW(+18) content in exchange for Paws is prohibited!",
+        "success": "Você transferiu {{amount}} Paws para {{user}}",
         "pay": "Pay"
     },
     "daily": {
         "cooldown": "You already got your daily, wait **{{time}}**",
-        "premium": "You would win **{{normalMoney}} FoxCoins** but you are a **{{premiumType}}** subscriber and you won **{{doubleValue}}** more, **{{amount}} FoxCoins** and now has {{money}} FoxCoins",
-        "daily": "You won **{{amount}} FoxCoins** and now has {{money}} FoxCoins"
+        "premium": "You would win **{{normalMoney}} Paws** but you are a **{{premiumType}}** subscriber and you won **{{doubleValue}}** more, **{{amount}} Paws** and now has {{money}} Paws",
+        "daily": "You won **{{amount}} Paws** and now has {{money}} Paws"
     },
     "background": {
         "buy": {
@@ -306,8 +306,8 @@
             "purchase": "Purchase",
             "price": "Price",
             "preview": "Background Preview",
-            "noMoney": "You don't have enough FoxCoins",
-            "success": "You bought the background {{name}} for {{price}} FoxCoins, and it has already been set automatically in your profile! ;3"
+            "noMoney": "You don't have enough Paws",
+            "success": "You bought the background {{name}} for {{price}} Paws, and it has already been set automatically in your profile! ;3"
         },
         "set": {
             "title": "Background inventory",
@@ -326,7 +326,7 @@
         }
     },
     "atm": {
-        "success": "**{{user}}** has {{balance}} FoxCoins"
+        "success": "**{{user}}** has {{balance}} Paws"
     },
     "step": {
         "success": "You stepped on {{user}}"
@@ -360,16 +360,16 @@
     },
     "bet": {
         "self": "You can't bet yourself",
-        "not-enough": "You don't have enough FoxCoins",
-        "not-enough-mention": "{{user}} doesn't have enough FoxCoins",
+        "not-enough": "You don't have enough Paws",
+        "not-enough-mention": "{{user}} doesn't have enough Paws",
         "placeholder": "Choose an option",
         "heads": "heads",
         "tails": "tails",
         "accept": "Accept",
         "choose": "Choose an option",
-        "ask": "{{user}}, {{author}} wants to bet with you with {{amount}} FoxCoins",
-        "win": "{{author}} won {{amount}} FoxCoins! By {{user}}",
-        "lose": "{{user}} won {{amount}} FoxCoins! By {{author}}"
+        "ask": "{{user}}, {{author}} wants to bet with you with {{amount}} Paws",
+        "win": "{{author}} won {{amount}} Paws! By {{user}}",
+        "lose": "{{user}} won {{amount}} Paws! By {{author}}"
     },
     "global": {
         "noUser": "User not found"
