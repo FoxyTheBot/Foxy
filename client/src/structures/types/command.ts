@@ -20,6 +20,6 @@ export interface ChatInputInteractionCommand extends Readonly<ChatInputCommandCo
   ) => Promise<unknown>;
 
   readonly commandRelatedExecutions?: ((
-    ctx: ComponentInteractionContext<any>
+    ctx: ComponentInteractionContext<any>,
   ) => Promise<unknown>)[];
 }
