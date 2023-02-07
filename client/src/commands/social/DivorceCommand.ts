@@ -25,7 +25,7 @@ const DivorceCommand = createCommand({
         if (!partnerId) {
             ctx.foxyReply({
                 content: ctx.makeReply(bot.emotes.error, t("commands:divorce.notMarried")),
-                flags: MessageFlags.EPHEMERAL
+                flags: MessageFlags.Ephemeral
             })
             return finishCommand();
         }
@@ -40,7 +40,7 @@ const DivorceCommand = createCommand({
                 style: ButtonStyles.Danger
             }),
             ])],
-            flags: MessageFlags.EPHEMERAL
+            flags: MessageFlags.Ephemeral
         })
 
         finishCommand();

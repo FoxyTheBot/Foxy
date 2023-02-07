@@ -41,7 +41,7 @@ const AboutMeCommand = createCommand({
 
         ctx.foxyReply({
             content: ctx.makeReply("✔", t("commands:aboutme.set", { aboutme: text })),
-            flags: MessageFlags.EPHEMERAL
+            flags: MessageFlags.Ephemeral
         })
         userData.aboutme = text;
         await userData.save();

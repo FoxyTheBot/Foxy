@@ -28,7 +28,7 @@ module.exports = async (client, interaction) => {
                 command.execute(ctx, res, locale);
             } catch (e) {
                 console.error(e);
-                ctx.foxyReply({ content: locale('events:interactioncreate.commandError'), flags: MessageFlags.EPHEMERAL })
+                ctx.foxyReply({ content: locale('events:interactioncreate.commandError'), flags: MessageFlags.Ephemeral })
             }
         })
     }
