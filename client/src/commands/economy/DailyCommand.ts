@@ -5,9 +5,9 @@ import { bot } from '../../index';
 const DailyCommand = createCommand({
     path: '',
     name: 'daily',
-    description: 'Receba suas paws diária',
+    description: '[💵] Receba suas paws diária',
     descriptionLocalizations: {
-        'en-US': 'Receive your daily paws'
+        'en-US': '[💵] Receive your daily paws'
     },
     category: 'economy',
     authorDataFields: [],

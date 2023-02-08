@@ -4,9 +4,9 @@ import { createCommand } from "../../structures/commands/createCommand";
 const RpsCommand = createCommand({
     path: '',
     name: 'rps',
-    description: "Jogue pedra, papel ou tesoura com a Foxy",
+    description: "[📺] Jogue pedra, papel ou tesoura com a Foxy",
     descriptionLocalizations: {
-        "en-US": "Play rock, paper or scissors with Foxy"
+        "en-US": "[📺] Play rock, paper or scissors with Foxy"
     },
     category: 'fun',
     options: [

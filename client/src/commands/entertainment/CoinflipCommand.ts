@@ -6,11 +6,11 @@ const CoinflipCommand = createCommand({
     nameLocalizations: {
         "en-US": "coinflip"
     },
-    description: "Jogue cara ou coroa",
+    description: "[🎮] Jogue cara ou coroa",
     descriptionLocalizations: {
-        "en-US": "Play heads or tails"
+        "en-US": "[🎮] Play heads or tails"
     },
-    category: "util",
+    category: "games",
     options: [],
     authorDataFields: [],
 

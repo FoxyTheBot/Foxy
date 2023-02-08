@@ -8,9 +8,9 @@ const cancelCommand = createCommand({
     nameLocalizations: {
         'en-US': 'cancel'
     },
-    description: "Cancela alguém",
+    description: "[📺] Cancela alguém",
     descriptionLocalizations: {
-        "en-US": "Cancel someone"
+        "en-US": "[📺] Cancel someone"
     },
     category: 'fun',
     options: [

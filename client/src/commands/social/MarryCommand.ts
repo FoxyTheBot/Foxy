@@ -20,9 +20,9 @@ const MarryCommand = createCommand({
         nameLocalizations: {
             "pt-BR": "usuário",
         },
-        description: "Usuário que você deseja casar",
+        description: "[👥] Usuário que você deseja casar",
         descriptionLocalizations: {
-            "en-US": "User you want to marry"
+            "en-US": "[👥] User you want to marry"
         },
         type: ApplicationCommandOptionTypes.User,
         required: true

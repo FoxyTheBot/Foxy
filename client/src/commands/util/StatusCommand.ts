@@ -6,9 +6,9 @@ import { bot } from "../../index";
 const StatusCommand = createCommand({
     path: '',
     name: "status",
-    description: "Mostra o status do bot",
+    description: "[🛠] Mostra o status do bot",
     descriptionLocalizations: {
-        "en-US": "Shows the bot status"
+        "en-US": "[🛠] Shows the bot status"
     },
     category: "util",
     options: [],

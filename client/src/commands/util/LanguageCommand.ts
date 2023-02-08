@@ -37,9 +37,9 @@ const LanguageCommand = createCommand({
     nameLocalizations: {
         'en-US': 'language'
     },
-    description: "Altere o idioma da Foxy",
+    description: "[🛠] Altere o idioma da Foxy",
     descriptionLocalizations: {
-        "en-US": "Change the Foxy's language"
+        "en-US": "[🛠] Change the Foxy's language"
     },
     category: 'social',
     authorDataFields: [],

@@ -4,11 +4,11 @@ import { ApplicationCommandOptionTypes } from 'discordeno/types';
 const eightBallCommand = createCommand({
     path: '',
     name: '8ball',
-    description: 'Pergunte algo para a Foxy',
+    description: '[🎮] Pergunte algo para a Foxy',
     descriptionLocalizations: {
-        'en-US': 'Ask something to Foxy'
+        'en-US': '[🎮] Ask something to Foxy'
     },
-    category: 'fun',
+    category: 'games',
     options: [
         {
             name: 'question',

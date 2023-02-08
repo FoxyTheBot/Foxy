@@ -2,7 +2,7 @@ import { CreateSlashApplicationCommand } from 'discordeno';
 import ComponentInteractionContext from '../commands/ComponentInteractionContext';
 import ChatInputInteractionContext from '../commands/ChatInputInteractionContext';
 
-type CommandCategory = 'economy' | 'roleplay' | 'fun' | 'actions' | 'social' | 'util';
+type CommandCategory = 'economy' | 'roleplay' | 'fun' | 'actions' | 'social' | 'util' | 'games';
 
 export interface ChatInputCommandConfig extends CreateSlashApplicationCommand {
   devsOnly?: true;

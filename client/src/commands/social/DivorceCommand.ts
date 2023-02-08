@@ -11,9 +11,9 @@ const DivorceCommand = createCommand({
     nameLocalizations: {
         "en-US": "divorce"
     },
-    description: "Divorcie-se de seu parceiro",
+    description: "[👥] Divorcie-se de seu parceiro",
     descriptionLocalizations: {
-        "en-US": "Divorce your partner"
+        "en-US": "[👥] Divorce your partner"
     },
     category: "social",
     authorDataFields: [],

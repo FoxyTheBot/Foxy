@@ -17,9 +17,9 @@ const PawsCommand = createCommand({
     options: [
         {
             name: "atm",
-            description: "Veja a sua quantidade de paws",
+            description: "[💵] Veja a sua quantidade de paws",
             descriptionLocalizations: {
-                'en-US': "See your amount of paws"
+                'en-US': "[💵] See your amount of paws"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [
@@ -39,9 +39,9 @@ const PawsCommand = createCommand({
         },
         {
             name: "rank",
-            description: "Veja o rank de paws",
+            description: "[💵] Veja o rank de paws",
             descriptionLocalizations: {
-                'en-US': "See the paws rank"
+                'en-US': "[💵] See the paws rank"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
         },
@@ -50,9 +50,9 @@ const PawsCommand = createCommand({
             nameLocalizations: {
                 'pt-BR': "transferir"
             },
-            description: "Transfira paws para outra pessoa",
+            description: "[💵] Envie paws para outra pessoa",
             descriptionLocalizations: {
-                'en-US': "Transfer paws to another person"
+                'en-US': "[💵] Transfer paws to another person"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [
