@@ -78,7 +78,8 @@ const PawsCommand = createCommand({
                         'en-US': "Amount of paws you want to transfer"
                     },
                     type: ApplicationCommandOptionTypes.Number,
-                    required: true
+                    required: true,
+                    minValue: 1
                 }
             ]
         }
