@@ -4,16 +4,14 @@ import * as os from 'os';
 import { bot } from "../../index";
 
 const StatusCommand = createCommand({
-    path: '',
-    name: "status",
+name: "status",
     description: "[🛠] Mostra o status do bot",
     descriptionLocalizations: {
         "en-US": "[🛠] Shows the bot status"
     },
     category: "util",
     options: [],
-    authorDataFields: [],
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         const embed = createEmbed({
             title: '🦊 | Foxy Status',
             fields: [
@@ -27,7 +25,7 @@ const StatusCommand = createCommand({
         });
 
         ctx.foxyReply({ embeds: [embed] });
-        finishCommand();
+        endCommand();
     }
 })
 

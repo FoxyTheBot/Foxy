@@ -3,15 +3,13 @@ import ms from 'ms';
 import { bot } from '../../index';
 
 const DailyCommand = createCommand({
-    path: '',
-    name: 'daily',
+name: 'daily',
     description: '[💵] Receba suas paws diária',
     descriptionLocalizations: {
         'en-US': '[💵] Receive your daily paws'
     },
     category: 'economy',
-    authorDataFields: [],
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         const userData = await bot.database.getUser(ctx.author.id);
 
         const timeout = 43200000;
@@ -54,7 +52,7 @@ const DailyCommand = createCommand({
             ctx.foxyReply({
                 content: ctx.makeReply(bot.emotes.error, t('commands:daily.cooldown', { time: currentCooldown }))
             });
-            return finishCommand();
+            return endCommand();
         } else {
             userData.balance += amount;
             userData.lastDaily = Date.now();
@@ -66,12 +64,12 @@ const DailyCommand = createCommand({
                 ctx.foxyReply({
                     content: ctx.makeReply(bot.emotes.daily, t('commands:daily.premium', { amount: amount.toString(), money: money.toString(), normalMoney: `${oldAmount}`, doubleValue: type, premiumType: t(`subscription:${userData.premiumType}`) }))
                 });
-                finishCommand();
+                endCommand();
             } else {
                 ctx.foxyReply({
                     content: ctx.makeReply(bot.emotes.daily, t('commands:daily.daily', { amount: amount.toString(), money: money.toString() }))
                 })
-                finishCommand();
+                endCommand();
             }
         }
     }

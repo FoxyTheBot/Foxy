@@ -3,8 +3,7 @@ import { User } from "discordeno/transformers";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 
 const cancelCommand = createCommand({
-    path: '',
-    name: 'cancelar',
+name: 'cancelar',
     nameLocalizations: {
         'en-US': 'cancel'
     },
@@ -39,9 +38,8 @@ const cancelCommand = createCommand({
             required: true
         }
     ],
-    authorDataFields: [],
 
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         const user = ctx.getOption<User>('user', 'users');
         const string = ctx.getOption<string>('reason', false);
 
@@ -49,7 +47,7 @@ const cancelCommand = createCommand({
             content: ctx.makeReply("❌", t('commands:cancel.result', { user: user.username, reason: string, mention: `<@!${user.id}>` }))
         })
     
-        finishCommand();
+        endCommand();
     }
 });
 

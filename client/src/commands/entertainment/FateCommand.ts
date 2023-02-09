@@ -4,8 +4,7 @@ import { User } from "discordeno/transformers";
 import { bot } from "../../index";
 
 const FateCommand = createCommand({
-    path: '',
-    name: 'fate',
+name: 'fate',
     description: "[📺] Qual o seu destino com a pessoa",
     descriptionLocalizations: {
         "en-US": "[📺] What is your fate with the person"
@@ -25,9 +24,8 @@ const FateCommand = createCommand({
             required: true
         }
     ],
-    authorDataFields: [],
 
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         const user = ctx.getOption<User>('user', 'users');
     
         if (!user) {
@@ -51,7 +49,7 @@ const FateCommand = createCommand({
             content: ctx.makeReply(bot.emotes.success, t('commands:fate.result', { user: ctx.author.id, fate: rand, mention: user.id }))
         });
 
-        finishCommand();
+        endCommand();
     }
 });
 

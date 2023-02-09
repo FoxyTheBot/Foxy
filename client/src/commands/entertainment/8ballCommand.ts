@@ -2,8 +2,7 @@ import { createCommand} from '../../structures/commands/createCommand';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
 
 const eightBallCommand = createCommand({
-    path: '',
-    name: '8ball',
+name: '8ball',
     description: '[🎮] Pergunte algo para a Foxy',
     descriptionLocalizations: {
         'en-US': '[🎮] Ask something to Foxy'
@@ -23,8 +22,7 @@ const eightBallCommand = createCommand({
             required: true
         }
     ],
-    authorDataFields: [],
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         const results = [
             t('commands:8ball.yes'),
             t('commands:8ball.no'),
@@ -41,7 +39,7 @@ const eightBallCommand = createCommand({
         ctx.foxyReply({
             content: ctx.makeReply('🎱', result)
         });
-        finishCommand();
+        endCommand();
     }
 });
 

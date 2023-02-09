@@ -4,8 +4,7 @@ import { ApplicationCommandOptionTypes } from "discordeno/types";
 const scraper = require('mal-scraper');
 
 const AnimeCommand = createCommand({
-    path: '',
-    name: "anime",
+name: "anime",
     description: "[🛠] Pesquisa a informação de algum anime",
     descriptionLocalizations: {
         "en-US": "[🛠] Searches for information about an anime"
@@ -20,9 +19,8 @@ const AnimeCommand = createCommand({
             required: true
         }
     ],
-    authorDataFields: [],
 
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         const anime = ctx.getOption<string>('anime', false);
         await ctx.defer();
         scraper.getInfoFromName(anime).then(async (data) => {
@@ -52,7 +50,7 @@ const AnimeCommand = createCommand({
             });
             ctx.foxyReply({ embeds: [embed] });
         });
-        finishCommand();
+        endCommand();
     }
 });
 

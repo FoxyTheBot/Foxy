@@ -6,8 +6,7 @@ import { User } from "discordeno/transformers";
 import executeMarry from "../../structures/commands/modules/executeMarry";
 
 const MarryCommand = createCommand({
-    path: '',
-    name: 'casar',
+name: 'casar',
     nameLocalizations: {
         "en-US": "marry"
     },
@@ -28,30 +27,29 @@ const MarryCommand = createCommand({
         required: true
     }],
     category: "social",
-    authorDataFields: [],
     commandRelatedExecutions: [executeMarry],
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         const user = ctx.getOption<User>('user', 'users');
 
         if (!user) {
             ctx.foxyReply({
                 content: ctx.makeReply(bot.emotes.error, t('commands:global.noUser'))
             })
-            return finishCommand();
+            return endCommand();
         }
 
         if (user.id === ctx.author.id) {
             ctx.foxyReply({
                 content: ctx.makeReply(bot.emotes.error, t('commands:marry.self'))
             })
-            return finishCommand();
+            return endCommand();
         }
 
         if (user.id === bot.id) {
             ctx.foxyReply({
                 content: ctx.makeReply(bot.emotes.error, t('commands:marry.bot'))
             })
-            return finishCommand();
+            return endCommand();
         }
 
         const userData = await bot.database.getUser(ctx.author.id);
@@ -61,21 +59,21 @@ const MarryCommand = createCommand({
             ctx.foxyReply({
                 content: ctx.makeReply(bot.emotes.error, t('commands:marry.alreadyMarriedWithSomeone'))
             })
-            return finishCommand();
+            return endCommand();
         }
 
         if (userData.marriedWith) {
             ctx.foxyReply({
                 content: ctx.makeReply(bot.emotes.error, t('commands:marry.alreadyMarried'))
             })
-            return finishCommand();
+            return endCommand();
         }
 
         if (user.id === userData.marriedWith) {
             ctx.foxyReply({
                 content: ctx.makeReply(bot.emotes.error, t('commands:marry.alreadyMarriedWithUser', { user: user.username }))
             })
-            return finishCommand();
+            return endCommand();
         }
 
         ctx.foxyReply({
@@ -87,7 +85,7 @@ const MarryCommand = createCommand({
             })])],
         });
         
-        finishCommand();
+        endCommand();
     }
 });
 

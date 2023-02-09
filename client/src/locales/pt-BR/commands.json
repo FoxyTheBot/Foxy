@@ -317,9 +317,9 @@
             "success": "Você comprou o background {{name}} por {{price}} Paws, ele já foi definido automaticamente no seu perfil! ;3"
         },
         "set": {
-            "title": "Definir background",
+            "title": "Escolha seu background",
             "notOwned": "Você não possui esse background",
-            "success": "Você definiu o background {{name}}",
+            "success": "Background alterado :3",
             "description": "Seus backgrounds são: {{bgList}}"
         },
         "custom": {

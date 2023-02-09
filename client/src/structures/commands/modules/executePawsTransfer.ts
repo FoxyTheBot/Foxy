@@ -18,7 +18,7 @@ const executePawsTransfer = async (ctx: ComponentInteractionContext) => {
         components: [
             createActionRow([createButton({
                 label: bot.locale('commands:pay.pay'),
-                style: ButtonStyles.Success,
+                style: ButtonStyles.Secondary,
                 customId: createCustomId(0, ctx.author.id, ctx.commandId, value),
                 disabled: true,
             })])

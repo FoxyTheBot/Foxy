@@ -8,8 +8,7 @@ import { ButtonStyles } from "discordeno/types";
 import executePawsTransfer from "../../structures/commands/modules/executePawsTransfer";
 
 const PawsCommand = createCommand({
-    path: '',
-    name: 'paws',
+name: 'paws',
     description: 'Veja suas paws',
     descriptionLocalizations: {
         'en-US': 'See your paws'
@@ -84,10 +83,9 @@ const PawsCommand = createCommand({
             ]
         }
     ],
-    authorDataFields: [],
     commandRelatedExecutions: [executePawsTransfer],
     category: 'economy',
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         switch (ctx.getSubCommand()) {
             case "atm": {
                 const user = await ctx.getOption<User>('user', 'users') ?? ctx.author;
@@ -95,7 +93,7 @@ const PawsCommand = createCommand({
                     ctx.foxyReply({
                         content: ctx.makeReply(bot.emotes.error, t('commands:global.noUser'))
                     });
-                    return finishCommand();
+                    return endCommand();
                 }
                 const userData = await bot.database.getUser(user.id);
                 const balance = userData.balance;
@@ -103,7 +101,7 @@ const PawsCommand = createCommand({
                 ctx.foxyReply({
                     content: ctx.makeReply(bot.emotes.daily, t('commands:atm.success', { user: user.username, balance: balance.toString() }))
                 })
-                finishCommand();
+                endCommand();
                 break;
             }
 
@@ -131,7 +129,7 @@ const PawsCommand = createCommand({
                     embeds: [embed],
                 });
 
-                finishCommand();
+                endCommand();
                 break;
             }
             case "transfer": {
@@ -141,7 +139,7 @@ const PawsCommand = createCommand({
                     ctx.foxyReply({
                         content: ctx.makeReply(bot.emotes.error, t('commands:global.noUser'))
                     });
-                    return finishCommand();
+                    return endCommand();
                 }
 
                 const authorData = await bot.database.getUser(ctx.author.id);
@@ -153,13 +151,13 @@ const PawsCommand = createCommand({
                     ctx.foxyReply({
                         content: ctx.makeReply(bot.emotes.error, t('commands:pay.self'))
                     })
-                    return finishCommand();
+                    return endCommand();
                 }
                 if (value > authorData.balance) {
                     ctx.foxyReply({
                         content: ctx.makeReply(bot.emotes.error, t('commands:pay.notEnough'))
                     })
-                    return finishCommand();
+                    return endCommand();
                 }
 
 
@@ -171,7 +169,7 @@ const PawsCommand = createCommand({
                         customId: createCustomId(0, ctx.author.id, ctx.commandId, value, user.id)
                     })])]
                 });
-                finishCommand();
+                endCommand();
                 break;
             }
         }

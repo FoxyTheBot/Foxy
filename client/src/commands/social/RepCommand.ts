@@ -5,8 +5,7 @@ import { bot } from "../../index";
 import ms from "ms";
 
 const RepCommand = createCommand({
-    path: '',
-    name: "rep",
+name: "rep",
     description: "[👥] Dê reputação para um usuário",
     descriptionLocalizations: {
         "en-US": "[👥] Give reputation to a user"
@@ -24,20 +23,19 @@ const RepCommand = createCommand({
             required: true
         }
     ],
-    authorDataFields: [],
 
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         const user = ctx.getOption<User>('user', 'users');
         if (!user) {
             ctx.makeReply(bot.emotes.error, t('commands:global.noUser'));
-            return finishCommand();
+            return endCommand();
         }
 
         if (user.id === ctx.author.id) {
             ctx.foxyReply({
                 content: ctx.makeReply("🚫", t('commands:rep.self'))
             })
-            return finishCommand();
+            return endCommand();
         }
 
         const userData = await bot.database.getUser(user.id);
@@ -49,7 +47,7 @@ const RepCommand = createCommand({
             ctx.foxyReply({
                 content: ctx.makeReply(bot.emotes.error, t('commands:rep.cooldown', { cooldown: currentCooldown }))
             })
-            finishCommand();
+            endCommand();
         } else {
             userData.repCount++;
             authorData.lastRep = Date.now();
@@ -58,7 +56,7 @@ const RepCommand = createCommand({
             ctx.foxyReply({
                 content: ctx.makeReply(bot.emotes.success, t('commands:rep.success', { user: user.username }))
             })
-            finishCommand();
+            endCommand();
         }
     }
 });

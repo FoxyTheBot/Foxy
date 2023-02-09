@@ -5,8 +5,7 @@ import { User } from 'discordeno/transformers';
 import GenerateImage from '../../structures/GenerateImage';
 
 const ProfileCommand = createCommand({
-    path: '',
-    name: 'perfil',
+name: 'perfil',
     nameLocalizations: { 'en-US': 'profile' },
     description: '[👥] Veja seu perfil ou o de outro usuário',
     descriptionLocalizations: { 'en-US': '[👥] View your profile or another user profile' },
@@ -21,14 +20,13 @@ const ProfileCommand = createCommand({
             required: false
         },
     ],
-    authorDataFields: [],
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         const user = ctx.getOption<User>('user', 'users') ?? ctx.author;
         const userData = await bot.database.getUser(user.id);
 
         if (userData.isBanned) {
             ctx.foxyReply({ content: t('commands:profile.banned', { user: user.username, reason: userData.banReason, date: userData.banData.toLocaleString(global.t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }) });
-            return finishCommand();
+            return endCommand();
         }
 
         await ctx.defer();
@@ -39,7 +37,7 @@ const ProfileCommand = createCommand({
             content: ctx.makeReply("🖼", t('commands:profile.your', { user: user.username })),
             file: [{ name: 'profile.png', blob: await profile }]
         })
-        finishCommand();
+        endCommand();
     },
 });
 

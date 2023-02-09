@@ -6,8 +6,7 @@ import { createActionRow, createButton, createCustomId } from "../../utils/disco
 import executeDivorce from "../../structures/commands/modules/executeDivorce";
 
 const DivorceCommand = createCommand({
-    path: '',
-    name: 'divorciar',
+name: 'divorciar',
     nameLocalizations: {
         "en-US": "divorce"
     },
@@ -16,9 +15,8 @@ const DivorceCommand = createCommand({
         "en-US": "[👥] Divorce your partner"
     },
     category: "social",
-    authorDataFields: [],
     commandRelatedExecutions: [executeDivorce],
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         const userData = await bot.database.getUser(ctx.author.id);
         const partnerId = await userData.marriedWith;
 
@@ -27,7 +25,7 @@ const DivorceCommand = createCommand({
                 content: ctx.makeReply(bot.emotes.error, t("commands:divorce.notMarried")),
                 flags: MessageFlags.Ephemeral
             })
-            return finishCommand();
+            return endCommand();
         }
 
         const userInfo = await bot.helpers.getUser(userData.marriedWith);
@@ -43,7 +41,7 @@ const DivorceCommand = createCommand({
             flags: MessageFlags.Ephemeral
         })
 
-        finishCommand();
+        endCommand();
     }
 });
 

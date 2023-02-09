@@ -2,8 +2,7 @@ import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { createCommand } from "../../structures/commands/createCommand";
 
 const RpsCommand = createCommand({
-    path: '',
-    name: 'rps',
+name: 'rps',
     description: "[📺] Jogue pedra, papel ou tesoura com a Foxy",
     descriptionLocalizations: {
         "en-US": "[📺] Play rock, paper or scissors with Foxy"
@@ -23,9 +22,8 @@ const RpsCommand = createCommand({
             required: true
         },
     ],
-    authorDataFields: [],
 
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         const string = ctx.getOption<string>('choice', false);
         const acceptedReplies = [t('commands:rps.replies.rock'), t('commands:rps.replies.paper'), t('commands:rps.replies.scissors')];
 
@@ -49,12 +47,12 @@ const RpsCommand = createCommand({
                     ctx.foxyReply({
                         content: t('commands:rps.clientWon', { result: result })
                     })
-                    finishCommand();
+                    endCommand();
                 }
                 ctx.foxyReply({
                     content: t('commands:rps.won3')
                 })
-                finishCommand();
+                endCommand();
                 break;
             }
             case t('commands:rps.replies.paper'): {
@@ -62,25 +60,25 @@ const RpsCommand = createCommand({
                     ctx.foxyReply({
                         content: t('commands:rps.clientWon', { result: result })
                     })
-                    finishCommand();
+                    endCommand();
                 }
                 ctx.foxyReply({
                     content: t('commands:rps.won2')
                 });
 
-                finishCommand();
+                endCommand();
             }
             case t('commands:rps.replies.scissors'): {
                 if (result === t('commands:rps.replies.rock')) {
                     ctx.foxyReply({
                         content: t('commands:rps.clientWon', { result: result })
                     });
-                    finishCommand();
+                    endCommand();
                 }
                 ctx.foxyReply({
                     content: t('commands:rps.won1')
                 });
-                finishCommand();
+                endCommand();
             }
         }
     }

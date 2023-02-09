@@ -4,8 +4,7 @@ import { bot } from "../../index";
 import { createCommand } from "../../structures/commands/createCommand";
 
 const AboutMeCommand = createCommand({
-    path: '',
-    name: "sobremim",
+name: "sobremim",
     nameLocalizations: {
         "en-US": "aboutme"
     },
@@ -28,15 +27,14 @@ const AboutMeCommand = createCommand({
             required: true
         }
     ],
-    authorDataFields: [],
 
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         const text = ctx.getOption<string>("text", false);
         const userData = await bot.database.getUser(ctx.author.id);
 
         if (text.length > 225) {
             ctx.foxyReply({ content: t("commands:aboutme.tooLong", { length: text.length.toString() }) });
-            return finishCommand();
+            return endCommand();
         }
 
         ctx.foxyReply({
@@ -45,7 +43,7 @@ const AboutMeCommand = createCommand({
         })
         userData.aboutme = text;
         await userData.save();
-        finishCommand();
+        endCommand();
     }
 });
 

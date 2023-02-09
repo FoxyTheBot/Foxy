@@ -1,8 +1,7 @@
 import { createCommand } from "../../structures/commands/createCommand";
 
 const CoinflipCommand = createCommand({
-    path: '',
-    name: "caracoroa",
+name: "caracoroa",
     nameLocalizations: {
         "en-US": "coinflip"
     },
@@ -12,14 +11,13 @@ const CoinflipCommand = createCommand({
     },
     category: "games",
     options: [],
-    authorDataFields: [],
 
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         const coinflip = ["heads", "tails"];
         const coin = coinflip[Math.floor(Math.random() * coinflip.length)];
 
         ctx.foxyReply({ content: `${t("commands:coinflip.flipped")} **${t(`commands:coinflip.${coin}`)}**`})
-        finishCommand();
+        endCommand();
     }
 });
 

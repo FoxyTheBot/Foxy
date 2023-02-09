@@ -312,7 +312,7 @@
         "set": {
             "title": "Background inventory",
             "notOwned": "You don't own this background",
-            "success": "Your background has been set to {{name}}",
+            "success": "Background changed successfully! :3",
             "description": "Your list: {{bgList}}"
         },
         "custom": {

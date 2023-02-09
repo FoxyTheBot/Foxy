@@ -5,7 +5,6 @@ import { lylist } from '../../structures/json/layoutList.json';
 
 const choices = lylist.map(data => Object({ name: data.name, value: data.id }));
 const LayoutCommand = createCommand({
-    path: "",
     name: "layout",
     description: "[👥] Mude o layout do seu perfil",
     descriptionLocalizations: {
@@ -40,11 +39,10 @@ const LayoutCommand = createCommand({
             ]
         }
     ],
-    authorDataFields: [],
-    execute: async (ctx, finishCommand, t) => {
+    execute: async (ctx, endCommand, t) => {
         const selectedOption = ctx.getOption<string>('layout', false, true);
         const layouts = lylist.map(data => data.id);
-        if (!layouts.includes(selectedOption)) return ctx.foxyReply({ 
+        if (!layouts.includes(selectedOption)) return ctx.foxyReply({
             content: ctx.makeReply(bot.emotes.error, t('commands:layouts.notFound'))
         });
         const userData = await bot.database.getUser(ctx.author.id);
@@ -53,7 +51,7 @@ const LayoutCommand = createCommand({
         ctx.foxyReply({
             content: ctx.makeReply(bot.emotes.success, t('commands:layouts.changed'))
         })
-        finishCommand();
+        endCommand();
     }
 });
 

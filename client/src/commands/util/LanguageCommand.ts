@@ -32,8 +32,7 @@ const changeLanguage = async (ctx: ComponentInteractionContext) => {
 }
 
 const LanguageCommand = createCommand({
-    path: '',
-    name: 'idioma',
+name: 'idioma',
     nameLocalizations: {
         'en-US': 'language'
     },
@@ -42,10 +41,9 @@ const LanguageCommand = createCommand({
         "en-US": "[🛠] Change the Foxy's language"
     },
     category: 'social',
-    authorDataFields: [],
     commandRelatedExecutions: [changeLanguage],
 
-    execute: async (ctx, finishCommand, t) => {        
+    execute: async (ctx, endCommand, t) => {        
         ctx.foxyReply({
             components: [createActionRow([createSelectMenu({
                 customId: createCustomId(0, ctx.author.id, ctx.commandId),
@@ -64,7 +62,7 @@ const LanguageCommand = createCommand({
             flags: MessageFlags.Ephemeral
         })
 
-        finishCommand();
+        endCommand();
     }
 });
 
