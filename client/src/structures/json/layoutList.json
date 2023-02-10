@@ -1,0 +1,61 @@
+{
+    "lylist": [
+        {
+            "name": "Default / Padrão",
+            "id": "default",
+            "price": "free",
+            "filename": "default.png"
+        },
+        {
+            "name": "Red / Vermelho",
+            "id": "red",
+            "price": "free",
+            "filename": "red.png"
+        },
+        {
+            "name": "Blue / Azul",
+            "id": "blue",
+            "price": "free",
+            "filename": "blue.png"
+        },
+        {
+            "name": "Purple / Roxo",
+            "id": "purple",
+            "price": "free",
+            "filename": "purple.png"
+        },
+        {
+            "name": "Cyan / Ciano",
+            "id": "cyan",
+            "price": "free",
+            "filename": "cyan.png"
+        }
+    ],
+    "masks": [
+        {
+            "id": "ears",
+            "filename": "ears.png",
+            "price": 50000
+        },
+        {
+            "id": "horns",
+            "filename": "horns.png",
+            "price": 50000
+        },
+        {
+            "id": "halo",
+            "filename": "halo.png",
+            "price": 50000
+        },
+        {
+            "id": "cowboy",
+            "filename": "cowboy.png",
+            "price": 50000
+        },
+        {
+            "id": "topper",
+            "filename": "topper.png",
+            "price": 50000
+        }
+    ]
+}

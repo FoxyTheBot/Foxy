@@ -1,0 +1,15 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./build",
+        "target": "ES2022",
+        "module": "CommonJS",
+        
+        "moduleResolution": "Node",
+        "esModuleInterop": true
+    },
+    "include": [
+        "handlers/*",
+        "index.ts"
+    ]
+}

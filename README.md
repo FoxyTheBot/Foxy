@@ -1,7 +1,5 @@
 <p align="center">
-<img height="150" src="https://cdn.discordapp.com/attachments/789266900852408351/989589378861002852/foxyoculos.png" align="left">
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/H2H4D9T3S)
+<img height="150" src="https://cdn.discordapp.com/attachments/782995363548102676/1066111279611261010/foxysunglasses.png" align="left">
 
 <h1 align="left">🦊 Foxy</h1>
 
@@ -9,8 +7,8 @@
 
 <p align="center">
 <br>
-<a align="center" href="https://discordbots.org/bot/737044809650274325?utm_source=widget">
-<img src="https://discordbots.org/api/widget/737044809650274325.png" alt="Discord Bots" />
+<a align="center" href="https://discordbots.org/bot/1006520438865801296?utm_source=widget">
+<img src="https://discordbots.org/api/widget/1006520438865801296.png" alt="Discord Bots" />
 </a>
  </p>
 
@@ -28,4 +26,4 @@ If you want to self-host Foxy by yourself you can read the tutorial by [clicking
 ## 🤔 | Need help?
 - If you need help, you can enter in My Discord Server!
 
-<a href="https://foxywebsite.xyz/discord"><img src="https://discordapp.com/api/guilds/768267522670723094/widget.png?style=banner3"></a>
+<a href="https://foxybot.win/discord"><img src="https://discordapp.com/api/guilds/768267522670723094/widget.png?style=banner3"></a>
