@@ -13,13 +13,12 @@ const embed = createEmbed({});
 const executeSlap = async (ctx: ComponentInteractionContext) => {
     const [user] = ctx.sentData;
     const slapGif = await gif.slap();
-    embed.title = bot.locale('commands:slap.success', { user: user, author: ctx.author.username }),
+    embed.title = bot.locale('commands:slap.success', { user: ctx.author.username, author: user  }),
         embed.image = {
             url: slapGif.url
         }
 
     ctx.foxyReply({
-        embeds: [embed],
         components: [createActionRow([createButton({
             customId: createCustomId(0, user, ctx.commandId),
             label: bot.locale('commands:slap.button'),
@@ -29,6 +28,9 @@ const executeSlap = async (ctx: ComponentInteractionContext) => {
             },
             disabled: true
         })])]
+    });
+    ctx.followUp({
+        embeds: [embed],
     });
 }
 const SlapCommand = createCommand({
@@ -68,7 +70,7 @@ const SlapCommand = createCommand({
         ctx.foxyReply({
             embeds: [embed],
             components: [createActionRow([createButton({
-                customId: createCustomId(0, user.id, ctx.commandId),
+                customId: createCustomId(0, user.id, ctx.commandId, user.username),
                 label: t('commands:slap.button'),
                 style: ButtonStyles.Primary,
                 emoji: {

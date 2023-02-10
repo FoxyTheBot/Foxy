@@ -13,13 +13,12 @@ const embed = createEmbed({});
 const executeKiss = async (ctx: ComponentInteractionContext) => {
     const [user] = ctx.sentData;
     const kissGif = await gif.kiss();
-    embed.title = bot.locale('commands:kiss.success', { user: user, author: ctx.author.username }),
+    embed.title = bot.locale('commands:kiss.success', { user: ctx.author.username, author: user }),
         embed.image = {
             url: kissGif.url
         }
 
     ctx.foxyReply({
-        embeds: [embed],
         components: [createActionRow([createButton({
             customId: createCustomId(0, user, ctx.commandId),
             label: bot.locale('commands:kiss.button'),
@@ -29,6 +28,9 @@ const executeKiss = async (ctx: ComponentInteractionContext) => {
             },
             disabled: true
         })])]
+    });
+    ctx.followUp({
+        embeds: [embed],
     });
 }
 const KissCommand = createCommand({
@@ -68,7 +70,7 @@ const KissCommand = createCommand({
         ctx.foxyReply({
             embeds: [embed],
             components: [createActionRow([createButton({
-                customId: createCustomId(0, user.id, ctx.commandId),
+                customId: createCustomId(0, user.id, ctx.commandId, user.username),
                 label: t('commands:kiss.button'),
                 style: ButtonStyles.Primary,
                 emoji: {
@@ -76,6 +78,9 @@ const KissCommand = createCommand({
                 }
             })])]
         })
+        ctx.followUp({
+            embeds: [embed],
+        });
         endCommand();
     }
 });

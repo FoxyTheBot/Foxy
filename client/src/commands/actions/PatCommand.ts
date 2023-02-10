@@ -13,13 +13,12 @@ const embed = createEmbed({});
 const executePat = async (ctx: ComponentInteractionContext) => {
     const [user] = ctx.sentData;
     const patGif = await gif.pat();
-    embed.title = bot.locale('commands:pat.success', { user: user, author: ctx.author.username }),
+    embed.title = bot.locale('commands:pat.success', { user: ctx.author.username, author: user }),
         embed.image = {
             url: patGif.url
         }
 
     ctx.foxyReply({
-        embeds: [embed],
         components: [createActionRow([createButton({
             customId: createCustomId(0, user, ctx.commandId),
             label: bot.locale('commands:pat.button'),
@@ -29,6 +28,9 @@ const executePat = async (ctx: ComponentInteractionContext) => {
             },
             disabled: true
         })])]
+    });
+    ctx.followUp({
+        embeds: [embed],
     });
 }
 
@@ -69,7 +71,7 @@ const patCommand = createCommand({
         ctx.foxyReply({
             embeds: [embed],
             components: [createActionRow([createButton({
-                customId: createCustomId(0, user.id, ctx.commandId),
+                customId: createCustomId(0, user.id, ctx.commandId, user.username),
                 label: t('commands:pat.button'),
                 style: ButtonStyles.Primary,
                 emoji: {
