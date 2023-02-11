@@ -46,6 +46,13 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
         await bot.helpers.editOriginalInteractionResponse(this.interaction.token, options)
     }
 
+    async followUp(options: InteractionCallbackData): Promise<void> {
+        await bot.helpers.sendFollowupMessage(this.interaction.token, {
+            type: InteractionResponseTypes.ChannelMessageWithSource,
+            data: options,
+        })
+    }
+
     async foxyReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
         if (!this.replied) {
             this.replied = true;
