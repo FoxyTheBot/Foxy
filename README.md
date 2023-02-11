@@ -7,10 +7,19 @@
 
 <p align="center">
 <br>
-<a align="center" href="https://discordbots.org/bot/1006520438865801296?utm_source=widget">
-<img src="https://discordbots.org/api/widget/1006520438865801296.png" alt="Discord Bots" />
+<a href="https://top.gg/bot/1006520438865801296">
+  <img src="https://top.gg/api/widget/servers/1006520438865801296.svg">
+</a>
+<a href="https://top.gg/bot/1006520438865801296">
+  <img src="https://top.gg/api/widget/upvotes/1006520438865801296.svg">
+</a>
+<a href="https://top.gg/bot/1006520438865801296">
+  <img src="https://top.gg/api/widget/owner/1006520438865801296.svg">
 </a>
  </p>
+ <br>
+<br>
+<br>
 
 ## 🤔 | Who am I?
 Hi, I'm Foxy! I will entertain your server with my commands
