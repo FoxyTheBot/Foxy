@@ -7,10 +7,7 @@ import executeBackground from '../../structures/commands/modules/executeBackgrou
 import { MessageFlags } from '../../utils/discord/Message';
 import GenerateImage from '../../structures/GenerateImage';
 
-const choices = bglist.map(data => {
-    if (data.blocked) return;
-    return Object({ name: `${data.name} / ${data.foxcoins} Foxcoins`, value: data.id })
-});
+const choices = bglist.map(data => Object({ name: `${data.name} / ${data.foxcoins} Foxcoins`, value: data.id }));
 const BackgroundCommand = createCommand({
     name: 'background',
     description: '[💵] Mude o background do seu perfil',
