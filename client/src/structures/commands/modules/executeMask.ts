@@ -6,7 +6,7 @@ import { ButtonStyles } from "discordeno/types";
 
 const executeMaskBuy = async (ctx: ComponentInteractionContext) => {
     const [code, mask, subCommand] = ctx.sentData;
-    if (subCommand === 'buy') {
+    if (subCommand === 'buy' || code === 'buy') {
         const userData = await bot.database.getUser(ctx.author.id);
         
         if (userData.balance < mask) {
