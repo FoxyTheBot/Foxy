@@ -56,3 +56,5 @@ const OurCommand = createCommand({
         })
     }
 });
+
+export default OurCommand;

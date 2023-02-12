@@ -52,3 +52,5 @@ const StonksCommand = createCommand({
         });
     }
 });
+
+export default StonksCommand;

@@ -53,3 +53,5 @@ const NotStonksCommand = createCommand({
         endCommand();
     }
 });
+
+export default NotStonksCommand;
