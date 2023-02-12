@@ -35,4 +35,4 @@ If you want to self-host Foxy by yourself you can read the tutorial by [clicking
 ## 🤔 | Need help?
 - If you need help, you can enter in My Discord Server!
 
-<a href="https://foxybot.win/discord"><img src="https://discordapp.com/api/guilds/768267522670723094/widget.png?style=banner3"></a>
+<a href="https://foxywebsite.xyz/discord"><img src="https://discordapp.com/api/guilds/768267522670723094/widget.png?style=banner3"></a>
