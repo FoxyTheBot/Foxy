@@ -70,6 +70,7 @@
         "purchase": "Comprar",
         "preview": "Pré-visualização",
         "noMasks": "Você não possui nenhuma máscara",
+        "selectMask": "Selecione uma máscara",
         "buy": {
             "success": "Você comprou a máscara para seu avatar!",
             "noMoney": "Você não tem Paws o suficiente para adquirir esta máscara",

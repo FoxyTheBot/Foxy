@@ -87,6 +87,7 @@
         "purchase": "Purchase",
         "preview": "Preview",
         "noMasks": "You don't have any masks",
+        "selectMask": "Select a mask",
         "buy": {
             "success": "You have purchased the profile mask!",
             "noMoney": "You don't have enough Paws",
