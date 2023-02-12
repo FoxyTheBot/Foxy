@@ -4,9 +4,10 @@ import { createActionRow, createCustomId, createButton, createSelectMenu } from 
 import { MessageFlags } from '../../../utils/discord/Message';
 import { ButtonStyles } from "discordeno/types";
 
-const executeMaskBuy = async (ctx: ComponentInteractionContext) => {
+const executeMask = async (ctx: ComponentInteractionContext) => {
     const [code, mask, subCommand] = ctx.sentData;
-    if (subCommand === 'buy' || code === 'buy') {
+
+    if (subCommand === 'buy') {
         const userData = await bot.database.getUser(ctx.author.id);
         
         if (userData.balance < mask) {
@@ -34,8 +35,8 @@ const executeMaskBuy = async (ctx: ComponentInteractionContext) => {
                     })])]
              });
         }
-    } else if (subCommand === 'set') {
-        const choice = ctx.interaction.data.options[0].value;
+    } else if (subCommand === 'set' || code === 'set') {
+        const choice = ctx.interaction.data.values[0];
         const userData = await bot.database.getUser(ctx.author.id);
 
         if (userData.masks.includes(choice)) {
@@ -74,4 +75,4 @@ const executeMaskBuy = async (ctx: ComponentInteractionContext) => {
     }
 }
 
-export default executeMaskBuy;
+export default executeMask;

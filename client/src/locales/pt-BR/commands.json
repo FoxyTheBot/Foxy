@@ -80,6 +80,7 @@
         },
         "set": {
             "success": "Máscara alterada com sucesso :3",
+            "changed": "Máscara alterada :3",
             "notOwned": "Você não possui essa máscara",
             "invalid": "Código inválido"
         },

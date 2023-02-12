@@ -97,6 +97,7 @@
         },
         "set": {
             "success": "Your mask has changed :3",
+            "changed": "Changed :3",
             "notOwned": "You don't have this mask",
             "invalid": "Invalid code"
         },
