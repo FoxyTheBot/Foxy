@@ -67,6 +67,8 @@
         "halo": "Aréola",
         "cowboy": "Chapéu de vaqueiro",
         "topper": "Cartola",
+        "purchase": "Comprar",
+        "preview": "Pré-visualização",
         "buy": {
             "success": "Você comprou a máscara para seu avatar!",
             "noMoney": "Você não tem Paws o suficiente para adquirir esta máscara",

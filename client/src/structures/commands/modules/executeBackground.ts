@@ -8,11 +8,13 @@ const executeBackground = async (ctx: ComponentInteractionContext) => {
     const [code, background, subcommand] = ctx.sentData;
     const userData = await bot.database.getUser(ctx.author.id);
     if (subcommand === 'set' || code === 'set') {
+
         const userData = await bot.database.getUser(ctx.author.id);
         const code = ctx.interaction.data.values[0];
         if (!userData.backgrounds.includes(code)) return ctx.foxyReply({
             content: ctx.makeReply(bot.emotes.cry, bot.locale("commands:background.set.notOwned")),
         });
+
         userData.background = code;
         await userData.save();
         return ctx.foxyReply({
@@ -42,7 +44,7 @@ const executeBackground = async (ctx: ComponentInteractionContext) => {
             })
         
             ctx.followUp({
-                content: bot.locale('commands:background.buy.noMoney'),
+                content: ctx.makeReply(bot.emotes.cry, bot.locale('commands:background.buy.noMoney')),
                 flags: MessageFlags.Ephemeral
             })
         } else {

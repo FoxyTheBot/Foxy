@@ -84,6 +84,8 @@
         "halo": "Halo",
         "cowboy": "Cowboy's hat",
         "topper": "Topper",
+        "purchase": "Purchase",
+        "preview": "Preview",
         "buy": {
             "success": "You have purchased the profile mask!",
             "noMoney": "You don't have enough Paws",

@@ -6,7 +6,8 @@
             "rarity": "Comum",
             "foxcoins": 0,
             "filename": "default.png",
-            "description": "Background padrão da Foxy"
+            "description": "Background padrão da Foxy",
+            "blocked": true 
         },
         {
             "id": "fnaf",
