@@ -69,6 +69,7 @@
         "topper": "Cartola",
         "purchase": "Comprar",
         "preview": "Pré-visualização",
+        "noMasks": "Você não possui nenhuma máscara",
         "buy": {
             "success": "Você comprou a máscara para seu avatar!",
             "noMoney": "Você não tem Paws o suficiente para adquirir esta máscara",

@@ -86,6 +86,7 @@
         "topper": "Topper",
         "purchase": "Purchase",
         "preview": "Preview",
+        "noMasks": "You don't have any masks",
         "buy": {
             "success": "You have purchased the profile mask!",
             "noMoney": "You don't have enough Paws",
