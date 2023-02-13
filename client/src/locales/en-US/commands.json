@@ -6,15 +6,16 @@
         "title": ":fox: Foxy",
         "description": "Hi, I'm Foxy! I'm a simple economy and entertainment bot for Discord! I'm in {{guilds}} guilds :heart:!",
         "fields": {
-            "addme": "<:roseWumpusGift:919356424667140138> Add me to your server!",
+            "addme": "Add me to your server!",
             "server": "Guilds :heart:",
             "server2": "Enter in my support server clicking here!",
             "add": "Add me clicking here",
-            "support": "<:foxyhearteyes:984596954526920794> Support server",
-            "twitter": "<:Twitter:797184287816286209> My Twitter",
-            "github": "<:GitHub:746399300728258710> My Github",
-            "donate": "<:kofi:986386611900153886> Donate me clicking here",
-            "donate2": "Support me on Ko-fi!"
+            "support": "Support server",
+            "twitter": "<:twitter:1072251951447810168> **|** My Twitter",
+            "github": "<:github_logo:1072251686288113694> **|** My Github",
+            "donate": "Donate me clicking here",
+            "donate2": "Support me on Ko-fi!",
+            "privacy": "Privacy policy"
         }
     },
     "lang": {
@@ -133,9 +134,9 @@
                     "title": "<:foxy_cake:979569740471230584> If you want see all commands type",
                     "value": "`/help`"
                 },
-                "guild": "<:foxy_cake:979569740471230584> Support server",
-                "privacy": "<:foxy_cake:979569740471230584> Privacy",
-                "website": "<:foxy_cake:979569740471230584> My website (only Portuguese yet)"
+                "guild": "Support server",
+                "privacy": "Privacy",
+                "website": "My website (only Portuguese yet)"
             }
         }
     },

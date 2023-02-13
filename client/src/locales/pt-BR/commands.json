@@ -6,15 +6,15 @@
         "title": ":fox: Foxy",
         "description": "Olá, eu sou a {{client.user.username}}! Eu sou um simples bot brasileiro de economia e entretenimento para o seu servidor! Estou espalhando alegria em {{guilds}} servidores :heart:",
         "fields": {
-            "addme": "<:roseWumpusGift:919356424667140138> Me adicione",
+            "addme": "Me adicione",
             "server": "Servidores :heart:",
             "server2": "Entre no meu servidor clicando aqui",
             "add": "Me adicione clicando aqui",
-            "support": "<:foxyhearteyes:984596954526920794> Servidor de suporte",
-            "twitter": "<:Twitter:797184287816286209> Meu Twitter",
-            "github": "<:GitHub:746399300728258710> Meu Github",
-            "donate": "<:kofi:986386611900153886> Doe para mim",
-            "donate2": "Doe para mim clicando aqui"
+            "support": "Servidor de suporte",
+            "twitter": "<:twitter:1072251951447810168> **|** Meu Twitter",
+            "github": "<:github_logo:1072251686288113694> **|** Meu Github",
+            "donate2": "Doe para mim clicando aqui",
+            "privacy":"Política de privacidade"
         }
     },
     "lang": {
@@ -112,9 +112,9 @@
                     "title": "<:foxysunglasses:890688144280784926> Para ver a lista de comandos use",
                     "value": "`/help`"
                 },
-                "guild": "<:foxysunglasses:890688144280784926> Serivdor de suporte",
-                "privacy": "<:foxy_cake:979569740471230584> Política de privacidade",
-                "website": "<:foxy_cake:979569740471230584> Meu website onde você pode acessar a dashboard"
+                "guild": "Serivdor de suporte",
+                "privacy": "Política de privacidade",
+                "website": "Meu website onde você pode acessar a dashboard"
             }
         }
     },
