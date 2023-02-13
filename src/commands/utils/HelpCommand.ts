@@ -46,8 +46,8 @@ export default class HelpCommand extends Command {
                     .setThumbnail(this.client.user.displayAvatarURL({ dynamic: true, size: 2048, format: 'png' }))
                     .addField(t('commands:help.bot.fields.list.title'), t('commands:help.bot.fields.list.value'))
                     .addField(t('commands:help.bot.fields.guild'), 'https://discord.gg/W6XtYyqKkg')
-                    .addField(t('commands:help.bot.fields.privacy'), 'http://localhost:8080/privacy')
-                    .addField(t('commands:help.bot.fields.website'), 'http://localhost:8080/');
+                    .addField(t('commands:help.bot.fields.privacy'), 'http://foxybot.win/privacy')
+                    .addField(t('commands:help.bot.fields.website'), 'http://foxybot.win/');
 
                 await interaction.reply({ embeds: [embed] });
             }
