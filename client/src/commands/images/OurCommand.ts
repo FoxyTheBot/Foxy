@@ -53,7 +53,8 @@ const OurCommand = createCommand({
                 name: "comunismo.png",
                 blob
             }
-        })
+        });
+        endCommand();
     }
 });
 
