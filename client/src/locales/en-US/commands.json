@@ -67,7 +67,12 @@
         "result": "Result"
     },
     "upvote": {
-        "description": "Help me to increase servers count and keep me alive voting me on <:topgg:1074823809376460923> Discord Bot List, \n<:catblush:768292358458179595> Votes helps me to get more servers and more users on Discord! Vote me [clicking here](https://top.gg/bot/1006520438865801296/vote) :heart:"
+        "description": "Help me to increase servers count and keep me alive voting me on <:topgg:1074823809376460923> Discord Bot List, \n<:catblush:768292358458179595> Votes helps me to get more servers and more users on Discord! Vote me [clicking here](https://top.gg/bot/1006520438865801296/vote) :heart:",
+        "top": {
+            "title": "Top voters on top.gg",
+            "votes": "Votes",
+            "ownerVotes": "My owner has {{votes}} votes"
+        }
     },
     "profile": {
         "your": "Your profile",
