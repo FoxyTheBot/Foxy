@@ -18,7 +18,5 @@ setupFoxy(bot);
 setupInternals(bot);
 loadLocales(__dirname + '/locales');
 
-// @ts-expect-error nhaww
-bot.events.ready();
 startBot(bot);
 export { bot };
