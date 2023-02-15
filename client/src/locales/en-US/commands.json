@@ -75,7 +75,7 @@
         }
     },
     "profile": {
-        "your": "Your profile",
+        "profile": "{{user}}'s profile",
         "noAboutme": "Foxy is so cute ><! You can change this message using /aboutme command",
         "tooLong": "The character limit is 225, you typed {{length}}, plz type something smaller",
         "marriedWith": "💍 Married with {{user}} since {{date}} ({{relativeTime}})",

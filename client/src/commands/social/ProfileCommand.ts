@@ -34,7 +34,7 @@ name: 'perfil',
         const profile = canvasGenerator.renderProfile();
 
         ctx.foxyReply({
-            content: ctx.makeReply("🖼", t('commands:profile.your', { user: user.username })),
+            content: ctx.makeReply("🖼", t('commands:profile.profile', { user: `<@${user.id}>` })),
             file: [{ name: 'profile.png', blob: await profile }]
         })
         endCommand();
