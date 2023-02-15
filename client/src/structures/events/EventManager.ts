@@ -5,7 +5,7 @@ const resolveFolder = (folderName) => path.resolve(__dirname, ".", folderName);
 const EventEmitter = require("events");
 
 class EventManager extends EventEmitter {
-  constructor() {
+  constructor({}) {
     super();
     this.cache = new Map();
     this.allEvents = {};
@@ -29,4 +29,5 @@ class EventManager extends EventEmitter {
     return this.allEvents;
   }
 }
-module.exports = EventManager;
+
+export { EventManager };

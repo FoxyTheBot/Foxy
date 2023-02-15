@@ -3,7 +3,7 @@ import config from '../config.json';
 import { setupFoxy, setupInternals } from './structures/client/FoxyClient';
 import { FoxyClient } from './structures/types/foxy';
 import { loadLocales } from './utils/loader';
-const EventManager = require("./structures/events/EventManager");
+import { EventManager } from './structures/events/EventManager';
 const events = new EventManager({});
 
 const bot = createBot({
