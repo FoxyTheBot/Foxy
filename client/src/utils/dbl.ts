@@ -13,29 +13,5 @@ const getStats = async () => {
     const stats = await api.getStats(config.clientId);
     return stats;   
 }
-var voterList: any = [
-    {
-        username: String,
-        id: String,
-        quantity: Number
-    }
-]
 
-const getVotes = async () => {
-    const voters = await api.getVotes();
-    for (let i = 0; i < voters.length; i++) {
-        const element = voters[i];
-        if (voterList.find(x => x.id === element.id)) {
-            voterList.find(x => x.id === element.id).quantity += 1;
-        } else {
-            voterList.push({
-                username: element.username,
-                id: element.id,
-                quantity: 1
-            })
-        }
-    }
-    return voterList;
-}
-
-export { postInfo, getStats, getVotes };
+export { postInfo, getStats };
