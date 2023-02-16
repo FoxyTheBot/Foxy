@@ -41,38 +41,38 @@ router.get("/masks/:id", (req, res) => {
 });
 
 router.get("/memes/laranjo.png", (req, res) => {
-    res.sendFile("laranjo.jpeg", { root: "../assets" });
+    res.sendFile("laranjo.jpeg", { root: "../assets/commands" });
 });
 
 router.get("/memes/fodase.png", (req, res) => {
-    res.sendFile("fodase.jpeg", { root: "../assets" });
+    res.sendFile("fodase.jpeg", { root: "../assets/commands" });
 });
 
 router.get("/memes/notstonks.png", (req, res) => {
-    res.sendFile("notstonks.png", { root: "../assets" });
+    res.sendFile("notstonks.png", { root: "../assets/commands" });
 });
 
 router.get("/memes/stonks.png", (req, res) => {
-    res.sendFile("stonks.png", { root: "../assets" });
+    res.sendFile("stonks.png", { root: "../assets/commands" });
 });
 
 router.get("/memes/windows.png", (req, res) => {
-    res.sendFile("windows.png", { root: "../assets" });
+    res.sendFile("windows.png", { root: "../assets/commands" });
 });
 
 router.get("/memes/comunismo.png", (req, res) => {
-    res.sendFile("comunismo.png", { root: "../assets" });
+    res.sendFile("comunismo.png", { root: "../assets/commands" });
 });
 
 router.get("/memes/windows.png", (req, res) => {
-    res.sendFile("windows.png", { root: "../assets" })
+    res.sendFile("windows.png", { root: "../assets/commands" })
 });
 
 router.get("/memes/namorada.png", (req, res) => {
-    res.sendFile("namorada.png", { root: "../assets" })
+    res.sendFile("namorada.png", { root: "../assets/commands" })
 });
 
 router.get("/memes/perfeito.png", (req, res) => {
-    res.sendFile("perfeito.png", { root: "../assets" })
+    res.sendFile("perfeito.png", { root: "../assets/commands" })
 })
 module.exports = router;
