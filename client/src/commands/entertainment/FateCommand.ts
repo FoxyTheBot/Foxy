@@ -46,7 +46,7 @@ name: 'fate',
 
         const rand = list[Math.floor(Math.random() * list.length)];
         await ctx.foxyReply({
-            content: ctx.makeReply(bot.emotes.success, t('commands:fate.result', { user: ctx.author.id.toString(), fate: rand, mention: user.id.toString() }))
+            content: ctx.makeReply(bot.emotes.success, t('commands:fate.result', { user: ctx.author.id, fate: rand, mention: user.id }))
         });
 
         endCommand();

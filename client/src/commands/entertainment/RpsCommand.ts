@@ -1,114 +1,84 @@
+import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { createCommand } from "../../structures/commands/createCommand";
-import { createEmbed } from "../../utils/discord/Embed";
-import { createCustomId, createActionRow, createButton } from "../../utils/discord/Component";
-import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
-import { startRpsGame } from "../../structures/commands/modules/startRpsGame";
-import { MessageFlags } from "../../utils/discord/Message";
 
 const RpsCommand = createCommand({
-    name: 'rps',
+name: 'rps',
     description: "[📺] Jogue pedra, papel ou tesoura com a Foxy",
     descriptionLocalizations: {
         "en-US": "[📺] Play rock, paper or scissors with Foxy"
     },
-
+    category: 'fun',
     options: [
         {
-            name: "singleplayer",
-            description: "[📺] Play rock, paper or scissors with Foxy",
-            descriptionLocalizations: {
-                "pt-BR": "[📺] Jogue pedra, papel ou tesoura com a Foxy"
+            name: "choice",
+            nameLocalizations: {
+                "pt-BR": "escolha"
             },
-            type: ApplicationCommandOptionTypes.SubCommand
+            description: "Escolha entre pedra, papel ou tesoura",
+            descriptionLocalizations: {
+                "en-US": "Choose between rock, paper or scissors"
+            },
+            type: ApplicationCommandOptionTypes.String,
+            required: true
         },
-        {
-            name: "multiplayer",
-            description: "[📺] Play rock, paper or scissors with someone",
-            descriptionLocalizations: {
-                "pt-BR": "[📺] Jogue pedra papel ou tesoura com alguém"
-            },
-            type: ApplicationCommandOptionTypes.SubCommand,
-            options: [
-                {
-                    name: "user",
-                    nameLocalizations: {
-                        "pt-BR": "usuario"
-                    },
-                    description: "The user you want to play",
-                    descriptionLocalizations: {
-                        "pt-BR": "O usuário que você quer jogar"
-                    },
-                    required: true,
-                    type: ApplicationCommandOptionTypes.User
-                }
-            ]
-        }
     ],
-    category: 'fun',
-    commandRelatedExecutions: [startRpsGame],
+
     execute: async (ctx, endCommand, t) => {
-        const subcommand = ctx.getSubCommand();
+        const string = ctx.getOption<string>('choice', false);
+        const acceptedReplies = [t('commands:rps.replies.rock'), t('commands:rps.replies.paper'), t('commands:rps.replies.scissors')];
 
-        switch (subcommand) {
-            case "singleplayer": {
+        const random = Math.floor((Math.random() * acceptedReplies.length));
+        const result = acceptedReplies[random];
+
+        if (!acceptedReplies.includes(string)) {
+            return ctx.foxyReply({
+                content: ctx.makeReply("❌", t('commands:rps.invalidChoice', { choice: acceptedReplies.join(', ') }))
+            });
+        }
+        if (result === string) {
+            return ctx.foxyReply({
+                content: ctx.makeReply("❌", t('commands:rps.tie'))
+            });
+        }
+
+        switch (string) {
+            case t('commands:rps.replies.rock'): {
+                if (result === t('commands:rps.replies.paper')) {
+                    ctx.foxyReply({
+                        content: t('commands:rps.clientWon', { result: result })
+                    })
+                    endCommand();
+                }
                 ctx.foxyReply({
-                    components: [createActionRow([createButton({
-                        label: " ",
-                        customId: createCustomId(0, ctx.author.id, ctx.commandId, "rock", false),
-                        style: ButtonStyles.Primary,
-                        emoji: {
-                            name: "✊"
-                        }
-                    }), createButton({
-                        label: " ",
-                        customId: createCustomId(0, ctx.author.id, ctx.commandId, "paper", false),
-                        style: ButtonStyles.Primary,
-                        emoji: {
-                            name: "🤚"
-                        }
-                    }), createButton({
-                        label: " ",
-                        customId: createCustomId(0, ctx.author.id, ctx.commandId, "scissor", false),
-                        style: ButtonStyles.Primary,
-                        emoji: {
-                            name: "✌"
-                        }
-                    })])],
-                    flags: MessageFlags.Ephemeral
-                });
-
-                endCommand;
+                    content: t('commands:rps.won3')
+                })
+                endCommand();
                 break;
             }
-
-            case "multiplayer": {
+            case t('commands:rps.replies.paper'): {
+                if (result === t('commands:rps.replies.scissors')) {
+                    ctx.foxyReply({
+                        content: t('commands:rps.clientWon', { result: result })
+                    })
+                    endCommand();
+                }
                 ctx.foxyReply({
-                    components: [createActionRow([createButton({
-                        label: " ",
-                        customId: createCustomId(0, ctx.author.id, ctx.commandId, "rock", true),
-                        style: ButtonStyles.Primary,
-                        emoji: {
-                            name: "✊"
-                        }
-                    }), createButton({
-                        label: " ",
-                        customId: createCustomId(0, ctx.author.id, ctx.commandId, "paper", true),
-                        style: ButtonStyles.Primary,
-                        emoji: {
-                            name: "🤚"
-                        }
-                    }), createButton({
-                        label: " ",
-                        customId: createCustomId(0, ctx.author.id, ctx.commandId, "scissor", true),
-                        style: ButtonStyles.Primary,
-                        emoji: {
-                            name: "✌"
-                        }
-                    })])]
+                    content: t('commands:rps.won2')
                 });
 
-                endCommand;
-                break;
+                endCommand();
+            }
+            case t('commands:rps.replies.scissors'): {
+                if (result === t('commands:rps.replies.rock')) {
+                    ctx.foxyReply({
+                        content: t('commands:rps.clientWon', { result: result })
+                    });
+                    endCommand();
+                }
+                ctx.foxyReply({
+                    content: t('commands:rps.won1')
+                });
+                endCommand();
             }
         }
     }
