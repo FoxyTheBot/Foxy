@@ -7,7 +7,15 @@
             "foxcoins": 0,
             "filename": "default.png",
             "description": "Background padrão da Foxy",
-            "blocked": true 
+            "blocked": true
+        },
+        {
+            "id": "foxbaby",
+            "name": "Foxy Baby",
+            "rarity": "Comum",
+            "foxcoins": 10000,
+            "filename": "FoxesCubsCute.png",
+            "description": "Foxy Baby"
         },
         {
             "id": "foxyverse",
