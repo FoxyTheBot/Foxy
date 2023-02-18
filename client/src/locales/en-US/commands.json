@@ -261,12 +261,16 @@
             "paper": "paper",
             "scissors": "scissors"
         },
+        "embed": {
+            "title": "Play rock, paper and scissors with me!",
+            "description": "Select one of the buttons below to play"
+        },
         "tie": "It's a tie!",
         "invalidChoice": "Invalid choice",
         "clientWon": "{{result}}! You lost!",
         "won3": "You won :3",
         "won2": "You won >:3",
-        "won": "You won :D"
+        "won1": "You won :D"
     },
     "fate": {
         "couple": "couple",
@@ -318,7 +322,7 @@
             "price": "Price",
             "preview": "Background Preview",
             "noMoney": "You don't have enough Paws",
-            "success": "You bought the background {{name}} for {{price}} Paws, and it has already been set automatically in your profile! ;3"
+            "success": "You bought the background! It has already been set automatically in your profile! ;3"
         },
         "set": {
             "title": "Background inventory",

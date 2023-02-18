@@ -267,12 +267,22 @@
             "paper": "papel",
             "scissors": "tesoura"
         },
+        "embed": {
+            "title": "Joque pedra, papel ou tesoura com alguém!",
+            "description": "Para iniciar seu jogo com {{user}} selecione uma opção abaixo"
+        },
+
+        "embed2": {
+            "title": "Joque pedra, papel ou tesoura com alguém!",
+            "description": "Por favor {{user}}, selecione uma opção abaixo"
+        },
         "tie": "Deu empate, vamos de novo! >:D",
         "invalidChoice": "Escolha inválida, escolha {{choice}}",
-        "clientWon": "Deu {{result}}, eu ganhei >:3",
-        "won3": "Você ganhou :3",
-        "won2": "Você ganhou >:3",
-        "won": "Você ganhou :D"
+        "clientWon": "Deu {{result}}, {{winner}} ganhou >:3",
+        "won3": "{{winner}} ganhou :3",
+        "won2": "{{winner}} ganhou >:3",
+        "won1": "{{winner}} ganhou :D",
+        "sameUser": "Você não pode jogar com você mesmo"
     },
     "fate": {
         "couple": "casal",
@@ -324,7 +334,7 @@
             "price": "Preço",
             "preview": "Pré-visualização do background",
             "noMoney": "Você não tem Paws suficiente",
-            "success": "Você comprou o background {{name}} por {{price}} Paws, ele já foi definido automaticamente no seu perfil! ;3"
+            "success": "Você comprou o background! O Background já foi definido automaticamente no seu perfil! ;3"
         },
         "set": {
             "title": "Escolha seu background",

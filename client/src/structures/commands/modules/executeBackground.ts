@@ -31,18 +31,18 @@ const executeBackground = async (ctx: ComponentInteractionContext) => {
             })])]
         });
     } else if (subcommand === "buy") {
-        if (userData.balance < background) {
-            await ctx.foxyReply({
-                flags: MessageFlags.Ephemeral,
-                components: [createActionRow([createButton({
-                    customId: createCustomId(0, ctx.author.id, ctx.commandId, code, background),
-                    label: bot.locale('commands:background.buy.purchase'),
-                    style: ButtonStyles.Secondary,
-                    emoji: bot.emotes.daily,
-                    disabled: true
-                })])]
-            })
+        await ctx.foxyReply({
+            flags: MessageFlags.Ephemeral,
+            components: [createActionRow([createButton({
+                customId: createCustomId(0, ctx.author.id, ctx.commandId, code, background, subcommand),
+                label: bot.locale('commands:background.buy.purchase'),
+                style: ButtonStyles.Secondary,
+                emoji: bot.emotes.daily,
+                disabled: true
+            })])]
+        })
         
+        if (userData.balance < background) {        
             ctx.followUp({
                 content: ctx.makeReply(bot.emotes.cry, bot.locale('commands:background.buy.noMoney')),
                 flags: MessageFlags.Ephemeral
@@ -52,7 +52,7 @@ const executeBackground = async (ctx: ComponentInteractionContext) => {
             userData.backgrounds.push(code);
             userData.background = code;
             await userData.save();
-            ctx.foxyReply({
+            ctx.followUp({
                 content: bot.locale('commands:background.buy.success'),
                 flags: MessageFlags.Ephemeral
             })

@@ -10,6 +10,14 @@
             "blocked": true 
         },
         {
+            "id": "foxyverse",
+            "name": "Foxy World",
+            "rarity": "Raro",
+            "foxcoins": 40000,
+            "filename": "foxyverse.png",
+            "description": "Welcome to the Foxy World!"
+        },
+        {
             "id": "fnaf",
             "name": "Five Nights at Freddy's",
             "rarity": "Comum",
