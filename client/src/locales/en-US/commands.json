@@ -261,16 +261,12 @@
             "paper": "paper",
             "scissors": "scissors"
         },
-        "embed": {
-            "title": "Play rock, paper and scissors with me!",
-            "description": "Select one of the buttons below to play"
-        },
         "tie": "It's a tie!",
         "invalidChoice": "Invalid choice",
         "clientWon": "{{result}}! You lost!",
         "won3": "You won :3",
         "won2": "You won >:3",
-        "won1": "You won :D"
+        "won": "You won :D"
     },
     "fate": {
         "couple": "couple",

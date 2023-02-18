@@ -14,7 +14,7 @@
             "twitter": "<:twitter:1072251951447810168> **|** Meu Twitter",
             "github": "<:github_logo:1072251686288113694> **|** Meu Github",
             "donate2": "Doe para mim clicando aqui",
-            "privacy":"Política de privacidade"
+            "privacy": "Política de privacidade"
         }
     },
     "lang": {
@@ -267,22 +267,12 @@
             "paper": "papel",
             "scissors": "tesoura"
         },
-        "embed": {
-            "title": "Joque pedra, papel ou tesoura com alguém!",
-            "description": "Para iniciar seu jogo com {{user}} selecione uma opção abaixo"
-        },
-
-        "embed2": {
-            "title": "Joque pedra, papel ou tesoura com alguém!",
-            "description": "Por favor {{user}}, selecione uma opção abaixo"
-        },
         "tie": "Deu empate, vamos de novo! >:D",
         "invalidChoice": "Escolha inválida, escolha {{choice}}",
-        "clientWon": "Deu {{result}}, {{winner}} ganhou >:3",
-        "won3": "{{winner}} ganhou :3",
-        "won2": "{{winner}} ganhou >:3",
-        "won1": "{{winner}} ganhou :D",
-        "sameUser": "Você não pode jogar com você mesmo"
+        "clientWon": "Deu {{result}}, eu ganhei >:3",
+        "won3": "Você ganhou :3",
+        "won2": "Você ganhou >:3",
+        "won": "Você ganhou :D"
     },
     "fate": {
         "couple": "casal",
