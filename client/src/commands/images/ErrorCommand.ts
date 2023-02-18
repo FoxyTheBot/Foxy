@@ -38,7 +38,7 @@ const ErrorCommand = createCommand({
         }
         if (string.length > 100) {
             ctx.foxyReply({
-                content: t('commands:error.tooLong', { limit: 100 }),
+                content: t('commands:error.tooLong', { limit: "100" }),
             })
             endCommand();
         }
