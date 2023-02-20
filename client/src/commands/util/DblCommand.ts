@@ -17,14 +17,6 @@ const DblCommand = createCommand({
                 "pt-BR": "[🛠] Vote na Foxy no top.gg"
             },
             type: ApplicationCommandOptionTypes.SubCommand
-        },
-        {
-            name: "top",
-            description: "[🛠] See the top voters on top.gg",
-            descriptionLocalizations: {
-                "pt-BR": "[🛠] Veja os maiores votantes na top.gg"
-            },
-            type: ApplicationCommandOptionTypes.SubCommand
         }
     ],
 
