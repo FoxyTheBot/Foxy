@@ -3,6 +3,7 @@ import { createEmbed } from "../../utils/discord/Embed";
 import { bot } from "../../index";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { User } from "discordeno/transformers";
+import config from "../../../config.json";
 
 const FoxyBanCommand = createCommand({
     name: "foxyban",
@@ -60,7 +61,7 @@ const FoxyBanCommand = createCommand({
         const user = ctx.getOption<User>("user", "users");
         const userData = await bot.database.getUser(user.id);
         const commands = await ctx.getSubCommand();
-        if (ctx.author.id !== BigInt("687867247116812378")) {
+        if (ctx.author.id !== BigInt(config.ownerId)) {
             ctx.foxyReply({
                 content: ctx.makeReply(bot.emotes.error, "Você não tem permissão para usar esse comando!"),
                 flags: 64
