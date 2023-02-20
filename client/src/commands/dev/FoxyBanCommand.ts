@@ -83,7 +83,8 @@ const FoxyBanCommand = createCommand({
                 userData.save().catch(err => console.log(err));
 
                 ctx.foxyReply({
-                    content: `Usuário ${user.username} banido com sucesso!`
+                    content: `Usuário ${user.username} banido com sucesso!`,
+                    flags: 64
                 });
                 return endCommand();
             }
@@ -91,7 +92,8 @@ const FoxyBanCommand = createCommand({
             case "remove": {
                 if (!userData.isBanned) {
                     ctx.foxyReply({
-                        content: `${user.username} não está banido!`
+                        content: `${user.username} não está banido!`,
+                        flags: 64
                     });
                     return endCommand();
                 }
@@ -102,7 +104,8 @@ const FoxyBanCommand = createCommand({
                 userData.save().catch(err => console.log(err));
 
                 ctx.foxyReply({
-                    content: `Usuário ${user.username} desbanido com sucesso!`
+                    content: `Usuário ${user.username} desbanido com sucesso!`,
+                    flags: 64
                 });
                 return endCommand();
             }
@@ -132,7 +135,8 @@ const FoxyBanCommand = createCommand({
                 });
 
                 ctx.foxyReply({
-                    embeds: [embed]
+                    embeds: [embed],
+                    flags: 64
                 });
 
                 return endCommand();
