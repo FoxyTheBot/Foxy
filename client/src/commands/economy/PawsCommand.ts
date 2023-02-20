@@ -109,11 +109,9 @@ name: 'paws',
                 let data = await bot.database.getAllUsers();
                 await ctx.defer();
                 data = data.sort((a, b) => b.balance - a.balance);
-                let position = parseInt(data.map(m => m._id).indexOf(ctx.author.id)) + 1;
 
                 const embed = createEmbed({});
                 embed.title = ctx.makeReply(bot.emotes.daily, "Paws Global Rank");
-                embed.description = ctx.makeReply(bot.emotes.sunglass, ` ${t('commands:rank.youAreIn')} ${`${position}º` || 'Sad™'} ${t('commands:rank.position')}`)
                 let fields = embed.fields = [];
                 for (let i in data) {
                     if (Number(i) > 14) break;
