@@ -1,5 +1,4 @@
 import { bot } from "../../index";
-import { CreateSlashApplicationCommand } from "discordeno/types";
 import { logger } from "../../utils/logger";
 import config from '../../../config.json';
 
@@ -11,7 +10,6 @@ const updateApplicationCommands = async (): Promise<void> => {
         await bot.helpers.upsertGuildApplicationCommands(
             config.devGuildId,
             bot.commands
-              // ONLY GLOBAL COMMANDS
               .filter((command) => !!command.devsOnly)
               .array(),
           );
