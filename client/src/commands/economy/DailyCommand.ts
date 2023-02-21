@@ -50,7 +50,8 @@ name: 'daily',
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
             const currentCooldown = ms(timeout - (Date.now() - daily));
             ctx.foxyReply({
-                content: ctx.makeReply(bot.emotes.error, t('commands:daily.cooldown', { time: currentCooldown }))
+                content: ctx.makeReply(bot.emotes.error, t('commands:daily.cooldown', { time: currentCooldown })),
+                flags: 64
             });
             return endCommand();
         } else {
@@ -62,12 +63,14 @@ name: 'daily',
 
             if (userData.premium) {
                 ctx.foxyReply({
-                    content: ctx.makeReply(bot.emotes.daily, t('commands:daily.premium', { amount: amount.toString(), money: money.toString(), normalMoney: `${oldAmount}`, doubleValue: type, premiumType: t(`subscription:${userData.premiumType}`) }))
+                    content: ctx.makeReply(bot.emotes.daily, t('commands:daily.premium', { amount: amount.toString(), money: money.toString(), normalMoney: `${oldAmount}`, doubleValue: type, premiumType: t(`subscription:${userData.premiumType}`) })),
+                    flags: 64
                 });
                 endCommand();
             } else {
                 ctx.foxyReply({
-                    content: ctx.makeReply(bot.emotes.daily, t('commands:daily.daily', { amount: amount.toString(), money: money.toString() }))
+                    content: ctx.makeReply(bot.emotes.daily, t('commands:daily.daily', { amount: amount.toString(), money: money.toString() })),
+                    flags: 64
                 })
                 endCommand();
             }
