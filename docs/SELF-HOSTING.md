@@ -20,7 +20,7 @@ Pursuant to the license, you may modify Foxy's source code, but you are required
 <p>You need to install TSC (TypeScript Compiler)</p>
 
 ```bash
-npm i -g typescript
+yarn global add typescript
 ```
 
 ## Values that you need to change
@@ -28,26 +28,28 @@ npm i -g typescript
 
 ```json
 {
-  "ownerId": "<YOUR-ID>", // Insert your Discord Account ID
-  "clientId": "<BOT-ID>", // Insert your bot ID
-  "prefix": "<BOT-PREFIX>", // Insert the prefix (optional)
-  "token": "<BOT-TOKEN>",  // Insert your bot token
-  "mongouri": "<MONGODB-URI>", // Insert your mongoDB access URI
-  "dblauth": "<TOPGG-AUTH>",  // Insert your Discord Bot List token (optional)
-
+{
+    "ownerId": "<YOUR-DISCORD-ID>",
+    "clientId": "<YOUR-BOT-ID>",
+    "devGuildId": "<YOUR-SERVER-ID>",
+    "productionEnv": true, // This bool will determine if you're using experimental version
+    "token": "<YOUR-BOT-TOKEN>",
+    "mongouri": "<YOUR-MONGODB-URI>",
+    "dblauth": "<YOUR-TOPGG-TOKEN",
     "webhooks": {
-        "guilds" {
-          "id": // Webhook ID
-          "token": // Webhook Token
+        "guilds": {
+            "id": "<WEBHOOK-ID>",
+            "token": "<WEBHOOK-TOKEN>"
         }
     }
-  }
+}
 ```
 <br>
 
 ## ✨ | Install all required dependencies
+Just type in the root folder
 ```bash
-yarn add
+yarn
 ```
 
 ## 💻 | Compiling Foxy
@@ -68,4 +70,4 @@ yarn add
 - In the second terminal you start the Foxy Client: `yarn run:client`
 
 If you want to start all at once, just type:
-`yarn run:all`
+`yarn run:all` (Not recommended)
