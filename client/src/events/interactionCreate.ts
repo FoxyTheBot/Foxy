@@ -6,7 +6,7 @@ import { createEmbed } from '../utils/discord/Embed';
 import { InteractionTypes } from 'discordeno/types';
 import { componentExecutor } from '../structures/commands/ComponentExecutor';
 
-module.exports = async (client, interaction) => {
+module.exports = async (_, interaction) => {
 
     const user = await bot.database.getUser(interaction.user.id);
     const locale = global.t = i18next.getFixedT(user.language || 'pt-BR');
@@ -25,7 +25,7 @@ module.exports = async (client, interaction) => {
                 command.execute(ctx, res, locale);
             } catch (e) {
                 console.error(e);
-                ctx.foxyReply({ content: locale('events:interactioncreate.commandError'), flags: MessageFlags.Ephemeral })
+                ctx.foxyReply({ content: locale('events:interactionCreate.commandError'), flags: MessageFlags.Ephemeral })
             }
         })
     }
