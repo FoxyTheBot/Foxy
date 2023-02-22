@@ -24,28 +24,28 @@ name: "rep",
         }
     ],
 
-    execute: async (ctx, endCommand, t) => {
-        const user = ctx.getOption<User>('user', 'users');
+    execute: async (context, endCommand, t) => {
+        const user = context.getOption<User>('user', 'users');
         if (!user) {
-            ctx.makeReply(bot.emotes.error, t('commands:global.noUser'));
+            context.makeReply(bot.emotes.error, t('commands:global.noUser'));
             return endCommand();
         }
 
-        if (user.id === ctx.author.id) {
-            ctx.foxyReply({
-                content: ctx.makeReply("🚫", t('commands:rep.self'))
+        if (user.id === context.author.id) {
+            context.sendReply({
+                content: context.makeReply("🚫", t('commands:rep.self'))
             })
             return endCommand();
         }
 
         const userData = await bot.database.getUser(user.id);
-        const authorData = await bot.database.getUser(ctx.author.id);
+        const authorData = await bot.database.getUser(context.author.id);
         const repCooldown = 3600000;
 
         if (repCooldown - (Date.now() - authorData.lastRep) > 0) {
             const currentCooldown = ms(repCooldown - (Date.now() - authorData.lastRep));
-            ctx.foxyReply({
-                content: ctx.makeReply(bot.emotes.error, t('commands:rep.cooldown', { cooldown: currentCooldown }))
+            context.sendReply({
+                content: context.makeReply(bot.emotes.error, t('commands:rep.cooldown', { cooldown: currentCooldown }))
             })
             endCommand();
         } else {
@@ -53,8 +53,8 @@ name: "rep",
             authorData.lastRep = Date.now();
             authorData.save();
             userData.save();
-            ctx.foxyReply({
-                content: ctx.makeReply(bot.emotes.success, t('commands:rep.success', { user: user.username }))
+            context.sendReply({
+                content: context.makeReply(bot.emotes.success, t('commands:rep.success', { user: user.username }))
             })
             endCommand();
         }

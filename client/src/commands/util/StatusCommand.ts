@@ -11,7 +11,7 @@ name: "status",
     },
     category: "util",
     options: [],
-    execute: async (ctx, endCommand, t) => {
+    execute: async (context, endCommand, t) => {
         const embed = createEmbed({
             title: '🦊 | Foxy Status',
             fields: [
@@ -24,7 +24,7 @@ name: "status",
             ]
         });
 
-        ctx.foxyReply({ embeds: [embed] });
+        context.sendReply({ embeds: [embed] });
         endCommand();
     }
 })

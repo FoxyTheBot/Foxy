@@ -53,7 +53,7 @@ export default class {
         })
     }
 
-    async foxyReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
+    async sendReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
         if (!bot.isProduction) {
             bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
                 type: InteractionResponseTypes.ChannelMessageWithSource,

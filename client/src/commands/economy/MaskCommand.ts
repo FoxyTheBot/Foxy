@@ -5,7 +5,7 @@ import { MessageFlags } from '../../utils/discord/Message';
 import { ButtonStyles } from 'discordeno/types';
 import { bot } from '../../index';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
-import executeMask from '../../structures/commands/modules/executeMask';
+import MaskExecutor from '../../utils/commands/executors/MaskExecutor';
 import GenerateImage from '../../structures/GenerateImage';
 
 const choices = masks.map(data => Object({ name: `${data.id} / ${data.price} Paws`, value: data.id }));
@@ -52,36 +52,36 @@ const MaskCommand = createCommand({
             ]
         }
     ],
-    commandRelatedExecutions: [executeMask],
-    execute: async (ctx, endCommand, t) => {
-        const subCommand = ctx.getSubCommand();
-        const userData = await bot.database.getUser(ctx.author.id);
+    commandRelatedExecutions: [MaskExecutor],
+    execute: async (context, endCommand, t) => {
+        const subCommand = context.getSubCommand();
+        const userData = await bot.database.getUser(context.author.id);
         switch(subCommand) {
             case "buy": {
-                await ctx.defer(true);
-                const code: string = ctx.getOption<string>("mask", false);
+                await context.defer(true);
+                const code: string = context.getOption<string>("mask", false);
                 const mask = masks.find(data => data.id === code?.toLowerCase());
                 if(userData.masks.includes(code?.toLowerCase())) {
-                    ctx.foxyReply({
-                        content: ctx.makeReply(bot.emotes.error, t('commands:masks.alreadyOwned')),
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.error, t('commands:masks.alreadyOwned')),
                         flags: MessageFlags.Ephemeral
                     });
 
                     return endCommand();
                 }    
             
-                const canvasGenerator = new GenerateImage(t, ctx.author, userData, 1436, 884, true, code, true);
+                const canvasGenerator = new GenerateImage(t, context.author, userData, 1436, 884, true, code, true);
                 const profile = await canvasGenerator.renderProfile();
 
-                ctx.foxyReply({
-                    content: ctx.makeReply(bot.emotes.success, t('commands:masks.preview')),
+                context.sendReply({
+                    content: context.makeReply(bot.emotes.success, t('commands:masks.preview')),
                     file: [{
                         name: 'profile.png',
                         blob: await profile
                     }],
                     flags: MessageFlags.Ephemeral,
                     components: [createActionRow([createButton({
-                        customId: createCustomId(0, ctx.author.id, ctx.commandId, code, mask?.price, subCommand),
+                        customId: createCustomId(0, context.author.id, context.commandId, code, mask?.price, subCommand),
                         label: t('commands:masks.purchase'),
                         style: ButtonStyles.Success,
                         emoji: bot.emotes.daily,
@@ -95,18 +95,18 @@ const MaskCommand = createCommand({
             case "set": {
                 const userMasks = userData.masks;
                 if(userMasks.length === 0) {
-                    ctx.foxyReply({
-                        content: ctx.makeReply(bot.emotes.error, t('commands:masks.noMasks')),
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.error, t('commands:masks.noMasks')),
                         flags: MessageFlags.Ephemeral
                     });
 
                     return endCommand();
                 } else {
-                    ctx.defer(true);
-                    ctx.foxyReply({
-                        content: ctx.makeReply(bot.emotes.success, t('commands:masks.selectMask')),
+                    context.defer(true);
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.success, t('commands:masks.selectMask')),
                         components: [createActionRow([createSelectMenu({
-                            customId: createCustomId(0, ctx.author.id, ctx.commandId, subCommand),
+                            customId: createCustomId(0, context.author.id, context.commandId, subCommand),
                             placeholder: t('commands:masks.selectMask'),
                             options: userMasks.map(data => Object({ label: data, value: data }))
                         })])]

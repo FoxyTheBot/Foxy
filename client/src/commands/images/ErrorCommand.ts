@@ -23,13 +23,13 @@ const ErrorCommand = createCommand({
             required: true  
         }
     ],
-    execute: async (ctx, endCommand, t) => {
-        var string = ctx.getOption<string>("text", false);
+    execute: async (context, endCommand, t) => {
+        var string = context.getOption<string>("text", false);
         const canvas = Canvas.createCanvas(380, 208);
-        const context = canvas.getContext("2d");
+        const ctx = canvas.getContext("2d");
 
         const background = await Canvas.loadImage("http://localhost:8080/memes/windows.png");
-        context.drawImage(background, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 
         if (string.length > 30) {
@@ -37,26 +37,26 @@ const ErrorCommand = createCommand({
             string = check.join("\n");
         }
         if (string.length > 100) {
-            ctx.foxyReply({
+            context.sendReply({
                 content: t('commands:error.tooLong', { limit: "100" }),
             })
             endCommand();
         }
 
-        context.strokeStyle = '#74037b';
-        context.strokeRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = '#74037b';
+        ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
-        context.font = '15px Sans';
-        context.fillStyle = '#000000';
-        context.fillText(`${string}`, canvas.width / 5.3, canvas.height / 2.2);
+        ctx.font = '15px Sans';
+        ctx.fillStyle = '#000000';
+        ctx.fillText(`${string}`, canvas.width / 5.3, canvas.height / 2.2);
 
-        context.beginPath();
-        context.arc(125, 125, 100, 6, Math.PI * 2, true);
-        context.closePath();
-        context.clip();
+        ctx.beginPath();
+        ctx.arc(125, 125, 100, 6, Math.PI * 2, true);
+        ctx.closePath();
+        ctx.clip();
 
         const blob = new Blob([canvas.toBuffer()], { type: "image/png" });
-        ctx.foxyReply({
+        context.sendReply({
             file: {
                 name: "error.png",
                 blob: blob

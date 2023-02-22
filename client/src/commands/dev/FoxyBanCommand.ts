@@ -57,13 +57,13 @@ const FoxyBanCommand = createCommand({
             ]
         }
     ],
-    execute: async (ctx, endCommand, t) => {
-        const user = ctx.getOption<User>("user", "users");
+    execute: async (context, endCommand, t) => {
+        const user = context.getOption<User>("user", "users");
         const userData = await bot.database.getUser(user.id);
-        const commands = await ctx.getSubCommand();
-        if (ctx.author.id !== BigInt(config.ownerId)) {
-            ctx.foxyReply({
-                content: ctx.makeReply(bot.emotes.error, "Você não tem permissão para usar esse comando!"),
+        const commands = await context.getSubCommand();
+        if (context.author.id !== BigInt(config.ownerId)) {
+            context.sendReply({
+                content: context.makeReply(bot.emotes.error, "Você não tem permissão para usar esse comando!"),
                 flags: 64
             });
             return endCommand();
@@ -71,18 +71,18 @@ const FoxyBanCommand = createCommand({
         switch (commands) {
             case "add": {
                 if (userData.isBanned) {
-                    ctx.foxyReply({
+                    context.sendReply({
                         content: `${user.username} já está banido!`
                     });
                     return endCommand();
                 }
-                const reason = ctx.getOption<string>("reason", false)
+                const reason = context.getOption<string>("reason", false)
                 userData.isBanned = true;
                 userData.banReason = reason;
                 userData.banData = Date.now();
                 userData.save().catch(err => console.log(err));
 
-                ctx.foxyReply({
+                context.sendReply({
                     content: `Usuário ${user.username} banido com sucesso!`,
                     flags: 64
                 });
@@ -91,7 +91,7 @@ const FoxyBanCommand = createCommand({
 
             case "remove": {
                 if (!userData.isBanned) {
-                    ctx.foxyReply({
+                    context.sendReply({
                         content: `${user.username} não está banido!`,
                         flags: 64
                     });
@@ -103,7 +103,7 @@ const FoxyBanCommand = createCommand({
                 userData.banData = null;
                 userData.save().catch(err => console.log(err));
 
-                ctx.foxyReply({
+                context.sendReply({
                     content: `Usuário ${user.username} desbanido com sucesso!`,
                     flags: 64
                 });
@@ -134,7 +134,7 @@ const FoxyBanCommand = createCommand({
                     ]
                 });
 
-                ctx.foxyReply({
+                context.sendReply({
                     embeds: [embed],
                     flags: 64
                 });

@@ -20,12 +20,12 @@ name: "anime",
         }
     ],
 
-    execute: async (ctx, endCommand, t) => {
-        const anime = ctx.getOption<string>('anime', false);
-        await ctx.defer();
+    execute: async (context, endCommand, t) => {
+        const anime = context.getOption<string>('anime', false);
+        await context.defer();
         scraper.getInfoFromName(anime).then(async (data) => {
-            if (!data) return ctx.foxyReply({
-                content: ctx.makeReply("🚫", t('commands:anime.notFound'))
+            if (!data) return context.sendReply({
+                content: context.makeReply("🚫", t('commands:anime.notFound'))
             })
 
             const embed = createEmbed({
@@ -48,7 +48,7 @@ name: "anime",
                     { name: "Trailer", value: `[${t('anime.click')}](${data.trailer})` || t("commands:anime.nothing"), inline: true},
                 ]
             });
-            ctx.foxyReply({ embeds: [embed] });
+            context.sendReply({ embeds: [embed] });
         });
         endCommand();
     }

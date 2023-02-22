@@ -12,11 +12,11 @@ name: "caracoroa",
     category: "games",
     options: [],
 
-    execute: async (ctx, endCommand, t) => {
+    execute: async (context, endCommand, t) => {
         const coinflip = ["heads", "tails"];
         const coin = coinflip[Math.floor(Math.random() * coinflip.length)];
 
-        ctx.foxyReply({ content: `${t("commands:coinflip.flipped")} **${t(`commands:coinflip.${coin}`)}**`})
+        context.sendReply({ content: `${t("commands:coinflip.flipped")} **${t(`commands:coinflip.${coin}`)}**`})
         endCommand();
     }
 });

@@ -22,7 +22,7 @@ name: '8ball',
             required: true
         }
     ],
-    execute: async (ctx, endCommand, t) => {
+    execute: async (context, endCommand, t) => {
         const results = [
             t('commands:8ball.yes'),
             t('commands:8ball.no'),
@@ -36,8 +36,8 @@ name: '8ball',
 
         const result = results[Math.floor(Math.random() * results.length)];
 
-        ctx.foxyReply({
-            content: ctx.makeReply('🎱', result)
+        context.sendReply({
+            content: context.makeReply('🎱', result)
         });
         endCommand();
     }

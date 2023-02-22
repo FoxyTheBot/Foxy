@@ -10,17 +10,17 @@ import gifs from 'nekos.life';
 const gif = new gifs();
 const embed = createEmbed({});
 
-const executeKiss = async (ctx: ComponentInteractionContext) => {
-    const [user] = ctx.sentData;
+const executeKiss = async (context: ComponentInteractionContext) => {
+    const [user] = context.sentData;
     const kissGif = await gif.kiss();
-    embed.title = bot.locale('commands:kiss.success', { user: ctx.author.username, author: user }),
+    embed.title = bot.locale('commands:kiss.success', { user: context.author.username, author: user }),
         embed.image = {
             url: kissGif.url
         }
 
-    ctx.foxyReply({
+    context.sendReply({
         components: [createActionRow([createButton({
-            customId: createCustomId(0, user, ctx.commandId),
+            customId: createCustomId(0, user, context.commandId),
             label: bot.locale('commands:kiss.button'),
             style: ButtonStyles.Secondary,
             emoji: {
@@ -29,7 +29,7 @@ const executeKiss = async (ctx: ComponentInteractionContext) => {
             disabled: true
         })])]
     });
-    ctx.followUp({
+    context.followUp({
         embeds: [embed],
     });
 }
@@ -58,19 +58,19 @@ const KissCommand = createCommand({
         }
     ],
     commandRelatedExecutions: [executeKiss],
-    execute: async (ctx, endCommand, t) => {
-        const user = ctx.getOption<User>("user", "users");
+    execute: async (context, endCommand, t) => {
+        const user = context.getOption<User>("user", "users");
         const kissGif = await gif.kiss();
 
-        embed.title = t('commands:kiss.success', { user: user.username, author: ctx.author.username }),
+        embed.title = t('commands:kiss.success', { user: user.username, author: context.author.username }),
             embed.image = {
                 url: kissGif.url
             }
 
-        ctx.foxyReply({
+        context.sendReply({
             embeds: [embed],
             components: [createActionRow([createButton({
-                customId: createCustomId(0, user.id, ctx.commandId, user.username),
+                customId: createCustomId(0, user.id, context.commandId, user.username),
                 label: t('commands:kiss.button'),
                 style: ButtonStyles.Primary,
                 emoji: {
@@ -78,7 +78,7 @@ const KissCommand = createCommand({
                 }
             })])]
         })
-        ctx.followUp({
+        context.followUp({
             embeds: [embed],
         });
         endCommand();

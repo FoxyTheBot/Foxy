@@ -53,7 +53,7 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
         })
     }
 
-    async foxyReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
+    async sendReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
         if (!this.replied) {
             this.replied = true;
             await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {

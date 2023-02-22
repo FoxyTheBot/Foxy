@@ -25,12 +25,12 @@ name: 'fate',
         }
     ],
 
-    execute: async (ctx, endCommand, t) => {
-        const user = ctx.getOption<User>('user', 'users');
+    execute: async (context, endCommand, t) => {
+        const user = context.getOption<User>('user', 'users');
     
         if (!user) {
-            ctx.foxyReply({
-                content: ctx.makeReply(bot.emotes.scared, t('commands:global.noUser'))
+            context.sendReply({
+                content: context.makeReply(bot.emotes.scared, t('commands:global.noUser'))
             })
         }
 
@@ -45,8 +45,8 @@ name: 'fate',
         ]
 
         const rand = list[Math.floor(Math.random() * list.length)];
-        await ctx.foxyReply({
-            content: ctx.makeReply(bot.emotes.success, t('commands:fate.result', { user: ctx.author.id.toString(), fate: rand, mention: user.id.toString() }))
+        await context.sendReply({
+            content: context.makeReply(bot.emotes.success, t('commands:fate.result', { user: context.author.id.toString(), fate: rand, mention: user.id.toString() }))
         });
 
         endCommand();

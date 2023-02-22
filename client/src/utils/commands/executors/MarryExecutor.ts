@@ -1,0 +1,28 @@
+import ComponentInteractionContext from "../../../structures/commands/ComponentInteractionContext";
+import { bot } from "../../../index";
+import { ButtonStyles } from "discordeno/types";
+import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
+
+const MarryExecutor = async (context: ComponentInteractionContext) => {
+    const userData = await bot.database.getUser(context.author.id);
+    const partnerData = await bot.database.getUser(context.interaction.user.id);
+
+    userData.marriedWith = context.user.id;
+    userData.marriedDate = new Date();
+    partnerData.marriedWith = context.author.id;
+    partnerData.marriedDate = new Date();
+    await userData.save();
+    await partnerData.save();
+
+    context.sendReply({
+        content: context.makeReply("❤", bot.locale("commands:marry.accepted")),
+        components: [createActionRow([createButton({
+            customId: createCustomId(0, context.interaction.data.targetId, context.commandId),
+            label: bot.locale("commands:marry.accept"),
+            style: ButtonStyles.Success,
+            disabled: true
+        })])],
+    })
+}
+
+export default MarryExecutor;

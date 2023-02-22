@@ -5,7 +5,7 @@ import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { bot } from "../../index";
 import { User } from "discordeno/transformers";
 import { ButtonStyles } from "discordeno/types";
-import executePawsTransfer from "../../structures/commands/modules/executePawsTransfer";
+import PawsTransferExecutor from "../../utils/commands/executors/PawsTransferExecutor";
 
 const PawsCommand = createCommand({
 name: 'paws',
@@ -83,23 +83,23 @@ name: 'paws',
             ]
         }
     ],
-    commandRelatedExecutions: [executePawsTransfer],
+    commandRelatedExecutions: [PawsTransferExecutor],
     category: 'economy',
-    execute: async (ctx, endCommand, t) => {
-        switch (ctx.getSubCommand()) {
+    execute: async (context, endCommand, t) => {
+        switch (context.getSubCommand()) {
             case "atm": {
-                const user = await ctx.getOption<User>('user', 'users') ?? ctx.author;
+                const user = await context.getOption<User>('user', 'users') ?? context.author;
                 if (!user) {
-                    ctx.foxyReply({
-                        content: ctx.makeReply(bot.emotes.error, t('commands:global.noUser'))
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.error, t('commands:global.noUser'))
                     });
                     return endCommand();
                 }
                 const userData = await bot.database.getUser(user.id);
                 const balance = userData.balance;
 
-                ctx.foxyReply({
-                    content: ctx.makeReply(bot.emotes.daily, t('commands:atm.success', { user: user.username, balance: balance.toString() }))
+                context.sendReply({
+                    content: context.makeReply(bot.emotes.daily, t('commands:atm.success', { user: user.username, balance: balance.toString() }))
                 })
                 endCommand();
                 break;
@@ -107,11 +107,11 @@ name: 'paws',
 
             case "rank": {
                 let data = await bot.database.getAllUsers();
-                await ctx.defer();
+                await context.defer();
                 data = data.sort((a, b) => b.balance - a.balance);
 
                 const embed = createEmbed({});
-                embed.title = ctx.makeReply(bot.emotes.daily, "Paws Global Rank");
+                embed.title = context.makeReply(bot.emotes.daily, "Paws Global Rank");
                 let fields = embed.fields = [];
                 for (let i in data) {
                     if (Number(i) > 14) break;
@@ -123,7 +123,7 @@ name: 'paws',
                     });
                 }
 
-                ctx.foxyReply({
+                context.sendReply({
                     embeds: [embed],
                 });
 
@@ -131,40 +131,40 @@ name: 'paws',
                 break;
             }
             case "transfer": {
-                const user = await ctx.getOption<User>('user', 'users');
-                const amount = await ctx.getOption<number>('amount', false);
+                const user = await context.getOption<User>('user', 'users');
+                const amount = await context.getOption<number>('amount', false);
                 if (!user) {
-                    ctx.foxyReply({
-                        content: ctx.makeReply(bot.emotes.error, t('commands:global.noUser'))
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.error, t('commands:global.noUser'))
                     });
                     return endCommand();
                 }
 
-                const authorData = await bot.database.getUser(ctx.author.id);
+                const authorData = await bot.database.getUser(context.author.id);
                 const coins = amount;
 
                 const value = Math.round(coins);
 
-                if (user === ctx.author) {
-                    ctx.foxyReply({
-                        content: ctx.makeReply(bot.emotes.error, t('commands:pay.self'))
+                if (user === context.author) {
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.error, t('commands:pay.self'))
                     })
                     return endCommand();
                 }
                 if (value > authorData.balance) {
-                    ctx.foxyReply({
-                        content: ctx.makeReply(bot.emotes.error, t('commands:pay.notEnough'))
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.error, t('commands:pay.notEnough'))
                     })
                     return endCommand();
                 }
 
 
-                ctx.foxyReply({
-                    content: ctx.makeReply("🦊", t('commands:pay.alert', { amount: value.toString(), user: user.username })),
+                context.sendReply({
+                    content: context.makeReply("🦊", t('commands:pay.alert', { amount: value.toString(), user: user.username })),
                     components: [createActionRow([createButton({
                         label: t('commands:pay.pay'),
                         style: ButtonStyles.Success,
-                        customId: createCustomId(0, ctx.author.id, ctx.commandId, value, user.id)
+                        customId: createCustomId(0, context.author.id, context.commandId, value, user.id)
                     })])]
                 });
                 endCommand();

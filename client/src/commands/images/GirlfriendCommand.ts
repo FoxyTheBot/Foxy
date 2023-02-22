@@ -25,8 +25,8 @@ const GirlfriendCommand = createCommand({
             required: false
         }
     ],
-    execute: async (ctx, endCommand, t) => {
-        const user = ctx.getOption<User>("user", "users");
+    execute: async (context, endCommand, t) => {
+        const user = context.getOption<User>("user", "users");
         
         var avatar;
         if (!user) {
@@ -38,12 +38,12 @@ const GirlfriendCommand = createCommand({
         const background = await Canvas.loadImage("http://localhost:8080/memes/namorada.png");
         const avatarImg = await Canvas.loadImage(avatar);
         const canvas = Canvas.createCanvas(500, 510);
-        const context = canvas.getContext('2d'); 
-        context.drawImage(background, 0, 0, canvas.width, canvas.height);
-        context.drawImage(avatarImg, 20, 170, 200, 200);
+        const ctx = canvas.getContext('2d'); 
+        ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(avatarImg, 20, 170, 200, 200);
 
         const blob = new Blob([canvas.toBuffer()], { type: "image/png" });
-        ctx.foxyReply({
+        context.sendReply({
             file: {
                 name: "namorada.png",
                 blob

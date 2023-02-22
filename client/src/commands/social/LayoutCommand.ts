@@ -39,17 +39,17 @@ const LayoutCommand = createCommand({
             ]
         }
     ],
-    execute: async (ctx, endCommand, t) => {
-        const selectedOption = ctx.getOption<string>('layout', false, true);
+    execute: async (context, endCommand, t) => {
+        const selectedOption = context.getOption<string>('layout', false, true);
         const layouts = lylist.map(data => data.id);
-        if (!layouts.includes(selectedOption)) return ctx.foxyReply({
-            content: ctx.makeReply(bot.emotes.error, t('commands:layouts.notFound'))
+        if (!layouts.includes(selectedOption)) return context.sendReply({
+            content: context.makeReply(bot.emotes.error, t('commands:layouts.notFound'))
         });
-        const userData = await bot.database.getUser(ctx.author.id);
+        const userData = await bot.database.getUser(context.author.id);
         userData.layout = selectedOption;
         await userData.save();
-        ctx.foxyReply({
-            content: ctx.makeReply(bot.emotes.success, t('commands:layouts.changed'))
+        context.sendReply({
+            content: context.makeReply(bot.emotes.success, t('commands:layouts.changed'))
         })
         endCommand();
     }

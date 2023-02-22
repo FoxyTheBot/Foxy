@@ -64,10 +64,10 @@ const componentExecutor = async (interaction: Interaction): Promise<void> => {
 
   if (!execute) return errorReply(T('permissions:UNKNOWN_INTERACTION'));
 
-  const ctx = new ComponentInteractionContext(interaction as ComponentInteraction);
+  const context = new ComponentInteractionContext(interaction as ComponentInteraction);
 
   await new Promise((res) => {
-    execute(ctx).catch((err) => {
+    execute(context).catch((err) => {
       errorReply(
         T('events:error.title', {
           cmd: command.name,

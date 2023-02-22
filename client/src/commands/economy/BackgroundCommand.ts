@@ -3,7 +3,7 @@ import { ApplicationCommandOptionTypes, ButtonStyles } from 'discordeno/types';
 import { createActionRow, createSelectMenu, createCustomId, createButton } from '../../utils/discord/Component';
 import { bglist } from "../../structures/json/backgroundList.json"
 import { bot } from '../../index';
-import executeBackground from '../../structures/commands/modules/executeBackground';
+import executeBackground from '../../utils/commands/executors/BackgroundExecutor';
 import { MessageFlags } from '../../utils/discord/Message';
 import GenerateImage from '../../structures/GenerateImage';
 
@@ -53,17 +53,17 @@ const BackgroundCommand = createCommand({
     ],
 
     commandRelatedExecutions: [executeBackground],
-    execute: async (ctx, endCommand, t) => {
-        const subcommand = ctx.getSubCommand();
-        const userData = await bot.database.getUser(ctx.author.id);
+    execute: async (context, endCommand, t) => {
+        const subcommand = context.getSubCommand();
+        const userData = await bot.database.getUser(context.author.id);
         switch (subcommand) {
             case 'buy': {
-                await ctx.defer(true);
-                const code = ctx.getOption<string>('background', false),
+                await context.defer(true);
+                const code = context.getOption<string>('background', false),
                     background = await bglist.find((b) => b.id === code?.toLowerCase());
 
                 if (userData.backgrounds.includes(code)) {
-                    ctx.foxyReply({
+                    context.sendReply({
                         content: t('commands:background.buy.alreadyOwned'),
                         flags: MessageFlags.Ephemeral
                     });
@@ -71,17 +71,17 @@ const BackgroundCommand = createCommand({
                     endCommand();
                     return;
                 }
-                const canvasGenerator = new GenerateImage(t, ctx.author, userData, 1436, 884, true, code);
+                const canvasGenerator = new GenerateImage(t, context.author, userData, 1436, 884, true, code);
                 const profile = canvasGenerator.renderProfile();
 
-                ctx.foxyReply({
-                    content: ctx.makeReply(bot.emotes.success, `Background: **${background.name}**\n ${bot.emotes.daily} **|** ${t('commands:background.buy.price')}: **${background.foxcoins}**`),
+                context.sendReply({
+                    content: context.makeReply(bot.emotes.success, `Background: **${background.name}**\n ${bot.emotes.daily} **|** ${t('commands:background.buy.price')}: **${background.foxcoins}**`),
                     file: [{
                         name: "preview.png",
                         blob: await profile
                     }],
                     components: [createActionRow([createButton({
-                        customId: createCustomId(0, ctx.author.id, ctx.commandId, code, background.foxcoins, subcommand),
+                        customId: createCustomId(0, context.author.id, context.commandId, code, background.foxcoins, subcommand),
                         label: t('commands:background.buy.purchase'),
                         style: ButtonStyles.Success,
                         emoji: bot.emotes.daily
@@ -92,13 +92,13 @@ const BackgroundCommand = createCommand({
                 break;
             }
             case "set": {
-                await ctx.defer(true);
+                await context.defer(true);
                 const fetchBackgrounds = userData.backgrounds;
                 const backgrounds = await bglist.filter((b) => fetchBackgrounds.includes(b.id));
 
-                ctx.foxyReply({
+                context.sendReply({
                     components: [createActionRow([createSelectMenu({
-                        customId: createCustomId(0, ctx.author.id, ctx.commandId, subcommand),
+                        customId: createCustomId(0, context.author.id, context.commandId, subcommand),
                         placeholder: t('commands:background.set.title'),
                         options: backgrounds.map((b) => Object({
                             label: b.name,

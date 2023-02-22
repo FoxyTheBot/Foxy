@@ -27,28 +27,28 @@ const OurCommand = createCommand({
         }
     ],
 
-    execute: async (ctx, endCommand, t) => {
-        const string = ctx.getOption<string>("text", false);
+    execute: async (context, endCommand, t) => {
+        const string = context.getOption<string>("text", false);
         const canvas = Canvas.createCanvas(500, 400);
-        const context = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d');
 
         const background = await Canvas.loadImage('http://localhost:8080/memes/comunismo.png');
-        context.drawImage(background, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-        context.strokeStyle = '#74037b';
-        context.strokeRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = '#74037b';
+        ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
-        context.font = '28px sans-serif';
-        context.fillStyle = '#000000';
-        context.fillText(string, canvas.width / 15.5, canvas.height / 13.5);
+        ctx.font = '28px sans-serif';
+        ctx.fillStyle = '#000000';
+        ctx.fillText(string, canvas.width / 15.5, canvas.height / 13.5);
 
-        context.beginPath();
-        context.arc(125, 125, 100, 6, Math.PI * 2, true);
-        context.closePath();
-        context.clip();
+        ctx.beginPath();
+        ctx.arc(125, 125, 100, 6, Math.PI * 2, true);
+        ctx.closePath();
+        ctx.clip();
 
         const blob = new Blob([canvas.toBuffer()], { type: "image/png" });
-        ctx.foxyReply({
+        context.sendReply({
             file: {
                 name: "comunismo.png",
                 blob

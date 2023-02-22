@@ -3,7 +3,7 @@ import { MessageFlags } from "../../utils/discord/Message";
 import { bot } from "../../index";
 import { createCommand } from "../../structures/commands/createCommand";
 import { createActionRow, createButton, createCustomId } from "../../utils/discord/Component";
-import executeDivorce from "../../structures/commands/modules/executeDivorce";
+import DivorceExecutor from "../../utils/commands/executors/DivorceExecutor";
 
 const DivorceCommand = createCommand({
 name: 'divorciar',
@@ -15,14 +15,14 @@ name: 'divorciar',
         "en-US": "[👥] Divorce your partner"
     },
     category: "social",
-    commandRelatedExecutions: [executeDivorce],
-    execute: async (ctx, endCommand, t) => {
-        const userData = await bot.database.getUser(ctx.author.id);
+    commandRelatedExecutions: [DivorceExecutor],
+    execute: async (context, endCommand, t) => {
+        const userData = await bot.database.getUser(context.author.id);
         const partnerId = await userData.marriedWith;
 
         if (!partnerId) {
-            ctx.foxyReply({
-                content: ctx.makeReply(bot.emotes.error, t("commands:divorce.notMarried")),
+            context.sendReply({
+                content: context.makeReply(bot.emotes.error, t("commands:divorce.notMarried")),
                 flags: MessageFlags.Ephemeral
             })
             return endCommand();
@@ -30,10 +30,10 @@ name: 'divorciar',
 
         const userInfo = await bot.helpers.getUser(userData.marriedWith);
 
-        ctx.foxyReply({
+        context.sendReply({
             content: t("commands:divorce.confirm2", { user: userInfo.username }),
             components: [createActionRow([createButton({
-                customId: createCustomId(0, ctx.author.id, ctx.commandId),
+                customId: createCustomId(0, context.author.id, context.commandId),
                 label: t("commands:divorce.confirm"),
                 style: ButtonStyles.Danger
             }),

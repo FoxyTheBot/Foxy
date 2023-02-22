@@ -1,21 +1,21 @@
-import ComponentInteractionContext from "../ComponentInteractionContext";
+import ComponentInteractionContext from "../../../structures/commands/ComponentInteractionContext";
 import { bot } from "../../../index";
 import { createActionRow, createCustomId, createButton, createSelectMenu } from "../../../utils/discord/Component";
 import { MessageFlags } from '../../../utils/discord/Message';
 import { ButtonStyles } from "discordeno/types";
 
-const executeMask = async (ctx: ComponentInteractionContext) => {
-    const [code, mask, subCommand] = ctx.sentData;
+const MaskExecutor = async (context: ComponentInteractionContext) => {
+    const [code, mask, subCommand] = context.sentData;
 
     if (subCommand === 'buy') {
-        const userData = await bot.database.getUser(ctx.author.id);
+        const userData = await bot.database.getUser(context.author.id);
         
         if (userData.balance < mask) {
-            ctx.foxyReply({
+            context.sendReply({
                 flags: MessageFlags.Ephemeral
             });
-            ctx.followUp({
-                content: ctx.makeReply(bot.emotes.cry, bot.locale('commands:masks.buy.noMoney')),
+            context.followUp({
+                content: context.makeReply(bot.emotes.cry, bot.locale('commands:masks.buy.noMoney')),
                 flags: MessageFlags.Ephemeral
             });
         } else {
@@ -23,11 +23,11 @@ const executeMask = async (ctx: ComponentInteractionContext) => {
              userData.mask = code;
              userData.masks.push(code);
              await userData.save();
-             ctx.foxyReply({
+             context.sendReply({
                     content: bot.locale('commands:masks.buy.success'),
                     flags: MessageFlags.Ephemeral,
                     components: [createActionRow([createButton({
-                        customId: createCustomId(0, ctx.author.id, ctx.commandId, code, mask, subCommand),
+                        customId: createCustomId(0, context.author.id, context.commandId, code, mask, subCommand),
                         label: bot.locale('commands:masks.buy.purchase'),
                         style: ButtonStyles.Secondary,
                         emoji: bot.emotes.daily,
@@ -36,16 +36,16 @@ const executeMask = async (ctx: ComponentInteractionContext) => {
              });
         }
     } else if (subCommand === 'set' || code === 'set') {
-        const choice = ctx.interaction.data.values[0];
-        const userData = await bot.database.getUser(ctx.author.id);
+        const choice = context.interaction.data.values[0];
+        const userData = await bot.database.getUser(context.author.id);
 
         if (userData.masks.includes(choice)) {
             userData.mask = choice;
             userData.save();
-            ctx.foxyReply({
+            context.sendReply({
                 content: bot.locale('commands:masks.set.success'),
                 components: [createActionRow([createSelectMenu({
-                    customId: createCustomId(0, ctx.author.id, ctx.commandId, subCommand),
+                    customId: createCustomId(0, context.author.id, context.commandId, subCommand),
                     options: [
                         {
                             label: "nothing",
@@ -57,10 +57,10 @@ const executeMask = async (ctx: ComponentInteractionContext) => {
                 })])]
             });
         } else {
-            ctx.foxyReply({
+            context.sendReply({
                 content: bot.locale('commands:masks.set.notOwned'),
                 components: [createActionRow([createSelectMenu({
-                    customId: createCustomId(0, ctx.author.id, ctx.commandId, subCommand),
+                    customId: createCustomId(0, context.author.id, context.commandId, subCommand),
                     options: [
                         {
                             label: "nothing",
@@ -75,4 +75,4 @@ const executeMask = async (ctx: ComponentInteractionContext) => {
     }
 }
 
-export default executeMask;
+export default MaskExecutor;

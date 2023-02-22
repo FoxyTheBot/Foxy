@@ -11,17 +11,17 @@ const gif = new gifs();
 const embed = createEmbed({});
 
 
-const executeHug = async (ctx: ComponentInteractionContext) => {
-    const [user] = ctx.sentData;
+const executeHug = async (context: ComponentInteractionContext) => {
+    const [user] = context.sentData;
     const hugGif = await gif.hug();
-    embed.title = bot.locale('commands:hug.success', {user: ctx.author.username, author: user}),
+    embed.title = bot.locale('commands:hug.success', {user: context.author.username, author: user}),
     embed.image = {
         url: hugGif.url
     }
 
-    ctx.foxyReply({
+    context.sendReply({
         components: [createActionRow([createButton({
-            customId: createCustomId(0, user, ctx.commandId),
+            customId: createCustomId(0, user, context.commandId),
             label: bot.locale('commands:hug.button'),
             style: ButtonStyles.Secondary,
             emoji: {
@@ -30,7 +30,7 @@ const executeHug = async (ctx: ComponentInteractionContext) => {
             disabled: true
         })])]
     })
-    ctx.followUp({
+    context.followUp({
         embeds: [embed],
     });
 }
@@ -60,19 +60,19 @@ const HugCommand = createCommand({
         }
     ],
     commandRelatedExecutions: [executeHug],
-    execute: async (ctx, endCommand, t) => {
-        const user = ctx.getOption<User>("user", "users");
+    execute: async (context, endCommand, t) => {
+        const user = context.getOption<User>("user", "users");
         const hugGif = await gif.hug();
      
-        embed.title = t('commands:hug.success', {user: user.username, author: ctx.author.username}),
+        embed.title = t('commands:hug.success', {user: user.username, author: context.author.username}),
         embed.image = {
             url: hugGif.url
         }
 
-        ctx.foxyReply({
+        context.sendReply({
             embeds: [embed],
             components: [createActionRow([createButton({
-                customId: createCustomId(0, user.id, ctx.commandId, user.username),
+                customId: createCustomId(0, user.id, context.commandId, user.username),
                 label: t('commands:hug.button'),
                 style: ButtonStyles.Primary,
                 emoji: {

@@ -4,17 +4,17 @@ import { bot } from "../../index";
 import { MessageFlags } from "../../utils/discord/Message";
 import ComponentInteractionContext from "structures/commands/ComponentInteractionContext";
 
-const changeLanguage = async (ctx: ComponentInteractionContext) => {
-    const userData = await bot.database.getUser(ctx.user.id);
-    const language = ctx.interaction.data.values[0];
+const changeLanguage = async (context: ComponentInteractionContext) => {
+    const userData = await bot.database.getUser(context.user.id);
+    const language = context.interaction.data.values[0];
     userData.language = language;
     await userData.save();
 
-    await ctx.foxyReply({
-        content: ctx.makeReply("🦊", bot.locale(`commands:lang.${language}`)),
+    await context.sendReply({
+        content: context.makeReply("🦊", bot.locale(`commands:lang.${language}`)),
         flags: MessageFlags.Ephemeral,
         components: [createActionRow([createSelectMenu({
-            customId: createCustomId(0, ctx.user.id, ctx.commandId),
+            customId: createCustomId(0, context.user.id, context.commandId),
             disabled: true,
             options: [
                 {
@@ -43,10 +43,10 @@ name: 'idioma',
     category: 'social',
     commandRelatedExecutions: [changeLanguage],
 
-    execute: async (ctx, endCommand, t) => {        
-        ctx.foxyReply({
+    execute: async (context, endCommand, t) => {        
+        context.sendReply({
             components: [createActionRow([createSelectMenu({
-                customId: createCustomId(0, ctx.author.id, ctx.commandId),
+                customId: createCustomId(0, context.author.id, context.commandId),
                 placeholder: "Select a language",
                 options: [
                     {

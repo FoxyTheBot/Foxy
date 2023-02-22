@@ -28,17 +28,17 @@ name: "sobremim",
         }
     ],
 
-    execute: async (ctx, endCommand, t) => {
-        const text = ctx.getOption<string>("text", false);
-        const userData = await bot.database.getUser(ctx.author.id);
+    execute: async (context, endCommand, t) => {
+        const text = context.getOption<string>("text", false);
+        const userData = await bot.database.getUser(context.author.id);
 
         if (text.length > 225) {
-            ctx.foxyReply({ content: t("commands:aboutme.tooLong", { length: text.length.toString() }) });
+            context.sendReply({ content: t("commands:aboutme.tooLong", { length: text.length.toString() }) });
             return endCommand();
         }
 
-        ctx.foxyReply({
-            content: ctx.makeReply("✔", t("commands:aboutme.set", { aboutme: text })),
+        context.sendReply({
+            content: context.makeReply("✔", t("commands:aboutme.set", { aboutme: text })),
             flags: MessageFlags.Ephemeral
         })
         userData.aboutme = text;

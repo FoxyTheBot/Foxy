@@ -12,18 +12,18 @@ const HelpCommand = createCommand({
         "pt-BR": '[🛠] Mostra a mensagem de ajuda'
     },
     category: 'util',
-    execute: async (ctx, endCommand, t) => {
+    execute: async (context, endCommand, t) => {
         const embed = createEmbed({
-            title: ctx.makeReply(bot.emotes.foxyhi, t('commands:help.bot.title')),
-            description: t('commands:help.bot.description', { user: ctx.author.username }),
+            title: context.makeReply(bot.emotes.foxyhi, t('commands:help.bot.title')),
+            description: t('commands:help.bot.description', { user: context.author.username }),
             fields: [
                 {
-                    name: ctx.makeReply(bot.emotes.foxywow, t('commands:botinfo.fields.addme')),
+                    name: context.makeReply(bot.emotes.foxywow, t('commands:botinfo.fields.addme')),
                     value: `[${t('botinfo.fields.add')}](https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255)`,
                     inline: true
                 },
                 {
-                    name: ctx.makeReply(bot.emotes.success, t('commands:botinfo.fields.support')),
+                    name: context.makeReply(bot.emotes.success, t('commands:botinfo.fields.support')),
                     value: `[${t('botinfo.fields.server2')}](https://discord.gg/6mG2xDtuZD)`,
                     inline: true
                 },
@@ -38,13 +38,13 @@ const HelpCommand = createCommand({
                     inline: true 
                 },
                 {
-                    name: ctx.makeReply(bot.emotes.foxyok, t('commands:help.bot.fields.privacy')),
+                    name: context.makeReply(bot.emotes.foxyok, t('commands:help.bot.fields.privacy')),
                     value: `[${t('commands:botinfo.fields.privacy')}](https://foxybot.win/privacy)`,
                     inline: true
 
                 },
                 {
-                    name: ctx.makeReply(bot.emotes.sunglass, t('commands:help.bot.fields.website')),
+                    name: context.makeReply(bot.emotes.sunglass, t('commands:help.bot.fields.website')),
                     value: "https://foxybot.win",
                     inline: true
                 }
@@ -54,7 +54,7 @@ const HelpCommand = createCommand({
             }
         })
 
-        ctx.foxyReply({ embeds: [embed] });
+        context.sendReply({ embeds: [embed] });
         endCommand();
     }
 });

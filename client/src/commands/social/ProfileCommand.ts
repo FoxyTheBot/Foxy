@@ -20,21 +20,21 @@ name: 'perfil',
             required: false
         },
     ],
-    execute: async (ctx, endCommand, t) => {
-        const user = ctx.getOption<User>('user', 'users') ?? ctx.author;
+    execute: async (context, endCommand, t) => {
+        const user = context.getOption<User>('user', 'users') ?? context.author;
         const userData = await bot.database.getUser(user.id);
 
         if (userData.isBanned) {
-            ctx.foxyReply({ content: t('commands:profile.banned', { user: user.username, reason: userData.banReason, date: userData.banData.toLocaleString(global.t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }) });
+            context.sendReply({ content: t('commands:profile.banned', { user: user.username, reason: userData.banReason, date: userData.banData.toLocaleString(global.t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }) });
             return endCommand();
         }
 
-        await ctx.defer();
+        await context.defer();
         const canvasGenerator = new GenerateImage(t, user, userData, 1436, 884);
         const profile = canvasGenerator.renderProfile();
 
-        ctx.foxyReply({
-            content: ctx.makeReply("🖼", t('commands:profile.profile', { user: `<@${user.id}>` })),
+        context.sendReply({
+            content: context.makeReply("🖼", t('commands:profile.profile', { user: `<@${user.id}>` })),
             file: [{ name: 'profile.png', blob: await profile }]
         })
         endCommand();

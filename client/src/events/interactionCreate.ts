@@ -12,7 +12,7 @@ module.exports = async (_, interaction) => {
     const locale = global.t = i18next.getFixedT(user.language || 'pt-BR');
     bot.locale = locale;
     const command = bot.commands.get(interaction.data?.name);
-    const ctx = new ChatInputInteractionContext(interaction, user)
+    const context = new ChatInputInteractionContext(interaction, user)
 
     if (interaction.type === InteractionTypes.MessageComponent || interaction.type === InteractionTypes.ModalSubmit) {
         componentExecutor(interaction);
@@ -22,10 +22,10 @@ module.exports = async (_, interaction) => {
     async function FoxyHandler() {
         await new Promise(async (res) => {
             try {
-                command.execute(ctx, res, locale);
+                command.execute(context, res, locale);
             } catch (e) {
                 console.error(e);
-                ctx.foxyReply({ content: locale('events:interactionCreate.commandError'), flags: MessageFlags.Ephemeral })
+                context.sendReply({ content: locale('events:interactionCreate.commandError'), flags: MessageFlags.Ephemeral })
             }
         })
     }
@@ -40,7 +40,7 @@ module.exports = async (_, interaction) => {
                     { name: locale('events:ban.date'), value: user.banData.toLocaleString(global.t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }
                 ]
             })
-            return ctx.foxyReply({ embeds: [embed], flags: 64 })
+            return context.sendReply({ embeds: [embed], flags: 64 })
         }
 
         FoxyHandler();

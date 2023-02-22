@@ -20,14 +20,14 @@ const DblCommand = createCommand({
         }
     ],
 
-    execute: async (ctx, endCommand, t) => {
-        switch (ctx.getSubCommand()) {
+    execute: async (context, endCommand, t) => {
+        switch (context.getSubCommand()) {
             case "upvote": {
                 const embed = createEmbed({
                     description: t('commands:upvote.description')
                 });
         
-                ctx.foxyReply({ embeds: [embed] });
+                context.sendReply({ embeds: [embed] });
             
                 endCommand();
                 break;

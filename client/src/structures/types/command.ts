@@ -11,12 +11,12 @@ export interface ChatInputCommandConfig extends CreateSlashApplicationCommand {
 
 export interface ChatInputInteractionCommand extends Readonly<ChatInputCommandConfig> {
   readonly execute: (
-    ctx: ChatInputInteractionContext,
+    context: ChatInputInteractionContext,
     endCommand: (...args: unknown[]) => unknown,
     t: any,
   ) => Promise<unknown>;
 
   readonly commandRelatedExecutions?: ((
-    ctx: ComponentInteractionContext<any>,
+    context: ComponentInteractionContext<any>,
   ) => Promise<unknown>)[];
 }

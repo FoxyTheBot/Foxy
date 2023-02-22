@@ -39,12 +39,12 @@ name: 'cancelar',
         }
     ],
 
-    execute: async (ctx, endCommand, t) => {
-        const user = ctx.getOption<User>('user', 'users');
-        const string = ctx.getOption<string>('reason', false);
+    execute: async (context, endCommand, t) => {
+        const user = context.getOption<User>('user', 'users');
+        const string = context.getOption<string>('reason', false);
 
-        ctx.foxyReply({
-            content: ctx.makeReply("❌", t('commands:cancel.result', { user: ctx.author.username, reason: string, mention: `<@!${user.id}>` }))
+        context.sendReply({
+            content: context.makeReply("❌", t('commands:cancel.result', { user: context.author.username, reason: string, mention: `<@!${user.id}>` }))
         })
     
         endCommand();
