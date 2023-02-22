@@ -29,5 +29,4 @@ process.on('unhandledRejection', (err) => {
 
 process.on('uncaughtException', (err) => {
     logger.criticalError(err.stack);
-    process.exit(1);
 });
