@@ -51,34 +51,9 @@ export default class GenerateImage {
         context.strokeStyle = '#74037b';
         context.strokeRect(0, 0, canvas.width, canvas.height);
 
-        var badge = "";
-        if (this.data.premium) {
-            switch (this.data.premiumType) {
-                case "INFINITY_ESSENTIALS": {
-                    badge = " "
-                    break;
-                }
-
-                case "INFINITY_PRO": {
-                    badge = "💎"
-                    break;
-                }
-
-                case "INFINITY_TURBO": {
-                    badge = "🔥"
-                    break;
-                }
-
-                case "VETERAN": {
-                    badge = "🪐"
-                    break;
-                }
-            }
-        }
-
         context.font = '70px sans-serif';
         context.fillStyle = '#ffffff';
-        context.fillText(`${this.user.username} ${badge}`, canvas.width / 5.8, canvas.height / 1.3)
+        context.fillText(this.user.username, canvas.width / 5.8, canvas.height / 1.3)
 
         context.font = '60px sans-serif';
         context.fillStyle = '#ffffff';

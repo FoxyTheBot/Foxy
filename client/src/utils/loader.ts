@@ -6,7 +6,7 @@ export async function loadLocales(path: string): Promise<void> {
     try {
         logger.info("Loading locales...")
         await i18next.use(i18nbackend).init({
-            ns: ["commands", "events", "permissions", "subscription"],
+            ns: ["commands", "events", "permissions"],
             defaultNS: "commands",
             preload: fs.readdirSync(path),
             fallbackLng: "pt-BR",

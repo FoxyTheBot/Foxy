@@ -79,10 +79,8 @@
         "noAboutme": "Foxy is so cute ><! You can change this message using /aboutme command",
         "tooLong": "The character limit is 225, you typed {{length}}, plz type something smaller",
         "marriedWith": "💍 Married with {{user}} since {{date}} ({{relativeTime}})",
-        "premium": "{{badge}} Premium since {{date}}",
         "testMode": "Your about me will be displayed here",
         "banned": "`{{user}} is banned! Reason: `{{reason}}` \nSince `{{date}}`"
-        
     },
     "masks": {
         "ears": "Cat ears",
@@ -98,8 +96,7 @@
             "success": "You have purchased the profile mask!",
             "noMoney": "You don't have enough Paws",
             "preview": "Preview",
-            "purchase": "Purchase",
-            "premium": "You're premium subscriber you don't need to pay for the masks"
+            "purchase": "Purchase"
         },
         "set": {
             "success": "Your mask has changed :3",
@@ -305,7 +302,6 @@
     },
     "daily": {
         "cooldown": "You already got your daily, wait **{{time}}**",
-        "premium": "You would win **{{normalMoney}} Paws** but you are a **{{premiumType}}** subscriber and you won **{{doubleValue}}** more, **{{amount}} Paws** and now has {{money}} Paws",
         "daily": "You won **{{amount}} Paws** and now has {{money}} Paws"
     },
     "background": {
@@ -325,15 +321,6 @@
             "notOwned": "You don't own this background",
             "success": "Background changed successfully! :3",
             "description": "Your list: {{bgList}}"
-        },
-        "custom": {
-            "noPremium": "You need to have a premium subscription",
-            "success": "Background updated! Thanks to be premium >w<",
-            "save": "Save",
-            "title": "Custom Background",
-            "alert": "By submitting, you confirm that the background does not have NSFW and that it may be banned if it contains content that violates Foxy and/or Discord terms",
-            "tooLarge": "This file is to large, the maximum supported is 8MB",
-            "invalidFormat": "Invalid format, send a `.png`, `.jpg` or `.jpeg` file"
         }
     },
     "atm": {

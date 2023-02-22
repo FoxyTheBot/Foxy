@@ -80,8 +80,7 @@
             "success": "Você comprou a máscara para seu avatar!",
             "noMoney": "Você não tem Paws o suficiente para adquirir esta máscara",
             "preview": "Pré-visualização",
-            "purchase": "Comprar",
-            "premium": "Como você é assinante premium você ganha todas as máscaras de avatar gratuitamente"
+            "purchase": "Comprar"
         },
         "set": {
             "success": "Máscara alterada com sucesso :3",
@@ -311,7 +310,6 @@
     },
     "daily": {
         "cooldown": "Você já pegou suas Paws hoje, espere **{{time}}**",
-        "premium": "Você iria ganhar **{{normalMoney}} Paws** mas já que você é assinante do **{{premiumType}}** você ganhou **{{doubleValue}}** mais Paws, **{{amount}} Paws**! Agora possui {{money}} Paws",
         "daily": "Você ganhou **{{amount}} Paws** agora você possui {{money}} Paws"
     },
     "background": {
@@ -331,15 +329,6 @@
             "notOwned": "Você não possui esse background",
             "success": "Background alterado :3",
             "description": "Seus backgrounds são: {{bgList}}"
-        },
-        "custom": {
-            "noPremium": "Você tem que ter uma assinatura premium para usar esse comando!",
-            "success": "Seu background foi alterado! Obrigada por assinar premium >w<",
-            "save": "Salvar",
-            "title": "Background customizado",
-            "alert": "Ao enviar o background você confirma que seu background não possui conteúdo NSFW e caso contenha você será banido de usar a Foxy em outros servidores do Discord!",
-            "tooLarge": "O arquivo é muito grande, o tamanho máximo é 8MB",
-            "invalidFormat": "Formato inválido, envie um arquivo `.png`, `.jpg` ou `.jpeg`"
         }
     },
     "atm": {
