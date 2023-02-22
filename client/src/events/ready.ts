@@ -6,8 +6,8 @@ import { bot } from "../index";
 module.exports = async (_, payload) => {
     logger.success("Connected to Discord Gateway");
     if (bot.isProduction) {
-        startActivitiesChange();
         postInfo();
     }
+    startActivitiesChange();
     bot.isReady = true;
 }
