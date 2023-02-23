@@ -1,29 +1,14 @@
 <p align="center">
-<img height="150" src="https://cdn.discordapp.com/attachments/782995363548102676/1066111279611261010/foxysunglasses.png" align="left">
-
-<h1 align="left">🦊 Foxy</h1>
-
-
+<img height="250" src="https://cdn.discordapp.com/attachments/1068525425963302936/1078320230562021537/278_Sem_Titulo_20220303174447.png" align="left">
+<h1 align="center">🦊 Foxy</h1>
 
 <p align="center">
-<br>
 <a href="https://top.gg/bot/1006520438865801296">
-  <img src="https://top.gg/api/widget/servers/1006520438865801296.svg">
+  <img src="https://top.gg/api/widget/1006520438865801296.svg">
 </a>
-<a href="https://top.gg/bot/1006520438865801296">
-  <img src="https://top.gg/api/widget/upvotes/1006520438865801296.svg">
-</a>
-<a href="https://top.gg/bot/1006520438865801296">
-  <img src="https://top.gg/api/widget/owner/1006520438865801296.svg">
-</a>
- </p>
+</p>
  <br>
 <br>
-<br>
-
-## 🤔 | Who am I?
-Hi, I'm Foxy! I will entertain your server with my commands
-
 <br>
 
 ## 💜 | Inviting Foxy to your server 
