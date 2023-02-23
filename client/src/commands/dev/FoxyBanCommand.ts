@@ -63,7 +63,7 @@ const FoxyBanCommand = createCommand({
         const commands = await context.getSubCommand();
         if (context.author.id !== BigInt(config.ownerId)) {
             context.sendReply({
-                content: context.makeReply(bot.emotes.error, "Você não tem permissão para usar esse comando!"),
+                content: context.makeReply(bot.emotes.FOXY_CRY, "Você não tem permissão para usar esse comando!"),
                 flags: 64
             });
             return endCommand();

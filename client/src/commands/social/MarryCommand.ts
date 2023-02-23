@@ -33,21 +33,21 @@ name: 'casar',
 
         if (!user) {
             context.sendReply({
-                content: context.makeReply(bot.emotes.error, t('commands:global.noUser'))
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser'))
             })
             return endCommand();
         }
 
         if (user.id === context.author.id) {
             context.sendReply({
-                content: context.makeReply(bot.emotes.error, t('commands:marry.self'))
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.self'))
             })
             return endCommand();
         }
 
         if (user.id === bot.id) {
             context.sendReply({
-                content: context.makeReply(bot.emotes.error, t('commands:marry.bot'))
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.bot'))
             })
             return endCommand();
         }
@@ -57,21 +57,21 @@ name: 'casar',
 
         if (futurePartnerData.marriedWith) {
             context.sendReply({
-                content: context.makeReply(bot.emotes.error, t('commands:marry.alreadyMarriedWithSomeone'))
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.alreadyMarriedWithSomeone'))
             })
             return endCommand();
         }
 
         if (userData.marriedWith) {
             context.sendReply({
-                content: context.makeReply(bot.emotes.error, t('commands:marry.alreadyMarried'))
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.alreadyMarried'))
             })
             return endCommand();
         }
 
         if (user.id === userData.marriedWith) {
             context.sendReply({
-                content: context.makeReply(bot.emotes.error, t('commands:marry.alreadyMarriedWithUser', { user: user.username }))
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.alreadyMarriedWithUser', { user: user.username }))
             })
             return endCommand();
         }

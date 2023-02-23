@@ -27,7 +27,7 @@ name: "rep",
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>('user', 'users');
         if (!user) {
-            context.makeReply(bot.emotes.error, t('commands:global.noUser'));
+            context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser'));
             return endCommand();
         }
 
@@ -45,7 +45,7 @@ name: "rep",
         if (repCooldown - (Date.now() - authorData.lastRep) > 0) {
             const currentCooldown = ms(repCooldown - (Date.now() - authorData.lastRep));
             context.sendReply({
-                content: context.makeReply(bot.emotes.error, t('commands:rep.cooldown', { cooldown: currentCooldown }))
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:rep.cooldown', { cooldown: currentCooldown }))
             })
             endCommand();
         } else {
@@ -54,7 +54,7 @@ name: "rep",
             authorData.save();
             userData.save();
             context.sendReply({
-                content: context.makeReply(bot.emotes.success, t('commands:rep.success', { user: user.username }))
+                content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:rep.success', { user: user.username }))
             })
             endCommand();
         }

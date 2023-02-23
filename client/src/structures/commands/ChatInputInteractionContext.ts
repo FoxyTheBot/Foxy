@@ -58,7 +58,7 @@ export default class {
             bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
                 type: InteractionResponseTypes.ChannelMessageWithSource,
                 data: {
-                    content: `${bot.emotes.waiting} **|** Você está usando a versão experimental da Foxy! Coisas inesperadas podem acontecer, como: algumas ou todas as funcionalidades podem não funcionar, eu posso ficar offline a qualquer momento, não reporte problemas da versão experimental a não ser que seja solicitado pela staff do servidor!`,
+                    content: `${bot.emotes.FOXY_DRINKING_COFFEE} **|** Você está usando a versão experimental da Foxy! Coisas inesperadas podem acontecer, como: algumas ou todas as funcionalidades podem não funcionar, eu posso ficar offline a qualquer momento, não reporte problemas da versão experimental a não ser que seja solicitado pela staff do servidor!`,
                     flags: 64
                 }
             });

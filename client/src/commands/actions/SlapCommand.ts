@@ -24,7 +24,7 @@ const executeSlap = async (context: ComponentInteractionContext) => {
             label: bot.locale('commands:slap.button'),
             style: ButtonStyles.Secondary,
             emoji: {
-                name: '👋'
+                name: bot.emotes.FOXY_SCARED,
             },
             disabled: true
         })])]
@@ -74,7 +74,7 @@ const SlapCommand = createCommand({
                 label: t('commands:slap.button'),
                 style: ButtonStyles.Primary,
                 emoji: {
-                    name: '👋'
+                    name: bot.emotes.FOXY_SCARED,
                 }
             })])]
         })

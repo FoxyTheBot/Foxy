@@ -14,37 +14,37 @@ const HelpCommand = createCommand({
     category: 'util',
     execute: async (context, endCommand, t) => {
         const embed = createEmbed({
-            title: context.makeReply(bot.emotes.foxyhi, t('commands:help.bot.title')),
+            title: bot.emotes.FOXY_HOWDY + " " + t('commands:help.bot.title'),
             description: t('commands:help.bot.description', { user: context.author.username }),
             fields: [
                 {
-                    name: context.makeReply(bot.emotes.foxywow, t('commands:botinfo.fields.addme')),
+                    name: bot.emotes.FOXY_WOW + " " + t('commands:botinfo.fields.addme'),
                     value: `[${t('botinfo.fields.add')}](https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255)`,
                     inline: true
                 },
                 {
-                    name: context.makeReply(bot.emotes.success, t('commands:botinfo.fields.support')),
+                    name: bot.emotes.FOXY_CUPCAKE + " " + t('commands:botinfo.fields.support'),
                     value: `[${t('botinfo.fields.server2')}](https://discord.gg/6mG2xDtuZD)`,
                     inline: true
                 },
                 {
-                    name: t('commands:botinfo.fields.twitter'),
+                    name: bot.emotes.TWITTER + " " + t('commands:botinfo.fields.twitter'),
                     value: "[@Foxy](https://twitter.com/@FoxyDiscordBot)",
                     inline: true
                 },
                 {
-                    name: t('commands:botinfo.fields.github'),
+                    name: bot.emotes.GITHUB + " " + t('commands:botinfo.fields.github'),
                     value: "[Foxy](https://github.com/FoxyTheBot)",
                     inline: true 
                 },
                 {
-                    name: context.makeReply(bot.emotes.foxyok, t('commands:help.bot.fields.privacy')),
+                    name: bot.emotes.FOXY_OK + " " + t('commands:help.bot.fields.privacy'),
                     value: `[${t('commands:botinfo.fields.privacy')}](https://foxybot.win/privacy)`,
                     inline: true
 
                 },
                 {
-                    name: context.makeReply(bot.emotes.sunglass, t('commands:help.bot.fields.website')),
+                    name: bot.emotes.FOXY_SUNGLASSES + " " + t('commands:help.bot.fields.website'),
                     value: "https://foxybot.win",
                     inline: true
                 }

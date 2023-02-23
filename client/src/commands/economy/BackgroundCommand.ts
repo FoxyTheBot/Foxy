@@ -75,7 +75,7 @@ const BackgroundCommand = createCommand({
                 const profile = canvasGenerator.renderProfile();
 
                 context.sendReply({
-                    content: context.makeReply(bot.emotes.success, `Background: **${background.name}**\n ${bot.emotes.daily} **|** ${t('commands:background.buy.price')}: **${background.foxcoins}**`),
+                    content: context.makeReply(bot.emotes.FOXY_YAY, `Background: **${background.name}**\n ${bot.emotes.daily} **|** ${t('commands:background.buy.price')}: **${background.foxcoins}**`),
                     file: [{
                         name: "preview.png",
                         blob: await profile
@@ -84,7 +84,9 @@ const BackgroundCommand = createCommand({
                         customId: createCustomId(0, context.author.id, context.commandId, code, background.foxcoins, subcommand),
                         label: t('commands:background.buy.purchase'),
                         style: ButtonStyles.Success,
-                        emoji: bot.emotes.daily
+                        emoji: {
+                            name: bot.emotes.FOXY_DAILY
+                        }
                     })])]
                 });
 

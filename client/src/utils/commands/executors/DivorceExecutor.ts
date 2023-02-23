@@ -10,7 +10,7 @@ const DivorceExecutor = async (context: ComponentInteractionContext) => {
 
     if (!partnerId) {
         context.sendReply({
-            content: context.makeReply(bot.emotes.error, bot.locale("commands:divorce.notMarried")),
+            content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale("commands:divorce.notMarried")),
             flags: MessageFlags.Ephemeral
         });
         return;
@@ -27,7 +27,7 @@ const DivorceExecutor = async (context: ComponentInteractionContext) => {
     await partnerData.save();
 
     context.sendReply({
-        content: context.makeReply(bot.emotes.error, bot.locale("commands:divorce.divorced", { user: userInfo.username })),
+        content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale("commands:divorce.divorced", { user: userInfo.username })),
         components: [createActionRow([createButton({
             customId: createCustomId(0, context.user.id, context.commandId),
             label: bot.locale("commands:divorce.confirmed"),

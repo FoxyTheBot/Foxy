@@ -12,7 +12,7 @@ const BackgroundExecutor = async (context: ComponentInteractionContext) => {
         const userData = await bot.database.getUser(context.author.id);
         const code = context.interaction.data.values[0];
         if (!userData.backgrounds.includes(code)) return context.sendReply({
-            content: context.makeReply(bot.emotes.cry, bot.locale("commands:background.set.notOwned")),
+            content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale("commands:background.set.notOwned")),
         });
 
         userData.background = code;
@@ -37,14 +37,16 @@ const BackgroundExecutor = async (context: ComponentInteractionContext) => {
                 customId: createCustomId(0, context.author.id, context.commandId, code, background, subcommand),
                 label: bot.locale('commands:background.buy.purchase'),
                 style: ButtonStyles.Secondary,
-                emoji: bot.emotes.daily,
+                emoji: {
+                    name: bot.emotes.FOXY_DAILY
+                },
                 disabled: true
             })])]
         })
         
         if (userData.balance < background) {        
             context.followUp({
-                content: context.makeReply(bot.emotes.cry, bot.locale('commands:background.buy.noMoney')),
+                content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale('commands:background.buy.noMoney')),
                 flags: MessageFlags.Ephemeral
             })
         } else {

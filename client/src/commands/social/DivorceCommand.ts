@@ -22,7 +22,7 @@ name: 'divorciar',
 
         if (!partnerId) {
             context.sendReply({
-                content: context.makeReply(bot.emotes.error, t("commands:divorce.notMarried")),
+                content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:divorce.notMarried")),
                 flags: MessageFlags.Ephemeral
             })
             return endCommand();

@@ -24,7 +24,7 @@ const executePat = async (context: ComponentInteractionContext) => {
             label: bot.locale('commands:pat.button'),
             style: ButtonStyles.Secondary,
             emoji: {
-                name: '❤'
+                name: bot.emotes.FOXY_WOW
             },
             disabled: true
         })])]
@@ -75,7 +75,7 @@ const patCommand = createCommand({
                 label: t('commands:pat.button'),
                 style: ButtonStyles.Primary,
                 emoji: {
-                    name: '❤'
+                    name: bot.emotes.FOXY_WOW
                 }
             })])]
         })

@@ -91,7 +91,7 @@ name: 'paws',
                 const user = await context.getOption<User>('user', 'users') ?? context.author;
                 if (!user) {
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.error, t('commands:global.noUser'))
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser'))
                     });
                     return endCommand();
                 }
@@ -99,7 +99,7 @@ name: 'paws',
                 const balance = userData.balance;
 
                 context.sendReply({
-                    content: context.makeReply(bot.emotes.daily, t('commands:atm.success', { user: user.username, balance: balance.toString() }))
+                    content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:atm.success', { user: user.username, balance: balance.toString() }))
                 })
                 endCommand();
                 break;
@@ -111,7 +111,7 @@ name: 'paws',
                 data = data.sort((a, b) => b.balance - a.balance);
 
                 const embed = createEmbed({});
-                embed.title = context.makeReply(bot.emotes.daily, "Paws Global Rank");
+                embed.title = context.makeReply(bot.emotes.FOXY_DAILY, "Paws Global Rank");
                 let fields = embed.fields = [];
                 for (let i in data) {
                     if (Number(i) > 14) break;
@@ -135,7 +135,7 @@ name: 'paws',
                 const amount = await context.getOption<number>('amount', false);
                 if (!user) {
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.error, t('commands:global.noUser'))
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser'))
                     });
                     return endCommand();
                 }
@@ -147,13 +147,13 @@ name: 'paws',
 
                 if (user === context.author) {
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.error, t('commands:pay.self'))
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:pay.self'))
                     })
                     return endCommand();
                 }
                 if (value > authorData.balance) {
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.error, t('commands:pay.notEnough'))
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:pay.notEnough'))
                     })
                     return endCommand();
                 }

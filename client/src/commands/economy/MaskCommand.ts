@@ -63,7 +63,7 @@ const MaskCommand = createCommand({
                 const mask = masks.find(data => data.id === code?.toLowerCase());
                 if(userData.masks.includes(code?.toLowerCase())) {
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.error, t('commands:masks.alreadyOwned')),
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:masks.alreadyOwned')),
                         flags: MessageFlags.Ephemeral
                     });
 
@@ -74,7 +74,7 @@ const MaskCommand = createCommand({
                 const profile = await canvasGenerator.renderProfile();
 
                 context.sendReply({
-                    content: context.makeReply(bot.emotes.success, t('commands:masks.preview')),
+                    content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:masks.preview')),
                     file: [{
                         name: 'profile.png',
                         blob: await profile
@@ -84,7 +84,9 @@ const MaskCommand = createCommand({
                         customId: createCustomId(0, context.author.id, context.commandId, code, mask?.price, subCommand),
                         label: t('commands:masks.purchase'),
                         style: ButtonStyles.Success,
-                        emoji: bot.emotes.daily,
+                        emoji: {
+                            name: bot.emotes.FOXY_DAILY,
+                        }
                     })])]
                 });
                 
@@ -96,7 +98,7 @@ const MaskCommand = createCommand({
                 const userMasks = userData.masks;
                 if(userMasks.length === 0) {
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.error, t('commands:masks.noMasks')),
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:masks.noMasks')),
                         flags: MessageFlags.Ephemeral
                     });
 
@@ -104,7 +106,7 @@ const MaskCommand = createCommand({
                 } else {
                     context.defer(true);
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.success, t('commands:masks.selectMask')),
+                        content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:masks.selectMask')),
                         components: [createActionRow([createSelectMenu({
                             customId: createCustomId(0, context.author.id, context.commandId, subCommand),
                             placeholder: t('commands:masks.selectMask'),

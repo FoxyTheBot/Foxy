@@ -24,7 +24,7 @@ const executeKiss = async (context: ComponentInteractionContext) => {
             label: bot.locale('commands:kiss.button'),
             style: ButtonStyles.Secondary,
             emoji: {
-                name: '❤'
+                name: bot.emotes.FOXY_CUPCAKE
             },
             disabled: true
         })])]
@@ -74,7 +74,7 @@ const KissCommand = createCommand({
                 label: t('commands:kiss.button'),
                 style: ButtonStyles.Primary,
                 emoji: {
-                    name: '❤'
+                    name: bot.emotes.FOXY_CUPCAKE
                 }
             })])]
         })

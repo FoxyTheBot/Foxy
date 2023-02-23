@@ -14,7 +14,7 @@ const PawsTransferExecutor = async (context: ComponentInteractionContext) => {
     authorData.save();
 
     context.sendReply({
-        content: context.makeReply(bot.emotes.success, bot.locale('commands:pay.success', { user: `<@${context.user.id}>`, amount: value })),
+        content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:pay.success', { user: `<@${context.user.id}>`, amount: value })),
         components: [
             createActionRow([createButton({
                 label: bot.locale('commands:pay.pay'),

@@ -30,7 +30,7 @@ name: 'fate',
     
         if (!user) {
             context.sendReply({
-                content: context.makeReply(bot.emotes.scared, t('commands:global.noUser'))
+                content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:global.noUser'))
             })
         }
 
@@ -46,7 +46,7 @@ name: 'fate',
 
         const rand = list[Math.floor(Math.random() * list.length)];
         await context.sendReply({
-            content: context.makeReply(bot.emotes.success, t('commands:fate.result', { user: context.author.id.toString(), fate: rand, mention: user.id.toString() }))
+            content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:fate.result', { user: context.author.id.toString(), fate: rand, mention: user.id.toString() }))
         });
 
         endCommand();

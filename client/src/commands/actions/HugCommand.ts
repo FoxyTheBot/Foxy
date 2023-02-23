@@ -25,7 +25,7 @@ const executeHug = async (context: ComponentInteractionContext) => {
             label: bot.locale('commands:hug.button'),
             style: ButtonStyles.Secondary,
             emoji: {
-                name: '❤'
+                name: bot.emotes.FOXY_HUG
             },
             disabled: true
         })])]
@@ -76,7 +76,7 @@ const HugCommand = createCommand({
                 label: t('commands:hug.button'),
                 style: ButtonStyles.Primary,
                 emoji: {
-                    name: '❤'
+                    name: bot.emotes.FOXY_HUG
                 }
             })])]
         })

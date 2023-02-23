@@ -15,7 +15,7 @@ const MaskExecutor = async (context: ComponentInteractionContext) => {
                 flags: MessageFlags.Ephemeral
             });
             context.followUp({
-                content: context.makeReply(bot.emotes.cry, bot.locale('commands:masks.buy.noMoney')),
+                content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale('commands:masks.buy.noMoney')),
                 flags: MessageFlags.Ephemeral
             });
         } else {
@@ -30,7 +30,9 @@ const MaskExecutor = async (context: ComponentInteractionContext) => {
                         customId: createCustomId(0, context.author.id, context.commandId, code, mask, subCommand),
                         label: bot.locale('commands:masks.buy.purchase'),
                         style: ButtonStyles.Secondary,
-                        emoji: bot.emotes.daily,
+                        emoji: {
+                            name: bot.emotes.FOXY_DAILY
+                        },
                         disabled: true
                     })])]
              });

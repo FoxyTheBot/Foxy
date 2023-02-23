@@ -15,7 +15,7 @@ const MarryExecutor = async (context: ComponentInteractionContext) => {
     await partnerData.save();
 
     context.sendReply({
-        content: context.makeReply("❤", bot.locale("commands:marry.accepted")),
+        content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale("commands:marry.accepted")),
         components: [createActionRow([createButton({
             customId: createCustomId(0, context.interaction.data.targetId, context.commandId),
             label: bot.locale("commands:marry.accept"),
