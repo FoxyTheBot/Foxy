@@ -160,7 +160,7 @@ name: 'paws',
 
 
                 context.sendReply({
-                    content: context.makeReply("🦊", t('commands:pay.alert', { amount: value.toString(), user: user.username })),
+                    content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:pay.alert', { amount: value.toString(), user: user.username })),
                     components: [createActionRow([createButton({
                         label: t('commands:pay.pay'),
                         style: ButtonStyles.Success,

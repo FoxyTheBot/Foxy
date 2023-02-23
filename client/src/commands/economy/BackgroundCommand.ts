@@ -85,7 +85,7 @@ const BackgroundCommand = createCommand({
                         label: t('commands:background.buy.purchase'),
                         style: ButtonStyles.Success,
                         emoji: {
-                            name: bot.emotes.FOXY_DAILY
+                            id: bot.emotes.FOXY_DAILY
                         }
                     })])]
                 });

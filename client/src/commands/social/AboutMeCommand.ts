@@ -38,7 +38,7 @@ name: "sobremim",
         }
 
         context.sendReply({
-            content: context.makeReply("✔", t("commands:aboutme.set", { aboutme: text })),
+            content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:aboutme.set", { aboutme: text })),
             flags: MessageFlags.Ephemeral
         })
         userData.aboutme = text;

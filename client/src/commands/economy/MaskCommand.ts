@@ -85,7 +85,7 @@ const MaskCommand = createCommand({
                         label: t('commands:masks.purchase'),
                         style: ButtonStyles.Success,
                         emoji: {
-                            name: bot.emotes.FOXY_DAILY,
+                            id: bot.emotes.FOXY_DAILY,
                         }
                     })])]
                 });

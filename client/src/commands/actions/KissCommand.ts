@@ -5,34 +5,11 @@ import { User } from 'discordeno/transformers';
 import { createEmbed } from '../../utils/discord/Embed';
 import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
 import { bot } from '../../index';
-import ComponentInteractionContext from '../../structures/commands/ComponentInteractionContext'
+import KissExecutor from "../../utils/commands/executors/KissExecutor";
 import gifs from 'nekos.life';
 const gif = new gifs();
 const embed = createEmbed({});
 
-const executeKiss = async (context: ComponentInteractionContext) => {
-    const [user] = context.sentData;
-    const kissGif = await gif.kiss();
-    embed.title = bot.locale('commands:kiss.success', { user: context.author.username, author: user }),
-        embed.image = {
-            url: kissGif.url
-        }
-
-    context.sendReply({
-        components: [createActionRow([createButton({
-            customId: createCustomId(0, user, context.commandId),
-            label: bot.locale('commands:kiss.button'),
-            style: ButtonStyles.Secondary,
-            emoji: {
-                name: bot.emotes.FOXY_CUPCAKE
-            },
-            disabled: true
-        })])]
-    });
-    context.followUp({
-        embeds: [embed],
-    });
-}
 const KissCommand = createCommand({
     name: 'kiss',
     nameLocalizations: {
@@ -57,7 +34,7 @@ const KissCommand = createCommand({
             required: true
         }
     ],
-    commandRelatedExecutions: [executeKiss],
+    commandRelatedExecutions: [KissExecutor],
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
         const kissGif = await gif.kiss();
@@ -74,13 +51,10 @@ const KissCommand = createCommand({
                 label: t('commands:kiss.button'),
                 style: ButtonStyles.Primary,
                 emoji: {
-                    name: bot.emotes.FOXY_CUPCAKE
+                    id: bot.emotes.FOXY_CUPCAKE
                 }
             })])]
         })
-        context.followUp({
-            embeds: [embed],
-        });
         endCommand();
     }
 });

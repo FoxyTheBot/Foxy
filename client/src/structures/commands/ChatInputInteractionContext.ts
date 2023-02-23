@@ -1,7 +1,6 @@
 import { InteractionResponseTypes, InteractionCallbackData, ApplicationCommandOptionTypes, } from 'discordeno';
 import { Interaction, User } from 'discordeno/transformers';
 import { TFunction } from 'i18next';
-
 import { MessageFlags } from '../../utils/discord/Message';
 import { bot } from "../../index";
 
@@ -43,7 +42,7 @@ export default class {
     }
 
     makeReply(emoji: any, text: string): string {
-        return `${emoji || '🐛'} **|** ${text}`;
+        return `${`<:emoji:${emoji}>` || '🐛'} **|** ${text}`;
     }
 
     async followUp(options: InteractionCallbackData): Promise<void> {
@@ -53,6 +52,10 @@ export default class {
         })
     }
 
+    getEmojiById(id: BigInt) {
+        return `<:emoji:${id}>`;
+    }
+    
     async sendReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
         if (!bot.isProduction) {
             bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {

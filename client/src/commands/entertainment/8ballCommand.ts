@@ -1,5 +1,6 @@
 import { createCommand} from '../../structures/commands/createCommand';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
+import { bot } from "../../index";
 
 const eightBallCommand = createCommand({
 name: '8ball',
@@ -37,7 +38,7 @@ name: '8ball',
         const result = results[Math.floor(Math.random() * results.length)];
 
         context.sendReply({
-            content: context.makeReply('🎱', result)
+            content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, result)
         });
         endCommand();
     }

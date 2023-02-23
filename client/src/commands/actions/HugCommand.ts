@@ -5,35 +5,10 @@ import { User } from 'discordeno/transformers';
 import { createEmbed } from '../../utils/discord/Embed';
 import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
 import { bot } from '../../index';
-import ComponentInteractionContext from '../../structures/commands/ComponentInteractionContext'
+import HugExecutor from '../../utils/commands/executors/HugExecutor';
 import gifs from 'nekos.life';
 const gif = new gifs();
 const embed = createEmbed({});
-
-
-const executeHug = async (context: ComponentInteractionContext) => {
-    const [user] = context.sentData;
-    const hugGif = await gif.hug();
-    embed.title = bot.locale('commands:hug.success', {user: context.author.username, author: user}),
-    embed.image = {
-        url: hugGif.url
-    }
-
-    context.sendReply({
-        components: [createActionRow([createButton({
-            customId: createCustomId(0, user, context.commandId),
-            label: bot.locale('commands:hug.button'),
-            style: ButtonStyles.Secondary,
-            emoji: {
-                name: bot.emotes.FOXY_HUG
-            },
-            disabled: true
-        })])]
-    })
-    context.followUp({
-        embeds: [embed],
-    });
-}
 
 const HugCommand = createCommand({
     name: 'hug',
@@ -59,7 +34,7 @@ const HugCommand = createCommand({
             required: true
         }
     ],
-    commandRelatedExecutions: [executeHug],
+    commandRelatedExecutions: [HugExecutor],
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
         const hugGif = await gif.hug();
@@ -76,7 +51,7 @@ const HugCommand = createCommand({
                 label: t('commands:hug.button'),
                 style: ButtonStyles.Primary,
                 emoji: {
-                    name: bot.emotes.FOXY_HUG
+                    id: bot.emotes.FOXY_HUG
                 }
             })])]
         })

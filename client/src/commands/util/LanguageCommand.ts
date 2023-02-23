@@ -11,7 +11,7 @@ const changeLanguage = async (context: ComponentInteractionContext) => {
     await userData.save();
 
     await context.sendReply({
-        content: context.makeReply("🦊", bot.locale(`commands:lang.${language}`)),
+        content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale(`commands:lang.${language}`)),
         flags: MessageFlags.Ephemeral,
         components: [createActionRow([createSelectMenu({
             customId: createCustomId(0, context.user.id, context.commandId),

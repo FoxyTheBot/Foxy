@@ -5,34 +5,10 @@ import { User } from 'discordeno/transformers';
 import { createEmbed } from '../../utils/discord/Embed';
 import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
 import { bot } from '../../index';
-import ComponentInteractionContext from '../../structures/commands/ComponentInteractionContext'
+import PatExecutor from '../../utils/commands/executors/PatExecutor';
 import gifs from 'nekos.life';
 const gif = new gifs();
 const embed = createEmbed({});
-
-const executePat = async (context: ComponentInteractionContext) => {
-    const [user] = context.sentData;
-    const patGif = await gif.pat();
-    embed.title = bot.locale('commands:pat.success', { user: context.author.username, author: user }),
-        embed.image = {
-            url: patGif.url
-        }
-
-    context.sendReply({
-        components: [createActionRow([createButton({
-            customId: createCustomId(0, user, context.commandId),
-            label: bot.locale('commands:pat.button'),
-            style: ButtonStyles.Secondary,
-            emoji: {
-                name: bot.emotes.FOXY_WOW
-            },
-            disabled: true
-        })])]
-    });
-    context.followUp({
-        embeds: [embed],
-    });
-}
 
 const patCommand = createCommand({
     name: 'pat',
@@ -58,7 +34,7 @@ const patCommand = createCommand({
             required: true
         }
     ],
-    commandRelatedExecutions: [executePat],
+    commandRelatedExecutions: [PatExecutor],
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
         const patGif = await gif.pat();
@@ -75,7 +51,7 @@ const patCommand = createCommand({
                 label: t('commands:pat.button'),
                 style: ButtonStyles.Primary,
                 emoji: {
-                    name: bot.emotes.FOXY_WOW
+                    id: bot.emotes.FOXY_WOW
                 }
             })])]
         })

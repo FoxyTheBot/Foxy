@@ -33,7 +33,7 @@ name: "rep",
 
         if (user.id === context.author.id) {
             context.sendReply({
-                content: context.makeReply("🚫", t('commands:rep.self'))
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:rep.self'))
             })
             return endCommand();
         }

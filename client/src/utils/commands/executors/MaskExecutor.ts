@@ -31,7 +31,7 @@ const MaskExecutor = async (context: ComponentInteractionContext) => {
                         label: bot.locale('commands:masks.buy.purchase'),
                         style: ButtonStyles.Secondary,
                         emoji: {
-                            name: bot.emotes.FOXY_DAILY
+                            id: bot.emotes.FOXY_DAILY
                         },
                         disabled: true
                     })])]

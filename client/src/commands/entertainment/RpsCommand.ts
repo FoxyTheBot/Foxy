@@ -1,5 +1,6 @@
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { createCommand } from "../../structures/commands/createCommand";
+import { bot } from '../../index';
 
 const RpsCommand = createCommand({
 name: 'rps',
@@ -32,12 +33,12 @@ name: 'rps',
 
         if (!acceptedReplies.includes(string)) {
             return context.sendReply({
-                content: context.makeReply("❌", t('commands:rps.invalidChoice', { choice: acceptedReplies.join(', ') }))
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:rps.invalidChoice', { choice: acceptedReplies.join(', ') }))
             });
         }
         if (result === string) {
             return context.sendReply({
-                content: context.makeReply("❌", t('commands:rps.tie'))
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:rps.tie'))
             });
         }
 

@@ -1,6 +1,7 @@
 import { createCommand } from "../../structures/commands/createCommand";
 import { User } from "discordeno/transformers";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
+import { bot } from '../../index';
 
 const cancelCommand = createCommand({
 name: 'cancelar',
@@ -44,7 +45,7 @@ name: 'cancelar',
         const string = context.getOption<string>('reason', false);
 
         context.sendReply({
-            content: context.makeReply("❌", t('commands:cancel.result', { user: context.author.username, reason: string, mention: `<@!${user.id}>` }))
+            content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:cancel.result', { user: context.author.username, reason: string, mention: `<@!${user.id}>` }))
         })
     
         endCommand();

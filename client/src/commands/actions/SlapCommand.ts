@@ -5,34 +5,12 @@ import { User } from 'discordeno/transformers';
 import { createEmbed } from '../../utils/discord/Embed';
 import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
 import { bot } from '../../index';
-import ComponentInteractionContext from '../../structures/commands/ComponentInteractionContext'
+import SlapExecutor from '../../utils/commands/executors/SlapExecutor';
 import gifs from 'nekos.life';
 const gif = new gifs();
 const embed = createEmbed({});
 
-const executeSlap = async (context: ComponentInteractionContext) => {
-    const [user] = context.sentData;
-    const slapGif = await gif.slap();
-    embed.title = bot.locale('commands:slap.success', { user: context.author.username, author: user  }),
-        embed.image = {
-            url: slapGif.url
-        }
 
-    context.sendReply({
-        components: [createActionRow([createButton({
-            customId: createCustomId(0, user, context.commandId),
-            label: bot.locale('commands:slap.button'),
-            style: ButtonStyles.Secondary,
-            emoji: {
-                name: bot.emotes.FOXY_SCARED,
-            },
-            disabled: true
-        })])]
-    });
-    context.followUp({
-        embeds: [embed],
-    });
-}
 const SlapCommand = createCommand({
     name: 'slap',
     nameLocalizations: {
@@ -57,7 +35,7 @@ const SlapCommand = createCommand({
             required: true
         }
     ],
-    commandRelatedExecutions: [executeSlap],
+    commandRelatedExecutions: [SlapExecutor],
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
         const slapGif = await gif.slap();
@@ -74,7 +52,7 @@ const SlapCommand = createCommand({
                 label: t('commands:slap.button'),
                 style: ButtonStyles.Primary,
                 emoji: {
-                    name: bot.emotes.FOXY_SCARED,
+                    id: bot.emotes.FOXY_SCARED,
                 }
             })])]
         })

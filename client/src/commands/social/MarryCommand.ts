@@ -77,7 +77,7 @@ name: 'casar',
         }
 
         context.sendReply({
-            content: context.makeReply("❤", t('commands:marry.ask', { user: user.username, author: context.author.username })),
+            content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:marry.ask', { user: user.username, author: context.author.username })),
             components: [createActionRow([createButton({
                 customId: createCustomId(0, user.id, context.commandId),
                 label: t('commands:marry.accept'),

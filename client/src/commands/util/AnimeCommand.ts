@@ -1,6 +1,7 @@
 import { createCommand } from "../../structures/commands/createCommand";
 import { createEmbed } from "../../utils/discord/Embed";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
+import { bot } from '../../index';
 const scraper = require('mal-scraper');
 
 const AnimeCommand = createCommand({
@@ -25,7 +26,7 @@ name: "anime",
         await context.defer();
         scraper.getInfoFromName(anime).then(async (data) => {
             if (!data) return context.sendReply({
-                content: context.makeReply("🚫", t('commands:anime.notFound'))
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:anime.notFound'))
             })
 
             const embed = createEmbed({
