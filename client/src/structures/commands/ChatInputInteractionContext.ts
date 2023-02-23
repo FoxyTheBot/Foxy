@@ -54,6 +54,20 @@ export default class {
     }
 
     async sendReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
+        if (!bot.isProduction) {
+            bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
+                type: InteractionResponseTypes.ChannelMessageWithSource,
+                data: {
+                    content: this.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, `Você está usando a versão experimental da Foxy! Coisas inesperadas podem acontecer, como: algumas ou todas as funcionalidades podem não funcionar, eu posso ficar offline a qualquer momento, não reporte problemas da versão experimental a não ser que seja solicitado pela staff do servidor!`),
+                    flags: 64
+                }
+            });
+            await bot.helpers.sendFollowupMessage(this.interaction.token, {
+                type: InteractionResponseTypes.ChannelMessageWithSource,
+                data: options,
+            });
+            return;
+        }
         if (this.replied) {
             await bot.helpers
                 .editOriginalInteractionResponse(this.interaction.token, options)
