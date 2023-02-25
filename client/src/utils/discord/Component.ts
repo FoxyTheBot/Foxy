@@ -42,11 +42,4 @@ const createActionRow = (components: ActionRow['components']): ActionRow => ({
     components,
 });
 
-export {
-    createButton,
-    createCustomId,
-    createActionRow,
-    createTextInput,
-    createSelectMenu,
-    resolveSeparatedStrings,
-};
+export { createButton, createCustomId, createActionRow, createTextInput, createSelectMenu, resolveSeparatedStrings };

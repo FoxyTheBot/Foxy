@@ -40,7 +40,12 @@ module.exports = async (_, interaction) => {
                     { name: locale('events:ban.date'), value: user.banData.toLocaleString(global.t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }
                 ]
             })
-            return context.sendReply({ embeds: [embed], flags: 64 })
+            return context.sendReply({
+                embeds: [embed],
+                flags: 64
+            });
+
+
         }
 
         FoxyHandler();

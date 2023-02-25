@@ -50,7 +50,7 @@ const HelpCommand = createCommand({
                 }
             ],
             image: {
-                url: "https://images-ext-2.discordapp.net/external/7p5MYQCvBggYVvAJVuVyIUAySnE3iO1iu1m0LPTM_so/https/c.tenor.com/GaBV0ykyRLYAAAAC/kawaii-fnaf.gif"
+                url: "https://cdn.discordapp.com/attachments/1068525425963302936/1076841345211183154/Sem_titulo.png"
             }
         })
 
