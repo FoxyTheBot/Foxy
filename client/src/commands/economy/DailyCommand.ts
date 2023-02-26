@@ -33,7 +33,6 @@ const DailyCommand = createCommand({
 
             context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.daily', { amount: amount.toString(), money: money.toString() })),
-                flags: 64
             })
             endCommand();
 
