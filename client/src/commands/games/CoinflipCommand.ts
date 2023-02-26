@@ -5,9 +5,9 @@ name: "caracoroa",
     nameLocalizations: {
         "en-US": "coinflip"
     },
-    description: "[🎮] Jogue cara ou coroa",
+    description: "[Jogos] Jogue cara ou coroa",
     descriptionLocalizations: {
-        "en-US": "[🎮] Play heads or tails"
+        "en-US": "[Games] Play heads or tails"
     },
     category: "games",
     options: [],

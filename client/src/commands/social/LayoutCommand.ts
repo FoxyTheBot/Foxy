@@ -6,9 +6,9 @@ import { lylist } from '../../structures/json/layoutList.json';
 const choices = lylist.map(data => Object({ name: data.name, value: data.id }));
 const LayoutCommand = createCommand({
     name: "layout",
-    description: "[👥] Mude o layout do seu perfil",
+    description: "[Social] Mude o layout do seu perfil",
     descriptionLocalizations: {
-        "en-US": "[👥] Change your profile layout"
+        "en-US": "[Social] Change your profile layout"
     },
     category: "economy",
     options: [
@@ -17,9 +17,9 @@ const LayoutCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "definir"
             },
-            description: "[👥] Defina o layout do seu perfil",
+            description: "[Social] Defina o layout do seu perfil",
             descriptionLocalizations: {
-                "en-US": "[👥] Set your profile layout"
+                "en-US": "[Social] Set your profile layout"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [

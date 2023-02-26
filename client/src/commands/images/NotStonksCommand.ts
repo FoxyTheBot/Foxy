@@ -4,9 +4,9 @@ import * as Canvas from "canvas";
 
 const NotStonksCommand = createCommand({
     name: "notstonks",
-    description: "[🖼] - Crie uma imagem do not stonks",
+    description: "[Imagem] Crie uma imagem do not stonks",
     descriptionLocalizations: {
-        "en-US": "[🖼] - Create an image of the not stonks"
+        "en-US": "[Image] Create an image of the not stonks"
     },
     category: "image",
     options: [

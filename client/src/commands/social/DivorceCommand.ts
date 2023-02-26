@@ -10,9 +10,9 @@ name: 'divorciar',
     nameLocalizations: {
         "en-US": "divorce"
     },
-    description: "[👥] Divorcie-se de seu parceiro",
+    description: "[Social] Divorcie-se de seu parceiro",
     descriptionLocalizations: {
-        "en-US": "[👥] Divorce your partner"
+        "en-US": "[Social] Divorce your partner"
     },
     category: "social",
     commandRelatedExecutions: [DivorceExecutor],

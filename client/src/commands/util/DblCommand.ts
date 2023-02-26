@@ -4,17 +4,17 @@ import { createEmbed } from "../../utils/discord/Embed";
 
 const DblCommand = createCommand({
     name: 'dbl',
-    description: '[🛠] Vote Foxy on top.gg',
+    description: '[Utils] Vote Foxy on top.gg',
     descriptionLocalizations: {
-        "pt-BR": '[🛠] Vote na Foxy no top.gg'
+        "pt-BR": '[Utils] Vote na Foxy no top.gg'
     },
     category: 'util', 
     options: [
         {
             name: "upvote",
-            description: "[🛠] Vote for Foxy on top.gg",
+            description: "[Utils] Vote for Foxy on top.gg",
             descriptionLocalizations: {
-                "pt-BR": "[🛠] Vote na Foxy no top.gg"
+                "pt-BR": "[Utils] Vote na Foxy no top.gg"
             },
             type: ApplicationCommandOptionTypes.SubCommand
         }

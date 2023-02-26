@@ -4,9 +4,9 @@ import * as Canvas from "canvas";
 
 const StonksCommand = createCommand({
     name: "stonks",
-    description: "[🖼] - Crie uma imagem do stonks",
+    description: "[Imagem] Crie uma imagem do stonks",
     descriptionLocalizations: {
-        "en-US": "[🖼] - Create an image of the stonks"
+        "en-US": "[Image] Create an image of the stonks"
     },
     category: "image",
     options: [

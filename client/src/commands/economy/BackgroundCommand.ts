@@ -10,9 +10,9 @@ import GenerateImage from '../../structures/GenerateImage';
 const choices = bglist.map(data => Object({ name: `${data.name} / ${data.foxcoins} Foxcoins`, value: data.id }));
 const BackgroundCommand = createCommand({
     name: 'background',
-    description: '[💵] Mude o background do seu perfil',
+    description: '[Economia] Mude o background do seu perfil',
     descriptionLocalizations: {
-        'en-US': '[💵] Change your profile background'
+        'en-US': '[Economy] Change your profile background'
     },
     category: 'economy',
     options: [
@@ -21,9 +21,9 @@ const BackgroundCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "definir"
             },
-            description: "[💵] Defina o background do seu perfil",
+            description: "[Economia] Defina o background do seu perfil",
             descriptionLocalizations: {
-                "en-US": "[💵] Set your profile background"
+                "en-US": "[Economy] Set your profile background"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
         },
@@ -32,9 +32,9 @@ const BackgroundCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "comprar"
             },
-            description: "[💵] Compre um background",
+            description: "[Economia] Compre um background",
             descriptionLocalizations: {
-                "en-US": "[💵] Buy a background"
+                "en-US": "[Economy] Buy a background"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [

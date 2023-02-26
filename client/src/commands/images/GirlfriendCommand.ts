@@ -6,9 +6,9 @@ import { User } from 'discordeno/transformers';
 
 const GirlfriendCommand = createCommand({
     name: "girlfriend",
-    description: "[🖼] - Quem é a sua namorada?",
+    description: "[Imagem] Quem é a sua namorada?",
     descriptionLocalizations: {
-        "en-US": "[🖼] - Who is your girlfriend?"
+        "en-US": "[Image] Who is your girlfriend?"
     },
     category: "image",
     options: [

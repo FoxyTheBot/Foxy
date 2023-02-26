@@ -4,9 +4,9 @@ import * as Canvas from "canvas";
 
 const LaranjoCommand = createCommand({
     name: "laranjo",
-    description: "[🖼] - Crie uma imagem do laranjo",
+    description: "[Imagem] Crie uma imagem do laranjo",
     descriptionLocalizations: {
-        "en-US": "[🖼] - Create an image of the laranjo"
+        "en-US": "[Image] Create an image of the laranjo"
     },
     category: "image",
     options: [

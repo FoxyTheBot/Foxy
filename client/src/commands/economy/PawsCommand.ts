@@ -1,6 +1,5 @@
 import { createCommand } from "../../structures/commands/createCommand";
 import { createActionRow, createButton, createCustomId } from "../../utils/discord/Component";
-import { createEmbed } from "../../utils/discord/Embed";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { bot } from "../../index";
 import { User } from "discordeno/transformers";
@@ -35,14 +34,6 @@ name: 'paws',
                     required: false
                 }
             ]
-        },
-        {
-            name: "rank",
-            description: "[💵] Veja o rank de paws",
-            descriptionLocalizations: {
-                'en-US': "[💵] See the paws rank"
-            },
-            type: ApplicationCommandOptionTypes.SubCommand,
         },
         {
             name: "transfer",
@@ -101,32 +92,6 @@ name: 'paws',
                 context.sendReply({
                     content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:atm.success', { user: user.username, balance: balance.toString() }))
                 })
-                endCommand();
-                break;
-            }
-
-            case "rank": {
-                let data = await bot.database.getAllUsers();
-                await context.defer();
-                data = data.sort((a, b) => b.balance - a.balance);
-
-                const embed = createEmbed({});
-                embed.title = context.makeReply(bot.emotes.FOXY_DAILY, "Paws Global Rank");
-                let fields = embed.fields = [];
-                for (let i in data) {
-                    if (Number(i) > 14) break;
-                    let user = await bot.helpers.getUser(data[i]._id);
-                    fields.push({
-                        name: `${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - \`${user.username}#${user.discriminator}\``,
-                        value: `**${parseInt(data[i].balance)}** Paws`,
-                        inline: true,
-                    });
-                }
-
-                context.sendReply({
-                    embeds: [embed],
-                });
-
                 endCommand();
                 break;
             }

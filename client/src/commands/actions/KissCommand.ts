@@ -15,9 +15,9 @@ const KissCommand = createCommand({
     nameLocalizations: {
         'pt-BR': 'beijar'
     },
-    description: '[❤] - Beije alguém',
+    description: '[Roleplay] Beije alguém',
     descriptionLocalizations: {
-        "en-US": "[❤] - Kiss someone"
+        "en-US": "[Roleplay] Kiss someone"
     },
     category: 'roleplay',
     options: [

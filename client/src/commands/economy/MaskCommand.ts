@@ -11,9 +11,9 @@ import GenerateImage from '../../structures/GenerateImage';
 const choices = masks.map(data => Object({ name: `${data.id} / ${data.price} Paws`, value: data.id }));
 const MaskCommand = createCommand({
     name: 'mask',
-    description: '[💵] Mude a máscara do seu perfil',
+    description: '[Economia] Mude a máscara do seu perfil',
     descriptionLocalizations: {
-        'en-US': '[💵] Change your profile mask'
+        'en-US': '[Economy] Change your profile mask'
     },
     category: 'economy',
     options: [
@@ -22,9 +22,9 @@ const MaskCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "definir"
             },
-            description: "[💵] Defina a máscara do seu perfil",
+            description: "[Economia] Defina a máscara do seu perfil",
             descriptionLocalizations: {
-                "en-US": "[💵] Set your profile mask"
+                "en-US": "[Economy] Set your profile mask"
             },
             type: ApplicationCommandOptionTypes.SubCommand
         },
@@ -33,9 +33,9 @@ const MaskCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "comprar"
             },
-            description: "[💵] Compre uma máscara",
+            description: "[Economia] Compre uma máscara",
             descriptionLocalizations: {
-                "en-US": "[💵] Buy a mask"
+                "en-US": "[Economy] Buy a mask"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [

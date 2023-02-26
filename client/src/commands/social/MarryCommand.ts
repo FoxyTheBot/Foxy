@@ -10,18 +10,18 @@ name: 'casar',
     nameLocalizations: {
         "en-US": "marry"
     },
-    description: "[❤] - Case-se com seu parceiro(a)",
+    description: "[Social] Case-se com seu parceiro(a)",
     descriptionLocalizations: {
-        "en-US": "[❤] - Marry your partner"
+        "en-US": "[Social] Marry your partner"
     },
     options: [{
         name: "user",
         nameLocalizations: {
             "pt-BR": "usuário",
         },
-        description: "[👥] Usuário que você deseja casar",
+        description: "[Social] Usuário que você deseja casar",
         descriptionLocalizations: {
-            "en-US": "[👥] User you want to marry"
+            "en-US": "[Social] User you want to marry"
         },
         type: ApplicationCommandOptionTypes.User,
         required: true

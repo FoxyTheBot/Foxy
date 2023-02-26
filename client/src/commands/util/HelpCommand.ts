@@ -7,9 +7,9 @@ const HelpCommand = createCommand({
     nameLocalizations: {
         "pt-BR": "ajuda"
     },
-    description: '[🛠] Shows the help message',
+    description: '[Utils] Shows the help message',
     descriptionLocalizations: {
-        "pt-BR": '[🛠] Mostra a mensagem de ajuda'
+        "pt-BR": '[Utils] Mostra a mensagem de ajuda'
     },
     category: 'util',
     execute: async (context, endCommand, t) => {

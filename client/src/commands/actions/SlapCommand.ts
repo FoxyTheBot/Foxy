@@ -16,9 +16,9 @@ const SlapCommand = createCommand({
     nameLocalizations: {
         'pt-BR': 'tapa'
     },
-    description: '[❤] - Dê um tapespa em alguém',
+    description: '[Roleplay] Dê um tapespa em alguém',
     descriptionLocalizations: {
-        "en-US": "[❤] - Slaps someone"
+        "en-US": "[Roleplay] Slaps someone"
     },
     category: 'roleplay',
     options: [

@@ -4,9 +4,9 @@ import * as Canvas from "canvas";
 
 const ErrorCommand = createCommand({
     name: "error",  
-    description: "[🖼] - Crie uma caixa de dialogo de erro",
+    description: "[Imagem] Crie uma caixa de dialogo de erro",
     descriptionLocalizations: {
-        "en-US": "[🖼] - Create an error dialog box"
+        "en-US": "[Image] Create an error dialog box"
     },
     category: "image",
     options: [

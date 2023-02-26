@@ -15,9 +15,9 @@ const patCommand = createCommand({
     nameLocalizations: {
         'pt-BR': 'carinho'
     },
-    description: '[❤] - Faça carinho em alguém',
+    description: '[Roleplay] Faça carinho em alguém',
     descriptionLocalizations: {
-        "en-US": "[❤] - pat someone"
+        "en-US": "[Roleplay] pat someone"
     },
     category: 'roleplay',
     options: [

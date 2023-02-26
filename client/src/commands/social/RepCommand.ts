@@ -6,9 +6,9 @@ import ms from "ms";
 
 const RepCommand = createCommand({
 name: "rep",
-    description: "[👥] Dê reputação para um usuário",
+    description: "[Social] Dê reputação para um usuário",
     descriptionLocalizations: {
-        "en-US": "[👥] Give reputation to a user"
+        "en-US": "[Social] Give reputation to a user"
     },
     category: "social",
     options: [

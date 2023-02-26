@@ -8,9 +8,9 @@ name: 'cancelar',
     nameLocalizations: {
         'en-US': 'cancel'
     },
-    description: "[📺] Cancela alguém",
+    description: "[Entretenimento] Cancela alguém",
     descriptionLocalizations: {
-        "en-US": "[📺] Cancel someone"
+        "en-US": "[Entertainment] Cancel someone"
     },
     category: 'fun',
     options: [

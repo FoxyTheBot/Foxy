@@ -7,9 +7,9 @@ const OurCommand = createCommand({
     nameLocalizations: {
         "en-US": "communism"
     },
-    description: "[🖼] - Crie uma imagem do comunismo",
+    description: "[Imagem] Crie uma imagem do comunismo",
     descriptionLocalizations: {
-        "en-US": "[🖼] - Create an image of the communism"
+        "en-US": "[Image] Create an image of the communism"
     },
     category: "image",
     options: [

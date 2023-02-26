@@ -1,13 +1,12 @@
 import { createCommand } from "../../structures/commands/createCommand";
 import { createEmbed } from "../../utils/discord/Embed";
 import * as os from 'os';
-import { bot } from "../../index";
 
 const StatusCommand = createCommand({
 name: "status",
-    description: "[🛠] Mostra o status do bot",
+    description: "[Utils] Mostra o status do bot",
     descriptionLocalizations: {
-        "en-US": "[🛠] Shows the bot status"
+        "en-US": "[Utils] Shows the bot status"
     },
     category: "util",
     options: [],

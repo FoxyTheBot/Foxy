@@ -6,9 +6,9 @@ const scraper = require('mal-scraper');
 
 const AnimeCommand = createCommand({
 name: "anime",
-    description: "[🛠] Pesquisa a informação de algum anime",
+    description: "[Utils] Pesquisa a informação de algum anime",
     descriptionLocalizations: {
-        "en-US": "[🛠] Searches for information about an anime"
+        "en-US": "[Utils] Searches for information about an anime"
     },
     category: "util",
     options: [

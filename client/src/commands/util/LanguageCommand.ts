@@ -36,9 +36,9 @@ name: 'idioma',
     nameLocalizations: {
         'en-US': 'language'
     },
-    description: "[🛠] Altere o idioma da Foxy",
+    description: "[Utils] Altere o idioma da Foxy",
     descriptionLocalizations: {
-        "en-US": "[🛠] Change the Foxy's language"
+        "en-US": "[Utils] Change the Foxy's language"
     },
     category: 'social',
     commandRelatedExecutions: [changeLanguage],

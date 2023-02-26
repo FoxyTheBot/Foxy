@@ -4,11 +4,11 @@ import { bot } from '../../index';
 
 const RpsCommand = createCommand({
 name: 'rps',
-    description: "[📺] Jogue pedra, papel ou tesoura com a Foxy",
+    description: "[Jogos] Jogue pedra, papel ou tesoura com a Foxy",
     descriptionLocalizations: {
-        "en-US": "[📺] Play rock, paper or scissors with Foxy"
+        "en-US": "[Games] Play rock, paper or scissors with Foxy"
     },
-    category: 'fun',
+    category: 'games',
     options: [
         {
             name: "choice",

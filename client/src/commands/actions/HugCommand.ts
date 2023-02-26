@@ -15,9 +15,9 @@ const HugCommand = createCommand({
     nameLocalizations: {
         'pt-BR': 'abraçar'
     },
-    description: '[❤] - Abraçe alguém',
+    description: '[Roleplay] Abraçe alguém',
     descriptionLocalizations: {
-        "en-US": "[❤] - Hug someone"
+        "en-US": "[Roleplay] Hug someone"
     },
     category: 'roleplay',
     options: [

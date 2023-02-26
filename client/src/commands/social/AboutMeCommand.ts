@@ -8,9 +8,9 @@ name: "sobremim",
     nameLocalizations: {
         "en-US": "aboutme"
     },
-    description: "[👥] Defina o sobre mim do seu perfil",
+    description: "[Social] Defina o sobre mim do seu perfil",
     descriptionLocalizations: {
-        "en-US": "[👥] Set your profile about me"
+        "en-US": "[Social] Set your profile about me"
     },
     category: "social",
     options: [
