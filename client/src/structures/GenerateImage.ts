@@ -61,7 +61,7 @@ export default class GenerateImage {
 
         context.font = '40px sans-serif';
         context.fillStyle = '#ffffff';
-        context.fillText(`Paws: \n${this.data.balance}`, canvas.width / 1.2, canvas.height / 1.4);
+        context.fillText(`Cakes: \n${this.data.balance}`, canvas.width / 1.2, canvas.height / 1.4);
 
         if (this.data.marriedWith) {
             moment.locale(this.locale.lng)

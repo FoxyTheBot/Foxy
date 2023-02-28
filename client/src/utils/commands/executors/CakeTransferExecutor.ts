@@ -3,7 +3,7 @@ import { bot } from "../../../index";
 import { createActionRow, createCustomId, createButton } from "../../discord/Component";
 import { ButtonStyles } from "discordeno/types";
 
-const PawsTransferExecutor = async (context: ComponentInteractionContext) => {  
+const CakeTransferExecutor = async (context: ComponentInteractionContext) => {  
     const [value, user] = context.sentData;
     console.log(value)
     const userData = await bot.database.getUser(user);
@@ -26,4 +26,4 @@ const PawsTransferExecutor = async (context: ComponentInteractionContext) => {
     })
 }
 
-export default PawsTransferExecutor;
+export default CakeTransferExecutor;

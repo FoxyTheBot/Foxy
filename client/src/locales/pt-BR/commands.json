@@ -78,7 +78,7 @@
         "selectMask": "Selecione uma máscara",
         "buy": {
             "success": "Você comprou a máscara para seu avatar!",
-            "noMoney": "Você não tem Paws o suficiente para adquirir esta máscara",
+            "noMoney": "Você não tem Cakes o suficiente para adquirir esta máscara",
             "preview": "Pré-visualização",
             "purchase": "Comprar"
         },
@@ -303,14 +303,14 @@
     },
     "pay": {
         "self": "Você não pode pagar você mesmo",
-        "notEnough": "Você não tem Paws suficiente",
-        "alert": "Você deseja mesmo transferir {{amount}} Paws para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelas Paws perdidas, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Paws!",
-        "success": "Você transferiu {{amount}} Paws para {{user}}",
+        "notEnough": "Você não tem Cakes suficiente",
+        "alert": "Você deseja mesmo transferir {{amount}} Cakes para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelas Cakes perdidas, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!",
+        "success": "Você transferiu {{amount}} Cakes para {{user}}",
         "pay": "Pagar"
     },
     "daily": {
-        "cooldown": "Você já pegou suas Paws hoje, espere **{{time}}**",
-        "daily": "Você ganhou **{{amount}} Paws** agora você possui {{money}} Paws"
+        "cooldown": "Você já pegou suas Cakes hoje, espere **{{time}}**",
+        "daily": "Você ganhou **{{amount}} Cakes** agora você possui {{money}} Cakes"
     },
     "background": {
         "buy": {
@@ -321,7 +321,7 @@
             "purchase": "Comprar",
             "price": "Preço",
             "preview": "Pré-visualização do background",
-            "noMoney": "Você não tem Paws suficiente",
+            "noMoney": "Você não tem Cakes suficiente",
             "success": "Você comprou o background! O Background já foi definido automaticamente no seu perfil! ;3"
         },
         "set": {
@@ -332,7 +332,7 @@
         }
     },
     "atm": {
-        "success": "**{{user}}** possui {{balance}} Paws"
+        "success": "**{{user}}** possui {{balance}} Cakes"
     },
     "step": {
         "success": "Você pisou em {{user}}"
@@ -366,16 +366,16 @@
     },
     "bet": {
         "self": "Você não pode apostar consigo mesmo!",
-        "not-enough": "Você não tem Paws suficientes",
-        "not-enough-mention": "{{user}} não tem Paws suficientes",
+        "not-enough": "Você não tem Cakes suficientes",
+        "not-enough-mention": "{{user}} não tem Cakes suficientes",
         "placeholder": "Selecione uma opção",
         "heads": "cara",
         "tails": "coroa",
         "accept": "Aceitar",
         "choose": "Escolha uma opção para apostar",
-        "ask": "**{{user}}**, **{{author}}** quer fazer uma aposta de {{amount}} Pawss",
-        "win": "{{author}} ganhou {{amount}} Paws! Financiado por {{user}}",
-        "lose": "{{user}} ganhou {{amount}} Paws! Financiado por {{author}}"
+        "ask": "**{{user}}**, **{{author}}** quer fazer uma aposta de {{amount}} Cakess",
+        "win": "{{author}} ganhou {{amount}} Cakes! Financiado por {{user}}",
+        "lose": "{{user}} ganhou {{amount}} Cakes! Financiado por {{author}}"
     },
     "global": {
         "noUser": "Usuário não encontrado"

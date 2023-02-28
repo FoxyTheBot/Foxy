@@ -4,20 +4,20 @@ import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { bot } from "../../index";
 import { User } from "discordeno/transformers";
 import { ButtonStyles } from "discordeno/types";
-import PawsTransferExecutor from "../../utils/commands/executors/PawsTransferExecutor";
+import CakeTransferExecutor from "../../utils/commands/executors/CakeTransferExecutor";
 
-const PawsCommand = createCommand({
-name: 'paws',
-    description: 'Veja suas paws',
+const CakeCommand = createCommand({
+name: 'cakes',
+    description: 'Commands related with economy system',
     descriptionLocalizations: {
-        'en-US': 'See your paws'
+        'pt-BR': 'Comandos relacionados ao sistema de economia'
     },
     options: [
         {
             name: "atm",
-            description: "[💵] Veja a sua quantidade de paws",
+            description: "[Economia] Veja a sua quantidade de cakes",
             descriptionLocalizations: {
-                'en-US': "[💵] See your amount of paws"
+                'en-US': "[Economy] See your amount of cakes"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [
@@ -26,9 +26,9 @@ name: 'paws',
                     nameLocalizations: {
                         'pt-BR': "usuário"
                     },
-                    description: "Veja a quantidade de paws de outro usuário",
+                    description: "Veja a quantidade de cakes de outro usuário",
                     descriptionLocalizations: {
-                        'en-US': "See the amount of paws of another user"
+                        'en-US': "See the amount of cakes of another user"
                     },
                     type: ApplicationCommandOptionTypes.User,
                     required: false
@@ -40,9 +40,9 @@ name: 'paws',
             nameLocalizations: {
                 'pt-BR': "transferir"
             },
-            description: "[💵] Envie paws para outra pessoa",
+            description: "[💵] Envie cakes para outra pessoa",
             descriptionLocalizations: {
-                'en-US': "[💵] Transfer paws to another person"
+                'en-US': "[💵] Transfer cakes to another person"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [
@@ -63,9 +63,9 @@ name: 'paws',
                     nameLocalizations: {
                         'pt-BR': "quantidade"
                     },
-                    description: "Quantidade de paws que você quer transferir",
+                    description: "Quantidade de cakes que você quer transferir",
                     descriptionLocalizations: {
-                        'en-US': "Amount of paws you want to transfer"
+                        'en-US': "Amount of cakes you want to transfer"
                     },
                     type: ApplicationCommandOptionTypes.Number,
                     required: true,
@@ -74,7 +74,7 @@ name: 'paws',
             ]
         }
     ],
-    commandRelatedExecutions: [PawsTransferExecutor],
+    commandRelatedExecutions: [CakeTransferExecutor],
     category: 'economy',
     execute: async (context, endCommand, t) => {
         switch (context.getSubCommand()) {
@@ -139,4 +139,4 @@ name: 'paws',
     }
 });
 
-export default PawsCommand;
+export default CakeCommand;

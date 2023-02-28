@@ -94,7 +94,7 @@
         "selectMask": "Select a mask",
         "buy": {
             "success": "You have purchased the profile mask!",
-            "noMoney": "You don't have enough Paws",
+            "noMoney": "You don't have enough Cakes",
             "preview": "Preview",
             "purchase": "Purchase"
         },
@@ -296,13 +296,13 @@
     "pay": {
         "self": "You can't pay yourself",
         "notEnough": "You don't have enough money",
-        "alert": "Do you really want send {{amount}} Paws to {{user}}? \nFoxy Team **Not responsible** for lost Paws, so make sure you are transferring to a trusted person! \nTrading NSFW(+18) content in exchange for Paws is prohibited!",
-        "success": "Você transferiu {{amount}} Paws para {{user}}",
+        "alert": "Do you really want send {{amount}} Cakes to {{user}}? \nFoxy Team **Not responsible** for lost Cakes, so make sure you are transferring to a trusted person! \nTrading NSFW(+18) content in exchange for Cakes is prohibited!",
+        "success": "Você transferiu {{amount}} Cakes para {{user}}",
         "pay": "Pay"
     },
     "daily": {
         "cooldown": "You already got your daily, wait **{{time}}**",
-        "daily": "You won **{{amount}} Paws** and now has {{money}} Paws"
+        "daily": "You won **{{amount}} Cakes** and now has {{money}} Cakes"
     },
     "background": {
         "buy": {
@@ -313,7 +313,7 @@
             "purchase": "Purchase",
             "price": "Price",
             "preview": "Background Preview",
-            "noMoney": "You don't have enough Paws",
+            "noMoney": "You don't have enough Cakes",
             "success": "You bought the background! It has already been set automatically in your profile! ;3"
         },
         "set": {
@@ -324,7 +324,7 @@
         }
     },
     "atm": {
-        "success": "**{{user}}** has {{balance}} Paws"
+        "success": "**{{user}}** has {{balance}} Cakes"
     },
     "step": {
         "success": "You stepped on {{user}}"
@@ -358,16 +358,16 @@
     },
     "bet": {
         "self": "You can't bet yourself",
-        "not-enough": "You don't have enough Paws",
-        "not-enough-mention": "{{user}} doesn't have enough Paws",
+        "not-enough": "You don't have enough Cakes",
+        "not-enough-mention": "{{user}} doesn't have enough Cakes",
         "placeholder": "Choose an option",
         "heads": "heads",
         "tails": "tails",
         "accept": "Accept",
         "choose": "Choose an option",
-        "ask": "{{user}}, {{author}} wants to bet with you with {{amount}} Paws",
-        "win": "{{author}} won {{amount}} Paws! By {{user}}",
-        "lose": "{{user}} won {{amount}} Paws! By {{author}}"
+        "ask": "{{user}}, {{author}} wants to bet with you with {{amount}} Cakes",
+        "win": "{{author}} won {{amount}} Cakes! By {{user}}",
+        "lose": "{{user}} won {{amount}} Cakes! By {{author}}"
     },
     "global": {
         "noUser": "User not found"
