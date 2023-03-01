@@ -110,7 +110,7 @@ name: 'cakes',
 
                 const value = Math.round(coins);
 
-                if (user === context.author) {
+                if (user.id === context.author.id) {
                     context.sendReply({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:pay.self'))
                     })
