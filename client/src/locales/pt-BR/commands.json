@@ -302,11 +302,12 @@
         "position": "Posição"
     },
     "pay": {
-        "self": "Você não pode pagar você mesmo",
+        "self": "Você não pode enviar cakes para você mesmo",
         "notEnough": "Você não tem Cakes suficiente",
         "alert": "Você deseja mesmo transferir {{amount}} Cakes para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelas Cakes perdidas, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!",
         "success": "Você transferiu {{amount}} Cakes para {{user}}",
-        "pay": "Pagar"
+        "pay": "Transferir",
+        "transfered": "Transferido"
     },
     "daily": {
         "cooldown": "Você já pegou suas Cakes hoje, espere **{{time}}**",
