@@ -30,7 +30,7 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
     }
 
     makeReply(emoji: any, text: any): string {
-        return `${emoji || '🦊'} **|** ${text}`;
+        return `<:emoji:${emoji}> **|** ${text}`;
     }
 
     async respondInteraction(options: InteractionCallbackData & { attachments?: unknown[] },): Promise<void> {
