@@ -131,7 +131,7 @@ name: 'cakes',
                         style: ButtonStyles.Success,
                         customId: createCustomId(0, context.author.id, context.commandId, value, user.id),
                         emoji: {
-                            name: bot.emotes.FOXY_DAILY
+                            id: bot.emotes.FOXY_DAILY
                         }
                     })])]
                 });

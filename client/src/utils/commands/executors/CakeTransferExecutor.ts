@@ -5,7 +5,7 @@ import { ButtonStyles } from "discordeno/types";
 
 const CakeTransferExecutor = async (context: ComponentInteractionContext) => {  
     const [value, user] = context.sentData;
-    console.log(value)
+
     const userData = await bot.database.getUser(user);
     const authorData = await bot.database.getUser(context.author.id);
     userData.balance += Number(value);
@@ -21,6 +21,9 @@ const CakeTransferExecutor = async (context: ComponentInteractionContext) => {
                 style: ButtonStyles.Secondary,
                 customId: createCustomId(0, context.author.id, context.commandId, value),
                 disabled: true,
+                emoji: {
+                    id: bot.emotes.FOXY_DAILY
+                }
             })])
         ]
     })
