@@ -129,7 +129,10 @@ name: 'cakes',
                     components: [createActionRow([createButton({
                         label: t('commands:pay.pay'),
                         style: ButtonStyles.Success,
-                        customId: createCustomId(0, context.author.id, context.commandId, value, user.id)
+                        customId: createCustomId(0, context.author.id, context.commandId, value, user.id),
+                        emoji: {
+                            name: bot.emotes.FOXY_DAILY
+                        }
                     })])]
                 });
                 endCommand();
