@@ -1,7 +1,6 @@
 import Canvas from 'canvas';
 import { bot } from "../index";
 import moment from 'moment';
-import i18next from 'i18next';
 import { getUserAvatar } from '../utils/discord/User';
 
 export default class GenerateImage {
