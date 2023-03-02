@@ -50,6 +50,19 @@ const FoxyToolsCommand = createCommand({
             ]
         },
         {
+            name: "reset_daily",
+            description: "Reseta o daily de algum usuário",
+            type: ApplicationCommandOptionTypes.SubCommand,
+            options: [
+                {
+                    name: "user",
+                    description: "O usuário que você quer resetar o daily",
+                    type: ApplicationCommandOptionTypes.User,
+                    required: true
+                }
+            ]
+        },
+        {
             name: "foxyban",
             "description": "Bane alguém de usar a Foxy",
             type: ApplicationCommandOptionTypes.SubCommandGroup,
@@ -126,7 +139,25 @@ const FoxyToolsCommand = createCommand({
 
                 userData.balance += Number(quantity);
                 userData.save();
-                context.sendReply({ content: `Foram adicionados ${quantity} Cakes para ${user}`})
+                context.sendReply({ content: `Foram adicionados ${quantity} Cakes para ${user}` })
+                endCommand();
+                break;
+            }
+
+            case "reset_daily": {
+                if (userData.isBanned) {
+                    context.sendReply({ content: "O usuário está banido!", flags: 64 });
+                    return endCommand();
+                }
+
+                if (bot.isProduction) {
+                    context.sendReply({ content: "Esse comando funciona apenas no modo de desenvolvimento!", flags: 64 });
+                    return endCommand();
+                }
+
+                userData.lastDaily = null;
+                userData.save();
+                context.sendReply({ content: `O daily de ${user.username} foi resetado!`, flags: 64 })
                 endCommand();
                 break;
             }
@@ -142,7 +173,7 @@ const FoxyToolsCommand = createCommand({
 
                 userData.balance -= Number(quantity);
                 userData.save();
-                context.sendReply({ content: `Foram removidos ${quantity} Cakes de ${user}`})
+                context.sendReply({ content: `Foram removidos ${quantity} Cakes de ${user}` })
 
                 endCommand();
                 break;
