@@ -15,7 +15,7 @@ export default class DatabaseConnection {
         } as ConnectOptions).catch((error) => {
             logger.error(`Failed to connect to database: `, error);
         });
-        logger.success(`Connected to database!`, "DATABASE");
+        logger.info(`[DATABASE] Connected to database!`);
         const userSchema = new mongoose.Schema({
             _id: String,
             userCreationTimestamp: Date,

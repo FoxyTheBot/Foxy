@@ -4,7 +4,7 @@ import i18nbackend from 'i18next-fs-backend';
 import { logger } from './logger';
 export async function loadLocales(path: string): Promise<void> {
     try {
-        logger.info("Loading locales...")
+        logger.info("[LOCALES] Loading locales...")
         await i18next.use(i18nbackend).init({
             ns: ["commands", "events", "permissions"],
             defaultNS: "commands",
@@ -18,7 +18,7 @@ export async function loadLocales(path: string): Promise<void> {
             returnEmptyString: false,
             returnObjects: true
         });
-        return logger.success(`Loaded ${i18next.languages.length} languages!`, "LOCALES");
+        return logger.info(`[LOCALES] Loaded ${i18next.languages.length} languages!`);
     } catch (error) {
         return logger.error(`failed to load locales: `, error);
     }

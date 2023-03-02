@@ -1,22 +1,20 @@
+const date = new Date();
+
 const logger = {
     error: (...args: any[]): void => {
-        console.error(`\u001b[31m[ERROR]\u001b[0m -`, ...args);
+        console.error(`[${date.toLocaleDateString()} ${date.toLocaleTimeString()}] \u001b[31mERROR]\u001b[0m >`, ...args);
     },
 
     info: (...args: any[]): void => {
-        console.info(`\u001b[94m[INFO]\u001b[0m -`, ...args);
-    },
-
-    success: (eventDescription: string, eventName?: string): void => {
-        console.info(`\u001b[32m[${eventName || "READY"}]\u001b[0m -`, eventDescription);
+        console.info(`[${date.toLocaleDateString()} ${date.toLocaleTimeString()}] \u001b[94mINFO\u001b[0m >`, ...args);
     },
 
     warn: (...args: any[]): void => {
-        console.warn(`\u001b[33m[WARN]\u001b[0m -`, ...args);
+        console.warn(`[${date.toLocaleDateString()} ${date.toLocaleTimeString()}] \u001b[33mWARN\u001b[0m >`, ...args);
     },
 
     criticalError: (...args: any[]): void => {
-        console.error(`\u001b[91m[CRITICAL ERROR]\u001b[0m -`, ...args);
+        console.error(`[${date.toLocaleDateString()} ${date.toLocaleTimeString()}] \u001b[91mCRITICAL ERROR\u001b[0m >`, ...args);
         process.exit(1);
     },
 
