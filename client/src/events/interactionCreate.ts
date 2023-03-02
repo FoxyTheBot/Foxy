@@ -5,6 +5,7 @@ import ChatInputInteractionContext from '../structures/commands/ChatInputInterac
 import { createEmbed } from '../utils/discord/Embed';
 import { InteractionTypes } from 'discordeno/types';
 import { componentExecutor } from '../structures/commands/ComponentExecutor';
+import { logger } from '../utils/logger';
 
 module.exports = async (_, interaction) => {
 
@@ -23,6 +24,7 @@ module.exports = async (_, interaction) => {
         await new Promise(async (res) => {
             try {
                 command.execute(context, res, locale);
+                logger.info(`[COMMAND ${interaction.data?.name} - Success] by ${interaction.user.username}#${interaction.user.discriminator} (${interaction.user.id})`)
             } catch (e) {
                 console.error(e);
                 context.sendReply({ content: locale('events:interactionCreate.commandError'), flags: MessageFlags.Ephemeral })
