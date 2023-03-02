@@ -16,9 +16,9 @@ const SlapCommand = createCommand({
     nameLocalizations: {
         'pt-BR': 'tapa'
     },
-    description: '[Roleplay] Dê um tapespa em alguém',
+    description: '[Roleplay] Slaps someone',
     descriptionLocalizations: {
-        "en-US": "[Roleplay] Slaps someone"
+        "pt-BR": "[Roleplay] Dê um tapa em alguém"
     },
     category: 'roleplay',
     options: [
@@ -27,9 +27,9 @@ const SlapCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "usuário"
             },
-            description: "Selecione o usuário que deseja bater",
+            description: "Select the user you want to slap",
             descriptionLocalizations: {
-                "en-US": "Select the user you want to slap"
+                "pt-BR": "Selecione o usuário que deseja bater"
             },
             type: ApplicationCommandOptionTypes.User,
             required: true

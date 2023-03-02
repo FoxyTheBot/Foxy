@@ -15,9 +15,9 @@ name: 'cakes',
     options: [
         {
             name: "atm",
-            description: "[Economia] Veja a sua quantidade de cakes",
+            description: "[Economy] See your amount of cakes",
             descriptionLocalizations: {
-                'en-US': "[Economy] See your amount of cakes"
+                'pt-BR': "[Economia] Veja a sua quantidade de cakes"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [
@@ -26,9 +26,9 @@ name: 'cakes',
                     nameLocalizations: {
                         'pt-BR': "usuário"
                     },
-                    description: "Veja a quantidade de cakes de outro usuário",
+                    description: "See the amount of cakes of another user",
                     descriptionLocalizations: {
-                        'en-US': "See the amount of cakes of another user"
+                        'pt-BR': "Veja a quantidade de cakes de outro usuário"
                     },
                     type: ApplicationCommandOptionTypes.User,
                     required: false
@@ -40,9 +40,9 @@ name: 'cakes',
             nameLocalizations: {
                 'pt-BR': "transferir"
             },
-            description: "[💵] Envie cakes para outra pessoa",
+            description: "[Economy] Transfer cakes to another person",
             descriptionLocalizations: {
-                'en-US': "[💵] Transfer cakes to another person"
+                'pt-BR': "[Economia] Envie cakes para outra pessoa"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [
@@ -51,9 +51,9 @@ name: 'cakes',
                     nameLocalizations: {
                         'pt-BR': "usuário"
                     },
-                    description: "Usuário que você quer transferir",
+                    description: "User you want to transfer",
                     descriptionLocalizations: {
-                        'en-US': "User you want to transfer"
+                        'pt-BR': "Usuário que você quer transferir"
                     },
                     type: ApplicationCommandOptionTypes.User,
                     required: true
@@ -63,9 +63,9 @@ name: 'cakes',
                     nameLocalizations: {
                         'pt-BR': "quantidade"
                     },
-                    description: "Quantidade de cakes que você quer transferir",
+                    description: "Amount of cakes you want to transfer",
                     descriptionLocalizations: {
-                        'en-US': "Amount of cakes you want to transfer"
+                        'pt-BR': "Quantidade de cakes que você quer transferir"
                     },
                     type: ApplicationCommandOptionTypes.Number,
                     required: true,

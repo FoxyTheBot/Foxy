@@ -32,13 +32,13 @@ const changeLanguage = async (context: ComponentInteractionContext) => {
 }
 
 const LanguageCommand = createCommand({
-name: 'idioma',
+name: 'language',
     nameLocalizations: {
-        'en-US': 'language'
+        'pt-BR': 'idioma'
     },
-    description: "[Utils] Altere o idioma da Foxy",
+    description: "[Utils] Change the Foxy's language",
     descriptionLocalizations: {
-        "en-US": "[Utils] Change the Foxy's language"
+        "pt-BR": "[Utils] Altere o idioma da Foxy"
     },
     category: 'social',
     commandRelatedExecutions: [changeLanguage],

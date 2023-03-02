@@ -6,22 +6,22 @@ import { User } from "discordeno/transformers";
 import MarryExecutor from "../../utils/commands/executors/MarryExecutor";
 
 const MarryCommand = createCommand({
-name: 'casar',
+name: 'marry',
     nameLocalizations: {
-        "en-US": "marry"
+        "pt-BR": "casar"
     },
-    description: "[Social] Case-se com seu parceiro(a)",
+    description: "[Social] Marry your partner",
     descriptionLocalizations: {
-        "en-US": "[Social] Marry your partner"
+        "pt-BR": "[Social] Case-se com seu parceiro(a)"
     },
     options: [{
         name: "user",
         nameLocalizations: {
             "pt-BR": "usuário",
         },
-        description: "[Social] Usuário que você deseja casar",
+        description: "[Social] User you want to marry",
         descriptionLocalizations: {
-            "en-US": "[Social] User you want to marry"
+            "pt-BR": "[Social] Usuário que você deseja casar"
         },
         type: ApplicationCommandOptionTypes.User,
         required: true

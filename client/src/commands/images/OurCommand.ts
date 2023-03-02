@@ -3,13 +3,13 @@ import { ApplicationCommandOptionTypes } from "discordeno/types";
 import * as Canvas from "canvas";
 
 const OurCommand = createCommand({
-    name: "comunismo",
+    name: "communism",
     nameLocalizations: {
-        "en-US": "communism"
+        "pt-BR": "comunismo"
     },
-    description: "[Imagem] Crie uma imagem do comunismo",
+    description: "[Image] Create an image of the communism",
     descriptionLocalizations: {
-        "en-US": "[Image] Create an image of the communism"
+        "pt-BR": "[Imagem] Crie uma imagem do comunismo"
     },
     category: "image",
     options: [
@@ -18,9 +18,9 @@ const OurCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "texto"
             },
-            description: "Texto que será exibido na imagem",
+            description: "Text that will be displayed in the image",
             descriptionLocalizations: {
-                "en-US": "Text that will be displayed in the image"
+                "pt-BR": "Texto que será exibido na imagem"
             },
             type: ApplicationCommandOptionTypes.String,
             required: true

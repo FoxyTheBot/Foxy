@@ -4,13 +4,13 @@ import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { bot } from '../../index';
 
 const cancelCommand = createCommand({
-name: 'cancelar',
+name: 'cancel',
     nameLocalizations: {
-        'en-US': 'cancel'
+        'pt-BR': 'cancelar'
     },
-    description: "[Entretenimento] Cancela alguém",
+    description: "[Entertainment] Cancel someone",
     descriptionLocalizations: {
-        "en-US": "[Entertainment] Cancel someone"
+        "pt-BR": "[Entretenimento] Cancela alguém"
     },
     category: 'fun',
     options: [
@@ -19,9 +19,9 @@ name: 'cancelar',
             nameLocalizations: {
                 "pt-BR": "usuário"
             },
-            description: "Usuário que você quer cancelar",
+            description: "User you want to cancel",
             descriptionLocalizations: {
-                "en-US": "User you want to cancel"
+                "pt-BR": "Usuário que você quer cancelar"
             },
             type: ApplicationCommandOptionTypes.User,
             required: true
@@ -31,9 +31,9 @@ name: 'cancelar',
             nameLocalizations: {
                 "pt-BR": "motivo"
             },
-            description: "Motivo do cancelamento",
+            description: "Reason for the cancellation",
             descriptionLocalizations: {
-                "en-US": "Reason for the cancellation"
+                "pt-BR": "Motivo do cancelamento"
             },
             type: ApplicationCommandOptionTypes.String,
             required: true

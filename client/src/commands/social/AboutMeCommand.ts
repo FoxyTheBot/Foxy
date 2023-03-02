@@ -4,13 +4,13 @@ import { bot } from "../../index";
 import { createCommand } from "../../structures/commands/createCommand";
 
 const AboutMeCommand = createCommand({
-name: "sobremim",
+name: "aboutme",
     nameLocalizations: {
-        "en-US": "aboutme"
+        "pt-BR": "sobremim"
     },
-    description: "[Social] Defina o sobre mim do seu perfil",
+    description: "[Social] Set your profile about me",
     descriptionLocalizations: {
-        "en-US": "[Social] Set your profile about me"
+        "pt-BR": "[Social] Defina o sobre mim do seu perfil"
     },
     category: "social",
     options: [
@@ -19,9 +19,9 @@ name: "sobremim",
             nameLocalizations: {
                 'pt-BR': 'texto',
             },
-            description: "O texto que você quer definir",
+            description: "The text you want to set",
             descriptionLocalizations: {
-                "en-US": "The text you want to set"
+                "pt-BR": "O texto que você quer definir"
             },
             type: ApplicationCommandOptionTypes.String,
             required: true

@@ -11,9 +11,9 @@ import GenerateImage from '../../structures/GenerateImage';
 const choices = masks.map(data => Object({ name: `${data.id} / ${data.price} Cakes`, value: data.id }));
 const MaskCommand = createCommand({
     name: 'mask',
-    description: '[Economia] Mude a máscara do seu perfil',
+    description: '[Economy] Change your profile mask',
     descriptionLocalizations: {
-        'en-US': '[Economy] Change your profile mask'
+        'pt-BR': '[Economia] Mude a máscara do seu perfil'
     },
     category: 'economy',
     options: [
@@ -22,9 +22,9 @@ const MaskCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "definir"
             },
-            description: "[Economia] Defina a máscara do seu perfil",
+            description: "[Economy] Set your profile mask",
             descriptionLocalizations: {
-                "en-US": "[Economy] Set your profile mask"
+                "pt-BR": "[Economia] Defina a máscara do seu perfil"
             },
             type: ApplicationCommandOptionTypes.SubCommand
         },
@@ -33,17 +33,17 @@ const MaskCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "comprar"
             },
-            description: "[Economia] Compre uma máscara",
+            description: "[Economy] Buy a mask",
             descriptionLocalizations: {
-                "en-US": "[Economy] Buy a mask"
+                "pt-BR": "[Economia] Compre uma máscara"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [
                 {
                     name: "mask",
-                    description: "Selecione a máscara que deseja comprar",
+                    description: "Select the mask you want to buy",
                     descriptionLocalizations: {
-                        "en-US": "Select the mask you want to buy"
+                        "pt-BR": "Selecione a máscara que deseja comprar"
                     },
                     type: ApplicationCommandOptionTypes.String,
                     required: true,

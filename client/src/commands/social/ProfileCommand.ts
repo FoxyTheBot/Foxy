@@ -5,18 +5,18 @@ import { User } from 'discordeno/transformers';
 import GenerateImage from '../../structures/GenerateImage';
 
 const ProfileCommand = createCommand({
-name: 'perfil',
-    nameLocalizations: { 'en-US': 'profile' },
-    description: '[Social] Veja seu perfil ou o de outro usuário',
-    descriptionLocalizations: { 'en-US': '[Social] View your profile or another user profile' },
+    name: 'profile',
+    nameLocalizations: { 'pt-BR': 'perfil' },
+    description: '[Social] View your profile or another user profile',
+    descriptionLocalizations: { 'pt-BR': '[Social] Veja seu perfil ou o de outro usuário' },
     category: 'social',
     options: [
         {
             name: 'user',
             nameLocalizations: { "pt-BR": 'usuário' },
             type: ApplicationCommandOptionTypes.User,
-            description: 'Usuário que você quer ver o perfil',
-            descriptionLocalizations: { 'en-US': 'User you want to see the profile' },
+            description: 'User you want to see the profile',
+            descriptionLocalizations: { 'pt-BR': 'Usuário que você quer ver o perfil' },
             required: false
         },
     ],

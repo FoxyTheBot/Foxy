@@ -4,9 +4,9 @@ import * as Canvas from "canvas";
 
 const LaranjoCommand = createCommand({
     name: "laranjo",
-    description: "[Imagem] Crie uma imagem do laranjo",
+    description: "[Image] Create an image of the laranjo",
     descriptionLocalizations: {
-        "en-US": "[Image] Create an image of the laranjo"
+        "pt-BR": "[Imagem] Crie uma imagem do laranjo"
     },
     category: "image",
     options: [
@@ -15,9 +15,9 @@ const LaranjoCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "texto"
             },
-            description: "Texto que será exibido na imagem",
+            description: "Text that will be displayed in the image",
             descriptionLocalizations: {
-                "en-US": "Text that will be displayed in the image" 
+                "pt-BR": "Texto que será exibido na imagem" 
             },
             type: ApplicationCommandOptionTypes.String,
             required: true

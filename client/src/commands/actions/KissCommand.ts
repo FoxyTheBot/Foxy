@@ -15,9 +15,9 @@ const KissCommand = createCommand({
     nameLocalizations: {
         'pt-BR': 'beijar'
     },
-    description: '[Roleplay] Beije alguém',
+    description: '[Roleplay] Kiss someone',
     descriptionLocalizations: {
-        "en-US": "[Roleplay] Kiss someone"
+        "pt-BR": "[Roleplay] Beije alguém"
     },
     category: 'roleplay',
     options: [
@@ -26,9 +26,9 @@ const KissCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "usuário"
             },
-            description: "Selecione o usuário que deseja beijar",
+            description: "Select the user you want to kiss",
             descriptionLocalizations: {
-                "en-US": "Select the user you want to kiss"
+                "pt-BR": "Selecione o usuário que deseja beijar"
             },
             type: ApplicationCommandOptionTypes.User,
             required: true

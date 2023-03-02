@@ -4,9 +4,9 @@ import * as Canvas from "canvas";
 
 const ErrorCommand = createCommand({
     name: "error",  
-    description: "[Imagem] Crie uma caixa de dialogo de erro",
+    description: "[Image] Create an error dialog box",
     descriptionLocalizations: {
-        "en-US": "[Image] Create an error dialog box"
+        "pt-BR": "[Imagem] Crie uma caixa de dialogo de erro"
     },
     category: "image",
     options: [
@@ -15,9 +15,9 @@ const ErrorCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "texto"
             },
-            description: "Texto que será exibido na caixa de dialogo",
+            description: "Text that will be displayed in the dialog box",
             descriptionLocalizations: {
-                "en-US": "Text that will be displayed in the dialog box"
+                "pt-BR": "Texto que será exibido na caixa de dialogo"
             },
             type: ApplicationCommandOptionTypes.String,
             required: true  

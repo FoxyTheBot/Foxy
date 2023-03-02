@@ -4,9 +4,9 @@ import { bot } from '../../index';
 
 const DailyCommand = createCommand({
     name: 'daily',
-    description: '[Economia] Receba seus cakes diários',
+    description: '[Economy] Receive your daily cakes',
     descriptionLocalizations: {
-        'en-US': '[Economy] Receive your daily cakes'
+        'pt-BR': '[Economia] Receba seus cakes diários'
     },
     category: 'economy',
     execute: async (context, endCommand, t) => {

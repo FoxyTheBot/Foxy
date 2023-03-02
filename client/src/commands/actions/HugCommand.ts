@@ -15,9 +15,9 @@ const HugCommand = createCommand({
     nameLocalizations: {
         'pt-BR': 'abraçar'
     },
-    description: '[Roleplay] Abraçe alguém',
+    description: '[Roleplay] Hug someone',
     descriptionLocalizations: {
-        "en-US": "[Roleplay] Hug someone"
+        "pt-BR": "[Roleplay] Abraçe alguém"
     },
     category: 'roleplay',
     options: [
@@ -26,9 +26,9 @@ const HugCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "usuário"
             },
-            description: "Selecione o usuário que deseja abraçar",
+            description: "Select the user you want to hug",
             descriptionLocalizations: {
-                "en-US": "Select the user you want to hug"
+                "pt-BR": "Selecione o usuário que deseja abraçar"
             },
             type: ApplicationCommandOptionTypes.User,
             required: true

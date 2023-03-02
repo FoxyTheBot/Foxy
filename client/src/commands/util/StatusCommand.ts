@@ -4,9 +4,9 @@ import * as os from 'os';
 
 const StatusCommand = createCommand({
 name: "status",
-    description: "[Utils] Mostra o status do bot",
+    description: "[Utils] Shows the bot status",
     descriptionLocalizations: {
-        "en-US": "[Utils] Shows the bot status"
+        "pt-BR": "[Utils] Mostra o status do bot"
     },
     category: "util",
     options: [],

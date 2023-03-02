@@ -4,9 +4,9 @@ import * as Canvas from "canvas";
 
 const StonksCommand = createCommand({
     name: "stonks",
-    description: "[Imagem] Crie uma imagem do stonks",
+    description: "[Image] Create an image of the stonks",
     descriptionLocalizations: {
-        "en-US": "[Image] Create an image of the stonks"
+        "pt-BR": "[Imagem] Crie uma imagem do stonks"
     },
     category: "image",
     options: [
@@ -15,9 +15,9 @@ const StonksCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "texto"
             },
-            description: "Texto que será exibido na imagem",
+            description: "Text that will be displayed in the image",
             descriptionLocalizations: {
-                "en-US": "Text that will be displayed in the image"
+                "pt-BR": "Texto que será exibido na imagem"
             },
             type: ApplicationCommandOptionTypes.String,
             required: true

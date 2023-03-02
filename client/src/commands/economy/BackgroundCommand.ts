@@ -10,9 +10,9 @@ import GenerateImage from '../../structures/GenerateImage';
 const choices = bglist.map(data => Object({ name: `${data.name} / ${data.foxcoins} Foxcoins`, value: data.id }));
 const BackgroundCommand = createCommand({
     name: 'background',
-    description: '[Economia] Mude o background do seu perfil',
+    description: '[Economy] Change your profile background',
     descriptionLocalizations: {
-        'en-US': '[Economy] Change your profile background'
+        'pt-BR': '[Economia] Mude o background do seu perfil'
     },
     category: 'economy',
     options: [
@@ -21,9 +21,9 @@ const BackgroundCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "definir"
             },
-            description: "[Economia] Defina o background do seu perfil",
+            description: "[Economy] Set your profile background",
             descriptionLocalizations: {
-                "en-US": "[Economy] Set your profile background"
+                "pt-BR": "[Economia] Defina o background do seu perfil"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
         },
@@ -32,17 +32,17 @@ const BackgroundCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "comprar"
             },
-            description: "[Economia] Compre um background",
+            description: "[Economy] Buy a background",
             descriptionLocalizations: {
-                "en-US": "[Economy] Buy a background"
+                "pt-BR": "[Economia] Compre um background"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [
                 {
                     name: "background",
-                    description: "Selecione o background que deseja comprar",
+                    description: "Select the background you want to buy",
                     descriptionLocalizations: {
-                        "en-US": "Select the background you want to buy"
+                        "pt-BR": "Selecione o background que deseja comprar"
                     },
                     type: ApplicationCommandOptionTypes.String,
                     required: true,

@@ -4,9 +4,9 @@ import { bot } from "../../index";
 
 const eightBallCommand = createCommand({
 name: '8ball',
-    description: '[Entretenimento] Pergunte algo para a Foxy',
+    description: '[Entertainment] Ask something to Foxy',
     descriptionLocalizations: {
-        'en-US': '[Entertainment] Ask something to Foxy'
+        'pt-BR': '[Entretenimento] Pergunte algo para a Foxy'
     },
     category: 'games',
     options: [
@@ -15,9 +15,9 @@ name: '8ball',
             nameLocalizations: {
                 'pt-BR': 'pergunta'
             },
-            description: 'Pergunta que você quer fazer',
+            description: 'Question you want to ask',
             descriptionLocalizations: {
-                'en-US': 'Question you want to ask'
+                'pt-BR': 'Pergunta que você quer fazer'
             },
             type: ApplicationCommandOptionTypes.String,
             required: true

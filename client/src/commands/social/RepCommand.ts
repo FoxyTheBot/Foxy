@@ -6,18 +6,18 @@ import ms from "ms";
 
 const RepCommand = createCommand({
 name: "rep",
-    description: "[Social] Dê reputação para um usuário",
+    description: "[Social] Give reputation to a user",
     descriptionLocalizations: {
-        "en-US": "[Social] Give reputation to a user"
+        "pt-BR": "[Social] Dê reputação para um usuário"
     },
     category: "social",
     options: [
         {
             name: "user",
             nameLocalizations: { "pt-BR": "usuário" },
-            description: "O usuário que você quer dar reputação",
+            description: "The user you want to give reputation",
             descriptionLocalizations: {
-                "en-US": "The user you want to give reputation"
+                "pt-BR": "O usuário que você quer dar reputação"
             },
             type: ApplicationCommandOptionTypes.User,
             required: true

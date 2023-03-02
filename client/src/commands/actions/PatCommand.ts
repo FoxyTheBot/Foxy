@@ -15,9 +15,9 @@ const patCommand = createCommand({
     nameLocalizations: {
         'pt-BR': 'carinho'
     },
-    description: '[Roleplay] Faça carinho em alguém',
+    description: '[Roleplay] pat someone',
     descriptionLocalizations: {
-        "en-US": "[Roleplay] pat someone"
+        "pt-BR": "[Roleplay] Faça carinho em alguém"
     },
     category: 'roleplay',
     options: [
@@ -26,9 +26,9 @@ const patCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "usuário"
             },
-            description: "Selecione o usuário que deseja fazer carinho",
+            description: "Select the user you want to pat",
             descriptionLocalizations: {
-                "en-US": "Select the user you want to pat"
+                "pt-BR": "Selecione o usuário que deseja fazer carinho"
             },
             type: ApplicationCommandOptionTypes.User,
             required: true

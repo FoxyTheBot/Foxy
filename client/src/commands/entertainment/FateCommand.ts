@@ -5,9 +5,9 @@ import { bot } from "../../index";
 
 const FateCommand = createCommand({
 name: 'fate',
-    description: "[Entretenimento] Qual o seu destino com a pessoa",
+    description: "[Entertainment] What is your fate with the person",
     descriptionLocalizations: {
-        "en-US": "[Entertainment] What is your fate with the person"
+        "pt-BR": "[Entretenimento] Qual o seu destino com a pessoa"
     },
     category: 'fun',
     options: [
@@ -16,9 +16,9 @@ name: 'fate',
             nameLocalizations: {
                 "pt-BR": "usuário"
             },
-            description: "Usuário que você quer prever o destino",
+            description: "User you want to predict the fate",
             descriptionLocalizations: {
-                "en-US": "User you want to predict the fate"
+                "pt-BR": "Usuário que você quer prever o destino"
             },
             type: ApplicationCommandOptionTypes.User,
             required: true

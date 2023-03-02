@@ -6,13 +6,13 @@ import { createActionRow, createButton, createCustomId } from "../../utils/disco
 import DivorceExecutor from "../../utils/commands/executors/DivorceExecutor";
 
 const DivorceCommand = createCommand({
-name: 'divorciar',
+name: 'divorce',
     nameLocalizations: {
-        "en-US": "divorce"
+        "pt-BR": "divorciar"
     },
-    description: "[Social] Divorcie-se de seu parceiro",
+    description: "[Social] Divorce your partner",
     descriptionLocalizations: {
-        "en-US": "[Social] Divorce your partner"
+        "pt-BR": "[Social] Divorcie-se de seu parceiro"
     },
     category: "social",
     commandRelatedExecutions: [DivorceExecutor],

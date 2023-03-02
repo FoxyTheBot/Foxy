@@ -4,9 +4,9 @@ import { bot } from '../../index';
 
 const RpsCommand = createCommand({
 name: 'rps',
-    description: "[Jogos] Jogue pedra, papel ou tesoura com a Foxy",
+    description: "[Games] Play rock, paper or scissors with Foxy",
     descriptionLocalizations: {
-        "en-US": "[Games] Play rock, paper or scissors with Foxy"
+        "pt-BR": "[Jogos] Jogue pedra, papel ou tesoura com a Foxy"
     },
     category: 'games',
     options: [
@@ -15,9 +15,9 @@ name: 'rps',
             nameLocalizations: {
                 "pt-BR": "escolha"
             },
-            description: "Escolha entre pedra, papel ou tesoura",
+            description: "[Games] Play rock, paper or scissors with Foxy",
             descriptionLocalizations: {
-                "en-US": "Choose between rock, paper or scissors"
+                "pt-BR": "[Jogos] Jogue pedra, papel ou tesoura com a Foxy"
             },
             type: ApplicationCommandOptionTypes.String,
             required: true

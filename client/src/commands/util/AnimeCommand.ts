@@ -6,17 +6,17 @@ const scraper = require('mal-scraper');
 
 const AnimeCommand = createCommand({
 name: "anime",
-    description: "[Utils] Pesquisa a informação de algum anime",
+    description: "[Utils] Searches for information about an anime",
     descriptionLocalizations: {
-        "en-US": "[Utils] Searches for information about an anime"
+        "pt-BR": "[Utils] Pesquisa a informação de algum anime"
     },
     category: "util",
     options: [
         {
             name: 'anime',
             type: ApplicationCommandOptionTypes.String,
-            description: 'Nome do anime que você quer pesquisar',
-            descriptionLocalizations: { 'en-US': 'Name of the anime you want to search' },
+            description: 'Name of the anime you want to search',
+            descriptionLocalizations: { 'pt-BR': 'Nome do anime que você quer pesquisar' },
             required: true
         }
     ],
