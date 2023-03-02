@@ -17,7 +17,7 @@ const CakeTransferExecutor = async (context: ComponentInteractionContext) => {
         content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:pay.success', { user: `<@${context.user.id}>`, amount: value })),
         components: [
             createActionRow([createButton({
-                label: bot.locale('commands:pay.pay'),
+                label: bot.locale('commands:pay.transfered'),
                 style: ButtonStyles.Secondary,
                 customId: createCustomId(0, context.author.id, context.commandId, value),
                 disabled: true,
