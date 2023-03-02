@@ -151,7 +151,7 @@ const FoxyToolsCommand = createCommand({
                 }
 
                 if (bot.isProduction) {
-                    context.sendReply({ content: "Esse comando funciona apenas no modo de desenvolvimento!", flags: 64 });
+                    context.sendReply({ content: "Esse comando está disponível apenas em modo de testes", flags: 64 });
                     return endCommand();
                 }
 
