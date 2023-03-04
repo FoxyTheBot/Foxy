@@ -7,6 +7,8 @@ import { ButtonStyles } from "discordeno/types";
 const BackgroundExecutor = async (context: ComponentInteractionContext) => {
     const [code, background, subcommand] = context.sentData;
     const userData = await bot.database.getUser(context.author.id);
+    const clientData = await bot.database.getUser(bot.id);
+
     if (subcommand === 'set' || code === 'set') {
 
         const userData = await bot.database.getUser(context.author.id);
@@ -51,6 +53,7 @@ const BackgroundExecutor = async (context: ComponentInteractionContext) => {
             })
         } else {
             userData.balance -= Number(background);
+            clientData.balance += Number(background);
             userData.backgrounds.push(code);
             userData.background = code;
             await userData.save();

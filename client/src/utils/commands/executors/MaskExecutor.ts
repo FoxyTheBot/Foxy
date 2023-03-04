@@ -9,7 +9,8 @@ const MaskExecutor = async (context: ComponentInteractionContext) => {
 
     if (subCommand === 'buy') {
         const userData = await bot.database.getUser(context.author.id);
-        
+        const clientData = await bot.database.getUser(bot.id);
+
         if (userData.balance < mask) {
             context.sendReply({
                 flags: MessageFlags.Ephemeral
@@ -19,23 +20,24 @@ const MaskExecutor = async (context: ComponentInteractionContext) => {
                 flags: MessageFlags.Ephemeral
             });
         } else {
-             userData.balance -= Number(mask);
-             userData.mask = code;
-             userData.masks.push(code);
-             await userData.save();
-             context.sendReply({
-                    content: bot.locale('commands:masks.buy.success'),
-                    flags: MessageFlags.Ephemeral,
-                    components: [createActionRow([createButton({
-                        customId: createCustomId(0, context.author.id, context.commandId, code, mask, subCommand),
-                        label: bot.locale('commands:masks.buy.purchase'),
-                        style: ButtonStyles.Secondary,
-                        emoji: {
-                            id: bot.emotes.FOXY_DAILY
-                        },
-                        disabled: true
-                    })])]
-             });
+            userData.balance -= Number(mask);
+            clientData.balance += Number(mask);
+            userData.mask = code;
+            userData.masks.push(code);
+            await userData.save();
+            context.sendReply({
+                content: bot.locale('commands:masks.buy.success'),
+                flags: MessageFlags.Ephemeral,
+                components: [createActionRow([createButton({
+                    customId: createCustomId(0, context.author.id, context.commandId, code, mask, subCommand),
+                    label: bot.locale('commands:masks.buy.purchase'),
+                    style: ButtonStyles.Secondary,
+                    emoji: {
+                        id: bot.emotes.FOXY_DAILY
+                    },
+                    disabled: true
+                })])]
+            });
         }
     } else if (subCommand === 'set' || code === 'set') {
         const choice = context.interaction.data.values[0];
