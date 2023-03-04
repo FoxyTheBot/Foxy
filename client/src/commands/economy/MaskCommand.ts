@@ -8,7 +8,7 @@ import { ApplicationCommandOptionTypes } from 'discordeno/types';
 import MaskExecutor from '../../utils/commands/executors/MaskExecutor';
 import GenerateImage from '../../structures/GenerateImage';
 
-const choices = masks.map(data => Object({ name: `${data.id} / ${data.price} Cakes`, value: data.id }));
+const choices = masks.map(data => Object({ name: data.name, nameLocalizations: data.nameLocalizations, value: data.id }));
 const MaskCommand = createCommand({
     name: 'mask',
     description: '[Economy] Change your profile mask',

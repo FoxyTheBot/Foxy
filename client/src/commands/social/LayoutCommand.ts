@@ -3,7 +3,7 @@ import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { bot } from "../../index";
 import { lylist } from '../../structures/json/layoutList.json';
 
-const choices = lylist.map(data => Object({ name: data.name, value: data.id }));
+const choices = lylist.map(data => Object({ name: data.name, nameLocalizations: data.nameLocalizations, value: data.id }));
 const LayoutCommand = createCommand({
     name: "layout",
     description: "[Social] Change your profile layout",

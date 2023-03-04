@@ -1,38 +1,10 @@
 import { createCommand } from "../../structures/commands/createCommand";
-import { createCustomId, createActionRow, createSelectMenu } from "../../utils/discord/Component";
-import { bot } from "../../index";
 import { MessageFlags } from "../../utils/discord/Message";
-import ComponentInteractionContext from "structures/commands/ComponentInteractionContext";
-
-const changeLanguage = async (context: ComponentInteractionContext) => {
-    const userData = await bot.database.getUser(context.user.id);
-    const language = context.interaction.data.values[0];
-    userData.language = language;
-    await userData.save();
-
-    await context.sendReply({
-        content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale(`commands:lang.${language}`)),
-        flags: MessageFlags.Ephemeral,
-        components: [createActionRow([createSelectMenu({
-            customId: createCustomId(0, context.user.id, context.commandId),
-            disabled: true,
-            options: [
-                {
-                    label: "Português do Brasil",
-                    value: "pt-BR"
-                },
-                {
-                    label: "English",
-                    value: "en-US"
-                }
-            ]
-            
-        })])]
-    });
-}
+import { ApplicationCommandOptionTypes } from "discordeno/types";
+import { bot } from "../..";
 
 const LanguageCommand = createCommand({
-name: 'language',
+    name: 'language',
     nameLocalizations: {
         'pt-BR': 'idioma'
     },
@@ -40,25 +12,45 @@ name: 'language',
     descriptionLocalizations: {
         "pt-BR": "[Utils] Altere o idioma da Foxy"
     },
-    category: 'social',
-    commandRelatedExecutions: [changeLanguage],
-
-    execute: async (context, endCommand, t) => {        
-        context.sendReply({
-            components: [createActionRow([createSelectMenu({
-                customId: createCustomId(0, context.author.id, context.commandId),
-                placeholder: "Select a language",
-                options: [
-                    {
-                        label: "Português do Brasil",
-                        value: "pt-BR"
+    category: 'util',
+    options: [
+        {
+            name: "language",
+            nameLocalizations: {
+                "pt-BR": "idioma"   
+            },
+            description: "The language you want to change to",
+            descriptionLocalizations: {
+                "pt-BR": "O idioma que você quer mudar"
+            },
+            required: true, 
+            type: ApplicationCommandOptionTypes.String,
+            choices: [
+                {
+                    name: "Português do Brasil",
+                    nameLocalizations: {
+                        "en-US": "Portuguese (Brazil)"
                     },
-                    {
-                        label: "English",
-                        value: "en-US"
-                    }
-                ]
-            })])],
+                    value: "pt-BR"
+                },
+                {
+                    name: "English",
+                    nameLocalizations: {
+                        "pt-BR": "Inglês"
+                    },
+                    value: "en-US"
+                }
+            ],
+        },
+    ],
+    execute: async (context, endCommand, t) => {
+        const language = context.getOption<string>('language', false);
+        const userData = await bot.database.getUser(context.author.id);
+        userData.language = language;
+        await userData.save();
+        
+        context.sendReply({
+            content: t(`commands:lang.${language}`),
             flags: MessageFlags.Ephemeral
         })
 
