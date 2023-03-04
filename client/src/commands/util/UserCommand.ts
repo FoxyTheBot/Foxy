@@ -46,7 +46,7 @@ const UserCommand = createCommand({
                 const embed = createEmbed({
                     title: t('commands:user.avatar.title', { user: user.username }),
                     image: {
-                        url: getUserAvatar(user, { size: 2048 })
+                        url: getUserAvatar(user, { size: 2048, enableGif: true })
                     }
                 });
 
@@ -60,7 +60,7 @@ const UserCommand = createCommand({
                     components: [createActionRow([createButton({
                         label: t("commands:user.avatar.click"),
                         style: ButtonStyles.Link,
-                        url: getUserAvatar(user, { size: 2048 }),
+                        url: getUserAvatar(user, { size: 2048, enableGif: true }),
                         emoji: {
                             id: bot.emotes.FOXY_WOW
                         }
