@@ -1,31 +1,46 @@
 {
     "lylist": [
         {
-            "name": "Default / Padrão",
+            "name": "Default",
+            "nameLocalizations": {
+                "pt-BR": "Padrão"
+            },
             "id": "default",
             "price": "free",
             "filename": "default.png"
         },
         {
-            "name": "Red / Vermelho",
+            "name": "Red",
+            "nameLocalizations": {
+                "pt-BR": "Vermelho"
+            },
             "id": "red",
             "price": "free",
             "filename": "red.png"
         },
         {
-            "name": "Blue / Azul",
+            "name": "Blue",
+            "nameLocalizations": {
+                "pt-BR": "Azul"
+            },
             "id": "blue",
             "price": "free",
             "filename": "blue.png"
         },
         {
-            "name": "Purple / Roxo",
+            "name": "Purple",
+            "nameLocalizations": {
+                "pt-BR": "Roxo"
+            },
             "id": "purple",
             "price": "free",
             "filename": "purple.png"
         },
         {
-            "name": "Cyan / Ciano",
+            "name": "Cyan",
+            "nameLocalizations": {
+                "pt-BR": "Ciano"
+            },
             "id": "cyan",
             "price": "free",
             "filename": "cyan.png"
@@ -33,26 +48,46 @@
     ],
     "masks": [
         {
+            "name": "Ears",
+            "nameLocalizations": {
+                "pt-BR": "Orelhas"
+            },
             "id": "ears",
             "filename": "ears.png",
             "price": 50000
         },
         {
+            "name": "Horns",
+            "nameLocalizations": {
+                "pt-BR": "Chifres"
+            },
             "id": "horns",
             "filename": "horns.png",
             "price": 50000
         },
         {
+            "name": "Halo",
+            "nameLocalizations": {
+                "pt-BR": "Anjo"
+            },
             "id": "halo",
             "filename": "halo.png",
             "price": 50000
         },
         {
+            "name": "Cowboy",
+            "nameLocalizations": {
+                "pt-BR": "Cowboy"
+            },
             "id": "cowboy",
             "filename": "cowboy.png",
             "price": 50000
         },
         {
+            "name": "Topper",
+            "nameLocalizations": {
+                "pt-BR": "Cartola"
+            },
             "id": "topper",
             "filename": "topper.png",
             "price": 50000
