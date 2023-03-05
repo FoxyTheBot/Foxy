@@ -379,7 +379,8 @@
         "win": "Deu {{choice}}! {{author}} ganhou {{amount}} Cakes! Financiado por {{user}}",
         "lose": "Deu {{choice}}! {{user}} ganhou {{amount}} Cakes! Financiado por {{author}}",
         "deny": "Negar",
-        "denied": "Aposta negada"
+        "denied": "Aposta negada",
+        "bot": "Por enquanto não estou aceitando apostas, estou falida <:foxy_cry:1071151976504627290>"
     },
     "global": {
         "noUser": "Usuário não encontrado"

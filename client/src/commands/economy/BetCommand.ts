@@ -101,6 +101,14 @@ const BetCommand = createCommand({
             return endCommand();
         }
 
+        if (user.id === bot.id) {
+            context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:bet.bot')),
+                flags: 64
+            });
+            return endCommand();
+        }
+        
         if (await userData.balance < amount) {
             context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:bet.not-enough', { amount: amount.toString(), user: context.author.username })),
