@@ -369,8 +369,11 @@
         "accept": "Accept",
         "choose": "Choose an option",
         "ask": "{{user}}, {{author}} wants to bet with you with {{amount}} Cakes",
-        "win": "{{author}} won {{amount}} Cakes! By {{user}}",
-        "lose": "{{user}} won {{amount}} Cakes! By {{author}}"
+        "win": "The result is {{choice}}! {{author}} won {{amount}} Cakes! By {{user}}",
+        "lose": "The result is {{choice}}! {{user}} won {{amount}} Cakes! By {{author}}",
+        "deny": "Deny",
+        "denied": "Your bet request has been denied",
+        "bot": "I can't bet with you, yet!"
     },
     "global": {
         "noUser": "User not found"
