@@ -375,9 +375,11 @@
         "tails": "coroa",
         "accept": "Aceitar",
         "choose": "Escolha uma opção para apostar",
-        "ask": "**{{user}}**, **{{author}}** quer fazer uma aposta de {{amount}} Cakess",
-        "win": "{{author}} ganhou {{amount}} Cakes! Financiado por {{user}}",
-        "lose": "{{user}} ganhou {{amount}} Cakes! Financiado por {{author}}"
+        "ask": "**{{user}}**, **{{author}}** quer fazer uma aposta de {{amount}} Cakes",
+        "win": "Deu {{choice}}! {{author}} ganhou {{amount}} Cakes! Financiado por {{user}}",
+        "lose": "Deu {{choice}}! {{user}} ganhou {{amount}} Cakes! Financiado por {{author}}",
+        "deny": "Negar",
+        "denied": "Aposta negada"
     },
     "global": {
         "noUser": "Usuário não encontrado"
