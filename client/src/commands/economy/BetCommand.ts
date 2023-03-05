@@ -17,57 +17,71 @@ const BetCommand = createCommand({
     category: 'economy',
     options: [
         {
-            name: "user",
+            name: "coinflip",
             nameLocalizations: {
-                "pt-BR": "usuário"
+                "pt-BR": "caracoroa"
             },
-            description: "The user you want to bet on",
+            type: ApplicationCommandOptionTypes.SubCommand,
+            description: "[Economy] Bet your cakes on a coinflip",
             descriptionLocalizations: {
-                "pt-BR": "O usuário que você deseja apostar"
+                "pt-BR": "[Economy] Aposte seus cakes em uma cara coroa"
             },
-            type: ApplicationCommandOptionTypes.User,
-            required: true
-        },
-        {
-            name: "amount",
-            nameLocalizations: {
-                "pt-BR": "quantidade"
-            },
-            description: "The amount of cakes you want to bet",
-            descriptionLocalizations: {
-                "pt-BR": "A quantidade de cakes que você deseja apostar"
-            },
-            type: ApplicationCommandOptionTypes.Integer,
-            required: true,
-            minValue: 1
-        },
-        {
-            name: "choice",
-            nameLocalizations: {
-                "pt-BR": "escolha"
-            },
-            description: "Select between head or tails",
-            descriptionLocalizations: {
-                "pt-BR": "Selecione entre cara ou coroa"
-            },
-            type: ApplicationCommandOptionTypes.String,
-            choices: [
+
+            options: [
                 {
-                    name: "Heads",
+                    name: "user",
                     nameLocalizations: {
-                        "pt-BR": "Cara"
+                        "pt-BR": "usuário"
                     },
-                    value: "heads"
+                    description: "The user you want to bet on",
+                    descriptionLocalizations: {
+                        "pt-BR": "O usuário que você deseja apostar"
+                    },
+                    type: ApplicationCommandOptionTypes.User,
+                    required: true
                 },
                 {
-                    name: "Tails",
+                    name: "amount",
                     nameLocalizations: {
-                        "pt-BR": "Coroa"
+                        "pt-BR": "quantidade"
                     },
-                    value: "tails"
+                    description: "The amount of cakes you want to bet",
+                    descriptionLocalizations: {
+                        "pt-BR": "A quantidade de cakes que você deseja apostar"
+                    },
+                    type: ApplicationCommandOptionTypes.Integer,
+                    required: true,
+                    minValue: 1
+                },
+                {
+                    name: "choice",
+                    nameLocalizations: {
+                        "pt-BR": "escolha"
+                    },
+                    description: "Select between head or tails",
+                    descriptionLocalizations: {
+                        "pt-BR": "Selecione entre cara ou coroa"
+                    },
+                    type: ApplicationCommandOptionTypes.String,
+                    choices: [
+                        {
+                            name: "Heads",
+                            nameLocalizations: {
+                                "pt-BR": "Cara"
+                            },
+                            value: "heads"
+                        },
+                        {
+                            name: "Tails",
+                            nameLocalizations: {
+                                "pt-BR": "Coroa"
+                            },
+                            value: "tails"
+                        }
+                    ],
+                    required: true
                 }
-            ],
-            required: true
+            ]
         }
     ],
     commandRelatedExecutions: [BetExecutor],
@@ -91,7 +105,7 @@ const BetCommand = createCommand({
             context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:bet.not-enough', { amount: amount.toString(), user: context.author.username })),
                 flags: 64
-            
+
             });
 
             return endCommand();
