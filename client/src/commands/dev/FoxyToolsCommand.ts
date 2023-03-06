@@ -139,7 +139,7 @@ const FoxyToolsCommand = createCommand({
 
                 userData.balance += Number(quantity);
                 userData.save();
-                context.sendReply({ content: `Foram adicionados ${quantity} Cakes para ${user}` })
+                context.sendReply({ content: `Foram adicionados ${quantity} Cakes para ${user.username}` })
                 endCommand();
                 break;
             }
@@ -173,7 +173,7 @@ const FoxyToolsCommand = createCommand({
 
                 userData.balance -= Number(quantity);
                 userData.save();
-                context.sendReply({ content: `Foram removidos ${quantity} Cakes de ${user}` })
+                context.sendReply({ content: `Foram removidos ${quantity} Cakes de ${user.username}` })
 
                 endCommand();
                 break;
