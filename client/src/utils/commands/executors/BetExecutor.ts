@@ -5,11 +5,10 @@ import { ButtonStyles } from "discordeno/types";
 
 const BetExecutor = async (context: ComponentInteractionContext) => {
     const [targetUsername, targetId, amount, choice, buttonType] = context.sentData;
-    console.log(targetUsername, targetId, amount, choice, buttonType)
     const avaliableChoices = ['heads', 'tails'];
     const userData = await bot.database.getUser(context.author.id);
     const mentionData = await bot.database.getUser(targetId);
-    const rand = Math.floor(Math.random() * avaliableChoices.length);
+    var rand = Math.floor(Math.random() * avaliableChoices.length);
 
     context.sendReply({
         content: context.makeReply(bot.emotes.FOXY_WOW, bot.locale('commands:bet.ask', { user: `<@!${targetId}>`, author: context.author.username, amount: amount.toString() })),
