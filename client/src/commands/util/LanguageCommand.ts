@@ -21,7 +21,7 @@ const LanguageCommand = createCommand({
             },
             description: "The language you want to change to",
             descriptionLocalizations: {
-                "pt-BR": "O idioma que você quer mudar"
+                "pt-BR": "O idioma para o qual você quer mudar"
             },
             required: true, 
             type: ApplicationCommandOptionTypes.String,
