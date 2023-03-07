@@ -4,7 +4,7 @@ import { bot } from "../index";
 const startActivitiesChange = async (): Promise<void> => {
     if (bot.isProduction) {
         const presences = [
-            { name: "https://foxybot.win/add", type: ActivityTypes.Game, createdAt: Date.now() }
+            { name: "foxybot.win/add", type: ActivityTypes.Game, createdAt: Date.now() }
         ]
 
         setInterval(() => {
