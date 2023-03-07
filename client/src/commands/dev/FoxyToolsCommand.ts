@@ -120,7 +120,7 @@ const FoxyToolsCommand = createCommand({
         const user = context.getOption<User>('user', 'users');
         const userData = await bot.database.getUser(user.id);
 
-        if (context.author.id !== BigInt(config.ownerId)) {
+        if (context.author.id !== BigInt(config.ownerId) && command !== "check") {
             context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, "Você não tem permissão para usar esse comando!"),
                 flags: 64
