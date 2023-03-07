@@ -373,7 +373,11 @@
         "lose": "The result is {{choice}}! {{user}} won {{amount}} Cakes! By {{author}}",
         "deny": "Deny",
         "denied": "Your bet request has been denied",
-        "bot": "I can't bet with you, yet!"
+        "bot": "I can't bet with you, yet!",
+        "betWithClient": {
+            "lose": "The result is {{result}}! I won {{amount}} cakes! >:3",
+            "win": "The result is {{result}}! Congratulations, you won {{amount}} cakes! :3"
+        }
     },
     "global": {
         "noUser": "User not found"
