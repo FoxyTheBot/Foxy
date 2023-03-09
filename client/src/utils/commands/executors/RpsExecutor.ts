@@ -14,11 +14,11 @@ const RpsExecutor = async (context: ComponentInteractionContext) => {
     const embed = createEmbed({
         fields: [{
         name: context.author.username,
-        value: bot.locale(`commands:rps.replies.${choice}`),
+        value: bot.locale(`commands:rps.button.${choice}`),
         inline: true
     }, {
         name: "Foxy",
-        value: bot.locale(`commands:rps.replies.${result}`),
+        value: bot.locale(`commands:rps.button.${result}`),
         inline: true
     }]
 });
