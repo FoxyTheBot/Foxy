@@ -62,7 +62,7 @@ const RpsExecutor = async (context: ComponentInteractionContext) => {
             }
 
             embed.description = bot.locale('commands:rps.won2');
-           await context.sendReply({
+            context.sendReply({
                 embeds: [embed],
             });
             break;
