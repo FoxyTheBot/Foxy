@@ -11,10 +11,10 @@ const HugExecutor = async (context: ComponentInteractionContext) => {
     const hugGif = await gif.hug();
     const embed = createEmbed({});
 
-    embed.title = bot.locale('commands:hug.success', {user: context.author.username, author: user}),
-    embed.image = {
-        url: hugGif.url
-    }
+    embed.title = bot.locale('commands:hug.success', { user: context.author.username, author: user }),
+        embed.image = {
+            url: hugGif.url
+        }
 
     context.sendReply({
         components: [createActionRow([createButton({
