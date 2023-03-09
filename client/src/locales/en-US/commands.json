@@ -260,10 +260,19 @@
         },
         "tie": "It's a tie!",
         "invalidChoice": "Invalid choice",
+        "start": "To start, click one of the buttons below",
         "clientWon": "{{result}}! You lost!",
         "won3": "You won :3",
         "won2": "You won >:3",
-        "won": "You won :D"
+        "won": "You won :D",
+        "button": {
+            "rock": "Rock",
+            "paper": "Paper",
+            "scissors": "Scissors",
+            "cancel": "Cancel"
+        },
+        "cancelled": "{{emoji}} You cancelled the game",
+        "defaultValue": "The game isn't started yet"
     },
     "fate": {
         "couple": "couple",

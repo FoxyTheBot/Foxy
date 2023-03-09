@@ -267,11 +267,20 @@
             "scissors": "tesoura"
         },
         "tie": "Deu empate, vamos de novo! >:D",
+        "start": "Para jogar, clique em um dos botões abaixo",
         "invalidChoice": "Escolha inválida, escolha {{choice}}",
         "clientWon": "Deu {{result}}, eu ganhei >:3",
         "won3": "Você ganhou :3",
         "won2": "Você ganhou >:3",
-        "won": "Você ganhou :D"
+        "won": "Você ganhou :D",
+        "button": {
+            "rock": "Pedra",
+            "paper": "Papel",
+            "scissors": "Tesoura",
+            "cancel": "Cancelar"
+        },
+        "cancelled": "{{emoji}} Jogo foi cancelado, para jogar execute o comando novamente",
+        "defaultValue": "O jogo ainda não foi iniciado"
     },
     "fate": {
         "couple": "casal",
