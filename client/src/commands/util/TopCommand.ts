@@ -25,7 +25,7 @@ const TopCommand = createCommand({
         switch (subCommand) {
             case "cakes": {
                 let data = await bot.database.getAllUsers();
-                await context.defer();
+                await context.sendDefer();
                 data = data.sort((a, b) => b.balance - a.balance);
 
                 const embed = createEmbed({});

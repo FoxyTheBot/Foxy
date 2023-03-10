@@ -59,7 +59,7 @@ const BackgroundCommand = createCommand({
         const userData = await bot.database.getUser(context.author.id);
         switch (subcommand) {
             case 'buy': {
-                await context.defer(true);
+                await context.sendDefer(true);
                 const code = context.getOption<string>('background', false),
                     background = await bglist.find((b) => b.id === code?.toLowerCase());
 
@@ -95,7 +95,7 @@ const BackgroundCommand = createCommand({
                 break;
             }
             case "set": {
-                await context.defer(true);
+                await context.sendDefer(true);
                 const fetchBackgrounds = userData.backgrounds;
                 const backgrounds = await bglist.filter((b) => fetchBackgrounds.includes(b.id));
 

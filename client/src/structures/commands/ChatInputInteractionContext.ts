@@ -96,7 +96,7 @@ export default class {
         return getOptionFromInteraction<T>(this.interaction, name, shouldResolve, required);
     }
 
-    async defer(Ephemeral = false): Promise<void> {
+    async sendDefer(Ephemeral = false): Promise<void> {
         this.replied = true;
         await bot.helpers
             .sendInteractionResponse(this.interaction.id, this.interaction.token, {

@@ -29,7 +29,7 @@ const ProfileCommand = createCommand({
             return endCommand();
         }
 
-        await context.defer();
+        await context.sendDefer();
         const canvasGenerator = new GenerateImage(t, user, userData, 1436, 884);
         const profile = canvasGenerator.renderProfile();
 

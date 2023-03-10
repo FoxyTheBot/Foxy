@@ -59,7 +59,7 @@ const MaskCommand = createCommand({
         const userData = await bot.database.getUser(context.author.id);
         switch(subCommand) {
             case "buy": {
-                await context.defer(true);
+                await context.sendDefer(true);
                 const code: string = context.getOption<string>("mask", false);
                 const mask = masks.find(data => data.id === code?.toLowerCase());
                 if(userData.masks.includes(code?.toLowerCase())) {
@@ -105,7 +105,7 @@ const MaskCommand = createCommand({
 
                     return endCommand();
                 } else {
-                    context.defer(true);
+                    context.sendDefer(true);
                     context.sendReply({
                         content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:masks.selectMask')),
                         components: [createActionRow([createSelectMenu({

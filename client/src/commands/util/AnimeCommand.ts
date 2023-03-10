@@ -23,7 +23,7 @@ name: "anime",
 
     execute: async (context, endCommand, t) => {
         const anime = context.getOption<string>('anime', false);
-        await context.defer();
+        await context.sendDefer();
         scraper.getInfoFromName(anime).then(async (data) => {
             if (!data) return context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:anime.notFound'))
