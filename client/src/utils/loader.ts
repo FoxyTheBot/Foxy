@@ -20,6 +20,6 @@ export async function loadLocales(path: string): Promise<void> {
         });
         return logger.info(`[LOCALES] Loaded ${i18next.languages.length} languages!`);
     } catch (error) {
-        return logger.error(`failed to load locales: `, error);
+        return logger.error(`[LOCALES] Failed to load locales! Error: `, error);
     }
 }
