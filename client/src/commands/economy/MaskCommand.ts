@@ -5,8 +5,9 @@ import { MessageFlags } from '../../utils/discord/Message';
 import { ButtonStyles } from 'discordeno/types';
 import { bot } from '../../index';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
-import MaskExecutor from '../../utils/commands/executors/MaskExecutor';
 import GenerateImage from '../../structures/GenerateImage';
+import MaskBuyExecutor from '../../utils/commands/executors/MaskBuyExecutor';
+import MaskSetExecutor from '../../utils/commands/executors/MaskSetExecutor';
 
 const choices = masks.map(data => Object({ name: data.name, nameLocalizations: data.nameLocalizations, value: data.id }));
 const MaskCommand = createCommand({
@@ -52,7 +53,7 @@ const MaskCommand = createCommand({
             ]
         }
     ],
-    commandRelatedExecutions: [MaskExecutor],
+    commandRelatedExecutions: [MaskBuyExecutor, MaskSetExecutor],
     execute: async (context, endCommand, t) => {
         const subCommand = context.getSubCommand();
         const userData = await bot.database.getUser(context.author.id);
@@ -108,7 +109,7 @@ const MaskCommand = createCommand({
                     context.sendReply({
                         content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:masks.selectMask')),
                         components: [createActionRow([createSelectMenu({
-                            customId: createCustomId(0, context.author.id, context.commandId, subCommand),
+                            customId: createCustomId(1, context.author.id, context.commandId, subCommand),
                             placeholder: t('commands:masks.selectMask'),
                             options: userMasks.map(data => Object({ label: data, value: data }))
                         })])]
