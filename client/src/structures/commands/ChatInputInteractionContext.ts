@@ -41,6 +41,14 @@ export default class {
         return this.interaction.channelId ?? 0n;
     }
 
+    get guildId(): bigint {
+        return this.interaction.guildId ?? 0n;
+    }
+
+    get guildMember() {
+        return this.interaction.member;
+    }
+    
     makeReply(emoji: any, text: string): string {
         return `${`<:emoji:${emoji}>` || '🐛'} **|** ${text}`;
     }
