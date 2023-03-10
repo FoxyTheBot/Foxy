@@ -3,9 +3,10 @@ import { ApplicationCommandOptionTypes, ButtonStyles } from 'discordeno/types';
 import { createActionRow, createSelectMenu, createCustomId, createButton } from '../../utils/discord/Component';
 import { bglist } from "../../structures/json/backgroundList.json"
 import { bot } from '../../index';
-import executeBackground from '../../utils/commands/executors/BackgroundExecutor';
+import BackgroundBuyExecutor from '../../utils/commands/executors/BackgroundBuyExecutor';
 import { MessageFlags } from '../../utils/discord/Message';
 import GenerateImage from '../../structures/GenerateImage';
+import BackgroundSetExecutor from '../../utils/commands/executors/BackgroundSetExecutor';
 
 const choices = bglist.map(data => Object({ name: `${data.name} / ${data.foxcoins} Foxcoins`, value: data.id }));
 const BackgroundCommand = createCommand({
@@ -52,7 +53,7 @@ const BackgroundCommand = createCommand({
         }
     ],
 
-    commandRelatedExecutions: [executeBackground],
+    commandRelatedExecutions: [BackgroundBuyExecutor, BackgroundSetExecutor],
     execute: async (context, endCommand, t) => {
         const subcommand = context.getSubCommand();
         const userData = await bot.database.getUser(context.author.id);
@@ -100,7 +101,7 @@ const BackgroundCommand = createCommand({
 
                 context.sendReply({
                     components: [createActionRow([createSelectMenu({
-                        customId: createCustomId(0, context.author.id, context.commandId, subcommand),
+                        customId: createCustomId(1, context.author.id, context.commandId, subcommand),
                         placeholder: t('commands:background.set.title'),
                         options: backgrounds.map((b) => Object({
                             label: b.name,
