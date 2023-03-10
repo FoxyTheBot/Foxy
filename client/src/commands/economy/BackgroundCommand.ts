@@ -76,7 +76,7 @@ const BackgroundCommand = createCommand({
                 const profile = canvasGenerator.renderProfile();
 
                 context.sendReply({
-                    content: context.makeReply(bot.emotes.FOXY_YAY, `Background: **${background.name}**\n ${bot.emotes.daily} **|** ${t('commands:background.buy.price')}: **${background.foxcoins}**`),
+                    content: context.makeReply(bot.emotes.FOXY_YAY, `Background: **${background.name}**\n ${bot.emotes.FOXY_DAILY} **|** ${t('commands:background.buy.price')}: **${background.foxcoins}**`),
                     file: [{
                         name: "preview.png",
                         blob: await profile
