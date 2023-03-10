@@ -57,20 +57,20 @@ const MaskCommand = createCommand({
     execute: async (context, endCommand, t) => {
         const subCommand = context.getSubCommand();
         const userData = await bot.database.getUser(context.author.id);
-        switch(subCommand) {
+        switch (subCommand) {
             case "buy": {
                 await context.sendDefer(true);
                 const code: string = context.getOption<string>("mask", false);
                 const mask = masks.find(data => data.id === code?.toLowerCase());
-                if(userData.masks.includes(code?.toLowerCase())) {
+                if (userData.masks.includes(code?.toLowerCase())) {
                     context.sendReply({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:masks.alreadyOwned')),
                         flags: MessageFlags.Ephemeral
                     });
 
                     return endCommand();
-                }    
-            
+                }
+
                 const canvasGenerator = new GenerateImage(t, context.author, userData, 1436, 884, true, code, true);
                 const profile = await canvasGenerator.renderProfile();
 
@@ -90,14 +90,14 @@ const MaskCommand = createCommand({
                         }
                     })])]
                 });
-                
+
                 endCommand();
                 break;
             };
 
             case "set": {
                 const userMasks = userData.masks;
-                if(userMasks.length === 0) {
+                if (userMasks.length === 0) {
                     context.sendReply({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:masks.noMasks')),
                         flags: MessageFlags.Ephemeral

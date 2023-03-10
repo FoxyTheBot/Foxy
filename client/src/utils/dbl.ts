@@ -9,9 +9,4 @@ const postInfo = async () => {
     })
 }
 
-const getStats = async () => {
-    const stats = await api.getStats(config.clientId);
-    return stats;   
-}
-
-export { postInfo, getStats };
+export { postInfo };
