@@ -5,7 +5,7 @@ import { MessageFlags } from '../../utils/discord/Message';
 import { ButtonStyles } from 'discordeno/types';
 import { bot } from '../../index';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
-import GenerateImage from '../../structures/GenerateImage';
+import CreateProfile from '../../utils/commands/images/GenerateProfile';
 import MaskBuyExecutor from '../../utils/commands/executors/MaskBuyExecutor';
 import MaskSetExecutor from '../../utils/commands/executors/MaskSetExecutor';
 
@@ -71,8 +71,8 @@ const MaskCommand = createCommand({
                     return endCommand();
                 }
 
-                const canvasGenerator = new GenerateImage(t, context.author, userData, 1436, 884, true, code, true);
-                const profile = await canvasGenerator.renderProfile();
+                const createProfile = new CreateProfile(t, context.author, userData, true, code, true);
+                const profile = await createProfile.create();
 
                 context.sendReply({
                     content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:masks.preview')),

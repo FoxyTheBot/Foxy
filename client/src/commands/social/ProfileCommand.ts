@@ -2,7 +2,7 @@ import { ApplicationCommandOptionTypes } from 'discordeno/types';
 import { bot } from '../../index';
 import { createCommand } from '../../structures/commands/createCommand';
 import { User } from 'discordeno/transformers';
-import GenerateImage from '../../structures/GenerateImage';
+import CreateProfile from '../../utils/commands/images/GenerateProfile';
 
 const ProfileCommand = createCommand({
     name: 'profile',
@@ -30,8 +30,8 @@ const ProfileCommand = createCommand({
         }
 
         await context.sendDefer();
-        const canvasGenerator = new GenerateImage(t, user, userData, 1436, 884);
-        const profile = canvasGenerator.renderProfile();
+        const createProfile = new CreateProfile(t, user, userData);
+        const profile = createProfile.create();
 
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:profile.profile', { user: `<@${user.id}>` })),

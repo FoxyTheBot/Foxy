@@ -5,7 +5,7 @@ import { bglist } from "../../structures/json/backgroundList.json"
 import { bot } from '../../index';
 import BackgroundBuyExecutor from '../../utils/commands/executors/BackgroundBuyExecutor';
 import { MessageFlags } from '../../utils/discord/Message';
-import GenerateImage from '../../structures/GenerateImage';
+import CreateProfile from '../../utils/commands/images/GenerateProfile';
 import BackgroundSetExecutor from '../../utils/commands/executors/BackgroundSetExecutor';
 
 const choices = bglist.map(data => Object({ name: `${data.name} / ${data.foxcoins} Foxcoins`, value: data.id }));
@@ -72,8 +72,8 @@ const BackgroundCommand = createCommand({
                     endCommand();
                     return;
                 }
-                const canvasGenerator = new GenerateImage(t, context.author, userData, 1436, 884, true, code);
-                const profile = canvasGenerator.renderProfile();
+                const createProfile = new CreateProfile(t, context.author, userData, true, code);
+                const profile = createProfile.create();
 
                 context.sendReply({
                     content: context.makeReply(bot.emotes.FOXY_YAY, `Background: **${background.name}**\n ${bot.emotes.FOXY_DAILY} **|** ${t('commands:background.buy.price')}: **${background.foxcoins}**`),

@@ -1,9 +1,9 @@
 import Canvas from 'canvas';
-import { bot } from "../index";
+import { bot } from "../../../index";
 import moment from 'moment';
-import { getUserAvatar } from '../utils/discord/User';
+import { getUserAvatar } from '../../discord/User';
 
-export default class GenerateImage {
+export default class CreateProfile {
     private user: any;
     private data: any;
     private readonly width: number;
@@ -13,11 +13,11 @@ export default class GenerateImage {
     private readonly mask: boolean;
     private readonly locale: any
 
-    constructor(locale, user, data, width, height, testMode?, code?, mask?) {
+    constructor(locale, user, data, testMode?, code?, mask?) {
         this.user = user;
         this.data = data;
-        this.width = width;
-        this.height = height;
+        this.width =  1436;
+        this.height =  884;
         this.testMode = testMode;
         this.code = code;
         this.mask = mask;
@@ -25,7 +25,7 @@ export default class GenerateImage {
 
     }
 
-    async renderProfile() {
+    async create() {
         let userAboutme: string = this.data.aboutme;
         if (!userAboutme) userAboutme = `${this.locale("commands:profile.noAboutme")}`;
 
