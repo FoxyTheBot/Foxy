@@ -5,7 +5,7 @@ import { bglist } from "../../structures/json/backgroundList.json"
 import { bot } from '../../index';
 import BackgroundBuyExecutor from '../../utils/commands/executors/BackgroundBuyExecutor';
 import { MessageFlags } from '../../utils/discord/Message';
-import CreateProfile from '../../utils/commands/images/GenerateProfile';
+import CreateProfile from '../../utils/commands/generators/GenerateProfile';
 import BackgroundSetExecutor from '../../utils/commands/executors/BackgroundSetExecutor';
 
 const choices = bglist.map(data => Object({ name: `${data.name} / ${data.foxcoins} Foxcoins`, value: data.id }));

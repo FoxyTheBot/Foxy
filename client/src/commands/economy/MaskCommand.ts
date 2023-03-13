@@ -5,7 +5,7 @@ import { MessageFlags } from '../../utils/discord/Message';
 import { ButtonStyles } from 'discordeno/types';
 import { bot } from '../../index';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
-import CreateProfile from '../../utils/commands/images/GenerateProfile';
+import CreateProfile from '../../utils/commands/generators/GenerateProfile';
 import MaskBuyExecutor from '../../utils/commands/executors/MaskBuyExecutor';
 import MaskSetExecutor from '../../utils/commands/executors/MaskSetExecutor';
 

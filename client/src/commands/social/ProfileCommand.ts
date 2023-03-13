@@ -2,7 +2,7 @@ import { ApplicationCommandOptionTypes } from 'discordeno/types';
 import { bot } from '../../index';
 import { createCommand } from '../../structures/commands/createCommand';
 import { User } from 'discordeno/transformers';
-import CreateProfile from '../../utils/commands/images/GenerateProfile';
+import CreateProfile from '../../utils/commands/generators/GenerateProfile';
 
 const ProfileCommand = createCommand({
     name: 'profile',
