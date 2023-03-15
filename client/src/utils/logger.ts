@@ -1,6 +1,6 @@
 const logger = {
     error: (...args: any[]): void => {
-        console.error(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] \u001b[31mERROR]\u001b[0m >`, ...args);
+        console.error(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] \u001b[31mERROR\u001b[0m >`, ...args);
     },
 
     info: (...args: any[]): void => {
