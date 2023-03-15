@@ -2,7 +2,7 @@ import { createCommand } from "../../structures/commands/createCommand";
 import { createEmbed } from "../../utils/discord/Embed";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { bot } from '../../index';
-const scraper = require('mal-scraper');
+import scraper from 'mal-scraper';
 
 const AnimeCommand = createCommand({
 name: "anime",
