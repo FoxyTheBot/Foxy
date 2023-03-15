@@ -1,28 +1,36 @@
-import { createCommand} from '../../structures/commands/createCommand';
+import { createCommand } from '../../structures/commands/createCommand';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
 import { bot } from "../../index";
 
-const eightBallCommand = createCommand({
-name: '8ball',
+const AskFoxyCommand = createCommand({
+    name: 'ask',
     description: '[Entertainment] Ask something to Foxy',
     descriptionLocalizations: {
         'pt-BR': '[Entretenimento] Pergunte algo para a Foxy'
     },
     category: 'games',
-    options: [
-        {
-            name: 'question',
-            nameLocalizations: {
-                'pt-BR': 'pergunta'
-            },
-            description: 'Question you want to ask',
-            descriptionLocalizations: {
-                'pt-BR': 'Pergunta que você quer fazer'
-            },
-            type: ApplicationCommandOptionTypes.String,
-            required: true
-        }
-    ],
+    options: [{
+        name: "foxy",
+        description: "[Entertainment] Ask something to Foxy",
+        descriptionLocalizations: {
+            "pt-BR": "[Entretenimento] Pergunte algo para a Foxy"
+        },
+        type: ApplicationCommandOptionTypes.SubCommand,
+        options: [
+            {
+                name: 'question',
+                nameLocalizations: {
+                    'pt-BR': 'pergunta'
+                },
+                description: 'Question you want to ask',
+                descriptionLocalizations: {
+                    'pt-BR': 'Pergunta que você quer fazer'
+                },
+                type: ApplicationCommandOptionTypes.String,
+                required: true
+            }
+        ],
+    }],
     execute: async (context, endCommand, t) => {
         const results = [
             t('commands:8ball.yes'),
@@ -44,4 +52,4 @@ name: '8ball',
     }
 });
 
-export default eightBallCommand;
+export default AskFoxyCommand;
