@@ -76,7 +76,7 @@ const BackgroundCommand = createCommand({
                 const profile = createProfile.create();
 
                 context.sendReply({
-                    content: context.makeReply(bot.emotes.FOXY_YAY, `Background: **${background.name}**\n ${bot.emotes.FOXY_DAILY} **|** ${t('commands:background.buy.price')}: **${background.cakes}**`),
+                    content: context.makeReply(bot.emotes.FOXY_YAY, `Background: **${background.name}**\n ${bot.emotes.FOXY_DAILY} **|** ${t('commands:background.buy.price')}: **${background.cakes}** Cakes`),
                     file: [{
                         name: "preview.png",
                         blob: await profile
