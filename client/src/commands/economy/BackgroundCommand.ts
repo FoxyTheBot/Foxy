@@ -8,7 +8,7 @@ import { MessageFlags } from '../../utils/discord/Message';
 import CreateProfile from '../../utils/commands/generators/GenerateProfile';
 import BackgroundSetExecutor from '../../utils/commands/executors/BackgroundSetExecutor';
 
-const choices = bglist.map(data => Object({ name: `${data.name} / ${data.foxcoins} Foxcoins`, value: data.id }));
+const choices = bglist.map(data => Object({ name: `${data.name} / ${data.cakes} Cakes`, value: data.id }));
 const BackgroundCommand = createCommand({
     name: 'background',
     description: '[Economy] Change your profile background',
@@ -76,13 +76,13 @@ const BackgroundCommand = createCommand({
                 const profile = createProfile.create();
 
                 context.sendReply({
-                    content: context.makeReply(bot.emotes.FOXY_YAY, `Background: **${background.name}**\n ${bot.emotes.FOXY_DAILY} **|** ${t('commands:background.buy.price')}: **${background.foxcoins}**`),
+                    content: context.makeReply(bot.emotes.FOXY_YAY, `Background: **${background.name}**\n ${bot.emotes.FOXY_DAILY} **|** ${t('commands:background.buy.price')}: **${background.cakes}**`),
                     file: [{
                         name: "preview.png",
                         blob: await profile
                     }],
                     components: [createActionRow([createButton({
-                        customId: createCustomId(0, context.author.id, context.commandId, code, background.foxcoins, subcommand),
+                        customId: createCustomId(0, context.author.id, context.commandId, code, background.cakes, subcommand),
                         label: t('commands:background.buy.purchase'),
                         style: ButtonStyles.Success,
                         emoji: {

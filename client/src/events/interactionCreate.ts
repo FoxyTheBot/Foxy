@@ -8,7 +8,6 @@ import { componentExecutor } from '../structures/commands/ComponentExecutor';
 import { logger } from '../utils/logger';
 
 module.exports = async (_, interaction) => {
-
     const user = await bot.database.getUser(interaction.user.id);
     const locale = global.t = i18next.getFixedT(user.language || 'pt-BR');
     bot.locale = locale;

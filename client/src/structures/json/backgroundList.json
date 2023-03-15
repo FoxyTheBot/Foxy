@@ -4,7 +4,7 @@
             "id": "default",
             "name": "Background padrão",
             "rarity": "Comum",
-            "foxcoins": 0,
+            "cakes": 0,
             "filename": "default.png",
             "description": "Background padrão da Foxy",
             "blocked": true
@@ -13,7 +13,7 @@
             "id": "foxbaby",
             "name": "Foxy Baby",
             "rarity": "Comum",
-            "foxcoins": 10000,
+            "cakes": 10000,
             "filename": "FoxesCubsCute.png",
             "description": "Foxy Baby"
         },
@@ -21,7 +21,7 @@
             "id": "foxyverse",
             "name": "Foxy World",
             "rarity": "Raro",
-            "foxcoins": 40000,
+            "cakes": 40000,
             "filename": "foxyverse.png",
             "description": "Welcome to the Foxy World!"
         },
@@ -29,7 +29,7 @@
             "id": "fnaf",
             "name": "Five Nights at Freddy's",
             "rarity": "Comum",
-            "foxcoins": 9000,
+            "cakes": 9000,
             "filename": "fnaf.png",
             "description": "owo o jogo em que a foxy eh baseada"
         },
@@ -37,7 +37,7 @@
             "id": "gtasa",
             "name": "GTA: San Andreas",
             "rarity": "Raro",
-            "foxcoins": 5000,
+            "cakes": 5000,
             "description": "bruh",
             "filename": "gta_san.png"
         },
@@ -45,7 +45,7 @@
             "id": "foxyvlogs",
             "name": "Foxy Vlogger",
             "rarity": "Raro",
-            "foxcoins": 5000,
+            "cakes": 5000,
             "filename": "foxy_vlogs.png",
             "description": "Fala galerinha aqui do YouTube quem ta falando com vocês e a sua amiguinha Foxy e hoje eu to aqui com meu amigo Wumpus para gravar um desafio :D e o desafio de hoje sera: logar no Discord as 3:00 da manhã"
         },
@@ -53,7 +53,7 @@
             "id": "loritta",
             "name": "Foxy e Lori",
             "rarity": "Lendário",
-            "foxcoins": 10000,
+            "cakes": 10000,
             "description": "Loritta foi criada por [MrPowerGamerBR](https://mrpowergamerbr.com) adicione a Loritta clicando [aqui](https://loritta.website/)",
             "filename": "foxy_e_lori.png"
         },
@@ -61,7 +61,7 @@
             "id": "cadeirante",
             "name": "Levi / Ata Shingeki No Kyojin",
             "rarity": "Lendário",
-            "foxcoins": 10000,
+            "cakes": 10000,
             "filename": "levi_kyojin.png",
             "description": "bruh"
         },
@@ -69,7 +69,7 @@
             "id": "red",
             "name": "Red Dead Redemption 2",
             "rarity": "Lendário",
-            "foxcoins": 10000,
+            "cakes": 10000,
             "filename": "red_dead.png",
             "description": "bruh"
         },
@@ -77,7 +77,7 @@
             "id": "silviosantos",
             "name": "Sad Cat Money",
             "rarity": "Lendário",
-            "foxcoins": 10000,
+            "cakes": 10000,
             "filename": "sad_cat_money.png",
             "description": "El muchacho de los ojos tristes, estás rico e puede comprar muchas REDACTED"
         },
@@ -85,7 +85,7 @@
             "id": "sadcat",
             "name": "Sad Cat",
             "rarity": "Lendário",
-            "foxcoins": 10000,
+            "cakes": 10000,
             "filename": "sad_cat.png",
             "description": "El muchacho de los ojos tristes se quedó sin REDACTED"
         },
@@ -93,7 +93,7 @@
             "id": "winxp",
             "name": "Windows XP",
             "rarity": "Lendário",
-            "foxcoins": 10000,
+            "cakes": 10000,
             "filename": "windows_xp.png",
             "description": "Madobe Saseko passou por aqui!"
         },
@@ -101,7 +101,7 @@
             "id": "win7",
             "name": "Windows 7",
             "rarity": "Lendário",
-            "foxcoins": 11000,
+            "cakes": 11000,
             "filename": "windows_seven.png",
             "description": "Madobe Nanami passou por aqui!"
         },
@@ -109,7 +109,7 @@
             "id": "win10",
             "name": "Windows 10 Legacy",
             "rarity": "Lendário",
-            "foxcoins": 12000,
+            "cakes": 12000,
             "filename": "windows10_legacy.png",
             "description": "Madobe Touko passou por aqui!"
         },
@@ -117,7 +117,7 @@
             "id": "win11light",
             "name": "Windows 11 Light Theme",
             "rarity": "Lendário",
-            "foxcoins": 11000,
+            "cakes": 11000,
             "filename": "windows11light.png",
             "description": ":eyes:"
         },
@@ -125,7 +125,7 @@
             "id": "win11dark",
             "name": "Windows 11 Dark Theme",
             "rarity": "Lendário",
-            "foxcoins": 11000,
+            "cakes": 11000,
             "filename": "windows11dark.png",
             "description": ":eyes:"
         },
@@ -133,7 +133,7 @@
             "id": "bisfoxy",
             "name": "Bis e Foxy",
             "rarity": "Unknown",
-            "foxcoins": 100000,
+            "cakes": 100000,
             "filename": "bis_foxy.png",
             "description": "Bis e a Foxy apenas ;3"
         },
@@ -141,7 +141,7 @@
             "id": "mine",
             "name": "Minecraft World",
             "rarity": "Lendário",
-            "foxcoins": 20000,
+            "cakes": 20000,
             "filename": "mine.png",
             "description": "Just world."
         },
@@ -149,7 +149,7 @@
             "id": "klee",
             "name": "Klee yay",
             "rarity": "Lendário",
-            "foxcoins": 30000,
+            "cakes": 30000,
             "filename": "kleeyay.png",
             "description": "Klee is so happy today"
         },
@@ -157,7 +157,7 @@
             "id": "spring",
             "name": "Spring Trap",
             "rarity": "Lendário",
-            "foxcoins": 10000,
+            "cakes": 10000,
             "filename": "springtrap.png",
             "description": "The man behind the slaughter"
         }
