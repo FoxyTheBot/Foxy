@@ -37,6 +37,25 @@ const BetExecutor = async (context: ComponentInteractionContext) => {
             content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale('commands:bet.denied'))
         })
     } else {
+        if (await userData.balance < amount) {
+            context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, bot.locale('commands:bet.not-enough', { amount: amount.toString(), user: context.author.username })),
+                flags: 64
+
+            });
+
+            return;
+        }
+
+        if (await mentionData.balance < amount) {
+            context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, bot.locale('commands:bet.not-enough-mention', { amount: amount.toString(), user: targetUsername })),
+                flags: 64
+            });
+
+            return;
+        }
+
         if (choice === avaliableChoices[rand]) {
             context.followUp({
                 content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:bet.win', { user: targetUsername, author: context.author.username, choice: bot.locale(`commands:bet.${avaliableChoices[rand]}`), amount: `${amount}` })),
