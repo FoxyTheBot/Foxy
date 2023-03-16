@@ -134,6 +134,9 @@ const RollCommand = createCommand({
             components: [createActionRow([createButton({
                 label: t('commands:roll.button'),   
                 style: ButtonStyles.Primary,
+                emoji: {
+                    id: bot.emotes.FOXY_YAY
+                },
                 customId: createCustomId(0, context.author.id, context.commandId, amount, sides)
             })])]
         });
