@@ -2,6 +2,10 @@
     "foxyGlobal": {
         "noPermission": "Wait! What are you doing? You are not {{user}}, you can't do that!"
     },
+    "roll": {
+        "result": "You rolled **{{amount}}d{{sides}}** and got **{{result}}**",
+        "button": "Reroll"
+    },
     "botinfo": {
         "title": ":fox: Foxy",
         "description": "Hi, I'm Foxy! I'm a simple economy and entertainment bot for Discord! I'm in {{guilds}} guilds :heart:!",
