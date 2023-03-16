@@ -16,6 +16,9 @@ const RollCommand = createCommand({
     },
     options: [{
         name: "dice",
+        nameLocalizations: {
+            "pt-BR": "dado" 
+        },
         description: "[Utils] roll a dice",
         descriptionLocalizations: {
             "pt-BR": "[Utils] Rola um dado"
@@ -23,6 +26,9 @@ const RollCommand = createCommand({
         type: ApplicationCommandOptionTypes.SubCommand,
         options: [{
             name: "sides",
+            nameLocalizations: {
+                "pt-BR": "lados"
+            },
             description: "[Utils] Number of sides",
             descriptionLocalizations: {
                 "pt-BR": "[Utils] Número de lados"
@@ -79,6 +85,9 @@ const RollCommand = createCommand({
             ]
         }, {
             name: "amount",
+            nameLocalizations: {
+                "pt-BR": "quantidade"
+            },
             description: "[Utils] Number of dices",
             descriptionLocalizations: {
                 "pt-BR": "[Utils] Número de dados"
