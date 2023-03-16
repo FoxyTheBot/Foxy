@@ -4,7 +4,7 @@ import { bot } from "../../index";
 import { createCommand } from "../../structures/commands/createCommand";
 
 const AboutMeCommand = createCommand({
-name: "aboutme",
+    name: "aboutme",
     nameLocalizations: {
         "pt-BR": "sobremim"
     },

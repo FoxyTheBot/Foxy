@@ -4,7 +4,7 @@ import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { bot } from '../../index';
 
 const cancelCommand = createCommand({
-name: 'cancel',
+    name: 'cancel',
     nameLocalizations: {
         'pt-BR': 'cancelar'
     },
@@ -47,7 +47,7 @@ name: 'cancel',
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:cancel.result', { user: context.author.username, reason: string, mention: `<@!${user.id}>` }))
         })
-    
+
         endCommand();
     }
 });

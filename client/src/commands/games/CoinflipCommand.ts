@@ -1,7 +1,7 @@
 import { createCommand } from "../../structures/commands/createCommand";
 
 const CoinflipCommand = createCommand({
-name: "coinflip",
+    name: "coinflip",
     nameLocalizations: {
         "pt-BR": "caracoroa"
     },
@@ -16,7 +16,7 @@ name: "coinflip",
         const coinflip = ["heads", "tails"];
         const coin = coinflip[Math.floor(Math.random() * coinflip.length)];
 
-        context.sendReply({ content: `${t("commands:coinflip.flipped")} **${t(`commands:coinflip.${coin}`)}**`})
+        context.sendReply({ content: `${t("commands:coinflip.flipped")} **${t(`commands:coinflip.${coin}`)}**` })
         endCommand();
     }
 });

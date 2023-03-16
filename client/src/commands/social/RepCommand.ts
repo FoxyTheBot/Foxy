@@ -5,7 +5,7 @@ import { bot } from "../../index";
 import ms from "ms";
 
 const RepCommand = createCommand({
-name: "rep",
+    name: "rep",
     description: "[Social] Give reputation to a user",
     descriptionLocalizations: {
         "pt-BR": "[Social] Dê reputação para um usuário"

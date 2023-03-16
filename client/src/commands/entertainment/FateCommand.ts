@@ -4,7 +4,7 @@ import { User } from "discordeno/transformers";
 import { bot } from "../../index";
 
 const FateCommand = createCommand({
-name: 'fate',
+    name: 'fate',
     description: "[Entertainment] What is your fate with the person",
     descriptionLocalizations: {
         "pt-BR": "[Entretenimento] Qual o seu destino com a pessoa"
@@ -27,7 +27,7 @@ name: 'fate',
 
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>('user', 'users');
-    
+
         if (!user) {
             context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:global.noUser'))

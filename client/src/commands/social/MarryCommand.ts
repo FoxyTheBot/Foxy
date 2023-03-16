@@ -28,6 +28,7 @@ name: 'marry',
     }],
     category: "social",
     commandRelatedExecutions: [MarryExecutor],
+    
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>('user', 'users');
 

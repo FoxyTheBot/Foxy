@@ -6,7 +6,7 @@ import { createActionRow, createButton, createCustomId } from "../../utils/disco
 import DivorceExecutor from "../../utils/commands/executors/social/DivorceExecutor";
 
 const DivorceCommand = createCommand({
-name: 'divorce',
+    name: 'divorce',
     nameLocalizations: {
         "pt-BR": "divorciar"
     },
@@ -16,6 +16,7 @@ name: 'divorce',
     },
     category: "social",
     commandRelatedExecutions: [DivorceExecutor],
+    
     execute: async (context, endCommand, t) => {
         const userData = await bot.database.getUser(context.author.id);
         const partnerId = await userData.marriedWith;

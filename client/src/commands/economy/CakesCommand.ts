@@ -7,7 +7,7 @@ import { ButtonStyles } from "discordeno/types";
 import CakeTransferExecutor from "../../utils/commands/executors/economy/CakeTransferExecutor";
 
 const CakeCommand = createCommand({
-name: 'cakes',
+    name: 'cakes',
     description: 'Commands related with economy system',
     descriptionLocalizations: {
         'pt-BR': 'Comandos relacionados ao sistema de economia'
