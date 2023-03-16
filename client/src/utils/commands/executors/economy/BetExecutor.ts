@@ -1,6 +1,6 @@
-import ComponentInteractionContext from "../../../structures/commands/ComponentInteractionContext";
-import { bot } from "../../../index";
-import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
+import ComponentInteractionContext from "../../../../structures/commands/ComponentInteractionContext";
+import { bot } from "../../../../index";
+import { createActionRow, createButton, createCustomId } from "../../../discord/Component";
 import { ButtonStyles } from "discordeno/types";
 
 const BetExecutor = async (context: ComponentInteractionContext) => {

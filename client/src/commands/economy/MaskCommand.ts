@@ -6,8 +6,8 @@ import { ButtonStyles } from 'discordeno/types';
 import { bot } from '../../index';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
 import CreateProfile from '../../utils/commands/generators/GenerateProfile';
-import MaskBuyExecutor from '../../utils/commands/executors/MaskBuyExecutor';
-import MaskSetExecutor from '../../utils/commands/executors/MaskSetExecutor';
+import MaskBuyExecutor from '../../utils/commands/executors/economy/MaskBuyExecutor';
+import MaskSetExecutor from '../../utils/commands/executors/economy/MaskSetExecutor';
 
 const choices = masks.map(data => Object({ name: data.name, nameLocalizations: data.nameLocalizations, value: data.id }));
 const MaskCommand = createCommand({

@@ -1,6 +1,6 @@
-import ComponentInteractionContext from "../../../structures/commands/ComponentInteractionContext";
-import { bot } from "../../../index";
-import { createActionRow, createCustomId, createButton } from "../../discord/Component";
+import ComponentInteractionContext from "../../../../structures/commands/ComponentInteractionContext";
+import { bot } from "../../../../index";
+import { createActionRow, createCustomId, createButton } from "../../../discord/Component";
 import { ButtonStyles } from "discordeno/types";
 
 const CakeTransferExecutor = async (context: ComponentInteractionContext) => {  

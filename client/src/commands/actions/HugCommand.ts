@@ -5,7 +5,7 @@ import { User } from 'discordeno/transformers';
 import { createEmbed } from '../../utils/discord/Embed';
 import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
 import { bot } from '../../index';
-import HugExecutor from '../../utils/commands/executors/HugExecutor';
+import HugExecutor from '../../utils/commands/executors/actions/HugExecutor';
 import gifs from 'nekos.life';
 const gif = new gifs();
 const embed = createEmbed({});

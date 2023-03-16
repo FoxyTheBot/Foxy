@@ -1,6 +1,6 @@
-import ComponentInteractionContext from "../../../structures/commands/ComponentInteractionContext";
-import { bot } from "../../../index";
-import { createActionRow, createSelectMenu, createCustomId } from "../../discord/Component";
+import ComponentInteractionContext from "../../../../structures/commands/ComponentInteractionContext";
+import { bot } from "../../../../index";
+import { createActionRow, createSelectMenu, createCustomId } from "../../../discord/Component";
 
 const BackgroundSetExecutor = async (context: ComponentInteractionContext) => {
     

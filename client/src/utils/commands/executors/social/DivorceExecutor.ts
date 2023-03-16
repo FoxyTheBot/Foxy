@@ -1,8 +1,8 @@
-import ComponentInteractionContext from "../../../structures/commands/ComponentInteractionContext";
-import { bot } from "../../../index";
-import { MessageFlags } from "../../../utils/discord/Message";
+import ComponentInteractionContext from "../../../../structures/commands/ComponentInteractionContext";
+import { bot } from "../../../../index";
+import { MessageFlags } from "../../../discord/Message";
 import { ButtonStyles } from "discordeno/types";
-import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
+import { createActionRow, createButton, createCustomId } from "../../../discord/Component";
 
 const DivorceExecutor = async (context: ComponentInteractionContext) => {
     const userData = await bot.database.getUser(context.user.id);

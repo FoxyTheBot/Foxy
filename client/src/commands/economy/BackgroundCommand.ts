@@ -3,10 +3,10 @@ import { ApplicationCommandOptionTypes, ButtonStyles } from 'discordeno/types';
 import { createActionRow, createSelectMenu, createCustomId, createButton } from '../../utils/discord/Component';
 import { bglist } from "../../structures/json/backgroundList.json"
 import { bot } from '../../index';
-import BackgroundBuyExecutor from '../../utils/commands/executors/BackgroundBuyExecutor';
+import BackgroundBuyExecutor from '../../utils/commands/executors/economy/BackgroundBuyExecutor';
 import { MessageFlags } from '../../utils/discord/Message';
 import CreateProfile from '../../utils/commands/generators/GenerateProfile';
-import BackgroundSetExecutor from '../../utils/commands/executors/BackgroundSetExecutor';
+import BackgroundSetExecutor from '../../utils/commands/executors/economy/BackgroundSetExecutor';
 
 const choices = bglist.map(data => Object({ name: `${data.name} / ${data.cakes} Cakes`, value: data.id }));
 const BackgroundCommand = createCommand({

@@ -1,6 +1,6 @@
-import ComponentInteractionContext from "../../../structures/commands/ComponentInteractionContext";
-import { bot } from "../../../index";
-import { createActionRow, createCustomId, createButton, createSelectMenu } from "../../discord/Component";
+import ComponentInteractionContext from "../../../../structures/commands/ComponentInteractionContext";
+import { bot } from "../../../../index";
+import { createActionRow, createCustomId, createButton, createSelectMenu } from "../../../discord/Component";
 
 const MaskSetExecutor = async (context: ComponentInteractionContext) => {
     const choice = context.interaction.data.values[0];

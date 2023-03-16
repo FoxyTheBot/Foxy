@@ -1,8 +1,8 @@
-import ComponentInteractionContext from "../../../structures/commands/ComponentInteractionContext";
-import { bot } from "../../../index";
+import ComponentInteractionContext from "../../../../structures/commands/ComponentInteractionContext";
+import { bot } from "../../../../index";
 import { ButtonStyles } from "discordeno/types";
-import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
-import {createEmbed} from "../../discord/Embed";
+import { createActionRow, createButton, createCustomId } from "../../../discord/Component";
+import {createEmbed} from "../../../discord/Embed";
 import gifs from 'nekos.life';
 const gif = new gifs();
 

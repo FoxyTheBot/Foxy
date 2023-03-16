@@ -3,7 +3,7 @@ import { createCommand } from "../../structures/commands/createCommand";
 import { createButton, createCustomId, createActionRow } from "../../utils/discord/Component";
 import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
 import { User } from "discordeno/transformers";
-import MarryExecutor from "../../utils/commands/executors/MarryExecutor";
+import MarryExecutor from "../../utils/commands/executors/social/MarryExecutor";
 
 const MarryCommand = createCommand({
 name: 'marry',

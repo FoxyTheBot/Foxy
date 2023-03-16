@@ -3,7 +3,7 @@ import { createActionRow, createButton, createCustomId } from "../../utils/disco
 import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
 import { User } from "discordeno/transformers";
 import { bot } from "../..";
-import BetExecutor from "../../utils/commands/executors/BetExecutor";
+import BetExecutor from "../../utils/commands/executors/economy/BetExecutor";
 
 const BetCommand = createCommand({
     name: "bet",

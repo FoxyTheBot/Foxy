@@ -3,7 +3,7 @@ import { MessageFlags } from "../../utils/discord/Message";
 import { bot } from "../../index";
 import { createCommand } from "../../structures/commands/createCommand";
 import { createActionRow, createButton, createCustomId } from "../../utils/discord/Component";
-import DivorceExecutor from "../../utils/commands/executors/DivorceExecutor";
+import DivorceExecutor from "../../utils/commands/executors/social/DivorceExecutor";
 
 const DivorceCommand = createCommand({
 name: 'divorce',

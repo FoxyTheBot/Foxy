@@ -5,7 +5,7 @@ import { User } from 'discordeno/transformers';
 import { createEmbed } from '../../utils/discord/Embed';
 import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
 import { bot } from '../../index';
-import PatExecutor from '../../utils/commands/executors/PatExecutor';
+import PatExecutor from '../../utils/commands/executors/actions/PatExecutor';
 import gifs from 'nekos.life';
 const gif = new gifs();
 const embed = createEmbed({});

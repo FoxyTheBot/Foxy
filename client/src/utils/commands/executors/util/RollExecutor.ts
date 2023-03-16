@@ -1,7 +1,7 @@
-import ComponentInteractionContext from "../../../structures/commands/ComponentInteractionContext";
-import { bot } from "../../../index";
+import ComponentInteractionContext from "../../../../structures/commands/ComponentInteractionContext";
+import { bot } from "../../../../index";
 import { ButtonStyles } from "discordeno/types";
-import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
+import { createActionRow, createButton, createCustomId } from "../../../discord/Component";
 
 const RollExecutor = async (context: ComponentInteractionContext) => {
     const [amount, sides ] = context.sentData;

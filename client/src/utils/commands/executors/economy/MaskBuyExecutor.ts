@@ -1,7 +1,7 @@
-import ComponentInteractionContext from "../../../structures/commands/ComponentInteractionContext";
-import { bot } from "../../../index";
-import { createActionRow, createCustomId, createButton, createSelectMenu } from "../../discord/Component";
-import { MessageFlags } from '../../discord/Message';
+import ComponentInteractionContext from "../../../../structures/commands/ComponentInteractionContext";
+import { bot } from "../../../../index";
+import { createActionRow, createCustomId, createButton, createSelectMenu } from "../../../discord/Component";
+import { MessageFlags } from '../../../discord/Message';
 import { ButtonStyles } from "discordeno/types";
 
 const MaskBuyExecutor = async (context: ComponentInteractionContext) => {

@@ -1,8 +1,8 @@
-import ComponentInteractionContext from "../../../structures/commands/ComponentInteractionContext";
-import { bot } from "../../../index";
-import { createEmbed } from "../../../utils/discord/Embed";
+import ComponentInteractionContext from "../../../../structures/commands/ComponentInteractionContext";
+import { bot } from "../../../../index";
+import { createEmbed } from "../../../discord/Embed";
 import { ButtonStyles } from "discordeno/types";
-import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
+import { createActionRow, createButton, createCustomId } from "../../../discord/Component";
 
 const RpsExecutor = async (context: ComponentInteractionContext) => {
     const [choice] = context.sentData;

@@ -2,7 +2,7 @@ import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
 import { createCommand } from "../../structures/commands/createCommand";
 import { createActionRow, createButton, createCustomId } from "../../utils/discord/Component";
 import { bot } from "../..";
-import RollExecutor from "../../utils/commands/executors/RollExecutor";
+import RollExecutor from "../../utils/commands/executors/util/RollExecutor";
 
 const RollCommand = createCommand({
     name: "roll",

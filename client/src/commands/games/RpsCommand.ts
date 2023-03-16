@@ -2,7 +2,7 @@ import { ButtonStyles } from "discordeno/types";
 import { createCommand } from "../../structures/commands/createCommand";
 import { bot } from '../../index';
 import { createActionRow, createButton, createCustomId } from "../../utils/discord/Component";
-import RpsExecutor from "../../utils/commands/executors/RpsExecutor";
+import RpsExecutor from "../../utils/commands/executors/games/RpsExecutor";
 import { createEmbed } from "../../utils/discord/Embed";
 
 const RpsCommand = createCommand({

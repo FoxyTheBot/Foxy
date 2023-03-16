@@ -1,7 +1,7 @@
-import ComponentInteractionContext from "../../../structures/commands/ComponentInteractionContext";
-import { bot } from "../../../index";
-import { createActionRow, createSelectMenu, createButton, createCustomId } from "../../discord/Component";
-import { MessageFlags } from "../../discord/Message";
+import ComponentInteractionContext from "../../../../structures/commands/ComponentInteractionContext";
+import { bot } from "../../../../index";
+import { createActionRow, createSelectMenu, createButton, createCustomId } from "../../../discord/Component";
+import { MessageFlags } from "../../../discord/Message";
 import { ButtonStyles } from "discordeno/types";
 
 const BackgroundExecutor = async (context: ComponentInteractionContext) => {

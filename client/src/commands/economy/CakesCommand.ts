@@ -4,7 +4,7 @@ import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { bot } from "../../index";
 import { User } from "discordeno/transformers";
 import { ButtonStyles } from "discordeno/types";
-import CakeTransferExecutor from "../../utils/commands/executors/CakeTransferExecutor";
+import CakeTransferExecutor from "../../utils/commands/executors/economy/CakeTransferExecutor";
 
 const CakeCommand = createCommand({
 name: 'cakes',
