@@ -10,7 +10,6 @@ const CoinflipCommand = createCommand({
         "pt-BR": "[Jogos] Jogue cara ou coroa"
     },
     category: "games",
-    options: [],
 
     execute: async (context, endCommand, t) => {
         const coinflip = ["heads", "tails"];
