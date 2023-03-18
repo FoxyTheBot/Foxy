@@ -28,6 +28,17 @@
         "en-US": "Your language has been changed to English",
         "placeholder": "Idioma alterado"
     },
+    "fight": {
+        "attack": "Atacar",
+        "act": "Ação",
+        "item": "Item",
+        "mercy": "Piedade",
+        "accept": "Aceitar",
+        "decline": "Recusar",
+        "targetTurn": "É a vez de **{{target}}**",
+        "yourTurn": "É sua vez {{target}}",
+        "declined": "O pedido de luta foi recusado"
+    },
     "anime": {
         "info": {
             "status": "Status",
