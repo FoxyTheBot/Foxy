@@ -35,7 +35,7 @@ const HelpCommand = createCommand({
                 {
                     name: context.getEmojiById(bot.emotes.GITHUB) + " " + t('commands:botinfo.fields.github'),
                     value: "[Foxy](https://github.com/FoxyTheBot)",
-                    inline: true 
+                    inline: true
                 },
                 {
                     name: context.getEmojiById(bot.emotes.FOXY_OK) + " " + t('commands:help.bot.fields.privacy'),

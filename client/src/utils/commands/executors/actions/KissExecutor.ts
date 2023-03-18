@@ -2,7 +2,7 @@ import ComponentInteractionContext from "../../../../structures/commands/Compone
 import { bot } from "../../../../index";
 import { ButtonStyles } from "discordeno/types";
 import { createActionRow, createButton, createCustomId } from "../../../discord/Component";
-import {createEmbed} from "../../../discord/Embed";
+import { createEmbed } from "../../../discord/Embed";
 import gifs from 'nekos.life';
 const gif = new gifs();
 

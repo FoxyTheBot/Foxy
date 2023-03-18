@@ -17,13 +17,13 @@ const LanguageCommand = createCommand({
         {
             name: "language",
             nameLocalizations: {
-                "pt-BR": "idioma"   
+                "pt-BR": "idioma"
             },
             description: "The language you want to change to",
             descriptionLocalizations: {
                 "pt-BR": "O idioma para o qual você quer mudar"
             },
-            required: true, 
+            required: true,
             type: ApplicationCommandOptionTypes.String,
             choices: [
                 {
@@ -48,7 +48,7 @@ const LanguageCommand = createCommand({
         const userData = await bot.database.getUser(context.author.id);
         userData.language = language;
         await userData.save();
-        
+
         context.sendReply({
             content: t(`commands:lang.${language}`),
             flags: MessageFlags.Ephemeral

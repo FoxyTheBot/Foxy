@@ -6,7 +6,7 @@ import { User } from "discordeno/transformers";
 import MarryExecutor from "../../utils/commands/executors/social/MarryExecutor";
 
 const MarryCommand = createCommand({
-name: 'marry',
+    name: 'marry',
     nameLocalizations: {
         "pt-BR": "casar"
     },
@@ -28,7 +28,7 @@ name: 'marry',
     }],
     category: "social",
     commandRelatedExecutions: [MarryExecutor],
-    
+
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>('user', 'users');
 
@@ -85,7 +85,7 @@ name: 'marry',
                 style: ButtonStyles.Success
             })])],
         });
-        
+
         endCommand();
     }
 });

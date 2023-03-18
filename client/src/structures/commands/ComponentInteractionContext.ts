@@ -52,7 +52,7 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
             data: options,
         })
     }
-    
+
     getEmojiById(id: BigInt) {
         return `<:emoji:${id}>`;
     }

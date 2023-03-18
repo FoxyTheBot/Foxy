@@ -17,7 +17,7 @@ const LaranjoCommand = createCommand({
             },
             description: "Text that will be displayed in the image",
             descriptionLocalizations: {
-                "pt-BR": "Texto que será exibido na imagem" 
+                "pt-BR": "Texto que será exibido na imagem"
             },
             type: ApplicationCommandOptionTypes.String,
             required: true

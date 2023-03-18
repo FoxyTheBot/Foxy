@@ -11,7 +11,7 @@ const SlapExecutor = async (context: ComponentInteractionContext) => {
     const slapGif = await gif.slap();
     const embed = createEmbed({});
 
-    embed.title = bot.locale('commands:slap.success', { user: context.author.username, author: user  }),
+    embed.title = bot.locale('commands:slap.success', { user: context.author.username, author: user }),
         embed.image = {
             url: slapGif.url
         }

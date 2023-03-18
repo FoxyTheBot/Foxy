@@ -14,7 +14,7 @@ const getUserAvatar = (
       enableGif && hash.startsWith('a_') ? 'gif' : 'png',
     );
   }
-  
+
   return bot.utils.formatImageURL(routes.USER_DEFAULT_AVATAR(Number(user.discriminator) % 5));
 };
 

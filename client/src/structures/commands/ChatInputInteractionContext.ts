@@ -48,7 +48,7 @@ export default class {
     get guildMember() {
         return this.interaction.member;
     }
-    
+
     makeReply(emoji: any, text: string): string {
         return `${`<:emoji:${emoji}>` || '🐛'} **|** ${text}`;
     }
@@ -63,7 +63,7 @@ export default class {
     getEmojiById(id: BigInt) {
         return `<:emoji:${id}>`;
     }
-    
+
     async sendReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
         if (this.replied) {
             await bot.helpers

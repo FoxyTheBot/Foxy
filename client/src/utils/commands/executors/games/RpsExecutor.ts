@@ -13,15 +13,15 @@ const RpsExecutor = async (context: ComponentInteractionContext) => {
 
     const embed = createEmbed({
         fields: [{
-        name: context.author.username,
-        value: bot.locale(`commands:rps.button.${choice}`),
-        inline: true
-    }, {
-        name: "Foxy",
-        value: bot.locale(`commands:rps.button.${result}`),
-        inline: true
-    }]
-});
+            name: context.author.username,
+            value: bot.locale(`commands:rps.button.${choice}`),
+            inline: true
+        }, {
+            name: "Foxy",
+            value: bot.locale(`commands:rps.button.${result}`),
+            inline: true
+        }]
+    });
 
     if (result === choice) {
         embed.description = bot.locale('commands:rps.tie');
@@ -36,7 +36,7 @@ const RpsExecutor = async (context: ComponentInteractionContext) => {
                 embed.description = bot.locale('commands:rps.clientWon', { result: bot.locale(`commands:rps.button.${result}`) });
                 embed.fields = [{
                     name: context.author.username,
-                    value: bot.locale(`commands:rps.button.${choice}`),    
+                    value: bot.locale(`commands:rps.button.${choice}`),
                     inline: true
                 }, {
                     name: bot.username,
@@ -85,7 +85,7 @@ const RpsExecutor = async (context: ComponentInteractionContext) => {
         }
 
         case 'cancel': {
-            embed.description = bot.locale('commands:rps.cancelled', { emoji: context.getEmojiById(bot.emotes.FOXY_CRY)});
+            embed.description = bot.locale('commands:rps.cancelled', { emoji: context.getEmojiById(bot.emotes.FOXY_CRY) });
             embed.fields = null;
             context.sendReply({
                 embeds: [embed],
@@ -98,8 +98,8 @@ const RpsExecutor = async (context: ComponentInteractionContext) => {
                         id: bot.emotes.ROCK
                     }
                 }), createButton({
-                    label: bot.locale('commands:rps.button.paper'), 
-                    style: ButtonStyles.Primary,    
+                    label: bot.locale('commands:rps.button.paper'),
+                    style: ButtonStyles.Primary,
                     customId: createCustomId(0, context.author.id, context.commandId, "paper"),
                     disabled: true,
                     emoji: {

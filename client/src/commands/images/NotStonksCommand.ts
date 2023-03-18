@@ -13,7 +13,7 @@ const NotStonksCommand = createCommand({
         {
             name: "text",
             nameLocalizations: {
-                "pt-BR": "texto"    
+                "pt-BR": "texto"
             },
             description: "Text that will be displayed in the image",
             descriptionLocalizations: {
@@ -49,7 +49,7 @@ const NotStonksCommand = createCommand({
                 name: "not_stonks.png",
                 blob
             }
-        }) 
+        })
         endCommand();
     }
 });

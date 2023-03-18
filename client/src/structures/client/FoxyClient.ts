@@ -18,7 +18,7 @@ const setupFoxy = (client: FoxyClient): void => {
 
 const setupInternals = async (bot: Bot): Promise<void> => {
     bot.transformers.reverse.interactionResponse = transformInteraction;
-    bot.handlers.INTERACTION_CREATE = handleInteractionCreate;  
+    bot.handlers.INTERACTION_CREATE = handleInteractionCreate;
 };
 
 export { setupFoxy, setupInternals };

@@ -16,7 +16,7 @@ const DivorceCommand = createCommand({
     },
     category: "social",
     commandRelatedExecutions: [DivorceExecutor],
-    
+
     execute: async (context, endCommand, t) => {
         const userData = await bot.database.getUser(context.author.id);
         const partnerId = await userData.marriedWith;

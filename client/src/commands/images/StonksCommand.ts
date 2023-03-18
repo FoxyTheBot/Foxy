@@ -50,7 +50,7 @@ const StonksCommand = createCommand({
                 blob
             }
         });
-    
+
         endCommand();
     }
 });

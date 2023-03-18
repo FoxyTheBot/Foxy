@@ -41,7 +41,7 @@ const componentExecutor = async (interaction: Interaction): Promise<void> => {
 
   if (isUserBanned) {
     const bannedInfo = await {
-        banReason: user.banReason,
+      banReason: user.banReason,
     }
 
     return errorReply(
@@ -74,7 +74,7 @@ const componentExecutor = async (interaction: Interaction): Promise<void> => {
         }),
       );
 
-        console.error(err);
+      console.error(err);
       // eslint-disable-next-line no-param-reassign
       if (typeof err === 'string') err = new Error(err);
     });

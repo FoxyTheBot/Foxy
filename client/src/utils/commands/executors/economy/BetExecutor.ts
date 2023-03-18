@@ -60,7 +60,7 @@ const BetExecutor = async (context: ComponentInteractionContext) => {
             context.followUp({
                 content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:bet.win', { user: targetUsername, author: context.author.username, choice: bot.locale(`commands:bet.${avaliableChoices[rand]}`), amount: `${amount}` })),
             });
-    
+
             userData.balance += Number(amount);
             mentionData.balance -= Number(amount);
             userData.save();
@@ -69,7 +69,7 @@ const BetExecutor = async (context: ComponentInteractionContext) => {
             context.followUp({
                 content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:bet.lose', { user: targetUsername, author: context.author.username, choice: bot.locale(`commands:bet.${avaliableChoices[rand]}`), amount: `${amount}` })),
             });
-    
+
             userData.balance -= Number(amount);
             mentionData.balance += Number(amount);
             userData.save();

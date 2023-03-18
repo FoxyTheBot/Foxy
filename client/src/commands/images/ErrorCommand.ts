@@ -3,7 +3,7 @@ import { ApplicationCommandOptionTypes } from "discordeno/types";
 import * as Canvas from "canvas";
 
 const ErrorCommand = createCommand({
-    name: "error",  
+    name: "error",
     description: "[Image] Create an error dialog box",
     descriptionLocalizations: {
         "pt-BR": "[Imagem] Crie uma caixa de dialogo de erro"
@@ -20,7 +20,7 @@ const ErrorCommand = createCommand({
                 "pt-BR": "Texto que será exibido na caixa de dialogo"
             },
             type: ApplicationCommandOptionTypes.String,
-            required: true  
+            required: true
         }
     ],
     execute: async (context, endCommand, t) => {

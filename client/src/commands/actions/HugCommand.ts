@@ -38,11 +38,11 @@ const HugCommand = createCommand({
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
         const hugGif = await gif.hug();
-     
-        embed.title = t('commands:hug.success', {user: user.username, author: context.author.username}),
-        embed.image = {
-            url: hugGif.url
-        }
+
+        embed.title = t('commands:hug.success', { user: user.username, author: context.author.username }),
+            embed.image = {
+                url: hugGif.url
+            }
 
         context.sendReply({
             embeds: [embed],

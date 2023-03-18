@@ -16,8 +16,8 @@ export default class CreateProfile {
     constructor(locale, user, data, testMode?, code?, mask?) {
         this.user = user;
         this.data = data;
-        this.width =  1436;
-        this.height =  884;
+        this.width = 1436;
+        this.height = 884;
         this.testMode = testMode;
         this.code = code;
         this.mask = mask;
@@ -98,7 +98,7 @@ export default class CreateProfile {
             const mask = await Canvas.loadImage(`http://localhost:8080/masks/${this.code}`);
             context.drawImage(mask, canvas.width / 55.0, canvas.height / 1.69, 200, 200)
         }
-        
+
         const blob = new Blob([canvas.toBuffer()], { type: 'image/png' });
         return blob;
     }

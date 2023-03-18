@@ -3,7 +3,7 @@ import { bot } from "../../../../index";
 import { createActionRow, createSelectMenu, createCustomId } from "../../../discord/Component";
 
 const BackgroundSetExecutor = async (context: ComponentInteractionContext) => {
-    
+
     const userData = await bot.database.getUser(context.author.id);
     const code = context.interaction.data.values[0];
     if (!userData.backgrounds.includes(code)) return context.sendReply({

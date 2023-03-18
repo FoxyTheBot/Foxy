@@ -15,7 +15,7 @@ const GirlfriendCommand = createCommand({
         {
             name: "user",
             nameLocalizations: {
-                "pt-BR": "usuário"  
+                "pt-BR": "usuário"
             },
             description: "Mention the user (or not...)",
             descriptionLocalizations: {
@@ -27,7 +27,7 @@ const GirlfriendCommand = createCommand({
     ],
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
-        
+
         var avatar;
         if (!user) {
             avatar = "https://cdn.discordapp.com/attachments/784852925989126215/862127934332338176/unknown.png";
@@ -38,7 +38,7 @@ const GirlfriendCommand = createCommand({
         const background = await Canvas.loadImage("http://localhost:8080/memes/namorada.png");
         const avatarImg = await Canvas.loadImage(avatar);
         const canvas = Canvas.createCanvas(500, 510);
-        const ctx = canvas.getContext('2d'); 
+        const ctx = canvas.getContext('2d');
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
         ctx.drawImage(avatarImg, 20, 170, 200, 200);
 

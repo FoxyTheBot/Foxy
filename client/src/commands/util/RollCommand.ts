@@ -17,7 +17,7 @@ const RollCommand = createCommand({
     options: [{
         name: "dice",
         nameLocalizations: {
-            "pt-BR": "dado" 
+            "pt-BR": "dado"
         },
         description: "[Utils] roll a dice",
         descriptionLocalizations: {
@@ -67,7 +67,7 @@ const RollCommand = createCommand({
                     value: 9
                 },
                 {
-                    name: "10", 
+                    name: "10",
                     value: 10
                 },
                 {
@@ -97,18 +97,18 @@ const RollCommand = createCommand({
                 {
                     name: "1",
                     value: 1
-                }, 
+                },
                 {
                     name: "2",
                     value: 2
                 }, {
                     name: "3",
                     value: 3
-                }, 
+                },
                 {
                     name: "4",
                     value: 4
-                }, 
+                },
                 {
                     name: "5",
                     value: 5
@@ -132,7 +132,7 @@ const RollCommand = createCommand({
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:roll.result', { amount: amount.toString(), sides: sides.toString(), result: roll.toString() })),
             components: [createActionRow([createButton({
-                label: t('commands:roll.button'),   
+                label: t('commands:roll.button'),
                 style: ButtonStyles.Primary,
                 emoji: {
                     id: bot.emotes.FOXY_YAY

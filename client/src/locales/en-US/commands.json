@@ -318,7 +318,6 @@
         "cooldown": "You already got your daily, wait **{{time}}**",
         "daily": "You won **{{amount}} Cakes** and now has {{money}} Cakes\n",
         "dailyAlert": "**Remember:** You can't do trading things like real money, NSFW content, Nitro in exchange for cakes! If you do this, you will be banned from Foxy permanently!"
-
     },
     "background": {
         "buy": {

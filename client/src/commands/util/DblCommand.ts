@@ -8,7 +8,7 @@ const DblCommand = createCommand({
     descriptionLocalizations: {
         "pt-BR": '[Utils] Vote na Foxy no top.gg'
     },
-    category: 'util', 
+    category: 'util',
     options: [
         {
             name: "upvote",
@@ -26,9 +26,9 @@ const DblCommand = createCommand({
                 const embed = createEmbed({
                     description: t('commands:upvote.description')
                 });
-        
+
                 context.sendReply({ embeds: [embed] });
-            
+
                 endCommand();
                 break;
             }
