@@ -17,7 +17,6 @@
             "support": "Support server",
             "twitter": "<:twitter:1072251951447810168> **|** My Twitter",
             "github": "<:github_logo:1072251686288113694> **|** My Github",
-            "donate": "Donate me clicking here",
             "donate2": "Support me on Ko-fi!",
             "privacy": "Privacy policy"
         }
@@ -25,9 +24,20 @@
     "lang": {
         "title": "Choose your language",
         "default": "Your default language is set to English",
+        "pt-BR": "Your language has been changed to Portuguese Brazil",
         "en-US": "Your language has been changed to English",
-        "pt-BR": "Sua linguagem foi alterada para Português do Brasil",
         "placeholder": "Language changed"
+    },
+    "fight": {
+        "attack": "Attack",
+        "act": "Act",
+        "item": "Item",
+        "mercy": "Mercy",
+        "accept": "Accept",
+        "decline": "Decline",
+        "targetTurn": "It's {{target}}'s turn",
+        "yourTurn": "It's your turn {{target}}",
+        "declined": "Your fight request has been canceled"
     },
     "anime": {
         "info": {
@@ -50,25 +60,10 @@
         "click": "Click here",
         "nothing": "Nothing"
     },
-    "role": {
-        "description": "Role permissions",
-        "id": "Role ID",
-        "color": "Role Color",
-        "position": "Role Position",
-        "noPermissions": "No permissions",
-        "roleMention": "Role mention",
-        "createdAt": "Created at"
-    },
-    "kick": {
-        "self": "Another person can do this for you, ask the person to do this",
-        "client": "Foxy crouches and you run into a wall*",
-        "success": "**{{user}}** Did a flying kick in **{{target}}**"
-    },
     "coinflip": {
         "heads": "heads",
         "tails": "tails",
-        "flipped": "You flipped a coin and got",
-        "result": "Result"
+        "flipped": "You flipped a coin and got"
     },
     "upvote": {
         "description": "Help me to increase servers count and keep me alive voting me on <:topgg:1074823809376460923> Discord Bot List, \n<:catblush:768292358458179595> Votes helps me to get more servers and more users on Discord! Vote me [clicking here](https://top.gg/bot/1006520438865801296/vote) :heart:",
@@ -81,8 +76,8 @@
     "profile": {
         "profile": "{{user}}'s profile",
         "noAboutme": "Foxy is so cute ><! You can change this message using /aboutme command",
-        "tooLong": "The character limit is 225, you typed {{length}}, plz type something smaller",
         "marriedWith": "💍 Married with {{user}} since {{date}} ({{relativeTime}})",
+        "premium": "{{badge}} Premium since {{date}}",
         "testMode": "Your about me will be displayed here",
         "banned": "`{{user}} is banned! Reason: `{{reason}}` \nSince `{{date}}`"
     },
@@ -110,14 +105,10 @@
         },
         "alreadyOwned": "You already have this mask"
     },
-    "layouts": {
-        "default": "Default",
-        "red": "Red",
-        "blue": "Blue",
-        "purple": "Purple",
-        "cyan": "Cyan",
-        "chaged": "Your layout has been changed",
-        "notFound": "Layout not found"
+    "kick": {
+        "self": "Another person can do this for you, ask the person to do this",
+        "client": "Foxy crouches and you run into a wall*",
+        "success": "**{{user}}** Did a flying kick in **{{target}}**"
     },
     "help": {
         "commands": {
@@ -156,7 +147,26 @@
         "button": "View on Roblox"
     },
     "aboutme": {
-        "set": "Your about me has been changed to `{{aboutme}}`"
+        "set": "Your about me has been changed to `{{aboutme}}`",
+        "tooLong": "The limit is 225 chars and you type {{length}} chars, plz type something smaller :3"
+    },
+    "layouts": {
+        "default": "Default",
+        "red": "Red",
+        "blue": "Blue",
+        "purple": "Purple",
+        "cyan": "Cyan",
+        "changed": "You changed your profile layout",
+        "notFound": "Layout not found"
+    },
+    "role": {
+        "description": "Role permissions",
+        "id": "Role ID",
+        "color": "Role Color",
+        "position": "Role Position",
+        "noPermissions": "No permissions",
+        "roleMention": "Role mention",
+        "createdAt": "Created at"
     },
     "server": {
         "owner": "Owner",
@@ -249,12 +259,21 @@
         "users": "Users",
         "ram": "RAM",
         "cpuUsage": "CPU Usage",
-        "node": "Node.js",
+        "node": "Node.js ",
         "arch": "Architecture",
         "platform": "Platform"
     },
-    "invite": {
-        "description": "Do you want to invite me to your server?\nThank you so much, you can add me [clicking here](https://discord.com/oauth2/authorize?client_id=737044809650274325&scope=bot+applications.commands&permissions=269872255)"
+    "mcskin": {
+        "title": "{{user}}'s skin"
+    },
+    "mchead": {
+        "title": "{{user}}'s head"
+    },
+    "mcbody": {
+        "title": "{{user}}'s body"
+    },
+    "error": {
+        "tooLong": "The content is too long, the limit is **{{limit}}** chars"
     },
     "rps": {
         "replies": {
@@ -263,8 +282,8 @@
             "scissors": "scissors"
         },
         "tie": "It's a tie!",
-        "invalidChoice": "Invalid choice",
         "start": "To start, click one of the buttons below",
+        "invalidChoice": "Invalid choice",
         "clientWon": "{{result}}! You lost!",
         "won3": "You won :3",
         "won2": "You won >:3",
@@ -310,7 +329,7 @@
         "self": "You can't transfer cakes to yourself",
         "notEnough": "You don't have enough money",
         "alert": "Do you really want send {{amount}} Cakes to {{user}}? \nFoxy Team **Not responsible** for lost Cakes, so make sure you are transferring to a trusted person! \nTrading NSFW(+18) content in exchange for Cakes is prohibited!",
-        "success": "Você transferiu {{amount}} Cakes para {{user}}",
+        "success": "You transferred {{amount}} cakes to {{user}}",
         "pay": "Transfer",
         "transfered": "Transfered"
     },
@@ -350,7 +369,7 @@
     },
     "pat": {
         "button": "Pat",
-        "sucess": "**{{author}}** patted **{{user}}**"
+        "success": "**{{author}}** patted **{{user}}**"
     },
     "kiss": {
         "button": "Kiss",
