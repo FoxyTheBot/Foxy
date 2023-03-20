@@ -28,20 +28,6 @@
         "en-US": "Your language has been changed to English",
         "placeholder": "Idioma alterado"
     },
-    "fight": {
-        "attack": "Atacar",
-        "act": "Ação",
-        "item": "Item",
-        "mercy": "Piedade",
-        "accept": "Aceitar",
-        "decline": "Recusar",
-        "targetTurn": "É a vez de **{{target}}**",
-        "yourTurn": "É sua vez {{target}}",
-        "declined": "O pedido de luta foi recusado",
-        "cantFightYourself": "Você não pode lutar com você mesmo",
-        "title": "Luta",
-        "description": "Você está prestes a lutar com **{{target}}**"
-    },
     "anime": {
         "info": {
             "status": "Status",
