@@ -1,0 +1,405 @@
+{
+    "foxyGlobal": {
+        "noPermission": "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {{user}}"
+    },
+    "roll": {
+        "result": "Você rolou **{{amount}}d{{sides}}** e o resultado foi **{{result}}**",
+        "button": "Rolar novamente"
+    },
+    "botinfo": {
+        "title": ":fox: Foxy",
+        "description": "Olá, eu sou a {{client.user.username}}! Eu sou um simples bot brasileiro de economia e entretenimento para o seu servidor! Estou espalhando alegria em {{guilds}} servidores :heart:",
+        "fields": {
+            "addme": "Me adicione",
+            "server": "Servidores :heart:",
+            "server2": "Entre no meu servidor clicando aqui",
+            "add": "Me adicione clicando aqui",
+            "support": "Servidor de suporte",
+            "twitter": "Meu Twitter",
+            "github": "Meu Github",
+            "donate2": "Doe para mim clicando aqui",
+            "privacy": "Política de privacidade"
+        }
+    },
+    "lang": {
+        "title": "Escolha seu idioma",
+        "default": "Seu idioma está definido como Português do Brasil",
+        "pt-BR": "Seu idioma foi alterado para Português do Brasil",
+        "en-US": "Your language has been changed to English",
+        "placeholder": "Idioma alterado"
+    },
+    "anime": {
+        "info": {
+            "status": "Status",
+            "score": "Pontuação",
+            "episodes": "Episódios",
+            "type": "Tipo",
+            "aired": "Foi a público em",
+            "genres": "Gêneros",
+            "source": "Origem",
+            "studios": "Estúdios",
+            "duration": "Duração",
+            "rating": "Classificação",
+            "scoreStats": "Status da pontuação",
+            "popularity": "Popularidade",
+            "premiered": "Estreou em",
+            "broadcast": "Transmissão"
+        },
+        "notFound": "Anime não encontrado",
+        "click": "Clique aqui",
+        "nothing": "Nada encontrado"
+    },
+    "coinflip": {
+        "heads": "cara",
+        "tails": "coroa",
+        "flipped": "Você jogou uma moeda e o resultado foi"
+    },
+    "upvote": {
+        "description": "Me ajude a crescer e me ajude a ser um bot melhor votando em mim no <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nCada voto ajuda a me divulgar para outras pessoas na Discord Bot List <:catblush:768292358458179595>\n\n Que tal você se juntar a todas as outras pessoas que votaram e que me ajudaram a crescer [clicando aqui](https://top.gg/bot/1006520438865801296/vote)? :heart:",
+        "top": {
+            "title": "Top votantes da Foxy na Top.gg",
+            "votes": "Votos",
+            "ownerVotes": "Meu desenvolvedor possui {{votes}} votos"
+        }
+    },
+    "profile": {
+        "profile": "Perfil de {{user}}",
+        "noAboutme": "Foxy é minha amiga você pode alterar isso usando /aboutme",
+        "marriedWith": "💍 Casado com {{user}} desde {{date}} ({{relativeTime}})",
+        "premium": "{{badge}} Premium desde {{date}}",
+        "testMode": "Seu sobre mim será exibido assim!",
+        "banned": "`{{user}} está banido por `{{reason}}` \nDesde `{{date}}`"
+    },
+    "masks": {
+        "ears": "Orelhas de gato",
+        "horns": "Chifrinhos",
+        "halo": "Aréola",
+        "cowboy": "Chapéu de vaqueiro",
+        "topper": "Cartola",
+        "purchase": "Comprar",
+        "preview": "Pré-visualização",
+        "noMasks": "Você não possui nenhuma máscara",
+        "selectMask": "Selecione uma máscara",
+        "buy": {
+            "success": "Você comprou a máscara para seu avatar!",
+            "noMoney": "Você não tem Cakes o suficiente para adquirir esta máscara",
+            "preview": "Pré-visualização",
+            "purchase": "Comprar"
+        },
+        "set": {
+            "success": "Máscara alterada com sucesso :3",
+            "changed": "Máscara alterada :3",
+            "notOwned": "Você não possui essa máscara",
+            "invalid": "Código inválido"
+        },
+        "alreadyOwned": "Você já possui essa máscara"
+    },
+    "kick": {
+        "self": "Deixa outra pessoa fazer isso para você, é mais fácil",
+        "client": "Foxy se agacha e você passa direto e da de cara com uma parede *",
+        "success": "**{{user}}** meteu uma voadora em **{{target}}**"
+    },
+    "help": {
+        "commands": {
+            "title": "Lista de comandos",
+            "category": {
+                "economy": "Economia",
+                "social": "Social",
+                "fun": "Entretenimento",
+                "image": "Imagens",
+                "misc": "Outros",
+                "utils": "Utilitários",
+                "rp": "Roleplay"
+            }
+        },
+        "bot": {
+            "title": "Oie, eu sou a Foxy",
+            "description": "Olá {{user}}, eu sou a Foxy, tenho recursos para entreter e envolver seus membros, comandos de economia, modificação de imagem e muito mais! :3",
+            "fields": {
+                "list": {
+                    "title": "<:foxysunglasses:890688144280784926> Para ver a lista de comandos use",
+                    "value": "`/help`"
+                },
+                "guild": "Serivdor de suporte",
+                "privacy": "Política de privacidade",
+                "website": "Meu website onde você pode acessar a dashboard"
+            }
+        }
+    },
+    "roblox": {
+        "aboutme": "Sobre mim",
+        "register": "Data de registro",
+        "undefined": "Não definido",
+        "noAboutme": "Não há sobre mim",
+        "noStatus": "Não há status",
+        "error": "Não foi possível encontrar esse usuário... Provavelmente a conta não existe :/",
+        "button": "Ver perfil"
+    },
+    "aboutme": {
+        "set": "Seu sobre mim foi alterado para `{{aboutme}}`",
+        "tooLong": "O limite de caracteres é 225 e você digitou {{length}}, digita algo menor pfv :3"
+    },
+    "layouts": {
+        "default": "Padrão",
+        "red": "Vermelho",
+        "blue": "Azul",
+        "purple": "Roxo",
+        "cyan": "Ciano",
+        "changed": "Você alterou o layout do seu perfil",
+        "notFound": "Layout não encontrado"
+    },
+    "role": {
+        "description": "Permissões do cargo",
+        "id": "ID do cargo",
+        "color": "Cor do cargo",
+        "position": "Posição do cargo",
+        "noPermissions": "O cargo não tem permissões",
+        "roleMention": "Menção do cargo",
+        "createdAt": "Criado em"
+    },
+    "server": {
+        "owner": "Dono",
+        "createdAt": "Criado em",
+        "clientJoin": "Entrei em",
+        "channels": "Canais",
+        "premium": "Impulsos",
+        "memberCount": "Membros",
+        "afk": "Canal AFK",
+        "click": "Veja o ícone no seu navegador",
+        "no": "Não",
+        "yes": "Sim",
+        "notFound": "Não encontrei nenhum servidor com a id `{{id}}`",
+        "partner": "Parceiro do Discord"
+    },
+    "user": {
+        "info": {
+            "tag": "Tag do usuário",
+            "createdAt": "Criado em",
+            "userId": "ID do usuário",
+            "avatar": "Ver avatar do usuário",
+            "viewMember": "Ver informações do membro",
+            "noMember": "Não é um membro do servidor"
+        },
+        "avatar": {
+            "click": "Veja o avatar no seu navegador",
+            "title": "Avatar de {{user}}",
+            "footer": "Achei fofo :3"
+        },
+        "banner": {
+            "click": "Veja o banner no seu navegador",
+            "title": "Banner de {{user}}",
+            "noBanner": "Esse usuário não tem banner <a:foxylick:987381814622560277>"
+        },
+        "member": {
+            "title": "Sobre {{user}}",
+            "joinedAt": ":sparkles: Entrou em",
+            "role": "<:foxysunglasses:890688144280784926> Cargos",
+            "nickname": "<:foxyhearteyes:984596954526920794> Apelido no servidor",
+            "noNickname": "Não há apelido no servidor",
+            "permissions": {
+                "button": "Permissões",
+                "list": "Lista de permissões",
+                "title": "Permissões de {{user}}"
+            },
+            "highestRole": "<:foxysunglasses:890688144280784926> Maior cargo",
+            "premiumSince": "<:foxyboost:984596808921673768> Impulsiona o servidor desde",
+            "noRoles": "Não há cargos",
+            "noPermissions": "Não há permissões"
+        }
+    },
+    "ship": {
+        "question": "Será que vai rolar ou não?",
+        "perfectCouple": "Esse é o casal perfeito!",
+        "uwu": "Esses aqui já estão se pegando e não contaram para ninguém!",
+        "probably": "Talvez só precisa o {{user}} querer...",
+        "cry": "Queria muito dizer que é possível mas..."
+    },
+    "rep": {
+        "cooldown": "Você já deu reputação para algúem, espere **{{cooldown}}**",
+        "success": "Você deu reputação para **{{user}}**",
+        "self": "Você não pode dar reputação para você mesmo"
+    },
+    "marry": {
+        "self": "Você não pode casar com você mesmo",
+        "alreadyMarried": "Você já está casado com alguém!",
+        "bot": "Não, eu não quero casar com você!",
+        "alreadyMarriedWithSomeone": "Você já está casado com alguém",
+        "alreadyMarriedWithUser": "Você já está casado com **{{user}}**",
+        "ask": "{{user}} Você quer casar com **{{author}}**?",
+        "accept": "Aceitar",
+        "accepted": "Vocês estão casados! Felicidades para o casal <3"
+    },
+    "divorce": {
+        "notMarried": "Você não está casado",
+        "confirm2": "Você tem certeza que quer divorciar?",
+        "divorced": "...Então é isso, se divorciar é sim uma coisa triste, Da próxima vez ame alguém que realmente mereça e respeite você, sim isso parece ser difícil pois o amor é algo cego e incontrolável... Mas é melhor estar sozinho do que mal acompanhado, eu confio em você! :heart:",
+        "confirm": "Divorciar",
+        "confirmed": "Divorciado"
+    },
+    "suggest": {
+        "success": "Obrigada por me ajudar {{user}}, sua sugestão `{{content}}` foi enviada para o meu desenvolvedor <3"
+    },
+    "report": {
+        "success": "Obrigada por me ajudar {{user}}, seu report `{{content}}` foi enviado para o meu desenvolvedor <3"
+    },
+    "status": {
+        "model": "Modelo do processador",
+        "guilds": "Servidores",
+        "users": "Usuários",
+        "ram": "Memória RAM",
+        "cpuUsage": "Uso do processador",
+        "node": "Node.js",
+        "arch": "Arquitetura",
+        "platform": "Plataforma"
+    },
+    "mcskin": {
+        "title": "Skin de {{user}}"
+    },
+    "mchead": {
+        "title": "Cabeça de {{user}}"
+    },
+    "mcbody": {
+        "title": "Corpo de {{user}}"
+    },
+    "error": {
+        "tooLong": "O conteúdo é muito longo, o limite é de **{{limit}}** caracteres"
+    },
+    "rps": {
+        "replies": {
+            "rock": "pedra",
+            "paper": "papel",
+            "scissors": "tesoura"
+        },
+        "tie": "Deu empate, vamos de novo! >:D",
+        "start": "Para jogar, clique em um dos botões abaixo",
+        "invalidChoice": "Escolha inválida, escolha {{choice}}",
+        "clientWon": "Deu {{result}}, eu ganhei >:3",
+        "won3": "Você ganhou :3",
+        "won2": "Você ganhou >:3",
+        "won": "Você ganhou :D",
+        "button": {
+            "rock": "Pedra",
+            "paper": "Papel",
+            "scissors": "Tesoura",
+            "cancel": "Cancelar"
+        },
+        "cancelled": "{{emoji}} Jogo foi cancelado, para jogar execute o comando novamente",
+        "defaultValue": "O jogo ainda não foi iniciado"
+    },
+    "fate": {
+        "couple": "casal",
+        "enemy": "inimigos",
+        "lover": "amantes",
+        "sibling": "irmãos",
+        "parent": "Pai e filho",
+        "married": "casados",
+        "friend": "Amigos",
+        "result": "Em um universo paralelo <@{{user}}> e <@{{mention}}> são {{fate}}"
+    },
+    "cancel": {
+        "result": "{{user}} cancelou {{mention}} por `{{reason}}`"
+    },
+    "8ball": {
+        "yes": "Sim",
+        "no": "Não",
+        "maybe": "Talvez",
+        "idk": "Não sei",
+        "idk2": "Não sei :/",
+        "probably": "Provavelmente",
+        "probablyyes": "Provavelmente sim",
+        "probablyno": "Provavelmente não"
+    },
+    "rank": {
+        "wrongPage": "Esta página não existe",
+        "youAreIn": "Você está na posição",
+        "position": "Posição"
+    },
+    "pay": {
+        "self": "Você não pode enviar cakes para você mesmo",
+        "notEnough": "Você não tem Cakes suficiente",
+        "alert": "Você deseja mesmo transferir {{amount}} Cakes para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!",
+        "success": "Você transferiu {{amount}} Cakes para {{user}}",
+        "pay": "Transferir",
+        "transfered": "Transferido"
+    },
+    "daily": {
+        "cooldown": "Você já pegou suas Cakes hoje, espere **{{time}}**",
+        "daily": "Você ganhou **{{amount}} Cakes** agora você possui {{money}} Cakes\n",
+        "dailyAlert": "**Não se esqueça:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!"
+    },
+    "background": {
+        "buy": {
+            "title": "Lojinha de background :3",
+            "invalid": "Código inválido",
+            "alreadyOwned": "Você já possui esse background",
+            "onlyDevs": "Somente os desenvolvedores podem comprar backgrounds",
+            "purchase": "Comprar",
+            "price": "Preço",
+            "preview": "Pré-visualização do background",
+            "noMoney": "Você não tem Cakes suficiente",
+            "success": "Você comprou o background! O Background já foi definido automaticamente no seu perfil! ;3"
+        },
+        "set": {
+            "title": "Escolha seu background",
+            "notOwned": "Você não possui esse background",
+            "success": "Background alterado :3",
+            "description": "Seus backgrounds são: {{bgList}}"
+        }
+    },
+    "atm": {
+        "success": "**{{user}}** possui {{balance}} Cakes"
+    },
+    "step": {
+        "success": "Você pisou em {{user}}"
+    },
+    "slap": {
+        "button": "Retribuir",
+        "success": "**{{author}}** deu um tabefe em **{{user}}**"
+    },
+    "pat": {
+        "button": "Retribuir",
+        "success": "**{{author}}** fez cafuné em **{{user}}**"
+    },
+    "kiss": {
+        "button": "Retribuir",
+        "success": "**{{author}}** deu um beijo em **{{user}}**",
+        "self": "Eu não quero te beijar, oxi? Somos apenas amigos!"
+    },
+    "hug": {
+        "button": "Retribuir",
+        "success": "**{{author}}** deu um abraço em **{{user}}**"
+    },
+    "bite": {
+        "self": "Você se mordeu porem mordeu forte demais e agora está machucado, mal sabia você que você é um lobo com dentes afiados :/",
+        "client": "Você tentou morder uma raposa porém ela mordeu seu rosto com muita força e você se machucou!",
+        "success": "**{{user}}** mordeu **{{target}}**",
+        "button": "Retribuir"
+    },
+    "attack": {
+        "attack": "**{{user}}** atacou **{{target}}**",
+        "button": "Atacar"
+    },
+    "bet": {
+        "self": "Você não pode apostar consigo mesmo!",
+        "not-enough": "Você não tem Cakes suficientes",
+        "not-enough-mention": "{{user}} não tem Cakes suficientes",
+        "placeholder": "Selecione uma opção",
+        "heads": "cara",
+        "tails": "coroa",
+        "accept": "Aceitar",
+        "choose": "Escolha uma opção para apostar",
+        "ask": "**{{user}}**, **{{author}}** quer fazer uma aposta de {{amount}} Cakes",
+        "win": "Deu {{choice}}! {{author}} ganhou {{amount}} Cakes! Financiado por {{user}}",
+        "lose": "Deu {{choice}}! {{user}} ganhou {{amount}} Cakes! Financiado por {{author}}",
+        "deny": "Negar",
+        "denied": "Aposta negada",
+        "bot": "Por enquanto não estou aceitando apostas, estou falida <:foxy_cry:1071151976504627290>",
+        "betWithClient": {
+            "lose": "Deu {{result}}! Eu ganhei {{amount}} cakes! >:3",
+            "win": "Deu {{result}}! Parabéns, você ganhou {{amount}} cakes! :3"
+        }
+    },
+    "global": {
+        "noUser": "Usuário não encontrado"
+    }
+}
