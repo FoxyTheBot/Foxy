@@ -5,14 +5,14 @@ function updateFightScore(commandAuthor: Player, target: Player) {
         id: commandAuthor.id,
         username: commandAuthor.username,
         health: commandAuthor.health,
-        isYourTurn: commandAuthor.isYourTurn
+        isYourTurn: commandAuthor.isYourTurn || false
     }
 
     var targetStats = {
         id: target.id,
         username: target.username,
         health: target.health,
-        isYourTurn: target.isYourTurn
+        isYourTurn: target.isYourTurn || false
     }
 
     return { userStats, targetStats }
