@@ -1,41 +1,41 @@
 {
     "foxyGlobal": {
-        "noPermission": "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {{user}}"
+        "noPermission": "Que fais-tu ? Tu ne peux pas faire ça. Tu n'es pas {{user}}"
     },
     "roll": {
-        "result": "Você rolou **{{amount}}d{{sides}}** e o resultado foi **{{result}}**",
-        "button": "Rolar novamente"
+        "result": "Vous avez obtenu **{{amount}} sur {{sides}}** et le résultat était **{{result}}",
+        "button": "Faire défiler à nouveau"
     },
     "botinfo": {
         "title": ":fox: Foxy",
-        "description": "Olá, eu sou a {{client.user.username}}! Eu sou um simples bot brasileiro de economia e entretenimento para o seu servidor! Estou espalhando alegria em {{guilds}} servidores :heart:",
+        "description": "Bonjour, Je suis un {{client.user.username}}! Je suis un simple bot brésilien d'économie et de divertissement pour votre serveur ! Je répands la joie sur {{guilds}} serveurs :heart:",
         "fields": {
-            "addme": "Me adicione",
-            "server": "Servidores :heart:",
-            "server2": "Entre no meu servidor clicando aqui",
-            "add": "Me adicione clicando aqui",
-            "support": "Servidor de suporte",
-            "twitter": "Meu Twitter",
-            "github": "Meu Github",
-            "donate2": "Doe para mim clicando aqui",
-            "privacy": "Política de privacidade"
+            "addme": "Ajoutez-moi",
+            "server": "Serveurs :heart:",
+            "server2": "Rejoignez mon serveur en cliquant ici",
+            "add": "Ajoutez-moi en cliquant ici",
+            "support": "Serveur d'assistance",
+            "twitter": "Mon Twitter",
+            "github": "Mon GitHub",
+            "donate2": "Faites-moi un don en cliquant ici",
+            "privacy": "Politique de confidentialité"
         }
     },
     "lang": {
-        "title": "Escolha seu idioma",
-        "default": "Seu idioma está definido como Português do Brasil",
-        "pt-BR": "Seu idioma foi alterado para Português do Brasil",
-        "en-US": "Your language has been changed to English",
-        "placeholder": "Idioma alterado"
+        "title": "Choisissez votre langue",
+        "default": "Votre langue a été changée en portugais brésilien",
+        "pt-BR": "Votre langue a été changée en portugais brésilien",
+        "en-US": "Votre langue a été changée en anglais",
+        "placeholder": "La langue a changé"
     },
     "anime": {
         "info": {
-            "status": "Status",
-            "score": "Pontuação",
-            "episodes": "Episódios",
-            "type": "Tipo",
-            "aired": "Foi a público em",
-            "genres": "Gêneros",
+            "status": "Statut",
+            "score": "Ponctuation",
+            "episodes": "Épisodes",
+            "type": "Taper",
+            "aired": "Est devenu public en",
+            "genres": "Genres",
             "source": "Origem",
             "studios": "Estúdios",
             "duration": "Duração",
