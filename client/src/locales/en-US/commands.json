@@ -24,7 +24,7 @@
     "lang": {
         "title": "Choose your language",
         "default": "Your default language is set to English",
-        "pt-BR": "Your language has been changed to Portuguese Brazil",
+        "pt-BR": "Sua linguagem foi alterada para Português do Brasil",
         "en-US": "Your language has been changed to English",
         "placeholder": "Language changed"
     },
@@ -80,7 +80,7 @@
         "profile": "{{user}}'s profile",
         "noAboutme": "Foxy is so cute ><! You can change this message using /aboutme command",
         "marriedWith": "💍 Married with {{user}} since {{date}} ({{relativeTime}})",
-        "premium": "{{badge}} Premium since {{date}}",
+        "premium": "{{badge}} Premium desde {{date}}",
         "testMode": "Your about me will be displayed here",
         "banned": "`{{user}} is banned! Reason: `{{reason}}` \nSince `{{date}}`"
     },
@@ -151,7 +151,7 @@
     },
     "aboutme": {
         "set": "Your about me has been changed to `{{aboutme}}`",
-        "tooLong": "The limit is 225 chars and you type {{length}} chars, plz type something smaller :3"
+        "tooLong": "O limite de caracteres é 225 e você digitou {{length}}, digita algo menor pfv :3"
     },
     "layouts": {
         "default": "Default",
@@ -159,7 +159,7 @@
         "blue": "Blue",
         "purple": "Purple",
         "cyan": "Cyan",
-        "changed": "You changed your profile layout",
+        "changed": "Você alterou o layout do seu perfil",
         "notFound": "Layout not found"
     },
     "role": {
@@ -267,16 +267,16 @@
         "platform": "Platform"
     },
     "mcskin": {
-        "title": "{{user}}'s skin"
+        "title": "Skin de {{user}}"
     },
     "mchead": {
-        "title": "{{user}}'s head"
+        "title": "Cabeça de {{user}}"
     },
     "mcbody": {
-        "title": "{{user}}'s body"
+        "title": "Corpo de {{user}}"
     },
     "error": {
-        "tooLong": "The content is too long, the limit is **{{limit}}** chars"
+        "tooLong": "O conteúdo é muito longo, o limite é de **{{limit}}** caracteres"
     },
     "rps": {
         "replies": {
@@ -372,7 +372,7 @@
     },
     "pat": {
         "button": "Pat",
-        "success": "**{{author}}** patted **{{user}}**"
+        "success": "**{{author}}** fez cafuné em **{{user}}**"
     },
     "kiss": {
         "button": "Kiss",
