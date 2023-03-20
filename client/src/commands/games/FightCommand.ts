@@ -37,10 +37,18 @@ const FightCommand = createCommand({
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>('user', 'users');
 
+        if (user.id === context.author.id) {
+            context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:fight.cantFightYourself'))
+            });
+
+            return endCommand();
+        }
+        
         context.sendReply({
             embeds: [createEmbed({
                 title: t('commands:fight.fight'),
-                description: t('commands:fight.fightDescription', { user: user.username }),
+                description: t('commands:fight.description', { user: user.username }),
             })],
             components: [createActionRow([createButton({
                 label: t('commands:fight.accept'),
