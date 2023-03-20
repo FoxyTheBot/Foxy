@@ -28,20 +28,6 @@
         "en-US": "Your language has been changed to English",
         "placeholder": "Language changed"
     },
-    "fight": {
-        "attack": "Attack",
-        "act": "Act",
-        "item": "Item",
-        "mercy": "Mercy",
-        "accept": "Accept",
-        "decline": "Decline",
-        "targetTurn": "It's {{target}}'s turn",
-        "yourTurn": "It's your turn {{target}}",
-        "declined": "Your fight request has been canceled",
-        "cantFightYourself": "You can't marry yourself",
-        "title": "Fight",
-        "description": "You will fight with **{{target}}**"
-    },
     "anime": {
         "info": {
             "status": "Status",
@@ -262,7 +248,7 @@
         "users": "Users",
         "ram": "RAM",
         "cpuUsage": "CPU Usage",
-        "node": "Node.js ",
+        "node": "Node.js",
         "arch": "Architecture",
         "platform": "Platform"
     },
@@ -332,7 +318,7 @@
         "self": "You can't transfer cakes to yourself",
         "notEnough": "You don't have enough money",
         "alert": "Do you really want send {{amount}} Cakes to {{user}}? \nFoxy Team **Not responsible** for lost Cakes, so make sure you are transferring to a trusted person! \nTrading NSFW(+18) content in exchange for Cakes is prohibited!",
-        "success": "You transferred {{amount}} cakes to {{user}}",
+        "success": "Você transferiu {{amount}} Cakes para {{user}}",
         "pay": "Transfer",
         "transfered": "Transfered"
     },
