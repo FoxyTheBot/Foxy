@@ -21,7 +21,7 @@ const FightExecutor = async (context: ComponentInteractionContext) => {
     });
 
     const embed = createEmbed({
-        description: bot.locale('commands:fight.yourTurn', { user: context.author.username }),
+        description: bot.locale('commands:fight.yourTurn', { target: context.author.username }),
         fields: [{
             name: context.author.username,
             value: `${stats.userStats.health} HP`,
