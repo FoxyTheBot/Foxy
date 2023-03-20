@@ -6,14 +6,14 @@ import { createActionRow, createButton, createCustomId } from "../../../discord/
 import updateFightScore from "../../tools/FightScore";
 
 const FightExecutor = async (context: ComponentInteractionContext) => {
-    const [targetId, targetUsername] = context.sentData;
+    const [targetId, targetUsername, firstExecution] = context.sentData;
 
     const stats = updateFightScore({
         id: context.author.id,
         username: context.author.username,
         health: 100,
         isYourTurn: true
-    },{
+    }, {
         id: BigInt(targetId),
         username: targetUsername,
         health: 100,
@@ -27,7 +27,7 @@ const FightExecutor = async (context: ComponentInteractionContext) => {
             value: `${stats.userStats.health} HP`,
             inline: true,
         },
-        {                       
+        {
             name: targetUsername,
             value: `${stats.targetStats.health} HP`,
             inline: true,
