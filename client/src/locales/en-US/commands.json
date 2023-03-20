@@ -318,7 +318,7 @@
         "self": "You can't transfer cakes to yourself",
         "notEnough": "You don't have enough money",
         "alert": "Do you really want send {{amount}} Cakes to {{user}}? \nFoxy Team **Not responsible** for lost Cakes, so make sure you are transferring to a trusted person! \nTrading NSFW(+18) content in exchange for Cakes is prohibited!",
-        "success": "Você transferiu {{amount}} Cakes para {{user}}",
+        "success": "You transfered {{amount}} cakes to {{user}}",
         "pay": "Transfer",
         "transfered": "Transfered"
     },
