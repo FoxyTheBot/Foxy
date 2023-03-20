@@ -37,7 +37,10 @@
         "decline": "Decline",
         "targetTurn": "It's {{target}}'s turn",
         "yourTurn": "It's your turn {{target}}",
-        "declined": "Your fight request has been canceled"
+        "declined": "Your fight request has been canceled",
+        "cantFightYourself": "You can't marry yourself",
+        "title": "Fight",
+        "description": "You will fight with **{{target}}**"
     },
     "anime": {
         "info": {
