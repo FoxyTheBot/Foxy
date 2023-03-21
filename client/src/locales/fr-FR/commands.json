@@ -129,41 +129,41 @@
     "roblox": {
         "aboutme": "Sur moi",
         "register": "Date d'inscription",
-        "undefined": "Não definido",
-        "noAboutme": "Não há sobre mim",
-        "noStatus": "Não há status",
-        "error": "Não foi possível encontrar esse usuário... Provavelmente a conta não existe :/",
-        "button": "Ver perfil"
+        "undefined": "Indéfini",
+        "noAboutme": "Il n'y a pas de moi",
+        "noStatus": "Il n'y a pas de statut",
+        "error": "Impossible de trouver cet utilisateur... Le compte n'existe probablement pas :/",
+        "button": "Voir le profil"
     },
     "aboutme": {
-        "set": "Seu sobre mim foi alterado para `{{aboutme}}`",
-        "tooLong": "O limite de caracteres é 225 e você digitou {{length}}, digita algo menor pfv :3"
+        "set": "Votre à propos de moi a été remplacé par `{{aboutme}}`",
+        "tooLong": "À limite de caractères est de 225 et vous avez tapé {{length}}, tapez quelque chose de plus court s'il vous plaît :3"
     },
     "layouts": {
-        "default": "Padrão",
-        "red": "Vermelho",
-        "blue": "Azul",
-        "purple": "Roxo",
-        "cyan": "Ciano",
-        "changed": "Você alterou o layout do seu perfil",
-        "notFound": "Layout não encontrado"
+        "default": "Standard",
+        "red": "Rouge",
+        "blue": "Bleu",
+        "purple": "Violet",
+        "cyan": "Cyan",
+        "changed": "Vous avez modifié la présentation de votre profil",
+        "notFound": "Mise en page introuvable"
     },
     "role": {
-        "description": "Permissões do cargo",
-        "id": "ID do cargo",
-        "color": "Cor do cargo",
-        "position": "Posição do cargo",
-        "noPermissions": "O cargo não tem permissões",
-        "roleMention": "Menção do cargo",
-        "createdAt": "Criado em"
+        "description": "Autorisations d'emploi",
+        "id": "ID de travail",
+        "color": "Couleur du travail",
+        "position": "Poste",
+        "noPermissions": "Le rôle n'a pas d'autorisations",
+        "roleMention": "Mention du poste",
+        "createdAt": "Créé en"
     },
     "server": {
-        "owner": "Dono",
-        "createdAt": "Criado em",
-        "clientJoin": "Entrei em",
-        "channels": "Canais",
-        "premium": "Impulsos",
-        "memberCount": "Membros",
+        "owner": "Propriétaire",
+        "createdAt": "Créé en",
+        "clientJoin": "Je suis entré",
+        "channels": "Chaînes",
+        "premium": "Impulsions",
+        "memberCount": "Membres",
         "afk": "Canal AFK",
         "click": "Veja o ícone no seu navegador",
         "no": "Não",
