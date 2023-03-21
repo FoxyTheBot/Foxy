@@ -8,14 +8,15 @@
   <img src="https://top.gg/api/widget/1006520438865801296.svg">
 </a>
 <div align="center">
-<a title="Crowdin" target="_blank" href="https://crowdin.com/project/foxybot"><img src="https://badges.crowdin.net/foxybot/localized.svg"></a>
-
-<img src="https://img.shields.io/badge/license-AGPL%20v3-blue.svg">
 
  <a href="https://crowdin.com/project/foxybot">
     <img src="https://img.shields.io/badge/Powered_by_Crowdin-gray.svg?logo=crowdin&style=for-the-badge" />
   </a>
   
+<a title="Crowdin" target="_blank" href="https://crowdin.com/project/foxybot"><img src="https://badges.crowdin.net/foxybot/localized.svg"></a>
+
+<img src="https://img.shields.io/badge/license-AGPL%20v3-blue.svg">
+
 </div>
 </p>
  <br>
