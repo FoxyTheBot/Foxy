@@ -137,7 +137,7 @@
     },
     "aboutme": {
         "set": "Votre à propos de moi a été remplacé par `{{aboutme}}`",
-        "tooLong": "À limite de caractères est de 225 et vous avez tapé {{length}}, tapez quelque chose de plus court s'il vous plaît :3"
+        "tooLong": "À limite de caractères est de 225 et vous avez tapé {{length}}, tapez quelque chose de plus court s'il vous plaît"
     },
     "layouts": {
         "default": "Standard",
