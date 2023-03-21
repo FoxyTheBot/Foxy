@@ -1,0 +1,60 @@
+{
+    "languages": [
+        {
+            "name": "English",
+            "nameLocalizations": {
+                "pt-BR": "Inglês"
+            },
+            "code": "en-US",
+            "done": true
+        },
+        {
+            "name": "Brazilian Portuguese",
+            "nameLocalizations": {
+                "pt-BR": "Português Brasileiro"
+            },
+            "code": "pt-BR",
+            "done": true
+        },
+        {
+            "name": "Spanish",
+            "nameLocalizations": {
+                "pt-BR": "Espanhol"
+            },
+            "code": "es-ES",
+            "done": false
+        },
+        {
+            "name": "German",
+            "nameLocalizations": {
+                "pt-BR": "Alemão"
+            },
+            "code": "de-DE",
+            "done": false
+        },
+        {
+            "name": "Japanese",
+            "nameLocalizations": {
+                "pt-BR": "Japonês"
+            },
+            "code": "ja-JP",
+            "done": false
+        },
+        {
+            "name": "Italian",
+            "nameLocalizations": {
+                "pt-BR": "Italiano"
+            },
+            "code": "it-IT",
+            "done": false
+        },
+        {
+            "name": "Chinese Traditional",
+            "nameLocalizations": {
+                "pt-BR": "Chinês Tradicional"
+            },
+            "code": "zh-TW",
+            "done": false
+        }
+    ]
+}
