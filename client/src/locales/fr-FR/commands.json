@@ -26,6 +26,12 @@
         "default": "Votre langue a été changée en portugais brésilien",
         "pt-BR": "Votre langue a été changée en portugais brésilien",
         "en-US": "Votre langue a été changée en anglais",
+        "es-ES": "Su idioma ha cambiado a Español",
+        "fr-FR": "Votre langue a été modifiée en Français",
+        "ja-JP": "言語が日本語に変更されました",
+        "de-DE": "Deine Sprache wurde auf Deutsch geändert",
+        "it-IT": "La tua lingua è stata cambiata in Italiano",
+        "zh-TW": "您的語言已更改為中文",
         "placeholder": "La langue a changé"
     },
     "anime": {
