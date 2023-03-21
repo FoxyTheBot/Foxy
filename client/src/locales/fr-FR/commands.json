@@ -273,9 +273,9 @@
         "tie": "C'est un match nul, c'est reparti ! >:D",
         "start": "Pour jouer, cliquez sur l'un des boutons ci-dessous",
         "invalidChoice": "Choix invalide, choisissez {{choice}}",
-        "clientWon": "Ça a donné {{result}}, j'ai gagné >:3",
+        "clientWon": "Ça a donné {{result}}, j'ai gagné",
         "won3": "Vous avez gagné :3",
-        "won2": "Vous avez gagné >:3",
+        "won2": "Vous avez gagné",
         "won": "Vous avez gagné :D",
         "button": {
             "rock": "Calcul",
@@ -289,7 +289,7 @@
     "fate": {
         "couple": "couple",
         "enemy": "ennemis",
-        "lover": "Les amoureux",
+        "lover": "amoureux",
         "sibling": "frères",
         "parent": "Père et fils",
         "married": "marié",
@@ -317,7 +317,7 @@
     "pay": {
         "self": "Vous ne pouvez pas vous envoyer de cakes",
         "notEnough": "Vous n'avez pas assez de cakes",
-        "alert": "Voulez-vous vraiment transférer {{amount}} Cakes vers {{user}} ?\nL'équipe Foxy n'est **pas responsable** des cakes perdus, alors assurez-vous de les transférer à quelqu'un en qui vous pouvez avoir confiance !\nIl est interdit d'échanger du contenu NSFW (+18) en échange de cakes !",
+        "alert": "Voulez-vous vraiment transférer {{amount}} Cakes vers {{user}} ?\nL'équipe Foxy n'est **pas responsable** des cakes perdus, alors, assurez-vous de les transférer à quelqu'un en qui vous pouvez avoir confiance !\nIl est interdit d'échanger du contenu NSFW (+18) en échange de cakes !",
         "success": "Vous avez transféré {{amount}} Cakes à {{user}}",
         "pay": "Transfert",
         "transfered": "Transféré"
@@ -329,7 +329,7 @@
     },
     "background": {
         "buy": {
-            "title": "Fond boutique :3",
+            "title": "Magasin de fond :3",
             "invalid": "Code invalide",
             "alreadyOwned": "Vous avez déjà cet arrière-plan",
             "onlyDevs": "Seuls les développeurs peuvent acheter des arrière-plans",
@@ -370,8 +370,8 @@
         "success": "**{{author}}** a fait un câlin à **{{user}}**"
     },
     "bite": {
-        "self": "Tu t'es mordu mais tu as mordu trop fort et maintenant tu es blessé, tu ne savais pas que tu es un loup aux dents pointues :/",
-        "client": "Tu as essayé de mordre un renard mais il t'a mordu le visage trop fort et tu t'es blessé !",
+        "self": "Tu t'es mordu, mais tu as mordu trop fort et maintenant, tu es blessé, tu ne savais pas que tu es un loup aux dents pointues :/",
+        "client": "Tu as essayé de mordre un renard, mais il t'a mordu le visage trop fort et tu t'es blessé !",
         "success": "**{{user}}** bit **{{target}}**",
         "button": "De donner en retour"
     },
@@ -393,7 +393,7 @@
         "lose": "Donné {{choice}} ! {{user}} A gagné {{amount}} Cakes ! Financé par {{author}}",
         "deny": "Nier",
         "denied": "Pari refusé",
-        "bot": "Pour l'instant je n'accepte pas les paris, je suis fauché <:foxy_cry:1071151976504627290>",
+        "bot": "Pour l'instant, je n'accepte pas les paris, je suis fauché <:foxy_cry:1071151976504627290>",
         "betWithClient": {
             "lose": "Cela a donné {{result}} ! J'ai gagné {{amount}} Cakes ! >:3",
             "win": "Cela a donné {{result}} ! Félicitations, vous avez gagné {{amount}} Cakes ! :3"
