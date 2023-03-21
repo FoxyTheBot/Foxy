@@ -66,7 +66,7 @@
         "profile": "{{user}}'s profile",
         "noAboutme": "Foxy is so cute ><! You can change this message using /aboutme command",
         "marriedWith": "💍 Married with {{user}} since {{date}} ({{relativeTime}})",
-        "premium": "{{badge}} Premium desde {{date}}",
+        "premium": "{{badge}} Premium since {{date}}",
         "testMode": "Your about me will be displayed here",
         "banned": "`{{user}} is banned! Reason: `{{reason}}` \nSince `{{date}}`"
     },
@@ -137,7 +137,7 @@
     },
     "aboutme": {
         "set": "Your about me has been changed to `{{aboutme}}`",
-        "tooLong": "O limite de caracteres é 225 e você digitou {{length}}, digita algo menor pfv :3"
+        "tooLong": "The limit is 225 chars, and you type {{length}} chars, plz type something smaller :3"
     },
     "layouts": {
         "default": "Default",
@@ -145,7 +145,7 @@
         "blue": "Blue",
         "purple": "Purple",
         "cyan": "Cyan",
-        "changed": "Você alterou o layout do seu perfil",
+        "changed": "You changed your profile layout",
         "notFound": "Layout not found"
     },
     "role": {
@@ -248,21 +248,21 @@
         "users": "Users",
         "ram": "RAM",
         "cpuUsage": "CPU Usage",
-        "node": "Node.js",
+        "node": "Node.js ",
         "arch": "Architecture",
         "platform": "Platform"
     },
     "mcskin": {
-        "title": "Skin de {{user}}"
+        "title": "{{user}}'s skin"
     },
     "mchead": {
-        "title": "Cabeça de {{user}}"
+        "title": "{{user}}'s head"
     },
     "mcbody": {
-        "title": "Corpo de {{user}}"
+        "title": "{{user}}'s body"
     },
     "error": {
-        "tooLong": "O conteúdo é muito longo, o limite é de **{{limit}}** caracteres"
+        "tooLong": "The content is too long, the limit is **{{limit}}** chars"
     },
     "rps": {
         "replies": {
@@ -358,7 +358,7 @@
     },
     "pat": {
         "button": "Pat",
-        "success": "**{{author}}** fez cafuné em **{{user}}**"
+        "success": "\"**{{author}}** patted **{{user}}**"
     },
     "kiss": {
         "button": "Kiss",

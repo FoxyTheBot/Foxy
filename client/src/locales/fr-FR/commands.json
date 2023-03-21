@@ -1,169 +1,169 @@
 {
     "foxyGlobal": {
-        "noPermission": "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {{user}}"
+        "noPermission": "Que fais-tu ? Tu ne peux pas faire ça. Tu n'es pas {{user}}"
     },
     "roll": {
-        "result": "Você rolou **{{amount}}d{{sides}}** e o resultado foi **{{result}}**",
-        "button": "Rolar novamente"
+        "result": "Vous avez obtenu **{{amount}} sur {{sides}}** et le résultat était **{{result}}",
+        "button": "Faire défiler à nouveau"
     },
     "botinfo": {
         "title": ":fox: Foxy",
-        "description": "Olá, eu sou a {{client.user.username}}! Eu sou um simples bot brasileiro de economia e entretenimento para o seu servidor! Estou espalhando alegria em {{guilds}} servidores :heart:",
+        "description": "Bonjour, Je suis un {{client.user.username}}! Je suis un simple bot brésilien d'économie et de divertissement pour votre serveur ! Je répands la joie sur {{guilds}} serveurs :heart:",
         "fields": {
-            "addme": "Me adicione",
-            "server": "Servidores :heart:",
-            "server2": "Entre no meu servidor clicando aqui",
-            "add": "Me adicione clicando aqui",
-            "support": "Servidor de suporte",
-            "twitter": "Meu Twitter",
-            "github": "Meu Github",
-            "donate2": "Doe para mim clicando aqui",
-            "privacy": "Política de privacidade"
+            "addme": "Ajoutez-moi",
+            "server": "Serveurs :heart:",
+            "server2": "Rejoignez mon serveur en cliquant ici",
+            "add": "Ajoutez-moi en cliquant ici",
+            "support": "Serveur d'assistance",
+            "twitter": "Mon Twitter",
+            "github": "Mon GitHub",
+            "donate2": "Faites-moi un don en cliquant ici",
+            "privacy": "Politique de confidentialité"
         }
     },
     "lang": {
-        "title": "Escolha seu idioma",
-        "default": "Seu idioma está definido como Português do Brasil",
-        "pt-BR": "Seu idioma foi alterado para Português do Brasil",
-        "en-US": "Your language has been changed to English",
-        "placeholder": "Idioma alterado"
+        "title": "Choisissez votre langue",
+        "default": "Votre langue a été changée en portugais brésilien",
+        "pt-BR": "Votre langue a été changée en portugais brésilien",
+        "en-US": "Votre langue a été changée en anglais",
+        "placeholder": "La langue a changé"
     },
     "anime": {
         "info": {
-            "status": "Status",
-            "score": "Pontuação",
-            "episodes": "Episódios",
-            "type": "Tipo",
-            "aired": "Foi a público em",
-            "genres": "Gêneros",
-            "source": "Origem",
-            "studios": "Estúdios",
-            "duration": "Duração",
-            "rating": "Classificação",
-            "scoreStats": "Status da pontuação",
-            "popularity": "Popularidade",
-            "premiered": "Estreou em",
-            "broadcast": "Transmissão"
+            "status": "Statut",
+            "score": "Ponctuation",
+            "episodes": "Épisodes",
+            "type": "Taper",
+            "aired": "Est devenu public en",
+            "genres": "Genres",
+            "source": "Origine",
+            "studios": "Studios",
+            "duration": "Durée",
+            "rating": "Classification",
+            "scoreStats": "État de la note",
+            "popularity": "Popularité",
+            "premiered": "A fait ses débuts en",
+            "broadcast": "Streaming"
         },
-        "notFound": "Anime não encontrado",
-        "click": "Clique aqui",
-        "nothing": "Nada encontrado"
+        "notFound": "Animé introuvable",
+        "click": "Cliquez ici",
+        "nothing": "Rien n'a été trouvé"
     },
     "coinflip": {
-        "heads": "cara",
-        "tails": "coroa",
-        "flipped": "Você jogou uma moeda e o resultado foi"
+        "heads": "affronter",
+        "tails": "couronne",
+        "flipped": "Vous avez lancé une pièce et le résultat a été"
     },
     "upvote": {
-        "description": "Me ajude a crescer e me ajude a ser um bot melhor votando em mim no <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nCada voto ajuda a me divulgar para outras pessoas na Discord Bot List <:catblush:768292358458179595>\n\n Que tal você se juntar a todas as outras pessoas que votaram e que me ajudaram a crescer [clicando aqui](https://top.gg/bot/1006520438865801296/vote)? :heart:",
+        "description": "Aidez-moi à grandir et à devenir un meilleur bot en votant pour moi sur la <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nChaque vote m'aide à me promouvoir auprès des autres sur la liste des bots Discord <:catblush:768292358458179595>\nEt si vous rejoigniez toutes les autres personnes qui ont voté et m'ont aidé à grandir [en cliquant ici](https://top.gg/bot/1006520438865801296/vote)? :heart:",
         "top": {
-            "title": "Top votantes da Foxy na Top.gg",
-            "votes": "Votos",
-            "ownerVotes": "Meu desenvolvedor possui {{votes}} votos"
+            "title": "Top Foxy électeurs sur Top.gg",
+            "votes": "Vœux",
+            "ownerVotes": "Mon développeur a {{votes}} votes"
         }
     },
     "profile": {
-        "profile": "Perfil de {{user}}",
-        "noAboutme": "Foxy é minha amiga você pode alterar isso usando /aboutme",
-        "marriedWith": "💍 Casado com {{user}} desde {{date}} ({{relativeTime}})",
-        "premium": "{{badge}} Premium desde {{date}}",
-        "testMode": "Seu sobre mim será exibido assim!",
-        "banned": "`{{user}} está banido por `{{reason}}` \nDesde `{{date}}`"
+        "profile": "Profil de {{user}}",
+        "noAboutme": "Foxy est mon ami, vous pouvez changer cela en utilisant /aboutme",
+        "marriedWith": "💍 Marié à {{user}} depuis {{date}} ({{relativeTime}})",
+        "premium": "{{badge}} Prime de {{date}}",
+        "testMode": "Votre à propos de moi sera affiché comme ça !",
+        "banned": "`{{user}} est banni pour `{{reason}}`\nDepuis le `{{date}}`"
     },
     "masks": {
-        "ears": "Orelhas de gato",
-        "horns": "Chifrinhos",
-        "halo": "Aréola",
-        "cowboy": "Chapéu de vaqueiro",
-        "topper": "Cartola",
-        "purchase": "Comprar",
-        "preview": "Pré-visualização",
-        "noMasks": "Você não possui nenhuma máscara",
-        "selectMask": "Selecione uma máscara",
+        "ears": "Oreilles de chat",
+        "horns": "Petites cornes",
+        "halo": "Aréole",
+        "cowboy": "Chapeau de cowboy",
+        "topper": "Sur matelas",
+        "purchase": "Achat",
+        "preview": "Aperçu",
+        "noMasks": "Vous n'avez pas de masque",
+        "selectMask": "Sélectionner un masque",
         "buy": {
-            "success": "Você comprou a máscara para seu avatar!",
-            "noMoney": "Você não tem Cakes o suficiente para adquirir esta máscara",
-            "preview": "Pré-visualização",
-            "purchase": "Comprar"
+            "success": "Vous avez acheté le masque pour votre avatar !",
+            "noMoney": "Vous n'avez pas assez de Cakes pour acheter ce masque",
+            "preview": "Aperçu",
+            "purchase": "Achat"
         },
         "set": {
-            "success": "Máscara alterada com sucesso :3",
-            "changed": "Máscara alterada :3",
-            "notOwned": "Você não possui essa máscara",
-            "invalid": "Código inválido"
+            "success": "Masque changé avec succès :3",
+            "changed": "Masque changé :3",
+            "notOwned": "Vous ne possédez pas ce masque",
+            "invalid": "Code invalide"
         },
-        "alreadyOwned": "Você já possui essa máscara"
+        "alreadyOwned": "Vous possédez déjà ce masque"
     },
     "kick": {
-        "self": "Deixa outra pessoa fazer isso para você, é mais fácil",
-        "client": "Foxy se agacha e você passa direto e da de cara com uma parede *",
-        "success": "**{{user}}** meteu uma voadora em **{{target}}**"
+        "self": "Laisse quelqu'un d'autre le faire pour toi, c'est plus facile",
+        "client": "Foxy s'accroupit et tu traverses tout droit et tu te heurtes à un mur *",
+        "success": "**{{user}}** kick **{{target}}**"
     },
     "help": {
         "commands": {
-            "title": "Lista de comandos",
+            "title": "Liste et commandes",
             "category": {
-                "economy": "Economia",
+                "economy": "Économie",
                 "social": "Social",
-                "fun": "Entretenimento",
-                "image": "Imagens",
-                "misc": "Outros",
-                "utils": "Utilitários",
-                "rp": "Roleplay"
+                "fun": "Divertissement",
+                "image": "Images",
+                "misc": "Autres",
+                "utils": "Utilitaires",
+                "rp": "Jeu de rôle"
             }
         },
         "bot": {
-            "title": "Oie, eu sou a Foxy",
-            "description": "Olá {{user}}, eu sou a Foxy, tenho recursos para entreter e envolver seus membros, comandos de economia, modificação de imagem e muito mais! :3",
+            "title": "Salut, je suis Foxy",
+            "description": "Bonjour {{user}}, je suis Foxy, j'ai des ressources pour divertir et engager vos membres, enregistrer des commandes, modifier des images et bien plus encore ! :3",
             "fields": {
                 "list": {
-                    "title": "<:foxysunglasses:890688144280784926> Para ver a lista de comandos use",
-                    "value": "`/help`"
+                    "title": "<:foxysunglasses:890688144280784926> Pour voir la liste des commandes, utilisez",
+                    "value": "`/aider`"
                 },
-                "guild": "Serivdor de suporte",
-                "privacy": "Política de privacidade",
-                "website": "Meu website onde você pode acessar a dashboard"
+                "guild": "Serveur d'assistance",
+                "privacy": "Politique de confidentialité",
+                "website": "Mon site Web où vous pouvez accéder au tableau de bord"
             }
         }
     },
     "roblox": {
-        "aboutme": "Sobre mim",
-        "register": "Data de registro",
-        "undefined": "Não definido",
-        "noAboutme": "Não há sobre mim",
-        "noStatus": "Não há status",
-        "error": "Não foi possível encontrar esse usuário... Provavelmente a conta não existe :/",
-        "button": "Ver perfil"
+        "aboutme": "Sur moi",
+        "register": "Date d'inscription",
+        "undefined": "Indéfini",
+        "noAboutme": "Il n'y a pas de moi",
+        "noStatus": "Il n'y a pas de statut",
+        "error": "Impossible de trouver cet utilisateur... Le compte n'existe probablement pas :/",
+        "button": "Voir le profil"
     },
     "aboutme": {
-        "set": "Seu sobre mim foi alterado para `{{aboutme}}`",
-        "tooLong": "O limite de caracteres é 225 e você digitou {{length}}, digita algo menor pfv :3"
+        "set": "Votre à propos de moi a été remplacé par `{{aboutme}}`",
+        "tooLong": "À limite de caractères est de 225 et vous avez tapé {{length}}, tapez quelque chose de plus court s'il vous plaît :3"
     },
     "layouts": {
-        "default": "Padrão",
-        "red": "Vermelho",
-        "blue": "Azul",
-        "purple": "Roxo",
-        "cyan": "Ciano",
-        "changed": "Você alterou o layout do seu perfil",
-        "notFound": "Layout não encontrado"
+        "default": "Standard",
+        "red": "Rouge",
+        "blue": "Bleu",
+        "purple": "Violet",
+        "cyan": "Cyan",
+        "changed": "Vous avez modifié la présentation de votre profil",
+        "notFound": "Mise en page introuvable"
     },
     "role": {
-        "description": "Permissões do cargo",
-        "id": "ID do cargo",
-        "color": "Cor do cargo",
-        "position": "Posição do cargo",
-        "noPermissions": "O cargo não tem permissões",
-        "roleMention": "Menção do cargo",
-        "createdAt": "Criado em"
+        "description": "Autorisations d'emploi",
+        "id": "ID de travail",
+        "color": "Couleur du travail",
+        "position": "Poste",
+        "noPermissions": "Le rôle n'a pas d'autorisations",
+        "roleMention": "Mention du poste",
+        "createdAt": "Créé en"
     },
     "server": {
-        "owner": "Dono",
-        "createdAt": "Criado em",
-        "clientJoin": "Entrei em",
-        "channels": "Canais",
-        "premium": "Impulsos",
-        "memberCount": "Membros",
+        "owner": "Propriétaire",
+        "createdAt": "Créé en",
+        "clientJoin": "Je suis entré",
+        "channels": "Chaînes",
+        "premium": "Impulsions",
+        "memberCount": "Membres",
         "afk": "Canal AFK",
         "click": "Veja o ícone no seu navegador",
         "no": "Não",

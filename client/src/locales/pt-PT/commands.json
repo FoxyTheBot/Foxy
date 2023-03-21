@@ -1,28 +1,28 @@
 {
     "foxyGlobal": {
-        "noPermission": "¿Qué estás haciendo? ¡Tú no puedes hacer eso! No eres {{user}}"
+        "noPermission": "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {{user}}"
     },
     "roll": {
-        "result": "Tiraste **{{amount}}d{{sides}}** y el resultado fue **{{result}}**",
-        "button": "Desplazarse de nuevo"
+        "result": "Você rolou **{{amount}}d{{sides}}** e o resultado foi **{{result}}**",
+        "button": "Rolar novamente"
     },
     "botinfo": {
         "title": ":fox: Foxy",
-        "description": "¡Hola, soy {{client.user.username}}! ¡Soy un simple bot brasileño de economía y entretenimiento para su servidor! Estoy repartiendo alegría en {{guilds}} servidores :heart:",
+        "description": "Olá, eu sou a {{client.user.username}}! Eu sou um simples bot brasileiro de economia e entretenimento para o seu servidor! Estou espalhando alegria em {{guilds}} servidores :heart:",
         "fields": {
-            "addme": "Agrégame",
+            "addme": "Me adicione",
             "server": "Servidores :heart:",
-            "server2": "Únase a mi servidor haciendo clic aquí",
-            "add": "Agrégame haciendo clic aquí",
-            "support": "Servidor de soporte",
-            "twitter": "Mi Twitter",
-            "github": "Mi GitHub",
-            "donate2": "Hazme una donación haciendo clic aquí",
-            "privacy": "Política de privacidad"
+            "server2": "Entre no meu servidor clicando aqui",
+            "add": "Me adicione clicando aqui",
+            "support": "Servidor de suporte",
+            "twitter": "Meu Twitter",
+            "github": "Meu Github",
+            "donate2": "Doe para mim clicando aqui",
+            "privacy": "Política de privacidade"
         }
     },
     "lang": {
-        "title": "Seleccione su idioma",
+        "title": "Escolha seu idioma",
         "default": "Seu idioma está definido como Português do Brasil",
         "pt-BR": "Seu idioma foi alterado para Português do Brasil",
         "en-US": "Your language has been changed to English",
