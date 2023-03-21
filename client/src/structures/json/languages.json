@@ -5,7 +5,7 @@
             "nameLocalizations": {
                 "pt-BR": "Inglês"
             },
-            "code": "en-US",
+            "value": "en-US",
             "done": true
         },
         {
@@ -13,48 +13,56 @@
             "nameLocalizations": {
                 "pt-BR": "Português Brasileiro"
             },
-            "code": "pt-BR",
+            "value": "pt-BR",
             "done": true
         },
         {
-            "name": "Spanish",
+            "name": "French",
             "nameLocalizations": {
-                "pt-BR": "Espanhol"
+                "pt-BR": "Francês"
             },
-            "code": "es-ES",
-            "done": false
-        },
-        {
-            "name": "German",
-            "nameLocalizations": {
-                "pt-BR": "Alemão"
-            },
-            "code": "de-DE",
-            "done": false
-        },
-        {
-            "name": "Japanese",
-            "nameLocalizations": {
-                "pt-BR": "Japonês"
-            },
-            "code": "ja-JP",
-            "done": false
-        },
-        {
-            "name": "Italian",
-            "nameLocalizations": {
-                "pt-BR": "Italiano"
-            },
-            "code": "it-IT",
-            "done": false
-        },
-        {
-            "name": "Chinese Traditional",
-            "nameLocalizations": {
-                "pt-BR": "Chinês Tradicional"
-            },
-            "code": "zh-TW",
-            "done": false
+            "value": "fr-FR",
+            "done": true
         }
+        // {
+        //     "name": "Spanish",
+        //     "nameLocalizations": {
+        //         "pt-BR": "Espanhol"
+        //     },
+        //     "value": "es-ES",
+        //     "done": false
+        // },
+        // {
+        //     "name": "German",
+        //     "nameLocalizations": {
+        //         "pt-BR": "Alemão"
+        //     },
+        //     "value": "de-DE",
+        //     "done": false
+        // },
+        // {
+        //     "name": "Japanese",
+        //     "nameLocalizations": {
+        //         "pt-BR": "Japonês"
+        //     },
+        //     "value": "ja-JP",
+        //     "done": false
+        // },
+        // {
+        //     "name": "Italian",
+        //     "nameLocalizations": {
+        //         "pt-BR": "Italiano"
+        //     },
+        //     "value": "it-IT",
+        //     "done": false
+        // },
+        // {
+        //     "name": "Chinese Traditional",
+        //     "nameLocalizations": {
+        //         "pt-BR": "Chinês Tradicional"
+        //     },
+        //     "value": "zh-TW",
+        //     "done": false
+        // }
     ]
 }

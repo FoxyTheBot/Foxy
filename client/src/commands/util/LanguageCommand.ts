@@ -2,6 +2,9 @@ import { createCommand } from "../../structures/commands/createCommand";
 import { MessageFlags } from "../../utils/discord/Message";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { bot } from "../..";
+import { languages } from '../../structures/json/languages.json';
+
+const avaliableLanguages = languages.map(language => Object({ name: language.name, nameLocalizations: language.nameLocalizations, value: language.value }));
 
 const LanguageCommand = createCommand({
     name: 'language',
@@ -25,22 +28,7 @@ const LanguageCommand = createCommand({
             },
             required: true,
             type: ApplicationCommandOptionTypes.String,
-            choices: [
-                {
-                    name: "Português do Brasil",
-                    nameLocalizations: {
-                        "en-US": "Portuguese (Brazil)"
-                    },
-                    value: "pt-BR"
-                },
-                {
-                    name: "English",
-                    nameLocalizations: {
-                        "pt-BR": "Inglês"
-                    },
-                    value: "en-US"
-                }
-            ],
+            choices: avaliableLanguages
         },
     ],
     execute: async (context, endCommand, t) => {
