@@ -273,125 +273,125 @@
         "tie": "C'est un match nul, c'est reparti ! >:D",
         "start": "Pour jouer, cliquez sur l'un des boutons ci-dessous",
         "invalidChoice": "Choix invalide, choisissez {{choice}}",
-        "clientWon": "Deu {{result}}, eu ganhei >:3",
-        "won3": "Você ganhou :3",
-        "won2": "Você ganhou >:3",
-        "won": "Você ganhou :D",
+        "clientWon": "Ça a donné {{result}}, j'ai gagné >:3",
+        "won3": "Vous avez gagné :3",
+        "won2": "Vous avez gagné >:3",
+        "won": "Vous avez gagné :D",
         "button": {
-            "rock": "Pedra",
-            "paper": "Papel",
-            "scissors": "Tesoura",
-            "cancel": "Cancelar"
+            "rock": "Calcul",
+            "paper": "Papier",
+            "scissors": "Ciseaux",
+            "cancel": "Annuler"
         },
-        "cancelled": "{{emoji}} Jogo foi cancelado, para jogar execute o comando novamente",
-        "defaultValue": "O jogo ainda não foi iniciado"
+        "cancelled": "{{emoji}} Le jeu a été annulé, pour jouer, exécutez à nouveau la commande",
+        "defaultValue": "Le jeu n'a pas encore commencé"
     },
     "fate": {
-        "couple": "casal",
-        "enemy": "inimigos",
-        "lover": "amantes",
-        "sibling": "irmãos",
-        "parent": "Pai e filho",
-        "married": "casados",
-        "friend": "Amigos",
-        "result": "Em um universo paralelo <@{{user}}> e <@{{mention}}> são {{fate}}"
+        "couple": "couple",
+        "enemy": "ennemis",
+        "lover": "Les amoureux",
+        "sibling": "frères",
+        "parent": "Père et fils",
+        "married": "marié",
+        "friend": "Amis",
+        "result": "Dans un univers parallèle <@{{user}}> et <@{{mention}}> sont {{fate}}"
     },
     "cancel": {
-        "result": "{{user}} cancelou {{mention}} por `{{reason}}`"
+        "result": "{{user}} A annulé {{mention}} pour `{{reason}}`"
     },
     "8ball": {
-        "yes": "Sim",
-        "no": "Não",
-        "maybe": "Talvez",
-        "idk": "Não sei",
-        "idk2": "Não sei :/",
-        "probably": "Provavelmente",
-        "probablyyes": "Provavelmente sim",
-        "probablyno": "Provavelmente não"
+        "yes": "Oui",
+        "no": "Non",
+        "maybe": "Peut-être",
+        "idk": "Je ne sais pas",
+        "idk2": "Je ne sais pas :/",
+        "probably": "Probablement",
+        "probablyyes": "Probablement oui",
+        "probablyno": "Probablement pas"
     },
     "rank": {
-        "wrongPage": "Esta página não existe",
-        "youAreIn": "Você está na posição",
-        "position": "Posição"
+        "wrongPage": "Cette page n'existe pas",
+        "youAreIn": "Tu es en poste",
+        "position": "Position"
     },
     "pay": {
-        "self": "Você não pode enviar cakes para você mesmo",
-        "notEnough": "Você não tem Cakes suficiente",
-        "alert": "Você deseja mesmo transferir {{amount}} Cakes para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!",
-        "success": "Você transferiu {{amount}} Cakes para {{user}}",
-        "pay": "Transferir",
-        "transfered": "Transferido"
+        "self": "Vous ne pouvez pas vous envoyer de cakes",
+        "notEnough": "Vous n'avez pas assez de cakes",
+        "alert": "Voulez-vous vraiment transférer {{amount}} Cakes vers {{user}} ?\nL'équipe Foxy n'est **pas responsable** des cakes perdus, alors assurez-vous de les transférer à quelqu'un en qui vous pouvez avoir confiance !\nIl est interdit d'échanger du contenu NSFW (+18) en échange de cakes !",
+        "success": "Vous avez transféré {{amount}} Cakes à {{user}}",
+        "pay": "Transfert",
+        "transfered": "Transféré"
     },
     "daily": {
-        "cooldown": "Você já pegou suas Cakes hoje, espere **{{time}}**",
-        "daily": "Você ganhou **{{amount}} Cakes** agora você possui {{money}} Cakes\n",
-        "dailyAlert": "**Não se esqueça:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!"
+        "cooldown": "Vous avez déjà vos Cakes aujourd'hui, attendez **{{time}}**",
+        "daily": "Vous avez gagné **{{amount}} Cakes** maintenant vous avez {{money}} Cakes\n",
+        "dailyAlert": "**N'oubliez pas :** Vous ne pouvez pas échanger des cakes contre de l'argent, Nitro, du contenu NSFW, etc. ! Si vous le faites, vous serez interdit d'utiliser Foxy de façon permanente !"
     },
     "background": {
         "buy": {
-            "title": "Lojinha de background :3",
-            "invalid": "Código inválido",
-            "alreadyOwned": "Você já possui esse background",
-            "onlyDevs": "Somente os desenvolvedores podem comprar backgrounds",
-            "purchase": "Comprar",
-            "price": "Preço",
-            "preview": "Pré-visualização do background",
-            "noMoney": "Você não tem Cakes suficiente",
-            "success": "Você comprou o background! O Background já foi definido automaticamente no seu perfil! ;3"
+            "title": "Fond boutique :3",
+            "invalid": "Code invalide",
+            "alreadyOwned": "Vous avez déjà cet arrière-plan",
+            "onlyDevs": "Seuls les développeurs peuvent acheter des arrière-plans",
+            "purchase": "Achat",
+            "price": "Prix",
+            "preview": "Aperçu en arrière-plan",
+            "noMoney": "Vous n'avez pas assez de cakes",
+            "success": "Vous avez acheté le fond ! Et l'arrière-plan a déjà été défini automatiquement dans votre profil ! ;3"
         },
         "set": {
-            "title": "Escolha seu background",
-            "notOwned": "Você não possui esse background",
-            "success": "Background alterado :3",
-            "description": "Seus backgrounds são: {{bgList}}"
+            "title": "Choisissez votre arrière-plan",
+            "notOwned": "Vous n'avez pas cet arrière-plan",
+            "success": "Fond changé :3",
+            "description": "Vos arrière-plans sont : {{bgList}}"
         }
     },
     "atm": {
-        "success": "**{{user}}** possui {{balance}} Cakes"
+        "success": "**{{user}}** possède {{balance}} Cakes"
     },
     "step": {
-        "success": "Você pisou em {{user}}"
+        "success": "Vous avez marché sur {{user}}"
     },
     "slap": {
-        "button": "Retribuir",
-        "success": "**{{author}}** deu um tabefe em **{{user}}**"
+        "button": "De donner en retour",
+        "success": "**{{author}}** giflé **{{user}}**"
     },
     "pat": {
-        "button": "Retribuir",
-        "success": "**{{author}}** fez cafuné em **{{user}}**"
+        "button": "De donner en retour",
+        "success": "**{{author}}** caressé **{{user}}**"
     },
     "kiss": {
-        "button": "Retribuir",
-        "success": "**{{author}}** deu um beijo em **{{user}}**",
-        "self": "Eu não quero te beijar, oxi? Somos apenas amigos!"
+        "button": "De donner en retour",
+        "success": "**{{author}}** embrassé **{{user}}**",
+        "self": "Je ne veux pas t'embrasser ! Nous sommes juste amis !"
     },
     "hug": {
-        "button": "Retribuir",
-        "success": "**{{author}}** deu um abraço em **{{user}}**"
+        "button": "De donner en retour",
+        "success": "**{{author}}** a fait un câlin à **{{user}}**"
     },
     "bite": {
-        "self": "Você se mordeu porem mordeu forte demais e agora está machucado, mal sabia você que você é um lobo com dentes afiados :/",
-        "client": "Você tentou morder uma raposa porém ela mordeu seu rosto com muita força e você se machucou!",
-        "success": "**{{user}}** mordeu **{{target}}**",
-        "button": "Retribuir"
+        "self": "Tu t'es mordu mais tu as mordu trop fort et maintenant tu es blessé, tu ne savais pas que tu es un loup aux dents pointues :/",
+        "client": "Tu as essayé de mordre un renard mais il t'a mordu le visage trop fort et tu t'es blessé !",
+        "success": "**{{user}}** bit **{{target}}**",
+        "button": "De donner en retour"
     },
     "attack": {
-        "attack": "**{{user}}** atacou **{{target}}**",
-        "button": "Atacar"
+        "attack": "**{{user}}** attaqué**{{target}}**",
+        "button": "Attaque"
     },
     "bet": {
-        "self": "Você não pode apostar consigo mesmo!",
-        "not-enough": "Você não tem Cakes suficientes",
-        "not-enough-mention": "{{user}} não tem Cakes suficientes",
-        "placeholder": "Selecione uma opção",
-        "heads": "cara",
-        "tails": "coroa",
-        "accept": "Aceitar",
-        "choose": "Escolha uma opção para apostar",
-        "ask": "**{{user}}**, **{{author}}** quer fazer uma aposta de {{amount}} Cakes",
-        "win": "Deu {{choice}}! {{author}} ganhou {{amount}} Cakes! Financiado por {{user}}",
-        "lose": "Deu {{choice}}! {{user}} ganhou {{amount}} Cakes! Financiado por {{author}}",
-        "deny": "Negar",
+        "self": "Vous ne pouvez pas parier avec vous-même !",
+        "not-enough": "Vous n'avez pas assez de Cakes",
+        "not-enough-mention": "{{user}} n'aie pas assez de Cakes",
+        "placeholder": "Choisir une option",
+        "heads": "affronter",
+        "tails": "couronne",
+        "accept": "Accepter",
+        "choose": "Choisissez une option pour parier",
+        "ask": "**{{user}}**, **{{author}}** veut placer un pari de {{amount}} Cakes",
+        "win": "Donné {{choice}} ! {{author}} A gagné {{amount}} Cakes ! Financé par {{user}}",
+        "lose": "Donné {{choice}} ! {{user}} A gagné {{amount}} Cakes ! Financé par {{author}}",
+        "deny": "Nier",
         "denied": "Aposta negada",
         "bot": "Por enquanto não estou aceitando apostas, estou falida <:foxy_cry:1071151976504627290>",
         "betWithClient": {
