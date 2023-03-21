@@ -392,14 +392,14 @@
         "win": "Donné {{choice}} ! {{author}} A gagné {{amount}} Cakes ! Financé par {{user}}",
         "lose": "Donné {{choice}} ! {{user}} A gagné {{amount}} Cakes ! Financé par {{author}}",
         "deny": "Nier",
-        "denied": "Aposta negada",
-        "bot": "Por enquanto não estou aceitando apostas, estou falida <:foxy_cry:1071151976504627290>",
+        "denied": "Pari refusé",
+        "bot": "Pour l'instant je n'accepte pas les paris, je suis fauché <:foxy_cry:1071151976504627290>",
         "betWithClient": {
-            "lose": "Deu {{result}}! Eu ganhei {{amount}} cakes! >:3",
-            "win": "Deu {{result}}! Parabéns, você ganhou {{amount}} cakes! :3"
+            "lose": "Cela a donné {{result}} ! J'ai gagné {{amount}} Cakes ! >:3",
+            "win": "Cela a donné {{result}} ! Félicitations, vous avez gagné {{amount}} Cakes ! :3"
         }
     },
     "global": {
-        "noUser": "Usuário não encontrado"
+        "noUser": "Utilisateur non trouvé"
     }
 }
