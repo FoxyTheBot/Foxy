@@ -13,10 +13,9 @@
     <img src="https://img.shields.io/badge/Powered_by_Crowdin-gray.svg?logo=crowdin&style=for-the-badge" />
   </a>
   
-<a title="Crowdin" target="_blank" href="https://crowdin.com/project/foxybot"><img src="https://badges.crowdin.net/foxybot/localized.svg"></a>
-
+<a title="badges" target="_blank" href="https://crowdin.com/project/foxybot"><img src="https://badges.crowdin.net/foxybot/localized.svg">
 <img src="https://img.shields.io/badge/license-AGPL%20v3-blue.svg">
-
+</a>
 </div>
 </p>
  <br>
