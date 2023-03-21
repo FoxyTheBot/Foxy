@@ -118,16 +118,16 @@
             "fields": {
                 "list": {
                     "title": "<:foxysunglasses:890688144280784926> Pour voir la liste des commandes, utilisez",
-                    "value": "`/aider`"
+                    "value": "`/help`"
                 },
                 "guild": "Serveur d'assistance",
                 "privacy": "Politique de confidentialité",
-                "website": "Mon site Web où vous pouvez accéder au tableau de bord"
+                "website": "Mon site où vous pouvez accéder au tableau de bord"
             }
         }
     },
     "roblox": {
-        "aboutme": "Sur moi",
+        "aboutme": "About moi",
         "register": "Date d'inscription",
         "undefined": "Indéfini",
         "noAboutme": "Il n'y a pas de moi",
@@ -149,19 +149,19 @@
         "notFound": "Mise en page introuvable"
     },
     "role": {
-        "description": "Autorisations d'emploi",
-        "id": "ID de travail",
-        "color": "Couleur du travail",
-        "position": "Poste",
+        "description": "Autorisations de rôles",
+        "id": "ID de rôle",
+        "color": "Couleur du rôle",
+        "position": "Position de rôle",
         "noPermissions": "Le rôle n'a pas d'autorisations",
-        "roleMention": "Mention du poste",
+        "roleMention": "Mention du rôle",
         "createdAt": "Créé en"
     },
     "server": {
         "owner": "Propriétaire",
         "createdAt": "Créé en",
         "clientJoin": "Je suis entré",
-        "channels": "Chaînes",
+        "channels": "Canaliser",
         "premium": "Impulsions",
         "memberCount": "Membres",
         "afk": "Canal AFK",
