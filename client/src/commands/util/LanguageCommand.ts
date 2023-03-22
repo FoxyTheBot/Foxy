@@ -38,7 +38,7 @@ const LanguageCommand = createCommand({
         await userData.save();
 
         context.sendReply({
-            content: t(`commands:lang.${language}`),
+            content: t(`commands:lang.changed`, { language: t(`commands:lang.languages.${language}`) }),
             flags: MessageFlags.Ephemeral
         })
 
