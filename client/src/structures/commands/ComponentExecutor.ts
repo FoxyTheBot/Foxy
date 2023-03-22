@@ -29,14 +29,13 @@ const componentExecutor = async (interaction: Interaction): Promise<void> => {
       })
       .catch(() => null);
   };
-
-  const T = i18next.getFixedT(interaction.user.locale ?? 'pt-BR');
+  const user = await bot.database.getUser(interaction.user.id);
+  const T = global.t = i18next.getFixedT(user.language ?? 'pt-BR');
   const command = bot.commands.get(commandName);
 
   if (!command) return errorReply(T('permissions:UNKNOWN_SLASH'));
   if (!command.commandRelatedExecutions || command.commandRelatedExecutions.length === 0) return;
 
-  const user = await bot.database.getUser(interaction.user.id);
   const isUserBanned = await user.isBanned;
 
   if (isUserBanned) {
