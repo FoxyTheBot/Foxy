@@ -23,111 +23,119 @@
     },
     "lang": {
         "title": "Seleccione su idioma",
-        "default": "Seu idioma está definido como Português do Brasil",
-        "pt-BR": "Seu idioma foi alterado para Português do Brasil",
-        "en-US": "Your language has been changed to English",
-        "placeholder": "Idioma alterado"
+        "default": "Tu idioma estás definido cómo español",
+        "changed": "Su idioma ha sido configurado en {{language}}",
+        "placeholder": "Idioma modificado",
+        "languages": {
+            "en-US": "Inglés",
+            "es-ES": "Español",
+            "fr-FR": "Francés",
+            "ja-JP": "Japonés",
+            "de-DE": "Alemán",
+            "it-IT": "Italiano",
+            "ru-RU": "Russo"
+        }
     },
     "anime": {
         "info": {
             "status": "Status",
-            "score": "Pontuação",
-            "episodes": "Episódios",
+            "score": "Puntuación",
+            "episodes": "Episodios",
             "type": "Tipo",
-            "aired": "Foi a público em",
-            "genres": "Gêneros",
-            "source": "Origem",
-            "studios": "Estúdios",
-            "duration": "Duração",
-            "rating": "Classificação",
-            "scoreStats": "Status da pontuação",
-            "popularity": "Popularidade",
-            "premiered": "Estreou em",
-            "broadcast": "Transmissão"
+            "aired": "Hizo público en",
+            "genres": "Géneros",
+            "source": "Origen",
+            "studios": "Estudios",
+            "duration": "Duración",
+            "rating": "Clasificación",
+            "scoreStats": "Status de puntuación",
+            "popularity": "Popularidad",
+            "premiered": "Estrenado en",
+            "broadcast": "Transmisión"
         },
-        "notFound": "Anime não encontrado",
-        "click": "Clique aqui",
+        "notFound": "Anime no sé ha encontrado",
+        "click": "Clique ahí",
         "nothing": "Nada encontrado"
     },
     "coinflip": {
         "heads": "cara",
-        "tails": "coroa",
-        "flipped": "Você jogou uma moeda e o resultado foi"
+        "tails": "ceca",
+        "flipped": "Tú rolaste una moneda y lo resultado fue"
     },
     "upvote": {
-        "description": "Me ajude a crescer e me ajude a ser um bot melhor votando em mim no <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nCada voto ajuda a me divulgar para outras pessoas na Discord Bot List <:catblush:768292358458179595>\n\n Que tal você se juntar a todas as outras pessoas que votaram e que me ajudaram a crescer [clicando aqui](https://top.gg/bot/1006520438865801296/vote)? :heart:",
+        "description": "Ayuda-me a crecerte y ser uno bot mejor votando en mí en: <:topgg:1074823809376460923>\n¡Discord Bot List! <:catblush:78292358458179595>\nCada votó me divulgará para otras personas na Discord Bot List <:catblush:768292358458179525>\n\n Que tal tú me ayudaste juntando te a otras personas qué votarán en mí y ayudarán a crecer [ cliquando aquí] (https://top.gg/bot/1006520438865801296/vote)? :heart:",
         "top": {
-            "title": "Top votantes da Foxy na Top.gg",
+            "title": "Top ayudantes de votos en Top.gg",
             "votes": "Votos",
-            "ownerVotes": "Meu desenvolvedor possui {{votes}} votos"
+            "ownerVotes": "Mi criador posee {{votes}} votos"
         }
     },
     "profile": {
-        "profile": "Perfil de {{user}}",
-        "noAboutme": "Foxy é minha amiga você pode alterar isso usando /aboutme",
-        "marriedWith": "💍 Casado com {{user}} desde {{date}} ({{relativeTime}})",
-        "premium": "{{badge}} Premium desde {{date}}",
-        "testMode": "Seu sobre mim será exibido assim!",
-        "banned": "`{{user}} está banido por `{{reason}}` \nDesde `{{date}}`"
+        "profile": "Perfil del {{user}}",
+        "noAboutme": "Foxy es mi amiga, tú puede alterar esto usándose /aboutme",
+        "marriedWith": "💍 Casado con {{user}} desdén {{date}} ({{relativeTime}})",
+        "premium": "{{badge}} Premium desdén {{date}}",
+        "testMode": "¡Tú sobre mí serás exhibido así! ",
+        "banned": "`{{user}} está restringido por `{{reason}}` \nDesde `{{date}}`"
     },
     "masks": {
-        "ears": "Orelhas de gato",
-        "horns": "Chifrinhos",
-        "halo": "Aréola",
-        "cowboy": "Chapéu de vaqueiro",
+        "ears": "Orejas de gato",
+        "horns": "Cuernos",
+        "halo": "Areola",
+        "cowboy": "Sombrero de vaquero",
         "topper": "Cartola",
         "purchase": "Comprar",
-        "preview": "Pré-visualização",
-        "noMasks": "Você não possui nenhuma máscara",
-        "selectMask": "Selecione uma máscara",
+        "preview": "Previsualización",
+        "noMasks": "Tú no tienes uña o más máscaras",
+        "selectMask": "Seleccione una máscara",
         "buy": {
-            "success": "Você comprou a máscara para seu avatar!",
-            "noMoney": "Você não tem Cakes o suficiente para adquirir esta máscara",
-            "preview": "Pré-visualização",
+            "success": "¡Tú compraste la máscara a tu avatar!",
+            "noMoney": "Tú no tienes Cakes suficientes para adquirirse esta máscara",
+            "preview": "Previsualización",
             "purchase": "Comprar"
         },
         "set": {
-            "success": "Máscara alterada com sucesso :3",
-            "changed": "Máscara alterada :3",
-            "notOwned": "Você não possui essa máscara",
+            "success": "Máscara cambiada con suceso :3",
+            "changed": "Máscara cambiada :3",
+            "notOwned": "Tú no posees esta máscara",
             "invalid": "Código inválido"
         },
-        "alreadyOwned": "Você já possui essa máscara"
+        "alreadyOwned": "Tú posees esta máscara"
     },
     "kick": {
-        "self": "Deixa outra pessoa fazer isso para você, é mais fácil",
-        "client": "Foxy se agacha e você passa direto e da de cara com uma parede *",
-        "success": "**{{user}}** meteu uma voadora em **{{target}}**"
+        "self": "Deja otra persona hacer eso a ti, es muy fácil",
+        "client": "Foxy se agacha y tú pasas directo y da de cara con una pared *",
+        "success": "**{{user}}** metes una \"voladora\" en **{{target}}**"
     },
     "help": {
         "commands": {
             "title": "Lista de comandos",
             "category": {
-                "economy": "Economia",
+                "economy": "Economía",
                 "social": "Social",
-                "fun": "Entretenimento",
-                "image": "Imagens",
-                "misc": "Outros",
-                "utils": "Utilitários",
+                "fun": "Entretenimiento",
+                "image": "Imágenes",
+                "misc": "Otros",
+                "utils": "Utilitarios",
                 "rp": "Roleplay"
             }
         },
         "bot": {
-            "title": "Oie, eu sou a Foxy",
-            "description": "Olá {{user}}, eu sou a Foxy, tenho recursos para entreter e envolver seus membros, comandos de economia, modificação de imagem e muito mais! :3",
+            "title": "Oye, soy la Foxy",
+            "description": "¡Hola {{user}}, Yo soy la Foxy, tengo recursos para entretener tú miembros, comandos de Economía, modificación de imágenes y mucho más! :3",
             "fields": {
                 "list": {
-                    "title": "<:foxysunglasses:890688144280784926> Para ver a lista de comandos use",
+                    "title": "<:foxysunglasses:890688144280784926> Para ver la lista de comandos uses",
                     "value": "`/help`"
                 },
-                "guild": "Serivdor de suporte",
-                "privacy": "Política de privacidade",
-                "website": "Meu website onde você pode acessar a dashboard"
+                "guild": "Servidor de soporte",
+                "privacy": "Política de privacidad",
+                "website": "Mi website donde tú puedes tenerla dashboard"
             }
         }
     },
     "roblox": {
-        "aboutme": "Sobre mim",
+        "aboutme": "Sobre mí",
         "register": "Data de registro",
         "undefined": "Não definido",
         "noAboutme": "Não há sobre mim",

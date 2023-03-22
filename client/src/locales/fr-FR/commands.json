@@ -24,9 +24,17 @@
     "lang": {
         "title": "Choisissez votre langue",
         "default": "Votre langue a été changée en portugais brésilien",
-        "pt-BR": "Votre langue a été changée en portugais brésilien",
-        "en-US": "Votre langue a été changée en anglais",
-        "placeholder": "La langue a changé"
+        "changed": "Votre langue est devenue `{{language}}`",
+        "placeholder": "La langue a changé",
+        "languages": {
+            "en-US": "Anglais",
+            "es-ES": "Espagnol",
+            "fr-FR": "Espagnol",
+            "ja-JP": "Japonais",
+            "de-DE": "Allemand",
+            "it-IT": "Italien",
+            "ru-RU": "Russe"
+        }
     },
     "anime": {
         "info": {
@@ -118,16 +126,16 @@
             "fields": {
                 "list": {
                     "title": "<:foxysunglasses:890688144280784926> Pour voir la liste des commandes, utilisez",
-                    "value": "`/aider`"
+                    "value": "`/help`"
                 },
                 "guild": "Serveur d'assistance",
                 "privacy": "Politique de confidentialité",
-                "website": "Mon site Web où vous pouvez accéder au tableau de bord"
+                "website": "Mon site où vous pouvez accéder au tableau de bord"
             }
         }
     },
     "roblox": {
-        "aboutme": "Sur moi",
+        "aboutme": "About moi",
         "register": "Date d'inscription",
         "undefined": "Indéfini",
         "noAboutme": "Il n'y a pas de moi",
@@ -137,7 +145,7 @@
     },
     "aboutme": {
         "set": "Votre à propos de moi a été remplacé par `{{aboutme}}`",
-        "tooLong": "À limite de caractères est de 225 et vous avez tapé {{length}}, tapez quelque chose de plus court s'il vous plaît :3"
+        "tooLong": "À limite de caractères est de 225 et vous avez tapé {{length}}, tapez quelque chose de plus court s'il vous plaît"
     },
     "layouts": {
         "default": "Standard",
@@ -149,257 +157,257 @@
         "notFound": "Mise en page introuvable"
     },
     "role": {
-        "description": "Autorisations d'emploi",
-        "id": "ID de travail",
-        "color": "Couleur du travail",
-        "position": "Poste",
+        "description": "Autorisations de rôles",
+        "id": "ID de rôle",
+        "color": "Couleur du rôle",
+        "position": "Position de rôle",
         "noPermissions": "Le rôle n'a pas d'autorisations",
-        "roleMention": "Mention du poste",
+        "roleMention": "Mention du rôle",
         "createdAt": "Créé en"
     },
     "server": {
         "owner": "Propriétaire",
         "createdAt": "Créé en",
         "clientJoin": "Je suis entré",
-        "channels": "Chaînes",
+        "channels": "Canaliser",
         "premium": "Impulsions",
         "memberCount": "Membres",
-        "afk": "Canal AFK",
-        "click": "Veja o ícone no seu navegador",
-        "no": "Não",
-        "yes": "Sim",
-        "notFound": "Não encontrei nenhum servidor com a id `{{id}}`",
-        "partner": "Parceiro do Discord"
+        "afk": "Canaliser AFK",
+        "click": "Voir l'icône dans votre navigateur",
+        "no": "Non",
+        "yes": "Oui",
+        "notFound": "Je n'ai trouvé aucun serveur avec le Id `{{id}}`",
+        "partner": "Partenaire Discord"
     },
     "user": {
         "info": {
-            "tag": "Tag do usuário",
-            "createdAt": "Criado em",
-            "userId": "ID do usuário",
-            "avatar": "Ver avatar do usuário",
-            "viewMember": "Ver informações do membro",
-            "noMember": "Não é um membro do servidor"
+            "tag": "Balise utilisateur",
+            "createdAt": "Créé en",
+            "userId": "ID de l'utilisateur",
+            "avatar": "Afficher l'avatar de l'utilisateur",
+            "viewMember": "Afficher les informations sur les membres",
+            "noMember": "Pas membre du serveur"
         },
         "avatar": {
-            "click": "Veja o avatar no seu navegador",
-            "title": "Avatar de {{user}}",
-            "footer": "Achei fofo :3"
+            "click": "Afficher l'avatar dans votre navigateur",
+            "title": "Avatar d'utilisateur {{user}}",
+            "footer": "Ton avatar est magnifique."
         },
         "banner": {
-            "click": "Veja o banner no seu navegador",
-            "title": "Banner de {{user}}",
-            "noBanner": "Esse usuário não tem banner <a:foxylick:987381814622560277>"
+            "click": "Voir la bannière dans votre navigateur",
+            "title": "Bannière par {{user}}",
+            "noBanner": "Cet utilisateur n'a pas de bannière <a:foxylick:987381814622560277>"
         },
         "member": {
-            "title": "Sobre {{user}}",
-            "joinedAt": ":sparkles: Entrou em",
-            "role": "<:foxysunglasses:890688144280784926> Cargos",
-            "nickname": "<:foxyhearteyes:984596954526920794> Apelido no servidor",
-            "noNickname": "Não há apelido no servidor",
+            "title": "À propos {{user}}",
+            "joinedAt": ":sparkles: Entré dans",
+            "role": "<:foxysunglasses:890688144280784926> Rôles",
+            "nickname": "<:foxyhearteyes:984596954526920794> Pseudo du serveur",
+            "noNickname": "Il n'y a pas de pseudonyme sur le serveur",
             "permissions": {
-                "button": "Permissões",
-                "list": "Lista de permissões",
-                "title": "Permissões de {{user}}"
+                "button": "Autorisations",
+                "list": "Liste blanche",
+                "title": "Autorisations de {{user}}"
             },
-            "highestRole": "<:foxysunglasses:890688144280784926> Maior cargo",
-            "premiumSince": "<:foxyboost:984596808921673768> Impulsiona o servidor desde",
-            "noRoles": "Não há cargos",
-            "noPermissions": "Não há permissões"
+            "highestRole": "<:foxysunglasses:890688144280784926> Plus gros rôle",
+            "premiumSince": "<:foxyboost:984596808921673768> Booste le serveur de",
+            "noRoles": "Il n'y a pas rôle",
+            "noPermissions": "Il n'y a pas d'autorisations"
         }
     },
     "ship": {
-        "question": "Será que vai rolar ou não?",
-        "perfectCouple": "Esse é o casal perfeito!",
-        "uwu": "Esses aqui já estão se pegando e não contaram para ninguém!",
-        "probably": "Talvez só precisa o {{user}} querer...",
-        "cry": "Queria muito dizer que é possível mas..."
+        "question": "Rouler ou non ?",
+        "perfectCouple": "Ils sont le couple parfait !",
+        "uwu": "Ceux-ci s'embrassent déjà et ne l'ont dit à personne !",
+        "probably": "Peut-être que {{user}} a juste besoin de vouloir...",
+        "cry": "Je voulais vraiment dire que c'est possible, mais..."
     },
     "rep": {
-        "cooldown": "Você já deu reputação para algúem, espere **{{cooldown}}**",
-        "success": "Você deu reputação para **{{user}}**",
-        "self": "Você não pode dar reputação para você mesmo"
+        "cooldown": "Vous avez déjà donné une réputation à quelqu'un, attendez **{{cooldown}}**",
+        "success": "Vous avez donné la réputation à **{{user}}**",
+        "self": "Vous ne pouvez pas vous donner une réputation"
     },
     "marry": {
-        "self": "Você não pode casar com você mesmo",
-        "alreadyMarried": "Você já está casado com alguém!",
-        "bot": "Não, eu não quero casar com você!",
-        "alreadyMarriedWithSomeone": "Você já está casado com alguém",
-        "alreadyMarriedWithUser": "Você já está casado com **{{user}}**",
-        "ask": "{{user}} Você quer casar com **{{author}}**?",
-        "accept": "Aceitar",
-        "accepted": "Vocês estão casados! Felicidades para o casal <3"
+        "self": "Vous ne pouvez pas vous marier",
+        "alreadyMarried": "Vous êtes déjà marié à quelqu'un !",
+        "bot": "Non, je ne veux pas t'épouser !",
+        "alreadyMarriedWithSomeone": "Êtes-vous déjà marié à quelqu'un",
+        "alreadyMarriedWithUser": "Vous êtes déjà marié à **{{user}}**",
+        "ask": "{{user}} Voulez-vous épouser **{{author}}** ?",
+        "accept": "Accepter",
+        "accepted": "Vous êtes marié ! Félicitations au couple <3"
     },
     "divorce": {
-        "notMarried": "Você não está casado",
-        "confirm2": "Você tem certeza que quer divorciar?",
-        "divorced": "...Então é isso, se divorciar é sim uma coisa triste, Da próxima vez ame alguém que realmente mereça e respeite você, sim isso parece ser difícil pois o amor é algo cego e incontrolável... Mas é melhor estar sozinho do que mal acompanhado, eu confio em você! :heart:",
-        "confirm": "Divorciar",
-        "confirmed": "Divorciado"
+        "notMarried": "Tu n'es pas marié",
+        "confirm2": "Êtes-vous sûr de vouloir divorcer ?",
+        "divorced": "... Alors voilà, divorcer est une chose triste, La prochaine fois aime quelqu'un qui te mérite vraiment et te respecte, oui ça semble difficile, car l'amour est quelque chose d'aveugle et d'incontrôlable... Mais il vaut mieux être seul que mal accompagné. Je te fais confiance ! :heart:",
+        "confirm": "Divorcé",
+        "confirmed": "Divorcé"
     },
     "suggest": {
-        "success": "Obrigada por me ajudar {{user}}, sua sugestão `{{content}}` foi enviada para o meu desenvolvedor <3"
+        "success": "Merci de m'avoir aidé {{user}}, votre suggestion `{{content}}` a été envoyée à mon développeur <3"
     },
     "report": {
-        "success": "Obrigada por me ajudar {{user}}, seu report `{{content}}` foi enviado para o meu desenvolvedor <3"
+        "success": "Merci de m'avoir aidé {{user}}, votre rapport `{{content}}` a été envoyé à mon développeur <3"
     },
     "status": {
-        "model": "Modelo do processador",
-        "guilds": "Servidores",
-        "users": "Usuários",
-        "ram": "Memória RAM",
-        "cpuUsage": "Uso do processador",
+        "model": "Modèle de processeur",
+        "guilds": "Les serveurs",
+        "users": "Utilisateurs",
+        "ram": "Mémoire vive",
+        "cpuUsage": "Utilisation du processeur",
         "node": "Node.js",
-        "arch": "Arquitetura",
-        "platform": "Plataforma"
+        "arch": "Architecture",
+        "platform": "Plateforme"
     },
     "mcskin": {
-        "title": "Skin de {{user}}"
+        "title": "{{user}} Peau"
     },
     "mchead": {
-        "title": "Cabeça de {{user}}"
+        "title": "Responsable de {{user}}"
     },
     "mcbody": {
-        "title": "Corpo de {{user}}"
+        "title": "Corps de {{user}}"
     },
     "error": {
-        "tooLong": "O conteúdo é muito longo, o limite é de **{{limit}}** caracteres"
+        "tooLong": "Le contenu est trop long, la limite est de **{{limit}}** caractères"
     },
     "rps": {
         "replies": {
-            "rock": "pedra",
-            "paper": "papel",
-            "scissors": "tesoura"
+            "rock": "calcul",
+            "paper": "papier",
+            "scissors": "ciseaux"
         },
-        "tie": "Deu empate, vamos de novo! >:D",
-        "start": "Para jogar, clique em um dos botões abaixo",
-        "invalidChoice": "Escolha inválida, escolha {{choice}}",
-        "clientWon": "Deu {{result}}, eu ganhei >:3",
-        "won3": "Você ganhou :3",
-        "won2": "Você ganhou >:3",
-        "won": "Você ganhou :D",
+        "tie": "C'est un match nul, c'est reparti ! >:D",
+        "start": "Pour jouer, cliquez sur l'un des boutons ci-dessous",
+        "invalidChoice": "Choix invalide, choisissez {{choice}}",
+        "clientWon": "Ça a donné {{result}}, j'ai gagné",
+        "won3": "Vous avez gagné :3",
+        "won2": "Vous avez gagné",
+        "won": "Vous avez gagné :D",
         "button": {
-            "rock": "Pedra",
-            "paper": "Papel",
-            "scissors": "Tesoura",
-            "cancel": "Cancelar"
+            "rock": "Calcul",
+            "paper": "Papier",
+            "scissors": "Ciseaux",
+            "cancel": "Annuler"
         },
-        "cancelled": "{{emoji}} Jogo foi cancelado, para jogar execute o comando novamente",
-        "defaultValue": "O jogo ainda não foi iniciado"
+        "cancelled": "{{emoji}} Le jeu a été annulé, pour jouer, exécutez à nouveau la commande",
+        "defaultValue": "Le jeu n'a pas encore commencé"
     },
     "fate": {
-        "couple": "casal",
-        "enemy": "inimigos",
-        "lover": "amantes",
-        "sibling": "irmãos",
-        "parent": "Pai e filho",
-        "married": "casados",
-        "friend": "Amigos",
-        "result": "Em um universo paralelo <@{{user}}> e <@{{mention}}> são {{fate}}"
+        "couple": "couple",
+        "enemy": "ennemis",
+        "lover": "amoureux",
+        "sibling": "frères",
+        "parent": "Père et fils",
+        "married": "marié",
+        "friend": "Amis",
+        "result": "Dans un univers parallèle <@{{user}}> et <@{{mention}}> sont {{fate}}"
     },
     "cancel": {
-        "result": "{{user}} cancelou {{mention}} por `{{reason}}`"
+        "result": "{{user}} A annulé {{mention}} pour `{{reason}}`"
     },
     "8ball": {
-        "yes": "Sim",
-        "no": "Não",
-        "maybe": "Talvez",
-        "idk": "Não sei",
-        "idk2": "Não sei :/",
-        "probably": "Provavelmente",
-        "probablyyes": "Provavelmente sim",
-        "probablyno": "Provavelmente não"
+        "yes": "Oui",
+        "no": "Non",
+        "maybe": "Peut-être",
+        "idk": "Je ne sais pas",
+        "idk2": "Je ne sais pas :/",
+        "probably": "Probablement",
+        "probablyyes": "Probablement oui",
+        "probablyno": "Probablement pas"
     },
     "rank": {
-        "wrongPage": "Esta página não existe",
-        "youAreIn": "Você está na posição",
-        "position": "Posição"
+        "wrongPage": "Cette page n'existe pas",
+        "youAreIn": "Tu es en poste",
+        "position": "Position"
     },
     "pay": {
-        "self": "Você não pode enviar cakes para você mesmo",
-        "notEnough": "Você não tem Cakes suficiente",
-        "alert": "Você deseja mesmo transferir {{amount}} Cakes para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!",
-        "success": "Você transferiu {{amount}} Cakes para {{user}}",
-        "pay": "Transferir",
-        "transfered": "Transferido"
+        "self": "Vous ne pouvez pas vous envoyer de cakes",
+        "notEnough": "Vous n'avez pas assez de cakes",
+        "alert": "Voulez-vous vraiment transférer {{amount}} Cakes vers {{user}} ?\nL'équipe Foxy n'est **pas responsable** des cakes perdus, alors, assurez-vous de les transférer à quelqu'un en qui vous pouvez avoir confiance !\nIl est interdit d'échanger du contenu NSFW (+18) en échange de cakes !",
+        "success": "Vous avez transféré {{amount}} Cakes à {{user}}",
+        "pay": "Transfert",
+        "transfered": "Transféré"
     },
     "daily": {
-        "cooldown": "Você já pegou suas Cakes hoje, espere **{{time}}**",
-        "daily": "Você ganhou **{{amount}} Cakes** agora você possui {{money}} Cakes\n",
-        "dailyAlert": "**Não se esqueça:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!"
+        "cooldown": "Vous avez déjà vos Cakes aujourd'hui, attendez **{{time}}**",
+        "daily": "Vous avez gagné **{{amount}} Cakes** maintenant vous avez {{money}} Cakes\n",
+        "dailyAlert": "**N'oubliez pas :** Vous ne pouvez pas échanger des cakes contre de l'argent, Nitro, du contenu NSFW, etc. ! Si vous le faites, vous serez interdit d'utiliser Foxy de façon permanente !"
     },
     "background": {
         "buy": {
-            "title": "Lojinha de background :3",
-            "invalid": "Código inválido",
-            "alreadyOwned": "Você já possui esse background",
-            "onlyDevs": "Somente os desenvolvedores podem comprar backgrounds",
-            "purchase": "Comprar",
-            "price": "Preço",
-            "preview": "Pré-visualização do background",
-            "noMoney": "Você não tem Cakes suficiente",
-            "success": "Você comprou o background! O Background já foi definido automaticamente no seu perfil! ;3"
+            "title": "Magasin de fond :3",
+            "invalid": "Code invalide",
+            "alreadyOwned": "Vous avez déjà cet arrière-plan",
+            "onlyDevs": "Seuls les développeurs peuvent acheter des arrière-plans",
+            "purchase": "Achat",
+            "price": "Prix",
+            "preview": "Aperçu en arrière-plan",
+            "noMoney": "Vous n'avez pas assez de cakes",
+            "success": "Vous avez acheté le fond ! Et l'arrière-plan a déjà été défini automatiquement dans votre profil ! ;3"
         },
         "set": {
-            "title": "Escolha seu background",
-            "notOwned": "Você não possui esse background",
-            "success": "Background alterado :3",
-            "description": "Seus backgrounds são: {{bgList}}"
+            "title": "Choisissez votre arrière-plan",
+            "notOwned": "Vous n'avez pas cet arrière-plan",
+            "success": "Fond changé :3",
+            "description": "Vos arrière-plans sont : {{bgList}}"
         }
     },
     "atm": {
-        "success": "**{{user}}** possui {{balance}} Cakes"
+        "success": "**{{user}}** possède {{balance}} Cakes"
     },
     "step": {
-        "success": "Você pisou em {{user}}"
+        "success": "Vous avez marché sur {{user}}"
     },
     "slap": {
-        "button": "Retribuir",
-        "success": "**{{author}}** deu um tabefe em **{{user}}**"
+        "button": "De donner en retour",
+        "success": "**{{author}}** giflé **{{user}}**"
     },
     "pat": {
-        "button": "Retribuir",
-        "success": "**{{author}}** fez cafuné em **{{user}}**"
+        "button": "De donner en retour",
+        "success": "**{{author}}** caressé **{{user}}**"
     },
     "kiss": {
-        "button": "Retribuir",
-        "success": "**{{author}}** deu um beijo em **{{user}}**",
-        "self": "Eu não quero te beijar, oxi? Somos apenas amigos!"
+        "button": "De donner en retour",
+        "success": "**{{author}}** embrassé **{{user}}**",
+        "self": "Je ne veux pas t'embrasser ! Nous sommes juste amis !"
     },
     "hug": {
-        "button": "Retribuir",
-        "success": "**{{author}}** deu um abraço em **{{user}}**"
+        "button": "De donner en retour",
+        "success": "**{{author}}** a fait un câlin à **{{user}}**"
     },
     "bite": {
-        "self": "Você se mordeu porem mordeu forte demais e agora está machucado, mal sabia você que você é um lobo com dentes afiados :/",
-        "client": "Você tentou morder uma raposa porém ela mordeu seu rosto com muita força e você se machucou!",
-        "success": "**{{user}}** mordeu **{{target}}**",
-        "button": "Retribuir"
+        "self": "Tu t'es mordu, mais tu as mordu trop fort et maintenant, tu es blessé, tu ne savais pas que tu es un loup aux dents pointues :/",
+        "client": "Tu as essayé de mordre un renard, mais il t'a mordu le visage trop fort et tu t'es blessé !",
+        "success": "**{{user}}** bit **{{target}}**",
+        "button": "De donner en retour"
     },
     "attack": {
-        "attack": "**{{user}}** atacou **{{target}}**",
-        "button": "Atacar"
+        "attack": "**{{user}}** attaqué**{{target}}**",
+        "button": "Attaque"
     },
     "bet": {
-        "self": "Você não pode apostar consigo mesmo!",
-        "not-enough": "Você não tem Cakes suficientes",
-        "not-enough-mention": "{{user}} não tem Cakes suficientes",
-        "placeholder": "Selecione uma opção",
-        "heads": "cara",
-        "tails": "coroa",
-        "accept": "Aceitar",
-        "choose": "Escolha uma opção para apostar",
-        "ask": "**{{user}}**, **{{author}}** quer fazer uma aposta de {{amount}} Cakes",
-        "win": "Deu {{choice}}! {{author}} ganhou {{amount}} Cakes! Financiado por {{user}}",
-        "lose": "Deu {{choice}}! {{user}} ganhou {{amount}} Cakes! Financiado por {{author}}",
-        "deny": "Negar",
-        "denied": "Aposta negada",
-        "bot": "Por enquanto não estou aceitando apostas, estou falida <:foxy_cry:1071151976504627290>",
+        "self": "Vous ne pouvez pas parier avec vous-même !",
+        "not-enough": "Vous n'avez pas assez de Cakes",
+        "not-enough-mention": "{{user}} n'aie pas assez de Cakes",
+        "placeholder": "Choisir une option",
+        "heads": "affronter",
+        "tails": "couronne",
+        "accept": "Accepter",
+        "choose": "Choisissez une option pour parier",
+        "ask": "**{{user}}**, **{{author}}** veut placer un pari de {{amount}} Cakes",
+        "win": "Donné {{choice}} ! {{author}} A gagné {{amount}} Cakes ! Financé par {{user}}",
+        "lose": "Donné {{choice}} ! {{user}} A gagné {{amount}} Cakes ! Financé par {{author}}",
+        "deny": "Nier",
+        "denied": "Pari refusé",
+        "bot": "Pour l'instant, je n'accepte pas les paris, je suis fauché <:foxy_cry:1071151976504627290>",
         "betWithClient": {
-            "lose": "Deu {{result}}! Eu ganhei {{amount}} cakes! >:3",
-            "win": "Deu {{result}}! Parabéns, você ganhou {{amount}} cakes! :3"
+            "lose": "Cela a donné {{result}} ! J'ai gagné {{amount}} Cakes ! >:3",
+            "win": "Cela a donné {{result}} ! Félicitations, vous avez gagné {{amount}} Cakes ! :3"
         }
     },
     "global": {
-        "noUser": "Usuário não encontrado"
+        "noUser": "Utilisateur non trouvé"
     }
 }

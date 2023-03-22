@@ -24,9 +24,17 @@
     "lang": {
         "title": "Choose your language",
         "default": "Your default language is set to English",
-        "pt-BR": "Sua linguagem foi alterada para Português do Brasil",
-        "en-US": "Your language has been changed to English",
-        "placeholder": "Language changed"
+        "changed": "Your language has been changed to `{{language}}`",
+        "placeholder": "Language changed",
+        "languages": {
+            "en-US": "English",
+            "es-ES": "Spanish",
+            "fr-FR": "French",
+            "ja-JP": "Japanese",
+            "de-DE": "German",
+            "it-IT": "Italian",
+            "ru-RU": "Russian"
+        }
     },
     "anime": {
         "info": {
