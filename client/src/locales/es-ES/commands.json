@@ -114,28 +114,28 @@
                 "economy": "Economía",
                 "social": "Social",
                 "fun": "Entretenimiento",
-                "image": "Imagens",
-                "misc": "Outros",
-                "utils": "Utilitários",
+                "image": "Imágenes",
+                "misc": "Otros",
+                "utils": "Utilitarios",
                 "rp": "Roleplay"
             }
         },
         "bot": {
-            "title": "Oie, eu sou a Foxy",
-            "description": "Olá {{user}}, eu sou a Foxy, tenho recursos para entreter e envolver seus membros, comandos de economia, modificação de imagem e muito mais! :3",
+            "title": "Oye, soy la Foxy",
+            "description": "¡Hola {{user}}, Yo soy la Foxy, tengo recursos para entretener tú miembros, comandos de Economía, modificación de imágenes y muy más! :3",
             "fields": {
                 "list": {
-                    "title": "<:foxysunglasses:890688144280784926> Para ver a lista de comandos use",
+                    "title": "<:foxysunglasses:890688144280784926> Para ver la lista de comandos uses",
                     "value": "`/help`"
                 },
-                "guild": "Serivdor de suporte",
-                "privacy": "Política de privacidade",
-                "website": "Meu website onde você pode acessar a dashboard"
+                "guild": "Servidor de soporte",
+                "privacy": "Política de privacidad",
+                "website": "Mi website donde tú puedes tenerla dashboard"
             }
         }
     },
     "roblox": {
-        "aboutme": "Sobre mim",
+        "aboutme": "Sobre mí",
         "register": "Data de registro",
         "undefined": "Não definido",
         "noAboutme": "Não há sobre mim",
