@@ -122,7 +122,7 @@
         },
         "bot": {
             "title": "Oye, soy la Foxy",
-            "description": "¡Hola {{user}}, Yo soy la Foxy, tengo recursos para entretener tú miembros, comandos de Economía, modificación de imágenes y muy más! :3",
+            "description": "¡Hola {{user}}, Yo soy la Foxy, tengo recursos para entretener tú miembros, comandos de Economía, modificación de imágenes y mucho más! :3",
             "fields": {
                 "list": {
                     "title": "<:foxysunglasses:890688144280784926> Para ver la lista de comandos uses",
