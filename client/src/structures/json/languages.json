@@ -57,11 +57,11 @@
         //     "done": false
         // },
         // {
-        //     "name": "Chinese Traditional",
+        //     "name": "Russian",
         //     "nameLocalizations": {
-        //         "pt-BR": "Chinês Tradicional"
+        //         "pt-BR": "Russo"
         //     },
-        //     "value": "zh-TW",
+        //     "value": "ru-RU",
         //     "done": false
         // }
     ]
