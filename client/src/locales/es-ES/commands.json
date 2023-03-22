@@ -73,47 +73,47 @@
     "profile": {
         "profile": "Perfil del {{user}}",
         "noAboutme": "Foxy es mi amiga, tú puede alterar esto usándose /aboutme",
-        "marriedWith": "💍 Casado com {{user}} desde {{date}} ({{relativeTime}})",
-        "premium": "{{badge}} Premium desde {{date}}",
-        "testMode": "Seu sobre mim será exibido assim!",
-        "banned": "`{{user}} está banido por `{{reason}}` \nDesde `{{date}}`"
+        "marriedWith": "💍 Casado con {{user}} desdén {{date}} ({{relativeTime}})",
+        "premium": "{{badge}} Premium desdén {{date}}",
+        "testMode": "¡Tú sobre mí serás exhibido así! ",
+        "banned": "`{{user}} está restringido por `{{reason}}` \nDesde `{{date}}`"
     },
     "masks": {
-        "ears": "Orelhas de gato",
-        "horns": "Chifrinhos",
-        "halo": "Aréola",
-        "cowboy": "Chapéu de vaqueiro",
+        "ears": "Orejas de gato",
+        "horns": "Cuernos",
+        "halo": "Areola",
+        "cowboy": "Sombrero de vaquero",
         "topper": "Cartola",
         "purchase": "Comprar",
-        "preview": "Pré-visualização",
-        "noMasks": "Você não possui nenhuma máscara",
-        "selectMask": "Selecione uma máscara",
+        "preview": "Previsualización",
+        "noMasks": "Tú no tienes uña o más máscaras",
+        "selectMask": "Seleccione una máscara",
         "buy": {
-            "success": "Você comprou a máscara para seu avatar!",
-            "noMoney": "Você não tem Cakes o suficiente para adquirir esta máscara",
-            "preview": "Pré-visualização",
+            "success": "¡Tú compraste la máscara a tu avatar!",
+            "noMoney": "Tú no tienes Cakes suficientes para adquirirse esta máscara",
+            "preview": "Previsualización",
             "purchase": "Comprar"
         },
         "set": {
-            "success": "Máscara alterada com sucesso :3",
-            "changed": "Máscara alterada :3",
-            "notOwned": "Você não possui essa máscara",
+            "success": "Máscara cambiada con suceso :3",
+            "changed": "Máscara cambiada :3",
+            "notOwned": "Tú no posees esta máscara",
             "invalid": "Código inválido"
         },
-        "alreadyOwned": "Você já possui essa máscara"
+        "alreadyOwned": "Tú posees esta máscara"
     },
     "kick": {
-        "self": "Deixa outra pessoa fazer isso para você, é mais fácil",
-        "client": "Foxy se agacha e você passa direto e da de cara com uma parede *",
-        "success": "**{{user}}** meteu uma voadora em **{{target}}**"
+        "self": "Deja otra persona hacer eso a ti, es muy fácil",
+        "client": "Foxy se agacha y tú pasas directo y da de cara con una pared *",
+        "success": "**{{user}}** metes una \"voladora\" en **{{target}}**"
     },
     "help": {
         "commands": {
             "title": "Lista de comandos",
             "category": {
-                "economy": "Economia",
+                "economy": "Economía",
                 "social": "Social",
-                "fun": "Entretenimento",
+                "fun": "Entretenimiento",
                 "image": "Imagens",
                 "misc": "Outros",
                 "utils": "Utilitários",
