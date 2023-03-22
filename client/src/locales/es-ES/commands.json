@@ -194,38 +194,38 @@
             "footer": "Me pareció fofo :3"
         },
         "banner": {
-            "click": "Veja o banner no seu navegador",
-            "title": "Banner de {{user}}",
-            "noBanner": "Esse usuário não tem banner <a:foxylick:987381814622560277>"
+            "click": "Mira banner de tu navegador",
+            "title": "Banner del {{user}}",
+            "noBanner": "Este usuario no tienes banners <a:foxylick:987381814622560277>"
         },
         "member": {
             "title": "Sobre {{user}}",
-            "joinedAt": ":sparkles: Entrou em",
+            "joinedAt": ":sparkles: Entraste en",
             "role": "<:foxysunglasses:890688144280784926> Cargos",
-            "nickname": "<:foxyhearteyes:984596954526920794> Apelido no servidor",
-            "noNickname": "Não há apelido no servidor",
+            "nickname": "<:foxyhearteyes:984596954526920794> Apellido en el servidor",
+            "noNickname": "No hay apellido en el servidor",
             "permissions": {
-                "button": "Permissões",
-                "list": "Lista de permissões",
-                "title": "Permissões de {{user}}"
+                "button": "Permisiones",
+                "list": "Lista de permisiones",
+                "title": "Permisiones de {{user}}"
             },
-            "highestRole": "<:foxysunglasses:890688144280784926> Maior cargo",
-            "premiumSince": "<:foxyboost:984596808921673768> Impulsiona o servidor desde",
-            "noRoles": "Não há cargos",
-            "noPermissions": "Não há permissões"
+            "highestRole": "<:foxysunglasses:890688144280784926> Mayor cargo",
+            "premiumSince": "<:foxyboost:984596808921673768> Impulsión al servidor desde ",
+            "noRoles": "No hay cargos",
+            "noPermissions": "No hay permisiones"
         }
     },
     "ship": {
-        "question": "Será que vai rolar ou não?",
-        "perfectCouple": "Esse é o casal perfeito!",
-        "uwu": "Esses aqui já estão se pegando e não contaram para ninguém!",
-        "probably": "Talvez só precisa o {{user}} querer...",
-        "cry": "Queria muito dizer que é possível mas..."
+        "question": "¿Será que vais a rolar o no?",
+        "perfectCouple": "¡Este casal es perfecto! ",
+        "uwu": "¡Esos aquí están haciendo travesuras y no contaron a nadie! ",
+        "probably": "Quizá es solo {{user}} querer...",
+        "cry": "Quería muy dice que es posible más..."
     },
     "rep": {
-        "cooldown": "Você já deu reputação para algúem, espere **{{cooldown}}**",
-        "success": "Você deu reputação para **{{user}}**",
-        "self": "Você não pode dar reputação para você mesmo"
+        "cooldown": "Tú has dado reputación a alguien, espera\n**{{cooldown}}**",
+        "success": "Tú ya has dado reputación para **{{user}}**",
+        "self": "Tú no pueda darle reputación a sí mesmo"
     },
     "marry": {
         "self": "Você não pode casar com você mesmo",
