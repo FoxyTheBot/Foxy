@@ -24,15 +24,17 @@
     "lang": {
         "title": "Seleccione su idioma",
         "default": "Seu idioma está definido como Português do Brasil",
-        "pt-BR": "Seu idioma foi alterado para Português do Brasil",
-        "en-US": "Your language has been changed to English",
-        "es-ES": "Su idioma ha cambiado a Español",
-        "fr-FR": "Votre langue a été modifiée en Français",
-        "ja-JP": "言語が日本語に変更されました",
-        "de-DE": "Deine Sprache wurde auf Deutsch geändert",
-        "it-IT": "La tua lingua è stata cambiata in Italiano",
-        "zh-TW": "您的語言已更改為中文",
-        "placeholder": "Idioma alterado"
+        "changed": "Seu idioma foi alterado para `{{language}}`",
+        "placeholder": "Idioma alterado",
+        "languages": {
+            "en-US": "Inglês",
+            "es-ES": "Espanhol",
+            "fr-FR": "Francês",
+            "ja-JP": "Japonês",
+            "de-DE": "Alemão",
+            "it-IT": "Italiano",
+            "zh-TW": "Chinês Tradicional"
+        }
     },
     "anime": {
         "info": {
