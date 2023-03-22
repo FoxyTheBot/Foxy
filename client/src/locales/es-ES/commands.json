@@ -33,7 +33,7 @@
             "ja-JP": "Japonés",
             "de-DE": "Alemán",
             "it-IT": "Italiano",
-            "ru-RU": "Russo"
+            "ru-RU": "Ruso "
         }
     },
     "anime": {
@@ -137,61 +137,61 @@
     "roblox": {
         "aboutme": "Sobre mí",
         "register": "Data de registro",
-        "undefined": "Não definido",
-        "noAboutme": "Não há sobre mim",
-        "noStatus": "Não há status",
-        "error": "Não foi possível encontrar esse usuário... Provavelmente a conta não existe :/",
+        "undefined": "No definido",
+        "noAboutme": "No hay sobre mi",
+        "noStatus": "No hay status",
+        "error": "No fue posible encontrar este usuario... Probablemente la cuenta no existe :/",
         "button": "Ver perfil"
     },
     "aboutme": {
-        "set": "Seu sobre mim foi alterado para `{{aboutme}}`",
-        "tooLong": "O limite de caracteres é 225 e você digitou {{length}}, digita algo menor pfv :3"
+        "set": "Su sobre mi ha sido configurado para `{{aboutme}}`",
+        "tooLong": "O límite de los caracteres es 225 y tú digitaste {{length}}, digite algo más menor plis :3"
     },
     "layouts": {
-        "default": "Padrão",
-        "red": "Vermelho",
+        "default": "Padrón",
+        "red": "Rojo",
         "blue": "Azul",
-        "purple": "Roxo",
+        "purple": "Púrpura",
         "cyan": "Ciano",
-        "changed": "Você alterou o layout do seu perfil",
-        "notFound": "Layout não encontrado"
+        "changed": "Tú alteraste la layout de tu perfil",
+        "notFound": "Layout no se halla encontrado"
     },
     "role": {
-        "description": "Permissões do cargo",
-        "id": "ID do cargo",
-        "color": "Cor do cargo",
-        "position": "Posição do cargo",
-        "noPermissions": "O cargo não tem permissões",
-        "roleMention": "Menção do cargo",
-        "createdAt": "Criado em"
+        "description": "Permisos de cargo",
+        "id": "ID de cargo",
+        "color": "Color de cargo",
+        "position": "Posición del cargo",
+        "noPermissions": "El cargo no tienes permisiones",
+        "roleMention": "Mención del cargo",
+        "createdAt": "Criado en"
     },
     "server": {
-        "owner": "Dono",
-        "createdAt": "Criado em",
-        "clientJoin": "Entrei em",
-        "channels": "Canais",
+        "owner": "Dueño",
+        "createdAt": "Criado en",
+        "clientJoin": "Me uní en",
+        "channels": "Canales",
         "premium": "Impulsos",
-        "memberCount": "Membros",
+        "memberCount": "Miembros",
         "afk": "Canal AFK",
-        "click": "Veja o ícone no seu navegador",
-        "no": "Não",
-        "yes": "Sim",
-        "notFound": "Não encontrei nenhum servidor com a id `{{id}}`",
-        "partner": "Parceiro do Discord"
+        "click": "Mira ícono de tu navegador",
+        "no": "No",
+        "yes": "Si",
+        "notFound": "No hay encontrado uno servidor con la id `{{id}}`",
+        "partner": "Colaborador del Discord"
     },
     "user": {
         "info": {
-            "tag": "Tag do usuário",
-            "createdAt": "Criado em",
-            "userId": "ID do usuário",
-            "avatar": "Ver avatar do usuário",
-            "viewMember": "Ver informações do membro",
-            "noMember": "Não é um membro do servidor"
+            "tag": "Tag del usuario",
+            "createdAt": "Criado en",
+            "userId": "ID del usuario",
+            "avatar": "Mirar avatar del usuario",
+            "viewMember": "Ver la información del miembro",
+            "noMember": "No es miembro del servidor"
         },
         "avatar": {
-            "click": "Veja o avatar no seu navegador",
-            "title": "Avatar de {{user}}",
-            "footer": "Achei fofo :3"
+            "click": "Mirarlo avatar de tu navegador",
+            "title": "Avatar del {{user}}",
+            "footer": "Me pareció fofo :3"
         },
         "banner": {
             "click": "Veja o banner no seu navegador",
