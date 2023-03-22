@@ -33,7 +33,7 @@
             "ja-JP": "Japonés",
             "de-DE": "Alemán",
             "it-IT": "Italiano",
-            "ru-RU": "Ruso "
+            "ru-RU": "Ruso"
         }
     },
     "anime": {
@@ -138,7 +138,7 @@
         "aboutme": "Sobre mí",
         "register": "Data de registro",
         "undefined": "No definido",
-        "noAboutme": "No hay sobre mi",
+        "noAboutme": "No hay sobre mí",
         "noStatus": "No hay status",
         "error": "No fue posible encontrar este usuario... Probablemente la cuenta no existe :/",
         "button": "Ver perfil"
@@ -210,15 +210,15 @@
                 "title": "Permisiones de {{user}}"
             },
             "highestRole": "<:foxysunglasses:890688144280784926> Mayor cargo",
-            "premiumSince": "<:foxyboost:984596808921673768> Impulsión al servidor desde ",
+            "premiumSince": "<:foxyboost:984596808921673768> Impulsión al servidor desde",
             "noRoles": "No hay cargos",
             "noPermissions": "No hay permisiones"
         }
     },
     "ship": {
         "question": "¿Será que vais a rolar o no?",
-        "perfectCouple": "¡Este casal es perfecto! ",
-        "uwu": "¡Esos aquí están haciendo travesuras y no contaron a nadie! ",
+        "perfectCouple": "¡Este casal es perfecto!",
+        "uwu": "¡Esos aquí están haciendo travesuras y no contaron a nadie!",
         "probably": "Quizá es solo {{user}} querer...",
         "cry": "Quería muy dice que es posible más..."
     },
