@@ -23,44 +23,44 @@
     },
     "lang": {
         "title": "Seleccione su idioma",
-        "default": "Seu idioma está definido como Português do Brasil",
-        "changed": "Seu idioma foi alterado para `{{language}}`",
-        "placeholder": "Idioma alterado",
+        "default": "Tu idioma estás definido cómo español",
+        "changed": "Su idioma ha sido configurado en {{language}}",
+        "placeholder": "Idioma modificado",
         "languages": {
-            "en-US": "Inglês",
-            "es-ES": "Espanhol",
-            "fr-FR": "Francês",
-            "ja-JP": "Japonês",
-            "de-DE": "Alemão",
+            "en-US": "Inglés",
+            "es-ES": "Español",
+            "fr-FR": "Francés",
+            "ja-JP": "Japonés",
+            "de-DE": "Alemán",
             "it-IT": "Italiano",
-            "zh-TW": "Chinês Tradicional"
+            "zh-TW": "Mandarín"
         }
     },
     "anime": {
         "info": {
             "status": "Status",
-            "score": "Pontuação",
-            "episodes": "Episódios",
+            "score": "Puntuación",
+            "episodes": "Episodios",
             "type": "Tipo",
-            "aired": "Foi a público em",
-            "genres": "Gêneros",
-            "source": "Origem",
-            "studios": "Estúdios",
-            "duration": "Duração",
-            "rating": "Classificação",
-            "scoreStats": "Status da pontuação",
-            "popularity": "Popularidade",
-            "premiered": "Estreou em",
-            "broadcast": "Transmissão"
+            "aired": "Hizo público en",
+            "genres": "Géneros",
+            "source": "Origen",
+            "studios": "Estudios",
+            "duration": "Duración",
+            "rating": "Clasificación",
+            "scoreStats": "Status de puntuación",
+            "popularity": "Popularidad",
+            "premiered": "Estrenado en",
+            "broadcast": "Transmisión"
         },
-        "notFound": "Anime não encontrado",
-        "click": "Clique aqui",
+        "notFound": "Anime no sé ha encontrado",
+        "click": "Clique ahí",
         "nothing": "Nada encontrado"
     },
     "coinflip": {
         "heads": "cara",
-        "tails": "coroa",
-        "flipped": "Você jogou uma moeda e o resultado foi"
+        "tails": "ceca",
+        "flipped": "Tú rolaste una moneda y lo resultado fue"
     },
     "upvote": {
         "description": "Me ajude a crescer e me ajude a ser um bot melhor votando em mim no <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nCada voto ajuda a me divulgar para outras pessoas na Discord Bot List <:catblush:768292358458179595>\n\n Que tal você se juntar a todas as outras pessoas que votaram e que me ajudaram a crescer [clicando aqui](https://top.gg/bot/1006520438865801296/vote)? :heart:",
