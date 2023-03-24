@@ -228,58 +228,58 @@
         "self": "Tú no pueda darle reputación a sí mesmo"
     },
     "marry": {
-        "self": "Você não pode casar com você mesmo",
-        "alreadyMarried": "Você já está casado com alguém!",
-        "bot": "Não, eu não quero casar com você!",
-        "alreadyMarriedWithSomeone": "Você já está casado com alguém",
-        "alreadyMarriedWithUser": "Você já está casado com **{{user}}**",
-        "ask": "{{user}} Você quer casar com **{{author}}**?",
-        "accept": "Aceitar",
-        "accepted": "Vocês estão casados! Felicidades para o casal <3"
+        "self": "No puedes casarte contigo mismo",
+        "alreadyMarried": "¡Ya estás casado con alguien!",
+        "bot": "¡No quiero casarme contigo!",
+        "alreadyMarriedWithSomeone": "¡Ya estás casado con alguien!",
+        "alreadyMarriedWithUser": "Ya estás casado con {{user}}",
+        "ask": "{{user}} ¿Quieres casarte con **{{author}}**?",
+        "accept": "Aceptar",
+        "accepted": "¡Estás casado! Felicidades a la pareja <3"
     },
     "divorce": {
-        "notMarried": "Você não está casado",
-        "confirm2": "Você tem certeza que quer divorciar?",
-        "divorced": "...Então é isso, se divorciar é sim uma coisa triste, Da próxima vez ame alguém que realmente mereça e respeite você, sim isso parece ser difícil pois o amor é algo cego e incontrolável... Mas é melhor estar sozinho do que mal acompanhado, eu confio em você! :heart:",
-        "confirm": "Divorciar",
+        "notMarried": "No estás casado",
+        "confirm2": "¿Estás seguro de que quieres divorciarte?",
+        "divorced": "... Así es, divorciarse es algo triste, La próxima vez ama a alguien que realmente te merezca y te respete, sí, eso parece ser difícil porque el amor es algo ciego e incontrolable... Pero es mejor estar solo que mal acompañado, ¡Confío en ti! :heart:",
+        "confirm": "Divorciarse",
         "confirmed": "Divorciado"
     },
     "suggest": {
-        "success": "Obrigada por me ajudar {{user}}, sua sugestão `{{content}}` foi enviada para o meu desenvolvedor <3"
+        "success": "Gracias por ayudarme {{user}}, tu sugerencia `{{content}}` ha sido enviada a mi desarrollador <3"
     },
     "report": {
-        "success": "Obrigada por me ajudar {{user}}, seu report `{{content}}` foi enviado para o meu desenvolvedor <3"
+        "success": "Gracias por ayudarme {{user}}, tu informe `{{content}}` ha sido enviado a mi desarrollador <3"
     },
     "status": {
-        "model": "Modelo do processador",
+        "model": "Modelo de procesador",
         "guilds": "Servidores",
-        "users": "Usuários",
-        "ram": "Memória RAM",
-        "cpuUsage": "Uso do processador",
+        "users": "Usuarios",
+        "ram": "Memoria RAM",
+        "cpuUsage": "Uso del procesador",
         "node": "Node.js",
-        "arch": "Arquitetura",
+        "arch": "Arquitectura",
         "platform": "Plataforma"
     },
     "mcskin": {
-        "title": "Skin de {{user}}"
+        "title": "Piel de {{user}}"
     },
     "mchead": {
-        "title": "Cabeça de {{user}}"
+        "title": "Cabeza de {{user}}"
     },
     "mcbody": {
-        "title": "Corpo de {{user}}"
+        "title": "Cuerpo de {{user}}"
     },
     "error": {
-        "tooLong": "O conteúdo é muito longo, o limite é de **{{limit}}** caracteres"
+        "tooLong": "El contenido es demasiado largo, el límite es de **{{limit}}** caracteres"
     },
     "rps": {
         "replies": {
-            "rock": "pedra",
+            "rock": "piedra",
             "paper": "papel",
-            "scissors": "tesoura"
+            "scissors": "tijeras"
         },
-        "tie": "Deu empate, vamos de novo! >:D",
-        "start": "Para jogar, clique em um dos botões abaixo",
+        "tie": "Es un empate, ¡vamos de nuevo! >:D",
+        "start": "Para jugar, haga clic en uno de los botones de abajo",
         "invalidChoice": "Escolha inválida, escolha {{choice}}",
         "clientWon": "Deu {{result}}, eu ganhei >:3",
         "won3": "Você ganhou :3",
