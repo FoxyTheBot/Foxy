@@ -361,27 +361,27 @@
         "success": "You stepped on {{user}}"
     },
     "tickle": {
-        "success": "**{{author}}** fez cócegas em **{{user}}**",
-        "button": "Retribuir"
+        "success": "**{{author}}** tickles **{{user}}**",
+        "button": "Retribute"
     },
     "smile": {
-        "smiling": "{{author}} está sorrindo..."
+        "smiling": "{{author}} is smiling..."
     },
     "cry": {
-        "crying": "{{author}} está chorando..."
+        "crying": "{{author}} is crying..."
     },
     "lick": {
-        "success": "**{{author}}** deu uma lambida em **{{user}}**"
+        "success": "**{{author}}** licks **{{user}}**"
     },
     "laugh": {
-        "success": "{{author}} está rindo..."
+        "success": "{{author}} is laughing..."
     },
     "slap": {
         "button": "Slap",
         "success": "**{{author}}** slapped **{{target}}**"
     },
     "dance": {
-        "dancing": "{{author}} está dançando"
+        "dancing": "{{author}} is dancing"
     },
     "pat": {
         "button": "Pat",
