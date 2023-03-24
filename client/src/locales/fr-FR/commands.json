@@ -360,9 +360,28 @@
     "step": {
         "success": "Vous avez marché sur {{user}}"
     },
+    "tickle": {
+        "success": "**{{author}}** fez cócegas em **{{user}}**",
+        "button": "Retribuir"
+    },
+    "smile": {
+        "smiling": "{{author}} está sorrindo..."
+    },
+    "cry": {
+        "crying": "{{author}} está chorando..."
+    },
+    "lick": {
+        "success": "**{{author}}** deu uma lambida em **{{user}}**"
+    },
+    "laugh": {
+        "success": "{{author}} está rindo..."
+    },
     "slap": {
         "button": "De donner en retour",
         "success": "**{{author}}** giflé **{{user}}**"
+    },
+    "dance": {
+        "dancing": "{{author}} está dançando"
     },
     "pat": {
         "button": "De donner en retour",
