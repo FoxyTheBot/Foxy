@@ -6,8 +6,7 @@ import { createEmbed } from '../../utils/discord/Embed';
 import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
 import { bot } from '../../index';
 import PatExecutor from '../../utils/commands/executors/actions/PatExecutor';
-import gifs from 'nekos.life';
-const gif = new gifs();
+
 const embed = createEmbed({});
 
 const patCommand = createCommand({
@@ -37,7 +36,7 @@ const patCommand = createCommand({
     commandRelatedExecutions: [PatExecutor],
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
-        const patGif = await gif.pat();
+        const patGif: any = await context.getImage("pat");
 
         embed.title = t('commands:pat.success', { user: user.username, author: context.author.username }),
             embed.image = {

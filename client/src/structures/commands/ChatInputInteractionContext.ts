@@ -3,11 +3,11 @@ import { Interaction, User } from 'discordeno/transformers';
 import { TFunction } from 'i18next';
 import { MessageFlags } from '../../utils/discord/Message';
 import { bot } from "../../index";
-
+import { get } from 'https'
+import { URL } from 'url';
 import { getOptionFromInteraction } from './GetCommandOption';
 
 export type CanResolve = 'users' | 'members' | false;
-
 export default class {
     public replied = false;
     public subCommand: string | undefined;
@@ -64,6 +64,38 @@ export default class {
         return `<:emoji:${id}>`;
     }
 
+     getContent(url) {
+        return new Promise((resolve, reject) => {
+          get(url, (res) => {
+            const {statusCode} = res;
+            if(statusCode !== 200) {
+              res.resume();
+              reject(`Request failed. Status code: ${statusCode}`);
+            }
+            res.setEncoding('utf8');
+            let rawData = '';
+            res.on('data', (chunk) => {rawData += chunk});
+            res.on('end', () => {
+              try {
+                const parsedData = JSON.parse(rawData);
+                resolve(parsedData);
+              } catch(e) {
+                reject(`Error: ${e}`);
+              }
+            });
+          }).on('error', (err) => {
+            reject(`Error: ${err.message}`);
+          })
+        });
+      }
+
+      
+    async getImage(command: string) {
+        let baseURL = 'https://cdn.foxybot.win/image/';
+        let url = new URL(baseURL + command);
+        return await this.getContent(url.toString());
+    }
+    
     async sendReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
         if (this.replied) {
             await bot.helpers

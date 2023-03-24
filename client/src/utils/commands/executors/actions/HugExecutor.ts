@@ -3,12 +3,10 @@ import { bot } from "../../../../index";
 import { createEmbed } from "../../../discord/Embed";
 import { ButtonStyles } from "discordeno/types";
 import { createActionRow, createButton, createCustomId } from "../../../discord/Component";
-import gifs from 'nekos.life';
-const gif = new gifs();
 
 const HugExecutor = async (context: ComponentInteractionContext) => {
     const [user] = context.sentData;
-    const hugGif = await gif.hug();
+    const hugGif: any = await context.getImage("hug");
     const embed = createEmbed({});
 
     embed.title = bot.locale('commands:hug.success', { user: context.author.username, author: user }),

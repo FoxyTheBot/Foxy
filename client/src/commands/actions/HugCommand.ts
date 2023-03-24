@@ -6,8 +6,7 @@ import { createEmbed } from '../../utils/discord/Embed';
 import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
 import { bot } from '../../index';
 import HugExecutor from '../../utils/commands/executors/actions/HugExecutor';
-import gifs from 'nekos.life';
-const gif = new gifs();
+
 const embed = createEmbed({});
 
 const HugCommand = createCommand({
@@ -37,8 +36,7 @@ const HugCommand = createCommand({
     commandRelatedExecutions: [HugExecutor],
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
-        const hugGif = await gif.hug();
-
+        const hugGif: any = await context.getImage("hug");
         embed.title = t('commands:hug.success', { user: user.username, author: context.author.username }),
             embed.image = {
                 url: hugGif.url

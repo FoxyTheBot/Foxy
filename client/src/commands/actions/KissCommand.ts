@@ -6,8 +6,7 @@ import { createEmbed } from '../../utils/discord/Embed';
 import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
 import { bot } from '../../index';
 import KissExecutor from "../../utils/commands/executors/actions/KissExecutor";
-import gifs from 'nekos.life';
-const gif = new gifs();
+
 const embed = createEmbed({});
 
 const KissCommand = createCommand({
@@ -37,7 +36,7 @@ const KissCommand = createCommand({
     commandRelatedExecutions: [KissExecutor],
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
-        const kissGif = await gif.kiss();
+        const kissGif: any = await context.getImage("kiss");
 
         embed.title = t('commands:kiss.success', { user: user.username, author: context.author.username }),
             embed.image = {

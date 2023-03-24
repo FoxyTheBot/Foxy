@@ -3,12 +3,10 @@ import { bot } from "../../../../index";
 import { createEmbed } from "../../../discord/Embed";
 import { ButtonStyles } from "discordeno/types";
 import { createActionRow, createButton, createCustomId } from "../../../discord/Component";
-import gifs from 'nekos.life';
-const gif = new gifs();
 
 const PatExecutor = async (context: ComponentInteractionContext) => {
     const [user] = context.sentData;
-    const patGif = await gif.pat();
+    const patGif: any = await context.getImage("pat");
     const embed = createEmbed({});
     embed.title = bot.locale('commands:pat.success', { user: context.author.username, author: user }),
         embed.image = {

@@ -3,12 +3,10 @@ import { bot } from "../../../../index";
 import { createEmbed } from "../../../discord/Embed";
 import { ButtonStyles } from "discordeno/types";
 import { createActionRow, createButton, createCustomId } from "../../../discord/Component";
-import gifs from 'nekos.life';
-const gif = new gifs();
 
 const SlapExecutor = async (context: ComponentInteractionContext) => {
     const [user] = context.sentData;
-    const slapGif = await gif.slap();
+    const slapGif: any = await context.getImage("slap");
     const embed = createEmbed({});
 
     embed.title = bot.locale('commands:slap.success', { user: context.author.username, author: user }),

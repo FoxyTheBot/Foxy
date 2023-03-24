@@ -6,8 +6,7 @@ import { createEmbed } from '../../utils/discord/Embed';
 import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
 import { bot } from '../../index';
 import SlapExecutor from '../../utils/commands/executors/actions/SlapExecutor';
-import gifs from 'nekos.life';
-const gif = new gifs();
+
 const embed = createEmbed({});
 
 
@@ -38,7 +37,7 @@ const SlapCommand = createCommand({
     commandRelatedExecutions: [SlapExecutor],
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
-        const slapGif = await gif.slap();
+        const slapGif: any = await context.getImage("slap");
 
         embed.title = t('commands:slap.success', { user: user.username, author: context.author.username }),
             embed.image = {
