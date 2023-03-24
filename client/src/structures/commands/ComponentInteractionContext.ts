@@ -82,7 +82,7 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
 
       
     async getImage(command: string) {
-        let baseURL = 'https://cdn.foxybot.win/image/';
+        let baseURL = 'https://cdn.foxybot.win/images/';
         let url = new URL(baseURL + command);
         return await this.getContent(url.toString());
     }
