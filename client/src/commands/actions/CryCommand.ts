@@ -16,7 +16,7 @@ const CryCommand = createCommand({
 
     execute: async (context, endCommand, t) => {
         const cryGif: any = await context.getImage("cry");
-        embed.title = t('commands:cry.crying'),
+        embed.title = t('commands:cry.crying', { author: context.author.username }),
             embed.image = {
                 url: cryGif.url
             }

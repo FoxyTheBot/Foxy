@@ -16,7 +16,7 @@ const DanceCommand = createCommand({
 
     execute: async (context, endCommand, t) => {
         const danceGif: any = await context.getImage("dance");
-        embed.title = t('commands:cry.crying'),
+        embed.title = t('commands:dance.dancing', { author: context.author.username }),
             embed.image = {
                 url: danceGif.url
             }

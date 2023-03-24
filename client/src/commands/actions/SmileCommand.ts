@@ -16,7 +16,7 @@ const SmileCommand = createCommand({
 
     execute: async (context, endCommand, t) => {
         const smileGif: any = await context.getImage("smile");
-        embed.title = t('commands:smile.smiling'),
+        embed.title = t('commands:smile.smiling', { author: context.author.username }),
             embed.image = {
                 url: smileGif.url
             }
