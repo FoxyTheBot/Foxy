@@ -33,7 +33,7 @@
             "ja-JP": "Japonés",
             "de-DE": "Alemán",
             "it-IT": "Italiano",
-            "ru-RU": "Russo"
+            "ru-RU": "Ruso"
         }
     },
     "anime": {
@@ -137,149 +137,149 @@
     "roblox": {
         "aboutme": "Sobre mí",
         "register": "Data de registro",
-        "undefined": "Não definido",
-        "noAboutme": "Não há sobre mim",
-        "noStatus": "Não há status",
-        "error": "Não foi possível encontrar esse usuário... Provavelmente a conta não existe :/",
+        "undefined": "No definido",
+        "noAboutme": "No hay sobre mí",
+        "noStatus": "No hay status",
+        "error": "No fue posible encontrar este usuario... Probablemente la cuenta no existe :/",
         "button": "Ver perfil"
     },
     "aboutme": {
-        "set": "Seu sobre mim foi alterado para `{{aboutme}}`",
-        "tooLong": "O limite de caracteres é 225 e você digitou {{length}}, digita algo menor pfv :3"
+        "set": "Su sobre mi ha sido configurado para `{{aboutme}}`",
+        "tooLong": "O límite de los caracteres es 225 y tú digitaste {{length}}, digite algo más menor plis :3"
     },
     "layouts": {
-        "default": "Padrão",
-        "red": "Vermelho",
+        "default": "Padrón",
+        "red": "Rojo",
         "blue": "Azul",
-        "purple": "Roxo",
+        "purple": "Púrpura",
         "cyan": "Ciano",
-        "changed": "Você alterou o layout do seu perfil",
-        "notFound": "Layout não encontrado"
+        "changed": "Tú alteraste la layout de tu perfil",
+        "notFound": "Layout no se halla encontrado"
     },
     "role": {
-        "description": "Permissões do cargo",
-        "id": "ID do cargo",
-        "color": "Cor do cargo",
-        "position": "Posição do cargo",
-        "noPermissions": "O cargo não tem permissões",
-        "roleMention": "Menção do cargo",
-        "createdAt": "Criado em"
+        "description": "Permisos de cargo",
+        "id": "ID de cargo",
+        "color": "Color de cargo",
+        "position": "Posición del cargo",
+        "noPermissions": "El cargo no tienes permisiones",
+        "roleMention": "Mención del cargo",
+        "createdAt": "Criado en"
     },
     "server": {
-        "owner": "Dono",
-        "createdAt": "Criado em",
-        "clientJoin": "Entrei em",
-        "channels": "Canais",
+        "owner": "Dueño",
+        "createdAt": "Criado en",
+        "clientJoin": "Me uní en",
+        "channels": "Canales",
         "premium": "Impulsos",
-        "memberCount": "Membros",
+        "memberCount": "Miembros",
         "afk": "Canal AFK",
-        "click": "Veja o ícone no seu navegador",
-        "no": "Não",
-        "yes": "Sim",
-        "notFound": "Não encontrei nenhum servidor com a id `{{id}}`",
-        "partner": "Parceiro do Discord"
+        "click": "Mira ícono de tu navegador",
+        "no": "No",
+        "yes": "Si",
+        "notFound": "No hay encontrado uno servidor con la id `{{id}}`",
+        "partner": "Colaborador del Discord"
     },
     "user": {
         "info": {
-            "tag": "Tag do usuário",
-            "createdAt": "Criado em",
-            "userId": "ID do usuário",
-            "avatar": "Ver avatar do usuário",
-            "viewMember": "Ver informações do membro",
-            "noMember": "Não é um membro do servidor"
+            "tag": "Tag del usuario",
+            "createdAt": "Criado en",
+            "userId": "ID del usuario",
+            "avatar": "Mirar avatar del usuario",
+            "viewMember": "Ver la información del miembro",
+            "noMember": "No es miembro del servidor"
         },
         "avatar": {
-            "click": "Veja o avatar no seu navegador",
-            "title": "Avatar de {{user}}",
-            "footer": "Achei fofo :3"
+            "click": "Mirarlo avatar de tu navegador",
+            "title": "Avatar del {{user}}",
+            "footer": "Me pareció fofo :3"
         },
         "banner": {
-            "click": "Veja o banner no seu navegador",
-            "title": "Banner de {{user}}",
-            "noBanner": "Esse usuário não tem banner <a:foxylick:987381814622560277>"
+            "click": "Mira banner de tu navegador",
+            "title": "Banner del {{user}}",
+            "noBanner": "Este usuario no tienes banners <a:foxylick:987381814622560277>"
         },
         "member": {
             "title": "Sobre {{user}}",
-            "joinedAt": ":sparkles: Entrou em",
+            "joinedAt": ":sparkles: Entraste en",
             "role": "<:foxysunglasses:890688144280784926> Cargos",
-            "nickname": "<:foxyhearteyes:984596954526920794> Apelido no servidor",
-            "noNickname": "Não há apelido no servidor",
+            "nickname": "<:foxyhearteyes:984596954526920794> Apellido en el servidor",
+            "noNickname": "No hay apellido en el servidor",
             "permissions": {
-                "button": "Permissões",
-                "list": "Lista de permissões",
-                "title": "Permissões de {{user}}"
+                "button": "Permisiones",
+                "list": "Lista de permisiones",
+                "title": "Permisiones de {{user}}"
             },
-            "highestRole": "<:foxysunglasses:890688144280784926> Maior cargo",
-            "premiumSince": "<:foxyboost:984596808921673768> Impulsiona o servidor desde",
-            "noRoles": "Não há cargos",
-            "noPermissions": "Não há permissões"
+            "highestRole": "<:foxysunglasses:890688144280784926> Mayor cargo",
+            "premiumSince": "<:foxyboost:984596808921673768> Impulsión al servidor desde",
+            "noRoles": "No hay cargos",
+            "noPermissions": "No hay permisiones"
         }
     },
     "ship": {
-        "question": "Será que vai rolar ou não?",
-        "perfectCouple": "Esse é o casal perfeito!",
-        "uwu": "Esses aqui já estão se pegando e não contaram para ninguém!",
-        "probably": "Talvez só precisa o {{user}} querer...",
-        "cry": "Queria muito dizer que é possível mas..."
+        "question": "¿Será que vais a rolar o no?",
+        "perfectCouple": "¡Este casal es perfecto!",
+        "uwu": "¡Esos aquí están haciendo travesuras y no contaron a nadie!",
+        "probably": "Quizá es solo {{user}} querer...",
+        "cry": "Quería muy dice que es posible más..."
     },
     "rep": {
-        "cooldown": "Você já deu reputação para algúem, espere **{{cooldown}}**",
-        "success": "Você deu reputação para **{{user}}**",
-        "self": "Você não pode dar reputação para você mesmo"
+        "cooldown": "Tú has dado reputación a alguien, espera\n**{{cooldown}}**",
+        "success": "Tú ya has dado reputación para **{{user}}**",
+        "self": "Tú no pueda darle reputación a sí mesmo"
     },
     "marry": {
-        "self": "Você não pode casar com você mesmo",
-        "alreadyMarried": "Você já está casado com alguém!",
-        "bot": "Não, eu não quero casar com você!",
-        "alreadyMarriedWithSomeone": "Você já está casado com alguém",
-        "alreadyMarriedWithUser": "Você já está casado com **{{user}}**",
-        "ask": "{{user}} Você quer casar com **{{author}}**?",
-        "accept": "Aceitar",
-        "accepted": "Vocês estão casados! Felicidades para o casal <3"
+        "self": "No puedes casarte contigo mismo",
+        "alreadyMarried": "¡Ya estás casado con alguien!",
+        "bot": "¡No quiero casarme contigo!",
+        "alreadyMarriedWithSomeone": "¡Ya estás casado con alguien!",
+        "alreadyMarriedWithUser": "Ya estás casado con {{user}}",
+        "ask": "{{user}} ¿Quieres casarte con **{{author}}**?",
+        "accept": "Aceptar",
+        "accepted": "¡Estás casado! Felicidades a la pareja <3"
     },
     "divorce": {
-        "notMarried": "Você não está casado",
-        "confirm2": "Você tem certeza que quer divorciar?",
-        "divorced": "...Então é isso, se divorciar é sim uma coisa triste, Da próxima vez ame alguém que realmente mereça e respeite você, sim isso parece ser difícil pois o amor é algo cego e incontrolável... Mas é melhor estar sozinho do que mal acompanhado, eu confio em você! :heart:",
-        "confirm": "Divorciar",
+        "notMarried": "No estás casado",
+        "confirm2": "¿Estás seguro de que quieres divorciarte?",
+        "divorced": "... Así es, divorciarse es algo triste, La próxima vez ama a alguien que realmente te merezca y te respete, sí, eso parece ser difícil porque el amor es algo ciego e incontrolable... Pero es mejor estar solo que mal acompañado, ¡Confío en ti! :heart:",
+        "confirm": "Divorciarse",
         "confirmed": "Divorciado"
     },
     "suggest": {
-        "success": "Obrigada por me ajudar {{user}}, sua sugestão `{{content}}` foi enviada para o meu desenvolvedor <3"
+        "success": "Gracias por ayudarme {{user}}, tu sugerencia `{{content}}` ha sido enviada a mi desarrollador <3"
     },
     "report": {
-        "success": "Obrigada por me ajudar {{user}}, seu report `{{content}}` foi enviado para o meu desenvolvedor <3"
+        "success": "Gracias por ayudarme {{user}}, tu informe `{{content}}` ha sido enviado a mi desarrollador <3"
     },
     "status": {
-        "model": "Modelo do processador",
+        "model": "Modelo de procesador",
         "guilds": "Servidores",
-        "users": "Usuários",
-        "ram": "Memória RAM",
-        "cpuUsage": "Uso do processador",
+        "users": "Usuarios",
+        "ram": "Memoria RAM",
+        "cpuUsage": "Uso del procesador",
         "node": "Node.js",
-        "arch": "Arquitetura",
+        "arch": "Arquitectura",
         "platform": "Plataforma"
     },
     "mcskin": {
-        "title": "Skin de {{user}}"
+        "title": "Piel de {{user}}"
     },
     "mchead": {
-        "title": "Cabeça de {{user}}"
+        "title": "Cabeza de {{user}}"
     },
     "mcbody": {
-        "title": "Corpo de {{user}}"
+        "title": "Cuerpo de {{user}}"
     },
     "error": {
-        "tooLong": "O conteúdo é muito longo, o limite é de **{{limit}}** caracteres"
+        "tooLong": "El contenido es demasiado largo, el límite es de **{{limit}}** caracteres"
     },
     "rps": {
         "replies": {
-            "rock": "pedra",
+            "rock": "piedra",
             "paper": "papel",
-            "scissors": "tesoura"
+            "scissors": "tijeras"
         },
-        "tie": "Deu empate, vamos de novo! >:D",
-        "start": "Para jogar, clique em um dos botões abaixo",
+        "tie": "Es un empate, ¡vamos de nuevo! >:D",
+        "start": "Para jugar, haga clic en uno de los botones de abajo",
         "invalidChoice": "Escolha inválida, escolha {{choice}}",
         "clientWon": "Deu {{result}}, eu ganhei >:3",
         "won3": "Você ganhou :3",
@@ -360,9 +360,28 @@
     "step": {
         "success": "Você pisou em {{user}}"
     },
+    "tickle": {
+        "success": "**{{author}}** fez cócegas em **{{user}}**",
+        "button": "Retribuir"
+    },
+    "smile": {
+        "smiling": "{{author}} está sorrindo..."
+    },
+    "cry": {
+        "crying": "{{author}} está chorando..."
+    },
+    "lick": {
+        "success": "**{{author}}** deu uma lambida em **{{user}}**"
+    },
+    "laugh": {
+        "success": "{{author}} está rindo..."
+    },
     "slap": {
         "button": "Retribuir",
         "success": "**{{author}}** deu um tabefe em **{{user}}**"
+    },
+    "dance": {
+        "dancing": "{{author}} está dançando"
     },
     "pat": {
         "button": "Retribuir",
