@@ -4,6 +4,7 @@ import { bot } from '../../index';
 import { User } from "discordeno/transformers";
 import { createEmbed } from "../../utils/discord/Embed";
 import config from '../../../config.json';
+import util from "util";
 
 const FoxyToolsCommand = createCommand({
     name: "foxytools",
@@ -63,6 +64,19 @@ const FoxyToolsCommand = createCommand({
             ]
         },
         {
+            name: "eval",
+            description: "Executa um código",
+            type: ApplicationCommandOptionTypes.SubCommand,
+            options: [
+                {
+                    name: "code",
+                    description: "O código que você quer executar",
+                    type: ApplicationCommandOptionTypes.String,
+                    required: true
+                }
+            ]
+        },
+        {
             name: "foxyban",
             "description": "Bane alguém de usar a Foxy",
             type: ApplicationCommandOptionTypes.SubCommandGroup,
@@ -113,12 +127,12 @@ const FoxyToolsCommand = createCommand({
                     ]
                 }
             ]
-        }
+        },
+
     ],
     execute: async (context, endCommand, t) => {
         const command = context.getSubCommand();
         const user = context.getOption<User>('user', 'users');
-        const userData = await bot.database.getUser(user.id);
 
         if (context.author.id !== BigInt(config.ownerId) && command !== "check") {
             context.sendReply({
@@ -130,6 +144,7 @@ const FoxyToolsCommand = createCommand({
 
         switch (command) {
             case "add_cakes": {
+                const userData = await bot.database.getUser(user.id);
                 const quantity = context.getOption<Number>('quantity', false);
 
                 if (userData.isBanned) {
@@ -145,6 +160,7 @@ const FoxyToolsCommand = createCommand({
             }
 
             case "reset_daily": {
+                const userData = await bot.database.getUser(user.id);
                 if (userData.isBanned) {
                     context.sendReply({ content: "O usuário está banido!", flags: 64 });
                     return endCommand();
@@ -180,6 +196,7 @@ const FoxyToolsCommand = createCommand({
             }
 
             case "add": {
+                const userData = await bot.database.getUser(user.id);
                 if (userData.isBanned) {
                     context.sendReply({
                         content: `${user.username} já está banido!`
@@ -200,6 +217,7 @@ const FoxyToolsCommand = createCommand({
             }
 
             case "remove": {
+                const userData = await bot.database.getUser(user.id);
                 if (!userData.isBanned) {
                     context.sendReply({
                         content: `${user.username} não está banido!`,
@@ -221,6 +239,7 @@ const FoxyToolsCommand = createCommand({
             }
 
             case "check": {
+                const userData = await bot.database.getUser(user.id);
                 const embed = createEmbed({
                     title: "Informações sobre o banimento",
                     fields: [
@@ -250,6 +269,28 @@ const FoxyToolsCommand = createCommand({
                 });
 
                 return endCommand();
+            }
+
+            case "eval": {
+                const code = context.getOption<string>("code", false);
+
+                try {
+                    let evaled = eval(code);
+                    evaled = util.inspect(evaled, { depth: 1 });
+                    evaled = evaled.replace(new RegExp('Error', 'g'), undefined);
+
+                    if (evaled.length > 1800) evaled = `${evaled.slice(0, 1800)}...`;
+
+                    context.sendReply({
+                        content: `\`\`\`js\n${evaled}\`\`\``,
+                        flags: 64
+                    }); 
+                } catch(err) {
+                    context.sendReply({
+                        content: `\`\`\`js\n${err}\`\`\``,
+                        flags: 64
+                    }); 
+                }
             }
         }
     }
