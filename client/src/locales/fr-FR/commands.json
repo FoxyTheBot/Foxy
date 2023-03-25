@@ -361,7 +361,7 @@
         "success": "Vous avez marché sur {{user}}"
     },
     "tickle": {
-        "success": "**{{author}}** fez cócegas em **{{user}}**",
+        "success": "**{{author}}** chatouillé **{{user}}**",
         "button": "Retribuir"
     },
     "smile": {
