@@ -8,9 +8,9 @@ const CryCommand = createCommand({
     nameLocalizations: {
         'pt-BR': 'chorar'
     },
-    description: '[Roleplay] Hug someone',
+    description: '[Roleplay] * crying *',
     descriptionLocalizations: {
-        "pt-BR": "[Roleplay] Abraçe alguém"
+        "pt-BR": "[Roleplay] * chorando *"
     },
     category: 'roleplay',
 

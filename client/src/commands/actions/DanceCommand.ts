@@ -8,9 +8,9 @@ const DanceCommand = createCommand({
     nameLocalizations: {
         'pt-BR': 'dançar'
     },
-    description: '[Roleplay] Dance with someone',
+    description: '[Roleplay] * grooving *',
     descriptionLocalizations: {
-        "pt-BR": "[Roleplay] Dance com alguém"
+        "pt-BR": "[Roleplay] * dançando *"
     },
     category: 'roleplay',
 

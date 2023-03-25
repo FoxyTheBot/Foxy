@@ -6,9 +6,9 @@ import { createEmbed } from '../../utils/discord/Embed';
 const embed = createEmbed({});
 
 const BiteCommand = createCommand({
-    name: 'bite',
+    name: 'actions',
     nameLocalizations: {
-        'pt-BR': 'morder'
+        'pt-BR': 'ações'
     },
     description: '[Roleplay] Bite someone',
     descriptionLocalizations: {
@@ -17,16 +17,29 @@ const BiteCommand = createCommand({
     category: 'roleplay',
     options: [
         {
-            name: "user",
+            name: "bite",
             nameLocalizations: {
-                "pt-BR": "usuário"
+                "pt-BR": "morder"
             },
-            description: "Select the user you want to bite",
+            description: '[Roleplay] Bite someone',
             descriptionLocalizations: {
-                "pt-BR": "Selecione o usuário que deseja morder"
+                "pt-BR": "[Roleplay] Morda alguém"
             },
-            type: ApplicationCommandOptionTypes.User,
-            required: true
+            type: ApplicationCommandOptionTypes.SubCommand,
+            options: [
+                {
+                    name: "user",
+                    nameLocalizations: {
+                        "pt-BR": "usuário"
+                    },
+                    description: "Select the user you want to bite",
+                    descriptionLocalizations: {
+                        "pt-BR": "Selecione o usuário que deseja morder"
+                    },
+                    type: ApplicationCommandOptionTypes.User,
+                    required: true
+                }
+            ]
         }
     ],
     execute: async (context, endCommand, t) => {
