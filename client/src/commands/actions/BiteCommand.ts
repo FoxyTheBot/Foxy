@@ -6,9 +6,9 @@ import { createEmbed } from '../../utils/discord/Embed';
 const embed = createEmbed({});
 
 const BiteCommand = createCommand({
-    name: 'actions',
+    name: 'bite',
     nameLocalizations: {
-        'pt-BR': 'ações'
+        'pt-BR': 'morder'
     },
     description: '[Roleplay] Bite someone',
     descriptionLocalizations: {
@@ -17,36 +17,23 @@ const BiteCommand = createCommand({
     category: 'roleplay',
     options: [
         {
-            name: "bite",
+            name: "user",
             nameLocalizations: {
-                "pt-BR": "morder"
+                "pt-BR": "usuário"
             },
-            description: '[Roleplay] Bite someone',
+            description: "Select the user you want to bite",
             descriptionLocalizations: {
-                "pt-BR": "[Roleplay] Morda alguém"
+                "pt-BR": "Selecione o usuário que deseja morder"
             },
-            type: ApplicationCommandOptionTypes.SubCommand,
-            options: [
-                {
-                    name: "user",
-                    nameLocalizations: {
-                        "pt-BR": "usuário"
-                    },
-                    description: "Select the user you want to bite",
-                    descriptionLocalizations: {
-                        "pt-BR": "Selecione o usuário que deseja morder"
-                    },
-                    type: ApplicationCommandOptionTypes.User,
-                    required: true
-                }
-            ]
+            type: ApplicationCommandOptionTypes.User,
+            required: true
         }
     ],
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
         const biteGif: any = await context.getImage("bite");
 
-        embed.title = t('commands:bite.success', { user: user.username, author: context.author.username }),
+        embed.title = t('commands:bite.success', { target: user.username, author: context.author.username }),
             embed.image = {
                 url: biteGif.url
             }
