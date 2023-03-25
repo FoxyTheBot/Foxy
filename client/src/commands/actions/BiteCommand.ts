@@ -33,7 +33,7 @@ const BiteCommand = createCommand({
         const user = context.getOption<User>("user", "users");
         const biteGif: any = await context.getImage("bite");
 
-        embed.title = t('commands:bite.success', { target: user.username, author: context.author.username }),
+        embed.title = t('commands:bite.success', { target: user.username, user: context.author.username }),
             embed.image = {
                 url: biteGif.url
             }
