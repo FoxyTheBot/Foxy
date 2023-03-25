@@ -362,26 +362,26 @@
     },
     "tickle": {
         "success": "**{{author}}** chatouillé **{{user}}**",
-        "button": "Retribuir"
+        "button": "Redonner"
     },
     "smile": {
-        "smiling": "{{author}} está sorrindo..."
+        "smiling": "{{author}} a souri..."
     },
     "cry": {
-        "crying": "{{author}} está chorando..."
+        "crying": "{{author}} pleure..."
     },
     "lick": {
-        "success": "**{{author}}** deu uma lambida em **{{user}}**"
+        "success": "**{{author}}** léché **{{user}}**"
     },
     "laugh": {
-        "success": "{{author}} está rindo..."
+        "success": "{{author}} a ri..."
     },
     "slap": {
         "button": "De donner en retour",
         "success": "**{{author}}** giflé **{{user}}**"
     },
     "dance": {
-        "dancing": "{{author}} está dançando"
+        "dancing": "{{author}} a dansé"
     },
     "pat": {
         "button": "De donner en retour",
