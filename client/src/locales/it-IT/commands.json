@@ -3,8 +3,8 @@
         "noPermission": "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {{user}}"
     },
     "roll": {
-        "result": "Você rolou **{{amount}}d{{sides}}** e o resultado foi **{{result}}**",
-        "button": "Rolar novamente"
+        "result": "Hai tirato {{amount}}d{{sides}} E il risultato è stato {{result}}",
+        "button": "Rr scorri di nuovo"
     },
     "botinfo": {
         "title": ":fox: Foxy",
