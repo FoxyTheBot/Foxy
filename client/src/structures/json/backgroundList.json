@@ -26,6 +26,14 @@
             "description": "Welcome to the Foxy World!"
         },
         {
+            "id": "scottland",
+            "name": "Scottland",
+            "rarity": "Raro",
+            "cakes": 10000,
+            "filename": "scottland.png",
+            "description": "bruh"
+        },
+        {
             "id": "fnaf",
             "name": "Five Nights at Freddy's",
             "rarity": "Comum",
