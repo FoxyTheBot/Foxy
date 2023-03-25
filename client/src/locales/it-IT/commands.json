@@ -7,16 +7,16 @@
         "button": "Rr scorri di nuovo"
     },
     "botinfo": {
-        "title": ":fox: Foxy",
+        "title": ":Fox: Foxy",
         "description": "Olá, eu sou a {{client.user.username}}! Eu sou um simples bot brasileiro de economia e entretenimento para o seu servidor! Estou espalhando alegria em {{guilds}} servidores :heart:",
         "fields": {
-            "addme": "Me adicione",
-            "server": "Servidores :heart:",
-            "server2": "Entre no meu servidor clicando aqui",
-            "add": "Me adicione clicando aqui",
-            "support": "Servidor de suporte",
-            "twitter": "Meu Twitter",
-            "github": "Meu Github",
+            "addme": "Aggiungimi",
+            "server": "Server :heart:",
+            "server2": "Entra nel mio serverentra nel mio server Qui",
+            "add": "Mi aggiungo cliccando qui",
+            "support": "Server di Supporto",
+            "twitter": "Il mio cinguettio",
+            "github": "Il mio Github",
             "donate2": "Doe para mim clicando aqui",
             "privacy": "Política de privacidade"
         }
