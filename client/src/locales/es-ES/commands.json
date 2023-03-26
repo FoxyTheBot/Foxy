@@ -331,7 +331,7 @@
         "transfered": "Transferido"
     },
     "daily": {
-        "cooldown": "Você já pegou suas Cakes hoje, espere **{{time}}**",
+        "cooldown": "Tú ja pegaste su Cakes hoy, esperaré **{{time}}**",
         "daily": "Você ganhou **{{amount}} Cakes** agora você possui {{money}} Cakes\n",
         "dailyAlert": "**Não se esqueça:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!"
     },
