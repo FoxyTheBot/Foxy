@@ -280,53 +280,53 @@
         },
         "tie": "Es un empate, ¡vamos de nuevo! >:D",
         "start": "Para jugar, haga clic en uno de los botones de abajo",
-        "invalidChoice": "Escolha inválida, escolha {{choice}}",
-        "clientWon": "Deu {{result}}, eu ganhei >:3",
-        "won3": "Você ganhou :3",
-        "won2": "Você ganhou >:3",
-        "won": "Você ganhou :D",
+        "invalidChoice": "Escoja inválida, escoja {{choice}}",
+        "clientWon": "Dio {{result}}, yo gané >:3",
+        "won3": "Tú gané :3",
+        "won2": "Tú gané >:3",
+        "won": "Tú ganaste :D",
         "button": {
-            "rock": "Pedra",
+            "rock": "Piedra",
             "paper": "Papel",
-            "scissors": "Tesoura",
-            "cancel": "Cancelar"
+            "scissors": "Tijera",
+            "cancel": "Cancelarlo"
         },
-        "cancelled": "{{emoji}} Jogo foi cancelado, para jogar execute o comando novamente",
-        "defaultValue": "O jogo ainda não foi iniciado"
+        "cancelled": "{{emoji}} Juego fuere cancelado, para jugar ejecuté lo comandó nuevamente",
+        "defaultValue": "Lo juego no fue iniciado"
     },
     "fate": {
-        "couple": "casal",
-        "enemy": "inimigos",
-        "lover": "amantes",
-        "sibling": "irmãos",
-        "parent": "Pai e filho",
-        "married": "casados",
+        "couple": "Casal",
+        "enemy": "Enemigos",
+        "lover": "Amantes",
+        "sibling": "Hermanos",
+        "parent": "Padre e hijo",
+        "married": "Casados",
         "friend": "Amigos",
-        "result": "Em um universo paralelo <@{{user}}> e <@{{mention}}> são {{fate}}"
+        "result": "En un universo paralelo <@{{user}}> y <@{{mention}}> son {{fate}}"
     },
     "cancel": {
-        "result": "{{user}} cancelou {{mention}} por `{{reason}}`"
+        "result": "{{user}} canceló {{mention}} por `{{reason}}`"
     },
     "8ball": {
-        "yes": "Sim",
-        "no": "Não",
+        "yes": "Si",
+        "no": "No",
         "maybe": "Talvez",
-        "idk": "Não sei",
-        "idk2": "Não sei :/",
-        "probably": "Provavelmente",
-        "probablyyes": "Provavelmente sim",
-        "probablyno": "Provavelmente não"
+        "idk": "No sé",
+        "idk2": "No sé :/",
+        "probably": "Probablemente",
+        "probablyyes": "Probablemente sí",
+        "probablyno": "Probablemente no"
     },
     "rank": {
-        "wrongPage": "Esta página não existe",
-        "youAreIn": "Você está na posição",
-        "position": "Posição"
+        "wrongPage": "Está página no existe",
+        "youAreIn": "Tú está en la posición",
+        "position": "Posición"
     },
     "pay": {
-        "self": "Você não pode enviar cakes para você mesmo",
-        "notEnough": "Você não tem Cakes suficiente",
-        "alert": "Você deseja mesmo transferir {{amount}} Cakes para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!",
-        "success": "Você transferiu {{amount}} Cakes para {{user}}",
+        "self": "Tú no pueda enviar cakes para tu mesmo",
+        "notEnough": "Tú no tienes Cakes suficientes",
+        "alert": "¿Tú deseas mesmo transferir {{amount}} Cakes para {{user}}? ¡La equipe del Foxy **No se responsabiliza** pelos Cakes perdidos, entonces certifique-se dé estar transfirió al una persona de confianza!\n¡Es prohibido lo comerció dé contenidos NSFW (+18) para trocás de Cakes!",
+        "success": "Tú transferiste {{amount}} Cakes para {{user}}",
         "pay": "Transferir",
         "transfered": "Transferido"
     },
