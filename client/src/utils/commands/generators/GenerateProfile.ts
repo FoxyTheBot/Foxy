@@ -54,13 +54,9 @@ export default class CreateProfile {
         context.fillStyle = '#ffffff';
         context.fillText(this.user.username, canvas.width / 5.8, canvas.height / 1.3)
 
-        context.font = '60px sans-serif';
-        context.fillStyle = '#ffffff';
-        context.fillText(`${this.data.repCount} Reps`, canvas.width / 1.2, canvas.height / 10.5);
-
         context.font = '40px sans-serif';
         context.fillStyle = '#ffffff';
-        context.fillText(`Cakes: \n${this.data.balance}`, canvas.width / 1.2, canvas.height / 1.4);
+        context.fillText(`Cakes: \n${this.data.balance}\nReps: ${this.data.repCount}`, canvas.width / 1.2, canvas.height / 1.4);
 
         if (this.data.marriedWith) {
             moment.locale(this.locale.lng)
