@@ -4,19 +4,19 @@
     },
     "roll": {
         "result": "Hai tirato {{amount}}d{{sides}} E il risultato è stato {{result}}",
-        "button": "Rr scorri di nuovo"
+        "button": "Scorri di nuovo"
     },
     "botinfo": {
-        "title": ":Fox: Foxy",
+        "title": ":fox: Foxy",
         "description": "Olá, eu sou a {{client.user.username}}! Eu sou um simples bot brasileiro de economia e entretenimento para o seu servidor! Estou espalhando alegria em {{guilds}} servidores :heart:",
         "fields": {
             "addme": "Aggiungimi",
             "server": "Server :heart:",
-            "server2": "Entra nel mio serverentra nel mio server Qui",
-            "add": "Mi aggiungo cliccando qui",
+            "server2": "Entra nel mio server",
+            "add": "Aggiungimi",
             "support": "Server di Supporto",
-            "twitter": "Il mio cinguettio",
-            "github": "Il mio Github",
+            "twitter": "Twitter",
+            "github": "GitHub",
             "donate2": "Doe para mim clicando aqui",
             "privacy": "Política de privacidade"
         }
