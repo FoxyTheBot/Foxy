@@ -295,12 +295,12 @@
         "defaultValue": "Lo juego no fue iniciado"
     },
     "fate": {
-        "couple": "Casal",
-        "enemy": "Enemigos",
-        "lover": "Amantes",
-        "sibling": "Hermanos",
+        "couple": "casal",
+        "enemy": "enemigos",
+        "lover": "amantes",
+        "sibling": "hermanos",
         "parent": "Padre e hijo",
-        "married": "Casados",
+        "married": "casados",
         "friend": "Amigos",
         "result": "En un universo paralelo <@{{user}}> y <@{{mention}}> son {{fate}}"
     },
