@@ -32,7 +32,7 @@ const AboutMeCommand = createCommand({
         const text = context.getOption<string>("text", false);
         const userData = await bot.database.getUser(context.author.id);
 
-        if (text.length > 225) {
+        if (text.length > 177) {
             context.sendReply({ content: t("commands:aboutme.tooLong", { length: text.length.toString() }) });
             return endCommand();
         }
