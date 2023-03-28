@@ -30,7 +30,7 @@ export default class CreateProfile {
         if (!userAboutme) userAboutme = `${this.locale("commands:profile.noAboutme")}`;
 
         if (userAboutme.length > 84) {
-            const aboutme = userAboutme.match(/.{1,84}/g);
+            const aboutme = userAboutme.match(/.{1,59}/g);
             userAboutme = aboutme.join("\n");
         }
         let background;
