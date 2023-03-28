@@ -2,6 +2,7 @@ import { createCommand } from "../../structures/commands/createCommand";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { bot } from "../../index";
 import { lylist } from '../../structures/json/layoutList.json';
+import { MessageFlags } from "../../utils/discord/Message";
 
 const choices = lylist.map(data => Object({ name: data.name, nameLocalizations: data.nameLocalizations, value: data.id }));
 const LayoutCommand = createCommand({
@@ -49,7 +50,8 @@ const LayoutCommand = createCommand({
         userData.layout = selectedOption;
         await userData.save();
         context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:layouts.changed'))
+            content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:layouts.changed')),
+            flags: MessageFlags.Ephemeral
         })
         endCommand();
     }

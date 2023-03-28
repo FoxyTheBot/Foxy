@@ -112,7 +112,8 @@ const MaskCommand = createCommand({
                             customId: createCustomId(1, context.author.id, context.commandId, subCommand),
                             placeholder: t('commands:masks.selectMask'),
                             options: userMasks.map(data => Object({ label: data, value: data }))
-                        })])]
+                        })])],
+                        flags: MessageFlags.Ephemeral
                     });
                 }
             }
