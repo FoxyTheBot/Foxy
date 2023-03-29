@@ -34,12 +34,12 @@ const HelpCommand = createCommand({
                 },
                 {
                     name: context.getEmojiById(bot.emotes.GITHUB) + " " + t('commands:botinfo.fields.github'),
-                    value: "[Foxy](https://github.com/FoxyTheBot)",
+                    value: "[FoxyTheBot](https://github.com/FoxyTheBot)",
                     inline: true
                 },
                 {
                     name: context.getEmojiById(bot.emotes.FOXY_OK) + " " + t('commands:help.bot.fields.privacy'),
-                    value: `[${t('commands:botinfo.fields.privacy')}](https://foxybot.win/privacy)`,
+                    value: "https://foxybot.win/terms",
                     inline: true
 
                 },
