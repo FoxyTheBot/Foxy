@@ -3,20 +3,20 @@
         "noPermission": "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {{user}}"
     },
     "roll": {
-        "result": "Você rolou **{{amount}}d{{sides}}** e o resultado foi **{{result}}**",
-        "button": "Rolar novamente"
+        "result": "Hai tirato {{amount}}d{{sides}} E il risultato è stato {{result}}",
+        "button": "Scorri di nuovo"
     },
     "botinfo": {
         "title": ":fox: Foxy",
         "description": "Olá, eu sou a {{client.user.username}}! Eu sou um simples bot brasileiro de economia e entretenimento para o seu servidor! Estou espalhando alegria em {{guilds}} servidores :heart:",
         "fields": {
-            "addme": "Me adicione",
-            "server": "Servidores :heart:",
-            "server2": "Entre no meu servidor clicando aqui",
-            "add": "Me adicione clicando aqui",
-            "support": "Servidor de suporte",
-            "twitter": "Meu Twitter",
-            "github": "Meu Github",
+            "addme": "Aggiungimi",
+            "server": "Server :heart:",
+            "server2": "Entra nel mio server",
+            "add": "Aggiungimi",
+            "support": "Server di Supporto",
+            "twitter": "Twitter",
+            "github": "GitHub",
             "donate2": "Doe para mim clicando aqui",
             "privacy": "Política de privacidade"
         }
