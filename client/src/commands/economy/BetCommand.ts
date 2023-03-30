@@ -12,7 +12,7 @@ const BetCommand = createCommand({
     },
     description: "[Economy] Bet your cakes",
     descriptionLocalizations: {
-        "pt-BR": "[Economy] Aposte seus cakes"
+        "pt-BR": "[Economia] Aposte seus cakes"
     },
     category: 'economy',
     options: [
@@ -24,7 +24,7 @@ const BetCommand = createCommand({
             type: ApplicationCommandOptionTypes.SubCommand,
             description: "[Economy] Bet your cakes on a coinflip",
             descriptionLocalizations: {
-                "pt-BR": "[Economy] Aposte seus cakes em uma cara coroa"
+                "pt-BR": "[Economia] Aposte seus cakes em uma cara coroa"
             },
 
             options: [
