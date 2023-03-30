@@ -34,6 +34,28 @@
             "description": "bruh"
         },
         {
+            "id": "dlogo",
+            "name": "Discord Logo Neon",
+            "rarity": "Raro",
+            "cakes": 5000,
+            "filename": "dlogo.png",
+            "description": "Discord's old logo neon wallpaper"
+        },
+        {
+            "id": "wumpuswithsunglasses",
+            "name": "Wumpus With Sunglasses",
+            "rarity": "Raro",
+            "cakes": 5000,
+            "filename": "wumpus_with_sunglasses.png"
+        },
+        {
+            "id": "justwumpus",
+            "name": "Just Wumpus",
+            "rarity": "Raro",
+            "cakes": 7000,
+            "filename": "just_wumpus.png"
+        },
+        {
             "id": "fnaf",
             "name": "Five Nights at Freddy's",
             "rarity": "Comum",
