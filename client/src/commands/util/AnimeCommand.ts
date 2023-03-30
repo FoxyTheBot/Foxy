@@ -8,7 +8,7 @@ const AnimeCommand = createCommand({
     name: "anime",
     description: "[Utils] Searches for information about an anime",
     descriptionLocalizations: {
-        "pt-BR": "[Utilitários]" Pesquisa a informação de algum anime"
+        "pt-BR": "[Utils] Pesquisa a informação de algum anime"
     },
     category: "util",
     options: [
