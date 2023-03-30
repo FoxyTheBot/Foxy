@@ -14,7 +14,7 @@ const DblCommand = createCommand({
             name: "upvote",
             description: "[Utils] Vote for Foxy on top.gg",
             descriptionLocalizations: {
-                "pt-BR": "[Utils] Vote na Foxy no top.gg"
+                "pt-BR": "[Utilitários] Vote na Foxy no top.gg"
             },
             type: ApplicationCommandOptionTypes.SubCommand
         }

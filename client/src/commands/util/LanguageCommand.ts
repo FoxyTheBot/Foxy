@@ -13,7 +13,7 @@ const LanguageCommand = createCommand({
     },
     description: "[Utils] Change the Foxy's language",
     descriptionLocalizations: {
-        "pt-BR": "[Utils] Altere o idioma da Foxy"
+        "pt-BR": "[Utilitários] Altere o idioma da Foxy"
     },
     category: 'util',
     options: [

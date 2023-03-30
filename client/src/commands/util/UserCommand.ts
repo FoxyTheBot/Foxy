@@ -18,7 +18,7 @@ const UserCommand = createCommand({
             name: "avatar",
             description: "[Utils] See the user avatar",
             descriptionLocalizations: {
-                "pt-BR": "[Utils] Veja o avatar de algum usuário"
+                "pt-BR": "[Utilitários] Veja o avatar de algum usuário"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [
