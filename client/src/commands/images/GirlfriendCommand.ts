@@ -3,6 +3,7 @@ import * as Canvas from 'canvas';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
 import { getUserAvatar } from "../../utils/discord/User";
 import { User } from 'discordeno/transformers';
+import { serverURL} from '../../../config.json';
 
 const GirlfriendCommand = createCommand({
     name: "girlfriend",
@@ -35,7 +36,7 @@ const GirlfriendCommand = createCommand({
             avatar = getUserAvatar(user, { size: 2048 });
         }
 
-        const background = await Canvas.loadImage("http://localhost:8080/memes/namorada.png");
+        const background = await Canvas.loadImage(`${serverURL}/memes/namorada.png`);
         const avatarImg = await Canvas.loadImage(avatar);
         const canvas = Canvas.createCanvas(500, 510);
         const ctx = canvas.getContext('2d');

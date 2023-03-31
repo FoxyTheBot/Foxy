@@ -2,6 +2,7 @@ import Canvas from 'canvas';
 import { bot } from "../../../index";
 import moment from 'moment';
 import { getUserAvatar } from '../../discord/User';
+import { serverURL } from '../../../../config.json';
 
 export default class CreateProfile {
     private user: any;
@@ -37,11 +38,11 @@ export default class CreateProfile {
 
         const canvas = Canvas.createCanvas(this.width, this.height);
         const context = canvas.getContext("2d");
-        let layout = await Canvas.loadImage(`http://localhost:8080/layouts/${this.data.layout}`);
-        background = await Canvas.loadImage(`http://localhost:8080/backgrounds/${this.data.background}`);
+        let layout = await Canvas.loadImage(`${serverURL}/layouts/${this.data.layout}`);
+        background = await Canvas.loadImage(`${serverURL}/backgrounds/${this.data.background}`);
 
         if (this.testMode && !this.mask) {
-            background = await Canvas.loadImage(`http://localhost:8080/backgrounds/${this.code}`);
+            background = await Canvas.loadImage(`${serverURL}/backgrounds/${this.code}`);
             userAboutme = this.locale("commands:profile.testMode");
         }
         context.drawImage(background, 0, 0, canvas.width, canvas.height)
@@ -86,12 +87,12 @@ export default class CreateProfile {
         context.restore();
 
         if (this.data.mask && !this.mask) {
-            const mask = await Canvas.loadImage(`http://localhost:8080/masks/${this.data.mask}`);
+            const mask = await Canvas.loadImage(`${serverURL}/masks/${this.data.mask}`);
             context.drawImage(mask, canvas.width / 55.0, canvas.height / 1.69, 200, 200)
         }
 
         if (this.testMode && this.mask) {
-            const mask = await Canvas.loadImage(`http://localhost:8080/masks/${this.code}`);
+            const mask = await Canvas.loadImage(`${serverURL}/masks/${this.code}`);
             context.drawImage(mask, canvas.width / 55.0, canvas.height / 1.69, 200, 200)
         }
 

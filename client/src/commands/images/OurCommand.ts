@@ -1,6 +1,7 @@
 import { createCommand } from "../../structures/commands/createCommand";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 import * as Canvas from "canvas";
+import { serverURL } from '../../../config.json';
 
 const OurCommand = createCommand({
     name: "communism",
@@ -32,7 +33,7 @@ const OurCommand = createCommand({
         const canvas = Canvas.createCanvas(500, 400);
         const ctx = canvas.getContext('2d');
 
-        const background = await Canvas.loadImage('http://localhost:8080/memes/comunismo.png');
+        const background = await Canvas.loadImage(`${serverURL}/memes/comunismo.png`);
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         ctx.strokeStyle = '#74037b';
