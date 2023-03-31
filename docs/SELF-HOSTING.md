@@ -32,6 +32,7 @@ yarn global add typescript
     "ownerId": "<YOUR-DISCORD-ID>",
     "clientId": "<YOUR-BOT-ID>",
     "devGuildId": "<YOUR-SERVER-ID>",
+    "serverURL": "http://localhost:8080",
     "productionEnv": true, // This bool will determine if you're using experimental version
     "token": "<YOUR-BOT-TOKEN>",
     "mongouri": "<YOUR-MONGODB-URI>",
