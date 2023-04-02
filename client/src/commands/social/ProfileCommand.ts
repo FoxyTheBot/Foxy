@@ -25,7 +25,9 @@ const ProfileCommand = createCommand({
         const userData = await bot.database.getUser(user.id);
 
         if (userData.isBanned) {
-            context.sendReply({ content: t('commands:profile.banned', { user: user.username, reason: userData.banReason, date: userData.banData.toLocaleString(global.t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }) });
+            context.sendReply({
+                content: t('commands:profile.banned', { user: user.username, reason: userData.banReason, date: userData.banData.toLocaleString(global.t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) })
+            });
             return endCommand();
         }
 
