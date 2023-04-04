@@ -33,6 +33,16 @@ const HelpCommand = createCommand({
                     inline: true
                 },
                 {
+                    name: context.getEmojiById(bot.emotes.TIKTOK) + " " + t('commands:botinfo.fields.tiktok'),
+                    value: "[@foxydiscordbot](https://www.tiktok.com/@foxydiscordbot)",
+                    inline: true
+                },
+                {
+                    name: context.getEmojiById(bot.emotes.INSTAGRAM) + " " + t('commands:botinfo.fields.instagram'),
+                    value: "[@foxydiscordbot](https://www.instagram.com/foxydiscordbot/)",  
+                    inline: true
+                },
+                {
                     name: context.getEmojiById(bot.emotes.GITHUB) + " " + t('commands:botinfo.fields.github'),
                     value: "[FoxyTheBot](https://github.com/FoxyTheBot)",
                     inline: true
