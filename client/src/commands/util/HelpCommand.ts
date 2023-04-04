@@ -43,6 +43,10 @@ const HelpCommand = createCommand({
                     inline: true
                 },
                 {
+                    name: context.getEmojiById(bot.emotes.YOUTUBE) + " " + t('commands:botinfo.fields.youtube'),
+                    value: "[Foxy](https://www.youtube.com/@foxydiscordbot)",
+                },
+                {
                     name: context.getEmojiById(bot.emotes.GITHUB) + " " + t('commands:botinfo.fields.github'),
                     value: "[FoxyTheBot](https://github.com/FoxyTheBot)",
                     inline: true
