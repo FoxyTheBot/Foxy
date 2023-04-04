@@ -1,6 +1,6 @@
 {
     "foxyGlobal": {
-        "noPermission": "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {{user}}"
+        "noPermission": "Ehi! Cosa fai? Non puoi farlo! Non sei {{user}}"
     },
     "roll": {
         "result": "Hai tirato {{amount}}d{{sides}} E il risultato è stato {{result}}",
@@ -8,7 +8,7 @@
     },
     "botinfo": {
         "title": ":fox: Foxy",
-        "description": "Olá, eu sou a {{client.user.username}}! Eu sou um simples bot brasileiro de economia e entretenimento para o seu servidor! Estou espalhando alegria em {{guilds}} servidores :heart:",
+        "description": "Ciao, sono {{client.user.username}}! Sono un semplice Bot brasiliano di economia e intrattenimento per il tuo server! Sto diffondendo gioia sui server di {{guilds}} :heart:",
         "fields": {
             "addme": "Aggiungimi",
             "server": "Server :heart:",
@@ -16,23 +16,23 @@
             "add": "Aggiungimi",
             "support": "Server di Supporto",
             "twitter": "Twitter",
-            "tiktok": "Meu TikTok",
-            "instagram": "Meu Instagram",
+            "tiktok": "Mio TikTok",
+            "instagram": "Mio Instagram",
             "github": "GitHub",
-            "youtube": "Meu YouTube",
-            "donate2": "Doe para mim clicando aqui",
-            "privacy": "Política de privacidade"
+            "youtube": "Mio YouTube",
+            "donate2": "Dona a me cliccando qui",
+            "privacy": "Politica sulla riservatezza"
         }
     },
     "lang": {
-        "title": "Escolha seu idioma",
-        "default": "Seu idioma está definido como Português do Brasil",
-        "changed": "Seu idioma foi alterado para `{{language}}`",
-        "placeholder": "Idioma alterado",
+        "title": "Scegli la tua lingua",
+        "default": "La tua lingua è impostata sul portoghese brasiliano",
+        "changed": "La tua lingua è stata cambiata in `{{language}}`",
+        "placeholder": "Cambiato lingua",
         "languages": {
-            "en-US": "Inglês",
-            "es-ES": "Espanhol",
-            "fr-FR": "Francês",
+            "en-US": "Inglese",
+            "es-ES": "Spagnolo",
+            "fr-FR": "Francese",
             "ja-JP": "Japonês",
             "de-DE": "Alemão",
             "it-IT": "Italiano",
