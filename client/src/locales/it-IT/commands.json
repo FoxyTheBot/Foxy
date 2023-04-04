@@ -33,17 +33,17 @@
             "en-US": "Inglese",
             "es-ES": "Spagnolo",
             "fr-FR": "Francese",
-            "ja-JP": "Japonês",
-            "de-DE": "Alemão",
+            "ja-JP": "Giapponese",
+            "de-DE": "Tedesco",
             "it-IT": "Italiano",
             "ru-RU": "Russo"
         }
     },
     "anime": {
         "info": {
-            "status": "Status",
-            "score": "Pontuação",
-            "episodes": "Episódios",
+            "status": "Stato",
+            "score": "Punteggiatura",
+            "episodes": "Episodi",
             "type": "Tipo",
             "aired": "Foi a público em",
             "genres": "Gêneros",
