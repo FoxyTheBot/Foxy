@@ -44,7 +44,7 @@ const FightExecutor = async (context: ComponentInteractionContext) => {
         createButton({
             label: bot.locale('commands:fight.defend'),
             style: ButtonStyles.Primary,
-            customId: createCustomId(2, context.author.id, context.commandId, targetId, targetUsername, "act"),
+            customId: createCustomId(2, context.author.id, context.commandId, targetId, targetUsername, "defend"),
         }),
         createButton({
             label: bot.locale('commands:fight.mercy'),
