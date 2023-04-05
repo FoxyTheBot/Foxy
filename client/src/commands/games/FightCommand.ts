@@ -1,9 +1,11 @@
 import { createCommand } from "../../structures/commands/createCommand";
 import { createEmbed } from "../../utils/discord/Embed";
 import { createActionRow, createButton, createCustomId } from "../../utils/discord/Component";
-import { ApplicationCommandOptionTypes } from "discordeno/types";
+import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
 import { User } from "discordeno/transformers";
 import { MessageFlags } from "../../utils/discord/Message";
+import FightExecutor from '../../utils/commands/executors/games/fight/FightExecutor';
+import FightActionExecutor from '../../utils/commands/executors/games/fight/FightActionExecutor';
 
 const FightCommand = createCommand({
     name: "fight",
@@ -29,6 +31,7 @@ const FightCommand = createCommand({
             required: true
         }
     ],
+    commandRelatedExecutions: [FightExecutor, FightActionExecutor],
 
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>('user', 'users');
@@ -49,7 +52,25 @@ const FightCommand = createCommand({
             return endCommand();
         }
 
-        
+        context.sendReply({
+            embeds: [createEmbed({
+                description: t('commands:fight.description', {
+                    user: user.id,
+                    author: context.author.id
+                })
+            })],
+            components: [createActionRow([createButton({
+                label: t('commands:fight.buttons.yes'),
+                customId: createCustomId(0, user.id, context.commandId, user.id, true),
+                style: ButtonStyles.Success
+            }),
+            createButton({
+                label: t('commands:fight.buttons.no'),
+                customId: createCustomId(1, user.id, context.commandId, user.id, false),
+                style: ButtonStyles.Danger
+            })
+        ])]
+        })
     }
 });
 
