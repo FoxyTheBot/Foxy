@@ -45,6 +45,14 @@ const FightCommand = createCommand({
             return endCommand();
         }
         
+        if (user.toggles.bot) {
+            context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:fight.cantFightBot'))
+            });
+
+            return endCommand();
+        }
+        
         context.sendReply({
             embeds: [createEmbed({
                 title: t('commands:fight.fight'),
