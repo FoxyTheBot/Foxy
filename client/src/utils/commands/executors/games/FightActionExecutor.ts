@@ -10,11 +10,7 @@ const FightActionExecutor = async (context: ComponentInteractionContext) => {
             break;
         }
 
-        case "act": {
-            break;
-        }
-
-        case "item": {
+        case "defend": {
             break;
         }
 
