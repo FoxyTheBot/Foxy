@@ -83,6 +83,9 @@
             "ownerVotes": "Meu desenvolvedor possui {{votes}} votos"
         }
     },
+    "rate": {
+        "result": "Hmmm... Eu dou **{{rate}}/10** para **{{user}}**"
+    },
     "profile": {
         "profile": "Perfil de {{user}}",
         "noAboutme": "Foxy é minha amiga você pode alterar isso usando /aboutme",
