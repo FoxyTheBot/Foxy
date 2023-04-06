@@ -15,7 +15,7 @@ const FightDeclineExecutor = async (context: ComponentInteractionContext) => {
             }), createButton({
                 label: bot.locale('commands:fight.decline'),
                 style: ButtonStyles.Danger,
-                customId: createCustomId(0, context.author.id, context.commandId),
+                customId: createCustomId(1, context.author.id, context.commandId),
                 disabled: true
             })])]
     })
