@@ -39,6 +39,16 @@
             "ru-RU": "Russe"
         }
     },
+    "fight": {
+        "accept": "Aceitar",
+        "decline": "Recusar",
+        "description": "Você quer lutar com {{user}}, será que **{{user}}** irá aceitar?",
+        "mercy": "Piedade",
+        "defend": "Defender",
+        "attack": "Atacar",
+        "yourTurn": "Sua vez **{{target}}**",
+        "targetTurn": "Sua vez **{{target}}**"
+    },
     "anime": {
         "info": {
             "status": "Statut",
@@ -72,6 +82,9 @@
             "votes": "Vœux",
             "ownerVotes": "Mon développeur a {{votes}} votes"
         }
+    },
+    "rate": {
+        "result": "Hmmm... Eu dou **{{rate}}/10** para **{{user}}**"
     },
     "profile": {
         "profile": "Profil de {{user}}",
