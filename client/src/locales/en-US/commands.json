@@ -74,7 +74,7 @@
         }
     },
     "rate": {
-        "result": "Hmmm... Eu dou **{{rate}}/10** para **{{user}}**"
+        "result": "Hm... My grade is **{{rate}}/10** to **{{user}}**"
     },
     "profile": {
         "profile": "{{user}}'s profile",
