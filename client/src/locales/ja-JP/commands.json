@@ -1,413 +1,438 @@
 {
     "foxyGlobal": {
-        "noPermission": "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {{user}}"
+        "noPermission": "おい！ あなたは何をしている？ それをしてはいけない！ あなたは{{user}}ではありません"
     },
     "roll": {
-        "result": "Você rolou **{{amount}}d{{sides}}** e o resultado foi **{{result}}**",
-        "button": "Rolar novamente"
+        "result": "あなたは** {{amount}} d {{sides}} **を転がしました、そして結果は** {{result}} **でした",
+        "button": "ロール"
     },
     "botinfo": {
-        "title": ":fox: Foxy",
-        "description": "Olá, eu sou a {{client.user.username}}! Eu sou um simples bot brasileiro de economia e entretenimento para o seu servidor! Estou espalhando alegria em {{guilds}} servidores :heart:",
+        "title": "：FOX：FOXY",
+        "description": "こんにちは、私は{{client.user.username}}！ 私はあなたのサーバーのための経済学とエンターテイメントのシンプルなブラジルのボットです！ 私は{{guilds}}サーバーで喜びを広めています：heart：",
         "fields": {
-            "addme": "Me adicione",
-            "server": "Servidores :heart:",
-            "server2": "Entre no meu servidor clicando aqui",
-            "add": "Me adicione clicando aqui",
-            "support": "Servidor de suporte",
-            "twitter": "Meu Twitter",
-            "github": "Meu Github",
-            "donate2": "Doe para mim clicando aqui",
-            "privacy": "Política de privacidade"
+            "addme": "私を追加してください",
+            "server": "サーバー：ハート：",
+            "server2": "ここをクリックしてサーバーを入力してください",
+            "add": "ここをクリックして私を追加してください",
+            "support": "サポートサーバー",
+            "twitter": "私のツイッター",
+            "tiktok": "私のティクトク",
+            "instagram": "私のInstagram",
+            "github": "私のgithub",
+            "youtube": "YouTube",
+            "donate2": "ここをクリックして私に寄付してください",
+            "privacy": "プライバシーポリシー"
         }
     },
     "lang": {
-        "title": "Escolha seu idioma",
-        "default": "Seu idioma está definido como Português do Brasil",
-        "changed": "Seu idioma foi alterado para `{{language}}`",
-        "placeholder": "Idioma alterado",
+        "title": "言語を選んでください",
+        "default": "あなたの言語はブラジルのポルトガル人として定義されています",
+        "changed": "あなたの言語は「{{language}}」に変更されました",
+        "placeholder": "変更された言語",
         "languages": {
-            "en-US": "Inglês",
-            "es-ES": "Espanhol",
-            "fr-FR": "Francês",
-            "ja-JP": "Japonês",
-            "de-DE": "Alemão",
-            "it-IT": "Italiano",
-            "ru-RU": "Russo"
+            "en-US": "英語",
+            "es-ES": "スペイン語",
+            "fr-FR": "フランス語",
+            "ja-JP": "日本",
+            "de-DE": "ドイツ人",
+            "it-IT": "イタリアの",
+            "ru-RU": "ロシア"
         }
     },
     "anime": {
         "info": {
-            "status": "Status",
-            "score": "Pontuação",
-            "episodes": "Episódios",
-            "type": "Tipo",
-            "aired": "Foi a público em",
-            "genres": "Gêneros",
-            "source": "Origem",
-            "studios": "Estúdios",
-            "duration": "Duração",
-            "rating": "Classificação",
-            "scoreStats": "Status da pontuação",
-            "popularity": "Popularidade",
-            "premiered": "Estreou em",
-            "broadcast": "Transmissão"
+            "status": "スターテス",
+            "score": "句読点",
+            "episodes": "エピソード",
+            "type": "タイプ",
+            "aired": "公開されました",
+            "genres": "ジャンル",
+            "source": "元",
+            "studios": "スタジオ",
+            "duration": "間隔",
+            "rating": "分類",
+            "scoreStats": "スコアステータス",
+            "popularity": "人気",
+            "premiered": "初演",
+            "broadcast": "ストリーミング"
         },
-        "notFound": "Anime não encontrado",
-        "click": "Clique aqui",
-        "nothing": "Nada encontrado"
+        "notFound": "アニメが見つかりません",
+        "click": "ここをクリック",
+        "nothing": "何も見つかりません"
     },
     "coinflip": {
-        "heads": "cara",
-        "tails": "coroa",
-        "flipped": "Você jogou uma moeda e o resultado foi"
+        "heads": "顔",
+        "tails": "クラウン",
+        "flipped": "あなたはコインを演奏しました、そして結果はそうでした"
     },
     "upvote": {
-        "description": "Me ajude a crescer e me ajude a ser um bot melhor votando em mim no <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nCada voto ajuda a me divulgar para outras pessoas na Discord Bot List <:catblush:768292358458179595>\n\n Que tal você se juntar a todas as outras pessoas que votaram e que me ajudaram a crescer [clicando aqui](https://top.gg/bot/1006520438865801296/vote)? :heart:",
+        "description": "私が成長し、私がより良いボット投票であるのを手伝ってください <：catblush：768292358458179595> \n 各投票は、Discord Botリストで他の人に私を公表するのに役立ちます<：catblush：768292358179595> \n\n  投票して、私が成長したすべての人に参加してみませんか？ ： 心臓：",
         "top": {
-            "title": "Top votantes da Foxy na Top.gg",
-            "votes": "Votos",
-            "ownerVotes": "Meu desenvolvedor possui {{votes}} votos"
+            "title": "Top.ggのトップフォクシー著者",
+            "votes": "願い",
+            "ownerVotes": "私の開発者は{{votes}}票を持っています"
         }
     },
+    "rate": {
+        "result": "うーん...私は** {{rate}}/10 ** for ** {{user}} **を与えます"
+    },
     "profile": {
-        "profile": "Perfil de {{user}}",
-        "noAboutme": "Foxy é minha amiga você pode alterar isso usando /aboutme",
-        "marriedWith": "💍 Casado com {{user}} desde {{date}} ({{relativeTime}})",
-        "premium": "{{badge}} Premium desde {{date}}",
-        "testMode": "Seu sobre mim será exibido assim!",
-        "banned": "`{{user}} está banido por `{{reason}}` \nDesde `{{date}}`"
+        "profile": "{{user}}のプロファイル",
+        "noAboutme": "フォクシーは私の友人ですあなたはこれを使用して /aboutmeを変更できます",
+        "marriedWith": "{{{date}}（{{relativeTime}}）から{{user}}と結婚した",
+        "premium": "{{badge}}プレミアム{{date}}",
+        "testMode": "あなたの私の上にこのように表示されます！",
+        "banned": "`{{user}}は禁止されています` {{reason}} ` \n `{{date}}`以来"
     },
     "masks": {
-        "ears": "Orelhas de gato",
-        "horns": "Chifrinhos",
-        "halo": "Aréola",
-        "cowboy": "Chapéu de vaqueiro",
-        "topper": "Cartola",
-        "purchase": "Comprar",
-        "preview": "Pré-visualização",
-        "noMasks": "Você não possui nenhuma máscara",
-        "selectMask": "Selecione uma máscara",
+        "ears": "猫の耳",
+        "horns": "角",
+        "halo": "アレオラ",
+        "cowboy": "カウボーイ",
+        "topper": "トッパー",
+        "purchase": "購入",
+        "preview": "プレビュー",
+        "noMasks": "マスクはありません",
+        "selectMask": "マスクを選択します",
         "buy": {
-            "success": "Você comprou a máscara para seu avatar!",
-            "noMoney": "Você não tem Cakes o suficiente para adquirir esta máscara",
-            "preview": "Pré-visualização",
-            "purchase": "Comprar"
+            "success": "あなたはあなたのアバターのためにマスクを買いました！",
+            "noMoney": "このマスクを手に入れるのに十分なケーキがありません",
+            "preview": "プレビュー",
+            "purchase": "購入"
         },
         "set": {
-            "success": "Máscara alterada com sucesso :3",
-            "changed": "Máscara alterada :3",
-            "notOwned": "Você não possui essa máscara",
-            "invalid": "Código inválido"
+            "success": "成功した変更マスク：3",
+            "changed": "変更されたマスク：3",
+            "notOwned": "このマスクはありません",
+            "invalid": "無効なコード"
         },
-        "alreadyOwned": "Você já possui essa máscara"
+        "alreadyOwned": "あなたはすでにこのマスクを持っています"
     },
     "kick": {
-        "self": "Deixa outra pessoa fazer isso para você, é mais fácil",
-        "client": "Foxy se agacha e você passa direto e da de cara com uma parede *",
-        "success": "**{{user}}** meteu uma voadora em **{{target}}**"
+        "self": "他の誰かにあなたのためにこれをさせてください、それは簡単です",
+        "client": "フォクシースクワットとあなたはまっすぐに通り過ぎて壁で道から通り過ぎる *",
+        "success": "** {{user}} ** ** {{target}} **で飛行に会う"
     },
     "help": {
         "commands": {
-            "title": "Lista de comandos",
+            "title": "コマンドのリスト",
             "category": {
-                "economy": "Economia",
-                "social": "Social",
-                "fun": "Entretenimento",
-                "image": "Imagens",
-                "misc": "Outros",
-                "utils": "Utilitários",
-                "rp": "Roleplay"
+                "economy": "経済",
+                "social": "社交",
+                "fun": "エンターテイメント",
+                "image": "画像",
+                "misc": "その他",
+                "utils": "ユーティリティ",
+                "rp": "圧延"
             }
         },
         "bot": {
-            "title": "Oie, eu sou a Foxy",
-            "description": "Olá {{user}}, eu sou a Foxy, tenho recursos para entreter e envolver seus membros, comandos de economia, modificação de imagem e muito mais! :3",
+            "title": "こんにちは、私はフォクシーです",
+            "description": "こんにちは{{user}}、私はfoxyです、私はあなたのメンバー、経済コマンド、画像の変更などを楽しませ、関与させるためのリソースを持っています！ ：3",
             "fields": {
                 "list": {
-                    "title": "<:foxysunglasses:890688144280784926> Para ver a lista de comandos use",
-                    "value": "`/help`"
+                    "title": "<：foxysunglasses：89068144280784926>コマンドの使用リストを見るには",
+                    "value": "「/help」"
                 },
-                "guild": "Serivdor de suporte",
-                "privacy": "Política de privacidade",
-                "website": "Meu website onde você pode acessar a dashboard"
+                "guild": "サポーター",
+                "crowdin": "もっと言語を話すのを手伝ってください！",
+                "website": "私のウェブサイト"
             }
         }
     },
     "roblox": {
-        "aboutme": "Sobre mim",
-        "register": "Data de registro",
-        "undefined": "Não definido",
-        "noAboutme": "Não há sobre mim",
-        "noStatus": "Não há status",
-        "error": "Não foi possível encontrar esse usuário... Provavelmente a conta não existe :/",
-        "button": "Ver perfil"
+        "aboutme": "私について",
+        "register": "登録日",
+        "undefined": "未定義",
+        "noAboutme": "私についてはいいえ",
+        "noStatus": "ステータスはありません",
+        "error": "このユーザーを見つけることは不可能でした...おそらくアカウントは存在しません：/",
+        "button": "プロフィールを見る"
     },
     "aboutme": {
-        "set": "Seu sobre mim foi alterado para `{{aboutme}}`",
-        "tooLong": "O limite de caracteres é 225 e você digitou {{length}}, digita algo menor pfv :3"
+        "set": "私の上のあなたは `{{aboutme}}に変更されました`",
+        "tooLong": "文字制限は225で、{{length}}と入力し、小さなPFV：3を入力します"
     },
     "layouts": {
-        "default": "Padrão",
-        "red": "Vermelho",
-        "blue": "Azul",
-        "purple": "Roxo",
-        "cyan": "Ciano",
-        "changed": "Você alterou o layout do seu perfil",
-        "notFound": "Layout não encontrado"
+        "default": "標準",
+        "red": "赤",
+        "blue": "青",
+        "purple": "紫",
+        "cyan": "シアン",
+        "changed": "プロフィールのレイアウトを変更しました",
+        "notFound": "レイアウトが見つかりません"
     },
     "role": {
-        "description": "Permissões do cargo",
-        "id": "ID do cargo",
-        "color": "Cor do cargo",
-        "position": "Posição do cargo",
-        "noPermissions": "O cargo não tem permissões",
-        "roleMention": "Menção do cargo",
-        "createdAt": "Criado em"
+        "description": "位置権限",
+        "id": "位置ID",
+        "color": "株式会社",
+        "position": "オフィスの位置",
+        "noPermissions": "位置には権限がありません",
+        "roleMention": "ポジションについての言及",
+        "createdAt": "で作成されました"
     },
     "server": {
-        "owner": "Dono",
-        "createdAt": "Criado em",
-        "clientJoin": "Entrei em",
-        "channels": "Canais",
-        "premium": "Impulsos",
-        "memberCount": "Membros",
-        "afk": "Canal AFK",
-        "click": "Veja o ícone no seu navegador",
-        "no": "Não",
-        "yes": "Sim",
-        "notFound": "Não encontrei nenhum servidor com a id `{{id}}`",
-        "partner": "Parceiro do Discord"
+        "owner": "オーナー",
+        "createdAt": "で作成されました",
+        "clientJoin": "入った",
+        "channels": "チャネル",
+        "premium": "衝動",
+        "memberCount": "メンバー",
+        "afk": "チャンネルAFK",
+        "click": "ブラウザのアイコンを参照してください",
+        "no": "いいえ",
+        "yes": "はい",
+        "notFound": "id `{{id}}を備えたサーバーが見つかりませんでした",
+        "partner": "不一致のパートナー"
     },
     "user": {
         "info": {
-            "tag": "Tag do usuário",
-            "createdAt": "Criado em",
-            "userId": "ID do usuário",
-            "avatar": "Ver avatar do usuário",
-            "viewMember": "Ver informações do membro",
-            "noMember": "Não é um membro do servidor"
+            "tag": "ユーザータグ",
+            "createdAt": "で作成されました",
+            "userId": "ユーザーID",
+            "avatar": "ユーザーアバターを参照してください",
+            "viewMember": "メンバー情報を参照してください",
+            "noMember": "サーバーのメンバーではありません"
         },
         "avatar": {
-            "click": "Veja o avatar no seu navegador",
-            "title": "Avatar de {{user}}",
-            "footer": "Achei fofo :3"
+            "click": "ブラウザのアバターをご覧ください",
+            "title": "{{user}} avatar",
+            "footer": "かわいいと思った：3"
         },
         "banner": {
-            "click": "Veja o banner no seu navegador",
-            "title": "Banner de {{user}}",
-            "noBanner": "Esse usuário não tem banner <a:foxylick:987381814622560277>"
+            "click": "ブラウザのバナーをご覧ください",
+            "title": "{{user}}バナー",
+            "noBanner": "このユーザーにはバナーがありません<a：foxylick：987381814622560277>"
         },
         "member": {
-            "title": "Sobre {{user}}",
-            "joinedAt": ":sparkles: Entrou em",
-            "role": "<:foxysunglasses:890688144280784926> Cargos",
-            "nickname": "<:foxyhearteyes:984596954526920794> Apelido no servidor",
-            "noNickname": "Não há apelido no servidor",
+            "title": "{{user}}について",
+            "joinedAt": "：輝き：入った",
+            "role": "<：foxysunglasses：89068144280784926>ポジション",
+            "nickname": "<：foxyhearteyes：984596954526920794>サーバー上のニックネーム",
+            "noNickname": "サーバーにニックネームはありません",
             "permissions": {
-                "button": "Permissões",
-                "list": "Lista de permissões",
-                "title": "Permissões de {{user}}"
+                "button": "権限",
+                "list": "権限のリスト",
+                "title": "{{user}}権限"
             },
-            "highestRole": "<:foxysunglasses:890688144280784926> Maior cargo",
-            "premiumSince": "<:foxyboost:984596808921673768> Impulsiona o servidor desde",
-            "noRoles": "Não há cargos",
-            "noPermissions": "Não há permissões"
+            "highestRole": "<：foxysunglasses：89068144280784926>より大きな位置",
+            "premiumSince": "<：foxyboost：984596808921673768>それ以来サーバーをドライブします",
+            "noRoles": "ポジションはありません",
+            "noPermissions": "権限はありません"
         }
     },
     "ship": {
-        "question": "Será que vai rolar ou não?",
-        "perfectCouple": "Esse é o casal perfeito!",
-        "uwu": "Esses aqui já estão se pegando e não contaram para ninguém!",
-        "probably": "Talvez só precisa o {{user}} querer...",
-        "cry": "Queria muito dizer que é possível mas..."
+        "question": "それは転がるかどうか？",
+        "perfectCouple": "これは完璧なカップルです！",
+        "uwu": "これらはここですでに追いついており、誰にも言わなかった！",
+        "probably": "たぶんあなたは{{user}}欲しいだけです...",
+        "cry": "私は本当にそれが可能だと言いたかったのですが..."
     },
     "rep": {
-        "cooldown": "Você já deu reputação para algúem, espere **{{cooldown}}**",
-        "success": "Você deu reputação para **{{user}}**",
-        "self": "Você não pode dar reputação para você mesmo"
+        "cooldown": "あなたはすでにAlgueに評判があります、待ってください** {{cooldown}} **",
+        "success": "あなたは** {{user}} **に評判を与えました",
+        "self": "あなたはあなた自身に評判を与えることはできません"
     },
     "marry": {
-        "self": "Você não pode casar com você mesmo",
-        "alreadyMarried": "Você já está casado com alguém!",
-        "bot": "Não, eu não quero casar com você!",
-        "alreadyMarriedWithSomeone": "Você já está casado com alguém",
-        "alreadyMarriedWithUser": "Você já está casado com **{{user}}**",
-        "ask": "{{user}} Você quer casar com **{{author}}**?",
-        "accept": "Aceitar",
-        "accepted": "Vocês estão casados! Felicidades para o casal <3"
+        "self": "あなたは自分自身と結婚することはできません",
+        "alreadyMarried": "あなたはすでに誰かと結婚しています！",
+        "bot": "いいえ、私はあなたと結婚したくありません！",
+        "alreadyMarriedWithSomeone": "あなたはすでに誰かと結婚しています",
+        "alreadyMarriedWithUser": "あなたはすでに** {{user}}と結婚しています**",
+        "ask": "{{user}}あなたは結婚したいですか** {{author}} **？",
+        "accept": "受け入れるために",
+        "accepted": "あなたは結婚している！ カップル<3の乾杯"
     },
     "divorce": {
-        "notMarried": "Você não está casado",
-        "confirm2": "Você tem certeza que quer divorciar?",
-        "divorced": "...Então é isso, se divorciar é sim uma coisa triste, Da próxima vez ame alguém que realmente mereça e respeite você, sim isso parece ser difícil pois o amor é algo cego e incontrolável... Mas é melhor estar sozinho do que mal acompanhado, eu confio em você! :heart:",
-        "confirm": "Divorciar",
-        "confirmed": "Divorciado"
+        "notMarried": "あなたは結婚していません",
+        "confirm2": "あなたは離婚したいですか？",
+        "divorced": "...それだけです、それが離婚しているなら、悲しいことであるなら、次回はあなたに値して尊敬する人を愛するとき、はい、愛は盲目で制御不能なので難しいようです...しかし不十分に同行して、私はあなたを信頼します！ ： 心臓：",
+        "confirm": "離婚する",
+        "confirmed": "離婚"
     },
     "suggest": {
-        "success": "Obrigada por me ajudar {{user}}, sua sugestão `{{content}}` foi enviada para o meu desenvolvedor <3"
+        "success": "私を助けてくれてありがとう{{user}}、あなたの提案 `{{content}}`それは私の開発者<3に送られました"
     },
     "report": {
-        "success": "Obrigada por me ajudar {{user}}, seu report `{{content}}` foi enviado para o meu desenvolvedor <3"
+        "success": "私を助けてくれてありがとう{{user}}、あなたのレポート `{{content}}`それは私の開発者<3に送られました"
     },
     "status": {
-        "model": "Modelo do processador",
-        "guilds": "Servidores",
-        "users": "Usuários",
-        "ram": "Memória RAM",
-        "cpuUsage": "Uso do processador",
-        "node": "Node.js",
-        "arch": "Arquitetura",
-        "platform": "Plataforma"
+        "model": "プロセッサモデル",
+        "guilds": "サーバー",
+        "users": "ユーザー",
+        "ram": "ラムメモリ",
+        "cpuUsage": "プロセッサの使用",
+        "node": "node.js",
+        "arch": "建築",
+        "platform": "プラットホーム"
     },
     "mcskin": {
-        "title": "Skin de {{user}}"
+        "title": "スキンデ{{user}}"
     },
     "mchead": {
-        "title": "Cabeça de {{user}}"
+        "title": "{{user}}の頭"
     },
     "mcbody": {
-        "title": "Corpo de {{user}}"
+        "title": "{{user}}の体"
     },
     "error": {
-        "tooLong": "O conteúdo é muito longo, o limite é de **{{limit}}** caracteres"
+        "tooLong": "コンテンツは非常に長く、制限は** {{limit}} **文字です"
     },
     "rps": {
         "replies": {
-            "rock": "pedra",
-            "paper": "papel",
-            "scissors": "tesoura"
+            "rock": "結石",
+            "paper": "紙",
+            "scissors": "はさみ"
         },
-        "tie": "Deu empate, vamos de novo! >:D",
-        "start": "Para jogar, clique em um dos botões abaixo",
-        "invalidChoice": "Escolha inválida, escolha {{choice}}",
-        "clientWon": "Deu {{result}}, eu ganhei >:3",
-        "won3": "Você ganhou :3",
-        "won2": "Você ganhou >:3",
-        "won": "Você ganhou :D",
+        "tie": "それは縛られました、また行きましょう！ >：d",
+        "start": "再生するには、下のボタンの1つをクリックします",
+        "invalidChoice": "無効な選択、{{choice}}を選択します",
+        "clientWon": "{{result}}を与えました、私は勝ちました>：3",
+        "won3": "あなたが勝った：3",
+        "won2": "あなたは勝ちました>：3",
+        "won": "あなたが勝った：d",
         "button": {
-            "rock": "Pedra",
-            "paper": "Papel",
-            "scissors": "Tesoura",
-            "cancel": "Cancelar"
+            "rock": "結石",
+            "paper": "紙",
+            "scissors": "はさみ",
+            "cancel": "キャンセル"
         },
-        "cancelled": "{{emoji}} Jogo foi cancelado, para jogar execute o comando novamente",
-        "defaultValue": "O jogo ainda não foi iniciado"
+        "cancelled": "{{emoji}}ゲームはキャンセルされ、再びコマンドを実行します",
+        "defaultValue": "ゲームはまだ開始されていません"
     },
     "fate": {
-        "couple": "casal",
-        "enemy": "inimigos",
-        "lover": "amantes",
-        "sibling": "irmãos",
-        "parent": "Pai e filho",
-        "married": "casados",
-        "friend": "Amigos",
-        "result": "Em um universo paralelo <@{{user}}> e <@{{mention}}> são {{fate}}"
+        "couple": "カップル",
+        "enemy": "敵",
+        "lover": "恋人",
+        "sibling": "ブラザーズ",
+        "parent": "父と息子",
+        "married": "結婚",
+        "friend": "友達",
+        "result": "平行宇宙で<@{{user}}>および<@{{mention}}>は{{fate}}です"
     },
     "cancel": {
-        "result": "{{user}} cancelou {{mention}} por `{{reason}}`"
+        "result": "{{user}} caNceled {{mention}} by `{{reason}}`"
     },
     "8ball": {
-        "yes": "Sim",
-        "no": "Não",
-        "maybe": "Talvez",
-        "idk": "Não sei",
-        "idk2": "Não sei :/",
-        "probably": "Provavelmente",
-        "probablyyes": "Provavelmente sim",
-        "probablyno": "Provavelmente não"
+        "yes": "はい",
+        "no": "いいえ",
+        "maybe": "多分",
+        "idk": "わからない",
+        "idk2": "わからない ：/",
+        "probably": "おそらく",
+        "probablyyes": "おそらくそうだ",
+        "probablyno": "おそらくそうではありません"
     },
     "rank": {
-        "wrongPage": "Esta página não existe",
-        "youAreIn": "Você está na posição",
-        "position": "Posição"
+        "wrongPage": "このページは存在しません",
+        "youAreIn": "あなたはその位置にいます",
+        "position": "位置"
     },
     "pay": {
-        "self": "Você não pode enviar cakes para você mesmo",
-        "notEnough": "Você não tem Cakes suficiente",
-        "alert": "Você deseja mesmo transferir {{amount}} Cakes para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!",
-        "success": "Você transferiu {{amount}} Cakes para {{user}}",
-        "pay": "Transferir",
-        "transfered": "Transferido"
+        "self": "自分にケーキを送ることはできません",
+        "notEnough": "十分なケーキがありません",
+        "alert": "本当に{{amount}}ケーキを{{user}}に転送したいですか？ \n Foxy **チームは責任を負いません**失われたケーキについては、信頼できる人に転校していることを確認してください！ \n NSFW（+18）ケーキと引き換えにコンテンツの取引は禁止されています！",
+        "success": "{{amount}}ケーキを{{user}}に転送しました",
+        "pay": "移行",
+        "transfered": "転送"
     },
     "daily": {
-        "cooldown": "Você já pegou suas Cakes hoje, espere **{{time}}**",
-        "daily": "Você ganhou **{{amount}} Cakes** agora você possui {{money}} Cakes\n",
-        "dailyAlert": "**Não se esqueça:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!"
+        "cooldown": "あなたはすでにあなたのケーキをすでに持っています、待ってください** {{time}} **",
+        "daily": "あなたは勝ちました** {{amount}}ケーキ**今あなたは{{money}}ケーキを持っています",
+        "dailyAlert": "**忘れないでください：**お金、ニトロ、NSFWコンテンツなどのためにケーキを交換することはできません！ これを行うと、Foxyを永久に使用することが禁止されます！"
     },
     "background": {
         "buy": {
-            "title": "Lojinha de background :3",
-            "invalid": "Código inválido",
-            "alreadyOwned": "Você já possui esse background",
-            "onlyDevs": "Somente os desenvolvedores podem comprar backgrounds",
-            "purchase": "Comprar",
-            "price": "Preço",
-            "preview": "Pré-visualização do background",
-            "noMoney": "Você não tem Cakes suficiente",
-            "success": "Você comprou o background! O Background já foi definido automaticamente no seu perfil! ;3"
+            "title": "バックグラウンドショップ：3",
+            "invalid": "無効なコード",
+            "alreadyOwned": "あなたはすでにこの背景を持っています",
+            "onlyDevs": "開発者のみが背景を購入できます",
+            "purchase": "購入",
+            "price": "価格",
+            "preview": "背景プレビュー",
+            "noMoney": "十分なケーキがありません",
+            "success": "あなたは背景を買いました！ 背景はすでにあなたのプロフィールで自動的に定義されています！ ; 3"
         },
         "set": {
-            "title": "Escolha seu background",
-            "notOwned": "Você não possui esse background",
-            "success": "Background alterado :3",
-            "description": "Seus backgrounds são: {{bgList}}"
+            "title": "あなたの背景を選択してください",
+            "notOwned": "この背景はありません",
+            "success": "背景の変更：3",
+            "description": "あなたの背景は次のとおりです：{{bgList}}"
         }
     },
     "atm": {
-        "success": "**{{user}}** possui {{balance}} Cakes"
+        "success": "** {{user}} **は{{balance}}ケーキを持っています"
     },
     "step": {
-        "success": "Você pisou em {{user}}"
+        "success": "あなたは{{user}}を踏んだ"
+    },
+    "tickle": {
+        "success": "** {{author}} ** ** {{user}} **",
+        "button": "お返しします"
+    },
+    "smile": {
+        "smiling": "{{author}}は笑っています..."
+    },
+    "cry": {
+        "crying": "{{author}}は泣いています..."
+    },
+    "lick": {
+        "success": "** {{author}} **は** {{user}} **でなめました"
+    },
+    "laugh": {
+        "success": "{{author}}は笑っています..."
     },
     "slap": {
-        "button": "Retribuir",
-        "success": "**{{author}}** deu um tabefe em **{{user}}**"
+        "button": "お返しします",
+        "success": "** {{author}} ** ** {{user}} **でテーブルを与えました"
+    },
+    "dance": {
+        "dancing": "{{author}}は踊っています"
     },
     "pat": {
-        "button": "Retribuir",
-        "success": "**{{author}}** fez cafuné em **{{user}}**"
+        "button": "お返しします",
+        "success": "** {{author}} ** ** {{user}} **でカフネを作成しました"
     },
     "kiss": {
-        "button": "Retribuir",
-        "success": "**{{author}}** deu um beijo em **{{user}}**",
-        "self": "Eu não quero te beijar, oxi? Somos apenas amigos!"
+        "button": "お返しします",
+        "success": "** {{author}} **は** {{user}} **にキスをしました",
+        "self": "私はあなたにキスしたくない、オキシー？ 私たちはただの友達です！"
     },
     "hug": {
-        "button": "Retribuir",
-        "success": "**{{author}}** deu um abraço em **{{user}}**"
+        "button": "お返しします",
+        "success": "** {{author}} **は** {{user}} **で抱擁をしました"
     },
     "bite": {
-        "self": "Você se mordeu porem mordeu forte demais e agora está machucado, mal sabia você que você é um lobo com dentes afiados :/",
-        "client": "Você tentou morder uma raposa porém ela mordeu seu rosto com muita força e você se machucou!",
-        "success": "**{{user}}** mordeu **{{target}}**",
-        "button": "Retribuir"
+        "self": "あなたは噛みつきますが、それを強く噛みすぎて、今あなたは怪我をしています、あなたが鋭い歯を持つオオカミであることをほとんど知りませんでした：/",
+        "client": "あなたはキツネを噛ませようとしましたが、彼女はあなたの顔を非常に強く噛んで、あなたは怪我をしました！",
+        "success": "** {{user}} **咬傷** {{target}} **",
+        "button": "お返しします"
     },
     "attack": {
-        "attack": "**{{user}}** atacou **{{target}}**",
-        "button": "Atacar"
+        "attack": "** {{user}} **攻撃** {{target}} **",
+        "button": "攻撃"
     },
     "bet": {
-        "self": "Você não pode apostar consigo mesmo!",
-        "not-enough": "Você não tem Cakes suficientes",
-        "not-enough-mention": "{{user}} não tem Cakes suficientes",
-        "placeholder": "Selecione uma opção",
-        "heads": "cara",
-        "tails": "coroa",
-        "accept": "Aceitar",
-        "choose": "Escolha uma opção para apostar",
-        "ask": "**{{user}}**, **{{author}}** quer fazer uma aposta de {{amount}} Cakes",
-        "win": "Deu {{choice}}! {{author}} ganhou {{amount}} Cakes! Financiado por {{user}}",
-        "lose": "Deu {{choice}}! {{user}} ganhou {{amount}} Cakes! Financiado por {{author}}",
-        "deny": "Negar",
-        "denied": "Aposta negada",
-        "bot": "Por enquanto não estou aceitando apostas, estou falida <:foxy_cry:1071151976504627290>",
+        "self": "あなたは自分自身に賭けることはできません！",
+        "not-enough": "十分なケーキがありません",
+        "not-enough-mention": "{{user}}には十分なケーキがありません",
+        "placeholder": "選択肢一つを選択してください",
+        "heads": "顔",
+        "tails": "クラウン",
+        "accept": "受け入れるために",
+        "choose": "賭けるオプションを選択します",
+        "ask": "** {{user}} **、** {{author}} ** {{amount}}ケーキから賭けたい",
+        "win": "{{choice}}を与えました！ {{author}}が{{amount}}ケーキを獲得しました！ {{user}}によって資金提供",
+        "lose": "{{choice}}を与えました！ {{user}}が{{amount}}ケーキを獲得しました！ {{author}}によって資金提供",
+        "deny": "否定する",
+        "denied": "拒否",
+        "bot": "今のところ私は賭けを受け入れていません、私は破産しています<：foxy_cry：1071151976504627290>",
         "betWithClient": {
-            "lose": "Deu {{result}}! Eu ganhei {{amount}} cakes! >:3",
-            "win": "Deu {{result}}! Parabéns, você ganhou {{amount}} cakes! :3"
+            "lose": "{{result}}を与えました！ 私は{{amount}}ケーキを獲得しました！ >：3",
+            "win": "{{result}}を与えました！ おめでとうございます、あなたは{{amount}}ケーキを獲得しました！ ：3"
         }
     },
     "global": {
-        "noUser": "Usuário não encontrado"
+        "noUser": "ユーザーが見つかりません"
     }
 }

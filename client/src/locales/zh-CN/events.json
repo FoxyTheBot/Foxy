@@ -1,0 +1,22 @@
+{
+    "slash": {
+        "title": "不再使用传统的狐狸命令！",
+        "description": "传统命令被停止并用斜线命令（ /）命令取代。 \n 输入`/ping`并检查我的ping命令，如果您似乎没有更新我的服务器上的权限，将我重新考虑到服务器：3 \n 要更新，您可以通过[link]（https://discord.com/oauth2/authorize?client_id=737044809650274325&scope=bot+applications.commands&permissions=269872255）更新或使用Discord的新功能：",
+        "button": "更新权限"
+    },
+    "ban": {
+        "title": "你被禁止了 **",
+        "description": "如果您想进行禁令上诉，您可以进行禁令上诉 \n\n  我建议您阅读[使用条款]（https://foxybot.win/privacy）",
+        "reason": "放逐的原因：",
+        "date": "狂欢日期："
+    },
+    "messageCreate": {
+        "hello": "嗨，我叫Foxy，我的前缀是`/（slash命令）``使用``/ help''供帮助！"
+    },
+    "interactionCreate": {
+        "commandError": "不幸的是，发生了一个错误，我无法执行此命令，对不起<：foxymedu：89068173951315988>，但是该错误已经报告给我的开发人员<：foxysunglasses：89068144280784926>"
+    },
+    "error": {
+        "title": "命令`{{cmd}}`！ 这报告给了我的开发人员！"
+    }
+}

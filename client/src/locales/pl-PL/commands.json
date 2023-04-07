@@ -1,0 +1,438 @@
+{
+    "foxyGlobal": {
+        "noPermission": "Hej! Co robisz? Nie możesz tego zrobić! Nie jesteś {{user}}"
+    },
+    "roll": {
+        "result": "Rzucałeś ** {{amount}} d {{sides}} **, a wynik był ** {{result}} **",
+        "button": "Rolka"
+    },
+    "botinfo": {
+        "title": ": Fox: Foxy",
+        "description": "Witam, jestem {{client.user.username}}! Jestem prostym brazylijskim botem ekonomii i rozrywki dla twojego serwera! Rozpowszechniam radość na serwerach {{guilds}}: serce:",
+        "fields": {
+            "addme": "Dodaj mnie",
+            "server": "Serwery: serce:",
+            "server2": "Wprowadź mój serwer, klikając tutaj",
+            "add": "Dodaj mnie, klikając tutaj",
+            "support": "Serwer wsparcia",
+            "twitter": "Mój Twitter",
+            "tiktok": "Mój tiktok",
+            "instagram": "Mój Instagram",
+            "github": "Mój github",
+            "youtube": "youtube",
+            "donate2": "Przekazaj mi, klikając tutaj",
+            "privacy": "Polityka prywatności"
+        }
+    },
+    "lang": {
+        "title": "Wybierz swój język",
+        "default": "Twój język jest zdefiniowany jako brazylijski portugalski",
+        "changed": "Twój język został zmieniony na `` {{language}} '",
+        "placeholder": "Zmieniony język",
+        "languages": {
+            "en-US": "język angielski",
+            "es-ES": "hiszpański",
+            "fr-FR": "Francuski",
+            "ja-JP": "język japoński",
+            "de-DE": "Niemiecki",
+            "it-IT": "Włoski",
+            "ru-RU": "Rosyjski"
+        }
+    },
+    "anime": {
+        "info": {
+            "status": "Status",
+            "score": "Interpunkcja",
+            "episodes": "Odcinki",
+            "type": "Typ",
+            "aired": "Poszedł do publiczności",
+            "genres": "Gatunki",
+            "source": "Pochodzenie",
+            "studios": "Studia",
+            "duration": "Czas trwania",
+            "rating": "Klasyfikacja",
+            "scoreStats": "Status wyniku",
+            "popularity": "Popularność",
+            "premiered": "Premiera",
+            "broadcast": "Streaming"
+        },
+        "notFound": "Anime nie znaleziono",
+        "click": "Kliknij tutaj",
+        "nothing": "Nic nie znaleziono"
+    },
+    "coinflip": {
+        "heads": "twarz",
+        "tails": "korona",
+        "flipped": "Grałeś monetę, a wynik był"
+    },
+    "upvote": {
+        "description": "Pomóż mi się rozwijać i pomóż mi być lepszym głosowaniem na mnie na <: topgg: 1074823809376460923> lista botów niezgody! <: CatbLush: 768292358458179595> \n Każde głosowanie pomaga opublikować mnie wśród innych osób na liście Bot Discord <: CatBlush: 768292358458179595> \n\n  Co powiesz na dołączenie do wszystkich, którzy głosowali i pomogli mi rozwinąć [kliknięcie tutaj] (https://top.gg/bot/1006520438865801296/vote)? : Serce:",
+        "top": {
+            "title": "Najlepsze foxy Votanci na szczycie",
+            "votes": "Życzenia",
+            "ownerVotes": "Mój programista ma głosy {{votes}}"
+        }
+    },
+    "rate": {
+        "result": "Hmmm ... daję ** {{rate}}/10 ** dla ** {{user}} **"
+    },
+    "profile": {
+        "profile": "Profil {{user}}",
+        "noAboutme": "Foxy jest moim przyjacielem, możesz to zmienić za pomocą /o tym",
+        "marriedWith": "💍 Żonaty z {{user}} z {{date}} ({{relativeTime}})",
+        "premium": "{{badge}} Premium z {{date}}",
+        "testMode": "Twój nade mną będzie wyświetlany w ten sposób!",
+        "banned": "`{{user}} jest zakazany przez` {{reason}} ` \n Ponieważ `{{date}}`"
+    },
+    "masks": {
+        "ears": "Kocie uszy",
+        "horns": "Rogi",
+        "halo": "Otoczka",
+        "cowboy": "Kowboj",
+        "topper": "Cylinder",
+        "purchase": "Zakup",
+        "preview": "Zapowiedź",
+        "noMasks": "Nie masz maski",
+        "selectMask": "Wybierz maskę",
+        "buy": {
+            "success": "Kupiłeś maskę dla swojego awatara!",
+            "noMoney": "Nie masz wystarczającej ilości ciast, żeby dostać tę maskę",
+            "preview": "Zapowiedź",
+            "purchase": "Zakup"
+        },
+        "set": {
+            "success": "Udana zmiana maska: 3",
+            "changed": "Zmieniona maska: 3",
+            "notOwned": "Nie masz tej maski",
+            "invalid": "Zły kod"
+        },
+        "alreadyOwned": "Masz już tę maskę"
+    },
+    "kick": {
+        "self": "Niech ktoś inny zrobił to za Ciebie, to łatwiejsze",
+        "client": "Foxy przysiady, a ty przechodzisz prosto i od drogi ze ścianą *",
+        "success": "** {{user}} ** Spotkanie z lataniem w ** {{target}} **"
+    },
+    "help": {
+        "commands": {
+            "title": "Lista poleceń",
+            "category": {
+                "economy": "Gospodarka",
+                "social": "Społeczny",
+                "fun": "Rozrywka",
+                "image": "Obrazy",
+                "misc": "Inni",
+                "utils": "Narzędzia",
+                "rp": "Walcowanie"
+            }
+        },
+        "bot": {
+            "title": "Cześć, jestem lisem",
+            "description": "Witam {{user}}, jestem Foxy, mam zasoby, aby zabawiać i angażować twoich członków, polecenia ekonomiczne, modyfikację obrazu i wiele więcej! : 3",
+            "fields": {
+                "list": {
+                    "title": "<: Foxysunglasses: 890688144280784926> Aby zobaczyć listę poleceń",
+                    "value": "`/help`"
+                },
+                "guild": "Kibic",
+                "crowdin": "Pomóż mi porozmawiać o więcej językach!",
+                "website": "Moja strona internetowa"
+            }
+        }
+    },
+    "roblox": {
+        "aboutme": "O mnie",
+        "register": "Data rejestracji",
+        "undefined": "Nieokreślony",
+        "noAboutme": "Nie o mnie",
+        "noStatus": "Nie ma statusu",
+        "error": "Nie było możliwe znalezienie tego użytkownika ... prawdopodobnie konto nie istnieje:/",
+        "button": "Zobacz profil"
+    },
+    "aboutme": {
+        "set": "Twój nade mną zmienił na `` {{aboutme}} `",
+        "tooLong": "Limit znaków to 225, a wpisujesz {{length}}, wpisz coś mniejszego PFV: 3"
+    },
+    "layouts": {
+        "default": "Standard",
+        "red": "Czerwony",
+        "blue": "Niebieski",
+        "purple": "Fioletowy",
+        "cyan": "Cyjan",
+        "changed": "Zmieniłeś układ swojego profilu",
+        "notFound": "Układ nie został znaleziony"
+    },
+    "role": {
+        "description": "Uprawnienia do pozycji",
+        "id": "Identyfikator pozycji",
+        "color": "Korporacja",
+        "position": "Stanowisko urzędowania",
+        "noPermissions": "Pozycja nie ma uprawnień",
+        "roleMention": "Wspomnienie o pozycji",
+        "createdAt": "Stworzone w"
+    },
+    "server": {
+        "owner": "Właściciel",
+        "createdAt": "Stworzone w",
+        "clientJoin": "wszedłem",
+        "channels": "Kanały",
+        "premium": "Impuls",
+        "memberCount": "Członkowie",
+        "afk": "Kanał AFK",
+        "click": "Zobacz ikonę w swojej przeglądarce",
+        "no": "NIE",
+        "yes": "Tak",
+        "notFound": "Nie znalazłem żadnego serwera z identyfikatorem `{{id}}`",
+        "partner": "Partner Discord"
+    },
+    "user": {
+        "info": {
+            "tag": "Tag użytkownika",
+            "createdAt": "Stworzone w",
+            "userId": "Identyfikator użytkownika",
+            "avatar": "Zobacz awatar użytkownika",
+            "viewMember": "Zobacz informacje członka",
+            "noMember": "To nie jest członek serwera"
+        },
+        "avatar": {
+            "click": "Zobacz awatar w swojej przeglądarce",
+            "title": "{{user}} Avatar",
+            "footer": "Znalazłem słodkie: 3"
+        },
+        "banner": {
+            "click": "Zobacz sztandar w swojej przeglądarce",
+            "title": "{{user}} Banner",
+            "noBanner": "Ten użytkownik nie ma banerów <A: Foxylick: 987381814622560277>"
+        },
+        "member": {
+            "title": "Około {{user}}",
+            "joinedAt": ": Sparks: Wpisany",
+            "role": "<: Foxysunglasses: 89068144280784926> Pozycje",
+            "nickname": "<: Foxyhearteyes: 984596954526920794> Pseudonim na serwerze",
+            "noNickname": "Na serwerze nie ma pseudonimu",
+            "permissions": {
+                "button": "Uprawnienia",
+                "list": "Lista uprawnień",
+                "title": "{{user}} uprawnienia"
+            },
+            "highestRole": "<: Foxysunglasses: 890688144280784926> Większa pozycja",
+            "premiumSince": "<: FoxyBoost: 984596808921673768> It napędzam serwer",
+            "noRoles": "Nie ma pozycji",
+            "noPermissions": "Nie ma uprawnień"
+        }
+    },
+    "ship": {
+        "question": "Czy to się potoczy, czy nie?",
+        "perfectCouple": "To idealna para!",
+        "uwu": "Te tutaj już nadrabiają zaległości i nikomu nie powiedzieli!",
+        "probably": "Może potrzebujesz po prostu {{user}} chcesz ...",
+        "cry": "Naprawdę chciałem powiedzieć, że jest to możliwe, ale ..."
+    },
+    "rep": {
+        "cooldown": "Znałeś już Algue, poczekaj ** {{cooldown}} **",
+        "success": "Dałeś reputację ** {{user}} **",
+        "self": "Nie możesz dać ci reputacji"
+    },
+    "marry": {
+        "self": "Nie możesz poślubić siebie",
+        "alreadyMarried": "Jesteś już z kimś żonaty!",
+        "bot": "Nie, nie chcę cię poślubić!",
+        "alreadyMarriedWithSomeone": "Jesteś już z kimś żonaty",
+        "alreadyMarriedWithUser": "Jesteś już żonaty ** {{user}} **",
+        "ask": "{{user}} Czy chcesz poślubić ** {{author}} **?",
+        "accept": "Akceptować",
+        "accepted": "Jesteś w związku małżeńskim! Okrzyki dla pary <3"
+    },
+    "divorce": {
+        "notMarried": "Nie jesteś żonaty",
+        "confirm2": "Czy na pewno chcesz się rozwieść?",
+        "divorced": "... Więc to wszystko, jeśli się rozwiedli, jest smutną rzeczą, następnym razem kochaj kogoś, kto naprawdę cię zasługuje i szanuje, tak, wydaje się, że jest to trudne, ponieważ miłość jest ślepa i niekontrolowana ... ale lepiej być samotnie niż samotnie Źle towarzyszyłem, ufam ci! : Serce:",
+        "confirm": "Rozwieść się",
+        "confirmed": "Rozwiedziony"
+    },
+    "suggest": {
+        "success": "Dziękuję za pomoc {{user}}, twoją sugestię `` {{content}} `` Został wysłany do mojego dewelopera <3"
+    },
+    "report": {
+        "success": "Dziękuję za pomoc {{user}}, twój raport `` {{content}} '' został wysłany do mojego dewelopera <3"
+    },
+    "status": {
+        "model": "Model procesora",
+        "guilds": "Serwery",
+        "users": "Użytkownicy",
+        "ram": "pamięć RAM",
+        "cpuUsage": "Korzystanie z procesora",
+        "node": "Node.js",
+        "arch": "Architektura",
+        "platform": "Platforma"
+    },
+    "mcskin": {
+        "title": "Skin de {{user}}"
+    },
+    "mchead": {
+        "title": "Głowa {{user}}"
+    },
+    "mcbody": {
+        "title": "Ciało {{user}}"
+    },
+    "error": {
+        "tooLong": "Treść jest bardzo długa, limit to ** {{limit}} ** znaki"
+    },
+    "rps": {
+        "replies": {
+            "rock": "kamień",
+            "paper": "papier",
+            "scissors": "nożyce"
+        },
+        "tie": "To związane, chodźmy ponownie! >: D",
+        "start": "Aby zagrać, kliknij jeden z poniższych przycisków",
+        "invalidChoice": "Nieprawidłowe wybierz, wybierz {{choice}}",
+        "clientWon": "Dałem {{result}}, wygrałem>: 3",
+        "won3": "Wygrałeś: 3",
+        "won2": "Wygrałeś>: 3",
+        "won": "Wygrałeś: D",
+        "button": {
+            "rock": "Kamień",
+            "paper": "Papier",
+            "scissors": "Nożyce",
+            "cancel": "Anulować"
+        },
+        "cancelled": "{{emoji}} Gra została anulowana, aby ponownie zagrać w polecenie",
+        "defaultValue": "Gra jeszcze się nie rozpoczęła"
+    },
+    "fate": {
+        "couple": "para",
+        "enemy": "wrogowie",
+        "lover": "zakochani",
+        "sibling": "bracia",
+        "parent": "Ojciec i syn",
+        "married": "żonaty",
+        "friend": "Przyjaciele",
+        "result": "W równoległym wszechświecie <@{{user}}> i <@{{mention}}> są {{fate}}"
+    },
+    "cancel": {
+        "result": "{{user}} anulowany {{mention}} przez `{{reason}}`"
+    },
+    "8ball": {
+        "yes": "Tak",
+        "no": "NIE",
+        "maybe": "Być może",
+        "idk": "Nie wiem",
+        "idk2": "Nie wiem :/",
+        "probably": "Prawdopodobnie",
+        "probablyyes": "Prawdopodobnie tak",
+        "probablyno": "Prawdopodobnie nie"
+    },
+    "rank": {
+        "wrongPage": "Ta strona nie istnieje",
+        "youAreIn": "Jesteś w pozycji",
+        "position": "Pozycja"
+    },
+    "pay": {
+        "self": "Nie możesz wysłać ciast do siebie",
+        "notEnough": "Nie masz wystarczającej ilości ciast",
+        "alert": "Czy naprawdę chcesz przenieść ciasta {{amount}} do {{user}}? \n Zespół Foxy ** nie ponosi odpowiedzialności ** za utracone ciasta, więc upewnij się, że przenoszisz się do zaufanej osoby! \n NSFW (+18) handel treścią w zamian za ciasta jest zabroniona!",
+        "success": "Przekazałeś ciastka {{amount}} do {{user}}",
+        "pay": "przenosić ",
+        "transfered": "Przeniesiony"
+    },
+    "daily": {
+        "cooldown": "Zabrałeś już swoje ciasta, poczekaj ** {{time}} **",
+        "daily": "Wygrałeś ** {{amount}} ciasta ** Teraz masz {{money}} ciasta",
+        "dailyAlert": "** Nie zapomnij: ** Nie możesz zmienić ciast na takie rzeczy, jak pieniądze, Nitro, NSFW itp.! Jeśli to zrobisz, zostaniesz zakazany na stałe korzystanie z Foxy!"
+    },
+    "background": {
+        "buy": {
+            "title": "Sklep w tle: 3",
+            "invalid": "Zły kod",
+            "alreadyOwned": "Masz już to tło",
+            "onlyDevs": "Tylko programiści mogą kupować tła",
+            "purchase": "Zakup",
+            "price": "Cena",
+            "preview": "Podgląd w tle",
+            "noMoney": "Nie masz wystarczającej ilości ciast",
+            "success": "Kupiłeś tło! Tło zostało już automatycznie zdefiniowane na Twoim profilu! ; 3"
+        },
+        "set": {
+            "title": "Wybierz swoje tło",
+            "notOwned": "Nie masz tego tła",
+            "success": "Zmienione tło: 3",
+            "description": "Twoje tła to: {{bgList}}"
+        }
+    },
+    "atm": {
+        "success": "** {{user}} ** ma ciasta {{balance}}"
+    },
+    "step": {
+        "success": "Nadepnąłeś na {{user}}"
+    },
+    "tickle": {
+        "success": "** {{author}} ** łaskotane na ** {{user}} **",
+        "button": "Oddać"
+    },
+    "smile": {
+        "smiling": "{{author}} uśmiecha się ..."
+    },
+    "cry": {
+        "crying": "{{author}} płacze ..."
+    },
+    "lick": {
+        "success": "** {{author}} ** dał lizanie w ** {{user}} **"
+    },
+    "laugh": {
+        "success": "{{author}} śmieje się ..."
+    },
+    "slap": {
+        "button": "Oddać",
+        "success": "** {{author}} ** podałem tabelę w ** {{user}} **"
+    },
+    "dance": {
+        "dancing": "{{author}} tańczy"
+    },
+    "pat": {
+        "button": "Oddać",
+        "success": "** {{author}} ** Zrobił kawiarnię w ** {{user}} **"
+    },
+    "kiss": {
+        "button": "Oddać",
+        "success": "** {{author}} ** pocałował na ** {{user}} **",
+        "self": "Nie chcę cię całować, Oxy? Jesteśmy tylko przyjaciółmi!"
+    },
+    "hug": {
+        "button": "Oddać",
+        "success": "** {{author}} ** przytulił na ** {{user}} **"
+    },
+    "bite": {
+        "self": "Pozycja, ale ugryzł to zbyt mocno, a teraz jesteś ranny, ledwo wiedziałem, że jesteś wilkiem z ostrymi zębami:/",
+        "client": "Próbowałeś ugryźć lisa, ale ona bardzo mocno ugryzła twoją twarz i zraniłeś się!",
+        "success": "** {{user}} ** Bites ** {{target}} **",
+        "button": "Oddać"
+    },
+    "attack": {
+        "attack": "** {{user}} ** zaatakowano ** {{target}} **",
+        "button": "Atak"
+    },
+    "bet": {
+        "self": "Nie możesz postawić na siebie!",
+        "not-enough": "Nie masz wystarczającej ilości ciast",
+        "not-enough-mention": "{{user}} nie ma wystarczającej ilości ciast",
+        "placeholder": "Wybierz opcję",
+        "heads": "twarz",
+        "tails": "korona",
+        "accept": "Akceptować",
+        "choose": "Wybierz opcję, aby postawić",
+        "ask": "** {{user}} **, ** {{author}} ** Chcesz postawić zakład z ciast {{amount}}",
+        "win": "Dał {{choice}}! {{author}} Won {{amount}} ciasta! Finansowane przez {{user}}",
+        "lose": "Dał {{choice}}! {{user}} Won {{amount}} ciasta! Finansowane przez {{author}}",
+        "deny": "Zaprzeczać",
+        "denied": "Odmowa",
+        "bot": "Na razie nie akceptuję zakładów, bankrutuję <: foxy_cry: 1071151976504627290>",
+        "betWithClient": {
+            "lose": "Dał {{result}}! Wygrałem ciasta! >: 3",
+            "win": "Dał {{result}}! Gratulacje, wygrałeś ciasta! : 3"
+        }
+    },
+    "global": {
+        "noUser": "Użytkownik nie znaleziony"
+    }
+}

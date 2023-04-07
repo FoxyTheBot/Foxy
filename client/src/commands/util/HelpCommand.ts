@@ -53,8 +53,8 @@ const HelpCommand = createCommand({
                     inline: true
                 },
                 {
-                    name: context.getEmojiById(bot.emotes.FOXY_OK) + " " + t('commands:help.bot.fields.privacy'),
-                    value: "https://foxybot.win/terms",
+                    name: context.getEmojiById(bot.emotes.FOXY_PRAY) + " " + t('commands:help.bot.fields.crowdin'),
+                    value: "https://translate.foxybot.win/",
                     inline: true
 
                 },
