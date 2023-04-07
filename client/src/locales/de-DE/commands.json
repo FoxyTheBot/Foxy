@@ -238,15 +238,15 @@
         "alreadyMarried": "Sie sind bereits mit jemandem verheiratet!",
         "bot": "Nein, ich will dich nicht heiraten!",
         "alreadyMarriedWithSomeone": "Sie sind bereits mit jemandem verheiratet",
-        "alreadyMarriedWithUser": "Sie sind bereits mit ** {{user}} ** verheiratet",
-        "ask": "{{user}} Möchten Sie heiraten ** {{author}} **?",
+        "alreadyMarriedWithUser": "Sie sind bereits mit **{{user}}** verheiratet",
+        "ask": "{{user}} Möchten Sie heiraten **{{author}}**?",
         "accept": "Akzeptieren",
         "accepted": "Sie sind verheiratet! Prost auf das Paar <3"
     },
     "divorce": {
         "notMarried": "Sie sind nicht verheiratet",
         "confirm2": "Sind Sie sicher, dass Sie sich scheiden lassen möchten?",
-        "divorced": "... also ist es, wenn es geschieden ist, ist eine traurige Sache. Lieben Sie beim nächsten Mal jemanden, der Sie wirklich verdient und respektiert. Schlecht begleitet, ich vertraue dir! : Herz:",
+        "divorced": "... also ist es, wenn es geschieden ist, ist eine traurige Sache. Lieben Sie beim nächsten Mal jemanden, der Sie wirklich verdient und respektiert. Schlecht begleitet, ich vertraue dir! :heart:",
         "confirm": "Sich scheiden lassen",
         "confirmed": "Geschieden"
     },
@@ -290,7 +290,7 @@
         "clientWon": "Gab {{result}}, ich gewann>: 3",
         "won3": "Du hast gewonnen: 3",
         "won2": "Du hast gewonnen>: 3",
-        "won": "Du hast gewonnen: D.",
+        "won": "Du hast gewonnen :D",
         "button": {
             "rock": "Stein",
             "paper": "Papier",
@@ -315,7 +315,7 @@
     },
     "8ball": {
         "yes": "Ja",
-        "no": "NEIN",
+        "no": "Nein",
         "maybe": "Womöglich",
         "idk": "Ich weiß nicht",
         "idk2": "Ich weiß nicht :/",
@@ -337,8 +337,8 @@
         "transfered": "Übertragen"
     },
     "daily": {
-        "cooldown": "Sie haben Ihre Kuchen heute bereits genommen, warten Sie ** {{time}} **",
-        "daily": "Sie haben ** {{amount}} Kuchen ** Jetzt haben Sie {{money}} Kuchen",
+        "cooldown": "Sie haben Ihre Kuchen heute bereits genommen, warten Sie **{{time}}**",
+        "daily": "Sie haben **{{amount}} Kuchen** Jetzt haben Sie {{money}} Kuchen\n",
         "dailyAlert": "** Vergessen Sie nicht: ** Sie können Kuchen für Dinge wie Geld, Nitro, NSFW -Inhalte usw. nicht ändern! Wenn Sie dies tun, müssen Sie Foxy dauerhaft benutzen!"
     },
     "background": {
@@ -361,13 +361,13 @@
         }
     },
     "atm": {
-        "success": "** {{user}} ** hat {{balance}} Kuchen"
+        "success": "**{{user}}** hat {{balance}} Kuchen"
     },
     "step": {
         "success": "Sie haben auf {{user}} getreten"
     },
     "tickle": {
-        "success": "** {{author}} ** gekitzelt bei ** {{user}} **",
+        "success": "**{{author}}** gekitzelt bei **{{user}}**",
         "button": "Zurückgeben"
     },
     "smile": {
@@ -377,7 +377,7 @@
         "crying": "{{author}} weint ..."
     },
     "lick": {
-        "success": "** {{author}} ** gab einen Lick in ** {{user}} **"
+        "success": "**{{author}}** gab einen Lick in **{{user}}**"
     },
     "laugh": {
         "success": "{{author}} lacht ..."
@@ -391,25 +391,25 @@
     },
     "pat": {
         "button": "Zurückgeben",
-        "success": "** {{author}} ** machte ein Cafuné in ** {{user}} **"
+        "success": "**{{author}}** gestreichelt **{{user}}**"
     },
     "kiss": {
         "button": "Zurückgeben",
-        "success": "** {{author}} ** gab einen Kuss auf ** {{user}} **",
-        "self": "Ich will dich nicht küssen, Oxy? Wir sind nur Freunde!"
+        "success": "**{{author}}** gab einen Kuss auf **{{user}}**",
+        "self": "Ich will dich nicht küssen? Wir sind nur Freunde!"
     },
     "hug": {
         "button": "Zurückgeben",
         "success": "** {{author}} ** gab eine Umarmung bei ** {{user}} **"
     },
     "bite": {
-        "self": "Sie biss biss, aber bis zu stark und jetzt werden Sie verletzt, wussten kaum, dass Sie ein Wolf mit scharfen Zähnen sind:/",
+        "self": "Sie biss, biss, aber bis zu stark und jetzt werden Sie verletzt, wussten kaum, dass Sie ein Wolf mit scharfen Zähnen sind",
         "client": "Sie haben versucht, einen Fuchs zu beißen, aber sie hat Ihr Gesicht sehr stark gebissen und Sie wurden verletzt!",
-        "success": "** {{user}} ** Bites ** {{target}} **",
+        "success": "**{{user}}** Bites **{{target}}**",
         "button": "Zurückgeben"
     },
     "attack": {
-        "attack": "** {{user}} ** angegriffen ** {{target}} **",
+        "attack": "**{{user}}** angegriffen **{{target}}**",
         "button": "Attacke"
     },
     "bet": {
@@ -421,7 +421,7 @@
         "tails": "Krone",
         "accept": "Akzeptieren",
         "choose": "Wählen Sie eine Option zum Wetten",
-        "ask": "** {{user}} **, ** {{author}} ** möchte eine Wette aus {{amount}} Cakes erstellen",
+        "ask": "**{{user}}**, **{{author}}** möchte eine Wette aus {{amount}} Cakes erstellen",
         "win": "Gab {{choice}}! {{author}} Won {{amount}} Kuchen! Finanziert von {{user}}",
         "lose": "Gab {{choice}}! {{user}} Won {{amount}} Kuchen! Finanziert von {{author}}",
         "deny": "Bestreiten",
