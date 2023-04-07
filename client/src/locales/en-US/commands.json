@@ -333,9 +333,9 @@
     },
     "top": {
         "commands": {
-            "title": "Comandos mais utilizados",
-            "footer": "Meus comandos foram executados {{total}} vezes",
-            "usageCount": "**{{usageCount}}** Usos"
+            "title": "Most used commands",
+            "footer": "My commands have been executed {{total}} times",
+            "usageCount": "**{{usageCount}}** Usages"
         }
     },
     "pay": {
