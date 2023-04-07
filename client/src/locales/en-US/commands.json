@@ -331,6 +331,13 @@
         "youAreIn": "You are in the position",
         "position": "Position"
     },
+    "top": {
+        "commands": {
+            "title": "Comandos mais utilizados",
+            "footer": "Meus comandos foram executados {{total}} vezes",
+            "usageCount": "**{{usageCount}}** Usos"
+        }
+    },
     "pay": {
         "self": "You can't transfer cakes to yourself",
         "notEnough": "You don't have enough money",
