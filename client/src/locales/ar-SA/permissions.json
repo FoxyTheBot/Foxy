@@ -27,7 +27,7 @@
   "ManageRoles": "إدارة المواقف",
   "ManageWebhooks": "إدارة Webhooks",
   "ManageEmojis": "إدارة الرموز التعبيرية",
-  "ONLY_DEVS": ": x: ** | ** هذا الأمر مخصص فقط لمطوري ، سخيف!",
+  "ONLY_DEVS": "هذا الأمر مخصص فقط لمطوري ، سخيف!",
   "RequestToSpeak": "اطلب التحدث",
   "ManageEvents": "إدارة الأحداث",
   "ManageThreads": "إدارة الموضوعات",
@@ -46,5 +46,5 @@
   "ManageEmojisAndStickers": "إدارة الرموز التعبيرية والملصقات",
   "ViewGuildInsights": "انظر رؤى الخادم",
   "NOT_INTERACTION_OWNER": "يا! أنت لست {{owner}} للضغط على هذا الزر!",
-  "UNKNOWN_INTERACTION": "HM ... أنا لا أتعرف على هذا التفاعل!"
+  "UNKNOWN_INTERACTION": " أنا لا أتعرف على هذا التفاعل!"
 }
