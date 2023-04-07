@@ -333,6 +333,7 @@
     },
     "top": {
         "commands": {
+            "title": "Comandos mais utilizados",
             "footer": "Meus comandos foram executados {{total}} vezes",
             "usageCount": "**{{usageCount}}** Usos"
         }
