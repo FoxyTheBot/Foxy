@@ -66,7 +66,7 @@
         "flipped": "لقد لعبت عملة معدنية وكانت النتيجة"
     },
     "upvote": {
-        "description": "ساعدني على النمو وساعدني في أن أصبح روبوتًا أفضل من خلال التصويت لي على قائمة Discord Bot!\nيساعد كل تصويت على ترقيتي للآخرين في قائمة Discord Bot\n\n  ما رأيك بالانضمام إلى جميع الأشخاص الآخرين الذين صوتوا وساعدوني على النمو [بالضغط هنا] (https://top.gg/bot/1006520438865801296/vot:؟",
+        "description": "ساعدني على النمو وساعدني في أن أصبح روبوتًا أفضل من خلال التصويت لي على قائمة Discord Bot! يساعد كل تصويت على ترقيتي للآخرين في قائمة Discord Bot\nما رأيك بالانضمام إلى جميع الأشخاص الآخرين الذين صوتوا وساعدوني على النمو https://top.gg/bot/1006520438865801296/vote",
         "top": {
             "title": "كبار النوتية في القمة",
             "votes": "التمنيات",
@@ -128,7 +128,7 @@
         },
         "bot": {
             "title": "مرحبًا ، أنا فوكسى",
-            "description": "Hallo {{user}}, ich bin Foxy, ich habe Ressourcen, um deine Mitglieder zu unterhalten und zu motivieren, Befehle zu speichern, Bilder zu ändern und vieles mehr! :3",
+            "description": "مرحبًا {{user}} ، أنا Foxy ، لدي الموارد اللازمة للترفيه وإشراك أعضائك وأوامر الاقتصاد وتعديل الصور والمزيد! : 3",
             "fields": {
                 "list": {
                     "title": " لمشاهدة قائمة الأوامر استخدام",
