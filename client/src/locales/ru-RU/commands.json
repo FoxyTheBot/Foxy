@@ -331,6 +331,13 @@
         "youAreIn": "Вы в положении",
         "position": "Позиция"
     },
+    "top": {
+        "commands": {
+            "title": "Comandos mais utilizados",
+            "footer": "Meus comandos foram executados {{total}} vezes",
+            "usageCount": "**{{usageCount}}** Usos"
+        }
+    },
     "pay": {
         "self": "Вы не можете отправлять пирожные себе",
         "notEnough": "У тебя недостаточно тортов",
