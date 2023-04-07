@@ -138,7 +138,8 @@
                 },
                 "guild": "Fan",
                 "privacy": "Política de privacidade",
-                "website": "Meine Webseite"
+                "website": "Meine Webseite",
+                "crowdin": "Crowdin"
             }
         }
     },
