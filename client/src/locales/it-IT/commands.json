@@ -66,15 +66,15 @@
         "flipped": "Hai suonato una moneta e il risultato è stato"
     },
     "upvote": {
-        "description": "Aiutami a crescere e aiutami a essere un voto migliore per me su <: topgg: 1074823809376460923> Discord Bot List! <: Catblush: 768292358458179595> \n Ogni voto aiuta a pubblicizzarmi ad altre persone nella lista dei bot discord <: Catblush: 768292358458179595> \n\n  Che ne dici di unirti a tutti coloro che hanno votato e che mi hanno aiutato a crescere [facendo clic qui] (https://top.gg/bot/1006520438865801296/vote)? : Cuore:",
+        "description": "Aiutami a crescere e aiutami a essere un voto migliore per me su Discord Bot List!\n Ogni voto aiuta a pubblicizzarmi ad altre persone nella Discord Bot List\n Che ne dici di unirti a tutti coloro che hanno votato e che mi hanno aiutato a crescere [facendo clic qui] (https://top.gg/bot/1006520438865801296/vote)?",
         "top": {
-            "title": "I migliori voatori foxy in cima.gg",
+            "title": "I migliori voatori foxy in top.gg",
             "votes": "Auguri",
             "ownerVotes": "Il mio sviluppatore ha voti {{votes}}"
         }
     },
     "rate": {
-        "result": "Hmmm ... do ** {{rate}}/10 ** per ** {{user}} **"
+        "result": "Do **{{rate}}/10** per **{{user}}**"
     },
     "profile": {
         "profile": "Profilo di {{user}}",
@@ -111,7 +111,7 @@
     "kick": {
         "self": "Lascia che qualcun altro lo faccia per te, è più facile",
         "client": "Foxy squat e passi dritto e dal modo con un muro *",
-        "success": "** {{user}} ** Meeting A Flying a ** {{target}} **"
+        "success": "**{{user}}** Meeting A Flying a **{{target}}**"
     },
     "help": {
         "commands": {
@@ -131,7 +131,7 @@
             "description": "Ciao {{user}}, sono Foxy, ho le risorse per intrattenere e coinvolgere i tuoi membri, i comandi economici, la modifica dell'immagine e altro ancora! : 3",
             "fields": {
                 "list": {
-                    "title": "<: Foxysunglasses: 890688144280784926> Per vedere l'elenco dei comandi Utilizzo",
+                    "title": "Per vedere l'elenco dei comandi Utilizzo",
                     "value": "`/help`"
                 },
                 "guild": "Sostenitore",
@@ -151,7 +151,7 @@
     },
     "aboutme": {
         "set": "Il tuo su di me è stato cambiato in `{{aboutme}}`",
-        "tooLong": "Il limite del personaggio è 225 e si digita {{length}}, digita qualcosa di più piccolo PFV: 3"
+        "tooLong": "Il limite del personaggio è 225 e si digita {{length}}, digita qualcosa di più piccolo"
     },
     "layouts": {
         "default": "Standard",
@@ -202,21 +202,21 @@
         "banner": {
             "click": "Guarda il banner nel tuo browser",
             "title": "{{user}} banner",
-            "noBanner": "Questo utente non ha banner <A: Foxylick: 987381814622560277>>"
+            "noBanner": "Questo utente non ha banner"
         },
         "member": {
             "title": "Informazioni su {{user}}",
-            "joinedAt": ": Scintilla: inserito in",
-            "role": "<: Foxysunglasses: 89068144280784926>",
-            "nickname": "<: FoxyHearteyes: 984596954526920794> soprannome sul server",
+            "joinedAt": ":sparkles: inserito in",
+            "role": "Posizioni",
+            "nickname": "Soprannome sul server",
             "noNickname": "Non c'è soprannome sul server",
             "permissions": {
                 "button": "Autorizzazioni",
                 "list": "Elenco delle autorizzazioni",
                 "title": "{{user}} autorizzazioni"
             },
-            "highestRole": "<: Foxysunglasses: 890688144280784926> Posizione maggiore",
-            "premiumSince": "<: FoxyBoost: 984596808921673768> I guidano il server da allora",
+            "highestRole": "Posizione maggiore",
+            "premiumSince": "I guidano il server da allora",
             "noRoles": "Non ci sono posizioni",
             "noPermissions": "Non ci sono autorizzazioni"
         }
@@ -229,8 +229,8 @@
         "cry": "Volevo davvero dire che è possibile ma ..."
     },
     "rep": {
-        "cooldown": "Hai già rinominato l'albar, aspetta ** {{cooldown}} **",
-        "success": "Hai dato la reputazione a ** {{user}} **",
+        "cooldown": "Hai già rinominato l'albar, aspetta **{{cooldown}}**",
+        "success": "Hai dato la reputazione a **{{user}}**",
         "self": "Non puoi darti una reputazione per te stesso"
     },
     "marry": {
@@ -238,15 +238,15 @@
         "alreadyMarried": "Sei già sposato con qualcuno!",
         "bot": "No, non voglio sposarti!",
         "alreadyMarriedWithSomeone": "Sei già sposato con qualcuno",
-        "alreadyMarriedWithUser": "Sei già sposato con ** {{user}} **",
-        "ask": "{{user}} Vuoi sposare ** {{author}} **?",
+        "alreadyMarriedWithUser": "Sei già sposato con **{{user}}**",
+        "ask": "{{user}} Vuoi sposare **{{author}}**?",
         "accept": "Accettare",
         "accepted": "Siete sposati! Saluti per la coppia <3"
     },
     "divorce": {
         "notMarried": "Non sei sposato",
         "confirm2": "Sei sicuro di voler divorziare?",
-        "divorced": "... Quindi è tutto, se è divorziato è una cosa triste, la prossima volta ama qualcuno che ti merita davvero e rispetta, sì, sembra essere difficile perché l'amore è cieco e incontrollabile ... ma è meglio essere soli che essere soli Male accompagnato, mi fido di te! : Cuore:",
+        "divorced": "... Quindi è tutto, se è divorziato è una cosa triste, la prossima volta ama qualcuno che ti merita davvero e rispetta, sì, sembra essere difficile perché l'amore è cieco e incontrollabile ... ma è meglio essere soli che essere soli Male accompagnato, mi fido di te!",
         "confirm": "Divorziare",
         "confirmed": "Divorziato"
     },
@@ -276,7 +276,7 @@
         "title": "Corpo di {{user}}"
     },
     "error": {
-        "tooLong": "Il contenuto è molto lungo, il limite è ** {{limit}} ** caratteri"
+        "tooLong": "Il contenuto è molto lungo, il limite è **{{limit}}** caratteri"
     },
     "rps": {
         "replies": {
@@ -331,14 +331,14 @@
     "pay": {
         "self": "Non puoi inviare torte a te stesso",
         "notEnough": "Non hai abbastanza torte",
-        "alert": "Vuoi davvero trasferire le torte {{amount}} su {{user}}? \n Il team Foxy ** non è responsabile ** per le torte perdute, quindi assicurati di trasferirti a una persona di fiducia! \n È vietato il commercio di contenuti NSFW (+18) in cambio di torte!",
+        "alert": "Vuoi davvero trasferire le torte {{amount}} su {{user}}? \n Il team Foxy **non è responsabile** per le torte perdute, quindi assicurati di trasferirti a una persona di fiducia! \n È vietato il commercio di contenuti NSFW (+18) in cambio di torte!",
         "success": "Hai trasferito {{amount}} torte a {{user}}",
         "pay": "trasferimento",
         "transfered": "Trasferito"
     },
     "daily": {
-        "cooldown": "Hai già preso le tue torte oggi, aspetta ** {{time}} **",
-        "daily": "Hai vinto ** {{amount}} torte ** Ora hai {{money}} Cakes",
+        "cooldown": "Hai già preso le tue torte oggi, aspetta **{{time}}**",
+        "daily": "Hai vinto **{{amount}} torte** Ora hai {{money}} Cakes\n",
         "dailyAlert": "** Non dimenticare: ** Non puoi cambiare torte per cose come denaro, nitro, contenuto NSFW, ecc.! Se lo fai, ti verrà vietato l'utilizzo di Foxy permanentemente!"
     },
     "background": {
@@ -361,13 +361,13 @@
         }
     },
     "atm": {
-        "success": "** {{user}} ** ha {{balance}} torte"
+        "success": "**{{user}}** ha {{balance}} torte"
     },
     "step": {
         "success": "Hai calpestato {{user}}"
     },
     "tickle": {
-        "success": "** {{author}} ** solleticato a ** {{user}} **",
+        "success": "**{{author}}** solleticato a **{{user}}**",
         "button": "Ridare"
     },
     "smile": {
@@ -377,39 +377,39 @@
         "crying": "{{author}} sta piangendo ..."
     },
     "lick": {
-        "success": "** {{author}} ** ha dato una lecca in ** {{user}} **"
+        "success": "**{{author}}** ha dato una lecca in **{{user}}**"
     },
     "laugh": {
         "success": "{{author}} sta ridendo ..."
     },
     "slap": {
         "button": "Ridare",
-        "success": "** {{author}} ** ha dato una tabella a ** {{user}} **"
+        "success": "**{{author}}** ha dato una tabella a **{{user}}**"
     },
     "dance": {
         "dancing": "{{author}} sta ballando"
     },
     "pat": {
         "button": "Ridare",
-        "success": "** {{author}} ** ha fatto un Cafuné in ** {{user}} **"
+        "success": "**{{author}}** accarezzato **{{user}}**"
     },
     "kiss": {
         "button": "Ridare",
-        "success": "** {{author}} ** ha dato un bacio su ** {{user}} **",
+        "success": "**{{author}}** ha dato un bacio su **{{user}}**",
         "self": "Non voglio baciarti, Oxy? Siamo solo amici!"
     },
     "hug": {
         "button": "Ridare",
-        "success": "** {{author}} ** ha dato un abbraccio a ** {{user}} **"
+        "success": "**{{author}}** ha dato un abbraccio a **{{user}}**"
     },
     "bite": {
         "self": "Hai morso, ma lo ha morso troppo forte e ora sei ferito, a malapena sapevi di essere un lupo con denti affilati:/",
         "client": "Hai provato a mordere una volpe ma ti ha morso il viso molto fortemente e ti sei fatto male!",
-        "success": "** {{user}} ** Bites ** {{target}} **",
+        "success": "**{{user}}** Bites **{{target}}**",
         "button": "Ridare"
     },
     "attack": {
-        "attack": "** {{user}} ** Attacco ** {{target}} **",
+        "attack": "**{{user}}** Attacco **{{target}}**",
         "button": "attacco"
     },
     "bet": {
@@ -421,12 +421,12 @@
         "tails": "corona",
         "accept": "Accettare",
         "choose": "Scegli un'opzione da scommettere",
-        "ask": "** {{user}} **, ** {{author}} ** Voglio fare una scommessa da {{amount}} Cakes",
+        "ask": "**{{user}}**, **{{author}}** Voglio fare una scommessa da {{amount}} Cakes",
         "win": "Ha dato {{choice}}! {{author}} vinto {{amount}} Cakes! Finanziato da {{user}}",
         "lose": "Ha dato {{choice}}! {{user}} vinto {{amount}} Cakes! Finanziato da {{author}}",
         "deny": "Negare",
         "denied": "Rifiuto",
-        "bot": "Per ora non sto accettando scommesse, sono in bancarotta <: foxy_cry: 1071151976504627290>",
+        "bot": "Per ora non sto accettando scommesse, sono in bancarotta",
         "betWithClient": {
             "lose": "Ha dato {{result}}! Ho vinto le torte {{amount}}! >: 3",
             "win": "Ha dato {{result}}! Congratulazioni, hai vinto {{amount}} Cakes! : 3"
