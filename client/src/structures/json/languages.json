@@ -41,14 +41,6 @@
             "done": false
         },
         {
-            "name": "Japanese",
-            "nameLocalizations": {
-                "pt-BR": "Japonês"
-            },
-            "value": "ja-JP",
-            "done": false
-        },
-        {
             "name": "Italian",
             "nameLocalizations": {
                 "pt-BR": "Italiano"
@@ -62,6 +54,14 @@
                 "pt-BR": "Russo"
             },
             "value": "ru-RU",
+            "done": false
+        },
+        {
+            "name": "Arabic",
+            "nameLocalizations": {
+                "pt-BR": "Árabe"
+            },
+            "value": "ar-SA",
             "done": false
         }
     ]
