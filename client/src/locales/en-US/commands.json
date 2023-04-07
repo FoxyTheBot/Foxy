@@ -37,8 +37,8 @@
             "de-DE": "German",
             "it-IT": "Italian",
             "ru-RU": "Russian",
-            "ar-SA": "Árabe",
-            "pt-BR": "Português do Brasil"
+            "ar-SA": "Arabic",
+            "pt-BR": "Brazilian Portuguese"
         }
     },
     "anime": {
@@ -138,7 +138,8 @@
                 },
                 "guild": "Support server",
                 "privacy": "Privacy",
-                "website": "My Website"
+                "website": "My Website",
+                "crowdin": "Crowdin"
             }
         }
     },
