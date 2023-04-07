@@ -14,7 +14,7 @@
         "hello": "Ciao, mi chiamo Foxy, il mio prefisso è `/ (comandi slash)`, usa `/ help` per chiedere aiuto!"
     },
     "interactionCreate": {
-        "commandError": "Sfortunatamente si è verificato un errore e non sono riuscito a eseguire questo comando, scusate <: Foxymedu: 890688173951315988>, ma l'errore è già stato segnalato al mio sviluppatore <: Foxysunglasses: 89068144280784926>"
+        "commandError": "Sfortunatamente si è verificato un errore e non sono riuscito a eseguire questo comando, scusate, ma l'errore è già stato segnalato al mio sviluppatore"
     },
     "error": {
         "title": "Si è verificato un errore nel comando `{{cmd}}`! Questo è stato segnalato al mio sviluppatore!"
