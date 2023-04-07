@@ -73,6 +73,9 @@
             "ownerVotes": "My owner has {{votes}} votes"
         }
     },
+    "rate": {
+        "result": "Hm... My grade is **{{rate}}/10** to **{{user}}**"
+    },
     "profile": {
         "profile": "{{user}}'s profile",
         "noAboutme": "Foxy is so cute ><! You can change this message using /aboutme command",
