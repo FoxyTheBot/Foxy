@@ -1,42 +1,42 @@
 {
     "foxyGlobal": {
-        "noPermission": "EHI! Cosa fai? Non puoi farlo! Non sei {{user}}"
+        "noPermission": "Ehi! Cosa fai? Non puoi farlo! Non sei {{user}}"
     },
     "roll": {
-        "result": "Hai rotolato ** {{amount}} d {{sides}} ** e il risultato era ** {{result}} **",
-        "button": "Rotolo"
+        "result": "Hai tirato {{amount}}d{{sides}} E il risultato è stato {{result}}",
+        "button": "Scorri di nuovo"
     },
     "botinfo": {
-        "title": ": Fox: Foxy",
-        "description": "Ciao, sono {{client.user.username}}! Sono un semplice bot brasiliano di economia e intrattenimento per il tuo server! Sto diffondendo la gioia nei server {{guilds}}: cuore:",
+        "title": ":fox: Foxy",
+        "description": "Ciao, sono {{client.user.username}}! Sono un semplice Bot brasiliano di economia e intrattenimento per il tuo server! Sto diffondendo gioia sui server di {{guilds}} :heart:",
         "fields": {
             "addme": "Aggiungimi",
-            "server": "Server: cuore:",
-            "server2": "Inserisci il mio server facendo clic qui",
-            "add": "Aggiungimi cliccando qui",
-            "support": "Server di supporto",
-            "twitter": "Il mio Twitter",
-            "tiktok": "Il mio tiktok",
-            "instagram": "Il mio Instagram",
-            "github": "Il mio github",
-            "youtube": "Youtube",
-            "donate2": "Donatemi facendo clic qui",
-            "privacy": "politica sulla riservatezza"
+            "server": "Server :heart:",
+            "server2": "Entra nel mio server",
+            "add": "Aggiungimi",
+            "support": "Server di Supporto",
+            "twitter": "Twitter",
+            "tiktok": "Mio TikTok",
+            "instagram": "Mio Instagram",
+            "github": "GitHub",
+            "youtube": "YouTube",
+            "donate2": "Dona a me cliccando qui",
+            "privacy": "Politica sulla riservatezza"
         }
     },
     "lang": {
-        "title": "scegli la tua LINGUA",
-        "default": "La tua lingua è definita come portoghese brasiliano",
+        "title": "Scegli la tua lingua",
+        "default": "La tua lingua è impostata sul portoghese brasiliano",
         "changed": "La tua lingua è stata cambiata in `{{language}}`",
-        "placeholder": "Linguaggio alterato",
+        "placeholder": "Cambiato lingua",
         "languages": {
             "en-US": "Inglese",
-            "es-ES": "spagnolo",
-            "fr-FR": "francese",
-            "ja-JP": "giapponese",
+            "es-ES": "Spagnolo",
+            "fr-FR": "Francese",
+            "ja-JP": "Giapponese",
             "de-DE": "Tedesco",
             "it-IT": "Italiano",
-            "ru-RU": "russo"
+            "ru-RU": "Russo"
         }
     },
     "anime": {
