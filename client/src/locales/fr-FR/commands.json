@@ -73,6 +73,9 @@
             "ownerVotes": "Mon développeur a {{votes}} votes"
         }
     },
+    "rate": {
+        "result": "Hmmm... Eu dou **{{rate}}/10** para **{{user}}**"
+    },
     "profile": {
         "profile": "Profil de {{user}}",
         "noAboutme": "Foxy est mon ami, vous pouvez changer cela en utilisant /aboutme",
@@ -132,7 +135,7 @@
                     "value": "`/help`"
                 },
                 "guild": "Serveur d'assistance",
-                "privacy": "Politique de confidentialité",
+                "crowdin": "Me ajude a falar mais idiomas!",
                 "website": "Mon site"
             }
         }
