@@ -37,8 +37,8 @@
             "de-DE": "ألمانية",
             "it-IT": "إيطالي",
             "ru-RU": "الروسية",
-            "ar-SA": "Árabe",
-            "pt-BR": "Português do Brasil"
+            "ar-SA": "عربي",
+            "pt-BR": "البرتغالية البرازيلية"
         }
     },
     "anime": {
@@ -137,7 +137,7 @@
                     "value": "\"/مساعدة\""
                 },
                 "guild": "مؤيد، مشجع، داعم",
-                "privacy": "Política de privacidade",
+                "privacy": "سياسة الخصوصية",
                 "website": "موقع الويب الخاص بي",
                 "crowdin": "Crowdin"
             }
@@ -270,7 +270,7 @@
         "platform": "منصة"
     },
     "mcskin": {
-        "title": "Skin de {{user}}"
+        "title": "{{user}} الجلد"
     },
     "mchead": {
         "title": "رأس {{user}}"
