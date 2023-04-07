@@ -1,0 +1,438 @@
+{
+    "foxyGlobal": {
+        "noPermission": "여기요! 뭐하세요? 당신은 그렇게 할 수 없습니다! 당신은 {{user}}이 아닙니다."
+    },
+    "roll": {
+        "result": "당신은 ** {{amount}} d {{sides}} **를 굴 렸고 결과는 ** {{result}} **였습니다.",
+        "button": "롤"
+    },
+    "botinfo": {
+        "title": ": Fox : Foxy",
+        "description": "안녕하세요, {{client.user.username}}! 나는 당신의 서버를위한 경제 및 엔터테인먼트의 간단한 브라질 봇입니다! {{guilds}} 서버에서 기쁨을 퍼 뜨리고 있습니다 : 하트 :",
+        "fields": {
+            "addme": "나를 추가해",
+            "server": "서버 : 심장 :",
+            "server2": "여기를 클릭하여 내 서버를 입력하십시오",
+            "add": "여기를 클릭하여 저를 추가하십시오",
+            "support": "지원 서버",
+            "twitter": "내 트위터",
+            "tiktok": "내 Tiktok",
+            "instagram": "내 인스 타 그램",
+            "github": "내 github",
+            "youtube": "YouTube",
+            "donate2": "여기를 클릭하여 기부하십시오",
+            "privacy": "개인 정보 정책"
+        }
+    },
+    "lang": {
+        "title": "당신의 언어를 고르시 오",
+        "default": "귀하의 언어는 브라질 포르투갈어로 정의됩니다",
+        "changed": "귀하의 언어는`{{language}}`으로 변경되었습니다.",
+        "placeholder": "변경된 언어",
+        "languages": {
+            "en-US": "영어",
+            "es-ES": "스페인의",
+            "fr-FR": "프랑스 국민",
+            "ja-JP": "일본어",
+            "de-DE": "독일 사람",
+            "it-IT": "이탈리아 사람",
+            "ru-RU": "러시아인"
+        }
+    },
+    "anime": {
+        "info": {
+            "status": "상태",
+            "score": "구두",
+            "episodes": "에피소드",
+            "type": "유형",
+            "aired": "공개적으로 갔다",
+            "genres": "장르",
+            "source": "기원",
+            "studios": "스튜디오",
+            "duration": "지속",
+            "rating": "분류",
+            "scoreStats": "점수 상태",
+            "popularity": "인기",
+            "premiered": "초연",
+            "broadcast": "스트리밍"
+        },
+        "notFound": "애니메이션을 찾을 수 없습니다",
+        "click": "여기를 클릭하십시오",
+        "nothing": "아무것도 찾을 수 없음"
+    },
+    "coinflip": {
+        "heads": "얼굴",
+        "tails": "왕관",
+        "flipped": "당신은 동전을 연주했고 결과는 그랬습니다"
+    },
+    "upvote": {
+        "description": "<: topgg : 1074823809376460923> d <: catblush : 768292358458179595> \n 각 투표는 Discord Bot List의 다른 사람들에게 나를 공개하는 데 도움이됩니다. <: catblush : 768292358458179595> \n\n  투표에 참여하고 나를 키우는 데 도움이 된 모든 사람과 함께 [https://top.gg/bot/1006520438865801296/vote)는 어떻습니까? : 마음:",
+        "top": {
+            "title": "Top.gg의 Top Foxy 투표자",
+            "votes": "소원",
+            "ownerVotes": "내 개발자는 {{votes}} 투표를했습니다"
+        }
+    },
+    "rate": {
+        "result": "흠 ... 나는 ** {{user}} **를 위해 ** {{rate}}/10 **를 준다"
+    },
+    "profile": {
+        "profile": "{{user}}의 프로필",
+        "noAboutme": "Foxy는 내 친구입니다.",
+        "marriedWith": "💍 {{date}} ({{relativeTime}})에서 {{user}}과 결혼했습니다.",
+        "premium": "{{badge}} 프리미엄 {{date}}",
+        "testMode": "당신의 당신은 이렇게 표시 될 것입니다!",
+        "banned": "`{{user}}은`{{reason}}`에 의해 금지됩니다. \n `{{date}}`이후"
+    },
+    "masks": {
+        "ears": "고양이 귀",
+        "horns": "어느 한 쪽",
+        "halo": "그물코 틈",
+        "cowboy": "카우보이",
+        "topper": "겉보기 물건",
+        "purchase": "구입",
+        "preview": "시사",
+        "noMasks": "마스크가 없습니다",
+        "selectMask": "마스크를 선택하십시오",
+        "buy": {
+            "success": "당신은 당신의 아바타를 위해 마스크를 샀습니다!",
+            "noMoney": "이 마스크를 얻을 수있는 케이크가 충분하지 않습니다",
+            "preview": "시사",
+            "purchase": "구입"
+        },
+        "set": {
+            "success": "성공적인 변경 마스크 : 3",
+            "changed": "변경된 마스크 : 3",
+            "notOwned": "이 마스크가 없습니다",
+            "invalid": "유효하지 않은 코드"
+        },
+        "alreadyOwned": "당신은 이미이 마스크를 가지고 있습니다"
+    },
+    "kick": {
+        "self": "다른 사람이 당신을 위해 이것을하도록하십시오.",
+        "client": "여우 스쿼트와 당신은 벽으로 똑바로 지나가는 길 *",
+        "success": "** {{user}} ** 비행기 회의 ** {{target}} **"
+    },
+    "help": {
+        "commands": {
+            "title": "명령 목록",
+            "category": {
+                "economy": "경제",
+                "social": "사회의",
+                "fun": "오락",
+                "image": "이미지",
+                "misc": "기타",
+                "utils": "유용",
+                "rp": "구르는"
+            }
+        },
+        "bot": {
+            "title": "안녕하세요, 저는 여우입니다",
+            "description": "안녕하세요 {{user}}, 저는 Foxy입니다. 회원, 경제 사령부, 이미지 수정 등을 즐겁게하고 참여할 자원이 있습니다! : 삼",
+            "fields": {
+                "list": {
+                    "title": "<: Foxysunglasses : 890688144280784926> 사용 명령 목록을 보려면",
+                    "value": "`/help`"
+                },
+                "guild": "서포터",
+                "privacy": "Política de privacidade",
+                "website": "나의 웹 사이트"
+            }
+        }
+    },
+    "roblox": {
+        "aboutme": "나에 대해서",
+        "register": "등록 날짜",
+        "undefined": "한정되지 않은",
+        "noAboutme": "나에 대해 아니다",
+        "noStatus": "상태가 없습니다",
+        "error": "이 사용자를 찾을 수 없었습니다 ... 아마도 계정이 존재하지 않을 것입니다 :/",
+        "button": "프로필보기"
+    },
+    "aboutme": {
+        "set": "당신의 당신은`{{aboutme}}`으로 바뀌 었습니다.",
+        "tooLong": "문자 한계는 225이고 {{length}}을 입력하고 더 작은 PFV : 3을 입력합니다."
+    },
+    "layouts": {
+        "default": "기준",
+        "red": "빨간색",
+        "blue": "파란색",
+        "purple": "보라",
+        "cyan": "시안",
+        "changed": "프로필의 레이아웃을 변경했습니다",
+        "notFound": "레이아웃을 찾을 수 없습니다"
+    },
+    "role": {
+        "description": "위치 권한",
+        "id": "위치 ID",
+        "color": "법인",
+        "position": "사무실의 위치",
+        "noPermissions": "위치에는 권한이 없습니다",
+        "roleMention": "위치에 대한 언급",
+        "createdAt": "만들어졌습니다"
+    },
+    "server": {
+        "owner": "소유자",
+        "createdAt": "만들어졌습니다",
+        "clientJoin": "나는 들어갔다",
+        "channels": "채널",
+        "premium": "충동",
+        "memberCount": "회원",
+        "afk": "채널 AFK",
+        "click": "브라우저의 아이콘을 참조하십시오",
+        "no": "아니요",
+        "yes": "예",
+        "notFound": "id`{{id}}`이있는 서버를 찾지 못했습니다.",
+        "partner": "불화 파트너"
+    },
+    "user": {
+        "info": {
+            "tag": "사용자 태그",
+            "createdAt": "만들어졌습니다",
+            "userId": "사용자 ID",
+            "avatar": "사용자 아바타를 참조하십시오",
+            "viewMember": "회원 정보를 참조하십시오",
+            "noMember": "서버의 구성원이 아닙니다"
+        },
+        "avatar": {
+            "click": "브라우저에서 아바타를 참조하십시오",
+            "title": "{{user}} 아바타",
+            "footer": "나는 귀여운 것을 발견했다 : 3"
+        },
+        "banner": {
+            "click": "브라우저의 배너를 참조하십시오",
+            "title": "{{user}} 배너",
+            "noBanner": "이 사용자는 배너가 없습니다 <a : foxylick : 98738181462560277>"
+        },
+        "member": {
+            "title": "소개 {{user}}",
+            "joinedAt": ": 반짝임 : 입력",
+            "role": "<: FoxySunglasses : 89068144280784926> 위치",
+            "nickname": "<: FoxyHearteyes : 984596954526920794> 서버의 별명",
+            "noNickname": "서버에는 별명이 없습니다",
+            "permissions": {
+                "button": "권한",
+                "list": "권한 목록",
+                "title": "{{user}} 권한"
+            },
+            "highestRole": "<: FoxySunglasses : 890688144280784926> 더 큰 위치",
+            "premiumSince": "<: foxyboost : 984596808921673768> 나는 서버를 그 이후로 운전합니다.",
+            "noRoles": "위치가 없습니다",
+            "noPermissions": "권한이 없습니다"
+        }
+    },
+    "ship": {
+        "question": "롤링됩니까?",
+        "perfectCouple": "이것은 완벽한 커플입니다!",
+        "uwu": "이들은 이미 따라 잡고 있으며 아무에게도 말하지 않았습니다!",
+        "probably": "어쩌면 당신은 {{user}} 원한다 ...",
+        "cry": "나는 그것이 가능하다고 말하고 싶었지만 ..."
+    },
+    "rep": {
+        "cooldown": "당신은 이미 Algue에게 평판을 얻었습니다. 기다려 ** {{cooldown}} **",
+        "success": "당신은 ** {{user}} **로 명성을주었습니다.",
+        "self": "당신은 당신에게 자신에 대한 명성을 줄 수 없습니다"
+    },
+    "marry": {
+        "self": "당신은 자신과 결혼 할 수 없습니다",
+        "alreadyMarried": "당신은 이미 누군가와 결혼했습니다!",
+        "bot": "아니, 나는 당신과 결혼하고 싶지 않습니다!",
+        "alreadyMarriedWithSomeone": "당신은 이미 누군가와 결혼했습니다",
+        "alreadyMarriedWithUser": "당신은 이미 ** {{user}} **와 결혼했습니다.",
+        "ask": "{{user}} 결혼하고 싶니 ** {{author}} **?",
+        "accept": "받아들이려면",
+        "accepted": "당신은 결혼했습니다! 커플을위한 건배 <3"
+    },
+    "divorce": {
+        "notMarried": "넌 결혼하지 않았다",
+        "confirm2": "이혼하고 싶습니까?",
+        "divorced": "... 그래서 그게 다야, 이혼 한 경우 슬픈 일이라면, 다음에 당신을 정말로받을 자격이 있고 존중하는 사람을 사랑합니다. 예, 사랑이 눈이 멀고 통제 할 수 없기 때문에 어려운 것 같습니다 ... 그러나 혼자있는 것보다 낫습니다. 잘 동행하지 못해, 나는 당신을 믿습니다! : 마음:",
+        "confirm": "이혼",
+        "confirmed": "이혼"
+    },
+    "suggest": {
+        "success": "도와 주셔서 감사합니다 {{user}}, 귀하의 제안`{{content}}`내 개발자에게 전송되었습니다 <3"
+    },
+    "report": {
+        "success": "도와 주셔서 감사합니다 {{user}}, 귀하의 보고서`{{content}}`내 개발자에게 전송되었습니다 <3"
+    },
+    "status": {
+        "model": "프로세서 모델",
+        "guilds": "서버",
+        "users": "사용자",
+        "ram": "램 메모리",
+        "cpuUsage": "프로세서 사용",
+        "node": "node.js",
+        "arch": "건축학",
+        "platform": "플랫폼"
+    },
+    "mcskin": {
+        "title": "피부 de {{user}}"
+    },
+    "mchead": {
+        "title": "{{user}}의 머리"
+    },
+    "mcbody": {
+        "title": "{{user}}의 몸"
+    },
+    "error": {
+        "tooLong": "내용은 매우 길고 한계는 ** {{limit}} ** 문자입니다."
+    },
+    "rps": {
+        "replies": {
+            "rock": "결석",
+            "paper": "종이",
+            "scissors": "가위"
+        },
+        "tie": "묶여 다시 가자! > : d",
+        "start": "재생하려면 아래 버튼 중 하나를 클릭하십시오",
+        "invalidChoice": "유효하지 않은 선택, 선택 {{choice}}",
+        "clientWon": "{{result}}을 주었다, 나는> : 3",
+        "won3": "당신은 이겼습니다 : 3",
+        "won2": "당신은> : 3",
+        "won": "당신은 이겼습니다 : d",
+        "button": {
+            "rock": "결석",
+            "paper": "종이",
+            "scissors": "가위",
+            "cancel": "취소"
+        },
+        "cancelled": "{{emoji}} 게임이 취소되었습니다.",
+        "defaultValue": "게임은 아직 시작되지 않았습니다"
+    },
+    "fate": {
+        "couple": "커플",
+        "enemy": "적",
+        "lover": "연인",
+        "sibling": "형제",
+        "parent": "부자",
+        "married": "기혼",
+        "friend": "친구",
+        "result": "병렬 우주에서 <@{{user}}> 및 <@{{mention}}>은 {{fate}}입니다."
+    },
+    "cancel": {
+        "result": "{{user}}`{{reason}}`에 의해 {{mention}} 취소"
+    },
+    "8ball": {
+        "yes": "예",
+        "no": "아니요",
+        "maybe": "아마도",
+        "idk": "모르겠습니다",
+        "idk2": "모르겠습니다 :/",
+        "probably": "아마",
+        "probablyyes": "아마 그렇습니다",
+        "probablyno": "아마"
+    },
+    "rank": {
+        "wrongPage": "이 페이지는 존재하지 않습니다",
+        "youAreIn": "당신은 위치에 있습니다",
+        "position": "위치"
+    },
+    "pay": {
+        "self": "케이크를 자신에게 보낼 수 없습니다",
+        "notEnough": "케이크가 충분하지 않습니다",
+        "alert": "{{amount}} 케이크를 {{user}}으로 전송하고 싶습니까? \n Foxy ** 팀은 잃어버린 케이크에 대해 책임을지지 않습니다. \n NSFW (+18) 케이크 대가로 콘텐츠 거래는 금지됩니다!",
+        "success": "{{amount}} 케이크를 {{user}}로 옮겼습니다.",
+        "pay": "옮기다",
+        "transfered": "전송"
+    },
+    "daily": {
+        "cooldown": "당신은 오늘 이미 케이크를 가져갔습니다. 기다려 ** {{time}} **",
+        "daily": "당신은 ** {{amount}} cakes를 이겼습니다 ** 이제 당신은 {{money}} 케이크를 가지고 있습니다.",
+        "dailyAlert": "** 잊지 마세요 : ** 돈, 니트로, NSFW 컨텐츠 등과 같은 케이크를 갈 수 없습니다! 이렇게하면 Foxy를 영구적으로 사용하는 것이 금지됩니다!"
+    },
+    "background": {
+        "buy": {
+            "title": "배경 상점 : 3",
+            "invalid": "유효하지 않은 코드",
+            "alreadyOwned": "당신은 이미이 배경을 가지고 있습니다",
+            "onlyDevs": "개발자 만 배경을 구입할 수 있습니다",
+            "purchase": "구입",
+            "price": "가격",
+            "preview": "배경 미리보기",
+            "noMoney": "케이크가 충분하지 않습니다",
+            "success": "당신은 배경을 샀다! 배경은 이미 프로필에 자동으로 정의되었습니다! ; 삼"
+        },
+        "set": {
+            "title": "배경을 선택하십시오",
+            "notOwned": "당신은이 배경이 없습니다",
+            "success": "변경된 배경 : 3",
+            "description": "귀하의 배경은 다음과 같습니다. {{bgList}}"
+        }
+    },
+    "atm": {
+        "success": "** {{user}} **는 {{balance}} 케이크가 있습니다."
+    },
+    "step": {
+        "success": "당신은 {{user}}에 섰습니다."
+    },
+    "tickle": {
+        "success": "** {{author}} **에서 간질 ** {{user}} **",
+        "button": "돌려주는 것"
+    },
+    "smile": {
+        "smiling": "{{author}}가 웃고 있습니다 ..."
+    },
+    "cry": {
+        "crying": "{{author}}이 울고 있습니다 ..."
+    },
+    "lick": {
+        "success": "** {{author}} ** ** {{user}} **"
+    },
+    "laugh": {
+        "success": "{{author}}가 웃고 있습니다 ..."
+    },
+    "slap": {
+        "button": "돌려주는 것",
+        "success": "** {{author}} ** ** {{user}} **에서 테이블을 주었다."
+    },
+    "dance": {
+        "dancing": "{{author}}가 춤을 추고 있습니다"
+    },
+    "pat": {
+        "button": "돌려주는 것",
+        "success": "** {{author}} ** ** {{user}} **에서 카푸네를 만들었습니다."
+    },
+    "kiss": {
+        "button": "돌려주는 것",
+        "success": "** {{author}} **에 키스를 주었다 ** {{user}} **",
+        "self": "키스하고 싶지 않아, Oxy? 우리는 그저 친구 일 뿐이야!"
+    },
+    "hug": {
+        "button": "돌려주는 것",
+        "success": "** {{author}} ** ** {{user}} **에서 포옹했습니다."
+    },
+    "bite": {
+        "self": "당신은 물었습니다. 그러나 너무 강하게 물었고 이제 당신은 아프고, 당신은 날카로운 이빨을 가진 늑대라는 것을 간신히 알았습니다 :/",
+        "client": "당신은 여우를 물려고했지만 그녀는 당신의 얼굴을 매우 강하게 물었고 당신은 상처를 받았습니다!",
+        "success": "** {{user}} ** 물기 ** {{target}} **",
+        "button": "돌려주는 것"
+    },
+    "attack": {
+        "attack": "** {{user}} ** 공격 ** {{target}} **",
+        "button": "공격"
+    },
+    "bet": {
+        "self": "당신은 자신에게 베팅 할 수 없습니다!",
+        "not-enough": "케이크가 충분하지 않습니다",
+        "not-enough-mention": "{{user}}에는 케이크가 충분하지 않습니다",
+        "placeholder": "옵션을 선택하세요",
+        "heads": "얼굴",
+        "tails": "왕관",
+        "accept": "받아들이려면",
+        "choose": "베팅 옵션을 선택하십시오",
+        "ask": "** {{user}} **, ** {{author}} ** {{amount}} 케이크에서 내기를 만들고 싶어",
+        "win": "{{choice}}을 주었다! {{author}} 원한 {{amount}} 케이크! {{user}}에 의해 자금",
+        "lose": "{{choice}}을 주었다! {{user}} 원한 {{amount}} 케이크! {{author}}에 의해 자금",
+        "deny": "거부합니다",
+        "denied": "부정",
+        "bot": "지금은 베팅을 받아들이지 않고 파산 <: foxy_cry : 1071151976504627290>",
+        "betWithClient": {
+            "lose": "{{result}}을 주었다! 나는 {{amount}} 케이크에서 이겼다! > : 3",
+            "win": "{{result}}을 주었다! 축하합니다, 당신은 {{amount}} 케이크를 얻었습니다! : 삼"
+        }
+    },
+    "global": {
+        "noUser": "사용자는 찾을 수 없습니다"
+    }
+}
