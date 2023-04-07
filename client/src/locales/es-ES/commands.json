@@ -331,6 +331,13 @@
         "youAreIn": "Tú está en la posición",
         "position": "Posición"
     },
+    "top": {
+        "commands": {
+            "title": "Comandos mais utilizados",
+            "footer": "Meus comandos foram executados {{total}} vezes",
+            "usageCount": "**{{usageCount}}** Usos"
+        }
+    },
     "pay": {
         "self": "Tú no pueda enviar cakes para tu mesmo",
         "notEnough": "Tú no tienes Cakes suficientes",
