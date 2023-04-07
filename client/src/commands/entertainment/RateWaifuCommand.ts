@@ -29,7 +29,7 @@ const RateWaifuCommand = createCommand({
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>('user', 'users');
 
-        const result = Math.floor(Math.random() * 100) + 1;
+        const result = Math.floor(Math.random() * 10) + 1;
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_THINK, t('commands:rate.result', { user: user.username, rate: result.toString() }))
         });
