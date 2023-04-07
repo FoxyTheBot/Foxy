@@ -6,7 +6,7 @@
     },
     "ban": {
         "title": "Sei bannato **",
-        "description": "Se vuoi fare un appello di divieto puoi fare un ricorso a divieto \n\n  Ti consiglio di leggere [termini di utilizzo] (https://foxybot.win/privacy)",
+        "description": "Se vuoi fare un appello di divieto puoi fare un ricorso a divieto \n\n  Ti consiglio di leggere [termini di utilizzo] (https://foxybot.win/terms)",
         "reason": "Motivo per l'esilio:",
         "date": "Data della banca:"
     },

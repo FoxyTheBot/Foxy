@@ -6,7 +6,7 @@
     },
     "ban": {
         "title": "Du bist verbannt",
-        "description": "Wenn Sie eine Beschwerde einlegen möchten, können Sie eine Beschwerde einlegen \n\n  Ich empfehle Ihnen, [Nutzungsbedingungen] zu lesen (https://foxybot.win/privacy)",
+        "description": "Wenn Sie eine Beschwerde einlegen möchten, können Sie eine Beschwerde einlegen \n\n  Ich empfehle Ihnen, [Nutzungsbedingungen] zu lesen (https://foxybot.win/terms)",
         "reason": "Grund zur Verbannung:",
         "date": "Banity -Datum:"
     },
