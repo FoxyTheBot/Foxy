@@ -128,7 +128,7 @@
         },
         "bot": {
             "title": "مرحبًا ، أنا فوكسى",
-            "description": "Hallo {{user}}, ich bin Foxy, ich habe Ressourcen, um deine Mitglieder zu unterhalten und zu motivieren, Befehle zu speichern, Bilder zu ändern und vieles mehr! :3",
+            "description": "مرحبًا {{user}} ، أنا Foxy ، لدي الموارد اللازمة للترفيه وإشراك أعضائك وأوامر الاقتصاد وتعديل الصور والمزيد! : 3",
             "fields": {
                 "list": {
                     "title": " لمشاهدة قائمة الأوامر استخدام",
