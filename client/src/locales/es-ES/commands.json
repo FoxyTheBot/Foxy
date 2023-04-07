@@ -73,6 +73,9 @@
             "ownerVotes": "Mi criador posee {{votes}} votos"
         }
     },
+    "rate": {
+        "result": "Hmmm... Eu dou **{{rate}}/10** para **{{user}}**"
+    },
     "profile": {
         "profile": "Perfil del {{user}}",
         "noAboutme": "Foxy es mi amiga, tú puede alterar esto usándose /aboutme",
@@ -132,7 +135,7 @@
                     "value": "`/help`"
                 },
                 "guild": "Servidor de soporte",
-                "privacy": "Política de privacidad",
+                "crowdin": "Me ajude a falar mais idiomas!",
                 "website": "Meu Website"
             }
         }
