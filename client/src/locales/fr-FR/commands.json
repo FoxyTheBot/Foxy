@@ -138,7 +138,8 @@
                 },
                 "guild": "Serveur d'assistance",
                 "privacy": "Politique de confidentialité",
-                "website": "Mon site"
+                "website": "Mon site",
+                "crowdin": "Crowdin"
             }
         }
     },
