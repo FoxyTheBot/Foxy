@@ -20,6 +20,9 @@ const TopCommand = createCommand({
     },
     {
         name: "commands",
+        nameLocalizations: {
+            "pt-BR": "comandos"
+        },
         description: "[Utils] See the commands rank",
         descriptionLocalizations: {
             "pt-BR": "[Utilitários] Veja o rank de comandos"
