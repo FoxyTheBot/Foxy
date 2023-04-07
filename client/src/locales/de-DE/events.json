@@ -5,16 +5,16 @@
         "button": "Berechtigungen aktualisieren"
     },
     "ban": {
-        "title": "Du bist verbannt **",
+        "title": "Du bist verbannt",
         "description": "Wenn Sie eine Beschwerde einlegen möchten, können Sie eine Beschwerde einlegen \n\n  Ich empfehle Ihnen, [Nutzungsbedingungen] zu lesen (https://foxybot.win/privacy)",
         "reason": "Grund zur Verbannung:",
         "date": "Banity -Datum:"
     },
     "messageCreate": {
-        "hello": "Hallo, mein Name ist Foxy, mein Präfix ist `/ (Slash -Befehle)`, benutze `/ help 'für Hilfe!"
+        "hello": "Hallo, mein Name ist Foxy, mein Präfix ist `/ (Slash -Befehle)`, benutze `/help 'für Hilfe!"
     },
     "interactionCreate": {
-        "commandError": "Leider ist ein Fehler aufgetreten und ich konnte diesen Befehl nicht ausführen, sorry <: foxymedu: 890688173951315988>, aber der Fehler wurde bereits meinem Entwickler <: foxysunglasses: 89068144280784926> gemeldet"
+        "commandError": "Leider ist ein Fehler aufgetreten und ich konnte diesen Befehl nicht ausführen, sorry, aber der Fehler wurde bereits meinem Entwickler gemeldet"
     },
     "error": {
         "title": "In dem Befehl `{{cmd}}`! Dies wurde meinem Entwickler gemeldet!"
