@@ -3,15 +3,15 @@
         "noPermission": "Hey! Was machst du? Das kannst du nicht tun! Sie sind nicht {{user}}"
     },
     "roll": {
-        "result": "Sie haben ** {{amount}} d {{sides}} ** gerollt und das Ergebnis war ** {{result}} **",
+        "result": "Sie haben **{{amount}}d{{sides}}** gerollt und das Ergebnis war **{{result}}**",
         "button": "Rollen"
     },
     "botinfo": {
-        "title": ": Fuchs: Foxy",
-        "description": "Hallo, ich bin {{client.user.username}}! Ich bin ein einfacher brasilianischer Bot für Wirtschaft und Unterhaltung für Ihren Server! Ich verbreite Freude in {{guilds}} Servern: Herz:",
+        "title": ":fox: Foxy",
+        "description": "Hallo, ich bin {{client.user.username}}! Ich bin ein einfacher brasilianischer Bot für Wirtschaft und Unterhaltung für Ihren Server! Ich verbreite Freude in {{guilds}} Servern :heart:",
         "fields": {
-            "addme": "fügen Sie mich",
-            "server": "Server: Herz:",
+            "addme": "Fügen Sie mich",
+            "server": "Server :heart:",
             "server2": "Geben Sie meinen Server ein, indem Sie hier klicken",
             "add": "Fügen Sie mich hinzu, indem Sie hier klicken",
             "support": "Support Server",
@@ -66,7 +66,7 @@
         "flipped": "Sie haben eine Münze gespielt und das Ergebnis war"
     },
     "upvote": {
-        "description": "Hilf mir zu wachsen und hilf mir, eine bessere Bot -Abstimmung für mich über <: topgg: 1074823809376460923> Discord Bot List! <: Catblush: 768292358458179595> \n Jede Stimme hilft, mich für andere Personen auf der Discord Bot -Liste zu veröffentlichen. \n\n  Wie wäre es, wenn Sie sich allen anschließen, die für die gewählt haben und die mir geholfen haben, zu wachsen [hier klicken] (https://top.gg/bot/1006520438865801296/vote)? : Herz:",
+        "description": "Hilf mir zu wachsen und ein besserer Bot zu werden, indem du für mich auf der Discord-Bot-Liste abstimmst!\nJede Stimme hilft mir, andere auf der Discord-Bot-Liste zu befördern\n\n  Wie wäre es, wenn Sie sich all den anderen anschließen, die abgestimmt und mir geholfen haben, zu wachsen, [indem Sie hier klicken](https://top.gg/bot/1006520438865801296/vote)?",
         "top": {
             "title": "Top Foxy -Wähler oben.gg",
             "votes": "Wünscht sich",
@@ -111,7 +111,7 @@
     "kick": {
         "self": "Lassen Sie jemand anderes dies für Sie tun, es ist einfacher",
         "client": "Foxy Kniebeugen und Sie gehen gerade und aus dem Weg mit einer Wand *",
-        "success": "** {{user}} ** Treffen mit einem Fliegen bei ** {{target}} **"
+        "success": "**{{user}}** Treffen mit einem Fliegen bei **{{target}}**"
     },
     "help": {
         "commands": {
@@ -131,7 +131,7 @@
             "description": "Hallo {{user}}, ich bin Foxy, ich habe die Ressourcen, um Ihre Mitglieder, Wirtschaftsbefehle, Bildänderungen und mehr zu unterhalten und einzubeziehen! : 3",
             "fields": {
                 "list": {
-                    "title": "<: Foxysunglasses: 890688144280784926> Um die Liste der verwendeten Befehle anzuzeigen",
+                    "title": "Um die Liste der verwendeten Befehle anzuzeigen",
                     "value": "`/help`"
                 },
                 "guild": "Fan",
@@ -151,7 +151,7 @@
     },
     "aboutme": {
         "set": "Dein über mich wurde in `{{aboutme}}` geändert",
-        "tooLong": "Die Zeichengrenze ist 225 und Sie geben {{length}} ein, geben etwas kleineres PFV ein: 3"
+        "tooLong": "Die Zeichengrenze ist 225 und Sie geben {{length}} ein, geben etwas kleineres ein"
     },
     "layouts": {
         "default": "Standard",
@@ -206,17 +206,17 @@
         },
         "member": {
             "title": "Ungefähr {{user}}",
-            "joinedAt": ": Funkeln: eingegeben in",
-            "role": "<: Foxysunglasses: 89068144280784926> Positionen",
-            "nickname": "<: Foxyhearteyes: 984596954526920794> Spitzname auf dem Server",
+            "joinedAt": "Dieser Benutzer hat kein Banner",
+            "role": "Positionen",
+            "nickname": "Spitzname auf dem Server",
             "noNickname": "Auf dem Server gibt es keinen Spitznamen",
             "permissions": {
                 "button": "Berechtigungen",
                 "list": "Liste der Berechtigungen",
                 "title": "{{user}} Berechtigungen"
             },
-            "highestRole": "<: Foxysunglasses: 890688144280784926> größere Position",
-            "premiumSince": "<: Foxyboost: 984596808921673768> Ich treibe den Server seitdem an",
+            "highestRole": "größere Position",
+            "premiumSince": "Ich treibe den Server seitdem an",
             "noRoles": "Es gibt keine Positionen",
             "noPermissions": "Es gibt keine Berechtigungen"
         }
