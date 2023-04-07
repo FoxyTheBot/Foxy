@@ -36,7 +36,9 @@
             "ja-JP": "Japanese",
             "de-DE": "German",
             "it-IT": "Italian",
-            "ru-RU": "Russian"
+            "ru-RU": "Russian",
+            "ar-SA": "Árabe",
+            "pt-BR": "Português do Brasil"
         }
     },
     "anime": {
