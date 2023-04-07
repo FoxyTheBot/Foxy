@@ -3,15 +3,15 @@
         "noPermission": "嘿！ 你在干什么？ 你不能这样做！ 你不是{{user}}"
     },
     "roll": {
-        "result": "您滚动** {{amount}} d {{sides}} **，结果为** {{result}} **",
+        "result": "您滚动**{{amount}}d{{sides}}**，结果为**{{result}}**",
         "button": "卷"
     },
     "botinfo": {
-        "title": "：狐狸：狐狸",
-        "description": "您好，我{{client.user.username}}！ 我是您的服务器的简单巴西经济学和娱乐机构！ 我在{{guilds}}服务器中传播快乐：心脏：",
+        "title": ":fox: Foxy",
+        "description": "您好，我{{client.user.username}}！ 我是您的服务器的简单巴西经济学和娱乐机构！ 我在{{guilds}}服务器中传播快乐 :heart:",
         "fields": {
             "addme": "加我",
-            "server": "服务器：心脏：",
+            "server": "服务器 :heart:",
             "server2": "单击此处输入我的服务器",
             "add": "单击此处加我",
             "support": "支持服务器",
@@ -66,7 +66,7 @@
         "flipped": "你玩了一枚硬币，结果是"
     },
     "upvote": {
-        "description": "帮助我成长，并帮助我成为一个更好的机器人投票，以<：topgg：1074823809376460923> discord bot list！ <：catblush：768292358458179595> \n 每次投票都有助于将我宣传给Discord Bot列表的其他人<：CatBlush：768292358458179595> \n\n  您如何加入所有投票支持并帮助我成长的人[单击此处]（https://top.gg/bot/1006520438865801296/vote）？ ： 心：",
+        "description": "帮助我成长，并帮助我成为一个更好的机器人投票，以 Discord Bot List\n 每次投票都有助于将我宣传给Discord Bot列表的其他人\n\n  您如何加入所有投票支持并帮助我成长的人[单击此处]（https://top.gg/bot/1006520438865801296/vote）?",
         "top": {
             "title": "顶级选民在上面。",
             "votes": "愿望",
@@ -135,7 +135,7 @@
                     "value": "`/help'"
                 },
                 "guild": "支持者",
-                "crowdin": "帮助我谈更多语言！",
+                "privacy": "Política de privacidade",
                 "website": "我的网站"
             }
         }
@@ -146,7 +146,7 @@
         "undefined": "不明确的",
         "noAboutme": "对我不",
         "noStatus": "没有状态",
-        "error": "无法找到此用户...可能不存在该帐户：/",
+        "error": "无法找到此用户... 可能不存在该账户",
         "button": "查看资料"
     },
     "aboutme": {
