@@ -13,6 +13,7 @@ const loadCommands = async (): Promise<void> => {
       const command = await import(resolve("build/src/commands", folder, file));
       const commandData = command.default as ChatInputInteractionCommand;
       bot.commands.set(commandData.name, commandData);
+      bot.database.registerCommand(commandData.name)
     }
   }
   if (bot.commands.size > 0) {

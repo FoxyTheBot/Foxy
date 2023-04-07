@@ -6,6 +6,7 @@ import { bot } from '../../index';
 export default class DatabaseConnection {
     private client: any;
     private user: any;
+    private commands: any;
 
     constructor(client) {
         mongoose.set("strictQuery", true)
@@ -40,7 +41,13 @@ export default class DatabaseConnection {
             layout: String
         }, { versionKey: false, id: false });
 
+        const commandsSchema = new mongoose.Schema({
+            commandName: String,
+            commandUsageCount: Number,
+        }, { versionKey: false, id: false });
+
         this.user = mongoose.model('user', userSchema);
+        this.commands = mongoose.model('commands', commandsSchema);
         this.client = client;
     }
 
@@ -80,6 +87,46 @@ export default class DatabaseConnection {
         return document;
     }
 
+    async registerCommand(commandName: string): Promise<void> {
+        let commandFromDB = await this.commands.findOne({ commandName: commandName });
+
+        if (!commandFromDB) {
+            commandFromDB = new this.commands({
+                commandName: commandName,
+                commandUsageCount: 0,
+            }).save();
+        } else {
+            return null;
+        }
+    }
+    async updateCommand(commandName: string): Promise<void> {
+        let commandFromDB = await this.commands.findOne({ commandName: commandName });
+    
+        if (!commandFromDB) {
+            commandFromDB = new this.commands({
+                commandName: commandName,
+                commandUsageCount: 1,
+            }).save();
+        } else {
+            commandFromDB.commandUsageCount++;
+            commandFromDB.save();
+        }
+
+        return commandFromDB;
+    }
+
+    async getAllCommands(): Promise<void> {
+        let commandsData = await this.commands.find({});
+        return commandsData.map(command => command.toJSON());
+    }
+
+    async getAllUsageCount(): Promise<Number> {
+        let commandsData = await this.commands.find({});
+        let usageCount = 0;
+        commandsData.map(command => usageCount += command.commandUsageCount);
+        return usageCount;
+
+    }
     async getAllUsers(): Promise<void> {
         let usersData = await this.user.find({});
         return usersData.map(user => user.toJSON());

@@ -24,6 +24,7 @@ module.exports = async (_, interaction) => {
             try {
                 command.execute(context, res, locale);
                 logger.info(`[COMMAND ${interaction.data?.name} - Success] by ${interaction.user.username}#${interaction.user.discriminator} (${interaction.user.id})`)
+                bot.database.updateCommand(interaction.data?.name);
             } catch (e) {
                 console.error(e);
                 context.sendReply({ content: locale('events:interactionCreate.commandError'), flags: MessageFlags.Ephemeral })
