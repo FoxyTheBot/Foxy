@@ -37,8 +37,8 @@
             "de-DE": "Deutsch",
             "it-IT": "Italienisch",
             "ru-RU": "Russisch",
-            "ar-SA": "Árabe",
-            "pt-BR": "Português do Brasil"
+            "ar-SA": "Arabisch",
+            "pt-BR": "Brasilianisches Portugiesisch"
         }
     },
     "anime": {
@@ -137,7 +137,7 @@
                     "value": "`/help`"
                 },
                 "guild": "Fan",
-                "privacy": "Política de privacidade",
+                "privacy": "Datenschutz-Bestimmungen",
                 "website": "Meine Webseite",
                 "crowdin": "Crowdin"
             }
@@ -270,7 +270,7 @@
         "platform": "Plattform"
     },
     "mcskin": {
-        "title": "Skin de {{user}}"
+        "title": "{{user}}-Skin"
     },
     "mchead": {
         "title": "Kopf von {{user}}"
