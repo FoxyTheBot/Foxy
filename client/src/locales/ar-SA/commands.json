@@ -331,6 +331,13 @@
         "youAreIn": "أنت في الوضع",
         "position": "موضع"
     },
+    "top": {
+        "commands": {
+            "title": "Comandos mais utilizados",
+            "footer": "Meus comandos foram executados {{total}} vezes",
+            "usageCount": "**{{usageCount}}** Usos"
+        }
+    },
     "pay": {
         "self": "لا يمكنك إرسال الكعك إلى نفسك",
         "notEnough": "ليس لديك ما يكفي من الكعك",
