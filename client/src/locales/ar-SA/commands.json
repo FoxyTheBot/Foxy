@@ -36,7 +36,9 @@
             "ja-JP": "اليابانية",
             "de-DE": "ألمانية",
             "it-IT": "إيطالي",
-            "ru-RU": "الروسية"
+            "ru-RU": "الروسية",
+            "ar-SA": "عربي",
+            "pt-BR": "البرتغالية البرازيلية"
         }
     },
     "anime": {
@@ -135,8 +137,9 @@
                     "value": "\"/مساعدة\""
                 },
                 "guild": "مؤيد، مشجع، داعم",
-                "privacy": "Política de privacidade",
-                "website": "موقع الويب الخاص بي"
+                "privacy": "سياسة الخصوصية",
+                "website": "موقع الويب الخاص بي",
+                "crowdin": "Crowdin"
             }
         }
     },
@@ -267,7 +270,7 @@
         "platform": "منصة"
     },
     "mcskin": {
-        "title": "Skin de {{user}}"
+        "title": "{{user}} الجلد"
     },
     "mchead": {
         "title": "رأس {{user}}"
@@ -327,6 +330,13 @@
         "wrongPage": "هذه الصفحة غير موجودة",
         "youAreIn": "أنت في الوضع",
         "position": "موضع"
+    },
+    "top": {
+        "commands": {
+            "title": "الأوامر الأكثر استخدامًا",
+            "footer": "تم تنفيذ أوامري {{total}} مرة",
+            "usageCount": "**{{usageCount}}** الاستخدام"
+        }
     },
     "pay": {
         "self": "لا يمكنك إرسال الكعك إلى نفسك",

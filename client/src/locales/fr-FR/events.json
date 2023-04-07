@@ -6,7 +6,7 @@
     },
     "ban": {
         "title": "Vous êtes **banni**",
-        "description": "Se você quiser fazer um apelo de ban você pode fazer um apelo de ban \n\n Recomendo você ler os [termos de uso](https://foxybot.win/terms)",
+        "description": "Si vous voulez faire un appel d'interdiction, vous pouvez faire un appel d'interdiction\n\n Je vous recommande de lire les [conditions d'utilisation](https://foxybot.win/terms)",
         "reason": "Raison du bannissement :",
         "date": "Date d'interdiction :"
     },

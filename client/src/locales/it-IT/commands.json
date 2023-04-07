@@ -36,7 +36,9 @@
             "ja-JP": "Giapponese",
             "de-DE": "Tedesco",
             "it-IT": "Italiano",
-            "ru-RU": "Russo"
+            "ru-RU": "Russo",
+            "ar-SA": "Árabe",
+            "pt-BR": "Português do Brasil"
         }
     },
     "anime": {
@@ -136,7 +138,8 @@
                 },
                 "guild": "Sostenitore",
                 "privacy": "Política de privacidade",
-                "website": "Il mio sito web"
+                "website": "Il mio sito web",
+                "crowdin": "Crowdin"
             }
         }
     },
@@ -327,6 +330,13 @@
         "wrongPage": "Questa pagina non esiste",
         "youAreIn": "Sei nella posizione",
         "position": "Posizione"
+    },
+    "top": {
+        "commands": {
+            "title": "Comandos mais utilizados",
+            "footer": "Meus comandos foram executados {{total}} vezes",
+            "usageCount": "**{{usageCount}}** Usos"
+        }
     },
     "pay": {
         "self": "Non puoi inviare torte a te stesso",

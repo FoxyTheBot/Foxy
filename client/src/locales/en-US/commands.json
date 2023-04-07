@@ -36,7 +36,9 @@
             "ja-JP": "Japanese",
             "de-DE": "German",
             "it-IT": "Italian",
-            "ru-RU": "Russian"
+            "ru-RU": "Russian",
+            "ar-SA": "Arabic",
+            "pt-BR": "Brazilian Portuguese"
         }
     },
     "anime": {
@@ -136,7 +138,8 @@
                 },
                 "guild": "Support server",
                 "privacy": "Privacy",
-                "website": "My Website"
+                "website": "My Website",
+                "crowdin": "Crowdin"
             }
         }
     },
@@ -327,6 +330,13 @@
         "wrongPage": "This page doesn't exist",
         "youAreIn": "You are in the position",
         "position": "Position"
+    },
+    "top": {
+        "commands": {
+            "title": "Most used commands",
+            "footer": "My commands have been executed {{total}} times",
+            "usageCount": "**{{usageCount}}** Usages"
+        }
     },
     "pay": {
         "self": "You can't transfer cakes to yourself",

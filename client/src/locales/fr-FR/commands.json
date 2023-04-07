@@ -36,7 +36,9 @@
             "ja-JP": "Japonais",
             "de-DE": "Allemand",
             "it-IT": "Italien",
-            "ru-RU": "Russe"
+            "ru-RU": "Russe",
+            "ar-SA": "Arabe",
+            "pt-BR": "Portugais brésilien"
         }
     },
     "anime": {
@@ -74,7 +76,7 @@
         }
     },
     "rate": {
-        "result": "Hmmm... Eu dou **{{rate}}/10** para **{{user}}**"
+        "result": "Hmmm... Je donne **{{rate}}/10** à **{{user}}**"
     },
     "profile": {
         "profile": "Profil de {{user}}",
@@ -136,7 +138,8 @@
                 },
                 "guild": "Serveur d'assistance",
                 "privacy": "Politique de confidentialité",
-                "website": "Mon site"
+                "website": "Mon site",
+                "crowdin": "Crowdin"
             }
         }
     },
@@ -327,6 +330,13 @@
         "wrongPage": "Cette page n'existe pas",
         "youAreIn": "Tu es en poste",
         "position": "Position"
+    },
+    "top": {
+        "commands": {
+            "title": "Comandos mais utilizados",
+            "footer": "Meus comandos foram executados {{total}} vezes",
+            "usageCount": "**{{usageCount}}** Usos"
+        }
     },
     "pay": {
         "self": "Vous ne pouvez pas vous envoyer de cakes",

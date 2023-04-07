@@ -36,7 +36,9 @@
             "ja-JP": "Japonés",
             "de-DE": "Alemán",
             "it-IT": "Italiano",
-            "ru-RU": "Ruso"
+            "ru-RU": "Ruso",
+            "ar-SA": "Árabe",
+            "pt-BR": "Português do Brasil"
         }
     },
     "anime": {
@@ -136,7 +138,8 @@
                 },
                 "guild": "Servidor de soporte",
                 "privacy": "Política de privacidad",
-                "website": "Meu Website"
+                "website": "Meu Website",
+                "crowdin": "Crowdin"
             }
         }
     },
@@ -327,6 +330,13 @@
         "wrongPage": "Está página no existe",
         "youAreIn": "Tú está en la posición",
         "position": "Posición"
+    },
+    "top": {
+        "commands": {
+            "title": "Comandos mais utilizados",
+            "footer": "Meus comandos foram executados {{total}} vezes",
+            "usageCount": "**{{usageCount}}** Usos"
+        }
     },
     "pay": {
         "self": "Tú no pueda enviar cakes para tu mesmo",

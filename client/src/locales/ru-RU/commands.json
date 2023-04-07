@@ -36,7 +36,9 @@
             "ja-JP": "Японский",
             "de-DE": "Немецкий",
             "it-IT": "Итальянский",
-            "ru-RU": "Русский"
+            "ru-RU": "Русский",
+            "ar-SA": "Árabe",
+            "pt-BR": "Português do Brasil"
         }
     },
     "anime": {
@@ -136,7 +138,8 @@
                 },
                 "guild": "Сторонник",
                 "privacy": "Política de privacidade",
-                "website": "Мой веб-сайт"
+                "website": "Мой веб-сайт",
+                "crowdin": "Crowdin"
             }
         }
     },
@@ -327,6 +330,13 @@
         "wrongPage": "Данная страница не существует",
         "youAreIn": "Вы в положении",
         "position": "Позиция"
+    },
+    "top": {
+        "commands": {
+            "title": "Comandos mais utilizados",
+            "footer": "Meus comandos foram executados {{total}} vezes",
+            "usageCount": "**{{usageCount}}** Usos"
+        }
     },
     "pay": {
         "self": "Вы не можете отправлять пирожные себе",
