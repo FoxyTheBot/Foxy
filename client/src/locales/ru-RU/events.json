@@ -6,7 +6,7 @@
     },
     "ban": {
         "title": "Вы заблокированы **",
-        "description": "Если вы хотите сделать апелляцию с запретом, вы можете сделать апелляцию запрета \n\n  Я рекомендую вам прочитать [Условия использования] (https://foxybot.win/privacy)",
+        "description": "Se você quiser fazer um apelo de ban você pode fazer um apelo de ban \n\n Recomendo você ler os [termos de uso](https://foxybot.win/terms)",
         "reason": "Причина изгнания:",
         "date": "Дата баланса:"
     },
