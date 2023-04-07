@@ -138,7 +138,8 @@
                 },
                 "guild": "Сторонник",
                 "privacy": "Política de privacidade",
-                "website": "Мой веб-сайт"
+                "website": "Мой веб-сайт",
+                "crowdin": "Crowdin"
             }
         }
     },
