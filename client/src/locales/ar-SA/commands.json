@@ -138,7 +138,8 @@
                 },
                 "guild": "مؤيد، مشجع، داعم",
                 "privacy": "Política de privacidade",
-                "website": "موقع الويب الخاص بي"
+                "website": "موقع الويب الخاص بي",
+                "crowdin": "Crowdin"
             }
         }
     },
