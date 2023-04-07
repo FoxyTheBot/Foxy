@@ -331,6 +331,13 @@
         "youAreIn": "Tu es en poste",
         "position": "Position"
     },
+    "top": {
+        "commands": {
+            "title": "Comandos mais utilizados",
+            "footer": "Meus comandos foram executados {{total}} vezes",
+            "usageCount": "**{{usageCount}}** Usos"
+        }
+    },
     "pay": {
         "self": "Vous ne pouvez pas vous envoyer de cakes",
         "notEnough": "Vous n'avez pas assez de cakes",
