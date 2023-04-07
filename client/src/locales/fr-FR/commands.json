@@ -37,8 +37,8 @@
             "de-DE": "Allemand",
             "it-IT": "Italien",
             "ru-RU": "Russe",
-            "ar-SA": "Árabe",
-            "pt-BR": "Português do Brasil"
+            "ar-SA": "Arabe",
+            "pt-BR": "Portugais brésilien"
         }
     },
     "anime": {
@@ -76,7 +76,7 @@
         }
     },
     "rate": {
-        "result": "Hmmm... Eu dou **{{rate}}/10** para **{{user}}**"
+        "result": "Hmmm... Je donne **{{rate}}/10** à **{{user}}**"
     },
     "profile": {
         "profile": "Profil de {{user}}",
