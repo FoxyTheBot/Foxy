@@ -45,394 +45,394 @@
             "score": "Punteggiatura",
             "episodes": "Episodi",
             "type": "Tipo",
-            "aired": "Foi a público em",
-            "genres": "Gêneros",
-            "source": "Origem",
-            "studios": "Estúdios",
-            "duration": "Duração",
-            "rating": "Classificação",
-            "scoreStats": "Status da pontuação",
-            "popularity": "Popularidade",
-            "premiered": "Estreou em",
-            "broadcast": "Transmissão"
+            "aired": "È andato in pubblico in",
+            "genres": "Generi",
+            "source": "Origine",
+            "studios": "Studi",
+            "duration": "Durata",
+            "rating": "Classificazione",
+            "scoreStats": "Stato del punteggio",
+            "popularity": "Popolarità",
+            "premiered": "Presentato in anteprima",
+            "broadcast": "Streaming"
         },
-        "notFound": "Anime não encontrado",
-        "click": "Clique aqui",
-        "nothing": "Nada encontrado"
+        "notFound": "Anime non trovato",
+        "click": "clicca qui",
+        "nothing": "Non abbiamo trovato nulla"
     },
     "coinflip": {
-        "heads": "cara",
-        "tails": "coroa",
-        "flipped": "Você jogou uma moeda e o resultado foi"
+        "heads": "viso",
+        "tails": "corona",
+        "flipped": "Hai suonato una moneta e il risultato è stato"
     },
     "upvote": {
-        "description": "Me ajude a crescer e me ajude a ser um bot melhor votando em mim no <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nCada voto ajuda a me divulgar para outras pessoas na Discord Bot List <:catblush:768292358458179595>\n\n Que tal você se juntar a todas as outras pessoas que votaram e que me ajudaram a crescer [clicando aqui](https://top.gg/bot/1006520438865801296/vote)? :heart:",
+        "description": "Aiutami a crescere e aiutami a essere un voto migliore per me su <: topgg: 1074823809376460923> Discord Bot List! <: Catblush: 768292358458179595> \n Ogni voto aiuta a pubblicizzarmi ad altre persone nella lista dei bot discord <: Catblush: 768292358458179595> \n\n  Che ne dici di unirti a tutti coloro che hanno votato e che mi hanno aiutato a crescere [facendo clic qui] (https://top.gg/bot/1006520438865801296/vote)? : Cuore:",
         "top": {
-            "title": "Top votantes da Foxy na Top.gg",
-            "votes": "Votos",
-            "ownerVotes": "Meu desenvolvedor possui {{votes}} votos"
+            "title": "I migliori voatori foxy in cima.gg",
+            "votes": "Auguri",
+            "ownerVotes": "Il mio sviluppatore ha voti {{votes}}"
         }
     },
     "rate": {
-        "result": "Hmmm... Eu dou **{{rate}}/10** para **{{user}}**"
+        "result": "Hmmm ... do ** {{rate}}/10 ** per ** {{user}} **"
     },
     "profile": {
-        "profile": "Perfil de {{user}}",
-        "noAboutme": "Foxy é minha amiga você pode alterar isso usando /aboutme",
-        "marriedWith": "💍 Casado com {{user}} desde {{date}} ({{relativeTime}})",
-        "premium": "{{badge}} Premium desde {{date}}",
-        "testMode": "Seu sobre mim será exibido assim!",
-        "banned": "`{{user}} está banido por `{{reason}}` \nDesde `{{date}}`"
+        "profile": "Profilo di {{user}}",
+        "noAboutme": "Foxy è mio amico, puoi cambiare questo usando /aboutme",
+        "marriedWith": "💍 sposato con {{user}} da {{date}} ({{relativeTime}})",
+        "premium": "{{badge}} premium da {{date}}",
+        "testMode": "Il tuo sopra di me verrà visualizzato in questo modo!",
+        "banned": "`{{user}} è vietato da` {{reason}}` \n Dal momento che `{{date}}`"
     },
     "masks": {
-        "ears": "Orelhas de gato",
-        "horns": "Chifrinhos",
-        "halo": "Aréola",
-        "cowboy": "Chapéu de vaqueiro",
-        "topper": "Cartola",
-        "purchase": "Comprar",
-        "preview": "Pré-visualização",
-        "noMasks": "Você não possui nenhuma máscara",
-        "selectMask": "Selecione uma máscara",
+        "ears": "Orecchie di gatto",
+        "horns": "Corna",
+        "halo": "Areola",
+        "cowboy": "Cowboy",
+        "topper": "Topper",
+        "purchase": "Acquistare",
+        "preview": "Anteprima",
+        "noMasks": "Non hai maschera",
+        "selectMask": "Seleziona una maschera",
         "buy": {
-            "success": "Você comprou a máscara para seu avatar!",
-            "noMoney": "Você não tem Cakes o suficiente para adquirir esta máscara",
-            "preview": "Pré-visualização",
-            "purchase": "Comprar"
+            "success": "Hai comprato la maschera per il tuo avatar!",
+            "noMoney": "Non hai abbastanza torte per ottenere questa maschera",
+            "preview": "Anteprima",
+            "purchase": "Acquistare"
         },
         "set": {
-            "success": "Máscara alterada com sucesso :3",
-            "changed": "Máscara alterada :3",
-            "notOwned": "Você não possui essa máscara",
-            "invalid": "Código inválido"
+            "success": "Maschera cambiata con successo: 3",
+            "changed": "Maschera cambiata: 3",
+            "notOwned": "Non hai questa maschera",
+            "invalid": "Codice non VALIDO"
         },
-        "alreadyOwned": "Você já possui essa máscara"
+        "alreadyOwned": "Hai già questa maschera"
     },
     "kick": {
-        "self": "Deixa outra pessoa fazer isso para você, é mais fácil",
-        "client": "Foxy se agacha e você passa direto e da de cara com uma parede *",
-        "success": "**{{user}}** meteu uma voadora em **{{target}}**"
+        "self": "Lascia che qualcun altro lo faccia per te, è più facile",
+        "client": "Foxy squat e passi dritto e dal modo con un muro *",
+        "success": "** {{user}} ** Meeting A Flying a ** {{target}} **"
     },
     "help": {
         "commands": {
-            "title": "Lista de comandos",
+            "title": "Elenco dei comandi",
             "category": {
                 "economy": "Economia",
-                "social": "Social",
-                "fun": "Entretenimento",
-                "image": "Imagens",
-                "misc": "Outros",
-                "utils": "Utilitários",
-                "rp": "Roleplay"
+                "social": "Sociale",
+                "fun": "Divertimento",
+                "image": "immagini",
+                "misc": "Altri",
+                "utils": "Utility",
+                "rp": "Rotolando"
             }
         },
         "bot": {
-            "title": "Oie, eu sou a Foxy",
-            "description": "Olá {{user}}, eu sou a Foxy, tenho recursos para entreter e envolver seus membros, comandos de economia, modificação de imagem e muito mais! :3",
+            "title": "Ciao, sono un foxy",
+            "description": "Ciao {{user}}, sono Foxy, ho le risorse per intrattenere e coinvolgere i tuoi membri, i comandi economici, la modifica dell'immagine e altro ancora! : 3",
             "fields": {
                 "list": {
-                    "title": "<:foxysunglasses:890688144280784926> Para ver a lista de comandos use",
+                    "title": "<: Foxysunglasses: 890688144280784926> Per vedere l'elenco dei comandi Utilizzo",
                     "value": "`/help`"
                 },
-                "guild": "Serivdor de suporte",
-                "crowdin": "Me ajude a falar mais idiomas!",
-                "website": "Meu Website"
+                "guild": "Sostenitore",
+                "crowdin": "Aiutami a parlare più lingue!",
+                "website": "Il mio sito web"
             }
         }
     },
     "roblox": {
-        "aboutme": "Sobre mim",
-        "register": "Data de registro",
-        "undefined": "Não definido",
-        "noAboutme": "Não há sobre mim",
-        "noStatus": "Não há status",
-        "error": "Não foi possível encontrar esse usuário... Provavelmente a conta não existe :/",
-        "button": "Ver perfil"
+        "aboutme": "Su di me",
+        "register": "Data di registrazione",
+        "undefined": "Non definito",
+        "noAboutme": "No su di me",
+        "noStatus": "Non c'è stato",
+        "error": "Non è stato possibile trovare questo utente ... probabilmente l'account non esiste:/",
+        "button": "Vedi profilo"
     },
     "aboutme": {
-        "set": "Seu sobre mim foi alterado para `{{aboutme}}`",
-        "tooLong": "O limite de caracteres é 225 e você digitou {{length}}, digita algo menor pfv :3"
+        "set": "Il tuo su di me è stato cambiato in `{{aboutme}}`",
+        "tooLong": "Il limite del personaggio è 225 e si digita {{length}}, digita qualcosa di più piccolo PFV: 3"
     },
     "layouts": {
-        "default": "Padrão",
-        "red": "Vermelho",
-        "blue": "Azul",
-        "purple": "Roxo",
+        "default": "Standard",
+        "red": "Rosso",
+        "blue": "Blu",
+        "purple": "Viola",
         "cyan": "Ciano",
-        "changed": "Você alterou o layout do seu perfil",
-        "notFound": "Layout não encontrado"
+        "changed": "Hai cambiato il layout del tuo profilo",
+        "notFound": "Layout non trovato"
     },
     "role": {
-        "description": "Permissões do cargo",
-        "id": "ID do cargo",
-        "color": "Cor do cargo",
-        "position": "Posição do cargo",
-        "noPermissions": "O cargo não tem permissões",
-        "roleMention": "Menção do cargo",
-        "createdAt": "Criado em"
+        "description": "Autorizzazioni di posizione",
+        "id": "ID posizione",
+        "color": "Società",
+        "position": "Posizione di ufficio",
+        "noPermissions": "La posizione non ha autorizzazioni",
+        "roleMention": "Menzione",
+        "createdAt": "Creato in"
     },
     "server": {
-        "owner": "Dono",
-        "createdAt": "Criado em",
-        "clientJoin": "Entrei em",
-        "channels": "Canais",
-        "premium": "Impulsos",
-        "memberCount": "Membros",
-        "afk": "Canal AFK",
-        "click": "Veja o ícone no seu navegador",
-        "no": "Não",
-        "yes": "Sim",
-        "notFound": "Não encontrei nenhum servidor com a id `{{id}}`",
-        "partner": "Parceiro do Discord"
+        "owner": "Proprietario",
+        "createdAt": "Creato in",
+        "clientJoin": "Entrai",
+        "channels": "Canali",
+        "premium": "Impulso",
+        "memberCount": "Membri",
+        "afk": "Canale AFK",
+        "click": "Guarda l'icona nel tuo browser",
+        "no": "NO",
+        "yes": "SÌ",
+        "notFound": "Non ho trovato nessun server con ID `{{id}}`",
+        "partner": "Discord Partner"
     },
     "user": {
         "info": {
-            "tag": "Tag do usuário",
-            "createdAt": "Criado em",
-            "userId": "ID do usuário",
-            "avatar": "Ver avatar do usuário",
-            "viewMember": "Ver informações do membro",
-            "noMember": "Não é um membro do servidor"
+            "tag": "Tag utente",
+            "createdAt": "Creato in",
+            "userId": "ID utente",
+            "avatar": "Vedi Avatar utente",
+            "viewMember": "Vedi informazioni sui membri",
+            "noMember": "Non è un membro del server"
         },
         "avatar": {
-            "click": "Veja o avatar no seu navegador",
-            "title": "Avatar de {{user}}",
-            "footer": "Achei fofo :3"
+            "click": "Guarda l'avatar nel tuo browser",
+            "title": "{{user}} avatar",
+            "footer": "Ho trovato carino: 3"
         },
         "banner": {
-            "click": "Veja o banner no seu navegador",
-            "title": "Banner de {{user}}",
-            "noBanner": "Esse usuário não tem banner <a:foxylick:987381814622560277>"
+            "click": "Guarda il banner nel tuo browser",
+            "title": "{{user}} banner",
+            "noBanner": "Questo utente non ha banner <A: Foxylick: 987381814622560277>>"
         },
         "member": {
-            "title": "Sobre {{user}}",
-            "joinedAt": ":sparkles: Entrou em",
-            "role": "<:foxysunglasses:890688144280784926> Cargos",
-            "nickname": "<:foxyhearteyes:984596954526920794> Apelido no servidor",
-            "noNickname": "Não há apelido no servidor",
+            "title": "Informazioni su {{user}}",
+            "joinedAt": ": Scintilla: inserito in",
+            "role": "<: Foxysunglasses: 89068144280784926>",
+            "nickname": "<: FoxyHearteyes: 984596954526920794> soprannome sul server",
+            "noNickname": "Non c'è soprannome sul server",
             "permissions": {
-                "button": "Permissões",
-                "list": "Lista de permissões",
-                "title": "Permissões de {{user}}"
+                "button": "Autorizzazioni",
+                "list": "Elenco delle autorizzazioni",
+                "title": "{{user}} autorizzazioni"
             },
-            "highestRole": "<:foxysunglasses:890688144280784926> Maior cargo",
-            "premiumSince": "<:foxyboost:984596808921673768> Impulsiona o servidor desde",
-            "noRoles": "Não há cargos",
-            "noPermissions": "Não há permissões"
+            "highestRole": "<: Foxysunglasses: 890688144280784926> Posizione maggiore",
+            "premiumSince": "<: FoxyBoost: 984596808921673768> I guidano il server da allora",
+            "noRoles": "Non ci sono posizioni",
+            "noPermissions": "Non ci sono autorizzazioni"
         }
     },
     "ship": {
-        "question": "Será que vai rolar ou não?",
-        "perfectCouple": "Esse é o casal perfeito!",
-        "uwu": "Esses aqui já estão se pegando e não contaram para ninguém!",
-        "probably": "Talvez só precisa o {{user}} querer...",
-        "cry": "Queria muito dizer que é possível mas..."
+        "question": "Rotolerà o no?",
+        "perfectCouple": "Questa è la coppia perfetta!",
+        "uwu": "Questi qui stanno già recuperando e non lo hanno detto a nessuno!",
+        "probably": "Forse hai solo bisogno di {{user}} vuoi ...",
+        "cry": "Volevo davvero dire che è possibile ma ..."
     },
     "rep": {
-        "cooldown": "Você já deu reputação para algúem, espere **{{cooldown}}**",
-        "success": "Você deu reputação para **{{user}}**",
-        "self": "Você não pode dar reputação para você mesmo"
+        "cooldown": "Hai già rinominato l'albar, aspetta ** {{cooldown}} **",
+        "success": "Hai dato la reputazione a ** {{user}} **",
+        "self": "Non puoi darti una reputazione per te stesso"
     },
     "marry": {
-        "self": "Você não pode casar com você mesmo",
-        "alreadyMarried": "Você já está casado com alguém!",
-        "bot": "Não, eu não quero casar com você!",
-        "alreadyMarriedWithSomeone": "Você já está casado com alguém",
-        "alreadyMarriedWithUser": "Você já está casado com **{{user}}**",
-        "ask": "{{user}} Você quer casar com **{{author}}**?",
-        "accept": "Aceitar",
-        "accepted": "Vocês estão casados! Felicidades para o casal <3"
+        "self": "Non puoi sposarti",
+        "alreadyMarried": "Sei già sposato con qualcuno!",
+        "bot": "No, non voglio sposarti!",
+        "alreadyMarriedWithSomeone": "Sei già sposato con qualcuno",
+        "alreadyMarriedWithUser": "Sei già sposato con ** {{user}} **",
+        "ask": "{{user}} Vuoi sposare ** {{author}} **?",
+        "accept": "Accettare",
+        "accepted": "Siete sposati! Saluti per la coppia <3"
     },
     "divorce": {
-        "notMarried": "Você não está casado",
-        "confirm2": "Você tem certeza que quer divorciar?",
-        "divorced": "...Então é isso, se divorciar é sim uma coisa triste, Da próxima vez ame alguém que realmente mereça e respeite você, sim isso parece ser difícil pois o amor é algo cego e incontrolável... Mas é melhor estar sozinho do que mal acompanhado, eu confio em você! :heart:",
-        "confirm": "Divorciar",
-        "confirmed": "Divorciado"
+        "notMarried": "Non sei sposato",
+        "confirm2": "Sei sicuro di voler divorziare?",
+        "divorced": "... Quindi è tutto, se è divorziato è una cosa triste, la prossima volta ama qualcuno che ti merita davvero e rispetta, sì, sembra essere difficile perché l'amore è cieco e incontrollabile ... ma è meglio essere soli che essere soli Male accompagnato, mi fido di te! : Cuore:",
+        "confirm": "Divorziare",
+        "confirmed": "Divorziato"
     },
     "suggest": {
-        "success": "Obrigada por me ajudar {{user}}, sua sugestão `{{content}}` foi enviada para o meu desenvolvedor <3"
+        "success": "Grazie per avermi aiutato {{user}}, il tuo suggerimento `{{content}}` è stato inviato al mio sviluppatore <3"
     },
     "report": {
-        "success": "Obrigada por me ajudar {{user}}, seu report `{{content}}` foi enviado para o meu desenvolvedor <3"
+        "success": "Grazie per avermi aiutato {{user}}, il tuo rapporto `{{content}}` è stato inviato al mio sviluppatore <3"
     },
     "status": {
-        "model": "Modelo do processador",
-        "guilds": "Servidores",
-        "users": "Usuários",
-        "ram": "Memória RAM",
-        "cpuUsage": "Uso do processador",
+        "model": "Modello del processore",
+        "guilds": "Server",
+        "users": "Utenti",
+        "ram": "Memoria RAM",
+        "cpuUsage": "Uso del processore",
         "node": "Node.js",
-        "arch": "Arquitetura",
-        "platform": "Plataforma"
+        "arch": "Architettura",
+        "platform": "piattaforma"
     },
     "mcskin": {
         "title": "Skin de {{user}}"
     },
     "mchead": {
-        "title": "Cabeça de {{user}}"
+        "title": "Capo di {{user}}"
     },
     "mcbody": {
-        "title": "Corpo de {{user}}"
+        "title": "Corpo di {{user}}"
     },
     "error": {
-        "tooLong": "O conteúdo é muito longo, o limite é de **{{limit}}** caracteres"
+        "tooLong": "Il contenuto è molto lungo, il limite è ** {{limit}} ** caratteri"
     },
     "rps": {
         "replies": {
-            "rock": "pedra",
-            "paper": "papel",
-            "scissors": "tesoura"
+            "rock": "calcolo",
+            "paper": "carta",
+            "scissors": "forbici"
         },
-        "tie": "Deu empate, vamos de novo! >:D",
-        "start": "Para jogar, clique em um dos botões abaixo",
-        "invalidChoice": "Escolha inválida, escolha {{choice}}",
-        "clientWon": "Deu {{result}}, eu ganhei >:3",
-        "won3": "Você ganhou :3",
-        "won2": "Você ganhou >:3",
-        "won": "Você ganhou :D",
+        "tie": "È legato, andiamo di nuovo! >: D",
+        "start": "Per giocare, fai clic su uno dei pulsanti qui sotto",
+        "invalidChoice": "Scegli non valido, scegli {{choice}}",
+        "clientWon": "Ho dato {{result}}, ho vinto>: 3",
+        "won3": "Hai vinto: 3",
+        "won2": "Hai vinto>: 3",
+        "won": "Hai vinto: D",
         "button": {
-            "rock": "Pedra",
-            "paper": "Papel",
-            "scissors": "Tesoura",
-            "cancel": "Cancelar"
+            "rock": "Calcolo",
+            "paper": "Carta",
+            "scissors": "Forbici",
+            "cancel": "Annulla"
         },
-        "cancelled": "{{emoji}} Jogo foi cancelado, para jogar execute o comando novamente",
-        "defaultValue": "O jogo ainda não foi iniciado"
+        "cancelled": "{{emoji}} Il gioco è stato cancellato, per riprodurre il comando",
+        "defaultValue": "Il gioco non è ancora iniziato"
     },
     "fate": {
-        "couple": "casal",
-        "enemy": "inimigos",
-        "lover": "amantes",
-        "sibling": "irmãos",
-        "parent": "Pai e filho",
-        "married": "casados",
-        "friend": "Amigos",
-        "result": "Em um universo paralelo <@{{user}}> e <@{{mention}}> são {{fate}}"
+        "couple": "coppia",
+        "enemy": "nemici",
+        "lover": "amanti",
+        "sibling": "fratelli",
+        "parent": "Padre e figlio",
+        "married": "sposato",
+        "friend": "Amici",
+        "result": "In un universo parallelo <@{{user}}> e <@{{mention}}> sono {{fate}}"
     },
     "cancel": {
-        "result": "{{user}} cancelou {{mention}} por `{{reason}}`"
+        "result": "{{user}} cancellato {{mention}} da `{{reason}}`"
     },
     "8ball": {
-        "yes": "Sim",
-        "no": "Não",
-        "maybe": "Talvez",
-        "idk": "Não sei",
-        "idk2": "Não sei :/",
-        "probably": "Provavelmente",
-        "probablyyes": "Provavelmente sim",
-        "probablyno": "Provavelmente não"
+        "yes": "SÌ",
+        "no": "NO",
+        "maybe": "Forse",
+        "idk": "Non lo so",
+        "idk2": "Non lo so :/",
+        "probably": "Probabilmente",
+        "probablyyes": "Probabilmente sì",
+        "probablyno": "Probabilmente no"
     },
     "rank": {
-        "wrongPage": "Esta página não existe",
-        "youAreIn": "Você está na posição",
-        "position": "Posição"
+        "wrongPage": "Questa pagina non esiste",
+        "youAreIn": "Sei nella posizione",
+        "position": "Posizione"
     },
     "pay": {
-        "self": "Você não pode enviar cakes para você mesmo",
-        "notEnough": "Você não tem Cakes suficiente",
-        "alert": "Você deseja mesmo transferir {{amount}} Cakes para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!",
-        "success": "Você transferiu {{amount}} Cakes para {{user}}",
-        "pay": "Transferir",
-        "transfered": "Transferido"
+        "self": "Non puoi inviare torte a te stesso",
+        "notEnough": "Non hai abbastanza torte",
+        "alert": "Vuoi davvero trasferire le torte {{amount}} su {{user}}? \n Il team Foxy ** non è responsabile ** per le torte perdute, quindi assicurati di trasferirti a una persona di fiducia! \n È vietato il commercio di contenuti NSFW (+18) in cambio di torte!",
+        "success": "Hai trasferito {{amount}} torte a {{user}}",
+        "pay": "trasferimento",
+        "transfered": "Trasferito"
     },
     "daily": {
-        "cooldown": "Você já pegou suas Cakes hoje, espere **{{time}}**",
-        "daily": "Você ganhou **{{amount}} Cakes** agora você possui {{money}} Cakes\n",
-        "dailyAlert": "**Não se esqueça:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!"
+        "cooldown": "Hai già preso le tue torte oggi, aspetta ** {{time}} **",
+        "daily": "Hai vinto ** {{amount}} torte ** Ora hai {{money}} Cakes",
+        "dailyAlert": "** Non dimenticare: ** Non puoi cambiare torte per cose come denaro, nitro, contenuto NSFW, ecc.! Se lo fai, ti verrà vietato l'utilizzo di Foxy permanentemente!"
     },
     "background": {
         "buy": {
-            "title": "Lojinha de background :3",
-            "invalid": "Código inválido",
-            "alreadyOwned": "Você já possui esse background",
-            "onlyDevs": "Somente os desenvolvedores podem comprar backgrounds",
-            "purchase": "Comprar",
-            "price": "Preço",
-            "preview": "Pré-visualização do background",
-            "noMoney": "Você não tem Cakes suficiente",
-            "success": "Você comprou o background! O Background já foi definido automaticamente no seu perfil! ;3"
+            "title": "Negozio di fondo: 3",
+            "invalid": "Codice non VALIDO",
+            "alreadyOwned": "Hai già questo background",
+            "onlyDevs": "Solo gli sviluppatori possono acquistare background",
+            "purchase": "Acquistare",
+            "price": "Prezzo",
+            "preview": "Anteprima di sfondo",
+            "noMoney": "Non hai abbastanza torte",
+            "success": "Hai comprato lo sfondo! Lo sfondo è già stato definito automaticamente sul tuo profilo! ; 3"
         },
         "set": {
-            "title": "Escolha seu background",
-            "notOwned": "Você não possui esse background",
-            "success": "Background alterado :3",
-            "description": "Seus backgrounds são: {{bgList}}"
+            "title": "Scegli il tuo background",
+            "notOwned": "Non hai questo background",
+            "success": "Sfondo cambiato: 3",
+            "description": "I tuoi sfondi sono: {{bgList}}"
         }
     },
     "atm": {
-        "success": "**{{user}}** possui {{balance}} Cakes"
+        "success": "** {{user}} ** ha {{balance}} torte"
     },
     "step": {
-        "success": "Você pisou em {{user}}"
+        "success": "Hai calpestato {{user}}"
     },
     "tickle": {
-        "success": "**{{author}}** fez cócegas em **{{user}}**",
-        "button": "Retribuir"
+        "success": "** {{author}} ** solleticato a ** {{user}} **",
+        "button": "Ridare"
     },
     "smile": {
-        "smiling": "{{author}} está sorrindo..."
+        "smiling": "{{author}} sta sorridendo ..."
     },
     "cry": {
-        "crying": "{{author}} está chorando..."
+        "crying": "{{author}} sta piangendo ..."
     },
     "lick": {
-        "success": "**{{author}}** deu uma lambida em **{{user}}**"
+        "success": "** {{author}} ** ha dato una lecca in ** {{user}} **"
     },
     "laugh": {
-        "success": "{{author}} está rindo..."
+        "success": "{{author}} sta ridendo ..."
     },
     "slap": {
-        "button": "Retribuir",
-        "success": "**{{author}}** deu um tabefe em **{{user}}**"
+        "button": "Ridare",
+        "success": "** {{author}} ** ha dato una tabella a ** {{user}} **"
     },
     "dance": {
-        "dancing": "{{author}} está dançando"
+        "dancing": "{{author}} sta ballando"
     },
     "pat": {
-        "button": "Retribuir",
-        "success": "**{{author}}** fez cafuné em **{{user}}**"
+        "button": "Ridare",
+        "success": "** {{author}} ** ha fatto un Cafuné in ** {{user}} **"
     },
     "kiss": {
-        "button": "Retribuir",
-        "success": "**{{author}}** deu um beijo em **{{user}}**",
-        "self": "Eu não quero te beijar, oxi? Somos apenas amigos!"
+        "button": "Ridare",
+        "success": "** {{author}} ** ha dato un bacio su ** {{user}} **",
+        "self": "Non voglio baciarti, Oxy? Siamo solo amici!"
     },
     "hug": {
-        "button": "Retribuir",
-        "success": "**{{author}}** deu um abraço em **{{user}}**"
+        "button": "Ridare",
+        "success": "** {{author}} ** ha dato un abbraccio a ** {{user}} **"
     },
     "bite": {
-        "self": "Você se mordeu porem mordeu forte demais e agora está machucado, mal sabia você que você é um lobo com dentes afiados :/",
-        "client": "Você tentou morder uma raposa porém ela mordeu seu rosto com muita força e você se machucou!",
-        "success": "**{{user}}** mordeu **{{target}}**",
-        "button": "Retribuir"
+        "self": "Hai morso, ma lo ha morso troppo forte e ora sei ferito, a malapena sapevi di essere un lupo con denti affilati:/",
+        "client": "Hai provato a mordere una volpe ma ti ha morso il viso molto fortemente e ti sei fatto male!",
+        "success": "** {{user}} ** Bites ** {{target}} **",
+        "button": "Ridare"
     },
     "attack": {
-        "attack": "**{{user}}** atacou **{{target}}**",
-        "button": "Atacar"
+        "attack": "** {{user}} ** Attacco ** {{target}} **",
+        "button": "attacco"
     },
     "bet": {
-        "self": "Você não pode apostar consigo mesmo!",
-        "not-enough": "Você não tem Cakes suficientes",
-        "not-enough-mention": "{{user}} não tem Cakes suficientes",
-        "placeholder": "Selecione uma opção",
-        "heads": "cara",
-        "tails": "coroa",
-        "accept": "Aceitar",
-        "choose": "Escolha uma opção para apostar",
-        "ask": "**{{user}}**, **{{author}}** quer fazer uma aposta de {{amount}} Cakes",
-        "win": "Deu {{choice}}! {{author}} ganhou {{amount}} Cakes! Financiado por {{user}}",
-        "lose": "Deu {{choice}}! {{user}} ganhou {{amount}} Cakes! Financiado por {{author}}",
-        "deny": "Negar",
-        "denied": "Aposta negada",
-        "bot": "Por enquanto não estou aceitando apostas, estou falida <:foxy_cry:1071151976504627290>",
+        "self": "Non puoi scommettere su te stesso!",
+        "not-enough": "Non hai abbastanza torte",
+        "not-enough-mention": "{{user}} non ha abbastanza torte",
+        "placeholder": "seleziona un'opzione",
+        "heads": "viso",
+        "tails": "corona",
+        "accept": "Accettare",
+        "choose": "Scegli un'opzione da scommettere",
+        "ask": "** {{user}} **, ** {{author}} ** Voglio fare una scommessa da {{amount}} Cakes",
+        "win": "Ha dato {{choice}}! {{author}} vinto {{amount}} Cakes! Finanziato da {{user}}",
+        "lose": "Ha dato {{choice}}! {{user}} vinto {{amount}} Cakes! Finanziato da {{author}}",
+        "deny": "Negare",
+        "denied": "Rifiuto",
+        "bot": "Per ora non sto accettando scommesse, sono in bancarotta <: foxy_cry: 1071151976504627290>",
         "betWithClient": {
-            "lose": "Deu {{result}}! Eu ganhei {{amount}} cakes! >:3",
-            "win": "Deu {{result}}! Parabéns, você ganhou {{amount}} cakes! :3"
+            "lose": "Ha dato {{result}}! Ho vinto le torte {{amount}}! >: 3",
+            "win": "Ha dato {{result}}! Congratulazioni, hai vinto {{amount}} Cakes! : 3"
         }
     },
     "global": {
-        "noUser": "Usuário não encontrado"
+        "noUser": "Utente non trovato"
     }
 }
