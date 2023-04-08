@@ -39,7 +39,7 @@ const SlapCommand = createCommand({
         const user = context.getOption<User>("user", "users");
         const slapGif: any = await context.getImage("slap");
 
-        embed.title = t('commands:slap.success', { user: user.username, author: context.author.username }),
+        embed.title = t('commands:slap.success', { target: user.username, author: context.author.username, user: user.username }),
             embed.image = {
                 url: slapGif.url
             }
