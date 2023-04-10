@@ -126,7 +126,7 @@ const FoxyToolsCommand = createCommand({
 
                 userData.balance += Number(quantity);
                 userData.save();
-                context.sendReply({ content: `Foram adicionados ${quantity} Cakes para ${user.username}` })
+                context.sendReply({ content: `Prontinho! Foi adicionado ${quantity} cakes para ${user.username}` })
                 endCommand();
                 break;
             }
