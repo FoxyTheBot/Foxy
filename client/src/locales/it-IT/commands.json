@@ -370,6 +370,15 @@
             "description": "I tuoi sfondi sono: {{bgList}}"
         }
     },
+    "tictactoe": {
+        "title": "Jogo da Velha",
+        "description": "Para jogar, {{user}} precisa aceitar sua solicitação",
+        "yourTurn": "É a sua vez, {{user}}",
+        "accept": "Aceitar",
+        "decline": "Recusar",
+        "request": "**{{user}}**, você quer jogar uma partida de Jogo da Velha com **{{author}}**?",
+        "winner": "O ganhador foi **{{user}}**"
+    },
     "atm": {
         "success": "**{{user}}** ha {{balance}} torte"
     },
