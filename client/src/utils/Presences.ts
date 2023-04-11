@@ -6,13 +6,10 @@ const startActivitiesChange = async (): Promise<void> => {
         const presences = [
             { name: "foxybot.win/add", type: ActivityTypes.Game, createdAt: Date.now() }
         ]
-
-        setInterval(() => {
-            const randomStatus = presences[Math.floor(Math.random() * presences.length)];
-            editBotStatus(bot, {
-                status: "online", activities: [randomStatus]
-            });
-        }, 10000);
+        const randomStatus = presences[Math.floor(Math.random() * presences.length)];
+        editBotStatus(bot, {
+            status: "online", activities: [randomStatus]
+        });
     } else {
         editBotStatus(bot, { status: "dnd", activities: [] })
     }
