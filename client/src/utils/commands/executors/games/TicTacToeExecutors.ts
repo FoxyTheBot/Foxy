@@ -20,51 +20,51 @@ const TicTacToeFirstExecutor = async (context: ComponentInteractionContext) => {
         createButton({
             customId: createCustomId(2, context.author.id, context.commandId, targetUsername, targetUserId, "0,0"),
             label: tttGame[0][0],
-            style: ButtonStyles.Secondary,
+            style: ButtonStyles.Primary,
         }),
         createButton({
             customId: createCustomId(2, context.author.id, context.commandId, targetUsername, targetUserId, "0,1"),
             label: tttGame[0][1],
-            style: ButtonStyles.Secondary,
+            style: ButtonStyles.Primary,
         }),
         createButton({
             customId: createCustomId(2, context.author.id, context.commandId, targetUsername, targetUserId, "0,2"),
             label: tttGame[0][2],
-            style: ButtonStyles.Secondary,
+            style: ButtonStyles.Primary,
         })
     ]);
 
     const row2 = createActionRow([createButton({
         customId: createCustomId(2, context.author.id, context.commandId, targetUsername, targetUserId, "1,0"),
         label: tttGame[1][0],
-        style: ButtonStyles.Secondary,
+        style: ButtonStyles.Primary,
     }),
     createButton({
         customId: createCustomId(2, context.author.id, context.commandId, targetUsername, targetUserId, "1,1"),
         label: tttGame[1][1],
-        style: ButtonStyles.Secondary,
+        style: ButtonStyles.Primary,
     }),
     createButton({
         customId: createCustomId(2, context.author.id, context.commandId, targetUsername, targetUserId, "1,2"),
         label: tttGame[1][2],
-        style: ButtonStyles.Secondary,
+        style: ButtonStyles.Primary,
     })
     ]);
 
     const row3 = createActionRow([createButton({
         customId: createCustomId(2, context.author.id, context.commandId, targetUsername, targetUserId, "2,0"),
         label: tttGame[2][0],
-        style: ButtonStyles.Secondary,
+        style: ButtonStyles.Primary,
     }),
     createButton({
         customId: createCustomId(2, context.author.id, context.commandId, targetUsername, targetUserId, "2,1"),
         label: tttGame[2][1],
-        style: ButtonStyles.Secondary,
+        style: ButtonStyles.Primary,
     }),
     createButton({
         customId: createCustomId(2, context.author.id, context.commandId, targetUsername, targetUserId, "2,2"),
         label: tttGame[2][2],
-        style: ButtonStyles.Secondary,
+        style: ButtonStyles.Primary,
     })
     ])
 
@@ -108,19 +108,19 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
         createButton({
             customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,0"),
             label: tttGame[0][0],
-            style: ButtonStyles.Secondary,
+            style: ButtonStyles.Primary,
             disabled: isDisabled
         }),
         createButton({
             customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,1"),
             label: tttGame[0][1],
-            style: ButtonStyles.Secondary,
+            style: ButtonStyles.Primary,
             disabled: isDisabled
         }),
         createButton({
             customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,2"),
             label: tttGame[0][2],
-            style: ButtonStyles.Secondary,
+            style: ButtonStyles.Primary,
             disabled: isDisabled
         })
     ]);
@@ -128,19 +128,19 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
     const row2 = createActionRow([createButton({
         customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "1,0"),
         label: tttGame[1][0],
-        style: ButtonStyles.Secondary,
+        style: ButtonStyles.Primary,
         disabled: isDisabled
     }),
     createButton({
         customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "1,1"),
         label: tttGame[1][1],
-        style: ButtonStyles.Secondary,
+        style: ButtonStyles.Primary,
         disabled: isDisabled
     }),
     createButton({
         customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "1,2"),
         label: tttGame[1][2],
-        style: ButtonStyles.Secondary,
+        style: ButtonStyles.Primary,
         disabled: isDisabled
     })
     ]);
@@ -148,19 +148,19 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
     const row3 = createActionRow([createButton({
         customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "2,0"),
         label: tttGame[2][0],
-        style: ButtonStyles.Secondary,
+        style: ButtonStyles.Primary,
         disabled: isDisabled
     }),
     createButton({
         customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "2,1"),
         label: tttGame[2][1],
-        style: ButtonStyles.Secondary,
+        style: ButtonStyles.Primary,
         disabled: isDisabled
     }),
     createButton({
         customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "2,2"),
         label: tttGame[2][2],
-        style: ButtonStyles.Secondary,
+        style: ButtonStyles.Primary,
         disabled: isDisabled
     })
     ])
