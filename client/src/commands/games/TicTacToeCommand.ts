@@ -1,7 +1,7 @@
 import { bot } from "../..";
 import { createCommand } from "../../structures/commands/createCommand";
 import TicTacToeDecline from "../../utils/commands/executors/games/TicTacToeDeclineExecutor";
-import { TicTacToeActions, TicTacToeExecutor } from "../../utils/commands/executors/games/TicTacToeExecutor";
+import { TicTacToeExecutor, TicTacToeFirstExecutor } from "../../utils/commands/executors/games/TicTacToeExecutor";
 import { createActionRow, createButton, createCustomId } from "../../utils/discord/Component";
 import { User } from "discordeno/transformers";
 import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
@@ -30,7 +30,7 @@ const TicTacToeCommand = createCommand({
             required: true
         }
     ],
-    commandRelatedExecutions: [TicTacToeExecutor, TicTacToeDecline, TicTacToeActions],
+    commandRelatedExecutions: [TicTacToeFirstExecutor, TicTacToeDecline, TicTacToeExecutor],
     
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
