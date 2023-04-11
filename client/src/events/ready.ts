@@ -1,4 +1,4 @@
-import { startActivitiesChange } from "../utils/Presences";
+import { startActivities } from "../utils/Activities";
 import { logger } from "../utils/logger"
 import { postInfo } from "../utils/dbl";
 import { bot } from "../index";
@@ -8,6 +8,6 @@ module.exports = (_, payload) => {
     if (bot.isProduction) {
         postInfo();
     }
-    startActivitiesChange();
+    startActivities();
     bot.isReady = true;
 }
