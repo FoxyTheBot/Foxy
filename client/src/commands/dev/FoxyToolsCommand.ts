@@ -50,6 +50,69 @@ const FoxyToolsCommand = createCommand({
             ]
         },
         {
+            name: "change_activity",
+            description: "Edita a atividade da Foxy",
+            type: ApplicationCommandOptionTypes.SubCommand, 
+            options: [{
+                name: "type",
+                description: "O tipo de atividade que você quer",
+                type: ApplicationCommandOptionTypes.Number,
+                required: true,
+                choices: [
+                    {
+                        name: "Playing",
+                        value: 0
+                    },
+                    {
+                        name: "Streaming",
+                        value: 1
+                    },
+                    {
+                        name: "Listening",
+                        value: 2
+                    },
+                    {
+                        name: "Watching",
+                        value: 3
+                    },
+                    {
+                        name: "Competing",
+                        value: 5
+                    }
+                ]
+            },
+            {
+                name: "status",
+                description: "O status que você quer",
+                type: ApplicationCommandOptionTypes.String, 
+                required: true,
+                choices: [
+                    {
+                        name: "Online",
+                        value: "online"
+                    },
+                    {
+                        name: "Idle",
+                        value: "idle"
+                    },
+                    {
+                        name: "Do not disturb",
+                        value: "dnd"
+                    },
+                    {
+                        name: "Invisible",
+                        value: "invisible"
+                    }
+                ]
+            },
+        {
+            name: "activity",
+            description: "A atividade que você quer",
+            type: ApplicationCommandOptionTypes.String,
+            required: true
+        }]
+        },
+        {
             name: "foxyban",
             "description": "Bane alguém de usar a Foxy",
             type: ApplicationCommandOptionTypes.SubCommandGroup,
@@ -105,7 +168,6 @@ const FoxyToolsCommand = createCommand({
     execute: async (context, endCommand, t) => {
         const command = context.getSubCommand();
         const user = context.getOption<User>('user', 'users');
-        const userData = await bot.database.getUser(user.id);
 
         if (context.author.id !== BigInt(config.ownerId) && command !== "check") {
             context.sendReply({
@@ -117,6 +179,7 @@ const FoxyToolsCommand = createCommand({
 
         switch (command) {
             case "add_cakes": {
+                const userData = await bot.database.getUser(user.id);
                 const quantity = context.getOption<Number>('quantity', false);
 
                 if (userData.isBanned) {
@@ -148,7 +211,23 @@ const FoxyToolsCommand = createCommand({
                 break;
             }
 
+            case "change_activity": {
+                const type = context.getOption<number>('type', false);
+                const activity = context.getOption<string>('activity', false);
+                const status = context.getOption<any>('status', false);
+
+                bot.helpers.editBotStatus({ status: status , activities: [{
+                    name: activity,
+                    type: type,
+                    createdAt: Date.now()
+                }] });
+
+                context.sendReply({ content: "Prontinho! Atividade alterada com sucesso!", flags: 64 });
+                break;
+            }
+
             case "add": {
+                const userData = await bot.database.getUser(user.id);
                 if (userData.isBanned) {
                     context.sendReply({
                         content: `${user.username} já está banido!`
@@ -169,6 +248,7 @@ const FoxyToolsCommand = createCommand({
             }
 
             case "remove": {
+                const userData = await bot.database.getUser(user.id);
                 if (!userData.isBanned) {
                     context.sendReply({
                         content: `${user.username} não está banido!`,
@@ -190,6 +270,7 @@ const FoxyToolsCommand = createCommand({
             }
 
             case "check": {
+                const userData = await bot.database.getUser(user.id);
                 const embed = createEmbed({
                     title: "Informações sobre o banimento",
                     fields: [
