@@ -376,7 +376,8 @@
         "yourTurn": "É a sua vez, {{user}}",
         "accept": "Aceitar",
         "decline": "Recusar",
-        "request": "**{{user}}**, você quer jogar uma partida de Jogo da Velha com **{{author}}**?"
+        "request": "**{{user}}**, você quer jogar uma partida de Jogo da Velha com **{{author}}**?",
+        "winner": "O ganhador foi **{{user}}**"
     },
     "atm": {
         "success": "**{{user}}** possui {{balance}} Cakes"
