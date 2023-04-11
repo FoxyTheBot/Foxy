@@ -1,7 +1,7 @@
 import { bot } from "../..";
 import { createCommand } from "../../structures/commands/createCommand";
 import TicTacToeDecline from "../../utils/commands/executors/games/TicTacToeDeclineExecutor";
-import { TicTacToeExecutor, TicTacToeFirstExecutor } from "../../utils/commands/executors/games/TicTacToeExecutor";
+import { TicTacToeExecutor, TicTacToeFirstExecutor } from "../../utils/commands/executors/games/TicTacToeExecutors";
 import { createActionRow, createButton, createCustomId } from "../../utils/discord/Component";
 import { User } from "discordeno/transformers";
 import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
