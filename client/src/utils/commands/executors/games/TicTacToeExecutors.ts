@@ -16,7 +16,6 @@ var tttGame = [
 
 const TicTacToeFirstExecutor = async (context: ComponentInteractionContext) => {
     const [targetUsername, targetUserId] = context.sentData;
-    console.log(`The interaction author is ${context.author.username} and the target is ${targetUsername}`)
     const row = createActionRow([
         createButton({
             customId: createCustomId(2, context.author.id, context.commandId, targetUsername, targetUserId, "0,0"),
@@ -175,7 +174,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
     })
 
     if (tttGame[0][0] === "❌" && tttGame[0][1] === "❌" && tttGame[0][2] === "❌") {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -184,7 +182,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             components: [row, row2, row3]
         })
     } else if (tttGame[1][0] === '❌' && tttGame[1][1] === '❌' && tttGame[1][2] === '❌') {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -193,7 +190,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             components: [row, row2, row3]
         })
     } else if (tttGame[2][0] === '❌' && tttGame[2][1] === '❌' && tttGame[2][2] === '❌') {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -202,7 +198,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             components: [row, row2, row3]
         })
     } else if (tttGame[0][0] === '❌' && tttGame[1][0] === '❌' && tttGame[2][0] === '❌') {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -211,7 +206,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             components: [row, row2, row3]
         })
     } else if (tttGame[0][1] === '❌' && tttGame[1][1] === '❌' && tttGame[2][1] === '❌') {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -220,7 +214,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             components: [row, row2, row3]
         })
     } else if (tttGame[0][2] === '❌' && tttGame[1][2] === '❌' && tttGame[2][2] === '❌') {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -229,7 +222,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             components: [row, row2, row3]
         })
     } else if (tttGame[2][0] === '❌' && tttGame[1][1] === '❌' && tttGame[0][2] === '❌') {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -238,7 +230,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             components: [row, row2, row3]
         })
     } else if (tttGame[0][0] === '❌' && tttGame[1][1] === '❌' && tttGame[2][2] === '❌') {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -246,8 +237,7 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             })],
             components: [row, row2, row3]
         })
-    }  else   if (tttGame[0][0] === "⭕" && tttGame[0][1] === "⭕" && tttGame[0][2] === "⭕") {
-        isDisabled = true;
+    } else if (tttGame[0][0] === "⭕" && tttGame[0][1] === "⭕" && tttGame[0][2] === "⭕") {
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -256,7 +246,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             components: [row, row2, row3]
         })
     } else if (tttGame[1][0] === '⭕' && tttGame[1][1] === '⭕' && tttGame[1][2] === '⭕') {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -265,7 +254,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             components: [row, row2, row3]
         })
     } else if (tttGame[2][0] === '⭕' && tttGame[2][1] === '⭕' && tttGame[2][2] === '⭕') {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -274,7 +262,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             components: [row, row2, row3]
         })
     } else if (tttGame[0][0] === '⭕' && tttGame[1][0] === '⭕' && tttGame[2][0] === '⭕') {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -283,7 +270,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             components: [row, row2, row3]
         })
     } else if (tttGame[0][1] === '⭕' && tttGame[1][1] === '⭕' && tttGame[2][1] === '⭕') {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -292,7 +278,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             components: [row, row2, row3]
         })
     } else if (tttGame[0][2] === '⭕' && tttGame[1][2] === '⭕' && tttGame[2][2] === '⭕') {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -301,7 +286,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             components: [row, row2, row3]
         })
     } else if (tttGame[2][0] === '⭕' && tttGame[1][1] === '⭕' && tttGame[0][2] === '⭕') {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
@@ -310,7 +294,6 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             components: [row, row2, row3]
         })
     } else if (tttGame[0][0] === '⭕' && tttGame[1][1] === '⭕' && tttGame[2][2] === '⭕') {
-        isDisabled = true;
         return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
