@@ -32,24 +32,24 @@ const TicTacToeCommand = createCommand({
         }
     ],
     commandRelatedExecutions: [TicTacToeFirstExecutor, TicTacToeDecline, TicTacToeExecutor],
-    
+
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
-        
+
         if (user.id === context.author.id) {
-            context.sendReply({
+            return context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_THINK, t('commands:tictactoe.self')),
                 flags: MessageFlags.Ephemeral
             })
         }
 
         if (user.toggles.bot) {
-            context.sendReply({
+            return context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_THINK, t('commands:tictactoe.bot')),
                 flags: MessageFlags.Ephemeral
             })
         }
-        
+
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_THINK, t('commands:tictactoe.request', {
                 user: user.username,
