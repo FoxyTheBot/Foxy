@@ -73,7 +73,10 @@ const TicTacToeFirstExecutor = async (context: ComponentInteractionContext) => {
     userTurn = false;
     const currentUser = await bot.helpers.getUser(currentTurn);
     context.sendReply({
-        content: null,
+        content: bot.locale('commands:tictactoe.content', {
+            user: `<@!${targetUserId}>`,
+            author: `<@!${context.author.id}>`
+        }),
         embeds: [createEmbed({
             title: bot.locale('commands:tictactoe.title'),
             description: bot.locale('commands:tictactoe.yourTurn', { user: currentUser.username }),
