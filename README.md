@@ -1,13 +1,16 @@
 <p align="center">
-<img height="150" src="https://cdn.discordapp.com/attachments/789266900852408351/989589378861002852/foxyoculos.png" align="center">
-<h1 align="center">🦊 Foxy</h1>
+<img height="150" src="https://cdn.discordapp.com/attachments/1078322762550083736/1095835653444481145/FOXYY.png" align="center">
+<h1 align="center">[DEPRECATED] Foxy</h1>
 
 <p align="center">
 
-<a align="center" href="https://discordbots.org/bot/737044809650274325?utm_source=widget">
-<img src="https://discordbots.org/api/widget/737044809650274325.png" alt="Discord Bots" />
+<a align="center" href="https://discordbots.org/bot/1006520438865801296?utm_source=widget">
+<img src="https://discordbots.org/api/widget/1006520438865801296.png" alt="Discord Bots" />
 </a>
  </p>
+
+## ⚠ | Warning
+You are in a deprecated branch, all files from this branch may not work properly
 
 ## 🤔 | Who am I?
 Hi, I'm Foxy! I will entertain your server with my commands
