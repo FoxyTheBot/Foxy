@@ -5,6 +5,7 @@ import { TicTacToeExecutor, TicTacToeFirstExecutor } from "../../utils/commands/
 import { createActionRow, createButton, createCustomId } from "../../utils/discord/Component";
 import { User } from "discordeno/transformers";
 import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
+import { MessageFlags } from "../../utils/discord/Message";
 
 const TicTacToeCommand = createCommand({
     name: "tictactoe",
@@ -34,6 +35,20 @@ const TicTacToeCommand = createCommand({
     
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
+        
+        if (user.id === context.author.id) {
+            context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_THINK, t('commands:tictactoe.self')),
+                flags: MessageFlags.Ephemeral
+            })
+        }
+
+        if (user.toggles.bot) {
+            context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_THINK, t('commands:tictactoe.bot')),
+                flags: MessageFlags.Ephemeral
+            })
+        }
         
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_THINK, t('commands:tictactoe.request', {
