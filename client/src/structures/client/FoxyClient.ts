@@ -4,6 +4,7 @@ import { FoxyClient } from '../types/foxy';
 import { loadCommands } from '../commands/loadCommands';
 import DatabaseConnection from '../database/DatabaseConnection';
 import { transformInteraction } from '../internals/transformers/interactionResponse';
+import { loadLocales } from '../../utils/loader';
 
 const setupFoxy = (client: FoxyClient): void => {
     client.ownerId = BigInt(config.ownerId);
@@ -14,6 +15,7 @@ const setupFoxy = (client: FoxyClient): void => {
     client.emotes = require("../json/emotes.json");
     client.isReady = false;
     loadCommands();
+    loadLocales();
 }
 
 const setupInternals = async (bot: Bot): Promise<void> => {

@@ -1,7 +1,6 @@
 import { createBot, Intents, startBot } from 'discordeno';
 import { setupFoxy, setupInternals } from './structures/client/FoxyClient';
 import { FoxyClient } from './structures/types/foxy';
-import { loadLocales } from './utils/loader';
 import { EventManager } from './structures/events/EventManager';
 import { logger } from './utils/logger';
 import config from '../config.json';
@@ -18,7 +17,6 @@ const bot = createBot({
 
 setupFoxy(bot);
 setupInternals(bot);
-loadLocales(__dirname + '/locales');
 
 startBot(bot);
 export { bot };
