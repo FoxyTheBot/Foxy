@@ -7,7 +7,6 @@ import { createActionRow, createButton, createCustomId } from "../../../discord/
 var userTurn;
 var authorTurn;
 var currentTurn;
-var isDisabled = false;
 var tttGame = [
     ['‎', '‎', '‎'],
     ['‎', '‎', '‎'],
@@ -112,19 +111,16 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
             customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,0"),
             label: tttGame[0][0],
             style: ButtonStyles.Primary,
-            disabled: isDisabled
         }),
         createButton({
             customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,1"),
             label: tttGame[0][1],
             style: ButtonStyles.Primary,
-            disabled: isDisabled
         }),
         createButton({
             customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,2"),
             label: tttGame[0][2],
             style: ButtonStyles.Primary,
-            disabled: isDisabled
         })
     ]);
 
@@ -132,19 +128,16 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
         customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "1,0"),
         label: tttGame[1][0],
         style: ButtonStyles.Primary,
-        disabled: isDisabled
     }),
     createButton({
         customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "1,1"),
         label: tttGame[1][1],
         style: ButtonStyles.Primary,
-        disabled: isDisabled
     }),
     createButton({
         customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "1,2"),
         label: tttGame[1][2],
         style: ButtonStyles.Primary,
-        disabled: isDisabled
     })
     ]);
 
@@ -152,19 +145,16 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
         customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "2,0"),
         label: tttGame[2][0],
         style: ButtonStyles.Primary,
-        disabled: isDisabled
     }),
     createButton({
         customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "2,1"),
         label: tttGame[2][1],
         style: ButtonStyles.Primary,
-        disabled: isDisabled
     }),
     createButton({
         customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "2,2"),
         label: tttGame[2][2],
         style: ButtonStyles.Primary,
-        disabled: isDisabled
     })
     ])
 
@@ -176,128 +166,144 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
         components: [row, row2, row3]
     })
 
-    if (tttGame[0][0] === "❌" && tttGame[0][1] === "❌" && tttGame[0][2] === "❌") {
-        return context.sendReply({
+    if (tttGame[0][0] === "❌" && tttGame[0][1] === "❌" && tttGame[0][2] === "❌" || tttGame[1][0] === '❌' && tttGame[1][1] === '❌' && tttGame[1][2] === '❌'
+        || tttGame[2][0] === '❌' && tttGame[2][1] === '❌' && tttGame[2][2] === '❌' || tttGame[0][0] === '❌' && tttGame[1][0] === '❌' && tttGame[2][0] === '❌'
+        || tttGame[0][0] === '❌' && tttGame[1][0] === '❌' && tttGame[2][0] === '❌' || tttGame[0][1] === '❌' && tttGame[1][1] === '❌' && tttGame[2][1] === '❌'
+        || tttGame[0][2] === '❌' && tttGame[1][2] === '❌' && tttGame[2][2] === '❌' || tttGame[2][0] === '❌' && tttGame[1][1] === '❌' && tttGame[0][2] === '❌'
+        || tttGame[0][0] === '❌' && tttGame[1][1] === '❌' && tttGame[2][2] === '❌') {
+            const row = createActionRow([
+                createButton({
+                    customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,0"),
+                    label: tttGame[0][0],
+                    style: ButtonStyles.Primary,
+                    disabled: true
+                }),
+                createButton({
+                    customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,1"),
+                    label: tttGame[0][1],
+                    style: ButtonStyles.Primary,
+                    disabled: true
+                }),
+                createButton({
+                    customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,2"),
+                    label: tttGame[0][2],
+                    style: ButtonStyles.Primary,
+                    disabled: true
+                })
+            ]);
+        
+            const row2 = createActionRow([createButton({
+                customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "1,0"),
+                label: tttGame[1][0],
+                style: ButtonStyles.Primary,
+                disabled: true
+            }),
+            createButton({
+                customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "1,1"),
+                label: tttGame[1][1],
+                style: ButtonStyles.Primary,
+                disabled: true
+            }),
+            createButton({
+                customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "1,2"),
+                label: tttGame[1][2],
+                style: ButtonStyles.Primary,
+                disabled: true
+            })
+            ]);
+        
+            const row3 = createActionRow([createButton({
+                customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "2,0"),
+                label: tttGame[2][0],
+                style: ButtonStyles.Primary,
+                disabled: true
+            }),
+            createButton({
+                customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "2,1"),
+                label: tttGame[2][1],
+                style: ButtonStyles.Primary,
+                disabled: true
+            }),
+            createButton({
+                customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "2,2"),
+                label: tttGame[2][2],
+                style: ButtonStyles.Primary,
+                disabled: true
+            })
+            ])
+            return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
                 description: bot.locale('commands:tictactoe.winner', { user: context.author.username }),
             })],
             components: [row, row2, row3]
         })
-    } else if (tttGame[1][0] === '❌' && tttGame[1][1] === '❌' && tttGame[1][2] === '❌') {
-        return context.sendReply({
-            embeds: [createEmbed({
-                title: bot.locale('commands:tictactoe.title'),
-                description: bot.locale('commands:tictactoe.winner', { user: context.author.username }),
-            })],
-            components: [row, row2, row3]
-        })
-    } else if (tttGame[2][0] === '❌' && tttGame[2][1] === '❌' && tttGame[2][2] === '❌') {
-        return context.sendReply({
-            embeds: [createEmbed({
-                title: bot.locale('commands:tictactoe.title'),
-                description: bot.locale('commands:tictactoe.winner', { user: context.author.username }),
-            })],
-            components: [row, row2, row3]
-        })
-    } else if (tttGame[0][0] === '❌' && tttGame[1][0] === '❌' && tttGame[2][0] === '❌') {
-        return context.sendReply({
-            embeds: [createEmbed({
-                title: bot.locale('commands:tictactoe.title'),
-                description: bot.locale('commands:tictactoe.winner', { user: context.author.username }),
-            })],
-            components: [row, row2, row3]
-        })
-    } else if (tttGame[0][1] === '❌' && tttGame[1][1] === '❌' && tttGame[2][1] === '❌') {
-        return context.sendReply({
-            embeds: [createEmbed({
-                title: bot.locale('commands:tictactoe.title'),
-                description: bot.locale('commands:tictactoe.winner', { user: context.author.username }),
-            })],
-            components: [row, row2, row3]
-        })
-    } else if (tttGame[0][2] === '❌' && tttGame[1][2] === '❌' && tttGame[2][2] === '❌') {
-        return context.sendReply({
-            embeds: [createEmbed({
-                title: bot.locale('commands:tictactoe.title'),
-                description: bot.locale('commands:tictactoe.winner', { user: context.author.username }),
-            })],
-            components: [row, row2, row3]
-        })
-    } else if (tttGame[2][0] === '❌' && tttGame[1][1] === '❌' && tttGame[0][2] === '❌') {
-        return context.sendReply({
-            embeds: [createEmbed({
-                title: bot.locale('commands:tictactoe.title'),
-                description: bot.locale('commands:tictactoe.winner', { user: context.author.username }),
-            })],
-            components: [row, row2, row3]
-        })
-    } else if (tttGame[0][0] === '❌' && tttGame[1][1] === '❌' && tttGame[2][2] === '❌') {
-        return context.sendReply({
-            embeds: [createEmbed({
-                title: bot.locale('commands:tictactoe.title'),
-                description: bot.locale('commands:tictactoe.winner', { user: context.author.username }),
-            })],
-            components: [row, row2, row3]
-        })
-    } else if (tttGame[0][0] === "⭕" && tttGame[0][1] === "⭕" && tttGame[0][2] === "⭕") {
-        return context.sendReply({
-            embeds: [createEmbed({
-                title: bot.locale('commands:tictactoe.title'),
-                description: bot.locale('commands:tictactoe.winner', { user: targetUsername }),
-            })],
-            components: [row, row2, row3]
-        })
-    } else if (tttGame[1][0] === '⭕' && tttGame[1][1] === '⭕' && tttGame[1][2] === '⭕') {
-        return context.sendReply({
-            embeds: [createEmbed({
-                title: bot.locale('commands:tictactoe.title'),
-                description: bot.locale('commands:tictactoe.winner', { user: targetUsername }),
-            })],
-            components: [row, row2, row3]
-        })
-    } else if (tttGame[2][0] === '⭕' && tttGame[2][1] === '⭕' && tttGame[2][2] === '⭕') {
-        return context.sendReply({
-            embeds: [createEmbed({
-                title: bot.locale('commands:tictactoe.title'),
-                description: bot.locale('commands:tictactoe.winner', { user: targetUsername }),
-            })],
-            components: [row, row2, row3]
-        })
-    } else if (tttGame[0][0] === '⭕' && tttGame[1][0] === '⭕' && tttGame[2][0] === '⭕') {
-        return context.sendReply({
-            embeds: [createEmbed({
-                title: bot.locale('commands:tictactoe.title'),
-                description: bot.locale('commands:tictactoe.winner', { user: targetUsername }),
-            })],
-            components: [row, row2, row3]
-        })
-    } else if (tttGame[0][1] === '⭕' && tttGame[1][1] === '⭕' && tttGame[2][1] === '⭕') {
-        return context.sendReply({
-            embeds: [createEmbed({
-                title: bot.locale('commands:tictactoe.title'),
-                description: bot.locale('commands:tictactoe.winner', { user: targetUsername }),
-            })],
-            components: [row, row2, row3]
-        })
-    } else if (tttGame[0][2] === '⭕' && tttGame[1][2] === '⭕' && tttGame[2][2] === '⭕') {
-        return context.sendReply({
-            embeds: [createEmbed({
-                title: bot.locale('commands:tictactoe.title'),
-                description: bot.locale('commands:tictactoe.winner', { user: targetUsername }),
-            })],
-            components: [row, row2, row3]
-        })
-    } else if (tttGame[2][0] === '⭕' && tttGame[1][1] === '⭕' && tttGame[0][2] === '⭕') {
-        return context.sendReply({
-            embeds: [createEmbed({
-                title: bot.locale('commands:tictactoe.title'),
-                description: bot.locale('commands:tictactoe.winner', { user: targetUsername }),
-            })],
-            components: [row, row2, row3]
-        })
-    } else if (tttGame[0][0] === '⭕' && tttGame[1][1] === '⭕' && tttGame[2][2] === '⭕') {
-        return context.sendReply({
+    }
+    if (tttGame[0][0] === "⭕" && tttGame[0][1] === "⭕" && tttGame[0][2] === "⭕" || tttGame[1][0] === '⭕' && tttGame[1][1] === '⭕' && tttGame[1][2] === '⭕'
+        || tttGame[2][0] === '⭕' && tttGame[2][1] === '⭕' && tttGame[2][2] === '⭕' || tttGame[0][0] === '⭕' && tttGame[1][0] === '⭕' && tttGame[2][0] === '⭕'
+        || tttGame[0][1] === '⭕' && tttGame[1][1] === '⭕' && tttGame[2][1] === '⭕' || tttGame[0][2] === '⭕' && tttGame[1][2] === '⭕' && tttGame[2][2] === '⭕'
+        || tttGame[2][0] === '⭕' && tttGame[1][1] === '⭕' && tttGame[0][2] === '⭕' || tttGame[0][0] === '⭕' && tttGame[1][1] === '⭕' && tttGame[2][2] === '⭕') {
+            const row = createActionRow([
+                createButton({
+                    customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,0"),
+                    label: tttGame[0][0],
+                    style: ButtonStyles.Primary,
+                    disabled: true
+                }),
+                createButton({
+                    customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,1"),
+                    label: tttGame[0][1],
+                    style: ButtonStyles.Primary,
+                    disabled: true
+                }),
+                createButton({
+                    customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,2"),
+                    label: tttGame[0][2],
+                    style: ButtonStyles.Primary,
+                    disabled: true
+                })
+            ]);
+        
+            const row2 = createActionRow([createButton({
+                customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "1,0"),
+                label: tttGame[1][0],
+                style: ButtonStyles.Primary,
+                disabled: true
+            }),
+            createButton({
+                customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "1,1"),
+                label: tttGame[1][1],
+                style: ButtonStyles.Primary,
+                disabled: true
+            }),
+            createButton({
+                customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "1,2"),
+                label: tttGame[1][2],
+                style: ButtonStyles.Primary,
+                disabled: true
+            })
+            ]);
+        
+            const row3 = createActionRow([createButton({
+                customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "2,0"),
+                label: tttGame[2][0],
+                style: ButtonStyles.Primary,
+                disabled: true
+            }),
+            createButton({
+                customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "2,1"),
+                label: tttGame[2][1],
+                style: ButtonStyles.Primary,
+                disabled: true
+            }),
+            createButton({
+                customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "2,2"),
+                label: tttGame[2][2],
+                style: ButtonStyles.Primary,
+                disabled: true
+            })
+            ])
+            return context.sendReply({
             embeds: [createEmbed({
                 title: bot.locale('commands:tictactoe.title'),
                 description: bot.locale('commands:tictactoe.winner', { user: targetUsername }),
