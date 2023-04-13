@@ -381,7 +381,8 @@
         "bot": "Você não pode jogar contra um bot",
         "self": "Você não pode jogar contra si mesmo! Isso parece até um pouco... solitário",
         "declined": "O convite foi recusado",
-        "content": "{{author}} vs {{user}}"
+        "content": "{{author}} vs {{user}}",
+        "alreadyPlaying": "**{{user}}** já está jogando com alguém"
     },
     "atm": {
         "success": "**{{user}}** possède {{balance}} Cakes"
