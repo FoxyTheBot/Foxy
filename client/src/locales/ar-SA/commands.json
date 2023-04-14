@@ -382,7 +382,8 @@
         "self": "Você não pode jogar contra si mesmo! Isso parece até um pouco... solitário",
         "declined": "O convite foi recusado",
         "content": "{{author}} vs {{user}}",
-        "alreadyPlaying": "**{{user}}** já está jogando com alguém"
+        "alreadyPlaying": "**{{user}}** já está jogando com alguém",
+        "draw": "Deu velha!"
     },
     "atm": {
         "success": "** {{user}} ** لديه {{balance}} الكعك"
