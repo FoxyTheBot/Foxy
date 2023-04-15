@@ -59,7 +59,7 @@ export default class DatabaseConnection {
                 isYourTurn: Boolean,
                 alreadyPlaying: Boolean
             }
-        })
+        }, { versionKey: false, id: false })
         this.user = mongoose.model('user', userSchema);
         this.commands = mongoose.model('commands', commandsSchema);
         this.sessions = mongoose.model('sessions', ticTacToeSession);
@@ -178,17 +178,9 @@ export default class DatabaseConnection {
 
     async updateSession(commandId: string, isAuthorTurn: boolean, isUserTurn): Promise<void> {
         let session = await this.sessions.findOne({ commandId: commandId });
-
-        if (isAuthorTurn) {
-            session.commandAuthor.isYourTurn = true;
-            session.user.isYourTurn = false;
-            return session.save();
-        } if (isUserTurn) {
-            session.commandAuthor.isYourTurn = false;
-            session.user.isYourTurn = true;
-            return session.save();
-        }
-
+        session.commandAuthor.isYourTurn = isAuthorTurn;
+        session.user.isYourTurn = isUserTurn;
+        session.save();
         return session;
     }
     async getAllSessions(): Promise<void> {
