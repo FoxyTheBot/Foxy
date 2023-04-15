@@ -380,10 +380,10 @@
         "winner": "O ganhador foi **{{user}}**",
         "bot": "Você não pode jogar contra um bot",
         "self": "Você não pode jogar contra si mesmo! Isso parece até um pouco... solitário",
-        "declined": "O convite foi recusado",
-        "content": "{{author}} vs {{user}}",
-        "alreadyPlaying": "**{{user}}** já está jogando com alguém",
-        "draw": "Deu velha!"
+        "declined": "The invite has been declined",
+        "content": "{{author}} VS {{user}}",
+        "alreadyPlaying": "**{{user}}** is already playing with someone",
+        "draw": "It's a draw!"
     },
     "atm": {
         "success": "**{{user}}** has {{balance}} Cakes"
