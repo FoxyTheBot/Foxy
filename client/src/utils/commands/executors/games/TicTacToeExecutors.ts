@@ -19,11 +19,33 @@ const TicTacToeFirstExecutor = async (context: ComponentInteractionContext) => {
     if (authorSession) {
         context.sendReply({
             content: bot.locale('commands:tictactoe.alreadyPlaying', { user: `<@!${targetUserId}>` }),
+            components: [createActionRow([createButton({
+                customId: createCustomId(0, targetUserId, context.commandId, targetUsername, targetUserId),
+                label: bot.locale('commands:tictactoe.accept'),
+                style: ButtonStyles.Success,
+                disabled: true
+            }), createButton({
+                customId: createCustomId(1, targetUserId, context.commandId, targetUsername,targetUserId),
+                label: bot.locale('commands:tictactoe.decline'),
+                style: ButtonStyles.Danger,
+                disabled: true
+            })])]
         })
         return;
     } else if (userSession) {
         context.sendReply({
             content: bot.locale('commands:tictactoe.alreadyPlaying', { user: `<@!${context.author.id}>` }),
+            components: [createActionRow([createButton({
+                customId: createCustomId(0, targetUserId, context.commandId, targetUsername, targetUserId),
+                label: bot.locale('commands:tictactoe.accept'),
+                style: ButtonStyles.Success,
+                disabled: true
+            }), createButton({
+                customId: createCustomId(1, targetUserId, context.commandId, targetUsername, targetUserId),
+                label: bot.locale('commands:tictactoe.decline'),
+                style: ButtonStyles.Danger,
+                disabled: true
+            })])]
         })
         return;
     } else {
