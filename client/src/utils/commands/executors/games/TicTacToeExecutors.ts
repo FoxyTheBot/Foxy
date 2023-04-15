@@ -14,9 +14,9 @@ var tttGame = [
 const TicTacToeFirstExecutor = async (context: ComponentInteractionContext) => {
     const [targetUsername, targetUserId] = context.sentData;
 
-    const authorSession = await bot.database.verifyUser(context.author.id);
-    const userSession = await bot.database.verifyUser(targetUserId);
-    if (authorSession) {
+    const checkAuthor = await bot.database.verifyUser(context.author.id);
+    const checkUser = await bot.database.verifyUser(targetUserId);
+    if (checkAuthor) {
         context.sendReply({
             content: bot.locale('commands:tictactoe.alreadyPlaying', { user: `<@!${targetUserId}>` }),
             components: [createActionRow([createButton({
@@ -32,7 +32,7 @@ const TicTacToeFirstExecutor = async (context: ComponentInteractionContext) => {
             })])]
         })
         return;
-    } else if (userSession) {
+    } else if (checkUser) {
         context.sendReply({
             content: bot.locale('commands:tictactoe.alreadyPlaying', { user: `<@!${context.author.id}>` }),
             components: [createActionRow([createButton({
