@@ -175,13 +175,6 @@ export default class DatabaseConnection {
         return await this.sessions.findOneAndDelete({ commandId: commandId });
     }
 
-    async updateSession(commandId: string, isAuthorTurn: boolean, isUserTurn): Promise<void> {
-        let session = await this.sessions.findOne({ commandId: commandId });
-        session.commandAuthor.isYourTurn = isAuthorTurn;
-        session.user.isYourTurn = isUserTurn;
-        session.save();
-        return session;
-    }
     async getAllSessions(): Promise<void> {
         let sessionsData = await this.sessions.find({});
         return sessionsData.map(session => session.toJSON());
