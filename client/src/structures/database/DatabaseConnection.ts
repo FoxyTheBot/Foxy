@@ -7,6 +7,7 @@ export default class DatabaseConnection {
     private client: any;
     private user: any;
     private commands: any;
+    private sessions: any;
 
     constructor(client) {
         mongoose.set("strictQuery", true)
@@ -46,8 +47,22 @@ export default class DatabaseConnection {
             commandUsageCount: Number,
         }, { versionKey: false, id: false });
 
+        const ticTacToeSession = new mongoose.Schema({
+            commandId: String,
+            user: {
+                id: String,
+                isYourTurn: Boolean,
+                alreadyPlaying: Boolean
+            },
+            commandAuthor: {
+                id: String,
+                isYourTurn: Boolean,
+                alreadyPlaying: Boolean
+            }
+        })
         this.user = mongoose.model('user', userSchema);
         this.commands = mongoose.model('commands', commandsSchema);
+        this.sessions = mongoose.model('sessions', ticTacToeSession);
         this.client = client;
     }
 
@@ -101,7 +116,7 @@ export default class DatabaseConnection {
     }
     async updateCommand(commandName: string): Promise<void> {
         let commandFromDB = await this.commands.findOne({ commandName: commandName });
-    
+
         if (!commandFromDB) {
             commandFromDB = new this.commands({
                 commandName: commandName,
@@ -126,6 +141,59 @@ export default class DatabaseConnection {
         commandsData.map(command => usageCount += command.commandUsageCount);
         return usageCount;
 
+    }
+
+    async getSessionInfo(commandId: string): Promise<void> {
+        let session = await this.sessions.findOne({ commandId: commandId });
+        return session;
+    }
+
+    async verifyUser(userId: string) {
+        let session = await this.sessions.findOne({ $or: [{ "user.id": userId }, { "commandAuthor.id": userId }] });
+        console.log(session)
+        if (!session) return false;
+        return true;
+    }
+
+    async createSession(commandId: string, commandAuthor: any, user: any): Promise<void> {
+        let session = new this.sessions({
+            commandId: commandId,
+            user: {
+                id: user,
+                isYourTurn: false,
+                alreadyPlaying: true
+            },
+            commandAuthor: {
+                id: commandAuthor,
+                isYourTurn: true,
+                alreadyPlaying: true
+            }
+        }).save();
+        return session;
+    }
+
+    async finishSession(commandId: string): Promise<void> {
+        return await this.sessions.findOneAndDelete({ commandId: commandId });
+    }
+
+    async updateSession(commandId: string, isAuthorTurn: boolean, isUserTurn): Promise<void> {
+        let session = await this.sessions.findOne({ commandId: commandId });
+
+        if (isAuthorTurn) {
+            session.commandAuthor.isYourTurn = true;
+            session.user.isYourTurn = false;
+            return session.save();
+        } if (isUserTurn) {
+            session.commandAuthor.isYourTurn = false;
+            session.user.isYourTurn = true;
+            return session.save();
+        }
+
+        return session;
+    }
+    async getAllSessions(): Promise<void> {
+        let sessionsData = await this.sessions.find({});
+        return sessionsData.map(session => session.toJSON());
     }
     async getAllUsers(): Promise<void> {
         let usersData = await this.user.find({});
