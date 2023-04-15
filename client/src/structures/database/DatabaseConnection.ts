@@ -150,7 +150,6 @@ export default class DatabaseConnection {
 
     async verifyUser(userId: string) {
         let session = await this.sessions.findOne({ $or: [{ "user.id": userId }, { "commandAuthor.id": userId }] });
-        console.log(session)
         if (!session) return false;
         return true;
     }
