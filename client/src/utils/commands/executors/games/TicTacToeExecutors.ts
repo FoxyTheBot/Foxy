@@ -1,60 +1,33 @@
 import ComponentInteractionContext from "../../../../structures/commands/ComponentInteractionContext";
-import { bot } from "../../../../index";
-import { createEmbed } from "../../../discord/Embed";
+import { bot } from "../../../..";
 import { ButtonStyles } from "discordeno/types";
 import { createActionRow, createButton, createCustomId } from "../../../discord/Component";
+import { createEmbed } from "../../../discord/Embed";
 
-var userTurn;
-var authorTurn;
-var currentTurn;
-var isUserAlreadyPlaying;
-var isAuthorAlreadyPlaying;
 var tttGame = [
     ['‎', '‎', '‎'],
     ['‎', '‎', '‎'],
     ['‎', '‎', '‎'],
 ];
 
+
 const TicTacToeFirstExecutor = async (context: ComponentInteractionContext) => {
     const [targetUsername, targetUserId] = context.sentData;
 
-    if (isUserAlreadyPlaying) {
-        return context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_THINK, bot.locale('commands:tictactoe.alreadyPlaying', {
-                user: targetUsername,
-            })),
-            components: [createActionRow([createButton({
-                customId: createCustomId(0, targetUserId, context.commandId, targetUsername, targetUserId),
-                label: bot.locale('commands:tictactoe.accept'),
-                style: ButtonStyles.Success,
-                disabled: true
-            }), createButton({
-                customId: createCustomId(1, targetUserId, context.commandId, targetUsername, targetUserId),
-                label: bot.locale('commands:tictactoe.decline'),
-                style: ButtonStyles.Danger,
-                disabled: true
-            })])]
-        });
-    } else if (isAuthorAlreadyPlaying) {
-        return context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_THINK, bot.locale('commands:tictactoe.alreadyPlaying', {
-                user: context.author.username,
-            })),
-            components: [createActionRow([createButton({
-                customId: createCustomId(0, targetUserId, context.commandId, targetUsername, targetUserId),
-                label: bot.locale('commands:tictactoe.accept'),
-                style: ButtonStyles.Success,
-                disabled: true
-            }), createButton({
-                customId: createCustomId(1, targetUserId, context.commandId, targetUsername, targetUserId),
-                label: bot.locale('commands:tictactoe.decline'),
-                style: ButtonStyles.Danger,
-                disabled: true
-            })])]
+    const authorSession = await bot.database.verifyUser(context.author.id);
+    const userSession = await bot.database.verifyUser(targetUserId);
+    if (authorSession) {
+        context.sendReply({
+            content: bot.locale('commands:tictactoe.alreadyPlaying', { user: `<@!${targetUserId}>` }),
         })
+        return;
+    } else if (userSession) {
+        context.sendReply({
+            content: bot.locale('commands:tictactoe.alreadyPlaying', { user: `<@!${context.author.id}>` }),
+        })
+        return;
     } else {
-        isUserAlreadyPlaying = true;
-        isAuthorAlreadyPlaying = true;
+        bot.database.createSession(context.commandId, context.author.id, targetUserId);
     }
 
     const row = createActionRow([
@@ -109,10 +82,7 @@ const TicTacToeFirstExecutor = async (context: ComponentInteractionContext) => {
     })
     ])
 
-    currentTurn = context.author.id;
-    authorTurn = true;
-    userTurn = false;
-    const currentUser = await bot.helpers.getUser(currentTurn);
+    const currentUser = await bot.helpers.getUser(context.author.id);
     context.sendReply({
         content: bot.locale('commands:tictactoe.content', {
             user: `<@!${targetUserId}>`,
@@ -129,25 +99,28 @@ const TicTacToeFirstExecutor = async (context: ComponentInteractionContext) => {
 
 const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
     const [targetUsername, targetUserId, choice] = context.sentData;
-
-    if (authorTurn) {
+    var currentTurn;
+    const sessionInfo = await bot.database.getSessionInfo(context.commandId);
+    if (sessionInfo.commandAuthor.isYourTurn) {
         let splitId = choice.split(",");
         if (tttGame[splitId[0]][splitId[1]] === "‎") {
             tttGame[splitId[0]][splitId[1]] = "❌";
-            authorTurn = false;
-            userTurn = true;
-            currentTurn = targetUserId;
+            sessionInfo.user.isYourTurn = true;
+            sessionInfo.commandAuthor.isYourTurn = false;
+            await sessionInfo.save();
+            currentTurn = sessionInfo.user.id;
         }
-    } else if (userTurn) {
+    } else if (sessionInfo.user.isYourTurn) {
         let splitId = choice.split(",");
         if (tttGame[splitId[0]][splitId[1]] === "‎") {
             tttGame[splitId[0]][splitId[1]] = "⭕";
-            authorTurn = true;
-            userTurn = false;
-            currentTurn = context.author.id;
+            sessionInfo.user.isYourTurn = false;
+            sessionInfo.commandAuthor.isYourTurn = true;
+            await sessionInfo.save();
+            currentTurn = sessionInfo.commandAuthor.id;
         }
     }
-    const currentUser = await bot.helpers.getUser(currentTurn);
+    const currentUser = await bot.helpers.getUser(BigInt(currentTurn));
     const row = createActionRow([
         createButton({
             customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,0"),
@@ -213,8 +186,7 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
         || tttGame[0][0] === '❌' && tttGame[1][0] === '❌' && tttGame[2][0] === '❌' || tttGame[0][1] === '❌' && tttGame[1][1] === '❌' && tttGame[2][1] === '❌'
         || tttGame[0][2] === '❌' && tttGame[1][2] === '❌' && tttGame[2][2] === '❌' || tttGame[2][0] === '❌' && tttGame[1][1] === '❌' && tttGame[0][2] === '❌'
         || tttGame[0][0] === '❌' && tttGame[1][1] === '❌' && tttGame[2][2] === '❌') {
-        isAuthorAlreadyPlaying = false;
-        isUserAlreadyPlaying = false;
+        bot.database.finishSession(context.commandId);
         const row = createActionRow([
             createButton({
                 customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,0"),
@@ -292,8 +264,7 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
         || tttGame[2][0] === '⭕' && tttGame[2][1] === '⭕' && tttGame[2][2] === '⭕' || tttGame[0][0] === '⭕' && tttGame[1][0] === '⭕' && tttGame[2][0] === '⭕'
         || tttGame[0][1] === '⭕' && tttGame[1][1] === '⭕' && tttGame[2][1] === '⭕' || tttGame[0][2] === '⭕' && tttGame[1][2] === '⭕' && tttGame[2][2] === '⭕'
         || tttGame[2][0] === '⭕' && tttGame[1][1] === '⭕' && tttGame[0][2] === '⭕' || tttGame[0][0] === '⭕' && tttGame[1][1] === '⭕' && tttGame[2][2] === '⭕') {
-        isAuthorAlreadyPlaying = false;
-        isUserAlreadyPlaying = false;
+        bot.database.finishSession(context.commandId);
         const row = createActionRow([
             createButton({
                 customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,0"),
@@ -369,8 +340,7 @@ const TicTacToeExecutor = async (context: ComponentInteractionContext) => {
     }
 
     if (tttGame[0][0] !== '‎' && tttGame[0][1] !== '‎' && tttGame[0][2] !== '‎' && tttGame[1][0] !== '‎' && tttGame[1][1] !== '‎' && tttGame[1][2] !== '‎' && tttGame[2][0] !== '‎' && tttGame[2][1] !== '‎' && tttGame[2][2] !== '‎') {
-        isAuthorAlreadyPlaying = false;
-        isUserAlreadyPlaying = false;
+        bot.database.finishSession(context.commandId);
         const row = createActionRow([
             createButton({
                 customId: createCustomId(2, currentTurn, context.commandId, targetUsername, targetUserId, "0,0"),
