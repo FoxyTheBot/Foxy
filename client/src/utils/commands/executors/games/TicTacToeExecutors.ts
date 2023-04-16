@@ -23,11 +23,17 @@ const TicTacToeFirstExecutor = async (context: ComponentInteractionContext) => {
                 customId: createCustomId(0, targetUserId, context.commandId, targetUsername, targetUserId),
                 label: bot.locale('commands:tictactoe.accept'),
                 style: ButtonStyles.Success,
+                emoji: {
+                    id: bot.emotes.FOXY_YAY
+                },
                 disabled: true
             }), createButton({
                 customId: createCustomId(1, targetUserId, context.commandId, targetUsername,targetUserId),
                 label: bot.locale('commands:tictactoe.decline'),
                 style: ButtonStyles.Danger,
+                emoji: {
+                    id: bot.emotes.FOXY_CRY
+                },
                 disabled: true
             })])]
         })

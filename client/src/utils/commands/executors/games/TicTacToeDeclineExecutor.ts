@@ -12,11 +12,17 @@ const TicTacToeDecline = async (context: ComponentInteractionContext) => {
             customId: createCustomId(0, userId, context.commandId, username, userId),
             label: bot.locale('commands:tictactoe.accept'),
             style: ButtonStyles.Success,
+            emoji: {
+                id: bot.emotes.FOXY_YAY
+            },
             disabled: true
         }), createButton({
             customId: createCustomId(1, userId, context.commandId, username, userId),
             label: bot.locale('commands:tictactoe.decline'),
             style: ButtonStyles.Danger,
+            emoji: {
+                id: bot.emotes.FOXY_CRY
+            },
             disabled: true
         })])]
     })

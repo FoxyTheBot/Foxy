@@ -58,11 +58,17 @@ const TicTacToeCommand = createCommand({
             components: [createActionRow([createButton({
                 customId: createCustomId(0, user.id, context.commandId, user.username, user.id),
                 label: t('commands:tictactoe.accept'),
-                style: ButtonStyles.Success
+                style: ButtonStyles.Success,
+                emoji: {
+                    id: bot.emotes.FOXY_YAY
+                }
             }), createButton({
                 customId: createCustomId(1, user.id, context.commandId, user.username, user.id),
                 label: t('commands:tictactoe.decline'),
-                style: ButtonStyles.Danger
+                style: ButtonStyles.Danger,
+                emoji: {
+                    id: bot.emotes.FOXY_CRY
+                }
             })])]
         });
 
