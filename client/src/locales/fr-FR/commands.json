@@ -243,7 +243,8 @@
         "alreadyMarriedWithSomeone": "Êtes-vous déjà marié à quelqu'un",
         "alreadyMarriedWithUser": "Vous êtes déjà marié à **{{user}}**",
         "ask": "{{user}} Voulez-vous épouser **{{author}}** ?",
-        "accept": "Accepter",
+        "accept": "Aceitar pedido",
+        "acceptedButton": "Pedido aceito",
         "accepted": "Vous êtes marié ! Félicitations au couple <3"
     },
     "divorce": {
