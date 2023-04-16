@@ -243,7 +243,8 @@
         "alreadyMarriedWithSomeone": "Вы уже женаты с кем -то",
         "alreadyMarriedWithUser": "Вы уже женаты на **{{user}}**",
         "ask": "{{user}} Вы хотите жениться ** {{author}} **?",
-        "accept": "Принять",
+        "accept": "Aceitar pedido",
+        "acceptedButton": "Pedido aceito",
         "accepted": "Вы состоите в браке! Приветствия для пары <3"
     },
     "divorce": {
