@@ -135,7 +135,7 @@ const RollCommand = createCommand({
                 label: t('commands:roll.button'),
                 style: ButtonStyles.Primary,
                 emoji: {
-                    id: bot.emotes.FOXY_YAY
+                    id: bot.emotes.FOXY_THINK
                 },
                 customId: createCustomId(0, context.author.id, context.commandId, amount, sides)
             })])]

@@ -12,6 +12,9 @@ const RollExecutor = async (context: ComponentInteractionContext) => {
         components: [createActionRow([createButton({
             label: bot.locale('commands:roll.button'),
             style: ButtonStyles.Primary,
+            emoji: {
+                name: "🎲"
+            },
             customId: createCustomId(0, context.author.id, context.commandId, amount, sides)
         })])]
     });

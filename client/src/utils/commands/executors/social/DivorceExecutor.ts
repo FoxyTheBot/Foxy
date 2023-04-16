@@ -32,6 +32,9 @@ const DivorceExecutor = async (context: ComponentInteractionContext) => {
             customId: createCustomId(0, context.user.id, context.commandId),
             label: bot.locale("commands:divorce.confirmed"),
             style: ButtonStyles.Danger,
+            emoji: {
+                id: bot.emotes.FOXY_CRY
+            },
             disabled: true
         })])],
 

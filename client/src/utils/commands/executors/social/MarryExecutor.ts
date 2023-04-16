@@ -18,8 +18,11 @@ const MarryExecutor = async (context: ComponentInteractionContext) => {
         content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale("commands:marry.accepted")),
         components: [createActionRow([createButton({
             customId: createCustomId(0, context.interaction.data.targetId, context.commandId),
-            label: bot.locale("commands:marry.accept"),
+            label: bot.locale("commands:marry.acceptedButton"),
             style: ButtonStyles.Success,
+            emoji: {
+                name: "💍"
+            },
             disabled: true
         })])],
     })

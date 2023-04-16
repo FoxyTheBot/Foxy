@@ -82,6 +82,9 @@ const MarryCommand = createCommand({
             components: [createActionRow([createButton({
                 customId: createCustomId(0, user.id, context.commandId),
                 label: t('commands:marry.accept'),
+                emoji: {
+                    name: "💍"
+                },
                 style: ButtonStyles.Success
             })])],
         });
