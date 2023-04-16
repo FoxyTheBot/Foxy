@@ -243,7 +243,8 @@
         "alreadyMarriedWithSomeone": "¡Ya estás casado con alguien!",
         "alreadyMarriedWithUser": "Ya estás casado con {{user}}",
         "ask": "{{user}} ¿Quieres casarte con **{{author}}**?",
-        "accept": "Aceptar",
+        "accept": "Aceitar pedido",
+        "acceptedButton": "Pedido aceito",
         "accepted": "¡Estás casado! Felicidades a la pareja <3"
     },
     "divorce": {
