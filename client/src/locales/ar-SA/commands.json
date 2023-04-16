@@ -243,7 +243,8 @@
         "alreadyMarriedWithSomeone": "أنت متزوج بالفعل من شخص ما",
         "alreadyMarriedWithUser": "أنت متزوج بالفعل من ** {{user}} **",
         "ask": "{{user}} هل تريد الزواج ** {{author}} **؟",
-        "accept": "لقبول",
+        "accept": "Aceitar pedido",
+        "acceptedButton": "Pedido aceito",
         "accepted": "أنت متزوج! هتافات للزوجي "
     },
     "divorce": {
