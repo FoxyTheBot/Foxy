@@ -142,43 +142,7 @@ export default class DatabaseConnection {
         return usageCount;
 
     }
-
-    async getSessionInfo(commandId: string): Promise<void> {
-        let session = await this.sessions.findOne({ commandId: commandId });
-        return session;
-    }
-
-    async verifyUser(userId: string) {
-        let session = await this.sessions.findOne({ $or: [{ "user.id": userId }, { "commandAuthor.id": userId }] });
-        if (!session) return false;
-        return true;
-    }
-
-    async createSession(commandId: string, commandAuthor: any, user: any): Promise<void> {
-        let session = new this.sessions({
-            commandId: commandId,
-            user: {
-                id: user,
-                isYourTurn: false,
-                alreadyPlaying: true
-            },
-            commandAuthor: {
-                id: commandAuthor,
-                isYourTurn: true,
-                alreadyPlaying: true
-            }
-        }).save();
-        return session;
-    }
-
-    async finishSession(commandId: string): Promise<void> {
-        return await this.sessions.findOneAndDelete({ commandId: commandId });
-    }
-
-    async getAllSessions(): Promise<void> {
-        let sessionsData = await this.sessions.find({});
-        return sessionsData.map(session => session.toJSON());
-    }
+   
     async getAllUsers(): Promise<void> {
         let usersData = await this.user.find({});
         return usersData.map(user => user.toJSON());
