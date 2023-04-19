@@ -15,7 +15,7 @@ const HelpCommand = createCommand({
     execute: async (context, endCommand, t) => {
         const embed = createEmbed({
             title: context.getEmojiById(bot.emotes.FOXY_HOWDY) + " " + t('commands:help.bot.title'),
-            description: t('commands:help.bot.description', { user: context.author.username }),
+            description: context.makeReply(bot.emotes.FOXY_WOW, t('commands:help.bot.description', { user: context.author.username })),
             fields: [
                 {
                     name: context.getEmojiById(bot.emotes.FOXY_WOW) + " " + t('commands:botinfo.fields.addme'),
