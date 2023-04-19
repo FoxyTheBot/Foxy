@@ -7,7 +7,6 @@
         "button": "لفافة"
     },
     "botinfo": {
-        "title": "Foxy",
         "description": "مرحبًا ، أنا {{client.user.username}}! أنا بوت برازيلي بسيط من الاقتصاد والترفيه لخادمك! أنا أنشر الفرح في خوادم {{guilds}}",
         "fields": {
             "addme": "أضفني",
@@ -351,7 +350,6 @@
         "lose": "أعطى {{choice}}! {{user}} فاز {{amount}} الكعك! بتمويل من {{author}}",
         "deny": "للرفض",
         "denied": "إنكار",
-        "bot": "Por enquanto não estou aceitando apostas, estou falida",
         "betWithClient": {
             "lose": "أعطى {{result}}! فزت {{amount}} الكعك! ",
             "win": "أعطى {{result}}! فزت {{amount}} الكعك"
