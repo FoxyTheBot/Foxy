@@ -244,6 +244,7 @@
         "alreadyMarriedWithUser": "You are already married with {{user}}",
         "ask": "{{user}} Do you want to marry {{author}}?",
         "accept": "Accept",
+        "acceptedButton": "Accepted",
         "accepted": "You and {{user}} are now married"
     },
     "divorce": {
@@ -369,21 +370,6 @@
             "success": "Background changed successfully! :3",
             "description": "Your list: {{bgList}}"
         }
-    },
-    "tictactoe": {
-        "title": "Jogo da Velha",
-        "description": "Para jogar, {{user}} precisa aceitar sua solicitação",
-        "yourTurn": "É a sua vez, {{user}}",
-        "accept": "Aceitar",
-        "decline": "Recusar",
-        "request": "**{{user}}**, você quer jogar uma partida de Jogo da Velha com **{{author}}**?",
-        "winner": "O ganhador foi **{{user}}**",
-        "bot": "Você não pode jogar contra um bot",
-        "self": "Você não pode jogar contra si mesmo! Isso parece até um pouco... solitário",
-        "declined": "The invite has been declined",
-        "content": "{{author}} VS {{user}}",
-        "alreadyPlaying": "**{{user}}** is already playing with someone",
-        "draw": "It's a draw!"
     },
     "atm": {
         "success": "**{{user}}** has {{balance}} Cakes"
