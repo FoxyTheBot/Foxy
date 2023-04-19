@@ -7,7 +7,6 @@
         "button": "Rollen"
     },
     "botinfo": {
-        "title": "Foxy",
         "description": "Hallo, ich bin {{client.user.username}}! Ich bin ein einfacher brasilianischer Bot für Wirtschaft und Unterhaltung für Ihren Server! Ich verbreite Freude in {{guilds}} Servern :heart:",
         "fields": {
             "addme": "Fügen Sie mich",
@@ -351,7 +350,6 @@
         "lose": "Gab {{choice}}! {{user}} Won {{amount}} Kuchen! Finanziert von {{author}}",
         "deny": "Bestreiten",
         "denied": "Verweigerung",
-        "bot": "Por enquanto não estou aceitando apostas, estou falida",
         "betWithClient": {
             "lose": "Gab {{result}}! Ich habe {{amount}} Kuchen gewonnen! >: 3",
             "win": "Gab {{result}}! Herzlichen Glückwunsch, Sie haben {{amount}} Kuchen gewonnen! : 3"
