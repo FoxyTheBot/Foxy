@@ -143,15 +143,6 @@
             }
         }
     },
-    "roblox": {
-        "aboutme": "Sobre mim",
-        "register": "Data de registro",
-        "undefined": "Não definido",
-        "noAboutme": "Não há sobre mim",
-        "noStatus": "Não há status",
-        "error": "Não foi possível encontrar esse usuário... Provavelmente a conta não existe :/",
-        "button": "Ver perfil"
-    },
     "aboutme": {
         "set": "Seu sobre mim foi alterado para `{{aboutme}}`",
         "tooLong": "O limite de caracteres é 225 e você digitou {{length}}, digita algo menor pfv :3"
@@ -165,63 +156,11 @@
         "changed": "Você alterou o layout do seu perfil",
         "notFound": "Layout não encontrado"
     },
-    "role": {
-        "description": "Permissões do cargo",
-        "id": "ID do cargo",
-        "color": "Cor do cargo",
-        "position": "Posição do cargo",
-        "noPermissions": "O cargo não tem permissões",
-        "roleMention": "Menção do cargo",
-        "createdAt": "Criado em"
-    },
-    "server": {
-        "owner": "Dono",
-        "createdAt": "Criado em",
-        "clientJoin": "Entrei em",
-        "channels": "Canais",
-        "premium": "Impulsos",
-        "memberCount": "Membros",
-        "afk": "Canal AFK",
-        "click": "Veja o ícone no seu navegador",
-        "no": "Não",
-        "yes": "Sim",
-        "notFound": "Não encontrei nenhum servidor com a id `{{id}}`",
-        "partner": "Parceiro do Discord"
-    },
     "user": {
-        "info": {
-            "tag": "Tag do usuário",
-            "createdAt": "Criado em",
-            "userId": "ID do usuário",
-            "avatar": "Ver avatar do usuário",
-            "viewMember": "Ver informações do membro",
-            "noMember": "Não é um membro do servidor"
-        },
         "avatar": {
             "click": "Veja o avatar no seu navegador",
             "title": "Avatar de {{user}}",
             "footer": "Achei fofo :3"
-        },
-        "banner": {
-            "click": "Veja o banner no seu navegador",
-            "title": "Banner de {{user}}",
-            "noBanner": "Esse usuário não tem banner <a:foxylick:987381814622560277>"
-        },
-        "member": {
-            "title": "Sobre {{user}}",
-            "joinedAt": ":sparkles: Entrou em",
-            "role": "<:foxysunglasses:890688144280784926> Cargos",
-            "nickname": "<:foxyhearteyes:984596954526920794> Apelido no servidor",
-            "noNickname": "Não há apelido no servidor",
-            "permissions": {
-                "button": "Permissões",
-                "list": "Lista de permissões",
-                "title": "Permissões de {{user}}"
-            },
-            "highestRole": "<:foxysunglasses:890688144280784926> Maior cargo",
-            "premiumSince": "<:foxyboost:984596808921673768> Impulsiona o servidor desde",
-            "noRoles": "Não há cargos",
-            "noPermissions": "Não há permissões"
         }
     },
     "ship": {
@@ -253,15 +192,6 @@
         "divorced": "...Então é isso, se divorciar é sim uma coisa triste, Da próxima vez ame alguém que realmente mereça e respeite você, sim isso parece ser difícil pois o amor é algo cego e incontrolável... Mas é melhor estar sozinho do que mal acompanhado, eu confio em você! :heart:",
         "confirm": "Divorciar",
         "confirmed": "Divorciado"
-    },
-    "mcskin": {
-        "title": "Skin de {{user}}"
-    },
-    "mchead": {
-        "title": "Cabeça de {{user}}"
-    },
-    "mcbody": {
-        "title": "Corpo de {{user}}"
     },
     "error": {
         "tooLong": "O conteúdo é muito longo, o limite é de **{{limit}}** caracteres"
@@ -421,7 +351,7 @@
         "lose": "Deu {{choice}}! {{user}} ganhou {{amount}} Cakes! Financiado por {{author}}",
         "deny": "Negar",
         "denied": "Aposta negada",
-        "bot": "Por enquanto não estou aceitando apostas, estou falida <:foxy_cry:1071151976504627290>",
+        "bot": "Por enquanto não estou aceitando apostas, estou falida",
         "betWithClient": {
             "lose": "Deu {{result}}! Eu ganhei {{amount}} cakes! >:3",
             "win": "Deu {{result}}! Parabéns, você ganhou {{amount}} cakes! :3"
