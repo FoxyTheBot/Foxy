@@ -39,7 +39,7 @@ const HelpCommand = createCommand({
                 },
                 {
                     name: context.getEmojiById(bot.emotes.INSTAGRAM) + " " + t('commands:botinfo.fields.instagram'),
-                    value: "[@foxydiscordbot](https://www.instagram.com/foxydiscordbot/)",  
+                    value: "[@foxydbot](https://www.instagram.com/foxydbot/)",  
                     inline: true
                 },
                 {
