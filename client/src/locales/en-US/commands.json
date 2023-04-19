@@ -371,21 +371,6 @@
             "description": "Your list: {{bgList}}"
         }
     },
-    "tictactoe": {
-        "title": "Tic-tac-toe",
-        "description": "To play, {{user}} needs to accept your request",
-        "yourTurn": "It's {{user}} turn",
-        "accept": "Accept",
-        "decline": "Decline",
-        "request": "**{{user}}**, do you want to play a tic-tac-toe round with **{{author}}**?",
-        "winner": "The winner is **{{user}}**",
-        "bot": "You can't play with a bot",
-        "self": "You can't play with yourself!",
-        "declined": "The invite has been declined",
-        "content": "{{author}} VS {{user}}",
-        "alreadyPlaying": "**{{user}}** is already playing with someone",
-        "draw": "It's a draw!"
-    },
     "atm": {
         "success": "**{{user}}** has {{balance}} Cakes"
     },
