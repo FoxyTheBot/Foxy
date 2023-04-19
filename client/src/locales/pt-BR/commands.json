@@ -351,7 +351,6 @@
         "lose": "Deu {{choice}}! {{user}} ganhou {{amount}} Cakes! Financiado por {{author}}",
         "deny": "Negar",
         "denied": "Aposta negada",
-        "bot": "Por enquanto não estou aceitando apostas, estou falida",
         "betWithClient": {
             "lose": "Deu {{result}}! Eu ganhei {{amount}} cakes! >:3",
             "win": "Deu {{result}}! Parabéns, você ganhou {{amount}} cakes! :3"
