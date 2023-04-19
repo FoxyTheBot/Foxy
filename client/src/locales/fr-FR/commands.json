@@ -371,21 +371,6 @@
             "description": "Vos arrière-plans sont : {{bgList}}"
         }
     },
-    "tictactoe": {
-        "title": "Jogo da Velha",
-        "description": "Para jogar, {{user}} precisa aceitar sua solicitação",
-        "yourTurn": "É a sua vez, {{user}}",
-        "accept": "Aceitar",
-        "decline": "Recusar",
-        "request": "**{{user}}**, você quer jogar uma partida de Jogo da Velha com **{{author}}**?",
-        "winner": "O ganhador foi **{{user}}**",
-        "bot": "Você não pode jogar contra um bot",
-        "self": "Você não pode jogar contra si mesmo! Isso parece até um pouco... solitário",
-        "declined": "O convite foi recusado",
-        "content": "{{author}} vs {{user}}",
-        "alreadyPlaying": "**{{user}}** já está jogando com alguém",
-        "draw": "Deu velha!"
-    },
     "atm": {
         "success": "**{{user}}** possède {{balance}} Cakes"
     },
