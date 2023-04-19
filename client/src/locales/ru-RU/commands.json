@@ -7,7 +7,6 @@
         "button": "Рулон"
     },
     "botinfo": {
-        "title": "Foxy",
         "description": "Привет, я {{client.user.username}}! Я простой бразильский бот экономики и развлечений для вашего сервера! Я распространяю радость на {{guilds}} серверах :heart:",
         "fields": {
             "addme": "Добавь меня",
@@ -351,7 +350,6 @@
         "lose": "Дал {{choice}}! {{user}} win {{amount}} торты! Финансируется {{author}}",
         "deny": "Отрицать",
         "denied": "Отрицание",
-        "bot": "Por enquanto não estou aceitando apostas, estou falida",
         "betWithClient": {
             "lose": "Дал {{result}}! Я выиграл {{amount}} торты! >: 3",
             "win": "Дал {{result}}! Поздравляю, вы выиграли {{amount}} торты! : 3"
