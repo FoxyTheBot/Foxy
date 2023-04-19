@@ -37,8 +37,8 @@
             "de-DE": "Немецкий",
             "it-IT": "Итальянский",
             "ru-RU": "Русский",
-            "ar-SA": "Árabe",
-            "pt-BR": "Português do Brasil"
+            "ar-SA": "арабский",
+            "pt-BR": "бразильский португальский"
         }
     },
     "anime": {
@@ -137,7 +137,7 @@
                     "value": "`/Помогите"
                 },
                 "guild": "Сторонник",
-                "privacy": "Política de privacidade",
+                "privacy": "Политика конфиденциальности",
                 "website": "Мой веб-сайт",
                 "crowdin": "Crowdin"
             }
@@ -244,7 +244,7 @@
         "alreadyMarriedWithUser": "Вы уже женаты на **{{user}}**",
         "ask": "{{user}} Вы хотите жениться ** {{author}} **?",
         "accept": "Принять",
-        "acceptedButton": "Pedido aceito",
+        "acceptedButton": "Заказ принят",
         "accepted": "Вы состоите в браке! Приветствия для пары <3"
     },
     "divorce": {
