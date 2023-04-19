@@ -7,7 +7,6 @@
         "button": "Faire défiler à nouveau"
     },
     "botinfo": {
-        "title": "Foxy",
         "description": "Bonjour, Je suis un {{client.user.username}}! Je suis un simple bot brésilien d'économie et de divertissement pour votre serveur ! Je répands la joie sur {{guilds}} serveurs :heart:",
         "fields": {
             "addme": "Ajoutez-moi",
@@ -351,7 +350,6 @@
         "lose": "Donné {{choice}} ! {{user}} A gagné {{amount}} Cakes ! Financé par {{author}}",
         "deny": "Nier",
         "denied": "Pari refusé",
-        "bot": "Por enquanto não estou aceitando apostas, estou falida",
         "betWithClient": {
             "lose": "Cela a donné {{result}} ! J'ai gagné {{amount}} Cakes ! >:3",
             "win": "Cela a donné {{result}} ! Félicitations, vous avez gagné {{amount}} Cakes ! :3"
