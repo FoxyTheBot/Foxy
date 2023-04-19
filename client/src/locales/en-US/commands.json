@@ -7,7 +7,6 @@
         "button": "Reroll"
     },
     "botinfo": {
-        "title": "Foxy",
         "description": "Hi, I'm Foxy! I'm a simple economy and entertainment bot for Discord! I'm in {{guilds}} guilds :heart:!",
         "fields": {
             "addme": "Add me to your server!",
@@ -351,7 +350,6 @@
         "lose": "The result is {{choice}}! {{user}} won {{amount}} Cakes! By {{author}}",
         "deny": "Deny",
         "denied": "Your bet request has been denied",
-        "bot": "Por enquanto não estou aceitando apostas, estou falida",
         "betWithClient": {
             "lose": "The result is {{result}}! I won {{amount}} cakes! >:3",
             "win": "The result is {{result}}! Congratulations, you won {{amount}} cakes! :3"
