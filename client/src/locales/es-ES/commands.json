@@ -7,7 +7,7 @@
         "button": "Desplazarse de nuevo"
     },
     "botinfo": {
-        "title": ":fox: Foxy",
+        "title": "Foxy",
         "description": "¡Hola, soy {{client.user.username}}! ¡Soy un simple bot brasileño de economía y entretenimiento para su servidor! Estoy repartiendo alegría en {{guilds}} servidores :heart:",
         "fields": {
             "addme": "Agrégame",
@@ -143,15 +143,6 @@
             }
         }
     },
-    "roblox": {
-        "aboutme": "Sobre mí",
-        "register": "Data de registro",
-        "undefined": "No definido",
-        "noAboutme": "No hay sobre mí",
-        "noStatus": "No hay status",
-        "error": "No fue posible encontrar este usuario... Probablemente la cuenta no existe :/",
-        "button": "Ver perfil"
-    },
     "aboutme": {
         "set": "Su sobre mi ha sido configurado para `{{aboutme}}`",
         "tooLong": "O límite de los caracteres es 225 y tú digitaste {{length}}, digite algo más menor plis :3"
@@ -165,63 +156,11 @@
         "changed": "Tú alteraste la layout de tu perfil",
         "notFound": "Layout no se halla encontrado"
     },
-    "role": {
-        "description": "Permisos de cargo",
-        "id": "ID de cargo",
-        "color": "Color de cargo",
-        "position": "Posición del cargo",
-        "noPermissions": "El cargo no tienes permisiones",
-        "roleMention": "Mención del cargo",
-        "createdAt": "Criado en"
-    },
-    "server": {
-        "owner": "Dueño",
-        "createdAt": "Criado en",
-        "clientJoin": "Me uní en",
-        "channels": "Canales",
-        "premium": "Impulsos",
-        "memberCount": "Miembros",
-        "afk": "Canal AFK",
-        "click": "Mira ícono de tu navegador",
-        "no": "No",
-        "yes": "Si",
-        "notFound": "No hay encontrado uno servidor con la id `{{id}}`",
-        "partner": "Colaborador del Discord"
-    },
     "user": {
-        "info": {
-            "tag": "Tag del usuario",
-            "createdAt": "Criado en",
-            "userId": "ID del usuario",
-            "avatar": "Mirar avatar del usuario",
-            "viewMember": "Ver la información del miembro",
-            "noMember": "No es miembro del servidor"
-        },
         "avatar": {
             "click": "Mirarlo avatar de tu navegador",
             "title": "Avatar del {{user}}",
             "footer": "Me pareció fofo :3"
-        },
-        "banner": {
-            "click": "Mira banner de tu navegador",
-            "title": "Banner del {{user}}",
-            "noBanner": "Este usuario no tienes banners <a:foxylick:987381814622560277>"
-        },
-        "member": {
-            "title": "Sobre {{user}}",
-            "joinedAt": ":sparkles: Entraste en",
-            "role": "<:foxysunglasses:890688144280784926> Cargos",
-            "nickname": "<:foxyhearteyes:984596954526920794> Apellido en el servidor",
-            "noNickname": "No hay apellido en el servidor",
-            "permissions": {
-                "button": "Permisiones",
-                "list": "Lista de permisiones",
-                "title": "Permisiones de {{user}}"
-            },
-            "highestRole": "<:foxysunglasses:890688144280784926> Mayor cargo",
-            "premiumSince": "<:foxyboost:984596808921673768> Impulsión al servidor desde",
-            "noRoles": "No hay cargos",
-            "noPermissions": "No hay permisiones"
         }
     },
     "ship": {
@@ -253,31 +192,6 @@
         "divorced": "... Así es, divorciarse es algo triste, La próxima vez ama a alguien que realmente te merezca y te respete, sí, eso parece ser difícil porque el amor es algo ciego e incontrolable... Pero es mejor estar solo que mal acompañado, ¡Confío en ti! :heart:",
         "confirm": "Divorciarse",
         "confirmed": "Divorciado"
-    },
-    "suggest": {
-        "success": "Gracias por ayudarme {{user}}, tu sugerencia `{{content}}` ha sido enviada a mi desarrollador <3"
-    },
-    "report": {
-        "success": "Gracias por ayudarme {{user}}, tu informe `{{content}}` ha sido enviado a mi desarrollador <3"
-    },
-    "status": {
-        "model": "Modelo de procesador",
-        "guilds": "Servidores",
-        "users": "Usuarios",
-        "ram": "Memoria RAM",
-        "cpuUsage": "Uso del procesador",
-        "node": "Node.js",
-        "arch": "Arquitectura",
-        "platform": "Plataforma"
-    },
-    "mcskin": {
-        "title": "Piel de {{user}}"
-    },
-    "mchead": {
-        "title": "Cabeza de {{user}}"
-    },
-    "mcbody": {
-        "title": "Cuerpo de {{user}}"
     },
     "error": {
         "tooLong": "El contenido es demasiado largo, el límite es de **{{limit}}** caracteres"
@@ -437,7 +351,7 @@
         "lose": "Deu {{choice}}! {{user}} ganhou {{amount}} Cakes! Financiado por {{author}}",
         "deny": "Negar",
         "denied": "Aposta negada",
-        "bot": "Por enquanto não estou aceitando apostas, estou falida <:foxy_cry:1071151976504627290>",
+        "bot": "Por enquanto não estou aceitando apostas, estou falida",
         "betWithClient": {
             "lose": "Deu {{result}}! Eu ganhei {{amount}} cakes! >:3",
             "win": "Deu {{result}}! Parabéns, você ganhou {{amount}} cakes! :3"
