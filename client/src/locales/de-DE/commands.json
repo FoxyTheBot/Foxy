@@ -7,7 +7,7 @@
         "button": "Rollen"
     },
     "botinfo": {
-        "title": ":fox: Foxy",
+        "title": "Foxy",
         "description": "Hallo, ich bin {{client.user.username}}! Ich bin ein einfacher brasilianischer Bot für Wirtschaft und Unterhaltung für Ihren Server! Ich verbreite Freude in {{guilds}} Servern :heart:",
         "fields": {
             "addme": "Fügen Sie mich",
@@ -143,15 +143,6 @@
             }
         }
     },
-    "roblox": {
-        "aboutme": "Über mich",
-        "register": "Registrierungsdatum",
-        "undefined": "Nicht definiert",
-        "noAboutme": "Nein über mich",
-        "noStatus": "Es gibt keinen Status",
-        "error": "Es war nicht möglich, diesen Benutzer zu finden ... wahrscheinlich existiert das Konto nicht:/",
-        "button": "Profil anzeigen"
-    },
     "aboutme": {
         "set": "Dein über mich wurde in `{{aboutme}}` geändert",
         "tooLong": "Die Zeichengrenze ist 225 und Sie geben {{length}} ein, geben etwas kleineres ein"
@@ -165,63 +156,11 @@
         "changed": "Sie haben das Layout Ihres Profils geändert",
         "notFound": "Layout nicht gefunden"
     },
-    "role": {
-        "description": "Positionsberechtigungen",
-        "id": "Position ID",
-        "color": "Konzern",
-        "position": "Amtsposition",
-        "noPermissions": "Die Position hat keine Berechtigungen",
-        "roleMention": "Erwähnung der Position",
-        "createdAt": "Erstellt in"
-    },
-    "server": {
-        "owner": "Eigentümer",
-        "createdAt": "Erstellt in",
-        "clientJoin": "ich betrat",
-        "channels": "Kanäle",
-        "premium": "Impuls",
-        "memberCount": "Mitglieder",
-        "afk": "Kanal AFK",
-        "click": "Sehen Sie das Symbol in Ihrem Browser",
-        "no": "NEIN",
-        "yes": "Ja",
-        "notFound": "Ich habe keinen Server mit ID `{{id}}` gefunden",
-        "partner": "Discord -Partner"
-    },
     "user": {
-        "info": {
-            "tag": "User Tag",
-            "createdAt": "Erstellt in",
-            "userId": "Benutzer-ID",
-            "avatar": "Siehe Benutzer Avatar",
-            "viewMember": "Siehe Mitgliederinformationen",
-            "noMember": "Es ist kein Mitglied des Servers"
-        },
         "avatar": {
             "click": "Sehen Sie den Avatar in Ihrem Browser",
             "title": "{{user}} Avatar",
             "footer": "Ich fand süß: 3"
-        },
-        "banner": {
-            "click": "Sehen Sie das Banner in Ihrem Browser",
-            "title": "{{user}} Banner",
-            "noBanner": "Dieser Benutzer hat kein Banner <A: Foxylick: 987381814622560277>"
-        },
-        "member": {
-            "title": "Ungefähr {{user}}",
-            "joinedAt": "Dieser Benutzer hat kein Banner",
-            "role": "Positionen",
-            "nickname": "Spitzname auf dem Server",
-            "noNickname": "Auf dem Server gibt es keinen Spitznamen",
-            "permissions": {
-                "button": "Berechtigungen",
-                "list": "Liste der Berechtigungen",
-                "title": "{{user}} Berechtigungen"
-            },
-            "highestRole": "größere Position",
-            "premiumSince": "Ich treibe den Server seitdem an",
-            "noRoles": "Es gibt keine Positionen",
-            "noPermissions": "Es gibt keine Berechtigungen"
         }
     },
     "ship": {
@@ -253,31 +192,6 @@
         "divorced": "... also ist es, wenn es geschieden ist, ist eine traurige Sache. Lieben Sie beim nächsten Mal jemanden, der Sie wirklich verdient und respektiert. Schlecht begleitet, ich vertraue dir! :heart:",
         "confirm": "Sich scheiden lassen",
         "confirmed": "Geschieden"
-    },
-    "suggest": {
-        "success": "Vielen Dank, dass Sie mir geholfen haben {{user}}, Ihr Vorschlag `{{content}}` Es wurde an meinen Entwickler <3 gesendet"
-    },
-    "report": {
-        "success": "Vielen Dank, dass Sie mir geholfen haben {{user}}, Ihr Bericht `{{content}}` Er wurde an meinen Entwickler <3 gesendet"
-    },
-    "status": {
-        "model": "Prozessormodell",
-        "guilds": "Server",
-        "users": "Benutzer",
-        "ram": "RAM-Speicher",
-        "cpuUsage": "Verwendung des Prozessors",
-        "node": "Node.js",
-        "arch": "Die Architektur",
-        "platform": "Plattform"
-    },
-    "mcskin": {
-        "title": "{{user}}-Skin"
-    },
-    "mchead": {
-        "title": "Kopf von {{user}}"
-    },
-    "mcbody": {
-        "title": "Körper von {{user}}"
     },
     "error": {
         "tooLong": "Der Inhalt ist sehr lang, die Grenze ist ** {{limit}} ** Zeichen"
@@ -437,7 +351,7 @@
         "lose": "Gab {{choice}}! {{user}} Won {{amount}} Kuchen! Finanziert von {{author}}",
         "deny": "Bestreiten",
         "denied": "Verweigerung",
-        "bot": "Im Moment akzeptiere ich keine Wetten, ich bin bankrott <: foxy_cry: 1071151976504627290>",
+        "bot": "Por enquanto não estou aceitando apostas, estou falida",
         "betWithClient": {
             "lose": "Gab {{result}}! Ich habe {{amount}} Kuchen gewonnen! >: 3",
             "win": "Gab {{result}}! Herzlichen Glückwunsch, Sie haben {{amount}} Kuchen gewonnen! : 3"
