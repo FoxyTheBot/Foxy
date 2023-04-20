@@ -113,14 +113,14 @@
         "bot": {
             "description": "مرحبًا {{user}} ، أنا Foxy ، لدي الموارد اللازمة للترفيه وإشراك أعضائك وأوامر الاقتصاد وتعديل الصور والمزيد! : 3",
             "fields": {
-                "addme": "Gostou das minhas funcionalidades? Me adicione no seu servidor!",
-                "add": "Me adicione clicando aqui",
-                "crowdin": "Me ajude a aprender novos idiomas",
-                "support": "Precisa de ajuda? Entre no meu servidor de suporte!",
-                "privacy": "Leia os termos de uso para evitar problemas",
-                "website": "Meu Website onde você pode ver algumas coisas sobre mim"
+                "addme": "هل أعجبتك ميزاتي؟ أضفني على الخادم الخاص بك!",
+                "add": "اضفني عن طريق النقر هنا",
+                "crowdin": "ساعدني في تعلم لغات جديدة",
+                "support": "تحتاج مساعدة؟ انضم إلى خادم الدعم الخاص بي!",
+                "privacy": "اقرأ شروط الاستخدام لتجنب المشاكل",
+                "website": "موقع الويب الخاص بي حيث يمكنك رؤية بعض الأشياء عني"
             },
-            "footer": "Criada com ❤️ por {{owner}}"
+            "footer": "تم إنشاؤه باستخدام ❤️ بواسطة {{owner}}"
         }
     },
     "aboutme": {
