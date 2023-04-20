@@ -113,14 +113,14 @@
         "bot": {
             "description": "Hi {{user}}, I'm Foxy, I have features to entertain your server, like economy commands :3, also I have image modification commands, and some other fun commands :3",
             "fields": {
-                "addme": "Gostou das minhas funcionalidades? Me adicione no seu servidor!",
-                "add": "Me adicione clicando aqui",
-                "crowdin": "Me ajude a aprender novos idiomas",
-                "support": "Precisa de ajuda? Entre no meu servidor de suporte!",
-                "privacy": "Leia os termos de uso para evitar problemas",
-                "website": "Meu Website onde você pode ver algumas coisas sobre mim"
+                "addme": "Like my functionalities? Add me into your server!",
+                "add": "Add me clicking here",
+                "crowdin": "Help me to learn new languages",
+                "support": "Need help? Join in my support server!",
+                "privacy": "Read my Terms of Service to prevent problems",
+                "website": "My Website: Where you can see some things about me"
             },
-            "footer": "Criada com ❤️ por {{owner}}"
+            "footer": "Created with 💖 by {{owner}}"
         }
     },
     "aboutme": {
