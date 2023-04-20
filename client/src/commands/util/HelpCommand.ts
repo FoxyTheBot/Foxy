@@ -1,6 +1,8 @@
 import { bot } from '../../index';
 import { createCommand } from '../../structures/commands/createCommand';
 import { createEmbed } from '../../utils/discord/Embed';
+import { getUserAvatar } from '../../utils/discord/User';
+import { serverURL } from '../../../config.json';
 
 const HelpCommand = createCommand({
     name: 'help',
@@ -14,57 +16,44 @@ const HelpCommand = createCommand({
     category: 'util',
     execute: async (context, endCommand, t) => {
         const embed = createEmbed({
-            title: context.getEmojiById(bot.emotes.FOXY_HOWDY) + " " + bot.username,
-            description: context.makeReply(bot.emotes.FOXY_WOW, t('commands:help.bot.description', { user: context.author.username })),
+            title: context.getEmojiById(bot.emotes.FOXY_HOWDY) + " " + "Foxy",
+            color: 0xfe436a,
+            description: t('commands:help.bot.description', { user: `<@!${context.author.id}>` }),
             fields: [
                 {
-                    name: context.getEmojiById(bot.emotes.FOXY_WOW) + " " + t('commands:botinfo.fields.addme'),
-                    value: `[${t('botinfo.fields.add')}](https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255)`,
-                    inline: true
+                    name: context.getEmojiById(bot.emotes.FOXY_WOW) + " " + t('commands:help.bot.fields.addme'),
+                    value: `[${t('help.bot.fields.add')}](https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255)`,
+
                 },
                 {
-                    name: context.getEmojiById(bot.emotes.FOXY_CUPCAKE) + " " + t('commands:botinfo.fields.support'),
-                    value: `[${t('botinfo.fields.server2')}](https://discord.gg/6mG2xDtuZD)`,
-                    inline: true
-                },
-                {
-                    name: context.getEmojiById(bot.emotes.TWITTER) + " " + t('commands:botinfo.fields.twitter'),
-                    value: "[@Foxy](https://twitter.com/@FoxyDiscordBot)",
-                    inline: true
-                },
-                {
-                    name: context.getEmojiById(bot.emotes.TIKTOK) + " " + t('commands:botinfo.fields.tiktok'),
-                    value: "[@foxydiscordbot](https://www.tiktok.com/@foxydiscordbot)",
-                    inline: true
-                },
-                {
-                    name: context.getEmojiById(bot.emotes.INSTAGRAM) + " " + t('commands:botinfo.fields.instagram'),
-                    value: "[@foxydbot](https://www.instagram.com/foxydbot/)",  
-                    inline: true
-                },
-                {
-                    name: context.getEmojiById(bot.emotes.YOUTUBE) + " " + t('commands:botinfo.fields.youtube'),
-                    value: "[Foxy](https://www.youtube.com/@foxydiscordbot)",
-                    inline: true
-                },
-                {
-                    name: context.getEmojiById(bot.emotes.GITHUB) + " " + t('commands:botinfo.fields.github'),
-                    value: "[FoxyTheBot](https://github.com/FoxyTheBot)",
-                    inline: true
+                    name: context.getEmojiById(bot.emotes.FOXY_CUPCAKE) + " " + t('commands:help.bot.fields.support'),
+                    value: `https://foxybot.win/support`,
+
                 },
                 {
                     name: context.getEmojiById(bot.emotes.FOXY_PRAY) + " " + t('commands:help.bot.fields.crowdin'),
-                    value: "https://translate.foxybot.win",
-                    inline: true
+                    value: "https://foxybot.win/translate",
+
                 },
                 {
                     name: context.getEmojiById(bot.emotes.FOXY_SUNGLASSES) + " " + t('commands:help.bot.fields.website'),
                     value: "https://foxybot.win",
-                    inline: true
+
+                },
+                {
+                    name: context.getEmojiById(bot.emotes.FOXY_WOW) + " " + t('commands:help.bot.fields.privacy'),
+                    value: "https://foxybot.win/terms",
                 }
             ],
+            thumbnail: {
+                url: serverURL + "/avatar/foxy.png"
+            },
             image: {
                 url: "https://cdn.discordapp.com/attachments/1068525425963302936/1076841345211183154/Sem_titulo.png"
+            },
+            footer: {
+                iconUrl: await getUserAvatar(bot.owner, { size: 2048 }),
+                text: t('commands:help.bot.footer', { owner: `${bot.owner.username}#${bot.owner.discriminator}` })
             }
         })
 
