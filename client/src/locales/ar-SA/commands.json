@@ -6,23 +6,6 @@
         "result": "لقد تدحرجت ** {{amount}} d {{sides}} ** وكانت النتيجة ** {{result}} **",
         "button": "لفافة"
     },
-    "botinfo": {
-        "description": "مرحبًا ، أنا {{client.user.username}}! أنا بوت برازيلي بسيط من الاقتصاد والترفيه لخادمك! أنا أنشر الفرح في خوادم {{guilds}}",
-        "fields": {
-            "addme": "أضفني",
-            "server": "الخوادم",
-            "server2": "أدخل الخادم الخاص بي بالنقر هنا",
-            "add": "اضفني عن طريق النقر هنا",
-            "support": "خادم الدعم",
-            "twitter": "حساب التويتر الخاص بي",
-            "tiktok": "بلدي tiktok",
-            "instagram": "انستغرامي",
-            "github": "جيثب",
-            "youtube": "موقع YouTube",
-            "donate2": "تبرع لي بالنقر هنا",
-            "privacy": "سياسة الخصوصية"
-        }
-    },
     "lang": {
         "title": "اختر لغتك",
         "default": "يتم تعريف لغتك على أنها البرتغالية البرازيلية",
@@ -128,18 +111,16 @@
             }
         },
         "bot": {
-            "title": "مرحبًا ، أنا فوكسى",
             "description": "مرحبًا {{user}} ، أنا Foxy ، لدي الموارد اللازمة للترفيه وإشراك أعضائك وأوامر الاقتصاد وتعديل الصور والمزيد! : 3",
             "fields": {
-                "list": {
-                    "title": " لمشاهدة قائمة الأوامر استخدام",
-                    "value": "\"/مساعدة\""
-                },
-                "guild": "مؤيد، مشجع، داعم",
-                "privacy": "سياسة الخصوصية",
-                "website": "موقع الويب الخاص بي",
-                "crowdin": "Crowdin"
-            }
+                "addme": "Gostou das minhas funcionalidades? Me adicione no seu servidor!",
+                "add": "Me adicione clicando aqui",
+                "crowdin": "Me ajude a aprender novos idiomas",
+                "support": "Precisa de ajuda? Entre no meu servidor de suporte!",
+                "privacy": "Leia os termos de uso para evitar problemas",
+                "website": "Meu Website onde você pode ver algumas coisas sobre mim"
+            },
+            "footer": "Criada com ❤️ por {{owner}}"
         }
     },
     "aboutme": {
