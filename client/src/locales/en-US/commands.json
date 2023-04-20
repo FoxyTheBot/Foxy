@@ -6,23 +6,6 @@
         "result": "You rolled **{{amount}}d{{sides}}** and got **{{result}}**",
         "button": "Reroll"
     },
-    "botinfo": {
-        "description": "Hi, I'm Foxy! I'm a simple economy and entertainment bot for Discord! I'm in {{guilds}} guilds :heart:!",
-        "fields": {
-            "addme": "Add me to your server!",
-            "server": "Guilds :heart:",
-            "server2": "Enter in my support server clicking here!",
-            "add": "Add me clicking here",
-            "support": "Support server",
-            "twitter": "<:twitter:1072251951447810168> **|** My Twitter",
-            "tiktok": "My TikTok",
-            "instagram": "My Instagram",
-            "github": "<:github_logo:1072251686288113694> **|** My Github",
-            "youtube": "YouTube",
-            "donate2": "Support me on Ko-fi!",
-            "privacy": "Privacy policy"
-        }
-    },
     "lang": {
         "title": "Choose your language",
         "default": "Your default language is set to English",
@@ -128,18 +111,16 @@
             }
         },
         "bot": {
-            "title": "Hey, I'm Foxy!",
             "description": "Hi {{user}}, I'm Foxy, I have features to entertain your server, like economy commands :3, also I have image modification commands, and some other fun commands :3",
             "fields": {
-                "list": {
-                    "title": "<:foxy_cake:979569740471230584> If you want see all commands type",
-                    "value": "`/help`"
-                },
-                "guild": "Support server",
-                "privacy": "Privacy",
-                "website": "My Website",
-                "crowdin": "Crowdin"
-            }
+                "addme": "Gostou das minhas funcionalidades? Me adicione no seu servidor!",
+                "add": "Me adicione clicando aqui",
+                "crowdin": "Me ajude a aprender novos idiomas",
+                "support": "Precisa de ajuda? Entre no meu servidor de suporte!",
+                "privacy": "Leia os termos de uso para evitar problemas",
+                "website": "Meu Website onde você pode ver algumas coisas sobre mim"
+            },
+            "footer": "Criada com ❤️ por {{owner}}"
         }
     },
     "aboutme": {
