@@ -6,23 +6,6 @@
         "result": "Você rolou **{{amount}}d{{sides}}** e o resultado foi **{{result}}**",
         "button": "Rolar novamente"
     },
-    "botinfo": {
-        "description": "Olá, eu sou a {{client.user.username}}! Eu sou um simples bot brasileiro de economia e entretenimento para o seu servidor! Estou espalhando alegria em {{guilds}} servidores :heart:",
-        "fields": {
-            "addme": "Me adicione",
-            "server": "Servidores :heart:",
-            "server2": "Entre no meu servidor clicando aqui",
-            "add": "Me adicione clicando aqui",
-            "support": "Servidor de suporte",
-            "twitter": "Meu Twitter",
-            "tiktok": "Meu TikTok",
-            "instagram": "Meu Instagram",
-            "github": "Meu Github",
-            "youtube": "YouTube",
-            "donate2": "Doe para mim clicando aqui",
-            "privacy": "Política de privacidade"
-        }
-    },
     "lang": {
         "title": "Escolha seu idioma",
         "default": "Seu idioma está definido como Português do Brasil",
@@ -128,18 +111,16 @@
             }
         },
         "bot": {
-            "title": "Oie, eu sou a Foxy",
             "description": "Olá {{user}}, eu sou a Foxy, tenho recursos para entreter e envolver seus membros, comandos de economia, modificação de imagem e muito mais! :3",
             "fields": {
-                "list": {
-                    "title": "<:foxysunglasses:890688144280784926> Para ver a lista de comandos use",
-                    "value": "`/help`"
-                },
-                "guild": "Serivdor de suporte",
-                "privacy": "Política de privacidade",
-                "website": "Meu Website",
-                "crowdin": "Crowdin"
-            }
+                "addme": "Gostou das minhas funcionalidades? Me adicione no seu servidor!",
+                "add": "Me adicione clicando aqui",
+                "crowdin": "Me ajude a aprender novos idiomas",
+                "support": "Precisa de ajuda? Entre no meu servidor de suporte!",
+                "privacy": "Leia os termos de uso para evitar problemas",
+                "website": "Meu Website onde você pode ver algumas coisas sobre mim"
+            },
+            "footer": "Criada com ❤️ por {{owner}}"
         }
     },
     "aboutme": {
