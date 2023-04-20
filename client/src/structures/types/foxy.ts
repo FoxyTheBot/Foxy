@@ -1,4 +1,4 @@
-import { Bot, Collection } from 'discordeno';
+import { Bot, Collection, User } from 'discordeno';
 import { ChatInputInteractionCommand } from './command';
 
 export interface IdentifiedData<T> {
@@ -8,7 +8,7 @@ export interface IdentifiedData<T> {
 
 export interface FoxyClient extends Bot {
   commands: Collection<string, ChatInputInteractionCommand>;
-  ownerId: bigint;
+  owner: User;
   clientId: bigint;
   username: string;
   isProduction: boolean;
