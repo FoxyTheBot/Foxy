@@ -123,6 +123,29 @@
             "footer": "Criada com ❤️ por {{owner}}"
         }
     },
+    "roblox": {
+        "title": "Perfil de {{user}}",
+        "fields": {
+            "id": "ID do usuário",
+            "nickname": "Nome de exibição",
+            "joinDate": "Data de entrada",
+            "followers": "Seguidores",
+            "following": "Seguindo",
+            "badges": "Emblemas",
+            "followings": "Seguindo",
+            "friends": "Amigos",
+            "username": "Nome de usuário",
+            "blurb": "Sobre mim",
+            "isBanned": "Está banido",
+            "status": {
+                "banned": "Sim",
+                "notBanned": "Não"
+            }
+        },
+        "buttons": {
+            "viewProfile": "Ver perfil"
+        }
+    },
     "aboutme": {
         "set": "Dein über mich wurde in `{{aboutme}}` geändert",
         "tooLong": "Die Zeichengrenze ist 225 und Sie geben {{length}} ein, geben etwas kleineres ein"
