@@ -47,9 +47,6 @@ const RobloxCommand = createCommand({
                             title: context.getEmojiById(bot.emotes.ROBLOX) + " " + t("commands:roblox.title", { user: info.username}),
                             color: 0x2F3136,
                             description: info.blurb,
-                            thumbnail: {
-                                url: `https://www.roblox.com/bust-thumbnail/image?userId=${id}&width=420&height=420&format=png`
-                            },
                             fields: [{
                                 name: t("commands:roblox.fields.id"),
                                 value: `${id}`,
