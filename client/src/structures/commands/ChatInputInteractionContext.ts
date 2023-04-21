@@ -8,11 +8,11 @@ import { URL } from 'url';
 import { getOptionFromInteraction } from './GetCommandOption';
 
 export type CanResolve = 'users' | 'members' | false;
+
 export default class {
     public replied = false;
     public subCommand: string | undefined;
     public subCommandGround: string | undefined;
-
     constructor(
         public interaction: Interaction,
         public i18n: TFunction,
@@ -134,6 +134,10 @@ export default class {
 
     getOption<T>(name: string, shouldResolve: CanResolve, required?: boolean): T | undefined {
         return getOptionFromInteraction<T>(this.interaction, name, shouldResolve, required);
+    }
+
+    toDiscordTimestamp(date: Date): string {
+        return `<t:${Math.floor(date.getTime() / 1000).toFixed(0)}:f>`
     }
 
     async sendDefer(Ephemeral = false): Promise<void> {
