@@ -46,7 +46,7 @@ const HelpCommand = createCommand({
                 }
             ],
             thumbnail: {
-                url: serverURL + "/avatar/foxy.png"
+                url: serverURL + "/avatars/foxy.png"
             },
             image: {
                 url: "https://cdn.discordapp.com/attachments/1068525425963302936/1076841345211183154/Sem_titulo.png"
