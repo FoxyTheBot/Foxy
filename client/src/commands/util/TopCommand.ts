@@ -69,7 +69,7 @@ const TopCommand = createCommand({
 
                 const embed = createEmbed({});
 
-                embed.title = context.makeReply(bot.emotes.FOXY_DAILY, t('commands:top.commands.title'));
+                embed.title = context.makeReply(bot.emotes.FOXY_PRAY, t('commands:top.commands.title'));
                 embed.footer = {
                     text: t('commands:top.commands.footer', { total: `${await bot.database.getAllUsageCount() - 1}` })
                 }
