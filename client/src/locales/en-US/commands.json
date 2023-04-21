@@ -6,24 +6,6 @@
         "result": "You rolled **{{amount}}d{{sides}}** and got **{{result}}**",
         "button": "Reroll"
     },
-    "botinfo": {
-        "title": ":fox: Foxy",
-        "description": "Hi, I'm Foxy! I'm a simple economy and entertainment bot for Discord! I'm in {{guilds}} guilds :heart:!",
-        "fields": {
-            "addme": "Add me to your server!",
-            "server": "Guilds :heart:",
-            "server2": "Enter in my support server clicking here!",
-            "add": "Add me clicking here",
-            "support": "Support server",
-            "twitter": "<:twitter:1072251951447810168> **|** My Twitter",
-            "tiktok": "My TikTok",
-            "instagram": "My Instagram",
-            "github": "<:github_logo:1072251686288113694> **|** My Github",
-            "youtube": "YouTube",
-            "donate2": "Support me on Ko-fi!",
-            "privacy": "Privacy policy"
-        }
-    },
     "lang": {
         "title": "Choose your language",
         "default": "Your default language is set to English",
@@ -129,28 +111,39 @@
             }
         },
         "bot": {
-            "title": "Hey, I'm Foxy!",
             "description": "Hi {{user}}, I'm Foxy, I have features to entertain your server, like economy commands :3, also I have image modification commands, and some other fun commands :3",
             "fields": {
-                "list": {
-                    "title": "<:foxy_cake:979569740471230584> If you want see all commands type",
-                    "value": "`/help`"
-                },
-                "guild": "Support server",
-                "privacy": "Privacy",
-                "website": "My Website",
-                "crowdin": "Crowdin"
-            }
+                "addme": "Like my functionalities? Add me into your server!",
+                "add": "Add me clicking here",
+                "crowdin": "Help me to learn new languages",
+                "support": "Need help? Join in my support server!",
+                "privacy": "Read my Terms of Service to prevent problems",
+                "website": "My Website: Where you can see some things about me"
+            },
+            "footer": "Created with 💖 by {{owner}}"
         }
     },
     "roblox": {
-        "aboutme": "About me",
-        "register": "Register date",
-        "undefined": "Undefined",
-        "noAboutme": "This user has no about me",
-        "noStatus": "This user has no status",
-        "error": "I can't find this user... Probably this user doesn't exist :/",
-        "button": "View on Roblox"
+        "title": "{{user}}'s Profile",
+        "fields": {
+            "id": "User ID",
+            "nickname": "Display Name",
+            "joinDate": "Join date",
+            "followers": "Followers",
+            "following": "Following",
+            "badges": "Badges",
+            "friends": "Friends",
+            "username": "Username",
+            "blurb": "About me",
+            "isBanned": "Is Banned",
+            "status": {
+                "banned": "Yes",
+                "notBanned": "No"
+            }
+        },
+        "buttons": {
+            "viewProfile": "View on Roblox"
+        }
     },
     "aboutme": {
         "set": "Your about me has been changed to `{{aboutme}}`",
@@ -165,63 +158,11 @@
         "changed": "You changed your profile layout",
         "notFound": "Layout not found"
     },
-    "role": {
-        "description": "Role permissions",
-        "id": "Role ID",
-        "color": "Role Color",
-        "position": "Role Position",
-        "noPermissions": "No permissions",
-        "roleMention": "Role mention",
-        "createdAt": "Created at"
-    },
-    "server": {
-        "owner": "Owner",
-        "createdAt": "Created at",
-        "clientJoin": "I joined this server at",
-        "channels": "Channels",
-        "premium": "Boosts",
-        "memberCount": "Members",
-        "afk": "AFK channel",
-        "click": "View on Browser",
-        "no": "No",
-        "yes": "Yes",
-        "notFound": "I didn't find any guild with the ID `{{id}}`",
-        "partner": "Discord Partner"
-    },
     "user": {
-        "info": {
-            "tag": "User Tag",
-            "createdAt": "Created at",
-            "userId": "User ID",
-            "avatar": "View user avatar",
-            "viewMember": "View member info",
-            "noMember": "This user is not in this server"
-        },
         "avatar": {
             "click": "View on browser",
             "title": "{{user}}'s Avatar",
             "footer": "So cute >3<"
-        },
-        "banner": {
-            "click": "View on browser",
-            "title": "{{user}}'s Banner",
-            "noBanner": "This user has no banner"
-        },
-        "member": {
-            "title": "{{user}}'s Member info",
-            "joinedAt": ":sparkles: Joined At",
-            "role": "<:foxysunglasses:890688144280784926> Roles",
-            "nickname": "<:foxyhearteyes:984596954526920794> Nickname in this server",
-            "noNickname": "This user has no nickname in this server",
-            "permissions": {
-                "button": "Permissions",
-                "list": "Permissions list",
-                "title": "{{user}}'s permissions"
-            },
-            "highestRole": "<:foxysunglasses:890688144280784926> Highest role",
-            "premiumSince": "<:foxyboost:984596808921673768> Booster since",
-            "noRoles": "This user has no roles in this server",
-            "noPermissions": "This user has no permissions in this server"
         }
     },
     "ship": {
@@ -253,31 +194,6 @@
         "divorced": "You are divorced now!",
         "confirm": "Divorce",
         "confirmed": "Divorced"
-    },
-    "suggest": {
-        "success": "Your suggestion has been sent to the developer, thank you for your help! :heart:"
-    },
-    "report": {
-        "success": "Your report has been sent to the developer, thank you for your help! :heart:"
-    },
-    "status": {
-        "model": "CPU Model",
-        "guilds": "Guilds",
-        "users": "Users",
-        "ram": "RAM",
-        "cpuUsage": "CPU Usage",
-        "node": "Node.js ",
-        "arch": "Architecture",
-        "platform": "Platform"
-    },
-    "mcskin": {
-        "title": "{{user}}'s skin"
-    },
-    "mchead": {
-        "title": "{{user}}'s head"
-    },
-    "mcbody": {
-        "title": "{{user}}'s body"
     },
     "error": {
         "tooLong": "The content is too long, the limit is **{{limit}}** chars"
@@ -437,7 +353,6 @@
         "lose": "The result is {{choice}}! {{user}} won {{amount}} Cakes! By {{author}}",
         "deny": "Deny",
         "denied": "Your bet request has been denied",
-        "bot": "I can't bet with you, yet!",
         "betWithClient": {
             "lose": "The result is {{result}}! I won {{amount}} cakes! >:3",
             "win": "The result is {{result}}! Congratulations, you won {{amount}} cakes! :3"

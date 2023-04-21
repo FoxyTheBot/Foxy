@@ -6,24 +6,6 @@
         "result": "لقد تدحرجت ** {{amount}} d {{sides}} ** وكانت النتيجة ** {{result}} **",
         "button": "لفافة"
     },
-    "botinfo": {
-        "title": "Foxy",
-        "description": "مرحبًا ، أنا {{client.user.username}}! أنا بوت برازيلي بسيط من الاقتصاد والترفيه لخادمك! أنا أنشر الفرح في خوادم {{guilds}}",
-        "fields": {
-            "addme": "أضفني",
-            "server": "الخوادم",
-            "server2": "أدخل الخادم الخاص بي بالنقر هنا",
-            "add": "اضفني عن طريق النقر هنا",
-            "support": "خادم الدعم",
-            "twitter": "حساب التويتر الخاص بي",
-            "tiktok": "بلدي tiktok",
-            "instagram": "انستغرامي",
-            "github": "جيثب",
-            "youtube": "موقع YouTube",
-            "donate2": "تبرع لي بالنقر هنا",
-            "privacy": "سياسة الخصوصية"
-        }
-    },
     "lang": {
         "title": "اختر لغتك",
         "default": "يتم تعريف لغتك على أنها البرتغالية البرازيلية",
@@ -129,28 +111,39 @@
             }
         },
         "bot": {
-            "title": "مرحبًا ، أنا فوكسى",
             "description": "مرحبًا {{user}} ، أنا Foxy ، لدي الموارد اللازمة للترفيه وإشراك أعضائك وأوامر الاقتصاد وتعديل الصور والمزيد! : 3",
             "fields": {
-                "list": {
-                    "title": " لمشاهدة قائمة الأوامر استخدام",
-                    "value": "\"/مساعدة\""
-                },
-                "guild": "مؤيد، مشجع، داعم",
-                "privacy": "سياسة الخصوصية",
-                "website": "موقع الويب الخاص بي",
-                "crowdin": "Crowdin"
-            }
+                "addme": "هل أعجبتك ميزاتي؟ أضفني على الخادم الخاص بك!",
+                "add": "اضفني عن طريق النقر هنا",
+                "crowdin": "ساعدني في تعلم لغات جديدة",
+                "support": "تحتاج مساعدة؟ انضم إلى خادم الدعم الخاص بي!",
+                "privacy": "اقرأ شروط الاستخدام لتجنب المشاكل",
+                "website": "موقع الويب الخاص بي حيث يمكنك رؤية بعض الأشياء عني"
+            },
+            "footer": "تم إنشاؤه باستخدام ❤️ بواسطة {{owner}}"
         }
     },
     "roblox": {
-        "aboutme": "ْعَنِّي",
-        "register": "تاريخ التسجيل",
-        "undefined": "غير معرف",
-        "noAboutme": "لا عني",
-        "noStatus": "لا يوجد وضع",
-        "error": "لم يكن من الممكن العثور على هذا المستخدم ... ربما يكون الحساب غير موجود",
-        "button": "عرض الصفحة الشخصية"
+        "title": "Perfil de {{user}}",
+        "fields": {
+            "id": "ID do usuário",
+            "nickname": "Nome de exibição",
+            "joinDate": "Data de entrada",
+            "followers": "Seguidores",
+            "following": "Seguindo",
+            "badges": "Emblemas",
+            "friends": "Amigos",
+            "username": "Nome de usuário",
+            "blurb": "Sobre mim",
+            "isBanned": "Está banido",
+            "status": {
+                "banned": "Sim",
+                "notBanned": "Não"
+            }
+        },
+        "buttons": {
+            "viewProfile": "Ver perfil"
+        }
     },
     "aboutme": {
         "set": "تم تغيير لك فوقي إلى `{{aboutme}}`",
@@ -165,63 +158,11 @@
         "changed": "لقد غيرت تخطيط ملف التعريف الخاص بك",
         "notFound": "التصميم غير موجود"
     },
-    "role": {
-        "description": "أذونات الموقف",
-        "id": "معرف الموقف",
-        "color": "مؤسَّسة",
-        "position": "موقف المكتب",
-        "noPermissions": "الموقف ليس له أذونات",
-        "roleMention": "ذكر الموقف",
-        "createdAt": "أنشئت في"
-    },
-    "server": {
-        "owner": "مالك",
-        "createdAt": "أنشئت في",
-        "clientJoin": "دخلت",
-        "channels": "القنوات",
-        "premium": "دفعة",
-        "memberCount": "أعضاء",
-        "afk": "قناة AFK",
-        "click": "شاهد الرمز في متصفحك",
-        "no": "لا",
-        "yes": "نعم",
-        "notFound": "لم أجد أي خادم مع معرف `{{id}}`",
-        "partner": "شريك الخلاف"
-    },
     "user": {
-        "info": {
-            "tag": "علامة المستخدم",
-            "createdAt": "أنشئت في",
-            "userId": "معرف المستخدم",
-            "avatar": "انظر المستخدم الصورة الرمزية",
-            "viewMember": "انظر معلومات الأعضاء",
-            "noMember": "إنه ليس عضوًا في الخادم"
-        },
         "avatar": {
             "click": "شاهد الصورة الرمزية في متصفحك",
             "title": "{{user}} الصورة الرمزية",
             "footer": "لقد وجدت لطيف"
-        },
-        "banner": {
-            "click": "شاهد اللافتة في متصفحك",
-            "title": "{{user}} لافتة",
-            "noBanner": "هذا المستخدم ليس لديه لافتة"
-        },
-        "member": {
-            "title": "حول {{user}}",
-            "joinedAt": "دخلت في",
-            "role": "المناصب",
-            "nickname": "لقب على الخادم",
-            "noNickname": "لا يوجد لقب على الخادم",
-            "permissions": {
-                "button": "أذونات",
-                "list": "قائمة الأذونات",
-                "title": "أذونات {{user}}"
-            },
-            "highestRole": "أعلى منصب",
-            "premiumSince": "أنا أقود الخادم منذ ذلك الحين",
-            "noRoles": "لا توجد وظائف",
-            "noPermissions": "لا توجد أذونات"
         }
     },
     "ship": {
@@ -243,8 +184,8 @@
         "alreadyMarriedWithSomeone": "أنت متزوج بالفعل من شخص ما",
         "alreadyMarriedWithUser": "أنت متزوج بالفعل من ** {{user}} **",
         "ask": "{{user}} هل تريد الزواج ** {{author}} **؟",
-        "accept": "Aceitar pedido",
-        "acceptedButton": "Pedido aceito",
+        "accept": "لقبول",
+        "acceptedButton": "قبلت",
         "accepted": "أنت متزوج! هتافات للزوجي "
     },
     "divorce": {
@@ -253,31 +194,6 @@
         "divorced": "... هذا كل شيء ، إذا كان مطلقًا أمرًا محزنًا ، فأحب في المرة القادمة شخص يستحقك حقًا ويحترمك ، نعم يبدو الأمر صعبًا لأن الحب أعمى ولا يمكن السيطرة عليه ... ولكن من الأفضل أن تكون وحيدًا من رافقك بشكل سيئ ، أنا أثق بك! ",
         "confirm": "إلى الطلاق",
         "confirmed": "مُطلّق"
-    },
-    "suggest": {
-        "success": "شكرًا لك على مساعدتي {{user}} ، اقتراحك `{{content}}` تم إرساله إلى مطوري"
-    },
-    "report": {
-        "success": "شكرًا لك على مساعدتي {{user}} ، اقتراحك `{{content}}` تم إرساله إلى مطوري"
-    },
-    "status": {
-        "model": "نموذج المعالج",
-        "guilds": "الخوادم",
-        "users": "المستخدمون",
-        "ram": "ذاكرة وصول العشوائي",
-        "cpuUsage": "استخدام المعالج",
-        "node": "node.js",
-        "arch": "بنيان",
-        "platform": "منصة"
-    },
-    "mcskin": {
-        "title": "{{user}} الجلد"
-    },
-    "mchead": {
-        "title": "رأس {{user}}"
-    },
-    "mcbody": {
-        "title": "جسم {{user}}"
     },
     "error": {
         "tooLong": "المحتوى طويل جدًا ، والحد هو ** {{limit}} ** أحرف"
@@ -437,7 +353,6 @@
         "lose": "أعطى {{choice}}! {{user}} فاز {{amount}} الكعك! بتمويل من {{author}}",
         "deny": "للرفض",
         "denied": "إنكار",
-        "bot": "في الوقت الحالي، أنا لا أقبل الرهانات، أنا مفلس",
         "betWithClient": {
             "lose": "أعطى {{result}}! فزت {{amount}} الكعك! ",
             "win": "أعطى {{result}}! فزت {{amount}} الكعك"

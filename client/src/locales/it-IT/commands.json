@@ -6,24 +6,6 @@
         "result": "Hai tirato {{amount}}d{{sides}} E il risultato è stato {{result}}",
         "button": "Scorri di nuovo"
     },
-    "botinfo": {
-        "title": ":fox: Foxy",
-        "description": "Ciao, sono {{client.user.username}}! Sono un semplice Bot brasiliano di economia e intrattenimento per il tuo server! Sto diffondendo gioia sui server di {{guilds}} :heart:",
-        "fields": {
-            "addme": "Aggiungimi",
-            "server": "Server :heart:",
-            "server2": "Entra nel mio server",
-            "add": "Aggiungimi",
-            "support": "Server di Supporto",
-            "twitter": "Twitter",
-            "tiktok": "Mio TikTok",
-            "instagram": "Mio Instagram",
-            "github": "GitHub",
-            "youtube": "YouTube",
-            "donate2": "Dona a me cliccando qui",
-            "privacy": "Politica sulla riservatezza"
-        }
-    },
     "lang": {
         "title": "Scegli la tua lingua",
         "default": "La tua lingua è impostata sul portoghese brasiliano",
@@ -129,28 +111,39 @@
             }
         },
         "bot": {
-            "title": "Ciao, sono un foxy",
             "description": "Ciao {{user}}, sono Foxy, ho le risorse per intrattenere e coinvolgere i tuoi membri, i comandi economici, la modifica dell'immagine e altro ancora! : 3",
             "fields": {
-                "list": {
-                    "title": "Per vedere l'elenco dei comandi Utilizzo",
-                    "value": "`/help`"
-                },
-                "guild": "Sostenitore",
-                "privacy": "Política de privacidade",
-                "website": "Il mio sito web",
-                "crowdin": "Crowdin"
-            }
+                "addme": "Gostou das minhas funcionalidades? Me adicione no seu servidor!",
+                "add": "Me adicione clicando aqui",
+                "crowdin": "Me ajude a aprender novos idiomas",
+                "support": "Precisa de ajuda? Entre no meu servidor de suporte!",
+                "privacy": "Leia os termos de uso para evitar problemas",
+                "website": "Meu Website onde você pode ver algumas coisas sobre mim"
+            },
+            "footer": "Criada com ❤️ por {{owner}}"
         }
     },
     "roblox": {
-        "aboutme": "Su di me",
-        "register": "Data di registrazione",
-        "undefined": "Non definito",
-        "noAboutme": "No su di me",
-        "noStatus": "Non c'è stato",
-        "error": "Non è stato possibile trovare questo utente ... probabilmente l'account non esiste:/",
-        "button": "Vedi profilo"
+        "title": "Perfil de {{user}}",
+        "fields": {
+            "id": "ID do usuário",
+            "nickname": "Nome de exibição",
+            "joinDate": "Data de entrada",
+            "followers": "Seguidores",
+            "following": "Seguindo",
+            "badges": "Emblemas",
+            "friends": "Amigos",
+            "username": "Nome de usuário",
+            "blurb": "Sobre mim",
+            "isBanned": "Está banido",
+            "status": {
+                "banned": "Sim",
+                "notBanned": "Não"
+            }
+        },
+        "buttons": {
+            "viewProfile": "Ver perfil"
+        }
     },
     "aboutme": {
         "set": "Il tuo su di me è stato cambiato in `{{aboutme}}`",
@@ -165,63 +158,11 @@
         "changed": "Hai cambiato il layout del tuo profilo",
         "notFound": "Layout non trovato"
     },
-    "role": {
-        "description": "Autorizzazioni di posizione",
-        "id": "ID posizione",
-        "color": "Società",
-        "position": "Posizione di ufficio",
-        "noPermissions": "La posizione non ha autorizzazioni",
-        "roleMention": "Menzione",
-        "createdAt": "Creato in"
-    },
-    "server": {
-        "owner": "Proprietario",
-        "createdAt": "Creato in",
-        "clientJoin": "Entrai",
-        "channels": "Canali",
-        "premium": "Impulso",
-        "memberCount": "Membri",
-        "afk": "Canale AFK",
-        "click": "Guarda l'icona nel tuo browser",
-        "no": "NO",
-        "yes": "SÌ",
-        "notFound": "Non ho trovato nessun server con ID `{{id}}`",
-        "partner": "Discord Partner"
-    },
     "user": {
-        "info": {
-            "tag": "Tag utente",
-            "createdAt": "Creato in",
-            "userId": "ID utente",
-            "avatar": "Vedi Avatar utente",
-            "viewMember": "Vedi informazioni sui membri",
-            "noMember": "Non è un membro del server"
-        },
         "avatar": {
             "click": "Guarda l'avatar nel tuo browser",
             "title": "{{user}} avatar",
             "footer": "Ho trovato carino: 3"
-        },
-        "banner": {
-            "click": "Guarda il banner nel tuo browser",
-            "title": "{{user}} banner",
-            "noBanner": "Questo utente non ha banner"
-        },
-        "member": {
-            "title": "Informazioni su {{user}}",
-            "joinedAt": ":sparkles: inserito in",
-            "role": "Posizioni",
-            "nickname": "Soprannome sul server",
-            "noNickname": "Non c'è soprannome sul server",
-            "permissions": {
-                "button": "Autorizzazioni",
-                "list": "Elenco delle autorizzazioni",
-                "title": "{{user}} autorizzazioni"
-            },
-            "highestRole": "Posizione maggiore",
-            "premiumSince": "I guidano il server da allora",
-            "noRoles": "Non ci sono posizioni",
-            "noPermissions": "Non ci sono autorizzazioni"
         }
     },
     "ship": {
@@ -253,31 +194,6 @@
         "divorced": "... Quindi è tutto, se è divorziato è una cosa triste, la prossima volta ama qualcuno che ti merita davvero e rispetta, sì, sembra essere difficile perché l'amore è cieco e incontrollabile ... ma è meglio essere soli che essere soli Male accompagnato, mi fido di te!",
         "confirm": "Divorziare",
         "confirmed": "Divorziato"
-    },
-    "suggest": {
-        "success": "Grazie per avermi aiutato {{user}}, il tuo suggerimento `{{content}}` è stato inviato al mio sviluppatore <3"
-    },
-    "report": {
-        "success": "Grazie per avermi aiutato {{user}}, il tuo rapporto `{{content}}` è stato inviato al mio sviluppatore <3"
-    },
-    "status": {
-        "model": "Modello del processore",
-        "guilds": "Server",
-        "users": "Utenti",
-        "ram": "Memoria RAM",
-        "cpuUsage": "Uso del processore",
-        "node": "Node.js",
-        "arch": "Architettura",
-        "platform": "piattaforma"
-    },
-    "mcskin": {
-        "title": "Skin de {{user}}"
-    },
-    "mchead": {
-        "title": "Capo di {{user}}"
-    },
-    "mcbody": {
-        "title": "Corpo di {{user}}"
     },
     "error": {
         "tooLong": "Il contenuto è molto lungo, il limite è **{{limit}}** caratteri"
@@ -437,7 +353,6 @@
         "lose": "Ha dato {{choice}}! {{user}} vinto {{amount}} Cakes! Finanziato da {{author}}",
         "deny": "Negare",
         "denied": "Rifiuto",
-        "bot": "Per ora non sto accettando scommesse, sono in bancarotta",
         "betWithClient": {
             "lose": "Ha dato {{result}}! Ho vinto le torte {{amount}}! >: 3",
             "win": "Ha dato {{result}}! Congratulazioni, hai vinto {{amount}} Cakes! : 3"

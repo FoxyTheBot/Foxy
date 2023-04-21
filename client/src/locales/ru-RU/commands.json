@@ -6,24 +6,6 @@
         "result": "Вы свернули ** {{amount}} d {{sides}} **, и результат был ** {{result}} **",
         "button": "Рулон"
     },
-    "botinfo": {
-        "title": ":fox: Foxy",
-        "description": "Привет, я {{client.user.username}}! Я простой бразильский бот экономики и развлечений для вашего сервера! Я распространяю радость на {{guilds}} серверах :heart:",
-        "fields": {
-            "addme": "Добавь меня",
-            "server": "Серверы :heart:",
-            "server2": "Введите мой сервер, нажав здесь",
-            "add": "Добавьте меня, нажав здесь",
-            "support": "Сервер поддержки",
-            "twitter": "Мой твиттер",
-            "tiktok": "Мой тикток",
-            "instagram": "Мой Instagram",
-            "github": "Мой GitHub",
-            "youtube": "YouTube",
-            "donate2": "Пожертвовать мне, нажав здесь",
-            "privacy": "политика конфиденциальности"
-        }
-    },
     "lang": {
         "title": "Выберите ваш язык",
         "default": "Ваш язык определяется как бразильский португальский",
@@ -37,8 +19,8 @@
             "de-DE": "Немецкий",
             "it-IT": "Итальянский",
             "ru-RU": "Русский",
-            "ar-SA": "Árabe",
-            "pt-BR": "Português do Brasil"
+            "ar-SA": "арабский",
+            "pt-BR": "бразильский португальский"
         }
     },
     "anime": {
@@ -129,28 +111,39 @@
             }
         },
         "bot": {
-            "title": "Привет, я лисица",
             "description": "Привет {{user}}, я Фокси, у меня есть ресурсы для развлечения и привлекать ваших членов, команды экономики, модификация изображений и многое другое! : 3",
             "fields": {
-                "list": {
-                    "title": "Чтобы увидеть список команд, используемых",
-                    "value": "`/Помогите"
-                },
-                "guild": "Сторонник",
-                "privacy": "Política de privacidade",
-                "website": "Мой веб-сайт",
-                "crowdin": "Crowdin"
-            }
+                "addme": "Gostou das minhas funcionalidades? Me adicione no seu servidor!",
+                "add": "Me adicione clicando aqui",
+                "crowdin": "Me ajude a aprender novos idiomas",
+                "support": "Precisa de ajuda? Entre no meu servidor de suporte!",
+                "privacy": "Leia os termos de uso para evitar problemas",
+                "website": "Meu Website onde você pode ver algumas coisas sobre mim"
+            },
+            "footer": "Criada com ❤️ por {{owner}}"
         }
     },
     "roblox": {
-        "aboutme": "Обо мне",
-        "register": "Дата регистрации",
-        "undefined": "Неопределенный",
-        "noAboutme": "Нет обо мне",
-        "noStatus": "Там нет статуса",
-        "error": "Невозможно было найти этого пользователя ... вероятно, учетная запись не существует:/",
-        "button": "Просмотреть профиль"
+        "title": "Perfil de {{user}}",
+        "fields": {
+            "id": "ID do usuário",
+            "nickname": "Nome de exibição",
+            "joinDate": "Data de entrada",
+            "followers": "Seguidores",
+            "following": "Seguindo",
+            "badges": "Emblemas",
+            "friends": "Amigos",
+            "username": "Nome de usuário",
+            "blurb": "Sobre mim",
+            "isBanned": "Está banido",
+            "status": {
+                "banned": "Sim",
+                "notBanned": "Não"
+            }
+        },
+        "buttons": {
+            "viewProfile": "Ver perfil"
+        }
     },
     "aboutme": {
         "set": "Твое было изменено на `{{aboutme}}`",
@@ -165,63 +158,11 @@
         "changed": "Вы изменили макет своего профиля",
         "notFound": "Макет не найден"
     },
-    "role": {
-        "description": "Положение разрешений",
-        "id": "Идентификатор позиции",
-        "color": "Корпорация",
-        "position": "Должность офиса",
-        "noPermissions": "У позиции нет разрешений",
-        "roleMention": "Упоминание о должности",
-        "createdAt": "Создан в"
-    },
-    "server": {
-        "owner": "Владелец",
-        "createdAt": "Создан в",
-        "clientJoin": "Я вошел",
-        "channels": "каналы",
-        "premium": "Импульс",
-        "memberCount": "Члены",
-        "afk": "Канал AFK",
-        "click": "Смотрите значок в вашем браузере",
-        "no": "Нет",
-        "yes": "Да",
-        "notFound": "Я не нашел никакого сервера с идентификатором `{{id}}`",
-        "partner": "Партнер"
-    },
     "user": {
-        "info": {
-            "tag": "Тег пользователя",
-            "createdAt": "Создан в",
-            "userId": "ID пользователя",
-            "avatar": "См. Пользовательский аватар",
-            "viewMember": "См. Информацию о участнике",
-            "noMember": "Это не член сервера"
-        },
         "avatar": {
             "click": "Смотрите аватар в своем браузере",
             "title": "{{user}} аватар",
             "footer": "Я нашел милого: 3"
-        },
-        "banner": {
-            "click": "Смотрите баннер в своем браузере",
-            "title": "{{user}} баннер",
-            "noBanner": "У этого пользователя нет баннера"
-        },
-        "member": {
-            "title": "О {{user}}",
-            "joinedAt": ": Sparkles: введено в",
-            "role": "позиции",
-            "nickname": "ПРОТКТ",
-            "noNickname": "На сервере нет прозвища",
-            "permissions": {
-                "button": "Разрешения",
-                "list": "Список разрешений",
-                "title": "{{user}} разрешения"
-            },
-            "highestRole": "Большая позиция",
-            "premiumSince": "Я управляю сервером с",
-            "noRoles": "Там нет позиций",
-            "noPermissions": "Нет разрешений"
         }
     },
     "ship": {
@@ -244,7 +185,7 @@
         "alreadyMarriedWithUser": "Вы уже женаты на **{{user}}**",
         "ask": "{{user}} Вы хотите жениться ** {{author}} **?",
         "accept": "Принять",
-        "acceptedButton": "Pedido aceito",
+        "acceptedButton": "Заказ принят",
         "accepted": "Вы состоите в браке! Приветствия для пары <3"
     },
     "divorce": {
@@ -253,31 +194,6 @@
         "divorced": "... вот и все, если это разведено, это печальная вещь, в следующий раз любить кого -то, кто действительно заслуживает и уважает вас, да, это кажется сложной, потому что любовь слепа и неконтролируем ... но лучше быть в одиночестве Плохо сопровождаться, я доверяю вам! :heart:",
         "confirm": "Развестись",
         "confirmed": "В разводе"
-    },
-    "suggest": {
-        "success": "Спасибо, что помогли мне {{user}}, ваше предложение `{{content}}` Это было отправлено моему разработчику <3"
-    },
-    "report": {
-        "success": "Спасибо, что помогли мне {{user}}, ваш отчет `{{content}}` Он был отправлен моему разработчику <3"
-    },
-    "status": {
-        "model": "Модель процессора",
-        "guilds": "Серверы",
-        "users": "Пользователи",
-        "ram": "ОЗУ память",
-        "cpuUsage": "Использование процессора",
-        "node": "Node.js",
-        "arch": "Архитектура",
-        "platform": "Платформа"
-    },
-    "mcskin": {
-        "title": "Кожа de {{user}}"
-    },
-    "mchead": {
-        "title": "Глава {{user}}"
-    },
-    "mcbody": {
-        "title": "Тело {{user}}"
     },
     "error": {
         "tooLong": "Содержание очень длинное, предел - **{{limit}}** символы"
@@ -334,9 +250,9 @@
     },
     "top": {
         "commands": {
-            "title": "Comandos mais utilizados",
-            "footer": "Meus comandos foram executados {{total}} vezes",
-            "usageCount": "**{{usageCount}}** Usos"
+            "title": "Наиболее часто используемые команды",
+            "footer": "Мои команды были выполнены {{total}} раз",
+            "usageCount": "**{{usageCount}}** Использование"
         }
     },
     "pay": {
@@ -437,7 +353,6 @@
         "lose": "Дал {{choice}}! {{user}} win {{amount}} торты! Финансируется {{author}}",
         "deny": "Отрицать",
         "denied": "Отрицание",
-        "bot": "Пока я не принимаю ставки, я банкрота",
         "betWithClient": {
             "lose": "Дал {{result}}! Я выиграл {{amount}} торты! >: 3",
             "win": "Дал {{result}}! Поздравляю, вы выиграли {{amount}} торты! : 3"
