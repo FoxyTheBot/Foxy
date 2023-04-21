@@ -132,17 +132,17 @@
             "followers": "Followers",
             "following": "Following",
             "badges": "Badges",
-            "friends": "Amigos",
-            "username": "Nome de usuário",
-            "blurb": "Sobre mim",
-            "isBanned": "Está banido",
+            "friends": "Friends",
+            "username": "Username",
+            "blurb": "About me",
+            "isBanned": "Is Banned",
             "status": {
-                "banned": "Sim",
-                "notBanned": "Não"
+                "banned": "Yes",
+                "notBanned": "No"
             }
         },
         "buttons": {
-            "viewProfile": "Ver perfil"
+            "viewProfile": "View on Roblox"
         }
     },
     "aboutme": {
