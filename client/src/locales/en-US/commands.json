@@ -124,15 +124,14 @@
         }
     },
     "roblox": {
-        "title": "Perfil de {{user}}",
+        "title": "{{user}}'s Profile",
         "fields": {
-            "id": "ID do usuário",
-            "nickname": "Nome de exibição",
-            "joinDate": "Data de entrada",
-            "followers": "Seguidores",
-            "following": "Seguindo",
-            "badges": "Emblemas",
-            "followings": "Seguindo",
+            "id": "User ID",
+            "nickname": "Display Name",
+            "joinDate": "Join date",
+            "followers": "Followers",
+            "following": "Following",
+            "badges": "Badges",
             "friends": "Amigos",
             "username": "Nome de usuário",
             "blurb": "Sobre mim",
