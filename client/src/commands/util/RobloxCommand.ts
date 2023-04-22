@@ -4,6 +4,7 @@ import { createActionRow, createButton } from "../../utils/discord/Component";
 import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
 import { getPlayerInfo, getPlayerBadges, getIdFromUsername } from "noblox.js";
 import { bot } from "../..";
+import { MessageFlags } from "../../utils/discord/Message";
 
 const RobloxCommand = createCommand({
     name: "roblox",
@@ -13,23 +14,33 @@ const RobloxCommand = createCommand({
     },
     category: "util",
     options: [{
-        name: "user",
+        name: "search",
         nameLocalizations: {
-            "pt-BR": "usuário"
+            "pt-BR": "buscar"
         },
-        description: "[Utils] get information about a user",
+        description: "Search for a user on Roblox",
         descriptionLocalizations: {
-            "pt-BR": "[Utilitários] Obtenha informações sobre um usuário"
+            "pt-BR": "Busque um usuário no Roblox"
         },
-        type: ApplicationCommandOptionTypes.SubCommand,
+        type: ApplicationCommandOptionTypes.SubCommandGroup,
         options: [{
-            name: "username",
-            description: "The username of the Roblox account",
-            descriptionLocalizations: {
-                "pt-BR": "Nome de usuário da conta do Roblox"
+            name: "user",
+            nameLocalizations: {
+                "pt-BR": "usuário"
             },
-            type: ApplicationCommandOptionTypes.String,
-            required: true
+            description: "[Roblox] Search for a user on Roblox",
+            descriptionLocalizations: {
+                "pt-BR": "[Roblox] Busque um usuário no Roblox"
+            },
+            type: ApplicationCommandOptionTypes.SubCommand,
+            options: [{
+                name: "username",
+                description: "The username of the Roblox account",
+                descriptionLocalizations: {
+                    "pt-BR": "O nome de usuário da conta Roblox"
+                },
+                type: ApplicationCommandOptionTypes.String,
+            }]
         }]
     }],
     execute: async (context, endCommand, t) => {
@@ -103,10 +114,16 @@ const RobloxCommand = createCommand({
                             })])]
                         });
 
-                        endCommand();
+                        return endCommand();
                     });
                 })
             }
+        }).catch((err) => {
+            context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:roblox.errors.userNotFound')),
+                flags: MessageFlags.EPHEMERAL
+            });
+            return endCommand();
         })
     }
 });
