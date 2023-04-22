@@ -25,7 +25,7 @@ const RobloxCommand = createCommand({
         options: [{
             name: "username",
             nameLocalizations: {
-                "pt-BR": "usuário"
+                "pt-BR": "nome_de_usuário"
             },
             description: "The username of the Roblox account",
             descriptionLocalizations: {

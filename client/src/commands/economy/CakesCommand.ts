@@ -8,9 +8,9 @@ import CakeTransferExecutor from "../../utils/commands/executors/economy/CakeTra
 
 const CakeCommand = createCommand({
     name: 'cakes',
-    description: 'Commands related with economy system',
+    description: 'Commands related with Foxy economy system',
     descriptionLocalizations: {
-        'pt-BR': 'Comandos relacionados ao sistema de economia'
+        'pt-BR': 'Comandos relacionados a economia da Foxy'
     },
     options: [
         {
