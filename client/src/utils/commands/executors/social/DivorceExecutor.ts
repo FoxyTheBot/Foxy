@@ -11,7 +11,7 @@ const DivorceExecutor = async (context: ComponentInteractionContext) => {
     if (!partnerId) {
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale("commands:divorce.notMarried")),
-            flags: MessageFlags.Ephemeral
+            flags: MessageFlags.EPHEMERAL
         });
         return;
     }

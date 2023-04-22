@@ -27,7 +27,7 @@ module.exports = async (_, interaction) => {
                 bot.database.updateCommand(interaction.data?.name);
             } catch (e) {
                 console.error(e);
-                context.sendReply({ content: locale('events:interactionCreate.commandError'), flags: MessageFlags.Ephemeral })
+                context.sendReply({ content: locale('events:interactionCreate.commandError'), flags: MessageFlags.EPHEMERAL })
             }
         })
     }

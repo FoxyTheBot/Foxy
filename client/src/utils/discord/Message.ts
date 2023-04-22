@@ -1,5 +1,5 @@
 enum MessageFlags {
-  Ephemeral = 64,
+  EPHEMERAL = 64,
 }
 
 export { MessageFlags };

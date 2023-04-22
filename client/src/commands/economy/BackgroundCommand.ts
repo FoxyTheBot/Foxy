@@ -66,7 +66,7 @@ const BackgroundCommand = createCommand({
                 if (userData.backgrounds.includes(code)) {
                     context.sendReply({
                         content: t('commands:background.buy.alreadyOwned'),
-                        flags: MessageFlags.Ephemeral
+                        flags: MessageFlags.EPHEMERAL
                     });
 
                     endCommand();
@@ -108,7 +108,7 @@ const BackgroundCommand = createCommand({
                             value: b.id,
                         }))
                     })])],
-                    flags: MessageFlags.Ephemeral
+                    flags: MessageFlags.EPHEMERAL
                 });
                 endCommand();
                 break;

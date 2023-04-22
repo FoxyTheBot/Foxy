@@ -65,7 +65,7 @@ const MaskCommand = createCommand({
                 if (userData.masks.includes(code?.toLowerCase())) {
                     context.sendReply({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:masks.alreadyOwned')),
-                        flags: MessageFlags.Ephemeral
+                        flags: MessageFlags.EPHEMERAL
                     });
 
                     return endCommand();
@@ -80,7 +80,7 @@ const MaskCommand = createCommand({
                         name: 'profile.png',
                         blob: await profile
                     }],
-                    flags: MessageFlags.Ephemeral,
+                    flags: MessageFlags.EPHEMERAL,
                     components: [createActionRow([createButton({
                         customId: createCustomId(0, context.author.id, context.commandId, code, mask?.price, subCommand),
                         label: t('commands:masks.purchase'),
@@ -100,7 +100,7 @@ const MaskCommand = createCommand({
                 if (userMasks.length === 0) {
                     context.sendReply({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:masks.noMasks')),
-                        flags: MessageFlags.Ephemeral
+                        flags: MessageFlags.EPHEMERAL
                     });
 
                     return endCommand();
@@ -113,7 +113,7 @@ const MaskCommand = createCommand({
                             placeholder: t('commands:masks.selectMask'),
                             options: userMasks.map(data => Object({ label: data, value: data }))
                         })])],
-                        flags: MessageFlags.Ephemeral
+                        flags: MessageFlags.EPHEMERAL
                     });
                 }
             }

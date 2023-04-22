@@ -10,7 +10,7 @@ const BackgroundExecutor = async (context: ComponentInteractionContext) => {
     const clientData = await bot.database.getUser(bot.id);
 
     await context.sendReply({
-        flags: MessageFlags.Ephemeral,
+        flags: MessageFlags.EPHEMERAL,
         components: [createActionRow([createButton({
             customId: createCustomId(0, context.author.id, context.commandId, code, background, subcommand),
             label: bot.locale('commands:background.buy.purchase'),
@@ -25,7 +25,7 @@ const BackgroundExecutor = async (context: ComponentInteractionContext) => {
     if (userData.balance < background) {
         context.followUp({
             content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale('commands:background.buy.noMoney')),
-            flags: MessageFlags.Ephemeral
+            flags: MessageFlags.EPHEMERAL
         })
     } else {
         userData.balance -= Number(background);
@@ -35,7 +35,7 @@ const BackgroundExecutor = async (context: ComponentInteractionContext) => {
         await userData.save();
         context.followUp({
             content: bot.locale('commands:background.buy.success'),
-            flags: MessageFlags.Ephemeral
+            flags: MessageFlags.EPHEMERAL
         })
     }
 }

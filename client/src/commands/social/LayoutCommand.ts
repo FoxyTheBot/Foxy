@@ -51,7 +51,7 @@ const LayoutCommand = createCommand({
         await userData.save();
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:layouts.changed')),
-            flags: MessageFlags.Ephemeral
+            flags: MessageFlags.EPHEMERAL
         })
         endCommand();
     }

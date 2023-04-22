@@ -12,11 +12,11 @@ const MaskBuyExecutor = async (context: ComponentInteractionContext) => {
 
     if (userData.balance < mask) {
         context.sendReply({
-            flags: MessageFlags.Ephemeral
+            flags: MessageFlags.EPHEMERAL
         });
         context.followUp({
             content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale('commands:masks.buy.noMoney')),
-            flags: MessageFlags.Ephemeral
+            flags: MessageFlags.EPHEMERAL
         });
     } else {
         userData.balance -= Number(mask);
@@ -26,7 +26,7 @@ const MaskBuyExecutor = async (context: ComponentInteractionContext) => {
         await userData.save();
         context.sendReply({
             content: bot.locale('commands:masks.buy.success'),
-            flags: MessageFlags.Ephemeral,
+            flags: MessageFlags.EPHEMERAL,
             components: [createActionRow([createButton({
                 customId: createCustomId(0, context.author.id, context.commandId, code, mask, subCommand),
                 label: bot.locale('commands:masks.buy.purchase'),

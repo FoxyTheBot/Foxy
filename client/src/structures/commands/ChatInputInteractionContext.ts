@@ -140,13 +140,13 @@ export default class {
         return `<t:${Math.floor(date.getTime() / 1000).toFixed(0)}:f>`
     }
 
-    async sendDefer(Ephemeral = false): Promise<void> {
+    async sendDefer(EPHEMERAL = false): Promise<void> {
         this.replied = true;
         await bot.helpers
             .sendInteractionResponse(this.interaction.id, this.interaction.token, {
                 type: InteractionResponseTypes.DeferredChannelMessageWithSource,
                 data: {
-                    flags: Ephemeral ? MessageFlags.Ephemeral : undefined,
+                    flags: EPHEMERAL ? MessageFlags.EPHEMERAL : undefined,
                 },
             })
     }

@@ -23,7 +23,7 @@ const componentExecutor = async (interaction: Interaction): Promise<void> => {
         type: InteractionResponseTypes.ChannelMessageWithSource,
         data: {
           content: `<:emoji:${bot.emotes.FOXY_CRY}> | ${content}`,
-          flags: MessageFlags.Ephemeral,
+          flags: MessageFlags.EPHEMERAL,
           allowedMentions: { parse: [AllowedMentionsTypes.UserMentions] },
         },
       })

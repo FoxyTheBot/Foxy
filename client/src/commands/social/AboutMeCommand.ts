@@ -39,7 +39,7 @@ const AboutMeCommand = createCommand({
 
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:aboutme.set", { aboutme: text })),
-            flags: MessageFlags.Ephemeral
+            flags: MessageFlags.EPHEMERAL
         })
         userData.aboutme = text;
         await userData.save();
