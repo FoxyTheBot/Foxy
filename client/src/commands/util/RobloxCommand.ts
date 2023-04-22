@@ -3,7 +3,6 @@ import { createEmbed } from "../../utils/discord/Embed";
 import { createActionRow, createButton } from "../../utils/discord/Component";
 import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
 import { getPlayerInfo, getPlayerBadges, getIdFromUsername } from "noblox.js";
-import moment from "moment";
 import { bot } from "../..";
 
 const RobloxCommand = createCommand({
@@ -44,7 +43,7 @@ const RobloxCommand = createCommand({
                 getPlayerInfo(id).then((info) => {
                     getPlayerBadges(id).then((badges) => {
                         const embed = createEmbed({
-                            title: context.getEmojiById(bot.emotes.ROBLOX) + " " + t("commands:roblox.title", { user: info.username}),
+                            title: context.getEmojiById(bot.emotes.ROBLOX) + " " + t("commands:roblox.title", { user: info.username }),
                             color: 0x2F3136,
                             description: info.blurb,
                             fields: [{
