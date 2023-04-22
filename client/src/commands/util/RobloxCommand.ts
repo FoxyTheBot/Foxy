@@ -24,9 +24,6 @@ const RobloxCommand = createCommand({
         type: ApplicationCommandOptionTypes.SubCommand,
         options: [{
             name: "username",
-            nameLocalizations: {
-                "pt-BR": "nome_de_usuário"
-            },
             description: "The username of the Roblox account",
             descriptionLocalizations: {
                 "pt-BR": "Nome de usuário da conta do Roblox"
