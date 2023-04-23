@@ -141,7 +141,7 @@
                 "notBanned": "No"
             },
             "errors": {
-                "userNotFound": "Não consegui econtrar esse usuário, desculpa!"
+                "userNotFound": "Sorry! I can't find this user"
             }
         },
         "buttons": {
