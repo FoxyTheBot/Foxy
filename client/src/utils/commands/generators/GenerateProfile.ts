@@ -3,7 +3,9 @@ import { bot } from "../../../index";
 import moment from 'moment';
 import { getUserAvatar } from '../../discord/User';
 import { serverURL } from '../../../../config.json';
+import { lylist } from '../../../structures/json/layoutList.json';
 
+let font= "#ffffff";
 export default class CreateProfile {
     private user: any;
     private data: any;
@@ -38,13 +40,15 @@ export default class CreateProfile {
 
         const canvas = Canvas.createCanvas(this.width, this.height);
         const context = canvas.getContext("2d");
+        const isLayoutWhite = lylist.find((l) => l.id === this.data.layout).darkText;
         let layout = await Canvas.loadImage(`${serverURL}/layouts/${this.data.layout}`);
         background = await Canvas.loadImage(`${serverURL}/backgrounds/${this.data.background}`);
-
+        
         if (this.testMode && !this.mask) {
             background = await Canvas.loadImage(`${serverURL}/backgrounds/${this.code}`);
             userAboutme = this.locale("commands:profile.testMode");
         }
+        if (isLayoutWhite) font = "#000000";
         context.drawImage(background, 0, 0, canvas.width, canvas.height)
         context.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
@@ -52,25 +56,25 @@ export default class CreateProfile {
         context.strokeRect(0, 0, canvas.width, canvas.height);
 
         context.font = '70px sans-serif';
-        context.fillStyle = '#ffffff';
+        context.fillStyle = font;
         context.fillText(this.user.username, canvas.width / 5.8, canvas.height / 1.3)
 
         context.font = '40px sans-serif';
-        context.fillStyle = '#ffffff';
+        context.fillStyle = font;
         context.fillText(`Cakes: \n${this.data.balance}\nReps: ${this.data.repCount}`, canvas.width / 1.2, canvas.height / 1.4);
 
         if (this.data.marriedWith) {
             moment.locale(this.locale.lng)
             const discordProfile = await bot.helpers.getUser(this.data.marriedWith);
             context.font = ('30px sans-serif');
-            context.fillStyle = '#ffffff';
+            context.fillStyle = font;
             context.fillText(this.locale("commands:profile.marriedWith", {
                 user: `${discordProfile.username}#${discordProfile.discriminator}`, relativeTime: moment(this.data.marriedDate, "YYYYMMDD").fromNow(), date: this.data.marriedDate.toLocaleString(this.locale.lng, { timeZone: "America/Sao_Paulo", year: 'numeric', month: 'numeric', day: 'numeric' })
             }), canvas.width / 50, canvas.height - 15 / 1);
         }
 
         context.font = ('30px sans-serif');
-        context.fillStyle = '#ffffff';
+        context.fillStyle = font;
         context.fillText(userAboutme, canvas.width / 6.1, canvas.height / 1.2);
         context.save();
 
