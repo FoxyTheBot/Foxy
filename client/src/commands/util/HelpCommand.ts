@@ -2,7 +2,6 @@ import { bot } from '../../index';
 import { createCommand } from '../../structures/commands/createCommand';
 import { createEmbed } from '../../utils/discord/Embed';
 import { getUserAvatar } from '../../utils/discord/User';
-import { serverURL } from '../../../config.json';
 
 const HelpCommand = createCommand({
     name: 'help',
