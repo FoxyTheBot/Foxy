@@ -299,7 +299,7 @@
     "tickle": {
         "success": "**{{author}}** tickles **{{user}}**",
         "button": "Retribute",
-        "bot": "🤣 Eu não gosto de cócegas, pare! 🤣"
+        "bot": "🤣 I don't like tickling, stop! 🤣"
     },
     "smile": {
         "smiling": "{{author}} is smiling..."
@@ -309,7 +309,7 @@
     },
     "lick": {
         "success": "**{{author}}** licks **{{user}}**",
-        "bot": "Nem tente me lamber! Eu não gosto disso!"
+        "bot": "Don't even try to lick me! I do not like this!"
     },
     "laugh": {
         "success": "{{author}} is laughing..."
@@ -317,8 +317,8 @@
     "slap": {
         "button": "Slap",
         "success": "**{{author}}** slapped **{{target}}**",
-        "bot": "Por que você está me batendo? Eu não fiz nada... :(",
-        "self": "Você não pode se bater, não precisa se machucar"
+        "bot": "Why are you hitting me? I did nothing... :(",
+        "self": "You can't beat yourself up, you don't have to get hurt"
     },
     "dance": {
         "dancing": "{{author}} is dancing"
@@ -330,8 +330,8 @@
     "kiss": {
         "button": "Kiss",
         "success": "**{{author}}** kissed **{{user}}**",
-        "bot": "Eu não quero te beijar, oxi? Somos apenas amigos!",
-        "self": "Você não pode se beijar, isso é estranho..."
+        "bot": "I don't want to kiss you! We are just friends!",
+        "self": "You can't kiss, that's weird..."
     },
     "hug": {
         "button": "Hug",
