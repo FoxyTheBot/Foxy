@@ -298,7 +298,8 @@
     },
     "tickle": {
         "success": "**{{author}}** gekitzelt bei **{{user}}**",
-        "button": "Zurückgeben"
+        "button": "Zurückgeben",
+        "bot": "🤣 Eu não gosto de cócegas, pare! 🤣"
     },
     "smile": {
         "smiling": "{{author}} lächelt ..."
@@ -307,14 +308,17 @@
         "crying": "{{author}} weint ..."
     },
     "lick": {
-        "success": "**{{author}}** gab einen Lick in **{{user}}**"
+        "success": "**{{author}}** gab einen Lick in **{{user}}**",
+        "bot": "Nem tente me lamber! Eu não gosto disso!"
     },
     "laugh": {
         "success": "{{author}} lacht ..."
     },
     "slap": {
         "button": "Zurückgeben",
-        "success": "** {{author}} ** gab eine Tabelle bei ** {{user}} **"
+        "success": "** {{author}} ** gab eine Tabelle bei ** {{user}} **",
+        "bot": "Por que você está me batendo? Eu não fiz nada... :(",
+        "self": "Você não pode se bater, não precisa se machucar"
     },
     "dance": {
         "dancing": "{{author}} tanzt"
@@ -326,7 +330,8 @@
     "kiss": {
         "button": "Zurückgeben",
         "success": "**{{author}}** gab einen Kuss auf **{{user}}**",
-        "self": "Ich will dich nicht küssen? Wir sind nur Freunde!"
+        "bot": "Eu não quero te beijar, oxi? Somos apenas amigos!",
+        "self": "Você não pode se beijar, isso é estranho..."
     },
     "hug": {
         "button": "Zurückgeben",
