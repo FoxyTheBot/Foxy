@@ -113,35 +113,35 @@
         "bot": {
             "description": "Привет {{user}}, я Фокси, у меня есть ресурсы для развлечения и привлекать ваших членов, команды экономики, модификация изображений и многое другое! : 3",
             "fields": {
-                "addme": "Gostou das minhas funcionalidades? Me adicione no seu servidor!",
-                "add": "Me adicione clicando aqui",
-                "crowdin": "Me ajude a aprender novos idiomas",
-                "support": "Precisa de ajuda? Entre no meu servidor de suporte!",
+                "addme": "Вам понравились мои черты? Добавьте меня на свой сервер!",
+                "add": "Добавьте меня, нажав здесь",
+                "crowdin": "Помогите мне выучить новые языки",
+                "support": "Нужна помощь? Присоединяйтесь к моему серверу поддержки!",
                 "privacy": "Leia os termos de uso para evitar problemas",
                 "website": "Meu Website onde você pode ver algumas coisas sobre mim"
             },
-            "footer": "Criada com ❤️ por {{owner}}"
+            "footer": "Создано с ❤️ пользователем {{owner}}"
         }
     },
     "roblox": {
         "title": "Perfil de {{user}}",
         "fields": {
             "id": "ID do usuário",
-            "nickname": "Nome de exibição",
-            "joinDate": "Data de entrada",
-            "followers": "Seguidores",
-            "following": "Seguindo",
-            "badges": "Emblemas",
-            "friends": "Amigos",
-            "username": "Nome de usuário",
-            "blurb": "Sobre mim",
-            "isBanned": "Está banido",
+            "nickname": "Отображаемое имя",
+            "joinDate": "Дата ввода",
+            "followers": "Последователи",
+            "following": "Следующий",
+            "badges": "Значки",
+            "friends": "Друзья",
+            "username": "Имя пользователя",
+            "blurb": "Обо мне",
+            "isBanned": "Запрещенный",
             "status": {
-                "banned": "Sim",
-                "notBanned": "Não"
+                "banned": "Да",
+                "notBanned": "Нет"
             },
             "errors": {
-                "userNotFound": "Não consegui econtrar esse usuário, desculpa!"
+                "userNotFound": "Я не смог найти этого пользователя, извините!"
             }
         },
         "buttons": {
