@@ -43,6 +43,16 @@ const tickleCommand = createCommand({
                 url: tickleGif.url
             }
 
+        if (user.id === bot.clientId) {
+            embed.footer = {
+                text: t('commands:tickle.bot')
+            }
+            context.sendReply({
+                embeds: [embed],
+            });
+
+            return endCommand();
+        }
         context.sendReply({
             embeds: [embed],
             components: [createActionRow([createButton({

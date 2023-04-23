@@ -5,6 +5,7 @@ import { User } from 'discordeno/transformers';
 import { createEmbed } from '../../utils/discord/Embed';
 import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
 import { bot } from '../../index';
+import { MessageFlags } from '../../utils/discord/Message';
 import SlapExecutor from '../../utils/commands/executors/actions/SlapExecutor';
 
 const embed = createEmbed({});
@@ -39,6 +40,23 @@ const SlapCommand = createCommand({
         const user = context.getOption<User>("user", "users");
         const slapGif: any = await context.getImage("slap");
 
+        if (user.id === bot.clientId) {
+            context.sendReply({
+                content: t('commands:slap.bot'),
+                flags: MessageFlags.EPHEMERAL
+            });
+
+            return endCommand();
+        }
+
+        if (user.id === context.author.id) {
+            context.sendReply({
+                content: t('commands:slap.self'),
+                flags: MessageFlags.EPHEMERAL
+            });
+
+            return endCommand();
+        }
         embed.title = t('commands:slap.success', { target: user.username, author: context.author.username, user: user.username }),
             embed.image = {
                 url: slapGif.url

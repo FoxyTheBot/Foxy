@@ -42,6 +42,12 @@ const HugCommand = createCommand({
                 url: hugGif.url
             }
 
+        if (user.id === bot.clientId) {
+            context.sendReply({
+                embeds: [embed],
+            });
+            return endCommand();
+        }
         context.sendReply({
             embeds: [embed],
             components: [createActionRow([createButton({

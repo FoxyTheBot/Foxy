@@ -6,6 +6,7 @@ import { createEmbed } from '../../utils/discord/Embed';
 import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
 import { bot } from '../../index';
 import LickExecutor from "../../utils/commands/executors/actions/LickExecutor";
+import { MessageFlags } from '../../utils/discord/Message';
 
 const embed = createEmbed({});
 
@@ -43,6 +44,14 @@ const LickCommand = createCommand({
                 url: lickGif.url
             }
 
+        if (user.id === bot.clientId) {
+            context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:lick.bot')),
+                flags: MessageFlags.EPHEMERAL
+            });
+
+            return endCommand();
+        }
         context.sendReply({
             embeds: [embed],
             components: [createActionRow([createButton({

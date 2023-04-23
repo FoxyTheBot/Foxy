@@ -6,6 +6,7 @@ import { createEmbed } from '../../utils/discord/Embed';
 import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
 import { bot } from '../../index';
 import KissExecutor from "../../utils/commands/executors/actions/KissExecutor";
+import { MessageFlags } from '../../utils/discord/Message';
 
 const embed = createEmbed({});
 
@@ -37,6 +38,24 @@ const KissCommand = createCommand({
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
         const kissGif: any = await context.getImage("kiss");
+
+        if (user.id === bot.clientId) {
+            context.sendReply({
+                content: t('commands:kiss.bot'),
+                flags: MessageFlags.EPHEMERAL
+            });
+
+            return endCommand();
+        }
+
+        if (user.id === context.author.id) {
+            context.sendReply({
+                content: t('commands:kiss.self'),
+                flags: MessageFlags.EPHEMERAL
+            });
+
+            return endCommand();
+        }
 
         embed.title = t('commands:kiss.success', { user: user.username, author: context.author.username }),
             embed.image = {
