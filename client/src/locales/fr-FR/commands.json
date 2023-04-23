@@ -82,7 +82,8 @@
             "success": "Vous avez acheté le masque pour votre avatar !",
             "noMoney": "Vous n'avez pas assez de Cakes pour acheter ce masque",
             "preview": "Aperçu",
-            "purchase": "Achat"
+            "purchase": "Achat",
+            "purchased": "Comprado"
         },
         "set": {
             "success": "Masque changé avec succès :3",
@@ -278,6 +279,7 @@
             "alreadyOwned": "Vous avez déjà cet arrière-plan",
             "onlyDevs": "Seuls les développeurs peuvent acheter des arrière-plans",
             "purchase": "Achat",
+            "purchased": "Comprado",
             "price": "Prix",
             "preview": "Aperçu en arrière-plan",
             "noMoney": "Vous n'avez pas assez de cakes",
