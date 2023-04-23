@@ -139,6 +139,9 @@
             "status": {
                 "banned": "Sim",
                 "notBanned": "Não"
+            },
+            "errors": {
+                "userNotFound": "Não consegui econtrar esse usuário, desculpa!"
             }
         },
         "buttons": {
