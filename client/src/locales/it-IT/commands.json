@@ -298,7 +298,8 @@
     },
     "tickle": {
         "success": "**{{author}}** solleticato a **{{user}}**",
-        "button": "Ridare"
+        "button": "Ridare",
+        "bot": "🤣 Eu não gosto de cócegas, pare! 🤣"
     },
     "smile": {
         "smiling": "{{author}} sta sorridendo ..."
@@ -307,14 +308,17 @@
         "crying": "{{author}} sta piangendo ..."
     },
     "lick": {
-        "success": "**{{author}}** ha dato una lecca in **{{user}}**"
+        "success": "**{{author}}** ha dato una lecca in **{{user}}**",
+        "bot": "Nem tente me lamber! Eu não gosto disso!"
     },
     "laugh": {
         "success": "{{author}} sta ridendo ..."
     },
     "slap": {
         "button": "Ridare",
-        "success": "**{{author}}** ha dato una tabella a **{{user}}**"
+        "success": "**{{author}}** ha dato una tabella a **{{user}}**",
+        "bot": "Por que você está me batendo? Eu não fiz nada... :(",
+        "self": "Você não pode se bater, não precisa se machucar"
     },
     "dance": {
         "dancing": "{{author}} sta ballando"
@@ -326,7 +330,8 @@
     "kiss": {
         "button": "Ridare",
         "success": "**{{author}}** ha dato un bacio su **{{user}}**",
-        "self": "Non voglio baciarti, Oxy? Siamo solo amici!"
+        "bot": "Eu não quero te beijar, oxi? Somos apenas amigos!",
+        "self": "Você não pode se beijar, isso é estranho..."
     },
     "hug": {
         "button": "Ridare",
