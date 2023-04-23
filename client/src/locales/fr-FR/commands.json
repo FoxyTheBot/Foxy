@@ -298,7 +298,8 @@
     },
     "tickle": {
         "success": "**{{author}}** chatouillé **{{user}}**",
-        "button": "Redonner"
+        "button": "Redonner",
+        "bot": "🤣 Eu não gosto de cócegas, pare! 🤣"
     },
     "smile": {
         "smiling": "{{author}} a souri..."
@@ -307,14 +308,17 @@
         "crying": "{{author}} pleure..."
     },
     "lick": {
-        "success": "**{{author}}** léché **{{user}}**"
+        "success": "**{{author}}** léché **{{user}}**",
+        "bot": "Nem tente me lamber! Eu não gosto disso!"
     },
     "laugh": {
         "success": "{{author}} a ri..."
     },
     "slap": {
         "button": "De donner en retour",
-        "success": "**{{author}}** giflé **{{user}}**"
+        "success": "**{{author}}** giflé **{{user}}**",
+        "bot": "Por que você está me batendo? Eu não fiz nada... :(",
+        "self": "Você não pode se bater, não precisa se machucar"
     },
     "dance": {
         "dancing": "{{author}} a dansé"
@@ -326,7 +330,8 @@
     "kiss": {
         "button": "De donner en retour",
         "success": "**{{author}}** embrassé **{{user}}**",
-        "self": "Je ne veux pas t'embrasser ! Nous sommes juste amis !"
+        "bot": "Eu não quero te beijar, oxi? Somos apenas amigos!",
+        "self": "Você não pode se beijar, isso é estranho..."
     },
     "hug": {
         "button": "De donner en retour",
