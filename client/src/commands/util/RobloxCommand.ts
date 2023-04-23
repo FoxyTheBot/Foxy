@@ -52,7 +52,7 @@ const RobloxCommand = createCommand({
                     getPlayerBadges(id).then((badges) => {
                         const embed = createEmbed({
                             title: context.getEmojiById(bot.emotes.ROBLOX) + " " + t("commands:roblox.title", { user: info.username }),
-                            color: 0x2F3136,
+                            color: 0xff0000,
                             description: info.blurb,
                             fields: [{
                                 name: t("commands:roblox.fields.id"),
