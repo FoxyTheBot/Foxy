@@ -82,7 +82,8 @@
             "success": "Você comprou a máscara para seu avatar!",
             "noMoney": "Você não tem Cakes o suficiente para adquirir esta máscara",
             "preview": "Pré-visualização",
-            "purchase": "Comprar"
+            "purchase": "Comprar",
+            "purchased": "Comprado"
         },
         "set": {
             "success": "Máscara alterada com sucesso :3",
@@ -278,6 +279,7 @@
             "alreadyOwned": "Você já possui esse background",
             "onlyDevs": "Somente os desenvolvedores podem comprar backgrounds",
             "purchase": "Comprar",
+            "purchased": "Comprado",
             "price": "Preço",
             "preview": "Pré-visualização do background",
             "noMoney": "Você não tem Cakes suficiente",
