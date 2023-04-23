@@ -298,7 +298,8 @@
     },
     "tickle": {
         "success": "** {{author}} ** تدغدغ في ** {{user}} **",
-        "button": "رد الجميل"
+        "button": "رد الجميل",
+        "bot": "🤣 Eu não gosto de cócegas, pare! 🤣"
     },
     "smile": {
         "smiling": "{{author}} يبتسم ..."
@@ -307,14 +308,17 @@
         "crying": "{{author}} يبكي ..."
     },
     "lick": {
-        "success": "** {{author}} ** أعطى لعق في ** {{user}} **"
+        "success": "** {{author}} ** أعطى لعق في ** {{user}} **",
+        "bot": "Nem tente me lamber! Eu não gosto disso!"
     },
     "laugh": {
         "success": "{{author}} يضحك ..."
     },
     "slap": {
         "button": "رد الجميل",
-        "success": "** {{author}} ** أعطى جدولًا على ** {{user}} **"
+        "success": "** {{author}} ** أعطى جدولًا على ** {{user}} **",
+        "bot": "Por que você está me batendo? Eu não fiz nada... :(",
+        "self": "Você não pode se bater, não precisa se machucar"
     },
     "dance": {
         "dancing": "{{author}} يرقص"
@@ -326,7 +330,8 @@
     "kiss": {
         "button": "رد الجميل",
         "success": "** {{author}} ** أعطى قبلة على ** {{user}} **",
-        "self": "لا أريد أن أقبلك يا أوكسي؟ نحن مجرد أصدقاء!"
+        "bot": "Eu não quero te beijar, oxi? Somos apenas amigos!",
+        "self": "Você não pode se beijar, isso é estranho..."
     },
     "hug": {
         "button": "رد الجميل",
