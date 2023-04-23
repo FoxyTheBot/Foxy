@@ -7,9 +7,9 @@ import { MessageFlags } from "../../utils/discord/Message";
 const choices = lylist.map(data => Object({ name: data.name, nameLocalizations: data.nameLocalizations, value: data.id }));
 const LayoutCommand = createCommand({
     name: "layout",
-    description: "[Social] Change your profile layout",
+    description: "[Economy] Change your profile layout",
     descriptionLocalizations: {
-        "pt-BR": "[Social] Mude o layout do seu perfil"
+        "pt-BR": "[Economia] Mude o layout do seu perfil"
     },
     category: "economy",
     options: [
@@ -18,9 +18,9 @@ const LayoutCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "definir"
             },
-            description: "[Social] Set your profile layout",
+            description: "[Economy] Set your profile layout",
             descriptionLocalizations: {
-                "pt-BR": "[Social] Defina o layout do seu perfil"
+                "pt-BR": "[Economia] Defina o layout do seu perfil"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [
