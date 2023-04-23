@@ -1,9 +1,9 @@
 {
     "lylist": [
         {
-            "name": "Default",
+            "name": "Discord Dark Theme",
             "nameLocalizations": {
-                "pt-BR": "Padrão"
+                "pt-BR": "Tema Escuro do Discord"
             },
             "id": "default",
             "price": "free",
@@ -44,6 +44,16 @@
             "id": "cyan",
             "price": "free",
             "filename": "cyan.png"
+        },
+        {
+            "name": "Discord Light Theme",
+            "nameLocalizations": {
+                "pt-BR": "Tema Claro do Discord"
+            },
+            "id": "light",
+            "price": "free",
+            "filename": "discord_light.png",
+            "darkText": true
         }
     ],
     "masks": [
