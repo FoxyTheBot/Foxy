@@ -82,7 +82,8 @@
             "success": "Sie haben die Maske für Ihren Avatar gekauft!",
             "noMoney": "Sie haben nicht genug Kuchen, um diese Maske zu bekommen",
             "preview": "Vorschau",
-            "purchase": "Kaufen"
+            "purchase": "Kaufen",
+            "purchased": "Comprado"
         },
         "set": {
             "success": "Erfolgreich geänderte Maske: 3",
@@ -278,6 +279,7 @@
             "alreadyOwned": "Sie haben bereits diesen Hintergrund",
             "onlyDevs": "Nur Entwickler können Hintergründe kaufen",
             "purchase": "Kaufen",
+            "purchased": "Comprado",
             "price": "Preis",
             "preview": "Hintergrundvorschau",
             "noMoney": "Sie haben nicht genug Kuchen",
