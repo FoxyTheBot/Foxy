@@ -82,7 +82,8 @@
             "success": "Hai comprato la maschera per il tuo avatar!",
             "noMoney": "Non hai abbastanza torte per ottenere questa maschera",
             "preview": "Anteprima",
-            "purchase": "Acquistare"
+            "purchase": "Acquistare",
+            "purchased": "Comprado"
         },
         "set": {
             "success": "Maschera cambiata con successo: 3",
@@ -278,6 +279,7 @@
             "alreadyOwned": "Hai già questo background",
             "onlyDevs": "Solo gli sviluppatori possono acquistare background",
             "purchase": "Acquistare",
+            "purchased": "Comprado",
             "price": "Prezzo",
             "preview": "Anteprima di sfondo",
             "noMoney": "Non hai abbastanza torte",
