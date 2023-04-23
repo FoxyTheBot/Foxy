@@ -8,7 +8,16 @@ import { MessageFlags } from '../../utils/discord/Message';
 import CreateProfile from '../../utils/commands/generators/GenerateProfile';
 import BackgroundSetExecutor from '../../utils/commands/executors/economy/BackgroundSetExecutor';
 
-const choices = bglist.map(data => Object({ name: `${data.name} / ${data.cakes} Cakes`, value: data.id }));
+var choices = [];
+
+for (var i = 0; i < bglist.length; i++) {
+    if (bglist[i].cakes === 0) continue;
+    choices.push({
+        name: `💖 ${bglist[i].name} - ${bglist[i].cakes} Cakes`,
+        value: bglist[i].id
+    })
+}
+
 const BackgroundCommand = createCommand({
     name: 'background',
     description: '[Economy] Change your profile background',
