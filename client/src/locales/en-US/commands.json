@@ -82,7 +82,8 @@
             "success": "You have purchased the profile mask!",
             "noMoney": "You don't have enough Cakes",
             "preview": "Preview",
-            "purchase": "Purchase"
+            "purchase": "Purchase",
+            "purchased": "Comprado"
         },
         "set": {
             "success": "Your mask has changed :3",
@@ -278,6 +279,7 @@
             "alreadyOwned": "You already own this background",
             "onlyDevs": "Only the developers can buy this background",
             "purchase": "Purchase",
+            "purchased": "Comprado",
             "price": "Price",
             "preview": "Background Preview",
             "noMoney": "You don't have enough Cakes",
