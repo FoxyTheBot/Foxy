@@ -39,7 +39,7 @@ const KissCommand = createCommand({
         const user = context.getOption<User>("user", "users");
         const kissGif: any = await context.getImage("kiss");
 
-        if (user.id === bot.clientId) {
+        if (user.id === bot.id) {
             context.sendReply({
                 content: t('commands:kiss.bot'),
                 flags: MessageFlags.EPHEMERAL

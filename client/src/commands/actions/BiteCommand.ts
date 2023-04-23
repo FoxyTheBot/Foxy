@@ -44,7 +44,7 @@ const BiteCommand = createCommand({
             return endCommand();
         }
 
-        if (user.id === bot.clientId) {
+        if (user.id === bot.id) {
             context.sendReply({
                 content: t('commands:bite.bot'),
                 flags: MessageFlags.EPHEMERAL

@@ -43,7 +43,7 @@ const tickleCommand = createCommand({
                 url: tickleGif.url
             }
 
-        if (user.id === bot.clientId) {
+        if (user.id === bot.id) {
             embed.footer = {
                 text: t('commands:tickle.bot')
             }

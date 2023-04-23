@@ -44,7 +44,7 @@ const LickCommand = createCommand({
                 url: lickGif.url
             }
 
-        if (user.id === bot.clientId) {
+        if (user.id === bot.id) {
             context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:lick.bot')),
                 flags: MessageFlags.EPHEMERAL

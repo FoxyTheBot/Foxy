@@ -40,7 +40,7 @@ const SlapCommand = createCommand({
         const user = context.getOption<User>("user", "users");
         const slapGif: any = await context.getImage("slap");
 
-        if (user.id === bot.clientId) {
+        if (user.id === bot.id) {
             context.sendReply({
                 content: t('commands:slap.bot'),
                 flags: MessageFlags.EPHEMERAL
