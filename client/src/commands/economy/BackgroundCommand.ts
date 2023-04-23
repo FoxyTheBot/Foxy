@@ -7,6 +7,7 @@ import BackgroundBuyExecutor from '../../utils/commands/executors/economy/Backgr
 import { MessageFlags } from '../../utils/discord/Message';
 import CreateProfile from '../../utils/commands/generators/GenerateProfile';
 import BackgroundSetExecutor from '../../utils/commands/executors/economy/BackgroundSetExecutor';
+import { createEmbed } from '../../utils/discord/Embed';
 
 var choices = [];
 
@@ -83,11 +84,22 @@ const BackgroundCommand = createCommand({
                 }
                 const createProfile = new CreateProfile(t, context.author, userData, true, code);
                 const profile = createProfile.create();
+                const embed = createEmbed({
+                    title: `${context.getEmojiById(bot.emotes.FOXY_YAY)} ${background.name}`,
+                    description: background.description,
+                    fields: [{
+                        name: `${context.getEmojiById(bot.emotes.FOXY_DAILY)} ${background.cakes} Cakes}`,
+                        value: `${background.cakes} Cakes`,
+                    }],
+                    image: {
+                        url: `attachment://preview${context.author.id}.png`
+                    }
+                });
 
                 context.sendReply({
-                    content: context.makeReply(bot.emotes.FOXY_YAY, `Background: **${background.name}**\n ${context.getEmojiById(bot.emotes.FOXY_DAILY)} **|** ${t('commands:background.buy.price')}: **${background.cakes}** Cakes`),
+                    embeds: [embed],
                     file: [{
-                        name: "preview.png",
+                        name: `preview${context.author.id}.png`,
                         blob: await profile
                     }],
                     components: [createActionRow([createButton({

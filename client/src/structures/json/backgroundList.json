@@ -6,7 +6,7 @@
             "rarity": "Comum",
             "cakes": 0,
             "filename": "default.png",
-            "description": "Background padrão da Foxy",
+            "description": "Background padrão do perfil da Foxy",
             "blocked": true
         },
         {
@@ -84,7 +84,7 @@
             "name": "Foxy e Lori",
             "rarity": "Lendário",
             "cakes": 10000,
-            "description": "Esse background foi criado por Bis no aniversário de 4 anos da Loritta! Adicione a Loritta no seu servidor: https://loritta.website \nLembrando que isso é apenas um collab e a Foxy não possui ligação com a Loritta!",
+            "description": "Background criado por Bis no aniversário de 4 anos da Loritta! Adicione a Loritta no seu servidor https://loritta.website\n**Lembrando:** Isso é apenas um collab, a Foxy não possui nenhuma ligação com a Loritta!",
             "filename": "foxy_e_lori.png"
         },
         {
