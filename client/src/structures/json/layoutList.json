@@ -7,7 +7,8 @@
             },
             "id": "default",
             "price": "free",
-            "filename": "default.png"
+            "filename": "default.png",
+            "darkText": false
         },
         {
             "name": "Red",
@@ -16,7 +17,8 @@
             },
             "id": "red",
             "price": "free",
-            "filename": "red.png"
+            "filename": "red.png",
+            "darkText": false
         },
         {
             "name": "Blue",
@@ -25,7 +27,8 @@
             },
             "id": "blue",
             "price": "free",
-            "filename": "blue.png"
+            "filename": "blue.png",
+            "darkText": false
         },
         {
             "name": "Purple",
@@ -34,7 +37,8 @@
             },
             "id": "purple",
             "price": "free",
-            "filename": "purple.png"
+            "filename": "purple.png",
+            "darkText": false
         },
         {
             "name": "Cyan",
@@ -43,7 +47,8 @@
             },
             "id": "cyan",
             "price": "free",
-            "filename": "cyan.png"
+            "filename": "cyan.png",
+            "darkText": false
         },
         {
             "name": "Discord Light Theme",

@@ -48,7 +48,7 @@ export default class CreateProfile {
             background = await Canvas.loadImage(`${serverURL}/backgrounds/${this.code}`);
             userAboutme = this.locale("commands:profile.testMode");
         }
-        if (isLayoutWhite) font = "#000000";
+        if (isLayoutWhite) font = "#000000"; else font = "#ffffff";
         context.drawImage(background, 0, 0, canvas.width, canvas.height)
         context.drawImage(layout, 0, 0, canvas.width, canvas.height);
 
