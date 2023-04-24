@@ -44,7 +44,8 @@ const LayoutCommand = createCommand({
         const selectedOption = context.getOption<string>('layout', false, true);
         const layouts = lylist.map(data => data.id);
         if (!layouts.includes(selectedOption)) return context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:layouts.notFound'))
+            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:layouts.notFound')),
+            flags: MessageFlags.EPHEMERAL
         });
         const userData = await bot.database.getUser(context.author.id);
         userData.layout = selectedOption;
