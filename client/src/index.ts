@@ -17,8 +17,8 @@ const bot = createBot({
 
 setupFoxy(bot);
 setupInternals(bot);
-
 startBot(bot);
+
 export { bot };
 
 process.on('unhandledRejection', (err) => {
