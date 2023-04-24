@@ -3,6 +3,7 @@ import { ApplicationCommandOptionTypes } from 'discordeno/types'
 import { User } from "discordeno/transformers";
 import { bot } from "../../index";
 import ms from "ms";
+import { MessageFlags } from "../../utils/discord/Message";
 
 const RepCommand = createCommand({
     name: "rep",
@@ -45,7 +46,8 @@ const RepCommand = createCommand({
         if (repCooldown - (Date.now() - authorData.lastRep) > 0) {
             const currentCooldown = ms(repCooldown - (Date.now() - authorData.lastRep));
             context.sendReply({
-                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:rep.cooldown', { cooldown: currentCooldown }))
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:rep.cooldown', { cooldown: currentCooldown })),
+                flags: MessageFlags.EPHEMERAL
             })
             endCommand();
         } else {
