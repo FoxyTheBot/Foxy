@@ -47,22 +47,8 @@ export default class DatabaseConnection {
             commandUsageCount: Number,
         }, { versionKey: false, id: false });
 
-        const ticTacToeSession = new mongoose.Schema({
-            commandId: String,
-            user: {
-                id: String,
-                isYourTurn: Boolean,
-                alreadyPlaying: Boolean
-            },
-            commandAuthor: {
-                id: String,
-                isYourTurn: Boolean,
-                alreadyPlaying: Boolean
-            }
-        }, { versionKey: false, id: false })
         this.user = mongoose.model('user', userSchema);
         this.commands = mongoose.model('commands', commandsSchema);
-        this.sessions = mongoose.model('sessions', ticTacToeSession);
         this.client = client;
     }
 
