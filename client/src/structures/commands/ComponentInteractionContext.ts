@@ -103,4 +103,16 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
 
         await bot.helpers.editOriginalInteractionResponse(this.interaction.token, options)
     }
+    
+    async respondWithModal(options: InteractionCallbackData): Promise<void> {
+        if (this.replied) return;
+    
+        this.replied = true;
+    
+        await bot.helpers
+          .sendInteractionResponse(this.interaction.id, this.interaction.token, {
+            type: InteractionResponseTypes.Modal,
+            data: options,
+          });
+        }
 }
