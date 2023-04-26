@@ -285,7 +285,10 @@
                 },
                 "blockMessage": "Mensagem",
                 "whitelistedChannels": "Canais que não serão afetados",
-                "whitelistedRoles": "Cargos que não serão afetados"
+                "whitelistedRoles": "Cargos que não serão afetados",
+                "noBlockMessage": "Nenhuma mensagem definida",
+                "noWhitelistedChannels": "Nenhum canal definido",
+                "noWhitelistedRoles": "Nenhum cargo definido"
             },
             "modal": {
                 "title": "Editar mensagem de bloqueio de convite",
