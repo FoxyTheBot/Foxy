@@ -22,8 +22,9 @@ startBot(bot);
 
 export { bot };
 
-process.on('unhandledRejection', (err) => {
-    logger.error(err);
+process.on('unhandledRejection', (err: Error) => {
+    if (err.message.includes('Missing Permissions')) return;
+    return logger.error(err);
 });
 
 process.on('uncaughtException', (err) => {
