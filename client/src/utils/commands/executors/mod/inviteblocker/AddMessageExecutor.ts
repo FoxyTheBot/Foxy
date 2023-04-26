@@ -7,9 +7,10 @@ const AddMessageExecutor = async (context: ComponentInteractionContext) => {
     const message = createTextInput({
         customId: "TEXT",
         required: true,
-        style: TextStyles.Short,
+        style: TextStyles.Paragraph,
         minLength: 1,
-        label: bot.locale("commands:inviteBlocker.config.modal.addMessage")
+        label: bot.locale("commands:inviteBlocker.config.modal.addMessage"),
+        placeholder: bot.locale("commands:inviteBlocker.config.modal.addMessagePlaceholder")
     });
 
     context.respondWithModal({
