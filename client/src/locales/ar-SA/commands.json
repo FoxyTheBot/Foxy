@@ -272,6 +272,54 @@
         "daily": "لقد فزت ** {{amount}} كعك ** الآن لديك {{money}} كعك",
         "dailyAlert": "** لا تنسى** لا يمكنك تغيير الكعك لأشياء مثل المال ، نيترو ، محتوى NSFW ، إلخ! إذا قمت بذلك ، فسيتم منعك من استخدام Foxy بشكل دائم!"
     },
+    "AutoRole": {
+        "addrole": {
+            "alreadyAdded": "Este cargo já foi adicionado",
+            "added": "Cargo adicionado com sucesso"
+        },
+        "enable": {
+            "enabled": "Módulo ativado",
+            "alreadyEnabled": "O módulo já está ativado"
+        },
+        "disable": {
+            "disabled": "Módulo desativado",
+            "alreadyDisabled": "O módulo já está desativado"
+        }
+    },
+    "inviteBlocker": {
+        "config": {
+            "title": "Bloqueador de convites",
+            "description": "Configure a Foxy para deletar convites de outros servidores",
+            "reseted": "Configurações resetadas",
+            "fields": {
+                "isEnabled": "Módulo",
+                "isEnabledValue": {
+                    "enabled": "Ativado",
+                    "disabled": "Desativado"
+                },
+                "blockMessage": "Mensagem",
+                "whitelistedChannels": "Canais que não serão afetados",
+                "whitelistedRoles": "Cargos que não serão afetados",
+                "noBlockMessage": "Nenhuma mensagem definida",
+                "noWhitelistedChannels": "Nenhum canal definido",
+                "noWhitelistedRoles": "Nenhum cargo definido"
+            },
+            "modal": {
+                "title": "Editar mensagem de bloqueio de convite",
+                "addMessage": "Insira a mensagem abaixo",
+                "addMessagePlaceholder": "Você pode utilizar {user} para mencionar o usuário ou {channel} para mencionar o canal"
+            },
+            "buttons": {
+                "disable": "Desativar",
+                "enable": "Ativar",
+                "reset": "Resetar",
+                "whitelistChannel": "Adicionar exceção de canal",
+                "whitelistRole": "Adicionar exceção de cargo",
+                "blockMessage": "Alterar mensagem",
+                "cancel": "Cancelar"
+            }
+        }
+    },
     "background": {
         "buy": {
             "title": "متجر الخلفية",
@@ -369,6 +417,7 @@
         }
     },
     "global": {
-        "noUser": "أعطى {{result}}! فزت {{amount}} الكعك "
+        "noUser": "أعطى {{result}}! فزت {{amount}} الكعك ",
+        "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!"
     }
 }
