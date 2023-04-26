@@ -78,7 +78,6 @@ const ConfigInviteBlockerCommand = createCommand({
         const guildInfo = await bot.database.getGuild(context.guildId);
         const role = await context.getOption<Role>("roles", false);
         const channel = await context.getOption<Channel>("channels", false);
-        
         if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("MANAGE_MESSAGES" || "ADMINISTRATOR")) {
             context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:global.noPermission", {
