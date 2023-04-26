@@ -9,6 +9,7 @@ import AddMessageExecutor from "../../utils/commands/executors/mod/inviteblocker
 import ResetConfigExecutor from "../../utils/commands/executors/mod/inviteblocker/ResetConfigExecutor";
 import ModalSentExecutor from "../../utils/commands/executors/mod/inviteblocker/ModalSentExecutor";
 import { Channel, Role } from "discordeno/transformers";
+import { MessageFlags } from "../../utils/discord/Message";
 
 const ConfigInviteBlockerCommand = createCommand({
     name: "invite",
@@ -73,13 +74,27 @@ const ConfigInviteBlockerCommand = createCommand({
         const role = await context.getOption<Role>("roles", false);
         const channel = await context.getOption<Channel>("channels", false);
         if (role) {
-            guildInfo.InviteBlockerModule.whitelistedRoles.push(role);
-            await guildInfo.save();
+            if (guildInfo.AutoRoleModule.whitelistedRoles.includes(role)) {
+                return context.sendReply({
+                    content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedRole", { role: `<@&${role}>` })),
+                    flags: MessageFlags.EPHEMERAL
+                })
+            } else {
+                guildInfo.InviteBlockerModule.whitelistedRoles.push(role);
+                await guildInfo.save();
+            }
         }
 
         if (channel) {
-            guildInfo.InviteBlockerModule.whitelistedChannels.push(channel);
-            await guildInfo.save();
+            if (guildInfo.AutoRoleModule.whitelistedChannels.includes(channel)) {
+                return context.sendReply({
+                    content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedChannel", { channel: `<#${channel}>` })),
+                    flags: MessageFlags.EPHEMERAL
+                })
+            } else {
+                guildInfo.InviteBlockerModule.whitelistedChannels.push(channel);
+                await guildInfo.save();
+            }
         }
 
         const embed = createEmbed({
