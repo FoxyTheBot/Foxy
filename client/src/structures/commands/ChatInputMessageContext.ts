@@ -18,8 +18,8 @@ export default class {
         this.replied = true;
     }
 
-    async DeleteMessage(messageId: BigString) {
-        bot.helpers.deleteMessage(this.message.channelId, messageId);
+    async DeleteMessage(messageId: BigString, reason: string) {
+        bot.helpers.deleteMessage(this.message.channelId, messageId, reason );
     }
 
 }
