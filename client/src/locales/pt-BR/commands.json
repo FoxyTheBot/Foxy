@@ -272,6 +272,20 @@
         "daily": "Você ganhou **{{amount}} Cakes** agora você possui {{money}} Cakes\n",
         "dailyAlert": "**Não se esqueça:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!"
     },
+    "AutoRole": {
+        "addrole": {
+            "alreadyAdded": "Este cargo já foi adicionado",
+            "added": "Cargo adicionado com sucesso"
+        },
+        "enable": {
+            "enabled": "Módulo ativado",
+            "alreadyEnabled": "O módulo já está ativado"
+        },
+        "disable": {
+            "disabled": "Módulo desativado",
+            "alreadyDisabled": "O módulo já está desativado"
+        }
+    },
     "inviteBlocker": {
         "config": {
             "title": "Bloqueador de convites",

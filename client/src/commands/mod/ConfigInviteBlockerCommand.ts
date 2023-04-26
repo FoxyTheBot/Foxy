@@ -13,26 +13,32 @@ import { MessageFlags } from "../../utils/discord/Message";
 
 const ConfigInviteBlockerCommand = createCommand({
     name: "invite",
-    description: "Commands relationed to invite blocker module",
+    description: "[Moderation] Commands relationed to invite blocker module",
     category: "mod",
     nameLocalizations: {
         "pt-BR": "bloquear"
     },
     descriptionLocalizations: {
-        "pt-BR": "Comandos relacionados ao módulo de bloqueio de convites"
+        "pt-BR": "[Moderação] Comandos relacionados ao módulo de bloqueio de convites"
     },
     options: [{
         name: "blocker",
-        description: "Enable or disable invite blocker module",
+        description: "[Moderation] Enable or disable invite blocker module",
         nameLocalizations: {
             "pt-BR": "convites"
+        },
+        descriptionLocalizations: {
+            "pt-BR": "[Moderação] Ativa ou desativa o módulo de bloqueio de convites"
         },
         type: ApplicationCommandOptionTypes.SubCommandGroup,
         options: [{
             name: "config",
-            description: "Configure invite blocker module",
+            description: "[Moderation] Configure me to block invites in your server",
             nameLocalizations: {
                 "pt-BR": "configurar"
+            },
+            descriptionLocalizations: {
+                "pt-BR": "[Moderação] Configure-me para bloquear convites no seu servidor"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [{
@@ -62,10 +68,10 @@ const ConfigInviteBlockerCommand = createCommand({
         }]
     }],
     commandRelatedExecutions: [
-        InviteBlockerEnableExecutor, // 0
-        InviteBlockerDisableExecutor, // 1
-        AddMessageExecutor, //2 
-        ResetConfigExecutor,//3
+        InviteBlockerEnableExecutor,
+        InviteBlockerDisableExecutor,
+        AddMessageExecutor,
+        ResetConfigExecutor,
         ModalSentExecutor
     ],
     async execute(context, endCommand, t) {

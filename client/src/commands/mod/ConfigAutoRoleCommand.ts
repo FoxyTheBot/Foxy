@@ -37,12 +37,12 @@ const ConfigAutoRoleCommand = createCommand({
     },
     {
         name: "addrole",
-        description: "[Moderation] Configure auto role module",
+        description: "[Moderation] Add a role to be given automatically",
         nameLocalizations: {
             "pt-BR": "adicionar_cargo"
         },
         descriptionLocalizations: {
-            "pt-BR": "[Moderação] Configura o módulo de cargos automáticos"
+            "pt-BR": "[Moderação] Adicione um cargo para ser dado automaticamente"
         },
         type: ApplicationCommandOptionTypes.SubCommand,
         options: [{
