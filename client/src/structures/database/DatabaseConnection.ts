@@ -7,7 +7,7 @@ export default class DatabaseConnection {
     private client: any;
     private user: any;
     private commands: any;
-    private sessions: any;
+    private guilds: any;
 
     constructor(client) {
         mongoose.set("strictQuery", true)
@@ -47,8 +47,24 @@ export default class DatabaseConnection {
             commandUsageCount: Number,
         }, { versionKey: false, id: false });
 
+        const guildSchema = new mongoose.Schema({
+            _id: String,
+            InviteBlockerModule: {
+                isEnabled: Boolean,
+                whitelistedInvites: Array,
+                whitelistedChannels: Array,
+                whitelistedRoles: Array,
+                whitelistedUsers: Array,
+                blockMessage: String,
+            },
+            AutoRoleModule: {
+                isEnabled: Boolean,
+                roles: Array,
+            }
+        }, { versionKey: false, id: false });
         this.user = mongoose.model('user', userSchema);
         this.commands = mongoose.model('commands', commandsSchema);
+        this.guilds = mongoose.model('guilds', guildSchema);
         this.client = client;
     }
 
@@ -128,7 +144,64 @@ export default class DatabaseConnection {
         return usageCount;
 
     }
+
+    async getGuild(guildId: BigInt) {
+        let document = await this.guilds.findOne({ _id: guildId });
+
+        if (!document) {
+            document = new this.guilds({
+                _id: guildId,
+                InviteBlockerModule: {
+                    isEnabled: false,
+                    whitelistedInvites: [],
+                    whitelistedChannels: [],
+                    whitelistedRoles: [],
+                    whitelistedUsers: [],
+                    blockMessage: null,
+                },
+                AutoRoleModule: {
+                    isEnabled: false,
+                    roles: [],
+                }
+            }).save();
+        }
+
+        return document;
+    }
    
+    async addGuild(guildId: BigInt) {
+        let document = await this.guilds.findOne({ _id: guildId });
+
+        if (!document) {
+            document = new this.guilds({
+                _id: guildId,
+                InviteBlockerModule: {
+                    isEnabled: false,
+                    whitelistedInvites: [],
+                    whitelistedChannels: [],
+                    whitelistedRoles: [],
+                    whitelistedUsers: [],
+                    blockMessage: null,
+                },
+                AutoRoleModule: {
+                    isEnabled: false,
+                    roles: [],
+                }
+            }).save();
+        }
+
+        return document;
+    }
+
+    async removeGuild(guildId: BigInt) {
+        let document = await this.guilds.findOne({ _id: guildId });
+
+        if (document) {
+            document.delete();
+        }
+
+        return document;
+    }
     async getAllUsers(): Promise<void> {
         let usersData = await this.user.find({});
         return usersData.map(user => user.toJSON());
