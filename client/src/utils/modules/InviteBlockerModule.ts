@@ -57,7 +57,7 @@ export default class InviteBlockerModule {
                 blockMessage = blockMessage.replace("{channel}", `<#${message.channelId}>`);
             }
 
-            if (inviteRegex.test(message.content)) {
+            if (inviteRegex.test(message.content) && !authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) {
                 context.DeleteMessage(message.id, "Invite Blocker");
                 context.FoxyReply({
                     content: blockMessage
