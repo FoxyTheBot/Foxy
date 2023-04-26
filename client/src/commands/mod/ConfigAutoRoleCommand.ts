@@ -60,6 +60,17 @@ const ConfigAutoRoleCommand = createCommand({
     }],
     async execute(context, endCommand, t) {
         const SubCommand = context.getSubCommand();
+
+        if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("MANAGE_ROLES" || "ADMINISTRATOR")) {
+            context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:global.noPermission", {
+                    permission: t("permissions:ManageRoles")
+                })),
+                flags: MessageFlags.EPHEMERAL
+            })
+            return endCommand();
+        }
+
         const guildInfo = await bot.database.getGuild(context.interaction.guildId);
 
         switch (SubCommand) {

@@ -75,10 +75,20 @@ const ConfigInviteBlockerCommand = createCommand({
         ModalSentExecutor
     ],
     async execute(context, endCommand, t) {
-        context.sendDefer();
         const guildInfo = await bot.database.getGuild(context.guildId);
         const role = await context.getOption<Role>("roles", false);
         const channel = await context.getOption<Channel>("channels", false);
+        
+        if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("MANAGE_MESSAGES" || "ADMINISTRATOR")) {
+            context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:global.noPermission", {
+                    permission: t("permissions:ManageMessages")
+                })),
+                flags: MessageFlags.EPHEMERAL
+            })
+            return endCommand();
+        }
+
         if (role) {
             if (guildInfo.AutoRoleModule.whitelistedRoles.includes(role)) {
                 context.sendReply({
@@ -104,7 +114,7 @@ const ConfigInviteBlockerCommand = createCommand({
                 await guildInfo.save();
             }
         }
-
+        context.sendDefer();
         const embed = createEmbed({
             title: t("commands:inviteBlocker.config.title"),
             description: t("commands:inviteBlocker.config.description"),
