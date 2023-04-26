@@ -417,6 +417,7 @@
         }
     },
     "global": {
-        "noUser": "Usuário não encontrado"
+        "noUser": "Usuário não encontrado",
+        "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!"
     }
 }
