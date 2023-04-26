@@ -306,7 +306,8 @@
             },
             "modal": {
                 "title": "Editar mensagem de bloqueio de convite",
-                "addMessage": "Insira a mensagem abaixo"
+                "addMessage": "Insira a mensagem abaixo",
+                "addMessagePlaceholder": "Você pode utilizar {user} para mencionar o usuário ou {channel} para mencionar o canal"
             },
             "buttons": {
                 "disable": "Desativar",

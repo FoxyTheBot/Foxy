@@ -81,10 +81,11 @@ const ConfigInviteBlockerCommand = createCommand({
         const channel = await context.getOption<Channel>("channels", false);
         if (role) {
             if (guildInfo.AutoRoleModule.whitelistedRoles.includes(role)) {
-                return context.sendReply({
+                context.sendReply({
                     content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedRole", { role: `<@&${role}>` })),
                     flags: MessageFlags.EPHEMERAL
                 })
+                return endCommand();
             } else {
                 guildInfo.InviteBlockerModule.whitelistedRoles.push(role);
                 await guildInfo.save();
@@ -93,10 +94,11 @@ const ConfigInviteBlockerCommand = createCommand({
 
         if (channel) {
             if (guildInfo.AutoRoleModule.whitelistedChannels.includes(channel)) {
-                return context.sendReply({
+                context.sendReply({
                     content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedChannel", { channel: `<#${channel}>` })),
                     flags: MessageFlags.EPHEMERAL
                 })
+                return endCommand();
             } else {
                 guildInfo.InviteBlockerModule.whitelistedChannels.push(channel);
                 await guildInfo.save();
