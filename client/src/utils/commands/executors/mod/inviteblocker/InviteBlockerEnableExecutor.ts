@@ -21,15 +21,15 @@ const InviteBlockerEnableExecutor = async (context: ComponentInteractionContext)
             },
             {
                 name: bot.locale("commands:inviteBlocker.config.fields.blockMessage"),
-                value: guildInfo.InviteBlockerModule.blockMessage ?? "Nenhuma mensagem definida"
+                value: guildInfo.InviteBlockerModule.blockMessage ?? bot.locale('commands:inviteBlocker.config.fields.noBlockMessage')
             },
             {
                 name: bot.locale("commands:inviteBlocker.config.fields.whitelistedChannels"),
-                value: guildInfo.InviteBlockerModule.whitelistedChannels.length > 0 ? guildInfo.InviteBlockerModule.whitelistedChannels.map(channelId => `<#${channelId}>`).join(", ") : "Nenhum canal definido"
+                value: guildInfo.InviteBlockerModule.whitelistedChannels.length > 0 ? guildInfo.InviteBlockerModule.whitelistedChannels.map(channelId => `<#${channelId}>`).join(", ") : bot.locale("commands:inviteBlocker.config.fields.noWhitelistedChannels")
             },
             {
                 name: bot.locale("commands:inviteBlocker.config.fields.whitelistedRoles"),
-                value: guildInfo.InviteBlockerModule.whitelistedRoles.length > 0 ? guildInfo.InviteBlockerModule.whitelistedRoles.map(roleId => `<@&${roleId}>`).join(", ") : "Nenhum cargo definido"
+                value: guildInfo.InviteBlockerModule.whitelistedRoles.length > 0 ? guildInfo.InviteBlockerModule.whitelistedRoles.map(roleId => `<@&${roleId}>`).join(", ") : bot.locale("commands:inviteBlocker.config.fields.noWhitelistedRoles")
             }]
         });
 
