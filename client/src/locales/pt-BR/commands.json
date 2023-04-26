@@ -272,6 +272,36 @@
         "daily": "Você ganhou **{{amount}} Cakes** agora você possui {{money}} Cakes\n",
         "dailyAlert": "**Não se esqueça:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!"
     },
+    "inviteBlocker": {
+        "config": {
+            "title": "Bloqueador de convites",
+            "description": "Configure a Foxy para deletar convites de outros servidores",
+            "reseted": "Configurações resetadas",
+            "fields": {
+                "isEnabled": "Módulo",
+                "isEnabledValue": {
+                    "enabled": "Ativado",
+                    "disabled": "Desativado"
+                },
+                "blockMessage": "Mensagem",
+                "whitelistedChannels": "Canais que não serão afetados",
+                "whitelistedRoles": "Cargos que não serão afetados"
+            },
+            "modal": {
+                "title": "Editar mensagem de bloqueio de convite",
+                "addMessage": "Insira a mensagem abaixo"
+            },
+            "buttons": {
+                "disable": "Desativar",
+                "enable": "Ativar",
+                "reset": "Resetar",
+                "whitelistChannel": "Adicionar exceção de canal",
+                "whitelistRole": "Adicionar exceção de cargo",
+                "blockMessage": "Alterar mensagem",
+                "cancel": "Cancelar"
+            }
+        }
+    },
     "background": {
         "buy": {
             "title": "Lojinha de background :3",
