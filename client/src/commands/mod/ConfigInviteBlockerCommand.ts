@@ -41,30 +41,6 @@ const ConfigInviteBlockerCommand = createCommand({
                 "pt-BR": "[Moderação] Configure-me para bloquear convites no seu servidor"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
-            options: [{
-                name: "roles",
-                description: "Roles that can bypass invite blocker",
-                nameLocalizations: {
-                    "pt-BR": "cargos"
-                },
-                descriptionLocalizations: {
-                    "pt-BR": "Cargos que podem burlar o bloqueio de convites"
-                },
-                type: ApplicationCommandOptionTypes.Role,
-                required: false
-            },
-            {
-                name: "channels",
-                description: "Channels where invite blocker will be disabled",
-                nameLocalizations: {
-                    "pt-BR": "canais"
-                },
-                descriptionLocalizations: {
-                    "pt-BR": "Canais onde o bloqueio de convites será desativado"
-                },
-                type: ApplicationCommandOptionTypes.Channel,
-                required: false
-            }]
         },
         {
             name: "addrole",
@@ -167,8 +143,6 @@ const ConfigInviteBlockerCommand = createCommand({
     ],
     async execute(context, endCommand, t) {
         const guildInfo = await bot.database.getGuild(context.guildId);
-        const roles = await context.getOption<Role>("roles", false);
-        const channels = await context.getOption<Channel>("channels", false);
         const role = await context.getOption<Role>("role", false);
         const channel = await context.getOption<Channel>("channel", false);
 
@@ -185,29 +159,7 @@ const ConfigInviteBlockerCommand = createCommand({
 
         switch (SubCommand) {
             case "config": {
-                if (roles) {
-                    if (!await guildInfo.InviteBlockerModule.whitelistedRoles.includes(roles)) {
-                        guildInfo.InviteBlockerModule.whitelistedRoles.push(roles);
-                        await guildInfo.save();
-                    } else {
-                        context.sendReply({
-                            content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedRole", { role: `<@&${roles}>` })),
-                            flags: MessageFlags.EPHEMERAL
-                        })
-                        return endCommand();
-                    }
-                }
-
-                if (channels) {
-                    if (!await guildInfo.InviteBlockerModule.whitelistedChannels.includes(channels)) {
-                        guildInfo.InviteBlockerModule.whitelistedChannels.push(channels);
-                        await guildInfo.save();
-                    } else {
-                        guildInfo.InviteBlockerModule.whitelistedChannels.push(channels);
-                        await guildInfo.save();
-                    }
-                }
-                context.sendDefer();
+                context.sendDefer(true);
                 const embed = createEmbed({
                     title: t("commands:inviteBlocker.config.title"),
                     description: t("commands:inviteBlocker.config.description"),
@@ -224,11 +176,11 @@ const ConfigInviteBlockerCommand = createCommand({
                     },
                     {
                         name: t("commands:inviteBlocker.config.fields.whitelistedChannels"),
-                        value: guildInfo.InviteBlockerModule.whitelistedChannels.length > 0 ? guildInfo.InviteBlockerModule.whitelistedChannels.map(channelId => `<#${channels ?? channelId}>`).join(", ") : t("commands:inviteBlocker.config.fields.noWhitelistedChannels")
+                        value: guildInfo.InviteBlockerModule.whitelistedChannels.length > 0 ? guildInfo.InviteBlockerModule.whitelistedChannels.map(channelId => `<#${channelId}>`).join(", ") : t("commands:inviteBlocker.config.fields.noWhitelistedChannels")
                     },
                     {
                         name: t("commands:inviteBlocker.config.fields.whitelistedRoles"),
-                        value: guildInfo.InviteBlockerModule.whitelistedRoles.length > 0 ? guildInfo.InviteBlockerModule.whitelistedRoles.map(roleId => `<@&${roles ?? roleId}>`).join(", ") : t("commands:inviteBlocker.config.fields.noWhitelistedRoles")
+                        value: guildInfo.InviteBlockerModule.whitelistedRoles.length > 0 ? guildInfo.InviteBlockerModule.whitelistedRoles.map(roleId => `<@&${roleId}>`).join(", ") : t("commands:inviteBlocker.config.fields.noWhitelistedRoles")
                     }]
                 });
 
@@ -273,7 +225,8 @@ const ConfigInviteBlockerCommand = createCommand({
                 }
                 context.sendReply({
                     embeds: [embed],
-                    components: [actionRow]
+                    components: [actionRow],
+                    flags: MessageFlags.EPHEMERAL
                 });
                 endCommand();
                 break;
