@@ -274,59 +274,59 @@
     },
     "AutoRole": {
         "addrole": {
-            "alreadyAdded": "Este cargo já foi adicionado",
-            "added": "Cargo adicionado com sucesso"
+            "alreadyAdded": "This role has already been added",
+            "added": "Role added successfully"
         },
         "enable": {
-            "enabled": "Módulo ativado",
-            "alreadyEnabled": "O módulo já está ativado"
+            "enabled": "Module Activated",
+            "alreadyEnabled": "The module is already activated"
         },
         "disable": {
-            "disabled": "Módulo desativado",
-            "alreadyDisabled": "O módulo já está desativado"
+            "disabled": "Module Deactivated",
+            "alreadyDisabled": "The module is already disabled"
         }
     },
     "inviteBlocker": {
         "config": {
-            "title": "Bloqueador de convites",
-            "description": "Configure a Foxy para deletar convites de outros servidores",
-            "reseted": "Configurações resetadas",
-            "addedWhitelistedRole": "Cargo {{role}} adicionado a lista de cargos que não serão afetados",
-            "removedWhitelistedRole": "Cargo {{role}} removido da lista de cargos que não serão afetados",
-            "addedWhitelistedChannel": "Canal {{channel}} adicionado a lista de canais que não serão afetados",
-            "removedWhitelistedChannel": "Canal {{channel}} removido da lista de canais que não serão afetados",
+            "title": "Invite Blocker",
+            "description": "Configure Foxy to delete another server's invites",
+            "reseted": "The configuration has been reset!",
+            "addedWhitelistedRole": "Role {{role}} added successfully!",
+            "removedWhitelistedRole": "Role {{role}} removed successfully!",
+            "addedWhitelistedChannel": "Channel {{channel}} added successfully!",
+            "removedWhitelistedChannel": "Channel {{channel}} removed successfully!",
             "fields": {
-                "isEnabled": "Módulo",
+                "isEnabled": "Module",
                 "isEnabledValue": {
-                    "enabled": "Ativado",
-                    "disabled": "Desativado"
+                    "enabled": "Enabled",
+                    "disabled": "Disabled"
                 },
-                "blockMessage": "Mensagem",
-                "whitelistedChannels": "Canais que não serão afetados",
-                "whitelistedRoles": "Cargos que não serão afetados",
-                "noBlockMessage": "Nenhuma mensagem definida",
-                "noWhitelistedChannels": "Nenhum canal definido",
-                "noWhitelistedRoles": "Nenhum cargo definido"
+                "blockMessage": "Message",
+                "whitelistedChannels": "Channels that's not be affected",
+                "whitelistedRoles": "Roles that's not be affected",
+                "noBlockMessage": "No message defined",
+                "noWhitelistedChannels": "No channel defined",
+                "noWhitelistedRoles": "No role defined"
             },
             "modal": {
-                "title": "Editar mensagem de bloqueio de convite",
-                "addMessage": "Insira a mensagem abaixo",
-                "addMessagePlaceholder": "Você pode utilizar {user} para mencionar o usuário ou {channel} para mencionar o canal"
+                "title": "Edit block message",
+                "addMessage": "Insert message below",
+                "addMessagePlaceholder": "You can use {user} to mention the user or {channel} to mention the channel"
             },
             "buttons": {
-                "disable": "Desativar",
-                "enable": "Ativar",
-                "reset": "Resetar",
-                "whitelistChannel": "Adicionar exceção de canal",
-                "whitelistRole": "Adicionar exceção de cargo",
-                "blockMessage": "Alterar mensagem",
-                "cancel": "Cancelar"
+                "disable": "Disable",
+                "enable": "Enable",
+                "reset": "Reset",
+                "whitelistChannel": "Add channel exception",
+                "whitelistRole": "Add role exception",
+                "blockMessage": "Change message",
+                "cancel": "Cancel"
             },
             "errors": {
-                "notWhitelistedChannel": "Este canal não está na lista de canais que não serão afetados",
-                "notWhitelistedRole": "Este cargo não está na lista de cargos que não serão afetados",
-                "alreadyWhitelistedChannel": "Este canal já está na lista de canais que não serão afetados",
-                "alreadyWhitelistedRole": "Este cargo já está na lista de cargos que não serão afetados"
+                "notWhitelistedChannel": "This channel isn't in the list of allowed channels",
+                "notWhitelistedRole": "This role isn't in the list of allowed roles",
+                "alreadyWhitelistedChannel": "This channel is already whitelisted",
+                "alreadyWhitelistedRole": "This role is already whitelisted"
             }
         }
     },
@@ -428,6 +428,6 @@
     },
     "global": {
         "noUser": "User not found",
-        "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!"
+        "noPermission": "Wait! What are you doing? You need to have `{{permission}}` to do this!"
     }
 }
