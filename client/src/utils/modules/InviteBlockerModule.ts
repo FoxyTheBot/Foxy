@@ -24,7 +24,11 @@ export default class InviteBlockerModule {
                 }
             });
             var blockMessage = guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
-
+            if (message.content === blockMessage && message.authorId === this.bot.applicationId) {
+                setTimeout(async () => {
+                    context.DeleteMessage(message.id, "Invite Blocker");
+                }, 2000);
+            }
             if (message.authorId === this.bot.applicationId || message.isFromBot) return;
             if (!inviteRegex.test(message.content)) return;
             if (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) return;
@@ -39,10 +43,12 @@ export default class InviteBlockerModule {
                 blockMessage = blockMessage.replace("{channel}", `<#${message.channelId}>`);
             }
             if (inviteRegex.test(message.content) && !authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role)) || !authorRoles) {
-                context.DeleteMessage(message.id, "Invite Blocker");
-                context.FoxyReply({
-                    content: blockMessage
-                });
+                setTimeout(async () => {
+                    context.DeleteMessage(message.id, "Invite Blocker");
+                    context.FoxyReply({
+                        content: blockMessage
+                    });
+                }, 500);
             }
         }
 
@@ -58,7 +64,11 @@ export default class InviteBlockerModule {
                 }
             });
             var blockMessage = guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
-
+            if (message.content === blockMessage && message.authorId === this.bot.applicationId) {
+                setTimeout(async () => {
+                    context.DeleteMessage(message.id, "Invite Blocker");
+                }, 2000);
+            }
             if (message.authorId === this.bot.applicationId || message.isFromBot) return;
             if (!inviteRegex.test(message.content)) return;
             if (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) return;
@@ -73,10 +83,12 @@ export default class InviteBlockerModule {
             }
 
             if (inviteRegex.test(message.content) && !authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role)) || !authorRoles) {
-                context.DeleteMessage(message.id, "Invite Blocker");
-                context.FoxyReply({
-                    content: blockMessage
-                });
+                setTimeout(async () => {
+                    context.DeleteMessage(message.id, "Invite Blocker");
+                    context.FoxyReply({
+                        content: blockMessage
+                    })
+                }, 500);
             }
         }
     }
