@@ -29,12 +29,13 @@ export default class InviteBlockerModule {
                     context.DeleteMessage(message.id, "Invite Blocker");
                 }, 2000);
             }
-            if (message.authorId === this.bot.applicationId || message.isFromBot) return;
-            if (!inviteRegex.test(message.content)) return;
-            if (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) return;
-            if (!guildInfo.InviteBlockerModule.isEnabled) return;
-            if (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)) return;
-            if (!this.bot.hasGuildPermission(this.bot as BotWithCache<FoxyClient>, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])) return;
+            if (message.authorId === this.bot.applicationId || message.isFromBot,
+                (!inviteRegex.test(message.content)),
+                (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))),
+                (!guildInfo.InviteBlockerModule.isEnabled),
+                (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)),
+                (!this.bot.hasGuildPermission(this.bot as BotWithCache<FoxyClient>, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"]))) return;
+
 
             if (blockMessage.includes("{user}")) {
                 blockMessage = blockMessage.replace("{user}", `<@${message.authorId}>`);
@@ -69,12 +70,13 @@ export default class InviteBlockerModule {
                     context.DeleteMessage(message.id, "Invite Blocker");
                 }, 2000);
             }
-            if (message.authorId === this.bot.applicationId || message.isFromBot) return;
-            if (!inviteRegex.test(message.content)) return;
-            if (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) return;
-            if (!guildInfo.InviteBlockerModule.isEnabled) return;
-            if (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)) return;
-            if (!this.bot.hasGuildPermission(this.bot as BotWithCache<FoxyClient>, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])) return;
+            if (message.authorId === this.bot.applicationId || message.isFromBot,
+                (!inviteRegex.test(message.content)),
+                (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))),
+                (!guildInfo.InviteBlockerModule.isEnabled),
+                (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)),
+                (!this.bot.hasGuildPermission(this.bot as BotWithCache<FoxyClient>, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"]))) return;
+
             if (blockMessage.includes("{user}")) {
                 blockMessage = blockMessage.replace("{user}", `<@${message.authorId}>`);
             }
