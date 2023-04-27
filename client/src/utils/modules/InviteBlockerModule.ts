@@ -14,7 +14,14 @@ export default class InviteBlockerModule {
             const guildId = message.guildId;
             const guildInfo = await this.bot.database.getGuild(guildId);
             const context = new ChatInputMessageContext(message);
-            const authorRoles = await context.authorRoles.map(role => role.toString().replace("n", ""));
+            const authorRoles = await context.authorRoles.map(role => {
+                if (role) {
+                    return role.toString().replace("n", "");
+                } else {
+                    return null;
+                }
+            });
+            var blockMessage = guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
 
             if (message.authorId === this.bot.applicationId || message.isFromBot) return;
             if (!inviteRegex.test(message.content)) return;
@@ -22,10 +29,10 @@ export default class InviteBlockerModule {
             if (!guildInfo.InviteBlockerModule.isEnabled) return;
             if (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)) return;
             if (!this.bot.hasGuildPermission(this.bot as BotWithCache<FoxyClient>, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])) return;
-            var blockMessage = guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
+
             if (blockMessage.includes("{user}")) {
                 blockMessage = blockMessage.replace("{user}", `<@${message.authorId}>`);
-            } 
+            }
             if (blockMessage.includes("{channel}")) {
                 blockMessage = blockMessage.replace("{channel}", `<#${message.channelId}>`);
             }
@@ -41,19 +48,24 @@ export default class InviteBlockerModule {
             const guildId = message.guildId;
             const guildInfo = await this.bot.database.getGuild(guildId);
             const context = new ChatInputMessageContext(message);
-            const authorRoles = context.authorRoles.map(role => role.toString().replace("n", ""));
-            
+            const authorRoles = await context.authorRoles.map(role => {
+                if (role) {
+                    return role.toString().replace("n", "");
+                } else {
+                    return null;
+                }
+            });
+            var blockMessage = guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
+
             if (message.authorId === this.bot.applicationId || message.isFromBot) return;
             if (!inviteRegex.test(message.content)) return;
             if (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) return;
             if (!guildInfo.InviteBlockerModule.isEnabled) return;
             if (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)) return;
-
-            var blockMessage = guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
-            
+            if (!this.bot.hasGuildPermission(this.bot as BotWithCache<FoxyClient>, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])) return;
             if (blockMessage.includes("{user}")) {
                 blockMessage = blockMessage.replace("{user}", `<@${message.authorId}>`);
-            } 
+            }
             if (blockMessage.includes("{channel}")) {
                 blockMessage = blockMessage.replace("{channel}", `<#${message.channelId}>`);
             }
