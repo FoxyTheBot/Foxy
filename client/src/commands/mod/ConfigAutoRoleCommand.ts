@@ -77,14 +77,14 @@ const ConfigAutoRoleCommand = createCommand({
             case "enable": {
                 if (guildInfo.AutoRoleModule.isEnabled) {
                     context.sendReply({
-                        content: t("commands:mod.configautorole.enable.alreadyEnabled"),
+                        content: t("commands:mod.AutoRole.enable.alreadyEnabled"),
                         flags: MessageFlags.EPHEMERAL
                     });
                 } else {
                     guildInfo.AutoRoleModule.isEnabled = true;
                     await guildInfo.save();
                     context.sendReply({
-                        content: t("commands:mod.configautorole.enable.enabled"),
+                        content: t("commands:mod.AutoRole.enable.enabled"),
                         flags: MessageFlags.EPHEMERAL
                     });
                 }
@@ -95,14 +95,14 @@ const ConfigAutoRoleCommand = createCommand({
             case "disable": {
                 if (!guildInfo.AutoRoleModule.isEnabled) {
                     context.sendReply({
-                        content: t("commands:mod.configautorole.disable.alreadyDisabled"),
+                        content: t("commands:mod.AutoRole.disable.alreadyDisabled"),
                         flags: MessageFlags.EPHEMERAL
                     });
                 } else {
                     guildInfo.AutoRoleModule.isEnabled = false;
                     await guildInfo.save();
                     context.sendReply({
-                        content: t("commands:mod.configautorole.disable.disabled"),
+                        content: t("commands:mod.AutoRole.disable.disabled"),
                         flags: MessageFlags.EPHEMERAL
                     });
                 }
@@ -115,14 +115,14 @@ const ConfigAutoRoleCommand = createCommand({
                 
                 if (guildInfo.AutoRoleModule.roles.includes(role)) {
                     context.sendReply({
-                        content: t("commands:mod.configautorole.addrole.alreadyAdded"),
+                        content: t("commands:mod.AutoRole.addrole.alreadyAdded"),
                         flags: MessageFlags.EPHEMERAL
                     });
                 } else {
                     guildInfo.AutoRoleModule.roles.push(role);
                     await guildInfo.save();
                     context.sendReply({
-                        content: t("commands:mod.configautorole.addrole.added"),
+                        content: t("commands:mod.AutoRole.addrole.added"),
                         flags: MessageFlags.EPHEMERAL
                     });
                 }
