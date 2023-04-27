@@ -291,6 +291,10 @@
             "title": "Bloqueador de convites",
             "description": "Configure a Foxy para deletar convites de outros servidores",
             "reseted": "Configurações resetadas",
+            "addedWhitelistedRole": "Cargo {{role}} adicionado a lista de cargos que não serão afetados",
+            "removedWhitelistedRole": "Cargo {{role}} removido da lista de cargos que não serão afetados",
+            "addedWhitelistedChannel": "Canal {{channel}} adicionado a lista de canais que não serão afetados",
+            "removedWhitelistedChannel": "Canal {{channel}} removido da lista de canais que não serão afetados",
             "fields": {
                 "isEnabled": "Módulo",
                 "isEnabledValue": {
@@ -317,6 +321,12 @@
                 "whitelistRole": "Adicionar exceção de cargo",
                 "blockMessage": "Alterar mensagem",
                 "cancel": "Cancelar"
+            },
+            "errors": {
+                "notWhitelistedChannel": "Este canal não está na lista de canais que não serão afetados",
+                "notWhitelistedRole": "Este cargo não está na lista de cargos que não serão afetados",
+                "alreadyWhitelistedChannel": "Este canal já está na lista de canais que não serão afetados",
+                "alreadyWhitelistedRole": "Este cargo já está na lista de cargos que não serão afetados"
             }
         }
     },
