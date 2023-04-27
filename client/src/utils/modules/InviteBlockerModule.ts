@@ -14,7 +14,7 @@ export default class InviteBlockerModule {
             const guildId = message.guildId;
             const guildInfo = await this.bot.database.getGuild(guildId);
             const context = new ChatInputMessageContext(message);
-            const authorRoles = context.authorRoles.map(role => role.toString().replace("n", ""));
+            const authorRoles = await context.authorRoles.map(role => role.toString().replace("n", ""));
 
             if (message.authorId === this.bot.applicationId || message.isFromBot) return;
             if (!inviteRegex.test(message.content)) return;
@@ -29,7 +29,7 @@ export default class InviteBlockerModule {
             if (blockMessage.includes("{channel}")) {
                 blockMessage = blockMessage.replace("{channel}", `<#${message.channelId}>`);
             }
-            if (inviteRegex.test(message.content) && !authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) {
+            if (inviteRegex.test(message.content) && !authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role)) || !authorRoles) {
                 context.DeleteMessage(message.id, "Invite Blocker");
                 context.FoxyReply({
                     content: blockMessage
@@ -58,7 +58,7 @@ export default class InviteBlockerModule {
                 blockMessage = blockMessage.replace("{channel}", `<#${message.channelId}>`);
             }
 
-            if (inviteRegex.test(message.content) && !authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) {
+            if (inviteRegex.test(message.content) && !authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role)) || !authorRoles) {
                 context.DeleteMessage(message.id, "Invite Blocker");
                 context.FoxyReply({
                     content: blockMessage
