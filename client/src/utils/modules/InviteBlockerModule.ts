@@ -1,3 +1,4 @@
+import { BotWithCache } from 'discordeno/cache-plugin';
 import ChatInputMessageContext from '../../structures/commands/ChatInputMessageContext';
 import { FoxyClient } from '../../structures/types/foxy';
 
@@ -20,7 +21,7 @@ export default class InviteBlockerModule {
             if (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) return;
             if (!guildInfo.InviteBlockerModule.isEnabled) return;
             if (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)) return;
-            
+            if (!this.bot.hasGuildPermission(this.bot as BotWithCache<FoxyClient>, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])) return;
             var blockMessage = guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
             if (blockMessage.includes("{user}")) {
                 blockMessage = blockMessage.replace("{user}", `<@${message.authorId}>`);

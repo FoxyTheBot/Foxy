@@ -1,3 +1,4 @@
+import { BotWithCache } from "discordeno/cache-plugin";
 import { FoxyClient } from "../../structures/types/foxy";
 
 export default class AutoRoleModule {
@@ -10,8 +11,9 @@ export default class AutoRoleModule {
         this.bot.events.guildMemberAdd = async (_, member) => {
             const guildId = member.guildId;
             const guildInfo = await this.bot.database.getGuild(guildId);
-
+            if (!this.bot.hasGuildPermission(this.bot as BotWithCache<FoxyClient>, guildId, ["MANAGE_ROLES"] || ["ADMINISTRATOR"])) return;
             if (guildInfo.AutoRoleModule.isEnabled) {
+                
                 const roles = guildInfo.AutoRoleModule.roles;
                 if (roles.length > 0) {
                     for (const role of roles) {
