@@ -89,7 +89,7 @@ const ConfigInviteBlockerCommand = createCommand({
         }
 
         if (role) {
-            if (guildInfo.AutoRoleModule.whitelistedRoles.includes(role)) {
+            if (await guildInfo.InviteBlockerModule.whitelistedRoles.includes(role)) {
                 context.sendReply({
                     content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedRole", { role: `<@&${role}>` })),
                     flags: MessageFlags.EPHEMERAL
@@ -102,7 +102,7 @@ const ConfigInviteBlockerCommand = createCommand({
         }
 
         if (channel) {
-            if (guildInfo.AutoRoleModule.whitelistedChannels.includes(channel)) {
+            if (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(channel)) {
                 context.sendReply({
                     content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedChannel", { channel: `<#${channel}>` })),
                     flags: MessageFlags.EPHEMERAL
