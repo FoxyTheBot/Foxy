@@ -20,7 +20,9 @@ export default class AutoRoleModule {
                 if (roles.length > 0) {
                     for (const role of roles) {
                         try {
-                            await this.bot.helpers.addRole(guildId, member.user.id, role);
+                            setTimeout(async () => {
+                                await this.bot.helpers.addRole(guildId, member.id, role, "Auto Role");
+                            }, 2000);
                         } catch (error) { }
                     }
                 }
