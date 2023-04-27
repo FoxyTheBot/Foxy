@@ -171,7 +171,7 @@ const ConfigInviteBlockerCommand = createCommand({
         const channels = await context.getOption<Channel>("channels", false);
         const role = await context.getOption<Role>("role", false);
         const channel = await context.getOption<Channel>("channel", false);
-        
+
         const SubCommand = context.getSubCommand();
         if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("MANAGE_MESSAGES" || "ADMINISTRATOR")) {
             context.sendReply({
@@ -186,25 +186,22 @@ const ConfigInviteBlockerCommand = createCommand({
         switch (SubCommand) {
             case "config": {
                 if (roles) {
-                    if (await guildInfo.InviteBlockerModule.whitelistedRoles.includes(roles)) {
+                    if (!await guildInfo.InviteBlockerModule.whitelistedRoles.includes(roles)) {
+                        guildInfo.InviteBlockerModule.whitelistedRoles.push(roles);
+                        await guildInfo.save();
+                    } else {
                         context.sendReply({
                             content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedRole", { role: `<@&${roles}>` })),
                             flags: MessageFlags.EPHEMERAL
                         })
                         return endCommand();
-                    } else {
-                        guildInfo.InviteBlockerModule.whitelistedRoles.push(roles);
-                        await guildInfo.save();
                     }
                 }
 
                 if (channels) {
-                    if (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(channels)) {
-                        context.sendReply({
-                            content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedChannel", { channel: `<#${channels}>` })),
-                            flags: MessageFlags.EPHEMERAL
-                        })
-                        return endCommand();
+                    if (!await guildInfo.InviteBlockerModule.whitelistedChannels.includes(channels)) {
+                        guildInfo.InviteBlockerModule.whitelistedChannels.push(channels);
+                        await guildInfo.save();
                     } else {
                         guildInfo.InviteBlockerModule.whitelistedChannels.push(channels);
                         await guildInfo.save();
