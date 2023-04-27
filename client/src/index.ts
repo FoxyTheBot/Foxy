@@ -1,15 +1,13 @@
 import { createBot, Intents, startBot } from 'discordeno';
 import { setupFoxy, setupInternals, startModules } from './structures/client/FoxyClient';
 import { FoxyClient } from './structures/types/foxy';
-import { EventManager } from './structures/events/EventManager';
 import { logger } from './utils/logger';
 import config from '../config.json';
 import { enableCachePlugin, BotWithCache } from 'discordeno/cache-plugin'
-const events = new EventManager({});
+import { setupEventsHandler } from './events';
 
 const bot = createBot({
     token: config.token,
-    events: events.load({}),
     intents: Intents.Guilds | Intents.GuildMessages | Intents.MessageContent | Intents.GuildMembers,
     botId: BigInt(config.clientId),
     applicationId: BigInt(config.clientId),
@@ -18,6 +16,7 @@ const bot = createBot({
 enableCachePlugin(bot);
 setupFoxy(bot);
 setupInternals(bot);
+setupEventsHandler();
 startModules(bot);
 startBot(bot);
 

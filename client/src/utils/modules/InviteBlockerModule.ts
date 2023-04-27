@@ -1,6 +1,7 @@
 import { BotWithCache } from 'discordeno/cache-plugin';
 import ChatInputMessageContext from '../../structures/commands/ChatInputMessageContext';
 import { FoxyClient } from '../../structures/types/foxy';
+import { logger } from '../logger';
 
 export default class InviteBlockerModule {
     public bot: FoxyClient;
@@ -9,6 +10,7 @@ export default class InviteBlockerModule {
     }
 
     async start() {
+        logger.info("[MODULES] Invite Blocker started!")
         const inviteRegex = /discord(?:app\.com\/invite|\.gg(?:\/invite)?)\/([\w-]{2,255})/i;
         this.bot.events.messageCreate = async (_, message) => {
             const guildId = message.guildId;

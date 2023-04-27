@@ -1,9 +1,4 @@
 {
-    "slash": {
-        "title": "Não é possível mais usar os comandos tradicionais da Foxy!",
-        "description": "Os comandos tradicionais foram descontinuados e substituidos pelos Slash Commands (Comandos de /).\nDigite `/ping` e verifique se aparece o meu comando de ping, caso não apareça atualize minhas permissões no seu servidor me re-convidando para o servidor :3 \nPara atualizar você pode atualizar pelo [link](https://discord.com/oauth2/authorize?client_id=737044809650274325&scope=bot+applications.commands&permissions=269872255) ou usando a nova função do Discord:",
-        "button": "Atualizar permissões"
-    },
     "ban": {
         "title": "Você esta **banido(a)**",
         "description": "Se você quiser fazer um apelo de ban você pode fazer um apelo de ban \n\n Recomendo você ler os [termos de uso](https://foxybot.win/terms)",

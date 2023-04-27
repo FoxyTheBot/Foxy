@@ -1,5 +1,6 @@
 import { BotWithCache } from "discordeno/cache-plugin";
 import { FoxyClient } from "../../structures/types/foxy";
+import { logger } from "../logger";
 
 export default class AutoRoleModule {
     public bot: FoxyClient;
@@ -8,6 +9,7 @@ export default class AutoRoleModule {
     }
 
     async start() {
+        logger.info("[MODULES] AutoRoleModule started!")
         this.bot.events.guildMemberAdd = async (_, member) => {
             const guildId = member.guildId;
             const guildInfo = await this.bot.database.getGuild(guildId);
