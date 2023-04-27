@@ -1,6 +1,6 @@
 import { Bot, Collection, User } from 'discordeno';
 import { ChatInputInteractionCommand } from './command';
-
+import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
 export interface IdentifiedData<T> {
   id: number;
   data: T;
@@ -17,4 +17,5 @@ export interface FoxyClient extends Bot {
   config: Object;
   locale: Function;
   isReady: boolean;
+  hasGuildPermission: typeof botHasGuildPermissions;
 }

@@ -8,6 +8,7 @@ import { loadLocales } from '../../utils/loader';
 import { bot } from '../..';
 import AutoRoleModule from '../../utils/modules/AutoRoleModule';
 import InviteBlockerModule from '../../utils/modules/InviteBlockerModule';
+import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
 
 const setupFoxy = async (client: FoxyClient): Promise<void> => {
     client.owner = await bot.helpers.getUser(config.ownerId);
@@ -17,6 +18,7 @@ const setupFoxy = async (client: FoxyClient): Promise<void> => {
     client.database = new DatabaseConnection(client);
     client.emotes = require("../json/emotes.json");
     client.isReady = false;
+    client.hasGuildPermission = botHasGuildPermissions;
     loadCommands();
     loadLocales();
 }
