@@ -1,9 +1,4 @@
 {
-    "slash": {
-        "title": "Es ist nicht mehr möglich, herkömmliche Foxy -Befehle zu verwenden!",
-        "description": "Traditionelle Befehle wurden abgesetzt und durch Slash -Befehle (Befehle von /) ersetzt. \n Geben Sie `/ping` ein und überprüfen Sie nach meinem Ping-Befehl, wenn Sie meine Berechtigungen auf Ihrem Server nicht aktualisieren, das mich auf den Server überprüft: 3 \n Um zu aktualisieren, können Sie nach [Link] (https://discord.com/oauth2/authorize?client_id=737044809650274325&scope=bot+applications.commands&permissions=269872255) aktualisieren oder die neue Funktion von Discord verwenden:",
-        "button": "Berechtigungen aktualisieren"
-    },
     "ban": {
         "title": "Du bist verbannt",
         "description": "Wenn Sie eine Beschwerde einlegen möchten, können Sie eine Beschwerde einlegen \n\n Ich empfehle Ihnen, [Nutzungsbedingungen] zu lesen (https://foxybot.win/terms)",
