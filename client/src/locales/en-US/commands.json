@@ -295,6 +295,8 @@
             "removedWhitelistedRole": "Role {{role}} removed successfully!",
             "addedWhitelistedChannel": "Channel {{channel}} added successfully!",
             "removedWhitelistedChannel": "Channel {{channel}} removed successfully!",
+            "addedWhitelistedUser": "Usuário {{user}} adicionado a lista de usuários que não serão afetados",
+            "removedWhitelistedUser": "Usuário {{user}} removido da lista de usuários que não serão afetados",
             "fields": {
                 "isEnabled": "Module",
                 "isEnabledValue": {
@@ -304,9 +306,11 @@
                 "blockMessage": "Message",
                 "whitelistedChannels": "Channels that's not be affected",
                 "whitelistedRoles": "Roles that's not be affected",
+                "whitelistedUsers": "Usuários que não serão afetados",
                 "noBlockMessage": "No message defined",
                 "noWhitelistedChannels": "No channel defined",
-                "noWhitelistedRoles": "No role defined"
+                "noWhitelistedRoles": "No role defined",
+                "noWhitelistedUsers": "Nenhum usuário definido"
             },
             "modal": {
                 "title": "Edit block message",
@@ -325,8 +329,10 @@
             "errors": {
                 "notWhitelistedChannel": "This channel isn't in the list of allowed channels",
                 "notWhitelistedRole": "This role isn't in the list of allowed roles",
+                "notWhitelistedUser": "Este usuário não está na lista de usuários que não serão afetados",
                 "alreadyWhitelistedChannel": "This channel is already whitelisted",
-                "alreadyWhitelistedRole": "This role is already whitelisted"
+                "alreadyWhitelistedRole": "This role is already whitelisted",
+                "alreadyWhitelistedUser": "Este usuário já está na lista de usuários que não serão afetados"
             }
         }
     },
