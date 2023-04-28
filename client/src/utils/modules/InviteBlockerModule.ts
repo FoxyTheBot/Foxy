@@ -1,4 +1,3 @@
-import { BotWithCache } from 'discordeno/cache-plugin';
 import ChatInputMessageContext from '../../structures/commands/ChatInputMessageContext';
 import { FoxyClient } from '../../structures/types/foxy';
 import { logger } from '../logger';
@@ -29,7 +28,7 @@ export default class InviteBlockerModule {
                 (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))),
                 (!guildInfo.InviteBlockerModule.isEnabled),
                 (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)),
-                (!this.bot.hasGuildPermission(this.bot as BotWithCache<FoxyClient>, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])),
+                (!this.bot.hasGuildPermission(this.bot , guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])),
                 (await guildInfo.InviteBlockerModule.whitelistedUsers.includes(message.authorId))) return;
 
 
@@ -66,7 +65,7 @@ export default class InviteBlockerModule {
                 (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))),
                 (!guildInfo.InviteBlockerModule.isEnabled),
                 (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)),
-                (!this.bot.hasGuildPermission(this.bot as BotWithCache<FoxyClient>, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])),
+                (!this.bot.hasGuildPermission(this.bot, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])),
                 (await guildInfo.InviteBlockerModule.whitelistedUsers.includes(message.authorId))) return;
 
             if (blockMessage.includes("{user}")) {
