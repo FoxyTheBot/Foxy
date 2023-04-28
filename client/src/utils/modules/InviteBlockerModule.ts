@@ -16,13 +16,8 @@ export default class InviteBlockerModule {
             const guildId = message.guildId;
             const guildInfo = await this.bot.database.getGuild(guildId);
             const context = new ChatInputMessageContext(message);
-            const authorRoles = await context.authorRoles.map(role => {
-                if (role) {
-                    return role.toString().replace("n", "");
-                } else {
-                    return null;
-                }
-            });
+            const authorRoles = await context.authorRoles.map(role => role ? role.toString().replace("n", "") : null);
+            
             var blockMessage = guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
             if (message.content === blockMessage && message.authorId === this.bot.applicationId) {
                 setTimeout(async () => {
@@ -58,13 +53,8 @@ export default class InviteBlockerModule {
             const guildId = message.guildId;
             const guildInfo = await this.bot.database.getGuild(guildId);
             const context = new ChatInputMessageContext(message);
-            const authorRoles = await context.authorRoles.map(role => {
-                if (role) {
-                    return role.toString().replace("n", "");
-                } else {
-                    return null;
-                }
-            });
+            const authorRoles = await context.authorRoles.map(role => role ? role.toString().replace("n", "") : null);
+
             var blockMessage = guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
             if (message.content === blockMessage && message.authorId === this.bot.applicationId) {
                 setTimeout(async () => {
