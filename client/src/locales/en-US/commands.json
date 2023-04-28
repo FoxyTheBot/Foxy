@@ -295,8 +295,8 @@
             "removedWhitelistedRole": "Role {{role}} removed successfully!",
             "addedWhitelistedChannel": "Channel {{channel}} added successfully!",
             "removedWhitelistedChannel": "Channel {{channel}} removed successfully!",
-            "addedWhitelistedUser": "Usuário {{user}} adicionado a lista de usuários que não serão afetados",
-            "removedWhitelistedUser": "Usuário {{user}} removido da lista de usuários que não serão afetados",
+            "addedWhitelistedUser": "User {{user}} added successfully!",
+            "removedWhitelistedUser": "User {{user}} removed successfully!",
             "fields": {
                 "isEnabled": "Module",
                 "isEnabledValue": {
@@ -306,11 +306,11 @@
                 "blockMessage": "Message",
                 "whitelistedChannels": "Channels that's not be affected",
                 "whitelistedRoles": "Roles that's not be affected",
-                "whitelistedUsers": "Usuários que não serão afetados",
+                "whitelistedUsers": "Users that's not be affected",
                 "noBlockMessage": "No message defined",
                 "noWhitelistedChannels": "No channel defined",
                 "noWhitelistedRoles": "No role defined",
-                "noWhitelistedUsers": "Nenhum usuário definido"
+                "noWhitelistedUsers": "No user defined"
             },
             "modal": {
                 "title": "Edit block message",
@@ -329,10 +329,10 @@
             "errors": {
                 "notWhitelistedChannel": "This channel isn't in the list of allowed channels",
                 "notWhitelistedRole": "This role isn't in the list of allowed roles",
-                "notWhitelistedUser": "Este usuário não está na lista de usuários que não serão afetados",
+                "notWhitelistedUser": "This user isn't in the list of allowed users",
                 "alreadyWhitelistedChannel": "This channel is already whitelisted",
                 "alreadyWhitelistedRole": "This role is already whitelisted",
-                "alreadyWhitelistedUser": "Este usuário já está na lista de usuários que não serão afetados"
+                "alreadyWhitelistedUser": "This user is already whitelisted"
             }
         }
     },
