@@ -1,14 +1,14 @@
-import { Bot, handleInteractionCreate, Collection, handleMessageCreate, handleGuildMemberAdd } from 'discordeno';
-import config from '../../../config.json';
+import { handleInteractionCreate, Collection, handleMessageCreate, handleGuildMemberAdd } from 'discordeno';
 import { FoxyClient } from '../types/foxy';
 import { loadCommands } from '../commands/loadCommands';
-import DatabaseConnection from '../database/DatabaseConnection';
 import { transformInteraction } from '../internals/transformers/interactionResponse';
 import { loadLocales } from '../../utils/loader';
 import { bot } from '../..';
+import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
 import AutoRoleModule from '../../utils/modules/AutoRoleModule';
 import InviteBlockerModule from '../../utils/modules/InviteBlockerModule';
-import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
+import DatabaseConnection from '../database/DatabaseConnection';
+import config from '../../../config.json';
 
 const setupFoxy = async (client: FoxyClient): Promise<void> => {
     client.owner = await bot.helpers.getUser(config.ownerId);
@@ -23,7 +23,7 @@ const setupFoxy = async (client: FoxyClient): Promise<void> => {
     loadLocales();
 }
 
-const setupInternals = async (bot: Bot): Promise<void> => {
+const setupInternals = async (bot: FoxyClient): Promise<void> => {
     bot.transformers.reverse.interactionResponse = transformInteraction;
     bot.handlers.INTERACTION_CREATE = handleInteractionCreate;
     bot.handlers.MESSAGE_CREATE = handleMessageCreate;
@@ -31,7 +31,7 @@ const setupInternals = async (bot: Bot): Promise<void> => {
     bot.handlers.GUILD_MEMBER_ADD = handleGuildMemberAdd;
 };
 
-const startModules = async (bot: Bot): Promise<void> => {
+const startModules = async (bot: FoxyClient): Promise<void> => {
     new AutoRoleModule(bot).start();
     new InviteBlockerModule(bot).start();
 }
