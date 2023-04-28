@@ -8,7 +8,7 @@ import InviteBlockerDisableExecutor from "../../utils/commands/executors/mod/inv
 import AddMessageExecutor from "../../utils/commands/executors/mod/inviteblocker/AddMessageExecutor";
 import ResetConfigExecutor from "../../utils/commands/executors/mod/inviteblocker/ResetConfigExecutor";
 import ModalSentExecutor from "../../utils/commands/executors/mod/inviteblocker/ModalSentExecutor";
-import { Channel, Role } from "discordeno/transformers";
+import { Channel, Role, User } from "discordeno/transformers";
 import { MessageFlags } from "../../utils/discord/Message";
 
 const ConfigInviteBlockerCommand = createCommand({
@@ -132,6 +132,52 @@ const ConfigInviteBlockerCommand = createCommand({
                 },
                 type: ApplicationCommandOptionTypes.Channel,
             }]
+        },
+        {
+            name: "adduser",
+            description: "[Moderation] Add a user to bypass invite blocker",
+            nameLocalizations: {
+                "pt-BR": "adicionar_usuario"
+            },
+            descriptionLocalizations: {
+                "pt-BR": "[Moderação] Adiciona um usuário para burlar o bloqueio de convites"
+            },
+            type: ApplicationCommandOptionTypes.SubCommand,
+            options: [{
+                name: "user",
+                description: "User to bypass invite blocker",
+                nameLocalizations: {
+                    "pt-BR": "usuário"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "Usuário para burlar o bloqueio de convites"
+                },
+                type: ApplicationCommandOptionTypes.User,
+                required: true
+            }]
+        },
+        {
+            name: "removeuser",
+            description: "[Moderation] Remove a user to bypass invite blocker",
+            nameLocalizations: {
+                "pt-BR": "remover_usuario"
+            },
+            descriptionLocalizations: {
+                "pt-BR": "[Moderação] Remove um usuário para burlar o bloqueio de convites"
+            },
+            type: ApplicationCommandOptionTypes.SubCommand,
+            options: [{
+                name: "user",
+                description: "User you want to remove from bypassing invite blocker",
+                nameLocalizations: {
+                    "pt-BR": "usuário"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "Usuário que você deseja remover do bloqueio de convites"
+                },
+                type: ApplicationCommandOptionTypes.User,
+                required: true
+            }]
         }]
     }],
     commandRelatedExecutions: [
@@ -145,6 +191,7 @@ const ConfigInviteBlockerCommand = createCommand({
         const guildInfo = await bot.database.getGuild(context.guildId);
         const role = await context.getOption<Role>("role", false);
         const channel = await context.getOption<Channel>("channel", false);
+        const user = await context.getOption<User>("user", "users");
 
         const SubCommand = context.getSubCommand();
         if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("MANAGE_MESSAGES" || "ADMINISTRATOR")) {
@@ -181,6 +228,10 @@ const ConfigInviteBlockerCommand = createCommand({
                     {
                         name: t("commands:inviteBlocker.config.fields.whitelistedRoles"),
                         value: guildInfo.InviteBlockerModule.whitelistedRoles.length > 0 ? guildInfo.InviteBlockerModule.whitelistedRoles.map(roleId => `<@&${roleId}>`).join(", ") : t("commands:inviteBlocker.config.fields.noWhitelistedRoles")
+                    },
+                    {
+                        name: t("commands:inviteBlocker.config.fields.whitelistedUsers"),
+                        value: guildInfo.InviteBlockerModule.whitelistedUsers.length > 0 ? guildInfo.InviteBlockerModule.whitelistedUsers.map(userId => `<@${userId}>`).join(", ") : t("commands:inviteBlocker.config.fields.noWhitelistedUsers")
                     }]
                 });
 
@@ -238,7 +289,8 @@ const ConfigInviteBlockerCommand = createCommand({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedRole", { role: `<@&${role}>` })),
                         flags: MessageFlags.EPHEMERAL
                     })
-                    return endCommand();
+                    endCommand();
+                    break;
                 } else {
                     guildInfo.InviteBlockerModule.whitelistedRoles.push(role);
                     await guildInfo.save();
@@ -246,9 +298,9 @@ const ConfigInviteBlockerCommand = createCommand({
                         content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:inviteBlocker.config.addedWhitelistedRole", { role: `<@&${role}>` })),
                         flags: MessageFlags.EPHEMERAL
                     });
+                    endCommand();
+                    break;
                 }
-                endCommand();
-                break;
             }
 
             case "removerole": {
@@ -257,7 +309,8 @@ const ConfigInviteBlockerCommand = createCommand({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.notWhitelistedRole", { role: `<@&${role}>` })),
                         flags: MessageFlags.EPHEMERAL
                     })
-                    return endCommand();
+                    endCommand();
+                    break;
                 } else {
                     guildInfo.InviteBlockerModule.whitelistedRoles.splice(guildInfo.InviteBlockerModule.whitelistedRoles.indexOf(role), 1);
                     await guildInfo.save();
@@ -277,7 +330,8 @@ const ConfigInviteBlockerCommand = createCommand({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedChannel", { channel: `<#${channel}>` })),
                         flags: MessageFlags.EPHEMERAL
                     })
-                    return endCommand();
+                    endCommand();
+                    break;
                 } else {
                     guildInfo.InviteBlockerModule.whitelistedChannels.push(channel);
                     await guildInfo.save();
@@ -285,10 +339,9 @@ const ConfigInviteBlockerCommand = createCommand({
                         content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:inviteBlocker.config.addedWhitelistedChannel", { channel: `<#${channel}>` })),
                         flags: MessageFlags.EPHEMERAL
                     });
+                    endCommand();
+                    break;
                 }
-
-                endCommand();
-                break;
             }
 
             case "removechannel": {
@@ -297,7 +350,8 @@ const ConfigInviteBlockerCommand = createCommand({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.notWhitelistedChannel", { channel: `<#${channel}>` })),
                         flags: MessageFlags.EPHEMERAL
                     })
-                    return endCommand();
+                    endCommand();
+                    break;
                 } else {
                     guildInfo.InviteBlockerModule.whitelistedChannels.splice(guildInfo.InviteBlockerModule.whitelistedChannels.indexOf(channel), 1);
                     await guildInfo.save();
@@ -305,6 +359,48 @@ const ConfigInviteBlockerCommand = createCommand({
                         content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:inviteBlocker.config.removedWhitelistedChannel", { channel: `<#${channel}>` })),
                         flags: MessageFlags.EPHEMERAL
                     });
+                    endCommand();
+                    break
+                }
+            }
+
+            case "adduser": {
+                if (guildInfo.InviteBlockerModule.whitelistedUsers.includes(user.id.toString())) {
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedUser", { user: `<@${user.id}>` })),
+                        flags: MessageFlags.EPHEMERAL
+                    })
+                    endCommand();
+                    break;
+                } else {
+                    guildInfo.InviteBlockerModule.whitelistedUsers.push(user.id.toString());
+                    await guildInfo.save();
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:inviteBlocker.config.addedWhitelistedUser", { user: `<@${user.id}>` })),
+                        flags: MessageFlags.EPHEMERAL
+                    });
+                    endCommand();
+                    break;
+                }
+            }
+
+            case "removeuser": {
+                if (!guildInfo.InviteBlockerModule.whitelistedUsers.includes(user.id)) {
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.notWhitelistedUser", { user: `<@${user.id}>` })),
+                        flags: MessageFlags.EPHEMERAL
+                    })
+                    endCommand();
+                    break;
+                } else {
+                    guildInfo.InviteBlockerModule.whitelistedUsers.splice(guildInfo.InviteBlockerModule.whitelistedUsers.indexOf(user.id), 1);
+                    await guildInfo.save();
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:inviteBlocker.config.removedWhitelistedUser", { user: `<@${user.id}>` })),
+                        flags: MessageFlags.EPHEMERAL
+                    });
+                    endCommand();
+                    break
                 }
             }
         }
