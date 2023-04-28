@@ -295,6 +295,8 @@
             "removedWhitelistedRole": "Cargo {{role}} removido da lista de cargos que não serão afetados",
             "addedWhitelistedChannel": "Canal {{channel}} adicionado a lista de canais que não serão afetados",
             "removedWhitelistedChannel": "Canal {{channel}} removido da lista de canais que não serão afetados",
+            "addedWhitelistedUser": "Usuário {{user}} adicionado a lista de usuários que não serão afetados",
+            "removedWhitelistedUser": "Usuário {{user}} removido da lista de usuários que não serão afetados",
             "fields": {
                 "isEnabled": "Módulo",
                 "isEnabledValue": {
@@ -304,9 +306,11 @@
                 "blockMessage": "Mensagem",
                 "whitelistedChannels": "Canais que não serão afetados",
                 "whitelistedRoles": "Cargos que não serão afetados",
+                "whitelistedUsers": "Usuários que não serão afetados",
                 "noBlockMessage": "Nenhuma mensagem definida",
                 "noWhitelistedChannels": "Nenhum canal definido",
-                "noWhitelistedRoles": "Nenhum cargo definido"
+                "noWhitelistedRoles": "Nenhum cargo definido",
+                "noWhitelistedUsers": "Nenhum usuário definido"
             },
             "modal": {
                 "title": "Editar mensagem de bloqueio de convite",
@@ -325,8 +329,10 @@
             "errors": {
                 "notWhitelistedChannel": "Este canal não está na lista de canais que não serão afetados",
                 "notWhitelistedRole": "Este cargo não está na lista de cargos que não serão afetados",
+                "notWhitelistedUser": "Este usuário não está na lista de usuários que não serão afetados",
                 "alreadyWhitelistedChannel": "Este canal já está na lista de canais que não serão afetados",
-                "alreadyWhitelistedRole": "Este cargo já está na lista de cargos que não serão afetados"
+                "alreadyWhitelistedRole": "Este cargo já está na lista de cargos que não serão afetados",
+                "alreadyWhitelistedUser": "Este usuário já está na lista de usuários que não serão afetados"
             }
         }
     },
