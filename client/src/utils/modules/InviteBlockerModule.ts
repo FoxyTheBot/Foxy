@@ -34,7 +34,8 @@ export default class InviteBlockerModule {
                 (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))),
                 (!guildInfo.InviteBlockerModule.isEnabled),
                 (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)),
-                (!this.bot.hasGuildPermission(this.bot as BotWithCache<FoxyClient>, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"]))) return;
+                (!this.bot.hasGuildPermission(this.bot as BotWithCache<FoxyClient>, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])),
+                (await guildInfo.InviteBlockerModule.whitelistedUsers.includes(message.authorId))) return;
 
 
             if (blockMessage.includes("{user}")) {
@@ -75,7 +76,8 @@ export default class InviteBlockerModule {
                 (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))),
                 (!guildInfo.InviteBlockerModule.isEnabled),
                 (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)),
-                (!this.bot.hasGuildPermission(this.bot as BotWithCache<FoxyClient>, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"]))) return;
+                (!this.bot.hasGuildPermission(this.bot as BotWithCache<FoxyClient>, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])),
+                (await guildInfo.InviteBlockerModule.whitelistedUsers.includes(message.authorId))) return;
 
             if (blockMessage.includes("{user}")) {
                 blockMessage = blockMessage.replace("{user}", `<@${message.authorId}>`);
