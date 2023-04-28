@@ -82,7 +82,8 @@
             "success": "Вы купили маску для своего аватара!",
             "noMoney": "У вас не хватает тортов, чтобы получить эту маску",
             "preview": "Предварительный просмотр",
-            "purchase": "Покупка"
+            "purchase": "Покупка",
+            "purchased": "Comprado"
         },
         "set": {
             "success": "Успешная изменившаяся маска: 3",
@@ -113,36 +114,39 @@
         "bot": {
             "description": "Привет {{user}}, я Фокси, у меня есть ресурсы для развлечения и привлекать ваших членов, команды экономики, модификация изображений и многое другое! : 3",
             "fields": {
-                "addme": "Gostou das minhas funcionalidades? Me adicione no seu servidor!",
-                "add": "Me adicione clicando aqui",
-                "crowdin": "Me ajude a aprender novos idiomas",
-                "support": "Precisa de ajuda? Entre no meu servidor de suporte!",
+                "addme": "Вам понравились мои черты? Добавьте меня на свой сервер!",
+                "add": "Добавьте меня, нажав здесь",
+                "crowdin": "Помогите мне выучить новые языки",
+                "support": "Нужна помощь? Присоединяйтесь к моему серверу поддержки!",
                 "privacy": "Leia os termos de uso para evitar problemas",
                 "website": "Meu Website onde você pode ver algumas coisas sobre mim"
             },
-            "footer": "Criada com ❤️ por {{owner}}"
+            "footer": "Создано с ❤️ пользователем {{owner}}"
         }
     },
     "roblox": {
         "title": "Perfil de {{user}}",
         "fields": {
             "id": "ID do usuário",
-            "nickname": "Nome de exibição",
-            "joinDate": "Data de entrada",
-            "followers": "Seguidores",
-            "following": "Seguindo",
-            "badges": "Emblemas",
-            "friends": "Amigos",
-            "username": "Nome de usuário",
-            "blurb": "Sobre mim",
-            "isBanned": "Está banido",
+            "nickname": "Отображаемое имя",
+            "joinDate": "Дата ввода",
+            "followers": "Последователи",
+            "following": "Следующий",
+            "badges": "Значки",
+            "friends": "Друзья",
+            "username": "Имя пользователя",
+            "blurb": "Обо мне",
+            "isBanned": "Запрещенный",
             "status": {
-                "banned": "Sim",
-                "notBanned": "Não"
+                "banned": "Да",
+                "notBanned": "Нет"
+            },
+            "errors": {
+                "userNotFound": "Я не смог найти этого пользователя, извините!"
             }
         },
         "buttons": {
-            "viewProfile": "Ver perfil"
+            "viewProfile": "Просмотреть профиль"
         }
     },
     "aboutme": {
@@ -268,6 +272,70 @@
         "daily": "Вы выиграли ** {{amount}} торты ** Теперь у вас есть {{money}} торты",
         "dailyAlert": "**Не забывайте:** Вы не можете изменить торты для таких вещей, как деньги, нитро, контент NSFW и т. Д.! Если вы сделаете это, вам будет запрещено использовать Foxy навсегда!"
     },
+    "AutoRole": {
+        "addrole": {
+            "alreadyAdded": "Este cargo já foi adicionado",
+            "added": "Cargo adicionado com sucesso"
+        },
+        "enable": {
+            "enabled": "Módulo ativado",
+            "alreadyEnabled": "O módulo já está ativado"
+        },
+        "disable": {
+            "disabled": "Módulo desativado",
+            "alreadyDisabled": "O módulo já está desativado"
+        }
+    },
+    "inviteBlocker": {
+        "config": {
+            "title": "Bloqueador de convites",
+            "description": "Configure a Foxy para deletar convites de outros servidores",
+            "reseted": "Configurações resetadas",
+            "addedWhitelistedRole": "Cargo {{role}} adicionado a lista de cargos que não serão afetados",
+            "removedWhitelistedRole": "Cargo {{role}} removido da lista de cargos que não serão afetados",
+            "addedWhitelistedChannel": "Canal {{channel}} adicionado a lista de canais que não serão afetados",
+            "removedWhitelistedChannel": "Canal {{channel}} removido da lista de canais que não serão afetados",
+            "addedWhitelistedUser": "Usuário {{user}} adicionado a lista de usuários que não serão afetados",
+            "removedWhitelistedUser": "Usuário {{user}} removido da lista de usuários que não serão afetados",
+            "fields": {
+                "isEnabled": "Módulo",
+                "isEnabledValue": {
+                    "enabled": "Ativado",
+                    "disabled": "Desativado"
+                },
+                "blockMessage": "Mensagem",
+                "whitelistedChannels": "Canais que não serão afetados",
+                "whitelistedRoles": "Cargos que não serão afetados",
+                "whitelistedUsers": "Usuários que não serão afetados",
+                "noBlockMessage": "Nenhuma mensagem definida",
+                "noWhitelistedChannels": "Nenhum canal definido",
+                "noWhitelistedRoles": "Nenhum cargo definido",
+                "noWhitelistedUsers": "Nenhum usuário definido"
+            },
+            "modal": {
+                "title": "Editar mensagem de bloqueio de convite",
+                "addMessage": "Insira a mensagem abaixo",
+                "addMessagePlaceholder": "Você pode utilizar {user} para mencionar o usuário ou {channel} para mencionar o canal"
+            },
+            "buttons": {
+                "disable": "Desativar",
+                "enable": "Ativar",
+                "reset": "Resetar",
+                "whitelistChannel": "Adicionar exceção de canal",
+                "whitelistRole": "Adicionar exceção de cargo",
+                "blockMessage": "Alterar mensagem",
+                "cancel": "Cancelar"
+            },
+            "errors": {
+                "notWhitelistedChannel": "Este canal não está na lista de canais que não serão afetados",
+                "notWhitelistedRole": "Este cargo não está na lista de cargos que não serão afetados",
+                "notWhitelistedUser": "Este usuário não está na lista de usuários que não serão afetados",
+                "alreadyWhitelistedChannel": "Este canal já está na lista de canais que não serão afetados",
+                "alreadyWhitelistedRole": "Este cargo já está na lista de cargos que não serão afetados",
+                "alreadyWhitelistedUser": "Este usuário já está na lista de usuários que não serão afetados"
+            }
+        }
+    },
     "background": {
         "buy": {
             "title": "**Не забывайте:** Вы не можете изменить торты для таких вещей, как деньги, нитро, контент NSFW и т. Д.! Если вы сделаете это, вам будет запрещено использовать Foxy навсегда!",
@@ -275,6 +343,7 @@
             "alreadyOwned": "У вас уже есть этот фон",
             "onlyDevs": "Только разработчики могут купить фон",
             "purchase": "Покупка",
+            "purchased": "Comprado",
             "price": "Цена",
             "preview": "Предварительный просмотр",
             "noMoney": "У тебя недостаточно тортов",
@@ -295,7 +364,8 @@
     },
     "tickle": {
         "success": "**{{author}}** пощекотал при **{{user}}**",
-        "button": "Вернуть"
+        "button": "Вернуть",
+        "bot": "🤣 Eu não gosto de cócegas, pare! 🤣"
     },
     "smile": {
         "smiling": "{{author}} улыбается ..."
@@ -304,14 +374,17 @@
         "crying": "{{author}} плачет ..."
     },
     "lick": {
-        "success": "** {{author}} ** дал лизать ** {{user}} **"
+        "success": "** {{author}} ** дал лизать ** {{user}} **",
+        "bot": "Nem tente me lamber! Eu não gosto disso!"
     },
     "laugh": {
         "success": "{{author}} смеется ..."
     },
     "slap": {
         "button": "Вернуть",
-        "success": "**{{author}}** дал таблицу в **{{user}}**"
+        "success": "**{{author}}** дал таблицу в **{{user}}**",
+        "bot": "Por que você está me batendo? Eu não fiz nada... :(",
+        "self": "Você não pode se bater, não precisa se machucar"
     },
     "dance": {
         "dancing": "{{author}} танцует"
@@ -323,7 +396,8 @@
     "kiss": {
         "button": "Вернуть",
         "success": "**{{author}}** поцеловал **{{user}}**",
-        "self": "Я не хочу тебя целовать, окси? Мы всего лишь друзья!"
+        "bot": "Eu não quero te beijar, oxi? Somos apenas amigos!",
+        "self": "Você não pode se beijar, isso é estranho..."
     },
     "hug": {
         "button": "Вернуть",
@@ -359,6 +433,7 @@
         }
     },
     "global": {
-        "noUser": "Пользователь не найден"
+        "noUser": "Пользователь не найден",
+        "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!"
     }
 }

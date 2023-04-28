@@ -82,7 +82,8 @@
             "success": "Vous avez acheté le masque pour votre avatar !",
             "noMoney": "Vous n'avez pas assez de Cakes pour acheter ce masque",
             "preview": "Aperçu",
-            "purchase": "Achat"
+            "purchase": "Achat",
+            "purchased": "Comprado"
         },
         "set": {
             "success": "Masque changé avec succès :3",
@@ -139,6 +140,9 @@
             "status": {
                 "banned": "Sim",
                 "notBanned": "Não"
+            },
+            "errors": {
+                "userNotFound": "Não consegui econtrar esse usuário, desculpa!"
             }
         },
         "buttons": {
@@ -268,6 +272,70 @@
         "daily": "Vous avez gagné **{{amount}} Cakes** maintenant vous avez {{money}} Cakes\n",
         "dailyAlert": "**N'oubliez pas :** Vous ne pouvez pas échanger des cakes contre de l'argent, Nitro, du contenu NSFW, etc. ! Si vous le faites, vous serez interdit d'utiliser Foxy de façon permanente !"
     },
+    "AutoRole": {
+        "addrole": {
+            "alreadyAdded": "Este cargo já foi adicionado",
+            "added": "Cargo adicionado com sucesso"
+        },
+        "enable": {
+            "enabled": "Módulo ativado",
+            "alreadyEnabled": "O módulo já está ativado"
+        },
+        "disable": {
+            "disabled": "Módulo desativado",
+            "alreadyDisabled": "O módulo já está desativado"
+        }
+    },
+    "inviteBlocker": {
+        "config": {
+            "title": "Bloqueador de convites",
+            "description": "Configure a Foxy para deletar convites de outros servidores",
+            "reseted": "Configurações resetadas",
+            "addedWhitelistedRole": "Cargo {{role}} adicionado a lista de cargos que não serão afetados",
+            "removedWhitelistedRole": "Cargo {{role}} removido da lista de cargos que não serão afetados",
+            "addedWhitelistedChannel": "Canal {{channel}} adicionado a lista de canais que não serão afetados",
+            "removedWhitelistedChannel": "Canal {{channel}} removido da lista de canais que não serão afetados",
+            "addedWhitelistedUser": "Usuário {{user}} adicionado a lista de usuários que não serão afetados",
+            "removedWhitelistedUser": "Usuário {{user}} removido da lista de usuários que não serão afetados",
+            "fields": {
+                "isEnabled": "Módulo",
+                "isEnabledValue": {
+                    "enabled": "Ativado",
+                    "disabled": "Desativado"
+                },
+                "blockMessage": "Mensagem",
+                "whitelistedChannels": "Canais que não serão afetados",
+                "whitelistedRoles": "Cargos que não serão afetados",
+                "whitelistedUsers": "Usuários que não serão afetados",
+                "noBlockMessage": "Nenhuma mensagem definida",
+                "noWhitelistedChannels": "Nenhum canal definido",
+                "noWhitelistedRoles": "Nenhum cargo definido",
+                "noWhitelistedUsers": "Nenhum usuário definido"
+            },
+            "modal": {
+                "title": "Editar mensagem de bloqueio de convite",
+                "addMessage": "Insira a mensagem abaixo",
+                "addMessagePlaceholder": "Você pode utilizar {user} para mencionar o usuário ou {channel} para mencionar o canal"
+            },
+            "buttons": {
+                "disable": "Desativar",
+                "enable": "Ativar",
+                "reset": "Resetar",
+                "whitelistChannel": "Adicionar exceção de canal",
+                "whitelistRole": "Adicionar exceção de cargo",
+                "blockMessage": "Alterar mensagem",
+                "cancel": "Cancelar"
+            },
+            "errors": {
+                "notWhitelistedChannel": "Este canal não está na lista de canais que não serão afetados",
+                "notWhitelistedRole": "Este cargo não está na lista de cargos que não serão afetados",
+                "notWhitelistedUser": "Este usuário não está na lista de usuários que não serão afetados",
+                "alreadyWhitelistedChannel": "Este canal já está na lista de canais que não serão afetados",
+                "alreadyWhitelistedRole": "Este cargo já está na lista de cargos que não serão afetados",
+                "alreadyWhitelistedUser": "Este usuário já está na lista de usuários que não serão afetados"
+            }
+        }
+    },
     "background": {
         "buy": {
             "title": "Magasin de fond :3",
@@ -275,6 +343,7 @@
             "alreadyOwned": "Vous avez déjà cet arrière-plan",
             "onlyDevs": "Seuls les développeurs peuvent acheter des arrière-plans",
             "purchase": "Achat",
+            "purchased": "Comprado",
             "price": "Prix",
             "preview": "Aperçu en arrière-plan",
             "noMoney": "Vous n'avez pas assez de cakes",
@@ -295,7 +364,8 @@
     },
     "tickle": {
         "success": "**{{author}}** chatouillé **{{user}}**",
-        "button": "Redonner"
+        "button": "Redonner",
+        "bot": "🤣 Eu não gosto de cócegas, pare! 🤣"
     },
     "smile": {
         "smiling": "{{author}} a souri..."
@@ -304,14 +374,17 @@
         "crying": "{{author}} pleure..."
     },
     "lick": {
-        "success": "**{{author}}** léché **{{user}}**"
+        "success": "**{{author}}** léché **{{user}}**",
+        "bot": "Nem tente me lamber! Eu não gosto disso!"
     },
     "laugh": {
         "success": "{{author}} a ri..."
     },
     "slap": {
         "button": "De donner en retour",
-        "success": "**{{author}}** giflé **{{user}}**"
+        "success": "**{{author}}** giflé **{{user}}**",
+        "bot": "Por que você está me batendo? Eu não fiz nada... :(",
+        "self": "Você não pode se bater, não precisa se machucar"
     },
     "dance": {
         "dancing": "{{author}} a dansé"
@@ -323,7 +396,8 @@
     "kiss": {
         "button": "De donner en retour",
         "success": "**{{author}}** embrassé **{{user}}**",
-        "self": "Je ne veux pas t'embrasser ! Nous sommes juste amis !"
+        "bot": "Eu não quero te beijar, oxi? Somos apenas amigos!",
+        "self": "Você não pode se beijar, isso é estranho..."
     },
     "hug": {
         "button": "De donner en retour",
@@ -359,6 +433,7 @@
         }
     },
     "global": {
-        "noUser": "Utilisateur non trouvé"
+        "noUser": "Utilisateur non trouvé",
+        "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!"
     }
 }

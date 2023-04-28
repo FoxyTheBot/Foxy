@@ -1,9 +1,4 @@
 {
-    "slash": {
-        "title": "¡Ya no es posible usar los comandos tradicionales de Foxy!",
-        "description": "Los comandos tradicionales quedaron en desuso y se reemplazaron por comandos de barra (/commands).\nEscriba `/ping` y verifique si aparece mi comando ping, si no, actualice mis permisos en su servidor volviendo a invitarme al servidor :3\nPara actualizar, puede hacerlo a través de [link](https://discord.com/oauth2/authorize?client_id=737044809650274325&scope=bot+applications.commands&permissions=269872255) o usando la nueva función de Discord:",
-        "button": "Actualizar permisos"
-    },
     "ban": {
         "title": "Estás **prohibido** de usar Foxy",
         "description": "Si desea hacer una apelación de prohibición, puede hacer una apelación de prohibición\n\n Te recomiendo que leas los [términos de uso](https://foxybot.win/terms)",

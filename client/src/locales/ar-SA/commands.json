@@ -82,7 +82,8 @@
             "success": "لقد اشتريت القناع لجسورك!",
             "noMoney": "ليس لديك ما يكفي من الكعك للحصول على هذا القناع",
             "preview": "معاينة",
-            "purchase": "شراء"
+            "purchase": "شراء",
+            "purchased": "Comprado"
         },
         "set": {
             "success": "القناع الناجح المتغير",
@@ -139,6 +140,9 @@
             "status": {
                 "banned": "Sim",
                 "notBanned": "Não"
+            },
+            "errors": {
+                "userNotFound": "Não consegui econtrar esse usuário, desculpa!"
             }
         },
         "buttons": {
@@ -268,6 +272,70 @@
         "daily": "لقد فزت ** {{amount}} كعك ** الآن لديك {{money}} كعك",
         "dailyAlert": "** لا تنسى** لا يمكنك تغيير الكعك لأشياء مثل المال ، نيترو ، محتوى NSFW ، إلخ! إذا قمت بذلك ، فسيتم منعك من استخدام Foxy بشكل دائم!"
     },
+    "AutoRole": {
+        "addrole": {
+            "alreadyAdded": "Este cargo já foi adicionado",
+            "added": "Cargo adicionado com sucesso"
+        },
+        "enable": {
+            "enabled": "Módulo ativado",
+            "alreadyEnabled": "O módulo já está ativado"
+        },
+        "disable": {
+            "disabled": "Módulo desativado",
+            "alreadyDisabled": "O módulo já está desativado"
+        }
+    },
+    "inviteBlocker": {
+        "config": {
+            "title": "Bloqueador de convites",
+            "description": "Configure a Foxy para deletar convites de outros servidores",
+            "reseted": "Configurações resetadas",
+            "addedWhitelistedRole": "Cargo {{role}} adicionado a lista de cargos que não serão afetados",
+            "removedWhitelistedRole": "Cargo {{role}} removido da lista de cargos que não serão afetados",
+            "addedWhitelistedChannel": "Canal {{channel}} adicionado a lista de canais que não serão afetados",
+            "removedWhitelistedChannel": "Canal {{channel}} removido da lista de canais que não serão afetados",
+            "addedWhitelistedUser": "Usuário {{user}} adicionado a lista de usuários que não serão afetados",
+            "removedWhitelistedUser": "Usuário {{user}} removido da lista de usuários que não serão afetados",
+            "fields": {
+                "isEnabled": "Módulo",
+                "isEnabledValue": {
+                    "enabled": "Ativado",
+                    "disabled": "Desativado"
+                },
+                "blockMessage": "Mensagem",
+                "whitelistedChannels": "Canais que não serão afetados",
+                "whitelistedRoles": "Cargos que não serão afetados",
+                "whitelistedUsers": "Usuários que não serão afetados",
+                "noBlockMessage": "Nenhuma mensagem definida",
+                "noWhitelistedChannels": "Nenhum canal definido",
+                "noWhitelistedRoles": "Nenhum cargo definido",
+                "noWhitelistedUsers": "Nenhum usuário definido"
+            },
+            "modal": {
+                "title": "Editar mensagem de bloqueio de convite",
+                "addMessage": "Insira a mensagem abaixo",
+                "addMessagePlaceholder": "Você pode utilizar {user} para mencionar o usuário ou {channel} para mencionar o canal"
+            },
+            "buttons": {
+                "disable": "Desativar",
+                "enable": "Ativar",
+                "reset": "Resetar",
+                "whitelistChannel": "Adicionar exceção de canal",
+                "whitelistRole": "Adicionar exceção de cargo",
+                "blockMessage": "Alterar mensagem",
+                "cancel": "Cancelar"
+            },
+            "errors": {
+                "notWhitelistedChannel": "Este canal não está na lista de canais que não serão afetados",
+                "notWhitelistedRole": "Este cargo não está na lista de cargos que não serão afetados",
+                "notWhitelistedUser": "Este usuário não está na lista de usuários que não serão afetados",
+                "alreadyWhitelistedChannel": "Este canal já está na lista de canais que não serão afetados",
+                "alreadyWhitelistedRole": "Este cargo já está na lista de cargos que não serão afetados",
+                "alreadyWhitelistedUser": "Este usuário já está na lista de usuários que não serão afetados"
+            }
+        }
+    },
     "background": {
         "buy": {
             "title": "متجر الخلفية",
@@ -275,6 +343,7 @@
             "alreadyOwned": "لديك بالفعل هذه الخلفية",
             "onlyDevs": "يمكن للمطورين فقط شراء الخلفيات",
             "purchase": "شراء",
+            "purchased": "Comprado",
             "price": "سعر",
             "preview": "معاينة الخلفية",
             "noMoney": "ليس لديك ما يكفي من الكعك",
@@ -295,7 +364,8 @@
     },
     "tickle": {
         "success": "** {{author}} ** تدغدغ في ** {{user}} **",
-        "button": "رد الجميل"
+        "button": "رد الجميل",
+        "bot": "🤣 Eu não gosto de cócegas, pare! 🤣"
     },
     "smile": {
         "smiling": "{{author}} يبتسم ..."
@@ -304,14 +374,17 @@
         "crying": "{{author}} يبكي ..."
     },
     "lick": {
-        "success": "** {{author}} ** أعطى لعق في ** {{user}} **"
+        "success": "** {{author}} ** أعطى لعق في ** {{user}} **",
+        "bot": "Nem tente me lamber! Eu não gosto disso!"
     },
     "laugh": {
         "success": "{{author}} يضحك ..."
     },
     "slap": {
         "button": "رد الجميل",
-        "success": "** {{author}} ** أعطى جدولًا على ** {{user}} **"
+        "success": "** {{author}} ** أعطى جدولًا على ** {{user}} **",
+        "bot": "Por que você está me batendo? Eu não fiz nada... :(",
+        "self": "Você não pode se bater, não precisa se machucar"
     },
     "dance": {
         "dancing": "{{author}} يرقص"
@@ -323,7 +396,8 @@
     "kiss": {
         "button": "رد الجميل",
         "success": "** {{author}} ** أعطى قبلة على ** {{user}} **",
-        "self": "لا أريد أن أقبلك يا أوكسي؟ نحن مجرد أصدقاء!"
+        "bot": "Eu não quero te beijar, oxi? Somos apenas amigos!",
+        "self": "Você não pode se beijar, isso é estranho..."
     },
     "hug": {
         "button": "رد الجميل",
@@ -359,6 +433,7 @@
         }
     },
     "global": {
-        "noUser": "أعطى {{result}}! فزت {{amount}} الكعك "
+        "noUser": "أعطى {{result}}! فزت {{amount}} الكعك ",
+        "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!"
     }
 }
