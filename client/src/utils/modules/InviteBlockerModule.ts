@@ -15,12 +15,12 @@ export default class InviteBlockerModule {
             const guildId = message.guildId;
             const guildInfo = await this.bot.database.getGuild(guildId);
             const context = new ChatInputMessageContext(message);
-            const authorRoles = await context.authorRoles.map(role => role ? role.toString().replace("n", "") : null);
+            const authorRoles = await context.authorRoles.map(role => role ? role.toString().replace("n", "") : []);
             
-            var blockMessage = guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
+            var blockMessage = await guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
             if (message.content === blockMessage && message.authorId === this.bot.applicationId) {
                 setTimeout(async () => {
-                    context.DeleteMessage(message.id, "Invite Blocker");
+                    context.DeleteMessage(message.id, "Invite Blocker - Delete alert message");
                 }, 2000);
             }
             if (message.authorId === this.bot.applicationId || message.isFromBot,
