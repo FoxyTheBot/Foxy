@@ -145,6 +145,13 @@ const ConfigAutoRoleCommand = createCommand({
                     });
                     return endCommand();
                 } else {
+                    if (guildInfo.AutoRoleModule.roles.length >= 5) {
+                        context.sendReply({
+                            content: t("commands:AutoRole.addrole.maxRoles"),
+                            flags: MessageFlags.EPHEMERAL
+                        });
+                        return endCommand();
+                    }
                     guildInfo.AutoRoleModule.roles.push(role);
                     await guildInfo.save();
                     context.sendReply({

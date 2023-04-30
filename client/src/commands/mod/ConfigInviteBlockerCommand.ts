@@ -292,6 +292,14 @@ const ConfigInviteBlockerCommand = createCommand({
                     endCommand();
                     break;
                 } else {
+                    if (guildInfo.InviteBlockerModule.whitelistedRoles.length >= 5) {
+                        context.sendReply({
+                            content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.maxWhitelistedRoles")),
+                            flags: MessageFlags.EPHEMERAL
+                        })
+                        endCommand();
+                        break;
+                    }
                     guildInfo.InviteBlockerModule.whitelistedRoles.push(role);
                     await guildInfo.save();
                     context.sendReply({
@@ -333,6 +341,14 @@ const ConfigInviteBlockerCommand = createCommand({
                     endCommand();
                     break;
                 } else {
+                    if (guildInfo.InviteBlockerModule.whitelistedChannels.length >= 10) {
+                        context.sendReply({
+                            content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.maxWhitelistedChannels")),
+                            flags: MessageFlags.EPHEMERAL
+                        })
+                        endCommand();
+                        break;
+                    }
                     guildInfo.InviteBlockerModule.whitelistedChannels.push(channel);
                     await guildInfo.save();
                     context.sendReply({

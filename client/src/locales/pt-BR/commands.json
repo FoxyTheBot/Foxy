@@ -275,7 +275,8 @@
     "AutoRole": {
         "addrole": {
             "alreadyAdded": "Este cargo já foi adicionado",
-            "added": "Cargo adicionado com sucesso"
+            "added": "Cargo adicionado com sucesso",
+            "maxRoles": "Você não pode adicionar mais cargos, o limite é de 5 cargos"
         },
         "removerole": {
             "removed": "Cargo removido com sucesso",
@@ -336,7 +337,9 @@
                 "notWhitelistedUser": "Este usuário não está na lista de usuários que não serão afetados",
                 "alreadyWhitelistedChannel": "Este canal já está na lista de canais que não serão afetados",
                 "alreadyWhitelistedRole": "Este cargo já está na lista de cargos que não serão afetados",
-                "alreadyWhitelistedUser": "Este usuário já está na lista de usuários que não serão afetados"
+                "alreadyWhitelistedUser": "Este usuário já está na lista de usuários que não serão afetados",
+                "maxWhitelistedRoles": "Você não pode adicionar mais cargos, o limite é de 5 cargos",
+                "maxWhitelistedChannels": "Você não pode adicionar mais canais, o limite é de 10 canais"
             }
         }
     },
