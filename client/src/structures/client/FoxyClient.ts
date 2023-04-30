@@ -1,4 +1,4 @@
-import { handleInteractionCreate, Collection, handleMessageCreate, handleGuildMemberAdd } from 'discordeno';
+import { handleInteractionCreate, Collection } from 'discordeno';
 import { FoxyClient } from '../types/foxy';
 import { loadCommands } from '../commands/loadCommands';
 import { transformInteraction } from '../internals/transformers/interactionResponse';
@@ -9,6 +9,7 @@ import AutoRoleModule from '../../utils/modules/AutoRoleModule';
 import InviteBlockerModule from '../../utils/modules/InviteBlockerModule';
 import DatabaseConnection from '../database/DatabaseConnection';
 import config from '../../../config.json';
+import { startActivities } from '../../utils/Activities';
 
 const setupFoxy = async (client: FoxyClient): Promise<void> => {
     client.owner = await bot.helpers.getUser(config.ownerId);
@@ -21,14 +22,12 @@ const setupFoxy = async (client: FoxyClient): Promise<void> => {
     client.hasGuildPermission = botHasGuildPermissions;
     loadCommands();
     loadLocales();
+    startActivities();
 }
 
 const setupInternals = async (bot: FoxyClient): Promise<void> => {
     bot.transformers.reverse.interactionResponse = transformInteraction;
     bot.handlers.INTERACTION_CREATE = handleInteractionCreate;
-    bot.handlers.MESSAGE_CREATE = handleMessageCreate;
-    bot.handlers.MESSAGE_UPDATE = handleMessageCreate;
-    bot.handlers.GUILD_MEMBER_ADD = handleGuildMemberAdd;
 };
 
 const startModules = async (bot: FoxyClient): Promise<void> => {

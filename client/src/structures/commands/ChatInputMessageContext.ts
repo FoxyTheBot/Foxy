@@ -6,10 +6,7 @@ export default class {
     public replied = false;
 
     constructor(public message: Message) { }
-    
-    get authorRoles() {
-        return this.message.member.roles || [];
-    }
+
     async FoxyReply(options: CreateMessage) {
         bot.helpers.sendMessage(this.message.channelId, {
             ...options,

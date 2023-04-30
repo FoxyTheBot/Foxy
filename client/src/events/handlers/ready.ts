@@ -9,8 +9,8 @@ const setReadyEvent = (): void => {
         if (bot.isProduction) {
             postInfo();
         }
-        startActivities();
         bot.isReady = true;
+        startActivities();
     }
 }
 
