@@ -275,7 +275,12 @@
     "AutoRole": {
         "addrole": {
             "alreadyAdded": "This role has already been added",
-            "added": "Role added successfully"
+            "added": "Role added successfully",
+            "maxRoles": "Você não pode adicionar mais cargos, o limite é de 5 cargos"
+        },
+        "removerole": {
+            "removed": "Cargo removido com sucesso",
+            "notAdded": "Este cargo não foi adicionado"
         },
         "enable": {
             "enabled": "Module Activated",
@@ -332,7 +337,9 @@
                 "notWhitelistedUser": "This user isn't in the list of allowed users",
                 "alreadyWhitelistedChannel": "This channel is already whitelisted",
                 "alreadyWhitelistedRole": "This role is already whitelisted",
-                "alreadyWhitelistedUser": "This user is already whitelisted"
+                "alreadyWhitelistedUser": "This user is already whitelisted",
+                "maxWhitelistedRoles": "Você não pode adicionar mais cargos, o limite é de 5 cargos",
+                "maxWhitelistedChannels": "Você não pode adicionar mais canais, o limite é de 10 canais"
             }
         }
     },
