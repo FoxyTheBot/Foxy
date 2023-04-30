@@ -15,21 +15,21 @@ export default class InviteBlockerModule {
             const guildId = message.guildId;
             const guildInfo = await this.bot.database.getGuild(guildId);
             if (await guildInfo.InviteBlockerModule.isEnabled) {
+                if (!this.bot.hasGuildPermission(this.bot, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])) return;
+                if (message.authorId === this.bot.applicationId || message.isFromBot || message.webhookId) return;
                 const context = new ChatInputMessageContext(message);
-                const authorRoles = await context.authorRoles.map(role => role ? role.toString().replace("n", "") : null);
+                const authorRoles = await message.member.roles.map(role => role ? role.toString().replace("n", "") : null);
 
-                var blockMessage = await guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
+                var blockMessage: string = await guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
                 if (message.content === blockMessage && message.authorId === this.bot.applicationId) {
                     setTimeout(async () => {
                         context.DeleteMessage(message.id, "Invite Blocker - Delete alert message");
                     }, 2000);
                 }
 
-                if (message.authorId === this.bot.applicationId || message.isFromBot) return;
                 if (!inviteRegex.test(message.content)) return;
                 if (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) return;
                 if (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)) return;
-                if (!this.bot.hasGuildPermission(this.bot, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])) return;
                 if (await guildInfo.InviteBlockerModule.whitelistedUsers.includes(message.authorId)) return;
 
 
@@ -54,10 +54,12 @@ export default class InviteBlockerModule {
             const guildId = message.guildId;
             const guildInfo = await this.bot.database.getGuild(guildId);
             if (await guildInfo.InviteBlockerModule.isEnabled) {
+                if (!this.bot.hasGuildPermission(this.bot, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])) return;
+                if (message.authorId === this.bot.applicationId || message.isFromBot || message.webhookId) return;
                 const context = new ChatInputMessageContext(message);
-                const authorRoles = await context.authorRoles.map(role => role ? role.toString().replace("n", "") : null);
+                const authorRoles = await message.member.roles.map(role => role ? role.toString().replace("n", "") : null);
 
-                var blockMessage = guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
+                var blockMessage: string = guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
                 if (message.content === blockMessage && message.authorId === this.bot.applicationId) {
                     setTimeout(async () => {
                         context.DeleteMessage(await message.id, "Invite Blocker");
@@ -68,7 +70,6 @@ export default class InviteBlockerModule {
                 if (!inviteRegex.test(message.content)) return;
                 if (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) return;
                 if (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)) return;
-                if (!this.bot.hasGuildPermission(this.bot, guildId, ["MANAGE_MESSAGES"] || ["ADMINISTRATOR"])) return;
                 if (await guildInfo.InviteBlockerModule.whitelistedUsers.includes(message.authorId)) return;
 
                 if (blockMessage.includes("{user}")) {
