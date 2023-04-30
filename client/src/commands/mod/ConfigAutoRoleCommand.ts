@@ -100,7 +100,7 @@ const ConfigAutoRoleCommand = createCommand({
             case "enable": {
                 if (guildInfo.AutoRoleModule.isEnabled) {
                     context.sendReply({
-                        content: t("commands:AutoRole.enable.alreadyEnabled"),
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:AutoRole.enable.alreadyEnabled")),
                         flags: MessageFlags.EPHEMERAL
                     });
                     return endCommand();
@@ -108,7 +108,7 @@ const ConfigAutoRoleCommand = createCommand({
                     guildInfo.AutoRoleModule.isEnabled = true;
                     await guildInfo.save();
                     context.sendReply({
-                        content: t("commands:AutoRole.enable.enabled"),
+                        content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:AutoRole.enable.enabled")),
                         flags: MessageFlags.EPHEMERAL
                     });
                     endCommand();
@@ -119,7 +119,7 @@ const ConfigAutoRoleCommand = createCommand({
             case "disable": {
                 if (!guildInfo.AutoRoleModule.isEnabled) {
                     context.sendReply({
-                        content: t("commands:AutoRole.disable.alreadyDisabled"),
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:AutoRole.disable.alreadyDisabled")),
                         flags: MessageFlags.EPHEMERAL
                     });
                     return endCommand();
@@ -127,7 +127,7 @@ const ConfigAutoRoleCommand = createCommand({
                     guildInfo.AutoRoleModule.isEnabled = false;
                     await guildInfo.save();
                     context.sendReply({
-                        content: t("commands:AutoRole.disable.disabled"),
+                        content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:AutoRole.disable.disabled")),
                         flags: MessageFlags.EPHEMERAL
                     });
                     endCommand();
@@ -140,14 +140,14 @@ const ConfigAutoRoleCommand = createCommand({
 
                 if (guildInfo.AutoRoleModule.roles.includes(role)) {
                     context.sendReply({
-                        content: t("commands:AutoRole.addrole.alreadyAdded"),
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:AutoRole.addrole.alreadyAdded")),
                         flags: MessageFlags.EPHEMERAL
                     });
                     return endCommand();
                 } else {
                     if (guildInfo.AutoRoleModule.roles.length >= 5) {
                         context.sendReply({
-                            content: t("commands:AutoRole.addrole.maxRoles"),
+                            content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:AutoRole.addrole.maxRoles")),
                             flags: MessageFlags.EPHEMERAL
                         });
                         return endCommand();
@@ -155,7 +155,7 @@ const ConfigAutoRoleCommand = createCommand({
                     guildInfo.AutoRoleModule.roles.push(role);
                     await guildInfo.save();
                     context.sendReply({
-                        content: t("commands:AutoRole.addrole.added"),
+                        content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:AutoRole.addrole.added")),
                         flags: MessageFlags.EPHEMERAL
                     });
                     endCommand();
@@ -168,7 +168,7 @@ const ConfigAutoRoleCommand = createCommand({
 
                 if (!guildInfo.AutoRoleModule.roles.includes(role)) {
                     context.sendReply({
-                        content: t("commands:AutoRole.removerole.notAdded"),
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:AutoRole.removerole.notAdded")),
                         flags: MessageFlags.EPHEMERAL
                     });
                     return endCommand();
@@ -176,7 +176,7 @@ const ConfigAutoRoleCommand = createCommand({
                     guildInfo.AutoRoleModule.roles.splice(guildInfo.AutoRoleModule.roles.indexOf(role), 1);
                     await guildInfo.save();
                     context.sendReply({
-                        content: t("commands:AutoRole.removerole.removed"),
+                        content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:AutoRole.removerole.removed")),
                         flags: MessageFlags.EPHEMERAL
                     });
                     endCommand();
