@@ -277,6 +277,10 @@
             "alreadyAdded": "Este cargo já foi adicionado",
             "added": "Cargo adicionado com sucesso"
         },
+        "removerole": {
+            "removed": "Cargo removido com sucesso",
+            "notAdded": "Este cargo não foi adicionado"
+        },
         "enable": {
             "enabled": "Módulo ativado",
             "alreadyEnabled": "O módulo já está ativado"

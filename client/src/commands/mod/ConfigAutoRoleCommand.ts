@@ -57,6 +57,29 @@ const ConfigAutoRoleCommand = createCommand({
             type: ApplicationCommandOptionTypes.Role,
             required: true
         }]
+    },
+    {
+        name: "removerole",
+        description: "[Moderation] Remove a role to be given automatically",
+        nameLocalizations: {
+            "pt-BR": "remover_cargo"
+        },
+        descriptionLocalizations: {
+            "pt-BR": "[Moderação] Remova um cargo para ser dado automaticamente"
+        },
+        type: ApplicationCommandOptionTypes.SubCommand,
+        options: [{
+            name: "role",
+            description: "Role to be given automatically",
+            nameLocalizations: {
+                "pt-BR": "cargo"
+            },
+            descriptionLocalizations: {
+                "pt-BR": "Cargo a ser dado automaticamente"
+            },
+            type: ApplicationCommandOptionTypes.Role,
+            required: true
+        }]
     }],
     async execute(context, endCommand, t) {
         const SubCommand = context.getSubCommand();
@@ -80,6 +103,7 @@ const ConfigAutoRoleCommand = createCommand({
                         content: t("commands:AutoRole.enable.alreadyEnabled"),
                         flags: MessageFlags.EPHEMERAL
                     });
+                    return endCommand();
                 } else {
                     guildInfo.AutoRoleModule.isEnabled = true;
                     await guildInfo.save();
@@ -87,9 +111,9 @@ const ConfigAutoRoleCommand = createCommand({
                         content: t("commands:AutoRole.enable.enabled"),
                         flags: MessageFlags.EPHEMERAL
                     });
+                    endCommand();
+                    break;
                 }
-
-                break;
             }
 
             case "disable": {
@@ -98,6 +122,7 @@ const ConfigAutoRoleCommand = createCommand({
                         content: t("commands:AutoRole.disable.alreadyDisabled"),
                         flags: MessageFlags.EPHEMERAL
                     });
+                    return endCommand();
                 } else {
                     guildInfo.AutoRoleModule.isEnabled = false;
                     await guildInfo.save();
@@ -105,19 +130,20 @@ const ConfigAutoRoleCommand = createCommand({
                         content: t("commands:AutoRole.disable.disabled"),
                         flags: MessageFlags.EPHEMERAL
                     });
+                    endCommand();
+                    break;
                 }
-
-                break;
             }
 
             case "addrole": {
                 const role = context.getOption<Role>("role", false);
-                
+
                 if (guildInfo.AutoRoleModule.roles.includes(role)) {
                     context.sendReply({
                         content: t("commands:AutoRole.addrole.alreadyAdded"),
                         flags: MessageFlags.EPHEMERAL
                     });
+                    return endCommand();
                 } else {
                     guildInfo.AutoRoleModule.roles.push(role);
                     await guildInfo.save();
@@ -125,6 +151,29 @@ const ConfigAutoRoleCommand = createCommand({
                         content: t("commands:AutoRole.addrole.added"),
                         flags: MessageFlags.EPHEMERAL
                     });
+                    endCommand();
+                    break;
+                }
+            }
+
+            case "removerole": {
+                const role = context.getOption<Role>("role", false);
+
+                if (!guildInfo.AutoRoleModule.roles.includes(role)) {
+                    context.sendReply({
+                        content: t("commands:AutoRole.removerole.notAdded"),
+                        flags: MessageFlags.EPHEMERAL
+                    });
+                    return endCommand();
+                } else {
+                    guildInfo.AutoRoleModule.roles.splice(guildInfo.AutoRoleModule.roles.indexOf(role), 1);
+                    await guildInfo.save();
+                    context.sendReply({
+                        content: t("commands:AutoRole.removerole.removed"),
+                        flags: MessageFlags.EPHEMERAL
+                    });
+                    endCommand();
+                    break;
                 }
             }
         }
