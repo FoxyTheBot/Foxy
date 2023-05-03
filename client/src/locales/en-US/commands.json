@@ -275,7 +275,12 @@
     "AutoRole": {
         "addrole": {
             "alreadyAdded": "This role has already been added",
-            "added": "Role added successfully"
+            "added": "Role added successfully",
+            "maxRoles": "You reached the roles limit, the limit is 5 roles"
+        },
+        "removerole": {
+            "removed": "Role removed successfully",
+            "notAdded": "This role isn't added"
         },
         "enable": {
             "enabled": "Module Activated",
@@ -332,7 +337,9 @@
                 "notWhitelistedUser": "This user isn't in the list of allowed users",
                 "alreadyWhitelistedChannel": "This channel is already whitelisted",
                 "alreadyWhitelistedRole": "This role is already whitelisted",
-                "alreadyWhitelistedUser": "This user is already whitelisted"
+                "alreadyWhitelistedUser": "This user is already whitelisted",
+                "maxWhitelistedRoles": "You reached the roles limit, the limit is 5 roles",
+                "maxWhitelistedChannels": "You reached the channels limit, the limit is 10 channels"
             }
         }
     },
