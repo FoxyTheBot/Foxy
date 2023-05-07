@@ -63,7 +63,7 @@
     "profile": {
         "profile": "ملف تعريف {{user}}",
         "noAboutme": "Foxy هو صديقي يمكنك تغيير هذا باستخدام /aboutme",
-        "marriedWith": "💍 متزوج من {{user}} من {{date}} ({{relativeTime}})",
+        "marriedWith": "💍 Casado(a) com {{user}} desde {{date}} ({{relativeTime}})",
         "premium": "{{badge}} قسط من {{date}}",
         "testMode": "سيتم عرضك فوقي مثل هذا!",
         "banned": "تم حظر `{{user}} بواسطة {{reason}}` \n منذ `{{date}}`"
