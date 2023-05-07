@@ -3,24 +3,21 @@
         {
             "id": "default",
             "name": "Background padrão",
-            "rarity": "Comum",
             "cakes": 0,
             "filename": "default.png",
-            "description": "Background padrão do perfil da Foxy",
+            "description": "Foxy's default background",
             "blocked": true
         },
         {
             "id": "foxbaby",
             "name": "Foxy Baby",
-            "rarity": "Comum",
             "cakes": 10000,
             "filename": "FoxesCubsCute.png",
-            "description": "Foxy Baby"
+            "description": "A Real Fox but a Baby"
         },
         {
             "id": "foxyverse",
             "name": "Foxy World",
-            "rarity": "Raro",
             "cakes": 40000,
             "filename": "foxyverse.png",
             "description": "Welcome to the Foxy World!"
@@ -28,15 +25,13 @@
         {
             "id": "scottland",
             "name": "Scottland",
-            "rarity": "Raro",
             "cakes": 10000,
             "filename": "scottland.png",
-            "description": "bruh"
+            "description": "Welcome to Scottland!"
         },
         {
             "id": "dlogo",
             "name": "Discord Logo Neon",
-            "rarity": "Raro",
             "cakes": 5000,
             "filename": "dlogo.png",
             "description": "Discord's old logo neon wallpaper"
@@ -44,21 +39,20 @@
         {
             "id": "wumpuswithsunglasses",
             "name": "Wumpus With Sunglasses",
-            "rarity": "Raro",
             "cakes": 5000,
-            "filename": "wumpus_with_sunglasses.png"
+            "filename": "wumpus_with_sunglasses.png",
+            "description": "Stylish Wumpus with sunglasses"
         },
         {
             "id": "justwumpus",
             "name": "Just Wumpus",
-            "rarity": "Raro",
             "cakes": 7000,
-            "filename": "just_wumpus.png"
+            "filename": "just_wumpus.png",
+            "description": "Wumpus in a gray background"
         },
         {
             "id": "fnaf",
             "name": "Five Nights at Freddy's",
-            "rarity": "Comum",
             "cakes": 9000,
             "filename": "fnaf.png",
             "description": "owo o jogo em que a foxy eh baseada"
@@ -66,15 +60,13 @@
         {
             "id": "gtasa",
             "name": "GTA: San Andreas",
-            "rarity": "Raro",
             "cakes": 5000,
-            "description": "bruh",
+            "description": "Follow the damn train, CJ!",
             "filename": "gta_san.png"
         },
         {
             "id": "foxyvlogs",
             "name": "Foxy Vlogger",
-            "rarity": "Raro",
             "cakes": 5000,
             "filename": "foxy_vlogs.png",
             "description": "Fala galerinha aqui do YouTube quem ta falando com vocês e a sua amiguinha Foxy e hoje eu to aqui com meu amigo Wumpus para gravar um desafio :D e o desafio de hoje sera: logar no Discord as 3:00 da manhã"
@@ -82,7 +74,6 @@
         {
             "id": "loritta",
             "name": "Foxy e Lori",
-            "rarity": "Lendário",
             "cakes": 10000,
             "description": "Background criado por Bis no aniversário de 4 anos da Loritta! Adicione a Loritta no seu servidor https://loritta.website\n**Lembrando:** Isso é apenas um crossover, a Foxy não possui nenhuma ligação com a Loritta!",
             "filename": "foxy_e_lori.png"
@@ -90,7 +81,6 @@
         {
             "id": "cadeirante",
             "name": "Levi / Ata Shingeki No Kyojin",
-            "rarity": "Lendário",
             "cakes": 10000,
             "filename": "levi_kyojin.png",
             "description": "bruh"
@@ -98,71 +88,62 @@
         {
             "id": "red",
             "name": "Red Dead Redemption 2",
-            "rarity": "Lendário",
             "cakes": 10000,
             "filename": "red_dead.png",
-            "description": "bruh"
+            "description": "A background of Red Dead Redemption 2"
         },
         {
             "id": "silviosantos",
             "name": "Sad Cat Money",
-            "rarity": "Lendário",
             "cakes": 10000,
             "filename": "sad_cat_money.png",
-            "description": "El muchacho de los ojos tristes, estás rico e puede comprar muchas REDACTED"
+            "description": "El muchacho de los ojos tristes vive solo y necesita dinero"
         },
         {
             "id": "sadcat",
             "name": "Sad Cat",
-            "rarity": "Lendário",
             "cakes": 10000,
             "filename": "sad_cat.png",
-            "description": "El muchacho de los ojos tristes se quedó sin REDACTED"
+            "description": "el muchacho de los ojos tristes vive solo y necesita amor"
         },
         {
             "id": "winxp",
             "name": "Windows XP",
-            "rarity": "Lendário",
             "cakes": 10000,
             "filename": "windows_xp.png",
-            "description": "Madobe Saseko passou por aqui!"
+            "description": "Madobe Saseko was here!"
         },
         {
             "id": "win7",
             "name": "Windows 7",
-            "rarity": "Lendário",
             "cakes": 11000,
             "filename": "windows_seven.png",
-            "description": "Madobe Nanami passou por aqui!"
+            "description": "Madobe Nanami was here!"
         },
         {
             "id": "win10",
             "name": "Windows 10 Legacy",
-            "rarity": "Lendário",
             "cakes": 12000,
             "filename": "windows10_legacy.png",
-            "description": "Madobe Touko passou por aqui!"
+            "description": "Madobe Touko was here!"
         },
         {
             "id": "win11light",
             "name": "Windows 11 Light Theme",
-            "rarity": "Lendário",
             "cakes": 11000,
             "filename": "windows11light.png",
-            "description": ":eyes:"
+            "description": "Windows 11 doesn't have a OS-Tan yet"
         },
         {
             "id": "win11dark",
             "name": "Windows 11 Dark Theme",
-            "rarity": "Lendário",
             "cakes": 11000,
             "filename": "windows11dark.png",
-            "description": ":eyes:"
+            "description": "Windows 11 doesn't have a OS-Tan yet"
         },
         {
             "id": "bisfoxy",
             "name": "Bis e Foxy",
-            "rarity": "Unknown",
             "cakes": 100000,
             "filename": "bis_foxy.png",
             "description": "Bis e a Foxy apenas ;3"
@@ -170,15 +151,13 @@
         {
             "id": "mine",
             "name": "Minecraft World",
-            "rarity": "Lendário",
             "cakes": 20000,
             "filename": "mine.png",
-            "description": "Just world."
+            "description": "Minecraft is the best game ever"
         },
         {
             "id": "klee",
             "name": "Klee yay",
-            "rarity": "Lendário",
             "cakes": 30000,
             "filename": "kleeyay.png",
             "description": "Klee is so happy today"
@@ -186,10 +165,9 @@
         {
             "id": "spring",
             "name": "Spring Trap",
-            "rarity": "Lendário",
             "cakes": 10000,
             "filename": "springtrap.png",
-            "description": "The man behind the slaughter"
+            "description": "It's been so long, since I last have seen my son lost to this monster, to the **Man Behind The Slaughter**"
         }
     ]
 }
