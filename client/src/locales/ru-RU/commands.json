@@ -63,7 +63,7 @@
     "profile": {
         "profile": "Профиль {{user}}",
         "noAboutme": "Фокси - мой друг, ты можешь изменить это с помощью /aboutme",
-        "marriedWith": "💍 женат на {{user}} от {{date}} ({{relativeTime}})",
+        "marriedWith": "💍 Casado(a) com {{user}} desde {{date}} ({{relativeTime}})",
         "premium": "{{badge}} премия от {{date}}",
         "testMode": "Ваша над мной будет отображаться так!",
         "banned": "`{{user}} запрещено {{reason}}` \n Поскольку `{{date}}`"
