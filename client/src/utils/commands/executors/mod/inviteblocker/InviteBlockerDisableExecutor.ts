@@ -7,7 +7,7 @@ import { createEmbed } from "../../../../discord/Embed";
 
 const InviteBlockerDisableExecutor = async (context: ComponentInteractionContext) => {
     const guildInfo = await bot.database.getGuild(context.interaction.guildId);
-    
+
     guildInfo.InviteBlockerModule.isEnabled = false;
     await guildInfo.save();
 
@@ -17,8 +17,8 @@ const InviteBlockerDisableExecutor = async (context: ComponentInteractionContext
         fields: [{
             name: bot.locale("commands:inviteBlocker.config.fields.isEnabled"),
             value: guildInfo.InviteBlockerModule.isEnabled ?
-                    `${context.getEmojiById(bot.emotes.FOXY_YAY)} ${bot.locale("commands:inviteBlocker.config.fields.isEnabledValue.enabled")}`
-                    : `${context.getEmojiById(bot.emotes.FOXY_CRY)} ${bot.locale("commands:inviteBlocker.config.fields.isEnabledValue.disabled")}`
+                `${context.getEmojiById(bot.emotes.FOXY_YAY)} ${bot.locale("commands:inviteBlocker.config.fields.isEnabledValue.enabled")}`
+                : `${context.getEmojiById(bot.emotes.FOXY_CRY)} ${bot.locale("commands:inviteBlocker.config.fields.isEnabledValue.disabled")}`
         },
         {
             name: bot.locale("commands:inviteBlocker.config.fields.blockMessage"),
@@ -52,6 +52,7 @@ const InviteBlockerDisableExecutor = async (context: ComponentInteractionContext
         customId: createCustomId(3, context.author.id, context.commandId)
     })
     ]);
+
     context.sendReply({
         embeds: [embed],
         components: [actionRow]
