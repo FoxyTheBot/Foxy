@@ -25,6 +25,8 @@ const DailyCommand = createCommand({
             });
             return endCommand();
         } else {
+            if (amount < 1000) amount = 1000;
+
             userData.balance += amount;
             userData.lastDaily = Date.now();
             userData.save().catch(err => console.log(err));
