@@ -14,6 +14,7 @@ export default class AutoRoleModule {
             const guildInfo = await this.bot.database.getGuild(guildId);
             if (!this.bot.hasGuildPermission(this.bot, guildId, ["MANAGE_ROLES"] || ["ADMINISTRATOR"])) return;
             if (guildInfo.AutoRoleModule.isEnabled) {
+                if (member.user.toggles.bot) return;
                 
                 const roles = guildInfo.AutoRoleModule.roles;
                 if (roles.length > 0) {
