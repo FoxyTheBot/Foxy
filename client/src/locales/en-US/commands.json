@@ -63,7 +63,7 @@
     "profile": {
         "profile": "{{user}}'s profile",
         "noAboutme": "Foxy is so cute ><! You can change this message using /aboutme command",
-        "marriedWith": "💍 Casado(a) com {{user}} desde {{date}} ({{relativeTime}})",
+        "marriedWith": "💍 Married with {{user}} since {{date}} ({{relativeTime}})",
         "premium": "{{badge}} Premium since {{date}}",
         "testMode": "Your about me will be displayed here",
         "banned": "`{{user}} is banned! Reason: `{{reason}}` \nSince `{{date}}`"
