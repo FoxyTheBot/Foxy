@@ -1,5 +1,4 @@
 import { FoxyClient } from "../../structures/types/foxy";
-import { logger } from "../logger";
 
 export default class AutoRoleModule {
     public bot: FoxyClient;
