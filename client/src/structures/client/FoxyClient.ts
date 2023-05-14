@@ -30,9 +30,4 @@ const setupInternals = async (bot: FoxyClient): Promise<void> => {
     bot.handlers.INTERACTION_CREATE = handleInteractionCreate;
 };
 
-const startModules = async (bot: FoxyClient): Promise<void> => {
-    new AutoRoleModule(bot).start();
-    new InviteBlockerModule(bot).start();
-}
-
-export { setupFoxy, setupInternals, startModules };
+export { setupFoxy, setupInternals };
