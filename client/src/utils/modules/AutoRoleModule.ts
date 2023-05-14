@@ -8,14 +8,14 @@ export default class AutoRoleModule {
     }
 
     async start() {
-        logger.info("[MODULES] AutoRoleModule started!")
+        logger.info("[MODULES] Started Auto Role Module!")
         this.bot.events.guildMemberAdd = async (_, member) => {
             const guildId = member.guildId;
             const guildInfo = await this.bot.database.getGuild(guildId);
             if (!this.bot.hasGuildPermission(this.bot, guildId, ["MANAGE_ROLES"] || ["ADMINISTRATOR"])) return;
             if (guildInfo.AutoRoleModule.isEnabled) {
                 if (member.user.toggles.bot) return;
-                
+
                 const roles = guildInfo.AutoRoleModule.roles;
                 if (roles.length > 0) {
                     for (const role of roles) {

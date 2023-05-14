@@ -9,7 +9,7 @@ export default class InviteBlockerModule {
     }
 
     async start() {
-        logger.info("[MODULES] Invite Blocker started!")
+        logger.info("[MODULES] Started Invite Blocker Module!")
         const inviteRegex = /discord(?:app\.com\/invite|\.gg(?:\/invite)?)\/([\w-]{2,255})/i;
         this.bot.events.messageCreate = async (_, message) => {
             const guildId = message.guildId;
