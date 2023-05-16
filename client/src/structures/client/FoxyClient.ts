@@ -10,6 +10,7 @@ import InviteBlockerModule from '../../utils/modules/InviteBlockerModule';
 import DatabaseConnection from '../database/DatabaseConnection';
 import config from '../../../config.json';
 import { startActivities } from '../../utils/Activities';
+import { FoxyRestManager } from '../../utils/RestManager';
 
 const setupFoxy = async (client: FoxyClient): Promise<void> => {
     client.owner = await bot.helpers.getUser(config.ownerId);
@@ -20,6 +21,7 @@ const setupFoxy = async (client: FoxyClient): Promise<void> => {
     client.emotes = require("../json/emotes.json");
     client.isReady = false;
     client.hasGuildPermission = botHasGuildPermissions;
+    client.foxyRest = new FoxyRestManager(client);
     loadCommands();
     loadLocales();
     startActivities();

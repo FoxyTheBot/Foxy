@@ -2,6 +2,7 @@ import { Bot, Collection, User } from 'discordeno';
 import { ChatInputInteractionCommand } from './command';
 import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
 import { BotWithCache } from 'discordeno/cache-plugin';
+import { FoxyRestManager } from '../../utils/RestManager';
 export interface IdentifiedData<T> {
   id: number;
   data: T;
@@ -19,4 +20,5 @@ export interface FoxyClient extends BotWithCache<Bot> {
   locale: Function;
   isReady: boolean;
   hasGuildPermission: typeof botHasGuildPermissions;
+  foxyRest: FoxyRestManager;
 }
