@@ -10,7 +10,7 @@ const bot = createBot({
     token: config.token,
     intents: Intents.Guilds | Intents.GuildMessages | Intents.MessageContent | Intents.GuildMembers,
     botId: BigInt(config.clientId),
-    applicationId: BigInt(config.clientId),
+    applicationId: BigInt(config.clientId)
 }) as FoxyClient;
 
 enableCachePlugin(bot);
