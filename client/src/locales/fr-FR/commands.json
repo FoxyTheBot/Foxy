@@ -63,7 +63,7 @@
     "profile": {
         "profile": "Profil de {{user}}",
         "noAboutme": "Foxy est mon ami, vous pouvez changer cela en utilisant /aboutme",
-        "marriedWith": "💍 Marié à {{user}} depuis {{date}} ({{relativeTime}})",
+        "marriedWith": "💍 Casado(a) com {{user}} desde {{date}} ({{relativeTime}})",
         "premium": "{{badge}} Prime de {{date}}",
         "testMode": "Votre à propos de moi sera affiché comme ça !",
         "banned": "`{{user}} est banni pour `{{reason}}`\nDepuis le `{{date}}`"
