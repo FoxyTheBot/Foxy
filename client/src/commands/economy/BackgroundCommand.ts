@@ -89,7 +89,7 @@ const BackgroundCommand = createCommand({
                     description: background.description,
                     fields: [{
                         name: `${context.getEmojiById(bot.emotes.FOXY_DAILY)} ${t('commands:background.buy.price')}`,
-                        value: `${background.cakes} Cakes`,
+                        value: `${background.cakes.toLocaleString(t.lng)} Cakes`,
                     }],
                     image: {
                         url: `attachment://preview${context.author.id}.png`

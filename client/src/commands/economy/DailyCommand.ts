@@ -34,7 +34,7 @@ const DailyCommand = createCommand({
             const money = await userData.balance;
 
             context.sendReply({
-                content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.daily', { amount: amount.toString(), money: money.toString() })) + context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:daily.dailyAlert')),
+                content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.daily', { amount: amount.toLocaleString(t.lng), money: money.toLocaleString(t.lng) })) + context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:daily.dailyAlert')),
                 flags: 64
             })
             endCommand();

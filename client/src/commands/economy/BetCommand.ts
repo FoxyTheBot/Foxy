@@ -105,7 +105,7 @@ const BetCommand = createCommand({
 
         if (await userData.balance < amount) {
             context.sendReply({
-                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:bet.not-enough', { amount: amount.toString(), user: context.author.username })),
+                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:bet.not-enough', { amount: amount.toLocaleString(t.lng), user: context.author.username })),
                 flags: 64
 
             });
@@ -115,7 +115,7 @@ const BetCommand = createCommand({
 
         if (await mentionedUserData.balance < amount) {
             context.sendReply({
-                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:bet.not-enough-mention', { amount: amount.toString(), user: user.username })),
+                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:bet.not-enough-mention', { amount: amount.toLocaleString(t.lng), user: user.username })),
                 flags: 64
             });
 
@@ -125,7 +125,7 @@ const BetCommand = createCommand({
         if (user.id === bot.id) {
             if (choice === choices[rand]) {
                 context.sendReply({
-                    content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:bet.betWithClient.win', { user: context.author.username, result: t(`commands:bet.${choices[rand]}`), amount: amount.toString() })),
+                    content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:bet.betWithClient.win', { user: context.author.username, result: t(`commands:bet.${choices[rand]}`), amount: amount.toLocaleString(t.lng) })),
                     flags: 64
                 });
                 userData.balance += Number(amount);
@@ -137,7 +137,7 @@ const BetCommand = createCommand({
 
             } else if (choice !== choices[rand]) {
                 context.sendReply({
-                    content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:bet.betWithClient.lose', { user: context.author.username, result: t(`commands:bet.${choices[rand]}`), amount: amount.toString() })),
+                    content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:bet.betWithClient.lose', { user: context.author.username, result: t(`commands:bet.${choices[rand]}`), amount: amount.toLocaleString(t.lng) })),
                     flags: 64
                 });
                 userData.balance -= Number(amount);
@@ -149,7 +149,7 @@ const BetCommand = createCommand({
             }
         } else {
             context.sendReply({
-                content: context.makeReply(bot.emotes.FOXY_WOW, t('commands:bet.ask', { user: `<@!${user.id}>`, author: context.author.username, amount: amount.toString() })),
+                content: context.makeReply(bot.emotes.FOXY_WOW, t('commands:bet.ask', { user: `<@!${user.id}>`, author: context.author.username, amount: amount.toLocaleString(t.lng) })),
                 components: [createActionRow([createButton({
                     label: t('commands:bet.accept'),
                     style: ButtonStyles.Success,

@@ -90,7 +90,7 @@ const CakeCommand = createCommand({
                 const balance = userData.balance;
 
                 context.sendReply({
-                    content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:atm.success', { user: user.username, balance: balance.toString() }))
+                    content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:atm.success', { user: user.username, balance: balance.toLocaleString(t.lng) }))
                 })
                 endCommand();
                 break;
@@ -125,7 +125,7 @@ const CakeCommand = createCommand({
 
 
                 context.sendReply({
-                    content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:pay.alert', { amount: value.toString(), user: user.username })),
+                    content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:pay.alert', { amount: value.toLocaleString(t.lng), user: user.username })),
                     components: [createActionRow([createButton({
                         label: t('commands:pay.pay'),
                         style: ButtonStyles.Success,
