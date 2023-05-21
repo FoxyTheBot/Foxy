@@ -60,6 +60,16 @@ export default class DatabaseConnection {
             AutoRoleModule: {
                 isEnabled: Boolean,
                 roles: Array,
+            },
+            WelcomeModule: {
+                isEnabled: Boolean,
+                joinChannel: String,
+                message: Object,
+                leaveChannel: String,
+                leaveMessage: Object,
+                isLeaveMessageEnabled: Boolean,
+                sendDm: Boolean,
+                dmMessage: Object,
             }
         }, { versionKey: false, id: false });
         this.user = mongoose.model('user', userSchema);
@@ -162,13 +172,23 @@ export default class DatabaseConnection {
                 AutoRoleModule: {
                     isEnabled: false,
                     roles: [],
+                },
+                WelcomeModule: {
+                    isEnabled: false,
+                    joinChannel: null,
+                    message: null,
+                    leaveChannel: null,
+                    leaveMessage: null,
+                    isLeaveMessageEnabled: false,
+                    sendDm: false,
+                    dmMessage: null,
                 }
             }).save();
         }
 
         return document;
     }
-   
+
     async addGuild(guildId: BigInt) {
         let document = await this.guilds.findOne({ _id: guildId });
 
@@ -186,6 +206,16 @@ export default class DatabaseConnection {
                 AutoRoleModule: {
                     isEnabled: false,
                     roles: [],
+                },
+                WelcomeModule: {
+                    isEnabled: false,
+                    joinChannel: null,
+                    message: null,
+                    leaveChannel: null,
+                    leaveMessage: null,
+                    isLeaveMessageEnabled: false,
+                    sendDm: false,
+                    dmMessage: null,
                 }
             }).save();
         }
@@ -202,6 +232,7 @@ export default class DatabaseConnection {
 
         return document;
     }
+
     async getAllUsers(): Promise<void> {
         let usersData = await this.user.find({});
         return usersData.map(user => user.toJSON());
