@@ -70,8 +70,14 @@ export default class WelcomeModule {
 
                 try {
                     setTimeout(async () => {
-                        await this.bot.foxyRest.sendDirectMessage(member.user.id.toString(), dmMessage);
+                        await this.bot.foxyRest.sendDirectMessage(member.user.id.toString(), {
+                            content: `> **WARNING!** The message below has been configured by the \`${guildInfoFromAPI.name} / ${guildInfoFromAPI.id}\` server team! If you see any explicit content, please report it to the bot owner in the support server! <https://foxybot.win/support>`
+                        })
                     }, 700);
+
+                    setTimeout(async () => {
+                        await this.bot.foxyRest.sendDirectMessage(member.user.id.toString(), dmMessage);
+                    }, 800);
                 } catch (error) {
                     return;
                 }
