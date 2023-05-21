@@ -12,8 +12,12 @@ const loadCommands = async (): Promise<void> => {
     for (const file of commandFiles) {
       const command = await import(resolve("build/src/commands", folder, file));
       const commandData = command.default as ChatInputInteractionCommand;
-      bot.commands.set(commandData.name, commandData);
-      bot.database.registerCommand(commandData.name)
+      try {
+        bot.commands.set(commandData.name, commandData);
+        bot.database.registerCommand(commandData.name)
+      } catch (error) {
+        logger.error(`Error loading command ${commandData.name}: ${error}`);
+      }
     }
   }
   if (bot.commands.size > 0) {
