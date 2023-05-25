@@ -323,6 +323,24 @@
 
             "footer": {
                 "text": "As modificações serão mostradas aqui quando forem salvas, então lembre-se de salvar as modificações!"
+            },
+            
+            "texts": {
+                "moduleDisabled": "Ok, eu não vou avisar quando um membro entrar ou sair do servidor",
+                "moduleEnabled": "Ok, eu vou avisar quando um membro entrar ou sair do servidor",
+                "channelAdded": "Canal {{channel}} adicionado",
+                "channelRemoved": "Canal {{channel}} removido",
+                "dmMessageSet": "Mensagem para ser enviada em MD definida! \n\n**Lembre-se** não insira conteúdos sensíveis como NSFW, informações pessoais, etc! Você será punido caso faça isso!",
+                "dmMessageDisabled": "Ok, eu não vou enviar mensagens diretas para os usuários",
+                "dmMessageEnabled": "Ok, eu vou enviar mensagens diretas para os usuários",
+                "welcomeMessageSet": "Mensagem de entrada definida! \n\n**Lembre-se** não insira conteúdos sensíveis como NSFW, informações pessoais, etc! Você será punido caso faça isso!",
+                "leaveMessageSet": "Mensagem de saída definida! \n\n**Lembre-se** não insira conteúdos sensíveis como NSFW, informações pessoais, etc! Você será punido caso faça isso!",
+                "leaveMessageDisabled": "Ok, eu não vou enviar mensagens quando o usuário sair do servidor",
+                "leaveMessageEnabled": "Ok, eu vou enviar mensagens quando o usuário sair do servidor",
+                "rested": "Configurações resetadas",
+                "saved": "Configurações salvas",
+                "saving": "Salvando...",
+                "noMessage": "Nenhuma mensagem foi definida"
             }
         }
     },
