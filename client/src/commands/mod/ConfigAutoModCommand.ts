@@ -9,8 +9,11 @@ import InviteBlockerDisableExecutor from "../../utils/commands/executors/mod/inv
 import AddMessageExecutor from "../../utils/commands/executors/mod/inviteblocker/AddMessageExecutor";
 import ResetConfigExecutor from "../../utils/commands/executors/mod/inviteblocker/ResetConfigExecutor";
 import ModalSentExecutor from "../../utils/commands/executors/mod/inviteblocker/ModalSentExecutor";
-import { Channel, Role, User } from "discordeno/transformers";
 import EnableDisableExecutor from "../../utils/commands/executors/mod/welcomeleave/EnableDisableExecutor";
+import PreviewWelcomeMessageExecutor from "../../utils/commands/executors/mod/welcomeleave/PreviewWelcomeMessageExecutor";
+import PreviewDmMessageExecutor from "../../utils/commands/executors/mod/welcomeleave/PreviewDmMessageExecutor";
+import PreviewLeaveMessageExecutor from "../../utils/commands/executors/mod/welcomeleave/PreviewLeaveMessageExecutor";
+import { Channel, Role, User } from "discordeno/transformers";
 
 const ConfigAutoModCommand = createCommand({
     name: "automod",
@@ -367,7 +370,10 @@ const ConfigAutoModCommand = createCommand({
 
         /* Welcome/Leave Executors */
 
-        EnableDisableExecutor // 5
+        EnableDisableExecutor, // 5
+        PreviewWelcomeMessageExecutor, // 6
+        PreviewLeaveMessageExecutor, // 7
+        PreviewDmMessageExecutor, // 8
     ],
     execute: async (context, endCommand, t) => {
         const subCommandGroup = context.getSubCommandGroup();
