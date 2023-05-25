@@ -268,7 +268,7 @@
         "transfered": "Übertragen"
     },
     "daily": {
-        "cooldown": "Sie haben Ihre Kuchen heute bereits genommen, warten Sie **{{time}}**",
+        "cooldown": "Você já pegou seus cakes hoje, espere **{{time}}**",
         "daily": "Sie haben **{{amount}} Kuchen** Jetzt haben Sie {{money}} Kuchen\n",
         "dailyAlert": "** Vergessen Sie nicht: ** Sie können Kuchen für Dinge wie Geld, Nitro, NSFW -Inhalte usw. nicht ändern! Wenn Sie dies tun, müssen Sie Foxy dauerhaft benutzen!"
     },
