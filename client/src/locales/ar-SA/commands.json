@@ -268,7 +268,7 @@
         "transfered": "نقل"
     },
     "daily": {
-        "cooldown": "لقد أخذت بالفعل كعكاتك اليوم ، انتظر ** {{time}} **",
+        "cooldown": "Você já pegou seus cakes hoje, espere **{{time}}**",
         "daily": "لقد فزت ** {{amount}} كعك ** الآن لديك {{money}} كعك",
         "dailyAlert": "** لا تنسى** لا يمكنك تغيير الكعك لأشياء مثل المال ، نيترو ، محتوى NSFW ، إلخ! إذا قمت بذلك ، فسيتم منعك من استخدام Foxy بشكل دائم!"
     },
