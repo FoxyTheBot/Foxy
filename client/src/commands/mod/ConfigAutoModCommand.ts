@@ -10,6 +10,7 @@ import AddMessageExecutor from "../../utils/commands/executors/mod/inviteblocker
 import ResetConfigExecutor from "../../utils/commands/executors/mod/inviteblocker/ResetConfigExecutor";
 import ModalSentExecutor from "../../utils/commands/executors/mod/inviteblocker/ModalSentExecutor";
 import { Channel, Role, User } from "discordeno/transformers";
+import EnableDisableExecutor from "../../utils/commands/executors/mod/welcomeleave/EnableDisableExecutor";
 
 const ConfigAutoModCommand = createCommand({
     name: "automod",
@@ -275,10 +276,10 @@ const ConfigAutoModCommand = createCommand({
             type: ApplicationCommandOptionTypes.SubCommand,
         },
         {
-            name: "addchannel",
+            name: "add_welcome_channel",
             description: "[Moderation] Add a channel where welcome/leave messages will be sent",
             nameLocalizations: {
-                "pt-BR": "adicionarcanal"
+                "pt-BR": "adicionar_canal_entrada"
             },
             descriptionLocalizations: {
                 "pt-BR": "[Moderação] Adiciona um canal onde as mensagens de boas-vindas/saída serão enviadas"
@@ -298,10 +299,10 @@ const ConfigAutoModCommand = createCommand({
             }]
         },
         {
-            name: "removechannel",
+            name: "remove_welcome_channel",
             description: "[Moderation] Remove a channel where welcome/leave messages will be sent",
             nameLocalizations: {
-                "pt-BR": "removercanal"
+                "pt-BR": "remover_canal_entrada"
             },
             descriptionLocalizations: {
                 "pt-BR": "[Moderação] Remove um canal onde as mensagens de boas-vindas/saída serão enviadas"
@@ -321,7 +322,7 @@ const ConfigAutoModCommand = createCommand({
             }]
         },
         {
-            name: "leave_channel_add",
+            name: "add_leave_channel",
             description: "[Moderation] Add a channel where leave messages will be sent",
             nameLocalizations: {
                 "pt-BR": "adicionar_canal_saida"
@@ -344,7 +345,7 @@ const ConfigAutoModCommand = createCommand({
             }]
         },
         {
-            name: "leave_channel_remove",
+            name: "remove_leave_channel",
             description: "[Moderation] Remove a channel where leave messages will be sent",
             nameLocalizations: {
                 "pt-BR": "remover_canal_saida"
@@ -356,11 +357,17 @@ const ConfigAutoModCommand = createCommand({
         }]
     }],
     commandRelatedExecutions: [
-        InviteBlockerEnableExecutor,
-        InviteBlockerDisableExecutor,
-        AddMessageExecutor,
-        ResetConfigExecutor,
-        ModalSentExecutor
+        /* Invite Blocker Executors */
+
+        InviteBlockerEnableExecutor, // 0
+        InviteBlockerDisableExecutor, // 1
+        AddMessageExecutor, // 2
+        ResetConfigExecutor,// 3
+        ModalSentExecutor, // 4
+
+        /* Welcome/Leave Executors */
+
+        EnableDisableExecutor // 5
     ],
     execute: async (context, endCommand, t) => {
         const subCommandGroup = context.getSubCommandGroup();
@@ -706,7 +713,227 @@ const ConfigAutoModCommand = createCommand({
             case "welcome_leave": {
                 const subCommand = context.getSubCommand();
 
+                if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("SEND_MESSAGES" || "ADMINISTRATOR")) {
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:global.noPermission", {
+                            permission: t("permissions:SendMessages")
+                        })),
+                        flags: MessageFlags.EPHEMERAL
+                    })
+                    return endCommand();
+                }
 
+                switch (subCommand) {
+                    case "config": {
+                        context.sendDefer(true);
+                        const embed = createEmbed({
+                            title: t('commands:WelcomeLeave.config.title'),
+                            description: t('commands:WelcomeLeave.config.description'),
+                            fields: [{
+                                name: t('commands:WelcomeLeave.config.fields.isEnabled'),
+                                value: guildInfo.WelcomeModule.isEnabled ?
+                                    `${context.getEmojiById(bot.emotes.FOXY_YAY)} ${t("commands:inviteBlocker.config.fields.isEnabledValue.enabled")}`
+                                    : `${context.getEmojiById(bot.emotes.FOXY_CRY)} ${t("commands:inviteBlocker.config.fields.isEnabledValue.disabled")}`
+                            },
+                            {
+                                name: t('commands:WelcomeLeave.config.fields.welcomeChannel'),
+                                value: `<#${guildInfo.WelcomeModule.joinChannel}>` ?? t('commands:WelcomeLeave.config.fields.noChannel')
+                            },
+                            {
+                                name: t('commands:WelcomeLeave.config.fields.isLeaveEnabled'),
+                                value: guildInfo.WelcomeModule.isLeaveMessageEnabled ? `${context.getEmojiById(bot.emotes.FOXY_YAY)} ${t("commands:inviteBlocker.config.fields.isEnabledValue.enabled")}`
+                                    : `${context.getEmojiById(bot.emotes.FOXY_CRY)} ${t("commands:inviteBlocker.config.fields.isEnabledValue.disabled")}`
+
+                            },
+                            {
+                                name: t('commands:WelcomeLeave.config.fields.leaveChannel'),
+                                value: `<#${guildInfo.WelcomeModule.leaveChannel}>` ?? t('commands:WelcomeLeave.config.fields.noChannel')
+                            },
+                            {
+                                name: t('commands:WelcomeLeave.config.fields.sendDm'),
+                                value: guildInfo.WelcomeModule.sendDm ? `${context.getEmojiById(bot.emotes.FOXY_YAY)} ${t("commands:inviteBlocker.config.fields.isEnabledValue.enabled")}` : `${context.getEmojiById(bot.emotes.FOXY_CRY)} ${t("commands:inviteBlocker.config.fields.isEnabledValue.disabled")}`
+                            }],
+
+                            footer: {
+                                text: t('commands:WelcomeLeave.config.footer.text')
+                            }
+                        })
+
+                        var actionRow;
+                        var actionRow2;
+                        var actionRow3;
+                        if (guildInfo.WelcomeModule.isEnabled) {
+                            actionRow = createActionRow([createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.disable'),
+                                style: ButtonStyles.Danger,
+                                customId: createCustomId(5, context.author.id, context.commandId)
+                            }),
+
+                            createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.previewWelcomeMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(6, context.author.id, context.commandId)
+                            }),
+
+                            createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.previewLeaveMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(7, context.author.id, context.commandId)
+                            }),
+                            createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.previewDmMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(8, context.author.id, context.commandId)
+                            }),
+                            createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.setWelcomeMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(9, context.author.id, context.commandId)
+                            })]);
+
+                            actionRow2 = createActionRow([createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.setLeaveMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(10, context.author.id, context.commandId),
+                                disabled: !guildInfo.WelcomeModule.isLeaveMessageEnabled
+                            }),
+                            createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.setDmMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(11, context.author.id, context.commandId),
+                                disabled: !guildInfo.WelcomeModule.sendDm
+                            }),
+                            createButton({
+                                label: guildInfo.WelcomeModule.isLeaveMessageEnabled ? t('commands:WelcomeLeave.config.buttons.disableLeaveMessage') : t('commands:WelcomeLeave.config.buttons.enableLeaveMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(12, context.author.id, context.commandId)
+                            }),
+                            createButton({
+                                label: guildInfo.WelcomeModule.sendDm ? t('commands:WelcomeLeave.config.buttons.disableDmMessage') : t('commands:WelcomeLeave.config.buttons.enableDmMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(13, context.author.id, context.commandId)
+                            }),
+                            createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.save'),
+                                style: ButtonStyles.Success,
+                                customId: createCustomId(14, context.author.id, context.commandId)
+                            })]);
+
+                            actionRow3 = createActionRow([createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.cancel'),
+                                style: ButtonStyles.Danger,
+                                customId: createCustomId(15, context.author.id, context.commandId)
+                            }),
+                            createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.reset'),
+                                style: ButtonStyles.Secondary,
+                                customId: createCustomId(16, context.author.id, context.commandId)
+                            })])
+                            context.sendReply({
+                                embeds: [embed],
+                                components: [actionRow, actionRow2, actionRow3]
+                            });
+
+                            return endCommand();
+                        } else {
+                            actionRow = createActionRow([createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.enable'),
+                                style: ButtonStyles.Success,
+                                customId: createCustomId(5, context.author.id, context.commandId)
+                            }),
+
+                            createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.previewWelcomeMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(6, context.author.id, context.commandId),
+                                disabled: true
+                            }),
+
+                            createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.previewLeaveMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(7, context.author.id, context.commandId),
+                                disabled: true
+                            }),
+                            createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.previewDmMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(8, context.author.id, context.commandId),
+                                disabled: true
+                            }),
+                            createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.setWelcomeMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(9, context.author.id, context.commandId),
+                                disabled: true
+                            })]);
+
+                            actionRow2 = createActionRow([createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.setLeaveMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(10, context.author.id, context.commandId),
+                                disabled: true
+                            }),
+                            createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.setDmMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(11, context.author.id, context.commandId),
+                                disabled: true
+                            }),
+                            createButton({
+                                label: guildInfo.WelcomeModule.isLeaveMessageEnabled ? t('commands:WelcomeLeave.config.buttons.disableLeaveMessage') : t('commands:WelcomeLeave.config.buttons.enableLeaveMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(12, context.author.id, context.commandId),
+                                disabled: true
+                            }),
+                            createButton({
+                                label: guildInfo.WelcomeModule.sendDm ? t('commands:WelcomeLeave.config.buttons.disableDmMessage') : t('commands:WelcomeLeave.config.buttons.enableDmMessage'),
+                                style: ButtonStyles.Primary,
+                                customId: createCustomId(13, context.author.id, context.commandId),
+                                disabled: true
+                            })]);
+
+                            actionRow3 = createActionRow([createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.save'),
+                                style: ButtonStyles.Success,
+                                customId: createCustomId(14, context.author.id, context.commandId),
+                            }),
+                            createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.cancel'),
+                                style: ButtonStyles.Danger,
+                                customId: createCustomId(15, context.author.id, context.commandId)
+                            }),
+                            createButton({
+                                label: t('commands:WelcomeLeave.config.buttons.reset'),
+                                style: ButtonStyles.Secondary,
+                                customId: createCustomId(16, context.author.id, context.commandId)
+                            })
+                            ]);
+                            context.sendReply({
+                                embeds: [embed],
+                                components: [actionRow, actionRow2, actionRow3]
+                            });
+
+                            return endCommand();
+                        }
+                    }
+
+                    case "add_leave_channel": {
+
+                    }
+
+                    case "remove_leave_channel": {
+
+                    }
+
+                    case "add_welcome_channel": {
+
+                    }
+
+                    case "remove_welcome_channel": {
+
+                    }
+                }
             }
         }
     }
