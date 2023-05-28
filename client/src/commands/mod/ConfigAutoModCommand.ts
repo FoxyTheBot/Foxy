@@ -1,6 +1,6 @@
 import { createCommand } from "../../structures/commands/createCommand";
 import { bot } from "../..";
-import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
+import { ApplicationCommandOptionTypes, ButtonStyles, ChannelTypes } from "discordeno/types";
 import { MessageFlags } from "../../utils/discord/Message";
 import { createEmbed } from "../../utils/discord/Embed";
 import { createActionRow, createButton, createCustomId } from "../../utils/discord/Component";
@@ -45,7 +45,7 @@ const ConfigAutoModCommand = createCommand({
             name: "addrole",
             description: "[Moderation] Add a role to bypass invite blocker",
             nameLocalizations: {
-                "pt-BR": "addcargo"
+                "pt-BR": "adicionar_cargo"
             },
             descriptionLocalizations: {
                 "pt-BR": "[Moderação] Adiciona um cargo para burlar o bloqueio de convites"
@@ -68,7 +68,7 @@ const ConfigAutoModCommand = createCommand({
             name: "addchannel",
             description: "[Moderation] Add a channel where invite blocker will be disabled",
             nameLocalizations: {
-                "pt-BR": "addcanal"
+                "pt-BR": "adicionar_canal"
             },
             descriptionLocalizations: {
                 "pt-BR": "[Moderação] Adiciona um canal onde o bloqueio de convites será desativado"
@@ -84,14 +84,15 @@ const ConfigAutoModCommand = createCommand({
                     "pt-BR": "Canal onde o bloqueio de convites será desativado"
                 },
                 type: ApplicationCommandOptionTypes.Channel,
-                required: true
+                required: true,
+                channelTypes: [ChannelTypes.GuildText, ChannelTypes.GuildAnnouncement]
             }]
         },
         {
             name: "removerole",
             description: "[Moderation] Remove a role to bypass invite blocker",
             nameLocalizations: {
-                "pt-BR": "removercargo"
+                "pt-BR": "remover_cargo"
             },
             descriptionLocalizations: {
                 "pt-BR": "[Moderação] Remove um cargo para burlar o bloqueio de convites"
@@ -111,10 +112,10 @@ const ConfigAutoModCommand = createCommand({
             }]
         },
         {
-            name: "removechannel",
+            name: "remove_channel",
             description: "[Moderation] Remove a channel where invite blocker will be disabled",
             nameLocalizations: {
-                "pt-BR": "removercanal"
+                "pt-BR": "remover_canal"
             },
             descriptionLocalizations: {
                 "pt-BR": "[Moderação] Remove um canal onde o bloqueio de convites será desativado"
@@ -130,6 +131,8 @@ const ConfigAutoModCommand = createCommand({
                     "pt-BR": "Canal onde o bloqueio de convites será desativado"
                 },
                 type: ApplicationCommandOptionTypes.Channel,
+                required: true,
+                channelTypes: [ChannelTypes.GuildText, ChannelTypes.GuildAnnouncement]
             }]
         },
         {
@@ -156,7 +159,7 @@ const ConfigAutoModCommand = createCommand({
             }]
         },
         {
-            name: "removeuser",
+            name: "remove_user",
             description: "[Moderation] Remove a user to bypass invite blocker",
             nameLocalizations: {
                 "pt-BR": "remover_usuario"
@@ -209,7 +212,7 @@ const ConfigAutoModCommand = createCommand({
             type: ApplicationCommandOptionTypes.SubCommand
         },
         {
-            name: "addrole",
+            name: "add_role",
             description: "[Moderation] Add a role to be given automatically",
             nameLocalizations: {
                 "pt-BR": "adicionar_cargo"
@@ -254,6 +257,98 @@ const ConfigAutoModCommand = createCommand({
                 required: true
             }]
         }],
+    },
+    {
+        name: "welcome_leave",
+        nameLocalizations: {
+            "pt-BR": "entrada_saída"
+        },
+        description: "[Moderation] Commands relationed to welcome/leave module",
+        descriptionLocalizations: {
+            "pt-BR": "[Moderação] Comandos relacionados ao módulo de boas-vindas/saída"
+        },
+        type: ApplicationCommandOptionTypes.SubCommandGroup,
+        options: [{
+            name: "config",
+            description: "[Moderation] Configure welcome/leave module",
+            nameLocalizations: {
+                "pt-BR": "configurar"
+            },
+            descriptionLocalizations: {
+                "pt-BR": "[Moderação] Configure o módulo de boas-vindas/saída"
+            },
+            type: ApplicationCommandOptionTypes.SubCommand
+        },
+        {
+            name: "set_join_channel",
+            description: "[Moderation] Set channel where welcome/leave messages will be sent",
+            nameLocalizations: {
+                "pt-BR": "definir_canal_de_entrada"
+            },
+            descriptionLocalizations: {
+                "pt-BR": "[Moderação] Define o canal onde as mensagens de boas-vindas/saída serão enviadas"
+            },
+            type: ApplicationCommandOptionTypes.SubCommand,
+            options: [{
+                name: "channel",
+                description: "Channel where welcome/leave messages will be sent",
+                nameLocalizations: {
+                    "pt-BR": "canal"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "Canal onde as mensagens de boas-vindas/saída serão enviadas"
+                },
+                type: ApplicationCommandOptionTypes.Channel,
+                required: true,
+                channelTypes: [ChannelTypes.GuildText, ChannelTypes.GuildAnnouncement]
+            }]
+        },
+        {
+            name: "remove_join_channel",
+            description: "[Moderation] Remove channel where welcome/leave messages will be sent",
+            nameLocalizations: {
+                "pt-BR": "remover_canal_de_entrada"
+            },
+            descriptionLocalizations: {
+                "pt-BR": "[Moderação] Remove o canal onde as mensagens de boas-vindas/saída serão enviadas"
+            },
+            type: ApplicationCommandOptionTypes.SubCommand,
+        },
+        {
+            name: "set_channel_when_leave",
+            description: "[Moderation] Set channel where leave messages will be sent",
+            nameLocalizations: {
+                "pt-BR": "definir_canal_de_saída"
+            },
+            descriptionLocalizations: {
+                "pt-BR": "[Moderação] Define o canal onde as mensagens de saída serão enviadas"
+            },
+            type: ApplicationCommandOptionTypes.SubCommand,
+            options: [{
+                name: "channel",
+                description: "Channel where leave messages will be sent",
+                nameLocalizations: {
+                    "pt-BR": "canal"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "Canal onde as mensagens de saída serão enviadas"
+                },
+                type: ApplicationCommandOptionTypes.Channel,
+                required: true,
+                channelTypes: [ChannelTypes.GuildText, ChannelTypes.GuildAnnouncement]
+            }]
+        },
+        {
+            name: "remove_channel_when_leave",
+            description: "[Moderation] Remove channel where leave messages will be sent",
+            nameLocalizations: {
+                "pt-BR": "remover_canal_de_saída"
+            },
+            descriptionLocalizations: {
+                "pt-BR": "[Moderação] Remove o canal onde as mensagens de saída serão enviadas"
+            },
+            type: ApplicationCommandOptionTypes.SubCommand,
+        }]
     }],
     commandRelatedExecutions: [
         /* Invite Blocker Executors */
@@ -439,7 +534,7 @@ const ConfigAutoModCommand = createCommand({
                         }
                     }
 
-                    case "removechannel": {
+                    case "remove_channel": {
                         if (!guildInfo.InviteBlockerModule.whitelistedChannels.includes(channel)) {
                             context.sendReply({
                                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.notWhitelistedChannel", { channel: `<#${channel}>` })),
@@ -479,7 +574,7 @@ const ConfigAutoModCommand = createCommand({
                         }
                     }
 
-                    case "removeuser": {
+                    case "remove_user": {
                         if (!guildInfo.InviteBlockerModule.whitelistedUsers.includes(user.id)) {
                             context.sendReply({
                                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.notWhitelistedUser", { user: `<@${user.id}>` })),
@@ -554,7 +649,7 @@ const ConfigAutoModCommand = createCommand({
                         }
                     }
 
-                    case "addrole": {
+                    case "add_role": {
                         const role = context.getOption<Role>("role", false);
 
                         if (guildInfo.AutoRoleModule.roles.includes(role)) {
