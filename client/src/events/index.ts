@@ -5,6 +5,7 @@ import { setGuildDeleteEvent } from "./handlers/guildDelete";
 import { setMessageCreateEvent } from "./handlers/messageCreate";
 import { setMessageUpdateEvent } from "./handlers/messageUpdate";
 import { setGuildMemberAddEvent } from "./handlers/guildMemberAdd";
+import { setGuildMemberRemove } from "./handlers/guildMemberRemove";
 
 const setupEventsHandler = (): void => {
     setReadyEvent();
@@ -14,6 +15,7 @@ const setupEventsHandler = (): void => {
     setMessageCreateEvent();
     setMessageUpdateEvent();
     setGuildMemberAddEvent();
+    setGuildMemberRemove();
 }
 
-export { setupEventsHandler }   
+export { setupEventsHandler }
