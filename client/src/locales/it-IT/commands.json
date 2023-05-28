@@ -268,7 +268,7 @@
         "transfered": "Trasferito"
     },
     "daily": {
-        "cooldown": "Hai già preso le tue torte oggi, aspetta **{{time}}**",
+        "cooldown": "Você já pegou seus cakes hoje, espere **{{time}}**",
         "daily": "Hai vinto **{{amount}} torte** Ora hai {{money}} Cakes\n",
         "dailyAlert": "** Non dimenticare: ** Non puoi cambiare torte per cose come denaro, nitro, contenuto NSFW, ecc.! Se lo fai, ti verrà vietato l'utilizzo di Foxy permanentemente!"
     },
