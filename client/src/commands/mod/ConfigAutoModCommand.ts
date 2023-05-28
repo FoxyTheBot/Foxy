@@ -458,8 +458,7 @@ const ConfigAutoModCommand = createCommand({
                             components: [actionRow],
                             flags: MessageFlags.EPHEMERAL
                         });
-                        endCommand();
-                        break;
+                        return endCommand();
                     }
 
                     case "addrole": {
@@ -468,16 +467,14 @@ const ConfigAutoModCommand = createCommand({
                                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedRole", { role: `<@&${role}>` })),
                                 flags: MessageFlags.EPHEMERAL
                             })
-                            endCommand();
-                            break;
+                            return endCommand();
                         } else {
                             if (guildInfo.InviteBlockerModule.whitelistedRoles.length >= 5) {
                                 context.sendReply({
                                     content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.maxWhitelistedRoles")),
                                     flags: MessageFlags.EPHEMERAL
                                 })
-                                endCommand();
-                                break;
+                                return endCommand();
                             }
                             guildInfo.InviteBlockerModule.whitelistedRoles.push(role);
                             await guildInfo.save();
@@ -485,8 +482,7 @@ const ConfigAutoModCommand = createCommand({
                                 content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:inviteBlocker.config.addedWhitelistedRole", { role: `<@&${role}>` })),
                                 flags: MessageFlags.EPHEMERAL
                             });
-                            endCommand();
-                            break;
+                            return endCommand();
                         }
                     }
 
@@ -495,9 +491,8 @@ const ConfigAutoModCommand = createCommand({
                             context.sendReply({
                                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.notWhitelistedRole", { role: `<@&${role}>` })),
                                 flags: MessageFlags.EPHEMERAL
-                            })
-                            endCommand();
-                            break;
+                            });
+                            return endCommand();
                         } else {
                             guildInfo.InviteBlockerModule.whitelistedRoles.splice(guildInfo.InviteBlockerModule.whitelistedRoles.indexOf(role), 1);
                             await guildInfo.save();
@@ -507,8 +502,7 @@ const ConfigAutoModCommand = createCommand({
                             });
                         }
 
-                        endCommand();
-                        break;
+                        return endCommand();
                     }
 
                     case "addchannel": {
@@ -517,16 +511,14 @@ const ConfigAutoModCommand = createCommand({
                                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedChannel", { channel: `<#${channel}>` })),
                                 flags: MessageFlags.EPHEMERAL
                             })
-                            endCommand();
-                            break;
+                            return endCommand();
                         } else {
                             if (guildInfo.InviteBlockerModule.whitelistedChannels.length >= 10) {
                                 context.sendReply({
                                     content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.maxWhitelistedChannels")),
                                     flags: MessageFlags.EPHEMERAL
                                 })
-                                endCommand();
-                                break;
+                                return endCommand();
                             }
                             guildInfo.InviteBlockerModule.whitelistedChannels.push(channel);
                             await guildInfo.save();
@@ -534,8 +526,7 @@ const ConfigAutoModCommand = createCommand({
                                 content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:inviteBlocker.config.addedWhitelistedChannel", { channel: `<#${channel}>` })),
                                 flags: MessageFlags.EPHEMERAL
                             });
-                            endCommand();
-                            break;
+                            return endCommand();
                         }
                     }
 
@@ -545,8 +536,7 @@ const ConfigAutoModCommand = createCommand({
                                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.notWhitelistedChannel", { channel: `<#${channel}>` })),
                                 flags: MessageFlags.EPHEMERAL
                             })
-                            endCommand();
-                            break;
+                            return endCommand();
                         } else {
                             guildInfo.InviteBlockerModule.whitelistedChannels.splice(guildInfo.InviteBlockerModule.whitelistedChannels.indexOf(channel), 1);
                             await guildInfo.save();
@@ -554,8 +544,7 @@ const ConfigAutoModCommand = createCommand({
                                 content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:inviteBlocker.config.removedWhitelistedChannel", { channel: `<#${channel}>` })),
                                 flags: MessageFlags.EPHEMERAL
                             });
-                            endCommand();
-                            break
+                            return endCommand();
                         }
                     }
 
@@ -565,8 +554,7 @@ const ConfigAutoModCommand = createCommand({
                                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.alreadyWhitelistedUser", { user: `<@${user.id}>` })),
                                 flags: MessageFlags.EPHEMERAL
                             })
-                            endCommand();
-                            break;
+                            return endCommand();
                         } else {
                             guildInfo.InviteBlockerModule.whitelistedUsers.push(user.id.toString());
                             await guildInfo.save();
@@ -574,8 +562,7 @@ const ConfigAutoModCommand = createCommand({
                                 content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:inviteBlocker.config.addedWhitelistedUser", { user: `<@${user.id}>` })),
                                 flags: MessageFlags.EPHEMERAL
                             });
-                            endCommand();
-                            break;
+                            return endCommand();
                         }
                     }
 
@@ -585,8 +572,7 @@ const ConfigAutoModCommand = createCommand({
                                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:inviteBlocker.config.errors.notWhitelistedUser", { user: `<@${user.id}>` })),
                                 flags: MessageFlags.EPHEMERAL
                             })
-                            endCommand();
-                            break;
+                            return endCommand();
                         } else {
                             guildInfo.InviteBlockerModule.whitelistedUsers.splice(guildInfo.InviteBlockerModule.whitelistedUsers.indexOf(user.id), 1);
                             await guildInfo.save();
@@ -594,8 +580,7 @@ const ConfigAutoModCommand = createCommand({
                                 content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:inviteBlocker.config.removedWhitelistedUser", { user: `<@${user.id}>` })),
                                 flags: MessageFlags.EPHEMERAL
                             });
-                            endCommand();
-                            break
+                            return endCommand();
                         }
                     }
                 }
@@ -626,8 +611,7 @@ const ConfigAutoModCommand = createCommand({
                                 content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:AutoRole.enable.enabled")),
                                 flags: MessageFlags.EPHEMERAL
                             });
-                            endCommand();
-                            break;
+                            return endCommand();
                         }
                     }
 
@@ -645,8 +629,7 @@ const ConfigAutoModCommand = createCommand({
                                 content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:AutoRole.disable.disabled")),
                                 flags: MessageFlags.EPHEMERAL
                             });
-                            endCommand();
-                            break;
+                            return endCommand();
                         }
                     }
 
@@ -673,14 +656,11 @@ const ConfigAutoModCommand = createCommand({
                                 content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:AutoRole.addrole.added")),
                                 flags: MessageFlags.EPHEMERAL
                             });
-                            endCommand();
-                            break;
+                            return endCommand();
                         }
                     }
 
                     case "remove_role": {
-                        const role = context.getOption<Role>("role", false);
-
                         if (!guildInfo.AutoRoleModule.roles.includes(role)) {
                             context.sendReply({
                                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:AutoRole.removerole.notAdded")),
@@ -694,8 +674,7 @@ const ConfigAutoModCommand = createCommand({
                                 content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:AutoRole.removerole.removed")),
                                 flags: MessageFlags.EPHEMERAL
                             });
-                            endCommand();
-                            break;
+                            return endCommand();
                         }
                     }
                 }
