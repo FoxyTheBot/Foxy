@@ -634,8 +634,6 @@ const ConfigAutoModCommand = createCommand({
                     }
 
                     case "add_role": {
-                        const role = context.getOption<Role>("role", false);
-
                         if (guildInfo.AutoRoleModule.roles.includes(role)) {
                             context.sendReply({
                                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:AutoRole.addrole.alreadyAdded")),
