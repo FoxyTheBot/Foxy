@@ -606,6 +606,15 @@ const ConfigAutoModCommand = createCommand({
 
                     case "autorole": {
                         const guildInfo = await bot.database.getGuild(context.interaction.guildId);
+                        if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("MANAGE_ROLES" || "ADMINISTRATOR")) {
+                            context.sendReply({
+                                content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:global.noPermission", {
+                                    permission: t("permissions:ManageMessages")
+                                })),
+                                flags: MessageFlags.EPHEMERAL
+                            })
+                            return endCommand();
+                        }
 
                         switch (subCommand) {
                             case "enable": {
@@ -698,7 +707,21 @@ const ConfigAutoModCommand = createCommand({
                     }
 
                     case "welcome_leave": {
-                        // to do
+                        if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("MANAGE_GUILD" || "ADMINISTRATOR")) {
+                            context.sendReply({
+                                content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:global.noPermission", {
+                                    permission: t("permissions:ManageMessages")
+                                })),
+                                flags: MessageFlags.EPHEMERAL
+                            })
+                            return endCommand();
+                        }
+
+                        switch (subCommand) {
+                            case "config": {
+
+                            }
+                        }
                     }
                 }
             }
