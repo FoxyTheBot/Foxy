@@ -24,7 +24,7 @@ const setInteractionCreateEvent = (): void => {
             await new Promise(async (res) => {
                 try {
                     command.execute(context, res, locale);
-                    logger.info(`[COMMAND ${interaction.data?.name} - Success] by ${interaction.user.username}#${interaction.user.discriminator} (${interaction.user.id})`)
+                    logger.info(`[COMMAND ${interaction.data?.name} - Success] by ${interaction.user.username} (${interaction.user.id})`)
                     bot.database.updateCommand(interaction.data?.name);
                 } catch (e) {
                     console.error(e);
