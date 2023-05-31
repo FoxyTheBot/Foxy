@@ -749,6 +749,7 @@ const ConfigAutoModCommand = createCommand({
                         context.sendReply({
                             embeds: [embed],
                             components: [row, row2],
+                            flags: MessageFlags.EPHEMERAL
                         });
                     }
 
