@@ -284,41 +284,6 @@ const ConfigAutoModCommand = createCommand({
             type: ApplicationCommandOptionTypes.SubCommand
         },
         {
-            name: "set_join_channel",
-            description: "[Moderation] Set channel where welcome/leave messages will be sent",
-            nameLocalizations: {
-                "pt-BR": "definir_canal_de_entrada"
-            },
-            descriptionLocalizations: {
-                "pt-BR": "[Moderação] Define o canal onde as mensagens de boas-vindas/saída serão enviadas"
-            },
-            type: ApplicationCommandOptionTypes.SubCommand,
-            options: [{
-                name: "channel",
-                description: "Channel where welcome/leave messages will be sent",
-                nameLocalizations: {
-                    "pt-BR": "canal"
-                },
-                descriptionLocalizations: {
-                    "pt-BR": "Canal onde as mensagens de boas-vindas/saída serão enviadas"
-                },
-                type: ApplicationCommandOptionTypes.Channel,
-                required: true,
-                channelTypes: [ChannelTypes.GuildText, ChannelTypes.GuildAnnouncement]
-            }]
-        },
-        {
-            name: "remove_join_channel",
-            description: "[Moderation] Remove channel where welcome/leave messages will be sent",
-            nameLocalizations: {
-                "pt-BR": "remover_canal_de_entrada"
-            },
-            descriptionLocalizations: {
-                "pt-BR": "[Moderação] Remove o canal onde as mensagens de boas-vindas/saída serão enviadas"
-            },
-            type: ApplicationCommandOptionTypes.SubCommand,
-        },
-        {
             name: "set_leave_channel",
             description: "[Moderation] Set channel where leave messages will be sent",
             nameLocalizations: {
@@ -362,6 +327,9 @@ const ConfigAutoModCommand = createCommand({
         AddMessageExecutor, // 2
         ResetConfigExecutor,// 3
         ModalSentExecutor, // 4
+
+        /* Welcome Leave Executors */
+
     ],
     execute: async (context, endCommand, t) => {
         const subCommandGroup = context.getSubCommandGroup();
@@ -692,15 +660,91 @@ const ConfigAutoModCommand = createCommand({
                 switch (subCommand) {
 
                     case "config": {
+                        const embed = createEmbed({
+                            title: t('commands:WelcomeLeave.config.embed.title'),
+                            description: t('commands:WelcomeLeave.config.embed.description'),
+                            fields: [{
+                                name: t('commands:WelcomeLeave.config.embed.fields.isEnabled'),
+                                value: guildInfo.WelcomeLeaveModule.isEnabled ? t('commands:WelcomeLeave.config.embed.fields.isEnabledValue.true') : t('commands:WelcomeLeave.config.embed.fields.isEnabledValue.false')
+                            },
+                            {
+                                name: t('commands:WelcomeLeave.config.embed.fields.welcomeChannel'),
+                                value: guildInfo.WelcomeLeaveModule.welcomeChannel ? `<#${guildInfo.WelcomeLeaveModule.welcomeChannel}>` : t('commands:WelcomeLeave.config.embed.fields.welcomeChannelValue.none')
+                            },
+                            {
+                                name: t('commands:WelcomeLeave.config.embed.fields.leaveChannel'),
+                                value: guildInfo.WelcomeLeaveModule.leaveChannel ? `<#${guildInfo.WelcomeLeaveModule.leaveChannel}>` : t('commands:WelcomeLeave.config.embed.fields.leaveChannelValue.none')
+                            },
+                            {
+                                name: t('commands:WelcomeLeave.config.embed.fields.sendWelcomeDM'),
+                                value: guildInfo.WelcomeLeaveModule.sendDm ? t('commands:WelcomeLeave.config.embed.fields.sendWelcomeDMValue.true') : t('commands:WelcomeLeave.config.embed.fields.sendWelcomeDMValue.false')
+                            },
+                            {
+                                name: t('commands:WelcomeLeave.config.embed.fields.notificateWhenUserLeaves'),
+                                value: guildInfo.WelcomeLeaveModule.isLeaveMessageEnabled ? t('commands:WelcomeLeave.config.embed.fields.notificateWhenUserLeavesValue.true') : t('commands:WelcomeLeave.config.embed.fields.notificateWhenUserLeavesValue.false')
+                            }]
+                        });
 
-                    }
+                        const row = createActionRow([createButton({
+                            label: guildInfo.WelcomeLeaveModule.isEnabled ? t('commands:WelcomeLeave.config.embed.buttons.disable') : t('commands:WelcomeLeave.config.embed.buttons.enable'),
+                            style: guildInfo.WelcomeLeaveModule.isEnabled ? ButtonStyles.Danger : ButtonStyles.Success,
+                            customId: createCustomId(5, context.author.id, context.commandId)
+                        }),
+                        createButton({
+                            label: t('commands:WelcomeLeave.config.embed.buttons.setWelcomeMessage'),
+                            style: ButtonStyles.Primary,
+                            customId: createCustomId(6, context.author.id, context.commandId),
+                            disabled: !guildInfo.WelcomeLeaveModule.isEnabled
+                        }),
+                        createButton({
+                            label: t('commands:WelcomeLeave.config.embed.buttons.setLeaveMessage'),
+                            style: ButtonStyles.Primary,
+                            customId: createCustomId(7, context.author.id, context.commandId),
+                            disabled: !guildInfo.WelcomeLeaveModule.isEnabled
+                        }),
+                        createButton({
+                            label: guildInfo.WelcomeLeaveModule.isLeaveMessageEnabled ? t('commands:WelcomeLeave.config.embed.buttons.disableLeaveMessage') : t('commands:WelcomeLeave.config.embed.buttons.enableLeaveMessage'),
+                            style: guildInfo.WelcomeLeaveModule.isLeaveMessageEnabled ? ButtonStyles.Danger : ButtonStyles.Success,
+                            customId: createCustomId(8, context.author.id, context.commandId),
+                            disabled: !guildInfo.WelcomeLeaveModule.isEnabled
+                        }),
+                        createButton({
+                            label: guildInfo.WelcomeLeaveModule.sendDm ? t('commands:WelcomeLeave.config.embed.buttons.disableSendDm') : t('commands:WelcomeLeave.config.embed.buttons.enableSendDm'),
+                            style: guildInfo.WelcomeLeaveModule.sendDm ? ButtonStyles.Danger : ButtonStyles.Success,
+                            customId: createCustomId(9, context.author.id, context.commandId),
+                            disabled: !guildInfo.WelcomeLeaveModule.isEnabled
+                        }),
+                        ]);
 
-                    case "set_join_channel": {
-
-                    }
-
-                    case "set_leave_channel": {
-
+                        const row2 = createActionRow([createButton({
+                            label: t('commands:WelcomeLeave.config.embed.buttons.setDmMessage'),
+                            style: ButtonStyles.Primary,
+                            customId: createCustomId(10, context.author.id, context.commandId),
+                            disabled: !guildInfo.WelcomeLeaveModule.isEnabled
+                        }),
+                        createButton({
+                            label: t('commands:WelcomeLeave.config.embed.buttons.setWelcomeChannel'),
+                            style: ButtonStyles.Primary,
+                            customId: createCustomId(11, context.author.id, context.commandId),
+                            disabled: !guildInfo.WelcomeLeaveModule.isEnabled
+                        }),
+                        createButton({
+                            label: t('commands:WelcomeLeave.config.embed.buttons.setLeaveChannel'),
+                            style: ButtonStyles.Primary,
+                            customId: createCustomId(12, context.author.id, context.commandId),
+                            disabled: !guildInfo.WelcomeLeaveModule.isEnabled
+                        }),
+                        createButton({
+                            label: t('commands:WelcomeLeave.config.embed.buttons.reset'),
+                            style: ButtonStyles.Danger,
+                            customId: createCustomId(13, context.author.id, context.commandId),
+                        }),
+                        createButton({
+                            label: t('commands:WelcomeLeave.config.embed.buttons.back'),
+                            style: ButtonStyles.Success,
+                            customId: createCustomId(14, context.author.id, context.commandId),
+                        })
+                        ]);
                     }
 
                     case "remove_join_channel": {
