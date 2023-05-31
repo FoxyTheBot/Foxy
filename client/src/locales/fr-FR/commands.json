@@ -268,7 +268,7 @@
         "transfered": "Transféré"
     },
     "daily": {
-        "cooldown": "Vous avez déjà vos Cakes aujourd'hui, attendez **{{time}}**",
+        "cooldown": "Você já pegou seus cakes hoje, espere **{{time}}**",
         "daily": "Vous avez gagné **{{amount}} Cakes** maintenant vous avez {{money}} Cakes\n",
         "dailyAlert": "**N'oubliez pas :** Vous ne pouvez pas échanger des cakes contre de l'argent, Nitro, du contenu NSFW, etc. ! Si vous le faites, vous serez interdit d'utiliser Foxy de façon permanente !"
     },
