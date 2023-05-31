@@ -745,14 +745,40 @@ const ConfigAutoModCommand = createCommand({
                             customId: createCustomId(14, context.author.id, context.commandId),
                         })
                         ]);
+
+                        context.sendReply({
+                            embeds: [embed],
+                            components: [row, row2],
+                        });
                     }
 
                     case "remove_join_channel": {
+                        if (!guildInfo.WelcomeLeaveModule.joinChannel) {
+                            context.sendReply({
+                                content: t('commands:WelcomeLeave.removeJoinChannel.noWelcomeChannel'),
+                                flags: MessageFlags.EPHEMERAL
+                            });
+                            return endCommand();
+                        } else {
+                            guildInfo.WelcomeLeaveModule.joinChannel = null;
+                            await guildInfo.save();
 
+                            context.sendReply({
+                                content: t('commands:WelcomeLeave.removeJoinChannel.success'),
+                                flags: MessageFlags.EPHEMERAL
+                            });
+                            return endCommand();
+                        }
                     }
 
                     case "remove_leave_channel": {
-
+                        if (!guildInfo.WelcomeLeaveModule.leaveChannel) {
+                            context.sendReply({
+                                content: t('commands:WelcomeLeave.removeLeaveChannel.noLeaveChannel'),
+                                flags: MessageFlags.EPHEMERAL
+                            });
+                            return endCommand();
+                        }
                     }
                 }
             }
