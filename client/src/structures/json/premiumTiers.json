@@ -1,0 +1,111 @@
+{
+    "tiers": {
+        "0": {
+            "level": 0,
+            "name": "Free",
+            "nameLocalizations": {
+                "pt-BR": "Grátis"
+            },
+            "benefits": {
+                "InviteBlockerModule": {
+                    "maximumWhitelistedChannels": 1,
+                    "maximumWhitelistedRoles": 5
+                },
+                "daily": {
+                    "maximumLimit": 4000,
+                    "multiplier": 1
+                },
+                "reputations": {
+                    "repmultiplier": false
+                },
+                "customBackground": false,
+                "keyPremiumForGuild": true,
+                "memberCountModule": {
+                    "channelLimit": 1
+                }
+            }
+        },
+        "1": {
+            "level": 1,
+            "name": "Basic",
+            "nameLocalizations": {
+                "pt-BR": "Básico"
+            },
+            "benefits": {
+                "InviteBlockerModule": {
+                    "maximumWhitelistedChannels": 3,
+                    "maximumWhitelistedRoles": 5
+                },
+                "AutoRoleModule": {
+                    "maximumRoles": 5
+                },
+                "daily": {
+                    "maximumLimit": 5000,
+                    "multiplier": 1.25
+                },
+                "reputations": {
+                    "repmultiplier": false
+                },
+                "customBackground": false,
+                "keyPremiumForGuild": true,
+                "memberCountModule": {
+                    "channelLimit": 3
+                }
+            }
+        },
+        "2": {
+            "level": 2,
+            "name": "Recommended",
+            "nameLocalizations": {
+                "pt-BR": "Recomendado"
+            },
+            "benefits": {
+                "InviteBlockerModule": {
+                    "maximumWhitelistedChannels": 5,
+                    "maximumWhitelistedRoles": 10
+                },
+                "AutoRoleModule": {
+                    "maximumRoles": 10
+                },
+                "daily": {
+                    "maximumLimit": 7000,
+                    "multiplier": 1.5
+                },
+                "reputations": {
+                    "repmultiplier": false
+                },
+                "customBackground": true,
+                "keyPremiumForGuild": true,
+                "memberCountModule": {
+                    "channelLimit": 4
+                }
+            }
+        },
+        "3": {
+            "level": 3,
+            "name": "Complete",
+            "nameLocalizations": {
+                "pt-BR": "Completo"
+            },
+            "InviteBlockerModule": {
+                "maximumWhitelistedChannels": 10,
+                "maximumWhitelistedRoles": 20
+            },
+            "AutoRoleModule": {
+                "maximumRoles": 20
+            },
+            "daily": {
+                "maximumLimit": 10000,
+                "multiplier": 2
+            },
+            "reputations": {
+                "repmultiplier": true
+            },
+            "customBackground": true,
+            "keyPremiumForGuild": true,
+            "memberCountModule": {
+                "channelLimit": 4
+            }
+        }
+    }
+}
