@@ -30,7 +30,7 @@ const setInteractionCreateEvent = (): void => {
                     console.error(e);
                     context.sendReply({ content: locale('events:interactionCreate.commandError'), flags: MessageFlags.EPHEMERAL })
                 }
-            })
+            });
         }
     
         try {
