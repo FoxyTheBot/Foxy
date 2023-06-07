@@ -52,7 +52,7 @@ const HelpCommand = createCommand({
             },
             footer: {
                 iconUrl: await getUserAvatar(bot.owner, { size: 2048 }),
-                text: t('commands:help.bot.footer', { owner: `${bot.owner.username}#${bot.owner.discriminator}` })
+                text: t('commands:help.bot.footer', { owner: `${bot.owner.username} - ${bot.owner.id}` })
             }
         })
 

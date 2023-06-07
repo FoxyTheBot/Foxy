@@ -276,7 +276,7 @@ const FoxyToolsCommand = createCommand({
                     fields: [
                         {
                             name: "Usuário",
-                            value: `${user.username}#${user.discriminator}`,
+                            value: `${user.username} / ${user.id}`,
                             inline: true
                         },
                         {
