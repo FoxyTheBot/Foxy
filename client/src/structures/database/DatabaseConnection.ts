@@ -188,6 +188,7 @@ export default class DatabaseConnection {
                     roles: [],
                 }
             }).save();
+            return null;
         }
 
         return document;
@@ -198,6 +199,8 @@ export default class DatabaseConnection {
 
         if (document) {
             document.delete();
+        } else {
+            return null;
         }
 
         return document;

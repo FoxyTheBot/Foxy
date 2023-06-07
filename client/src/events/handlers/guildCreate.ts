@@ -1,9 +1,23 @@
 import { bot } from "../../";
-
+import config from "../../../config.json";
 const setGuildCreateEvent = (): void => {
     bot.events.guildCreate = async (_, guild) => {
         const guildId = guild.id;
-        await bot.database.addGuild(guildId);
+        bot.database.addGuild(guildId).then((document) => {
+            if (!document) {
+                setTimeout(() => {
+                    bot.helpers.sendWebhookMessage(config.webhooks.join_leave_guild.id, config.webhooks.join_leave_guild.token, {
+                        embeds: [{
+                            title: `<:emoji:${bot.emotes.FOXY_YAY}> **|** Fui adicionada em um servidor!`,
+                            description: `**Nome:** ${guild.name}\n**ID:** ${guild.id}`,
+                            footer: {
+                                text: `Servidor salvo no banco de dados!`
+                            }
+                        }]
+                    });
+                }, 500);
+            }
+        });
     }
 }
 
