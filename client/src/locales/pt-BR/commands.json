@@ -272,56 +272,6 @@
         "daily": "Você ganhou **{{amount}} Cakes** agora você possui {{money}} Cakes\n",
         "dailyAlert": "**Não se esqueça:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!"
     },
-    "WelcomeLeave": {
-        "config": {
-            "embed": {
-                "title": "Entrada e Saída",
-                "description": "Configure a Foxy para notificar quando um membro entra ou sai do servidor",
-                "fields": {
-                    "isEnabled": "Status:",
-                    "isEnabledValue": {
-                        "true": "Ativado",
-                        "false": "Desativado"
-                    },
-                    "welcomeChannel": "Canal de entrada:",
-                    "leaveChannel": "Canal de saída:",
-                    "sendWelcomeDM": "Enviar mensagem privada?",
-                    "notificateWhenUserLeaves": "Notificar quando um membro sair?",
-                    "notificateWhenUserLeavesValue": {
-                        "true": "Sim",
-                        "false": "Não"
-                    },
-                    "sendWelcomeDMValue": {
-                        "true": "Sim",
-                        "false": "Não"
-                    },
-                    "welcomeChannelValue": {
-                        "none": "Nenhum canal definido"
-                    },
-                    "leaveChannelValue": {
-                        "none": "Nenhum canal definido"
-                    }
-                },
-                "buttons": {
-                    "disable": "Desativar",
-                    "enable": "Ativar",
-                    "setWelcomeMessage": "Definir mensagem de entrada",
-                    "setLeaveMessage": "Definir mensagem de saída",
-                    "setWelcomeChannel": "Definir canal de entrada",
-                    "setLeaveChannel": "Definir canal de saída",
-                    "sendDm": "Enviar mensagens no privado do usuário",
-                    "disableSendDm": "Não enviar mensagens no privado do usuário",
-                    "setDmMessage": "Definir mensagem privada",
-                    "reset": "Redefinir",
-                    "save": "Salvar",
-                    "disableLeaveMessage": "Não enviar mensagem de saída",
-                    "enableLeaveMessage": "Enviar mensagem de saída"
-                },
-
-                "footer": "As configurações serão salvas e aplicadas automaticamente quando você salvar"
-            }
-        }
-    },
     "AutoRole": {
         "addrole": {
             "alreadyAdded": "Este cargo já foi adicionado",

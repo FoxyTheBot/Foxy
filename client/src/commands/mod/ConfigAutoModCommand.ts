@@ -14,10 +14,6 @@ import AddMessageExecutor from "../../utils/commands/executors/mod/inviteblocker
 import ResetConfigExecutor from "../../utils/commands/executors/mod/inviteblocker/ResetConfigExecutor";
 import ModalSentExecutor from "../../utils/commands/executors/mod/inviteblocker/ModalSentExecutor";
 
-/* Welcome Leave imports */
-
-import { EnableModuleExecutor } from "../../utils/commands/executors/mod/welcomeleavemodule/EnableModuleExecutor";
-
 const ConfigAutoModCommand = createCommand({
     name: "automod",
     description: "[Moderation] Commands relationed to AutoMod modules (AntiInvite, AutoRole...)",
@@ -262,63 +258,6 @@ const ConfigAutoModCommand = createCommand({
                 required: true
             }]
         }],
-    },
-    {
-        name: "welcome_leave",
-        nameLocalizations: {
-            "pt-BR": "entrada_saída"
-        },
-        description: "[Moderation] Commands relationed to welcome/leave module",
-        descriptionLocalizations: {
-            "pt-BR": "[Moderação] Comandos relacionados ao módulo de boas-vindas/saída"
-        },
-        type: ApplicationCommandOptionTypes.SubCommandGroup,
-        options: [{
-            name: "config",
-            description: "[Moderation] Configure welcome/leave module",
-            nameLocalizations: {
-                "pt-BR": "configurar"
-            },
-            descriptionLocalizations: {
-                "pt-BR": "[Moderação] Configure o módulo de boas-vindas/saída"
-            },
-            type: ApplicationCommandOptionTypes.SubCommand
-        },
-        {
-            name: "set_leave_channel",
-            description: "[Moderation] Set channel where leave messages will be sent",
-            nameLocalizations: {
-                "pt-BR": "definir_canal_de_saída"
-            },
-            descriptionLocalizations: {
-                "pt-BR": "[Moderação] Define o canal onde as mensagens de saída serão enviadas"
-            },
-            type: ApplicationCommandOptionTypes.SubCommand,
-            options: [{
-                name: "channel",
-                description: "Channel where leave messages will be sent",
-                nameLocalizations: {
-                    "pt-BR": "canal"
-                },
-                descriptionLocalizations: {
-                    "pt-BR": "Canal onde as mensagens de saída serão enviadas"
-                },
-                type: ApplicationCommandOptionTypes.Channel,
-                required: true,
-                channelTypes: [ChannelTypes.GuildText, ChannelTypes.GuildAnnouncement]
-            }]
-        },
-        {
-            name: "remove_leave_channel",
-            description: "[Moderation] Remove channel where leave messages will be sent",
-            nameLocalizations: {
-                "pt-BR": "remover_canal_de_saída"
-            },
-            descriptionLocalizations: {
-                "pt-BR": "[Moderação] Remove o canal onde as mensagens de saída serão enviadas"
-            },
-            type: ApplicationCommandOptionTypes.SubCommand,
-        }]
     }],
     commandRelatedExecutions: [
         /* Invite Blocker Executors */
@@ -328,10 +267,6 @@ const ConfigAutoModCommand = createCommand({
         AddMessageExecutor, // 2
         ResetConfigExecutor,// 3
         ModalSentExecutor, // 4
-
-        /* Welcome Leave Executors */
-
-        EnableModuleExecutor, // 5
     ],
     execute: async (context, endCommand, t) => {
         const subCommandGroup = context.getSubCommandGroup();
@@ -640,150 +575,6 @@ const ConfigAutoModCommand = createCommand({
                             await guildInfo.save();
                             context.sendReply({
                                 content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:AutoRole.removerole.removed")),
-                                flags: MessageFlags.EPHEMERAL
-                            });
-                            return endCommand();
-                        }
-                    }
-                }
-            }
-
-            case "welcome_leave": {
-                if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("MANAGE_GUILD" || "ADMINISTRATOR")) {
-                    context.sendReply({
-                        content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:global.noPermission", {
-                            permission: t("permissions:ManageMessages")
-                        })),
-                        flags: MessageFlags.EPHEMERAL
-                    })
-                    return endCommand();
-                }
-
-                switch (subCommand) {
-
-                    case "config": {
-                        const embed = createEmbed({
-                            title: t('commands:WelcomeLeave.config.embed.title'),
-                            description: t('commands:WelcomeLeave.config.embed.description'),
-                            fields: [{
-                                name: t('commands:WelcomeLeave.config.embed.fields.isEnabled'),
-                                value: guildInfo.WelcomeModule.isEnabled ? t('commands:WelcomeLeave.config.embed.fields.isEnabledValue.true') : t('commands:WelcomeLeave.config.embed.fields.isEnabledValue.false')
-                            },
-                            {
-                                name: t('commands:WelcomeLeave.config.embed.fields.welcomeChannel'),
-                                value: guildInfo.WelcomeModule.welcomeChannel ? `<#${guildInfo.WelcomeModule.welcomeChannel}>` : t('commands:WelcomeLeave.config.embed.fields.welcomeChannelValue.none')
-                            },
-                            {
-                                name: t('commands:WelcomeLeave.config.embed.fields.leaveChannel'),
-                                value: guildInfo.WelcomeModule.leaveChannel ? `<#${guildInfo.WelcomeModule.leaveChannel}>` : t('commands:WelcomeLeave.config.embed.fields.leaveChannelValue.none')
-                            },
-                            {
-                                name: t('commands:WelcomeLeave.config.embed.fields.sendWelcomeDM'),
-                                value: guildInfo.WelcomeModule.sendDm ? t('commands:WelcomeLeave.config.embed.fields.sendWelcomeDMValue.true') : t('commands:WelcomeLeave.config.embed.fields.sendWelcomeDMValue.false')
-                            },
-                            {
-                                name: t('commands:WelcomeLeave.config.embed.fields.notificateWhenUserLeaves'),
-                                value: guildInfo.WelcomeModule.isLeaveMessageEnabled ? t('commands:WelcomeLeave.config.embed.fields.notificateWhenUserLeavesValue.true') : t('commands:WelcomeLeave.config.embed.fields.notificateWhenUserLeavesValue.false')
-                            }],
-                            footer: {
-                                text: t('commands:WelcomeLeave.config.embed.footer')
-                            }
-                        });
-
-                        const row = createActionRow([
-                            createButton({
-                                label: guildInfo.WelcomeModule.isEnabled ? t('commands:WelcomeLeave.config.embed.buttons.disable') : t('commands:WelcomeLeave.config.embed.buttons.enable'),
-                                style: guildInfo.WelcomeModule.isEnabled ? ButtonStyles.Danger : ButtonStyles.Success,
-                                customId: createCustomId(5, context.author.id, context.commandId)
-                            }),
-                            createButton({
-                                label: t('commands:WelcomeLeave.config.embed.buttons.setWelcomeMessage'),
-                                style: ButtonStyles.Primary,
-                                customId: createCustomId(6, context.author.id, context.commandId),
-                                disabled: !guildInfo.WelcomeModule.isEnabled
-                            }),
-                            createButton({
-                                label: t('commands:WelcomeLeave.config.embed.buttons.setLeaveMessage'),
-                                style: ButtonStyles.Primary,
-                                customId: createCustomId(7, context.author.id, context.commandId),
-                                disabled: !guildInfo.WelcomeModule.isEnabled
-                            }),
-                            createButton({
-                                label: guildInfo.WelcomeModule.isLeaveMessageEnabled ? t('commands:WelcomeLeave.config.embed.buttons.disableLeaveMessage') : t('commands:WelcomeLeave.config.embed.buttons.enableLeaveMessage'),
-                                style: guildInfo.WelcomeModule.isLeaveMessageEnabled ? ButtonStyles.Danger : ButtonStyles.Success,
-                                customId: createCustomId(8, context.author.id, context.commandId),
-                                disabled: !guildInfo.WelcomeModule.isEnabled
-                            }),
-                            createButton({
-                                label: guildInfo.WelcomeModule.sendDm ? t('commands:WelcomeLeave.config.embed.buttons.disableSendDm') : t('commands:WelcomeLeave.config.embed.buttons.enableSendDm'),
-                                style: guildInfo.WelcomeModule.sendDm ? ButtonStyles.Danger : ButtonStyles.Success,
-                                customId: createCustomId(9, context.author.id, context.commandId),
-                                disabled: !guildInfo.WelcomeModule.isEnabled
-                            }),
-                        ]);
-
-                        const row2 = createActionRow([createButton({
-                            label: t('commands:WelcomeLeave.config.embed.buttons.setDmMessage'),
-                            style: ButtonStyles.Primary,
-                            customId: createCustomId(10, context.author.id, context.commandId),
-                            disabled: !guildInfo.WelcomeModule.isEnabled
-                        }),
-                        createButton({
-                            label: t('commands:WelcomeLeave.config.embed.buttons.setWelcomeChannel'),
-                            style: ButtonStyles.Primary,
-                            customId: createCustomId(11, context.author.id, context.commandId),
-                            disabled: !guildInfo.WelcomeModule.isEnabled
-                        }),
-                        createButton({
-                            label: t('commands:WelcomeLeave.config.embed.buttons.setLeaveChannel'),
-                            style: ButtonStyles.Primary,
-                            customId: createCustomId(12, context.author.id, context.commandId),
-                            disabled: !guildInfo.WelcomeModule.isEnabled
-                        }),
-                        createButton({
-                            label: t('commands:WelcomeLeave.config.embed.buttons.reset'),
-                            style: ButtonStyles.Danger,
-                            customId: createCustomId(13, context.author.id, context.commandId),
-                        }),
-                        createButton({
-                            label: t('commands:WelcomeLeave.config.embed.buttons.save'),
-                            style: ButtonStyles.Success,
-                            customId: createCustomId(14, context.author.id, context.commandId),
-                        })
-                        ]);
-
-                        context.sendReply({
-                            embeds: [embed],
-                            components: [row, row2],
-                            flags: MessageFlags.EPHEMERAL
-                        });
-                    
-                        return endCommand();
-                    }
-
-                    case "remove_join_channel": {
-                        if (!guildInfo.WelcomeModule.joinChannel) {
-                            context.sendReply({
-                                content: t('commands:WelcomeLeave.removeJoinChannel.noWelcomeChannel'),
-                                flags: MessageFlags.EPHEMERAL
-                            });
-                            return endCommand();
-                        } else {
-                            guildInfo.WelcomeModule.joinChannel = null;
-                            await guildInfo.save();
-
-                            context.sendReply({
-                                content: t('commands:WelcomeLeave.removeJoinChannel.success'),
-                                flags: MessageFlags.EPHEMERAL
-                            });
-                            return endCommand();
-                        }
-                    }
-
-                    case "remove_leave_channel": {
-                        if (!guildInfo.WelcomeModule.leaveChannel) {
-                            context.sendReply({
-                                content: t('commands:WelcomeLeave.removeLeaveChannel.noLeaveChannel'),
                                 flags: MessageFlags.EPHEMERAL
                             });
                             return endCommand();
