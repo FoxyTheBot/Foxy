@@ -494,7 +494,7 @@ const ConfigAutoModCommand = createCommand({
                 if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("MANAGE_ROLES" || "ADMINISTRATOR")) {
                     context.sendReply({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:global.noPermission", {
-                            permission: t("permissions:ManageMessages")
+                            permission: t("permissions:ManageRoles")
                         })),
                         flags: MessageFlags.EPHEMERAL
                     })
