@@ -5,8 +5,6 @@ import { transformInteraction } from '../internals/transformers/interactionRespo
 import { loadLocales } from '../../utils/loader';
 import { bot } from '../..';
 import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
-import AutoRoleModule from '../../utils/modules/AutoRoleModule';
-import InviteBlockerModule from '../../utils/modules/InviteBlockerModule';
 import DatabaseConnection from '../database/DatabaseConnection';
 import config from '../../../config.json';
 import { startActivities } from '../../utils/Activities';

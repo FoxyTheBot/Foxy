@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import i18next from 'i18next';
 import i18nbackend from 'i18next-fs-backend';
 import { logger } from './logger';
+
 export async function loadLocales(): Promise<void> {
     try {
         logger.info("[LOCALES] Loading locales...")
