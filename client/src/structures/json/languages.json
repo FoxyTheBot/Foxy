@@ -5,64 +5,56 @@
             "nameLocalizations": {
                 "pt-BR": "Inglês"
             },
-            "value": "en-US",
-            "done": true
+            "value": "en-US"
         },
         {
             "name": "Brazilian Portuguese",
             "nameLocalizations": {
                 "pt-BR": "Português Brasileiro"
             },
-            "value": "pt-BR",
-            "done": true
+            "value": "pt-BR"
         },
         {
             "name": "French",
             "nameLocalizations": {
                 "pt-BR": "Francês"
             },
-            "value": "fr-FR",
-            "done": true
+            "value": "fr-FR"
         },
         {
             "name": "Spanish",
             "nameLocalizations": {
                 "pt-BR": "Espanhol"
             },
-            "value": "es-ES",
-            "done": false
+            "value": "es-ES"
         },
         {
             "name": "German",
             "nameLocalizations": {
                 "pt-BR": "Alemão"
             },
-            "value": "de-DE",
-            "done": false
+            "value": "de-DE"
         },
         {
             "name": "Italian",
             "nameLocalizations": {
                 "pt-BR": "Italiano"
             },
-            "value": "it-IT",
-            "done": false
+            "value": "it-IT"
         },
         {
             "name": "Russian",
             "nameLocalizations": {
                 "pt-BR": "Russo"
             },
-            "value": "ru-RU",
-            "done": false
+            "value": "ru-RU"
         },
         {
             "name": "Arabic",
             "nameLocalizations": {
                 "pt-BR": "Árabe"
             },
-            "value": "ar-SA",
-            "done": false
+            "value": "ar-SA"
         }
     ]
 }
