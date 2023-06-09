@@ -7,7 +7,7 @@ import RollExecutor from "../../utils/commands/executors/util/RollExecutor";
 const RollCommand = createCommand({
     name: "roll",
     nameLocalizations: {
-        "pt-BR": "rolar"
+        "pt-BR": "rolardado"
     },
     category: "util",
     description: "[Utils] Roll a dice",
