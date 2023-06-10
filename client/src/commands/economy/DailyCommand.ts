@@ -1,6 +1,7 @@
 import { createCommand } from '../../structures/commands/createCommand';
 import ms from 'ms';
 import { bot } from '../../index';
+import { MessageFlags } from '../../utils/discord/Message';
 
 const DailyCommand = createCommand({
     name: 'daily',
@@ -35,7 +36,7 @@ const DailyCommand = createCommand({
 
             context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.daily', { amount: amount.toLocaleString(t.lng), money: money.toLocaleString(t.lng) })) + context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:daily.dailyAlert')),
-                flags: 64
+                flags: MessageFlags.EPHEMERAL
             })
             endCommand();
 
