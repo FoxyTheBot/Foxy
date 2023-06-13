@@ -1,6 +1,6 @@
 import { InteractionResponseTypes, InteractionCallbackData, ApplicationCommandOptionTypes, } from 'discordeno';
 import { Interaction, User } from 'discordeno/transformers';
-import { TFunction, use } from 'i18next';
+import { TFunction } from 'i18next';
 import { MessageFlags } from '../../utils/discord/Message';
 import { bot } from "../../index";
 import { get } from 'https'
