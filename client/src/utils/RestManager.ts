@@ -19,4 +19,9 @@ export class FoxyRestManager {
 
         this.bot.helpers.sendMessage(DMChannel.id, data);
     }
+
+    async getUserDisplayName(userId: BigString) {
+        const user = await this.bot.rest.runMethod(this.bot.rest, "GET", this.bot.constants.routes.USER(userId));
+        return user.global_name || user.username;
+    }
 }
