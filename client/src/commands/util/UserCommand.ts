@@ -44,7 +44,7 @@ const UserCommand = createCommand({
         switch (subcommand) {
             case "avatar": {
                 const embed = createEmbed({
-                    title: t('commands:user.avatar.title', { user: user.username }),
+                    title: t('commands:user.avatar.title', { user: await bot.foxyRest.getUserDisplayName(user.id) }),
                     image: {
                         url: getUserAvatar(user, { size: 2048, enableGif: true })
                     }

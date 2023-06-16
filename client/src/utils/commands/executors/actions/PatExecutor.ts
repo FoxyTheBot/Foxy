@@ -8,7 +8,7 @@ const PatExecutor = async (context: ComponentInteractionContext) => {
     const [user] = context.sentData;
     const patGif: any = await context.getImage("pat");
     const embed = createEmbed({});
-    embed.title = bot.locale('commands:pat.success', { user: context.author.username, author: user }),
+    embed.title = bot.locale('commands:pat.success', { user: await bot.foxyRest.getUserDisplayName(context.author.id), author: user }),
         embed.image = {
             url: patGif.url
         }

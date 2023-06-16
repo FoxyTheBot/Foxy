@@ -8,7 +8,7 @@ const TickleExecutor = async (context: ComponentInteractionContext) => {
     const [user] = context.sentData;
     const tickleGif: any = await context.getImage("tickle");
     const embed = createEmbed({});
-    embed.title = bot.locale('commands:tickle.success', { user: context.author.username, author: user }),
+    embed.title = bot.locale('commands:tickle.success', { user: await bot.foxyRest.getUserDisplayName(context.author.id), author: user }),
         embed.image = {
             url: tickleGif.url
         }

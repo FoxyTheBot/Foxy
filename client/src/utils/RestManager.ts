@@ -22,6 +22,6 @@ export class FoxyRestManager {
 
     async getUserDisplayName(userId: BigString) {
         const user = await this.bot.rest.runMethod(this.bot.rest, "GET", this.bot.constants.routes.USER(userId));
-        return user.global_name || user.username;
+        return user.global_name || await this.bot.foxyRest.getUserDisplayName(user.id);
     }
 }

@@ -72,13 +72,13 @@ const MarryCommand = createCommand({
 
         if (user.id === userData.marriedWith) {
             context.sendReply({
-                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.alreadyMarriedWithUser', { user: user.username }))
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.alreadyMarriedWithUser', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
             })
             return endCommand();
         }
 
         context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:marry.ask', { user: user.username, author: context.author.username })),
+            content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:marry.ask', { user: await bot.foxyRest.getUserDisplayName(user.id), author: await bot.foxyRest.getUserDisplayName(context.author.id) })),
             components: [createActionRow([createButton({
                 customId: createCustomId(0, user.id, context.commandId),
                 label: t('commands:marry.accept'),

@@ -37,7 +37,7 @@ const HugCommand = createCommand({
     execute: async (context, endCommand, t) => {
         const user = context.getOption<User>("user", "users");
         const hugGif: any = await context.getImage("hug");
-        embed.title = t('commands:hug.success', { user: user.username, author: context.author.username }),
+        embed.title = t('commands:hug.success', { user: await bot.foxyRest.getUserDisplayName(user.id), author: await bot.foxyRest.getUserDisplayName(context.author.id) }),
             embed.image = {
                 url: hugGif.url
             }
@@ -51,7 +51,7 @@ const HugCommand = createCommand({
         context.sendReply({
             embeds: [embed],
             components: [createActionRow([createButton({
-                customId: createCustomId(0, user.id, context.commandId, user.username),
+                customId: createCustomId(0, user.id, context.commandId, await bot.foxyRest.getUserDisplayName(user.id)),
                 label: t('commands:hug.button'),
                 style: ButtonStyles.Primary,
                 emoji: {

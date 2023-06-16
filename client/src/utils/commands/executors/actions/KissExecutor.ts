@@ -8,7 +8,7 @@ const KissExecutor = async (context: ComponentInteractionContext) => {
     const [user] = context.sentData;
     const kissGif: any = await context.getImage("kiss");
     const embed = createEmbed({});
-    embed.title = bot.locale('commands:kiss.success', { user: context.author.username, author: user }),
+    embed.title = bot.locale('commands:kiss.success', { user: await bot.foxyRest.getUserDisplayName(context.author.id), author: user }),
         embed.image = {
             url: kissGif.url
         }

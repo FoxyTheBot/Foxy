@@ -9,7 +9,7 @@ const HugExecutor = async (context: ComponentInteractionContext) => {
     const hugGif: any = await context.getImage("hug");
     const embed = createEmbed({});
 
-    embed.title = bot.locale('commands:hug.success', { user: context.author.username, author: user }),
+    embed.title = bot.locale('commands:hug.success', { user: await bot.foxyRest.getUserDisplayName(context.author.id), author: user }),
         embed.image = {
             url: hugGif.url
         }

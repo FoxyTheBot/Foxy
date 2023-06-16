@@ -9,7 +9,7 @@ const SlapExecutor = async (context: ComponentInteractionContext) => {
     const slapGif: any = await context.getImage("slap");
     const embed = createEmbed({});
 
-    embed.title = bot.locale('commands:slap.success', { user: context.author.username, author: user }),
+    embed.title = bot.locale('commands:slap.success', { user: await bot.foxyRest.getUserDisplayName(context.author.id), author: user }),
         embed.image = {
             url: slapGif.url
         }

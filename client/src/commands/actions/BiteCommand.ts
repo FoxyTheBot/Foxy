@@ -53,7 +53,7 @@ const BiteCommand = createCommand({
             return endCommand();
         }
 
-        embed.title = t('commands:bite.success', { target: user.username, user: context.author.username }),
+        embed.title = t('commands:bite.success', { target: await bot.foxyRest.getUserDisplayName(user.id), user: await bot.foxyRest.getUserDisplayName(context.author.id) }),
             embed.image = {
                 url: biteGif.url
             }

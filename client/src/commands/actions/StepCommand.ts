@@ -36,7 +36,7 @@ const StepCommand = createCommand({
         const user = context.getOption<User>("user", "users");
         const stepGif: any = await context.getImage("step");
 
-        embed.title = t('commands:step.success', { user: user.username, author: context.author.username }),
+        embed.title = t('commands:step.success', { user: await bot.foxyRest.getUserDisplayName(user.id), author: await bot.foxyRest.getUserDisplayName(context.author.id) }),
             embed.image = {
                 url: stepGif.url
             }

@@ -13,7 +13,7 @@ const RpsExecutor = async (context: ComponentInteractionContext) => {
 
     const embed = createEmbed({
         fields: [{
-            name: context.author.username,
+            name: await bot.foxyRest.getUserDisplayName(context.author.id),
             value: bot.locale(`commands:rps.button.${choice}`),
             inline: true
         }, {
@@ -35,7 +35,7 @@ const RpsExecutor = async (context: ComponentInteractionContext) => {
             if (result === 'paper') {
                 embed.description = bot.locale('commands:rps.clientWon', { result: bot.locale(`commands:rps.button.${result}`) });
                 embed.fields = [{
-                    name: context.author.username,
+                    name: await bot.foxyRest.getUserDisplayName(context.author.id),
                     value: bot.locale(`commands:rps.button.${choice}`),
                     inline: true
                 }, {

@@ -39,7 +39,7 @@ const LickCommand = createCommand({
         const user = context.getOption<User>("user", "users");
         const lickGif: any = await context.getImage("lick");
 
-        embed.title = t('commands:lick.success', { user: user.username, author: context.author.username }),
+        embed.title = t('commands:lick.success', { user: await bot.foxyRest.getUserDisplayName(user.id), author: await bot.foxyRest.getUserDisplayName(context.author.id) }),
             embed.image = {
                 url: lickGif.url
             }
@@ -55,7 +55,7 @@ const LickCommand = createCommand({
         context.sendReply({
             embeds: [embed],
             components: [createActionRow([createButton({
-                customId: createCustomId(0, user.id, context.commandId, user.username),
+                customId: createCustomId(0, user.id, context.commandId, await bot.foxyRest.getUserDisplayName(user.id)),
                 label: t('commands:lick.button'),
                 style: ButtonStyles.Primary,
                 emoji: {

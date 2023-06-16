@@ -57,7 +57,7 @@ const SlapCommand = createCommand({
 
             return endCommand();
         }
-        embed.title = t('commands:slap.success', { target: user.username, author: context.author.username, user: user.username }),
+        embed.title = t('commands:slap.success', { target: await bot.foxyRest.getUserDisplayName(user.id), author: await bot.foxyRest.getUserDisplayName(context.author.id), user: await bot.foxyRest.getUserDisplayName(user.id) }),
             embed.image = {
                 url: slapGif.url
             }
@@ -65,7 +65,7 @@ const SlapCommand = createCommand({
         context.sendReply({
             embeds: [embed],
             components: [createActionRow([createButton({
-                customId: createCustomId(0, user.id, context.commandId, user.username),
+                customId: createCustomId(0, user.id, context.commandId, await bot.foxyRest.getUserDisplayName(user.id)),
                 label: t('commands:slap.button'),
                 style: ButtonStyles.Primary,
                 emoji: {

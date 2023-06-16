@@ -17,7 +17,7 @@ const RpsCommand = createCommand({
         const embed = createEmbed({
             description: t('commands:rps.start'),
             fields: [{
-                name: context.author.username,
+                name: await bot.foxyRest.getUserDisplayName(context.author.id),
                 value: t('commands:rps.defaultValue'),
                 inline: true
             },

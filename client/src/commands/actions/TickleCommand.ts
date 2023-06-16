@@ -38,7 +38,7 @@ const tickleCommand = createCommand({
         const user = context.getOption<User>("user", "users");
         const tickleGif: any = await context.getImage("tickle");
 
-        embed.title = t('commands:tickle.success', { user: user.username, author: context.author.username }),
+        embed.title = t('commands:tickle.success', { user: await bot.foxyRest.getUserDisplayName(user.id), author: await bot.foxyRest.getUserDisplayName(context.author.id) }),
             embed.image = {
                 url: tickleGif.url
             }
@@ -56,7 +56,7 @@ const tickleCommand = createCommand({
         context.sendReply({
             embeds: [embed],
             components: [createActionRow([createButton({
-                customId: createCustomId(0, user.id, context.commandId, user.username),
+                customId: createCustomId(0, user.id, context.commandId, await bot.foxyRest.getUserDisplayName(user.id)),
                 label: t('commands:tickle.button'),
                 style: ButtonStyles.Primary,
                 emoji: {

@@ -189,7 +189,7 @@ const FoxyToolsCommand = createCommand({
 
                 userData.balance += Number(quantity);
                 userData.save();
-                context.sendReply({ content: `Prontinho! Foi adicionado ${quantity} cakes para ${user.username}` })
+                context.sendReply({ content: `Prontinho! Foi adicionado ${quantity} cakes para ${await bot.foxyRest.getUserDisplayName(user.id)}` })
                 endCommand();
                 break;
             }
@@ -205,7 +205,7 @@ const FoxyToolsCommand = createCommand({
 
                 userData.balance -= Number(quantity);
                 userData.save();
-                context.sendReply({ content: `Foram removidos ${quantity} Cakes de ${user.username}` })
+                context.sendReply({ content: `Foram removidos ${quantity} Cakes de ${await bot.foxyRest.getUserDisplayName(user.id)}` })
 
                 endCommand();
                 break;
@@ -230,7 +230,7 @@ const FoxyToolsCommand = createCommand({
                 const userData = await bot.database.getUser(user.id);
                 if (userData.isBanned) {
                     context.sendReply({
-                        content: `${user.username} já está banido!`
+                        content: `${await bot.foxyRest.getUserDisplayName(user.id)} já está banido!`
                     });
                     return endCommand();
                 }
@@ -241,7 +241,7 @@ const FoxyToolsCommand = createCommand({
                 userData.save().catch(err => console.log(err));
 
                 context.sendReply({
-                    content: `Usuário ${user.username} banido com sucesso!`,
+                    content: `Usuário ${await bot.foxyRest.getUserDisplayName(user.id)} banido com sucesso!`,
                     flags: 64
                 });
                 return endCommand();
@@ -251,7 +251,7 @@ const FoxyToolsCommand = createCommand({
                 const userData = await bot.database.getUser(user.id);
                 if (!userData.isBanned) {
                     context.sendReply({
-                        content: `${user.username} não está banido!`,
+                        content: `${await bot.foxyRest.getUserDisplayName(user.id)} não está banido!`,
                         flags: 64
                     });
                     return endCommand();
@@ -263,7 +263,7 @@ const FoxyToolsCommand = createCommand({
                 userData.save().catch(err => console.log(err));
 
                 context.sendReply({
-                    content: `Usuário ${user.username} desbanido com sucesso!`,
+                    content: `Usuário ${await bot.foxyRest.getUserDisplayName(user.id)} desbanido com sucesso!`,
                     flags: 64
                 });
                 return endCommand();
@@ -276,7 +276,7 @@ const FoxyToolsCommand = createCommand({
                     fields: [
                         {
                             name: "Usuário",
-                            value: `${user.username} / ${user.id}`,
+                            value: `${await bot.foxyRest.getUserDisplayName(user.id)} / ${user.id}`,
                             inline: true
                         },
                         {

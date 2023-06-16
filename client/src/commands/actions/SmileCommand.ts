@@ -1,5 +1,6 @@
 import { createCommand } from '../../structures/commands/createCommand';
 import { createEmbed } from '../../utils/discord/Embed';
+import { bot } from '../..';
 
 const embed = createEmbed({});
 
@@ -16,7 +17,7 @@ const SmileCommand = createCommand({
 
     execute: async (context, endCommand, t) => {
         const smileGif: any = await context.getImage("smile");
-        embed.title = t('commands:smile.smiling', { author: context.author.username }),
+        embed.title = t('commands:smile.smiling', { author: await bot.foxyRest.getUserDisplayName(context.author.id) }),
             embed.image = {
                 url: smileGif.url
             }

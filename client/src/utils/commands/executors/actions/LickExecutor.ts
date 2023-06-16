@@ -8,7 +8,7 @@ const LickExecutor = async (context: ComponentInteractionContext) => {
     const [user] = context.sentData;
     const lickGif: any = await context.getImage("lick");
     const embed = createEmbed({});
-    embed.title = bot.locale('commands:lick.success', { user: context.author.username, author: user }),
+    embed.title = bot.locale('commands:lick.success', { user: await bot.foxyRest.getUserDisplayName(context.author.id), author: user }),
         embed.image = {
             url: lickGif.url
         }
