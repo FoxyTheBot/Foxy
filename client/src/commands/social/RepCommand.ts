@@ -56,7 +56,7 @@ const RepCommand = createCommand({
             authorData.save();
             userData.save();
             context.sendReply({
-                content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:rep.success', { user: user.username }))
+                content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:rep.success', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
             })
             endCommand();
         }

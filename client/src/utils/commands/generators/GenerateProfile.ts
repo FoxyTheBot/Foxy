@@ -57,7 +57,7 @@ export default class CreateProfile {
 
         context.font = '70px sans-serif';
         context.fillStyle = font;
-        context.fillText(this.user.username, canvas.width / 5.8, canvas.height / 1.3)
+        context.fillText(await bot.foxyRest.getUserDisplayName(this.user.id), canvas.width / 5.8, canvas.height / 1.3)
 
         context.font = '40px sans-serif';
         context.fillStyle = font;
@@ -65,11 +65,11 @@ export default class CreateProfile {
 
         if (this.data.marriedWith) {
             moment.locale(this.locale.lng)
-            const discordProfile = await bot.helpers.getUser(this.data.marriedWith);
+            const partnerDisplayName = await bot.foxyRest.getUserDisplayName(this.data.marriedWith);
             context.font = ('30px sans-serif');
             context.fillStyle = font;
             context.fillText(this.locale("commands:profile.marriedWith", {
-                user: `${discordProfile.username}`, relativeTime: moment(this.data.marriedDate, "YYYYMMDD").fromNow(), date: this.data.marriedDate.toLocaleString(this.locale.lng, { timeZone: "America/Sao_Paulo", year: 'numeric', month: 'numeric', day: 'numeric' })
+                user: `${partnerDisplayName}`, relativeTime: moment(this.data.marriedDate, "YYYYMMDD").fromNow(), date: this.data.marriedDate.toLocaleString(this.locale.lng, { timeZone: "America/Sao_Paulo", year: 'numeric', month: 'numeric', day: 'numeric' })
             }), canvas.width / 50, canvas.height - 15 / 1);
         }
 
