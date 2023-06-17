@@ -67,12 +67,12 @@
         "premium": "{{badge}} Premium since {{date}}",
         "testMode": "Your about me will be displayed here",
         "banned": "`{{user}} is banned! Reason: `{{reason}}` \nSince `{{date}}`",
-        "marriableStatusSet": "Seus pedidos de casamentos foram {{status}}",
-        "marriableStatusAlreadySet": "Seus pedidos já foram {{status}}",
-        "yes": "bloqueados, agora você não receberá mais pedidos de casamento e nem poderá pedir em casamento",
-        "no": "desbloqueados, agora você receberá pedidos de casamento e poderá pedir em casamento",
-        "simpleYes": "bloqueados",
-        "simpleNo": "desbloqueados"
+        "marriableStatusSet": "Your marriage requests have been {{status}}",
+        "marriableStatusAlreadySet": "Your marriage requests have already been {{status}}",
+        "yes": "locked",
+        "no": "unlocked",
+        "simpleYes": "locked",
+        "simpleNo": "unlocked"
     },
     "masks": {
         "ears": "Cat ears",
@@ -197,8 +197,8 @@
         "accept": "Accept",
         "acceptedButton": "Accepted",
         "accepted": "You and {{user}} are now married",
-        "authorNotMarriable": "Você bloqueou pedidos de casamento, então também não pode pedir alguém em casamento",
-        "userNotMarriable": "Desculpe, atualmente {{user}} não está aceitando pedidos"
+        "authorNotMarriable": "You have blocked your marry requests, so you also can't send marry requests",
+        "userNotMarriable": "Sorry, actually {{user}} isn't accepting marriage requests"
     },
     "divorce": {
         "notMarried": "You aren't married",
@@ -450,7 +450,7 @@
     "global": {
         "noUser": "User not found",
         "noPermission": "Wait! What are you doing? You need to have `{{permission}}` to do this!",
-        "yes": "Sim",
-        "no": "Não"
+        "yes": "Yes",
+        "no": "No"
     }
 }
