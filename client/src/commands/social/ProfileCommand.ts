@@ -36,7 +36,7 @@ const ProfileCommand = createCommand({
         const profile = createProfile.create();
 
         context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:profile.profile', { user: `<@${user.id}>` })),
+            content: context.makeReply(bot.emotes.FOXY_NICE, t('commands:profile.profile', { user: `<@${user.id}>` })),
             file: [{ name: 'profile.png', blob: await profile }]
         })
         return endCommand();
