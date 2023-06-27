@@ -66,7 +66,13 @@
         "marriedWith": "💍 Casado(a) com {{user}} desde {{date}} ({{relativeTime}})",
         "premium": "{{badge}} قسط من {{date}}",
         "testMode": "سيتم عرضك فوقي مثل هذا!",
-        "banned": "تم حظر `{{user}} بواسطة {{reason}}` \n منذ `{{date}}`"
+        "banned": "تم حظر `{{user}} بواسطة {{reason}}` \n منذ `{{date}}`",
+        "marriableStatusSet": "Seus pedidos de casamentos foram {{status}}",
+        "marriableStatusAlreadySet": "Seus pedidos já foram {{status}}",
+        "yes": "bloqueados, agora você não receberá mais pedidos de casamento e nem poderá pedir em casamento",
+        "no": "desbloqueados, agora você receberá pedidos de casamento e poderá pedir em casamento",
+        "simpleYes": "bloqueados",
+        "simpleNo": "desbloqueados"
     },
     "masks": {
         "ears": "آذان القط",
@@ -190,7 +196,9 @@
         "ask": "{{user}} هل تريد الزواج ** {{author}} **؟",
         "accept": "لقبول",
         "acceptedButton": "قبلت",
-        "accepted": "أنت متزوج! هتافات للزوجي "
+        "accepted": "أنت متزوج! هتافات للزوجي ",
+        "authorNotMarriable": "Você bloqueou pedidos de casamento, então também não pode pedir alguém em casamento",
+        "userNotMarriable": "Desculpe, atualmente {{user}} não está aceitando pedidos"
     },
     "divorce": {
         "notMarried": "انت لست متزوج",
@@ -441,6 +449,8 @@
     },
     "global": {
         "noUser": "أعطى {{result}}! فزت {{amount}} الكعك ",
-        "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!"
+        "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!",
+        "yes": "Sim",
+        "no": "Não"
     }
 }
