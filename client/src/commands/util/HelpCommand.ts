@@ -52,7 +52,7 @@ const HelpCommand = createCommand({
             },
             footer: {
                 iconUrl: await getUserAvatar(bot.owner, { size: 2048 }),
-                text: t('commands:help.bot.footer', { owner: `${bot.owner.username} - ${bot.owner.id}` })
+                text: t('commands:help.bot.footer', { owner: `${await bot.foxyRest.getUserDisplayName(bot.owner.id)} (${bot.owner.username}) - ${bot.owner.id}` })
             }
         })
 
