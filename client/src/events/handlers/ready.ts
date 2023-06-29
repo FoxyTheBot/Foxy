@@ -4,10 +4,12 @@ import { postInfo } from "../../utils/dbl";
 import { bot } from "../../index";
 
 const setReadyEvent = (): void => {
-    bot.events.ready = (_, payload) => {
+    bot.events.ready = async (_, payload) => {
         logger.info(`[READY] Shard ${payload.shardId + 1} connected to Discord Gateway`);
         if (bot.isProduction) {
-            postInfo();
+            postInfo({
+                guilds: (await bot.foxyRest.getBotGuilds()).length,
+            });
         }
         bot.isReady = true;
         startActivities();

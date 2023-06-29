@@ -24,4 +24,8 @@ export class FoxyRestManager {
         const user = await this.bot.rest.runMethod(this.bot.rest, "GET", this.bot.constants.routes.USER(userId));
         return user.global_name || user.username;
     }
+
+    async getBotGuilds(): Promise<Array<Object>> {
+        return await this.bot.rest.runMethod(this.bot.rest, "GET", this.bot.constants.routes.USER_GUILDS());
+    }
 }
