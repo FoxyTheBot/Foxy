@@ -66,7 +66,13 @@
         "marriedWith": "💍 Married with {{user}} since {{date}} ({{relativeTime}})",
         "premium": "{{badge}} Premium since {{date}}",
         "testMode": "Your about me will be displayed here",
-        "banned": "`{{user}} is banned! Reason: `{{reason}}` \nSince `{{date}}`"
+        "banned": "`{{user}} is banned! Reason: `{{reason}}` \nSince `{{date}}`",
+        "marriableStatusSet": "Your marriage requests have been {{status}}",
+        "marriableStatusAlreadySet": "Your marriage requests have already been {{status}}",
+        "yes": "locked",
+        "no": "unlocked",
+        "simpleYes": "locked",
+        "simpleNo": "unlocked"
     },
     "masks": {
         "ears": "Cat ears",
@@ -190,7 +196,9 @@
         "ask": "{{user}} Do you want to marry {{author}}?",
         "accept": "Accept",
         "acceptedButton": "Accepted",
-        "accepted": "You and {{user}} are now married"
+        "accepted": "You and {{user}} are now married",
+        "authorNotMarriable": "You have blocked your marry requests, so you also can't send marry requests",
+        "userNotMarriable": "Sorry, actually {{user}} isn't accepting marriage requests"
     },
     "divorce": {
         "notMarried": "You aren't married",
@@ -441,6 +449,8 @@
     },
     "global": {
         "noUser": "User not found",
-        "noPermission": "Wait! What are you doing? You need to have `{{permission}}` to do this!"
+        "noPermission": "Wait! What are you doing? You need to have `{{permission}}` to do this!",
+        "yes": "Yes",
+        "no": "No"
     }
 }

@@ -66,7 +66,13 @@
         "marriedWith": "💍 Casado(a) com {{user}} desde {{date}} ({{relativeTime}})",
         "premium": "{{badge}} премия от {{date}}",
         "testMode": "Ваша над мной будет отображаться так!",
-        "banned": "`{{user}} запрещено {{reason}}` \n Поскольку `{{date}}`"
+        "banned": "`{{user}} запрещено {{reason}}` \n Поскольку `{{date}}`",
+        "marriableStatusSet": "Seus pedidos de casamentos foram {{status}}",
+        "marriableStatusAlreadySet": "Seus pedidos já foram {{status}}",
+        "yes": "bloqueados, agora você não receberá mais pedidos de casamento e nem poderá pedir em casamento",
+        "no": "desbloqueados, agora você receberá pedidos de casamento e poderá pedir em casamento",
+        "simpleYes": "bloqueados",
+        "simpleNo": "desbloqueados"
     },
     "masks": {
         "ears": "Кошачьи уши",
@@ -190,7 +196,9 @@
         "ask": "{{user}} Вы хотите жениться ** {{author}} **?",
         "accept": "Принять",
         "acceptedButton": "Заказ принят",
-        "accepted": "Вы состоите в браке! Приветствия для пары <3"
+        "accepted": "Вы состоите в браке! Приветствия для пары <3",
+        "authorNotMarriable": "Você bloqueou pedidos de casamento, então também não pode pedir alguém em casamento",
+        "userNotMarriable": "Desculpe, atualmente {{user}} não está aceitando pedidos"
     },
     "divorce": {
         "notMarried": "Ты не женат",
@@ -441,6 +449,8 @@
     },
     "global": {
         "noUser": "Пользователь не найден",
-        "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!"
+        "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!",
+        "yes": "Sim",
+        "no": "Não"
     }
 }

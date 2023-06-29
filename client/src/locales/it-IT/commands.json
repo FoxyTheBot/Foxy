@@ -66,7 +66,13 @@
         "marriedWith": "💍 Casado(a) com {{user}} desde {{date}} ({{relativeTime}})",
         "premium": "{{badge}} premium da {{date}}",
         "testMode": "Il tuo sopra di me verrà visualizzato in questo modo!",
-        "banned": "`{{user}} è vietato da` {{reason}}` \n Dal momento che `{{date}}`"
+        "banned": "`{{user}} è vietato da` {{reason}}` \n Dal momento che `{{date}}`",
+        "marriableStatusSet": "Seus pedidos de casamentos foram {{status}}",
+        "marriableStatusAlreadySet": "Seus pedidos já foram {{status}}",
+        "yes": "bloqueados, agora você não receberá mais pedidos de casamento e nem poderá pedir em casamento",
+        "no": "desbloqueados, agora você receberá pedidos de casamento e poderá pedir em casamento",
+        "simpleYes": "bloqueados",
+        "simpleNo": "desbloqueados"
     },
     "masks": {
         "ears": "Orecchie di gatto",
@@ -190,7 +196,9 @@
         "ask": "{{user}} Vuoi sposare **{{author}}**?",
         "accept": "Aceitar pedido",
         "acceptedButton": "Pedido aceito",
-        "accepted": "Siete sposati! Saluti per la coppia <3"
+        "accepted": "Siete sposati! Saluti per la coppia <3",
+        "authorNotMarriable": "Você bloqueou pedidos de casamento, então também não pode pedir alguém em casamento",
+        "userNotMarriable": "Desculpe, atualmente {{user}} não está aceitando pedidos"
     },
     "divorce": {
         "notMarried": "Non sei sposato",
@@ -441,6 +449,8 @@
     },
     "global": {
         "noUser": "Utente non trovato",
-        "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!"
+        "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!",
+        "yes": "Sim",
+        "no": "Não"
     }
 }
