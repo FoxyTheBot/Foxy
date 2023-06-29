@@ -11,7 +11,11 @@ const startActivities = async (): Promise<void> => {
             }]
         });
     } else {
-        editBotStatus(bot, { status: "dnd", activities: [] })
+        editBotStatus(bot, { status: "dnd", activities: [{
+            name: "metal pipe falling",
+            type: ActivityTypes.Listening,
+            createdAt: Date.now()
+        }] })
     }
 }
 
