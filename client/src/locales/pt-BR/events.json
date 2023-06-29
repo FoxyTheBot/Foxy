@@ -6,7 +6,7 @@
         "date": "Data do banimento:"
     },
     "messageCreate": {
-        "hello": "Oie, Meu nome é Foxy, meu prefixo é `/ (Slash Commands)`, utilize `/help` para obter ajuda!"
+        "mentionMessage": "Olá {{author}} ! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!"
     },
     "interactionCreate": {
         "commandError": "Infelizmente ocorreu um erro e não consegui executar esse comando, desculpa <:foxymedu:890688173951315988>, mas o erro já foi reportado para o meu desenvolvedor <:foxysunglasses:890688144280784926>"
