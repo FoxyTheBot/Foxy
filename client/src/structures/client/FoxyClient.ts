@@ -2,7 +2,7 @@ import { handleInteractionCreate, Collection } from 'discordeno';
 import { FoxyClient } from '../types/foxy';
 import { loadCommands } from '../commands/loadCommands';
 import { transformInteraction } from '../internals/transformers/interactionResponse';
-import { loadLocales } from '../../utils/loader';
+import { loadLocales } from '../../utils/localeLoader';
 import { bot } from '../..';
 import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
 import DatabaseConnection from '../database/DatabaseConnection';
