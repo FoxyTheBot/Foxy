@@ -6,7 +6,7 @@
         "date": "Date d'interdiction :"
     },
     "messageCreate": {
-        "mentionMessage": "Olá {{author}} ! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!"
+        "mentionMessage": "Olá {{author}}! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!"
     },
     "interactionCreate": {
         "commandError": "Malheureusement, une erreur s'est produite et je n'ai pas pu exécuter cette commande, désolé <:foxymedu:890688173951315988>, mais l'erreur a déjà été signalée à mon développeur <:foxysunglasses:890688144280784926>"
