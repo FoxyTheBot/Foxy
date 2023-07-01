@@ -24,7 +24,7 @@ const BetExecutor = async (context: ComponentInteractionContext) => {
         createButton({
             label: bot.locale('commands:bet.deny'),
             style: ButtonStyles.Danger,
-            customId: createCustomId(0, targetId, context.commandId, targetUsername, targetUsername, amount, choice, "deny"),
+            customId: createCustomId(0, targetId, context.commandId, targetUsername, targetId, amount, choice, "deny"),
             emoji: {
                 id: bot.emotes.FOXY_CRY
             },
@@ -49,7 +49,7 @@ const BetExecutor = async (context: ComponentInteractionContext) => {
 
         if (await mentionData.balance < amount) {
             context.sendReply({
-                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, bot.locale('commands:bet.not-enough-mention', { amount: amount.toString(), user: targetUsername })),
+                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, bot.locale('commands:bet.not-enough-mention', { amount: amount.toString(), user: await bot.foxyRest.getUserDisplayName(targetId) })),
                 flags: 64
             });
 
@@ -58,7 +58,7 @@ const BetExecutor = async (context: ComponentInteractionContext) => {
 
         if (choice === avaliableChoices[rand]) {
             context.followUp({
-                content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:bet.win', { user: targetUsername, author: await bot.foxyRest.getUserDisplayName(context.author.id), choice: bot.locale(`commands:bet.${avaliableChoices[rand]}`), amount: `${amount}` })),
+                content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:bet.win', { user: await bot.foxyRest.getUserDisplayName(targetId), author: await bot.foxyRest.getUserDisplayName(context.author.id), choice: bot.locale(`commands:bet.${avaliableChoices[rand]}`), amount: `${amount}` })),
             });
 
             userData.balance += Number(amount);
@@ -67,7 +67,7 @@ const BetExecutor = async (context: ComponentInteractionContext) => {
             mentionData.save();
         } else if (choice !== avaliableChoices[rand]) {
             context.followUp({
-                content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:bet.lose', { user: targetUsername, author: await bot.foxyRest.getUserDisplayName(context.author.id), choice: bot.locale(`commands:bet.${avaliableChoices[rand]}`), amount: `${amount}` })),
+                content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:bet.lose', { user: await bot.foxyRest.getUserDisplayName(targetId), author: await bot.foxyRest.getUserDisplayName(context.author.id), choice: bot.locale(`commands:bet.${avaliableChoices[rand]}`), amount: `${amount}` })),
             });
 
             userData.balance -= Number(amount);

@@ -39,7 +39,7 @@ const RpsExecutor = async (context: ComponentInteractionContext) => {
                     value: bot.locale(`commands:rps.button.${choice}`),
                     inline: true
                 }, {
-                    name: bot.username,
+                    name: await bot.foxyRest.getUserDisplayName(bot.id),
                     value: bot.locale(`commands:rps.button.${result}`),
                 }]
                 context.sendReply({
