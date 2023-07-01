@@ -6,7 +6,7 @@
         "date": "Fecha de prohibición:"
     },
     "messageCreate": {
-        "mentionMessage": "Olá {{author}} ! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!"
+        "mentionMessage": "Olá {{author}}! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!"
     },
     "interactionCreate": {
         "commandError": "Desafortunadamente, ocurrió un error y no pude ejecutar este comando, lo siento <:foxymedu:890688173951315988>, pero el error ya se informó a mi desarrollador <:foxysunglasses:890688144280784926>"
