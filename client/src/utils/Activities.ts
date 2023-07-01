@@ -19,7 +19,7 @@ const startActivities = async (): Promise<void> => {
             createdAt: Date.now()
         },
         {
-            name: "🎉 Since 26/07/2020",
+            name: "🎉 Since 2020 spreading joy and fun",
             type: ActivityTypes.Game,
             createdAt: Date.now()
         },
