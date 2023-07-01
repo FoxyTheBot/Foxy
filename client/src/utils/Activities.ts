@@ -27,11 +27,6 @@ const startActivities = async (): Promise<void> => {
             name: "😊 Join in my support server! foxybot.win/discord :3",
             type: ActivityTypes.Game,
             createdAt: Date.now()
-        },
-        {
-            name: "🤔 Did you know this is my first avatar? Created by BisFuraki in 2020",
-            type: ActivityTypes.Game,
-            createdAt: Date.now()
         }];
         
         setInterval(() => {
