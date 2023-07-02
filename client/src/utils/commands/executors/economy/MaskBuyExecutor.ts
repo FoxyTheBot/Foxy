@@ -28,7 +28,7 @@ const MaskBuyExecutor = async (context: ComponentInteractionContext) => {
             content: bot.locale('commands:masks.buy.success'),
             flags: MessageFlags.EPHEMERAL,
             components: [createActionRow([createButton({
-                customId: createCustomId(0, context.author.id, context.commandId, code, mask, subCommand),
+                customId: createCustomId(1, context.author.id, context.commandId, code, mask, subCommand),
                 label: bot.locale('commands:masks.buy.purchase'),
                 style: ButtonStyles.Secondary,
                 emoji: {
