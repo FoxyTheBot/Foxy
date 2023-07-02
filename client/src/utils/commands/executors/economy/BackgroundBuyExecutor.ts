@@ -16,42 +16,44 @@ const BackgroundExecutor = async (context: ComponentInteractionContext) => {
             flags: MessageFlags.EPHEMERAL
         })
     } else {
-        /* Will be added in 26th of July 2023 */
-        
-        //const backgroundInfo = await bglist.find((b) => b.id === code?.toLowerCase())
+        const backgroundInfo = await bglist.find((b) => b.id === code?.toLowerCase())
 
-        // if (backgroundInfo.author) {
-        //     const bgAuthorMoney = backgroundInfo.cakes * 0.9;
-        //     const bgAuthor = await bot.database.getUser(backgroundInfo.author);
-        //     const clientMoney = backgroundInfo.cakes * 0.1;
-        
-        //     clientData.balance += clientMoney;
-        //     bgAuthor.balance += bgAuthorMoney;
-        //     userData.backgrounds.push(code);
-        //     userData.background = code;
-        //     await userData.save();
+        if (backgroundInfo.author) {
+            const bgAuthorMoney = backgroundInfo.cakes * 0.9;
+            const bgAuthor = await bot.database.getUser(backgroundInfo.author);
+            const clientMoney = backgroundInfo.cakes * 0.1;
 
-        //     return await context.sendReply({
-        //         flags: MessageFlags.EPHEMERAL,
-        //         content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:background.buy.success')),
-        //         embeds: null,
-        //         components: [createActionRow([createButton({
-        //             customId: createCustomId(0, context.author.id, context.commandId, code, background, subcommand),
-        //             label: bot.locale('commands:background.buy.purchased'),
-        //             style: ButtonStyles.Secondary,
-        //             emoji: {
-        //                 id: bot.emotes.FOXY_DAILY
-        //             },
-        //             disabled: true
-        //         })])]
-        //     })
-        // }
+            clientData.balance += clientMoney;
+            bgAuthor.balance += bgAuthorMoney;
+            userData.backgrounds.push(code);
+            userData.background = code;
+            await userData.save();
+            await clientData.save();
+            await bgAuthor.save();
+
+            return await context.sendReply({
+                flags: MessageFlags.EPHEMERAL,
+                content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:background.buy.success')),
+                embeds: null,
+                components: [createActionRow([createButton({
+                    customId: createCustomId(0, context.author.id, context.commandId, code, background, subcommand),
+                    label: bot.locale('commands:background.buy.purchased'),
+                    style: ButtonStyles.Secondary,
+                    emoji: {
+                        id: bot.emotes.FOXY_DAILY
+                    },
+                    disabled: true
+                })])]
+            })
+        }
 
         userData.balance -= Number(background);
         clientData.balance += Number(background);
         userData.backgrounds.push(code);
         userData.background = code;
         await userData.save();
+        await clientData.save();
+
         return await context.sendReply({
             flags: MessageFlags.EPHEMERAL,
             content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:background.buy.success')),

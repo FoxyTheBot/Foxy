@@ -6,168 +6,191 @@
             "cakes": 0,
             "filename": "default.png",
             "description": "Foxy's default background",
-            "blocked": true
+            "author": null
         },
         {
             "id": "foxbaby",
             "name": "Foxy Baby",
             "cakes": 10000,
             "filename": "FoxesCubsCute.png",
-            "description": "A Real baby fox"
+            "description": "A Real baby fox",
+            "author": null
         },
         {
             "id": "foxyverse",
             "name": "Foxy World",
             "cakes": 40000,
             "filename": "foxyverse.png",
-            "description": "Welcome to the Foxy World!"
+            "description": "Welcome to the Foxy World!",
+            "author": null
         },
         {
             "id": "scottland",
             "name": "Scottland",
             "cakes": 10000,
             "filename": "scottland.png",
-            "description": "Welcome to Scottland!"
+            "description": "Welcome to Scottland!",
+            "author": null
         },
         {
             "id": "dlogo",
             "name": "Discord Logo Neon",
             "cakes": 5000,
             "filename": "dlogo.png",
-            "description": "Discord's old logo neon wallpaper"
+            "description": "Discord's old logo neon wallpaper",
+            "author": null
         },
         {
             "id": "wumpuswithsunglasses",
             "name": "Wumpus With Sunglasses",
             "cakes": 5000,
             "filename": "wumpus_with_sunglasses.png",
-            "description": "Stylish Wumpus with sunglasses"
+            "description": "Stylish Wumpus with sunglasses",
+            "author": null
         },
         {
             "id": "justwumpus",
             "name": "Just Wumpus",
             "cakes": 7000,
             "filename": "just_wumpus.png",
-            "description": "Wumpus in a gray background"
+            "description": "Wumpus in a gray background",
+            "author": null
         },
         {
             "id": "fnaf",
             "name": "Five Nights at Freddy's",
             "cakes": 9000,
             "filename": "fnaf.png",
-            "description": "Join us, be our friend or just be stuck and defend after all, you only got Five nights at Freddy's"
+            "description": "Join us, be our friend or just be stuck and defend after all, you only got Five nights at Freddy's",
+            "author": null
         },
         {
             "id": "gtasa",
             "name": "GTA: San Andreas",
             "cakes": 5000,
             "description": "Follow the damn train, CJ!",
-            "filename": "gta_san.png"
+            "filename": "gta_san.png",
+            "author": null
         },
         {
             "id": "foxyvlogs",
             "name": "Foxy Vlogger",
             "cakes": 5000,
             "filename": "foxy_vlogs.png",
-            "description": "Fala galerinha aqui do YouTube quem ta falando com vocês e a sua amiguinha Foxy e hoje eu to aqui com meu amigo Wumpus para gravar um desafio :D e o desafio de hoje sera: logar no Discord as 3:00 da manhã"
+            "description": "Fala galerinha aqui do YouTube quem ta falando com vocês e a sua amiguinha Foxy e hoje eu to aqui com meu amigo Wumpus para gravar um desafio :D e o desafio de hoje sera: logar no Discord as 3:00 da manhã",
+            "author": null
         },
         {
             "id": "loritta",
             "name": "Foxy e Lori",
             "cakes": 10000,
             "description": "Background criado por Bis no aniversário de 4 anos da Loritta! Adicione a Loritta no seu servidor https://loritta.website\n**Lembrando:** Isso é apenas um crossover, a Foxy não possui nenhuma ligação com a Loritta!",
-            "filename": "foxy_e_lori.png"
+            "filename": "foxy_e_lori.png",
+            "author": "331243426941239297"
         },
         {
             "id": "cadeirante",
             "name": "Levi / Ata Shingeki No Kyojin",
             "cakes": 10000,
             "filename": "levi_kyojin.png",
-            "description": "bruh"
+            "description": "bruh",
+            "author": null
         },
         {
             "id": "red",
             "name": "Red Dead Redemption 2",
             "cakes": 10000,
             "filename": "red_dead.png",
-            "description": "A background of Red Dead Redemption 2"
+            "description": "A background of Red Dead Redemption 2",
+            "author": null
         },
         {
             "id": "silviosantos",
             "name": "Sad Cat Money",
             "cakes": 10000,
             "filename": "sad_cat_money.png",
-            "description": "El muchacho de los ojos tristes vive solo y necesita dinero"
+            "description": "El muchacho de los ojos tristes vive solo y necesita dinero",
+            "author": null
         },
         {
             "id": "sadcat",
             "name": "Sad Cat",
             "cakes": 10000,
             "filename": "sad_cat.png",
-            "description": "el muchacho de los ojos tristes vive solo y necesita amor"
+            "description": "el muchacho de los ojos tristes vive solo y necesita amor",
+            "author": null
         },
         {
             "id": "winxp",
             "name": "Windows XP",
             "cakes": 10000,
             "filename": "windows_xp.png",
-            "description": "Madobe Saseko was here!"
+            "description": "Madobe Saseko was here!",
+            "author": null
         },
         {
             "id": "win7",
             "name": "Windows 7",
             "cakes": 11000,
             "filename": "windows_seven.png",
-            "description": "Madobe Nanami was here!"
+            "description": "Madobe Nanami was here!",
+            "author": null
         },
         {
             "id": "win10",
             "name": "Windows 10 Legacy",
             "cakes": 12000,
             "filename": "windows10_legacy.png",
-            "description": "Madobe Touko was here!"
+            "description": "Madobe Touko was here!",
+            "author": null
         },
         {
             "id": "win11light",
             "name": "Windows 11 Light Theme",
             "cakes": 11000,
             "filename": "windows11light.png",
-            "description": "Windows 11 doesn't have a OS-Tan yet"
+            "description": "Windows 11 doesn't have a OS-Tan yet",
+            "author": null
         },
         {
             "id": "win11dark",
             "name": "Windows 11 Dark Theme",
             "cakes": 11000,
             "filename": "windows11dark.png",
-            "description": "Windows 11 doesn't have a OS-Tan yet"
+            "description": "Windows 11 doesn't have a OS-Tan yet",
+            "author": null
         },
         {
             "id": "bisfoxy",
             "name": "Bis e Foxy",
             "cakes": 100000,
             "filename": "bis_foxy.png",
-            "description": "Only Bis and Foxy"
+            "description": "Only Bis and Foxy",
+            "author": "331243426941239297"
         },
         {
             "id": "mine",
             "name": "Minecraft World",
             "cakes": 20000,
             "filename": "mine.png",
-            "description": "C418 - Sweden"
+            "description": "C418 - Sweden",
+            "author": null
         },
         {
             "id": "klee",
             "name": "Klee yay",
             "cakes": 30000,
             "filename": "kleeyay.png",
-            "description": "Klee is so happy today"
+            "description": "Klee is so happy today",
+            "author": null
         },
         {
             "id": "spring",
             "name": "Spring Trap",
             "cakes": 10000,
             "filename": "springtrap.png",
-            "description": "It's been so long, since I last have seen my son lost to this monster, to the **Man Behind The Slaughter**"
+            "description": "It's been so long, since I last have seen my son lost to this monster, to the **Man Behind The Slaughter**",
+            "author": null
         }
     ]
 }
