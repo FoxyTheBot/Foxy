@@ -24,11 +24,13 @@ const BackgroundExecutor = async (context: ComponentInteractionContext) => {
         //     const bgAuthorMoney = backgroundInfo.cakes * 0.9;
         //     const bgAuthor = await bot.database.getUser(backgroundInfo.author);
         //     const clientMoney = backgroundInfo.cakes * 0.1;
+        
         //     clientData.balance += clientMoney;
         //     bgAuthor.balance += bgAuthorMoney;
         //     userData.backgrounds.push(code);
         //     userData.background = code;
         //     await userData.save();
+
         //     return await context.sendReply({
         //         flags: MessageFlags.EPHEMERAL,
         //         content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:background.buy.success')),
