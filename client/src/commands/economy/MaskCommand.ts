@@ -7,7 +7,6 @@ import MaskSetExecutor from '../../utils/commands/executors/economy/MaskSetExecu
 import { bot } from '../../index';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
 
-const choices = masks.map(data => Object({ name: data.name, nameLocalizations: data.nameLocalizations, value: data.id }));
 const MaskCommand = createCommand({
     name: 'mask',
     description: '[Economy] Change your profile mask',
@@ -26,29 +25,6 @@ const MaskCommand = createCommand({
                 "pt-BR": "[Economia] Defina a máscara do seu perfil"
             },
             type: ApplicationCommandOptionTypes.SubCommand
-        },
-        {
-            name: "buy",
-            nameLocalizations: {
-                "pt-BR": "comprar"
-            },
-            description: "[Economy] Buy a mask",
-            descriptionLocalizations: {
-                "pt-BR": "[Economia] Compre uma máscara"
-            },
-            type: ApplicationCommandOptionTypes.SubCommand,
-            options: [
-                {
-                    name: "mask",
-                    description: "Select the mask you want to buy",
-                    descriptionLocalizations: {
-                        "pt-BR": "Selecione a máscara que deseja comprar"
-                    },
-                    type: ApplicationCommandOptionTypes.String,
-                    required: true,
-                    choices: choices
-                }
-            ]
         }
     ],
     commandRelatedExecutions: [MaskSetExecutor],
