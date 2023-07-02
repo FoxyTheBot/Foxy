@@ -123,7 +123,7 @@ const StoreCommand = createCommand({
                 context.sendReply({
                     embeds: [embed],
                     file: [{
-                        name: `preview${context.author.id}.png`,
+                        name: `background_preview_${context.author.id}.png`,
                         blob: await profile
                     }],
                     components: [createActionRow([createButton({
