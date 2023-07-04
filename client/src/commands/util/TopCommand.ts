@@ -77,8 +77,8 @@ const TopCommand = createCommand({
                 for (let i in data) {
                     if (Number(i) > 15) break;
                     let command = bot.commands.get(data[i].commandName);
-
-                    if (command.devsOnly) continue;
+                    if (!command || command.devsOnly) continue;
+                    
                     fields.push({
                         name: `${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - ${command.name}`,
                         value: t('commands:top.commands.usageCount', { usageCount: parseInt(data[i].commandUsageCount).toString() }),
