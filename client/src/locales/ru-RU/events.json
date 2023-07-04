@@ -6,7 +6,7 @@
         "date": "Дата баланса:"
     },
     "messageCreate": {
-        "hello": "Привет, меня зовут Фокси, мой префикс - `/ (команды SLASH)`, используйте `/ help 'для помощи!"
+        "mentionMessage": "Olá {{author}}! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!"
     },
     "interactionCreate": {
         "commandError": "К сожалению, произошла ошибка, и я не смог выполнить эту команду, извините, но ошибка уже сообщалась моему разработчику"

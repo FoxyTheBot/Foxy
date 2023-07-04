@@ -6,7 +6,7 @@
         "date": "Banity -Datum:"
     },
     "messageCreate": {
-        "hello": "Hallo, mein Name ist Foxy, mein Präfix ist `/ (Slash -Befehle)`, benutze `/help 'für Hilfe!"
+        "mentionMessage": "Olá {{author}}! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!"
     },
     "interactionCreate": {
         "commandError": "Leider ist ein Fehler aufgetreten und ich konnte diesen Befehl nicht ausführen, sorry, aber der Fehler wurde bereits meinem Entwickler gemeldet"

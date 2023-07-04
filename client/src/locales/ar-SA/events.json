@@ -6,7 +6,7 @@
         "date": "تاريخ الحظر:"
     },
     "messageCreate": {
-        "hello": "مرحبًا ، اسمي Foxy ، البادئة الخاصة بي هي `/ (أوامر Slash)` ، استخدم `/ Help 'للمساعدة!"
+        "mentionMessage": "Olá {{author}}! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!"
     },
     "interactionCreate": {
         "commandError": "لسوء الحظ ، حدث خطأ ولم أتمكن من تنفيذ هذا الأمر ، آس ، ولكن تم فعلًا الإبلاغ عن الخطأ لمطورتي"
