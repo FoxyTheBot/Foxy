@@ -120,7 +120,9 @@ export default class DatabaseConnection {
     }
     async updateCommand(commandName: string): Promise<void> {
         let commandFromDB = await this.commands.findOne({ commandName: commandName });
-
+        let command = await bot.commands.get(commandName);
+        
+        if (command.devsOnly) return null;
         if (!commandFromDB) {
             commandFromDB = new this.commands({
                 commandName: commandName,
