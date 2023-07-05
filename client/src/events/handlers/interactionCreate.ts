@@ -45,7 +45,7 @@ const setInteractionCreateEvent = (): void => {
                 })
                 return context.sendReply({
                     embeds: [embed],
-                    flags: 64
+                    flags: MessageFlags.EPHEMERAL
                 });
     
     

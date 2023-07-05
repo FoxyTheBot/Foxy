@@ -25,7 +25,7 @@ const NotStonksCommand = createCommand({
         }
     ],
     execute: async (context, endCommand, t) => {
-        const string = context.getOption<string>("text", false);
+        const content = context.getOption<string>("text", false);
         const canvas = Canvas.createCanvas(800, 600);
         const ctx = canvas.getContext('2d');
 
@@ -37,7 +37,7 @@ const NotStonksCommand = createCommand({
 
         ctx.font = '40px sans-serif';
         ctx.fillStyle = '#000000';
-        ctx.fillText(`${string}`, canvas.width / 13.1, canvas.height / 14.1);
+        ctx.fillText(content, canvas.width / 13.1, canvas.height / 14.1);
 
         ctx.beginPath();
         ctx.arc(125, 125, 100, 6, Math.PI * 2, true);

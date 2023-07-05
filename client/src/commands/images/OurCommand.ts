@@ -29,7 +29,7 @@ const OurCommand = createCommand({
     ],
 
     execute: async (context, endCommand, t) => {
-        var string = context.getOption<string>("text", false);
+        var content = context.getOption<string>("text", false);
         const canvas = Canvas.createCanvas(500, 400);
         const ctx = canvas.getContext('2d');
 
@@ -41,11 +41,11 @@ const OurCommand = createCommand({
 
         ctx.font = '25px sans-serif';
         ctx.fillStyle = '#000000';
-        if (string.length > 40) {
-            const text = string.match(/.{1,40}/g);
-            string = text.join("\n");
+        if (content.length > 40) {
+            const text = content.match(/.{1,40}/g);
+            content = text.join("\n");
         }
-        ctx.fillText(string, canvas.width / 15.5, canvas.height / 13.5);
+        ctx.fillText(content, canvas.width / 15.5, canvas.height / 13.5);
 
         ctx.beginPath();
         ctx.arc(125, 125, 100, 6, Math.PI * 2, true);

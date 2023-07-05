@@ -25,7 +25,7 @@ const LaranjoCommand = createCommand({
         }
     ],
     execute: async (context, endCommand, t) => {
-        const string = context.getOption<string>("text", false);
+        const content = context.getOption<string>("text", false);
         const canvas = Canvas.createCanvas(700, 600);
         const ctx = canvas.getContext('2d');
 
@@ -37,7 +37,7 @@ const LaranjoCommand = createCommand({
 
         ctx.font = '33px sans-serif';
         ctx.fillStyle = '#000000';
-        ctx.fillText(`${string}`, canvas.width / 15.5, canvas.height / 13.5);
+        ctx.fillText(content, canvas.width / 15.5, canvas.height / 13.5);
 
         ctx.beginPath();
         ctx.arc(125, 125, 100, 6, Math.PI * 2, true);

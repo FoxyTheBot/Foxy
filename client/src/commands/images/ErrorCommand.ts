@@ -24,7 +24,7 @@ const ErrorCommand = createCommand({
         }
     ],
     execute: async (context, endCommand, t) => {
-        var string = context.getOption<string>("text", false);
+        var content = context.getOption<string>("text", false);
         const canvas = Canvas.createCanvas(380, 208);
         const ctx = canvas.getContext("2d");
 
@@ -32,11 +32,11 @@ const ErrorCommand = createCommand({
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 
-        if (string.length > 30) {
-            const check = string.match(/.{1,35}/g);
-            string = check.join("\n");
+        if (content.length > 30) {
+            const check = content.match(/.{1,35}/g);
+            content = check.join("\n");
         }
-        if (string.length > 100) {
+        if (content.length > 100) {
             context.sendReply({
                 content: t('commands:error.tooLong', { limit: "100" }),
             })
@@ -48,7 +48,7 @@ const ErrorCommand = createCommand({
 
         ctx.font = '15px Sans';
         ctx.fillStyle = '#000000';
-        ctx.fillText(`${string}`, canvas.width / 5.3, canvas.height / 2.2);
+        ctx.fillText(content, canvas.width / 5.3, canvas.height / 2.2);
 
         ctx.beginPath();
         ctx.arc(125, 125, 100, 6, Math.PI * 2, true);
