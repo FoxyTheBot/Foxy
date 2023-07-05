@@ -47,7 +47,7 @@ const TopCommand = createCommand({
                     let user = await bot.helpers.getUser(data[i]._id);
                     fields.push({
                         name: `${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - ${await bot.foxyRest.getUserDisplayName(user.id)}`,
-                        value: `**${parseInt(data[i].balance)}** Cakes`,
+                        value: `**${parseInt(data[i].balance).toLocaleString(t.lng || 'pt-BR')}** Cakes`,
                         inline: true,
                     });
                 }
