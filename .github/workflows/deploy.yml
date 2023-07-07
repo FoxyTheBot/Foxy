@@ -18,6 +18,10 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install dependencies
+        run: yarn
+      - name: Compile Foxy
+        run: yarn build:all
       - name: Deploy to server
         uses: easingthemes/ssh-deploy@main
         env:
@@ -26,4 +30,6 @@ jobs:
             REMOTE_USER: ${{ secrets.SSH_USER }}
             REMOTE_PORT: ${{ secrets.SSH_PORT }}
             TARGET: ${{ secrets.SSH_TARGET }}
-            SCRIPT_AFTER: "cd ${{secrets.SSH_TARGET}} yarn build:all && pm2 restart all"
+            EXCLUDE: "/node_modules /build/"
+      - name: Restart Foxy
+        run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.SSH_TARGET }} && pm2 restart all"
