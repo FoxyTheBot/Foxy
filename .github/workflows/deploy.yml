@@ -20,12 +20,8 @@ jobs:
 
       - name: Create SSH Key
         run: |
-            mkdir -p ~/.ssh/
-            touch ~/.ssh/id_rsa
-            echo "$SSH_PRIVATE_KEY" ~/.ssh/id_rsa
-            chmod 600 ~/.ssh/id_rsa
-            touch ~/.ssh/known_hosts
-            ssh-keyscan -t rsa ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+            ssh-keygen -t rsa -b 4096 -C "
+            cat ~/.ssh/id_rsa.pub
 
       - name: Deploy to server
         run: |
