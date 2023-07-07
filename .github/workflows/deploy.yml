@@ -22,12 +22,7 @@ jobs:
         run: |
             mkdir -p ~/.ssh
             touch ~/.ssh/known_hosts
-  
-      - name: Add SSH key to known_hosts
-        run: |
-              ssh-keyscan -t rsa ${SSH_HOST} >> ~/.ssh/known_hosts
-
-            
+              
       - name: Deploy to server
         run: |
             echo "$SSH_PRIVATE_KEY" > deploy_key
