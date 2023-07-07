@@ -26,4 +26,4 @@ jobs:
             REMOTE_USER: ${{ secrets.SSH_USER }}
             REMOTE_PORT: ${{ secrets.SSH_PORT }}
             TARGET: ${{ secrets.SSH_TARGET }}
-            SCRIPT_AFTER: "yarn build:all && pm2 restart all"
+            SCRIPT_AFTER: "cd ${{secrets.SSH_TARGET}} yarn build:all && pm2 restart all"
