@@ -7,11 +7,6 @@ export class FoxyRestManager {
         this.bot = bot;
     }
 
-    async updateChannel(channelId: BigString, data: Object) {
-        await this.bot.rest.runMethod(this.bot.rest, "PATCH", this.bot.constants.routes.CHANNEL(channelId)
-            , { ...data })
-    }
-
     async sendDirectMessage(userId: BigString, data: Object) {
         const DMChannel = await this.bot.rest.runMethod(this.bot.rest, "POST", this.bot.constants.routes.USER_DM(), {
             recipient_id: userId
