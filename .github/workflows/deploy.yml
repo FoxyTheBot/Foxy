@@ -18,6 +18,10 @@ jobs:
         with:
           node-version: 18
 
+      - name: Remove known hosts
+        run: |
+            rm -rf ~/.ssh/known_hosts
+
       - name: Deploy to server
         run: |
             echo "$SSH_PRIVATE_KEY" > deploy_key
