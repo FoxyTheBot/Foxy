@@ -28,7 +28,6 @@ yarn global add typescript
 
 ```json
 {
-{
     "ownerId": "<YOUR-DISCORD-ID>",
     "clientId": "<YOUR-BOT-ID>",
     "devGuildId": "<YOUR-SERVER-ID>",
