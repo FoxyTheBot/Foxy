@@ -25,7 +25,7 @@ jobs:
               
 
       - name: Remove old host key
-        run: ssh-keygen -R ${SSH_HOST}
+        run: ssh-keygen -R ${{ secrets.SSH_HOST }}
 
       - name: Deploy to server
         run: |
