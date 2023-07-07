@@ -18,11 +18,6 @@ jobs:
         with:
           node-version: 18
 
-      - name: Create SSH Key
-        run: |
-            ssh-keygen -t rsa -b 4096 -C "
-            cat ~/.ssh/id_rsa.pub
-
       - name: Deploy to server
         run: |
             echo "$SSH_PRIVATE_KEY" > deploy_key
