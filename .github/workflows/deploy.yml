@@ -26,6 +26,3 @@ jobs:
             REMOTE_USER: ${{ secrets.SSH_USER }}
             REMOTE_PORT: ${{ secrets.SSH_PORT }}
             TARGET: ${{ secrets.SSH_TARGET }}
-            EXCLUDE: "/node_modules /build/"
-      - name: Restart Foxy
-        run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.SSH_TARGET }} && pm2 restart all"
