@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,3 +26,4 @@ jobs:
             REMOTE_USER: ${{ secrets.SSH_USER }}
             REMOTE_PORT: ${{ secrets.SSH_PORT }}
             TARGET: ${{ secrets.SSH_TARGET }}
+            SCRIPT_AFTER: "yarn build:all && pm2 restart all"
