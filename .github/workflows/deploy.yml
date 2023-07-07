@@ -18,12 +18,6 @@ jobs:
         with:
           node-version: 18
 
-      - name: Check known hosts
-        run: |
-            ssh-keyscan -t rsa ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-            chmod 644 ~/.ssh/known_hosts
-            ssh-keygen -R ${{ secrets.SSH_HOST }}
-
       - name: Deploy to server
         run: |
             echo "$SSH_PRIVATE_KEY" > deploy_key
