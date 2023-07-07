@@ -18,6 +18,13 @@ jobs:
         with:
           node-version: 18
 
+      - name: Create SSH Key
+        run: |
+            echo "$SSH_PRIVATE_KEY" ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            touch ~/.ssh/known_hosts
+            ssh-keyscan -t rsa ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
       - name: Deploy to server
         run: |
             echo "$SSH_PRIVATE_KEY" > deploy_key
