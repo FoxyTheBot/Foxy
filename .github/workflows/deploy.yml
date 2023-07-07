@@ -18,9 +18,11 @@ jobs:
         with:
           node-version: 18
 
-      - name: Remove known hosts
+      - name: Check known hosts
         run: |
-            rm -rf ~/.ssh/known_hosts
+            ssh-keyscan -t rsa ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+            chmod 644 ~/.ssh/known_hosts
+            ssh-keygen -R ${{ secrets.SSH_HOST }}
 
       - name: Deploy to server
         run: |
