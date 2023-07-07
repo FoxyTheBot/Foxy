@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,26 +18,11 @@ jobs:
         with:
           node-version: 18
 
-      - name: Create SSH directory
-        run: |
-            mkdir -p ~/.ssh
-            touch ~/.ssh/known_hosts
-              
-
-      - name: Remove old host key
-        run: ssh-keygen -R ${{ secrets.SSH_HOST }}
-
       - name: Deploy to server
-        run: |
-            echo "$SSH_PRIVATE_KEY" > deploy_key
-            chmod 600 deploy_key
-            ssh -i deploy_key -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
-                cd /home/foxy/Foxy
-                git pull origin master
-                yarn
-                yarn build:client
-                yarn build:server
-                pm2 restart 0 && pm2 restart 2
-            EOF
+        uses: easingthemes/ssh-deploy@main
         env:
             SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            REMOTE_HOST: ${{ secrets.SSH_HOST }}
+            REMOTE_USER: ${{ secrets.SSH_USER }}
+            REMOTE_PORT: ${{ secrets.SSH_PORT }}
+            TARGET: ${{ secrets.SSH_TARGET }}
