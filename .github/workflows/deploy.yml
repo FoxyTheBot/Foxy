@@ -22,6 +22,7 @@ jobs:
         run: |
             echo "$SSH_PRIVATE_KEY" > deploy_key
             chmod 600 deploy_key
+            ssh-keyscan -H ${SSH_HOST} >> ~/.ssh/known_hosts
             ssh -i deploy_key -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
                 cd /home/foxy/Foxy
                 git pull origin master
