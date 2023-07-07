@@ -40,7 +40,7 @@ const setInteractionCreateEvent = (): void => {
                     description: locale('events:ban.description'),
                     fields: [
                         { name: locale('events:ban.reason'), value: user.banReason },
-                        { name: locale('events:ban.date'), value: user.banData.toLocaleString(global.t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }
+                        { name: locale('events:ban.date'), value: user.banData.toLocaleString(global.t.lng || 'pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }
                     ]
                 })
                 return context.sendReply({
