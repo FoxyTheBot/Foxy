@@ -23,6 +23,10 @@ jobs:
             mkdir -p ~/.ssh
             touch ~/.ssh/known_hosts
               
+
+      - name: Remove old host key
+        run: ssh-keygen -R ${SSH_HOST}
+
       - name: Deploy to server
         run: |
             echo "$SSH_PRIVATE_KEY" > deploy_key
