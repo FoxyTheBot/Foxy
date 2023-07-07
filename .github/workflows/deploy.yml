@@ -20,6 +20,8 @@ jobs:
 
       - name: Install dependencies
         run: yarn
+      - name: Install TypeScript Compiler
+        run: yarn global add typescript
       - name: Compile Foxy
         run: yarn build:all
       - name: Deploy to server
