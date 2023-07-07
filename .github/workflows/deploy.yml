@@ -20,7 +20,7 @@ jobs:
 
       - name: Deploy to server
         run: |
-            echo "${{secrets.SSH_PRIVATE_KEY}}" > deploy_key
+            echo "$SSH_PRIVATE_KEY" > deploy_key
             chmod 600 deploy_key
             ssh -i deploy_key -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
                 cd /home/foxy/Foxy
@@ -30,3 +30,5 @@ jobs:
                 yarn build:server
                 pm2 restart 0 && pm2 restart 2
             EOF
+        env:
+            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
