@@ -22,7 +22,7 @@ jobs:
         run: |
             echo "$SSH_PRIVATE_KEY" > deploy_key
             chmod 600 deploy_key
-            ssh -o StrictHostKeyChecking=no -i deploy_key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
+            ssh -o "IdentitiesOnly=yes" -i deploy_key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
                 cd /home/foxy/Foxy
                 git pull origin master
                 yarn
