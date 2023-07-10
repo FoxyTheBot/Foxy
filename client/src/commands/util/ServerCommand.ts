@@ -71,7 +71,7 @@ const ServerCommand = createCommand({
                     title: t('commands:server.info.title', { server: guildInfo.name }),
                     fields: [{
                         name: "ID",
-                        value: guildInfo.id.toString(),
+                        value: `\`${guildInfo.id.toString()}\``,
                         inline: true
                     },
                     {
