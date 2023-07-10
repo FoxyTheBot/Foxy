@@ -61,6 +61,65 @@ const ServerCommand = createCommand({
                 const serverId = context.getOption<string>('server_id', false) ?? context.guildId;
                 const guildInfo = await bot.helpers.getGuild(serverId);
                 const channels = await bot.helpers.getChannels(serverId);
+                const roles = await bot.helpers.getRoles(serverId);
+                const boosts = await guildInfo.premiumSubscriptionCount;
+                const emojis = await guildInfo.emojis.size;
+
+                var textChannelString;
+                var voiceChannelString;
+                var rolesString;
+                var boostString;
+                var emojiString;
+
+                context.sendDefer();
+
+                if (channels) {
+                    if (channels.filter(c => c.type === ChannelTypes.GuildText).size > 1) {
+                        textChannelString = t('commands:server.info.fields.channels_suffix', { channels: channels.filter(c => c.type === ChannelTypes.GuildText).size.toString() });
+                    } else if (channels.filter(c => c.type === ChannelTypes.GuildText).size === 1) {
+                        textChannelString = t('commands:server.info.fields.single_channel_suffix', { channels: channels.filter(c => c.type === ChannelTypes.GuildText).size.toString() });
+                    } else {
+                        textChannelString = t('commands:server.info.fields.no_channels_suffix');
+                    }
+
+                    if (channels.filter(c => c.type === ChannelTypes.GuildVoice).size > 1) {
+                        voiceChannelString = t('commands:server.info.fields.channels_suffix', { channels: channels.filter(c => c.type === ChannelTypes.GuildVoice).size.toString() });
+                    } else if (channels.filter(c => c.type === ChannelTypes.GuildVoice).size === 1) {
+                        voiceChannelString = t('commands:server.info.fields.single_channel_suffix', { channels: channels.filter(c => c.type === ChannelTypes.GuildVoice).size.toString() });
+                    }
+                } else {
+                    voiceChannelString = t('commands:server.info.fields.no_channels_suffix');
+                }
+
+                if (roles) {
+                    if (roles.size > 1) {
+                        rolesString = t('commands:server.info.fields.roles_suffix', { roles: roles.size.toString() });
+                    } else if (roles.size === 1) {
+                        rolesString = t('commands:server.info.fields.single_role_suffix', { roles: roles.size.toString() });
+                    }
+                } else {
+                    rolesString = t('commands:server.info.fields.no_roles_suffix');
+                }
+
+                if (boosts) {
+                    if (boosts > 1) {
+                        boostString = t('commands:server.info.fields.boosts_suffix', { boosts: boosts.toString() });
+                    } else if (boosts === 1) {
+                        boostString = t('commands:server.info.fields.single_boost_suffix', { boosts: boosts.toString() });
+                    }
+                } else {
+                    boostString = t('commands:server.info.fields.no_boosts_suffix');
+                }
+
+                if (emojis) {
+                    if (emojis > 1) {
+                        emojiString = t('commands:server.info.fields.emojis_suffix', { emojis: emojis.toString() });
+                    } else if (emojis === 1) {
+                        emojiString = t('commands:server.info.fields.single_emoji_suffix', { emojis: emojis.toString() });
+                    }
+                } else {
+                    emojiString = t('commands:server.info.fields.no_emojis_suffix');
+                }
 
                 if (!guildInfo) return context.sendReply({
                     content: t('commands:server.info.not_found'),
@@ -81,37 +140,37 @@ const ServerCommand = createCommand({
                     },
                     {
                         name: t('commands:server.info.fields.members'),
-                        value: (await bot.helpers.getMembers(guildInfo.id, { limit: 1000 })).size + " " + t('commands:server.info.fields.members_suffix'),
+                        value: t('commands:server.info.fields.members_suffix', { members: (await bot.helpers.getMembers(guildInfo.id, { limit: 1000 })).size.toString() }),
                         inline: true
                     },
                     {
                         name: t('commands:server.info.fields.channels'),
-                        value: channels.size.toString() + " " + t('commands:server.info.fields.channels_suffix'),
+                        value: t('commands:server.info.fields.channels_suffix', { channels: channels.size.toString() }),
                         inline: true
                     },
                     {
                         name: t('commands:server.info.fields.text_channels'),
-                        value: channels.filter(c => c.type === ChannelTypes.GuildText).size.toString() + " " + t('commands:server.info.fields.text_channels_suffix'),
+                        value: textChannelString,
                         inline: true
                     },
                     {
                         name: t('commands:server.info.fields.voice_channels'),
-                        value: channels.filter(c => c.type === ChannelTypes.GuildVoice).size.toString() + " " + t('commands:server.info.fields.voice_channels_suffix'),
+                        value: voiceChannelString,
                         inline: true
                     },
                     {
                         name: t('commands:server.info.fields.roles'),
-                        value: guildInfo.roles.size.toString() + " " + t('commands:server.info.fields.roles_suffix'),
+                        value: rolesString,
                         inline: true
                     },
                     {
                         name: t('commands:server.info.fields.emojis'),
-                        value: guildInfo.emojis.size.toString() + ' emojis',
+                        value: emojiString,
                         inline: true
                     },
                     {
                         name: t('commands:server.info.fields.boosts'),
-                        value: guildInfo.premiumSubscriptionCount.toString() + " " + t('commands:server.info.fields.boosts_suffix'),
+                        value: boostString,
                         inline: true
                     }],
                     thumbnail: {
