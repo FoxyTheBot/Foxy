@@ -40,19 +40,38 @@ export default class InviteBlockerModule {
             }
 
             if (inviteRegex.test(message.content) && !authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role)) || !authorRoles) {
-                setTimeout(async () => {
-                    context.DeleteMessage(message.id, "Invite Blocker - Delete message that contains an invite");
-                }, 500);
+                const deletionQueue = [];
 
-                setTimeout(async () => {
-                        context.SendAndDelete({
-                        content: blockMessage
-                    }, 1000);
-                }, 500);
+                function delay(ms) {
+                    return new Promise(resolve => setTimeout(resolve, ms));
+                }
+
+                function addToDeletionQueue(task) {
+                    deletionQueue.push(task);
+                }
+
+                async function processDeletionQueue() {
+                    while (deletionQueue.length > 0) {
+                        const task = deletionQueue.shift();
+                        try {
+                            await task();
+                        } catch (error) {
+                            console.error('Erro ao excluir mensagem:', error);
+                        }
+
+                        await delay(1000);
+                    }
+                }
+
+                addToDeletionQueue(() => context.DeleteMessage(message.id, "Invite Blocker - Delete message that contains an invite"));
+                context.SendAndDelete({
+                    content: blockMessage
+                }, 1000);
+
+                processDeletionQueue();
             }
         }
     }
-
     async checkUpdatedMessage(message: Message) {
         const guildId = message.guildId;
         const guildInfo = await this.bot.database.getGuild(guildId);
@@ -89,12 +108,11 @@ export default class InviteBlockerModule {
                 }, 500);
 
                 setTimeout(async () => {
-                        context.SendAndDelete({
+                    context.SendAndDelete({
                         content: blockMessage
                     }, 1000);
                 }, 500);
             }
         }
-
     }
 }
