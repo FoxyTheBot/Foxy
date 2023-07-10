@@ -72,6 +72,7 @@ const ServerCommand = createCommand({
                     fields: [{
                         name: "ID",
                         value: guildInfo.id.toString(),
+                        inline: true
                     },
                     {
                         name: t('commands:server.info.fields.owner'),
