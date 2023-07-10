@@ -72,13 +72,21 @@
                 "boosts": "Impulsos",
                 "text_channels": "Canais de texto",
                 "voice_channels": "Canais de voz",
-                "members_suffix": "membros",
-                "channels_suffix": "canais",
-                "roles_suffix": "cargos",
-                "emojis_suffix": "emojis",
-                "boosts_suffix": "impulsos",
-                "text_channels_suffix": "canais de texto",
-                "voice_channels_suffix": "canais de voz"
+                "joinedAt": "Entrei em",
+                "members_suffix": "**{{members}}** membros",
+                "channels_suffix": "**{{channels}}** canais",
+                "roles_suffix": "**{{roles}}** cargos",
+                "emojis_suffix": "**{{emojis}}** emojis",
+                "boosts_suffix": "**{{boosts}}** impulsos",
+                "single_channel_suffix": "**1** canal",
+                "single_role_suffix": "**1** cargo",
+                "single_emoji_suffix": "**1** emoji",
+                "single_boost_suffix": "**1** impulso",
+                "no_emojis_suffix": "Nenhum emoji",
+                "no_boosts_suffix": "Nenhum impulso",
+                "no_channels_suffix": "Nenhum canal",
+                "no_roles_suffix": "Nenhum cargo",
+                "no_members_suffix": "Nenhum membro"
             }
         },
         "icon": {
