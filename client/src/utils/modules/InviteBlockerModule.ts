@@ -34,15 +34,20 @@ export default class InviteBlockerModule {
             if (blockMessage.includes("{user}")) {
                 blockMessage = blockMessage.replace("{user}", `<@${message.authorId}>`);
             }
+
             if (blockMessage.includes("{channel}")) {
                 blockMessage = blockMessage.replace("{channel}", `<#${message.channelId}>`);
             }
+
             if (inviteRegex.test(message.content) && !authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role)) || !authorRoles) {
                 setTimeout(async () => {
-                    context.DeleteMessage(message.id, "Invite Blocker");
-                    context.FoxyReply({
+                    context.DeleteMessage(message.id, "Invite Blocker - Delete message that contains an invite");
+                }, 500);
+
+                setTimeout(async () => {
+                        context.SendAndDelete({
                         content: blockMessage
-                    });
+                    }, 1000);
                 }, 500);
             }
         }
@@ -63,6 +68,7 @@ export default class InviteBlockerModule {
                     context.DeleteMessage(await message.id, "Invite Blocker");
                 }, 2000);
             }
+
             if (await !guildInfo.InviteBlockerModule.isEnabled) return;
             if (message.authorId === this.bot.applicationId || message.isFromBot) return;
             if (!inviteRegex.test(message.content)) return;
@@ -79,10 +85,13 @@ export default class InviteBlockerModule {
 
             if (inviteRegex.test(message.content) && !authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role)) || !authorRoles) {
                 setTimeout(async () => {
-                    context.DeleteMessage(await message.id, "Invite Blocker");
-                    context.FoxyReply({
+                    context.DeleteMessage(message.id, "Invite Blocker - Delete message that contains an invite");
+                }, 500);
+
+                setTimeout(async () => {
+                        context.SendAndDelete({
                         content: blockMessage
-                    })
+                    }, 1000);
                 }, 500);
             }
         }
