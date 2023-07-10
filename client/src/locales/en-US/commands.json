@@ -16,7 +16,7 @@
             "es-ES": "Spanish",
             "fr-FR": "French",
             "ja-JP": "Japanese",
-            "de-DE": "Deutsch",
+            "de-DE": "German",
             "it-IT": "Italian",
             "ru-RU": "Russian",
             "ar-SA": "Arabic",
@@ -59,6 +59,34 @@
     },
     "rate": {
         "result": "Hm... My grade is **{{rate}}/10** to **{{user}}**"
+    },
+    "server": {
+        "info": {
+            "title": "Informações de {{server}}",
+            "fields": {
+                "owner": "Dono(a) do servidor",
+                "members": "Membros",
+                "channels": "Canais",
+                "roles": "Cargos",
+                "emojis": "Emojis",
+                "boosts": "Impulsos",
+                "text_channels": "Canais de texto",
+                "voice_channels": "Canais de voz",
+                "members_suffix": "membros",
+                "channels_suffix": "canais",
+                "roles_suffix": "cargos",
+                "emojis_suffix": "emojis",
+                "boosts_suffix": "impulsos",
+                "text_channels_suffix": "canais de texto",
+                "voice_channels_suffix": "canais de voz"
+            }
+        },
+        "icon": {
+            "title": "Ícone de {{server}}",
+            "buttons": {
+                "view": "Abrir no navegador"
+            }
+        }
     },
     "profile": {
         "profile": "{{user}}'s profile",
