@@ -1,5 +1,6 @@
 import { BigString } from "discordeno/types";
 import { FoxyClient } from "../structures/types/foxy";
+import { User } from "../structures/types/user";
 
 export class FoxyRestManager {
     public bot: FoxyClient;
@@ -22,5 +23,9 @@ export class FoxyRestManager {
 
     async getBotGuilds(): Promise<Array<Object>> {
         return await this.bot.rest.runMethod(this.bot.rest, "GET", this.bot.constants.routes.USER_GUILDS());
+    }
+
+    async getUser(userId: string): Promise<User> {
+        return await this.bot.rest.runMethod(this.bot.rest, "GET", this.bot.constants.routes.USER(userId));
     }
 }
