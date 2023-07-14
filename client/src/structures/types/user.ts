@@ -1,4 +1,4 @@
-// User Object from https://discord.com/developers/docs/resources/user#user-object
+// User structure from Discord: https://discord.com/developers/docs/resources/user#user-object-user-structure
 
 export interface User {
     id: string,
