@@ -19,12 +19,9 @@ export default class InviteBlockerModule {
             const authorRoles = await message.member.roles.map(role => role ? role.toString().replace("n", "") : null);
 
             var blockMessage: string = await guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
-            if (message.content === blockMessage && message.authorId === this.bot.applicationId) {
-                setTimeout(async () => {
-                    context.DeleteMessage(message.id, "Invite Blocker - Delete alert message");
-                }, 2000);
-            }
-
+            const guildInvite = await this.bot.helpers.getInvite(message.content.split(inviteRegex)[1]);
+            
+            if (guildInvite.guildId === message.guildId) return;
             if (!inviteRegex.test(message.content)) return;
             if (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) return;
             if (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)) return;
