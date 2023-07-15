@@ -8,7 +8,7 @@ import { setupEventsHandler } from './events';
 
 const bot = createBot({
     token: config.token,
-    intents: 3180135 as Intents,
+    intents: 3183191 as Intents,
     botId: BigInt(config.clientId),
     applicationId: BigInt(config.clientId)
 }) as FoxyClient;
