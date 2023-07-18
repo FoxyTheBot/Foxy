@@ -89,6 +89,12 @@
                 "no_channels_suffix": "Nenhum canal",
                 "no_roles_suffix": "Nenhum cargo",
                 "no_members_suffix": "Nenhum membro"
+            },
+
+            "buttons": {
+                "view_icon": "Ver ícone do servidor",
+                "view_splash": "Ver imagem do convite do servidor",
+                "view_banner": "Ver banner do servidor"
             }
         },
 
@@ -491,6 +497,7 @@
         "noUser": "Usuário não encontrado",
         "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!",
         "yes": "Sim",
-        "no": "Não"
+        "no": "Não",
+        "guild_not_found": "Desculpe, não consegui encontrar esse servidor"
     }
 }
