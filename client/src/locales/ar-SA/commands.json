@@ -60,6 +60,55 @@
     "rate": {
         "result": "hmmm ... أعطي ** {{rate}}/10 ** لـ ** {{user}} **"
     },
+    "server": {
+        "info": {
+            "title": "Informações de {{server}}",
+            "fields": {
+                "owner": "Dono(a) do servidor",
+                "members": "Membros",
+                "channels": "Canais",
+                "roles": "Cargos",
+                "emojis": "Emojis",
+                "boosts": "Impulsos",
+                "text_channels": "Canais de texto",
+                "voice_channels": "Canais de voz",
+                "joinedAt": "Entrei em",
+                "members_suffix": "**{{members}}** membros",
+                "channels_suffix": "**{{channels}}** canais",
+                "roles_suffix": "**{{roles}}** cargos",
+                "emojis_suffix": "**{{emojis}}** emojis",
+                "boosts_suffix": "**{{boosts}}** impulsos",
+                "single_channel_suffix": "**1** canal",
+                "single_role_suffix": "**1** cargo",
+                "single_emoji_suffix": "**1** emoji",
+                "single_boost_suffix": "**1** impulso",
+                "no_emojis_suffix": "Nenhum emoji",
+                "no_boosts_suffix": "Nenhum impulso",
+                "no_channels_suffix": "Nenhum canal",
+                "no_roles_suffix": "Nenhum cargo",
+                "no_members_suffix": "Nenhum membro"
+            },
+            "buttons": {
+                "view_icon": "Ver ícone do servidor",
+                "view_splash": "Ver imagem do convite do servidor",
+                "view_banner": "Ver banner do servidor"
+            }
+        },
+        "icon": {
+            "title": "Ícone de {{server}}",
+            "buttons": {
+                "view": "Abrir no navegador"
+            },
+            "no_icon": "Este servidor não possui um ícone"
+        },
+        "banner": {
+            "title": "Banner de {{server}}",
+            "buttons": {
+                "view": "Abrir no navegador"
+            },
+            "no_banner": "Este servidor não possui um banner"
+        }
+    },
     "profile": {
         "profile": "ملف تعريف {{user}}",
         "noAboutme": "Foxy هو صديقي يمكنك تغيير هذا باستخدام /aboutme",
@@ -451,6 +500,7 @@
         "noUser": "أعطى {{result}}! فزت {{amount}} الكعك ",
         "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!",
         "yes": "Sim",
-        "no": "Não"
+        "no": "Não",
+        "guild_not_found": "Desculpe, não consegui encontrar esse servidor"
     }
 }

@@ -16,7 +16,7 @@
             "es-ES": "Spanish",
             "fr-FR": "French",
             "ja-JP": "Japanese",
-            "de-DE": "Deutsch",
+            "de-DE": "German",
             "it-IT": "Italian",
             "ru-RU": "Russian",
             "ar-SA": "Arabic",
@@ -59,6 +59,55 @@
     },
     "rate": {
         "result": "Hm... My grade is **{{rate}}/10** to **{{user}}**"
+    },
+    "server": {
+        "info": {
+            "title": "{{server}}'s Information",
+            "fields": {
+                "owner": "Server's Owner",
+                "members": "Members",
+                "channels": "Channels",
+                "roles": "Roles",
+                "emojis": "Emotes",
+                "boosts": "Boosts",
+                "text_channels": "Text Channels",
+                "voice_channels": "Voice Channels",
+                "joinedAt": "I joined this server at",
+                "members_suffix": "**{{members}}** members",
+                "channels_suffix": "**{{channels}}** channels",
+                "roles_suffix": "**{{roles}}** roles",
+                "emojis_suffix": "**{{emojis}}** emotes",
+                "boosts_suffix": "**{{boosts}}** boosts",
+                "single_channel_suffix": "**1** channel",
+                "single_role_suffix": "**1** role",
+                "single_emoji_suffix": "**1** emote",
+                "single_boost_suffix": "**1** boost",
+                "no_emojis_suffix": "No emote",
+                "no_boosts_suffix": "No boost",
+                "no_channels_suffix": "No channel",
+                "no_roles_suffix": "No role",
+                "no_members_suffix": "No member"
+            },
+            "buttons": {
+                "view_icon": "View server icon",
+                "view_splash": "View server invite banner",
+                "view_banner": "View server banner"
+            }
+        },
+        "icon": {
+            "title": "{{server}}'s icon",
+            "buttons": {
+                "view": "Open in browser"
+            },
+            "no_icon": "This server doesn't have an icon"
+        },
+        "banner": {
+            "title": "{{server}}'s banner",
+            "buttons": {
+                "view": "Open in browser"
+            },
+            "no_banner": "This server doesn't have a banner"
+        }
     },
     "profile": {
         "profile": "{{user}}'s profile",
@@ -451,6 +500,7 @@
         "noUser": "User not found",
         "noPermission": "Wait! What are you doing? You need to have `{{permission}}` to do this!",
         "yes": "Yes",
-        "no": "No"
+        "no": "No",
+        "guild_not_found": "Sorry, I can't find this server"
     }
 }
