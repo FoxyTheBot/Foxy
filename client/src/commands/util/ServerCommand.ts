@@ -52,14 +52,40 @@ const ServerCommand = createCommand({
             type: ApplicationCommandOptionTypes.String,
             required: false
         }]
+    },
+    {
+        name: "banner",
+        description: "[Utils] Show the banner of a server",
+        descriptionLocalizations: {
+            "pt-BR": "[Utilitários] Mostra o banner de um servidor"
+        },
+        type: ApplicationCommandOptionTypes.SubCommand,
+        options: [{
+            name: "server_id",
+            nameLocalizations: {
+                "pt-BR": "id_do_servidor"
+            },
+            description: "The ID of the server you want to see the banner",
+            descriptionLocalizations: {
+                "pt-BR": "O ID do servidor que você deseja ver o banner"
+            },
+            type: ApplicationCommandOptionTypes.String,
+        }]
     }],
     execute: async (context, endCommand, t) => {
         const subCommand = context.getSubCommand();
+        const serverId = context.getOption<string>('server_id', false) ?? context.guildId;
+        const guildInfo = await bot.helpers.getGuild(serverId).catch(() => null);
 
+        if (!guildInfo) {
+            return context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.guild_not_found')),
+                flags: MessageFlags.EPHEMERAL
+            });
+        }
         switch (subCommand) {
             case "info": {
-                const serverId = context.getOption<string>('server_id', false) ?? context.guildId;
-                const guildInfo = await bot.helpers.getGuild(serverId);
+                context.sendDefer();
                 const channels = await bot.helpers.getChannels(serverId);
                 const roles = await bot.helpers.getRoles(serverId);
                 const boosts = await guildInfo.premiumSubscriptionCount;
@@ -71,7 +97,6 @@ const ServerCommand = createCommand({
                 var boostString;
                 var emojiString;
 
-                context.sendDefer();
 
                 if (channels) {
                     if (channels.filter(c => c.type === ChannelTypes.GuildText).size > 1) {
@@ -121,11 +146,6 @@ const ServerCommand = createCommand({
                     emojiString = t('commands:server.info.fields.no_emojis_suffix');
                 }
 
-                if (!guildInfo) return context.sendReply({
-                    content: t('commands:server.info.not_found'),
-                    flags: MessageFlags.EPHEMERAL
-                });
-
                 const embed = createEmbed({
                     title: t('commands:server.info.title', { server: guildInfo.name }),
                     fields: [{
@@ -174,23 +194,55 @@ const ServerCommand = createCommand({
                         inline: true
                     }],
                     thumbnail: {
-                        url: bot.helpers.getGuildIconURL(guildInfo.id, guildInfo.icon, { size: 1024 })
+                        url: bot.helpers.getGuildIconURL(guildInfo.id, guildInfo.icon, { size: 1024 }) ?? undefined
+                    },
+                    image: {
+                        url: bot.helpers.getGuildSplashURL(guildInfo.id, guildInfo.splash, { size: 2048 }) ?? undefined
                     }
                 });
 
+                const row = createActionRow([createButton({
+                    label: t('commands:server.info.buttons.view_icon'),
+                    style: ButtonStyles.Secondary,
+                    customId: createCustomId(0, context.author.id, context.commandId),
+                    emoji: {
+                        id: bot.emotes.FOXY_DRINKING_COFFEE
+                    },
+                    disabled: guildInfo.icon ? false : true
+                }),
+
+                createButton({
+                    label: t('commands:server.info.buttons.view_splash'),
+                    style: ButtonStyles.Secondary,
+                    customId: createCustomId(1, context.author.id, context.commandId),
+                    emoji: {
+                        id: bot.emotes.FOXY_DRINKING_COFFEE
+                    },
+                    disabled: guildInfo.splash ? false : true
+                }),
+
+                createButton({
+                    label: t('commands:server.info.buttons.view_banner'),
+                    style: ButtonStyles.Secondary,
+                    customId: createCustomId(2, context.author.id, context.commandId),
+                    emoji: {
+                        id: bot.emotes.FOXY_DRINKING_COFFEE
+                    },
+                    disabled: guildInfo.banner ? false : true
+                })
+                ]);
+
                 context.sendReply({
-                    embeds: [embed]
+                    embeds: [embed],
+                    components: [row]
                 });
 
                 return endCommand();
             }
 
             case "icon": {
-                const serverId = context.getOption<string>('server_id', false) ?? context.guildId;
-                const guildInfo = await bot.helpers.getGuild(serverId);
-
-                if (!guildInfo) return context.sendReply({
-                    content: t('commands:server.icon.not_found'),
+                if (!guildInfo.icon) return context.sendReply({
+                    content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:server.icon.no_icon'))
                 });
 
                 const embed = createEmbed({
@@ -203,7 +255,10 @@ const ServerCommand = createCommand({
                 const row = createActionRow([createButton({
                     label: t('commands:server.icon.buttons.view'),
                     style: ButtonStyles.Link,
-                    url: bot.helpers.getGuildIconURL(guildInfo.id, guildInfo.icon, { size: 1024 })
+                    url: bot.helpers.getGuildIconURL(guildInfo.id, guildInfo.icon, { size: 1024 }),
+                    emoji: {
+                        id: bot.emotes.FOXY_YAY
+                    }
                 })]
                 );
 
@@ -213,6 +268,34 @@ const ServerCommand = createCommand({
                 });
 
                 return endCommand();
+            }
+
+            case "banner": {
+                if (!guildInfo.banner) return context.sendReply({
+                    content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:server.banner.no_banner'))
+                });
+
+                const embed = createEmbed({
+                    title: t('commands:server.banner.title', { server: guildInfo.name }),
+                    image: {
+                        url: bot.helpers.getGuildBannerURL(guildInfo.id, { banner: guildInfo.banner, size: 1024 }) ?? undefined
+                    }
+                });
+
+                const row = createActionRow([createButton({
+                    label: t('commands:server.banner.buttons.view'),
+                    style: ButtonStyles.Link,
+                    url: bot.helpers.getGuildBannerURL(guildInfo.id, { banner: guildInfo.banner, size: 1024 }) ?? undefined,
+                    emoji: {
+                        id: bot.emotes.FOXY_YAY
+                    }
+                })
+                ]);
+
+                context.sendReply({
+                    embeds: [embed],
+                    components: [row]
+                });
             }
         }
     }
