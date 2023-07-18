@@ -89,9 +89,9 @@
                 "no_members_suffix": "No member"
             },
             "buttons": {
-                "view_icon": "Ver ícone do servidor",
-                "view_splash": "Ver imagem do convite do servidor",
-                "view_banner": "Ver banner do servidor"
+                "view_icon": "View server icon",
+                "view_splash": "View server invite banner",
+                "view_banner": "View server banner"
             }
         },
         "icon": {
@@ -99,14 +99,14 @@
             "buttons": {
                 "view": "Open in browser"
             },
-            "no_icon": "Este servidor não possui um ícone"
+            "no_icon": "This server doesn't have an icon"
         },
         "banner": {
-            "title": "Banner de {{server}}",
+            "title": "{{server}}'s banner",
             "buttons": {
-                "view": "Abrir no navegador"
+                "view": "Open in browser"
             },
-            "no_banner": "Este servidor não possui um banner"
+            "no_banner": "This server doesn't have a banner"
         }
     },
     "profile": {
@@ -501,6 +501,6 @@
         "noPermission": "Wait! What are you doing? You need to have `{{permission}}` to do this!",
         "yes": "Yes",
         "no": "No",
-        "guild_not_found": "Desculpe, não consegui encontrar esse servidor"
+        "guild_not_found": "Sorry, I can't find this server"
     }
 }
