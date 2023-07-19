@@ -37,31 +37,7 @@ const MarryCommand = createCommand({
             type: ApplicationCommandOptionTypes.User,
             required: true
         }]
-    },
-    {
-        name: "lock_requests",
-        nameLocalizations: {
-            "pt-BR": "bloquear_pedidos",
-        },
-        description: "[Social] Lock marriage requests",
-        descriptionLocalizations: {
-            "pt-BR": "[Social] Bloqueie pedidos de casamento"
-        },
-        type: ApplicationCommandOptionTypes.SubCommand,
-        options: [{
-            name: "lock",
-            nameLocalizations: {
-                "pt-BR": "bloquear",
-            },
-            description: "[Social] Lock marriage requests",
-            descriptionLocalizations: {
-                "pt-BR": "[Social] Bloqueie pedidos de casamento"
-            },
-            type: ApplicationCommandOptionTypes.Boolean,
-            required: true
-        }]
-    }
-    ],
+    }],
     category: "social",
     commandRelatedExecutions: [MarryExecutor],
 
@@ -144,30 +120,6 @@ const MarryCommand = createCommand({
 
                 endCommand();
                 break;
-            }
-
-            case "lock_requests": {
-                const status = context.getOption<boolean>('lock', false);
-                const userData = await bot.database.getUser(context.author.id);
-
-                if (userData.isMarriable === status) {
-                    context.sendReply({
-                        content: t('commands:profile.marriableStatusAlreadySet', { status: status ? t('commands:profile.simpleYes') : t('commands:profile.simpleNo') }),
-                        flags: MessageFlags.EPHEMERAL
-                    });
-                    return endCommand();
-                } else {
-                    userData.isMarriable = status;
-                    await userData.save();
-
-                    context.sendReply({
-                        content: t('commands:profile.marriableStatusSet', { status: status ? t('commands:profile.yes') : t('commands:profile.no') }),
-                        flags: MessageFlags.EPHEMERAL
-                    });
-
-                    endCommand();
-                    break;
-                }
             }
         }
     }
