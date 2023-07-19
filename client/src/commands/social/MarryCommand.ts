@@ -102,14 +102,14 @@ const MarryCommand = createCommand({
                     return endCommand();
                 }
 
-                if (!futurePartnerData.isMarriable) {
+                if (futurePartnerData.cantMarry) {
                     context.sendReply({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.userNotMarriable', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
                     })
                     return endCommand();
                 }
 
-                if (!userData.isMarriable) {
+                if (userData.cantMarry) {
                     context.sendReply({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.authorNotMarriable'))
                     })
@@ -150,14 +150,14 @@ const MarryCommand = createCommand({
                 const status = context.getOption<boolean>('lock', false);
                 const userData = await bot.database.getUser(context.author.id);
 
-                if (userData.isMarriable === status) {
+                if (userData.cantMarry) {
                     context.sendReply({
                         content: t('commands:profile.marriableStatusAlreadySet', { status: status ? t('commands:profile.simpleYes') : t('commands:profile.simpleNo') }),
                         flags: MessageFlags.EPHEMERAL
                     });
                     return endCommand();
                 } else {
-                    userData.isMarriable = status;
+                    userData.cantMarry = status;
                     await userData.save();
 
                     context.sendReply({
