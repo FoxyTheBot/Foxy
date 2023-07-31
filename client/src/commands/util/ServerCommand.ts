@@ -211,30 +211,30 @@ const ServerCommand = createCommand({
                     disabled: guildInfo.icon ? false : true
                 }),
 
-                createButton({
-                    label: t('commands:server.info.buttons.view_splash'),
-                    style: ButtonStyles.Secondary,
-                    customId: createCustomId(1, context.author.id, context.commandId),
-                    emoji: {
-                        id: bot.emotes.FOXY_DRINKING_COFFEE
-                    },
-                    disabled: guildInfo.splash ? false : true
-                }),
+                // TO FINISH
+                // createButton({
+                //     label: t('commands:server.info.buttons.view_splash'),
+                //     style: ButtonStyles.Secondary,
+                //     customId: createCustomId(1, context.author.id, context.commandId),
+                //     emoji: {
+                //         id: bot.emotes.FOXY_DRINKING_COFFEE
+                //     },
+                //     disabled: guildInfo.splash ? false : true
+                // }),
 
-                createButton({
-                    label: t('commands:server.info.buttons.view_banner'),
-                    style: ButtonStyles.Secondary,
-                    customId: createCustomId(2, context.author.id, context.commandId),
-                    emoji: {
-                        id: bot.emotes.FOXY_DRINKING_COFFEE
-                    },
-                    disabled: guildInfo.banner ? false : true
-                })
+                // createButton({
+                //     label: t('commands:server.info.buttons.view_banner'),
+                //     style: ButtonStyles.Secondary,
+                //     customId: createCustomId(2, context.author.id, context.commandId),
+                //     emoji: {
+                //         id: bot.emotes.FOXY_DRINKING_COFFEE
+                //     },
+                //     disabled: guildInfo.banner ? false : true
+                // })
                 ]);
 
                 context.sendReply({
-                    embeds: [embed],
-                    components: [row]
+                    embeds: [embed]
                 });
 
                 return endCommand();
