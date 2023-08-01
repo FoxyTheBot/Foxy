@@ -64,7 +64,8 @@ const UserCommand = createCommand({
                         emoji: {
                             id: bot.emotes.FOXY_WOW
                         }
-                    })])]
+                    })
+                    ])]
                 })
                 endCommand();
                 break;
