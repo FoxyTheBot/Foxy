@@ -18,23 +18,14 @@ export default class InviteBlockerModule {
             const context = new ChatInputMessageContext(message);
             const authorRoles = await message.member.roles.map(role => role ? role.toString().replace("n", "") : null);
 
-            var blockMessage: string = await guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
-            const guildInvite = await this.bot.helpers.getInvite(message.content.split(inviteRegex)[1]);
-            
-            if (guildInvite.guildId === message.guildId) return;
+            var blockMessage: string = await guildInfo.InviteBlockerModule.blockMessage
+                .replace(/{user}/, `<@${message.authorId}>`)
+                .replace(/{channel}/, `<#${message.channelId}>`) ?? `Você não pode enviar convites aqui!`;
+
             if (!inviteRegex.test(message.content)) return;
             if (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) return;
             if (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)) return;
             if (await guildInfo.InviteBlockerModule.whitelistedUsers.includes(message.authorId)) return;
-
-
-            if (blockMessage.includes("{user}")) {
-                blockMessage = blockMessage.replace("{user}", `<@${message.authorId}>`);
-            }
-
-            if (blockMessage.includes("{channel}")) {
-                blockMessage = blockMessage.replace("{channel}", `<#${message.channelId}>`);
-            }
 
             if (inviteRegex.test(message.content) && !authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role)) || !authorRoles) {
                 const deletionQueue = [];
@@ -78,7 +69,10 @@ export default class InviteBlockerModule {
             const context = new ChatInputMessageContext(message);
             const authorRoles = await message.member.roles.map(role => role ? role.toString().replace("n", "") : null);
 
-            var blockMessage: string = guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
+            var blockMessage: string = guildInfo.InviteBlockerModule.blockMessage
+                .replace(/{user}/, `<@${message.authorId}>`)
+                .replace(/{channel}/, `<#${message.channelId}>`) ?? `Você não pode enviar convites aqui!`;
+
             if (message.content === blockMessage && message.authorId === this.bot.applicationId) {
                 setTimeout(async () => {
                     context.DeleteMessage(await message.id, "Invite Blocker");
@@ -91,13 +85,6 @@ export default class InviteBlockerModule {
             if (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) return;
             if (await guildInfo.InviteBlockerModule.whitelistedChannels.includes(message.channelId)) return;
             if (await guildInfo.InviteBlockerModule.whitelistedUsers.includes(message.authorId)) return;
-
-            if (blockMessage.includes("{user}")) {
-                blockMessage = blockMessage.replace("{user}", `<@${message.authorId}>`);
-            }
-            if (blockMessage.includes("{channel}")) {
-                blockMessage = blockMessage.replace("{channel}", `<#${message.channelId}>`);
-            }
 
             if (inviteRegex.test(message.content) && !authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role)) || !authorRoles) {
                 setTimeout(async () => {
