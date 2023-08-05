@@ -9,7 +9,6 @@ const setGuildMemberAddEvent = (): void => {
 
         GuildJoinLeave.guildJoin(member.guildId, member);
         AutoRole.check(member);
-        console.log("called")
     }
 }
 
