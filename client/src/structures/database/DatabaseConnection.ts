@@ -61,6 +61,14 @@ export default class DatabaseConnection {
             AutoRoleModule: {
                 isEnabled: Boolean,
                 roles: Array,
+            },
+            GuildJoinLeaveModule: {
+                isEnabled: Boolean,
+                joinMessage: String,
+                alertWhenUserLeaves: Boolean,
+                leaveMessage: String,
+                joinChannel: String,
+                leaveChannel: String,
             }
         }, { versionKey: false, id: false });
         this.user = mongoose.model('user', userSchema);
@@ -121,7 +129,7 @@ export default class DatabaseConnection {
     async updateCommand(commandName: string): Promise<void> {
         let commandFromDB = await this.commands.findOne({ commandName: commandName });
         let command = await bot.commands.get(commandName);
-        
+
         if (command.devsOnly) return null;
         if (!commandFromDB) {
             commandFromDB = new this.commands({
@@ -166,6 +174,14 @@ export default class DatabaseConnection {
                 AutoRoleModule: {
                     isEnabled: false,
                     roles: [],
+                },
+                GuildJoinLeaveModule: {
+                    isEnabled: false,
+                    joinMessage: null,
+                    alertWhenUserLeaves: false,
+                    leaveMessage: null,
+                    joinChannel: null,
+                    leaveChannel: null,
                 }
             }).save();
         }
@@ -190,6 +206,14 @@ export default class DatabaseConnection {
                 AutoRoleModule: {
                     isEnabled: false,
                     roles: [],
+                },
+                GuildJoinLeaveModule: {
+                    isEnabled: false,
+                    joinMessage: null,
+                    alertWhenUserLeaves: false,
+                    leaveMessage: null,
+                    joinChannel: null,
+                    leaveChannel: null,
                 }
             }).save();
             return null;

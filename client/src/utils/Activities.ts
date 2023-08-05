@@ -8,7 +8,7 @@ const startActivities = async (): Promise<void> => {
             type: ActivityTypes.Game,
             createdAt: Date.now()
         }];
-
+        
         setInterval(() => {
             const activity = activities[Math.floor(Math.random() * activities.length)];
             editBotStatus(bot, {
