@@ -22,9 +22,11 @@ export default class GuildJoinLeaveModule {
             const channelId = await guildInfo.GuildJoinLeaveModule.joinChannel;
 
             try {
-                this.bot.helpers.sendMessage(channelId, {
-                    ...messageObject
-                })
+                setTimeout(() => {
+                    this.bot.helpers.sendMessage(channelId, {
+                        ...messageObject
+                    });
+                }, 500);
             } catch (err) {
                 console.error(err)
             }
@@ -45,9 +47,11 @@ export default class GuildJoinLeaveModule {
             const channelId = await guildInfo.GuildJoinLeaveModule.leaveChannel;
 
             try {
-                this.bot.helpers.sendMessage(channelId, {
-                    ...messageObject
-                })
+                setTimeout(() => {
+                    this.bot.helpers.sendMessage(channelId, {
+                        ...messageObject
+                    });
+                }, 500);
             } catch (err) {
                 console.error(err)
             }
