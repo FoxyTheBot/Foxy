@@ -14,7 +14,8 @@ export default class GuildJoinLeaveModule {
             const message = await guildInfo.GuildJoinLeaveModule.joinMessage ?? {
                 "content": `{user} has joined the server.`
             }
-            const updatedMessage = message.replace(/{user}/g, `<@${member.id}>`)
+            const updatedMessage = message
+                .replace(/{user}/g, `<@${member.id}>`)
                 .replace(/{username}/g, `${member.username}`)
                 .replace(/{server}/g, `${guildInfoFromAPI.name}`)
 
@@ -40,7 +41,8 @@ export default class GuildJoinLeaveModule {
             const message = await guildInfo.GuildJoinLeaveModule.leaveMessage ?? {
                 "content": `{user} leaves from the server.`
             }
-            const updatedMessage = message.replace(/{user}/g, `<@${member.id}>`)
+            const updatedMessage = message
+                .replace(/{user}/g, `<@${member.id}>`)
                 .replace(/{username}/g, `${member.username}`)
 
             const messageObject = JSON.parse(updatedMessage);

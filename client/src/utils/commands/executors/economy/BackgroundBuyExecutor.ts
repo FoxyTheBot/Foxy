@@ -14,7 +14,7 @@ const BackgroundExecutor = async (context: ComponentInteractionContext) => {
         context.followUp({
             content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale('commands:background.buy.noMoney')),
             flags: MessageFlags.EPHEMERAL
-        })
+        });
     } else {
         const backgroundInfo = await bglist.find((b) => b.id === code?.toLowerCase())
 

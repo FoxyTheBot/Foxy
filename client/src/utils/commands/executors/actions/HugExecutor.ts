@@ -24,7 +24,7 @@ const HugExecutor = async (context: ComponentInteractionContext) => {
             },
             disabled: true
         })])]
-    })
+    });
     context.followUp({
         embeds: [embed],
     });
