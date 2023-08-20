@@ -206,7 +206,7 @@
     },
     "aboutme": {
         "set": "Su sobre mi ha sido configurado para `{{aboutme}}`",
-        "tooLong": "O límite de los caracteres es 225 y tú digitaste {{length}}, digite algo más menor plis :3"
+        "tooLong": "O limite de caracteres é 177 e você digitou {{length}}, digita algo menor pfv :3"
     },
     "layouts": {
         "default": "Padrón",
