@@ -206,7 +206,7 @@
     },
     "aboutme": {
         "set": "Dein über mich wurde in `{{aboutme}}` geändert",
-        "tooLong": "Die Zeichengrenze ist 225 und Sie geben {{length}} ein, geben etwas kleineres ein"
+        "tooLong": "O limite de caracteres é 177 e você digitou {{length}}, digita algo menor pfv :3"
     },
     "layouts": {
         "default": "Standard",
