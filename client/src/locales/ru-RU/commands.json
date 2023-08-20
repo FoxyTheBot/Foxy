@@ -206,7 +206,7 @@
     },
     "aboutme": {
         "set": "Твое было изменено на `{{aboutme}}`",
-        "tooLong": "Предел символов 225, и вы вводите {{length}}, введите что -то меньшее"
+        "tooLong": "O limite de caracteres é 177 e você digitou {{length}}, digita algo menor pfv :3"
     },
     "layouts": {
         "default": "Стандартный",
