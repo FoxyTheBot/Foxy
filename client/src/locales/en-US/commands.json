@@ -206,7 +206,7 @@
     },
     "aboutme": {
         "set": "Your about me has been changed to `{{aboutme}}`",
-        "tooLong": "The limit is 225 chars, and you type {{length}} chars, plz type something smaller :3"
+        "tooLong": "O limite de caracteres é 177 e você digitou {{length}}, digita algo menor pfv :3"
     },
     "layouts": {
         "default": "Default",
