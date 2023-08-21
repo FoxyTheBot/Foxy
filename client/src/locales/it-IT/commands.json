@@ -206,7 +206,7 @@
     },
     "aboutme": {
         "set": "Il tuo su di me è stato cambiato in `{{aboutme}}`",
-        "tooLong": "O limite de caracteres é 177 e você digitou {{length}}, digita algo menor pfv :3"
+        "tooLong": "Il limite del personaggio è 177 e si digita {{length}}, digita qualcosa di più piccolo"
     },
     "layouts": {
         "default": "Standard",
