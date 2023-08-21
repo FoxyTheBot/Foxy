@@ -206,7 +206,7 @@
     },
     "aboutme": {
         "set": "تم تغيير لك فوقي إلى `{{aboutme}}`",
-        "tooLong": "O limite de caracteres é 177 e você digitou {{length}}, digita algo menor pfv :3"
+        "tooLong": "حد الأحرف هو 177 وتكتب {{length}} ، اكتب شيئًا أصغر"
     },
     "layouts": {
         "default": "معيار",
