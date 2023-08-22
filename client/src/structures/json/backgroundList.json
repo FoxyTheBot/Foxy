@@ -197,14 +197,16 @@
             "name": "Foxy's Birthday by Adiela_Cat",
             "cakes": 50000,
             "filename": "foxybday-adi.png",
-            "description": "Foxy's Birthday created by Adiela_Cat"
+            "description": "Foxy's Birthday created by Adiela_Cat",
+            "author": "923591043298000936"
         },
         {
             "id": "foxybday-fofex",
             "name": "Foxy's Birthday by Fofex",
             "cakes": 50000,
             "filename": "foxybday-fofex.png",
-            "description": "Foxy's Birthday created by Fofex"
+            "description": "Foxy's Birthday created by Fofex",
+            "author": "811079809258094632"
         }
     ]
 }
