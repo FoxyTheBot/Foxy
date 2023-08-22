@@ -52,7 +52,7 @@ const FoxyToolsCommand = createCommand({
         {
             name: "change_activity",
             description: "Edita a atividade da Foxy",
-            type: ApplicationCommandOptionTypes.SubCommand, 
+            type: ApplicationCommandOptionTypes.SubCommand,
             options: [{
                 name: "type",
                 description: "O tipo de atividade que você quer",
@@ -84,7 +84,7 @@ const FoxyToolsCommand = createCommand({
             {
                 name: "status",
                 description: "O status que você quer",
-                type: ApplicationCommandOptionTypes.String, 
+                type: ApplicationCommandOptionTypes.String,
                 required: true,
                 choices: [
                     {
@@ -105,12 +105,18 @@ const FoxyToolsCommand = createCommand({
                     }
                 ]
             },
-        {
-            name: "activity",
-            description: "A atividade que você quer",
-            type: ApplicationCommandOptionTypes.String,
-            required: true
-        }]
+            {
+                name: "activity",
+                description: "A atividade que você quer",
+                type: ApplicationCommandOptionTypes.String,
+                required: true
+            },
+            {
+                name: "url",
+                description: "A url que você quer",
+                type: ApplicationCommandOptionTypes.String,
+                required: false
+            }]
         },
         {
             name: "foxyban",
@@ -215,12 +221,16 @@ const FoxyToolsCommand = createCommand({
                 const type = context.getOption<number>('type', false);
                 const activity = context.getOption<string>('activity', false);
                 const status = context.getOption<any>('status', false);
+                const url = context.getOption<string>('url', false);
 
-                bot.helpers.editBotStatus({ status: status , activities: [{
-                    name: activity,
-                    type: type,
-                    createdAt: Date.now()
-                }] });
+                bot.helpers.editBotStatus({
+                    status: status, activities: [{
+                        name: activity,
+                        type: type,
+                        createdAt: Date.now(),
+                        url: url ? url : undefined
+                    }]
+                });
 
                 context.sendReply({ content: "Prontinho! Atividade alterada com sucesso!", flags: 64 });
                 break;

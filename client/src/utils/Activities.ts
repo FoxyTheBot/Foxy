@@ -3,18 +3,13 @@ import { bot } from "../index";
 
 const startActivities = async (): Promise<void> => {
     if (bot.isProduction) {
-        const activities = [{
-            name: "foxybot.win/add",
-            type: ActivityTypes.Game,
-            createdAt: Date.now()
-        }];
-
-        setInterval(() => {
-            const activity = activities[Math.floor(Math.random() * activities.length)];
-            editBotStatus(bot, {
-                status: "online", activities: [activity]
-            });
-        }, 3000);
+        editBotStatus(bot, {
+            status: "online", activities: [{
+                name: "foxybot.win/add",
+                type: ActivityTypes.Game,
+                createdAt: Date.now()
+            }]
+        });
     } else {
         editBotStatus(bot, {
             status: "dnd", activities: [{

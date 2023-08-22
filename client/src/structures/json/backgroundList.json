@@ -191,6 +191,20 @@
             "filename": "springtrap.png",
             "description": "It's been so long, since I last have seen my son lost to this monster, to the **Man Behind The Slaughter**",
             "author": null
+        },
+        {
+            "id": "foxybday-adi",
+            "name": "Foxy's Birthday by Adiela_Cat",
+            "cakes": 50000,
+            "filename": "foxybday-adi.png",
+            "description": "Foxy's Birthday created by Adiela_Cat"
+        },
+        {
+            "id": "foxybday-fofex",
+            "name": "Foxy's Birthday by Fofex",
+            "cakes": 50000,
+            "filename": "foxybday-fofex.png",
+            "description": "Foxy's Birthday created by Fofex"
         }
     ]
 }

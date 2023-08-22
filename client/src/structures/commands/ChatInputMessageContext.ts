@@ -25,6 +25,12 @@ export default class {
         }, timeout);
     }
     
+    async sendMessage(channelId: string, options: CreateMessage) {
+        bot.helpers.sendMessage(channelId, {
+            ...options,
+        });
+    }
+
     async DeleteMessage(messageId: BigString, reason: string) {
         bot.helpers.deleteMessage(this.message.channelId, messageId, reason );
     }
