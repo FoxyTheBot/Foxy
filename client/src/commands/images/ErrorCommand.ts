@@ -1,7 +1,7 @@
 import { createCommand } from "../../structures/commands/createCommand";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 import * as Canvas from "canvas";
-import { CDNUrl } from "../../../config.json";
+import { serverURL } from "../../../config.json";
 const ErrorCommand = createCommand({
     name: "error",
     description: "[Image] Create an error dialog box",
@@ -28,7 +28,7 @@ const ErrorCommand = createCommand({
         const canvas = Canvas.createCanvas(380, 208);
         const ctx = canvas.getContext("2d");
 
-        const background = await Canvas.loadImage(`${CDNUrl}/memes/windows.png`);
+        const background = await Canvas.loadImage(`${serverURL}/memes/windows.png`);
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 
