@@ -62,14 +62,14 @@
     },
     "server": {
         "info": {
-            "title": "Informações de {{server}}",
+            "title": "معلومات من {{server}}",
             "fields": {
-                "owner": "Dono(a) do servidor",
-                "members": "Membros",
-                "channels": "Canais",
-                "roles": "Cargos",
-                "emojis": "Emojis",
-                "boosts": "Impulsos",
+                "owner": "مالك الخادم",
+                "members": "أعضاء",
+                "channels": "القنوات",
+                "roles": "المواقف",
+                "emojis": "العواطف",
+                "boosts": "نبضات",
                 "text_channels": "Canais de texto",
                 "voice_channels": "Canais de voz",
                 "joinedAt": "Entrei em",
@@ -206,7 +206,7 @@
     },
     "aboutme": {
         "set": "تم تغيير لك فوقي إلى `{{aboutme}}`",
-        "tooLong": "حد الأحرف هو ١٧٧ وتكتب {{length}} ، اكتب شيئًا أصغر"
+        "tooLong": "حد الأحرف هو 177 وتكتب {{length}} ، اكتب شيئًا أصغر"
     },
     "layouts": {
         "default": "معيار",
