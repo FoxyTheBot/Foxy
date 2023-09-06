@@ -439,7 +439,8 @@
     },
     "lick": {
         "success": "**{{author}}** licks **{{user}}**",
-        "bot": "Don't even try to lick me! I do not like this!"
+        "bot": "Don't even try to lick me! I do not like this!",
+        "button": "Lamber de volta"
     },
     "laugh": {
         "success": "{{author}} is laughing..."
