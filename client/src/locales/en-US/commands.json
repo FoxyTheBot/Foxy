@@ -440,7 +440,7 @@
     "lick": {
         "success": "**{{author}}** licks **{{user}}**",
         "bot": "Don't even try to lick me! I do not like this!",
-        "button": "Lamber de volta"
+        "button": "Lick back"
     },
     "laugh": {
         "success": "{{author}} is laughing..."
