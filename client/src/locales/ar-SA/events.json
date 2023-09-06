@@ -6,7 +6,7 @@
         "date": "تاريخ الحظر:"
     },
     "messageCreate": {
-        "mentionMessage": "Olá {{author}}! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!"
+        "mentionMessage": "مرحبًا {{author}}! اسمي {{botUsername}}، أستخدم / الأوامر فقط، استخدم `/help` للمساعدة!"
     },
     "interactionCreate": {
         "commandError": "لسوء الحظ ، حدث خطأ ولم أتمكن من تنفيذ هذا الأمر ، آس ، ولكن تم فعلًا الإبلاغ عن الخطأ لمطورتي"

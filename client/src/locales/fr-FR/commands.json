@@ -439,7 +439,8 @@
     },
     "lick": {
         "success": "**{{author}}** léché **{{user}}**",
-        "bot": "Nem tente me lamber! Eu não gosto disso!"
+        "bot": "Nem tente me lamber! Eu não gosto disso!",
+        "button": "Lamber de volta"
     },
     "laugh": {
         "success": "{{author}} a ri..."
