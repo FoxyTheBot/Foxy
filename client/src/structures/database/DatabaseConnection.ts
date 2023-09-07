@@ -40,7 +40,16 @@ export default class DatabaseConnection {
             language: String,
             mask: String,
             masks: Array,
-            layout: String
+            layout: String,
+            transactions: [{
+                to: String,
+                from: String,
+                quantity: Number,
+                date: Date,
+                received: Boolean,
+                isFromDaily: Boolean,
+                addedByAdmin: Boolean,
+            }]
         }, { versionKey: false, id: false });
 
         const commandsSchema = new mongoose.Schema({
