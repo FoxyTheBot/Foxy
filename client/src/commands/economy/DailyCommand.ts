@@ -30,6 +30,15 @@ const DailyCommand = createCommand({
 
             userData.balance += amount;
             userData.lastDaily = Date.now();
+            userData.transactions.push({
+                to: context.author.id,
+                from: null,
+                quantity: amount,
+                date: Date.now(),
+                received: true,
+                isFromDaily: true,
+                addedByAdmin: false,
+            });
             userData.save().catch(err => console.log(err));
 
             const money = await userData.balance;

@@ -10,6 +10,24 @@ const CakeTransferExecutor = async (context: ComponentInteractionContext) => {
     const authorData = await bot.database.getUser(context.author.id);
     userData.balance += Number(value);
     authorData.balance -= Number(value);
+    authorData.transactions.push({
+        to: user,
+        from: context.author.id,
+        quantity: Number(value),
+        date: Date.now(),
+        received: false,
+        isFromDaily: false,
+        addedByAdmin: false,
+    }) && userData.transactions.push({
+        to: user,
+        from: context.author.id,
+        quantity: Number(value),
+        date: Date.now(),
+        received: true,
+        isFromDaily: false,
+        addedByAdmin: false,
+    });
+
     await userData.save();
     authorData.save();
 

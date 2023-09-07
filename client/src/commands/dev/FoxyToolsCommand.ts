@@ -194,6 +194,15 @@ const FoxyToolsCommand = createCommand({
                 }
 
                 userData.balance += Number(quantity);
+                userData.transactions.push({
+                    to: user.id,
+                    from: context.author.id,
+                    quantity: Number(quantity),
+                    date: Date.now(),
+                    received: true,
+                    isFromDaily: false,
+                    addedByAdmin: true,
+                });
                 userData.save();
                 context.sendReply({ content: `Prontinho! Foi adicionado ${quantity} cakes para ${await bot.foxyRest.getUserDisplayName(user.id)}` })
                 endCommand();

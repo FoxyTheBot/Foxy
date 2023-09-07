@@ -478,6 +478,14 @@
         "attack": "**{{user}}** atacou **{{target}}**",
         "button": "Atacar"
     },
+    "transactions": {
+        "receivedCakes": "`{{date}}` 💵 Recebeu **{{amount}}** Cakes de `{{user}}`",
+        "sentCakes": "`{{date}}` 💸 Enviou **{{amount}}** Cakes para `{{user}}`",
+        "addedByAdmin": "`{{date}}` 💵 Recebeu {{amount}} Cakes da Foxy por ser uma pessoa incrível",
+        "noTransactions": "💸 Nenhuma transação encontrada",
+        "dailyTransaction": "`{{date}}` 💰 Recebeu **{{amount}}** Cakes no daily",
+        "title": "Transações de {{user}}"
+    },
     "bet": {
         "self": "Você não pode apostar consigo mesmo!",
         "not-enough": "Você não tem Cakes suficientes",
