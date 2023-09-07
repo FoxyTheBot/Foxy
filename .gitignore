@@ -14,7 +14,7 @@ config.json
 build
 
 ## Assets
-/assets
+assets/
 
 ## yarn
 yarn.lock
