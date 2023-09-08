@@ -81,7 +81,7 @@ const TransactionsCommand = createCommand({
                 url: "https://cdn.discordapp.com/attachments/774846266928136212/1149500383236993144/foxy_daily.png"
             },
             footer: {
-                text: t('commands:transactions.footer', { total: userData.transactions.length})
+                text: t('commands:transactions.footer', { total: userData.transactions.length.toString() })
             }
         });
 

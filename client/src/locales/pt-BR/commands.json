@@ -485,7 +485,8 @@
         "noTransactions": "Vazio, vazio, vazio... Você não possui nenhuma transação",
         "dailyTransaction": "`{{date}}` 💰 Recebeu **{{amount}}** Cakes no daily",
         "store": "`{{date}}` 💸 Gastou **{{amount}}** Cakes na Lojinha da Foxy",
-        "title": "Transações de {{user}}"
+        "title": "Transações de {{user}}",
+        "footer": "{{total}} Transações no total"
     },
     "bet": {
         "self": "Você não pode apostar consigo mesmo!",
