@@ -482,7 +482,7 @@
         "receivedCakes": "`{{date}}` 💵 Recebeu **{{amount}}** Cakes de `{{user}}`",
         "sentCakes": "`{{date}}` 💸 Enviou **{{amount}}** Cakes para `{{user}}`",
         "addedByAdmin": "`{{date}}` 💵 Recebeu {{amount}} Cakes da Foxy por ser uma pessoa incrível",
-        "noTransactions": "💸 Nenhuma transação encontrada",
+        "noTransactions": "Vazio, vazio, vazio... Você não possui nenhuma transação",
         "dailyTransaction": "`{{date}}` 💰 Recebeu **{{amount}}** Cakes no daily",
         "store": "`{{date}}` 💸 Gastou **{{amount}}** Cakes na Lojinha da Foxy",
         "title": "Transações de {{user}}"
