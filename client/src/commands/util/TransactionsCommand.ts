@@ -41,34 +41,37 @@ const TransactionsCommand = createCommand({
         }
         var transactionsTexts = [];
 
+        userData.transactions.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        userData.transactions.reverse();
+        
         for (const transaction of userData.transactions) {
             switch (transaction.type) {
                 case 'daily': {
-                    transactionsTexts.push(t('commands:transactions.dailyTransaction', { date: new Date(transaction.date).toLocaleDateString('pt-BR'), amount: transaction.quantity.toString() }))
+                    transactionsTexts.push(t('commands:transactions.dailyTransaction', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
                     break;
                 }
                 case 'addByAdmin': {
-                    transactionsTexts.push(t('commands:transactions.addedByAdmin', { date: new Date(transaction.date).toLocaleDateString('pt-BR'), amount: transaction.quantity.toString() }))
+                    transactionsTexts.push(t('commands:transactions.addedByAdmin', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
                     break;
                 }
-
+        
                 case 'send': {
-                    transactionsTexts.push(t('commands:transactions.sentCakes', { date: new Date(transaction.date).toLocaleDateString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser(transaction.to)).username}` }))
+                    transactionsTexts.push(t('commands:transactions.sentCakes', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser(transaction.to)).username}` }))
                     break;
                 }
-
+        
                 case 'receive': {
-                    transactionsTexts.push(t('commands:transactions.receivedCakes', { date: new Date(transaction.date).toLocaleDateString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser(transaction.from)).username}` }))
+                    transactionsTexts.push(t('commands:transactions.receivedCakes', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser(transaction.from)).username}` }))
                     break;
                 }
-
+        
                 case 'store': {
-                    transactionsTexts.push(t('commands:transactions.store', { date: new Date(transaction.date).toLocaleDateString('pt-BR'), amount: transaction.quantity.toString() }))
+                    transactionsTexts.push(t('commands:transactions.store', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
                     break;
                 }
             }
         }
-
+        
         const pageRow = createActionRow([createButton({
             label: t('commands:transactions.page', { page: '1' }),
             style: ButtonStyles.Primary,
@@ -87,13 +90,6 @@ const TransactionsCommand = createCommand({
             description: transactions.join('\n'),
         });
 
-        if (transactionsTexts.length > 10) {
-            return context.sendReply({
-                embeds: [embed],
-                components: [pageRow]
-            });
-        }
-        
         return context.sendReply({
             embeds: [embed],
         });
