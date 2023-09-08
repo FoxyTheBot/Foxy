@@ -43,7 +43,7 @@ const TransactionsCommand = createCommand({
 
         userData.transactions.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
         userData.transactions.reverse();
-        
+
         for (const transaction of userData.transactions) {
             switch (transaction.type) {
                 case 'daily': {
@@ -83,7 +83,7 @@ const TransactionsCommand = createCommand({
         })
         ]);
 
-        const transactions = transactionsTexts.reverse().slice(0, 10);
+        const transactions = transactionsTexts.reverse().slice(0, 20);
         const embed = createEmbed({
             title: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:transactions.title', { user: `@${user.username}` })),
             color: 0xfd446e,
