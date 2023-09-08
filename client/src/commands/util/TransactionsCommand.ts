@@ -35,7 +35,7 @@ const TransactionsCommand = createCommand({
         context.sendDefer();
         if (!await userData.transactions.length) {
             return context.sendReply({
-                content: t('commands:transactions.noTransactions'),
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:transactions.noTransactions')),
                 flags: MessageFlags.EPHEMERAL
             }) && endCommand();
         }
@@ -77,6 +77,12 @@ const TransactionsCommand = createCommand({
             title: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:transactions.title', { user: `@${user.username}` })),
             color: 0xfd446e,
             description: transactions.join('\n'),
+            image: {
+                url: "https://cdn.discordapp.com/attachments/774846266928136212/1149500383236993144/foxy_daily.png"
+            },
+            footer: {
+                text: t('commands:transactions.footer', { total: userData.transactions.length})
+            }
         });
 
         return context.sendReply({
