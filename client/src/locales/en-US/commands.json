@@ -479,15 +479,15 @@
         "button": "Attack"
     },
     "transactions": {
-        "receivedCakes": "`{{date}}` 💵 Recebeu **{{amount}}** Cakes de `{{user}}`",
-        "sentCakes": "`{{date}}` 💸 Enviou **{{amount}}** Cakes para `{{user}}`",
-        "addedByAdmin": "`{{date}}` 💵 Recebeu {{amount}} Cakes da Foxy por ser uma pessoa incrível",
-        "noTransactions": "Vazio, vazio, vazio... Você não possui nenhuma transação",
-        "dailyTransaction": "`{{date}}` 💰 Recebeu **{{amount}}** Cakes no daily",
-        "store": "`{{date}}` 💸 Gastou **{{amount}}** Cakes na Lojinha da Foxy",
-        "title": "Transações de {{user}}",
-        "footer": "{{total}} Transações no total",
-        "userHasNoTransactions": "Vazio, vazio, vazio... {{user}} não possui nenhuma transação"
+        "receivedCakes": "`{{date}}` 💵 Received **{{amount}}** cakes from `{{user}}`",
+        "sentCakes": "`{{date}}` 💵 Sent **{{amount}}** cakes to `{{user}}`",
+        "addedByAdmin": "`{{date}}` 💵 Received {{amount}} Cakes from Foxy for being an amazing person :3",
+        "noTransactions": "Empty, empty, empty... You don't have any transaction yet",
+        "dailyTransaction": "`{{date}}` 💰 Received **{{amount}}** cakes from daily",
+        "store": "`{{date}}` 💸 Spent **{{amount}}** Cakes at the Foxy's Store",
+        "title": "{{user}}'s transactions",
+        "footer": "{{total}} Transactions",
+        "userHasNoTransactions": "Empty, empty, empty... {{user}} don't have any transaction yet"
     },
     "bet": {
         "self": "You can't bet yourself",
