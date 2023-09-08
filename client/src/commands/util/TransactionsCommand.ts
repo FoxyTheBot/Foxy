@@ -71,17 +71,6 @@ const TransactionsCommand = createCommand({
                 }
             }
         }
-        
-        const pageRow = createActionRow([createButton({
-            label: t('commands:transactions.page', { page: '1' }),
-            style: ButtonStyles.Primary,
-            customId: createCustomId(0, context.author.id, context.commandId, 'previous', transactionsTexts)
-        }), createButton({
-            label: t('commands:transactions.page', { page: '2' }),
-            style: ButtonStyles.Primary,
-            customId: createCustomId(0, context.author.id, context.commandId, 'next', transactionsTexts)
-        })
-        ]);
 
         const transactions = transactionsTexts.reverse().slice(0, 20);
         const embed = createEmbed({
