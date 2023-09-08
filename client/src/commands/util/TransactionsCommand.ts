@@ -32,7 +32,7 @@ const TransactionsCommand = createCommand({
     async execute(context, endCommand, t) {
         const user = context.getOption<User>('user', 'users') ?? context.author;
         const userData = await bot.database.getUser(user.id);
-
+        context.sendDefer();
         if (!await userData.transactions.length) {
             return context.sendReply({
                 content: t('commands:transactions.noTransactions'),
@@ -42,16 +42,43 @@ const TransactionsCommand = createCommand({
         var transactionsTexts = [];
 
         for (const transaction of userData.transactions) {
-            if (transaction.isFromDaily) {
-                transactionsTexts.push(t('commands:transactions.dailyTransaction', { date: new Date(transaction.date).toLocaleDateString('pt-BR'), amount: transaction.quantity.toString() }))
-            } else if (transaction.addedByAdmin) {
-                transactionsTexts.push(t('commands:transactions.addedByAdmin', { date: new Date(transaction.date).toLocaleDateString('pt-BR'), amount: transaction.quantity.toString() }))
-            } else if (transaction.received) {
-                transactionsTexts.push(t('commands:transactions.receivedCakes', { date: new Date(transaction.date).toLocaleDateString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser(transaction.from)).username}` }))
-            } else {
-                transactionsTexts.push(t('commands:transactions.sentCakes', { date: new Date(transaction.date).toLocaleDateString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser(transaction.to)).username}` }))
+            switch (transaction.type) {
+                case 'daily': {
+                    transactionsTexts.push(t('commands:transactions.dailyTransaction', { date: new Date(transaction.date).toLocaleDateString('pt-BR'), amount: transaction.quantity.toString() }))
+                    break;
+                }
+                case 'addByAdmin': {
+                    transactionsTexts.push(t('commands:transactions.addedByAdmin', { date: new Date(transaction.date).toLocaleDateString('pt-BR'), amount: transaction.quantity.toString() }))
+                    break;
+                }
+
+                case 'send': {
+                    transactionsTexts.push(t('commands:transactions.sentCakes', { date: new Date(transaction.date).toLocaleDateString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser(transaction.to)).username}` }))
+                    break;
+                }
+
+                case 'receive': {
+                    transactionsTexts.push(t('commands:transactions.receivedCakes', { date: new Date(transaction.date).toLocaleDateString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser(transaction.from)).username}` }))
+                    break;
+                }
+
+                case 'store': {
+                    transactionsTexts.push(t('commands:transactions.store', { date: new Date(transaction.date).toLocaleDateString('pt-BR'), amount: transaction.quantity.toString() }))
+                    break;
+                }
             }
         }
+
+        const pageRow = createActionRow([createButton({
+            label: t('commands:transactions.page', { page: '1' }),
+            style: ButtonStyles.Primary,
+            customId: createCustomId(0, context.author.id, context.commandId, 'previous', transactionsTexts)
+        }), createButton({
+            label: t('commands:transactions.page', { page: '2' }),
+            style: ButtonStyles.Primary,
+            customId: createCustomId(0, context.author.id, context.commandId, 'next', transactionsTexts)
+        })
+        ]);
 
         const transactions = transactionsTexts.reverse().slice(0, 10);
         const embed = createEmbed({
@@ -60,6 +87,13 @@ const TransactionsCommand = createCommand({
             description: transactions.join('\n'),
         });
 
+        if (transactionsTexts.length > 10) {
+            return context.sendReply({
+                embeds: [embed],
+                components: [pageRow]
+            });
+        }
+        
         return context.sendReply({
             embeds: [embed],
         });

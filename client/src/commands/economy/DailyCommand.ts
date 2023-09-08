@@ -36,8 +36,7 @@ const DailyCommand = createCommand({
                 quantity: amount,
                 date: Date.now(),
                 received: true,
-                isFromDaily: true,
-                addedByAdmin: false,
+                type: 'daily'
             });
             userData.save().catch(err => console.log(err));
 

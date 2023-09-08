@@ -18,6 +18,14 @@ export default class DatabaseConnection {
             logger.error(`Failed to connect to database: `, error);
         });
         logger.info(`[DATABASE] Connected to database!`);
+        const trasactionSchema = new mongoose.Schema({
+            to: String,
+            from: String,
+            quantity: Number,
+            date: Date,
+            received: Boolean,
+            type: String,
+        });
         const userSchema = new mongoose.Schema({
             _id: String,
             userCreationTimestamp: Date,
@@ -41,15 +49,7 @@ export default class DatabaseConnection {
             mask: String,
             masks: Array,
             layout: String,
-            transactions: [{
-                to: String,
-                from: String,
-                quantity: Number,
-                date: Date,
-                received: Boolean,
-                isFromDaily: Boolean,
-                addedByAdmin: Boolean,
-            }]
+            transactions: [trasactionSchema]
         }, { versionKey: false, id: false });
 
         const commandsSchema = new mongoose.Schema({
@@ -116,7 +116,8 @@ export default class DatabaseConnection {
                 language: 'pt-BR',
                 mask: null,
                 masks: [],
-                layout: "default"
+                layout: "default",
+                transactions: [],
             }).save();
         }
 

@@ -484,6 +484,7 @@
         "addedByAdmin": "`{{date}}` 💵 Recebeu {{amount}} Cakes da Foxy por ser uma pessoa incrível",
         "noTransactions": "💸 Nenhuma transação encontrada",
         "dailyTransaction": "`{{date}}` 💰 Recebeu **{{amount}}** Cakes no daily",
+        "store": "`{{date}}` 💸 Gastou **{{amount}}** Cakes na Lojinha da Foxy",
         "title": "Transações de {{user}}"
     },
     "bet": {

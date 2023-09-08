@@ -23,6 +23,14 @@ const MaskBuyExecutor = async (context: ComponentInteractionContext) => {
         clientData.balance += Number(mask);
         userData.mask = code;
         userData.masks.push(code);
+        userData.transactions.push({
+            to: bot.id,
+            from: context.author.id,
+            quantity: Number(mask),
+            date: Date.now(),
+            received: false,
+            type: 'store'
+        });
         await userData.save();
         context.sendReply({
             content: bot.locale('commands:masks.buy.success'),

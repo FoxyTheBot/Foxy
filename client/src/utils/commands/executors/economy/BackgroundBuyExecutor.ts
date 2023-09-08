@@ -51,6 +51,14 @@ const BackgroundExecutor = async (context: ComponentInteractionContext) => {
         clientData.balance += Number(background);
         userData.backgrounds.push(code);
         userData.background = code;
+        userData.transactions.push({
+            to: bot.id,
+            from: context.author.id,
+            quantity: Number(background),
+            date: Date.now(),
+            received: false,
+            type: 'store'
+        });
         await userData.save();
         await clientData.save();
 

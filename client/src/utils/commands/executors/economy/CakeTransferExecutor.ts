@@ -16,16 +16,14 @@ const CakeTransferExecutor = async (context: ComponentInteractionContext) => {
         quantity: Number(value),
         date: Date.now(),
         received: false,
-        isFromDaily: false,
-        addedByAdmin: false,
+        type: 'send'
     }) && userData.transactions.push({
         to: user,
         from: context.author.id,
         quantity: Number(value),
         date: Date.now(),
         received: true,
-        isFromDaily: false,
-        addedByAdmin: false,
+        type: 'receive'
     });
 
     await userData.save();
