@@ -200,8 +200,7 @@ const FoxyToolsCommand = createCommand({
                     quantity: Number(quantity),
                     date: Date.now(),
                     received: true,
-                    isFromDaily: false,
-                    addedByAdmin: true,
+                    type: "addByAdmin"
                 });
                 userData.save();
                 context.sendReply({ content: `Prontinho! Foi adicionado ${quantity} cakes para ${await bot.foxyRest.getUserDisplayName(user.id)}` })
