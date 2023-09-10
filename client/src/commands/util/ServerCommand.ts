@@ -149,7 +149,7 @@ const ServerCommand = createCommand({
                 const embed = createEmbed({
                     title: t('commands:server.info.title', { server: guildInfo.name }),
                     fields: [{
-                        name: "ID",
+                        name: context.getEmojiById(bot.emotes.FOXY_ID) + " " + "ID",
                         value: `\`${guildInfo.id.toString()}\``,
                         inline: true
                     },
