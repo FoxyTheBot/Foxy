@@ -154,42 +154,42 @@ const ServerCommand = createCommand({
                         inline: true
                     },
                     {
-                        name: t('commands:server.info.fields.owner'),
+                        name: "👑 " + t('commands:server.info.fields.owner'),
                         value: `\`${await bot.foxyRest.getUserDisplayName(guildInfo.ownerId)} (@${(await bot.helpers.getUser(guildInfo.ownerId)).username}) / ${guildInfo.ownerId}\``,
                         inline: true
                     },
                     {
-                        name: t('commands:server.info.fields.members'),
+                        name: context.getEmojiById(bot.emotes.FOXY_BREAD) + " " + t('commands:server.info.fields.members'),
                         value: t('commands:server.info.fields.members_suffix', { members: (await bot.helpers.getMembers(guildInfo.id, { limit: 1000 })).size.toString() }),
                         inline: true
                     },
                     {
-                        name: t('commands:server.info.fields.channels'),
+                        name: context.getEmojiById(bot.emotes.FOXY_PLUSHIE) + " " + t('commands:server.info.fields.channels'),
                         value: t('commands:server.info.fields.channels_suffix', { channels: channels.size.toString() }),
                         inline: true
                     },
                     {
-                        name: t('commands:server.info.fields.text_channels'),
+                        name: context.getEmojiById(bot.emotes.FOXY_CUPCAKE) + " " + t('commands:server.info.fields.text_channels'),
                         value: textChannelString,
                         inline: true
                     },
                     {
-                        name: t('commands:server.info.fields.voice_channels'),
+                        name: context.getEmojiById(bot.emotes.SHIRO_FOXY) + " " + t('commands:server.info.fields.voice_channels'),
                         value: voiceChannelString,
                         inline: true
                     },
                     {
-                        name: t('commands:server.info.fields.roles'),
+                        name: context.getEmojiById(bot.emotes.FOXY_SUNGLASSES) + " " + t('commands:server.info.fields.roles'),
                         value: rolesString,
                         inline: true
                     },
                     {
-                        name: t('commands:server.info.fields.emojis'),
+                        name: context.getEmojiById(bot.emotes.FOXY_NICE) + " " + t('commands:server.info.fields.emojis'),
                         value: emojiString,
                         inline: true
                     },
                     {
-                        name: t('commands:server.info.fields.boosts'),
+                        name: context.getEmojiById(bot.emotes.SERVER_BOOSTER) + " " + t('commands:server.info.fields.boosts'),
                         value: boostString,
                         inline: true
                     }],
