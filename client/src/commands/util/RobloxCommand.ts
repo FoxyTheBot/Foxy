@@ -40,6 +40,7 @@ const RobloxCommand = createCommand({
                     "pt-BR": "O nome de usuário da conta Roblox"
                 },
                 type: ApplicationCommandOptionTypes.String,
+                required: true
             }]
         }]
     }],
