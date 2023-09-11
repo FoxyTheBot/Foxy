@@ -478,6 +478,17 @@
         "attack": "**{{user}}** атакован **{{target}}**",
         "button": "Атака"
     },
+    "transactions": {
+        "receivedCakes": "`{{date}}` 💵 Recebeu **{{amount}}** Cakes de `{{user}}`",
+        "sentCakes": "`{{date}}` 💸 Enviou **{{amount}}** Cakes para `{{user}}`",
+        "addedByAdmin": "`{{date}}` 💵 Recebeu {{amount}} Cakes da Foxy por ser uma pessoa incrível",
+        "noTransactions": "Vazio, vazio, vazio... Você não possui nenhuma transação",
+        "dailyTransaction": "`{{date}}` 💰 Recebeu **{{amount}}** Cakes no daily",
+        "store": "`{{date}}` 💸 Gastou **{{amount}}** Cakes na Lojinha da Foxy",
+        "title": "Transações de {{user}}",
+        "footer": "{{total}} Transações no total",
+        "userHasNoTransactions": "Vazio, vazio, vazio... {{user}} não possui nenhuma transação"
+    },
     "bet": {
         "self": "Вы не можете сделать ставку на себя!",
         "not-enough": "У тебя недостаточно тортов",

@@ -478,6 +478,17 @@
         "attack": "**{{user}}** attacked **{{target}}**",
         "button": "Attack"
     },
+    "transactions": {
+        "receivedCakes": "`{{date}}` 💵 Received **{{amount}}** cakes from `{{user}}`",
+        "sentCakes": "`{{date}}` 💵 Sent **{{amount}}** cakes to `{{user}}`",
+        "addedByAdmin": "`{{date}}` 💵 Received {{amount}} Cakes from Foxy for being an amazing person :3",
+        "noTransactions": "Empty, empty, empty... You don't have any transaction yet",
+        "dailyTransaction": "`{{date}}` 💰 Received **{{amount}}** cakes from daily",
+        "store": "`{{date}}` 💸 Spent **{{amount}}** Cakes at the Foxy's Store",
+        "title": "{{user}}'s transactions",
+        "footer": "{{total}} Transactions",
+        "userHasNoTransactions": "Empty, empty, empty... {{user}} don't have any transaction yet"
+    },
     "bet": {
         "self": "You can't bet yourself",
         "not-enough": "You don't have enough Cakes",
