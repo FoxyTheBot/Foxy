@@ -15,10 +15,12 @@ const maskList = masks.map(data => Object({ name: data.name, nameLocalizations: 
 
 for (var i = 0; i < bglist.length; i++) {
     if (bglist[i].cakes === 0) continue;
-    choices.push({
-        name: `💖 ${bglist[i].name} - ${bglist[i].cakes} Cakes`,
-        value: bglist[i].id
-    })
+    if (!bglist[i].inactive) {
+        choices.push({
+            name: `💖 ${bglist[i].name} - ${bglist[i].cakes} Cakes`,
+            value: bglist[i].id
+        })
+    }
 }
 
 
