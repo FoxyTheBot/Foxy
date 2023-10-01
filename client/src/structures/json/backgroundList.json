@@ -121,22 +121,6 @@
             "author": null
         },
         {
-            "id": "winxp",
-            "name": "Windows XP",
-            "cakes": 10000,
-            "filename": "windows_xp.png",
-            "description": "Madobe Saseko was here!",
-            "author": null
-        },
-        {
-            "id": "win7",
-            "name": "Windows 7",
-            "cakes": 11000,
-            "filename": "windows_seven.png",
-            "description": "Madobe Nanami was here!",
-            "author": null
-        },
-        {
             "id": "win10",
             "name": "Windows 10 Legacy",
             "cakes": 12000,
@@ -177,6 +161,14 @@
             "author": null
         },
         {
+            "id": "yoru",
+            "name": "Yoru",
+            "cakes": 10000,
+            "filename": "yoru.png",
+            "description": "I'll fight anybody. I'll fight everybody.",
+            "author": null
+        },
+        {
             "id": "klee",
             "name": "Klee yay",
             "cakes": 30000,
@@ -190,6 +182,14 @@
             "cakes": 10000,
             "filename": "springtrap.png",
             "description": "It's been so long, since I last have seen my son lost to this monster, to the **Man Behind The Slaughter**",
+            "author": null
+        },
+        {
+            "id": "valorant",
+            "name": "Valorant",
+            "cakes": 10000,
+            "filename": "valorant.png",
+            "description": "Valorant's main screen",
             "author": null
         },
         {
