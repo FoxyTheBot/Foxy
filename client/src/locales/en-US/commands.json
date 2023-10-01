@@ -134,12 +134,12 @@
         "noMasks": "You don't have any masks",
         "selectMask": "Select a mask",
         "list": {
-            "ears": "Orelhas de gato",
-            "horns": "Chifrinhos",
-            "halo": "Aréola",
-            "cowboy": "Chapéu de vaqueiro",
-            "topper": "Cartola",
-            "yoru-mask": "Ultimate do Yoru"
+            "ears": "Cat ears",
+            "horns": "Horns",
+            "halo": "Halo",
+            "cowboy": "Cowboy's hat",
+            "topper": "Topper",
+            "yoru-mask": "Yoru's Ultimate"
         },
         "buy": {
             "success": "You have purchased the profile mask!",
@@ -149,7 +149,7 @@
             "purchased": "Purchased"
         },
         "set": {
-            "success": "Sua máscara foi alterada com sucesso!",
+            "success": "Your mask has been changed!",
             "notOwned": "You don't have this mask",
             "invalid": "Invalid code"
         },
