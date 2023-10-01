@@ -133,6 +133,14 @@
         "preview": "Предварительный просмотр",
         "noMasks": "У тебя нет маски",
         "selectMask": "Выберите маску",
+        "list": {
+            "ears": "Orelhas de gato",
+            "horns": "Chifrinhos",
+            "halo": "Aréola",
+            "cowboy": "Chapéu de vaqueiro",
+            "topper": "Cartola",
+            "yoru-mask": "Ultimate do Yoru"
+        },
         "buy": {
             "success": "Вы купили маску для своего аватара!",
             "noMoney": "У вас не хватает тортов, чтобы получить эту маску",
@@ -141,8 +149,7 @@
             "purchased": "Comprado"
         },
         "set": {
-            "success": "Успешная изменившаяся маска: 3",
-            "changed": "Измененная маска: 3",
+            "success": "Sua máscara foi alterada com sucesso!",
             "notOwned": "У тебя нет этой маски",
             "invalid": "Неверный код"
         },
