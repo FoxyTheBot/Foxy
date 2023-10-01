@@ -81,6 +81,24 @@
             "author": "331243426941239297"
         },
         {
+            "id": "winxp",
+            "name": "Windows XP",
+            "cakes": 10000,
+            "filename": "windows_xp.png",
+            "description": "Madobe Saseko was here!",
+            "author": null,
+            "inactive": true
+        },
+        {
+            "id": "win7",
+            "name": "Windows 7",
+            "cakes": 11000,
+            "filename": "windows_seven.png",
+            "description": "Madobe Nanami was here!",
+            "author": null,
+            "inactive": true
+        },
+        {
             "id": "loritta",
             "name": "Foxy e Lori",
             "cakes": 10000,
