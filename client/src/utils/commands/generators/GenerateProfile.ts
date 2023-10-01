@@ -3,9 +3,9 @@ import { bot } from "../../../index";
 import moment from 'moment';
 import { getUserAvatar } from '../../discord/User';
 import { serverURL } from '../../../../config.json';
-import { lylist } from '../../../structures/json/layoutList.json';
+import { lylist, masks } from '../../../structures/json/layoutList.json';
 
-let font= "#ffffff";
+let font = "#ffffff";
 export default class CreateProfile {
     private user: any;
     private data: any;
@@ -43,7 +43,7 @@ export default class CreateProfile {
         const isLayoutWhite = lylist.find((l) => l.id === this.data.layout).darkText;
         let layout = await Canvas.loadImage(`${serverURL}/layouts/${this.data.layout}`);
         background = await Canvas.loadImage(`${serverURL}/backgrounds/${this.data.background}`);
-        
+
         if (this.testMode && !this.mask) {
             background = await Canvas.loadImage(`${serverURL}/backgrounds/${this.code}`);
             userAboutme = this.locale("commands:profile.testMode");
@@ -92,7 +92,13 @@ export default class CreateProfile {
 
         if (this.data.mask && !this.mask) {
             const mask = await Canvas.loadImage(`${serverURL}/masks/${this.data.mask}`);
-            context.drawImage(mask, canvas.width / 55.0, canvas.height / 1.69, 200, 200)
+            const allMasks = masks.find((m) => m.id === this.data.mask);
+
+            if (allMasks.type === "face-mask") {
+                context.drawImage(mask, canvas.width / 100.0, canvas.height / 1.45, 220, 210);
+            } else {
+                context.drawImage(mask, canvas.width / 55.0, canvas.height / 1.69, 200, 200)
+            }
         }
 
         if (this.testMode && this.mask) {
