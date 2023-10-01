@@ -48,7 +48,7 @@ const MaskCommand = createCommand({
                         components: [createActionRow([createSelectMenu({
                             customId: createCustomId(0, context.author.id, context.commandId, subCommand),
                             placeholder: t('commands:masks.selectMask'),
-                            options: userMasks.map(data => Object({ label: data, value: data }))
+                            options: userMasks.map(data => Object({ label: t(`commands:masks.list.${data}`), value: data }))
                         })])],
                         flags: MessageFlags.EPHEMERAL
                     });
