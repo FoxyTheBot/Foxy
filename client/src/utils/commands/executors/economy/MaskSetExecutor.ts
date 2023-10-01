@@ -19,7 +19,7 @@ const MaskSetExecutor = async (context: ComponentInteractionContext) => {
                         value: "nothing",
                     }
                 ],
-                placeholder: bot.locale('commands:masks.set.changed'),
+                placeholder: bot.locale(`commands:masks.list.${choice}`),
                 disabled: true,
             })])]
         });
