@@ -21,10 +21,12 @@
  <br>
 
 ## 💜 | Inviting Foxy to your server 
-Use the public instance without hosting stuff, If you're here to see or use the code, why don't you try Foxy's public version? It's recommended using the public instance
+If you want to test Foxy features or use Foxy you can add her by [clicking here](https://foxybot.win/add)
 
+## 👨‍💻 | Contributing
+If you want to contribute to Foxy, you can read the tutorial by [clicking here](https://github.com/FoxyTheBot/Foxy/blob/development/docs/CONTRIBUTING.md), if you want help you can contact us in our [support server](https://foxybot.win/discord) or in your email: support@foxybot.win (only for partnerships or questions about contributions)
 ## 💻 | Self-hosting
-If you want to self-host Foxy by yourself you can read the tutorial by [clicking here](https://github.com/FoxyTheBot/Foxy/blob/development/docs/SELF-HOSTING.md), We won't give support for people that are trying to self-host, so you should at least know how to troubleshoot issues, if you find.
+If you want to self-host Foxy by yourself you can read the tutorial by [clicking here](https://github.com/FoxyTheBot/Foxy/blob/development/docs/SELF-HOSTING.md), we won't give support for people that are trying to self-host, so you should at least know how to troubleshoot issues, if you find.
 
 ## 🤔 | Need help?
 - If you need help, you can enter in My Discord Server!
