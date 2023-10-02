@@ -9,9 +9,9 @@ Pursuant to the license, you may modify Foxy's source code, but you are required
 
 ### ⚠ | Requirements:
 
-- NodeJS v16.x or higher
+- NodeJS v17.x or higher (v18.x Recommended)
 - Git
-- npm
+- yarn
 
 <br>
 
@@ -47,10 +47,7 @@ yarn global add typescript
 <br>
 
 ## ✨ | Install all required dependencies
-Just type in the root folder
-```bash
-yarn
-```
+Just type `yarn` in the root folder
 
 ## 💻 | Compiling Foxy
 
@@ -63,11 +60,10 @@ yarn
 
 <p>Check the console to see if there are any errors... Well, we hope that there are none.</p>
 
-## 🤩 | starting Foxy
-- I recommend you to start two terminals one for client and another one for server
+## 🤩 | Starting Foxy
+- First of all you need to start two terminals one for client and another one for server
 
 - In the first terminal you start the Foxy Web Server (Not the website): `yarn run:server`
 - In the second terminal you start the Foxy Client: `yarn run:client`
 
-If you want to start all at once, just type:
-`yarn run:all` (Not recommended)
+⚠ **You can run only the client, but some commands may not work properly and result in errors**
