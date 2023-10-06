@@ -133,6 +133,14 @@
         "preview": "Preview",
         "noMasks": "You don't have any masks",
         "selectMask": "Select a mask",
+        "list": {
+            "ears": "Cat ears",
+            "horns": "Horns",
+            "halo": "Halo",
+            "cowboy": "Cowboy's hat",
+            "topper": "Topper",
+            "yoru-mask": "Yoru's Ultimate"
+        },
         "buy": {
             "success": "You have purchased the profile mask!",
             "noMoney": "You don't have enough Cakes",
@@ -141,8 +149,7 @@
             "purchased": "Purchased"
         },
         "set": {
-            "success": "Your mask has changed :3",
-            "changed": "Changed :3",
+            "success": "Your mask has been changed!",
             "notOwned": "You don't have this mask",
             "invalid": "Invalid code"
         },
