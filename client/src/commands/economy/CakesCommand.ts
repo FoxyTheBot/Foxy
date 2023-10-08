@@ -211,6 +211,16 @@ const CakeCommand = createCommand({
                             transactionsTexts.push(t('commands:transactions.store', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
                             break;
                         }
+
+                        case 'bought': {
+                            transactionsTexts.push(t('commands:transactions.bought', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
+                            break;
+                        }
+
+                        case 'premiumPerk': {
+                            transactionsTexts.push(t('commands:transactions.premiumPerk', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
+                            break;
+                        }
                     }
                 }
         
