@@ -133,6 +133,14 @@
         "preview": "Previsualización",
         "noMasks": "Tú no tienes uña o más máscaras",
         "selectMask": "Seleccione una máscara",
+        "list": {
+            "ears": "Orelhas de gato",
+            "horns": "Chifrinhos",
+            "halo": "Aréola",
+            "cowboy": "Chapéu de vaqueiro",
+            "topper": "Cartola",
+            "yoru-mask": "Ultimate do Yoru"
+        },
         "buy": {
             "success": "¡Tú compraste la máscara a tu avatar!",
             "noMoney": "Tú no tienes Cakes suficientes para adquirirse esta máscara",
@@ -141,8 +149,7 @@
             "purchased": "Comprado"
         },
         "set": {
-            "success": "Máscara cambiada con suceso :3",
-            "changed": "Máscara cambiada :3",
+            "success": "Sua máscara foi alterada com sucesso!",
             "notOwned": "Tú no posees esta máscara",
             "invalid": "Código inválido"
         },
