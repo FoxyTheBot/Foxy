@@ -63,20 +63,23 @@ const StoreCommand = createCommand({
             }]
         },
         {
-            name: "masks",
+            name: "avatar_decorations",
             nameLocalizations: {
-                "pt-BR": "máscaras"
+                "pt-BR": "decorações_de_avatar"
             },
-            description: "[Economy] Buy a mask for your profile avatar",
+            description: "[Economy] Buy a avatar decoration for your avatar",
             descriptionLocalizations: {
-                "pt-BR": "[Economia] Compre uma máscara para o avatar do seu perfil"
+                "pt-BR": "[Economia] Compre uma decoração de avatar para seu perfil"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [{
-                name: "mask",
-                description: "Select the mask you want to buy",
+                name: "avatar_decoration",
+                nameLocalizations: {
+                    "pt-BR": "decoração_de_avatar"
+                },
+                description: "Select the avatar decoration you want to buy",
                 descriptionLocalizations: {
-                    "pt-BR": "Selecione a máscara que deseja comprar"
+                    "pt-BR": "Selecione a decoração de avatar que deseja comprar"
                 },
                 type: ApplicationCommandOptionTypes.String,
                 required: true,
