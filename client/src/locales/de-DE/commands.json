@@ -131,8 +131,8 @@
         "topper": "Topper",
         "purchase": "Kaufen",
         "preview": "Vorschau",
-        "noMasks": "Sie haben keine Maske",
-        "selectMask": "Wählen Sie eine Maske aus",
+        "noMasks": "Você não possui nenhuma decoração de avatar",
+        "selectMask": "Selecione uma decoração de avatar",
         "list": {
             "ears": "Orelhas de gato",
             "horns": "Chifrinhos",
@@ -142,18 +142,18 @@
             "yoru-mask": "Ultimate do Yoru"
         },
         "buy": {
-            "success": "Sie haben die Maske für Ihren Avatar gekauft!",
-            "noMoney": "Sie haben nicht genug Kuchen, um diese Maske zu bekommen",
+            "success": "Você comprou a decoração para seu avatar!",
+            "noMoney": "Você não tem Cakes o suficiente para adquirir esta decoração de avatar",
             "preview": "Vorschau",
             "purchase": "Kaufen",
             "purchased": "Comprado"
         },
         "set": {
-            "success": "Sua máscara foi alterada com sucesso!",
-            "notOwned": "Sie haben diese Maske nicht",
+            "success": "Sua decoração de avatar foi alterada com sucesso!",
+            "notOwned": "Você não possui essa decoração de avatar",
             "invalid": "Ungültiger Code"
         },
-        "alreadyOwned": "Sie haben diese Maske bereits"
+        "alreadyOwned": "Você já possui essa decoração de avatar"
     },
     "kick": {
         "self": "Lassen Sie jemand anderes dies für Sie tun, es ist einfacher",
