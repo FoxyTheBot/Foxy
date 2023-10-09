@@ -334,7 +334,8 @@
     "daily": {
         "cooldown": "Você já pegou seus cakes hoje, espere **{{time}}**",
         "daily": "لقد فزت ** {{amount}} كعك ** الآن لديك {{money}} كعك",
-        "dailyAlert": "** لا تنسى** لا يمكنك تغيير الكعك لأشياء مثل المال ، نيترو ، محتوى NSFW ، إلخ! إذا قمت بذلك ، فسيتم منعك من استخدام Foxy بشكل دائم!"
+        "dailyAlert": "** لا تنسى** لا يمكنك تغيير الكعك لأشياء مثل المال ، نيترو ، محتوى NSFW ، إلخ! إذا قمت بذلك ، فسيتم منعك من استخدام Foxy بشكل دائم!",
+        "dailyPremium": "Você iria ganhar **{{old}}** Cakes, mas seu daily recebeu um impulso em **{{boost}}** graças ao premium! Você ganhou **{{amount}}** Cakes! Agora você possui **{{money}} Cakes**"
     },
     "AutoRole": {
         "addrole": {
