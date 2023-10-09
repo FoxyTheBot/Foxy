@@ -131,8 +131,8 @@
         "topper": "Топпер",
         "purchase": "Покупка",
         "preview": "Предварительный просмотр",
-        "noMasks": "У тебя нет маски",
-        "selectMask": "Выберите маску",
+        "noMasks": "Você não possui nenhuma decoração de avatar",
+        "selectMask": "Selecione uma decoração de avatar",
         "list": {
             "ears": "Orelhas de gato",
             "horns": "Chifrinhos",
@@ -142,18 +142,18 @@
             "yoru-mask": "Ultimate do Yoru"
         },
         "buy": {
-            "success": "Вы купили маску для своего аватара!",
-            "noMoney": "У вас не хватает тортов, чтобы получить эту маску",
+            "success": "Você comprou a decoração para seu avatar!",
+            "noMoney": "Você não tem Cakes o suficiente para adquirir esta decoração de avatar",
             "preview": "Предварительный просмотр",
             "purchase": "Покупка",
             "purchased": "Comprado"
         },
         "set": {
-            "success": "Sua máscara foi alterada com sucesso!",
-            "notOwned": "У тебя нет этой маски",
+            "success": "Sua decoração de avatar foi alterada com sucesso!",
+            "notOwned": "Você não possui essa decoração de avatar",
             "invalid": "Неверный код"
         },
-        "alreadyOwned": "У вас уже есть эта маска"
+        "alreadyOwned": "Você já possui essa decoração de avatar"
     },
     "kick": {
         "self": "Пусть кто -то еще сделает это за вас, это проще",
