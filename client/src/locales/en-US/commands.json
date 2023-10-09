@@ -131,8 +131,8 @@
         "topper": "Topper",
         "purchase": "Purchase",
         "preview": "Preview",
-        "noMasks": "You don't have any masks",
-        "selectMask": "Select a mask",
+        "noMasks": "Você não possui nenhuma decoração de avatar",
+        "selectMask": "Selecione uma decoração de avatar",
         "list": {
             "ears": "Cat ears",
             "horns": "Horns",
@@ -142,18 +142,18 @@
             "yoru-mask": "Yoru's Ultimate"
         },
         "buy": {
-            "success": "You have purchased the profile mask!",
-            "noMoney": "You don't have enough Cakes",
+            "success": "Você comprou a decoração para seu avatar!",
+            "noMoney": "Você não tem Cakes o suficiente para adquirir esta decoração de avatar",
             "preview": "Preview",
             "purchase": "Purchase",
             "purchased": "Purchased"
         },
         "set": {
-            "success": "Your mask has been changed!",
-            "notOwned": "You don't have this mask",
+            "success": "Sua decoração de avatar foi alterada com sucesso!",
+            "notOwned": "Você não possui essa decoração de avatar",
             "invalid": "Invalid code"
         },
-        "alreadyOwned": "You already have this mask"
+        "alreadyOwned": "Você já possui essa decoração de avatar"
     },
     "kick": {
         "self": "Another person can do this for you, ask the person to do this",
