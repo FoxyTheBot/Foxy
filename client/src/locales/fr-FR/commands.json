@@ -131,8 +131,8 @@
         "topper": "Sur matelas",
         "purchase": "Achat",
         "preview": "Aperçu",
-        "noMasks": "Vous n'avez pas de masque",
-        "selectMask": "Sélectionner un masque",
+        "noMasks": "Você não possui nenhuma decoração de avatar",
+        "selectMask": "Selecione uma decoração de avatar",
         "list": {
             "ears": "Orelhas de gato",
             "horns": "Chifrinhos",
@@ -142,18 +142,18 @@
             "yoru-mask": "Ultimate do Yoru"
         },
         "buy": {
-            "success": "Vous avez acheté le masque pour votre avatar !",
-            "noMoney": "Vous n'avez pas assez de Cakes pour acheter ce masque",
+            "success": "Você comprou a decoração para seu avatar!",
+            "noMoney": "Você não tem Cakes o suficiente para adquirir esta decoração de avatar",
             "preview": "Aperçu",
             "purchase": "Achat",
             "purchased": "Comprado"
         },
         "set": {
-            "success": "Sua máscara foi alterada com sucesso!",
-            "notOwned": "Vous ne possédez pas ce masque",
+            "success": "Sua decoração de avatar foi alterada com sucesso!",
+            "notOwned": "Você não possui essa decoração de avatar",
             "invalid": "Code invalide"
         },
-        "alreadyOwned": "Vous possédez déjà ce masque"
+        "alreadyOwned": "Você já possui essa decoração de avatar"
     },
     "kick": {
         "self": "Laisse quelqu'un d'autre le faire pour toi, c'est plus facile",
