@@ -70,7 +70,7 @@ const DailyCommand = createCommand({
             switch (await userData.premium) {
                 case true: {
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.dailyPremium', { amount: amount.toLocaleString(t.lng || 'pt-BR'), money: money.toLocaleString(t.lng || 'pt-BR'), oldmoney: oldquantity.toLocaleString(t.lng || 'pt-BR') })) + context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:daily.dailyAlert')),
+                        content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.dailyPremium', { amount: amount.toLocaleString(t.lng || 'pt-BR'), money: money.toLocaleString(t.lng || 'pt-BR'), old: oldquantity.toLocaleString(t.lng || 'pt-BR') })) + context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:daily.dailyAlert')),
                         flags: MessageFlags.EPHEMERAL
                     });
                     break;
