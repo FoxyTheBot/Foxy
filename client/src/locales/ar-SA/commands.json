@@ -131,8 +131,8 @@
         "topper": "توبر",
         "purchase": "شراء",
         "preview": "معاينة",
-        "noMasks": "ليس لديك قناع",
-        "selectMask": "حدد قناع",
+        "noMasks": "Você não possui nenhuma decoração de avatar",
+        "selectMask": "Selecione uma decoração de avatar",
         "list": {
             "ears": "Orelhas de gato",
             "horns": "Chifrinhos",
@@ -142,18 +142,18 @@
             "yoru-mask": "Ultimate do Yoru"
         },
         "buy": {
-            "success": "لقد اشتريت القناع لجسورك!",
-            "noMoney": "ليس لديك ما يكفي من الكعك للحصول على هذا القناع",
+            "success": "Você comprou a decoração para seu avatar!",
+            "noMoney": "Você não tem Cakes o suficiente para adquirir esta decoração de avatar",
             "preview": "معاينة",
             "purchase": "شراء",
             "purchased": "Comprado"
         },
         "set": {
-            "success": "Sua máscara foi alterada com sucesso!",
-            "notOwned": "ليس لديك هذا القناع",
+            "success": "Sua decoração de avatar foi alterada com sucesso!",
+            "notOwned": "Você não possui essa decoração de avatar",
             "invalid": "الرمز غير صحيح"
         },
-        "alreadyOwned": "لديك بالفعل هذا القناع"
+        "alreadyOwned": "Você já possui essa decoração de avatar"
     },
     "kick": {
         "self": "دع شخصًا آخر يفعل هذا من أجلك ، إنه أسهل",
