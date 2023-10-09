@@ -334,7 +334,8 @@
     "daily": {
         "cooldown": "You already got your daily, wait **{{time}}**",
         "daily": "You won **{{amount}} Cakes** and now has {{money}} Cakes\n",
-        "dailyAlert": "**Remember:** You can't do trading things like real money, NSFW content, Nitro in exchange for cakes! If you do this, you will be banned from Foxy permanently!"
+        "dailyAlert": "**Remember:** You can't do trading things like real money, NSFW content, Nitro in exchange for cakes! If you do this, you will be banned from Foxy permanently!",
+        "dailyPremium": "Você iria ganhar **{{old}}** Cakes, mas seu daily recebeu um impulso em **{{boost}}** graças ao premium! Você ganhou **{{amount}}** Cakes! Agora você possui **{{money}} Cakes**"
     },
     "AutoRole": {
         "addrole": {
