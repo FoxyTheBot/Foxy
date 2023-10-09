@@ -131,8 +131,8 @@
         "topper": "Cartola",
         "purchase": "Comprar",
         "preview": "Previsualización",
-        "noMasks": "Tú no tienes uña o más máscaras",
-        "selectMask": "Seleccione una máscara",
+        "noMasks": "Você não possui nenhuma decoração de avatar",
+        "selectMask": "Selecione uma decoração de avatar",
         "list": {
             "ears": "Orelhas de gato",
             "horns": "Chifrinhos",
@@ -142,18 +142,18 @@
             "yoru-mask": "Ultimate do Yoru"
         },
         "buy": {
-            "success": "¡Tú compraste la máscara a tu avatar!",
-            "noMoney": "Tú no tienes Cakes suficientes para adquirirse esta máscara",
+            "success": "Você comprou a decoração para seu avatar!",
+            "noMoney": "Você não tem Cakes o suficiente para adquirir esta decoração de avatar",
             "preview": "Previsualización",
             "purchase": "Comprar",
             "purchased": "Comprado"
         },
         "set": {
-            "success": "Sua máscara foi alterada com sucesso!",
-            "notOwned": "Tú no posees esta máscara",
+            "success": "Sua decoração de avatar foi alterada com sucesso!",
+            "notOwned": "Você não possui essa decoração de avatar",
             "invalid": "Código inválido"
         },
-        "alreadyOwned": "Tú posees esta máscara"
+        "alreadyOwned": "Você já possui essa decoração de avatar"
     },
     "kick": {
         "self": "Deja otra persona hacer eso a ti, es muy fácil",
