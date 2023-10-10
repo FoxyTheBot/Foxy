@@ -131,8 +131,8 @@
         "topper": "Topper",
         "purchase": "Purchase",
         "preview": "Preview",
-        "noMasks": "Você não possui nenhuma decoração de avatar",
-        "selectMask": "Selecione uma decoração de avatar",
+        "noMasks": "You don't have any avatar decoration",
+        "selectMask": "Select an avatar decoration",
         "list": {
             "ears": "Cat ears",
             "horns": "Horns",
@@ -142,18 +142,18 @@
             "yoru-mask": "Yoru's Ultimate"
         },
         "buy": {
-            "success": "Você comprou a decoração para seu avatar!",
-            "noMoney": "Você não tem Cakes o suficiente para adquirir esta decoração de avatar",
+            "success": "You have purchased the avatar decoration!",
+            "noMoney": "You don't have enough Cakes to acquire this avatar decoration",
             "preview": "Preview",
             "purchase": "Purchase",
             "purchased": "Purchased"
         },
         "set": {
-            "success": "Sua decoração de avatar foi alterada com sucesso!",
-            "notOwned": "Você não possui essa decoração de avatar",
+            "success": "Your avatar decoration has been changed!",
+            "notOwned": "You don't have this avatar decoration",
             "invalid": "Invalid code"
         },
-        "alreadyOwned": "Você já possui essa decoração de avatar"
+        "alreadyOwned": "You already have this avatar decoration"
     },
     "kick": {
         "self": "Another person can do this for you, ask the person to do this",
@@ -335,7 +335,7 @@
         "cooldown": "You already got your daily, wait **{{time}}**",
         "daily": "You won **{{amount}} Cakes** and now has {{money}} Cakes\n",
         "dailyAlert": "**Remember:** You can't do trading things like real money, NSFW content, Nitro in exchange for cakes! If you do this, you will be banned from Foxy permanently!",
-        "dailyPremium": "Você iria ganhar **{{old}}** Cakes, mas seu daily recebeu um impulso em **{{boost}}** graças ao premium! Você ganhou **{{amount}}** Cakes! Agora você possui **{{money}} Cakes**"
+        "dailyPremium": "You would earn **{{old}}** cakes, but your daily has been boosted in **{{boost}}** because you're premium! You earned **{{amount}}** cakes! Now you have **{{money}}** cakes"
     },
     "AutoRole": {
         "addrole": {
