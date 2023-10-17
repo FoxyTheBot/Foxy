@@ -18,9 +18,10 @@ export default class InviteBlockerModule {
             const context = new ChatInputMessageContext(message);
             const authorRoles = await message.member.roles.map(role => role ? role.toString().replace("n", "") : null);
 
-            var blockMessage: string = await guildInfo.InviteBlockerModule.blockMessage
+            var blockMessage: string = await guildInfo.InviteBlockerModule.blockMessage ?? `Você não pode enviar convites aqui!`;
+            blockMessage = blockMessage
                 .replace(/{user}/, `<@${message.authorId}>`)
-                .replace(/{channel}/, `<#${message.channelId}>`) ?? `Você não pode enviar convites aqui!`;
+                .replace(/{channel}/, `<#${message.channelId}>`);
 
             if (!inviteRegex.test(message.content)) return;
             if (authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role))) return;
