@@ -1,6 +1,6 @@
 {
     "ban": {
-        "title": "Você esta **banido(a)**",
+        "title": "Você está **banido(a)**",
         "description": "Se você quiser fazer um apelo de ban você pode fazer um apelo de ban \n\n Recomendo você ler os [termos de uso](https://foxybot.win/terms)",
         "reason": "Motivo do banimento:",
         "date": "Data do banimento:",
