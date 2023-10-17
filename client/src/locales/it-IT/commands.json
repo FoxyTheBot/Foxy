@@ -131,8 +131,8 @@
         "topper": "Topper",
         "purchase": "Acquistare",
         "preview": "Anteprima",
-        "noMasks": "Non hai maschera",
-        "selectMask": "Seleziona una maschera",
+        "noMasks": "Você não possui nenhuma decoração de avatar",
+        "selectMask": "Selecione uma decoração de avatar",
         "list": {
             "ears": "Orelhas de gato",
             "horns": "Chifrinhos",
@@ -142,18 +142,18 @@
             "yoru-mask": "Ultimate do Yoru"
         },
         "buy": {
-            "success": "Hai comprato la maschera per il tuo avatar!",
-            "noMoney": "Non hai abbastanza torte per ottenere questa maschera",
+            "success": "Você comprou a decoração para seu avatar!",
+            "noMoney": "Você não tem Cakes o suficiente para adquirir esta decoração de avatar",
             "preview": "Anteprima",
             "purchase": "Acquistare",
             "purchased": "Comprado"
         },
         "set": {
-            "success": "Sua máscara foi alterada com sucesso!",
-            "notOwned": "Non hai questa maschera",
+            "success": "Sua decoração de avatar foi alterada com sucesso!",
+            "notOwned": "Você não possui essa decoração de avatar",
             "invalid": "Codice non VALIDO"
         },
-        "alreadyOwned": "Hai già questa maschera"
+        "alreadyOwned": "Você já possui essa decoração de avatar"
     },
     "kick": {
         "self": "Lascia che qualcun altro lo faccia per te, è più facile",
@@ -334,7 +334,8 @@
     "daily": {
         "cooldown": "Você já pegou seus cakes hoje, espere **{{time}}**",
         "daily": "Hai vinto **{{amount}} torte** Ora hai {{money}} Cakes\n",
-        "dailyAlert": "** Non dimenticare: ** Non puoi cambiare torte per cose come denaro, nitro, contenuto NSFW, ecc.! Se lo fai, ti verrà vietato l'utilizzo di Foxy permanentemente!"
+        "dailyAlert": "** Non dimenticare: ** Non puoi cambiare torte per cose come denaro, nitro, contenuto NSFW, ecc.! Se lo fai, ti verrà vietato l'utilizzo di Foxy permanentemente!",
+        "dailyPremium": "Você iria ganhar **{{old}}** Cakes, mas seu daily recebeu um impulso em **{{boost}}** graças ao premium! Você ganhou **{{amount}}** Cakes! Agora você possui **{{money}} Cakes**"
     },
     "AutoRole": {
         "addrole": {

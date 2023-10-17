@@ -131,8 +131,8 @@
         "topper": "Topper",
         "purchase": "Purchase",
         "preview": "Preview",
-        "noMasks": "You don't have any masks",
-        "selectMask": "Select a mask",
+        "noMasks": "You don't have any avatar decoration",
+        "selectMask": "Select an avatar decoration",
         "list": {
             "ears": "Cat ears",
             "horns": "Horns",
@@ -142,18 +142,18 @@
             "yoru-mask": "Yoru's Ultimate"
         },
         "buy": {
-            "success": "You have purchased the profile mask!",
-            "noMoney": "You don't have enough Cakes",
+            "success": "You have purchased the avatar decoration!",
+            "noMoney": "You don't have enough Cakes to acquire this avatar decoration",
             "preview": "Preview",
             "purchase": "Purchase",
             "purchased": "Purchased"
         },
         "set": {
-            "success": "Your mask has been changed!",
-            "notOwned": "You don't have this mask",
+            "success": "Your avatar decoration has been changed!",
+            "notOwned": "You don't have this avatar decoration",
             "invalid": "Invalid code"
         },
-        "alreadyOwned": "You already have this mask"
+        "alreadyOwned": "You already have this avatar decoration"
     },
     "kick": {
         "self": "Another person can do this for you, ask the person to do this",
@@ -334,7 +334,8 @@
     "daily": {
         "cooldown": "You already got your daily, wait **{{time}}**",
         "daily": "You won **{{amount}} Cakes** and now has {{money}} Cakes\n",
-        "dailyAlert": "**Remember:** You can't do trading things like real money, NSFW content, Nitro in exchange for cakes! If you do this, you will be banned from Foxy permanently!"
+        "dailyAlert": "**Remember:** You can't do trading things like real money, NSFW content, Nitro in exchange for cakes! If you do this, you will be banned from Foxy permanently!",
+        "dailyPremium": "You would earn **{{old}}** cakes, but your daily has been boosted in **{{boost}}** because you're premium! You earned **{{amount}}** cakes! Now you have **{{money}}** cakes"
     },
     "AutoRole": {
         "addrole": {

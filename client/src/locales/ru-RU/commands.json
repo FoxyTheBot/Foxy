@@ -131,8 +131,8 @@
         "topper": "Топпер",
         "purchase": "Покупка",
         "preview": "Предварительный просмотр",
-        "noMasks": "У тебя нет маски",
-        "selectMask": "Выберите маску",
+        "noMasks": "Você não possui nenhuma decoração de avatar",
+        "selectMask": "Selecione uma decoração de avatar",
         "list": {
             "ears": "Orelhas de gato",
             "horns": "Chifrinhos",
@@ -142,18 +142,18 @@
             "yoru-mask": "Ultimate do Yoru"
         },
         "buy": {
-            "success": "Вы купили маску для своего аватара!",
-            "noMoney": "У вас не хватает тортов, чтобы получить эту маску",
+            "success": "Você comprou a decoração para seu avatar!",
+            "noMoney": "Você não tem Cakes o suficiente para adquirir esta decoração de avatar",
             "preview": "Предварительный просмотр",
             "purchase": "Покупка",
             "purchased": "Comprado"
         },
         "set": {
-            "success": "Sua máscara foi alterada com sucesso!",
-            "notOwned": "У тебя нет этой маски",
+            "success": "Sua decoração de avatar foi alterada com sucesso!",
+            "notOwned": "Você não possui essa decoração de avatar",
             "invalid": "Неверный код"
         },
-        "alreadyOwned": "У вас уже есть эта маска"
+        "alreadyOwned": "Você já possui essa decoração de avatar"
     },
     "kick": {
         "self": "Пусть кто -то еще сделает это за вас, это проще",
@@ -334,7 +334,8 @@
     "daily": {
         "cooldown": "Você já pegou seus cakes hoje, espere **{{time}}**",
         "daily": "Вы выиграли ** {{amount}} торты ** Теперь у вас есть {{money}} торты",
-        "dailyAlert": "**Не забывайте:** Вы не можете изменить торты для таких вещей, как деньги, нитро, контент NSFW и т. Д.! Если вы сделаете это, вам будет запрещено использовать Foxy навсегда!"
+        "dailyAlert": "**Не забывайте:** Вы не можете изменить торты для таких вещей, как деньги, нитро, контент NSFW и т. Д.! Если вы сделаете это, вам будет запрещено использовать Foxy навсегда!",
+        "dailyPremium": "Você iria ganhar **{{old}}** Cakes, mas seu daily recebeu um impulso em **{{boost}}** graças ao premium! Você ganhou **{{amount}}** Cakes! Agora você possui **{{money}} Cakes**"
     },
     "AutoRole": {
         "addrole": {
