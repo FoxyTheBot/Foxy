@@ -1,10 +1,10 @@
 {
     "ban": {
-        "title": "Você está **banido(a)**",
+        "title": "❌ | You have been **banned**",
         "description": "If you want to do a ban appeal, you need to do a ban appeal \n\nYou need to read Foxy's [ToS](https://foxybot.win/terms)",
         "reason": "Ban reason:",
         "date": "Banned since:",
-        "button": "Fazer um apelo"
+        "button": "Do the appeal"
     },
     "messageCreate": {
         "mentionMessage": "Hello {{author}}, My name is {{botUsername}}! I use only slash commands (/), Use `/help` to get help!"
