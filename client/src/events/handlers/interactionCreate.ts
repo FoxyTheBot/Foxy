@@ -6,7 +6,7 @@ import { createEmbed } from '../../utils/discord/Embed';
 import { ButtonStyles, InteractionTypes } from 'discordeno/types';
 import { componentExecutor } from '../../structures/commands/ComponentExecutor';
 import { logger } from '../../utils/logger';
-import { createActionRow, createButton } from 'utils/discord/Component';
+import { createActionRow, createButton } from '../../utils/discord/Component';
 
 const setInteractionCreateEvent = (): void => {
     bot.events.interactionCreate = async (_, interaction) => {
