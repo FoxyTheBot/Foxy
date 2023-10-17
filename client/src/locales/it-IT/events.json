@@ -3,7 +3,8 @@
         "title": "Sei bannato **",
         "description": "Se você quiser fazer um apelo de ban você pode fazer um apelo de ban \n\n Recomendo você ler os [termos de uso](https://foxybot.win/terms)",
         "reason": "Motivo per l'esilio:",
-        "date": "Data della banca:"
+        "date": "Data della banca:",
+        "button": "Fazer um apelo"
     },
     "messageCreate": {
         "mentionMessage": "Olá {{author}}! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!"
