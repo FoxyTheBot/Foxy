@@ -3,7 +3,8 @@
         "title": "Вы заблокированы **",
         "description": "Если вы хотите сделать апелляцию с запретом, вы можете сделать апелляцию запрета \n\n Я рекомендую вам прочитать [Условия использования] (https://foxybot.win/terms)",
         "reason": "Причина изгнания:",
-        "date": "Дата баланса:"
+        "date": "Дата баланса:",
+        "button": "Fazer um apelo"
     },
     "messageCreate": {
         "mentionMessage": "Olá {{author}}! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!"
