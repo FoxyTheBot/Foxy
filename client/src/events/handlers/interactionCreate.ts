@@ -3,9 +3,10 @@ import { MessageFlags } from '../../utils/discord/Message';
 import { bot } from '../../index';
 import ChatInputInteractionContext from '../../structures/commands/ChatInputInteractionContext';
 import { createEmbed } from '../../utils/discord/Embed';
-import { InteractionTypes } from 'discordeno/types';
+import { ButtonStyles, InteractionTypes } from 'discordeno/types';
 import { componentExecutor } from '../../structures/commands/ComponentExecutor';
 import { logger } from '../../utils/logger';
+import { createActionRow, createButton } from 'utils/discord/Component';
 
 const setInteractionCreateEvent = (): void => {
     bot.events.interactionCreate = async (_, interaction) => {
@@ -14,12 +15,12 @@ const setInteractionCreateEvent = (): void => {
         bot.locale = locale;
         const command = bot.commands.get(interaction.data?.name);
         const context = new ChatInputInteractionContext(interaction, user)
-    
+
         if (interaction.type === InteractionTypes.MessageComponent || interaction.type === InteractionTypes.ModalSubmit) {
             componentExecutor(interaction);
             return;
         }
-    
+
         async function FoxyHandler() {
             await new Promise(async (res) => {
                 try {
@@ -32,7 +33,7 @@ const setInteractionCreateEvent = (): void => {
                 }
             });
         }
-    
+
         try {
             if (user.isBanned) {
                 const embed = createEmbed({
@@ -45,12 +46,20 @@ const setInteractionCreateEvent = (): void => {
                 })
                 return context.sendReply({
                     embeds: [embed],
+                    components: [createActionRow([createButton({
+                        label: locale('events:ban.button'),
+                        style: ButtonStyles.Primary,
+                        emoji: {
+                            id: BigInt(context.getEmojiById(bot.emotes.FOXY_CUPCAKE))
+                        },
+                        url: 'https://forms.gle/bKfRKxoyFGZzRB7x8'
+                    })])],
                     flags: MessageFlags.EPHEMERAL
                 });
-    
-    
+
+
             }
-    
+
             FoxyHandler();
         } catch (err) {
             console.error(err);
