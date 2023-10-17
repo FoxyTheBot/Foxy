@@ -48,9 +48,9 @@ const setInteractionCreateEvent = (): void => {
                     embeds: [embed],
                     components: [createActionRow([createButton({
                         label: locale('events:ban.button'),
-                        style: ButtonStyles.Primary,
+                        style: ButtonStyles.Link,
                         emoji: {
-                            id: BigInt(context.getEmojiById(bot.emotes.FOXY_CUPCAKE))
+                            id: bot.emotes.FOXY_CUPCAKE
                         },
                         url: 'https://forms.gle/bKfRKxoyFGZzRB7x8'
                     })])],
