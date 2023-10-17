@@ -3,7 +3,8 @@
         "title": "انت محظور **",
         "description": "إذا كنت ترغب في تقديم استئناف للحظر ، فيمكنك تقديم استئناف للحظر \n\n أنصحك بقراءة [شروط الاستخدام] (https://foxybot.win/terms)",
         "reason": "سبب النفي:",
-        "date": "تاريخ الحظر:"
+        "date": "تاريخ الحظر:",
+        "button": "Fazer um apelo"
     },
     "messageCreate": {
         "mentionMessage": "مرحبًا {{author}}! اسمي {{botUsername}}، أستخدم / الأوامر فقط، استخدم `/help` للمساعدة!"
