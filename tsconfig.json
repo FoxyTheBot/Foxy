@@ -21,7 +21,7 @@
     "strict": true,
     "noImplicitAny": false,
     "strictNullChecks": false,
-    "strictFunctionTypes": false,
+    "strictFunctionTypes": true,
     "noImplicitThis": false,
     "skipLibCheck": true
   }
