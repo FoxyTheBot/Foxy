@@ -14,7 +14,7 @@ const loadCommands = async (): Promise<void> => {
       const commandData = command.default as ChatInputInteractionCommand;
       try {
         bot.commands.set(commandData.name, commandData);
-        bot.database.registerCommand(commandData.name)
+        bot.database.registerCommand(commandData.name, commandData.description)
       } catch (error) {
         logger.error(`Error loading command ${commandData.name}: ${error}`);
       }

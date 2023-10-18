@@ -55,6 +55,10 @@ export default class DatabaseConnection {
         const commandsSchema = new mongoose.Schema({
             commandName: String,
             commandUsageCount: Number,
+            description: String,
+            isInactive: Boolean,
+            subcommands: Array,
+            usage: Array
         }, { versionKey: false, id: false });
 
         const guildSchema = new mongoose.Schema({
@@ -124,16 +128,23 @@ export default class DatabaseConnection {
         return document;
     }
 
-    async registerCommand(commandName: string): Promise<void> {
+    async registerCommand(commandName: string, commandDescription: string): Promise<void> {
         let commandFromDB = await this.commands.findOne({ commandName: commandName });
 
         if (!commandFromDB) {
             commandFromDB = new this.commands({
                 commandName: commandName,
                 commandUsageCount: 0,
+                description: commandDescription,
+                isInactive: false,
+                subcommands: null,
+                usage: null
             }).save();
         } else {
-            return null;
+            commandFromDB.description = commandDescription
+            await commandFromDB.save();
+
+            return;
         }
     }
     async updateCommand(commandName: string): Promise<void> {
