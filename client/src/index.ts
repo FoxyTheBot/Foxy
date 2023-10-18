@@ -1,5 +1,5 @@
 import { createBot, Intents, startBot } from 'discordeno';
-import { setupFoxy, setupInternals } from './structures/client/FoxyClient';
+import { setupFoxy, setupInternals, startCacheHandler } from './structures/client/FoxyClient';
 import { FoxyClient } from './structures/types/foxy';
 import { logger } from './utils/logger';
 import config from '../config.json';
@@ -15,6 +15,7 @@ const bot = createBot({
 
 enableCachePlugin(bot);
 setupFoxy(bot);
+startCacheHandler(bot);
 setupInternals(bot);
 setupEventsHandler();
 startBot(bot);

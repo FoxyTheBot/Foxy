@@ -25,9 +25,22 @@ const setupFoxy = async (client: FoxyClient): Promise<void> => {
     startActivities();
 }
 
+const startCacheHandler = async (client: FoxyClient): Promise<void> => {
+    bot.presences.maxSize = 0;
+    bot.guilds.maxSize = 1000;
+    bot.channels.maxSize = 1000;
+    bot.messages.maxSize = 100
+    bot.users.maxSize = 1000;
+    
+    setInterval(() => {
+        client.dispatchedGuildIds.clear();
+        client.dispatchedChannelIds.clear();
+    }, 3600000);
+};
+
 const setupInternals = async (bot: FoxyClient): Promise<void> => {
     bot.transformers.reverse.interactionResponse = transformInteraction;
     bot.handlers.INTERACTION_CREATE = handleInteractionCreate;
 };
 
-export { setupFoxy, setupInternals };
+export { setupFoxy, setupInternals, startCacheHandler };
