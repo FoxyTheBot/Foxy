@@ -1,13 +1,13 @@
 {
     "ban": {
-        "title": "Você está **banido(a)**",
+        "title": "Du bist verbannt",
         "description": "Wenn Sie eine Beschwerde einlegen möchten, können Sie eine Beschwerde einlegen \n\n Ich empfehle Ihnen, [Nutzungsbedingungen] zu lesen (https://foxybot.win/terms)",
         "reason": "Grund zur Verbannung:",
         "date": "Banity -Datum:",
-        "button": "Fazer um apelo"
+        "button": "Legen Sie Berufung ein"
     },
     "messageCreate": {
-        "mentionMessage": "Olá {{author}}! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!"
+        "mentionMessage": "Hallo {{author}}! Mein Name ist {{botUsername}}, ich verwende nur /-Befehle, verwende `/help`, um Hilfe zu bekommen!"
     },
     "interactionCreate": {
         "commandError": "Leider ist ein Fehler aufgetreten und ich konnte diesen Befehl nicht ausführen, sorry, aber der Fehler wurde bereits meinem Entwickler gemeldet"
