@@ -1,9 +1,10 @@
 {
     "ban": {
-        "title": "Estás **prohibido** de usar Foxy",
+        "title": "Você está **banido(a)**",
         "description": "Si desea hacer una apelación de prohibición, puede hacer una apelación de prohibición\n\n Te recomiendo que leas los [términos de uso](https://foxybot.win/terms)",
         "reason": "Motivo de la prohibición:",
-        "date": "Fecha de prohibición:"
+        "date": "Fecha de prohibición:",
+        "button": "Fazer um apelo"
     },
     "messageCreate": {
         "mentionMessage": "Olá {{author}}! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!"
