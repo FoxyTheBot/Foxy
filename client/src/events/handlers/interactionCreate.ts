@@ -25,7 +25,7 @@ const setInteractionCreateEvent = (): void => {
             await new Promise(async (res) => {
                 try {
                     command.execute(context, res, locale);
-                    logger.info(`[COMMAND ${interaction.data?.name} - Success] by ${interaction.user.username} (${interaction.user.id})`)
+                    logger.commandLog(interaction.data?.name, interaction.user, interaction.guildId.toString(), interaction.data?.options?.map((option) => option.value).join(' ') || 'Nenhum');
                     bot.database.updateCommand(interaction.data?.name);
                 } catch (e) {
                     console.error(e);

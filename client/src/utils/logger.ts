@@ -1,3 +1,7 @@
+import { bot } from "../index";
+import config from '../../config.json';
+import { User } from "discordeno/transformers";
+
 const logger = {
     error: (...args: any[]): void => {
         console.error(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] \u001b[31mERROR\u001b[0m >`, ...args);
@@ -18,6 +22,15 @@ const logger = {
 
     log: (...args: any[]): void => {
         console.log(...args);
+    },
+
+    commandLog: (command: string, author: User, guild: string, args: string): void => {
+        bot.helpers.sendWebhookMessage(config.webhooks.event_log.id, config.webhooks.event_log.token, {
+            embeds: [{
+                title: "✨ | Comando executado",
+                description: `**Comando:** ${command}\n**Autor:** ${author.username} (${author.id})\n**Servidor:** ${guild}\n**Argumentos:** ${args}`,
+            }]
+        });
     }
 }
 
