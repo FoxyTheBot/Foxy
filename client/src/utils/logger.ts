@@ -25,12 +25,14 @@ const logger = {
     },
 
     commandLog: (command: string, author: User, guild: string, args: string): void => {
-        bot.helpers.sendWebhookMessage(config.webhooks.event_log.id, config.webhooks.event_log.token, {
-            embeds: [{
-                title: "✨ | Comando executado",
-                description: `**Comando:** ${command}\n**Autor:** ${author.username} (${author.id})\n**Servidor:** ${guild}\n**Argumentos:** ${args}`,
-            }]
-        });
+        setTimeout(() => {
+            bot.helpers.sendWebhookMessage(config.webhooks.event_log.id, config.webhooks.event_log.token, {
+                embeds: [{
+                    title: "✨ | Comando executado",
+                    description: `**Comando:** ${command}\n**Autor:** ${author.username} (${author.id})\n**Servidor:** ${guild}\n**Argumentos:** ${args}`,
+                }]
+            });
+        }, 600);
     }
 }
 
