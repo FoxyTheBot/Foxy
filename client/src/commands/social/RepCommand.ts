@@ -51,7 +51,11 @@ const RepCommand = createCommand({
             })
             endCommand();
         } else {
-            userData.repCount++;
+            if (userData.premiumType === '3') {
+                userData.repCount += 2;
+            } else {
+                userData.repCount++;
+            }
             authorData.lastRep = Date.now();
             authorData.save();
             userData.save();
