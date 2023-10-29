@@ -145,9 +145,9 @@ const StoreCommand = createCommand({
                 break;
             }
 
-            case "masks": {
+            case "avatar_decorations": {
                 await context.sendDefer(true);
-                const code: string = context.getOption<string>("mask", false);
+                const code: string = context.getOption<string>("avatar_decoration", false);
                 const mask = masks.find(data => data.id === code?.toLowerCase());
                 if (userData.masks.includes(code?.toLowerCase())) {
                     context.sendReply({
