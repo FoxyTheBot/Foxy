@@ -13,7 +13,7 @@ const startActivities = async (): Promise<void> => {
     } else {
         editBotStatus(bot, {
             status: "dnd", activities: [{
-                name: "metal pipe falling",
+                name: "https://youtu.be/4DNGMoMNLRY",
                 type: ActivityTypes.Listening,
                 createdAt: Date.now()
             }]
