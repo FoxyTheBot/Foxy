@@ -492,6 +492,7 @@
         "addedByAdmin": "`{{date}}` 💵 Received {{amount}} Cakes from Foxy for being an amazing person :3",
         "noTransactions": "Empty, empty, empty... You don't have any transaction yet",
         "dailyTransaction": "`{{date}}` 💰 Received **{{amount}}** cakes from daily",
+        "voteReward": "`{{date}}` 💰 Received **{{amount}}** cakes from voting me",
         "store": "`{{date}}` 💸 Spent **{{amount}}** Cakes at the Foxy's Store",
         "title": "{{user}}'s transactions",
         "footer": "{{total}} Transactions",
