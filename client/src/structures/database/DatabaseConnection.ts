@@ -25,7 +25,7 @@ export default class DatabaseConnection {
             date: Date,
             received: Boolean,
             type: String,
-        });
+        }, { versionKey: false, id: false });
         const userSchema = new mongoose.Schema({
             _id: String,
             userCreationTimestamp: Date,
