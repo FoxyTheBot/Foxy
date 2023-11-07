@@ -1,6 +1,6 @@
 {
   "name": "foxy",
-  "version": "2023.11.1-stable",
+  "version": "2023.11.1",
   "description": "A multi-purpose bot for Discord developed using TypeScript",
   "repository": "git+https://github.com/FoxyTheBot/Foxy.git",
   "private": true,
