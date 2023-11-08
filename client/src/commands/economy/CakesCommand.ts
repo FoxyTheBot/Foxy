@@ -181,11 +181,11 @@ const CakeCommand = createCommand({
                     }
                 }
                 var transactionsTexts = [];
-        
+
                 context.sendDefer();
                 userData.transactions.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
                 userData.transactions.reverse();
-        
+
                 for (const transaction of userData.transactions) {
                     switch (transaction.type) {
                         case 'daily': {
@@ -196,17 +196,17 @@ const CakeCommand = createCommand({
                             transactionsTexts.push(t('commands:transactions.addedByAdmin', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
                             break;
                         }
-                
+
                         case 'send': {
                             transactionsTexts.push(t('commands:transactions.sentCakes', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser(transaction.to)).username}` }))
                             break;
                         }
-                
+
                         case 'receive': {
                             transactionsTexts.push(t('commands:transactions.receivedCakes', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser(transaction.from)).username}` }))
                             break;
                         }
-                
+
                         case 'store': {
                             transactionsTexts.push(t('commands:transactions.store', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
                             break;
@@ -227,17 +227,17 @@ const CakeCommand = createCommand({
                         }
                     }
                 }
-        
-                const transactions = transactionsTexts.reverse().slice(0, 20);
+
+                const transactions = transactionsTexts.reverse().slice(0, 10);
                 const embed = createEmbed({
                     title: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:transactions.title', { user: `@${user.username}` })),
                     color: 0xfd446e,
                     description: transactions.join('\n'),
                     footer: {
                         text: t('commands:transactions.footer', { total: userData.transactions.length.toString() })
-                    }
+                    },
                 });
-        
+
                 return context.sendReply({
                     embeds: [embed],
                 });
