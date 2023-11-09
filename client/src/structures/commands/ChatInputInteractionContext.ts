@@ -6,6 +6,7 @@ import { bot } from "../../index";
 import { get } from 'https'
 import { URL } from 'url';
 import { getOptionFromInteraction } from './GetCommandOption';
+import { foxyAPIToken } from '../../../config.json';
 
 export type CanResolve = 'users' | 'members' | false;
 
@@ -66,7 +67,9 @@ export default class {
 
     getContent(url) {
         return new Promise((resolve, reject) => {
-            get(url, (res) => {
+            get(url, { headers: { 
+                'Authorization': `${foxyAPIToken}`,
+            }}, (res) => {
                 const { statusCode } = res;
                 if (statusCode !== 200) {
                     res.resume();
@@ -91,7 +94,7 @@ export default class {
 
 
     async getImage(command: string) {
-        let baseURL = 'https://cdn.foxybot.win/images/';
+        let baseURL = 'https://cakey.foxybot.win/images/';
         let url = new URL(baseURL + command);
         return await this.getContent(url.toString());
     }
