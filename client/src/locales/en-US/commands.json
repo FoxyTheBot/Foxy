@@ -552,7 +552,8 @@
                 "snowballfight": "Snowball fight",
                 "replication": "Replication"
             },
-            "notFound": "I can't get this player's matches"
+            "notFound": "I can't get this player's matches",
+            "footer": "Apenas as 13 últimas partidas são exibidas"
         },
         "noResult": "No results"
     },
