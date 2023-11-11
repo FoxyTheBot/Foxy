@@ -520,41 +520,41 @@
     },
     "valorant": {
         "player": {
-            "title": "Perfil de {{username}}#{{tag}}",
-            "level": "Nível",
+            "title": "{{username}}#{{tag}}'s profile",
+            "level": "Level",
             "tag": "Tag",
-            "region": "Região",
-            "matches": "Partidas",
-            "playtime": "Tempo de jogo",
+            "region": "Region",
+            "matches": "Matches",
+            "playtime": "Time in game",
             "rank": "Rank",
-            "rankRating": "Pontuação do rank",
-            "rankRatingTooltip": "A pontuação do rank é calculada com base no seu desempenho nas partidas ranqueadas",
-            "notFound": "Jogador não encontrado"
+            "rankRating": "Rank points",
+            "rankRatingTooltip": "Ranking score is calculated based on your performance in ranked matches",
+            "notFound": "Player not found"
         },
         "match": {
-            "title": "Partidas de {{username}}#{{tag}}",
-            "map": "Mapa",
-            "mode": "Modo",
-            "character": "Agente",
-            "result": "Resultado",
-            "kills": "Abates",
-            "deaths": "Mortes",
-            "assists": "Assistências",
+            "title": "{{username}}#{{tag}}'s matches",
+            "map": "Map",
+            "mode": "Mode",
+            "character": "Agent",
+            "result": "Result",
+            "kills": "Kills",
+            "deaths": "Deaths",
+            "assists": "Assistance",
             "modes": {
-                "competitive": "Competitivo",
-                "unrated": "Sem classificação",
+                "competitive": "Competitive",
+                "unrated": "Unrated",
                 "spikerush": "Spike Rush",
                 "deathmatch": "Deathmatch",
                 "escalation": "Escalation",
-                "swiftplay": "Jogo rápido",
+                "swiftplay": "Quick play",
                 "teamdeathmatch": "Team Deathmatch",
-                "newmap": "Novo mapa",
-                "snowballfight": "Guerra de bolas de neve",
-                "replication": "Replicação"
+                "newmap": "New map",
+                "snowballfight": "Snowball fight",
+                "replication": "Replication"
             },
-            "notFound": "Não consegui obter as partidas deste jogador"
+            "notFound": "I can't get this player's matches"
         },
-        "noResult": "Nenhum resultado encontrado"
+        "noResult": "No results"
     },
     "global": {
         "noUser": "User not found",
