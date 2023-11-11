@@ -1,6 +1,7 @@
 import { BigString } from "discordeno/types";
 import { FoxyClient } from "../structures/types/foxy";
 import { User } from "../structures/types/user";
+import fetch from "node-fetch";
 
 export class FoxyRestManager {
     public bot: FoxyClient;
@@ -28,4 +29,22 @@ export class FoxyRestManager {
     async getUser(userId: string): Promise<User> {
         return await this.bot.rest.runMethod(this.bot.rest, "GET", this.bot.constants.routes.USER(userId));
     }
+
+    /* Valorant API */
+
+    async getValPlayer(username: string, tag: string) {
+        return fetch(`https://api.henrikdev.xyz/valorant/v1/account/${username}/${tag}`).then(res => res.json());
+    }
+
+    async getValMatchHistory(username: string, tag: string, mode: string, map: string) {
+        const puuid = await this.getValPlayer(username, tag).then(res => res.data.puuid);
+        let url = `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/br/${puuid}?size=10`;
+        
+        if (mode) url += `&mode=${mode}`;
+
+        if (map) url += `&map=${map}`;
+
+        return fetch(url).then(res => res.json());
+    }
+    
 }
