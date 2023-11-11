@@ -235,7 +235,7 @@ const ValorantCommand = createCommand({
                         fields: matchInfo.data.map(match => {
                             return {
                                 name: `${match.meta.map.name} - ${match.meta.mode}`,
-                                value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase()])} \nK: ${match.stats.kills} / D: ${match.stats.deaths} / A: ${match.stats.assists} \n${t('commands:valorant.match.result')}: ${match.teams.red && match.teams.blue ? `Red: ${match.teams.red} / Blue: ${match.teams.blue}` : t('commands:valorant.noResult')}\n`,
+                                value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \nK: ${match.stats.kills} / D: ${match.stats.deaths} / A: ${match.stats.assists} \n${t('commands:valorant.match.result')}: ${match.teams.red && match.teams.blue ? `Red: ${match.teams.red} / Blue: ${match.teams.blue}` : t('commands:valorant.noResult')}\n`,
                                 inline: true
                             }
                         }),
