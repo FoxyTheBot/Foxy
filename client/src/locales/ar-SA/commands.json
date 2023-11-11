@@ -552,7 +552,8 @@
                 "snowballfight": "Guerra de bolas de neve",
                 "replication": "Replicação"
             },
-            "notFound": "Não consegui obter as partidas deste jogador"
+            "notFound": "Não consegui obter as partidas deste jogador",
+            "footer": "Apenas as 13 últimas partidas são exibidas"
         },
         "noResult": "Nenhum resultado encontrado"
     },
