@@ -239,6 +239,9 @@ const ValorantCommand = createCommand({
                                 inline: true
                             }
                         }),
+                        footer: {
+                            text: t("commands:valorant.match.footer")
+                        }
                     });
 
                     context.sendReply({
