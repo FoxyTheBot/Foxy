@@ -222,9 +222,9 @@ const ValorantCommand = createCommand({
 
             case 'match-history': {
                 const matchInfo: any = await bot.foxyRest.getValMatchHistory(context.getOption<string>('username', false), context.getOption<string>('tag', false), context.getOption<string>('mode', false), context.getOption<string>('map', false));
+                context.sendDefer();
                 try {
                     console.log(matchInfo.data[0].meta);
-                    context.sendDefer();
                     const embed = createEmbed({
                         color: 0x7289DA,
                         title: t('commands:valorant.match.title', { username: context.getOption<string>('username', false), tag: context.getOption<string>('tag', false) }),
