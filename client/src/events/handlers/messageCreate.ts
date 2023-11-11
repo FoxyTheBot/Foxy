@@ -11,10 +11,10 @@ const setMessageCreateEvent = (): void => {
         }
 
         if (message.content === `<@${bot.id}>` || message.content === `<@!${bot.id}>`) return bot.helpers.sendMessage(message.channelId, {
-            content:  bot.locale("events:messageCreate.mentionMessage",
-            {
-                botUsername: await bot.foxyRest.getUserDisplayName(bot.id), author: `<@${message.member.id}>`
-            })
+            content: bot.locale("events:messageCreate.mentionMessage",
+                {
+                    botUsername: await bot.foxyRest.getUserDisplayName(bot.id), author: `<@${message.member.id}>`
+                })
         });
     }
 }

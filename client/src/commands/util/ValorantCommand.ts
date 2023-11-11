@@ -6,16 +6,16 @@ import { ValUser } from "../../structures/types/valuser";
 
 const ValorantCommand = createCommand({
     name: "valorant",
-    description: "[Utils] Commands related to Valorant",
+    description: "[VALORANT] Commands related to Valorant",
     descriptionLocalizations: {
-        "pt-BR": "[Utilitários] Comandos relacionados ao Valorant"
+        "pt-BR": "[VALORANT] Comandos relacionados ao Valorant"
     },
     category: 'util',
     options: [{
         name: "player",
-        description: "[Utils] See Valorant player informations",
+        description: "[VALORANT] See Valorant player informations",
         descriptionLocalizations: {
-            "pt-BR": "[Utilitários] Veja informações de um jogador de Valorant"
+            "pt-BR": "[VALORANT] Veja informações de um jogador de Valorant"
         },
         type: ApplicationCommandOptionTypes.SubCommand,
         options: [{
@@ -43,10 +43,13 @@ const ValorantCommand = createCommand({
         }]
     },
     {
-        name: "match-history",
-        description: "[Utils] See Valorant player match history",
+        name: "matches",
+        nameLocalizations: {
+            "pt-BR": "partidas"
+        },
+        description: "[VALORANT] See Valorant player match history",
         descriptionLocalizations: {
-            "pt-BR": "[Utilitários] Veja o histórico de partidas de um jogador de Valorant"
+            "pt-BR": "[VALORANT] Veja o histórico de partidas de um jogador de Valorant"
         },
         type: ApplicationCommandOptionTypes.SubCommand,
         options: [{
@@ -76,7 +79,7 @@ const ValorantCommand = createCommand({
         {
             name: "mode",
             nameLocalizations: {
-                "pt-BR": "modo"
+                "pt-BR": "modo_de_jogo"
             },
             description: "The match mode",
             descriptionLocalizations: {
@@ -186,7 +189,7 @@ const ValorantCommand = createCommand({
                             url: userInfo.data.card.small
                         },
                         fields: [{
-                            name: "UUID",
+                            name: t('commands:valorant.player.uuid'),
                             value: `\`${userInfo.data.puuid}\``,
                             inline: true
                         },
@@ -220,7 +223,7 @@ const ValorantCommand = createCommand({
                 }
             }
 
-            case 'match-history': {
+            case 'matches': {
                 context.sendDefer();
                 const matchInfo: any = await bot.foxyRest.getValMatchHistory(context.getOption<string>('username', false), context.getOption<string>('tag', false), context.getOption<string>('mode', false), context.getOption<string>('map', false));
                 const userInfo = await bot.foxyRest.getValPlayer(context.getOption<string>('username', false), context.getOption<string>('tag', false));
