@@ -37,7 +37,9 @@ export class FoxyRestManager {
     }
 
     async getValMatchHistory(username: string, tag: string, mode: string, map: string) {
-        const puuid = await this.getValPlayer(username, tag).then(res => res.data.puuid);
+        const userInfo = await this.getValPlayer(username, tag).then(res => res.data);
+        if (!userInfo) return null;
+        const puuid = await userInfo.puuid;
         let url = `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/br/${puuid}?size=10`;
         
         if (mode) url += `&mode=${mode}`;
