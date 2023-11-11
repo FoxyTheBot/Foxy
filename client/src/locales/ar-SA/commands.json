@@ -518,6 +518,43 @@
             "win": "أعطى {{result}}! فزت {{amount}} الكعك"
         }
     },
+    "valorant": {
+        "player": {
+            "title": "Perfil de {{username}}#{{tag}}",
+            "level": "Nível",
+            "tag": "Tag",
+            "region": "Região",
+            "matches": "Partidas",
+            "playtime": "Tempo de jogo",
+            "rank": "Rank",
+            "rankRating": "Pontuação do rank",
+            "rankRatingTooltip": "A pontuação do rank é calculada com base no seu desempenho nas partidas ranqueadas",
+            "notFound": "Jogador não encontrado"
+        },
+        "match": {
+            "title": "Partidas de {{username}}#{{tag}}",
+            "map": "Mapa",
+            "mode": "Modo",
+            "character": "Agente",
+            "result": "Resultado",
+            "kills": "Abates",
+            "deaths": "Mortes",
+            "assists": "Assistências",
+            "modes": {
+                "competitive": "Competitivo",
+                "unrated": "Sem classificação",
+                "spikerush": "Spike Rush",
+                "deathmatch": "Deathmatch",
+                "escalation": "Escalation",
+                "swiftplay": "Jogo rápido",
+                "teamdeathmatch": "Team Deathmatch",
+                "newmap": "Novo mapa",
+                "snowballfight": "Guerra de bolas de neve",
+                "replication": "Replicação"
+            }
+        },
+        "noResult": "Nenhum resultado encontrado"
+    },
     "global": {
         "noUser": "أعطى {{result}}! فزت {{amount}} الكعك ",
         "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!",
