@@ -551,7 +551,8 @@
                 "newmap": "Novo mapa",
                 "snowballfight": "Guerra de bolas de neve",
                 "replication": "Replicação"
-            }
+            },
+            "notFound": "Não consegui obter as partidas deste jogador"
         },
         "noResult": "Nenhum resultado encontrado"
     },
