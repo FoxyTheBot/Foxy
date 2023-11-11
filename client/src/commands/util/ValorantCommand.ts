@@ -174,10 +174,11 @@ const ValorantCommand = createCommand({
             case 'player': {
                 const userInfo: ValUser = await bot.foxyRest.getValPlayer(context.getOption<string>('username', false), context.getOption<string>('tag', false));
                 context.sendDefer();
-                try {
+
+                if (userInfo.status === 200) {
                     const embed = createEmbed({
-                        color: 0x7289DA,
-                        title: t('commands:valorant.player.title', { username: context.getOption<string>('username', false), tag: context.getOption<string>('tag', false) }),
+                        color: 0xf84355,
+                        title: t('commands:valorant.player.title', { username: userInfo.data.name, tag: userInfo.data.tag }),
                         image: {
                             url: userInfo.data.card.wide
                         },
@@ -211,37 +212,44 @@ const ValorantCommand = createCommand({
                         embeds: [embed],
                     });
                     return endCommand();
-                } catch (err) {
+                } else {
                     context.sendReply({
                         content: t('commands:valorant.player.notFound')
                     });
-                    endCommand();
+                    return endCommand();
                 }
-                break;
             }
 
             case 'match-history': {
-                const matchInfo: any = await bot.foxyRest.getValMatchHistory(context.getOption<string>('username', false), context.getOption<string>('tag', false), context.getOption<string>('mode', false), context.getOption<string>('map', false));
                 context.sendDefer();
+                const matchInfo: any = await bot.foxyRest.getValMatchHistory(context.getOption<string>('username', false), context.getOption<string>('tag', false), context.getOption<string>('mode', false), context.getOption<string>('map', false));
+                const userInfo = await bot.foxyRest.getValPlayer(context.getOption<string>('username', false), context.getOption<string>('tag', false));
+               
                 try {
-                    console.log(matchInfo.data[0].meta);
                     const embed = createEmbed({
-                        color: 0x7289DA,
-                        title: t('commands:valorant.match.title', { username: context.getOption<string>('username', false), tag: context.getOption<string>('tag', false) }),
-                        description: matchInfo.data.map(match => {
-                            return `**${t('commands:valorant.match.map')}:** ${match.meta.map.name} - **${t('commands:valorant.match.mode')}:** ${match.meta.mode} - **${t('commands:valorant.match.character')}:** ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase()])} ${match.stats.character.name} - K: ${match.stats.kills} / D: ${match.stats.deaths} / A: ${match.stats.assists} - **${t('commands:valorant.match.result')}:** Red: ${match.teams.red ?? t('commands:valorant.noResult')} / Blue: ${match.teams.blue ?? t('commands:valorant.noResult')}\n`
-                        }).join('\n'),
+                        color: 0xf84354,
+                        thumbnail: {
+                            url: userInfo.data.card.small
+                        },
+                        title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.match.title', { username: userInfo.data.name, tag: userInfo.data.tag }),
+                        fields: matchInfo.data.map(match => {
+                            return {
+                                name: `${match.meta.map.name} - ${match.meta.mode}`,
+                                value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase()])} \nK: ${match.stats.kills} / D: ${match.stats.deaths} / A: ${match.stats.assists} \n${t('commands:valorant.match.result')}: ${match.teams.red && match.teams.blue ? `Red: ${match.teams.red} / Blue: ${match.teams.blue}` : t('commands:valorant.noResult')}\n`,
+                                inline: true
+                            }
+                        }),
                     });
 
                     context.sendReply({
                         embeds: [embed]
                     });
-                    endCommand();
+                    return endCommand();
                 } catch (err) {
                     context.sendReply({
                         content: t('commands:valorant.match.notFound')
                     });
-                    endCommand();
+                    return endCommand();
                 }
             }
         }
