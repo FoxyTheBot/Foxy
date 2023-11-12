@@ -553,7 +553,7 @@
                 "replication": "Replication"
             },
             "notFound": "I can't get this player's matches",
-            "footer": "Apenas as 13 últimas partidas são exibidas"
+            "footer": "Only 13 matches will be shown"
         },
         "noResult": "No results"
     },
