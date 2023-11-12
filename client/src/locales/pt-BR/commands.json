@@ -529,7 +529,9 @@
             "rank": "Rank",
             "rankRating": "Pontuação do rank",
             "rankRatingTooltip": "A pontuação do rank é calculada com base no seu desempenho nas partidas ranqueadas",
-            "notFound": "Jogador não encontrado"
+            "notFound": "Jogador não encontrado",
+            "uuid": "UUID do jogador",
+            "unranked": "Sem classificação"
         },
         "match": {
             "title": "Partidas de {{username}}#{{tag}}",
@@ -537,10 +539,9 @@
             "mode": "Modo",
             "character": "Agente",
             "result": "Resultado",
-            "kills": "Abates",  
+            "kills": "Abates",
             "deaths": "Mortes",
             "assists": "Assistências",
-
             "modes": {
                 "competitive": "Competitivo",
                 "unrated": "Sem classificação",
@@ -553,7 +554,6 @@
                 "snowballfight": "Guerra de bolas de neve",
                 "replication": "Replicação"
             },
-
             "notFound": "Não consegui obter as partidas deste jogador",
             "footer": "Apenas as 13 últimas partidas são exibidas"
         },
