@@ -3,6 +3,8 @@ import { createEmbed } from "../../utils/discord/Embed";
 import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
 import { bot } from "../../index";
 import { ValUser } from "../../structures/types/valuser";
+import { createActionRow, createCustomId, createSelectMenu } from "../../utils/discord/Component";
+import ValMatchSelectorExecutor from "../../utils/commands/executors/util/ValMatchSelectorExecutor";
 
 const ValorantCommand = createCommand({
     name: "valorant",
@@ -170,6 +172,7 @@ const ValorantCommand = createCommand({
             }]
         }]
     }],
+    commandRelatedExecutions: [ValMatchSelectorExecutor],
     async execute(context, endCommand, t) {
         const subcommand = context.getSubCommand();
 
@@ -277,7 +280,7 @@ const ValorantCommand = createCommand({
                         fields: matchInfo.data.map(match => {
                             return {
                                 name: `${match.meta.map.name} - ${match.meta.mode}`,
-                                value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \nK: ${match.stats.kills} / D: ${match.stats.deaths} / A: ${match.stats.assists} \n${t('commands:valorant.match.result')}: ${match.teams.red && match.teams.blue ? `Red: ${match.teams.red} / Blue: ${match.teams.blue}` : t('commands:valorant.noResult')}\n`,
+                                value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \nKDA: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n${t('commands:valorant.match.result')}: ${match.teams.red && match.teams.blue ? `Red: ${match.teams.red} / Blue: ${match.teams.blue}` : t('commands:valorant.noResult')}\n`,
                                 inline: true
                             }
                         }),
@@ -286,8 +289,20 @@ const ValorantCommand = createCommand({
                         }
                     });
 
+                    const row = createActionRow([createSelectMenu({
+                        customId: createCustomId(0, context.author.id, context.commandId),
+                        placeholder: t('commands:valorant.match.placeholder'),
+                        options: matchInfo.data.map(match => {
+                            return {
+                                label: `${match.meta.map.name} - ${match.meta.mode}`,
+                                value: match.meta.id,
+                                description: `${match.stats.character.name} | KDA: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists}`,
+                            }
+                        })
+                    })])
                     context.sendReply({
-                        embeds: [embed]
+                        embeds: [embed],
+                        components: [row]
                     });
                     return endCommand();
                 } catch (err) {
