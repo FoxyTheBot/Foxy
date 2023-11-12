@@ -530,7 +530,6 @@
             "rankRating": "Pontuação do rank",
             "rankRatingTooltip": "A pontuação do rank é calculada com base no seu desempenho nas partidas ranqueadas",
             "notFound": "Jogador não encontrado",
-            "uuid": "UUID do jogador",
             "ranks": {
                 "UNRATED": "Sem classificação",
                 "I1": "Ferro 1",
