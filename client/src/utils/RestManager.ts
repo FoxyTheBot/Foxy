@@ -65,4 +65,12 @@ export class FoxyRestManager {
             }
         }).then(res => res.json());
     }
+
+    async getValMatch(matchId: string) {
+        return fetch(`https://api.henrikdev.xyz/valorant/v2/match/${matchId}`, {
+            headers: {
+                "Authentication": config.valorantAPI
+            }
+        }).then(res => res.json()); 
+    }
 }
