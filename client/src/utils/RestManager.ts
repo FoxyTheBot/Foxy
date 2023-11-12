@@ -49,4 +49,7 @@ export class FoxyRestManager {
         return fetch(url).then(res => res.json());
     }
     
+    async getMMR(puuid: string) {
+        return fetch(`https://api.henrikdev.xyz/valorant/v2/by-puuid/mmr/na/${puuid}`).then(res => res.json());
+    }
 }

@@ -176,12 +176,13 @@ const ValorantCommand = createCommand({
         switch (subcommand) {
             case 'player': {
                 const userInfo: ValUser = await bot.foxyRest.getValPlayer(context.getOption<string>('username', false), context.getOption<string>('tag', false));
+                const mmrInfo = await bot.foxyRest.getMMR(userInfo.data.puuid);
                 context.sendDefer();
 
                 if (userInfo.status === 200) {
                     const embed = createEmbed({
                         color: 0xf84355,
-                        title: t('commands:valorant.player.title', { username: userInfo.data.name, tag: userInfo.data.tag }),
+                        title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.player.title', { username: userInfo.data.name, tag: userInfo.data.tag }),
                         image: {
                             url: userInfo.data.card.wide
                         },
@@ -189,13 +190,8 @@ const ValorantCommand = createCommand({
                             url: userInfo.data.card.small
                         },
                         fields: [{
-                            name: t('commands:valorant.player.uuid'),
-                            value: `\`${userInfo.data.puuid}\``,
-                            inline: true
-                        },
-                        {
-                            name: t('commands:valorant.player.level'),
-                            value: userInfo.data.account_level.toString(),
+                            name: "Username",
+                            value: userInfo.data.name,
                             inline: true
                         },
                         {
@@ -205,10 +201,18 @@ const ValorantCommand = createCommand({
 
                         },
                         {
-                            name: "Username",
-                            value: userInfo.data.name,
+                            name: t('commands:valorant.player.level'),
+                            value: userInfo.data.account_level.toString(),
                             inline: true
-                        }]
+                        },
+                        {
+                            name: t('commands:valorant.player.rank'),
+                            value: mmrInfo.data.current_data.currenttierpatched ?? t('commands:valorant.player.unranked'),
+                        }],
+
+                        footer: {
+                            text: t('commands:valorant.player.uuid') + ": " + userInfo.data.puuid
+                        }
                     })
 
                     context.sendReply({
@@ -217,7 +221,7 @@ const ValorantCommand = createCommand({
                     return endCommand();
                 } else {
                     context.sendReply({
-                        content: t('commands:valorant.player.notFound')
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.player.notFound'))
                     });
                     return endCommand();
                 }
@@ -227,7 +231,7 @@ const ValorantCommand = createCommand({
                 context.sendDefer();
                 const matchInfo: any = await bot.foxyRest.getValMatchHistory(context.getOption<string>('username', false), context.getOption<string>('tag', false), context.getOption<string>('mode', false), context.getOption<string>('map', false));
                 const userInfo = await bot.foxyRest.getValPlayer(context.getOption<string>('username', false), context.getOption<string>('tag', false));
-               
+
                 try {
                     const embed = createEmbed({
                         color: 0xf84354,
@@ -253,7 +257,7 @@ const ValorantCommand = createCommand({
                     return endCommand();
                 } catch (err) {
                     context.sendReply({
-                        content: t('commands:valorant.match.notFound')
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.match.notFound'))
                     });
                     return endCommand();
                 }
