@@ -247,11 +247,7 @@ const ValorantCommand = createCommand({
                         {
                             name: t('commands:valorant.player.rank'),
                             value: formattedRank,
-                        }],
-
-                        footer: {
-                            text: t('commands:valorant.player.uuid') + ": " + userInfo.data.puuid
-                        }
+                        }]
                     })
 
                     context.sendReply({
