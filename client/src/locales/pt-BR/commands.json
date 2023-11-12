@@ -530,6 +530,7 @@
             "rankRating": "Pontuação do rank",
             "rankRatingTooltip": "A pontuação do rank é calculada com base no seu desempenho nas partidas ranqueadas",
             "notFound": "Jogador não encontrado",
+
             "ranks": {
                 "UNRATED": "Sem classificação",
                 "I1": "Ferro 1",
@@ -568,6 +569,9 @@
             "kills": "Abates",
             "deaths": "Mortes",
             "assists": "Assistências",
+            "startedAt": "Iniciou em",
+            "rounds": "Rodadas",
+            "placeholder": "Selecione uma partida",
             "modes": {
                 "competitive": "Competitivo",
                 "unrated": "Sem classificação",
@@ -581,7 +585,15 @@
                 "replication": "Replicação"
             },
             "notFound": "Não consegui obter as partidas deste jogador",
-            "footer": "Apenas as 13 últimas partidas são exibidas"
+            "footer": "Apenas as 13 últimas partidas são exibidas",
+            "damageMade": "Dano causado",
+            "damageReceived": "Dano recebido",
+            "team": "Time",
+            "headshots": "Headshots",
+            "bodyshots": "Bodyshots",
+            "legshots": "Legshots",
+            "Red": "Vermelho",
+            "Blue": "Azul"
         },
         "noResult": "Nenhum resultado encontrado"
     },
