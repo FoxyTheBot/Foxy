@@ -530,7 +530,6 @@
             "rankRating": "Rank points",
             "rankRatingTooltip": "Ranking score is calculated based on your performance in ranked matches",
             "notFound": "Player not found",
-            "uuid": "Player's UUID",
             "ranks": {
                 "UNRATED": "Unrated",
                 "I1": "Iron 1",
