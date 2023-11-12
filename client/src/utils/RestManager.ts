@@ -2,6 +2,7 @@ import { BigString } from "discordeno/types";
 import { FoxyClient } from "../structures/types/foxy";
 import { User } from "../structures/types/user";
 import fetch from "node-fetch";
+import config from '../../config.json';
 
 export class FoxyRestManager {
     public bot: FoxyClient;
@@ -33,7 +34,11 @@ export class FoxyRestManager {
     /* Valorant API */
 
     async getValPlayer(username: string, tag: string) {
-        return fetch(`https://api.henrikdev.xyz/valorant/v1/account/${username}/${tag}`).then(res => res.json());
+        return fetch(`https://api.henrikdev.xyz/valorant/v1/account/${username}/${tag}`, {
+            headers: {
+                "Authentication": config.valorantAPI
+            }
+        }).then(res => res.json());
     }
 
     async getValMatchHistory(username: string, tag: string, mode: string, map: string) {
@@ -41,15 +46,23 @@ export class FoxyRestManager {
         if (!userInfo) return null;
         const puuid = await userInfo.puuid;
         let url = `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/br/${puuid}?size=12`;
-        
+
         if (mode) url += `&mode=${mode}`;
 
         if (map) url += `&map=${map}`;
 
-        return fetch(url).then(res => res.json());
+        return fetch(url, {
+            headers: {
+                "Authentication": config.valorantAPI
+            }
+        }).then(res => res.json());
     }
-    
+
     async getMMR(puuid: string) {
-        return fetch(`https://api.henrikdev.xyz/valorant/v2/by-puuid/mmr/na/${puuid}`).then(res => res.json());
+        return fetch(`https://api.henrikdev.xyz/valorant/v2/by-puuid/mmr/na/${puuid}`, {
+            headers: {
+                "Authentication": config.valorantAPI
+            }
+        }).then(res => res.json());
     }
 }
