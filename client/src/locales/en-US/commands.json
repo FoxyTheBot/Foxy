@@ -568,6 +568,9 @@
             "kills": "Kills",
             "deaths": "Deaths",
             "assists": "Assistance",
+            "startedAt": "Iniciou em",
+            "rounds": "Rodadas",
+            "placeholder": "Selecione uma partida",
             "modes": {
                 "competitive": "Competitive",
                 "unrated": "Unrated",
@@ -581,7 +584,15 @@
                 "replication": "Replication"
             },
             "notFound": "I can't get this player's matches",
-            "footer": "Only 13 matches will be shown"
+            "footer": "Only 13 matches will be shown",
+            "damageMade": "Dano causado",
+            "damageReceived": "Dano recebido",
+            "team": "Time",
+            "headshots": "Headshots",
+            "bodyshots": "Bodyshots",
+            "legshots": "Legshots",
+            "Red": "Vermelho",
+            "Blue": "Azul"
         },
         "noResult": "No results"
     },
