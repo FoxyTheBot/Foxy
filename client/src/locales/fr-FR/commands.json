@@ -554,7 +554,10 @@
                 "IM1": "Imortal 1",
                 "IM2": "Imortal 2",
                 "IM3": "Imortal 3",
-                "R": "Radiante"
+                "R": "Radiante",
+                "A1": "Ascendente 1",
+                "A2": "Ascendente 2",
+                "A3": "Ascendente 3"
             }
         },
         "match": {
