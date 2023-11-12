@@ -529,7 +529,9 @@
             "rank": "Rank",
             "rankRating": "Rank points",
             "rankRatingTooltip": "Ranking score is calculated based on your performance in ranked matches",
-            "notFound": "Player not found"
+            "notFound": "Player not found",
+            "uuid": "UUID do jogador",
+            "unranked": "Sem classificação"
         },
         "match": {
             "title": "{{username}}#{{tag}}'s matches",
