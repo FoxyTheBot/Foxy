@@ -41,7 +41,7 @@ export class FoxyRestManager {
         }).then(res => res.json());
     }
 
-    async getValMatchHistory(username: string, tag: string, mode: string, map: string) {
+    async getValMatchHistory(username: string, tag: string, mode?: string, map?: string) {
         const userInfo = await this.getValPlayer(username, tag).then(res => res.data);
         if (!userInfo) return null;
         const puuid = await userInfo.puuid;
