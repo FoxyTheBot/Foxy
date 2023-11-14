@@ -1,7 +1,5 @@
 import ComponentInteractionContext from "../../../../structures/commands/ComponentInteractionContext";
 import { bot } from "../../../../index";
-import { ButtonStyles } from "discordeno/types";
-import { createActionRow, createButton, createCustomId } from "../../../discord/Component";
 import { createEmbed } from "../../../discord/Embed";
 
 const ValMatchSelectorExecutor = async (context: ComponentInteractionContext) => {
