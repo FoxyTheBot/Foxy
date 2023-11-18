@@ -51,13 +51,30 @@ export default class InviteBlockerModule {
                         await delay(1000);
                     }
                 }
+                function isJsonString(str: string) {
+                    try {
+                        JSON.parse(str);
+                    } catch (e) {
+                        return false;
+                    }
+                    return true;
+                }
 
-                addToDeletionQueue(() => context.DeleteMessage(message.id, "Invite Blocker - Delete message that contains an invite"));
-                context.SendAndDelete({
-                    content: blockMessage
-                }, 1000);
-
-                processDeletionQueue();
+                if (isJsonString(blockMessage)) {
+                    const messageObject = JSON.parse(blockMessage);
+                    addToDeletionQueue(() => context.DeleteMessage(message.id, "Invite Blocker - Delete message that contains an invite"));
+                    context.SendAndDelete({
+                        ...messageObject
+                    }, 1000);
+                    return processDeletionQueue();
+                } else {
+                    const messageObject = { "content": blockMessage };
+                    addToDeletionQueue(() => context.DeleteMessage(message.id, "Invite Blocker - Delete message that contains an invite"));
+                    context.SendAndDelete({
+                        ...messageObject
+                    }, 1000);
+                    return processDeletionQueue();
+                }
             }
         }
     }
@@ -88,15 +105,26 @@ export default class InviteBlockerModule {
             if (await guildInfo.InviteBlockerModule.whitelistedUsers.includes(message.authorId)) return;
 
             if (inviteRegex.test(message.content) && !authorRoles.find(role => guildInfo.InviteBlockerModule.whitelistedRoles.includes(role)) || !authorRoles) {
-                setTimeout(async () => {
-                    context.DeleteMessage(message.id, "Invite Blocker - Delete message that contains an invite");
-                }, 500);
+                function isJsonString(str: string) {
+                    try {
+                        JSON.parse(str);
+                    } catch (e) {
+                        return false;
+                    }
+                    return true;
+                }
 
-                setTimeout(async () => {
-                    context.SendAndDelete({
-                        content: blockMessage
+                if (isJsonString(blockMessage)) {
+                    const messageObject = JSON.parse(blockMessage);
+                    return context.SendAndDelete({
+                        ...messageObject
                     }, 1000);
-                }, 500);
+                } else {
+                    const messageObject = { "content": blockMessage };
+                    return context.SendAndDelete({
+                        ...messageObject
+                    }, 1000);
+                }
             }
         }
     }
