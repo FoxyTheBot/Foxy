@@ -1,0 +1,80 @@
+import { createCommand } from '../../structures/commands/createCommand';
+import { ApplicationCommandOptionTypes } from 'discordeno/types';
+import { ButtonStyles } from 'discordeno/types';
+import { User } from 'discordeno/transformers';
+import { createEmbed } from '../../utils/discord/Embed';
+import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
+import { bot } from '../../index';
+import { MessageFlags } from '../../utils/discord/Message';
+import SlapExecutor from '../../utils/commands/executors/actions/SlapExecutor';
+
+const embed = createEmbed({});
+
+
+const SlapCommand = createCommand({
+    name: 'slap',
+    nameLocalizations: {
+        'pt-BR': 'tapa'
+    },
+    description: '[Roleplay] Slaps someone',
+    descriptionLocalizations: {
+        "pt-BR": "[Roleplay] Dê um tapa em alguém"
+    },
+    category: 'roleplay',
+    options: [
+        {
+            name: "user",
+            nameLocalizations: {
+                "pt-BR": "usuário"
+            },
+            description: "Select the user you want to slap",
+            descriptionLocalizations: {
+                "pt-BR": "Selecione o usuário que deseja bater"
+            },
+            type: ApplicationCommandOptionTypes.User,
+            required: true
+        }
+    ],
+    commandRelatedExecutions: [SlapExecutor],
+    execute: async (context, endCommand, t) => {
+        const user = context.getOption<User>("user", "users");
+        const slapGif: any = await context.getImage("slap");
+
+        if (user.id === bot.id) {
+            context.sendReply({
+                content: t('commands:slap.bot'),
+                flags: MessageFlags.EPHEMERAL
+            });
+
+            return endCommand();
+        }
+
+        if (user.id === context.author.id) {
+            context.sendReply({
+                content: t('commands:slap.self'),
+                flags: MessageFlags.EPHEMERAL
+            });
+
+            return endCommand();
+        }
+        embed.title = t('commands:slap.success', { target: await bot.foxyRest.getUserDisplayName(user.id), author: await bot.foxyRest.getUserDisplayName(context.author.id), user: await bot.foxyRest.getUserDisplayName(user.id) }),
+            embed.image = {
+                url: slapGif.url
+            }
+
+        context.sendReply({
+            embeds: [embed],
+            components: [createActionRow([createButton({
+                customId: createCustomId(0, user.id, context.commandId, await bot.foxyRest.getUserDisplayName(user.id)),
+                label: t('commands:slap.button'),
+                style: ButtonStyles.Primary,
+                emoji: {
+                    id: bot.emotes.FOXY_SCARED,
+                }
+            })])]
+        })
+        endCommand();
+    }
+});
+
+export default SlapCommand;
