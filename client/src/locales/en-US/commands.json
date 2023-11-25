@@ -335,7 +335,7 @@
         "cooldown": "You already got your daily, wait **{{time}}**",
         "daily": "You won **{{amount}} Cakes** and now has {{money}} Cakes\n",
         "dailyAlert": "**Remember:** You can't do trading things like real money, NSFW content, Nitro in exchange for cakes! If you do this, you will be banned from Foxy permanently!",
-        "dailyPremium": "Você iria ganhar **{{old}}** Cakes, mas seu prêmio recebeu um impulso de **{{boost}}** graças ao premium! Você ganhou **{{amount}}** Cakes! Agora você possui **{{money}} Cakes**"
+        "dailyPremium": "You would earn **{{old}}** cakes, but your daily has been boosted in **{{boost}}** because you're premium! You earned **{{amount}}** cakes! Now you have **{{money}}** cakes"
     },
     "AutoRole": {
         "addrole": {
@@ -495,8 +495,8 @@
         "voteReward": "`{{date}}` 💰 Received **{{amount}}** cakes from voting me",
         "bought": "`{{date}}` 💸 bought **{{amount}}** Cakes at the Foxy's Store",
         "store": "`{{date}}` 💸 Spent **{{amount}}** Cakes at the Foxy's Store",
-        "betLost": "`{{date}}` 💸 Apostou **{{amount}}** Cakes em uma partida de cara ou coroa e perdeu",
-        "betWon": "`{{date}}` 💵 Apostou **{{amount}}** Cakes em uma partida de cara ou coroa e ganhou",
+        "betLost": "`{{date}}` 💸 Lost **{{amount}}** cakes in a coin flip bet",
+        "betWon": "`{{date}}` 💸 Won **{{amount}}** cakes in a coin flip bet",
         "title": "{{user}}'s transactions",
         "footer": "{{total}} Transactions",
         "userHasNoTransactions": "Empty, empty, empty... {{user}} don't have any transaction yet"
