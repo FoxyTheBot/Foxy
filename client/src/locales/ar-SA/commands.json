@@ -335,7 +335,7 @@
         "cooldown": "Você já pegou seus cakes hoje, espere **{{time}}**",
         "daily": "لقد فزت ** {{amount}} كعك ** الآن لديك {{money}} كعك",
         "dailyAlert": "** لا تنسى** لا يمكنك تغيير الكعك لأشياء مثل المال ، نيترو ، محتوى NSFW ، إلخ! إذا قمت بذلك ، فسيتم منعك من استخدام Foxy بشكل دائم!",
-        "dailyPremium": "Você iria ganhar **{{old}}** Cakes, mas seu daily recebeu um impulso em **{{boost}}** graças ao premium! Você ganhou **{{amount}}** Cakes! Agora você possui **{{money}} Cakes**"
+        "dailyPremium": "Você iria ganhar **{{old}}** Cakes, mas seu prêmio recebeu um impulso de **{{boost}}** graças ao premium! Você ganhou **{{amount}}** Cakes! Agora você possui **{{money}} Cakes**"
     },
     "AutoRole": {
         "addrole": {
@@ -495,6 +495,8 @@
         "voteReward": "`{{date}}` 💰 Recebeu **{{amount}}** Cakes por votar na Foxy",
         "bought": "`{{date}}` ✨ Comprou **{{amount}}** Cakes na Lojinha de cakes da Foxy",
         "store": "`{{date}}` 💸 Gastou **{{amount}}** Cakes na Lojinha da Foxy",
+        "betLost": "`{{date}}` 💸 Apostou **{{amount}}** Cakes em uma partida de cara ou coroa e perdeu",
+        "betWon": "`{{date}}` 💵 Apostou **{{amount}}** Cakes em uma partida de cara ou coroa e ganhou",
         "title": "Transações de {{user}}",
         "footer": "{{total}} Transações no total",
         "userHasNoTransactions": "Vazio, vazio, vazio... {{user}} não possui nenhuma transação"
