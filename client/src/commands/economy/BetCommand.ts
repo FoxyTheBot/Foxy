@@ -130,6 +130,14 @@ const BetCommand = createCommand({
                 });
                 userData.balance += Number(amount);
                 mentionedUserData.balance -= Number(amount);
+                userData.transactions.push({
+                    to: context.author.id,
+                    from: user.id,
+                    quantity: amount,
+                    date: Date.now(),
+                    received: true,
+                    type: 'bet'
+                });
                 userData.save();
                 mentionedUserData.save();
 
@@ -142,6 +150,14 @@ const BetCommand = createCommand({
                 });
                 userData.balance -= Number(amount);
                 mentionedUserData.balance += Number(amount);
+                userData.transactions.push({
+                    to: user.id,
+                    from: context.author.id,
+                    quantity: amount,
+                    date: Date.now(),
+                    received: false,
+                    type: 'bet'
+                });
                 userData.save();
                 mentionedUserData.save();
 

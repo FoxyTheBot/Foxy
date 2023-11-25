@@ -225,6 +225,18 @@ const CakeCommand = createCommand({
                         case 'voteReward': {
                             transactionsTexts.push(t('commands:transactions.voteReward', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
                         }
+
+                        case 'bet': {
+                            switch (transaction.received) {
+                                case true: {
+                                    transactionsTexts.push(t('commands:transactions.betWon', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), userWhoSent: `@${(await bot.helpers.getUser(transaction.from))}`, userWhoReceived: `@${(await bot.helpers.getUser(transaction.to))}` }))
+                                }
+
+                                case false: {
+                                    transactionsTexts.push(t('commands:transactions.betLost', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), userWhoSent: `@${(await bot.helpers.getUser(transaction.from))}`, userWhoReceived: `@${(await bot.helpers.getUser(transaction.to))}` }))
+                                }
+                            }
+                        }
                     }
                 }
 
