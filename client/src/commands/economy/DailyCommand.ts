@@ -18,8 +18,8 @@ const DailyCommand = createCommand({
         amount = Math.round(amount / 10) * 10;
 
         const daily = await userData.lastDaily;
-        let multiplier;
-        let oldquantity;
+        var multiplier;
+        var oldquantity = amount;
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
             const currentCooldown = ms(timeout - (Date.now() - daily));
             context.sendReply({
@@ -30,23 +30,20 @@ const DailyCommand = createCommand({
         } else {
             if (amount < 1000) amount = 1000;
 
-            switch (await userData.premiumType) {
-                case 1: {
-                    oldquantity = amount;
+            switch (await userData.premiumType.toString()) {
+                case "1": {
                     amount = amount * 1.25;
                     multiplier = '1.25x'
                     break;
                 }
 
-                case 2: {
-                    oldquantity = amount;
+                case "2": {
                     amount = amount * 1.5;
                     multiplier = '1.5x'
                     break;
                 }
 
-                case 3: {
-                    oldquantity = amount;
+                case "3": {
                     amount = amount * 2;
                     multiplier = '2x'
                     break;
@@ -70,13 +67,13 @@ const DailyCommand = createCommand({
             switch (await userData.premium) {
                 case true: {
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.dailyPremium', { amount: amount.toLocaleString(t.lng || 'pt-BR'), money: money.toLocaleString(t.lng || 'pt-BR'), old: oldquantity.toLocaleString(t.lng || 'pt-BR') })) + context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:daily.dailyAlert')),
+                        content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.dailyPremium', { boost: multiplier, amount: amount.toLocaleString(t.lng || 'pt-BR'), money: money.toLocaleString(t.lng || 'pt-BR'), old: oldquantity.toLocaleString(t.lng || 'pt-BR') })) + "\n" + context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:daily.dailyAlert')),
                         flags: MessageFlags.EPHEMERAL
                     });
                     break;
                 }
 
-                case false: {
+                default: {
                     context.sendReply({
                         content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.daily', { amount: amount.toLocaleString(t.lng || 'pt-BR'), money: money.toLocaleString(t.lng || 'pt-BR') })) + context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:daily.dailyAlert')),
                         flags: MessageFlags.EPHEMERAL
