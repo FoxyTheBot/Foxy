@@ -335,7 +335,7 @@
         "cooldown": "Você já pegou seus cakes hoje, espere **{{time}}**",
         "daily": "Hai vinto **{{amount}} torte** Ora hai {{money}} Cakes\n",
         "dailyAlert": "** Non dimenticare: ** Non puoi cambiare torte per cose come denaro, nitro, contenuto NSFW, ecc.! Se lo fai, ti verrà vietato l'utilizzo di Foxy permanentemente!",
-        "dailyPremium": "Você iria ganhar **{{old}}** Cakes, mas seu prêmio recebeu um impulso de **{{boost}}** graças ao premium! Você ganhou **{{amount}}** Cakes! Agora você possui **{{money}} Cakes**"
+        "dailyPremium": "Você iria ganhar **{{old}}** Cakes, mas seu daily recebeu um impulso em **{{boost}}** graças ao premium! Você ganhou **{{amount}}** Cakes! Agora você possui **{{money}} Cakes**"
     },
     "AutoRole": {
         "addrole": {
