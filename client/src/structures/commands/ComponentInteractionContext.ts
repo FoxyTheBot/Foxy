@@ -5,6 +5,7 @@ import { bot } from "../../index";
 import { get } from 'https';
 import { URL } from 'url';
 import { MessageFlags } from '../../utils/discord/Message';
+import config from '../../../config.json';
 
 export type CanResolve = 'users' | 'members' | false;
 export default class <InteractionType extends ComponentInteraction = ComponentInteraction> {
@@ -94,7 +95,7 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
 
 
   async getImage(command: string) {
-    let baseURL = 'https://cdn.foxybot.win/images/';
+    let baseURL = `${config.serverURL}images/`;
     let url = new URL(baseURL + command);
     return await this.getContent(url.toString());
   }
