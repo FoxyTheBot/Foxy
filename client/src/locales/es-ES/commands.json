@@ -495,6 +495,8 @@
         "voteReward": "`{{date}}` 💰 Recebeu **{{amount}}** Cakes por votar na Foxy",
         "bought": "`{{date}}` ✨ Comprou **{{amount}}** Cakes na Lojinha de cakes da Foxy",
         "store": "`{{date}}` 💸 Gastou **{{amount}}** Cakes na Lojinha da Foxy",
+        "betLost": "`{{date}}` 💸 Apostou **{{amount}}** Cakes em uma partida de cara ou coroa e perdeu",
+        "betWon": "`{{date}}` 💵 Apostou **{{amount}}** Cakes em uma partida de cara ou coroa e ganhou",
         "title": "Transações de {{user}}",
         "footer": "{{total}} Transações no total",
         "userHasNoTransactions": "Vazio, vazio, vazio... {{user}} não possui nenhuma transação"
