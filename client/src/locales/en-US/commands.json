@@ -495,8 +495,8 @@
         "voteReward": "`{{date}}` 💰 Received **{{amount}}** cakes from voting me",
         "bought": "`{{date}}` 💸 bought **{{amount}}** Cakes at the Foxy's Store",
         "store": "`{{date}}` 💸 Spent **{{amount}}** Cakes at the Foxy's Store",
-        "betLost": "`{{date}}` 💸 Apostou **{{amount}}** Cakes em uma partida de cara ou coroa e perdeu",
-        "betWon": "`{{date}}` 💵 Apostou **{{amount}}** Cakes em uma partida de cara ou coroa e ganhou",
+        "betLost": "`{{date}}` 💸 Lost **{{amount}}** cakes in a coin flip bet",
+        "betWon": "`{{date}}` 💸 Won **{{amount}}** cakes in a coin flip bet",
         "title": "{{user}}'s transactions",
         "footer": "{{total}} Transactions",
         "userHasNoTransactions": "Empty, empty, empty... {{user}} don't have any transaction yet"
