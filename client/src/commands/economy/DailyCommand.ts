@@ -31,7 +31,7 @@ const DailyCommand = createCommand({
         } else {
             if (amount < 1000) amount = 1000;
 
-            switch (await premiumType.toString()) {
+            switch (await premiumType.toString() ?? '0') {
                 case "1": {
                     amount = amount * 1.25;
                     multiplier = '1.25x'
