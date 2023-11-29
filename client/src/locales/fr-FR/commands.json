@@ -293,9 +293,9 @@
         "enemy": "ennemis",
         "lover": "amoureux",
         "sibling": "frères",
-        "parent": "Père et fils",
+        "parent": "parentes",
         "married": "marié",
-        "friend": "Amis",
+        "friend": "amigos",
         "result": "Dans un univers parallèle <@{{user}}> et <@{{mention}}> sont {{fate}}"
     },
     "cancel": {
