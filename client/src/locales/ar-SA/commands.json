@@ -293,9 +293,9 @@
         "enemy": "الأعداء",
         "lover": "عشاق",
         "sibling": "الإخوة",
-        "parent": "الأب وابنه",
+        "parent": "parentes",
         "married": "متزوج",
-        "friend": "أصدقاء",
+        "friend": "amigos",
         "result": "في عالم مواز <@{{user}}> و <@{{mention}}> هي {{fate}}"
     },
     "cancel": {
