@@ -293,9 +293,9 @@
         "enemy": "враги",
         "lover": "любители",
         "sibling": "братья",
-        "parent": "Отец и сын",
+        "parent": "parentes",
         "married": "женатый",
-        "friend": "Друзья",
+        "friend": "amigos",
         "result": "В параллельной вселенной <@{{user}}> и <@{{mention}}> as {{fate}}"
     },
     "cancel": {
