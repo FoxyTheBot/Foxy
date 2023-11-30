@@ -27,8 +27,8 @@ const ProfileCommand = createCommand({
     },
     {
         name: "valorant",
-        description: "View your valorant profile",
-        descriptionLocalizations: { 'pt-BR': 'Veja seu perfil do valorant' },
+        description: "View your VALORANT profile",
+        descriptionLocalizations: { 'pt-BR': 'Veja seu perfil do VALORANT' },
         type: ApplicationCommandOptionTypes.SubCommand,
         options: [{
             name: 'user',
@@ -71,14 +71,14 @@ const ProfileCommand = createCommand({
                 const userData = await bot.database.getUser(user.id);
                 if (!userData.riotAccount.isLinked) {
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.match.notLinked', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.notLinked', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
                     });
                     return endCommand();
                 }
 
                 if (userData.riotAccount.isPrivate && context.author.id !== user.id) {
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.match.private', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.private', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
                     });
                     return endCommand();
                 }
