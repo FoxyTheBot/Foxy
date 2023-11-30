@@ -2,9 +2,10 @@ import { createCommand } from "../../structures/commands/createCommand";
 import { createEmbed } from "../../utils/discord/Embed";
 import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
 import { bot } from "../../index";
-import { ValUser } from "../../structures/types/valuser";
 import { createActionRow, createCustomId, createSelectMenu } from "../../utils/discord/Component";
 import ValMatchSelectorExecutor from "../../utils/commands/executors/util/ValMatchSelectorExecutor";
+import { MessageFlags } from "../../utils/discord/Message";
+import { User } from "discordeno/transformers";
 
 const ValorantCommand = createCommand({
     name: "valorant",
@@ -13,270 +14,216 @@ const ValorantCommand = createCommand({
         "pt-BR": "[VALORANT] Comandos relacionados ao Valorant"
     },
     category: 'util',
-    options: [{
-        name: "player",
-        description: "[VALORANT] See Valorant player informations",
-        descriptionLocalizations: {
-            "pt-BR": "[VALORANT] Veja informações de um jogador de Valorant"
-        },
-        type: ApplicationCommandOptionTypes.SubCommand,
-        options: [{
-            name: "username",
-            nameLocalizations: {
-                "pt-BR": "nome_de_usuário"
-            },
-            description: "The player username",
-            descriptionLocalizations: {
-                "pt-BR": "O nome de usuário do jogador"
-            },
-            type: ApplicationCommandOptionTypes.String,
-            required: true
-        }, {
-            name: "tag",
-            nameLocalizations: {
-                "pt-BR": "tag"
-            },
-            description: "The player tag",
-            descriptionLocalizations: {
-                "pt-BR": "A tag do jogador"
-            },
-            type: ApplicationCommandOptionTypes.String,
-            required: true
-        }]
-    },
-    {
-        name: "matches",
-        nameLocalizations: {
-            "pt-BR": "partidas"
-        },
-        description: "[VALORANT] See Valorant player match history",
-        descriptionLocalizations: {
-            "pt-BR": "[VALORANT] Veja o histórico de partidas de um jogador de Valorant"
-        },
-        type: ApplicationCommandOptionTypes.SubCommand,
-        options: [{
-            name: "username",
-            nameLocalizations: {
-                "pt-BR": "nome_de_usuário"
-            },
-            description: "The player username",
-            descriptionLocalizations: {
-                "pt-BR": "O nome de usuário do jogador"
-            },
-            type: ApplicationCommandOptionTypes.String,
-            required: true
-        },
+    options: [
         {
-            name: "tag",
+            name: "matches",
             nameLocalizations: {
-                "pt-BR": "tag"
+                "pt-BR": "partidas"
             },
-            description: "The player tag",
+            description: "[VALORANT] See Valorant player match history",
             descriptionLocalizations: {
-                "pt-BR": "A tag do jogador"
+                "pt-BR": "[VALORANT] Veja o histórico de partidas de um jogador de Valorant"
             },
-            type: ApplicationCommandOptionTypes.String,
-            required: true
-        },
-        {
-            name: "mode",
-            nameLocalizations: {
-                "pt-BR": "modo_de_jogo"
-            },
-            description: "The match mode",
-            descriptionLocalizations: {
-                "pt-BR": "O modo da partida"
-            },
-            type: ApplicationCommandOptionTypes.String,
-            required: false,
-            choices: [{
-                name: "Competitive",
+            type: ApplicationCommandOptionTypes.SubCommand,
+            options: [{
+                name: "user",
                 nameLocalizations: {
-                    "pt-BR": "Competitivo"
+                    "pt-BR": "usuário"
                 },
-                value: "competitive",
+                description: "The user to see the match history",
+                descriptionLocalizations: {
+                    "pt-BR": "O usuário para ver o histórico de partidas"
+                },  
+                type: ApplicationCommandOptionTypes.User,
+                required: false,
             },
             {
-                name: "Unrated",
+                name: "mode",
                 nameLocalizations: {
-                    "pt-BR": "Não ranqueado"
+                    "pt-BR": "modo_de_jogo"
                 },
-                value: "unrated",
+                description: "The match mode",
+                descriptionLocalizations: {
+                    "pt-BR": "O modo da partida"
+                },
+                type: ApplicationCommandOptionTypes.String,
+                required: false,
+                choices: [{
+                    name: "Competitive",
+                    nameLocalizations: {
+                        "pt-BR": "Competitivo"
+                    },
+                    value: "competitive",
+                },
+                {
+                    name: "Unrated",
+                    nameLocalizations: {
+                        "pt-BR": "Não ranqueado"
+                    },
+                    value: "unrated",
+                },
+                {
+                    name: "Spike Rush",
+                    nameLocalizations: {
+                        "pt-BR": "Spike Rush"
+                    },
+                    value: "spikerush",
+                },
+                {
+                    name: "Deathmatch",
+                    nameLocalizations: {
+                        "pt-BR": "Deathmatch"
+                    },
+                    value: "deathmatch",
+                }, {
+                    name: "Escalation",
+                    nameLocalizations: {
+                        "pt-BR": "Escalada"
+                    },
+                    value: "escalation",
+                },
+                {
+                    name: "Team Deathmatch",
+                    nameLocalizations: {
+                        "pt-BR": "Team Deathmatch"
+                    },
+                    value: "teamdeathmatch",
+                }]
             },
             {
-                name: "Spike Rush",
+                name: "map",
                 nameLocalizations: {
-                    "pt-BR": "Spike Rush"
+                    "pt-BR": "mapa"
                 },
-                value: "spikerush",
-            },
-            {
-                name: "Deathmatch",
-                nameLocalizations: {
-                    "pt-BR": "Deathmatch"
+                description: "The match map",
+                descriptionLocalizations: {
+                    "pt-BR": "O mapa da partida"
                 },
-                value: "deathmatch",
-            }, {
-                name: "Escalation",
-                nameLocalizations: {
-                    "pt-BR": "Escalada"
+                type: ApplicationCommandOptionTypes.String,
+                required: false,
+                choices: [{
+                    name: "Ascent",
+                    value: "ascent",
                 },
-                value: "escalation",
-            },
-            {
-                name: "Team Deathmatch",
-                nameLocalizations: {
-                    "pt-BR": "Team Deathmatch"
+                {
+                    name: "Bind",
+                    value: "bind",
                 },
-                value: "teamdeathmatch",
+                {
+                    name: "Breeze",
+                    value: "breeze",
+                },
+                {
+                    name: "Fracture",
+                    value: "fracture",
+                },
+                {
+                    name: "Haven",
+                    value: "haven",
+                },
+                {
+                    name: "Icebox",
+                    value: "icebox",
+                },
+                {
+                    name: "Split",
+                    value: "split",
+                }]
             }]
         },
         {
-            name: "map",
+            name: "link-account",
             nameLocalizations: {
-                "pt-BR": "mapa"
+                "pt-BR": "vincular-conta"
             },
-            description: "The match map",
+            description: "[VALORANT] Link your valorant account to your discord account",
             descriptionLocalizations: {
-                "pt-BR": "O mapa da partida"
+                "pt-BR": "[VALORANT] Vincule sua conta do valorant a sua conta do Discord"
             },
-            type: ApplicationCommandOptionTypes.String,
-            required: false,
-            choices: [{
-                name: "Ascent",
-                value: "ascent",
+            type: ApplicationCommandOptionTypes.SubCommand,
+        },
+        {
+            name: "set-visibility",
+            nameLocalizations: {
+                "pt-BR": "definir-visibilidade"
             },
-            {
-                name: "Bind",
-                value: "bind",
+            description: "[VALORANT] Set your VALORANT account visibility",
+            descriptionLocalizations: {
+                "pt-BR": "[VALORANT] Defina a visibilidade da sua conta do VALORANT"
             },
-            {
-                name: "Breeze",
-                value: "breeze",
-            },
-            {
-                name: "Fracture",
-                value: "fracture",
-            },
-            {
-                name: "Haven",
-                value: "haven",
-            },
-            {
-                name: "Icebox",
-                value: "icebox",
-            },
-            {
-                name: "Split",
-                value: "split",
+            type: ApplicationCommandOptionTypes.SubCommand,
+
+            options: [{
+                name: "visibility",
+                nameLocalizations: {
+                    "pt-BR": "visibilidade"
+                },
+                description: "Your account visibility",
+                descriptionLocalizations: {
+                    "pt-BR": "A visibilidade da sua conta"
+                },
+                type: ApplicationCommandOptionTypes.Boolean,
+                required: true,
             }]
-        }]
-    }],
+        }],
     commandRelatedExecutions: [ValMatchSelectorExecutor],
     async execute(context, endCommand, t) {
         const subcommand = context.getSubCommand();
 
         switch (subcommand) {
-            case 'player': {
-                context.sendDefer();
-                const userInfo: ValUser = await bot.foxyRest.getValPlayer(context.getOption<string>('username', false), context.getOption<string>('tag', false));
-                const mmrInfo = await bot.foxyRest.getMMR(userInfo.data.puuid);
+            case 'link-account': {
+                context.sendReply({
+                    content: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.linkAccount', { url: `https://auth.riotgames.com/login#client_id=b54a5c51-dd72-400a-8a80-5ad42798cd27&redirect_uri=https://cakey.foxybot.win/rso/auth/callback&response_type=code&scope=openid&state=${context.author.id}` })),
+                    flags: MessageFlags.EPHEMERAL
+                });
+                return endCommand();
+            }
 
-                function getRank(rank: string) {
-                    const rankMapping: { [key: string]: any } = {
-                        'Iron 1': { rank: 'I1', emoji: bot.emotes.I1 },
-                        'Iron 2': { rank: 'I2', emoji: bot.emotes.I2 },
-                        'Iron 3': { rank: 'I3', emoji: bot.emotes.I3 },
-                        'Bronze 1': { rank: 'B1', emoji: bot.emotes.B1 },
-                        'Bronze 2': { rank: 'B2', emoji: bot.emotes.B2 },
-                        'Bronze 3': { rank: 'B3', emoji: bot.emotes.B3 },
-                        'Silver 1': { rank: 'S1', emoji: bot.emotes.S1 },
-                        'Silver 2': { rank: 'S2', emoji: bot.emotes.S2 },
-                        'Silver 3': { rank: 'S3', emoji: bot.emotes.S3 },
-                        'Gold 1': { rank: 'G1', emoji: bot.emotes.G1 },
-                        'Gold 2': { rank: 'G2', emoji: bot.emotes.G2 },
-                        'Gold 3': { rank: 'G3', emoji: bot.emotes.G3 },
-                        'Platinum 1': { rank: 'P1', emoji: bot.emotes.P1 },
-                        'Platinum 2': { rank: 'P2', emoji: bot.emotes.P2 },
-                        'Platinum 3': { rank: 'P3', emoji: bot.emotes.P3 },
-                        'Diamond 1': { rank: 'D1', emoji: bot.emotes.D1 },
-                        'Diamond 2': { rank: 'D2', emoji: bot.emotes.D2 },
-                        'Diamond 3': { rank: 'D3', emoji: bot.emotes.D3 },
-                        'Ascendant 1': { rank: 'A1', emoji: bot.emotes.A1 },
-                        'Ascendant 2': { rank: 'A2', emoji: bot.emotes.A2 },
-                        'Ascendant 3': { rank: 'A3', emoji: bot.emotes.A3 },
-                        'Immortal 1': { rank: 'IM1', emoji: bot.emotes.IM1 },
-                        'Immortal 2': { rank: 'IM2', emoji: bot.emotes.IM2 },
-                        'Immortal 3': { rank: 'IM3', emoji: bot.emotes.IM3 },
-                        'Radiant': { rank: 'R', emoji: bot.emotes.R },
-                    };
+            case 'set-visibility': {
+                const visibility = context.getOption<boolean>('visibility', false);
+                const valUserInfo = await bot.database.getUser(context.author.id);
 
-                    if (rank in rankMapping) {
-                        return rankMapping[rank];
-                    } else {
-                        return null;
-                    }
-                }
-
-                const rank = getRank(mmrInfo.data.current_data.currenttierpatched);
-                const formattedRank = rank ? `${context.getEmojiById(rank.emoji)} ${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${context.getEmojiById(bot.emotes.UNRATED)} ${t('commands:valorant.player.ranks.UNRATED')}`;
-                
-                if (userInfo.status === 200) {
-                    const embed = createEmbed({
-                        color: 0xf84355,
-                        title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.player.title', { username: userInfo.data.name, tag: userInfo.data.tag }),
-                        image: {
-                            url: userInfo.data.card.wide
-                        },
-                        thumbnail: {
-                            url: userInfo.data.card.small
-                        },
-                        fields: [{
-                            name: "Username",
-                            value: userInfo.data.name,
-                            inline: true
-                        },
-                        {
-                            name: t('commands:valorant.player.tag'),
-                            value: userInfo.data.tag,
-                            inline: true
-
-                        },
-                        {
-                            name: t('commands:valorant.player.level'),
-                            value: userInfo.data.account_level.toString(),
-                            inline: true
-                        },
-                        {
-                            name: t('commands:valorant.player.rank'),
-                            value: formattedRank,
-                        }]
-                    })
+                if (valUserInfo.riotAccount.isLinked) {
+                    valUserInfo.riotAccount.isPrivate = visibility;
+                    await valUserInfo.save();
 
                     context.sendReply({
-                        embeds: [embed],
+                        content: context.makeReply(bot.emotes.FOXY_NICE, t('commands:valorant.visibilityChanged', { visibility: visibility ? t('commands:valorant.private') : t('commands:valorant.public') })),
+                        flags: MessageFlags.EPHEMERAL
                     });
-                    return endCommand();
-                } else {
-                    context.sendReply({
-                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.player.notFound'))
-                    });
+
                     return endCommand();
                 }
             }
 
             case 'matches': {
+                const user = context.getOption<User>('user', 'users') ?? context.author;
+                const userData = await bot.database.getUser(user.id);
+                if (!userData.riotAccount.isLinked) {
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.match.notLinked', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+                    });
+                    return endCommand();
+                }
+
+                if (userData.riotAccount.isPrivate && context.author.id !== user.id) {
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.match.private', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+                    });
+                    return endCommand();
+                }
+
                 context.sendDefer();
-                const matchInfo: any = await bot.foxyRest.getValMatchHistory(context.getOption<string>('username', false), context.getOption<string>('tag', false), context.getOption<string>('mode', false), context.getOption<string>('map', false));
-                const userInfo = await bot.foxyRest.getValPlayer(context.getOption<string>('username', false), context.getOption<string>('tag', false));
+                const matchInfo: any = await bot.foxyRest.getValMatchHistoryByUUID(userData.riotAccount.puuid, context.getOption<string>('mode', false), context.getOption<string>('map', false));
+                const valUserInfo = await bot.foxyRest.getValPlayerByUUID(userData.riotAccount.puuid);
 
                 try {
                     const embed = createEmbed({
                         color: 0xf84354,
                         thumbnail: {
-                            url: userInfo.data.card.small
+                            url: valUserInfo.data.card.small
                         },
-                        title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.match.title', { username: userInfo.data.name, tag: userInfo.data.tag }),
+                        title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.match.title', { username: valUserInfo.data.name, tag: valUserInfo.data.tag }),
                         fields: matchInfo.data.map(match => {
                             return {
                                 name: `${match.meta.map.name} - ${match.meta.mode}`,
