@@ -83,8 +83,8 @@ const ProfileCommand = createCommand({
                     return endCommand();
                 }
 
+                context.sendDefer();
                 const userInfo: ValUser = await bot.foxyRest.getValPlayerByUUID(await userData.riotAccount.puuid);
-                console.log(userInfo)
                 const mmrInfo = await bot.foxyRest.getMMR(await userData.riotAccount.puuid);
 
                 function getRank(rank: string) {
