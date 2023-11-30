@@ -201,14 +201,14 @@ const ValorantCommand = createCommand({
                 const userData = await bot.database.getUser(user.id);
                 if (!userData.riotAccount.isLinked) {
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.match.notLinked', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.notLinked', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
                     });
                     return endCommand();
                 }
 
                 if (userData.riotAccount.isPrivate && context.author.id !== user.id) {
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.match.private', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.private', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
                     });
                     return endCommand();
                 }
