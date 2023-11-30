@@ -49,7 +49,14 @@ export default class DatabaseConnection {
             mask: String,
             masks: Array,
             layout: String,
-            transactions: [trasactionSchema]
+            transactions: [trasactionSchema],
+            riotAccount: {
+                isLinked: Boolean,
+                puuid: String,
+                isPrivate: Boolean,
+                region: String,
+                access_token: String,
+            }
         }, { versionKey: false, id: false });
 
         const commandsSchema = new mongoose.Schema({
@@ -82,7 +89,8 @@ export default class DatabaseConnection {
                 leaveMessage: String,
                 joinChannel: String,
                 leaveChannel: String,
-            }
+            },
+            premiumKeys: Array
         }, { versionKey: false, id: false });
         this.user = mongoose.model('user', userSchema);
         this.commands = mongoose.model('commands', commandsSchema);
@@ -122,6 +130,13 @@ export default class DatabaseConnection {
                 masks: [],
                 layout: "default",
                 transactions: [],
+                riotAccount: {
+                    isLinked: false,
+                    puuid: null,
+                    isPrivate: false,
+                    region: null,
+                    access_token: null,
+                }
             }).save();
         }
 
@@ -203,7 +218,9 @@ export default class DatabaseConnection {
                     leaveMessage: null,
                     joinChannel: null,
                     leaveChannel: null,
-                }
+                },
+                premiumKeys: []
+
             }).save();
         }
 
@@ -235,7 +252,8 @@ export default class DatabaseConnection {
                     leaveMessage: null,
                     joinChannel: null,
                     leaveChannel: null,
-                }
+                },
+                premiumKeys: []
             }).save();
             return null;
         }
