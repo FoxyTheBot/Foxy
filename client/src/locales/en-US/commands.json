@@ -121,7 +121,11 @@
         "yes": "locked",
         "no": "unlocked",
         "simpleYes": "locked",
-        "simpleNo": "unlocked"
+        "simpleNo": "unlocked",
+        "val": {
+            "notLinked": "Desculpe, **{{user}}** não vinculou sua conta da Riot Games a Foxy",
+            "private": "O perfil de **{{user}}** é privado"
+        }
     },
     "masks": {
         "ears": "Cat ears",
@@ -521,6 +525,10 @@
         }
     },
     "valorant": {
+        "visibilityChanged": "Okay! Seu perfil agora é {{visibility}}",
+        "public": "público",
+        "private": "privado",
+        "linkAccount": "Para vincular sua conta da Riot Games com a Foxy, [clique aqui]({{url}})",
         "player": {
             "title": "{{username}}#{{tag}}'s profile",
             "level": "Level",
