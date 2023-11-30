@@ -58,6 +58,29 @@ export class FoxyRestManager {
         }).then(res => res.json());
     }
 
+    async getValMatchHistoryByUUID(puuid: string, mode?: string, map?: string) {
+
+        let url = `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/br/${puuid}?size=12`;
+
+        if (mode) url += `&mode=${mode}`;
+
+        if (map) url += `&map=${map}`;
+
+        return fetch(url, {
+            headers: {
+                "Authentication": config.valorantAPI
+            }
+        }).then(res => res.json());
+    }
+
+    async getValPlayerByUUID(puuid: string) {
+        return fetch(`https://api.henrikdev.xyz/valorant/v1/by-puuid/account/${puuid}`, {
+            headers: {
+                "Authentication": config.valorantAPI
+            }
+        }).then(res => res.json());
+    }
+
     async getMMR(puuid: string) {
         return fetch(`https://api.henrikdev.xyz/valorant/v2/by-puuid/mmr/na/${puuid}`, {
             headers: {
@@ -72,5 +95,15 @@ export class FoxyRestManager {
                 "Authentication": config.valorantAPI
             }
         }).then(res => res.json()); 
+    }
+
+    /* Foxy API */
+
+    async getKey(key: string) {
+        return fetch(`https://cakey.foxybot.win/key/${key}`, {
+            headers: {
+                "Authorization": config.foxyAPIToken
+            }
+        }).then(res => res.json());
     }
 }
