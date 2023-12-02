@@ -121,7 +121,11 @@
         "yes": "bloqueados, agora você não receberá mais pedidos de casamento e nem poderá pedir em casamento",
         "no": "desbloqueados, agora você receberá pedidos de casamento e poderá pedir em casamento",
         "simpleYes": "bloqueados",
-        "simpleNo": "desbloqueados"
+        "simpleNo": "desbloqueados",
+        "val": {
+            "notLinked": "Desculpe, **{{user}}** não vinculou sua conta da Riot Games a Foxy",
+            "private": "O perfil de **{{user}}** é privado"
+        }
     },
     "masks": {
         "ears": "Oreilles de chat",
@@ -293,9 +297,9 @@
         "enemy": "ennemis",
         "lover": "amoureux",
         "sibling": "frères",
-        "parent": "Père et fils",
+        "parent": "parentes",
         "married": "marié",
-        "friend": "Amis",
+        "friend": "amigos",
         "result": "Dans un univers parallèle <@{{user}}> et <@{{mention}}> sont {{fate}}"
     },
     "cancel": {
@@ -521,6 +525,10 @@
         }
     },
     "valorant": {
+        "visibilityChanged": "Okay! Seu perfil agora é {{visibility}}",
+        "public": "público",
+        "private": "privado",
+        "linkAccount": "Para vincular sua conta da Riot Games com a Foxy, [clique aqui]({{url}})",
         "player": {
             "title": "Perfil de {{username}}#{{tag}}",
             "level": "Nível",

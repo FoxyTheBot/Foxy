@@ -121,7 +121,11 @@
         "yes": "locked",
         "no": "unlocked",
         "simpleYes": "locked",
-        "simpleNo": "unlocked"
+        "simpleNo": "unlocked",
+        "val": {
+            "notLinked": "Sorry, **{{user}}** doesn't have a linked Riot Games account",
+            "private": "{{user}}'s profile is private"
+        }
     },
     "masks": {
         "ears": "Cat ears",
@@ -293,9 +297,9 @@
         "enemy": "enemies",
         "lover": "lover",
         "sibling": "sibling",
-        "parent": "parents",
+        "parent": "relatives",
         "married": "married",
-        "friend": "friend",
+        "friend": "friends",
         "result": "In a parallel universe <@{{user}}> and <@{{mention}}> are {{fate}}"
     },
     "cancel": {
@@ -521,6 +525,10 @@
         }
     },
     "valorant": {
+        "visibilityChanged": "Okay! Now your profile is {{visibility}}",
+        "public": "public",
+        "private": "private",
+        "linkAccount": "To link your Riot Games account with me, [click here]({{url}})",
         "player": {
             "title": "{{username}}#{{tag}}'s profile",
             "level": "Level",
