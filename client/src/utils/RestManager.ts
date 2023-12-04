@@ -3,11 +3,27 @@ import { FoxyClient } from "../structures/types/foxy";
 import { User } from "../structures/types/user";
 import fetch from "node-fetch";
 import config from '../../config.json';
+import axios from "axios";
 
 export class FoxyRestManager {
     public bot: FoxyClient;
+    public api: any;
+    public valorantAPI: any;
+
     constructor(bot) {
         this.bot = bot;
+        this.api = axios.create({
+            baseURL: config.serverURL,
+            headers: {
+                "Authorization": config.foxyAPIToken
+            }
+        });
+        this.valorantAPI = axios.create({
+            baseURL: 'https://api.henrikdev.xyz',
+            headers: {
+                "Authentication": config.valorantAPI
+            }
+        });
     }
 
     async sendDirectMessage(userId: BigString, data: Object) {
@@ -74,36 +90,20 @@ export class FoxyRestManager {
     }
 
     async getValPlayerByUUID(puuid: string) {
-        return fetch(`https://api.henrikdev.xyz/valorant/v1/by-puuid/account/${puuid}`, {
-            headers: {
-                "Authentication": config.valorantAPI
-            }
-        }).then(res => res.json());
+        return await this.valorantAPI.get(`valorant/v1/by-puuid/account/${puuid}`);
     }
 
     async getMMR(puuid: string) {
-        return fetch(`https://api.henrikdev.xyz/valorant/v2/by-puuid/mmr/na/${puuid}`, {
-            headers: {
-                "Authentication": config.valorantAPI
-            }
-        }).then(res => res.json());
+        return await this.valorantAPI.get(`valorant/v2/by-puuid/mmr/na/${puuid}`);
     }
 
     async getValMatch(matchId: string) {
-        return fetch(`https://api.henrikdev.xyz/valorant/v2/match/${matchId}`, {
-            headers: {
-                "Authentication": config.valorantAPI
-            }
-        }).then(res => res.json()); 
+        return await this.valorantAPI.get(`valorant/v2/match/${matchId}`);
     }
 
     /* Foxy API */
 
     async getKey(key: string) {
-        return fetch(`https://cakey.foxybot.win/key/${key}`, {
-            headers: {
-                "Authorization": config.foxyAPIToken
-            }
-        }).then(res => res.json());
+        return await this.api.get(`/keys/${key}`);
     }
 }
