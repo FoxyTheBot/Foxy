@@ -20,9 +20,9 @@ const ValorantCommand = createCommand({
             nameLocalizations: {
                 "pt-BR": "partidas"
             },
-            description: "[VALORANT] See Valorant player match history",
+            description: "[VALORANT] See VALORANT player match history",
             descriptionLocalizations: {
-                "pt-BR": "[VALORANT] Veja o histórico de partidas de um jogador de Valorant"
+                "pt-BR": "[VALORANT] Veja o histórico de partidas de um jogador de VALORANT"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
             options: [{
