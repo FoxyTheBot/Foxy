@@ -208,7 +208,7 @@ const FoxyToolsCommand = createCommand({
                 break;
             }
 
-            case "remove_coins": {
+            case "remove_cakes": {
                 const quantity = context.getOption<Number>('quantity', false);
                 const userData = await bot.database.getUser(user.id);
 
