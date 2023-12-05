@@ -115,7 +115,7 @@
         "marriedWith": "💍 Casado(a) com {{user}} desde {{date}} ({{relativeTime}})",
         "premium": "{{badge}} Premium desde {{date}}",
         "testMode": "Seu sobre mim será exibido assim!",
-        "banned": "`{{user}} está banido por `{{reason}}` \nDesde `{{date}}`",
+        "banned": "`{{user}}` foi banido pelo motivo: `{{reason}}` \nBanido desde `{{date}}`",
         "marriableStatusSet": "Seus pedidos de casamentos foram {{status}}",
         "marriableStatusAlreadySet": "Seus pedidos já foram {{status}}",
         "yes": "bloqueados, agora você não receberá mais pedidos de casamento e nem poderá pedir em casamento",
