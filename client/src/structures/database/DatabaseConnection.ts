@@ -8,16 +8,33 @@ export default class DatabaseConnection {
     private user: any;
     private commands: any;
     private guilds: any;
+    private key: any;
 
     constructor(client) {
         mongoose.set("strictQuery", true)
-        mongoose.connect(mongouri, {
+        mongoose.connect(process.env.MONGODB_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         } as ConnectOptions).catch((error) => {
             logger.error(`Failed to connect to database: `, error);
         });
         logger.info(`[DATABASE] Connected to database!`);
+        const keySchema = new mongoose.Schema({
+            key: String,
+            used: Boolean,
+            expiresAt: Date,
+            pType: Number,
+            guild: String,
+        }, { versionKey: false, id: false });
+        const keySchemaForGuilds = new mongoose.Schema({
+            key: String,
+            used: Boolean,
+            expiresAt: Date,
+            pType: Number,
+            guild: String,
+            owner: String,
+        }, { versionKey: false, id: false
+        });
         const trasactionSchema = new mongoose.Schema({
             to: String,
             from: String,
@@ -56,7 +73,8 @@ export default class DatabaseConnection {
                 isPrivate: Boolean,
                 region: String,
                 access_token: String,
-            }
+            },
+            premiumKeys: [keySchema]
         }, { versionKey: false, id: false });
 
         const commandsSchema = new mongoose.Schema({
@@ -90,11 +108,12 @@ export default class DatabaseConnection {
                 joinChannel: String,
                 leaveChannel: String,
             },
-            premiumKeys: Array
+            premiumKeys: [keySchemaForGuilds]
         }, { versionKey: false, id: false });
         this.user = mongoose.model('user', userSchema);
         this.commands = mongoose.model('commands', commandsSchema);
         this.guilds = mongoose.model('guilds', guildSchema);
+        this.key = mongoose.model('key', keySchema);
         this.client = client;
     }
 
@@ -136,7 +155,8 @@ export default class DatabaseConnection {
                     isPrivate: false,
                     region: null,
                     access_token: null,
-                }
+                },
+                premiumKeys: []
             }).save();
         }
 
