@@ -90,20 +90,14 @@ export class FoxyRestManager {
     }
 
     async getValPlayerByUUID(puuid: string) {
-        return await this.valorantAPI.get(`valorant/v1/by-puuid/account/${puuid}`);
+        return (await this.valorantAPI.get(`valorant/v1/by-puuid/account/${puuid}`)).data;
     }
 
     async getMMR(puuid: string) {
-        return await this.valorantAPI.get(`valorant/v2/by-puuid/mmr/na/${puuid}`);
+        return (await this.valorantAPI.get(`valorant/v2/by-puuid/mmr/na/${puuid}`)).data;
     }
 
     async getValMatch(matchId: string) {
-        return await this.valorantAPI.get(`valorant/v2/match/${matchId}`);
-    }
-
-    /* Foxy API */
-
-    async getKey(key: string) {
-        return await this.api.get(`/keys/${key}`);
+        return (await this.valorantAPI.get(`valorant/v2/match/${matchId}`)).data;
     }
 }
