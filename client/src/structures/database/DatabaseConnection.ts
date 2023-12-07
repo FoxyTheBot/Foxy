@@ -12,7 +12,7 @@ export default class DatabaseConnection {
 
     constructor(client) {
         mongoose.set("strictQuery", true)
-        mongoose.connect(process.env.MONGODB_URI, {
+        mongoose.connect(mongouri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         } as ConnectOptions).catch((error) => {
