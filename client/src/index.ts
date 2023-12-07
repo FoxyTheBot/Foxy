@@ -10,7 +10,16 @@ const bot = createBot({
     token: config.token,
     intents: 3183191 as Intents,
     botId: BigInt(config.clientId),
-    applicationId: BigInt(config.clientId)
+    botGatewayData: {
+        sessionStartLimit: {
+            total: 1000,
+            remaining: 1000,
+            resetAfter: 86400000,
+            maxConcurrency: 1
+        },
+        shards: 1,
+        url: "wss://gateway.discord.gg/?v=10&encoding=json"
+    },
 }) as FoxyClient;
 
 enableCachePlugin(bot);
