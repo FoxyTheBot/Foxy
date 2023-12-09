@@ -50,7 +50,7 @@
         "flipped": "You flipped a coin and got"
     },
     "upvote": {
-        "description": "Help me to increase servers count and keep me alive voting me on <:topgg:1074823809376460923> Discord Bot List, \n<:catblush:768292358458179595> Votes helps me to get more servers and more users on Discord! Vote me [clicking here](https://top.gg/bot/1006520438865801296/vote) :heart:",
+        "description": "Help me to increase servers count and keep me alive voting me on <:topgg:1074823809376460923> Discord Bot List, \n<:catblush:768292358458179595> votes helps me to get more servers and more users on Discord! Vote me [clicking here](https://top.gg/bot/1006520438865801296/vote) :heart:",
         "top": {
             "title": "Top voters on top.gg",
             "votes": "Votes",
@@ -115,7 +115,7 @@
         "marriedWith": "💍 Married with {{user}} since {{date}} ({{relativeTime}})",
         "premium": "{{badge}} Premium since {{date}}",
         "testMode": "Your about me will be displayed here",
-        "banned": "`{{user}} is banned! Reason: `{{reason}}` \nSince `{{date}}`",
+        "banned": "`{{user}}` is banned because: `{{reason}}`\nBanned since `{{date}}`",
         "marriableStatusSet": "Your marriage requests have been {{status}}",
         "marriableStatusAlreadySet": "Your marriage requests have already been {{status}}",
         "yes": "locked",
@@ -495,6 +495,7 @@
         "sentCakes": "`{{date}}` 💵 Sent **{{amount}}** cakes to `{{user}}`",
         "addedByAdmin": "`{{date}}` 💵 Received {{amount}} Cakes from Foxy for being an amazing person :3",
         "noTransactions": "Empty, empty, empty... You don't have any transaction yet",
+        "premiumPerk": "`{{date}}` 💫 recebeu **{{amount}}** Cakes por ser premium",
         "dailyTransaction": "`{{date}}` 💰 Received **{{amount}}** cakes from daily",
         "voteReward": "`{{date}}` 💰 Received **{{amount}}** cakes from voting me",
         "bought": "`{{date}}` 💸 bought **{{amount}}** Cakes at the Foxy's Store",

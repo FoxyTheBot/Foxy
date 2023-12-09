@@ -50,7 +50,7 @@
         "flipped": "Вы сыграли монету, и результат был"
     },
     "upvote": {
-        "description": "Помогите мне расти и помогите мне быть лучшим ботом, голосующим за меня на <: Topgg: 1074823809376460923> Список ботов Discord! <: Catblush: 768292358458179595> \n Каждое голосование помогает опубликовать меня другим людям в списке Discord Bot <: Catblush: 768292358458179595> \n\n  Как насчет того, чтобы вы присоединились к всем, кто голосовал, и кто помог мне расти [нажимать здесь] (https://top.gg/bot/1006520438865801296/vote)? :heart:",
+        "description": "Me ajude a crescer e ser um bot melhor votando em mim no <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nCada voto ajuda a me divulgar para outras pessoas na Discord Bot List <:catblush:768292358458179595>\n\nVocê pode estar votando a cada 12 horas, e de bônus, você ganha 1500 Cakes!\nQue tal você se juntar a todas as outras pessoas incríveis que votaram e que me ajudaram a crescer?\n\nPara votar é só [clicar aqui](https://top.gg/bot/1006520438865801296/vote)? :heart:",
         "top": {
             "title": "Top Foxy Hotants на top.gg",
             "votes": "Пожелания",
@@ -115,7 +115,7 @@
         "marriedWith": "💍 Casado(a) com {{user}} desde {{date}} ({{relativeTime}})",
         "premium": "{{badge}} премия от {{date}}",
         "testMode": "Ваша над мной будет отображаться так!",
-        "banned": "`{{user}} запрещено {{reason}}` \n Поскольку `{{date}}`",
+        "banned": "`{{user}}` foi banido pelo motivo: `{{reason}}` \nBanido desde `{{date}}`",
         "marriableStatusSet": "Seus pedidos de casamentos foram {{status}}",
         "marriableStatusAlreadySet": "Seus pedidos já foram {{status}}",
         "yes": "bloqueados, agora você não receberá mais pedidos de casamento e nem poderá pedir em casamento",
@@ -495,6 +495,7 @@
         "sentCakes": "`{{date}}` 💸 Enviou **{{amount}}** Cakes para `{{user}}`",
         "addedByAdmin": "`{{date}}` 💵 Recebeu {{amount}} Cakes da Foxy por ser uma pessoa incrível",
         "noTransactions": "Vazio, vazio, vazio... Você não possui nenhuma transação",
+        "premiumPerk": "`{{date}}` 💫 recebeu **{{amount}}** Cakes por ser premium",
         "dailyTransaction": "`{{date}}` 💰 Recebeu **{{amount}}** Cakes no daily",
         "voteReward": "`{{date}}` 💰 Recebeu **{{amount}}** Cakes por votar na Foxy",
         "bought": "`{{date}}` ✨ Comprou **{{amount}}** Cakes na Lojinha de cakes da Foxy",
