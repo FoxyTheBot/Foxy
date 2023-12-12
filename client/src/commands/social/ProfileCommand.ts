@@ -137,15 +137,9 @@ const ProfileCommand = createCommand({
                             url: userInfo.data.card.small
                         },
                         fields: [{
-                            name: "Username",
-                            value: userInfo.data.name,
+                            name: "User",
+                            value: `${userInfo.data.name}#${userInfo.data.tag}`,
                             inline: true
-                        },
-                        {
-                            name: t('commands:valorant.player.tag'),
-                            value: userInfo.data.tag,
-                            inline: true
-
                         },
                         {
                             name: t('commands:valorant.player.level'),
