@@ -33,7 +33,7 @@ const ValorantCommand = createCommand({
                 description: "The user to see the match history",
                 descriptionLocalizations: {
                     "pt-BR": "O usuário para ver o histórico de partidas"
-                },  
+                },
                 type: ApplicationCommandOptionTypes.User,
                 required: false,
             },
@@ -227,7 +227,7 @@ const ValorantCommand = createCommand({
                         fields: matchInfo.data.map(match => {
                             return {
                                 name: `${match.meta.map.name} - ${match.meta.mode}`,
-                                value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \nKDA: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n${t('commands:valorant.match.result')}: ${match.teams.red && match.teams.blue ? `Red: ${match.teams.red} / Blue: ${match.teams.blue}` : t('commands:valorant.noResult')}\n`,
+                                value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \nK/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n${t('commands:valorant.match.result')}: ${match.teams.red && match.teams.blue ? `Red: ${match.teams.red} / Blue: ${match.teams.blue}` : t('commands:valorant.noResult')}\n`,
                                 inline: true
                             }
                         }),
@@ -243,7 +243,7 @@ const ValorantCommand = createCommand({
                             return {
                                 label: `${match.meta.map.name} - ${match.meta.mode}`,
                                 value: match.meta.id,
-                                description: `${match.stats.character.name} | KDA: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists}`,
+                                description: `${match.stats.character.name} | K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists}`,
                             }
                         })
                     })])
