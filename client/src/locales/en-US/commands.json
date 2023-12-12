@@ -495,7 +495,7 @@
         "sentCakes": "`{{date}}` 💵 Sent **{{amount}}** cakes to `{{user}}`",
         "addedByAdmin": "`{{date}}` 💵 Received {{amount}} Cakes from Foxy for being an amazing person :3",
         "noTransactions": "Empty, empty, empty... You don't have any transaction yet",
-        "premiumPerk": "`{{date}}` 💫 recebeu **{{amount}}** Cakes por ser premium",
+        "premiumPerk": "`{{date}}` 💫 received **{{amount}}** cakes from premium",
         "dailyTransaction": "`{{date}}` 💰 Received **{{amount}}** cakes from daily",
         "voteReward": "`{{date}}` 💰 Received **{{amount}}** cakes from voting me",
         "bought": "`{{date}}` 💸 bought **{{amount}}** Cakes at the Foxy's Store",
