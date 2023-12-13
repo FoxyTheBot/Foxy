@@ -572,6 +572,8 @@
         },
         "match": {
             "title": "Partidas de {{username}}#{{tag}}",
+            "redTeam": "{{emoji}} Atacante",
+            "blueTeam": "{{emoji}} Defensor",
             "map": "Mapa",
             "mode": "Modo",
             "character": "Agente",
