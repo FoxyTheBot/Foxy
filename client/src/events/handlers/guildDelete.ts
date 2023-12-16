@@ -3,8 +3,17 @@ import config from "../../../config.json";
 
 const setGuildDeleteEvent = (): void => {
     bot.events.guildDelete = async (_, guild) => {
-        const guildId = guild;
-        await bot.database.removeGuild(guildId).then((document) => {
+        const guildInfo = await bot.helpers.getGuild(guild);
+        if (guildInfo.toggles.unavailable) {
+            return bot.helpers.sendWebhookMessage(config.webhooks.join_leave_guild.id, config.webhooks.join_leave_guild.token, {
+                embeds: [{
+                    title: `<:emoji:${bot.emotes.FOXY_CRY}> **|** Servidor indisponivel!`,
+                    description: `**ID:** ${guild}`,
+                }]
+            });
+        };
+
+        await bot.database.removeGuild(guildInfo.id).then((document) => {
             if (document) {
                 setTimeout(() => {
                     bot.helpers.sendWebhookMessage(config.webhooks.join_leave_guild.id, config.webhooks.join_leave_guild.token, {

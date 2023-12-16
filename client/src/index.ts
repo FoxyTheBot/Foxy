@@ -2,9 +2,9 @@ import { createBot, Intents, startBot } from 'discordeno';
 import { setupFoxy, setupInternals, startCacheHandler } from './structures/client/FoxyClient';
 import { FoxyClient } from './structures/types/foxy';
 import { logger } from './utils/logger';
-import config from '../config.json';
 import { enableCachePlugin } from 'discordeno/cache-plugin'
 import { setupEventsHandler } from './events';
+import config from '../config.json';
 
 const bot = createBot({
     token: config.token,
