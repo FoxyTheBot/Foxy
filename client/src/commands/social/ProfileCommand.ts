@@ -158,7 +158,6 @@ const ProfileCommand = createCommand({
                     totalAssists += match.stats.assists;
                 });
 
-
                 if (userInfo.status === 200) {
                     const embed = createEmbed({
                         color: 0xf84355,
