@@ -533,10 +533,10 @@
         "linkAccountDescription": "Link your Riot Games account to view your matches stats and player information in Discord, you can choose if your profile will be private or public, by default your profile is private due to Riot Games limitations.",
         "linkAccountButton": "Link account",
         "verify": {
-            "noAuthCode": "Esse código de autenticação não existe",
-            "alreadyLinked": "Essa conta já está vinculada",
-            "error": "Ocorreu um erro ao vincular sua conta, tente novamente mais tarde",
-            "success": "Sua conta foi vinculada com sucesso!"
+            "noAuthCode": "This authentication code doesn't exist",
+            "alreadyLinked": "This account is already linked",
+            "error": "An error has occurred while linking your account, please try again later",
+            "success": "Your account has been linked successfully!"
         },
         "player": {
             "title": "{{username}}#{{tag}}'s profile",
