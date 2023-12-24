@@ -69,7 +69,7 @@ const ValMatchSelectorExecutor = async (context: ComponentInteractionContext) =>
                 const formattedRank = rank ? `${context.getEmojiById(rank.emoji)} ${bot.locale(`commands:valorant.player.ranks.${rank.rank}`)}` : `${context.getEmojiById(bot.emotes.UNRATED)} ${bot.locale('commands:valorant.player.ranks.UNRATED')}`;
 
                 return {
-                    name: `${player.team === 'Red' ? bot.locale('commands:valorant.match.redTeam', { emoji: context.getEmojiById(bot.emotes.VALORANT_LOGO)}) : bot.locale('commands:valorant.match.blueTeam', { emoji: context.getEmojiById(bot.emotes.VALORANT_BLUE_LOGO)})}`,
+                    name: `${player.team === 'Red' ? bot.locale('commands:valorant.match.redTeam', { emoji: context.getEmojiById(bot.emotes.VALORANT_LOGO) }) : bot.locale('commands:valorant.match.blueTeam', { emoji: context.getEmojiById(bot.emotes.VALORANT_BLUE_LOGO) })}`,
                     value: `${player.name}#${player.tag} - Level ${player.level}` +
                         `\n${bot.locale('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[player.character.toUpperCase()])}` +
                         `\nScore: ${player.stats.score}` +
@@ -88,7 +88,7 @@ const ValMatchSelectorExecutor = async (context: ComponentInteractionContext) =>
                 const formattedRank = rank ? `${context.getEmojiById(rank.emoji)} ${bot.locale(`commands:valorant.player.ranks.${rank.rank}`)}` : `${context.getEmojiById(bot.emotes.UNRATED)} ${bot.locale('commands:valorant.player.ranks.UNRATED')}`;
 
                 return {
-                    name: `${player.team === 'Red' ? bot.locale('commands:valorant.match.redTeam', { emoji: context.getEmojiById(bot.emotes.VALORANT_LOGO)}) : bot.locale('commands:valorant.match.blueTeam', { emoji: context.getEmojiById(bot.emotes.VALORANT_BLUE_LOGO)})}`,
+                    name: `${player.team === 'Red' ? bot.locale('commands:valorant.match.redTeam', { emoji: context.getEmojiById(bot.emotes.VALORANT_LOGO) }) : bot.locale('commands:valorant.match.blueTeam', { emoji: context.getEmojiById(bot.emotes.VALORANT_BLUE_LOGO) })}`,
                     value: `${player.name}#${player.tag} - Level ${player.level}` +
                         `\n${bot.locale('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[player.character.toUpperCase()])}` +
                         `\nScore: ${player.stats.score}` +
