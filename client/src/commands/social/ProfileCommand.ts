@@ -5,6 +5,8 @@ import { User } from 'discordeno/transformers';
 import CreateProfile from '../../utils/commands/generators/GenerateProfile';
 import { createEmbed } from '../../utils/discord/Embed';
 import { ValUser } from '../../structures/types/valuser';
+import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
+import ViewMatchHistory from '../../utils/commands/executors/valorant/viewMatchHistoryExecutor';
 
 const ProfileCommand = createCommand({
     name: 'profile',
@@ -38,7 +40,7 @@ const ProfileCommand = createCommand({
             required: false
         }]
     }],
-
+    commandRelatedExecutions: [ViewMatchHistory],
     execute: async (context, endCommand, t) => {
         const subcommand = context.getSubCommand();
 
@@ -198,6 +200,14 @@ const ProfileCommand = createCommand({
 
                     context.sendReply({
                         embeds: [embed],
+                        components: [createActionRow([createButton({
+                            label: t('commands:valorant.player.viewMatches'),
+                            style: 1,
+                            customId: createCustomId(0, context.author.id, context.commandId, user.id),
+                            emoji: {
+                                id: bot.emotes.VALORANT_LOGO
+                            }
+                        })])]
                     });
                     return endCommand();
                 } else {
