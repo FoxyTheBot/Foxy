@@ -247,17 +247,35 @@ const ValorantCommand = createCommand({
                         }
                     });
 
-                    const row = createActionRow([createSelectMenu({
-                        customId: createCustomId(0, context.author.id, context.commandId),
-                        placeholder: t('commands:valorant.match.placeholder'),
-                        options: matchInfo.data.map(match => {
-                            return {
-                                label: `${match.meta.map.name} - ${match.meta.mode}`,
-                                value: match.meta.id,
-                                description: `${match.stats.character.name} | K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists}`,
-                            }
-                        })
-                    })])
+                    let row;
+
+                    console.log(matchInfo.data.length)
+                    if (matchInfo.data.length !== 0) {
+                        row = createActionRow([createSelectMenu({
+                            customId: createCustomId(0, context.author.id, context.commandId),
+                            placeholder: t('commands:valorant.match.placeholder'),
+                            options: matchInfo.data.map(match => {
+                                return {
+                                    label: `${match.meta.map.name} - ${match.meta.mode}`,
+                                    value: match.meta.id,
+                                    description: `${match.stats.character.name} | K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists}`,
+                                }
+                            })
+                        })])
+                    } else {
+                        embed.description = t('commands:valorant.match.noMatchesDescription');
+                        row = createActionRow([createSelectMenu({
+                            customId: createCustomId(0, context.author.id, context.commandId),
+                            placeholder: t('commands:valorant.match.noMatches'),
+                            disabled: true,
+                            options: [{
+                                label: t('commands:valorant.match.noMatches'),
+                                value: 'noMatches',
+                                description: t('commands:valorant.match.noMatchesDescription')
+                            }]
+                        })])
+    
+                    }
                     context.sendReply({
                         embeds: [embed],
                         components: [row]
