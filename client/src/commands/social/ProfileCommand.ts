@@ -16,6 +16,9 @@ const ProfileCommand = createCommand({
     category: 'social',
     options: [{
         name: "view",
+        nameLocalizations: {
+            "pt-BR": "ver"
+        },
         description: "[Social] View your profile or another user profile",
         descriptionLocalizations: { 'pt-BR': '[Social] Veja o seu perfil ou de outro usuário' },
         type: ApplicationCommandOptionTypes.SubCommand,
