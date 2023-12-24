@@ -537,6 +537,7 @@
             "level": "Nível",
             "tag": "Tag",
             "region": "Região",
+            "viewMatches": "Ver partidas",
             "matches": "Partidas",
             "playtime": "Tempo de jogo",
             "rank": "Rank",
