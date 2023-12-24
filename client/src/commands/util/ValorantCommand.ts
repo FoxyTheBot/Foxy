@@ -249,7 +249,6 @@ const ValorantCommand = createCommand({
 
                     let row;
 
-                    console.log(matchInfo.data.length)
                     if (matchInfo.data.length !== 0) {
                         row = createActionRow([createSelectMenu({
                             customId: createCustomId(0, context.author.id, context.commandId),
