@@ -582,6 +582,8 @@
             "redTeam": "{{emoji}} Atacante",
             "blueTeam": "{{emoji}} Defensor",
             "map": "Mapa",
+            "noMatches": "Não encontrei nenhuma partida",
+            "noMatchesDescription": "Não consegui encontrar nenhuma partida com os filtros aplicados.",
             "mode": "Modo",
             "character": "Agente",
             "result": "Resultado",
