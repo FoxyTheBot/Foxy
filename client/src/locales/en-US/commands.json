@@ -123,7 +123,7 @@
         "simpleYes": "locked",
         "simpleNo": "unlocked",
         "val": {
-            "notLinked": "Sorry, **{{user}}** doesn't have a linked Riot Games account",
+            "notLinked": "Desculpe, **{{user}}** não vinculou sua conta da Riot Games, então não posso exibir as informações desse jogador",
             "private": "{{user}}'s profile is private"
         }
     },
@@ -529,7 +529,9 @@
         "visibilityChanged": "Okay! Now your profile is {{visibility}}",
         "public": "public",
         "private": "private",
-        "linkAccount": "To link your Riot Games account with me, [click here]({{url}})",
+        "linkAccountTitle": "Vincular conta da Riot Games",
+        "linkAccountDescription": "Vincule a sua conta da Riot Games para poder ver as suas informações de jogador e estatísticas de partidas diretamente pelo Discord, você pode optar por deixar seu perfil privado ou público, por padrão o perfil é privado por conta de limitações da Riot Games.",
+        "linkAccountButton": "Vincular conta",
         "player": {
             "title": "{{username}}#{{tag}}'s profile",
             "level": "Level",
@@ -541,6 +543,10 @@
             "rankRating": "Rank points",
             "rankRatingTooltip": "Ranking score is calculated based on your performance in ranked matches",
             "notFound": "Player not found",
+            "mostPlayedAgent": "Agente mais jogado",
+            "kills": "Abates",
+            "deaths": "Mortes",
+            "assists": "Assistências",
             "ranks": {
                 "UNRATED": "Unrated",
                 "I1": "Iron 1",
