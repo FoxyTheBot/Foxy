@@ -14,8 +14,8 @@ const ProfileCommand = createCommand({
     category: 'social',
     options: [{
         name: "view",
-        description: "View another user profile",
-        descriptionLocalizations: { 'pt-BR': 'Veja o perfil de outro usuário' },
+        description: "[Social] View your profile or another user profile",
+        descriptionLocalizations: { 'pt-BR': '[Social] Veja o seu perfil ou de outro usuário' },
         type: ApplicationCommandOptionTypes.SubCommand,
         options: [{
             name: 'user',
@@ -28,12 +28,12 @@ const ProfileCommand = createCommand({
     {
         name: "valorant",
         description: "View your VALORANT profile",
-        descriptionLocalizations: { 'pt-BR': 'Veja seu perfil do VALORANT' },
+        descriptionLocalizations: { 'pt-BR': '[VALORANT] Veja seu perfil do VALORANT' },
         type: ApplicationCommandOptionTypes.SubCommand,
         options: [{
             name: 'user',
             description: 'User to view the profile',
-            descriptionLocalizations: { 'pt-BR': 'Usuário para ver o perfil' },
+            descriptionLocalizations: { 'pt-BR': '[VALORANT] Usuário para ver o perfil' },
             type: ApplicationCommandOptionTypes.User,
             required: false
         }]
@@ -124,7 +124,35 @@ const ProfileCommand = createCommand({
                 }
 
                 const rank = getRank(mmrInfo.data.current_data.currenttierpatched);
+                const matches = await bot.foxyRest.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid);
                 const formattedRank = rank ? `${context.getEmojiById(rank.emoji)} ${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${context.getEmojiById(bot.emotes.UNRATED)} ${t('commands:valorant.player.ranks.UNRATED')}`;
+                const characterCounts = {};
+
+                let mostPlayedCharacter = 'FOXY_SHRUG';
+                let maxCount = 0;
+                let totalKills = 0;
+                let totalDeaths = 0;
+                let totalAssists = 0;
+
+                matches.data.forEach(match => {
+                    const characterName = match.stats.character.name || 'FOXY_SHRUG';
+
+                    if (characterCounts[characterName]) {
+                        characterCounts[characterName]++;
+                    } else {
+                        characterCounts[characterName] = 1;
+                    }
+
+                    if (characterCounts[characterName] > maxCount) {
+                        mostPlayedCharacter = characterName;
+                        maxCount = characterCounts[characterName];
+                    }
+
+                    totalKills += match.stats.kills;
+                    totalDeaths += match.stats.deaths;
+                    totalAssists += match.stats.assists;
+                });
+
 
                 if (userInfo.status === 200) {
                     const embed = createEmbed({
@@ -137,11 +165,6 @@ const ProfileCommand = createCommand({
                             url: userInfo.data.card.small
                         },
                         fields: [{
-                            name: "User",
-                            value: `${userInfo.data.name}#${userInfo.data.tag}`,
-                            inline: true
-                        },
-                        {
                             name: t('commands:valorant.player.level'),
                             value: userInfo.data.account_level.toString(),
                             inline: true
@@ -149,6 +172,27 @@ const ProfileCommand = createCommand({
                         {
                             name: t('commands:valorant.player.rank'),
                             value: formattedRank,
+                            inline: true
+                        },
+                        {
+                            name: t('commands:valorant.player.mostPlayedAgent'),
+                            value: `${context.getEmojiById(bot.emotes[mostPlayedCharacter.toUpperCase()])} ${mostPlayedCharacter}`,
+                            inline: true
+                        },
+                        {
+                            name: t('commands:valorant.player.kills'),
+                            value: totalKills.toString(),
+                            inline: true
+                        },
+                        {
+                            name: t('commands:valorant.player.deaths'),
+                            value: totalDeaths.toString(),
+                            inline: true
+                        },
+                        {
+                            name: t('commands:valorant.player.assists'),
+                            value: totalAssists.toString(),
+                            inline: true
                         }]
                     })
 
