@@ -75,12 +75,21 @@ export class FoxyRestManager {
     }
 
     async getValMatchHistoryByUUID(puuid: string, mode?: string, map?: string) {
-
         let url = `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/br/${puuid}?size=12`;
 
         if (mode) url += `&mode=${mode}`;
 
         if (map) url += `&map=${map}`;
+
+        return fetch(url, {
+            headers: {
+                "Authentication": config.valorantAPI
+            }
+        }).then(res => res.json());
+    }
+
+    async getAllValMatchHistoryByUUID(puuid: string) {
+        let url = `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/br/${puuid}`;
 
         return fetch(url, {
             headers: {
