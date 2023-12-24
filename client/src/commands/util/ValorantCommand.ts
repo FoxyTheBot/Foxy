@@ -16,6 +16,29 @@ const ValorantCommand = createCommand({
     category: 'util',
     options: [
         {
+            name: "verify",
+            nameLocalizations: {
+                "pt-BR": "verificar"
+            },
+            description: "[VALORANT] Verify your valorant account",
+            descriptionLocalizations: {
+                "pt-BR": "[VALORANT] Verifique sua conta do valorant"
+            },
+            type: ApplicationCommandOptionTypes.SubCommand,
+            options: [{
+                name: "authcode",
+                nameLocalizations: {
+                    "pt-BR": "código_de_autenticação"
+                },
+                description: "The authentication code",
+                descriptionLocalizations: {
+                    "pt-BR": "O código de autenticação"
+                },
+                type: ApplicationCommandOptionTypes.String,
+                required: true
+            }]
+        },
+        {
             name: "matches",
             nameLocalizations: {
                 "pt-BR": "partidas"
@@ -273,7 +296,7 @@ const ValorantCommand = createCommand({
                                 description: t('commands:valorant.match.noMatchesDescription')
                             }]
                         })])
-    
+
                     }
                     context.sendReply({
                         embeds: [embed],
@@ -285,6 +308,45 @@ const ValorantCommand = createCommand({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.match.notFound'))
                     });
                     return endCommand();
+                }
+            }
+
+            case 'verify': {
+                const code = context.getOption<string>('authcode', false);
+                const authCode = await bot.database.getCode(code);
+
+                if (!authCode) {
+                    return context.sendReply({
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.verify.noAuthCode')),
+                    })
+                } else {
+                    const valUserInfo = await bot.database.getUser(context.author.id);
+                    if (valUserInfo.riotAccount.isLinked) {
+                        return context.sendReply({
+                            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.verify.alreadyLinked')),
+                        })
+                    } else {
+                        try {
+                            const userData = await bot.database.getUser(context.author.id);
+                            userData.riotAccount = {
+                                isLinked: true,
+                                puuid: authCode.puuid,
+                                isPrivate: true,
+                                region: null,
+                            }
+
+                            await userData.save();
+
+                            return context.sendReply({
+                                content: context.makeReply(bot.emotes.FOXY_NICE, t('commands:valorant.verify.success')),
+                            });
+                        } catch (err) {
+                            console.log(err);
+                            return context.sendReply({
+                                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.verify.error')),
+                            })
+                        }
+                    }
                 }
             }
         }
