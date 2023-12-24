@@ -8,9 +8,9 @@ import { bot } from "../../index";
 
 const UserCommand = createCommand({
     name: "user",
-    description: "See informations about an user",
+    description: "[Utils] See informations about an user",
     descriptionLocalizations: {
-        "pt-BR": "Veja as informações sobre um usuário"
+        "pt-BR": "[Utilitários] Veja as informações sobre um usuário"
     },
     category: 'util',
     options: [

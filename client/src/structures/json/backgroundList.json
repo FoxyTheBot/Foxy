@@ -179,14 +179,6 @@
             "author": null
         },
         {
-            "id": "yoru",
-            "name": "Yoru",
-            "cakes": 10000,
-            "filename": "yoru.png",
-            "description": "I'll fight anybody. I'll fight everybody.",
-            "author": null
-        },
-        {
             "id": "klee",
             "name": "Klee yay",
             "cakes": 30000,

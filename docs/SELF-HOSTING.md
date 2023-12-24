@@ -31,19 +31,21 @@ yarn global add typescript
   "ownerId": "<YOUR-DISCORD-ID>",
   "clientId": "<YOUR-BOT-ID>",
   "devGuildId": "<YOUR-SERVER-ID>",
-  "serverURL": "https://cakey.foxybot.win",
+  "serverURL": "<YOUR-API-KEY> (Check Cakey repository to configure your API)",
   "productionEnv": false,
   "token": "<YOUR-BOT-TOKEN>",
   "mongouri": "<YOUR-MONGODB-URI>",
   "dblauth": "<YOUR-TOPGG-TOKEN",
+    "foxyAPIToken": "<YOUR-API-TOKEN>",
+  "valorantAPI": "<YOUR-VALORANT-API-TOKEN> (Check HenrikDev VALORANT API)",
   "webhooks": {
     "guilds": {
       "id": "<WEBHOOK-ID>",
       "token": "<WEBHOOK-TOKEN>"
     },
     "event_log": {
-      "id": "1168290259205902396",
-      "token": "xiwCu-4ZiZeVGtMDbqDj7CTzPzQ0S72CDa-m4un3dSonFYALUEsWQF6Tt5vomM9z1EL4"
+      "id": "<WEBHOOK-ID>",
+      "token": "<WEBHOOK-TOKEN>"
     }
   }
 }

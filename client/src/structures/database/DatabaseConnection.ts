@@ -9,6 +9,7 @@ export default class DatabaseConnection {
     private commands: any;
     private guilds: any;
     private key: any;
+    private riotAccount: any;
 
     constructor(client) {
         mongoose.set("strictQuery", true)
@@ -33,7 +34,8 @@ export default class DatabaseConnection {
             pType: Number,
             guild: String,
             owner: String,
-        }, { versionKey: false, id: false
+        }, {
+            versionKey: false, id: false
         });
         const trasactionSchema = new mongoose.Schema({
             to: String,
@@ -110,10 +112,15 @@ export default class DatabaseConnection {
             },
             premiumKeys: [keySchemaForGuilds]
         }, { versionKey: false, id: false });
+        const riotAccountSchema = new mongoose.Schema({
+            puuid: String,
+            authCode: String,
+        });
         this.user = mongoose.model('user', userSchema);
         this.commands = mongoose.model('commands', commandsSchema);
         this.guilds = mongoose.model('guilds', guildSchema);
         this.key = mongoose.model('key', keySchema);
+        this.riotAccount = mongoose.model('riotAccount', riotAccountSchema);
         this.client = client;
     }
 
@@ -203,6 +210,12 @@ export default class DatabaseConnection {
     async getAllCommands(): Promise<void> {
         let commandsData = await this.commands.find({});
         return commandsData.map(command => command.toJSON());
+    }
+
+    async getCode(code: string): Promise<void> {
+        const riotAccount = this.riotAccount.findOne({ authCode: code });
+        if (!riotAccount) return null;
+        return riotAccount;
     }
 
     async getAllUsageCount(): Promise<Number> {

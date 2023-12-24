@@ -5,6 +5,8 @@ import { User } from 'discordeno/transformers';
 import CreateProfile from '../../utils/commands/generators/GenerateProfile';
 import { createEmbed } from '../../utils/discord/Embed';
 import { ValUser } from '../../structures/types/valuser';
+import { createActionRow, createButton, createCustomId } from '../../utils/discord/Component';
+import ViewMatchHistory from '../../utils/commands/executors/valorant/viewMatchHistoryExecutor';
 
 const ProfileCommand = createCommand({
     name: 'profile',
@@ -14,8 +16,11 @@ const ProfileCommand = createCommand({
     category: 'social',
     options: [{
         name: "view",
-        description: "View another user profile",
-        descriptionLocalizations: { 'pt-BR': 'Veja o perfil de outro usuário' },
+        nameLocalizations: {
+            "pt-BR": "ver"
+        },
+        description: "[Social] View your profile or another user profile",
+        descriptionLocalizations: { 'pt-BR': '[Social] Veja o seu perfil ou de outro usuário' },
         type: ApplicationCommandOptionTypes.SubCommand,
         options: [{
             name: 'user',
@@ -28,17 +33,17 @@ const ProfileCommand = createCommand({
     {
         name: "valorant",
         description: "View your VALORANT profile",
-        descriptionLocalizations: { 'pt-BR': 'Veja seu perfil do VALORANT' },
+        descriptionLocalizations: { 'pt-BR': '[VALORANT] Veja seu perfil do VALORANT' },
         type: ApplicationCommandOptionTypes.SubCommand,
         options: [{
             name: 'user',
             description: 'User to view the profile',
-            descriptionLocalizations: { 'pt-BR': 'Usuário para ver o perfil' },
+            descriptionLocalizations: { 'pt-BR': '[VALORANT] Usuário para ver o perfil' },
             type: ApplicationCommandOptionTypes.User,
             required: false
         }]
     }],
-
+    commandRelatedExecutions: [ViewMatchHistory],
     execute: async (context, endCommand, t) => {
         const subcommand = context.getSubCommand();
 
@@ -124,7 +129,34 @@ const ProfileCommand = createCommand({
                 }
 
                 const rank = getRank(mmrInfo.data.current_data.currenttierpatched);
+                const matches = await bot.foxyRest.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid);
                 const formattedRank = rank ? `${context.getEmojiById(rank.emoji)} ${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${context.getEmojiById(bot.emotes.UNRATED)} ${t('commands:valorant.player.ranks.UNRATED')}`;
+                const characterCounts = {};
+
+                let mostPlayedCharacter = 'FOXY_SHRUG';
+                let maxCount = 0;
+                let totalKills = 0;
+                let totalDeaths = 0;
+                let totalAssists = 0;
+
+                matches.data.forEach(match => {
+                    const characterName = match.stats.character.name || 'FOXY_SHRUG';
+
+                    if (characterCounts[characterName]) {
+                        characterCounts[characterName]++;
+                    } else {
+                        characterCounts[characterName] = 1;
+                    }
+
+                    if (characterCounts[characterName] > maxCount) {
+                        mostPlayedCharacter = characterName;
+                        maxCount = characterCounts[characterName];
+                    }
+
+                    totalKills += match.stats.kills;
+                    totalDeaths += match.stats.deaths;
+                    totalAssists += match.stats.assists;
+                });
 
                 if (userInfo.status === 200) {
                     const embed = createEmbed({
@@ -137,11 +169,6 @@ const ProfileCommand = createCommand({
                             url: userInfo.data.card.small
                         },
                         fields: [{
-                            name: "User",
-                            value: `${userInfo.data.name}#${userInfo.data.tag}`,
-                            inline: true
-                        },
-                        {
                             name: t('commands:valorant.player.level'),
                             value: userInfo.data.account_level.toString(),
                             inline: true
@@ -149,11 +176,40 @@ const ProfileCommand = createCommand({
                         {
                             name: t('commands:valorant.player.rank'),
                             value: formattedRank,
+                            inline: true
+                        },
+                        {
+                            name: t('commands:valorant.player.mostPlayedAgent'),
+                            value: `${context.getEmojiById(bot.emotes[mostPlayedCharacter.toUpperCase()])} ${mostPlayedCharacter}`,
+                            inline: true
+                        },
+                        {
+                            name: t('commands:valorant.player.kills'),
+                            value: totalKills.toString(),
+                            inline: true
+                        },
+                        {
+                            name: t('commands:valorant.player.deaths'),
+                            value: totalDeaths.toString(),
+                            inline: true
+                        },
+                        {
+                            name: t('commands:valorant.player.assists'),
+                            value: totalAssists.toString(),
+                            inline: true
                         }]
                     })
 
                     context.sendReply({
                         embeds: [embed],
+                        components: [createActionRow([createButton({
+                            label: t('commands:valorant.player.viewMatches'),
+                            style: 1,
+                            customId: createCustomId(0, context.author.id, context.commandId, user.id),
+                            emoji: {
+                                id: bot.emotes.VALORANT_LOGO
+                            }
+                        })])]
                     });
                     return endCommand();
                 } else {

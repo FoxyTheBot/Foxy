@@ -2,7 +2,7 @@ import { createCommand } from "../../structures/commands/createCommand";
 import { createEmbed } from "../../utils/discord/Embed";
 import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
 import { bot } from "../../index";
-import { createActionRow, createCustomId, createSelectMenu } from "../../utils/discord/Component";
+import { createActionRow, createButton, createCustomId, createSelectMenu } from "../../utils/discord/Component";
 import ValMatchSelectorExecutor from "../../utils/commands/executors/util/ValMatchSelectorExecutor";
 import { MessageFlags } from "../../utils/discord/Message";
 import { User } from "discordeno/transformers";
@@ -15,6 +15,29 @@ const ValorantCommand = createCommand({
     },
     category: 'util',
     options: [
+        {
+            name: "verify",
+            nameLocalizations: {
+                "pt-BR": "verificar"
+            },
+            description: "[VALORANT] Verify your valorant account",
+            descriptionLocalizations: {
+                "pt-BR": "[VALORANT] Verifique sua conta do valorant"
+            },
+            type: ApplicationCommandOptionTypes.SubCommand,
+            options: [{
+                name: "authcode",
+                nameLocalizations: {
+                    "pt-BR": "código_de_autenticação"
+                },
+                description: "The authentication code",
+                descriptionLocalizations: {
+                    "pt-BR": "O código de autenticação"
+                },
+                type: ApplicationCommandOptionTypes.String,
+                required: true
+            }]
+        },
         {
             name: "matches",
             nameLocalizations: {
@@ -173,8 +196,19 @@ const ValorantCommand = createCommand({
         switch (subcommand) {
             case 'link-account': {
                 context.sendReply({
-                    content: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.linkAccount', { url: `https://auth.riotgames.com/login#client_id=b54a5c51-dd72-400a-8a80-5ad42798cd27&redirect_uri=https://cakey.foxybot.win/rso/auth/callback&response_type=code&scope=openid&state=${context.author.id}` })),
-                    flags: MessageFlags.EPHEMERAL
+                    embeds: [{
+                        color: 0xff4454,
+                        title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.linkAccountTitle')),
+                        description: t('commands:valorant.linkAccountDescription')
+                    }],
+                    components: [createActionRow([createButton({
+                        label: t('commands:valorant.linkAccountButton'),
+                        style: ButtonStyles.Link,
+                        url: `https://auth.riotgames.com/login#client_id=b54a5c51-dd72-400a-8a80-5ad42798cd27&redirect_uri=https://cakey.foxybot.win/rso/auth/callback&response_type=code&scope=openid&state=${context.author.id}`,
+                        emoji: {
+                            id: bot.emotes.VALORANT_LOGO
+                        }
+                    })])]
                 });
                 return endCommand();
             }
@@ -236,17 +270,34 @@ const ValorantCommand = createCommand({
                         }
                     });
 
-                    const row = createActionRow([createSelectMenu({
-                        customId: createCustomId(0, context.author.id, context.commandId),
-                        placeholder: t('commands:valorant.match.placeholder'),
-                        options: matchInfo.data.map(match => {
-                            return {
-                                label: `${match.meta.map.name} - ${match.meta.mode}`,
-                                value: match.meta.id,
-                                description: `${match.stats.character.name} | K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists}`,
-                            }
-                        })
-                    })])
+                    let row;
+
+                    if (matchInfo.data.length !== 0) {
+                        row = createActionRow([createSelectMenu({
+                            customId: createCustomId(0, context.author.id, context.commandId),
+                            placeholder: t('commands:valorant.match.placeholder'),
+                            options: matchInfo.data.map(match => {
+                                return {
+                                    label: `${match.meta.map.name} - ${match.meta.mode}`,
+                                    value: match.meta.id,
+                                    description: `${match.stats.character.name} | K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists}`,
+                                }
+                            })
+                        })])
+                    } else {
+                        embed.description = t('commands:valorant.match.noMatchesDescription');
+                        row = createActionRow([createSelectMenu({
+                            customId: createCustomId(0, context.author.id, context.commandId),
+                            placeholder: t('commands:valorant.match.noMatches'),
+                            disabled: true,
+                            options: [{
+                                label: t('commands:valorant.match.noMatches'),
+                                value: 'noMatches',
+                                description: t('commands:valorant.match.noMatchesDescription')
+                            }]
+                        })])
+
+                    }
                     context.sendReply({
                         embeds: [embed],
                         components: [row]
@@ -257,6 +308,45 @@ const ValorantCommand = createCommand({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.match.notFound'))
                     });
                     return endCommand();
+                }
+            }
+
+            case 'verify': {
+                const code = context.getOption<string>('authcode', false);
+                const authCode = await bot.database.getCode(code);
+
+                if (!authCode) {
+                    return context.sendReply({
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.verify.noAuthCode')),
+                    })
+                } else {
+                    const valUserInfo = await bot.database.getUser(context.author.id);
+                    if (valUserInfo.riotAccount.isLinked) {
+                        return context.sendReply({
+                            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.verify.alreadyLinked')),
+                        })
+                    } else {
+                        try {
+                            const userData = await bot.database.getUser(context.author.id);
+                            userData.riotAccount = {
+                                isLinked: true,
+                                puuid: authCode.puuid,
+                                isPrivate: true,
+                                region: null,
+                            }
+
+                            await userData.save();
+
+                            return context.sendReply({
+                                content: context.makeReply(bot.emotes.FOXY_NICE, t('commands:valorant.verify.success')),
+                            });
+                        } catch (err) {
+                            console.log(err);
+                            return context.sendReply({
+                                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.verify.error')),
+                            })
+                        }
+                    }
                 }
             }
         }
