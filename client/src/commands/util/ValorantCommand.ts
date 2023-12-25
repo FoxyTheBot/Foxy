@@ -17,9 +17,6 @@ const ValorantCommand = createCommand({
     options: [
         {
             name: "verify",
-            nameLocalizations: {
-                "pt-BR": "verificar"
-            },
             description: "[VALORANT] Verify your valorant account",
             descriptionLocalizations: {
                 "pt-BR": "[VALORANT] Verifique sua conta do valorant"
