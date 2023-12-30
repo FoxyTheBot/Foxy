@@ -123,7 +123,7 @@
         "simpleYes": "bloqueados",
         "simpleNo": "desbloqueados",
         "val": {
-            "notLinked": "Desculpe, **{{user}}** não vinculou sua conta da Riot Games a Foxy",
+            "notLinked": "Desculpe, **{{user}}** não vinculou sua conta da Riot Games, então não posso exibir as informações desse jogador",
             "private": "O perfil de **{{user}}** é privado"
         }
     },
@@ -529,18 +529,31 @@
         "visibilityChanged": "Okay! Seu perfil agora é {{visibility}}",
         "public": "público",
         "private": "privado",
-        "linkAccount": "Para vincular sua conta da Riot Games com a Foxy, [clique aqui]({{url}})",
+        "linkAccountTitle": "Vincular conta da Riot Games",
+        "linkAccountDescription": "Vincule a sua conta da Riot Games para poder ver as suas informações de jogador e estatísticas de partidas diretamente pelo Discord, você pode optar por deixar seu perfil privado ou público, por padrão o perfil é privado por conta de limitações da Riot Games.",
+        "linkAccountButton": "Vincular conta",
+        "verify": {
+            "noAuthCode": "Esse código de autenticação não existe",
+            "alreadyLinked": "Essa conta já está vinculada",
+            "error": "Ocorreu um erro ao vincular sua conta, tente novamente mais tarde",
+            "success": "Sua conta foi vinculada com sucesso!"
+        },
         "player": {
             "title": "Perfil de {{username}}#{{tag}}",
             "level": "Nível",
             "tag": "Tag",
             "region": "Região",
+            "viewMatches": "Ver partidas",
             "matches": "Partidas",
             "playtime": "Tempo de jogo",
             "rank": "Rank",
             "rankRating": "Pontuação do rank",
             "rankRatingTooltip": "A pontuação do rank é calculada com base no seu desempenho nas partidas ranqueadas",
             "notFound": "Jogador não encontrado",
+            "mostPlayedAgent": "Agente mais jogado",
+            "kills": "Abates",
+            "deaths": "Mortes",
+            "assists": "Assistências",
             "ranks": {
                 "UNRATED": "Sem classificação",
                 "I1": "Ferro 1",
@@ -575,6 +588,8 @@
             "redTeam": "{{emoji}} Atacante",
             "blueTeam": "{{emoji}} Defensor",
             "map": "Mapa",
+            "noMatches": "Não encontrei nenhuma partida",
+            "noMatchesDescription": "Não consegui encontrar nenhuma partida com os filtros aplicados.",
             "mode": "Modo",
             "character": "Agente",
             "result": "Resultado",
