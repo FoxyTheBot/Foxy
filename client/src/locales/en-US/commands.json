@@ -528,6 +528,18 @@
     "valorant": {
         "visibilityChanged": "Okay! Now your profile is {{visibility}}",
         "public": "public",
+        "matchMode": {
+            "unrated": "Sem classificação",
+            "competitive": "Competitivo",
+            "spike rush": "Disputa de Spike",
+            "deathmatch": "Mata Mata",
+            "swiftplay": "Frenético",
+            "team deathmatch": "Mata Mata em Equipe"
+        },
+        "teams": {
+            "t": "Atacantes",
+            "ct": "Defensores"
+        },
         "private": "private",
         "linkAccountTitle": "Link Riot Games account",
         "linkAccountDescription": "Link your Riot Games account to view your matches stats and player information in Discord, you can choose if your profile will be private or public, by default your profile is private due to Riot Games limitations.",
