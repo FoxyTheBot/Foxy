@@ -257,8 +257,8 @@ const ValorantCommand = createCommand({
                         title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.match.title', { username: valUserInfo.data.name, tag: valUserInfo.data.tag }),
                         fields: matchInfo.data.map(match => {
                             return {
-                                name: `${match.meta.map.name} - ${match.meta.mode}`,
-                                value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \nK/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n${t('commands:valorant.match.result')}: ${match.teams.red && match.teams.blue ? `Red: ${match.teams.red} / Blue: ${match.teams.blue}` : t('commands:valorant.noResult')}\n`,
+                                name: `${match.meta.map.name} - ${bot.locale(`commands:valorant.matchMode.${match.meta.mode.toLowerCase()}`)}`,
+                                value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \nK/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n${t('commands:valorant.match.result')}: ${match.teams.red && match.teams.blue ? `${t('commands:valorant.teams.t')}: ${match.teams.red} / ${t('commands:valorant.teams.ct')}: ${match.teams.blue}` : t('commands:valorant.noResult')}\n`,
                                 inline: true
                             }
                         }),
@@ -275,9 +275,12 @@ const ValorantCommand = createCommand({
                             placeholder: t('commands:valorant.match.placeholder'),
                             options: matchInfo.data.map(match => {
                                 return {
-                                    label: `${match.meta.map.name} - ${match.meta.mode}`,
+                                    label: `${match.meta.map.name} - ${bot.locale(`commands:valorant.matchMode.${match.meta.mode.toLowerCase()}`)}`,
                                     value: match.meta.id,
                                     description: `${match.stats.character.name} | K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists}`,
+                                    emoji: {
+                                        id: bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG]
+                                    }
                                 }
                             })
                         })])

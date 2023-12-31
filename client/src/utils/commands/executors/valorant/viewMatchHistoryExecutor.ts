@@ -22,8 +22,8 @@ const ViewMatchHistory = async (context: ComponentInteractionContext) => {
             title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + bot.locale('commands:valorant.match.title', { username: valUserInfo.data.name, tag: valUserInfo.data.tag }),
             fields: matchInfo.data.map(match => {
                 return {
-                    name: `${match.meta.map.name} - ${match.meta.mode}`,
-                    value: `${bot.locale('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \nK/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n${bot.locale('commands:valorant.match.result')}: ${match.teams.red && match.teams.blue ? `Red: ${match.teams.red} / Blue: ${match.teams.blue}` : bot.locale('commands:valorant.noResult')}\n`,
+                    name: `${match.meta.map.name} - ${bot.locale(`commands:valorant.matchMode.${match.meta.mode.toLowerCase()}`)}`,
+                    value: `${bot.locale('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \nK/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n${bot.locale('commands:valorant.match.result')}: ${match.teams.red && match.teams.blue ? `${bot.locale('commands:valorant.teams.t')}: ${match.teams.red} / ${bot.locale('commands:valorant.teams.ct')}: ${match.teams.blue}` : bot.locale('commands:valorant.noResult')}\n`,
                     inline: true
                 }
             }),
