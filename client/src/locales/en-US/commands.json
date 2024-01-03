@@ -621,7 +621,8 @@
                 "teamdeathmatch": "Team Deathmatch",
                 "newmap": "New map",
                 "snowballfight": "Snowball fight",
-                "replication": "Replication"
+                "replication": "Replication",
+                "custom game": "Partida personalizada"
             },
             "notFound": "I can't get this player's matches",
             "footer": "Only 13 matches will be shown",
@@ -632,7 +633,11 @@
             "bodyshots": "Bodyshots",
             "legshots": "Legshots",
             "Red": "Red",
-            "Blue": "Blue"
+            "Blue": "Blue",
+            "win": "Vitória",
+            "hasWon": "Resultado",
+            "loss": "Derrota",
+            "score": "Placar"
         },
         "noResult": "No results"
     },
