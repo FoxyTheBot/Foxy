@@ -271,9 +271,18 @@ const ValorantCommand = createCommand({
                         },
                         title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.match.title', { username: valUserInfo.data.name, tag: valUserInfo.data.tag }),
                         fields: matchInfo.data.map(match => {
+                            let teamHasWon;
+                            if (match.teams.red > match.teams.blue) teamHasWon = "Red"
+                            else if (match.teams.red < match.teams.blue) teamHasWon = "Blue"
+                            else teamHasWon = "Draw";
                             return {
-                                name: `${match.meta.map.name} - ${bot.locale(`commands:valorant.matchMode.${match.meta.mode.toLowerCase()}`)}`,
-                                value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \nK/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n${t('commands:valorant.match.result')}: ${match.teams.red && match.teams.blue ? `${t('commands:valorant.teams.t')}: ${match.teams.red} / ${t('commands:valorant.teams.ct')}: ${match.teams.blue}` : t('commands:valorant.noResult')}\n`,
+                                name: `${match.meta.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)} - ${match.teams.red ?? 0}/${match.teams.blue ?? 0} - ${match.stats.team === teamHasWon ?
+                                    context.getEmojiById(bot.emotes.FOXY_YAY) + " " + t('commands:valorant.match.win') : context.getEmojiById(bot.emotes.FOXY_CRY) + " " + t('commands:valorant.match.loss') ?? context.getEmojiById(bot.emotes.FOXY_SHRUG)}`,
+                                value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \n` +
+                                    `K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n` +
+                                    `Score: ${match.stats.score} \n` +
+                                    `${t('commands:valorant.match.damageMade')}: ${match.stats.damage.made} \n` +
+                                    `${t('commands:valorant.match.damageReceived')}: ${match.stats.damage.received} \n`,
                                 inline: true
                             }
                         }),
@@ -290,7 +299,7 @@ const ValorantCommand = createCommand({
                             placeholder: t('commands:valorant.match.placeholder'),
                             options: matchInfo.data.map(match => {
                                 return {
-                                    label: `${match.meta.map.name} - ${bot.locale(`commands:valorant.matchMode.${match.meta.mode.toLowerCase()}`)}`,
+                                    label: `${match.meta.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)}`,
                                     value: match.meta.id,
                                     description: `${match.stats.character.name} | K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists}`,
                                     emoji: {
