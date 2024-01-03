@@ -1,6 +1,7 @@
 import { Message } from 'discordeno/transformers';
 import ChatInputMessageContext from '../../structures/commands/ChatInputMessageContext';
 import { FoxyClient } from '../../structures/types/foxy';
+
 const unicodeLookalikes = {
     "a": [
         "\u0430",
@@ -97,9 +98,13 @@ const unicodeLookalikes = {
     ]
 };
 
-const unicodeLookalikePattern = Object.values(unicodeLookalikes).flat().map(char => char.replace("\\", "\\\\")).join('');
+const unicodeLookalikePattern = Object.values(unicodeLookalikes)
+    .flat()
+    .map(char => char.replace("\\", "\\\\"))
+    .join('');
 
 const inviteRegex = new RegExp(`discord(?:app\\.com\\/invite|\\.gg(?:\\/invite)?)\\/([\\w-${unicodeLookalikePattern}]{2,255})`, 'i');
+
 
 export default class InviteBlockerModule {
     public bot: FoxyClient;
