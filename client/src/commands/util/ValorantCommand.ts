@@ -182,8 +182,23 @@ const ValorantCommand = createCommand({
                 descriptionLocalizations: {
                     "pt-BR": "A visibilidade da sua conta"
                 },
-                type: ApplicationCommandOptionTypes.Boolean,
+                type: ApplicationCommandOptionTypes.String,
                 required: true,
+                choices: [{
+                    name: "Private",
+                    nameLocalizations: {
+                        "pt-BR": "Privado"
+                    },
+                    value: "true"
+                },
+                {
+                    name: "Public",
+                    nameLocalizations: {
+                        "pt-BR": "Público"
+                    },
+                    value: "false"
+
+                }]
             }]
         }],
     commandRelatedExecutions: [ValMatchSelectorExecutor],
@@ -211,7 +226,7 @@ const ValorantCommand = createCommand({
             }
 
             case 'set-visibility': {
-                const visibility = context.getOption<boolean>('visibility', false);
+                const visibility = context.getOption<string>('visibility', false);
                 const valUserInfo = await bot.database.getUser(context.author.id);
 
                 if (valUserInfo.riotAccount.isLinked) {
