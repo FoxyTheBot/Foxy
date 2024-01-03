@@ -621,7 +621,8 @@
                 "teamdeathmatch": "Team Deathmatch",
                 "newmap": "Novo mapa",
                 "snowballfight": "Guerra de bolas de neve",
-                "replication": "Replicação"
+                "replication": "Replicação",
+                "custom game": "Partida personalizada"
             },
             "notFound": "Não consegui obter as partidas deste jogador",
             "footer": "Apenas as 13 últimas partidas são exibidas",
@@ -632,7 +633,11 @@
             "bodyshots": "Bodyshots",
             "legshots": "Legshots",
             "Red": "Vermelho",
-            "Blue": "Azul"
+            "Blue": "Azul",
+            "win": "Vitória",
+            "hasWon": "Resultado",
+            "loss": "Derrota",
+            "score": "Placar"
         },
         "noResult": "Nenhum resultado encontrado"
     },
