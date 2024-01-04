@@ -234,7 +234,7 @@ const ValorantCommand = createCommand({
                     await valUserInfo.save();
 
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.FOXY_NICE, t('commands:valorant.visibilityChanged', { visibility: visibility ? t('commands:valorant.private') : t('commands:valorant.public') })),
+                        content: context.makeReply(bot.emotes.FOXY_NICE, t('commands:valorant.visibilityChanged', { visibility: visibility === 'true' ? t('commands:valorant.private') : t('commands:valorant.public') })),
                         flags: MessageFlags.EPHEMERAL
                     });
 
