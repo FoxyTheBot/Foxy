@@ -528,6 +528,18 @@
     "valorant": {
         "visibilityChanged": "Okay! Now your profile is {{visibility}}",
         "public": "public",
+        "matchMode": {
+            "unrated": "Unrated",
+            "competitive": "Competitive",
+            "spike rush": "Spike Rush",
+            "deathmatch": "Deathmatch",
+            "swiftplay": "Swiftplay",
+            "team deathmatch": "Team Deathmatch"
+        },
+        "teams": {
+            "t": "Attackers",
+            "ct": "Defenders"
+        },
         "private": "private",
         "linkAccountTitle": "Link Riot Games account",
         "linkAccountDescription": "Link your Riot Games account to view your matches stats and player information in Discord, you can choose if your profile will be private or public, by default your profile is private due to Riot Games limitations.",
@@ -554,6 +566,14 @@
             "kills": "Kills",
             "deaths": "Deaths",
             "assists": "Assistance",
+            "killsPercentage": "Kills (%)",
+            "deathsPercentage": "Deaths (%)",
+            "assistsPercentage": "Assistance (%)",
+            "headshotsPercentage": "Headshots (%)",
+            "bodyshotsPercentage": "Bodyshots (%)",
+            "mostPlayedMap": "Most played map",
+            "played": "Played",
+            "legshotsPercentage": "Legshots (%)",
             "ranks": {
                 "UNRATED": "Unrated",
                 "I1": "Iron 1",
@@ -609,7 +629,8 @@
                 "teamdeathmatch": "Team Deathmatch",
                 "newmap": "New map",
                 "snowballfight": "Snowball fight",
-                "replication": "Replication"
+                "replication": "Replication",
+                "custom game": "Custom"
             },
             "notFound": "I can't get this player's matches",
             "footer": "Only 13 matches will be shown",
@@ -620,7 +641,11 @@
             "bodyshots": "Bodyshots",
             "legshots": "Legshots",
             "Red": "Red",
-            "Blue": "Blue"
+            "Blue": "Blue",
+            "win": "Victory",
+            "hasWon": "Result",
+            "loss": "Defeat",
+            "score": "Scoreboard"
         },
         "noResult": "No results"
     },

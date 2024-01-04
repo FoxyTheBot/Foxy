@@ -528,6 +528,18 @@
     "valorant": {
         "visibilityChanged": "Okay! Seu perfil agora é {{visibility}}",
         "public": "público",
+        "matchMode": {
+            "unrated": "Sem classificação",
+            "competitive": "Competitivo",
+            "spike rush": "Disputa de Spike",
+            "deathmatch": "Mata Mata",
+            "swiftplay": "Frenético",
+            "team deathmatch": "Mata Mata em Equipe"
+        },
+        "teams": {
+            "t": "Atacantes",
+            "ct": "Defensores"
+        },
         "private": "privado",
         "linkAccountTitle": "Vincular conta da Riot Games",
         "linkAccountDescription": "Vincule a sua conta da Riot Games para poder ver as suas informações de jogador e estatísticas de partidas diretamente pelo Discord, você pode optar por deixar seu perfil privado ou público, por padrão o perfil é privado por conta de limitações da Riot Games.",
@@ -554,6 +566,14 @@
             "kills": "Abates",
             "deaths": "Mortes",
             "assists": "Assistências",
+            "killsPercentage": "Abates (%)",
+            "deathsPercentage": "Mortes (%)",
+            "assistsPercentage": "Assistências (%)",
+            "headshotsPercentage": "Headshots (%)",
+            "bodyshotsPercentage": "Bodyshots (%)",
+            "mostPlayedMap": "Mapa mais jogado",
+            "played": "Jogado",
+            "legshotsPercentage": "Legshots (%)",
             "ranks": {
                 "UNRATED": "Sem classificação",
                 "I1": "Ferro 1",
@@ -609,7 +629,8 @@
                 "teamdeathmatch": "Team Deathmatch",
                 "newmap": "Novo mapa",
                 "snowballfight": "Guerra de bolas de neve",
-                "replication": "Replicação"
+                "replication": "Replicação",
+                "custom game": "Partida personalizada"
             },
             "notFound": "Não consegui obter as partidas deste jogador",
             "footer": "Apenas as 13 últimas partidas são exibidas",
@@ -620,7 +641,11 @@
             "bodyshots": "Bodyshots",
             "legshots": "Legshots",
             "Red": "Vermelho",
-            "Blue": "Azul"
+            "Blue": "Azul",
+            "win": "Vitória",
+            "hasWon": "Resultado",
+            "loss": "Derrota",
+            "score": "Placar"
         },
         "noResult": "Nenhum resultado encontrado"
     },
