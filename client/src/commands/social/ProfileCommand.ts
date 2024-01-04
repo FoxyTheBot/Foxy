@@ -132,32 +132,57 @@ const ProfileCommand = createCommand({
                 const matches = await bot.foxyRest.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid);
                 const formattedRank = rank ? `${context.getEmojiById(rank.emoji)} ${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${context.getEmojiById(bot.emotes.UNRATED)} ${t('commands:valorant.player.ranks.UNRATED')}`;
                 const characterCounts = {};
-
+                const mapCounts = {};
+                
                 let mostPlayedCharacter = 'FOXY_SHRUG';
-                let maxCount = 0;
-                let totalKills = 0;
-                let totalDeaths = 0;
-                let totalAssists = 0;
-
-                matches.data.forEach(match => {
+                let mostPlayedMap = 'FOXY_SHRUG';
+                let maxCharacterCount = 0;
+                let maxMapCount = 0;
+                let totalKills = 0,
+                    totalDeaths = 0,
+                    totalAssists = 0,
+                    killsPercentage = 0,
+                    deathsPercentage = 0,
+                    assistsPercentage = 0;
+                
+                matches.data.forEach((match) => {
                     const characterName = match.stats.character.name || 'FOXY_SHRUG';
-
+                    const mapName = match.meta.map.name || 'FOXY_SHRUG';
+                
                     if (characterCounts[characterName]) {
                         characterCounts[characterName]++;
                     } else {
                         characterCounts[characterName] = 1;
                     }
-
-                    if (characterCounts[characterName] > maxCount) {
+                
+                    if (characterCounts[characterName] > maxCharacterCount) {
                         mostPlayedCharacter = characterName;
-                        maxCount = characterCounts[characterName];
+                        maxCharacterCount = characterCounts[characterName];
                     }
-
+                
+                    if (mapCounts[mapName]) {
+                        mapCounts[mapName]++;
+                    } else {
+                        mapCounts[mapName] = 1;
+                    }
+                
+                    if (mapCounts[mapName] > maxMapCount) {
+                        mostPlayedMap = mapName;
+                        maxMapCount = mapCounts[mapName];
+                    }
+                
                     totalKills += match.stats.kills;
                     totalDeaths += match.stats.deaths;
                     totalAssists += match.stats.assists;
                 });
-
+                
+                const totalMatches = matches.data.length;
+                const mostPlayedMapPercentage = (maxMapCount / totalMatches) * 100;
+                killsPercentage = (totalKills / (totalKills + totalDeaths)) * 100;
+                deathsPercentage = (totalDeaths / (totalKills + totalDeaths)) * 100;
+                assistsPercentage = (totalAssists / (totalKills + totalDeaths)) * 100;
+                
+                const mostPlayedCharacterPercentage = (characterCounts[mostPlayedCharacter] / matches.data.length) * 100;
                 if (userInfo.status === 200) {
                     const embed = createEmbed({
                         color: 0xf84355,
@@ -168,38 +193,58 @@ const ProfileCommand = createCommand({
                         thumbnail: {
                             url: userInfo.data.card.small
                         },
-                        fields: [{
-                            name: t('commands:valorant.player.level'),
-                            value: userInfo.data.account_level.toString(),
-                            inline: true
-                        },
-                        {
-                            name: t('commands:valorant.player.rank'),
-                            value: formattedRank,
-                            inline: true
-                        },
-                        {
-                            name: t('commands:valorant.player.mostPlayedAgent'),
-                            value: `${context.getEmojiById(bot.emotes[mostPlayedCharacter.toUpperCase()])} ${mostPlayedCharacter}`,
-                            inline: true
-                        },
-                        {
-                            name: t('commands:valorant.player.kills'),
-                            value: totalKills.toString(),
-                            inline: true
-                        },
-                        {
-                            name: t('commands:valorant.player.deaths'),
-                            value: totalDeaths.toString(),
-                            inline: true
-                        },
-                        {
-                            name: t('commands:valorant.player.assists'),
-                            value: totalAssists.toString(),
-                            inline: true
-                        }]
+                        fields: [
+                            {
+                                name: t('commands:valorant.player.rank'),
+                                value: `__${formattedRank}__`,
+                                inline: true
+                            },
+                            {
+                                name: t('commands:valorant.player.level'),
+                                value: `\`\`\`${userInfo.data.account_level.toString()}\`\`\``,
+                                inline: true
+                            },
+                            {
+                                name: t('commands:valorant.player.kills'),
+                                value: `\`\`\`${totalKills.toString()}\`\`\``,
+                                inline: true
+                            },
+                            {
+                                name: t('commands:valorant.player.deaths'),
+                                value: `\`\`\`${totalDeaths.toString()}\`\`\``,
+                                inline: true
+                            },
+                            {
+                                name: t('commands:valorant.player.assists'),
+                                value: `\`\`\`${totalAssists.toString()}\`\`\``,
+                                inline: true
+                            },
+                            {
+                                name: `${context.getEmojiById(bot.emotes[mostPlayedCharacter.toUpperCase()])} ${mostPlayedCharacter}`,
+                                value: `\`\`\`${mostPlayedCharacterPercentage.toFixed(2)}% ${t('commands:valorant.player.played')}\`\`\``,
+                                inline: true
+                            },
+                            {
+                                name: `${t('commands:valorant.player.mostPlayedMap')}`,
+                                value: `\`\`\`${mostPlayedMap} (${mostPlayedMapPercentage.toFixed(2)}%)\`\`\``,
+                            },
+                            {
+                                name: t('commands:valorant.player.killsPercentage'),
+                                value: `\`\`\`${killsPercentage.toFixed(2)}%\`\`\``,
+                                inline: true
+                            },
+                            {
+                                name: t('commands:valorant.player.deathsPercentage'),
+                                value: `\`\`\`${deathsPercentage.toFixed(2)}%\`\`\``,
+                                inline: true
+                            },
+                            {
+                                name: t('commands:valorant.player.assistsPercentage'),
+                                value: `\`\`\`${assistsPercentage.toFixed(2)}%\`\`\``,
+                                inline: true
+                            }
+                        ]
                     })
-
                     context.sendReply({
                         embeds: [embed],
                         components: [createActionRow([createButton({
