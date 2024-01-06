@@ -1,7 +1,7 @@
 import { Message } from 'discordeno/transformers';
 import ChatInputMessageContext from '../../structures/commands/ChatInputMessageContext';
 import { FoxyClient } from '../../structures/types/foxy';
-const inviteRegex = /(?:https?:\/\/)?(?:www\.)?(discord(?:\.com|app\.com)\/invite\/.*|discord\.gg(?:\/invite\/.*)?|discord\.gg\/.*)/i;
+const inviteRegex = /(?:https?:\/\/)?(?:www\.)?(discord(?:\.com|app\.com)\/invite\/\S+|discord\.gg(?:\/invite\/\S+)?)/i;
 
 export default class InviteBlockerModule {
     public bot: FoxyClient;
