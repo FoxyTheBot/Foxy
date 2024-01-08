@@ -272,12 +272,19 @@ const ValorantCommand = createCommand({
                         title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.match.title', { username: valUserInfo.data.name, tag: valUserInfo.data.tag }),
                         fields: matchInfo.data.map(match => {
                             let teamHasWon;
-                            if (match.teams.red > match.teams.blue) teamHasWon = "Red"
-                            else if (match.teams.red < match.teams.blue) teamHasWon = "Blue"
-                            else teamHasWon = "Draw";
+                            let result = match.stats.team === teamHasWon ?
+                                context.getEmojiById(bot.emotes.FOXY_YAY) + " " + t('commands:valorant.match.win') : context.getEmojiById(bot.emotes.FOXY_CRY) + " " + t('commands:valorant.match.loss')
+                            if (match.teams.red > match.teams.blue) {
+                                teamHasWon = "Red"
+                            } else if (match.teams.red < match.teams.blue) {
+                                teamHasWon = "Blue"
+                            } else {
+                                teamHasWon = "Draw";
+                                result = context.getEmojiById(bot.emotes.FOXY_RAGE) + " " + t('commands:valorant.match.draw')
+                            };
+
                             return {
-                                name: `${match.meta.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)} - ${match.teams.red ?? 0}/${match.teams.blue ?? 0} - ${match.stats.team === teamHasWon ?
-                                    context.getEmojiById(bot.emotes.FOXY_YAY) + " " + t('commands:valorant.match.win') : context.getEmojiById(bot.emotes.FOXY_CRY) + " " + t('commands:valorant.match.loss') ?? context.getEmojiById(bot.emotes.FOXY_SHRUG)}`,
+                                name: `${match.meta.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)} - ${match.teams.red ?? 0}/${match.teams.blue ?? 0} - ${result}`,
                                 value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \n` +
                                     `K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n` +
                                     `Score: ${match.stats.score} \n` +
