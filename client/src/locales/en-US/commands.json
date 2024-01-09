@@ -618,7 +618,7 @@
             "assists": "Assistance",
             "startedAt": "Started at",
             "rounds": "Rounds",
-            "draw": "Empate",
+            "draw": "Draw",
             "placeholder": "Select a match",
             "modes": {
                 "competitive": "Competitive",
