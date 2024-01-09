@@ -148,7 +148,6 @@ const ProfileCommand = createCommand({
                 matches.data.forEach((match) => {
                     const characterName = match.stats.character.name || 'FOXY_SHRUG';
                     const mapName = match.meta.map.name || 'FOXY_SHRUG';
-                
                     if (characterCounts[characterName]) {
                         characterCounts[characterName]++;
                     } else {
