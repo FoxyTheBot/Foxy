@@ -22,16 +22,25 @@ const ViewMatchHistory = async (context: ComponentInteractionContext) => {
             title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + bot.locale('commands:valorant.match.title', { username: valUserInfo.data.name, tag: valUserInfo.data.tag }),
             fields: matchInfo.data.map(match => {
                 let teamHasWon;
-                let result = match.stats.team === teamHasWon ?
-                    context.getEmojiById(bot.emotes.FOXY_YAY) + " " + bot.locale('commands:valorant.match.win') : context.getEmojiById(bot.emotes.FOXY_CRY) + " " + bot.locale('commands:valorant.match.loss')
+                let result;
+
                 if (match.teams.red > match.teams.blue) {
-                    teamHasWon = "Red"
+                    teamHasWon = "Red";
                 } else if (match.teams.red < match.teams.blue) {
-                    teamHasWon = "Blue"
+                    teamHasWon = "Blue";
                 } else {
                     teamHasWon = "Draw";
-                    result = context.getEmojiById(bot.emotes.FOXY_RAGE) + " " + bot.locale('commands:valorant.match.draw')
-                };
+                    result = context.getEmojiById(bot.emotes.FOXY_RAGE) + " " + bot.locale('commands:valorant.match.draw');
+                }
+
+                if (teamHasWon !== "Draw") {
+                    if (match.stats.team === teamHasWon) {
+                        result = context.getEmojiById(bot.emotes.FOXY_YAY) + " " + bot.locale('commands:valorant.match.win');
+                    } else {
+                        result = context.getEmojiById(bot.emotes.FOXY_CRY) + " " + bot.locale('commands:valorant.match.loss');
+                    }
+                }
+
 
                 return {
                     name: `${match.meta.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)} - ${match.teams.red ?? 0}/${match.teams.blue ?? 0} - ${result}`,
