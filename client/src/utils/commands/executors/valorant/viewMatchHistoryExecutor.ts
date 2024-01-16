@@ -1,9 +1,6 @@
 import ComponentInteractionContext from "../../../../structures/commands/ComponentInteractionContext";
 import { bot } from "../../../../index";
 import { createEmbed } from "../../../discord/Embed";
-import { createCustomId } from "../../../discord/Component";
-import { createSelectMenu } from "../../../discord/Component";
-import { createActionRow } from "../../../discord/Component";
 
 const ViewMatchHistory = async (context: ComponentInteractionContext) => {
     const [user] = context.sentData
