@@ -618,6 +618,7 @@
             "assists": "Assistências",
             "startedAt": "Iniciou em",
             "rounds": "Rodadas",
+            "draw": "Empate",
             "placeholder": "Selecione uma partida",
             "modes": {
                 "competitive": "Competitivo",
