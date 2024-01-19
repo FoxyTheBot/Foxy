@@ -6,6 +6,7 @@ const ValMatchSelectorExecutor = async (context: ComponentInteractionContext) =>
     context.sendDefer();
 
     const matchId = context.interaction.data.values[0];
+    const [userPUUID] = context.sentData;
     const match = await bot.foxyRest.getValMatch(matchId);
     const matchInfo = match.data;
 
@@ -44,8 +45,7 @@ const ValMatchSelectorExecutor = async (context: ComponentInteractionContext) =>
             return null;
         }
     }
-    const blueTeamPlayers = matchInfo.players.all_players.filter(player => player.team === 'Blue');
-    const redTeamPlayers = matchInfo.players.all_players.filter(player => player.team === 'Red');
+    const userStats = matchInfo.players.all_players.find(player => player.puuid === userPUUID);
 
     var fields;
     if (matchInfo.metadata.mode === 'Deathmatch') {
@@ -63,46 +63,75 @@ const ValMatchSelectorExecutor = async (context: ComponentInteractionContext) =>
             }
         });
     } else {
-        fields = [
-            ...blueTeamPlayers.map(player => {
-                const rank = getRank(player.currenttier_patched);
-                const formattedRank = rank ? `${context.getEmojiById(rank.emoji)} ${bot.locale(`commands:valorant.player.ranks.${rank.rank}`)}` : `${context.getEmojiById(bot.emotes.UNRATED)} ${bot.locale('commands:valorant.player.ranks.UNRATED')}`;
-
-                return {
-                    name: `${player.team === 'Red' ? bot.locale('commands:valorant.match.redTeam', { emoji: context.getEmojiById(bot.emotes.VALORANT_LOGO) }) : bot.locale('commands:valorant.match.blueTeam', { emoji: context.getEmojiById(bot.emotes.VALORANT_BLUE_LOGO) })}`,
-                    value: `${player.name}#${player.tag} - Level ${player.level}` +
-                        `\n${bot.locale('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[player.character.toUpperCase()])}` +
-                        `\nScore: ${player.stats.score}` +
-                        `\nK/D/A: ${player.stats.kills}/${player.stats.deaths}/${player.stats.assists}` +
-                        `\nRank: ${formattedRank}` +
-                        `\n${bot.locale('commands:valorant.match.damageMade')}: ${player.damage_made}` +
-                        `\n${bot.locale('commands:valorant.match.damageReceived')}: ${player.damage_received}` +
-                        `\n${bot.locale('commands:valorant.match.headshots')}: ${player.stats.headshots}` +
-                        `\n${bot.locale('commands:valorant.match.bodyshots')}: ${player.stats.bodyshots}` +
-                        `\n${bot.locale('commands:valorant.match.legshots')}: ${player.stats.legshots}`,
-                    inline: true
-                };
-            }),
-            ...redTeamPlayers.map(player => {
-                const rank = getRank(player.currenttier_patched);
-                const formattedRank = rank ? `${context.getEmojiById(rank.emoji)} ${bot.locale(`commands:valorant.player.ranks.${rank.rank}`)}` : `${context.getEmojiById(bot.emotes.UNRATED)} ${bot.locale('commands:valorant.player.ranks.UNRATED')}`;
-
-                return {
-                    name: `${player.team === 'Red' ? bot.locale('commands:valorant.match.redTeam', { emoji: context.getEmojiById(bot.emotes.VALORANT_LOGO) }) : bot.locale('commands:valorant.match.blueTeam', { emoji: context.getEmojiById(bot.emotes.VALORANT_BLUE_LOGO) })}`,
-                    value: `${player.name}#${player.tag} - Level ${player.level}` +
-                        `\n${bot.locale('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[player.character.toUpperCase()])}` +
-                        `\nScore: ${player.stats.score}` +
-                        `\nK/D/A: ${player.stats.kills}/${player.stats.deaths}/${player.stats.assists}` +
-                        `\nRank: ${formattedRank}` +
-                        `\n${bot.locale('commands:valorant.match.damageMade')}: ${player.damage_made}` +
-                        `\n${bot.locale('commands:valorant.match.damageReceived')}: ${player.damage_received}` +
-                        `\n${bot.locale('commands:valorant.match.headshots')}: ${player.stats.headshots}` +
-                        `\n${bot.locale('commands:valorant.match.bodyshots')}: ${player.stats.bodyshots}` +
-                        `\n${bot.locale('commands:valorant.match.legshots')}: ${player.stats.legshots}`,
-                    inline: true
-                };
-            })
-        ];
+        fields = [{
+            name: "K/D/A",
+            value: `\`\`\`${userStats.stats.kills}/${userStats.stats.deaths}/${userStats.stats.assists}\`\`\``,
+            inline: true,
+        },
+        {
+            name: bot.locale('commands:valorant.match.economy.average'),
+            value: `\`\`\`${userStats.economy.spent.average.toString()} CR\`\`\``,
+            inline: true,
+        },
+        {
+            name: bot.locale('commands:valorant.match.economy.overall'),
+            value: `\`\`\`${userStats.economy.spent.overall.toString()} CR\`\`\``,
+            inline: true,
+        },
+        {
+            name: bot.locale('commands:valorant.match.roundsAFK'),
+            value: userStats.behavior.afk_rounds.toString(),
+            inline: true,
+        },
+        {
+            name: bot.locale('commands:valorant.match.score'),
+            value: userStats.stats.score.toString(),
+            inline: true,
+        },
+        {
+            name: bot.locale('commands:valorant.match.bodyshots'),
+            value: userStats.stats.bodyshots.toString(),
+            inline: true,
+        },
+        {
+            name: bot.locale('commands:valorant.match.headshots'),
+            value: userStats.stats.headshots.toString(),
+            inline: true,
+        },
+        {
+            name: bot.locale('commands:valorant.match.damageReceived'),
+            value: userStats.damage_received.toString(),
+            inline: true,
+        },
+        {
+            name: bot.locale('commands:valorant.match.damageMade'),
+            value: userStats.damage_made.toString(),
+            inline: true,
+        },
+        {
+            name: bot.locale('commands:valorant.match.legshots'),
+            value: userStats.stats.legshots.toString(),
+            inline: true,
+        },
+        {
+            name: bot.locale('commands:valorant.match.abilityCasts.c'),
+            value: userStats.ability_casts.c_cast.toString(),
+            inline: true,
+        }, {
+            name: bot.locale('commands:valorant.match.abilityCasts.q'),
+            value: userStats.ability_casts.q_cast.toString(),
+            inline: true,
+        },
+        {
+            name: bot.locale('commands:valorant.match.abilityCasts.e'),
+            value: userStats.ability_casts.e_cast.toString(),
+            inline: true,
+        },
+        {
+            name: bot.locale('commands:valorant.match.abilityCasts.x'),
+            value: userStats.ability_casts.x_cast.toString(),
+            inline: true,
+        }];
     }
 
     const embed = createEmbed({
@@ -112,11 +141,14 @@ const ValMatchSelectorExecutor = async (context: ComponentInteractionContext) =>
             `\n**${bot.locale('commands:valorant.match.rounds')}:** ${matchInfo.metadata.rounds_played}` +
             `\n**Cluster:** ${matchInfo.metadata.cluster}` +
             `\n**${bot.locale('commands:valorant.match.startedAt')}:** <t:${matchInfo.metadata.game_start}:F>`,
+        thumbnail: {
+            url: userStats.assets.agent.small
+        },
         fields: fields
     })
 
     context.sendReply({
-        embeds: [embed],
+        embeds: [embed]
     });
 }
 
