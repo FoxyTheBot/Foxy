@@ -168,6 +168,7 @@ const ProfileCommand = createCommand({
 
                     if (characterCounts[characterName] > maxCharacterCount) {
                         mostPlayedCharacter = characterName;
+                        if (mostPlayedCharacter === "KAY/O") mostPlayedCharacter = "KAYO";
                         maxCharacterCount = characterCounts[characterName];
                     }
 
@@ -209,7 +210,7 @@ const ProfileCommand = createCommand({
                     const darkOverlayOpacity = 0.5;
                     ctx.fillStyle = `rgba(0, 0, 0, ${darkOverlayOpacity})`;
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    const characterImage = await Canvas.loadImage(`${config.serverURL}/valorant/agents/${mostPlayedCharacter}.png`); // Substitua .png pela extensão real da imagem, se necessário
+                    const characterImage = await Canvas.loadImage(`${config.serverURL}/valorant/agents/${mostPlayedCharacter.toLowerCase()}.png`); // Substitua .png pela extensão real da imagem, se necessário
 
                     ctx.fillStyle = 'white';
                     ctx.textAlign = 'center';
