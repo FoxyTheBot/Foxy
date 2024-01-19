@@ -558,9 +558,10 @@
             "viewMatches": "Ver partidas",
             "matches": "Partidas",
             "playtime": "Tempo de jogo",
-            "rank": "Rank",
-            "rankRating": "Pontuação do rank",
-            "rankRatingTooltip": "A pontuação do rank é calculada com base no seu desempenho nas partidas ranqueadas",
+            "rank": "Ranque atual",
+            "highestRank": "Maior elo",
+            "rankRating": "Pontuação do ranque",
+            "rankRatingTooltip": "A pontuação do ranque é calculada com base no seu desempenho nas partidas ranqueadas",
             "notFound": "Jogador não encontrado",
             "mostPlayedAgent": "Agente mais jogado",
             "kills": "Abates",
@@ -613,6 +614,17 @@
             "mode": "Modo",
             "character": "Agente",
             "result": "Resultado",
+            "roundsAFK": "Rodadas AFK",
+            "abilityCasts": {
+                "c": "Uso da habilidade (C)",
+                "q": "Uso da habilidade (Q)",
+                "e": "Uso da habilidade (E)",
+                "x": "Uso da ultimate (X)"
+            },
+            "economy": {
+                "average": "Gasto médio",
+                "overall": "Gasto geral"
+            },
             "kills": "Abates",
             "deaths": "Mortes",
             "assists": "Assistências",
@@ -627,7 +639,7 @@
                 "deathmatch": "Deathmatch",
                 "escalation": "Escalation",
                 "swiftplay": "Jogo rápido",
-                "teamdeathmatch": "Team Deathmatch",
+                "team deathmatch": "Mata-mata em equipe",
                 "newmap": "Novo mapa",
                 "snowballfight": "Guerra de bolas de neve",
                 "replication": "Replicação",
@@ -646,7 +658,7 @@
             "win": "Vitória",
             "hasWon": "Resultado",
             "loss": "Derrota",
-            "score": "Placar"
+            "score": "Pontuação"
         },
         "noResult": "Nenhum resultado encontrado"
     },
