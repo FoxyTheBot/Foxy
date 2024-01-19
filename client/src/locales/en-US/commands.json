@@ -558,9 +558,10 @@
             "viewMatches": "Show matches",
             "matches": "Matches",
             "playtime": "Time in game",
-            "rank": "Rank",
-            "rankRating": "Rank points",
-            "rankRatingTooltip": "Ranking score is calculated based on your performance in ranked matches",
+            "rank": "Ranque atual",
+            "highestRank": "Maior elo",
+            "rankRating": "Pontuação do ranque",
+            "rankRatingTooltip": "A pontuação do ranque é calculada com base no seu desempenho nas partidas ranqueadas",
             "notFound": "Player not found",
             "mostPlayedAgent": "Top Agent",
             "kills": "Kills",
@@ -613,6 +614,17 @@
             "mode": "Mode",
             "character": "Agent",
             "result": "Result",
+            "roundsAFK": "Rodadas AFK",
+            "abilityCasts": {
+                "c": "Uso da habilidade (C)",
+                "q": "Uso da habilidade (Q)",
+                "e": "Uso da habilidade (E)",
+                "x": "Uso da ultimate (X)"
+            },
+            "economy": {
+                "average": "Gasto médio",
+                "overall": "Gasto geral"
+            },
             "kills": "Kills",
             "deaths": "Deaths",
             "assists": "Assistance",
@@ -627,7 +639,7 @@
                 "deathmatch": "Deathmatch",
                 "escalation": "Escalation",
                 "swiftplay": "Quick play",
-                "teamdeathmatch": "Team Deathmatch",
+                "team deathmatch": "Mata-mata em equipe",
                 "newmap": "New map",
                 "snowballfight": "Snowball fight",
                 "replication": "Replication",
@@ -646,7 +658,7 @@
             "win": "Victory",
             "hasWon": "Result",
             "loss": "Defeat",
-            "score": "Scoreboard"
+            "score": "Pontuação"
         },
         "noResult": "No results"
     },
