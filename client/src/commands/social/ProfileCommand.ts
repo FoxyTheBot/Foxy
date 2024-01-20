@@ -239,21 +239,21 @@ const ProfileCommand = createCommand({
                     const killsText = 'Kills';
                     ctx.fillStyle = '#0094ff';
                     const xKillsText = canvas.width - 130;
-                    const yKillsText = 30; // Ajuste na posição vertical para cima
+                    const yKillsText = 30;
                     ctx.fillText(killsText, xKillsText, yKillsText);
                     
                     ctx.font = '70px Anton';
                     ctx.fillStyle = 'white';
                     const killsValue = totalKills.toString();
                     const xKillsValue = canvas.width - 130;
-                    const yKillsValue = 130; // Ajuste na posição vertical para cima
+                    const yKillsValue = 130;
                     ctx.fillText(killsValue, xKillsValue, yKillsValue);
                     
                     ctx.font = '70px Anton';
                     ctx.fillStyle = '#0094ff';
                     const deathsText = 'Deaths';
                     const xDeathsText = canvas.width - 160;
-                    const yDeathsText = 230; // Ajuste na posição vertical para cima
+                    const yDeathsText = 230;
                     ctx.fillText(deathsText, xDeathsText, yDeathsText);
                     
                     ctx.font = '70px Anton';
