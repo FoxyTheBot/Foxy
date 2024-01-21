@@ -46,7 +46,7 @@ const AnimeCommand = createCommand({
                     { name: t("commands:anime.info.duration"), value: data.duration.toString() || t("commands:anime.nothing"), inline: true },
                     { name: t("commands:anime.info.rating"), value: data.rating.toString() || t("commands:anime.nothing"), inline: true },
                     { name: t("commands:anime.info.broadcast"), value: data.broadcast.toString() || t("commands:anime.nothing"), inline: true },
-                    { name: "Trailer", value: `[${t('anime.click')}](${data.trailer})` || t("commands:anime.nothing"), inline: true },
+                    { name: "Trailer", value: data.trailer ? `[Trailer](${data.trailer})` : t("commands:anime.nothing"), inline: true },
                 ]
             });
             context.sendReply({ embeds: [embed] });
