@@ -3,7 +3,7 @@ import { createEmbed } from "../../utils/discord/Embed";
 import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
 import { bot } from "../../index";
 import { createActionRow, createButton, createCustomId, createSelectMenu } from "../../utils/discord/Component";
-import ValMatchSelectorExecutor from "../../utils/commands/executors/util/ValMatchSelectorExecutor";
+import ValMatchSelectorExecutor from "../../utils/commands/executors/valorant/ValMatchSelectorExecutor";
 import { MessageFlags } from "../../utils/discord/Message";
 import { User } from "discordeno/transformers";
 import { ValUser } from "../../structures/types/valuser";
