@@ -563,7 +563,7 @@
             "rankRating": "Pontuação do ranque",
             "rankRatingTooltip": "A pontuação do ranque é calculada com base no seu desempenho nas partidas ranqueadas",
             "notFound": "Player not found",
-            "mostPlayedAgent": "Top Agent",
+            "mostPlayedCharacter": "Agente mais jogado",
             "kills": "Kills",
             "deaths": "Deaths",
             "assists": "Assistance",
