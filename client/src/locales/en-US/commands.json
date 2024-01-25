@@ -558,12 +558,12 @@
             "viewMatches": "Show matches",
             "matches": "Matches",
             "playtime": "Time in game",
-            "rank": "Ranque atual",
-            "highestRank": "Maior elo",
-            "rankRating": "Pontuação do ranque",
-            "rankRatingTooltip": "A pontuação do ranque é calculada com base no seu desempenho nas partidas ranqueadas",
+            "rank": "Current Rank",
+            "highestRank": "Highest rank",
+            "rankRating": "Rank Score",
+            "rankRatingTooltip": "Ranking score is calculated based on your performance in ranked matches",
             "notFound": "Player not found",
-            "mostPlayedCharacter": "Agente mais jogado",
+            "mostPlayedCharacter": "Top Agent",
             "kills": "Kills",
             "deaths": "Deaths",
             "assists": "Assistance",
@@ -614,16 +614,16 @@
             "mode": "Mode",
             "character": "Agent",
             "result": "Result",
-            "roundsAFK": "Rodadas AFK",
+            "roundsAFK": "AFK Rounds",
             "abilityCasts": {
-                "c": "Uso da habilidade (C)",
-                "q": "Uso da habilidade (Q)",
-                "e": "Uso da habilidade (E)",
-                "x": "Uso da ultimate (X)"
+                "c": "C Usage",
+                "q": "Q Usage",
+                "e": "E Usage",
+                "x": "Ultimate usage (X)"
             },
             "economy": {
-                "average": "Gasto médio",
-                "overall": "Gasto geral"
+                "average": "Average spent",
+                "overall": "Overall spent"
             },
             "kills": "Kills",
             "deaths": "Deaths",
@@ -639,7 +639,7 @@
                 "deathmatch": "Deathmatch",
                 "escalation": "Escalation",
                 "swiftplay": "Quick play",
-                "team deathmatch": "Mata-mata em equipe",
+                "team deathmatch": "Team Deathmatch",
                 "newmap": "New map",
                 "snowballfight": "Snowball fight",
                 "replication": "Replication",
@@ -658,7 +658,7 @@
             "win": "Victory",
             "hasWon": "Result",
             "loss": "Defeat",
-            "score": "Pontuação"
+            "score": "Score"
         },
         "noResult": "No results"
     },
