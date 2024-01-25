@@ -277,6 +277,8 @@ const ConfigAutoModCommand = createCommand({
         const user = await context.getOption<User>("user", "users");
 
         switch (subCommandGroup) {
+            /* Invite Blocker */
+
             case "inviteblocker": {
                 if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("MANAGE_MESSAGES" || "ADMINISTRATOR")) {
                     context.sendReply({
@@ -490,6 +492,9 @@ const ConfigAutoModCommand = createCommand({
                     }
                 }
             }
+
+            /* Auto Role */
+            
             case "autorole": {
                 if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("MANAGE_ROLES" || "ADMINISTRATOR")) {
                     context.sendReply({
