@@ -534,7 +534,8 @@
             "spike rush": "Spike Rush",
             "deathmatch": "Deathmatch",
             "swiftplay": "Swiftplay",
-            "team deathmatch": "Team Deathmatch"
+            "team deathmatch": "Team Deathmatch",
+            "premier": "Premier"
         },
         "teams": {
             "t": "Attackers",
@@ -558,6 +559,7 @@
             "viewMatches": "Show matches",
             "matches": "Matches",
             "playtime": "Time in game",
+            "noMatches": "I didn't find any match with these filters.",
             "rank": "Current Rank",
             "highestRank": "Highest rank",
             "rankRating": "Rank Score",
@@ -643,7 +645,8 @@
                 "newmap": "New map",
                 "snowballfight": "Snowball fight",
                 "replication": "Replication",
-                "custom game": "Custom"
+                "custom game": "Custom",
+                "premier": "Premier"
             },
             "notFound": "I can't get this player's matches",
             "footer": "Only 13 matches will be shown",
