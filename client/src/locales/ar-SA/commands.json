@@ -534,7 +534,8 @@
             "spike rush": "Disputa de Spike",
             "deathmatch": "Mata Mata",
             "swiftplay": "Frenético",
-            "team deathmatch": "Mata Mata em Equipe"
+            "team deathmatch": "Mata Mata em Equipe",
+            "premier": "Premier"
         },
         "teams": {
             "t": "Atacantes",
@@ -558,6 +559,7 @@
             "viewMatches": "Ver partidas",
             "matches": "Partidas",
             "playtime": "Tempo de jogo",
+            "noMatches": "Não encontrei nenhuma partida com os filtros aplicados.",
             "rank": "Ranque atual",
             "highestRank": "Maior elo",
             "rankRating": "Pontuação do ranque",
@@ -643,7 +645,8 @@
                 "newmap": "Novo mapa",
                 "snowballfight": "Guerra de bolas de neve",
                 "replication": "Replicação",
-                "custom game": "Partida personalizada"
+                "custom game": "Partida personalizada",
+                "premier": "Premier"
             },
             "notFound": "Não consegui obter as partidas deste jogador",
             "footer": "Apenas as 13 últimas partidas são exibidas",
