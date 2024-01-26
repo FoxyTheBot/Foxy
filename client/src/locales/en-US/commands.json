@@ -559,7 +559,7 @@
             "viewMatches": "Show matches",
             "matches": "Matches",
             "playtime": "Time in game",
-            "noMatches": "Não encontrei nenhuma partida com os filtros aplicados.",
+            "noMatches": "I didn't find any match with these filters.",
             "rank": "Current Rank",
             "highestRank": "Highest rank",
             "rankRating": "Rank Score",
