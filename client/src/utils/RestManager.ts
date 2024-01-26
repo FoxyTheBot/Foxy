@@ -88,9 +88,10 @@ export class FoxyRestManager {
         }).then(res => res.json());
     }
 
-    async getAllValMatchHistoryByUUID(puuid: string) {
+    async getAllValMatchHistoryByUUID(puuid: string, mode?: string) {
         let url = `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/br/${puuid}`;
-
+        if (mode) url += `?&mode=${mode}`;
+        
         return fetch(url, {
             headers: {
                 "Authentication": config.valorantAPI

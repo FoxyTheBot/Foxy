@@ -59,6 +59,73 @@ const ValorantCommand = createCommand({
                 },
                 type: ApplicationCommandOptionTypes.User,
                 required: false,
+            },
+            {
+                name: "mode",
+                nameLocalizations: {
+                    "pt-BR": "modo_de_jogo"
+                },
+                description: "The match mode",
+                descriptionLocalizations: {
+                    "pt-BR": "O modo da partida"
+                },
+                type: ApplicationCommandOptionTypes.String,
+                required: false,
+                choices: [{
+                    name: "Competitive",
+                    nameLocalizations: {
+                        "pt-BR": "Competitivo"
+                    },
+                    value: "competitive",
+                },
+                {
+                    name: "Unrated",
+                    nameLocalizations: {
+                        "pt-BR": "Não ranqueado"
+                    },
+                    value: "unrated",
+                },
+                {
+                    name: "Spike Rush",
+                    nameLocalizations: {
+                        "pt-BR": "Spike Rush"
+                    },
+                    value: "spikerush",
+                },
+                {
+                    name: "Deathmatch",
+                    nameLocalizations: {
+                        "pt-BR": "Deathmatch"
+                    },
+                    value: "deathmatch",
+                }, {
+                    name: "Escalation",
+                    nameLocalizations: {
+                        "pt-BR": "Escalada"
+                    },
+                    value: "escalation",
+                },
+                {
+                    name: "Team Deathmatch",
+                    nameLocalizations: {
+                        "pt-BR": "Team Deathmatch"
+                    },
+                    value: "teamdeathmatch",
+                },
+                {
+                    name: "Premier",
+                    nameLocalizations: {
+                        "pt-BR": "Premier"
+                    },
+                    value: "premier",
+                },
+                {
+                    name: "All",
+                    nameLocalizations: {
+                        "pt-BR": "Todos"
+                    },
+                    value: "all",
+                }]
             }]
         },
         {
@@ -133,7 +200,7 @@ const ValorantCommand = createCommand({
                     nameLocalizations: {
                         "pt-BR": "Team Deathmatch"
                     },
-                    value: "teamdeathmatch",
+                    value: "team deathmatch",
                 }]
             },
             {
@@ -419,6 +486,8 @@ const ValorantCommand = createCommand({
 
             case 'stats': {
                 const user = context.getOption<User>('user', 'users') ?? context.author;
+                const mode = context.getOption<string>('mode', false);
+
                 const userData = await bot.database.getUser(user.id);
                 if (!userData.riotAccount.isLinked) {
                     context.sendReply({
@@ -476,7 +545,7 @@ const ValorantCommand = createCommand({
 
                 const rank = getRank(mmrInfo.data.current_data.currenttierpatched);
                 const highestRank = getRank(mmrInfo.data.highest_rank.patched_tier);
-                const matches = await bot.foxyRest.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid);
+                const matches = await bot.foxyRest.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode.replace(" ", "").toLowerCase());
                 const formattedRank = rank ? `${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${t('commands:valorant.player.ranks.UNRATED')}`;
                 const formattedHighestRank = highestRank ? `${t(`commands:valorant.player.ranks.${highestRank.rank}`)} (${mmrInfo.data.highest_rank.season
                     .toUpperCase()
@@ -508,7 +577,8 @@ const ValorantCommand = createCommand({
                     } else {
                         characterCounts[characterName] = 1;
                     }
-
+                    
+                    if (match.meta.season.short !== "e8a1") return;
                     if (characterCounts[characterName] > maxCharacterCount) {
                         mostPlayedCharacter = characterName;
                         if (mostPlayedCharacter === "KAY/O") mostPlayedCharacter = "KAYO";
@@ -529,7 +599,13 @@ const ValorantCommand = createCommand({
                     totalAssists += match.stats.assists;
                 });
 
-                const totalMatches = matches.data.length;
+                if (!matches.data.length) {
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.player.noMatches'))
+                    });
+                    return endCommand();
+                }
+                let totalMatches = matches.data.length;
                 killsPercentage = (totalKills / (totalKills + totalDeaths)) * 100;
                 deathsPercentage = (totalDeaths / (totalKills + totalDeaths)) * 100;
                 assistsPercentage = (totalAssists / (totalKills + totalDeaths)) * 100;
