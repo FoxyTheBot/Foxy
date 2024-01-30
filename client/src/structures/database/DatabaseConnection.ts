@@ -110,6 +110,19 @@ export default class DatabaseConnection {
                 joinChannel: String,
                 leaveChannel: String,
             },
+            valAutoRoleModule: {
+                isEnabled: Boolean,
+                unratedRole: String,
+                ironRole: String,
+                bronzeRole: String,
+                silverRole: String,
+                goldRole: String,
+                platinumRole: String,
+                diamondRole: String,
+                ascendantRole: String,
+                immortalRole: String,
+                radiantRole: String,
+            },
             premiumKeys: [keySchemaForGuilds]
         }, { versionKey: false, id: false });
         const riotAccountSchema = new mongoose.Schema({
@@ -251,6 +264,19 @@ export default class DatabaseConnection {
                     leaveMessage: null,
                     joinChannel: null,
                     leaveChannel: null,
+                },
+                valAutoRoleModule: {
+                    isEnabled: false,
+                    unratedRole: null,
+                    ironRole: null,
+                    bronzeRole: null,
+                    silverRole: null,
+                    goldRole: null,
+                    platinumRole: null,
+                    diamondRole: null,
+                    ascendantRole: null,
+                    immortalRole: null,
+                    radiantRole: null,
                 },
                 premiumKeys: []
 
