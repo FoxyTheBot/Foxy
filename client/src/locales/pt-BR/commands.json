@@ -371,6 +371,11 @@
             "removedWhitelistedChannel": "Canal {{channel}} removido da lista de canais que não serão afetados",
             "addedWhitelistedUser": "Usuário {{user}} adicionado a lista de usuários que não serão afetados",
             "removedWhitelistedUser": "Usuário {{user}} removido da lista de usuários que não serão afetados",
+            "selectors": {
+                "roleSelector": {
+                    "placeholder": "Selecione até 5 cargos"
+                }
+            },
             "fields": {
                 "isEnabled": "Módulo",
                 "isEnabledValue": {
@@ -395,10 +400,10 @@
                 "disable": "Desativar",
                 "enable": "Ativar",
                 "reset": "Resetar",
-                "whitelistChannel": "Adicionar exceção de canal",
-                "whitelistRole": "Adicionar exceção de cargo",
                 "blockMessage": "Alterar mensagem",
-                "cancel": "Cancelar"
+                "cancel": "Cancelar",
+                "addRole": "Adicionar cargo",
+                "addChannel": "Adicionar canal"
             },
             "errors": {
                 "notWhitelistedChannel": "Este canal não está na lista de canais que não serão afetados",
@@ -528,6 +533,39 @@
     "valorant": {
         "visibilityChanged": "Okay! Seu perfil agora é {{visibility}}",
         "public": "público",
+        "autorole": {
+            "title": "VALORANT Autorole",
+            "description": "Configure a Foxy para dar cargos para usuários do seu servidor de acordo com o ranque dele no VALORANT (O membro precisa ter vinculado a conta da Riot Games a Foxy)",
+            "ranks": {
+                "unrated":"{{emoji}} Sem classificação",
+                "iron": "{{emoji}} Ferro",
+                "bronze": "{{emoji}} Bronze",
+                "silver": "{{emoji}} Prata",
+                "gold": "{{emoji}} Ouro",
+                "platinum": "{{emoji}} Platina",
+                "diamond": "{{emoji}} Diamante",
+                "ascendant": "{{emoji}} Ascendente",
+                "immortal": "{{emoji}} Imortal",
+                "radiant": "{{emoji}} Radiante",
+                "none": "Não configurado"
+            },
+            "rankSelectorPlaceholder": "Selecione um ranque",
+            "backButton": "Voltar o menu de configurações",
+            "rankSelector": {
+                "unrated": "Sem classificação",
+                "iron": "Ferro",
+                "bronze": "Bronze",
+                "silver": "Prata",
+                "gold": "Ouro",
+                "platinum": "Platina",
+                "diamond": "Diamante",
+                "ascendant": "Ascendente",
+                "immortal": "Imortal",
+                "radiant": "Radiante",
+                "description": "Okay, agora selecione o cargo que será dado para usuários que possuem esse ranque",
+                "placeholder": "Selecione um cargo"
+            }
+        },
         "matchMode": {
             "unrated": "Sem classificação",
             "competitive": "Competitivo",
