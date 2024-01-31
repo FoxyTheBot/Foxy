@@ -373,7 +373,7 @@
             "removedWhitelistedUser": "User {{user}} removed successfully!",
             "selectors": {
                 "roleSelector": {
-                    "placeholder": "Selecione até 5 cargos"
+                    "placeholder": "Select 5 roles"
                 }
             },
             "fields": {
@@ -402,8 +402,8 @@
                 "reset": "Reset",
                 "blockMessage": "Change message",
                 "cancel": "Cancel",
-                "addRole": "Adicionar cargo",
-                "addChannel": "Adicionar canal"
+                "addRole": "Add role",
+                "addChannel": "Add channel"
             },
             "errors": {
                 "notWhitelistedChannel": "This channel isn't in the list of allowed channels",
