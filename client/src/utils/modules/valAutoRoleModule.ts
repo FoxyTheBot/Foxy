@@ -8,7 +8,9 @@ export default class ValAutoRoleModule {
     }
 
     async checkUser(member: Member) {
+        if (!member) return;
         const guildId = member.guildId;
+        if (!this.bot.hasGuildPermission(this.bot, guildId, ["MANAGE_ROLES"] || ["ADMINISTRATOR"])) return;
         const guildInfo = await this.bot.database.getGuild(guildId);
         const userInfo = await this.bot.database.getUser(member.id);
         if (!userInfo.riotAccount.isLinked) return;
