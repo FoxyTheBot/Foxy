@@ -592,6 +592,8 @@
         "player": {
             "title": "Perfil de {{username}}#{{tag}}",
             "level": "Nível",
+            "currentRR": "Ranking Rate (RR)",
+            "lastgame": "na última partida",
             "tag": "Tag",
             "region": "Região",
             "viewMatches": "Ver partidas",
