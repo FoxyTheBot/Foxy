@@ -115,21 +115,21 @@ const ValMatchSelectorExecutor = async (context: ComponentInteractionContext) =>
         },
         {
             name: bot.locale('commands:valorant.match.abilityCasts.c'),
-            value: userStats.ability_casts.c_cast.toString(),
+            value: userStats.ability_casts.c_cast.toString() ?? "0",
             inline: true,
         }, {
             name: bot.locale('commands:valorant.match.abilityCasts.q'),
-            value: userStats.ability_casts.q_cast.toString(),
+            value: userStats.ability_casts.q_cast.toString() ?? "0",
             inline: true,
         },
         {
             name: bot.locale('commands:valorant.match.abilityCasts.e'),
-            value: userStats.ability_casts.e_cast.toString(),
+            value: userStats.ability_casts.e_cast.toString() ?? "0",
             inline: true,
         },
         {
             name: bot.locale('commands:valorant.match.abilityCasts.x'),
-            value: userStats.ability_casts.x_cast.toString(),
+            value: userStats.ability_casts.x_cast.toString()?? "0",
             inline: true,
         }];
     }

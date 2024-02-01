@@ -650,7 +650,7 @@ const ValorantCommand = createCommand({
 
             case 'stats': {
                 const user = context.getOption<User>('user', 'users') ?? context.author;
-                const mode = context.getOption<string>('mode', false);
+                const mode = context.getOption<string>('mode', false) ?? "competitive";
 
                 const userData = await bot.database.getUser(user.id);
                 if (!userData.riotAccount.isLinked) {
@@ -719,7 +719,16 @@ const ValorantCommand = createCommand({
                 const mapCounts = {};
 
                 let mostPlayedCharacter = 'FOXY_SHRUG';
+                let mostPlayedMap = 'FOXY_SHRUG';
                 let maxCharacterCount = 0;
+                let maxMapCount = 0;
+                let currentRR;         
+                let formattedRR = mmrInfo.data.current_data.mmr_change_to_last_game;
+                
+                if (formattedRR > 0) {
+                    formattedRR = `+${formattedRR}`;
+                }
+
                 let totalKills = 0,
                     totalDeaths = 0,
                     totalAssists = 0,
@@ -755,6 +764,11 @@ const ValorantCommand = createCommand({
                         mapCounts[mapName] = 1;
                     }
 
+                    if (mapCounts[mapName] > maxMapCount) {
+                        mostPlayedMap = mapName;
+                        maxMapCount = mapCounts[mapName];
+                    }
+
                     headshots += match.stats.shots.head;
                     bodyshots += match.stats.shots.body;
                     legshots += match.stats.shots.leg;
@@ -776,6 +790,12 @@ const ValorantCommand = createCommand({
                 headshotsPercentage = (headshots / (headshots + bodyshots + legshots)) * 100;
                 bodyshotsPercentage = (bodyshots / (headshots + bodyshots + legshots)) * 100;
                 legshotsPercentage = (legshots / (headshots + bodyshots + legshots)) * 100;
+
+                if (mmrInfo.data.current_data.ranking_in_tier) {
+                    currentRR = `\`\`\`${await mmrInfo.data.current_data.ranking_in_tier}/100 (${formattedRR} ${t('commands:valorant.player.lastgame')})\`\`\``
+                } else {
+                    currentRR = `\`\`\`${t('commands:valorant.player.unranked')}\`\`\``
+                }
 
                 if (userInfo.status === 200) {
                     const valorantProfile = new RenderValorantProfile(user);
@@ -800,6 +820,30 @@ const ValorantCommand = createCommand({
                     });
 
                     context.sendReply({
+                        embeds: [{
+                            color: 0xf84354,
+                            title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.player.title', { username: userInfo.data.name, tag: userInfo.data.tag }),
+                            fields: [{
+                                name: t('commands:valorant.player.currentRR'),
+                                value: currentRR,
+                            },
+                            {
+                                name: t('commands:valorant.player.level'),
+                                value: `\`\`\`${userInfo.data.account_level}\`\`\``,
+                                inline: true
+                            },
+                            {
+                                name: t('commands:valorant.player.mostPlayedMap'),
+                                value: `\`\`\`${mostPlayedMap}\`\`\``,
+                                inline: true
+                            }],
+                            image: {
+                                url: 'attachment://profile.png'
+                            },
+                            thumbnail: {
+                                url: userInfo.data.card.small
+                            }
+                        }],
                         file: {
                             blob: await profileImage,
                             name: 'profile.png'
