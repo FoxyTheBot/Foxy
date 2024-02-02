@@ -371,6 +371,11 @@
             "removedWhitelistedChannel": "Channel {{channel}} removed successfully!",
             "addedWhitelistedUser": "User {{user}} added successfully!",
             "removedWhitelistedUser": "User {{user}} removed successfully!",
+            "selectors": {
+                "roleSelector": {
+                    "placeholder": "Select 5 roles"
+                }
+            },
             "fields": {
                 "isEnabled": "Module",
                 "isEnabledValue": {
@@ -395,10 +400,10 @@
                 "disable": "Disable",
                 "enable": "Enable",
                 "reset": "Reset",
-                "whitelistChannel": "Add channel exception",
-                "whitelistRole": "Add role exception",
                 "blockMessage": "Change message",
-                "cancel": "Cancel"
+                "cancel": "Cancel",
+                "addRole": "Add role",
+                "addChannel": "Add channel"
             },
             "errors": {
                 "notWhitelistedChannel": "This channel isn't in the list of allowed channels",
@@ -528,6 +533,39 @@
     "valorant": {
         "visibilityChanged": "Okay! Now your profile is {{visibility}}",
         "public": "public",
+        "autorole": {
+            "title": "VALORANT Autorole",
+            "description": "Configure Foxy to give roles to users on your server according to their rank in VALORANT (The member must have linked their Riot Games account to Foxy)",
+            "ranks": {
+                "unrated": "{{emoji}} Unrated",
+                "iron": "{{emoji}} Iron",
+                "bronze": "{{emoji}} Bronze",
+                "silver": "{{emoji}} Silver",
+                "gold": "{{emoji}} Gold",
+                "platinum": "{{emoji}} Platinum",
+                "diamond": "{{emoji}} Diamond",
+                "ascendant": "{{emoji}} Ascendant",
+                "immortal": "{{emoji}} Immortal",
+                "radiant": "{{emoji}} Radiant",
+                "none": "Not configured"
+            },
+            "rankSelectorPlaceholder": "Select a rank",
+            "backButton": "Back to menu",
+            "rankSelector": {
+                "unrated": "Unrated",
+                "iron": "Iron",
+                "bronze": "Bronze",
+                "silver": "Silver",
+                "gold": "Gold",
+                "platinum": "Platinum",
+                "diamond": "Diamond",
+                "ascendant": "Ascendant",
+                "immortal": "Immortal",
+                "radiant": "Radiant",
+                "description": "Okay, select a role that will be given to a user with this rank",
+                "placeholder": "Select a role"
+            }
+        },
         "matchMode": {
             "unrated": "Unrated",
             "competitive": "Competitive",
@@ -554,6 +592,8 @@
         "player": {
             "title": "{{username}}#{{tag}}'s profile",
             "level": "Level",
+            "currentRR": "Ranking Rate (RR)",
+            "lastgame": "na última partida",
             "tag": "Tag",
             "region": "Region",
             "viewMatches": "Show matches",
