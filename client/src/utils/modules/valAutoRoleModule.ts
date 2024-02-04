@@ -34,14 +34,18 @@ export default class ValAutoRoleModule {
         if (matchingRole === role || !role) return;
     
         if (!matchingRole) {
-            this.bot.helpers.addRole(guildId, member.id, role);
+            setTimeout(() => {
+                this.bot.helpers.addRole(guildId, member.id, role);
+            }, 2000);
         }
     
         if (matchingRole) {
             setTimeout(() => {
                 this.bot.helpers.removeRole(guildId, member.id, matchingRole);
-                this.bot.helpers.addRole(guildId, member.id, role);
-            }, 5000);
+                setTimeout(() => {
+                    this.bot.helpers.addRole(guildId, member.id, role);
+                }, 2000);
+            }, 2000);
         }
         return;
     }
