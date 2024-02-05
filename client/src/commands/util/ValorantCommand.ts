@@ -14,9 +14,9 @@ import RankSelectedExecutor from "../../utils/commands/executors/valorant/RankSe
 
 const ValorantCommand = createCommand({
     name: "valorant",
-    description: "[VALORANT] Commands related to Valorant",
+    description: "[VALORANT] Get VALORANT player stats and match history and more",
     descriptionLocalizations: {
-        "pt-BR": "[VALORANT] Comandos relacionados ao Valorant"
+        "pt-BR": "[VALORANT] Veja as estatísticas, informações de partidas de um jogador de VALORANT e mais"
     },
     category: 'util',
     options: [
