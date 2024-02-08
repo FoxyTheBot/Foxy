@@ -566,7 +566,7 @@ const ValorantCommand = createCommand({
                             emoji: {
                                 id: bot.emotes.UNRATED
                             },
-                            description: guildInfo.valAutoRoleModule.unratedRole ? `<@&${guildInfo.valAutoRoleModule.unratedRole}>` : t('commands:valorant.autorole.ranks.none')
+                            description: guildInfo.valAutoRoleModule.unratedRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                         },
                         {
                             label: t('commands:valorant.autorole.rankSelector.iron'),
@@ -574,7 +574,7 @@ const ValorantCommand = createCommand({
                             emoji: {
                                 id: bot.emotes.I3
                             },
-                            description: guildInfo.valAutoRoleModule.ironRole ? `<@&${guildInfo.valAutoRoleModule.ironRole}>` : t('commands:valorant.autorole.ranks.none')
+                            description: guildInfo.valAutoRoleModule.ironRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                         },
                         {
                             label: t('commands:valorant.autorole.rankSelector.bronze'),
@@ -582,7 +582,7 @@ const ValorantCommand = createCommand({
                             emoji: {
                                 id: bot.emotes.B3
                             },
-                            description: guildInfo.valAutoRoleModule.bronzeRole ? `<@&${guildInfo.valAutoRoleModule.bronzeRole}>` : t('commands:valorant.autorole.ranks.none')
+                            description: guildInfo.valAutoRoleModule.bronzeRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                         },
                         {
                             label: t('commands:valorant.autorole.rankSelector.silver'),
@@ -590,7 +590,7 @@ const ValorantCommand = createCommand({
                             emoji: {
                                 id: bot.emotes.S3
                             },
-                            description: guildInfo.valAutoRoleModule.silverRole ? `<@&${guildInfo.valAutoRoleModule.silverRole}>` : t('commands:valorant.autorole.ranks.none')
+                            description: guildInfo.valAutoRoleModule.silverRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
 
                         },
                         {
@@ -599,7 +599,7 @@ const ValorantCommand = createCommand({
                             emoji: {
                                 id: bot.emotes.G3
                             },
-                            description: guildInfo.valAutoRoleModule.goldRole ? `<@&${guildInfo.valAutoRoleModule.goldRole}>` : t('commands:valorant.autorole.ranks.none')
+                            description: guildInfo.valAutoRoleModule.goldRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
 
                         },
                         {
@@ -608,7 +608,7 @@ const ValorantCommand = createCommand({
                             emoji: {
                                 id: bot.emotes.P3
                             },
-                            description: guildInfo.valAutoRoleModule.platinumRole ? `<@&${guildInfo.valAutoRoleModule.platinumRole}>` : t('commands:valorant.autorole.ranks.none')
+                            description: guildInfo.valAutoRoleModule.platinumRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                         },
                         {
                             label: t('commands:valorant.autorole.rankSelector.diamond'),
@@ -616,7 +616,7 @@ const ValorantCommand = createCommand({
                             emoji: {
                                 id: bot.emotes.D3
                             },
-                            description: guildInfo.valAutoRoleModule.diamondRole ? `<@&${guildInfo.valAutoRoleModule.diamondRole}>` : t('commands:valorant.autorole.ranks.none')
+                            description: guildInfo.valAutoRoleModule.diamondRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
 
                         },
                         {
@@ -625,7 +625,7 @@ const ValorantCommand = createCommand({
                             emoji: {
                                 id: bot.emotes.A3
                             },
-                            description: guildInfo.valAutoRoleModule.ascendantRole ? `<@&${guildInfo.valAutoRoleModule.ascendantRole}>` : t('commands:valorant.autorole.ranks.none')
+                            description: guildInfo.valAutoRoleModule.ascendantRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                         },
                         {
                             label: t('commands:valorant.autorole.rankSelector.immortal'),
@@ -633,7 +633,7 @@ const ValorantCommand = createCommand({
                             emoji: {
                                 id: bot.emotes.IM3
                             },
-                            description: guildInfo.valAutoRoleModule.immortalRole ? `<@&${guildInfo.valAutoRoleModule.immortalRole}>` : t('commands:valorant.autorole.ranks.none')
+                            description: guildInfo.valAutoRoleModule.immortalRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                         },
                         {
                             label: t('commands:valorant.autorole.rankSelector.radiant'),
@@ -641,7 +641,7 @@ const ValorantCommand = createCommand({
                             emoji: {
                                 id: bot.emotes.R
                             },
-                            description: guildInfo.valAutoRoleModule.radiantRole ? `<@&${guildInfo.valAutoRoleModule.radiantRole}>` : t('commands:valorant.autorole.ranks.none')
+                            description: guildInfo.valAutoRoleModule.radiantRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                         }]
                     })])]
                 })
@@ -823,7 +823,7 @@ const ValorantCommand = createCommand({
                     context.sendReply({
                         embeds: [{
                             color: 0xf84354,
-                            title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.player.title', { username: userInfo.data.name, tag: userInfo.data.tag }),
+                            title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.player.title', { username: userInfo.data.name, tag: userInfo.data.tag, rank: `${context.getEmojiById(rank.emoji)} ${formattedRank}` }),
                             fields: [{
                                 name: t('commands:valorant.player.currentRR'),
                                 value: currentRR,
