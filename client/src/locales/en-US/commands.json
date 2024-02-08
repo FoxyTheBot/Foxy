@@ -535,7 +535,7 @@
         "public": "public",
         "autorole": {
             "title": "VALORANT Autorole",
-            "description": "Configure a Foxy para dar cargos para usuários do seu servidor de acordo com seu ranque no VALORANT (O membro precisa ter vinculado a conta da Riot Games a Foxy)",
+            "description": "Configure Foxy to give roles to users on your server according to their rank in VALORANT (The member must have linked their Riot Games account to Foxy)",
             "ranks": {
                 "unrated": "{{emoji}} Unrated",
                 "iron": "{{emoji}} Iron",
@@ -549,6 +549,7 @@
                 "radiant": "{{emoji}} Radiant",
                 "none": "Not configured"
             },
+            "configured": "Configured",
             "rankSelectorPlaceholder": "Select a rank",
             "backButton": "Back to menu",
             "rankSelector": {
@@ -590,10 +591,10 @@
             "success": "Your account has been linked successfully!"
         },
         "player": {
-            "title": "{{username}}#{{tag}}'s profile",
+            "title": "{{username}}#{{tag}}'s profile - {{rank}}",
             "level": "Level",
-            "currentRR": "Ranking Rate (RR)",
-            "lastgame": "na última partida",
+            "currentRR": "Ranking Rate",
+            "lastgame": "last match",
             "tag": "Tag",
             "region": "Region",
             "viewMatches": "Show matches",
@@ -677,10 +678,10 @@
             "modes": {
                 "competitive": "Competitive",
                 "unrated": "Unrated",
-                "spikerush": "Spike Rush",
+                "spike rush": "Spike Rush",
                 "deathmatch": "Deathmatch",
                 "escalation": "Escalation",
-                "swiftplay": "Quick play",
+                "swiftplay": "Swiftplay",
                 "team deathmatch": "Team Deathmatch",
                 "newmap": "New map",
                 "snowballfight": "Snowball fight",
