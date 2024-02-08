@@ -27,8 +27,8 @@ export default class ValAutoRoleModule {
             return includes;
         });
     
-    
-        const patchedTier: string = valUserInfo.data.current_data.currenttierpatched.match(/[a-zA-Z]+/)[0].toLowerCase();
+        const tier = valUserInfo.data.current_data.currenttierpatched || "unrated";
+        const patchedTier: string = tier.match(/[a-zA-Z]+/)[0].toLowerCase();
         const role = guildInfo.valAutoRoleModule[patchedTier + "Role"];
     
         if (matchingRole === role || !role) return;

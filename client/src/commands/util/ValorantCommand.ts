@@ -709,7 +709,8 @@ const ValorantCommand = createCommand({
 
                 const rank = getRank(mmrInfo.data.current_data.currenttierpatched);
                 const highestRank = getRank(mmrInfo.data.highest_rank.patched_tier);
-                const matches = await bot.foxyRest.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode.replace(" ", "").toLowerCase());
+                let matches = await bot.foxyRest.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode.replace(" ", "").toLowerCase());
+                if (!matches) matches = await bot.foxyRest.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, "unrated");
                 const formattedRank = rank ? `${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${t('commands:valorant.player.ranks.UNRATED')}`;
                 const formattedHighestRank = highestRank ? `${t(`commands:valorant.player.ranks.${highestRank.rank}`)} (${mmrInfo.data.highest_rank.season
                     .toUpperCase()
@@ -794,7 +795,7 @@ const ValorantCommand = createCommand({
                 if (mmrInfo.data.current_data.ranking_in_tier) {
                     currentRR = `\`\`\`${await mmrInfo.data.current_data.ranking_in_tier}/100 (${formattedRR} ${t('commands:valorant.player.lastgame')})\`\`\``
                 } else {
-                    currentRR = `\`\`\`${t('commands:valorant.player.unranked')}\`\`\``
+                    currentRR = `\`\`\`${t(`commands:valorant.player.ranks.UNRATED`)}\`\`\``
                 }
 
                 if (userInfo.status === 200) {
