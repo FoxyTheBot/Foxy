@@ -549,7 +549,6 @@
                 "radiant": "{{emoji}} Radiante",
                 "none": "Não configurado"
             },
-            "configured": "Configurado",
             "rankSelectorPlaceholder": "Selecione um ranque",
             "backButton": "Voltar o menu de configurações",
             "rankSelector": {
@@ -591,7 +590,7 @@
             "success": "Sua conta foi vinculada com sucesso!"
         },
         "player": {
-            "title": "Perfil de {{username}}#{{tag}} - {{rank}}",
+            "title": "Perfil de {{username}}#{{tag}}",
             "level": "Nível",
             "currentRR": "Ranking Rate (RR)",
             "lastgame": "na última partida",
@@ -678,10 +677,10 @@
             "modes": {
                 "competitive": "Competitivo",
                 "unrated": "Sem classificação",
-                "spike rush": "Disputa de Spike",
+                "spikerush": "Spike Rush",
                 "deathmatch": "Deathmatch",
                 "escalation": "Escalation",
-                "swiftplay": "Frenético",
+                "swiftplay": "Jogo rápido",
                 "team deathmatch": "Mata-mata em equipe",
                 "newmap": "Novo mapa",
                 "snowballfight": "Guerra de bolas de neve",
