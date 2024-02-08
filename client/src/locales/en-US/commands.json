@@ -549,7 +549,7 @@
                 "radiant": "{{emoji}} Radiant",
                 "none": "Not configured"
             },
-            "configured": "Configurado",
+            "configured": "Configured",
             "rankSelectorPlaceholder": "Select a rank",
             "backButton": "Back to menu",
             "rankSelector": {
@@ -591,7 +591,7 @@
             "success": "Your account has been linked successfully!"
         },
         "player": {
-            "title": "Perfil de {{username}}#{{tag}} - {{rank}}",
+            "title": "{{username}}#{{tag}}'s profile - {{rank}}",
             "level": "Level",
             "currentRR": "Ranking Rate",
             "lastgame": "last match",
@@ -678,10 +678,10 @@
             "modes": {
                 "competitive": "Competitive",
                 "unrated": "Unrated",
-                "spike rush": "Disputa de Spike",
+                "spike rush": "Spike Rush",
                 "deathmatch": "Deathmatch",
                 "escalation": "Escalation",
-                "swiftplay": "Frenético",
+                "swiftplay": "Swiftplay",
                 "team deathmatch": "Team Deathmatch",
                 "newmap": "New map",
                 "snowballfight": "Snowball fight",
