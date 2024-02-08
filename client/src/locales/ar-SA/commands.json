@@ -535,7 +535,7 @@
         "public": "público",
         "autorole": {
             "title": "VALORANT Autorole",
-            "description": "Configure a Foxy para dar cargos para usuários do seu servidor de acordo com seu ranque no VALORANT (O membro precisa ter vinculado a conta da Riot Games a Foxy)",
+            "description": "Chega de pegar cargo de ranque manualmente, configure a Foxy para dar cargos automaticamente para usuários do seu servidor de acordo com seu ranque no VALORANT (O membro precisa ter vinculado a conta da Riot Games a Foxy)",
             "ranks": {
                 "unrated": "{{emoji}} Sem classificação",
                 "iron": "{{emoji}} Ferro",
