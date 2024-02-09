@@ -366,7 +366,14 @@ const ValorantCommand = createCommand({
                     return endCommand();
                 }
 
-                context.sendDefer();
+                context.sendReply({
+                    embeds: [{
+                        color: 0xf84354,
+                        title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.loadingTitle')),
+                        description: t('commands:valorant.loadingDescription')
+                    }]
+                });
+
                 const matchInfo: any = await bot.foxyRest.getValMatchHistoryByUUID(userData.riotAccount.puuid, context.getOption<string>('mode', false), context.getOption<string>('map', false));
                 const valUserInfo = await bot.foxyRest.getValPlayerByUUID(userData.riotAccount.puuid);
 
@@ -667,7 +674,14 @@ const ValorantCommand = createCommand({
                     return endCommand();
                 }
 
-                context.sendDefer();
+                context.sendReply({
+                    embeds: [{
+                        color: 0xf84354,
+                        title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.loadingTitle')),
+                        description: t('commands:valorant.loadingDescription')
+                    }]
+                });
+
                 const userInfo: ValUser = await bot.foxyRest.getValPlayerByUUID(await userData.riotAccount.puuid);
                 const mmrInfo = await bot.foxyRest.getMMR(await userData.riotAccount.puuid);
 
