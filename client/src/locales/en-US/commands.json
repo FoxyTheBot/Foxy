@@ -531,7 +531,9 @@
         }
     },
     "valorant": {
-        "visibilityChanged": "Okay! Now your profile is {{visibility}}",
+        "loadingDescription": "Obtendo informações de jogador, MMR e partidas, isso pode demorar um pouco",
+        "loadingTitle": "Obtendo informações",
+        "loadingMatches": "Obtendo partidas",
         "public": "public",
         "autorole": {
             "title": "VALORANT Autorole",
@@ -600,6 +602,7 @@
             "viewMatches": "Show matches",
             "matches": "Matches",
             "playtime": "Time in game",
+            "authorStats": "Estatísticas competitivas",
             "noMatches": "I didn't find any match with these filters.",
             "rank": "Current Rank",
             "highestRank": "Highest rank",
