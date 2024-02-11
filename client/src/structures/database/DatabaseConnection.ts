@@ -74,7 +74,6 @@ export default class DatabaseConnection {
                 puuid: String,
                 isPrivate: Boolean,
                 region: String,
-                access_token: String,
             },
             premiumKeys: [keySchema]
         }, { versionKey: false, id: false });
@@ -174,7 +173,6 @@ export default class DatabaseConnection {
                     puuid: null,
                     isPrivate: false,
                     region: null,
-                    access_token: null,
                 },
                 premiumKeys: []
             }).save();
