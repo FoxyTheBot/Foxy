@@ -507,6 +507,16 @@ const ValorantCommand = createCommand({
             }
 
             case 'autorole': {
+                if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("MANAGE_ROLES" || "ADMINISTRATOR")) {
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:global.noPermission", {
+                            permission: t("permissions:ManageRoles")
+                        })),
+                        flags: MessageFlags.EPHEMERAL
+                    })
+                    return endCommand();
+                }
+                
                 const guildInfo = await bot.database.getGuild(context.guildId);
                 context.sendReply({
                     embeds: [{
