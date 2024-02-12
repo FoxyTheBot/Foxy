@@ -565,7 +565,7 @@
                         "description": "Configure a visibilidade do seu perfil de jogador, se você configurar como privado, apenas você poderá ver suas informações de jogador"
                     }
                 },
-                "footer": "Placeholders com [] são opcionais, e com <> são obrigatórios"
+                "footer": "Argumentos com [] são opcionais, e com <> são obrigatórios"
             }
         },
         "autorole": {
