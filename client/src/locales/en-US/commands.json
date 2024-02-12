@@ -531,46 +531,46 @@
         }
     },
     "valorant": {
-        "loadingDescription": "Obtendo informações de jogador, MMR e partidas, isso pode demorar um pouco",
-        "loadingTitle": "Obtendo informações",
-        "loadingMatches": "Obtendo partidas",
+        "loadingDescription": "Getting player's info, MMR and matches, this may take a while",
+        "loadingTitle": "Getting player's info",
+        "loadingMatches": "Getting player's matches",
         "public": "public",
         "help": {
             "embed": {
-                "title": "VALORANT Ajuda",
-                "description": "Veja as estatísticas, histórico de partidas de um jogador de VALORANT ou configure o autorole para dar cargos automaticamente para usuários de acordo com seu ranque no VALORANT",
+                "title": "VALORANT Help",
+                "description": "View a VALORANT player's statistics, match history, or configure autorole to automatically give loads to users based on their VALORANT rank",
                 "fields": {
                     "stats": {
-                        "title": "/valorant estatísticas [@usuário] [tipo-de-jogo]",
-                        "description": "Veja as estatísticas de um jogador de VALORANT, o tipo de jogo varia entre competitivo, sem classificação, etc"
+                        "title": "/valorant stats [@user] [game-type]",
+                        "description": "See the statistics of a VALORANT player, the type of game varies between competitive, unranked, etc"
                     },
                     "matches": {
-                        "title": "/valorant partidas [@usuário] [tipo-de-jogo] [mapa]",
-                        "description": "Veja as partidas de um jogador de VALORANT, o tipo de jogo varia entre competitivo, sem classificação, etc"
+                        "title": "/valorant matches [@user] [game-type] [map]",
+                        "description": "See the matches of a VALORANT player, the type of game varies between competitive, unranked, etc"
                     },
                     "autorole": {
                         "title": "/valorant autorole",
-                        "description": "Configure a Foxy para dar cargos automaticamente para usuários do seu servidor de acordo com seu ranque no VALORANT (O membro precisa ter vinculado a conta da Riot Games a Foxy)"
+                        "description": "Configure Foxy to give roles to users on your server according to their rank in VALORANT (The member must have linked their Riot Games account to Foxy)"
                     },
                     "link": {
-                        "title": "/valorant vincular-conta",
-                        "description": "Vincule a sua conta da Riot Games para poder ver as suas informações de jogador e estatísticas **(Não pediremos sua senha, você será redirecionado para o site da Riot Games para autorizar a Foxy)**"
+                        "title": "/valorant link-account",
+                        "description": "Link your Riot Games account to be able to view your player information and statistics **(We won't ask for your password, you will be redirected to the Riot Games website to authorize Foxy)**"
                     },
                     "verify": {
-                        "title": "/valorant verify <código-de-autenticação>",
-                        "description": "Caso tenha usado o comando `/valorant vincular-conta`, você receberá um código de autenticação, use esse comando para vincular a sua conta da Riot Games"
+                        "title": "/valorant verify <authcode>",
+                        "description": "If you used the `/valorant link-account` command, you will receive an authentication code, use this command to link your Riot Games account"
                     },
                     "set-visibility": {
-                        "title": "/valorant set-visibility <público/privado>",
-                        "description": "Configure a visibilidade do seu perfil de jogador, se você configurar como privado, apenas você poderá ver suas informações de jogador"
+                        "title": "/valorant set-visibility <public/private>",
+                        "description": "Configure your player profile visibility, if you set it to private only you will be able to see your player information"
                     }
                 },
-                "footer": "Placeholders com [] são opcionais, e com <> são obrigatórios"
+                "footer": "Placeholders with [] are optional, and with <> are required"
             }
         },
         "autorole": {
             "title": "VALORANT Autorole",
-            "description": "Chega de pegar cargo de ranque manualmente, configure a Foxy para dar cargos automaticamente para usuários do seu servidor de acordo com seu ranque no VALORANT (O membro precisa ter vinculado a conta da Riot Games a Foxy)",
+            "description": "No more getting your rank role manually, configure Foxy to automatically give roles to users on your server according to their rank in VALORANT (The member must have linked their Riot Games account to Foxy)",
             "ranks": {
                 "unrated": "{{emoji}} Unrated",
                 "iron": "{{emoji}} Iron",
@@ -635,7 +635,7 @@
             "viewMatches": "Show matches",
             "matches": "Matches",
             "playtime": "Time in game",
-            "authorStats": "Estatísticas competitivas",
+            "authorStats": "Competitive stats",
             "noMatches": "I didn't find any match with these filters.",
             "rank": "Current Rank",
             "highestRank": "Highest rank",
