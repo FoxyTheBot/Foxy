@@ -531,11 +531,46 @@
         }
     },
     "valorant": {
-        "visibilityChanged": "Okay! Now your profile is {{visibility}}",
+        "loadingDescription": "Getting player's info, MMR and matches, this may take a while",
+        "loadingTitle": "Getting player's info",
+        "loadingMatches": "Getting player's matches",
         "public": "public",
+        "help": {
+            "embed": {
+                "title": "VALORANT Help",
+                "description": "View a VALORANT player's statistics, match history, or configure autorole to automatically give loads to users based on their VALORANT rank",
+                "fields": {
+                    "stats": {
+                        "title": "/valorant stats [@user] [game-type]",
+                        "description": "See the statistics of a VALORANT player, the type of game varies between competitive, unranked, etc"
+                    },
+                    "matches": {
+                        "title": "/valorant matches [@user] [game-type] [map]",
+                        "description": "See the matches of a VALORANT player, the type of game varies between competitive, unranked, etc"
+                    },
+                    "autorole": {
+                        "title": "/valorant autorole",
+                        "description": "Configure Foxy to give roles to users on your server according to their rank in VALORANT (The member must have linked their Riot Games account to Foxy)"
+                    },
+                    "link": {
+                        "title": "/valorant link-account",
+                        "description": "Link your Riot Games account to be able to view your player information and statistics **(We won't ask for your password, you will be redirected to the Riot Games website to authorize Foxy)**"
+                    },
+                    "verify": {
+                        "title": "/valorant verify <authcode>",
+                        "description": "If you used the `/valorant link-account` command, you will receive an authentication code, use this command to link your Riot Games account"
+                    },
+                    "set-visibility": {
+                        "title": "/valorant set-visibility <public/private>",
+                        "description": "Configure your player profile visibility, if you set it to private only you will be able to see your player information"
+                    }
+                },
+                "footer": "Placeholders with [] are optional, and with <> are required"
+            }
+        },
         "autorole": {
             "title": "VALORANT Autorole",
-            "description": "Configure Foxy to give roles to users on your server according to their rank in VALORANT (The member must have linked their Riot Games account to Foxy)",
+            "description": "No more getting your rank role manually, configure Foxy to automatically give roles to users on your server according to their rank in VALORANT (The member must have linked their Riot Games account to Foxy)",
             "ranks": {
                 "unrated": "{{emoji}} Unrated",
                 "iron": "{{emoji}} Iron",
@@ -600,6 +635,7 @@
             "viewMatches": "Show matches",
             "matches": "Matches",
             "playtime": "Time in game",
+            "authorStats": "Competitive stats",
             "noMatches": "I didn't find any match with these filters.",
             "rank": "Current Rank",
             "highestRank": "Highest rank",
