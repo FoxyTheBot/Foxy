@@ -535,6 +535,39 @@
         "loadingTitle": "Obtendo informações",
         "loadingMatches": "Obtendo partidas",
         "public": "público",
+        "help": {
+            "embed": {
+                "title": "VALORANT Ajuda",
+                "description": "Veja as estatísticas, histórico de partidas de um jogador de VALORANT ou configure o autorole para dar cargos automaticamente para usuários de acordo com seu ranque no VALORANT",
+                "fields": {
+                    "stats": {
+                        "title": "/valorant estatísticas [@usuário] [tipo-de-jogo]",
+                        "description": "Veja as estatísticas de um jogador de VALORANT, o tipo de jogo varia entre competitivo, sem classificação, etc"
+                    },
+                    "matches": {
+                        "title": "/valorant partidas [@usuário] [tipo-de-jogo] [mapa]",
+                        "description": "Veja as partidas de um jogador de VALORANT, o tipo de jogo varia entre competitivo, sem classificação, etc"
+                    },
+                    "autorole": {
+                        "title": "/valorant autorole",
+                        "description": "Configure a Foxy para dar cargos automaticamente para usuários do seu servidor de acordo com seu ranque no VALORANT (O membro precisa ter vinculado a conta da Riot Games a Foxy)"
+                    },
+                    "link": {
+                        "title": "/valorant vincular-conta",
+                        "description": "Vincule a sua conta da Riot Games para poder ver as suas informações de jogador e estatísticas **(Não pediremos sua senha, você será redirecionado para o site da Riot Games para autorizar a Foxy)**"
+                    },
+                    "verify": {
+                        "title": "/valorant verify <código-de-autenticação>",
+                        "description": "Caso tenha usado o comando `/valorant vincular-conta`, você receberá um código de autenticação, use esse comando para vincular a sua conta da Riot Games"
+                    },
+                    "set-visibility": {
+                        "title": "/valorant set-visibility <público/privado>",
+                        "description": "Configure a visibilidade do seu perfil de jogador, se você configurar como privado, apenas você poderá ver suas informações de jogador"
+                    }
+                },
+                "footer": "Placeholders com [] são opcionais, e com <> são obrigatórios"
+            }
+        },
         "autorole": {
             "title": "VALORANT Autorole",
             "description": "Chega de pegar cargo de ranque manualmente, configure a Foxy para dar cargos automaticamente para usuários do seu servidor de acordo com seu ranque no VALORANT (O membro precisa ter vinculado a conta da Riot Games a Foxy)",
