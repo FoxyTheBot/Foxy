@@ -565,7 +565,7 @@
                         "description": "Configure your player profile visibility, if you set it to private only you will be able to see your player information"
                     }
                 },
-                "footer": "Placeholders with [] are optional, and with <> are required"
+                "footer": "Arguments with [] are optional, and with <> are required"
             }
         },
         "autorole": {
