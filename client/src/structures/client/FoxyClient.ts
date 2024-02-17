@@ -22,7 +22,8 @@ const setupFoxy = async (client: FoxyClient): Promise<void> => {
     client.foxyRest = new FoxyRestManager(client);
     client.gateway.manager.createShardOptions.events.message = async (shard, message) => {
         if (message.t === 'GUILD_DELETE' && (message.d as DiscordUnavailableGuild).unavailable) return;
-    
+        if (message.t === 'GUILD_AUDIT_LOG_ENTRY_CREATE') return;
+        
         client.handlers[message.t]?.(client, message, shard.id);
     };
     loadCommands();
