@@ -9,7 +9,6 @@ import DatabaseConnection from '../database/DatabaseConnection';
 import config from '../../../config.json';
 import { startActivities } from '../../utils/Activities';
 import { FoxyRestManager } from '../../utils/RestManager';
-import sendMessageToEventHandler from '../../utils/mods/sendMessageToEventHandler';
 
 const setupFoxy = async (client: FoxyClient): Promise<void> => {
     client.owner = await bot.helpers.getUser(config.ownerId);
@@ -22,10 +21,10 @@ const setupFoxy = async (client: FoxyClient): Promise<void> => {
     client.hasGuildPermission = botHasGuildPermissions;
     client.foxyRest = new FoxyRestManager(client);
     client.gateway.manager.createShardOptions.events.message = async (shard, message) => {
-        if (message.t === "GUILD_DELETE" && (message.d as DiscordUnavailableGuild).unavailable) return;
+        if (message.t === 'GUILD_DELETE' && (message.d as DiscordUnavailableGuild).unavailable) return;
     
-        await sendMessageToEventHandler(bot, message, shard.id);
-    }
+        client.handlers[message.t]?.(client, message, shard.id);
+    };
     loadCommands();
     loadLocales();
     startActivities();
