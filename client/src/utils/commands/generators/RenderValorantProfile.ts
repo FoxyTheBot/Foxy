@@ -19,9 +19,6 @@ export default class RenderValorantProfile {
         const background = await Canvas.loadImage(`${config.serverURL}/valorant/background/main.jpg`);
 
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-        const darkOverlayOpacity = 0.5;
-        ctx.fillStyle = `rgba(0, 0, 0, ${darkOverlayOpacity})`;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
         const characterImage = await Canvas.loadImage(`${config.serverURL}/valorant/agents/${data.mostPlayedCharacter.toLowerCase()}.png`); // Substitua .png pela extensão real da imagem, se necessário
 
         ctx.fillStyle = 'white';
@@ -49,7 +46,7 @@ export default class RenderValorantProfile {
 
         ctx.font = '70px Anton';
         const killsText = 'Kills';
-        ctx.fillStyle = '#0094ff';
+        ctx.fillStyle = '#f84354';
         const xKillsText = canvas.width - 130;
         const yKillsText = 30;
         ctx.fillText(killsText, xKillsText, yKillsText);
@@ -62,7 +59,7 @@ export default class RenderValorantProfile {
         ctx.fillText(killsValue, xKillsValue, yKillsValue);
 
         ctx.font = '70px Anton';
-        ctx.fillStyle = '#0094ff';
+        ctx.fillStyle = '#f84354';
         const deathsText = 'Deaths';
         const xDeathsText = canvas.width - 160;
         const yDeathsText = 230;
@@ -77,7 +74,7 @@ export default class RenderValorantProfile {
 
         ctx.font = '70px Anton';
         const assistsText = 'Assists';
-        ctx.fillStyle = '#0094ff';
+        ctx.fillStyle = '#f84354';
         const xAssistsText = canvas.width - 160;
         const yAssistsText = 430;
         ctx.fillText(assistsText, xAssistsText, yAssistsText);
@@ -91,7 +88,7 @@ export default class RenderValorantProfile {
 
         ctx.font = '70px Anton';
         const matchesText = 'Partidas';
-        ctx.fillStyle = '#0094ff';
+        ctx.fillStyle = '#f84354';
         const xMatchesText = canvas.width - 160;
         const yMatchesText = 630;
         ctx.fillText(matchesText, xMatchesText, yMatchesText);
@@ -105,7 +102,7 @@ export default class RenderValorantProfile {
 
         ctx.font = '70px Anton';
         const currentEloText = bot.locale('commands:valorant.player.rank');
-        ctx.fillStyle = '#0094ff';
+        ctx.fillStyle = '#f84354';
         const xCurrentEloText = canvas.width - 230;
         const yCurrentEloText = 830;
         ctx.fillText(currentEloText, xCurrentEloText, yCurrentEloText);
