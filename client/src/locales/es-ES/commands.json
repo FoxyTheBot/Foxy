@@ -534,6 +534,7 @@
         "loadingDescription": "Obtendo informações de jogador, MMR e partidas, isso pode demorar um pouco",
         "loadingTitle": "Obtendo informações",
         "loadingMatches": "Obtendo partidas",
+        "visibilityChanged": "Visibilidade da conta foi alterada com sucesso!",
         "public": "público",
         "help": {
             "embed": {

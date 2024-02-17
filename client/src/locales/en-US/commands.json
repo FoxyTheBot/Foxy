@@ -534,6 +534,7 @@
         "loadingDescription": "Getting player's info, MMR and matches, this may take a while",
         "loadingTitle": "Getting player's info",
         "loadingMatches": "Getting player's matches",
+        "visibilityChanged": "Account visibility changed successfully!",
         "public": "public",
         "help": {
             "embed": {
