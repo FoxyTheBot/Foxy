@@ -18,11 +18,13 @@
     "i18next-fs-backend": "^2.1.1",
     "mal-scraper": "^2.11.4",
     "moment": "^2.29.4",
-    "mongoose": "^6.8.4",
+    "mongoose": "^8.1.3",
     "ms": "^2.1.3",
     "noblox.js": "^4.14.1"
   },
   "devDependencies": {
-    "@types/i18next-fs-backend": "^1.1.2"
+    "@types/i18next-fs-backend": "^1.1.2",
+    "tslib": "^2.6.2",
+    "@types/node": "^20.11.19"
   }
 }

@@ -13,10 +13,7 @@ export default class DatabaseConnection {
 
     constructor(client) {
         mongoose.set("strictQuery", true)
-        mongoose.connect(mongouri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        } as ConnectOptions).catch((error) => {
+        mongoose.connect(mongouri).catch((error) => {
             logger.error(`Failed to connect to database: `, error);
         });
         logger.info(`[DATABASE] Connected to database!`);
