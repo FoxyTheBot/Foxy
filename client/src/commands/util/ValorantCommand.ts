@@ -11,6 +11,7 @@ import ViewMatchHistory from "../../utils/commands/executors/valorant/viewMatchH
 import RenderValorantProfile from "../../utils/commands/generators/RenderValorantProfile";
 import RankSelectorExecutor from "../../utils/commands/executors/valorant/RankSelectorExecutor";
 import RankSelectedExecutor from "../../utils/commands/executors/valorant/RankSelectedExecutor";
+import ConfirmDeletionExecutor from "../../utils/commands/executors/valorant/ConfirmDeletionExecutor";
 
 const ValorantCommand = createCommand({
     name: "valorant",
@@ -48,6 +49,14 @@ const ValorantCommand = createCommand({
             description: "[VALORANT] Get help with the valorant commands",
             descriptionLocalizations: {
                 "pt-BR": "[VALORANT] Obtenha ajuda com os comandos do valorant"
+            },
+            type: ApplicationCommandOptionTypes.SubCommand
+        },
+        {
+            name: "unlink",
+            description: "[VALORANT] Unlink your VALORANT account",
+            descriptionLocalizations: {
+                "pt-BR": "[VALORANT] Desvincule a sua conta do VALORANT"
             },
             type: ApplicationCommandOptionTypes.SubCommand
         },
@@ -319,7 +328,8 @@ const ValorantCommand = createCommand({
         ValMatchSelectorExecutor, // 0 
         ViewMatchHistory, // 1
         RankSelectorExecutor, // 2
-        RankSelectedExecutor// 3
+        RankSelectedExecutor, // 3
+        ConfirmDeletionExecutor // 4
     ],
     async execute(context, endCommand, t) {
         const subcommand = context.getSubCommand();
@@ -358,6 +368,32 @@ const ValorantCommand = createCommand({
 
                     return endCommand();
                 }
+            }
+
+            case 'unlink': {
+                const userData = await bot.database.getUser(context.author.id);
+
+                if (!userData.riotAccount.isLinked) {
+                    return context.sendReply({
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.unlink.notLinked')),
+                        flags: 64
+                    });
+                }
+                
+                return context.sendReply({
+                    embeds: [{
+                        title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.unlink.embed.title')),
+                        description: t('commands:valorant.unlink.embed.description')
+                    }],
+                    components: [createActionRow([createButton({
+                        label: t('commands:valorant.unlink.button.label'),
+                        style: ButtonStyles.Danger,
+                        emoji: {
+                            id: bot.emotes.FOXY_CRY
+                        },
+                        customId: createCustomId(4, context.author.id, context.commandId)
+                    })])]
+                });
             }
 
             case 'help': {

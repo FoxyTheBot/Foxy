@@ -70,7 +70,7 @@ export default class DatabaseConnection {
                 isLinked: Boolean,
                 puuid: String,
                 isPrivate: Boolean,
-                region: String,
+                region: String
             },
             premiumKeys: [keySchema]
         }, { versionKey: false, id: false });
@@ -138,7 +138,7 @@ export default class DatabaseConnection {
 
         if (!user) return null;
 
-        let document = await this.user.findOne({ _id: userId });
+        let document = await this.user.findById(userId);
 
         if (!document) {
             document = new this.user({
@@ -169,7 +169,7 @@ export default class DatabaseConnection {
                     isLinked: false,
                     puuid: null,
                     isPrivate: false,
-                    region: null,
+                    region: null
                 },
                 premiumKeys: []
             }).save();
