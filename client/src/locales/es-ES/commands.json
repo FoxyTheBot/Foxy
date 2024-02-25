@@ -536,6 +536,17 @@
         "loadingMatches": "Obtendo partidas",
         "visibilityChanged": "Visibilidade da conta foi alterada com sucesso!",
         "public": "público",
+        "unlink": {
+            "embed": {
+                "title": "Desvincular conta da Riot Games",
+                "description": "Ao desvincular a sua conta da Riot Games, você ou outras pessoas não poderão ver seu perfil do VALORANT através da Foxy, para remover a autorização através da Riot Games, visite: https://account.riotgames.com/"
+            },
+            "button": {
+                "label": "Confirmar desvinculação",
+                "labelConfirmed": "Conta desvinculada"
+            },
+            "notLinked": "Você não vinculou uma conta da Riot Games"
+        },
         "help": {
             "embed": {
                 "title": "VALORANT Ajuda",
