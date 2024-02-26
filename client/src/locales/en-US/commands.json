@@ -538,14 +538,14 @@
         "public": "public",
         "unlink": {
             "embed": {
-                "title": "Desvincular conta da Riot Games",
+                "title": "Unlink Riot Games account",
                 "description": "Ao desvincular a sua conta da Riot Games, você ou outras pessoas não poderão ver seu perfil do VALORANT através da Foxy, para remover a autorização através da Riot Games, visite: https://account.riotgames.com/"
             },
             "button": {
-                "label": "Confirmar desvinculação",
-                "labelConfirmed": "Conta desvinculada"
+                "label": "Confirm",
+                "labelConfirmed": "Confirmed"
             },
-            "notLinked": "Você não vinculou uma conta da Riot Games"
+            "notLinked": "You don't have a linked Riot Games account"
         },
         "help": {
             "embed": {
