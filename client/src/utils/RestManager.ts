@@ -1,7 +1,6 @@
 import { BigString } from "discordeno/types";
 import { FoxyClient } from "../structures/types/foxy";
 import { User } from "../structures/types/user";
-import fetch from "node-fetch";
 import config from '../../config.json';
 import axios from "axios";
 
@@ -26,6 +25,8 @@ export class FoxyRestManager {
         });
     }
 
+    /* Requests to Discord API */
+
     async sendDirectMessage(userId: BigString, data: Object) {
         const DMChannel = await this.bot.rest.runMethod(this.bot.rest, "POST", this.bot.constants.routes.USER_DM(), {
             recipient_id: userId
@@ -47,14 +48,11 @@ export class FoxyRestManager {
         return await this.bot.rest.runMethod(this.bot.rest, "GET", this.bot.constants.routes.USER(userId));
     }
 
+    
     /* Valorant API */
 
     async getValPlayer(username: string, tag: string) {
-        return fetch(`https://api.henrikdev.xyz/valorant/v1/account/${username}/${tag}`, {
-            headers: {
-                "Authentication": config.valorantAPI
-            }
-        }).then(res => res.json());
+        return (await this.valorantAPI.get(`valorant/v1/account/${username}/${tag}`));
     }
 
     async getValMatchHistory(username: string, tag: string, mode?: string, map?: string) {
@@ -67,11 +65,7 @@ export class FoxyRestManager {
 
         if (map) url += `&map=${map}`;
 
-        return fetch(url, {
-            headers: {
-                "Authentication": config.valorantAPI
-            }
-        }).then(res => res.json());
+        return (await this.valorantAPI.get(url)).data;
     }
 
     async getValMatchHistoryByUUID(puuid: string, mode?: string, map?: string) {
@@ -81,22 +75,14 @@ export class FoxyRestManager {
 
         if (map) url += `&map=${map}`;
 
-        return fetch(url, {
-            headers: {
-                "Authentication": config.valorantAPI
-            }
-        }).then(res => res.json());
+        return (await this.valorantAPI.get(url)).data;
     }
 
     async getAllValMatchHistoryByUUID(puuid: string, mode?: string) {
         let url = `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/br/${puuid}`;
         if (mode) url += `?&mode=${mode}`;
         
-        return fetch(url, {
-            headers: {
-                "Authentication": config.valorantAPI
-            }
-        }).then(res => res.json());
+        return (await this.valorantAPI.get(url)).data;
     }
 
     async getValPlayerByUUID(puuid: string) {
