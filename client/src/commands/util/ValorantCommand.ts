@@ -868,7 +868,7 @@ const ValorantCommand = createCommand({
                         characterCounts[characterName] = 1;
                     }
 
-                    if (match.meta.season.short !== "e8a1") return;
+                    if (match.meta.season.short !== "e8a2") return;
                     if (characterCounts[characterName] > maxCharacterCount) {
                         mostPlayedCharacter = characterName;
                         if (mostPlayedCharacter === "KAY/O") mostPlayedCharacter = "KAYO";
