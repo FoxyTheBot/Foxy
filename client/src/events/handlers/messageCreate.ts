@@ -1,12 +1,9 @@
 import { bot } from "../../index";
 import InviteBlockerModule from "../../utils/modules/InviteBlockerModule";
-import ValAutoRoleModule from "../../utils/modules/valAutoRoleModule";
 
 const setMessageCreateEvent = (): void => {
     bot.events.messageCreate = async (_, message) => {
         const InviteBlocker = new InviteBlockerModule(bot);
-        const valAutoRole = new ValAutoRoleModule(bot);
-        valAutoRole.checkUser(message.member);
         InviteBlocker.checkMessage(message);
 
         if (message.content === `<@${bot.id}>` || message.content === `<@!${bot.id}>`) return bot.helpers.sendMessage(message.channelId, {

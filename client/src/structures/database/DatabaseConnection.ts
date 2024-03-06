@@ -2,6 +2,7 @@ import mongoose, { ConnectOptions } from 'mongoose';
 import { logger } from '../../utils/logger';
 import { mongouri } from '../../../config.json';
 import { bot } from '../../index';
+import { User } from 'discordeno/transformers';
 
 export default class DatabaseConnection {
     private client: any;
@@ -133,16 +134,14 @@ export default class DatabaseConnection {
         this.client = client;
     }
 
-    async getUser(userId: any): Promise<void> {
-        const user = await bot.helpers.getUser(userId)
-
-        if (!user) return null;
-
-        let document = await this.user.findById(userId);
+    async getUser(userId: BigInt): Promise<void> {
+        if(!userId) null;
+        const user: User = await bot.helpers.getUser(String(userId))
+        let document = await this.user.findById(String(userId));
 
         if (!document) {
             document = new this.user({
-                _id: userId,
+                _id: user.id,
                 userCreationTimestamp: Date.now(),
                 premium: false,
                 premiumDate: null,

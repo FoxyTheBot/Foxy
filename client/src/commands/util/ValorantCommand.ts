@@ -12,6 +12,7 @@ import RenderValorantProfile from "../../utils/commands/generators/RenderValoran
 import RankSelectorExecutor from "../../utils/commands/executors/valorant/RankSelectorExecutor";
 import RankSelectedExecutor from "../../utils/commands/executors/valorant/RankSelectedExecutor";
 import ConfirmDeletionExecutor from "../../utils/commands/executors/valorant/ConfirmDeletionExecutor";
+import ValAutoRoleModule from "../../utils/modules/valAutoRoleModule";
 
 const ValorantCommand = createCommand({
     name: "valorant",
@@ -278,6 +279,17 @@ const ValorantCommand = createCommand({
             type: ApplicationCommandOptionTypes.SubCommand,
         },
         {
+            name: 'update-role',
+            nameLocalizations: {
+                "pt-BR": "atualizar-cargo"
+            },
+            description: "[VALORANT] Update your role according with your rank",
+            descriptionLocalizations: {
+                "pt-BR": "[VALORANT] Atualize o cargo do seu ranque em servidores que utilizam essa funcionalidade!"
+            },
+            type: ApplicationCommandOptionTypes.SubCommand
+        },
+        {
             name: "set-visibility",
             nameLocalizations: {
                 "pt-BR": "definir-visibilidade"
@@ -379,7 +391,7 @@ const ValorantCommand = createCommand({
                         flags: 64
                     });
                 }
-                
+
                 return context.sendReply({
                     embeds: [{
                         title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.unlink.embed.title')),
@@ -666,95 +678,124 @@ const ValorantCommand = createCommand({
                             inline: true
                         }]
                     }],
-                    components: [createActionRow([createSelectMenu({
-                        customId: createCustomId(2, context.author.id, context.commandId),
-                        placeholder: t('commands:valorant.autorole.rankSelectorPlaceholder'),
-                        options: [{
-                            label: t('commands:valorant.autorole.rankSelector.unrated'),
-                            value: 'unratedRole',
-                            emoji: {
-                                id: bot.emotes.UNRATED
+                    components: [createActionRow([
+                        createSelectMenu({
+                            customId: createCustomId(2, context.author.id, context.commandId),
+                            placeholder: t('commands:valorant.autorole.rankSelectorPlaceholder'),
+                            options: [{
+                                label: t('commands:valorant.autorole.rankSelector.unrated'),
+                                value: 'unratedRole',
+                                emoji: {
+                                    id: bot.emotes.UNRATED
+                                },
+                                description: guildInfo.valAutoRoleModule.unratedRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                             },
-                            description: guildInfo.valAutoRoleModule.unratedRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
-                        },
-                        {
-                            label: t('commands:valorant.autorole.rankSelector.iron'),
-                            value: 'ironRole',
-                            emoji: {
-                                id: bot.emotes.I3
+                            {
+                                label: t('commands:valorant.autorole.rankSelector.iron'),
+                                value: 'ironRole',
+                                emoji: {
+                                    id: bot.emotes.I3
+                                },
+                                description: guildInfo.valAutoRoleModule.ironRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                             },
-                            description: guildInfo.valAutoRoleModule.ironRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
-                        },
-                        {
-                            label: t('commands:valorant.autorole.rankSelector.bronze'),
-                            value: 'bronzeRole',
-                            emoji: {
-                                id: bot.emotes.B3
+                            {
+                                label: t('commands:valorant.autorole.rankSelector.bronze'),
+                                value: 'bronzeRole',
+                                emoji: {
+                                    id: bot.emotes.B3
+                                },
+                                description: guildInfo.valAutoRoleModule.bronzeRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                             },
-                            description: guildInfo.valAutoRoleModule.bronzeRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
-                        },
-                        {
-                            label: t('commands:valorant.autorole.rankSelector.silver'),
-                            value: 'silverRole',
-                            emoji: {
-                                id: bot.emotes.S3
-                            },
-                            description: guildInfo.valAutoRoleModule.silverRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
+                            {
+                                label: t('commands:valorant.autorole.rankSelector.silver'),
+                                value: 'silverRole',
+                                emoji: {
+                                    id: bot.emotes.S3
+                                },
+                                description: guildInfo.valAutoRoleModule.silverRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
 
-                        },
-                        {
-                            label: t('commands:valorant.autorole.rankSelector.gold'),
-                            value: 'goldRole',
-                            emoji: {
-                                id: bot.emotes.G3
                             },
-                            description: guildInfo.valAutoRoleModule.goldRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
+                            {
+                                label: t('commands:valorant.autorole.rankSelector.gold'),
+                                value: 'goldRole',
+                                emoji: {
+                                    id: bot.emotes.G3
+                                },
+                                description: guildInfo.valAutoRoleModule.goldRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
 
-                        },
-                        {
-                            label: t('commands:valorant.autorole.rankSelector.platinum'),
-                            value: 'platinumRole',
-                            emoji: {
-                                id: bot.emotes.P3
                             },
-                            description: guildInfo.valAutoRoleModule.platinumRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
-                        },
-                        {
-                            label: t('commands:valorant.autorole.rankSelector.diamond'),
-                            value: 'diamondRole',
-                            emoji: {
-                                id: bot.emotes.D3
+                            {
+                                label: t('commands:valorant.autorole.rankSelector.platinum'),
+                                value: 'platinumRole',
+                                emoji: {
+                                    id: bot.emotes.P3
+                                },
+                                description: guildInfo.valAutoRoleModule.platinumRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                             },
-                            description: guildInfo.valAutoRoleModule.diamondRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
+                            {
+                                label: t('commands:valorant.autorole.rankSelector.diamond'),
+                                value: 'diamondRole',
+                                emoji: {
+                                    id: bot.emotes.D3
+                                },
+                                description: guildInfo.valAutoRoleModule.diamondRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
 
-                        },
-                        {
-                            label: t('commands:valorant.autorole.rankSelector.ascendant'),
-                            value: 'ascendantRole',
-                            emoji: {
-                                id: bot.emotes.A3
                             },
-                            description: guildInfo.valAutoRoleModule.ascendantRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
-                        },
-                        {
-                            label: t('commands:valorant.autorole.rankSelector.immortal'),
-                            value: 'immortalRole',
-                            emoji: {
-                                id: bot.emotes.IM3
+                            {
+                                label: t('commands:valorant.autorole.rankSelector.ascendant'),
+                                value: 'ascendantRole',
+                                emoji: {
+                                    id: bot.emotes.A3
+                                },
+                                description: guildInfo.valAutoRoleModule.ascendantRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                             },
-                            description: guildInfo.valAutoRoleModule.immortalRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
-                        },
-                        {
-                            label: t('commands:valorant.autorole.rankSelector.radiant'),
-                            value: 'radiantRole',
-                            emoji: {
-                                id: bot.emotes.R
+                            {
+                                label: t('commands:valorant.autorole.rankSelector.immortal'),
+                                value: 'immortalRole',
+                                emoji: {
+                                    id: bot.emotes.IM3
+                                },
+                                description: guildInfo.valAutoRoleModule.immortalRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                             },
-                            description: guildInfo.valAutoRoleModule.radiantRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
-                        }]
-                    })])]
+                            {
+                                label: t('commands:valorant.autorole.rankSelector.radiant'),
+                                value: 'radiantRole',
+                                emoji: {
+                                    id: bot.emotes.R
+                                },
+                                description: guildInfo.valAutoRoleModule.radiantRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
+                            }]
+                        })])]
                 })
                 break;
+            }
+
+            case 'update-role': {
+                const valAutoRoleModule = new ValAutoRoleModule(bot, context);
+                const userInfo = await bot.database.getUser(context.author.id);
+                if (!bot.hasGuildPermission(bot, context.guildId, ["MANAGE_ROLES"] || ["ADMINISTRATOR"])) {
+                    return context.sendReply({
+                        embeds: [{
+                            title: context.makeReply(bot.emotes.VALORANT_LOGO, bot.locale('commands:valorant.update-role.embed.title')),
+                            description: bot.locale('commands:valorant.update-role.embed.noPermission')
+                        }],
+                        flags: 64
+                    });
+                };
+                if (!userInfo.riotAccount.isLinked) {
+                    return context.sendReply({
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.update-role.notLinkedAccount')),
+                        flags: 64
+                    });
+                }
+                context.sendReply({
+                    embeds: [{
+                        title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.update-role.embed.title')),
+                        description: t('commands:valorant.update-role.embed.description')
+                    }],
+                    flags: 64
+                })
+                return valAutoRoleModule.updateRole(context.guildMember);
             }
 
             case 'stats': {
