@@ -536,6 +536,17 @@
         "loadingMatches": "Obtendo partidas",
         "visibilityChanged": "Visibilidade da conta foi alterada com sucesso!",
         "public": "público",
+        "update-role": {
+            "embed": {
+                "title": "VALORANT Autorole",
+                "description": "Estou atualizando os seus cargos, isso pode levar um tempinho...",
+                "description-remove-role": "Estou removendo o seu cargo, isso pode levar um tempinho...",
+                "yourRolesHasBeenUpdated": "Seus cargos foram atualizados!",
+                "sameRole": "Você não precisa executar o comando, o seu cargo é o mesmo do seu ranque no VALORANT",
+                "noPermission": "Eu não tenho permissão para fazer isso, eu preciso da permissão `Gerenciar Cargo` ou `Administrador` para conseguir te dar o cargo :("
+            },
+            "notLinkedAccount": "Para usar esse comando, você precisa ter uma conta da Riot Games vinculada!, Utilize `/valorant vincular-conta` para vincular sua conta."
+        },
         "unlink": {
             "embed": {
                 "title": "Desvincular conta da Riot Games",
