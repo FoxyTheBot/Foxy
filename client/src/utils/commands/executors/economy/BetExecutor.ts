@@ -7,7 +7,7 @@ const BetExecutor = async (context: ComponentInteractionContext) => {
     const [targetUsername, targetId, amount, choice, buttonType] = context.sentData;
     const avaliableChoices = ['heads', 'tails'];
     const userData = await bot.database.getUser(context.author.id);
-    const mentionData = await bot.database.getUser(targetId);
+    const mentionData = await bot.database.getUser(BigInt(targetId));
     var rand = Math.floor(Math.random() * avaliableChoices.length);
 
     context.sendReply({

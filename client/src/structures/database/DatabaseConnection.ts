@@ -1,7 +1,8 @@
-import mongoose, { ConnectOptions } from 'mongoose';
+import mongoose from 'mongoose';
 import { logger } from '../../utils/logger';
 import { mongouri } from '../../../config.json';
 import { bot } from '../../index';
+import { User } from 'discordeno/transformers';
 
 export default class DatabaseConnection {
     private client: any;
@@ -13,13 +14,11 @@ export default class DatabaseConnection {
 
     constructor(client) {
         mongoose.set("strictQuery", true)
-        mongoose.connect(mongouri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        } as ConnectOptions).catch((error) => {
+        mongoose.connect(mongouri).catch((error) => {
             logger.error(`Failed to connect to database: `, error);
         });
         logger.info(`[DATABASE] Connected to database!`);
+
         const keySchema = new mongoose.Schema({
             key: String,
             used: Boolean,
@@ -73,7 +72,7 @@ export default class DatabaseConnection {
                 isLinked: Boolean,
                 puuid: String,
                 isPrivate: Boolean,
-                region: String,
+                region: String
             },
             premiumKeys: [keySchema]
         }, { versionKey: false, id: false });
@@ -128,6 +127,7 @@ export default class DatabaseConnection {
             puuid: String,
             authCode: String,
         });
+        
         this.user = mongoose.model('user', userSchema);
         this.commands = mongoose.model('commands', commandsSchema);
         this.guilds = mongoose.model('guilds', guildSchema);
@@ -136,16 +136,14 @@ export default class DatabaseConnection {
         this.client = client;
     }
 
-    async getUser(userId: any): Promise<void> {
-        const user = await bot.helpers.getUser(userId)
-
-        if (!user) return null;
-
-        let document = await this.user.findOne({ _id: userId });
-
+    async getUser(userId: BigInt) {
+        if (!userId) null;
+        const user: User = await bot.helpers.getUser(String(userId));
+        let document = await this.user.findOne({ _id: user.id });
+        
         if (!document) {
             document = new this.user({
-                _id: userId,
+                _id: user.id,
                 userCreationTimestamp: Date.now(),
                 premium: false,
                 premiumDate: null,
@@ -172,7 +170,7 @@ export default class DatabaseConnection {
                     isLinked: false,
                     puuid: null,
                     isPrivate: false,
-                    region: null,
+                    region: null
                 },
                 premiumKeys: []
             }).save();
@@ -223,7 +221,7 @@ export default class DatabaseConnection {
         return commandsData.map(command => command.toJSON());
     }
 
-    async getCode(code: string): Promise<void> {
+    async getCode(code: string): Promise<any> {
         const riotAccount = this.riotAccount.findOne({ authCode: code });
         if (!riotAccount) return null;
         return riotAccount;

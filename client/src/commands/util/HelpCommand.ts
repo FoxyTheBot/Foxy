@@ -49,10 +49,6 @@ const HelpCommand = createCommand({
             },
             image: {
                 url: "https://cdn.discordapp.com/attachments/1068525425963302936/1076841345211183154/Sem_titulo.png"
-            },
-            footer: {
-                iconUrl: await getUserAvatar(bot.owner, { size: 2048 }),
-                text: t('commands:help.bot.footer', { owner: `${await bot.foxyRest.getUserDisplayName(bot.owner.id)} (${bot.owner.username}) - ${bot.owner.id}` })
             }
         })
 

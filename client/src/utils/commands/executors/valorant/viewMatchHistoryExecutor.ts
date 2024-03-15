@@ -4,7 +4,7 @@ import { createEmbed } from "../../../discord/Embed";
 
 const ViewMatchHistory = async (context: ComponentInteractionContext) => {
     const [user] = context.sentData
-    const userData = await bot.database.getUser(user);
+    const userData = await bot.database.getUser(BigInt(user));
 
     context.sendDefer();
     const matchInfo: any = await bot.foxyRest.getValMatchHistoryByUUID(userData.riotAccount.puuid);
