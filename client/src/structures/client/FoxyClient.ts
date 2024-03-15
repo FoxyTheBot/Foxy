@@ -11,13 +11,11 @@ import { startActivities } from '../../utils/Activities';
 import { FoxyRestManager } from '../../utils/RestManager';
 
 const setupFoxy = async (client: FoxyClient): Promise<void> => {
-    client.owner = await bot.helpers.getUser(config.ownerId);
     client.clientId = BigInt(config.clientId);
     client.commands = new Collection();
     client.isProduction = config.productionEnv;
     client.database = new DatabaseConnection(client);
     client.emotes = require("../json/emotes.json");
-    client.isReady = false;
     client.hasGuildPermission = botHasGuildPermissions;
     client.foxyRest = new FoxyRestManager(client);
     client.gateway.manager.createShardOptions.events.message = async (shard, message) => {
