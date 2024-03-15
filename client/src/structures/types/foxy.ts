@@ -3,6 +3,7 @@ import { ChatInputInteractionCommand } from './command';
 import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
 import { BotWithCache } from 'discordeno/cache-plugin';
 import { FoxyRestManager } from '../../utils/RestManager';
+import DatabaseConnection from '../database/DatabaseConnection';
 export interface IdentifiedData<T> {
   id: number;
   data: T;
@@ -14,7 +15,7 @@ export interface FoxyClient extends BotWithCache<Bot> {
   clientId: bigint;
   username: string;
   isProduction: boolean;
-  database: any;
+  database: DatabaseConnection;
   emotes: any;
   config: Object;
   locale: Function;
