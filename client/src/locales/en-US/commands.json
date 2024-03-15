@@ -539,18 +539,18 @@
         "update-role": {
             "embed": {
                 "title": "VALORANT Autorole",
-                "description": "Estou atualizando os seus cargos, isso pode levar um tempinho...",
-                "description-remove-role": "Estou removendo o seu cargo, isso pode levar um tempinho...",
-                "yourRolesHasBeenUpdated": "Seus cargos foram atualizados!",
-                "sameRole": "Você não precisa executar o comando, o seu cargo é o mesmo do seu ranque no VALORANT",
-                "noPermission": "Eu não tenho permissão para fazer isso, eu preciso da permissão `Gerenciar Cargo` ou `Administrador` para conseguir te dar o cargo :("
+                "description": "I am updating your roles, this may take a while...",
+                "description-remove-role": "I am removing your role, this may take a while...",
+                "yourRolesHasBeenUpdated": "Your roles have been updated!",
+                "sameRole": "You don't need to execute the command, your role is the same as your rank in VALORANT",
+                "noPermission": "I don't have permission to do this, I need the `Manage Role` or `Administrator` permission to be able to give you the role :("
             },
-            "notLinkedAccount": "Para usar esse comando, você precisa ter uma conta da Riot Games vinculada!, Utilize `/valorant vincular-conta` para vincular sua conta."
+            "notLinkedAccount": "To use this command, you need to have a linked Riot Games account! Use `/valorant link-account` to link your account."
         },
         "unlink": {
             "embed": {
                 "title": "Unlink Riot Games account",
-                "description": "Ao desvincular a sua conta da Riot Games, você ou outras pessoas não poderão ver seu perfil do VALORANT através da Foxy, para remover a autorização através da Riot Games, visite: https://account.riotgames.com/"
+                "description": "When unlinking your account from Riot Games, you or others will not be able to view your VALORANT profile through Foxy, to remove authorization through Riot Games, visit: https://account.riotgames.com"
             },
             "button": {
                 "label": "Confirm",
