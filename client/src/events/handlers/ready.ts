@@ -11,7 +11,6 @@ const setReadyEvent = (): void => {
                 guilds: (await bot.foxyRest.getBotGuilds()).length,
             });
         }
-        bot.isReady = true;
         startActivities();
     }
 }
