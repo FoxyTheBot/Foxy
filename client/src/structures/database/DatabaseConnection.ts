@@ -1,4 +1,4 @@
-import mongoose, { ConnectOptions } from 'mongoose';
+import mongoose from 'mongoose';
 import { logger } from '../../utils/logger';
 import { mongouri } from '../../../config.json';
 import { bot } from '../../index';
@@ -18,6 +18,7 @@ export default class DatabaseConnection {
             logger.error(`Failed to connect to database: `, error);
         });
         logger.info(`[DATABASE] Connected to database!`);
+
         const keySchema = new mongoose.Schema({
             key: String,
             used: Boolean,
@@ -126,6 +127,7 @@ export default class DatabaseConnection {
             puuid: String,
             authCode: String,
         });
+        
         this.user = mongoose.model('user', userSchema);
         this.commands = mongoose.model('commands', commandsSchema);
         this.guilds = mongoose.model('guilds', guildSchema);
@@ -134,11 +136,11 @@ export default class DatabaseConnection {
         this.client = client;
     }
 
-    async getUser(userId: BigInt): Promise<void> {
-        if(!userId) null;
-        const user: User = await bot.helpers.getUser(String(userId))
-        let document = await this.user.findById(String(userId));
-
+    async getUser(userId: BigInt) {
+        if (!userId) null;
+        const user: User = await bot.helpers.getUser(String(userId));
+        let document = await this.user.findOne({ _id: user.id });
+        
         if (!document) {
             document = new this.user({
                 _id: user.id,
@@ -219,7 +221,7 @@ export default class DatabaseConnection {
         return commandsData.map(command => command.toJSON());
     }
 
-    async getCode(code: string): Promise<void> {
+    async getCode(code: string): Promise<any> {
         const riotAccount = this.riotAccount.findOne({ authCode: code });
         if (!riotAccount) return null;
         return riotAccount;

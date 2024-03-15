@@ -35,7 +35,7 @@ const TopCommand = createCommand({
 
         switch (subCommand) {
             case "cakes": {
-                let data = await bot.database.getAllUsers();
+                let data: any = await bot.database.getAllUsers();
                 await context.sendDefer();
                 data = data.sort((a, b) => b.balance - a.balance);
 
@@ -61,14 +61,14 @@ const TopCommand = createCommand({
             }
 
             case 'commands': {
-                let data = await bot.database.getAllCommands();
+                let data: any = await bot.database.getAllCommands();
                 const embed = createEmbed({});
                 data = data.sort((a, b) => b.commandUsageCount - a.commandUsageCount);
                 await context.sendDefer();
 
                 embed.title = context.makeReply(bot.emotes.FOXY_PRAY, t('commands:top.commands.title'));
                 embed.footer = {
-                    text: t('commands:top.commands.footer', { total: `${await bot.database.getAllUsageCount() - 1}` })
+                    text: t('commands:top.commands.footer', { total: `${await bot.database.getAllUsageCount() as number - 1}` })
                 }
 
                 let fields = embed.fields = [];

@@ -6,7 +6,7 @@ import { ButtonStyles } from "discordeno/types";
 const CakeTransferExecutor = async (context: ComponentInteractionContext) => {
     const [value, user] = context.sentData;
 
-    const userData = await bot.database.getUser(user);
+    const userData = await bot.database.getUser(BigInt(user));
     const authorData = await bot.database.getUser(context.author.id);
     userData.balance += Number(value);
     authorData.balance -= Number(value);
