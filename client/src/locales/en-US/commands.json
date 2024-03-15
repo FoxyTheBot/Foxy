@@ -545,7 +545,7 @@
                 "sameRole": "You don't need to execute the command, your role is the same as your rank in VALORANT",
                 "noPermission": "I don't have permission to do this, I need the `Manage Role` or `Administrator` permission to be able to give you the role :("
             },
-            "notLinkedAccount": "Para usar esse comando, você precisa ter uma conta da Riot Games vinculada!, Utilize `/valorant vincular-conta` para vincular sua conta."
+            "notLinkedAccount": "Para usar esse comando, você precisa ter uma conta da Riot Games vinculada! Utilize `/valorant vincular-conta` para vincular sua conta."
         },
         "unlink": {
             "embed": {
