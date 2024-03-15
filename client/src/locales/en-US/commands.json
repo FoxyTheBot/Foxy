@@ -536,6 +536,28 @@
         "loadingMatches": "Getting player's matches",
         "visibilityChanged": "Account visibility changed successfully!",
         "public": "public",
+        "update-role": {
+            "embed": {
+                "title": "VALORANT Autorole",
+                "description": "I am updating your roles, this may take a while...",
+                "description-remove-role": "I am removing your role, this may take a while...",
+                "yourRolesHasBeenUpdated": "Your roles have been updated!",
+                "sameRole": "You don't need to execute the command, your role is the same as your rank in VALORANT",
+                "noPermission": "I don't have permission to do this, I need the `Manage Role` or `Administrator` permission to be able to give you the role :("
+            },
+            "notLinkedAccount": "Para usar esse comando, você precisa ter uma conta da Riot Games vinculada!, Utilize `/valorant vincular-conta` para vincular sua conta."
+        },
+        "unlink": {
+            "embed": {
+                "title": "Unlink Riot Games account",
+                "description": "When unlinking your account from Riot Games, you or others will not be able to view your VALORANT profile through Foxy, to remove authorization through Riot Games, visit: https://account.riotgames.com"
+            },
+            "button": {
+                "label": "Confirm",
+                "labelConfirmed": "Confirmed"
+            },
+            "notLinked": "You don't have a linked Riot Games account"
+        },
         "help": {
             "embed": {
                 "title": "VALORANT Help",
