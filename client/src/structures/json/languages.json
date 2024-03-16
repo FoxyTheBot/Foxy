@@ -15,46 +15,11 @@
             "value": "pt-BR"
         },
         {
-            "name": "French",
-            "nameLocalizations": {
-                "pt-BR": "Francês"
-            },
-            "value": "fr-FR"
-        },
-        {
             "name": "Spanish",
             "nameLocalizations": {
                 "pt-BR": "Espanhol"
             },
             "value": "es-ES"
-        },
-        {
-            "name": "German",
-            "nameLocalizations": {
-                "pt-BR": "Alemão"
-            },
-            "value": "de-DE"
-        },
-        {
-            "name": "Italian",
-            "nameLocalizations": {
-                "pt-BR": "Italiano"
-            },
-            "value": "it-IT"
-        },
-        {
-            "name": "Russian",
-            "nameLocalizations": {
-                "pt-BR": "Russo"
-            },
-            "value": "ru-RU"
-        },
-        {
-            "name": "Arabic",
-            "nameLocalizations": {
-                "pt-BR": "Árabe"
-            },
-            "value": "ar-SA"
         }
     ]
 }
