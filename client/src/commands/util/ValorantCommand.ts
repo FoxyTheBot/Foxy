@@ -104,7 +104,7 @@ const ValorantCommand = createCommand({
                 {
                     name: "Unrated",
                     nameLocalizations: {
-                        "pt-BR": "Não ranqueado"
+                        "pt-BR": "Sem Classificação"
                     },
                     value: "unrated",
                 },
@@ -187,7 +187,7 @@ const ValorantCommand = createCommand({
                 {
                     name: "Unrated",
                     nameLocalizations: {
-                        "pt-BR": "Não ranqueado"
+                        "pt-BR": "Sem Classificação"
                     },
                     value: "unrated",
                 },
@@ -813,12 +813,12 @@ const ValorantCommand = createCommand({
                     return endCommand();
                 }
 
-                // if (userData.riotAccount.isPrivate && context.author.id !== user.id) {
-                //     context.sendReply({
-                //         content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.private', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
-                //     });
-                //     return endCommand();
-                // }
+                if (userData.riotAccount.isPrivate && context.author.id !== user.id) {
+                    context.sendReply({
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.private', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+                    });
+                    return endCommand();
+                }
 
                 context.sendReply({
                     embeds: [{
