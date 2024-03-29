@@ -1,4 +1,3 @@
-import { startActivities } from "../../utils/Activities";
 import { logger } from "../../utils/logger"
 import { postInfo } from "../../utils/dbl";
 import { bot } from "../../index";
@@ -11,7 +10,6 @@ const setReadyEvent = (): void => {
                 guilds: (await bot.foxyRest.getBotGuilds()).length,
             });
         }
-        startActivities();
     }
 }
 
