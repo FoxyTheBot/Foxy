@@ -111,7 +111,7 @@ const ValorantCommand = createCommand({
                 {
                     name: "Spike Rush",
                     nameLocalizations: {
-                        "pt-BR": "Spike Rush"
+                        "pt-BR": "Disputa da Spike"
                     },
                     value: "spikerush",
                 },
@@ -141,13 +141,6 @@ const ValorantCommand = createCommand({
                         "pt-BR": "Premier"
                     },
                     value: "premier",
-                },
-                {
-                    name: "All",
-                    nameLocalizations: {
-                        "pt-BR": "Todos"
-                    },
-                    value: "all",
                 }]
             }]
         },
@@ -201,7 +194,7 @@ const ValorantCommand = createCommand({
                 {
                     name: "Spike Rush",
                     nameLocalizations: {
-                        "pt-BR": "Spike Rush"
+                        "pt-BR": "Disputa da Spike"
                     },
                     value: "spikerush",
                 },
@@ -485,6 +478,7 @@ const ValorantCommand = createCommand({
 
                 function getRank(rank: string) {
                     const rankMapping: { [key: string]: any } = {
+                        'Unrated': { rank: 'UNRATED', emoji: bot.emotes.UNRATED },
                         'Iron 1': { rank: 'I1', emoji: bot.emotes.I1 },
                         'Iron 2': { rank: 'I2', emoji: bot.emotes.I2 },
                         'Iron 3': { rank: 'I3', emoji: bot.emotes.I3 },
@@ -519,7 +513,7 @@ const ValorantCommand = createCommand({
                     }
                 }
 
-                const rank = getRank(mmrInfo.data.current_data.currenttierpatched);
+                const rank = getRank(mmrInfo.data.current_data.currenttierpatched ?? "Unrated");
                 const formattedRank = rank ? `${context.getEmojiById(rank.emoji)} ${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${context.getEmojiById(bot.emotes.UNRATED)} ${t('commands:valorant.player.ranks.UNRATED')}`;
 
                 try {
@@ -532,7 +526,6 @@ const ValorantCommand = createCommand({
                         fields: matchInfo.data.map(match => {
                             let teamHasWon;
                             let result;
-
                             if (match.teams.red > match.teams.blue) {
                                 teamHasWon = "Red";
                             } else if (match.teams.red < match.teams.blue) {
@@ -551,14 +544,24 @@ const ValorantCommand = createCommand({
                             }
 
 
-                            return {
-                                name: `${match.meta.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)} - ${match.teams.red ?? 0}/${match.teams.blue ?? 0} - ${result}`,
-                                value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \n` +
-                                    `K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n` +
-                                    `Score: ${match.stats.score} \n` +
-                                    `${t('commands:valorant.match.damageMade')}: ${match.stats.damage.made} \n` +
-                                    `${t('commands:valorant.match.damageReceived')}: ${match.stats.damage.received} \n`,
-                                inline: true
+                            if (match.meta.mode.toLowerCase() !== "deathmatch") {
+                                return {
+                                    name: `${match.meta.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)} - ${match.teams.red ?? 0}/${match.teams.blue ?? 0} - ${result}`,
+                                    value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \n` +
+                                        `K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n` +
+                                        `Score: ${match.stats.score} \n` +
+                                        `${t('commands:valorant.match.damageMade')}: ${match.stats.damage.made} \n` +
+                                        `${t('commands:valorant.match.damageReceived')}: ${match.stats.damage.received} \n`,
+                                    inline: true
+                                }
+                            } else {
+                                return {
+                                    name: `${match.meta.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)}`,
+                                    value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \n` +
+                                        `K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n` +
+                                        `Score: ${match.stats.score}`,
+                                    inline: true
+                                }
                             }
                         }),
                         footer: {
@@ -810,12 +813,12 @@ const ValorantCommand = createCommand({
                     return endCommand();
                 }
 
-                if (userData.riotAccount.isPrivate && context.author.id !== user.id) {
-                    context.sendReply({
-                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.private', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
-                    });
-                    return endCommand();
-                }
+                // if (userData.riotAccount.isPrivate && context.author.id !== user.id) {
+                //     context.sendReply({
+                //         content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.private', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+                //     });
+                //     return endCommand();
+                // }
 
                 context.sendReply({
                     embeds: [{
@@ -830,6 +833,7 @@ const ValorantCommand = createCommand({
 
                 function getRank(rank: string) {
                     const rankMapping: { [key: string]: any } = {
+                        'Unrated': { rank: 'UNRATED', emoji: bot.emotes.UNRATED },
                         'Iron 1': { rank: 'I1', emoji: bot.emotes.I1 },
                         'Iron 2': { rank: 'I2', emoji: bot.emotes.I2 },
                         'Iron 3': { rank: 'I3', emoji: bot.emotes.I3 },
@@ -864,8 +868,9 @@ const ValorantCommand = createCommand({
                     }
                 }
 
-                const rank = getRank(mmrInfo.data.current_data.currenttierpatched);
-                const highestRank = getRank(mmrInfo.data.highest_rank.patched_tier);
+                const rank = getRank(mmrInfo.data.current_data.currenttierpatched ?? "Unrated");
+                const highestRank = getRank(mmrInfo.data.highest_rank.patched_tier ?? "Unrated");
+                
                 let matches = await bot.foxyRest.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode.replace(" ", "").toLowerCase());
                 if (!matches) matches = await bot.foxyRest.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, "unrated");
                 const formattedRank = rank ? `${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${t('commands:valorant.player.ranks.UNRATED')}`;
@@ -937,7 +942,11 @@ const ValorantCommand = createCommand({
 
                 if (!matches.data.length) {
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.player.noMatches'))
+                        embeds: [{
+                            color: 0xf84354,
+                            title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.cannotGetInfo')),
+                            description: t('commands:valorant.noMatchesFound', { mode: t(`commands:valorant.matchMode.${mode}`)})
+                        }]
                     });
                     return endCommand();
                 }
@@ -1018,7 +1027,11 @@ const ValorantCommand = createCommand({
                     return endCommand();
                 } else {
                     context.sendReply({
-                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.player.notFound'))
+                        embeds: [{
+                            color: 0xf84354,
+                            title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.cannotGetInfo')),
+                            description: t('commands:valorant.noUser')
+                        }]
                     });
                     return endCommand();
                 }
