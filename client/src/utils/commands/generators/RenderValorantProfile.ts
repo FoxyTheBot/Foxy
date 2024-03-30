@@ -19,8 +19,7 @@ export default class RenderValorantProfile {
         const background = await Canvas.loadImage(`${config.serverURL}/valorant/background/main.jpg`);
 
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-        const characterImage = await Canvas.loadImage(`${config.serverURL}/valorant/agents/${data.mostPlayedCharacter.toLowerCase()}.png`); // Substitua .png pela extensão real da imagem, se necessário
-
+        const characterImage = await Canvas.loadImage(`${config.serverURL}/valorant/agents/${data.mostPlayedCharacter.toLowerCase()}.png`);
         ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
