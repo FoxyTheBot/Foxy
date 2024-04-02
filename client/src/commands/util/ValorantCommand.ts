@@ -958,7 +958,7 @@ const ValorantCommand = createCommand({
                 bodyshotsPercentage = (bodyshots / (headshots + bodyshots + legshots)) * 100;
                 legshotsPercentage = (legshots / (headshots + bodyshots + legshots)) * 100;
 
-                if (mmrInfo.data.current_data.ranking_in_tier) {
+                if (mmrInfo.data.current_data.ranking_in_tier >= 0) {
                     currentRR = `\`\`\`${await mmrInfo.data.current_data.ranking_in_tier}/100 (${formattedRR} ${t('commands:valorant.player.lastgame')})\`\`\``
                 } else {
                     currentRR = `\`\`\`${t(`commands:valorant.player.ranks.UNRATED`)}\`\`\``
