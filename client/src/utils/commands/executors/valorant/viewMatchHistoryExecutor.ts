@@ -40,7 +40,7 @@ const ViewMatchHistory = async (context: ComponentInteractionContext) => {
 
 
                 return {
-                    name: `${match.meta.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)} - ${match.teams.red ?? 0}/${match.teams.blue ?? 0} - ${result}`,
+                    name: `${match.meta.map.name} | ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)} | ${match.teams.red ?? 0} - ${match.teams.blue ?? 0} | ${result}`,
                     value: `${bot.locale('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \n` +
                         `K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n` +
                         `Score: ${match.stats.score} \n` +

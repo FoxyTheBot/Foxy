@@ -546,7 +546,7 @@ const ValorantCommand = createCommand({
 
                             if (match.meta.mode.toLowerCase() !== "deathmatch") {
                                 return {
-                                    name: `${match.meta.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)} - ${match.teams.red ?? 0}/${match.teams.blue ?? 0} - ${result}`,
+                                    name: `${match.meta.map.name} | ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)} | ${match.teams.red ?? 0} - ${match.teams.blue ?? 0} | ${result}`,
                                     value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \n` +
                                         `K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n` +
                                         `Score: ${match.stats.score} \n` +
@@ -870,7 +870,7 @@ const ValorantCommand = createCommand({
 
                 const rank = getRank(mmrInfo.data.current_data.currenttierpatched ?? "Unrated");
                 const highestRank = getRank(mmrInfo.data.highest_rank.patched_tier ?? "Unrated");
-                
+
                 let matches = await bot.foxyRest.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode.replace(" ", "").toLowerCase());
                 if (!matches) matches = await bot.foxyRest.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, "unrated");
                 const formattedRank = rank ? `${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${t('commands:valorant.player.ranks.UNRATED')}`;
@@ -945,7 +945,7 @@ const ValorantCommand = createCommand({
                         embeds: [{
                             color: 0xf84354,
                             title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.cannotGetInfo')),
-                            description: t('commands:valorant.noMatchesFound', { mode: t(`commands:valorant.matchMode.${mode}`)})
+                            description: t('commands:valorant.noMatchesFound', { mode: t(`commands:valorant.matchMode.${mode}`) })
                         }]
                     });
                     return endCommand();
@@ -958,12 +958,27 @@ const ValorantCommand = createCommand({
                 bodyshotsPercentage = (bodyshots / (headshots + bodyshots + legshots)) * 100;
                 legshotsPercentage = (legshots / (headshots + bodyshots + legshots)) * 100;
 
-                if (mmrInfo.data.current_data.ranking_in_tier >= 0) {
-                    currentRR = `\`\`\`${await mmrInfo.data.current_data.ranking_in_tier}/100 (${formattedRR} ${t('commands:valorant.player.lastgame')})\`\`\``
-                } else {
-                    currentRR = `\`\`\`${t(`commands:valorant.player.ranks.UNRATED`)}\`\`\``
+                const embed = {
+                    color: 0xf84354,
+                    title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.player.title', { username: userInfo.data.name, tag: userInfo.data.tag, rank: `${context.getEmojiById(rank.emoji)} ${formattedRank}` }),
+                    fields: [
+                    {
+                        name: t('commands:valorant.player.level'),
+                        value: `\`\`\`${userInfo.data.account_level}\`\`\``,
+                        inline: true
+                    },
+                    {
+                        name: t('commands:valorant.player.mostPlayedMap'),
+                        value: `\`\`\`${mostPlayedMap}\`\`\``,
+                        inline: true
+                    }],
+                    image: {
+                        url: 'attachment://profile.png'
+                    },
+                    thumbnail: {
+                        url: userInfo.data.card.small
+                    }
                 }
-
                 if (userInfo.status === 200) {
                     const valorantProfile = new RenderValorantProfile(user);
                     const profileImage = await valorantProfile.render({
@@ -986,31 +1001,16 @@ const ValorantCommand = createCommand({
                         formattedHighestRank,
                     });
 
+                    if (mmrInfo.data.current_data.ranking_in_tier) {
+                        embed.fields.push({
+                            name: t('commands:valorant.player.currentRR'),
+                            value: `\`\`\`${await mmrInfo.data.current_data.ranking_in_tier}/100 (${formattedRR} ${t('commands:valorant.player.lastgame')})\`\`\``,
+                            inline: false
+                        })
+                    }
+                    
                     context.sendReply({
-                        embeds: [{
-                            color: 0xf84354,
-                            title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.player.title', { username: userInfo.data.name, tag: userInfo.data.tag, rank: `${context.getEmojiById(rank.emoji)} ${formattedRank}` }),
-                            fields: [{
-                                name: t('commands:valorant.player.currentRR'),
-                                value: currentRR,
-                            },
-                            {
-                                name: t('commands:valorant.player.level'),
-                                value: `\`\`\`${userInfo.data.account_level}\`\`\``,
-                                inline: true
-                            },
-                            {
-                                name: t('commands:valorant.player.mostPlayedMap'),
-                                value: `\`\`\`${mostPlayedMap}\`\`\``,
-                                inline: true
-                            }],
-                            image: {
-                                url: 'attachment://profile.png'
-                            },
-                            thumbnail: {
-                                url: userInfo.data.card.small
-                            }
-                        }],
+                        embeds: [embed],
                         file: {
                             blob: await profileImage,
                             name: 'profile.png'
@@ -1022,7 +1022,8 @@ const ValorantCommand = createCommand({
                             emoji: {
                                 id: bot.emotes.VALORANT_LOGO
                             }
-                        })])]
+                        })
+                        ])]
                     });
                     return endCommand();
                 } else {
