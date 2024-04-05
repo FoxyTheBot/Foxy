@@ -123,7 +123,7 @@
         "simpleYes": "locked",
         "simpleNo": "unlocked",
         "val": {
-            "notLinked": "Sorry, **{{user}}** doesn't have your Riot Games account linked, I can't show information about this player",
+            "notLinked": "Desculpe, **{{user}}** não vinculou sua conta da Riot Games, então não posso exibir as informações desse jogador. \n\nPara vincular uma conta da Riot Games use o comando `/valorant vincular-conta`",
             "private": "{{user}}'s profile is private"
         }
     },
