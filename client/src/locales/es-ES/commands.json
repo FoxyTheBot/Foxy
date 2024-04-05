@@ -123,7 +123,7 @@
         "simpleYes": "bloqueados",
         "simpleNo": "desbloqueados",
         "val": {
-            "notLinked": "Desculpe, **{{user}}** não vinculou sua conta da Riot Games, então não posso exibir as informações desse jogador",
+            "notLinked": "Desculpe, **{{user}}** não vinculou sua conta da Riot Games, então não posso exibir as informações desse jogador. \n\nPara vincular uma conta da Riot Games use o comando `/valorant vincular-conta`",
             "private": "O perfil de **{{user}}** é privado"
         }
     },
