@@ -12,21 +12,24 @@ const setGuildCreateEvent = (): void => {
             });
         };
 
-        bot.database.addGuild(guildId).then((document) => {
-            if (!document) {
-                setTimeout(() => {
-                    bot.helpers.sendWebhookMessage(config.webhooks.join_leave_guild.id, config.webhooks.join_leave_guild.token, {
-                        embeds: [{
-                            title: `<:emoji:${bot.emotes.FOXY_YAY}> **|** Fui adicionada em um servidor!`,
-                            description: `**Nome:** ${guild.name}\n**ID:** ${guild.id}`,
-                            footer: {
-                                text: `Servidor salvo no banco de dados!`
-                            }
-                        }]
-                    });
-                }, 500);
-            }
-        });
+        const guildData = bot.database.getGuild(guild.id);
+        if (!guildData) {
+            bot.database.addGuild(guildId).then((document) => {
+                if (!document) {
+                    setTimeout(() => {
+                        bot.helpers.sendWebhookMessage(config.webhooks.join_leave_guild.id, config.webhooks.join_leave_guild.token, {
+                            embeds: [{
+                                title: `<:emoji:${bot.emotes.FOXY_YAY}> **|** Fui adicionada em um servidor!`,
+                                description: `**Nome:** ${guild.name}\n**ID:** ${guild.id}`,
+                                footer: {
+                                    text: `Servidor salvo no banco de dados!`
+                                }
+                            }]
+                        });
+                    }, 500);
+                }
+            });
+        }
     }
 }
 
