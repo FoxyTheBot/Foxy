@@ -48,7 +48,7 @@ export class FoxyRestManager {
         return await this.bot.rest.runMethod(this.bot.rest, "GET", this.bot.constants.routes.USER(userId));
     }
 
-    
+
     /* Valorant API */
 
     async getValPlayer(username: string, tag: string) {
@@ -81,7 +81,7 @@ export class FoxyRestManager {
     async getAllValMatchHistoryByUUID(puuid: string, mode?: string) {
         let url = `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/br/${puuid}`;
         if (mode) url += `?&mode=${mode}`;
-        
+
         return (await this.valorantAPI.get(url)).data;
     }
 
