@@ -27,8 +27,8 @@ const setInteractionCreateEvent = (): void => {
                     command.execute(context, res, locale);
                     if (bot.isProduction) {
                         logger.commandLog(interaction.data?.name, interaction.user, interaction.guildId.toString(), interaction.data?.options?.map((option) => option.value).join(' ') || 'Nenhum');
+                        bot.database.updateCommand(interaction.data?.name);
                     }
-                    bot.database.updateCommand(interaction.data?.name);
                 } catch (e) {
                     console.error(e);
                     context.sendReply({ content: locale('events:interactionCreate.commandError'), flags: MessageFlags.EPHEMERAL })
