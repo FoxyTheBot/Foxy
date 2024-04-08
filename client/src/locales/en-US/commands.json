@@ -123,7 +123,7 @@
         "simpleYes": "locked",
         "simpleNo": "unlocked",
         "val": {
-            "notLinked": "Sorry, **{{user}}** doesn't have your Riot Games account linked, I can't show information about this player",
+            "notLinked": "Desculpe, **{{user}}** não vinculou sua conta da Riot Games, então não posso exibir as informações desse jogador. \n\nPara vincular uma conta da Riot Games use o comando `/valorant vincular-conta`",
             "private": "{{user}}'s profile is private"
         }
     },
@@ -536,6 +536,9 @@
         "loadingMatches": "Getting player's matches",
         "visibilityChanged": "Account visibility changed successfully!",
         "public": "public",
+        "cannotGetInfo": "Não foi possível encontrar informações",
+        "noMatchesFound": "Não encontrei nenhuma partida do modo {{mode}}!",
+        "noUser": "Este usuário não existe",
         "update-role": {
             "embed": {
                 "title": "VALORANT Autorole",
@@ -626,12 +629,17 @@
             }
         },
         "matchMode": {
-            "unrated": "Unrated",
             "competitive": "Competitive",
-            "spike rush": "Spike Rush",
+            "unrated": "Unrated",
+            "spikerush": "Disputa de Spike",
             "deathmatch": "Deathmatch",
+            "escalation": "Escalation",
             "swiftplay": "Swiftplay",
-            "team deathmatch": "Team Deathmatch",
+            "teamdeathmatch": "Mata-mata em equipe",
+            "newmap": "Novo mapa",
+            "snowballfight": "Guerra de bolas de neve",
+            "replication": "Replicação",
+            "customgame": "Partida personalizada",
             "premier": "Premier"
         },
         "teams": {
