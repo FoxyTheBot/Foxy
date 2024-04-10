@@ -182,6 +182,8 @@ export default async function executeValorantStatsCommand(bot, context: ChatInpu
             url: userInfo.data.card.small
         }
     }
+    const patchedRank = mmrInfo.data.current_data.currenttierpatched;
+    const patchedHighestRank = mmrInfo.data.highest_rank.patched_tier;
     if (userInfo.status === 200) {
         const valorantProfile = new RenderValorantProfile(user);
         const profileImage = await valorantProfile.render({
@@ -202,6 +204,8 @@ export default async function executeValorantStatsCommand(bot, context: ChatInpu
             totalMatches,
             formattedRank,
             formattedHighestRank,
+            patchedRank,
+            patchedHighestRank
         });
 
         if (mmrInfo.data.current_data.ranking_in_tier !== null) {
