@@ -45,7 +45,7 @@ export default class RenderValorantProfile {
         const imageHeight = 64;
 
         const rank = getRank(data.patchedHighestRank) ?? { rank: 'UNRATED' };
-        const rankImage = await Canvas.loadImage(`http://localhost:8080/assets/valorant/ranks/${rank.rank}.png`);
+        const rankImage = await Canvas.loadImage(`${config.serverURL}/assets/valorant/ranks/${rank.rank}.png`);
 
         ctx.drawImage(rankImage, xRankImage, yRankImage, imageWidth, imageHeight);
 
