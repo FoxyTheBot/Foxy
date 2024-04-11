@@ -663,7 +663,7 @@
             "lastgame": "na última partida",
             "tag": "Tag",
             "region": "Região",
-            "viewMatches": "Ver partidas",
+            "viewMatches": "Ver histórico de partidas",
             "matches": "Partidas",
             "playtime": "Tempo de jogo",
             "authorStats": "Estatísticas competitivas",
@@ -705,13 +705,13 @@
                 "D1": "Diamante 1",
                 "D2": "Diamante 2",
                 "D3": "Diamante 3",
+                "A1": "Ascendente 1",
+                "A2": "Ascendente 2",
+                "A3": "Ascendente 3",
                 "IM1": "Imortal 1",
                 "IM2": "Imortal 2",
                 "IM3": "Imortal 3",
-                "R": "Radiante",
-                "A1": "Ascendente 1",
-                "A2": "Ascendente 2",
-                "A3": "Ascendente 3"
+                "R": "Radiante"
             }
         },
         "match": {
