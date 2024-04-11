@@ -16,10 +16,10 @@ export default class RenderValorantProfile {
         const canvas = Canvas.createCanvas(1920, 1080);
         const ctx = canvas.getContext('2d');
 
-        const background = await Canvas.loadImage(`${config.serverURL}/valorant/background/main.jpg`);
+        const background = await Canvas.loadImage(`${config.serverURL}/assets/valorant/background/main.jpg`);
 
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-        const characterImage = await Canvas.loadImage(`${config.serverURL}/valorant/agents/${data.mostPlayedCharacter.toLowerCase()}.png`);
+        const characterImage = await Canvas.loadImage(`${config.serverURL}/assets/valorant/agents/${data.mostPlayedCharacter.toLowerCase()}.png`);
         ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
@@ -46,7 +46,6 @@ export default class RenderValorantProfile {
 
         const rank = getRank(data.patchedHighestRank) ?? { rank: 'UNRATED' };
         const rankImage = await Canvas.loadImage(`${config.serverURL}/assets/valorant/ranks/${rank.rank}.png`);
-
         ctx.drawImage(rankImage, xRankImage, yRankImage, imageWidth, imageHeight);
 
         function getRank(rank: string) {
@@ -168,16 +167,16 @@ export default class RenderValorantProfile {
 
         const maxShots = Math.max(data.headshots, data.bodyshots, data.legshots);
 
-        let headURL = `${config.serverURL}/valorant/body-damage/headshots.png`;
-        let torsoURL = `${config.serverURL}/valorant/body-damage/bodyshots.png`;
-        let legsURL = `${config.serverURL}/valorant/body-damage/legshots.png`;
+        let headURL = `${config.serverURL}/assets/valorant/body-damage/headshots.png`;
+        let torsoURL = `${config.serverURL}/assets/valorant/body-damage/bodyshots.png`;
+        let legsURL = `${config.serverURL}/assets/valorant/body-damage/legshots.png`;
 
         if (maxShots === data.bodyshots) {
-            torsoURL = `${config.serverURL}/valorant/body-damage/bodyshots2.png`;
+            torsoURL = `${config.serverURL}/assets/valorant/body-damage/bodyshots2.png`;
         } else if (maxShots === data.legshots) {
-            legsURL = `${config.serverURL}/valorant/body-damage/legshots2.png`;
+            legsURL = `${config.serverURL}/assets/valorant/body-damage/legshots2.png`;
         } else if (maxShots === data.headshots) {
-            headURL = `${config.serverURL}/valorant/body-damage/headshots2.png`;
+            headURL = `${config.serverURL}/assets/valorant/body-damage/headshots2.png`;
         }
 
         const head = await Canvas.loadImage(headURL);
