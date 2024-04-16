@@ -29,7 +29,7 @@ const LaranjoCommand = createCommand({
         const canvas = Canvas.createCanvas(700, 600);
         const ctx = canvas.getContext('2d');
 
-        const background = await Canvas.loadImage(`${serverURL}/memes/laranjo.png`);
+        const background = await Canvas.loadImage(`${serverURL}/assets/commands/memes/laranjo.png`);
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         ctx.strokeStyle = '#74037b';

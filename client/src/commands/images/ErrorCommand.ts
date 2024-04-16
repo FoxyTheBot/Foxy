@@ -28,7 +28,7 @@ const ErrorCommand = createCommand({
         const canvas = Canvas.createCanvas(380, 208);
         const ctx = canvas.getContext("2d");
 
-        const background = await Canvas.loadImage(`${serverURL}/memes/windows.png`);
+        const background = await Canvas.loadImage(`${serverURL}/assets/commands/memes/windows.png`);
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 

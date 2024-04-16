@@ -29,7 +29,7 @@ const NotStonksCommand = createCommand({
         const canvas = Canvas.createCanvas(800, 600);
         const ctx = canvas.getContext('2d');
 
-        const background = await Canvas.loadImage(`${serverURL}/memes/notstonks.png`);
+        const background = await Canvas.loadImage(`${serverURL}/assets/commands/memes/notstonks.png`);
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         ctx.strokeStyle = '#74037b';
