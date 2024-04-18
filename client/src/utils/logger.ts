@@ -31,7 +31,7 @@ const logger = {
                     title: "✨ | Comando executado",
                     fields: [{
                         name: "Comando:",
-                        value: ``
+                        value: command
                     },
                     {
                         name: "Autor",
