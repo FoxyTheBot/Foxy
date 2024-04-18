@@ -3,8 +3,11 @@ import config from "../../../config.json";
 
 const setGuildDeleteEvent = (): void => {
     bot.events.guildDelete = async (_, guild) => {
-        await bot.database.removeGuild(guild).then((document) => {
-            if (document) {
+
+        const guildData = bot.database.getGuild(guild);
+
+        if (guildData) [
+            await bot.database.removeGuild(guild).then((document) => {
                 setTimeout(() => {
                     bot.helpers.sendWebhookMessage(config.webhooks.join_leave_guild.id, config.webhooks.join_leave_guild.token, {
                         embeds: [{
@@ -16,8 +19,9 @@ const setGuildDeleteEvent = (): void => {
                         }]
                     });
                 }, 500);
-            }
-        });
+            })
+        ]
+
     }
 }
 
