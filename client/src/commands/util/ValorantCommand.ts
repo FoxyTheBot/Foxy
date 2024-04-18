@@ -385,6 +385,7 @@ const ValorantCommand = createCommand({
                 executeValorantStatsCommand(bot, context, endCommand, t);
                 break;
             }
+            
             case 'verify': {
                 executeValorantVerifyCommand(bot, context, endCommand, t);
                 break;
