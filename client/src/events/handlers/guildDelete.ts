@@ -6,7 +6,7 @@ const setGuildDeleteEvent = (): void => {
 
         const guildData = bot.database.getGuild(guild);
 
-        if (guildData) [
+        if (guildData) {
             await bot.database.removeGuild(guild).then((document) => {
                 setTimeout(() => {
                     bot.helpers.sendWebhookMessage(config.webhooks.join_leave_guild.id, config.webhooks.join_leave_guild.token, {
@@ -20,7 +20,7 @@ const setGuildDeleteEvent = (): void => {
                     });
                 }, 500);
             })
-        ]
+        }
 
     }
 }
