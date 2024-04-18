@@ -26,7 +26,7 @@ const setInteractionCreateEvent = (): void => {
                 try {
                     command.execute(context, res, locale);
                     if (bot.isProduction) {
-                        logger.commandLog(interaction.data?.name, interaction.user, interaction.guildId.toString(), interaction.data?.options?.map((option) => option.value).join(' ') || 'Nenhum');
+                        logger.commandLog(interaction.data?.name, interaction.user, interaction.guildId ? interaction.guildId.toString() : "DM", interaction.data?.options?.map((option) => option.value).join(' ') || 'Nenhum');
                         bot.database.updateCommand(interaction.data?.name);
                     }
                 } catch (e) {
