@@ -9,7 +9,7 @@ const setReadyEvent = (): void => {
         startActivities();
         if (bot.isProduction) {
             postInfo({
-                guilds: (await bot.foxyRest.getBotGuilds()).length,
+                guilds: await bot.database.getAllGuilds(),
             });
         }
     }

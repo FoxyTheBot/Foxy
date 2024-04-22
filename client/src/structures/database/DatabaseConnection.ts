@@ -303,4 +303,9 @@ export default class DatabaseConnection {
         let usersData = await this.user.find({});
         return usersData.map(user => user.toJSON());
     }
+
+    async getAllGuilds(): Promise<void> {
+        let guildsData = await this.guilds.find({});
+        return guildsData.length;
+    }
 }
