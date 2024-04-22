@@ -127,7 +127,7 @@ export default class DatabaseConnection {
             puuid: String,
             authCode: String,
         });
-        
+
         this.user = mongoose.model('user', userSchema);
         this.commands = mongoose.model('commands', commandsSchema);
         this.guilds = mongoose.model('guilds', guildSchema);
@@ -140,7 +140,7 @@ export default class DatabaseConnection {
         if (!userId) null;
         const user: User = await bot.helpers.getUser(String(userId));
         let document = await this.user.findOne({ _id: user.id });
-        
+
         if (!document) {
             document = new this.user({
                 _id: user.id,
@@ -237,6 +237,11 @@ export default class DatabaseConnection {
 
     async getGuild(guildId: BigInt) {
         let document = await this.guilds.findOne({ _id: guildId });
+        return document;
+    }
+
+    async addGuild(guildId: BigInt) {
+        let document = await this.guilds.findOne({ _id: guildId });
 
         if (!document) {
             document = new this.guilds({
@@ -276,41 +281,7 @@ export default class DatabaseConnection {
                 },
                 premiumKeys: []
 
-            }).save();
-        }
-
-        return document;
-    }
-
-    async addGuild(guildId: BigInt) {
-        let document = await this.guilds.findOne({ _id: guildId });
-
-        if (!document) {
-            document = new this.guilds({
-                _id: guildId,
-                InviteBlockerModule: {
-                    isEnabled: false,
-                    whitelistedInvites: [],
-                    whitelistedChannels: [],
-                    whitelistedRoles: [],
-                    whitelistedUsers: [],
-                    blockMessage: null,
-                },
-                AutoRoleModule: {
-                    isEnabled: false,
-                    roles: [],
-                },
-                GuildJoinLeaveModule: {
-                    isEnabled: false,
-                    joinMessage: null,
-                    alertWhenUserLeaves: false,
-                    leaveMessage: null,
-                    joinChannel: null,
-                    leaveChannel: null,
-                },
-                premiumKeys: []
-            }).save();
-            return null;
+            }).save()
         }
 
         return document;

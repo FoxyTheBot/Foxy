@@ -59,7 +59,7 @@ export class FoxyRestManager {
         const userInfo = await this.getValPlayer(username, tag).then(res => res.data);
         if (!userInfo) return null;
         const puuid = await userInfo.puuid;
-        let url = `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/br/${puuid}?size=12`;
+        let url = `valorant/v1/by-puuid/lifetime/matches/br/${puuid}?size=12`;
 
         if (mode) url += `&mode=${mode}`;
 
@@ -69,7 +69,7 @@ export class FoxyRestManager {
     }
 
     async getValMatchHistoryByUUID(puuid: string, mode?: string, map?: string) {
-        let url = `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/br/${puuid}?size=12`;
+        let url = `valorant/v1/by-puuid/lifetime/matches/br/${puuid}?size=12`;
 
         if (mode) url += `&mode=${mode}`;
 
@@ -79,7 +79,7 @@ export class FoxyRestManager {
     }
 
     async getAllValMatchHistoryByUUID(puuid: string, mode?: string) {
-        let url = `https://api.henrikdev.xyz/valorant/v1/by-puuid/lifetime/matches/br/${puuid}`;
+        let url = `valorant/v1/by-puuid/lifetime/matches/br/${puuid}`;
         if (mode) url += `?&mode=${mode}`;
 
         return (await this.valorantAPI.get(url)).data;

@@ -19,9 +19,16 @@ const setupFoxy = async (client: FoxyClient): Promise<void> => {
     client.hasGuildPermission = botHasGuildPermissions;
     client.foxyRest = new FoxyRestManager(client);
     client.gateway.manager.createShardOptions.events.message = async (shard, message) => {
-        if (message.t === 'GUILD_DELETE' && (message.d as DiscordUnavailableGuild).unavailable) return;
+        if (message.t === 'GUILD_DELETE' && (message.d as DiscordUnavailableGuild).unavailable) {
+            return bot.helpers.sendWebhookMessage(config.webhooks.join_leave_guild.id, config.webhooks.join_leave_guild.token, {
+                embeds: [{
+                    title: `<:emoji:${bot.emotes.FOXY_CRY}> **|** Servidor indisponivel!`,
+                    description: `**ID:** ${(message.d as DiscordUnavailableGuild).unavailable}`,
+                }]
+            });
+        }
         if (message.t === 'GUILD_AUDIT_LOG_ENTRY_CREATE') return;
-        
+
         client.handlers[message.t]?.(client, message, shard.id);
     };
     loadCommands();
@@ -35,7 +42,7 @@ const startCacheHandler = async (client: FoxyClient): Promise<void> => {
     bot.channels.maxSize = 1000;
     bot.messages.maxSize = 100
     bot.users.maxSize = 1000;
-    
+
     setInterval(() => {
         client.dispatchedGuildIds.clear();
         client.dispatchedChannelIds.clear();

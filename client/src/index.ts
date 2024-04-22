@@ -8,7 +8,7 @@ import config from '../config.json';
 
 const bot = createBot({
     token: config.token,
-    intents: 3183191 as Intents,
+    intents: 37379 as Intents,
     botId: BigInt(config.clientId),
 }) as FoxyClient;
 
