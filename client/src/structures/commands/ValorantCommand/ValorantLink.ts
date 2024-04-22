@@ -7,7 +7,10 @@ export default async function executeValorantLinkCommand(bot, context: ChatInput
         embeds: [{
             color: 0xff4454,
             title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.linkAccountTitle')),
-            description: t('commands:valorant.linkAccountDescription')
+            description: t('commands:valorant.linkAccountDescription'),
+            footer: {
+                text: t('commands:valorant.linkAccountFooter')
+            }
         }],
         components: [createActionRow([createButton({
             label: t('commands:valorant.linkAccountButton'),

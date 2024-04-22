@@ -20,6 +20,7 @@ import executeValorantSetVisibilityCommand from "../../structures/commands/Valor
 import executeValorantUnlinkCommand from "../../structures/commands/ValorantCommand/ValorantUnlink";
 import executeValorantHelpCommand from "../../structures/commands/ValorantCommand/ValorantHelp";
 import executeValorantVerifyCommand from "../../structures/commands/ValorantCommand/ValorantVerify";
+import { getUser } from "discordeno/*";
 
 const ValorantCommand = createCommand({
     name: "valorant",
