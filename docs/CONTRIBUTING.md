@@ -5,7 +5,7 @@
 Check out our [guide for developers](DEVELOPMENT.md) if you want to learn how to compile and run Foxy for development purposes!
 
 ## 🌎 Translating
-"Oh, I don't know how to program"
+"Oh, I don't know how to code"
 
 Check out our [guide for translators](TRANSLATING.md) if you want to learn how to help to translate
 
