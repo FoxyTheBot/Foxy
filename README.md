@@ -1,8 +1,6 @@
 <p align="center">
 <h1 align="center">🦊 Foxy 🦊</h1>
 
-<img height="150" src="https://cdn.discordapp.com/attachments/1078322762550083736/1078324119906566194/27_Sem_Titulo_20210215123555.png" align="left">
-<img height="150" src="https://cdn.discordapp.com/attachments/1078322762550083736/1078322790060523521/24_Sem_Titulo_20210215121218.png" align="right">
 <p align="center">
 <a href="https://top.gg/bot/1006520438865801296">
   <img src="https://top.gg/api/widget/1006520438865801296.svg">
