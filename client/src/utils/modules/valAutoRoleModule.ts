@@ -25,8 +25,7 @@ export default class ValAutoRoleModule {
         const cleanedValAutoRoleModuleRoles = valAutoRoleModuleRoles.filter(role => role !== null && typeof role !== 'boolean').map(role => role);
 
         const matchingRole = cleanedAuthorRoles.find(role => {
-            const includes = cleanedValAutoRoleModuleRoles.includes(role);
-            return includes;
+            return cleanedValAutoRoleModuleRoles.includes(role);
         });
 
         const tier = valUserInfo.data.current_data.currenttierpatched || "unrated";

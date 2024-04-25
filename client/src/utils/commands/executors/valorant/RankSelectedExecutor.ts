@@ -73,7 +73,7 @@ const RankSelectedExecutor = async (context: ComponentInteractionContext) => {
                 emoji: {
                     id: bot.emotes.UNRATED
                 },
-                description: guildInfo.valAutoRoleModule.unratedRole ? `<@&${guildInfo.valAutoRoleModule.unratedRole}>` : bot.locale('commands:valorant.autorole.ranks.none')
+                description: guildInfo.valAutoRoleModule.unratedRole ? bot.locale('commands:valorant.autorole.configured') : bot.locale('commands:valorant.autorole.ranks.none')
             },
             {
                 label: bot.locale('commands:valorant.autorole.rankSelector.iron'),
@@ -81,7 +81,7 @@ const RankSelectedExecutor = async (context: ComponentInteractionContext) => {
                 emoji: {
                     id: bot.emotes.I3
                 },
-                description: guildInfo.valAutoRoleModule.ironRole ? `<@&${guildInfo.valAutoRoleModule.ironRole}>` : bot.locale('commands:valorant.autorole.ranks.none')
+                description: guildInfo.valAutoRoleModule.ironRole ? bot.locale('commands:valorant.autorole.configured') : bot.locale('commands:valorant.autorole.ranks.none')
             },
             {
                 label: bot.locale('commands:valorant.autorole.rankSelector.bronze'),
@@ -89,7 +89,7 @@ const RankSelectedExecutor = async (context: ComponentInteractionContext) => {
                 emoji: {
                     id: bot.emotes.B3
                 },
-                description: guildInfo.valAutoRoleModule.bronzeRole ? `<@&${guildInfo.valAutoRoleModule.bronzeRole}>` : bot.locale('commands:valorant.autorole.ranks.none')
+                description: guildInfo.valAutoRoleModule.bronzeRole ? bot.locale('commands:valorant.autorole.configured') : bot.locale('commands:valorant.autorole.ranks.none')
             },
             {
                 label: bot.locale('commands:valorant.autorole.rankSelector.silver'),
@@ -97,7 +97,7 @@ const RankSelectedExecutor = async (context: ComponentInteractionContext) => {
                 emoji: {
                     id: bot.emotes.S3
                 },
-                description: guildInfo.valAutoRoleModule.silverRole ? `<@&${guildInfo.valAutoRoleModule.silverRole}>` : bot.locale('commands:valorant.autorole.ranks.none')
+                description: guildInfo.valAutoRoleModule.silverRole ? bot.locale('commands:valorant.autorole.configured') : bot.locale('commands:valorant.autorole.ranks.none')
 
             },
             {
@@ -106,7 +106,7 @@ const RankSelectedExecutor = async (context: ComponentInteractionContext) => {
                 emoji: {
                     id: bot.emotes.G3
                 },
-                description: guildInfo.valAutoRoleModule.goldRole ? `<@&${guildInfo.valAutoRoleModule.goldRole}>` : bot.locale('commands:valorant.autorole.ranks.none')
+                description: guildInfo.valAutoRoleModule.goldRole ? bot.locale('commands:valorant.autorole.configured') : bot.locale('commands:valorant.autorole.ranks.none')
 
             },
             {
@@ -115,7 +115,7 @@ const RankSelectedExecutor = async (context: ComponentInteractionContext) => {
                 emoji: {
                     id: bot.emotes.P3
                 },
-                description: guildInfo.valAutoRoleModule.platinumRole ? `<@&${guildInfo.valAutoRoleModule.platinumRole}>` : bot.locale('commands:valorant.autorole.ranks.none')
+                description: guildInfo.valAutoRoleModule.platinumRole ? bot.locale('commands:valorant.autorole.configured') : bot.locale('commands:valorant.autorole.ranks.none')
             },
             {
                 label: bot.locale('commands:valorant.autorole.rankSelector.diamond'),
@@ -123,7 +123,7 @@ const RankSelectedExecutor = async (context: ComponentInteractionContext) => {
                 emoji: {
                     id: bot.emotes.D3
                 },
-                description: guildInfo.valAutoRoleModule.diamondRole ? `<@&${guildInfo.valAutoRoleModule.diamondRole}>` : bot.locale('commands:valorant.autorole.ranks.none')
+                description: guildInfo.valAutoRoleModule.diamondRole ? bot.locale('commands:valorant.autorole.configured') : bot.locale('commands:valorant.autorole.ranks.none')
 
             },
             {
@@ -132,7 +132,7 @@ const RankSelectedExecutor = async (context: ComponentInteractionContext) => {
                 emoji: {
                     id: bot.emotes.A3
                 },
-                description: guildInfo.valAutoRoleModule.ascendantRole ? `<@&${guildInfo.valAutoRoleModule.ascendantRole}>` : bot.locale('commands:valorant.autorole.ranks.none')
+                description: guildInfo.valAutoRoleModule.ascendantRole ? bot.locale('commands:valorant.autorole.configured') : bot.locale('commands:valorant.autorole.ranks.none')
             },
             {
                 label: bot.locale('commands:valorant.autorole.rankSelector.immortal'),
@@ -140,7 +140,7 @@ const RankSelectedExecutor = async (context: ComponentInteractionContext) => {
                 emoji: {
                     id: bot.emotes.IM3
                 },
-                description: guildInfo.valAutoRoleModule.immortalRole ? `<@&${guildInfo.valAutoRoleModule.immortalRole}>` : bot.locale('commands:valorant.autorole.ranks.none')
+                description: guildInfo.valAutoRoleModule.immortalRole ? bot.locale('commands:valorant.autorole.configured') : bot.locale('commands:valorant.autorole.ranks.none')
             },
             {
                 label: bot.locale('commands:valorant.autorole.rankSelector.radiant'),
@@ -148,7 +148,7 @@ const RankSelectedExecutor = async (context: ComponentInteractionContext) => {
                 emoji: {
                     id: bot.emotes.R
                 },
-                description: guildInfo.valAutoRoleModule.radiantRole ? `<@&${guildInfo.valAutoRoleModule.radiantRole}>` : bot.locale('commands:valorant.autorole.ranks.none')
+                description: guildInfo.valAutoRoleModule.radiantRole ? bot.locale('commands:valorant.autorole.configured') : bot.locale('commands:valorant.autorole.ranks.none')
             }]
         })])]
     })
