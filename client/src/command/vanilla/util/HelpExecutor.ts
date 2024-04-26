@@ -15,7 +15,7 @@ export default async function HelpExecutor(context: ChatInputInteractionContext,
             },
             {
                 name: context.getEmojiById(bot.emotes.FOXY_CUPCAKE) + " " + t('commands:help.bot.fields.support'),
-                value: `https://foxybot.win/support`,
+                value: `https://foxybot.win/br/support`,
 
             },
             {
@@ -30,14 +30,11 @@ export default async function HelpExecutor(context: ChatInputInteractionContext,
             },
             {
                 name: context.getEmojiById(bot.emotes.FOXY_WOW) + " " + t('commands:help.bot.fields.privacy'),
-                value: "https://foxybot.win/terms",
+                value: "https://foxybot.win/br/support/terms",
             }
         ],
         thumbnail: {
-            url: `https://cdn.discordapp.com/attachments/1078322762550083736/1095835653444481145/FOXYY.png`
-        },
-        image: {
-            url: "https://cdn.discordapp.com/attachments/1068525425963302936/1076841345211183154/Sem_titulo.png"
+            url: "https://cdn.discordapp.com/attachments/1078322762550083736/1233237607010406482/Foxy.png?ex=662c5d85&is=662b0c05&hm=70d01fc36628386c9809fc1db26f10be9d9a4efedba2aa5ccfbba05cc0704888&"
         }
     })
 
