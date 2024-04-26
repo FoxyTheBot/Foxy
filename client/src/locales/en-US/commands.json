@@ -1,640 +1,640 @@
 {
     "foxyGlobal": {
-        "noPermission": "Wait! What are you doing? You are not {{user}}, you can't do that!"
+        "noPermission": "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {{user}}"
     },
     "roll": {
-        "result": "You rolled **{{amount}}d{{sides}}** and got **{{result}}**",
-        "button": "Reroll"
+        "result": "Você rolou **{{amount}}d{{sides}}** e o resultado foi **{{result}}**",
+        "button": "Rolar novamente"
     },
     "lang": {
-        "title": "Choose your language",
-        "default": "Your default language is set to English",
-        "changed": "Your language has been changed to `{{language}}`",
-        "placeholder": "Language changed",
+        "title": "Escolha seu idioma",
+        "default": "Seu idioma está definido como Português do Brasil",
+        "changed": "Seu idioma foi alterado para `{{language}}`",
+        "placeholder": "Idioma alterado",
         "languages": {
-            "en-US": "English",
-            "es-ES": "Spanish",
-            "fr-FR": "French",
-            "ja-JP": "Japanese",
-            "de-DE": "German",
-            "it-IT": "Italian",
-            "ru-RU": "Russian",
-            "ar-SA": "Arabic",
-            "pt-BR": "Brazilian Portuguese"
+            "en-US": "Inglês",
+            "es-ES": "Espanhol",
+            "fr-FR": "Francês",
+            "ja-JP": "Japonês",
+            "de-DE": "Alemão",
+            "it-IT": "Italiano",
+            "ru-RU": "Russo",
+            "ar-SA": "Árabe",
+            "pt-BR": "Português do Brasil"
         }
     },
     "anime": {
         "info": {
             "status": "Status",
-            "score": "Score",
-            "episodes": "Episodes",
-            "type": "Type",
-            "aired": "Aired",
-            "genres": "Genres",
-            "source": "Source",
-            "studios": "Studios",
-            "duration": "Duration",
-            "rating": "Rating",
-            "scoreStats": "Score stats",
-            "popularity": "Popularity",
-            "premiered": "Premiered",
-            "broadcast": "Broadcast"
+            "score": "Pontuação",
+            "episodes": "Episódios",
+            "type": "Tipo",
+            "aired": "Foi a público em",
+            "genres": "Gêneros",
+            "source": "Origem",
+            "studios": "Estúdios",
+            "duration": "Duração",
+            "rating": "Classificação",
+            "scoreStats": "Status da pontuação",
+            "popularity": "Popularidade",
+            "premiered": "Estreou em",
+            "broadcast": "Transmissão"
         },
-        "notFound": "Anime not found",
-        "click": "Click here",
-        "nothing": "Nothing"
+        "notFound": "Anime não encontrado",
+        "click": "Clique aqui",
+        "nothing": "Nada encontrado"
     },
     "coinflip": {
-        "heads": "heads",
-        "tails": "tails",
-        "flipped": "You flipped a coin and got"
+        "heads": "cara",
+        "tails": "coroa",
+        "flipped": "Você jogou uma moeda e o resultado foi"
     },
     "upvote": {
-        "description": "Help me to increase servers count and keep me alive voting me on <:topgg:1074823809376460923> Discord Bot List, \n<:catblush:768292358458179595> votes helps me to get more servers and more users on Discord! Vote me [clicking here](https://top.gg/bot/1006520438865801296/vote) :heart:",
+        "description": "Me ajude a crescer e ser um bot melhor votando em mim no <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nCada voto ajuda a me divulgar para outras pessoas na Discord Bot List <:catblush:768292358458179595>\n\nVocê pode estar votando a cada 12 horas, e de bônus, você ganha 1500 Cakes!\nQue tal você se juntar a todas as outras pessoas incríveis que votaram e que me ajudaram a crescer?\n\nPara votar é só [clicar aqui](https://top.gg/bot/1006520438865801296/vote)? :heart:",
         "top": {
-            "title": "Top voters on top.gg",
-            "votes": "Votes",
-            "ownerVotes": "My owner has {{votes}} votes"
+            "title": "Top votantes da Foxy na Top.gg",
+            "votes": "Votos",
+            "ownerVotes": "Meu desenvolvedor possui {{votes}} votos"
         }
     },
     "rate": {
-        "result": "Hm... My grade is **{{rate}}/10** to **{{user}}**"
+        "result": "Hmmm... Eu dou **{{rate}}/10** para **{{user}}**"
     },
     "server": {
         "info": {
-            "title": "{{server}}'s Information",
+            "title": "Informações de {{server}}",
             "fields": {
-                "owner": "Server's Owner",
-                "members": "Members",
-                "channels": "Channels",
-                "roles": "Roles",
-                "emojis": "Emotes",
-                "boosts": "Boosts",
-                "text_channels": "Text Channels",
-                "voice_channels": "Voice Channels",
-                "joinedAt": "I joined this server at",
-                "members_suffix": "**{{members}}** members",
-                "channels_suffix": "**{{channels}}** channels",
-                "roles_suffix": "**{{roles}}** roles",
-                "emojis_suffix": "**{{emojis}}** emotes",
-                "boosts_suffix": "**{{boosts}}** boosts",
-                "single_channel_suffix": "**1** channel",
-                "single_role_suffix": "**1** role",
-                "single_emoji_suffix": "**1** emote",
-                "single_boost_suffix": "**1** boost",
-                "no_emojis_suffix": "No emote",
-                "no_boosts_suffix": "No boost",
-                "no_channels_suffix": "No channel",
-                "no_roles_suffix": "No role",
-                "no_members_suffix": "No member"
+                "owner": "Dono(a) do servidor",
+                "members": "Membros",
+                "channels": "Canais",
+                "roles": "Cargos",
+                "emojis": "Emojis",
+                "boosts": "Impulsos",
+                "text_channels": "Canais de texto",
+                "voice_channels": "Canais de voz",
+                "joinedAt": "Entrei em",
+                "members_suffix": "**{{members}}** membros",
+                "channels_suffix": "**{{channels}}** canais",
+                "roles_suffix": "**{{roles}}** cargos",
+                "emojis_suffix": "**{{emojis}}** emojis",
+                "boosts_suffix": "**{{boosts}}** impulsos",
+                "single_channel_suffix": "**1** canal",
+                "single_role_suffix": "**1** cargo",
+                "single_emoji_suffix": "**1** emoji",
+                "single_boost_suffix": "**1** impulso",
+                "no_emojis_suffix": "Nenhum emoji",
+                "no_boosts_suffix": "Nenhum impulso",
+                "no_channels_suffix": "Nenhum canal",
+                "no_roles_suffix": "Nenhum cargo",
+                "no_members_suffix": "Nenhum membro"
             },
             "buttons": {
-                "view_icon": "View server icon",
-                "view_splash": "View server invite banner",
-                "view_banner": "View server banner"
+                "view_icon": "Ver ícone do servidor",
+                "view_splash": "Ver imagem do convite do servidor",
+                "view_banner": "Ver banner do servidor"
             }
         },
         "icon": {
-            "title": "{{server}}'s icon",
+            "title": "Ícone de {{server}}",
             "buttons": {
-                "view": "Open in browser"
+                "view": "Abrir no navegador"
             },
-            "no_icon": "This server doesn't have an icon"
+            "no_icon": "Este servidor não possui um ícone"
         },
         "banner": {
-            "title": "{{server}}'s banner",
+            "title": "Banner de {{server}}",
             "buttons": {
-                "view": "Open in browser"
+                "view": "Abrir no navegador"
             },
-            "no_banner": "This server doesn't have a banner"
+            "no_banner": "Este servidor não possui um banner"
         }
     },
     "profile": {
-        "profile": "{{user}}'s profile",
-        "noAboutme": "Foxy is so cute ><! You can change this message using /aboutme command",
-        "marriedWith": "💍 Married with {{user}} since {{date}} ({{relativeTime}})",
-        "premium": "{{badge}} Premium since {{date}}",
-        "testMode": "Your about me will be displayed here",
-        "banned": "`{{user}}` is banned because: `{{reason}}`\nBanned since `{{date}}`",
-        "marriableStatusSet": "Your marriage requests have been {{status}}",
-        "marriableStatusAlreadySet": "Your marriage requests have already been {{status}}",
-        "yes": "locked",
-        "no": "unlocked",
-        "simpleYes": "locked",
-        "simpleNo": "unlocked",
+        "profile": "Perfil de {{user}}",
+        "noAboutme": "Foxy é minha amiga você pode alterar isso usando /aboutme",
+        "marriedWith": "💍 Casado(a) com {{user}} desde {{date}} ({{relativeTime}})",
+        "premium": "{{badge}} Premium desde {{date}}",
+        "testMode": "Seu sobre mim será exibido assim!",
+        "banned": "`{{user}}` foi banido pelo motivo: `{{reason}}` \nBanido desde `{{date}}`",
+        "marriableStatusSet": "Seus pedidos de casamentos foram {{status}}",
+        "marriableStatusAlreadySet": "Seus pedidos já foram {{status}}",
+        "yes": "bloqueados, agora você não receberá mais pedidos de casamento e nem poderá pedir em casamento",
+        "no": "desbloqueados, agora você receberá pedidos de casamento e poderá pedir em casamento",
+        "simpleYes": "bloqueados",
+        "simpleNo": "desbloqueados",
         "val": {
             "notLinked": "Desculpe, **{{user}}** não vinculou sua conta da Riot Games, então não posso exibir as informações desse jogador. \n\nPara vincular uma conta da Riot Games use o comando `/valorant vincular-conta`",
-            "private": "{{user}}'s profile is private"
+            "private": "O perfil de **{{user}}** é privado"
         }
     },
     "masks": {
-        "ears": "Cat ears",
-        "horns": "Horns",
-        "halo": "Halo",
-        "cowboy": "Cowboy's hat",
-        "topper": "Topper",
-        "purchase": "Purchase",
-        "preview": "Preview",
-        "noMasks": "You don't have any avatar decoration",
-        "selectMask": "Select an avatar decoration",
+        "ears": "Orelhas de gato",
+        "horns": "Chifrinhos",
+        "halo": "Aréola",
+        "cowboy": "Chapéu de vaqueiro",
+        "topper": "Cartola",
+        "purchase": "Comprar",
+        "preview": "Pré-visualização",
+        "noMasks": "Você não possui nenhuma decoração de avatar",
+        "selectMask": "Selecione uma decoração de avatar",
         "list": {
-            "ears": "Cat ears",
-            "horns": "Horns",
-            "halo": "Halo",
-            "cowboy": "Cowboy's hat",
-            "topper": "Topper",
-            "yoru-mask": "Yoru's Ultimate"
+            "ears": "Orelhas de gato",
+            "horns": "Chifrinhos",
+            "halo": "Aréola",
+            "cowboy": "Chapéu de vaqueiro",
+            "topper": "Cartola",
+            "yoru-mask": "Ultimate do Yoru"
         },
         "buy": {
-            "success": "You have purchased the avatar decoration!",
-            "noMoney": "You don't have enough Cakes to acquire this avatar decoration",
-            "preview": "Preview",
-            "purchase": "Purchase",
-            "purchased": "Purchased"
+            "success": "Você comprou a decoração para seu avatar!",
+            "noMoney": "Você não tem Cakes o suficiente para adquirir esta decoração de avatar",
+            "preview": "Pré-visualização",
+            "purchase": "Comprar",
+            "purchased": "Comprado"
         },
         "set": {
-            "success": "Your avatar decoration has been changed!",
-            "notOwned": "You don't have this avatar decoration",
-            "invalid": "Invalid code"
+            "success": "Sua decoração de avatar foi alterada com sucesso!",
+            "notOwned": "Você não possui essa decoração de avatar",
+            "invalid": "Código inválido"
         },
-        "alreadyOwned": "You already have this avatar decoration"
+        "alreadyOwned": "Você já possui essa decoração de avatar"
     },
     "kick": {
-        "self": "Another person can do this for you, ask the person to do this",
-        "client": "Foxy crouches and you run into a wall*",
-        "success": "**{{user}}** Did a flying kick in **{{target}}**"
+        "self": "Deixa outra pessoa fazer isso para você, é mais fácil",
+        "client": "Foxy se agacha e você passa direto e da de cara com uma parede *",
+        "success": "**{{user}}** meteu uma voadora em **{{target}}**"
     },
     "help": {
         "commands": {
-            "title": "Command list",
+            "title": "Lista de comandos",
             "category": {
-                "economy": "Economy",
+                "economy": "Economia",
                 "social": "Social",
-                "fun": "Entertainment",
-                "image": "Images",
-                "misc": "Misc",
-                "utils": "Utils",
+                "fun": "Entretenimento",
+                "image": "Imagens",
+                "misc": "Outros",
+                "utils": "Utilitários",
                 "rp": "Roleplay"
             }
         },
         "bot": {
-            "description": "Hi {{user}}, I'm Foxy, I have features to entertain your server, like economy commands :3, also I have image modification commands, and some other fun commands :3",
+            "description": "Olá {{user}}, eu sou a Foxy, um bot de VALORANT e entretenimento para o seu servidor! Veja estatísticas de partida, estatísticas de jogador e muito mais!",
             "fields": {
-                "addme": "Like my functionalities? Add me into your server!",
-                "add": "Add me clicking here",
-                "crowdin": "Help me to learn new languages",
-                "support": "Need help? Join in my support server!",
-                "privacy": "Read my Terms of Service to prevent problems",
-                "website": "My Website: Where you can see some things about me"
+                "addme": "Gostou das minhas funcionalidades? Me adicione no seu servidor!",
+                "add": "Me adicione clicando aqui",
+                "crowdin": "Me ajude a aprender novos idiomas",
+                "support": "Precisa de ajuda? Entre no meu servidor de suporte!",
+                "privacy": "Leia os termos de uso para evitar problemas",
+                "website": "Meu Website onde você pode ver algumas coisas sobre mim"
             },
-            "footer": "Created with 💖 by {{owner}}"
+            "footer": "Criada com ❤️ por {{owner}}"
         }
     },
     "roblox": {
-        "title": "{{user}}'s Profile",
+        "title": "Perfil de {{user}}",
         "fields": {
-            "id": "User ID",
-            "nickname": "Display Name",
-            "joinDate": "Join date",
-            "followers": "Followers",
-            "following": "Following",
-            "badges": "Badges",
-            "friends": "Friends",
-            "username": "Username",
-            "blurb": "About me",
-            "isBanned": "Is Banned",
+            "id": "ID do usuário",
+            "nickname": "Nome de exibição",
+            "joinDate": "Data de entrada",
+            "followers": "Seguidores",
+            "following": "Seguindo",
+            "badges": "Emblemas",
+            "friends": "Amigos",
+            "username": "Nome de usuário",
+            "blurb": "Sobre mim",
+            "isBanned": "Está banido",
             "status": {
-                "banned": "Yes",
-                "notBanned": "No"
+                "banned": "Sim",
+                "notBanned": "Não"
             },
             "errors": {
-                "userNotFound": "Sorry! I can't find this user"
+                "userNotFound": "Não consegui econtrar esse usuário, desculpa!"
             }
         },
         "buttons": {
-            "viewProfile": "View on Roblox"
+            "viewProfile": "Ver perfil"
         }
     },
     "aboutme": {
-        "set": "Your about me has been changed to `{{aboutme}}`",
-        "tooLong": "The limit is 177 chars, and you type {{length}} chars, plz type something smaller :3"
+        "set": "Seu sobre mim foi alterado para `{{aboutme}}`",
+        "tooLong": "O limite de caracteres é 177 e você digitou {{length}}, digita algo menor pfv :3"
     },
     "layouts": {
-        "default": "Default",
-        "red": "Red",
-        "blue": "Blue",
-        "purple": "Purple",
-        "cyan": "Cyan",
-        "changed": "You changed your profile layout",
-        "notFound": "Layout not found"
+        "default": "Padrão",
+        "red": "Vermelho",
+        "blue": "Azul",
+        "purple": "Roxo",
+        "cyan": "Ciano",
+        "changed": "Você alterou o layout do seu perfil",
+        "notFound": "Layout não encontrado"
     },
     "user": {
         "avatar": {
-            "click": "View on browser",
-            "title": "{{user}}'s Avatar",
-            "footer": "So cute >3<"
+            "click": "Veja o avatar no seu navegador",
+            "title": "Avatar de {{user}}",
+            "footer": "Achei fofo :3"
         }
     },
     "ship": {
-        "question": "Is this couple possible?",
-        "perfectCouple": "They are a perfect couple!",
-        "uwu": "They're already dating, but no one knows!",
-        "probably": "It's possible if {{user}} wants",
-        "cry": "I'd like to say that it's possible..."
+        "question": "Será que vai rolar ou não?",
+        "perfectCouple": "Esse é o casal perfeito!",
+        "uwu": "Esses aqui já estão se pegando e não contaram para ninguém!",
+        "probably": "Talvez só precisa o {{user}} querer...",
+        "cry": "Queria muito dizer que é possível mas..."
     },
     "rep": {
-        "cooldown": "You already gave this user +1 rep, wait **{{cooldown}}**",
-        "success": "You gave a rep to **{{user}}**",
-        "self": "You can't rep yourself"
+        "cooldown": "Você já deu reputação para algúem, espere **{{cooldown}}**",
+        "success": "Você deu reputação para **{{user}}**",
+        "self": "Você não pode dar reputação para você mesmo"
     },
     "marry": {
-        "self": "You can't marry yourself",
-        "alreadyMarried": "You're already married!",
-        "bot": "No, i don't want to marry you",
-        "alreadyMarriedWithSomeone": "You are already married someone",
-        "alreadyMarriedWithUser": "You are already married with {{user}}",
-        "ask": "{{user}} Do you want to marry {{author}}?",
-        "accept": "Accept",
-        "acceptedButton": "Accepted",
-        "accepted": "You and {{user}} are now married",
-        "authorNotMarriable": "You have blocked your marry requests, so you also can't send marry requests",
-        "userNotMarriable": "Sorry, actually {{user}} isn't accepting marriage requests"
+        "self": "Você não pode casar com você mesmo",
+        "alreadyMarried": "Você já está casado com alguém!",
+        "bot": "Não, eu não quero casar com você!",
+        "alreadyMarriedWithSomeone": "Você já está casado com alguém",
+        "alreadyMarriedWithUser": "Você já está casado com **{{user}}**",
+        "ask": "{{user}} Você quer casar com **{{author}}**?",
+        "accept": "Aceitar pedido",
+        "acceptedButton": "Pedido aceito",
+        "accepted": "Vocês estão casados! Felicidades para o casal <3",
+        "authorNotMarriable": "Você bloqueou pedidos de casamento, então também não pode pedir alguém em casamento",
+        "userNotMarriable": "Desculpe, atualmente {{user}} não está aceitando pedidos"
     },
     "divorce": {
-        "notMarried": "You aren't married",
-        "confirm2": "Are you sure you want to divorce?\nThis action can't be undone",
-        "divorced": "You are divorced now!",
-        "confirm": "Divorce",
-        "confirmed": "Divorced"
+        "notMarried": "Você não está casado",
+        "confirm2": "Você tem certeza que quer divorciar?",
+        "divorced": "...Então é isso, se divorciar é sim uma coisa triste, Da próxima vez ame alguém que realmente mereça e respeite você, sim isso parece ser difícil pois o amor é algo cego e incontrolável... Mas é melhor estar sozinho do que mal acompanhado, eu confio em você! :heart:",
+        "confirm": "Divorciar",
+        "confirmed": "Divorciado"
     },
     "error": {
-        "tooLong": "The content is too long, the limit is **{{limit}}** chars"
+        "tooLong": "O conteúdo é muito longo, o limite é de **{{limit}}** caracteres"
     },
     "rps": {
         "replies": {
-            "rock": "rock",
-            "paper": "paper",
-            "scissors": "scissors"
+            "rock": "pedra",
+            "paper": "papel",
+            "scissors": "tesoura"
         },
-        "tie": "It's a tie!",
-        "start": "To start, click one of the buttons below",
-        "invalidChoice": "Invalid choice",
-        "clientWon": "{{result}}! You lost!",
-        "won3": "You won :3",
-        "won2": "You won >:3",
-        "won": "You won :D",
+        "tie": "Deu empate, vamos de novo! >:D",
+        "start": "Para jogar, clique em um dos botões abaixo",
+        "invalidChoice": "Escolha inválida, escolha {{choice}}",
+        "clientWon": "Deu {{result}}, eu ganhei >:3",
+        "won3": "Você ganhou :3",
+        "won2": "Você ganhou >:3",
+        "won": "Você ganhou :D",
         "button": {
-            "rock": "Rock",
-            "paper": "Paper",
-            "scissors": "Scissors",
-            "cancel": "Cancel"
+            "rock": "Pedra",
+            "paper": "Papel",
+            "scissors": "Tesoura",
+            "cancel": "Cancelar"
         },
-        "cancelled": "{{emoji}} You cancelled the game",
-        "defaultValue": "The game isn't started yet"
+        "cancelled": "{{emoji}} Jogo foi cancelado, para jogar execute o comando novamente",
+        "defaultValue": "O jogo ainda não foi iniciado"
     },
     "fate": {
-        "couple": "couple",
-        "enemy": "enemies",
-        "lover": "lover",
-        "sibling": "sibling",
-        "parent": "relatives",
-        "married": "married",
-        "friend": "friends",
-        "result": "In a parallel universe <@{{user}}> and <@{{mention}}> are {{fate}}"
+        "couple": "casal",
+        "enemy": "inimigos",
+        "lover": "amantes",
+        "sibling": "irmãos",
+        "parent": "parentes",
+        "married": "casados",
+        "friend": "amigos",
+        "result": "Em um universo paralelo <@{{user}}> e <@{{mention}}> são {{fate}}"
     },
     "cancel": {
-        "result": "{{user}} canceled {{mention}} for reason `{{reason}}`"
+        "result": "{{user}} cancelou {{mention}} por `{{reason}}`"
     },
     "8ball": {
-        "yes": "Yes",
-        "no": "No",
-        "maybe": "Maybe",
-        "idk": "I don't know",
-        "idk2": "IDK :/",
-        "probably": "Probably",
-        "probablyyes": "Probably yes",
-        "probablyno": "Probably no"
+        "yes": "Sim",
+        "no": "Não",
+        "maybe": "Talvez",
+        "idk": "Não sei",
+        "idk2": "Não sei :/",
+        "probably": "Provavelmente",
+        "probablyyes": "Provavelmente sim",
+        "probablyno": "Provavelmente não"
     },
     "rank": {
-        "wrongPage": "This page doesn't exist",
-        "youAreIn": "You are in the position",
-        "position": "Position"
+        "wrongPage": "Esta página não existe",
+        "youAreIn": "Você está na posição",
+        "position": "Posição"
     },
     "top": {
         "commands": {
-            "title": "Most used commands",
-            "footer": "My commands have been executed {{total}} times",
-            "usageCount": "**{{usageCount}}** Usages"
+            "title": "Comandos mais utilizados",
+            "footer": "Meus comandos foram executados {{total}} vezes",
+            "usageCount": "**{{usageCount}}** Usos"
         }
     },
     "pay": {
-        "self": "You can't transfer cakes to yourself",
-        "notEnough": "You don't have enough money",
-        "alert": "Do you really want send {{amount}} Cakes to {{user}}? \nFoxy Team **Not responsible** for lost Cakes, so make sure you are transferring to a trusted person! \nTrading NSFW(+18) content in exchange for Cakes is prohibited!",
-        "success": "You transfered {{amount}} cakes to {{user}}",
-        "pay": "Transfer",
-        "transfered": "Transfered"
+        "self": "Você não pode enviar cakes para você mesmo",
+        "notEnough": "Você não tem Cakes suficiente",
+        "alert": "Você deseja mesmo transferir {{amount}} Cakes para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!",
+        "success": "Você transferiu {{amount}} Cakes para {{user}}",
+        "pay": "Transferir",
+        "transfered": "Transferido"
     },
     "daily": {
-        "cooldown": "You already got your daily, wait **{{time}}**",
-        "daily": "You won **{{amount}} Cakes** and now has {{money}} Cakes\n",
-        "dailyAlert": "**Remember:** You can't do trading things like real money, NSFW content, Nitro in exchange for cakes! If you do this, you will be banned from Foxy permanently!",
-        "dailyPremium": "You would earn **{{old}}** cakes, but your daily has been boosted in **{{boost}}** because you're premium! You earned **{{amount}}** cakes! Now you have **{{money}}** cakes"
+        "cooldown": "Você já pegou seus cakes hoje, espere **{{time}}**",
+        "daily": "Você ganhou **{{amount}} Cakes** agora você possui {{money}} Cakes\n",
+        "dailyAlert": "**Não se esqueça:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!",
+        "dailyPremium": "Você iria ganhar **{{old}}** Cakes, mas seu prêmio recebeu um impulso de **{{boost}}** graças ao premium! Você ganhou **{{amount}}** Cakes! Agora você possui **{{money}} Cakes**"
     },
     "AutoRole": {
         "addrole": {
-            "alreadyAdded": "This role has already been added",
-            "added": "Role added successfully",
-            "maxRoles": "You reached the roles limit, the limit is 5 roles"
+            "alreadyAdded": "Este cargo já foi adicionado",
+            "added": "Cargo adicionado com sucesso",
+            "maxRoles": "Você não pode adicionar mais cargos, o limite é de 5 cargos"
         },
         "removerole": {
-            "removed": "Role removed successfully",
-            "notAdded": "This role isn't added"
+            "removed": "Cargo removido com sucesso",
+            "notAdded": "Este cargo não foi adicionado"
         },
         "enable": {
-            "enabled": "Module Activated",
-            "alreadyEnabled": "The module is already activated"
+            "enabled": "Módulo ativado",
+            "alreadyEnabled": "O módulo já está ativado"
         },
         "disable": {
-            "disabled": "Module Deactivated",
-            "alreadyDisabled": "The module is already disabled"
+            "disabled": "Módulo desativado",
+            "alreadyDisabled": "O módulo já está desativado"
         }
     },
     "inviteBlocker": {
         "config": {
-            "title": "Invite Blocker",
-            "description": "Configure Foxy to delete another server's invites",
-            "reseted": "The configuration has been reset!",
-            "addedWhitelistedRole": "Role {{role}} added successfully!",
-            "removedWhitelistedRole": "Role {{role}} removed successfully!",
-            "addedWhitelistedChannel": "Channel {{channel}} added successfully!",
-            "removedWhitelistedChannel": "Channel {{channel}} removed successfully!",
-            "addedWhitelistedUser": "User {{user}} added successfully!",
-            "removedWhitelistedUser": "User {{user}} removed successfully!",
+            "title": "Bloqueador de convites",
+            "description": "Configure a Foxy para deletar convites de outros servidores",
+            "reseted": "Configurações resetadas",
+            "addedWhitelistedRole": "Cargo {{role}} adicionado a lista de cargos que não serão afetados",
+            "removedWhitelistedRole": "Cargo {{role}} removido da lista de cargos que não serão afetados",
+            "addedWhitelistedChannel": "Canal {{channel}} adicionado a lista de canais que não serão afetados",
+            "removedWhitelistedChannel": "Canal {{channel}} removido da lista de canais que não serão afetados",
+            "addedWhitelistedUser": "Usuário {{user}} adicionado a lista de usuários que não serão afetados",
+            "removedWhitelistedUser": "Usuário {{user}} removido da lista de usuários que não serão afetados",
             "selectors": {
                 "roleSelector": {
-                    "placeholder": "Select 5 roles"
+                    "placeholder": "Selecione até 5 cargos"
                 }
             },
             "fields": {
-                "isEnabled": "Module",
+                "isEnabled": "Módulo",
                 "isEnabledValue": {
-                    "enabled": "Enabled",
-                    "disabled": "Disabled"
+                    "enabled": "Ativado",
+                    "disabled": "Desativado"
                 },
-                "blockMessage": "Message",
-                "whitelistedChannels": "Channels that's not be affected",
-                "whitelistedRoles": "Roles that's not be affected",
-                "whitelistedUsers": "Users that's not be affected",
-                "noBlockMessage": "No message defined",
-                "noWhitelistedChannels": "No channel defined",
-                "noWhitelistedRoles": "No role defined",
-                "noWhitelistedUsers": "No user defined"
+                "blockMessage": "Mensagem",
+                "whitelistedChannels": "Canais que não serão afetados",
+                "whitelistedRoles": "Cargos que não serão afetados",
+                "whitelistedUsers": "Usuários que não serão afetados",
+                "noBlockMessage": "Nenhuma mensagem definida",
+                "noWhitelistedChannels": "Nenhum canal definido",
+                "noWhitelistedRoles": "Nenhum cargo definido",
+                "noWhitelistedUsers": "Nenhum usuário definido"
             },
             "modal": {
-                "title": "Edit block message",
-                "addMessage": "Insert message below",
-                "addMessagePlaceholder": "You can use {user} to mention the user or {channel} to mention the channel"
+                "title": "Editar mensagem de bloqueio de convite",
+                "addMessage": "Insira a mensagem abaixo",
+                "addMessagePlaceholder": "Você pode utilizar {user} para mencionar o usuário ou {channel} para mencionar o canal"
             },
             "buttons": {
-                "disable": "Disable",
-                "enable": "Enable",
-                "reset": "Reset",
-                "blockMessage": "Change message",
-                "cancel": "Cancel",
-                "addRole": "Add role",
-                "addChannel": "Add channel"
+                "disable": "Desativar",
+                "enable": "Ativar",
+                "reset": "Resetar",
+                "blockMessage": "Alterar mensagem",
+                "cancel": "Cancelar",
+                "addRole": "Adicionar cargo",
+                "addChannel": "Adicionar canal"
             },
             "errors": {
-                "notWhitelistedChannel": "This channel isn't in the list of allowed channels",
-                "notWhitelistedRole": "This role isn't in the list of allowed roles",
-                "notWhitelistedUser": "This user isn't in the list of allowed users",
-                "alreadyWhitelistedChannel": "This channel is already whitelisted",
-                "alreadyWhitelistedRole": "This role is already whitelisted",
-                "alreadyWhitelistedUser": "This user is already whitelisted",
-                "maxWhitelistedRoles": "You reached the roles limit, the limit is 5 roles",
-                "maxWhitelistedChannels": "You reached the channels limit, the limit is 10 channels"
+                "notWhitelistedChannel": "Este canal não está na lista de canais que não serão afetados",
+                "notWhitelistedRole": "Este cargo não está na lista de cargos que não serão afetados",
+                "notWhitelistedUser": "Este usuário não está na lista de usuários que não serão afetados",
+                "alreadyWhitelistedChannel": "Este canal já está na lista de canais que não serão afetados",
+                "alreadyWhitelistedRole": "Este cargo já está na lista de cargos que não serão afetados",
+                "alreadyWhitelistedUser": "Este usuário já está na lista de usuários que não serão afetados",
+                "maxWhitelistedRoles": "Você não pode adicionar mais cargos, o limite é de 5 cargos",
+                "maxWhitelistedChannels": "Você não pode adicionar mais canais, o limite é de 10 canais"
             }
         }
     },
     "background": {
         "buy": {
-            "title": "Background Store :3",
-            "invalid": "Invalid Code",
-            "alreadyOwned": "You already own this background",
-            "onlyDevs": "Only the developers can buy this background",
-            "purchase": "Purchase",
-            "purchased": "Purchased",
-            "price": "Price",
-            "preview": "Background Preview",
-            "noMoney": "You don't have enough Cakes",
-            "success": "You bought the background! It has already been set automatically in your profile! ;3"
+            "title": "Lojinha de background :3",
+            "invalid": "Código inválido",
+            "alreadyOwned": "Você já possui esse background",
+            "onlyDevs": "Somente os desenvolvedores podem comprar backgrounds",
+            "purchase": "Comprar",
+            "purchased": "Comprado",
+            "price": "Preço",
+            "preview": "Pré-visualização do background",
+            "noMoney": "Você não tem Cakes suficiente",
+            "success": "Você comprou o background! O Background já foi definido automaticamente no seu perfil! ;3"
         },
         "set": {
-            "title": "Background inventory",
-            "notOwned": "You don't own this background",
-            "success": "Background changed successfully! :3",
-            "description": "Your list: {{bgList}}"
+            "title": "Escolha seu background",
+            "notOwned": "Você não possui esse background",
+            "success": "Background alterado :3",
+            "description": "Seus backgrounds são: {{bgList}}"
         }
     },
     "atm": {
-        "success": "**{{user}}** has {{balance}} Cakes"
+        "success": "**{{user}}** possui {{balance}} Cakes"
     },
     "step": {
-        "success": "You stepped on {{user}}"
+        "success": "Você pisou em {{user}}"
     },
     "tickle": {
-        "success": "**{{author}}** tickles **{{user}}**",
-        "button": "Retribute",
-        "bot": "🤣 I don't like tickling, stop! 🤣"
+        "success": "**{{author}}** fez cócegas em **{{user}}**",
+        "button": "Retribuir",
+        "bot": "🤣 Eu não gosto de cócegas, pare! 🤣"
     },
     "smile": {
-        "smiling": "{{author}} is smiling..."
+        "smiling": "{{author}} está sorrindo..."
     },
     "cry": {
-        "crying": "{{author}} is crying..."
+        "crying": "{{author}} está chorando..."
     },
     "lick": {
-        "success": "**{{author}}** licks **{{user}}**",
-        "bot": "Don't even try to lick me! I do not like this!",
-        "button": "Lick back"
+        "success": "**{{author}}** deu uma lambida em **{{user}}**",
+        "bot": "Nem tente me lamber! Eu não gosto disso!",
+        "button": "Lamber de volta"
     },
     "laugh": {
-        "success": "{{author}} is laughing..."
+        "success": "{{author}} está rindo..."
     },
     "slap": {
-        "button": "Slap",
-        "success": "**{{author}}** slapped **{{target}}**",
-        "bot": "Why are you hitting me? I did nothing... :(",
-        "self": "You can't beat yourself up, you don't have to get hurt"
+        "button": "Retribuir",
+        "success": "**{{author}}** deu um tabefe em **{{user}}**",
+        "bot": "Por que você está me batendo? Eu não fiz nada... :(",
+        "self": "Você não pode se bater, não precisa se machucar"
     },
     "dance": {
-        "dancing": "{{author}} is dancing"
+        "dancing": "{{author}} está dançando"
     },
     "pat": {
-        "button": "Pat",
-        "success": "\"**{{author}}** patted **{{user}}**"
+        "button": "Retribuir",
+        "success": "**{{author}}** fez cafuné em **{{user}}**"
     },
     "kiss": {
-        "button": "Kiss",
-        "success": "**{{author}}** kissed **{{user}}**",
-        "bot": "I don't want to kiss you! We are just friends!",
-        "self": "You can't kiss, that's weird..."
+        "button": "Retribuir",
+        "success": "**{{author}}** deu um beijo em **{{user}}**",
+        "bot": "Eu não quero te beijar, oxi? Somos apenas amigos!",
+        "self": "Você não pode se beijar, isso é estranho..."
     },
     "hug": {
-        "button": "Hug",
-        "success": "**{{author}}** hugged **{{user}}**"
+        "button": "Retribuir",
+        "success": "**{{author}}** deu um abraço em **{{user}}**"
     },
     "bite": {
-        "self": "You bit yourself, but you bit too hard, and now you're hurt, you didn't know you're a wolf with sharp teeth :/",
-        "client": "You tried to bite a fox, but it bit your face too hard, and you got hurt!",
-        "success": "{{user}} bit {{target}}",
-        "button": "Bit"
+        "self": "Você se mordeu porem mordeu forte demais e agora está machucado, mal sabia você que você é um lobo com dentes afiados :/",
+        "client": "Você tentou morder uma raposa porém ela mordeu seu rosto com muita força e você se machucou!",
+        "success": "**{{user}}** mordeu **{{target}}**",
+        "button": "Retribuir"
     },
     "attack": {
-        "attack": "**{{user}}** attacked **{{target}}**",
-        "button": "Attack"
+        "attack": "**{{user}}** atacou **{{target}}**",
+        "button": "Atacar"
     },
     "transactions": {
-        "receivedCakes": "`{{date}}` 💵 Received **{{amount}}** cakes from `{{user}}`",
-        "sentCakes": "`{{date}}` 💵 Sent **{{amount}}** cakes to `{{user}}`",
-        "addedByAdmin": "`{{date}}` 💵 Received {{amount}} Cakes from Foxy for being an amazing person :3",
-        "noTransactions": "Empty, empty, empty... You don't have any transaction yet",
-        "premiumPerk": "`{{date}}` 💫 received **{{amount}}** cakes from premium",
-        "dailyTransaction": "`{{date}}` 💰 Received **{{amount}}** cakes from daily",
-        "voteReward": "`{{date}}` 💰 Received **{{amount}}** cakes from voting me",
-        "bought": "`{{date}}` 💸 bought **{{amount}}** Cakes at the Foxy's Store",
-        "store": "`{{date}}` 💸 Spent **{{amount}}** Cakes at the Foxy's Store",
-        "betLost": "`{{date}}` 💸 Lost **{{amount}}** cakes in a coin flip bet",
-        "betWon": "`{{date}}` 💸 Won **{{amount}}** cakes in a coin flip bet",
-        "title": "{{user}}'s transactions",
-        "footer": "{{total}} Transactions",
-        "userHasNoTransactions": "Empty, empty, empty... {{user}} don't have any transaction yet"
+        "receivedCakes": "`{{date}}` 💵 Recebeu **{{amount}}** Cakes de `{{user}}`",
+        "sentCakes": "`{{date}}` 💸 Enviou **{{amount}}** Cakes para `{{user}}`",
+        "addedByAdmin": "`{{date}}` 💵 Recebeu {{amount}} Cakes da Foxy por ser uma pessoa incrível",
+        "noTransactions": "Vazio, vazio, vazio... Você não possui nenhuma transação",
+        "premiumPerk": "`{{date}}` 💫 recebeu **{{amount}}** Cakes por ser premium",
+        "dailyTransaction": "`{{date}}` 💰 Recebeu **{{amount}}** Cakes no daily",
+        "voteReward": "`{{date}}` 💰 Recebeu **{{amount}}** Cakes por votar na Foxy",
+        "bought": "`{{date}}` ✨ Comprou **{{amount}}** Cakes na Lojinha de cakes da Foxy",
+        "store": "`{{date}}` 💸 Gastou **{{amount}}** Cakes na Lojinha da Foxy",
+        "betLost": "`{{date}}` 💸 Apostou **{{amount}}** Cakes em uma partida de cara ou coroa e perdeu",
+        "betWon": "`{{date}}` 💵 Apostou **{{amount}}** Cakes em uma partida de cara ou coroa e ganhou",
+        "title": "Transações de {{user}}",
+        "footer": "{{total}} Transações no total",
+        "userHasNoTransactions": "Vazio, vazio, vazio... {{user}} não possui nenhuma transação"
     },
     "bet": {
-        "self": "You can't bet yourself",
-        "not-enough": "You don't have enough Cakes",
-        "not-enough-mention": "{{user}} doesn't have enough Cakes",
-        "placeholder": "Choose an option",
-        "heads": "heads",
-        "tails": "tails",
-        "accept": "Accept",
-        "choose": "Choose an option",
-        "ask": "{{user}}, {{author}} wants to bet with you with {{amount}} Cakes",
-        "win": "The result is {{choice}}! {{author}} won {{amount}} Cakes! By {{user}}",
-        "lose": "The result is {{choice}}! {{user}} won {{amount}} Cakes! By {{author}}",
-        "deny": "Deny",
-        "denied": "Your bet request has been denied",
+        "self": "Você não pode apostar consigo mesmo!",
+        "not-enough": "Você não tem Cakes suficientes",
+        "not-enough-mention": "{{user}} não tem Cakes suficientes",
+        "placeholder": "Selecione uma opção",
+        "heads": "cara",
+        "tails": "coroa",
+        "accept": "Aceitar",
+        "choose": "Escolha uma opção para apostar",
+        "ask": "**{{user}}**, **{{author}}** quer fazer uma aposta de {{amount}} Cakes",
+        "win": "Deu {{choice}}! {{author}} ganhou {{amount}} Cakes! Financiado por {{user}}",
+        "lose": "Deu {{choice}}! {{user}} ganhou {{amount}} Cakes! Financiado por {{author}}",
+        "deny": "Negar",
+        "denied": "Aposta negada",
         "betWithClient": {
-            "lose": "The result is {{result}}! I won {{amount}} cakes! >:3",
-            "win": "The result is {{result}}! Congratulations, you won {{amount}} cakes! :3"
+            "lose": "Deu {{result}}! Eu ganhei {{amount}} cakes! >:3",
+            "win": "Deu {{result}}! Parabéns, você ganhou {{amount}} cakes! :3"
         }
     },
     "valorant": {
-        "loadingDescription": "Getting player's info, MMR and matches, this may take a while",
-        "loadingTitle": "Getting player's info",
-        "loadingMatches": "Getting player's matches",
-        "visibilityChanged": "Account visibility changed successfully!",
-        "public": "public",
+        "loadingDescription": "Obtendo informações de jogador, MMR e partidas, isso pode demorar um pouco",
+        "loadingTitle": "Obtendo informações",
+        "loadingMatches": "Obtendo partidas",
+        "visibilityChanged": "Visibilidade da conta foi alterada com sucesso!",
+        "public": "público",
         "cannotGetInfo": "Não foi possível encontrar informações",
         "noMatchesFound": "Não encontrei nenhuma partida do modo {{mode}}!",
         "noUser": "Este usuário não existe",
         "update-role": {
             "embed": {
                 "title": "VALORANT Autorole",
-                "description": "I am updating your roles, this may take a while...",
-                "description-remove-role": "I am removing your role, this may take a while...",
-                "yourRolesHasBeenUpdated": "Your roles have been updated!",
-                "sameRole": "You don't need to execute the command, your role is the same as your rank in VALORANT",
-                "noPermission": "I don't have permission to do this, I need the `Manage Role` or `Administrator` permission to be able to give you the role :("
+                "description": "Estou atualizando os seus cargos, isso pode levar um tempinho...",
+                "description-remove-role": "Estou removendo o seu cargo, isso pode levar um tempinho...",
+                "yourRolesHasBeenUpdated": "Seus cargos foram atualizados!",
+                "sameRole": "Você não precisa executar o comando, o seu cargo é o mesmo do seu ranque no VALORANT",
+                "noPermission": "Eu não tenho permissão para fazer isso, eu preciso da permissão `Gerenciar Cargo` ou `Administrador` para conseguir te dar o cargo :("
             },
             "notLinkedAccount": "Para usar esse comando, você precisa ter uma conta da Riot Games vinculada! Utilize `/valorant vincular-conta` para vincular sua conta."
         },
         "unlink": {
             "embed": {
-                "title": "Unlink Riot Games account",
-                "description": "When unlinking your account from Riot Games, you or others will not be able to view your VALORANT profile through Foxy, to remove authorization through Riot Games, visit: https://account.riotgames.com"
+                "title": "Desvincular conta da Riot Games",
+                "description": "Ao desvincular a sua conta da Riot Games, você ou outras pessoas não poderão ver seu perfil do VALORANT através da Foxy, para remover a autorização através da Riot Games, visite: https://account.riotgames.com/"
             },
             "button": {
-                "label": "Confirm",
-                "labelConfirmed": "Confirmed"
+                "label": "Confirmar desvinculação",
+                "labelConfirmed": "Conta desvinculada"
             },
-            "notLinked": "You don't have a linked Riot Games account"
+            "notLinked": "Você não vinculou uma conta da Riot Games"
         },
         "help": {
             "embed": {
-                "title": "VALORANT Help",
-                "description": "View a VALORANT player's statistics, match history, or configure autorole to automatically give loads to users based on their VALORANT rank",
+                "title": "VALORANT Ajuda",
+                "description": "Veja as estatísticas, histórico de partidas de um jogador de VALORANT ou configure o autorole para dar cargos automaticamente para usuários de acordo com seu ranque no VALORANT",
                 "fields": {
                     "stats": {
-                        "title": "/valorant stats [@user] [game-type]",
-                        "description": "See the statistics of a VALORANT player, the type of game varies between competitive, unranked, etc"
+                        "title": "/valorant estatísticas [@usuário] [tipo-de-jogo]",
+                        "description": "Veja as estatísticas de um jogador de VALORANT, o tipo de jogo varia entre competitivo, sem classificação, etc"
                     },
                     "matches": {
-                        "title": "/valorant matches [@user] [game-type] [map]",
-                        "description": "See the matches of a VALORANT player, the type of game varies between competitive, unranked, etc"
+                        "title": "/valorant partidas [@usuário] [tipo-de-jogo] [mapa]",
+                        "description": "Veja as partidas de um jogador de VALORANT, o tipo de jogo varia entre competitivo, sem classificação, etc"
                     },
                     "autorole": {
                         "title": "/valorant autorole",
-                        "description": "Configure Foxy to give roles to users on your server according to their rank in VALORANT (The member must have linked their Riot Games account to Foxy)"
+                        "description": "Configure a Foxy para dar cargos automaticamente para usuários do seu servidor de acordo com seu ranque no VALORANT (O membro precisa ter vinculado a conta da Riot Games a Foxy)"
                     },
                     "link": {
-                        "title": "/valorant link-account",
-                        "description": "Link your Riot Games account to be able to view your player information and statistics **(We won't ask for your password, you will be redirected to the Riot Games website to authorize Foxy)**"
+                        "title": "/valorant vincular-conta",
+                        "description": "Vincule a sua conta da Riot Games para poder ver as suas informações de jogador e estatísticas **(Não pediremos sua senha, você será redirecionado para o site da Riot Games para autorizar a Foxy)**"
                     },
                     "verify": {
-                        "title": "/valorant verify <authcode>",
-                        "description": "If you used the `/valorant link-account` command, you will receive an authentication code, use this command to link your Riot Games account"
+                        "title": "/valorant verify <código-de-autenticação>",
+                        "description": "Caso tenha usado o comando `/valorant vincular-conta`, você receberá um código de autenticação, use esse comando para vincular a sua conta da Riot Games"
                     },
                     "set-visibility": {
-                        "title": "/valorant set-visibility <public/private>",
-                        "description": "Configure your player profile visibility, if you set it to private only you will be able to see your player information"
+                        "title": "/valorant set-visibility <público/privado>",
+                        "description": "Configure a visibilidade do seu perfil de jogador, se você configurar como privado, apenas você poderá ver suas informações de jogador"
                     }
                 },
-                "footer": "Arguments with [] are optional, and with <> are required"
+                "footer": "Argumentos com [] são opcionais, e com <> são obrigatórios"
             }
         },
         "autorole": {
             "title": "VALORANT Autorole",
-            "description": "No more getting your rank role manually, configure Foxy to automatically give roles to users on your server according to their rank in VALORANT (The member must have linked their Riot Games account to Foxy)",
+            "description": "Chega de pegar cargo de ranque manualmente, configure a Foxy para dar cargos automaticamente para usuários do seu servidor de acordo com seu ranque no VALORANT (O membro precisa ter vinculado a conta da Riot Games a Foxy)",
             "ranks": {
-                "unrated": "{{emoji}} Unrated",
-                "iron": "{{emoji}} Iron",
+                "unrated": "{{emoji}} Sem classificação",
+                "iron": "{{emoji}} Ferro",
                 "bronze": "{{emoji}} Bronze",
-                "silver": "{{emoji}} Silver",
-                "gold": "{{emoji}} Gold",
-                "platinum": "{{emoji}} Platinum",
-                "diamond": "{{emoji}} Diamond",
-                "ascendant": "{{emoji}} Ascendant",
-                "immortal": "{{emoji}} Immortal",
-                "radiant": "{{emoji}} Radiant",
-                "none": "Not configured"
+                "silver": "{{emoji}} Prata",
+                "gold": "{{emoji}} Ouro",
+                "platinum": "{{emoji}} Platina",
+                "diamond": "{{emoji}} Diamante",
+                "ascendant": "{{emoji}} Ascendente",
+                "immortal": "{{emoji}} Imortal",
+                "radiant": "{{emoji}} Radiante",
+                "none": "Não configurado"
             },
-            "configured": "Configured",
-            "rankSelectorPlaceholder": "Select a rank",
-            "backButton": "Back to menu",
+            "configured": "Configurado",
+            "rankSelectorPlaceholder": "Selecione um ranque",
+            "backButton": "Voltar o menu de configurações",
             "rankSelector": {
-                "unrated": "Unrated",
-                "iron": "Iron",
+                "unrated": "Sem classificação",
+                "iron": "Ferro",
                 "bronze": "Bronze",
-                "silver": "Silver",
-                "gold": "Gold",
-                "platinum": "Platinum",
-                "diamond": "Diamond",
-                "ascendant": "Ascendant",
-                "immortal": "Immortal",
-                "radiant": "Radiant",
-                "description": "Okay, select a role that will be given to a user with this rank",
-                "placeholder": "Select a role"
+                "silver": "Prata",
+                "gold": "Ouro",
+                "platinum": "Platina",
+                "diamond": "Diamante",
+                "ascendant": "Ascendente",
+                "immortal": "Imortal",
+                "radiant": "Radiante",
+                "description": "Okay, agora selecione o cargo que será dado para usuários que possuem esse ranque",
+                "placeholder": "Selecione um cargo"
             }
         },
         "matchMode": {
-            "competitive": "Competitive",
-            "unrated": "Unrated",
+            "competitive": "Competitivo",
+            "unrated": "Sem classificação",
             "spikerush": "Disputa de Spike",
             "deathmatch": "Deathmatch",
             "escalation": "Escalation",
-            "swiftplay": "Swiftplay",
+            "swiftplay": "Frenético",
             "teamdeathmatch": "Mata-mata em equipe",
             "newmap": "Novo mapa",
             "snowballfight": "Guerra de bolas de neve",
@@ -643,141 +643,142 @@
             "premier": "Premier"
         },
         "teams": {
-            "t": "Attackers",
-            "ct": "Defenders"
+            "t": "Atacantes",
+            "ct": "Defensores"
         },
-        "private": "private",
-        "linkAccountTitle": "Link Riot Games account",
-        "linkAccountDescription": "Link your Riot Games account to view your matches stats and player information in Discord, you can choose if your profile will be private or public, by default your profile is private due to Riot Games limitations.",
-        "linkAccountButton": "Link account",
+        "private": "privado",
+        "linkAccountTitle": "Vincular conta da Riot Games",
+        "linkAccountDescription": "Vincule a sua conta da Riot Games para poder ver as suas informações de jogador e estatísticas de partidas. \n\n**Siga os passos no website após clicar em `Vincular Conta`**",
+        "linkAccountFooter": "A Foxy não tem acesso às conexões do seu perfil do Discord, então você precisa vincular a sua conta.",
+        "linkAccountButton": "Vincular conta",
         "verify": {
-            "noAuthCode": "This authentication code doesn't exist",
-            "alreadyLinked": "This account is already linked",
-            "error": "An error has occurred while linking your account, please try again later",
-            "success": "Your account has been linked successfully!"
+            "noAuthCode": "Esse código de autenticação não existe",
+            "alreadyLinked": "Essa conta já está vinculada",
+            "error": "Ocorreu um erro ao vincular sua conta, tente novamente mais tarde",
+            "success": "Sua conta foi vinculada com sucesso!"
         },
         "player": {
-            "title": "{{username}}#{{tag}}'s profile - {{rank}}",
-            "level": "Level",
-            "currentRR": "Ranking Rate",
-            "lastgame": "last match",
+            "title": "Perfil de {{username}}#{{tag}} - {{rank}}",
+            "level": "Nível",
+            "currentRR": "Ranking Rate (RR)",
+            "lastgame": "na última partida",
             "tag": "Tag",
-            "region": "Region",
+            "region": "Região",
             "viewMatches": "Ver histórico de partidas",
-            "matches": "Matches",
-            "playtime": "Time in game",
-            "authorStats": "Competitive stats",
-            "noMatches": "I didn't find any match with these filters.",
-            "rank": "Current Rank",
-            "highestRank": "Highest rank",
-            "rankRating": "Rank Score",
-            "rankRatingTooltip": "Ranking score is calculated based on your performance in ranked matches",
-            "notFound": "Player not found",
-            "mostPlayedCharacter": "Top Agent",
-            "kills": "Kills",
-            "deaths": "Deaths",
-            "assists": "Assistance",
-            "killsPercentage": "Kills (%)",
-            "deathsPercentage": "Deaths (%)",
-            "assistsPercentage": "Assistance (%)",
+            "matches": "Partidas",
+            "playtime": "Tempo de jogo",
+            "authorStats": "Estatísticas competitivas",
+            "noMatches": "Não encontrei nenhuma partida com os filtros aplicados.",
+            "rank": "Ranque atual",
+            "highestRank": "Maior elo",
+            "rankRating": "Pontuação do ranque",
+            "rankRatingTooltip": "A pontuação do ranque é calculada com base no seu desempenho nas partidas ranqueadas",
+            "notFound": "Jogador não encontrado",
+            "mostPlayedCharacter": "Agente mais jogado",
+            "kills": "Abates",
+            "deaths": "Mortes",
+            "assists": "Assistências",
+            "killsPercentage": "Abates (%)",
+            "deathsPercentage": "Mortes (%)",
+            "assistsPercentage": "Assistências (%)",
             "headshotsPercentage": "Headshots (%)",
             "bodyshotsPercentage": "Bodyshots (%)",
-            "mostPlayedMap": "Most played map",
-            "played": "Played",
+            "mostPlayedMap": "Mapa mais jogado",
+            "played": "Jogado",
             "legshotsPercentage": "Legshots (%)",
             "ranks": {
-                "UNRATED": "Unrated",
-                "I1": "Iron 1",
-                "I2": "Iron 2",
-                "I3": "Iron 3",
+                "UNRATED": "Sem classificação",
+                "I1": "Ferro 1",
+                "I2": "Ferro 2",
+                "I3": "Ferro 3",
                 "B1": "Bronze 1",
                 "B2": "Bronze 2",
                 "B3": "Bronze 3",
-                "S1": "Silver 1",
-                "S2": "Silver 2",
-                "S3": "Silver 3",
-                "G1": "Gold 1",
-                "G2": "Gold 2",
-                "G3": "Gold 3",
-                "P1": "Platinum 1",
-                "P2": "Platinum 2",
-                "P3": "Platinum 3",
-                "D1": "Diamond 1",
-                "D2": "Diamond 2",
-                "D3": "Diamond 3",
-                "A1": "Ascendant 1",
-                "A2": "Ascendant 2",
-                "A3": "Ascendant 3",
-                "IM1": "Immortal 1",
-                "IM2": "Immortal 2",
-                "IM3": "Immortal 3",
-                "R": "Radiant"
+                "S1": "Prata 1",
+                "S2": "Prata 2",
+                "S3": "Prata 3",
+                "G1": "Ouro 1",
+                "G2": "Ouro 2",
+                "G3": "Ouro 3",
+                "P1": "Platina 1",
+                "P2": "Platina 2",
+                "P3": "Platina 3",
+                "D1": "Diamante 1",
+                "D2": "Diamante 2",
+                "D3": "Diamante 3",
+                "A1": "Ascendente 1",
+                "A2": "Ascendente 2",
+                "A3": "Ascendente 3",
+                "IM1": "Imortal 1",
+                "IM2": "Imortal 2",
+                "IM3": "Imortal 3",
+                "R": "Radiante"
             }
         },
         "match": {
-            "title": "{{username}}#{{tag}}'s matches",
-            "redTeam": "{{emoji}} Attacker",
-            "blueTeam": "{{emoji}} Defender",
-            "map": "Map",
-            "noMatches": "I didn't find any match",
-            "noMatchesDescription": "I didn't find any match with these filters.",
-            "mode": "Mode",
-            "character": "Agent",
-            "result": "Result",
-            "roundsAFK": "AFK Rounds",
+            "title": "Partidas de {{username}}#{{tag}}",
+            "redTeam": "{{emoji}} Atacante",
+            "blueTeam": "{{emoji}} Defensor",
+            "map": "Mapa",
+            "noMatches": "Não encontrei nenhuma partida",
+            "noMatchesDescription": "Não consegui encontrar nenhuma partida com os filtros aplicados.",
+            "mode": "Modo",
+            "character": "Agente",
+            "result": "Resultado",
+            "roundsAFK": "Rodadas AFK",
             "abilityCasts": {
-                "c": "C Usage",
-                "q": "Q Usage",
-                "e": "E Usage",
-                "x": "Ultimate usage (X)"
+                "c": "Uso da habilidade (C)",
+                "q": "Uso da habilidade (Q)",
+                "e": "Uso da habilidade (E)",
+                "x": "Uso da ultimate (X)"
             },
             "economy": {
-                "average": "Average spent",
-                "overall": "Overall spent"
+                "average": "Gasto médio",
+                "overall": "Gasto geral"
             },
-            "kills": "Kills",
-            "deaths": "Deaths",
-            "assists": "Assistance",
-            "startedAt": "Started at",
-            "rounds": "Rounds",
-            "draw": "Draw",
-            "placeholder": "Select a match",
+            "kills": "Abates",
+            "deaths": "Mortes",
+            "assists": "Assistências",
+            "startedAt": "Iniciou em",
+            "rounds": "Rodadas",
+            "draw": "Empate",
+            "placeholder": "Selecione uma partida",
             "modes": {
-                "competitive": "Competitive",
-                "unrated": "Unrated",
-                "spike rush": "Spike Rush",
+                "competitive": "Competitivo",
+                "unrated": "Sem classificação",
+                "spike rush": "Disputa de Spike",
                 "deathmatch": "Deathmatch",
                 "escalation": "Escalation",
-                "swiftplay": "Swiftplay",
-                "team deathmatch": "Team Deathmatch",
-                "newmap": "New map",
-                "snowballfight": "Snowball fight",
-                "replication": "Replication",
-                "custom game": "Custom",
+                "swiftplay": "Frenético",
+                "team deathmatch": "Mata-mata em equipe",
+                "newmap": "Novo mapa",
+                "snowballfight": "Guerra de bolas de neve",
+                "replication": "Replicação",
+                "custom game": "Partida personalizada",
                 "premier": "Premier"
             },
-            "notFound": "I can't get this player's matches",
-            "footer": "Only 13 matches will be shown",
-            "damageMade": "Damage made",
-            "damageReceived": "Damage received",
-            "team": "Team",
+            "notFound": "Não consegui obter as partidas deste jogador",
+            "footer": "Apenas as 13 últimas partidas são exibidas",
+            "damageMade": "Dano causado",
+            "damageReceived": "Dano recebido",
+            "team": "Time",
             "headshots": "Headshots",
             "bodyshots": "Bodyshots",
             "legshots": "Legshots",
-            "Red": "Red",
-            "Blue": "Blue",
-            "win": "Victory",
-            "hasWon": "Result",
-            "loss": "Defeat",
-            "score": "Score"
+            "Red": "Vermelho",
+            "Blue": "Azul",
+            "win": "Vitória",
+            "hasWon": "Resultado",
+            "loss": "Derrota",
+            "score": "Pontuação"
         },
-        "noResult": "No results"
+        "noResult": "Nenhum resultado encontrado"
     },
     "global": {
-        "noUser": "User not found",
-        "noPermission": "Wait! What are you doing? You need to have `{{permission}}` to do this!",
-        "yes": "Yes",
-        "no": "No",
-        "guild_not_found": "Sorry, I can't find this server"
+        "noUser": "Usuário não encontrado",
+        "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!",
+        "yes": "Sim",
+        "no": "Não",
+        "guild_not_found": "Desculpe, não consegui encontrar esse servidor"
     }
 }
