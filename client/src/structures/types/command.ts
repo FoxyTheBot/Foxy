@@ -1,6 +1,6 @@
 import { CreateSlashApplicationCommand } from 'discordeno';
-import ComponentInteractionContext from '../commands/ComponentInteractionContext';
-import ChatInputInteractionContext from '../commands/ChatInputInteractionContext';
+import ComponentInteractionContext from '../../command/structures/ComponentInteractionContext';
+import ChatInputInteractionContext from '../../command/structures/ChatInputInteractionContext';
 
 type CommandCategory = 'economy' | 'roleplay' | 'fun' | 'actions' | 'social' | 'util' | 'games' | 'image' | 'dev' | 'mod';
 

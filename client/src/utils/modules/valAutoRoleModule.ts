@@ -1,6 +1,6 @@
 import { Member } from "discordeno/transformers";
 import { FoxyClient } from "../../structures/types/foxy";
-import ChatInputInteractionContext from "../../structures/commands/ChatInputInteractionContext";
+import ChatInputInteractionContext from "../../command/structures/ChatInputInteractionContext";
 
 export default class ValAutoRoleModule {
     public bot: FoxyClient;

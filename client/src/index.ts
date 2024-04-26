@@ -3,7 +3,7 @@ import { setupFoxy, setupInternals, startCacheHandler } from './structures/clien
 import { FoxyClient } from './structures/types/foxy';
 import { logger } from './utils/logger';
 import { enableCachePlugin } from 'discordeno/cache-plugin'
-import { setupEventsHandler } from './events';
+import { setupEventsHandler } from './listeners';
 import config from '../config.json';
 
 const bot = createBot({

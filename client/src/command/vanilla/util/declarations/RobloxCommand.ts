@@ -1,0 +1,53 @@
+import { createCommand } from "../../../structures/createCommand";
+import { createEmbed } from "../../../../utils/discord/Embed";
+import { createActionRow, createButton } from "../../../../utils/discord/Component";
+import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
+import { getPlayerInfo, getPlayerBadges, getIdFromUsername } from "noblox.js";
+import { bot } from "../../../..";
+import { MessageFlags } from "../../../../utils/discord/Message";
+import RobloxExecutor from "../RobloxExecutor";
+
+const RobloxCommand = createCommand({
+    name: "roblox",
+    description: "[Utils] Commands related to Roblox",
+    descriptionLocalizations: {
+        "pt-BR": "[Utilitários] Comandos relacionados ao Roblox"
+    },
+    category: "util",
+    options: [{
+        name: "search",
+        nameLocalizations: {
+            "pt-BR": "buscar"
+        },
+        description: "Search for a user on Roblox",
+        descriptionLocalizations: {
+            "pt-BR": "Busque um usuário no Roblox"
+        },
+        type: ApplicationCommandOptionTypes.SubCommandGroup,
+        options: [{
+            name: "user",
+            nameLocalizations: {
+                "pt-BR": "usuário"
+            },
+            description: "[Roblox] Search for a user on Roblox",
+            descriptionLocalizations: {
+                "pt-BR": "[Roblox] Busque um usuário no Roblox"
+            },
+            type: ApplicationCommandOptionTypes.SubCommand,
+            options: [{
+                name: "username",
+                description: "The username of the Roblox account",
+                descriptionLocalizations: {
+                    "pt-BR": "O nome de usuário da conta Roblox"
+                },
+                type: ApplicationCommandOptionTypes.String,
+                required: true
+            }]
+        }]
+    }],
+    execute: async (context, endCommand, t) => {
+       RobloxExecutor(context, endCommand, t);
+    }
+});
+
+export default RobloxCommand;
