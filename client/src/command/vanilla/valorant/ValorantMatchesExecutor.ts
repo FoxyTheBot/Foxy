@@ -3,7 +3,7 @@ import ChatInputInteractionContext from "../../structures/ChatInputInteractionCo
 import { createEmbed } from "../../../utils/discord/Embed";
 import { createActionRow, createCustomId, createSelectMenu } from "../../../utils/discord/Component";
 
-export default async function executeValorantMatchesCommand(bot, context: ChatInputInteractionContext, endCommand, t) {
+export default async function ValorantMatchesExecutor(bot, context: ChatInputInteractionContext, endCommand, t) {
     const user = context.getOption<User>('user', 'users') ?? context.author;
     const userData = await bot.database.getUser(user.id);
     if (!userData.riotAccount.isLinked) {

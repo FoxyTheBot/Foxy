@@ -1,7 +1,7 @@
 import { createEmbed } from "../../../utils/discord/Embed";
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 
-export default async function executeValorantHelpCommand(bot, context: ChatInputInteractionContext, endCommand, t) {
+export default async function ValorantHelpExecutor(bot, context: ChatInputInteractionContext, endCommand, t) {
     context.sendReply({
         embeds: [createEmbed({
             color: 0xf84354,

@@ -3,7 +3,7 @@ import { MessageFlags } from "../../../utils/discord/Message";
 import ValAutoRoleModule from "../../../utils/modules/valAutoRoleModule";
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 
-export async function executeValorantAutoroleCommand(bot, context, endCommand, t) {
+export async function ValorantAutoRoleExecutor(bot, context, endCommand, t) {
     if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("MANAGE_ROLES" || "ADMINISTRATOR")) {
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:global.noPermission", {
@@ -162,7 +162,7 @@ export async function executeValorantAutoroleCommand(bot, context, endCommand, t
     })
 }
 
-export async function executeValorantUpdateAutoroleCommand(bot, context: ChatInputInteractionContext, endCommand, t) {
+export async function ValorantUpdateAutoroleExecutor(bot, context: ChatInputInteractionContext, endCommand, t) {
     const valAutoRoleModule = new ValAutoRoleModule(bot, context);
     const userInfo = await bot.database.getUser(context.author.id);
     if (!bot.hasGuildPermission(bot, context.guildId, ["MANAGE_ROLES"] || ["ADMINISTRATOR"])) {

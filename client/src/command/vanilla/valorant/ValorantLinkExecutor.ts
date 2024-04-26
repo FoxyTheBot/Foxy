@@ -2,7 +2,7 @@ import { ButtonStyles } from "discordeno/types";
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { createActionRow, createButton } from "../../../utils/discord/Component";
 
-export default async function executeValorantLinkCommand(bot, context: ChatInputInteractionContext, endCommand, t) {
+export default async function ValorantLinkExecutor(bot, context: ChatInputInteractionContext, endCommand, t) {
     context.sendReply({
         embeds: [{
             color: 0xff4454,

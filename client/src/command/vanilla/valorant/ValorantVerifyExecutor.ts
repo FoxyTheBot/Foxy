@@ -1,7 +1,7 @@
 import { MessageFlags } from "../../../utils/discord/Message";
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 
-export default async function executeValorantVerifyCommand(bot, context: ChatInputInteractionContext, endCommand, t) {
+export default async function ValorantVerifyExecutor(bot, context: ChatInputInteractionContext, endCommand, t) {
     const code = context.getOption<string>('authcode', false);
     const authCode = await bot.database.getCode(code);
 

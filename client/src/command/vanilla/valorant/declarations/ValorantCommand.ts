@@ -12,14 +12,14 @@ import ConfirmDeletionExecutor from "../components/ConfirmDeletionExecutor";
 
 /* Subcommands executors */
 
-import executeValorantLinkCommand from "../ValorantLink";
-import executeValorantSetVisibilityCommand from "../ValorantSetVisibility";
-import executeValorantUnlinkCommand from "../ValorantUnlink";
-import executeValorantHelpCommand from "../ValorantHelp";
-import executeValorantMatchesCommand from "../ValorantMatches";
-import { executeValorantAutoroleCommand, executeValorantUpdateAutoroleCommand } from "../ValorantAutorole";
-import executeValorantStatsCommand from "../ValorantStats";
-import executeValorantVerifyCommand from "../ValorantVerify";
+import ValorantLinkExecutor from "../ValorantLinkExecutor";
+import ValorantSetVisibilityExecutor from "../ValorantSetVisibilityExecutor";
+import ValorantUnlinkExecutor from "../ValorantUnlinkExecutor";
+import ValorantHelpExecutor from "../ValorantHelpExecutor";
+import ValorantMatchesExecutor from "../ValorantMatchesExecutor";
+import { ValorantAutoRoleExecutor, ValorantUpdateAutoroleExecutor } from "../ValorantAutoroleExecutor";
+import ValorantStatsExecutor from "../ValorantStatsExecutor";
+import ValorantVerifyExecutor from "../ValorantVerifyExecutor";
 
 import { bot } from "../../../..";
 
@@ -349,47 +349,47 @@ const ValorantCommand = createCommand({
         const subcommand = context.getSubCommand();
         switch (subcommand) {
             case 'link-account': {
-                executeValorantLinkCommand(bot, context, endCommand, t);
+                ValorantLinkExecutor(bot, context, endCommand, t);
                 break;
             }
 
             case 'set-visibility': {
-                executeValorantSetVisibilityCommand(bot, context, endCommand, t);
+                ValorantSetVisibilityExecutor(bot, context, endCommand, t);
                 break;
             }
 
             case 'unlink': {
-                executeValorantUnlinkCommand(bot, context, endCommand, t);
+                ValorantUnlinkExecutor(bot, context, endCommand, t);
                 break;
             }
 
             case 'help': {
-                executeValorantHelpCommand(bot, context, endCommand, t);
+                ValorantHelpExecutor(bot, context, endCommand, t);
                 break;
             }
 
             case 'matches': {
-                executeValorantMatchesCommand(bot, context, endCommand, t);
+                ValorantMatchesExecutor(bot, context, endCommand, t);
                 break;
             }
 
             case 'autorole': {
-                executeValorantAutoroleCommand(bot, context, endCommand, t);
+                ValorantAutoRoleExecutor(bot, context, endCommand, t);
                 break;
             }
 
             case 'update-role': {
-                executeValorantUpdateAutoroleCommand(bot, context, endCommand, t);
+                ValorantUpdateAutoroleExecutor(bot, context, endCommand, t);
                 break;
             }
 
             case 'stats': {
-                executeValorantStatsCommand(bot, context, endCommand, t);
+                ValorantStatsExecutor(bot, context, endCommand, t);
                 break;
             }
             
             case 'verify': {
-                executeValorantVerifyCommand(bot, context, endCommand, t);
+                ValorantVerifyExecutor(bot, context, endCommand, t);
                 break;
             }
         }

@@ -1,10 +1,10 @@
 import { User } from "discordeno/transformers";
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { ValUser } from "../../../structures/types/valuser";
-import RenderValorantProfile from "../../../utils/commands/generators/RenderValorantProfile";
+import RenderValorantProfile from "../../../utils/images/generators/RenderValorantProfile";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 
-export default async function executeValorantStatsCommand(bot, context: ChatInputInteractionContext, endCommand, t) {
+export default async function ValorantStatsExecutor(bot, context: ChatInputInteractionContext, endCommand, t) {
     const user = context.getOption<User>('user', 'users') ?? context.author;
     const mode = context.getOption<string>('mode', false) ?? "competitive";
 
