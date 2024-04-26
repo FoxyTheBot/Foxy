@@ -1,5 +1,5 @@
-import { ButtonStyles, MessageComponentTypes } from "discordeno/types";
-import { bot } from "../../../../../build/src";
+import { MessageComponentTypes } from "discordeno/types";
+import { bot } from "../../../../index";
 import ComponentInteractionContext from "../../../structures/ComponentInteractionContext";
 import { createCustomId } from "../../../../utils/discord/Component";
 

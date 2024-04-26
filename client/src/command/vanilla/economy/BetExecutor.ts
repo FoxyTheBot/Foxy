@@ -1,6 +1,6 @@
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { User } from "discordeno/transformers";
-import { bot } from "../../../..";
+import { bot } from "../../../index";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import { ButtonStyles } from "discordeno/types";
 

@@ -1,7 +1,5 @@
 import { createCommand } from "../../../structures/createCommand";
-import { MessageFlags } from "../../../../utils/discord/Message";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
-import { bot } from "../../../..";
 import { languages } from '../../../../structures/json/languages.json';
 
 const avaliableLanguages = languages.map(language => Object({ name: language.name, nameLocalizations: language.nameLocalizations, value: language.value }));

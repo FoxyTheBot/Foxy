@@ -1,4 +1,4 @@
-import { bot } from "../../../../../build/src";
+import { bot } from "../../../../index";
 import ComponentInteractionContext from "../../../structures/ComponentInteractionContext";
 import { createActionRow, createCustomId, createSelectMenu } from "../../../../utils/discord/Component";
 

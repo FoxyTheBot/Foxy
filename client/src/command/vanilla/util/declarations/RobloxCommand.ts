@@ -1,10 +1,5 @@
 import { createCommand } from "../../../structures/createCommand";
-import { createEmbed } from "../../../../utils/discord/Embed";
-import { createActionRow, createButton } from "../../../../utils/discord/Component";
 import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
-import { getPlayerInfo, getPlayerBadges, getIdFromUsername } from "noblox.js";
-import { bot } from "../../../..";
-import { MessageFlags } from "../../../../utils/discord/Message";
 import RobloxExecutor from "../RobloxExecutor";
 
 const RobloxCommand = createCommand({

@@ -1,5 +1,5 @@
 
-import { ApplicationCommandOptionTypes, getUser } from "discordeno/*";
+import { ApplicationCommandOptionTypes } from "discordeno";
 import { createCommand } from "../../../structures/createCommand";
 
 /* Components executors */
@@ -21,7 +21,7 @@ import { ValorantAutoRoleExecutor, ValorantUpdateAutoroleExecutor } from "../Val
 import ValorantStatsExecutor from "../ValorantStatsExecutor";
 import ValorantVerifyExecutor from "../ValorantVerifyExecutor";
 
-import { bot } from "../../../..";
+import { bot } from "../../../../index";
 
 const ValorantCommand = createCommand({
     name: "valorant",

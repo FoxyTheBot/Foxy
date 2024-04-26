@@ -1,7 +1,5 @@
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { createCommand } from "../../../structures/createCommand";
-import { User } from "discordeno/transformers";
-import { bot } from "../../../..";
 import RateWaifuExecutor from "../RateWaifuExecutor";
 
 const RateWaifuCommand = createCommand({

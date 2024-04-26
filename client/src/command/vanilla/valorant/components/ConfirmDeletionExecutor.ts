@@ -1,5 +1,5 @@
 import ComponentInteractionContext from "../../../structures/ComponentInteractionContext";
-import { bot } from "../../../../../build/src";
+import { bot } from "../../../../index";
 import { ButtonStyles } from "discordeno/types";
 import { createActionRow, createButton, createCustomId } from "../../../../utils/discord/Component";
 
