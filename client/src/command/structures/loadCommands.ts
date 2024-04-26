@@ -10,7 +10,6 @@ const loadCommands = async (): Promise<void> => {
   for (const folder of commandFolders) {
     const commandFiles = await fs.readdirSync(resolve(`build/src/command/vanilla/${folder}/declarations`)).filter((file) => file.endsWith(".js"));
     for (const file of commandFiles) {
-      console.log("build/src/command/vanilla/" + folder + "/declarations/" + file)
       const command = await import(resolve(`build/src/command/vanilla/${folder}/declarations/${file}`));
       const commandData = command.default as ChatInputInteractionCommand;
       try {
