@@ -648,7 +648,8 @@
         },
         "private": "private",
         "linkAccountTitle": "Link Riot Games account",
-        "linkAccountDescription": "Link your Riot Games account to view your matches stats and player information in Discord, you can choose if your profile will be private or public, by default your profile is private due to Riot Games limitations.",
+        "linkAccountDescription": "Vincule a sua conta da Riot Games para poder ver as suas informações de jogador e estatísticas de partidas. \n\n**Siga os passos no website após clicar em `Vincular Conta`**",
+        "linkAccountFooter": "A Foxy não tem acesso às conexões do seu perfil do Discord, então você precisa vincular a sua conta.",
         "linkAccountButton": "Link account",
         "verify": {
             "noAuthCode": "This authentication code doesn't exist",
