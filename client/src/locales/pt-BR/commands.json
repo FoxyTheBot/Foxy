@@ -178,7 +178,7 @@
             }
         },
         "bot": {
-            "description": "Olá {{user}}, eu sou a Foxy, tenho recursos para entreter e envolver seus membros, comandos de economia, modificação de imagem e muito mais! :3",
+            "description": "Olá {{user}}, eu sou a Foxy, um bot de VALORANT e entretenimento para o seu servidor! Veja estatísticas de partida, estatísticas de jogador e muito mais!",
             "fields": {
                 "addme": "Gostou das minhas funcionalidades? Me adicione no seu servidor!",
                 "add": "Me adicione clicando aqui",
