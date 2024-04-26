@@ -85,7 +85,7 @@ export default async function ValorantStatsExecutor(bot, context: ChatInputInter
     const mapCounts = {};
 
     let mostPlayedCharacter = 'FOXY_SHRUG';
-    let mostPlayedMap = 'FOXY_SHRUG';
+    let mostPlayedMap = t('commands:valorant.player.unknownMap');
     let maxCharacterCount = 0;
     let maxMapCount = 0;
     let currentRR;
@@ -110,14 +110,14 @@ export default async function ValorantStatsExecutor(bot, context: ChatInputInter
 
     matches.data.forEach((match) => {
         const characterName = match.stats.character.name || 'FOXY_SHRUG';
-        const mapName = match.meta.map.name || 'FOXY_SHRUG';
+        const mapName = match.meta.map.name || t('commands:valorant.unknownMap');
         if (characterCounts[characterName]) {
             characterCounts[characterName]++;
         } else {
             characterCounts[characterName] = 1;
         }
 
-        if (match.meta.season.short !== "e8a2") return;
+        if (match.meta.season.short !== "e8a3") return;
         if (characterCounts[characterName] > maxCharacterCount) {
             mostPlayedCharacter = characterName;
             if (mostPlayedCharacter === "KAY/O") mostPlayedCharacter = "KAYO";
@@ -157,9 +157,9 @@ export default async function ValorantStatsExecutor(bot, context: ChatInputInter
     killsPercentage = (totalKills / (totalKills + totalDeaths)) * 100;
     deathsPercentage = (totalDeaths / (totalKills + totalDeaths)) * 100;
     assistsPercentage = (totalAssists / (totalKills + totalDeaths)) * 100;
-    headshotsPercentage = (headshots / (headshots + bodyshots + legshots)) * 100;
-    bodyshotsPercentage = (bodyshots / (headshots + bodyshots + legshots)) * 100;
-    legshotsPercentage = (legshots / (headshots + bodyshots + legshots)) * 100;
+    headshotsPercentage = isNaN((headshots / (headshots + bodyshots + legshots)) * 100) ? 0 : (headshots / (headshots + bodyshots + legshots)) * 100
+    bodyshotsPercentage = isNaN((bodyshots / (headshots + bodyshots + legshots)) * 100) ? 0 : (bodyshots / (headshots + bodyshots + legshots)) * 100
+    legshotsPercentage = isNaN((legshots / (headshots + bodyshots + legshots)) * 100) ? 0 : (legshots / (headshots + bodyshots + legshots)) * 100
 
     const embed = {
         color: 0xf84354,

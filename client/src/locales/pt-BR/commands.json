@@ -537,7 +537,7 @@
         "visibilityChanged": "Visibilidade da conta foi alterada com sucesso!",
         "public": "público",
         "cannotGetInfo": "Não foi possível encontrar informações",
-        "noMatchesFound": "Não encontrei nenhuma partida do modo {{mode}}!",
+        "noMatchesFound": "Não encontrei nenhuma partida do modo {{mode}} neste ato! Você chegou alguma partida {{mode}} nesse ato?",
         "noUser": "Este usuário não existe",
         "update-role": {
             "embed": {
@@ -658,6 +658,7 @@
             "success": "Sua conta foi vinculada com sucesso!"
         },
         "player": {
+            "unknownMap": "Nenhum mapa encontrado",
             "title": "Perfil de {{username}}#{{tag}} - {{rank}}",
             "level": "Nível",
             "currentRR": "Ranking Rate (RR)",

@@ -165,18 +165,20 @@ export default class RenderValorantProfile {
         ctx.fillText(currentEloValue, xText, yCurrentEloValue);
 
 
-        const maxShots = Math.max(data.headshots, data.bodyshots, data.legshots);
-
+        const maxShots = Math.max(data.headshotsPercentage, data.bodyshotsPercentage, data.legshotsPercentage);
+        
         let headURL = `${config.serverURL}/assets/valorant/body-damage/headshots.png`;
         let torsoURL = `${config.serverURL}/assets/valorant/body-damage/bodyshots.png`;
         let legsURL = `${config.serverURL}/assets/valorant/body-damage/legshots.png`;
 
-        if (maxShots === data.bodyshots) {
-            torsoURL = `${config.serverURL}/assets/valorant/body-damage/bodyshots2.png`;
-        } else if (maxShots === data.legshots) {
-            legsURL = `${config.serverURL}/assets/valorant/body-damage/legshots2.png`;
-        } else if (maxShots === data.headshots) {
-            headURL = `${config.serverURL}/assets/valorant/body-damage/headshots2.png`;
+        if (maxShots) {
+            if (maxShots === data.headshotsPercentage) {
+                headURL = `${config.serverURL}/assets/valorant/body-damage/headshots2.png`;
+            } else if (maxShots === data.bodyshotsPercentage) {
+                torsoURL = `${config.serverURL}/assets/valorant/body-damage/bodyshots2.png`;
+            } else if (maxShots === data.legshotsPercentage) {
+                legsURL = `${config.serverURL}/assets/valorant/body-damage/legshots2.png`;
+            }
         }
 
         const head = await Canvas.loadImage(headURL);
