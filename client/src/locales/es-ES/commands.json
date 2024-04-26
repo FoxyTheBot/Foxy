@@ -1,24 +1,24 @@
 {
     "foxyGlobal": {
-        "noPermission": "¿Qué estás haciendo? ¡Tú no puedes hacer eso! No eres {{user}}"
+        "noPermission": "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {{user}}"
     },
     "roll": {
-        "result": "Tiraste **{{amount}}d{{sides}}** y el resultado fue **{{result}}**",
-        "button": "Desplazarse de nuevo"
+        "result": "Você rolou **{{amount}}d{{sides}}** e o resultado foi **{{result}}**",
+        "button": "Rolar novamente"
     },
     "lang": {
-        "title": "Seleccione su idioma",
-        "default": "Tu idioma estás definido cómo español",
-        "changed": "Su idioma ha sido configurado en {{language}}",
-        "placeholder": "Idioma modificado",
+        "title": "Escolha seu idioma",
+        "default": "Seu idioma está definido como Português do Brasil",
+        "changed": "Seu idioma foi alterado para `{{language}}`",
+        "placeholder": "Idioma alterado",
         "languages": {
-            "en-US": "Inglés",
-            "es-ES": "Español",
-            "fr-FR": "Francés",
-            "ja-JP": "Japonés",
-            "de-DE": "Alemán",
+            "en-US": "Inglês",
+            "es-ES": "Espanhol",
+            "fr-FR": "Francês",
+            "ja-JP": "Japonês",
+            "de-DE": "Alemão",
             "it-IT": "Italiano",
-            "ru-RU": "Ruso",
+            "ru-RU": "Russo",
             "ar-SA": "Árabe",
             "pt-BR": "Português do Brasil"
         }
@@ -26,35 +26,35 @@
     "anime": {
         "info": {
             "status": "Status",
-            "score": "Puntuación",
-            "episodes": "Episodios",
+            "score": "Pontuação",
+            "episodes": "Episódios",
             "type": "Tipo",
-            "aired": "Hizo público en",
-            "genres": "Géneros",
-            "source": "Origen",
-            "studios": "Estudios",
-            "duration": "Duración",
-            "rating": "Clasificación",
-            "scoreStats": "Status de puntuación",
-            "popularity": "Popularidad",
-            "premiered": "Estrenado en",
-            "broadcast": "Transmisión"
+            "aired": "Foi a público em",
+            "genres": "Gêneros",
+            "source": "Origem",
+            "studios": "Estúdios",
+            "duration": "Duração",
+            "rating": "Classificação",
+            "scoreStats": "Status da pontuação",
+            "popularity": "Popularidade",
+            "premiered": "Estreou em",
+            "broadcast": "Transmissão"
         },
-        "notFound": "Anime no sé ha encontrado",
-        "click": "Clique ahí",
+        "notFound": "Anime não encontrado",
+        "click": "Clique aqui",
         "nothing": "Nada encontrado"
     },
     "coinflip": {
         "heads": "cara",
-        "tails": "ceca",
-        "flipped": "Tú rolaste una moneda y lo resultado fue"
+        "tails": "coroa",
+        "flipped": "Você jogou uma moeda e o resultado foi"
     },
     "upvote": {
         "description": "Me ajude a crescer e ser um bot melhor votando em mim no <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nCada voto ajuda a me divulgar para outras pessoas na Discord Bot List <:catblush:768292358458179595>\n\nVocê pode estar votando a cada 12 horas, e de bônus, você ganha 1500 Cakes!\nQue tal você se juntar a todas as outras pessoas incríveis que votaram e que me ajudaram a crescer?\n\nPara votar é só [clicar aqui](https://top.gg/bot/1006520438865801296/vote)? :heart:",
         "top": {
-            "title": "Top ayudantes de votos en Top.gg",
+            "title": "Top votantes da Foxy na Top.gg",
             "votes": "Votos",
-            "ownerVotes": "Mi criador posee {{votes}} votos"
+            "ownerVotes": "Meu desenvolvedor possui {{votes}} votos"
         }
     },
     "rate": {
@@ -110,11 +110,11 @@
         }
     },
     "profile": {
-        "profile": "Perfil del {{user}}",
-        "noAboutme": "Foxy es mi amiga, tú puede alterar esto usándose /aboutme",
+        "profile": "Perfil de {{user}}",
+        "noAboutme": "Foxy é minha amiga você pode alterar isso usando /aboutme",
         "marriedWith": "💍 Casado(a) com {{user}} desde {{date}} ({{relativeTime}})",
-        "premium": "{{badge}} Premium desdén {{date}}",
-        "testMode": "¡Tú sobre mí serás exhibido así! ",
+        "premium": "{{badge}} Premium desde {{date}}",
+        "testMode": "Seu sobre mim será exibido assim!",
         "banned": "`{{user}}` foi banido pelo motivo: `{{reason}}` \nBanido desde `{{date}}`",
         "marriableStatusSet": "Seus pedidos de casamentos foram {{status}}",
         "marriableStatusAlreadySet": "Seus pedidos já foram {{status}}",
@@ -128,13 +128,13 @@
         }
     },
     "masks": {
-        "ears": "Orejas de gato",
-        "horns": "Cuernos",
-        "halo": "Areola",
-        "cowboy": "Sombrero de vaquero",
+        "ears": "Orelhas de gato",
+        "horns": "Chifrinhos",
+        "halo": "Aréola",
+        "cowboy": "Chapéu de vaqueiro",
         "topper": "Cartola",
         "purchase": "Comprar",
-        "preview": "Previsualización",
+        "preview": "Pré-visualização",
         "noMasks": "Você não possui nenhuma decoração de avatar",
         "selectMask": "Selecione uma decoração de avatar",
         "list": {
@@ -148,7 +148,7 @@
         "buy": {
             "success": "Você comprou a decoração para seu avatar!",
             "noMoney": "Você não tem Cakes o suficiente para adquirir esta decoração de avatar",
-            "preview": "Previsualización",
+            "preview": "Pré-visualização",
             "purchase": "Comprar",
             "purchased": "Comprado"
         },
@@ -160,25 +160,25 @@
         "alreadyOwned": "Você já possui essa decoração de avatar"
     },
     "kick": {
-        "self": "Deja otra persona hacer eso a ti, es muy fácil",
-        "client": "Foxy se agacha y tú pasas directo y da de cara con una pared *",
-        "success": "**{{user}}** metes una \"voladora\" en **{{target}}**"
+        "self": "Deixa outra pessoa fazer isso para você, é mais fácil",
+        "client": "Foxy se agacha e você passa direto e da de cara com uma parede *",
+        "success": "**{{user}}** meteu uma voadora em **{{target}}**"
     },
     "help": {
         "commands": {
             "title": "Lista de comandos",
             "category": {
-                "economy": "Economía",
+                "economy": "Economia",
                 "social": "Social",
-                "fun": "Entretenimiento",
-                "image": "Imágenes",
-                "misc": "Otros",
-                "utils": "Utilitarios",
+                "fun": "Entretenimento",
+                "image": "Imagens",
+                "misc": "Outros",
+                "utils": "Utilitários",
                 "rp": "Roleplay"
             }
         },
         "bot": {
-            "description": "¡Hola {{user}}, Yo soy la Foxy, tengo recursos para entretener tú miembros, comandos de Economía, modificación de imágenes y mucho más! :3",
+            "description": "Olá {{user}}, eu sou a Foxy, um bot de VALORANT e entretenimento para o seu servidor! Veja estatísticas de partida, estatísticas de jogador e muito mais!",
             "fields": {
                 "addme": "Gostou das minhas funcionalidades? Me adicione no seu servidor!",
                 "add": "Me adicione clicando aqui",
@@ -216,109 +216,109 @@
         }
     },
     "aboutme": {
-        "set": "Su sobre mi ha sido configurado para `{{aboutme}}`",
-        "tooLong": "O límite de los caracteres es 177 y tú digitaste {{length}}, digite algo más menor plis :3"
+        "set": "Seu sobre mim foi alterado para `{{aboutme}}`",
+        "tooLong": "O limite de caracteres é 177 e você digitou {{length}}, digita algo menor pfv :3"
     },
     "layouts": {
-        "default": "Padrón",
-        "red": "Rojo",
+        "default": "Padrão",
+        "red": "Vermelho",
         "blue": "Azul",
-        "purple": "Púrpura",
+        "purple": "Roxo",
         "cyan": "Ciano",
-        "changed": "Tú alteraste la layout de tu perfil",
-        "notFound": "Layout no se halla encontrado"
+        "changed": "Você alterou o layout do seu perfil",
+        "notFound": "Layout não encontrado"
     },
     "user": {
         "avatar": {
-            "click": "Mirarlo avatar de tu navegador",
-            "title": "Avatar del {{user}}",
-            "footer": "Me pareció fofo :3"
+            "click": "Veja o avatar no seu navegador",
+            "title": "Avatar de {{user}}",
+            "footer": "Achei fofo :3"
         }
     },
     "ship": {
-        "question": "¿Será que vais a rolar o no?",
-        "perfectCouple": "¡Este casal es perfecto!",
-        "uwu": "¡Esos aquí están haciendo travesuras y no contaron a nadie!",
-        "probably": "Quizá es solo {{user}} querer...",
-        "cry": "Quería muy dice que es posible más..."
+        "question": "Será que vai rolar ou não?",
+        "perfectCouple": "Esse é o casal perfeito!",
+        "uwu": "Esses aqui já estão se pegando e não contaram para ninguém!",
+        "probably": "Talvez só precisa o {{user}} querer...",
+        "cry": "Queria muito dizer que é possível mas..."
     },
     "rep": {
-        "cooldown": "Tú has dado reputación a alguien, espera\n**{{cooldown}}**",
-        "success": "Tú ya has dado reputación para **{{user}}**",
-        "self": "Tú no pueda darle reputación a sí mesmo"
+        "cooldown": "Você já deu reputação para algúem, espere **{{cooldown}}**",
+        "success": "Você deu reputação para **{{user}}**",
+        "self": "Você não pode dar reputação para você mesmo"
     },
     "marry": {
-        "self": "No puedes casarte contigo mismo",
-        "alreadyMarried": "¡Ya estás casado con alguien!",
-        "bot": "¡No quiero casarme contigo!",
-        "alreadyMarriedWithSomeone": "¡Ya estás casado con alguien!",
-        "alreadyMarriedWithUser": "Ya estás casado con {{user}}",
-        "ask": "{{user}} ¿Quieres casarte con **{{author}}**?",
+        "self": "Você não pode casar com você mesmo",
+        "alreadyMarried": "Você já está casado com alguém!",
+        "bot": "Não, eu não quero casar com você!",
+        "alreadyMarriedWithSomeone": "Você já está casado com alguém",
+        "alreadyMarriedWithUser": "Você já está casado com **{{user}}**",
+        "ask": "{{user}} Você quer casar com **{{author}}**?",
         "accept": "Aceitar pedido",
         "acceptedButton": "Pedido aceito",
-        "accepted": "¡Estás casado! Felicidades a la pareja <3",
+        "accepted": "Vocês estão casados! Felicidades para o casal <3",
         "authorNotMarriable": "Você bloqueou pedidos de casamento, então também não pode pedir alguém em casamento",
         "userNotMarriable": "Desculpe, atualmente {{user}} não está aceitando pedidos"
     },
     "divorce": {
-        "notMarried": "No estás casado",
-        "confirm2": "¿Estás seguro de que quieres divorciarte?",
-        "divorced": "... Así es, divorciarse es algo triste, La próxima vez ama a alguien que realmente te merezca y te respete, sí, eso parece ser difícil porque el amor es algo ciego e incontrolable... Pero es mejor estar solo que mal acompañado, ¡Confío en ti! :heart:",
-        "confirm": "Divorciarse",
+        "notMarried": "Você não está casado",
+        "confirm2": "Você tem certeza que quer divorciar?",
+        "divorced": "...Então é isso, se divorciar é sim uma coisa triste, Da próxima vez ame alguém que realmente mereça e respeite você, sim isso parece ser difícil pois o amor é algo cego e incontrolável... Mas é melhor estar sozinho do que mal acompanhado, eu confio em você! :heart:",
+        "confirm": "Divorciar",
         "confirmed": "Divorciado"
     },
     "error": {
-        "tooLong": "El contenido es demasiado largo, el límite es de **{{limit}}** caracteres"
+        "tooLong": "O conteúdo é muito longo, o limite é de **{{limit}}** caracteres"
     },
     "rps": {
         "replies": {
-            "rock": "piedra",
+            "rock": "pedra",
             "paper": "papel",
-            "scissors": "tijeras"
+            "scissors": "tesoura"
         },
-        "tie": "Es un empate, ¡vamos de nuevo! >:D",
-        "start": "Para jugar, haga clic en uno de los botones de abajo",
-        "invalidChoice": "Escoja inválida, escoja {{choice}}",
-        "clientWon": "Dio {{result}}, yo gané >:3",
-        "won3": "Tú gané :3",
-        "won2": "Tú gané >:3",
-        "won": "Tú ganaste :D",
+        "tie": "Deu empate, vamos de novo! >:D",
+        "start": "Para jogar, clique em um dos botões abaixo",
+        "invalidChoice": "Escolha inválida, escolha {{choice}}",
+        "clientWon": "Deu {{result}}, eu ganhei >:3",
+        "won3": "Você ganhou :3",
+        "won2": "Você ganhou >:3",
+        "won": "Você ganhou :D",
         "button": {
-            "rock": "Piedra",
+            "rock": "Pedra",
             "paper": "Papel",
-            "scissors": "Tijera",
-            "cancel": "Cancelarlo"
+            "scissors": "Tesoura",
+            "cancel": "Cancelar"
         },
-        "cancelled": "{{emoji}} Juego fuere cancelado, para jugar ejecuté lo comandó nuevamente",
-        "defaultValue": "Lo juego no fue iniciado"
+        "cancelled": "{{emoji}} Jogo foi cancelado, para jogar execute o comando novamente",
+        "defaultValue": "O jogo ainda não foi iniciado"
     },
     "fate": {
         "couple": "casal",
-        "enemy": "enemigos",
+        "enemy": "inimigos",
         "lover": "amantes",
-        "sibling": "hermanos",
+        "sibling": "irmãos",
         "parent": "parentes",
         "married": "casados",
         "friend": "amigos",
-        "result": "En un universo paralelo <@{{user}}> y <@{{mention}}> son {{fate}}"
+        "result": "Em um universo paralelo <@{{user}}> e <@{{mention}}> são {{fate}}"
     },
     "cancel": {
-        "result": "{{user}} canceló {{mention}} por `{{reason}}`"
+        "result": "{{user}} cancelou {{mention}} por `{{reason}}`"
     },
     "8ball": {
-        "yes": "Si",
-        "no": "No",
+        "yes": "Sim",
+        "no": "Não",
         "maybe": "Talvez",
-        "idk": "No sé",
-        "idk2": "No sé :/",
-        "probably": "Probablemente",
-        "probablyyes": "Probablemente sí",
-        "probablyno": "Probablemente no"
+        "idk": "Não sei",
+        "idk2": "Não sei :/",
+        "probably": "Provavelmente",
+        "probablyyes": "Provavelmente sim",
+        "probablyno": "Provavelmente não"
     },
     "rank": {
-        "wrongPage": "Está página no existe",
-        "youAreIn": "Tú está en la posición",
-        "position": "Posición"
+        "wrongPage": "Esta página não existe",
+        "youAreIn": "Você está na posição",
+        "position": "Posição"
     },
     "top": {
         "commands": {
@@ -328,10 +328,10 @@
         }
     },
     "pay": {
-        "self": "Tú no pueda enviar cakes para tu mesmo",
-        "notEnough": "Tú no tienes Cakes suficientes",
-        "alert": "¿Tú deseas mesmo transferir {{amount}} Cakes para {{user}}? ¡La equipe del Foxy **No se responsabiliza** pelos Cakes perdidos, entonces certifique-se dé estar transfirió al una persona de confianza!\n¡Es prohibido lo comerció dé contenidos NSFW (+18) para trocás de Cakes!",
-        "success": "Tú transferiste {{amount}} Cakes para {{user}}",
+        "self": "Você não pode enviar cakes para você mesmo",
+        "notEnough": "Você não tem Cakes suficiente",
+        "alert": "Você deseja mesmo transferir {{amount}} Cakes para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!",
+        "success": "Você transferiu {{amount}} Cakes para {{user}}",
         "pay": "Transferir",
         "transfered": "Transferido"
     },
@@ -339,7 +339,7 @@
         "cooldown": "Você já pegou seus cakes hoje, espere **{{time}}**",
         "daily": "Você ganhou **{{amount}} Cakes** agora você possui {{money}} Cakes\n",
         "dailyAlert": "**Não se esqueça:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!",
-        "dailyPremium": "Você iria ganhar **{{old}}** Cakes, mas seu daily recebeu um impulso em **{{boost}}** graças ao premium! Você ganhou **{{amount}}** Cakes! Agora você possui **{{money}} Cakes**"
+        "dailyPremium": "Você iria ganhar **{{old}}** Cakes, mas seu prêmio recebeu um impulso de **{{boost}}** graças ao premium! Você ganhou **{{amount}}** Cakes! Agora você possui **{{money}} Cakes**"
     },
     "AutoRole": {
         "addrole": {

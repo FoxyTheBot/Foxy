@@ -1,18 +1,18 @@
 {
     "ban": {
-        "title": "❌ | You have been **banned**",
-        "description": "If you want to do a ban appeal, you need to do a ban appeal \n\nYou need to read Foxy's [ToS](https://foxybot.win/terms)",
-        "reason": "Ban reason:",
-        "date": "Banned since:",
-        "button": "Do the appeal"
+        "title": "Você está **banido(a)**",
+        "description": "Se você quiser fazer um apelo de ban você pode fazer um apelo de ban \n\n Recomendo você ler os [termos de uso](https://foxybot.win/terms)",
+        "reason": "Motivo do banimento:",
+        "date": "Data do banimento:",
+        "button": "Fazer um apelo"
     },
     "messageCreate": {
-        "mentionMessage": "Hello {{author}}, My name is {{botUsername}}! I use only slash commands (/), Use `/help` to get help!"
+        "mentionMessage": "Olá {{author}}! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!"
     },
     "interactionCreate": {
-        "commandError": "Unfortunately, an error has occurred when trying to run this command, sorry <:foxymedu:890688173951315988>, the error also was sent to the developer <:foxysunglasses:890688144280784926>"
+        "commandError": "Infelizmente ocorreu um erro e não consegui executar esse comando, desculpa <:foxymedu:890688173951315988>, mas o erro já foi reportado para o meu desenvolvedor <:foxysunglasses:890688144280784926>"
     },
     "error": {
-        "title": "An error has occured while running `{{cmd}} command` command! This error was sent to the developer."
+        "title": "Ocorreu um erro no comando `{{cmd}}`! Isso foi reportado para o meu desenvolvedor!"
     }
 }
