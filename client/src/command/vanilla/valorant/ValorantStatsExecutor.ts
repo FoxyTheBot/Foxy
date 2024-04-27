@@ -117,7 +117,7 @@ export default async function ValorantStatsExecutor(bot, context: ChatInputInter
             characterCounts[characterName] = 1;
         }
 
-        if (match.meta.season.short !== "e8a3") return;
+        if (match.meta.season.short !== "e8a2") return;
         if (characterCounts[characterName] > maxCharacterCount) {
             mostPlayedCharacter = characterName;
             if (mostPlayedCharacter === "KAY/O") mostPlayedCharacter = "KAYO";
