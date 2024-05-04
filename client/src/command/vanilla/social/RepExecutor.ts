@@ -22,20 +22,20 @@ export default async function RepExecutor(context: ChatInputInteractionContext, 
     const authorData = await bot.database.getUser(context.author.id);
     const repCooldown = 3600000;
 
-    if (repCooldown - (Date.now() - authorData.lastRep) > 0) {
-        const currentCooldown = ms(repCooldown - (Date.now() - authorData.lastRep));
+    if (repCooldown - (Date.now() - Number(authorData.userProfile.lastRep)) > 0) {
+        const currentCooldown = ms(repCooldown - (Date.now() - Number(authorData.userProfile.lastRep)));
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:rep.cooldown', { cooldown: currentCooldown })),
             flags: MessageFlags.EPHEMERAL
         })
         endCommand();
     } else {
-        if (userData.premiumType === '3') {
-            userData.repCount += 2;
+        if (userData.userPremium.premiumType === '3') {
+            userData.userProfile.repCount += 2;
         } else {
-            userData.repCount++;
+            userData.userProfile.repCount++;
         }
-        authorData.lastRep = Date.now();
+        authorData.userProfile.lastRep = new Date(Date.now());
         authorData.save();
         userData.save();
         context.sendReply({

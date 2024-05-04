@@ -3,14 +3,15 @@ import { logger } from '../../utils/logger';
 import { mongouri } from '../../../config.json';
 import { bot } from '../../index';
 import { User } from 'discordeno/transformers';
+import { FoxyClient } from '../types/foxy';
 
 export default class DatabaseConnection {
-    private client: any;
-    private user: any;
-    private commands: any;
-    private guilds: any;
-    private key: any;
-    private riotAccount: any;
+    public client: FoxyClient;
+    public key: any;
+    public user: any;
+    public commands: any;
+    public guilds: any;
+    public riotAccount: any;
 
     constructor(client) {
         mongoose.set("strictQuery", true)
@@ -26,6 +27,30 @@ export default class DatabaseConnection {
             pType: Number,
             guild: String,
         }, { versionKey: false, id: false });
+        const transactionSchema = new mongoose.Schema({
+            to: String,
+            from: String,
+            quantity: Number,
+            date: Date,
+            received: Boolean,
+            type: String
+        }, {
+            versionKey: false, id: false
+        });
+        const petSchema = new mongoose.Schema({
+            name: String,
+            type: String,
+            rarity: String,
+            level: Number,
+            hungry: Number,
+            happy: Number,
+            health: Number,
+            lastHungry: Date,
+            lastHappy: Date,
+            isDead: Boolean,
+            isClean: Boolean,
+            food: Array
+        }, { versionKey: false, id: false });
         const keySchemaForGuilds = new mongoose.Schema({
             key: String,
             used: Boolean,
@@ -36,38 +61,41 @@ export default class DatabaseConnection {
         }, {
             versionKey: false, id: false
         });
-        const trasactionSchema = new mongoose.Schema({
-            to: String,
-            from: String,
-            quantity: Number,
-            date: Date,
-            received: Boolean,
-            type: String,
-        }, { versionKey: false, id: false });
         const userSchema = new mongoose.Schema({
             _id: String,
             userCreationTimestamp: Date,
-            premium: Boolean,
-            premiumDate: Date,
             isBanned: Boolean,
-            banData: Date,
+            banDate: Date,
             banReason: String,
-            aboutme: String,
-            balance: Number,
-            lastDaily: Date,
-            marriedWith: String,
-            marriedDate: Date,
-            cantMarry: Boolean,
-            repCount: Number,
-            lastRep: Date,
-            background: String,
-            backgrounds: Array,
-            premiumType: String,
-            language: String,
-            mask: String,
-            masks: Array,
-            layout: String,
-            transactions: [trasactionSchema],
+            userCakes: {
+                balance: Number,
+                lastDaily: Date,
+            },
+            marryStatus: {
+                marriedWith: String,
+                marriedDate: Date,
+                cantMarry: Boolean,
+            },
+            userProfile: {
+                decoration: String,
+                decorationList: Array,
+                background: String,
+                backgroundList: Array,
+                repCount: Number,
+                lastRep: Date,
+                layout: String,
+                aboutme: String,
+            },
+            userPremium: {
+                premium: Boolean,
+                premiumDate: Date,
+                premiumType: String,
+            },
+            userSettings: {
+                language: String
+            },
+            petInfo: petSchema,
+            userTransactions: [transactionSchema],
             riotAccount: {
                 isLinked: Boolean,
                 puuid: String,
@@ -88,18 +116,6 @@ export default class DatabaseConnection {
 
         const guildSchema = new mongoose.Schema({
             _id: String,
-            InviteBlockerModule: {
-                isEnabled: Boolean,
-                whitelistedInvites: Array,
-                whitelistedChannels: Array,
-                whitelistedRoles: Array,
-                whitelistedUsers: Array,
-                blockMessage: String,
-            },
-            AutoRoleModule: {
-                isEnabled: Boolean,
-                roles: Array,
-            },
             GuildJoinLeaveModule: {
                 isEnabled: Boolean,
                 joinMessage: String,
@@ -136,7 +152,7 @@ export default class DatabaseConnection {
         this.client = client;
     }
 
-    async getUser(userId: BigInt) {
+    async getUser(userId: BigInt): Promise<any> {
         if (!userId) null;
         const user: User = await bot.helpers.getUser(String(userId));
         let document = await this.user.findOne({ _id: user.id });
@@ -144,28 +160,52 @@ export default class DatabaseConnection {
         if (!document) {
             document = new this.user({
                 _id: user.id,
-                userCreationTimestamp: Date.now(),
-                premium: false,
-                premiumDate: null,
+                userCreationTimestamp: new Date(),
                 isBanned: false,
-                banData: null,
+                banDate: null,
                 banReason: null,
-                aboutme: null,
-                balance: 0,
-                lastDaily: null,
-                marriedWith: null,
-                marriedDate: null,
-                cantMarry: false,
-                repCount: 0,
-                lastRep: null,
-                background: "default",
-                backgrounds: ["default"],
-                premiumType: null,
-                language: 'pt-BR',
-                mask: null,
-                masks: [],
-                layout: "default",
-                transactions: [],
+                userCakes: {
+                    balance: 0,
+                    lastDaily: null,
+                },
+                marryStatus: {
+                    marriedWith: null,
+                    marriedDate: null,
+                    cantMarry: false,
+                },
+                userProfile: {
+                    decoration: null,
+                    decorationList: [],
+                    background: "default",
+                    backgroundList: ["default"],
+                    repCount: 0,
+                    lastRep: null,
+                    layout: "default",
+                    aboutme: null,
+                },
+                userPremium: {
+                    premium: false,
+                    premiumDate: null,
+                    premiumType: null,
+                },
+                userSettings: {
+                    language: 'pt-br'
+                },
+                petInfo: {
+                    name: null,
+                    type: null,
+                    rarity: null,
+                    level: 0,
+                    hungry: 100,
+                    happy: 100,
+                    health: 100,
+                    lastHungry: null,
+                    lastHappy: null,
+                    isDead: false,
+                    isClean: true,
+                    food: []
+                },
+                userTransactions: [],
                 riotAccount: {
                     isLinked: false,
                     puuid: null,
@@ -235,29 +275,17 @@ export default class DatabaseConnection {
 
     }
 
-    async getGuild(guildId: BigInt) {
+    async getGuild(guildId: BigInt): Promise<any> {
         let document = await this.guilds.findOne({ _id: guildId });
         return document;
     }
 
-    async addGuild(guildId: BigInt) {
+    async addGuild(guildId: BigInt): Promise<any> {
         let document = await this.guilds.findOne({ _id: guildId });
 
         if (!document) {
             document = new this.guilds({
                 _id: guildId,
-                InviteBlockerModule: {
-                    isEnabled: false,
-                    whitelistedInvites: [],
-                    whitelistedChannels: [],
-                    whitelistedRoles: [],
-                    whitelistedUsers: [],
-                    blockMessage: null,
-                },
-                AutoRoleModule: {
-                    isEnabled: false,
-                    roles: [],
-                },
                 GuildJoinLeaveModule: {
                     isEnabled: false,
                     joinMessage: null,
@@ -287,7 +315,7 @@ export default class DatabaseConnection {
         return document;
     }
 
-    async removeGuild(guildId: BigInt) {
+    async removeGuild(guildId: BigInt): Promise<any> {
         let document = await this.guilds.findOne({ _id: guildId });
 
         if (document) {

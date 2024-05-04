@@ -6,7 +6,7 @@ import { createActionRow, createButton, createCustomId } from "../../../../utils
 
 const DivorceButtonExecutor = async (context: ComponentInteractionContext) => {
     const userData = await bot.database.getUser(context.user.id);
-    const partnerId = await userData.marriedWith;
+    const partnerId = await userData.marryStatus.marriedWith;
 
     if (!partnerId) {
         context.sendReply({
@@ -16,13 +16,13 @@ const DivorceButtonExecutor = async (context: ComponentInteractionContext) => {
         return;
     }
 
-    const partnerData = await bot.database.getUser(partnerId);
-    const userInfo = await bot.helpers.getUser(userData.marriedWith);
+    const partnerData = await bot.database.getUser(BigInt(partnerId));
+    const userInfo = await bot.helpers.getUser(BigInt(userData.marryStatus.marriedWith));
 
-    userData.marriedWith = null;
-    userData.marriedDate = null;
-    partnerData.marriedWith = null;
-    partnerData.marriedDate = null;
+    userData.marryStatus.marriedWith = null;
+    userData.marryStatus.marriedDate = null;
+    partnerData.marryStatus.marriedWith = null;
+    partnerData.marryStatus.marriedDate = null;
     await userData.save();
     await partnerData.save();
 

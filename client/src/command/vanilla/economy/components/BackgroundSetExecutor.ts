@@ -6,11 +6,11 @@ const BackgroundSetExecutor = async (context: ComponentInteractionContext) => {
 
     const userData = await bot.database.getUser(context.author.id);
     const code = context.interaction.data.values[0];
-    if (!userData.backgrounds.includes(code)) return context.sendReply({
+    if (!userData.userProfile.backgroundList.includes(code)) return context.sendReply({
         content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale("commands:background.set.notOwned")),
     });
 
-    userData.background = code;
+    userData.userProfile.background = code;
     await userData.save();
     return context.sendReply({
         components: [createActionRow([createSelectMenu({

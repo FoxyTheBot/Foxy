@@ -11,7 +11,7 @@ export default async function ChangeExecutor(context: ChatInputInteractionContex
         switch (subCommand) {
             case 'background': {
                 await context.sendDefer(true);
-                const fetchBackgrounds = userData.backgrounds;
+                const fetchBackgrounds = userData.userProfile.backgroundList;
                 const backgrounds = await bglist.filter((b) => fetchBackgrounds.includes(b.id));
 
                 context.sendReply({
@@ -30,7 +30,7 @@ export default async function ChangeExecutor(context: ChatInputInteractionContex
             }
 
             case 'avatar_decoration': {
-                const userMasks = userData.masks;
+                const userMasks = userData.userProfile.decorationList;
                 if (userMasks.length === 0) {
                     context.sendReply({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:masks.noMasks')),

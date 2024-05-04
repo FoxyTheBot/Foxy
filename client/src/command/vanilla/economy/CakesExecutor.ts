@@ -5,6 +5,7 @@ import { ButtonStyles } from "discordeno/types";
 import { createEmbed } from "../../../utils/discord/Embed";
 import { MessageFlags } from "../../../utils/discord/Message";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
+import { TransactionType } from "../../../structures/types/transaction";
 
 export default async function CakesExecutor(context: ChatInputInteractionContext, endCommand, t) {
     switch (context.getSubCommand()) {
@@ -17,7 +18,7 @@ export default async function CakesExecutor(context: ChatInputInteractionContext
                 return endCommand();
             }
             const userData = await bot.database.getUser(user.id);
-            const balance = userData.balance;
+            const balance = userData.userCakes.balance;
 
             context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:atm.success', { user: await bot.foxyRest.getUserDisplayName(user.id), balance: balance.toLocaleString(t.lng || 'pt-BR') }))
@@ -46,7 +47,7 @@ export default async function CakesExecutor(context: ChatInputInteractionContext
                 })
                 return endCommand();
             }
-            if (value > authorData.balance) {
+            if (value > authorData.userCakes.balance.valueOf()) {
                 context.sendReply({
                     content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:pay.notEnough'))
                 })
@@ -73,7 +74,7 @@ export default async function CakesExecutor(context: ChatInputInteractionContext
             const user = context.getOption<User>('user', 'users') ?? context.author;
             const userData = await bot.database.getUser(user.id);
 
-            if (!await userData.transactions.length) {
+            if (!await userData.userTransactions.length) {
                 if (context.author.id === user.id) {
                     return context.sendReply({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:transactions.noTransactions')),
@@ -89,57 +90,57 @@ export default async function CakesExecutor(context: ChatInputInteractionContext
             var transactionsTexts = [];
 
             context.sendDefer();
-            userData.transactions.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-            userData.transactions.reverse();
+            userData.userTransactions.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+            userData.userTransactions.reverse();
 
-            for (const transaction of userData.transactions) {
+            for (const transaction of userData.userTransactions) {
                 switch (transaction.type) {
-                    case 'daily': {
+                    case TransactionType.DAILY: {
                         transactionsTexts.push(t('commands:transactions.dailyTransaction', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
                         break;
                     }
-                    case 'addByAdmin': {
+                    case TransactionType.ADD_BY_ADMIN: {
                         transactionsTexts.push(t('commands:transactions.addedByAdmin', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
                         break;
                     }
 
-                    case 'send': {
+                    case TransactionType.SEND: {
                         transactionsTexts.push(t('commands:transactions.sentCakes', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser(transaction.to)).username}` }))
                         break;
                     }
 
-                    case 'receive': {
-                        transactionsTexts.push(t('commands:transactions.receivedCakes', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser(transaction.from)).username}` }))
+                    case TransactionType.RECEIVE: {
+                        transactionsTexts.push(t('commands:transactions.receivedCakes', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser((transaction.from))).username}` }))
                         break;
                     }
 
-                    case 'store': {
+                    case TransactionType.SPENT_AT_STORE: {
                         transactionsTexts.push(t('commands:transactions.store', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
                         break;
                     }
 
-                    case 'bought': {
+                    case TransactionType.BOUGHT: {
                         transactionsTexts.push(t('commands:transactions.bought', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
                         break;
                     }
 
-                    case 'premiumPerk': {
+                    case TransactionType.PREMIUM_PERK: {
                         transactionsTexts.push(t('commands:transactions.premiumPerk', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
                         break;
                     }
 
-                    case 'voteReward': {
+                    case TransactionType.VOTE_REWARD: {
                         transactionsTexts.push(t('commands:transactions.voteReward', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
                     }
 
                     case 'bet': {
                         switch (transaction.received) {
                             case true: {
-                                transactionsTexts.push(t('commands:transactions.betWon', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), userWhoSent: `@${(await bot.helpers.getUser(transaction.from))}`, userWhoReceived: `@${(await bot.helpers.getUser(transaction.to))}` }))
+                                transactionsTexts.push(t('commands:transactions.betWon', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), userWhoSent: `@${(await bot.helpers.getUser(String(transaction.to)))}`, userWhoReceived: `@${(await bot.helpers.getUser(transaction.from))}` }))
                             }
 
                             case false: {
-                                transactionsTexts.push(t('commands:transactions.betLost', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), userWhoSent: `@${(await bot.helpers.getUser(transaction.from))}`, userWhoReceived: `@${(await bot.helpers.getUser(transaction.to))}` }))
+                                transactionsTexts.push(t('commands:transactions.betLost', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), userWhoSent: `@${(await bot.helpers.getUser(String(transaction.from)))}`, userWhoReceived: `@${(await bot.helpers.getUser(transaction.to))}` }))
                             }
                         }
                     }
@@ -152,7 +153,7 @@ export default async function CakesExecutor(context: ChatInputInteractionContext
                 color: 0xfd446e,
                 description: transactions.join('\n'),
                 footer: {
-                    text: t('commands:transactions.footer', { total: userData.transactions.length.toString() })
+                    text: t('commands:transactions.footer', { total: userData.userTransactions.length.toString() })
                 },
             });
 

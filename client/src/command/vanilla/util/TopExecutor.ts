@@ -9,7 +9,7 @@ export default async function TopExecutor(context: ChatInputInteractionContext, 
         case "cakes": {
             let data: any = await bot.database.getAllUsers();
             await context.sendDefer();
-            data = data.sort((a, b) => b.balance - a.balance);
+            data = data.sort((a, b) => b.userCakes.balance - a.userCakes.balance);
 
             const embed = createEmbed({});
             embed.title = context.makeReply(bot.emotes.FOXY_DAILY, "Cakes Global Rank");
@@ -19,7 +19,7 @@ export default async function TopExecutor(context: ChatInputInteractionContext, 
                 let user = await bot.helpers.getUser(data[i]._id);
                 fields.push({
                     name: `${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - ${await bot.foxyRest.getUserDisplayName(user.id)}`,
-                    value: `**${parseInt(data[i].balance).toLocaleString(t.lng || 'pt-BR')}** Cakes`,
+                    value: `**${parseInt(data[i].userCakes.balance).toLocaleString(t.lng || 'pt-BR')}** Cakes`,
                     inline: true,
                 });
             }

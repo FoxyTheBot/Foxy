@@ -10,26 +10,26 @@ const MaskBuyExecutor = async (context: ComponentInteractionContext) => {
     const userData = await bot.database.getUser(context.author.id);
     const clientData = await bot.database.getUser(bot.id);
 
-    switch (userData.premiumType) {
+    switch (userData.userPremium.premiumType) {
         case '2': {
             const discount = (20 / 100) * Number(mask);
             const price = Number(mask) - discount;
 
-            if (userData.balance < price) {
+            if (userData.userCakes.balance < price) {
                 context.followUp({
                     content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale('commands:masks.buy.noMoney')),
                     flags: MessageFlags.EPHEMERAL
                 });
             } else {
-                userData.balance -= price;
-                clientData.balance += price;
-                userData.mask = code;
-                userData.masks.push(code);
-                userData.transactions.push({
-                    to: bot.id,
-                    from: context.author.id,
+                userData.userCakes.balance -= price;
+                clientData.userCakes.balance += price;
+                userData.userProfile.decoration = code;
+                userData.userProfile.decorationList.push(code);
+                userData.userTransactions.push({
+                    to: String(bot.id),
+                    from: String(context.author.id),
                     quantity: price,
-                    date: Date.now(),
+                    date: new Date(Date.now()),
                     received: false,
                     type: 'store'
                 });
@@ -53,8 +53,8 @@ const MaskBuyExecutor = async (context: ComponentInteractionContext) => {
         }
 
         case '3': {
-            userData.mask = code;
-            userData.masks.push(code);
+            userData.userProfile.decoration = code;
+            userData.userProfile.decorationList.push(code);
             await userData.save();
 
             context.sendReply({
@@ -74,21 +74,21 @@ const MaskBuyExecutor = async (context: ComponentInteractionContext) => {
         }
 
         default: {
-            if (userData.balance < mask) {
+            if (userData.userCakes.balance < Number(mask)) {
                 context.followUp({
                     content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale('commands:masks.buy.noMoney')),
                     flags: MessageFlags.EPHEMERAL
                 });
             } else {
-                userData.balance -= Number(mask);
-                clientData.balance += Number(mask);
-                userData.mask = code;
-                userData.masks.push(code);
-                userData.transactions.push({
-                    to: bot.id,
-                    from: context.author.id,
+                userData.userCakes.balance -= Number(mask);
+                clientData.userCakes.balance += Number(mask);
+                userData.userProfile.decoration = code;
+                userData.userProfile.decorationList.push(code);
+                userData.userTransactions.push({
+                    to: String(bot.id),
+                    from: String(context.author.id),
                     quantity: Number(mask),
-                    date: Date.now(),
+                    date: new Date(Date.now()),
                     received: false,
                     type: 'store'
                 });

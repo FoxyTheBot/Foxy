@@ -1,6 +1,7 @@
 import { createCommand } from "../../../structures/createCommand";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { languages } from '../../../../structures/json/languages.json';
+import LanguageExecutor from "../LanguageExecutor";
 
 const avaliableLanguages = languages.map(language => Object({ name: language.name, nameLocalizations: language.nameLocalizations, value: language.value }));
 
@@ -30,7 +31,7 @@ const LanguageCommand = createCommand({
         },
     ],
     execute: async (context, endCommand, t) => {
-      
+      LanguageExecutor(context, endCommand, t);
     }
 });
 

@@ -1,14 +1,10 @@
 import { createCommand } from "../../../structures/createCommand";
-import { createEmbed } from "../../../../utils/discord/Embed";
-import { bot } from "../../../../index";
-import { createActionRow, createButton, createCustomId } from "../../../../utils/discord/Component";
 import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
 import { bglist } from "../../../../structures/json/backgroundList.json";
 import { masks } from '../../../../structures/json/layoutList.json'
-import CreateProfile from '../../../../utils/images/generators/GenerateProfile';
 import MaskBuyExecutor from '../components/MaskBuyExecutor';
 import BackgroundBuyExecutor from '../components/BackgroundBuyExecutor';
-import { MessageFlags } from "../../../../utils/discord/Message";
+import StoreExecutor from "../StoreExecutor";
 
 var choices = [];
 const maskList = masks.map(data => Object({ name: data.name, nameLocalizations: data.nameLocalizations, value: data.id }));
@@ -93,7 +89,7 @@ const StoreCommand = createCommand({
     ],
 
     execute: async (context, endCommand, t) => {
-        
+        StoreExecutor(context, endCommand, t)
     }
 });
 

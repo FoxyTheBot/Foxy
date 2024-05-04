@@ -30,7 +30,7 @@ const componentExecutor = async (interaction: Interaction): Promise<void> => {
       .catch(() => null);
   };
   const user = await bot.database.getUser(interaction.user.id);
-  const T = global.t = i18next.getFixedT(user.language ?? 'pt-BR');
+  const T = global.t = i18next.getFixedT(user.userSettings.language ?? 'pt-BR');
   const command = bot.commands.get(commandName);
 
   if (!command) return errorReply(T('permissions:UNKNOWN_SLASH'));

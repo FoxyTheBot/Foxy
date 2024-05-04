@@ -6,7 +6,7 @@ import ChatInputInteractionContext from "../../structures/ChatInputInteractionCo
 
 export default async function DivorceExecutor(context: ChatInputInteractionContext, endCommand, t) {
     const userData = await bot.database.getUser(context.author.id);
-    const partnerId = await userData.marriedWith;
+    const partnerId = await userData.marryStatus.marriedWith;
 
     if (!partnerId) {
         context.sendReply({
@@ -16,7 +16,7 @@ export default async function DivorceExecutor(context: ChatInputInteractionConte
         return endCommand();
     }
 
-    const userInfo = await bot.helpers.getUser(userData.marriedWith);
+    const userInfo = await bot.helpers.getUser(userData.marryStatus.marriedWith);
 
     context.sendReply({
         content: t("commands:divorce.confirm2", { user: await bot.foxyRest.getUserDisplayName(userInfo.id) }),

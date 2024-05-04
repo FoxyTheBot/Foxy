@@ -11,7 +11,7 @@ export default async function LayoutExecutor(context: ChatInputInteractionContex
         flags: MessageFlags.EPHEMERAL
     });
     const userData = await bot.database.getUser(context.author.id);
-    userData.layout = selectedOption;
+    userData.userProfile.layout = selectedOption;
     await userData.save();
     context.sendReply({
         content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:layouts.changed')),

@@ -5,7 +5,7 @@ import ChatInputInteractionContext from "../../structures/ChatInputInteractionCo
 export default async function LanguageExecutor(context: ChatInputInteractionContext, endCommand, t) {
     const language = context.getOption<string>('language', false);
     const userData = await bot.database.getUser(context.author.id);
-    userData.language = language;
+    userData.userSettings.language = language;
     await userData.save();
 
     context.sendReply({

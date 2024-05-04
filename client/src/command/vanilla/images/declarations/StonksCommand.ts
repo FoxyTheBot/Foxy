@@ -1,7 +1,6 @@
 import { createCommand } from "../../../structures/createCommand";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
-import * as Canvas from "canvas";
-import { serverURL } from '../../../../../config.json';
+import StonksExecutor from "../StonksCommand";
 
 const StonksCommand = createCommand({
     name: "stonks",
@@ -25,7 +24,7 @@ const StonksCommand = createCommand({
         }
     ],
     execute: async (context, endCommand, t) => {
-        
+        StonksExecutor(context, endCommand, t);
     }
 });
 

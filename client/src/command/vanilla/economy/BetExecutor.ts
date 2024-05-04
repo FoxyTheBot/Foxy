@@ -6,7 +6,7 @@ import { ButtonStyles } from "discordeno/types";
 
 export default async function BetExecutor(context: ChatInputInteractionContext, endCommand, t) {
     const user = context.getOption<User>('user', 'users');
-    const amount = context.getOption<Number>('amount', false);
+    const amount = context.getOption<number>('amount', false);
     const choice = context.getOption<string>('choice', false);
     let choices = ['heads', 'tails'];
     const rand = Math.floor(Math.random() * choices.length);
@@ -22,7 +22,7 @@ export default async function BetExecutor(context: ChatInputInteractionContext, 
         return endCommand();
     }
 
-    if (await userData.balance < amount) {
+    if (userData.userCakes.balance < amount.valueOf()) {
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:bet.not-enough', { amount: amount.toLocaleString(t.lng || 'pt-BR'), user: await bot.foxyRest.getUserDisplayName(context.author.id) })),
             flags: 64
@@ -32,7 +32,7 @@ export default async function BetExecutor(context: ChatInputInteractionContext, 
         return endCommand();
     }
 
-    if (await mentionedUserData.balance < amount) {
+    if (await mentionedUserData.userCakes.balance < amount.valueOf()) {
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:bet.not-enough-mention', { amount: amount.toLocaleString(t.lng || 'pt-BR'), user: await bot.foxyRest.getUserDisplayName(user.id) })),
             flags: 64
@@ -47,13 +47,13 @@ export default async function BetExecutor(context: ChatInputInteractionContext, 
                 content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:bet.betWithClient.win', { user: await bot.foxyRest.getUserDisplayName(context.author.id), result: t(`commands:bet.${choices[rand]}`), amount: amount.toLocaleString(t.lng || 'pt-BR') })),
                 flags: 64
             });
-            userData.balance += Number(amount);
-            mentionedUserData.balance -= Number(amount);
-            userData.transactions.push({
-                to: context.author.id,
-                from: user.id,
+            userData.userCakes.balance += Number(amount);
+            mentionedUserData.userCakes.balance -= Number(amount);
+            userData.userTransactions.push({
+                to: String(context.author.id),
+                from: String(user.id),
                 quantity: amount,
-                date: Date.now(),
+                date: new Date(Date.now()),
                 received: true,
                 type: 'bet'
             });
@@ -67,13 +67,13 @@ export default async function BetExecutor(context: ChatInputInteractionContext, 
                 content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:bet.betWithClient.lose', { user: await bot.foxyRest.getUserDisplayName(context.author.id), result: t(`commands:bet.${choices[rand]}`), amount: amount.toLocaleString(t.lng || 'pt-BR') })),
                 flags: 64
             });
-            userData.balance -= Number(amount);
-            mentionedUserData.balance += Number(amount);
-            userData.transactions.push({
-                to: user.id,
-                from: context.author.id,
+            userData.userCakes.balance -= Number(amount);
+            mentionedUserData.userCakes.balance += Number(amount);
+            userData.userTransactions.push({
+                to: String(user.id),
+                from: String(context.author.id),
                 quantity: amount,
-                date: Date.now(),
+                date: new Date(Date.now()),
                 received: false,
                 type: 'bet'
             });

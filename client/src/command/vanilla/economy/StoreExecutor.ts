@@ -18,7 +18,7 @@ export default async function StoreExecutor(context: ChatInputInteractionContext
                 const code = context.getOption<string>('background', false),
                     background = await bglist.find((b) => b.id === code?.toLowerCase());
 
-                if (userData.backgrounds.includes(code)) {
+                if (userData.userProfile.backgroundList.includes(code)) {
                     context.sendReply({
                         content: t('commands:background.buy.alreadyOwned'),
                         flags: MessageFlags.EPHEMERAL
@@ -65,7 +65,7 @@ export default async function StoreExecutor(context: ChatInputInteractionContext
                 await context.sendDefer(true);
                 const code: string = context.getOption<string>("avatar_decoration", false);
                 const mask = masks.find(data => data.id === code?.toLowerCase());
-                if (userData.masks.includes(code?.toLowerCase())) {
+                if (userData.userProfile.decorationList.includes(code?.toLowerCase())) {
                     context.sendReply({
                         content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:masks.alreadyOwned')),
                         flags: MessageFlags.EPHEMERAL

@@ -6,8 +6,8 @@ const MaskSetExecutor = async (context: ComponentInteractionContext) => {
     const choice = context.interaction.data.values[0];
     const userData = await bot.database.getUser(context.author.id);
 
-    if (userData.masks.includes(choice)) {
-        userData.mask = choice;
+    if (userData.userProfile.decorationList.includes(choice)) {
+        userData.userProfile.decoration = choice;
         userData.save();
         context.sendReply({
             content: bot.locale('commands:masks.set.success'),

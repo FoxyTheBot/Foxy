@@ -4,10 +4,11 @@ import moment from 'moment';
 import { getUserAvatar } from '../../discord/User';
 import { serverURL } from '../../../../config.json';
 import { lylist, masks } from '../../../structures/json/layoutList.json';
+import { User } from 'discordeno/transformers';
 
 let font = "#ffffff";
 export default class CreateProfile {
-    private user: any;
+    private user: User;
     private data: any;
     private readonly width: number;
     private readonly height: number;
@@ -29,7 +30,7 @@ export default class CreateProfile {
     }
 
     async create() {
-        let userAboutme: string = this.data.aboutme;
+        let userAboutme: string = this.data.userProfile.aboutme;
         if (!userAboutme) userAboutme = `${this.locale("commands:profile.noAboutme")}`;
 
         if (userAboutme.length > 84) {
@@ -40,9 +41,9 @@ export default class CreateProfile {
 
         const canvas = Canvas.createCanvas(this.width, this.height);
         const context = canvas.getContext("2d");
-        const isLayoutWhite = lylist.find((l) => l.id === this.data.layout).darkText;
-        let layout = await Canvas.loadImage(`${serverURL}/layouts/${this.data.layout}`);
-        background = await Canvas.loadImage(`${serverURL}/backgrounds/${this.data.background}`);
+        const isLayoutWhite = lylist.find((l) => l.id === this.data.userProfile.layout).darkText;
+        let layout = await Canvas.loadImage(`${serverURL}/layouts/${this.data.userProfile.layout}`);
+        background = await Canvas.loadImage(`${serverURL}/backgrounds/${this.data.userProfile.background}`);
 
         if (this.testMode && !this.mask) {
             background = await Canvas.loadImage(`${serverURL}/backgrounds/${this.code}`);
@@ -61,15 +62,15 @@ export default class CreateProfile {
 
         context.font = '40px sans-serif';
         context.fillStyle = font;
-        context.fillText(`Cakes: \n${this.data.balance}\nReps: ${this.data.repCount}`, canvas.width / 1.2, canvas.height / 1.4);
+        context.fillText(`Cakes: \n${this.data.userCakes.balance}\nReps: ${this.data.userProfile.repCount}`, canvas.width / 1.2, canvas.height / 1.4);
 
-        if (this.data.marriedWith) {
+        if (this.data.marryStatus.marriedWith) {
             moment.locale(this.locale.lng)
-            const partnerDisplayName = await bot.foxyRest.getUserDisplayName(this.data.marriedWith);
+            const partnerDisplayName = await bot.foxyRest.getUserDisplayName(this.data.marryStatus.marriedWith);
             context.font = ('30px sans-serif');
             context.fillStyle = font;
             context.fillText(this.locale("commands:profile.marriedWith", {
-                user: `${partnerDisplayName}`, relativeTime: moment(this.data.marriedDate, "YYYYMMDD").fromNow(), date: this.data.marriedDate.toLocaleString(this.locale.lng, { timeZone: "America/Sao_Paulo", year: 'numeric', month: 'numeric', day: 'numeric' })
+                user: `${partnerDisplayName}`, relativeTime: moment(this.data.marryStatus.marriedDate, "YYYYMMDD").fromNow(), date: this.data.marryStatus.marriedDate.toLocaleString(this.locale.lng, { timeZone: "America/Sao_Paulo", year: 'numeric', month: 'numeric', day: 'numeric' })
             }), canvas.width / 50, canvas.height - 15 / 1);
         }
 
@@ -90,9 +91,9 @@ export default class CreateProfile {
         context.drawImage(avatar, 25, 600, 200, 200);
         context.restore();
 
-        if (this.data.mask && !this.mask) {
-            const mask = await Canvas.loadImage(`${serverURL}/masks/${this.data.mask}`);
-            const allMasks = masks.find((m) => m.id === this.data.mask);
+        if (this.data.userProfile.decoration && !this.mask) {
+            const mask = await Canvas.loadImage(`${serverURL}/masks/${this.data.userProfile.decoration}`);
+            const allMasks = masks.find((m) => m.id === this.data.userProfile.decoration);
 
             if (allMasks.type === "face-mask") {
                 context.drawImage(mask, canvas.width / 100.0, canvas.height / 1.45, 220, 210);

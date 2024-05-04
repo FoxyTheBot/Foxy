@@ -10,7 +10,7 @@ const BackgroundExecutor = async (context: ComponentInteractionContext) => {
     const userData = await bot.database.getUser(context.author.id);
     const clientData = await bot.database.getUser(bot.id);
 
-    if (userData.balance < background) {
+    if (userData.userCakes.balance < Number(background)) {
         context.followUp({
             content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale('commands:background.buy.noMoney')),
             flags: MessageFlags.EPHEMERAL
@@ -25,8 +25,8 @@ const BackgroundExecutor = async (context: ComponentInteractionContext) => {
 
         //     clientData.balance += clientMoney;
         //     bgAuthor.balance += bgAuthorMoney;
-        //     userData.backgrounds.push(code);
-        //     userData.background = code;
+        //     userData.userProfile.backgroundList.push(code);
+        //     userData.userProfile.background = code;
         //     await userData.save();
         //     await clientData.save();
         //     await bgAuthor.save();
@@ -47,15 +47,15 @@ const BackgroundExecutor = async (context: ComponentInteractionContext) => {
         //     })
         // }
 
-        userData.balance -= Number(background);
-        clientData.balance += Number(background);
-        userData.backgrounds.push(code);
-        userData.background = code;
-        userData.transactions.push({
-            to: bot.id,
-            from: context.author.id,
+        userData.userCakes.balance -= Number(background);
+        clientData.userCakes.balance += Number(background);
+        userData.userProfile.backgroundList.push(code);
+        userData.userProfile.background = code;
+        userData.userTransactions.push({
+            to: String(bot.id),
+            from: String(context.author.id),
             quantity: Number(background),
-            date: Date.now(),
+            date: new Date(Date.now()),
             received: false,
             type: 'store'
         });

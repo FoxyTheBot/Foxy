@@ -2,7 +2,7 @@ import * as Canvas from "canvas";
 import { serverURL } from '../../../../config.json';
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 
-export default async function NotStonksExecutor(context: ChatInputInteractionContext, endCommand, t) {
+export default async function StonksExecutor(context: ChatInputInteractionContext, endCommand, t) {
     const content = context.getOption<string>("text", false);
     const canvas = Canvas.createCanvas(800, 600);
     const ctx = canvas.getContext("2d");

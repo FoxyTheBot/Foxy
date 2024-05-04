@@ -15,7 +15,7 @@ export default async function AboutMeExecutor(context: ChatInputInteractionConte
         content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:aboutme.set", { aboutme: text })),
         flags: MessageFlags.EPHEMERAL
     })
-    userData.aboutme = text;
+    userData.userProfile.aboutme = text;
     await userData.save();
     endCommand();
 }

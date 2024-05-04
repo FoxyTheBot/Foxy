@@ -8,20 +8,20 @@ const CakeTransferExecutor = async (context: ComponentInteractionContext) => {
 
     const userData = await bot.database.getUser(BigInt(user));
     const authorData = await bot.database.getUser(context.author.id);
-    userData.balance += Number(value);
-    authorData.balance -= Number(value);
-    authorData.transactions.push({
+    userData.userCakes.balance += Number(value);
+    authorData.userCakes.balance -= Number(value);
+    authorData.userTransactions.push({
         to: user,
-        from: context.author.id,
+        from: String(context.author.id),
         quantity: Number(value),
-        date: Date.now(),
+        date: new Date(Date.now()),
         received: false,
         type: 'send'
-    }) && userData.transactions.push({
+    }) && userData.userTransactions.push({
         to: user,
-        from: context.author.id,
+        from: String(context.author.id),
         quantity: Number(value),
-        date: Date.now(),
+        date: new Date(Date.now()),
         received: true,
         type: 'receive'
     });

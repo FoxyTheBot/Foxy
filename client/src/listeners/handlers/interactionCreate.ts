@@ -11,10 +11,10 @@ import { createActionRow, createButton } from '../../utils/discord/Component';
 const setInteractionCreateEvent = (): void => {
     bot.events.interactionCreate = async (_, interaction) => {
         const user = await bot.database.getUser(interaction.user.id);
-        const locale = global.t = i18next.getFixedT(user.language || 'pt-BR');
+        const locale = global.t = i18next.getFixedT(user.userSettings.language || 'pt-BR');
         bot.locale = locale;
         const command = bot.commands.get(interaction.data?.name);
-        const context = new ChatInputInteractionContext(interaction, user)
+        const context = new ChatInputInteractionContext(interaction, locale);
 
         if (interaction.type === InteractionTypes.MessageComponent || interaction.type === InteractionTypes.ModalSubmit) {
             componentExecutor(interaction);
@@ -43,7 +43,7 @@ const setInteractionCreateEvent = (): void => {
                     description: locale('events:ban.description'),
                     fields: [
                         { name: locale('events:ban.reason'), value: user.banReason },
-                        { name: locale('events:ban.date'), value: user.banData.toLocaleString(global.t.lng || 'pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }
+                        { name: locale('events:ban.date'), value: user.banDate.toLocaleString(global.t.lng || 'pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }
                     ]
                 })
                 return context.sendReply({

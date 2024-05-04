@@ -10,12 +10,12 @@ export default async function DailyExecutor(context: ChatInputInteractionContext
     let amount = Math.floor(Math.random() * 8000);
     amount = Math.round(amount / 10) * 10;
 
-    const daily = await userData.lastDaily;
-    const premiumType = await userData.premiumType ?? 0;
+    const daily = await userData.userCakes.lastDaily;
+    const premiumType = await userData.userPremium.premiumType ?? 0;
     var multiplier;
     var oldquantity = amount;
-    if (daily !== null && timeout - (Date.now() - daily) > 0) {
-        const currentCooldown = ms(timeout - (Date.now() - daily));
+    if (daily !== null && timeout - (Date.now() - Number(daily)) > 0) {
+        const currentCooldown = ms(timeout - (Date.now() - Number(daily)));
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:daily.cooldown', { time: currentCooldown })),
             flags: 64
@@ -44,21 +44,21 @@ export default async function DailyExecutor(context: ChatInputInteractionContext
             }
         }
 
-        userData.balance += amount;
-        userData.lastDaily = Date.now();
-        userData.transactions.push({
-            to: context.author.id,
+        userData.userCakes.balance += amount;
+        userData.userCakes.lastDaily = new Date(Date.now());
+        userData.userTransactions.push({
+            to: String(context.author.id),
             from: null,
             quantity: amount,
-            date: Date.now(),
+            date: new Date(Date.now()),
             received: true,
             type: 'daily'
         });
         userData.save().catch(err => console.log(err));
 
-        const money = await userData.balance;
+        const money = await userData.userCakes.balance;
 
-        switch (await userData.premium) {
+        switch (await userData.userPremium.premium) {
             case true: {
                 context.sendReply({
                     content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.dailyPremium', { boost: multiplier, amount: amount.toLocaleString(t.lng || 'pt-BR'), money: money.toLocaleString(t.lng || 'pt-BR'), old: oldquantity.toLocaleString(t.lng || 'pt-BR') })) + "\n" + context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:daily.dailyAlert')),

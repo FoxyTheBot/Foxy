@@ -1,6 +1,7 @@
 import { createCommand } from "../../../structures/createCommand";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { lylist } from '../../../../structures/json/layoutList.json';
+import LayoutExecutor from "../LayoutExecutor";
 
 const choices = lylist.map(data => Object({ name: data.name, nameLocalizations: data.nameLocalizations, value: data.id }));
 const LayoutCommand = createCommand({
@@ -39,7 +40,7 @@ const LayoutCommand = createCommand({
         }
     ],
     execute: async (context, endCommand, t) => {
-        
+        LayoutExecutor(context, endCommand, t);
     }
 });
 

@@ -37,7 +37,7 @@ const BetButtonExecutor = async (context: ComponentInteractionContext) => {
             content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale('commands:bet.denied'))
         })
     } else {
-        if (await userData.balance < amount) {
+        if (Number(userData.userCakes.balance) < Number(amount)) {
             context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, bot.locale('commands:bet.not-enough', { amount: amount.toString(), user: await bot.foxyRest.getUserDisplayName(context.author.id) })),
                 flags: 64
@@ -47,7 +47,7 @@ const BetButtonExecutor = async (context: ComponentInteractionContext) => {
             return;
         }
 
-        if (await mentionData.balance < amount) {
+        if (await mentionData.userCakes.balance < Number(amount)) {
             context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, bot.locale('commands:bet.not-enough-mention', { amount: amount.toString(), user: await bot.foxyRest.getUserDisplayName(targetId) })),
                 flags: 64
@@ -61,8 +61,8 @@ const BetButtonExecutor = async (context: ComponentInteractionContext) => {
                 content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:bet.win', { user: await bot.foxyRest.getUserDisplayName(targetId), author: await bot.foxyRest.getUserDisplayName(context.author.id), choice: bot.locale(`commands:bet.${avaliableChoices[rand]}`), amount: `${amount}` })),
             });
 
-            userData.balance += Number(amount);
-            mentionData.balance -= Number(amount);
+            userData.userCakes.balance += Number(amount);
+            mentionData.userCakes.balance -= Number(amount);
             userData.save();
             mentionData.save();
         } else if (choice !== avaliableChoices[rand]) {
@@ -70,8 +70,8 @@ const BetButtonExecutor = async (context: ComponentInteractionContext) => {
                 content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:bet.lose', { user: await bot.foxyRest.getUserDisplayName(targetId), author: await bot.foxyRest.getUserDisplayName(context.author.id), choice: bot.locale(`commands:bet.${avaliableChoices[rand]}`), amount: `${amount}` })),
             });
 
-            userData.balance -= Number(amount);
-            mentionData.balance += Number(amount);
+            userData.userCakes.balance -= Number(amount);
+            mentionData.userCakes.balance += Number(amount);
             userData.save();
             mentionData.save();
         }

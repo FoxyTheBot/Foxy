@@ -7,10 +7,10 @@ const MarryButtonExecutor = async (context: ComponentInteractionContext) => {
     const userData = await bot.database.getUser(context.author.id);
     const partnerData = await bot.database.getUser(context.interaction.user.id);
 
-    userData.marriedWith = context.user.id;
-    userData.marriedDate = new Date();
-    partnerData.marriedWith = context.author.id;
-    partnerData.marriedDate = new Date();
+    userData.marryStatus.marriedWith = String(context.user.id);
+    userData.marryStatus.marriedDate = new Date();
+    partnerData.marryStatus.marriedWith = String(context.user.id);
+    partnerData.marryStatus.marriedDate = new Date();
     await userData.save();
     await partnerData.save();
 
