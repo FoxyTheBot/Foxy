@@ -2,16 +2,6 @@ import { bot } from "../../";
 import config from "../../../config.json";
 const setGuildCreateEvent = (): void => {
     bot.events.guildCreate = async (_, guild) => {
-        const guildId = guild.id;
-        if (guild.toggles.unavailable) {
-            return bot.helpers.sendWebhookMessage(config.webhooks.join_leave_guild.id, config.webhooks.join_leave_guild.token, {
-                embeds: [{
-                    title: `<:emoji:${bot.emotes.FOXY_CRY}> **|** Servidor indisponivel!`,
-                    description: `**ID:** ${guild}`,
-                }]
-            });
-        };
-
         const guildData = await bot.database.getGuild(guild.id)
         if (!guildData) {
             await bot.database.addGuild(guild.id);
