@@ -7,7 +7,6 @@ import { bot } from '../..';
 import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
 import DatabaseConnection from '../database/DatabaseConnection';
 import config from '../../../config.json';
-import { startActivities } from '../../utils/Activities';
 import { FoxyRestManager } from '../../utils/RestManager';
 
 const setupFoxy = async (client: FoxyClient): Promise<void> => {
@@ -33,7 +32,6 @@ const setupFoxy = async (client: FoxyClient): Promise<void> => {
     };
     loadCommands();
     loadLocales();
-    startActivities();
 }
 
 const startCacheHandler = async (client: FoxyClient): Promise<void> => {
