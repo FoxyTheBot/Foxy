@@ -4,6 +4,7 @@ import { mongouri } from '../../../config.json';
 import { bot } from '../../index';
 import { User } from 'discordeno/transformers';
 import { FoxyClient } from '../types/foxy';
+import { Schemas } from './schemas/Schemas';
 
 export default class DatabaseConnection {
     public client: FoxyClient;
@@ -20,135 +21,12 @@ export default class DatabaseConnection {
         });
         logger.info(`[DATABASE] Connected to database!`);
 
-        const keySchema = new mongoose.Schema({
-            key: String,
-            used: Boolean,
-            expiresAt: Date,
-            pType: Number,
-            guild: String,
-        }, { versionKey: false, id: false });
-        const transactionSchema = new mongoose.Schema({
-            to: String,
-            from: String,
-            quantity: Number,
-            date: Date,
-            received: Boolean,
-            type: String
-        }, {
-            versionKey: false, id: false
-        });
-        const petSchema = new mongoose.Schema({
-            name: String,
-            type: String,
-            rarity: String,
-            level: Number,
-            hungry: Number,
-            happy: Number,
-            health: Number,
-            lastHungry: Date,
-            lastHappy: Date,
-            isDead: Boolean,
-            isClean: Boolean,
-            food: Array
-        }, { versionKey: false, id: false });
-        const keySchemaForGuilds = new mongoose.Schema({
-            key: String,
-            used: Boolean,
-            expiresAt: Date,
-            pType: Number,
-            guild: String,
-            owner: String,
-        }, {
-            versionKey: false, id: false
-        });
-        const userSchema = new mongoose.Schema({
-            _id: String,
-            userCreationTimestamp: Date,
-            isBanned: Boolean,
-            banDate: Date,
-            banReason: String,
-            userCakes: {
-                balance: Number,
-                lastDaily: Date,
-            },
-            marryStatus: {
-                marriedWith: String,
-                marriedDate: Date,
-                cantMarry: Boolean,
-            },
-            userProfile: {
-                decoration: String,
-                decorationList: Array,
-                background: String,
-                backgroundList: Array,
-                repCount: Number,
-                lastRep: Date,
-                layout: String,
-                aboutme: String,
-            },
-            userPremium: {
-                premium: Boolean,
-                premiumDate: Date,
-                premiumType: String,
-            },
-            userSettings: {
-                language: String
-            },
-            petInfo: petSchema,
-            userTransactions: [transactionSchema],
-            riotAccount: {
-                isLinked: Boolean,
-                puuid: String,
-                isPrivate: Boolean,
-                region: String
-            },
-            premiumKeys: [keySchema]
-        }, { versionKey: false, id: false });
+        this.user = mongoose.model('user', Schemas.userSchema);
+        this.commands = mongoose.model('commands', Schemas.commandsSchema);
+        this.guilds = mongoose.model('guilds', Schemas.guildSchema);
+        this.key = mongoose.model('key', Schemas.keySchema);
 
-        const commandsSchema = new mongoose.Schema({
-            commandName: String,
-            commandUsageCount: Number,
-            description: String,
-            isInactive: Boolean,
-            subcommands: Array,
-            usage: Array
-        }, { versionKey: false, id: false });
-
-        const guildSchema = new mongoose.Schema({
-            _id: String,
-            GuildJoinLeaveModule: {
-                isEnabled: Boolean,
-                joinMessage: String,
-                alertWhenUserLeaves: Boolean,
-                leaveMessage: String,
-                joinChannel: String,
-                leaveChannel: String,
-            },
-            valAutoRoleModule: {
-                isEnabled: Boolean,
-                unratedRole: String,
-                ironRole: String,
-                bronzeRole: String,
-                silverRole: String,
-                goldRole: String,
-                platinumRole: String,
-                diamondRole: String,
-                ascendantRole: String,
-                immortalRole: String,
-                radiantRole: String,
-            },
-            premiumKeys: [keySchemaForGuilds]
-        }, { versionKey: false, id: false });
-        const riotAccountSchema = new mongoose.Schema({
-            puuid: String,
-            authCode: String,
-        });
-
-        this.user = mongoose.model('user', userSchema);
-        this.commands = mongoose.model('commands', commandsSchema);
-        this.guilds = mongoose.model('guilds', guildSchema);
-        this.key = mongoose.model('key', keySchema);
-        this.riotAccount = mongoose.model('riotAccount', riotAccountSchema);
+        this.riotAccount = mongoose.model('riotAccount', Schemas.riotAccountSchema);
         this.client = client;
     }
 
@@ -239,19 +117,15 @@ export default class DatabaseConnection {
         }
     }
     async updateCommand(commandName: string): Promise<void> {
-        let commandFromDB = await this.commands.findOne({ commandName: commandName });
+        let commandFromDB = await this.commands.findOneAndUpdate(
+            { commandName: commandName },
+            { $inc: { commandUsageCount: 1 } },
+            { upsert: true, new: true }
+        );
+
         let command = await bot.commands.get(commandName);
 
-        if (command.devsOnly) return null;
-        if (!commandFromDB) {
-            commandFromDB = new this.commands({
-                commandName: commandName,
-                commandUsageCount: 1,
-            }).save();
-        } else {
-            commandFromDB.commandUsageCount++;
-            commandFromDB.save();
-        }
+        if (!command || command.devsOnly) return null;
 
         return commandFromDB;
     }

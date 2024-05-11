@@ -70,7 +70,7 @@ export default class CreateProfile {
             context.font = ('30px sans-serif');
             context.fillStyle = font;
             context.fillText(this.locale("commands:profile.marriedWith", {
-                user: `${partnerDisplayName}`, relativeTime: moment(this.data.marryStatus.marriedDate, "YYYYMMDD").fromNow(), date: this.data.marryStatus.marriedDate.toLocaleString(this.locale.lng, { timeZone: "America/Sao_Paulo", year: 'numeric', month: 'numeric', day: 'numeric' })
+                user: partnerDisplayName, relativeTime: moment(this.data.marryStatus.marriedDate, "YYYYMMDD").fromNow(), date: this.data.marryStatus.marriedDate.toLocaleString(this.locale.lng, { timeZone: "America/Sao_Paulo", year: 'numeric', month: 'numeric', day: 'numeric' })
             }), canvas.width / 50, canvas.height - 15 / 1);
         }
 
