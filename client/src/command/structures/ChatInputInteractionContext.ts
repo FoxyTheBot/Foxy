@@ -65,11 +65,26 @@ export default class {
         return `<:emoji:${id}>`;
     }
 
+    convertToDiscordTimestamp(date: Date, type: "relative" | "shorttime" | "longtime" | "long-and-relative"): string {
+        switch (type) {
+            case "relative":
+                return `<t:${Math.floor(date.getTime() / 1000).toFixed(0)}:R>`;
+            case "shorttime":
+                return `<t:${Math.floor(date.getTime() / 1000).toFixed(0)}:t>`;
+            case "longtime":
+                return `<t:${Math.floor(date.getTime() / 1000).toFixed(0)}:T>`;
+            case "long-and-relative":
+                return `<t:${Math.floor(date.getTime() / 1000).toFixed(0)}:f> (<t:${Math.floor(date.getTime() / 1000).toFixed(0)}:R>)`;
+        }
+    }
+
     getContent(url) {
         return new Promise((resolve, reject) => {
-            get(url, { headers: { 
-                'Authorization': `${foxyAPIToken}`,
-            }}, (res) => {
+            get(url, {
+                headers: {
+                    'Authorization': `${foxyAPIToken}`,
+                }
+            }, (res) => {
                 const { statusCode } = res;
                 if (statusCode !== 200) {
                     res.resume();
