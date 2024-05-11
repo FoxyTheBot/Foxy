@@ -23,6 +23,23 @@
             "pt-BR": "Português do Brasil"
         }
     },
+    "pet": {
+        "view": {
+            "description": "Seu pet é do tipo {{type}}",
+            "fields": {
+                "level": "Nível",
+                "health": "Vida",
+                "hungry": "Alimentação",
+                "happy": "Felicidade",
+                "lastHungry": "Última alimentação",
+                "lastHappy": "Última vez feliz"
+            },
+            "buttons": {
+                "feed": "Alimentar",
+                "play": "Brincar"
+            }
+        }
+    },
     "anime": {
         "info": {
             "status": "Status",

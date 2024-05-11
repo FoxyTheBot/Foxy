@@ -135,13 +135,35 @@
         usage: Array
     }, { versionKey: false, id: false });
 
+    const backgroundSchema = new mongoose.Schema({
+        id: String,
+        name: String,
+        cakes: Number,
+        filename: String,
+        description: String,
+        author: String,
+        inactive: Boolean,
+    }, { versionKey: false, id: false } );
+
+    const avatarDecorationSchema = new mongoose.Schema({
+        id: String,
+        name: String,
+        cakes: Number,
+        filename: String,
+        description: String,
+        inactive: Boolean,
+        author: String,
+        isMask: Boolean,
+    }, { versionKey: false, id: false });
 
     export const Schemas = {
         userSchema,
         guildSchema,
         commandsSchema,
+        backgroundSchema,
         riotAccountSchema,
         keySchema,
+        avatarDecorationSchema
     };
 
     /* End of bot related schemas */

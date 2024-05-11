@@ -5,6 +5,7 @@ import { bot } from '../../index';
 import { User } from 'discordeno/transformers';
 import { FoxyClient } from '../types/foxy';
 import { Schemas } from './schemas/Schemas';
+import { Background } from '../types/background';
 
 export default class DatabaseConnection {
     public client: FoxyClient;
@@ -13,6 +14,9 @@ export default class DatabaseConnection {
     public commands: any;
     public guilds: any;
     public riotAccount: any;
+    public backgrounds: any;
+    public layouts: any;
+    public decorations: any;
 
     constructor(client) {
         mongoose.set("strictQuery", true)
@@ -25,7 +29,8 @@ export default class DatabaseConnection {
         this.commands = mongoose.model('commands', Schemas.commandsSchema);
         this.guilds = mongoose.model('guilds', Schemas.guildSchema);
         this.key = mongoose.model('key', Schemas.keySchema);
-
+        this.backgrounds = mongoose.model('backgrounds', Schemas.backgroundSchema);
+        this.decorations = mongoose.model('decorations', Schemas.avatarDecorationSchema);
         this.riotAccount = mongoose.model('riotAccount', Schemas.riotAccountSchema);
         this.client = client;
     }
@@ -209,5 +214,25 @@ export default class DatabaseConnection {
     async getAllGuilds(): Promise<void> {
         let guildsData = await this.guilds.find({});
         return guildsData.length;
+    }
+
+    async getAllBackgrounds(): Promise<Background[]> {
+        let backgroundsData = await this.backgrounds.find({});
+        return backgroundsData.map(background => background.toJSON());
+    }
+
+    async getAllDecorations(): Promise<any> {
+        let decorationsData = await this.decorations.find({});
+        return decorationsData.map(decoration => decoration.toJSON());
+    }
+
+    async getBackground(backgroundId: string): Promise<Background> {
+        let background = await this.backgrounds.findOne({ id: backgroundId });
+        return background;
+    }
+
+    async getDecoration(decorationId: string): Promise<any> {
+        let decoration = await this.decorations.findOne({ id: decorationId });
+        return decoration;
     }
 }
