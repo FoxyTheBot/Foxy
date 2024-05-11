@@ -9,7 +9,7 @@ const setReadyEvent = (): void => {
         if (!bot.isProduction) {
             bot.helpers.editBotStatus({
                 activities: [{
-                    name: "https://www.youtube.com/watch?v=HdnTSXUWd3E",
+                    name: "I bless the rains down in Africa 🎶",
                     type: ActivityTypes.Game,
                     createdAt: Date.now(),
                 }],
