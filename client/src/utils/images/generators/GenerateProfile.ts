@@ -3,7 +3,7 @@ import { bot } from "../../../index";
 import moment from 'moment';
 import { getUserAvatar } from '../../discord/User';
 import { serverURL } from '../../../../config.json';
-import { lylist, masks } from '../../../structures/json/layoutList.json';
+import { lylist } from '../../../structures/json/layoutList.json';
 import { User } from 'discordeno/transformers';
 
 let font = "#ffffff";
@@ -93,7 +93,7 @@ export default class CreateProfile {
 
         if (this.data.userProfile.decoration && !this.mask) {
             const mask = await Canvas.loadImage(`${serverURL}/masks/${this.data.userProfile.decoration}`);
-            const allMasks = masks.find((m) => m.id === this.data.userProfile.decoration);
+            const allMasks =(await bot.database.getAllDecorations()).find((m) => m.id === this.data.userProfile.decoration);
 
             if (allMasks.type === "face-mask") {
                 context.drawImage(mask, canvas.width / 100.0, canvas.height / 1.45, 220, 210);

@@ -6,9 +6,9 @@
                 "pt-BR": "Tema Escuro do Discord"
             },
             "id": "default",
-            "price": "free",
             "filename": "default.png",
-            "darkText": false
+            "darkText": false,
+            "cakes": 0
         },
         {
             "name": "Red",
@@ -16,9 +16,9 @@
                 "pt-BR": "Vermelho"
             },
             "id": "red",
-            "price": "free",
             "filename": "red.png",
-            "darkText": false
+            "darkText": false,
+            "cakes": 0
         },
         {
             "name": "Blue",
@@ -26,9 +26,9 @@
                 "pt-BR": "Azul"
             },
             "id": "blue",
-            "price": "free",
             "filename": "blue.png",
-            "darkText": false
+            "darkText": false,
+            "cakes": 0
         },
         {
             "name": "Purple",
@@ -36,9 +36,9 @@
                 "pt-BR": "Roxo"
             },
             "id": "purple",
-            "price": "free",
             "filename": "purple.png",
-            "darkText": false
+            "darkText": false,
+            "cakes": 0
         },
         {
             "name": "Cyan",
@@ -46,9 +46,9 @@
                 "pt-BR": "Ciano"
             },
             "id": "cyan",
-            "price": "free",
             "filename": "cyan.png",
-            "darkText": false
+            "darkText": false,
+            "cakes": 0
         },
         {
             "name": "Discord Light Theme",
@@ -56,66 +56,9 @@
                 "pt-BR": "Tema Claro do Discord"
             },
             "id": "light",
-            "price": "free",
             "filename": "discord_light.png",
-            "darkText": true
-        }
-    ],
-    "masks": [
-        {
-            "name": "Ears",
-            "nameLocalizations": {
-                "pt-BR": "Orelhas"
-            },
-            "id": "ears",
-            "filename": "ears.png",
-            "price": 50000
-        },
-        {
-            "name": "Horns",
-            "nameLocalizations": {
-                "pt-BR": "Chifres"
-            },
-            "id": "horns",
-            "filename": "horns.png",
-            "price": 50000
-        },
-        {
-            "name": "Halo",
-            "nameLocalizations": {
-                "pt-BR": "Anjo"
-            },
-            "id": "halo",
-            "filename": "halo.png",
-            "price": 50000
-        },
-        {
-            "name": "Cowboy",
-            "nameLocalizations": {
-                "pt-BR": "Cowboy"
-            },
-            "id": "cowboy",
-            "filename": "cowboy.png",
-            "price": 50000
-        },
-        {
-            "name": "Topper",
-            "nameLocalizations": {
-                "pt-BR": "Cartola"
-            },
-            "id": "topper",
-            "filename": "topper.png",
-            "price": 50000
-        },
-        {
-            "name": "Yoru's Ultimate",
-            "nameLocalizations": {
-                "pt-BR": "Ultimate do Yoru"
-            },
-            "id": "yoru-mask",
-            "filename": "yoru-mask.png",
-            "price": 60500,
-            "type": "face-mask"
+            "darkText": true,
+            "cakes": 0
         }
     ]
 }
