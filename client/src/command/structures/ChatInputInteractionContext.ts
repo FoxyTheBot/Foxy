@@ -2,7 +2,7 @@ import { InteractionResponseTypes, InteractionCallbackData, ApplicationCommandOp
 import { Interaction, User } from 'discordeno/transformers';
 import { TFunction } from 'i18next';
 import { MessageFlags } from '../../utils/discord/Message';
-import { bot } from "../../index";
+import { bot } from "../../FoxyLauncher";
 import { get } from 'https'
 import { URL } from 'url';
 import { getOptionFromInteraction } from './GetCommandOption';

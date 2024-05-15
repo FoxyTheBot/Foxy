@@ -1,4 +1,4 @@
-import { bot } from "../../..";
+import { bot } from "../../../FoxyLauncher";
 import { MessageFlags } from "../../../utils/discord/Message";
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 

@@ -1,6 +1,6 @@
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import ms from 'ms';
-import { bot } from '../../../index';
+import { bot } from '../../../FoxyLauncher';
 import { MessageFlags } from '../../../utils/discord/Message';
 
 export default async function DailyExecutor(context: ChatInputInteractionContext, endCommand, t) {

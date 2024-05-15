@@ -1,4 +1,4 @@
-import { bot } from "../../../../index";
+import { bot } from "../../../../FoxyLauncher";
 import ComponentInteractionContext from "../../../structures/ComponentInteractionContext";
 import { createActionRow, createCustomId, createSelectMenu } from "../../../../utils/discord/Component";
 

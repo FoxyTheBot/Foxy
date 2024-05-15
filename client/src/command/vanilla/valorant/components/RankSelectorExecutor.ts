@@ -1,5 +1,5 @@
 import { MessageComponentTypes } from "discordeno/types";
-import { bot } from "../../../../index";
+import { bot } from "../../../../FoxyLauncher";
 import ComponentInteractionContext from "../../../structures/ComponentInteractionContext";
 import { createCustomId } from "../../../../utils/discord/Component";
 

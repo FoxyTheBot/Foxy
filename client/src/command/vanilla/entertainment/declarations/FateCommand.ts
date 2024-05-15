@@ -1,7 +1,7 @@
 import { createCommand } from "../../../structures/createCommand";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { User } from "discordeno/transformers";
-import { bot } from "../../../../index";
+import { bot } from "../../../../FoxyLauncher";
 import FateExecutor from "../FateExecutor";
 
 const FateCommand = createCommand({

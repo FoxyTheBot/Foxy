@@ -3,7 +3,7 @@ import { createEmbed } from "../../../utils/discord/Embed";
 import { createActionRow, createButton } from "../../../utils/discord/Component";
 import { ButtonStyles } from "discordeno/types";
 import { getPlayerInfo, getPlayerBadges, getIdFromUsername } from "noblox.js";
-import { bot } from "../../../index";
+import { bot } from "../../../FoxyLauncher";
 import { MessageFlags } from "../../../utils/discord/Message";
 
 export default async function RobloxExecutor(context: ChatInputInteractionContext, endCommand, t) {

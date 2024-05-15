@@ -1,5 +1,5 @@
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
-import { bot } from "../../../index";
+import { bot } from "../../../FoxyLauncher";
 import { createButton, createCustomId, createActionRow } from "../../../utils/discord/Component";
 import { ButtonStyles } from "discordeno/types";
 import { User } from "discordeno/transformers";

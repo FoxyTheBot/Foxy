@@ -1,5 +1,5 @@
-import { bot } from "../../";
-import config from "../../../config.json";
+import { bot } from "../FoxyLauncher";
+import config from "../../config.json";
 
 const setGuildDeleteEvent = (): void => {
     bot.events.guildDelete = async (_, guild) => {

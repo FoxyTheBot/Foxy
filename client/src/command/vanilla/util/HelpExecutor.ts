@@ -1,4 +1,4 @@
-import { bot } from "../../..";
+import { bot } from "../../../FoxyLauncher";
 import { createEmbed } from "../../../utils/discord/Embed";
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 

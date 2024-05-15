@@ -1,7 +1,7 @@
 import { InteractionResponseTypes, InteractionCallbackData } from 'discordeno';
 import { User } from 'discordeno/transformers';
 import { ComponentInteraction } from '../../structures/types/interaction';
-import { bot } from "../../index";
+import { bot } from "../../FoxyLauncher";
 import { get } from 'https';
 import { URL } from 'url';
 import { MessageFlags } from '../../utils/discord/Message';

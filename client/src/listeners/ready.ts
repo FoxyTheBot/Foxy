@@ -1,6 +1,6 @@
-import { logger } from "../../utils/logger"
-import { postInfo } from "../../utils/dbl";
-import { bot } from "../../index";
+import { logger } from "../utils/logger"
+import { postInfo } from "../utils/dbl";
+import { bot } from "../FoxyLauncher";
 import { ActivityTypes } from "discordeno/types";
 
 const setReadyEvent = (): void => {

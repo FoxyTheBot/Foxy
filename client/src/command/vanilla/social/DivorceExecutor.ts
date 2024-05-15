@@ -1,7 +1,7 @@
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import { ButtonStyles } from "discordeno/types";
 import { MessageFlags } from "../../../utils/discord/Message";
-import { bot } from "../../../index";
+import { bot } from "../../../FoxyLauncher";
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 
 export default async function DivorceExecutor(context: ChatInputInteractionContext, endCommand, t) {

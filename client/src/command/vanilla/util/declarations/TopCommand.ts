@@ -1,7 +1,7 @@
 import { createCommand } from "../../../structures/createCommand";
 import { createEmbed } from "../../../../utils/discord/Embed";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
-import { bot } from "../../../../index";
+import { bot } from "../../../../FoxyLauncher";
 import TopExecutor from "../TopExecutor";
 
 const TopCommand = createCommand({

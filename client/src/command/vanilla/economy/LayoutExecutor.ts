@@ -1,6 +1,6 @@
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { MessageFlags } from "../../../utils/discord/Message";
-import { bot } from "../../../index";
+import { bot } from "../../../FoxyLauncher";
 import { lylist } from '../../../structures/json/layoutList.json';
 
 export default async function LayoutExecutor(context: ChatInputInteractionContext, endCommand, t) {

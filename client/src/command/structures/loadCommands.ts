@@ -1,5 +1,5 @@
 import { ChatInputInteractionCommand } from '../../structures/types/command';
-import { bot } from "../../index";
+import { bot } from "../../FoxyLauncher";
 import { resolve } from 'node:path';
 import { logger } from '../../utils/logger';
 import { updateApplicationCommands } from './updateApplicationCommands';

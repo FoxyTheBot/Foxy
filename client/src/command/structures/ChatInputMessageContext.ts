@@ -1,6 +1,6 @@
 import { Message } from 'discordeno/transformers';
 import { BigString, CreateMessage } from 'discordeno';
-import { bot } from "../../index";
+import { bot } from "../../FoxyLauncher";
 
 export default class {
     public replied = false;

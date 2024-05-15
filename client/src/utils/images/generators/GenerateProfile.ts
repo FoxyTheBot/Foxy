@@ -1,5 +1,5 @@
 import Canvas from 'canvas';
-import { bot } from "../../../index";
+import { bot } from "../../../FoxyLauncher";
 import moment from 'moment';
 import { getUserAvatar } from '../../discord/User';
 import { serverURL } from '../../../../config.json';

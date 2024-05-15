@@ -1,5 +1,5 @@
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
-import { bot } from '../../../index';
+import { bot } from '../../../FoxyLauncher';
 import { User } from 'discordeno/transformers';
 import CreateProfile from '../../../utils/images/generators/GenerateProfile';
 

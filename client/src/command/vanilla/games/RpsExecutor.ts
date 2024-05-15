@@ -1,6 +1,6 @@
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { ButtonStyles } from "discordeno/types";
-import { bot } from '../../../index';
+import { bot } from '../../../FoxyLauncher';
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import { createEmbed } from "../../../utils/discord/Embed";
 

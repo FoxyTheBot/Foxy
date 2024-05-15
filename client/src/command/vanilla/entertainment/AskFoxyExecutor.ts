@@ -1,5 +1,5 @@
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
-import { bot } from "../../..";
+import { bot } from "../../../FoxyLauncher";
 
 export default async function AskFoxyExecutor(context: ChatInputInteractionContext, t, endCommand) {
     const results = [

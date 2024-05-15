@@ -1,6 +1,6 @@
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { MessageFlags } from "../../../utils/discord/Message";
-import { bot } from "../../../index";
+import { bot } from "../../../FoxyLauncher";
 
 export default async function AboutMeExecutor(context: ChatInputInteractionContext, endCommand, t) {
     const text = context.getOption<string>("text", false);

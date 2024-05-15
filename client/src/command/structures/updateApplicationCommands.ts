@@ -1,4 +1,4 @@
-import { bot } from "../../index";
+import { bot } from "../../FoxyLauncher";
 import { logger } from "../../utils/logger";
 import config from '../../../config.json';
 

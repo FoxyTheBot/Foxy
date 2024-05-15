@@ -2,10 +2,10 @@
   "name": "@foxy/client",
   "version": "1.0.0",
   "description": "",
-  "main": "build/src/index.js",
+  "main": "build/src/FoxyLauncher.js",
   "scripts": {
     "build": "npx tsc --project tsconfig.json",
-    "start": "node build/src/index.js",
+    "start": "node build/src/FoxyLauncher.js",
     "debug": "node --inspect build/src/index.js"
   },
   "author": "WinG4merBR",

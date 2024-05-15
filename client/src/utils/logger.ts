@@ -1,4 +1,4 @@
-import { bot } from "../index";
+import { bot } from "../FoxyLauncher";
 import config from '../../config.json';
 import { User } from "discordeno/transformers";
 

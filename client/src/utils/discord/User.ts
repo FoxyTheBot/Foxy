@@ -1,6 +1,6 @@
 import { ImageSize, routes } from 'discordeno';
 import { User } from 'discordeno/transformers';
-import { bot } from "../../index";
+import { bot } from "../../FoxyLauncher";
 
 const getUserAvatar = (
   user: User,

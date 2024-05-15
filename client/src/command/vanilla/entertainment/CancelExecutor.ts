@@ -1,5 +1,5 @@
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
-import { bot } from "../../..";
+import { bot } from "../../../FoxyLauncher";
 import { User } from "discordeno/transformers";
 
 export default async function CancelExecutor(context: ChatInputInteractionContext, endCommand, t) {

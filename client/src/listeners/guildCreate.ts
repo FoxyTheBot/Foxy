@@ -1,5 +1,6 @@
-import { bot } from "../../";
-import config from "../../../config.json";
+import { bot } from "../FoxyLauncher";
+import config from "../../config.json";
+
 const setGuildCreateEvent = (): void => {
     bot.events.guildCreate = async (_, guild) => {
         const guildData = await bot.database.getGuild(guild.id)

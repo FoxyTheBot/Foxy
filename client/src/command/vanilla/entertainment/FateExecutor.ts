@@ -1,6 +1,6 @@
 import { User } from "discordeno/transformers";
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
-import { bot } from "../../..";
+import { bot } from "../../../FoxyLauncher";
 
 export default async function FateExecutor(context: ChatInputInteractionContext, endCommand, t) {
     const user = context.getOption<User>('user', 'users');

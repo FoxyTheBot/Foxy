@@ -21,7 +21,7 @@ import { ValorantAutoRoleExecutor, ValorantUpdateAutoroleExecutor } from "../Val
 import ValorantStatsExecutor from "../ValorantStatsExecutor";
 import ValorantVerifyExecutor from "../ValorantVerifyExecutor";
 
-import { bot } from "../../../../index";
+import { bot } from "../../../../FoxyLauncher";
 
 const ValorantCommand = createCommand({
     name: "valorant",

@@ -1,4 +1,4 @@
-import { bot } from "../../index";
+import { bot } from "../FoxyLauncher";
 
 const setMessageCreateEvent = (): void => {
     bot.events.messageCreate = async (_, message) => {

@@ -1,6 +1,6 @@
 import Canvas from "canvas";
 import config from "../../../../config.json";
-import { bot } from "../../..";
+import { bot } from "../../../FoxyLauncher";
 
 export default class RenderValorantProfile {
     public user: any;

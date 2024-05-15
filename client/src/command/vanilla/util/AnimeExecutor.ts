@@ -1,6 +1,6 @@
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { createEmbed } from "../../../utils/discord/Embed";
-import { bot } from '../../../index';
+import { bot } from '../../../FoxyLauncher';
 import scraper from 'mal-scraper';
 
 export default async function AnimeExecutor(context: ChatInputInteractionContext, endCommand, t) {

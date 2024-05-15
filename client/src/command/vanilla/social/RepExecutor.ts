@@ -1,6 +1,6 @@
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { User } from "discordeno/transformers";
-import { bot } from "../../../index";
+import { bot } from "../../../FoxyLauncher";
 import ms from "ms";
 import { MessageFlags } from "../../../utils/discord/Message";
 

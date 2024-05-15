@@ -1,5 +1,5 @@
 import { createEmbed } from "../../../utils/discord/Embed";
-import { bot } from "../../../index";
+import { bot } from "../../../FoxyLauncher";
 import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 
 export default async function TopExecutor(context: ChatInputInteractionContext, endCommand, t) {

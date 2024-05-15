@@ -1,5 +1,5 @@
 import ComponentInteractionContext from "../../../structures/ComponentInteractionContext";
-import { bot } from "../../../../index";
+import { bot } from "../../../../FoxyLauncher";
 import { createEmbed } from "../../../../utils/discord/Embed";
 
 const ViewMatchHistory = async (context: ComponentInteractionContext) => {

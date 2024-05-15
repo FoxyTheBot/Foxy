@@ -4,7 +4,7 @@ import i18next from 'i18next';
 
 import { mentionUser } from '../../utils/discord/User';
 import { MessageFlags } from '../../utils/discord/Message';
-import { bot } from '../../index';
+import { bot } from '../../FoxyLauncher';
 import ComponentInteractionContext from './ComponentInteractionContext';
 import { ComponentInteraction } from '../../structures/types/interaction';
 

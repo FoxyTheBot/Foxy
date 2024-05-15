@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { logger } from '../../utils/logger';
 import { mongouri } from '../../../config.json';
-import { bot } from '../../index';
+import { bot } from '../../FoxyLauncher';
 import { User } from 'discordeno/transformers';
 import { FoxyClient } from '../types/foxy';
 import { Schemas } from './schemas/Schemas';

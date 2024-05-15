@@ -1,12 +1,12 @@
 import i18next from 'i18next';
-import { MessageFlags } from '../../utils/discord/Message';
-import { bot } from '../../index';
-import ChatInputInteractionContext from '../../command/structures/ChatInputInteractionContext';
-import { createEmbed } from '../../utils/discord/Embed';
+import { MessageFlags } from '../utils/discord/Message';
+import { bot } from '../FoxyLauncher';
+import ChatInputInteractionContext from '../command/structures/ChatInputInteractionContext';
+import { createEmbed } from '../utils/discord/Embed';
 import { ButtonStyles, InteractionTypes } from 'discordeno/types';
-import { componentExecutor } from '../../command/structures/ComponentExecutor';
-import { logger } from '../../utils/logger';
-import { createActionRow, createButton } from '../../utils/discord/Component';
+import { componentExecutor } from '../command/structures/ComponentExecutor';
+import { logger } from '../utils/logger';
+import { createActionRow, createButton } from '../utils/discord/Component';
 
 const setInteractionCreateEvent = (): void => {
     bot.events.interactionCreate = async (_, interaction) => {
