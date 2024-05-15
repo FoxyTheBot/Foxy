@@ -23,6 +23,7 @@ export default class FoxyInstance {
         this.bot = this.createBotInstance();
         await this.setupDefinitions();
         await this.setupEventsHandler();
+        await this.setupCache();
         await this.setupInternals();
         await startBot(this.bot);
         return this.bot;
@@ -44,6 +45,19 @@ export default class FoxyInstance {
         this.bot.hasGuildPermission = botHasGuildPermissions;
         this.bot.database = new DatabaseConnection(this.bot);
         this.bot.foxyRest = new FoxyRestManager(this.bot);
+    }
+
+    private async setupCache() {
+        this.bot.presences.maxSize = 0;
+        this.bot.guilds.maxSize = 1000;
+        this.bot.channels.maxSize = 1000;
+        this.bot.messages.maxSize = 100
+        this.bot.users.maxSize = 1000;
+
+        setInterval(() => {
+            this.bot.dispatchedGuildIds.clear();
+            this.bot.dispatchedChannelIds.clear();
+        }, 3600000);
     }
 
     private async setupInternals() {
