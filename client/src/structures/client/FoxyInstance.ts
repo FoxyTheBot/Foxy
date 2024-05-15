@@ -61,9 +61,12 @@ export default class FoxyInstance {
         setMessageCreateEvent();
 
         this.bot.gateway.manager.createShardOptions.events.message = async (shard, message) => {
+            // Handle unavailable guilds
             if (message.t === 'GUILD_DELETE' && (message.d as DiscordUnavailableGuild).unavailable) {
                 return this.handleUnavailableGuild(message);
             }
+
+            // Block audit log entries
             if (message.t === 'GUILD_AUDIT_LOG_ENTRY_CREATE') return;
 
             this.bot.handlers[message.t]?.(this.bot, message, shard.id);
