@@ -22,7 +22,7 @@ const setupFoxy = async (client: FoxyClient): Promise<void> => {
             return bot.helpers.sendWebhookMessage(config.webhooks.join_leave_guild.id, config.webhooks.join_leave_guild.token, {
                 embeds: [{
                     title: `<:emoji:${bot.emotes.FOXY_CRY}> **|** Servidor indisponivel!`,
-                    description: `**ID:** ${(message.d as DiscordUnavailableGuild).unavailable}`,
+                    description: `**ID:** ${(message.d as DiscordUnavailableGuild).id}`
                 }]
             });
         }
