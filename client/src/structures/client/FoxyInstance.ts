@@ -12,19 +12,25 @@ import { setGuildCreateEvent } from '../../listeners/guildCreate';
 import { setGuildDeleteEvent } from '../../listeners/guildDelete';
 import { setMessageCreateEvent } from '../../listeners/messageCreate';
 import config from '../../../config.json';
+import express, { Application } from 'express';
+import { logger } from '../../utils/logger';
+import enableCachePlugin from 'discordeno/cache-plugin';
 
 export default class FoxyInstance {
     public bot: FoxyClient;
+    private server: Application;
     constructor() {
         this.startInstance();
     }
 
     public async startInstance(): Promise<FoxyClient> {
         this.bot = this.createBotInstance();
+        enableCachePlugin(this.bot);
         await this.setupDefinitions();
         await this.setupEventsHandler();
-        await this.setupCache();
         await this.setupInternals();
+        await this.setupServer();
+        await this.setupCache();
         await startBot(this.bot);
         return this.bot;
     }
@@ -48,10 +54,10 @@ export default class FoxyInstance {
     }
 
     private async setupCache() {
-        this.bot.presences.maxSize = 0;
+        this.bot.presences.maxSize = 1;
         this.bot.guilds.maxSize = 1000;
         this.bot.channels.maxSize = 1000;
-        this.bot.messages.maxSize = 100
+        this.bot.messages.maxSize = 100;
         this.bot.users.maxSize = 1000;
 
         setInterval(() => {
@@ -65,6 +71,29 @@ export default class FoxyInstance {
         await loadLocales();
         this.bot.transformers.reverse.interactionResponse = transformInteraction;
         this.bot.handlers.INTEGRATION_CREATE = handleInteractionCreate;
+    }
+
+    private async setupServer() {
+        this.server = express();
+        this.server.use(express.json());
+        this.server.listen(3001, () => {
+            logger.info(`[SERVER] Server is running on port 3001`)
+        });
+
+        this.server.post("/status/update", async (req, res) => {
+            const { name, type, status, url } = req.body;
+
+            this.bot.helpers.editBotStatus({
+                activities: [{
+                    name: name,
+                    type: type,
+                    url: url,
+                    createdAt: Date.now()
+                }],
+                status: status
+            })
+            return res.status(200).json({ success: true });
+        });
     }
 
     private async setupEventsHandler() {
