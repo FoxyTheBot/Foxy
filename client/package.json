@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc --project tsconfig.json",
     "start": "node build/src/FoxyLauncher.js",
-    "debug": "node --inspect build/src/index.js"
+    "debug": "node --inspect build/src/FoxyLauncher.js"
   },
   "author": "WinG4merBR",
   "license": "AGPL-3.0",
