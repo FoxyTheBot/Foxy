@@ -11,6 +11,7 @@ const HelpCommand = createCommand({
         "pt-BR": '[Utilitários] Mostra a mensagem de ajuda'
     },
     category: 'util',
+    aliases: ['ajuda', 'commands', 'comandos'],
     execute: async (context, endCommand, t) => {
       HelpExecutor(context, endCommand, t);  
     },

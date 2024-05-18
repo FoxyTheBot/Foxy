@@ -6,6 +6,7 @@ import { createEmbed } from "../../../utils/discord/Embed";
 import { MessageFlags } from "../../../utils/discord/Message";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import { TransactionType } from "../../../structures/types/transaction";
+import ChatInputMessageContext from "../../structures/ChatInputMessageContext";
 
 export default async function CakesExecutor(context: ChatInputInteractionContext, endCommand, t) {
     switch (context.getSubCommand()) {
@@ -160,6 +161,55 @@ export default async function CakesExecutor(context: ChatInputInteractionContext
             return context.sendReply({
                 embeds: [embed],
             });
+        }
+    }
+}
+
+export async function CakesLegacyExecutor(context: ChatInputMessageContext, args, t) {
+    const command = context.commandName;
+
+    switch (command) {
+        case 'atm': {
+            const userInfo = await context.getUser(args[0]);
+            const user = await bot.database.getUser(BigInt(userInfo.id));
+            const balance = user.userCakes.balance;
+
+            context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:atm.success', { user: `<@${userInfo.id}>`, balance: balance.toLocaleString(t.lng || 'pt-BR') }))
+            })
+            break;
+        }
+
+        case 'transfer': {
+            const userInfo = await context.getUser(args[0]);
+            const user = await bot.database.getUser(BigInt(userInfo.id));
+            const amount = Number(args[1]);
+
+            if (userInfo.id === context.authorId) {
+                context.sendReply({
+                    content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:pay.self'))
+                })
+                return;
+            }
+            if (amount > user.userCakes.balance.valueOf()) {
+                context.sendReply({
+                    content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:pay.notEnough'))
+                })
+                return;
+            }
+
+            context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:pay.alert', { amount: amount.toLocaleString(t.lng || 'pt-BR'), user: `<@${userInfo.id}>` })),
+                components: [createActionRow([createButton({
+                    label: t('commands:pay.pay'),
+                    style: ButtonStyles.Success,
+                    customId: createCustomId(0, context.authorId, context.commandName, amount, userInfo.id),
+                    emoji: {
+                        id: bot.emotes.FOXY_DAILY
+                    }
+                })])]
+            });
+            break;
         }
     }
 }

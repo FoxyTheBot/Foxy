@@ -1,7 +1,7 @@
 import { createCommand } from "../../../structures/createCommand";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 import CakeTransferExecutor from "../components/CakeTransferExecutor";
-import CakesExecutor from "../CakesExecutor";
+import CakesExecutor, { CakesLegacyExecutor } from "../CakesExecutor";
 
 const CakeCommand = createCommand({
     name: 'cakes',
@@ -9,6 +9,7 @@ const CakeCommand = createCommand({
     descriptionLocalizations: {
         'pt-BR': 'Comandos relacionados a economia da Foxy'
     },
+    aliases: ['atm', 'transfer'],
     options: [
         {
             name: "atm",
@@ -97,7 +98,11 @@ const CakeCommand = createCommand({
     category: 'economy',
     execute: async (context, endCommand, t) => {
         CakesExecutor(context, endCommand, t);
-    }
+    },
+
+    executeAsLegacy: async (message, args, t) => {
+        CakesLegacyExecutor(message, args, t);
+    },
 });
 
 export default CakeCommand;

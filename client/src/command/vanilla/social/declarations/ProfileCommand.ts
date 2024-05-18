@@ -8,6 +8,7 @@ const ProfileCommand = createCommand({
     description: '[Social] View your profile or another user profile',
     descriptionLocalizations: { 'pt-BR': '[Social] Veja seu perfil ou o de outro usuário' },
     category: 'social',
+    aliases: ['perfil'],
     options: [{
         name: "view",
         nameLocalizations: {

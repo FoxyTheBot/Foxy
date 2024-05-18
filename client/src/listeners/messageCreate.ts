@@ -24,12 +24,13 @@ const setMessageCreateEvent = (): void => {
         async function FoxyLegacyHandler() {
             try {
                 if (!message.content.startsWith("f!")) return;
-                const command = bot.commands.get(message.content.split(' ')[0].slice(2));
+                const command = bot.commands.get(message.content.split(' ')[0].slice(2))
+                    || bot.commands.find((cmd) => cmd.aliases?.includes(message.content.split(' ')[0].slice(2)));
                 if (!command) return;
 
                 const args = message.content.split(' ').slice(1);
 
-                if (command) {
+                if (command && command.executeAsLegacy) {
                     await command.executeAsLegacy(context, args, locale);
                 }
             } catch (error) {

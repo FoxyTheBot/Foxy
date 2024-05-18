@@ -6,6 +6,8 @@ import ChatInputMessageContext from '../../command/structures/ChatInputMessageCo
 type CommandCategory = 'economy' | 'roleplay' | 'fun' | 'actions' | 'social' | 'util' | 'games' | 'image' | 'dev' | 'mod';
 
 export interface ChatInputCommandConfig extends CreateSlashApplicationCommand {
+  // Will also be used as command name for subcommands
+  aliases?: string[];
   devsOnly?: true;
   category: CommandCategory;
 }
