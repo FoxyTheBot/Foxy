@@ -1,5 +1,5 @@
 import { Bot, Collection, User } from 'discordeno';
-import { ChatInputInteractionCommand } from './command';
+import { CommandInterface } from './command';
 import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
 import { BotWithCache } from 'discordeno/cache-plugin';
 import { FoxyRestManager } from '../../utils/RestManager';
@@ -10,7 +10,7 @@ export interface IdentifiedData<T> {
 }
 
 export interface FoxyClient extends BotWithCache<Bot> {
-  commands: Collection<string, ChatInputInteractionCommand>;
+  commands: Collection<string, CommandInterface>;
   owner: User;
   clientId: bigint;
   username: string;

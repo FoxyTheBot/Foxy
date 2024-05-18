@@ -10,8 +10,12 @@ import { ComponentInteraction } from '../../structures/types/interaction';
 
 
 const componentExecutor = async (interaction: Interaction): Promise<void> => {
-  const receivedCommandName = interaction.message?.interaction?.name;
-
+  let receivedCommandName = interaction.message?.interaction?.name;
+  if (!interaction.message.interaction) {
+    const message = await bot.messages.get(BigInt(interaction.data?.customId.split('|')[2]));
+    receivedCommandName = message.content.split(' ')[0].replace('f!', '');
+  }
+  console.log(receivedCommandName);
   if (!receivedCommandName) return;
   if (!interaction.data?.customId) return;
 

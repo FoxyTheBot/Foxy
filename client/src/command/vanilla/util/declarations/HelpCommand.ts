@@ -13,7 +13,7 @@ const HelpCommand = createCommand({
     category: 'util',
     aliases: ['ajuda', 'commands', 'comandos'],
     execute: async (context, endCommand, t) => {
-      HelpExecutor(context, endCommand, t);  
+        HelpExecutor(context, endCommand, t);
     },
 
     executeAsLegacy(message, args, t) {

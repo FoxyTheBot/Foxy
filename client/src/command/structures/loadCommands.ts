@@ -1,4 +1,4 @@
-import { ChatInputInteractionCommand } from '../../structures/types/command';
+import { CommandInterface } from '../../structures/types/command';
 import { bot } from "../../FoxyLauncher";
 import { resolve } from 'node:path';
 import { logger } from '../../utils/logger';
@@ -11,7 +11,7 @@ const loadCommands = async (): Promise<void> => {
     const commandFiles = await fs.readdirSync(resolve(`build/src/command/vanilla/${folder}/declarations`)).filter((file) => file.endsWith(".js"));
     for (const file of commandFiles) {
       const command = await import(resolve(`build/src/command/vanilla/${folder}/declarations/${file}`));
-      const commandData = command.default as ChatInputInteractionCommand;
+      const commandData = command.default as CommandInterface;
       try {
         bot.commands.set(commandData.name, commandData);
         bot.database.registerCommand(commandData.name, commandData.description)

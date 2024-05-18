@@ -18,7 +18,7 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
   }
 
   get author(): User {
-    return this.interaction.message?.interaction?.user as User;
+    return this.interaction.message?.interaction?.user as User || this.interaction.user;
   }
 
   get channelId(): bigint {

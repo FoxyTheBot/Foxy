@@ -8,6 +8,7 @@ import ChatInputMessageContext from "../command/structures/ChatInputMessageConte
 
 const setMessageCreateEvent = (): void => {
     bot.events.messageCreate = async (_, message) => {
+        if (message.isFromBot) return;
         if (message.content === `<@${bot.id}>` || message.content === `<@!${bot.id}>`) return bot.helpers.sendMessage(message.channelId, {
             content: bot.locale("events:messageCreate.mentionMessage",
                 {
@@ -18,9 +19,8 @@ const setMessageCreateEvent = (): void => {
         const user = await bot.database.getUser(message.authorId);
         const locale = global.t = i18next.getFixedT(user.userSettings.language || 'pt-BR');
         bot.locale = locale;
-        if (message.isFromBot) return;
 
-        / * Legacy command handler for prefix commands */
+        /* Legacy command handler for prefix commands */
         async function FoxyLegacyHandler() {
             try {
                 if (!message.content.startsWith("f!")) return;

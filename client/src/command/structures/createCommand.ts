@@ -1,6 +1,6 @@
-import { ChatInputInteractionCommand } from '../../structures/types/command';
+import { CommandInterface } from '../../structures/types/command';
 
-const createCommand = (command: ChatInputInteractionCommand): ChatInputInteractionCommand =>
+const createCommand = (command: CommandInterface): CommandInterface =>
   command;
 
 export { createCommand };

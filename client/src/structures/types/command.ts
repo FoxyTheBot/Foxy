@@ -6,13 +6,13 @@ import ChatInputMessageContext from '../../command/structures/ChatInputMessageCo
 type CommandCategory = 'economy' | 'roleplay' | 'fun' | 'actions' | 'social' | 'util' | 'games' | 'image' | 'dev' | 'mod';
 
 export interface ChatInputCommandConfig extends CreateSlashApplicationCommand {
-  // Will also be used as command name for subcommands
+  // Will also be used as command name for subcommands to be used as legacy commands
   aliases?: string[];
   devsOnly?: true;
   category: CommandCategory;
 }
 
-export interface ChatInputInteractionCommand extends Readonly<ChatInputCommandConfig> {
+export interface CommandInterface extends Readonly<ChatInputCommandConfig> {
   readonly execute: (
     context: ChatInputInteractionContext,
     endCommand: (...args: unknown[]) => unknown,
