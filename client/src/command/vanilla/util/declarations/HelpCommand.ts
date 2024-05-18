@@ -1,5 +1,5 @@
 import { createCommand } from '../../../structures/createCommand';
-import HelpExecutor from '../HelpExecutor';
+import HelpExecutor, { HelpLegacyExecutor } from '../HelpExecutor';
 
 const HelpCommand = createCommand({
     name: 'help',
@@ -13,7 +13,11 @@ const HelpCommand = createCommand({
     category: 'util',
     execute: async (context, endCommand, t) => {
       HelpExecutor(context, endCommand, t);  
-    }
+    },
+
+    executeAsLegacy(message, args, t) {
+        return HelpLegacyExecutor(message, args, t);
+    },
 });
 
 export default HelpCommand;
