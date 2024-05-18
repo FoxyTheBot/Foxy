@@ -1,6 +1,7 @@
 import { CreateSlashApplicationCommand } from 'discordeno';
 import ComponentInteractionContext from '../../command/structures/ComponentInteractionContext';
 import ChatInputInteractionContext from '../../command/structures/ChatInputInteractionContext';
+import ChatInputMessageContext from '../../command/structures/ChatInputMessageContext';
 
 type CommandCategory = 'economy' | 'roleplay' | 'fun' | 'actions' | 'social' | 'util' | 'games' | 'image' | 'dev' | 'mod';
 
@@ -19,4 +20,10 @@ export interface ChatInputInteractionCommand extends Readonly<ChatInputCommandCo
   readonly commandRelatedExecutions?: ((
     context: ComponentInteractionContext<any>,
   ) => Promise<unknown>)[];
+
+  readonly executeAsLegacy?: (
+    message: ChatInputMessageContext,
+    args: string[],
+    t: any,
+  ) => Promise<unknown>;
 }
