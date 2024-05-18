@@ -1,9 +1,6 @@
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
-import { bot } from '../../../../FoxyLauncher';
 import { createCommand } from '../../../structures/createCommand';
-import { User } from 'discordeno/transformers';
-import CreateProfile from '../../../../utils/images/generators/GenerateProfile';
-import ProfileExecutor from '../ProfileExecutor';
+import ProfileExecutor, { ProfileLegacyExecutor } from '../ProfileExecutor';
 
 const ProfileCommand = createCommand({
     name: 'profile',
@@ -29,7 +26,11 @@ const ProfileCommand = createCommand({
     }],
     execute: async (context, endCommand, t) => {
         ProfileExecutor(context, endCommand, t);
-    }
+    },
+
+    executeAsLegacy(message, args, t) {
+        return ProfileLegacyExecutor(message, args, t);
+    },
 });
 
 export default ProfileCommand;

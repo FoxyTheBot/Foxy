@@ -2,6 +2,7 @@ import ChatInputInteractionContext from "../../structures/ChatInputInteractionCo
 import { bot } from '../../../FoxyLauncher';
 import { User } from 'discordeno/transformers';
 import CreateProfile from '../../../utils/images/generators/GenerateProfile';
+import ChatInputMessageContext from "../../structures/ChatInputMessageContext";
 
 export default async function ProfileExecutor(context: ChatInputInteractionContext, endCommand, t) {
     const subcommand = context.getSubCommand();
@@ -29,4 +30,23 @@ export default async function ProfileExecutor(context: ChatInputInteractionConte
             return endCommand();
         }
     }
+}
+
+export async function ProfileLegacyExecutor(message: ChatInputMessageContext, args, t) {
+    const userInfo = await message.getUser(args[0]);
+    const user = await bot.database.getUser(BigInt(userInfo.id));
+
+    if (user.isBanned) {
+        return message.sendReply({
+            content: t('commands:profile.banned', { user: await bot.foxyRest.getUserDisplayName(userInfo.id), reason: user.banReason, date: user.banDate.toLocaleString(global.t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) })
+        });
+    }
+
+    const createProfile = new CreateProfile(t, userInfo, user);
+    const profile = createProfile.create();
+
+    return message.sendReply({
+        content: t('commands:profile.profile', { user: `<@${userInfo.id}>` }),
+        file: [{ name: 'profile.png', blob: await profile }]
+    });
 }
