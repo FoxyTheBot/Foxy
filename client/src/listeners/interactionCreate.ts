@@ -58,8 +58,6 @@ const setInteractionCreateEvent = (): void => {
                     })])],
                     flags: MessageFlags.EPHEMERAL
                 });
-
-
             }
 
             FoxyHandler();
