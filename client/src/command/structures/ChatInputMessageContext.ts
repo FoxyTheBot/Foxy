@@ -16,12 +16,22 @@ export default class {
         return user;
     }
 
+    get commandName() {
+        return this.message.content.split(' ')[0].replace('f!', '');
+    }
+
+    makeReply(emoji: BigInt, message: string) {
+        return `${this.getEmojiById(emoji)} | ${message}`;
+    }
+
     async sendReply(options: CreateMessage) {
-        bot.helpers.startTyping(this.message.channelId);
         await bot.helpers.sendMessage(this.message.channelId, {
             ...options,
+            messageReference: {
+                messageId: this.message.id,
+                failIfNotExists: false
+            }
         })
-        bot.helpers.triggerTypingIndicator(this.message.channelId);
         this.replied = true;
     }
 
