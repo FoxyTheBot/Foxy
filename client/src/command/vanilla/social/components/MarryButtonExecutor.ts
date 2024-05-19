@@ -4,12 +4,17 @@ import { ButtonStyles } from "discordeno/types";
 import { createActionRow, createButton, createCustomId } from "../../../../utils/discord/Component";
 
 const MarryButtonExecutor = async (context: ComponentInteractionContext) => {
-    const userData = await bot.database.getUser(context.author.id);
+    const [messageId, channelId] = context.sentData;
+    let authorId = context.author.id;
+    if (messageId) {
+        authorId = (await bot.helpers.getMessage(channelId, messageId)).authorId;
+    }
+    const userData = await bot.database.getUser(authorId);
     const partnerData = await bot.database.getUser(context.interaction.user.id);
 
-    userData.marryStatus.marriedWith = String(context.user.id);
+    userData.marryStatus.marriedWith = String(context.interaction.user.id);
     userData.marryStatus.marriedDate = new Date();
-    partnerData.marryStatus.marriedWith = String(context.user.id);
+    partnerData.marryStatus.marriedWith = String(authorId);
     partnerData.marryStatus.marriedDate = new Date();
     await userData.save();
     await partnerData.save();

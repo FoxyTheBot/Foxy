@@ -270,7 +270,7 @@
         "bot": "Não, eu não quero casar com você!",
         "alreadyMarriedWithSomeone": "Você já está casado com alguém",
         "alreadyMarriedWithUser": "Você já está casado com **{{user}}**",
-        "ask": "{{user}} Você quer casar com **{{author}}**?",
+        "ask": "{{user}}, você quer casar com **{{author}}**?",
         "accept": "Aceitar pedido",
         "acceptedButton": "Pedido aceito",
         "accepted": "Vocês estão casados! Felicidades para o casal <3",

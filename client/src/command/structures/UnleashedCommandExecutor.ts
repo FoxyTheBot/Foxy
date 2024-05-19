@@ -1,9 +1,9 @@
-import { 
-    InteractionResponseTypes, 
-    InteractionCallbackData, 
-    ApplicationCommandOptionTypes, 
-    Message, 
-    CreateMessage 
+import {
+    InteractionResponseTypes,
+    InteractionCallbackData,
+    ApplicationCommandOptionTypes,
+    Message,
+    CreateMessage
 } from 'discordeno';
 import { Interaction, User } from 'discordeno/transformers';
 import { TFunction } from 'i18next';
@@ -49,12 +49,16 @@ export default class UnleashedCommandExecutor {
         return this.interaction ? this.interaction.data?.id : this.message.id;
     }
 
+    get isMessage(): boolean {
+        return !!this.message;
+    }
+
     get channelId(): bigint {
-        return this.interaction ? this.interaction.channelId : 0n;
+        return this.interaction ? this.interaction.channelId : this.message.channelId;
     }
 
     get guildId(): bigint {
-        return this.interaction ? this.interaction.guildId : 0n;
+        return this.interaction ? this.interaction.guildId : this.message.guildId;
     }
 
     get guildMember() {
@@ -155,7 +159,7 @@ export default class UnleashedCommandExecutor {
                     messageId: this.message.id,
                     failIfNotExists: false
                 }
-            });
+            })
         }
     }
 

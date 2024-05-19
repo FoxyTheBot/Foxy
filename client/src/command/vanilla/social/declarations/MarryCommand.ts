@@ -12,6 +12,7 @@ const MarryCommand = createCommand({
     descriptionLocalizations: {
         "pt-BR": "[Social] Case-se com seu parceiro(a)"
     },
+    aliases: ["casar", "marriage", "nerfar"],
     supportsLegacy: true,
     options: [{
         name: "ask",
@@ -35,31 +36,7 @@ const MarryCommand = createCommand({
             type: ApplicationCommandOptionTypes.User,
             required: true
         }]
-    },
-    {
-        name: "lock_requests",
-        nameLocalizations: {
-            "pt-BR": "bloquear_pedidos",
-        },
-        description: "[Social] Lock marriage requests",
-        descriptionLocalizations: {
-            "pt-BR": "[Social] Bloqueie pedidos de casamento"
-        },
-        type: ApplicationCommandOptionTypes.SubCommand,
-        options: [{
-            name: "lock",
-            nameLocalizations: {
-                "pt-BR": "bloquear",
-            },
-            description: "[Social] Lock marriage requests",
-            descriptionLocalizations: {
-                "pt-BR": "[Social] Bloqueie pedidos de casamento"
-            },
-            type: ApplicationCommandOptionTypes.Boolean,
-            required: true
-        }]
-    }
-    ],
+    }],
     category: "social",
     commandRelatedExecutions: [MarryButtonExecutor],
 
