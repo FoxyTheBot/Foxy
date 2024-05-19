@@ -1,4 +1,5 @@
 import { MessageFlags } from "../../../utils/discord/Message";
+import { logger } from "../../../utils/logger";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
 export default async function ValorantVerifyExecutor(bot, context: UnleashedCommandExecutor, endCommand, t) {
@@ -34,7 +35,7 @@ export default async function ValorantVerifyExecutor(bot, context: UnleashedComm
                     flags: MessageFlags.EPHEMERAL
                 });
             } catch (err) {
-                console.log(err);
+                logger.error(err);
                 return context.sendReply({
                     content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.verify.error')),
                     flags: MessageFlags.EPHEMERAL

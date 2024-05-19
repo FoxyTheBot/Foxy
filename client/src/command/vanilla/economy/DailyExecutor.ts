@@ -2,6 +2,7 @@ import ms from 'ms';
 import { bot } from '../../../FoxyLauncher';
 import { MessageFlags } from '../../../utils/discord/Message';
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { logger } from '../../../utils/logger';
 
 export default async function DailyExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const userData = await bot.database.getUser(context.author.id);
@@ -54,7 +55,7 @@ export default async function DailyExecutor(context: UnleashedCommandExecutor, e
             received: true,
             type: 'daily'
         });
-        userData.save().catch(err => console.log(err));
+        userData.save().catch(err => logger.error(err));
 
         const money = await userData.userCakes.balance;
 

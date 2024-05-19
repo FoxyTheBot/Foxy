@@ -5,12 +5,11 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 
 export default async function ProfileExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const subcommand = context.getSubCommand();
-    console.log(subcommand)
+
     switch (subcommand) {
         case 'view':
         case 'profile': {
             const user = await context.getOption<User>('user', 'users') ?? context.author;
-            console.log(user);
             const userData = await bot.database.getUser(user.id);
 
             if (userData.isBanned) {

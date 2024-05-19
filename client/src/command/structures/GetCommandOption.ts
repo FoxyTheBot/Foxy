@@ -101,7 +101,7 @@ function getArgsFromMessage<T>(
   if (shouldResolve === "full-string") {
     const args = message.split(' ');
     const found = args.slice(position).join(' ') as unknown as T;
-    console.log(found)
+
     if (!found && required)
       throw new Error(`Option ${name} is required in ${message}`);
 
