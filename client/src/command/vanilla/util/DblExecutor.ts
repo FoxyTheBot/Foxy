@@ -1,7 +1,7 @@
 import { createEmbed } from "../../../utils/discord/Embed";
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext"
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function DblExecutor(context: ChatInputInteractionContext, endCommand, t) {
+export default async function DblExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     switch (context.getSubCommand()) {
         case "upvote": {
             const embed = createEmbed({

@@ -1,7 +1,5 @@
 import { createCommand } from "../../../structures/createCommand";
-import { createEmbed } from "../../../../utils/discord/Embed";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
-import { bot } from "../../../../FoxyLauncher";
 import TopExecutor from "../TopExecutor";
 
 const TopCommand = createCommand({
@@ -32,7 +30,7 @@ const TopCommand = createCommand({
     }],
 
     async execute(context, endCommand, t) {
-       TopExecutor(context, endCommand, t);
+        TopExecutor(context, endCommand, t);
     }
 })
 

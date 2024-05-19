@@ -1,4 +1,3 @@
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { bot } from "../../../FoxyLauncher";
 import { User } from "discordeno/transformers";
 import { ButtonStyles } from "discordeno/types";
@@ -7,8 +6,9 @@ import { MessageFlags } from "../../../utils/discord/Message";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import { TransactionType } from "../../../structures/types/transaction";
 import ChatInputMessageContext from "../../structures/ChatInputMessageContext";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function CakesExecutor(context: ChatInputInteractionContext, endCommand, t) {
+export default async function CakesExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     switch (context.getSubCommand()) {
         case "atm": {
             const user = await context.getOption<User>('user', 'users') ?? context.author;
@@ -29,10 +29,16 @@ export default async function CakesExecutor(context: ChatInputInteractionContext
         }
         case "transfer": {
             const user = await context.getOption<User>('user', 'users');
-            const amount = await context.getOption<number>('amount', false);
             if (!user) {
                 context.sendReply({
                     content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser'))
+                });
+                return endCommand();
+            }
+            const amount = await context.getOption<number>('amount', false, null, 2);
+            if (isNaN(amount) || amount.toString().includes("0x") || amount < 0 || !Number.isInteger(parseFloat(amount.toString()))) {
+                context.sendReply({
+                    content: "nananinanão seu safado"
                 });
                 return endCommand();
             }
@@ -72,7 +78,7 @@ export default async function CakesExecutor(context: ChatInputInteractionContext
         }
 
         case 'transactions': {
-            const user = context.getOption<User>('user', 'users') ?? context.author;
+            const user = await context.getOption<User>('user', 'users') ?? context.author;
             const userData = await bot.database.getUser(user.id);
 
             if (!await userData.userTransactions.length) {

@@ -4,7 +4,7 @@ import { logger } from "../utils/logger";
 import { createEmbed } from "../utils/discord/Embed";
 import { createActionRow, createButton } from "../utils/discord/Component";
 import { ButtonStyles } from "discordeno/types";
-import ChatInputMessageContext from "../command/structures/ChatInputMessageContext";
+import UnleashedCommandExecutor from "../command/structures/UnleashedCommandExecutor";
 
 const setMessageCreateEvent = (): void => {
     bot.events.messageCreate = async (_, message) => {
@@ -15,9 +15,10 @@ const setMessageCreateEvent = (): void => {
                     botUsername: await bot.foxyRest.getUserDisplayName(bot.id), author: `<@${message.member.id}>`
                 })
         });
-        const context = new ChatInputMessageContext(message);
         const user = await bot.database.getUser(message.authorId);
         const locale = global.t = i18next.getFixedT(user.userSettings.language || 'pt-BR');
+        const context = new UnleashedCommandExecutor(locale, message);
+
         bot.locale = locale;
 
         /* Legacy command handler for prefix commands */
@@ -26,12 +27,13 @@ const setMessageCreateEvent = (): void => {
                 if (!message.content.startsWith("f!")) return;
                 const command = bot.commands.get(message.content.split(' ')[0].slice(2))
                     || bot.commands.find((cmd) => cmd.aliases?.includes(message.content.split(' ')[0].slice(2)));
-                if (!command) return;
+                if (!command || !command.supportsLegacy) return;
 
                 const args = message.content.split(' ').slice(1);
 
-                if (command && command.executeAsLegacy) {
-                    await command.executeAsLegacy(context, args, locale);
+                if (command) {
+                    function emptyFunction() { }
+                    await command.execute(context, emptyFunction, locale, args);
                 }
             } catch (error) {
                 logger.error(error);

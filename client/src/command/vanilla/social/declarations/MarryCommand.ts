@@ -12,6 +12,7 @@ const MarryCommand = createCommand({
     descriptionLocalizations: {
         "pt-BR": "[Social] Case-se com seu parceiro(a)"
     },
+    supportsLegacy: true,
     options: [{
         name: "ask",
         nameLocalizations: {

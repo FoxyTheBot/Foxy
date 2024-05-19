@@ -1,12 +1,12 @@
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { bot } from "../../../FoxyLauncher";
 import { createButton, createCustomId, createActionRow } from "../../../utils/discord/Component";
 import { ButtonStyles } from "discordeno/types";
 import { User } from "discordeno/transformers";
 import { MessageFlags } from "../../../utils/discord/Message";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function MarryExecutor(context: ChatInputInteractionContext, endCommand, t) {
-    const user = context.getOption<User>('user', 'users');
+export default async function MarryExecutor(context: UnleashedCommandExecutor, endCommand, t) {
+    const user = await context.getOption<User>('user', 'users');
     const subCommand = context.getSubCommand();
 
     switch (subCommand) {

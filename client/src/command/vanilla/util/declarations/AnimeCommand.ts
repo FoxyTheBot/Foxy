@@ -1,8 +1,5 @@
 import { createCommand } from "../../../structures/createCommand";
-import { createEmbed } from "../../../../utils/discord/Embed";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
-import { bot } from '../../../../FoxyLauncher';
-import scraper from 'mal-scraper';
 import AnimeExecutor from "../AnimeExecutor";
 
 const AnimeCommand = createCommand({
@@ -12,6 +9,7 @@ const AnimeCommand = createCommand({
         "pt-BR": "[Utilitários] Pesquisa a informação de algum anime"
     },
     category: "util",
+    supportsLegacy: true,
     options: [
         {
             name: 'anime',

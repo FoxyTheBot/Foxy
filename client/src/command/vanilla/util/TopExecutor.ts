@@ -1,8 +1,8 @@
 import { createEmbed } from "../../../utils/discord/Embed";
 import { bot } from "../../../FoxyLauncher";
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function TopExecutor(context: ChatInputInteractionContext, endCommand, t) {
+export default async function TopExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const subCommand = context.getSubCommand();
 
     switch (subCommand) {

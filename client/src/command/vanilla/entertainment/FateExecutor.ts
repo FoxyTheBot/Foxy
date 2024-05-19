@@ -1,14 +1,16 @@
 import { User } from "discordeno/transformers";
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { bot } from "../../../FoxyLauncher";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function FateExecutor(context: ChatInputInteractionContext, endCommand, t) {
-    const user = context.getOption<User>('user', 'users');
+export default async function FateExecutor(context: UnleashedCommandExecutor, endCommand, t) {
+    const user = await context.getOption<User>('user', 'users');
 
     if (!user) {
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:global.noUser'))
-        })
+        });
+
+        return endCommand();
     }
 
     const list = [

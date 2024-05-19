@@ -1,12 +1,12 @@
 import i18next from 'i18next';
 import { MessageFlags } from '../utils/discord/Message';
 import { bot } from '../FoxyLauncher';
-import ChatInputInteractionContext from '../command/structures/ChatInputInteractionContext';
 import { createEmbed } from '../utils/discord/Embed';
 import { ButtonStyles, InteractionTypes } from 'discordeno/types';
 import { componentExecutor } from '../command/structures/ComponentExecutor';
 import { logger } from '../utils/logger';
 import { createActionRow, createButton } from '../utils/discord/Component';
+import UnleashedCommandExecutor from '../command/structures/UnleashedCommandExecutor';
 
 const setInteractionCreateEvent = (): void => {
     bot.events.interactionCreate = async (_, interaction) => {
@@ -14,7 +14,7 @@ const setInteractionCreateEvent = (): void => {
         const locale = global.t = i18next.getFixedT(user.userSettings.language || 'pt-BR');
         bot.locale = locale;
         const command = bot.commands.get(interaction.data?.name);
-        const context = new ChatInputInteractionContext(interaction, locale);
+        const context = new UnleashedCommandExecutor(locale, null, interaction);
 
         if (interaction.type === InteractionTypes.MessageComponent || interaction.type === InteractionTypes.ModalSubmit) {
             componentExecutor(interaction);

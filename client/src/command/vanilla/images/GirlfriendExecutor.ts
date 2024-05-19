@@ -2,18 +2,22 @@ import * as Canvas from 'canvas';
 import { getUserAvatar } from "../../../utils/discord/User";
 import { User } from 'discordeno/transformers';
 import { serverURL } from '../../../../config.json';
-import ChatInputInteractionContext from '../../structures/ChatInputInteractionContext';
+import UnleashedCommandExecutor from '../../structures/UnleashedCommandExecutor';
+import { bot } from '../../../FoxyLauncher';
 
-export default async function GirlFriendExecutor(context: ChatInputInteractionContext, endCommand, t) {
+export default async function GirlFriendExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const user = context.getOption<User>("user", "users");
 
-    var avatar;
     if (!user) {
-        avatar = "https://cdn.discordapp.com/attachments/784852925989126215/862127934332338176/unknown.png";
-    } else {
-        avatar = getUserAvatar(user, { size: 2048 });
-    }
+        context.sendReply({
+            content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:global.noUser')),
+            flags: 64
+        });
 
+        return endCommand();
+    }
+    
+    const avatar = getUserAvatar(user, { size: 2048 });
     const background = await Canvas.loadImage(`${serverURL}/assets/commands/memes/namorada.png`);
     const avatarImg = await Canvas.loadImage(avatar);
     const canvas = Canvas.createCanvas(500, 510);

@@ -1,14 +1,13 @@
 import { bot } from "../../../FoxyLauncher";
 import { colors } from "../../../structures/types/colors";
 import { createEmbed } from "../../../utils/discord/Embed";
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
-import ChatInputMessageContext from "../../structures/ChatInputMessageContext";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-async function generateEmbed(context, t, authorId) {
-    return createEmbed({
+export default async function HelpExecutor(context: UnleashedCommandExecutor, endCommand, t) {
+    const embed = createEmbed({
         title: context.getEmojiById(bot.emotes.FOXY_HOWDY) + " " + "Foxy",
         color: colors.FOXY_DEFAULT,
-        description: t('commands:help.bot.description', { user: `<@!${authorId}>` }),
+        description: t('commands:help.bot.description', { user: `<@!${context.author.id}>` }),
         fields: [
             {
                 name: context.getEmojiById(bot.emotes.FOXY_WOW) + " " + t('commands:help.bot.fields.addme'),
@@ -35,15 +34,6 @@ async function generateEmbed(context, t, authorId) {
             url: "https://cdn.discordapp.com/attachments/1078322762550083736/1233237607010406482/Foxy.png?ex=662c5d85&is=662b0c05&hm=70d01fc36628386c9809fc1db26f10be9d9a4efedba2aa5ccfbba05cc0704888&"
         }
     });
-}
-
-export default async function HelpExecutor(context: ChatInputInteractionContext, endCommand, t) {
-    const embed = await generateEmbed(context, t, context.author.id);
     context.sendReply({ embeds: [embed] });
     endCommand();
-}
-
-export async function HelpLegacyExecutor(context: ChatInputMessageContext, args, t) {
-    const embed = await generateEmbed(context, t, context.authorId);
-    context.sendReply({ embeds: [embed] });
 }

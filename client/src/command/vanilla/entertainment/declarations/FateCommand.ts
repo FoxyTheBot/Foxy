@@ -1,7 +1,5 @@
 import { createCommand } from "../../../structures/createCommand";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
-import { User } from "discordeno/transformers";
-import { bot } from "../../../../FoxyLauncher";
 import FateExecutor from "../FateExecutor";
 
 const FateCommand = createCommand({
@@ -11,6 +9,7 @@ const FateCommand = createCommand({
         "pt-BR": "[Entretenimento] Qual o seu destino com a pessoa"
     },
     category: 'fun',
+    supportsLegacy: true,
     options: [
         {
             name: "user",

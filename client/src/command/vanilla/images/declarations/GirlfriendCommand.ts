@@ -1,9 +1,5 @@
 import { createCommand } from '../../../structures/createCommand';
-import * as Canvas from 'canvas';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
-import { getUserAvatar } from "../../../../utils/discord/User";
-import { User } from 'discordeno/transformers';
-import { serverURL } from '../../../../../config.json';
 import GirlFriendExecutor from '../GirlfriendExecutor';
 
 const GirlfriendCommand = createCommand({
@@ -13,6 +9,7 @@ const GirlfriendCommand = createCommand({
         "pt-BR": "[Imagem] Quem é a sua namorada?"
     },
     category: "image",
+    supportsLegacy: true,
     options: [
         {
             name: "user",

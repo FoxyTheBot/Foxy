@@ -12,6 +12,7 @@ const cancelCommand = createCommand({
         "pt-BR": "[Entretenimento] Cancela alguém"
     },
     category: 'fun',
+    supportsLegacy: true,
     options: [
         {
             name: "user",

@@ -1,11 +1,11 @@
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { User } from "discordeno/transformers";
 import { bot } from "../../../FoxyLauncher";
 import ms from "ms";
 import { MessageFlags } from "../../../utils/discord/Message";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function RepExecutor(context: ChatInputInteractionContext, endCommand, t) {
-    const user = context.getOption<User>('user', 'users');
+export default async function RepExecutor(context: UnleashedCommandExecutor, endCommand, t) {
+    const user = await context.getOption<User>('user', 'users');
     if (!user) {
         context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser'));
         return endCommand();

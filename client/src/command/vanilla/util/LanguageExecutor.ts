@@ -1,8 +1,8 @@
 import { bot } from "../../../FoxyLauncher";
 import { MessageFlags } from "../../../utils/discord/Message";
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function LanguageExecutor(context: ChatInputInteractionContext, endCommand, t) {
+export default async function LanguageExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const language = context.getOption<string>('language', false);
     const userData = await bot.database.getUser(context.author.id);
     userData.userSettings.language = language;

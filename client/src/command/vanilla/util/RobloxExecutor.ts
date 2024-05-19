@@ -1,12 +1,12 @@
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { createEmbed } from "../../../utils/discord/Embed";
 import { createActionRow, createButton } from "../../../utils/discord/Component";
 import { ButtonStyles } from "discordeno/types";
 import { getPlayerInfo, getPlayerBadges, getIdFromUsername } from "noblox.js";
 import { bot } from "../../../FoxyLauncher";
 import { MessageFlags } from "../../../utils/discord/Message";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function RobloxExecutor(context: ChatInputInteractionContext, endCommand, t) {
+export default async function RobloxExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const username = context.getOption("username", false);
     context.sendDefer();
     getIdFromUsername(String(username)).then((id) => {
@@ -24,7 +24,7 @@ export default async function RobloxExecutor(context: ChatInputInteractionContex
                         },
                         {
                             name: t("commands:roblox.fields.joinDate"),
-                            value: context.toDiscordTimestamp(info.joinDate),
+                            value: context.convertToDiscordTimestamp(info.joinDate, "long-and-relative"),
                             inline: true
                         },
                         {

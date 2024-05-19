@@ -1,10 +1,11 @@
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { ButtonStyles } from "discordeno/types";
 import { bot } from '../../../FoxyLauncher';
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import { createEmbed } from "../../../utils/discord/Embed";
+import ChatInputMessageContext from "../../structures/ChatInputMessageContext";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function RpsExecutor(context: ChatInputInteractionContext, endCommand, t) {
+export default async function RpsExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const embed = createEmbed({
         description: t('commands:rps.start'),
         fields: [{
@@ -53,4 +54,53 @@ export default async function RpsExecutor(context: ChatInputInteractionContext, 
     });
 
     endCommand();
+}
+
+export async function RpsLegacyExecutor(context: ChatInputMessageContext, args, t) {
+    const embed = createEmbed({
+        description: t('commands:rps.start'),
+        fields: [{
+            name: await bot.foxyRest.getUserDisplayName(context.authorId),
+            value: t('commands:rps.defaultValue'),
+            inline: true
+        },
+        {
+            name: "Foxy",
+            value: t('commands:rps.defaultValue'),
+            inline: true
+        }]
+    });
+
+    context.sendReply({
+        embeds: [embed],
+        components: [createActionRow([createButton({
+            label: bot.locale('commands:rps.button.rock'),
+            style: ButtonStyles.Primary,
+            customId: createCustomId(0, context.authorId, context.message.id, "rock"),
+            emoji: {
+                id: bot.emotes.ROCK
+            }
+        }), createButton({
+            label: bot.locale('commands:rps.button.paper'),
+            style: ButtonStyles.Primary,
+            customId: createCustomId(0, context.authorId, context.message.id, "paper"),
+            emoji: {
+                name: "📄"
+            }
+        }), createButton({
+            label: bot.locale('commands:rps.button.scissors'),
+            style: ButtonStyles.Primary,
+            customId: createCustomId(0, context.authorId, context.message.id, "scissors"),
+            emoji: {
+                name: "✂"
+            }
+        }), createButton({
+            label: bot.locale('commands:rps.button.cancel'),
+            style: ButtonStyles.Danger,
+            customId: createCustomId(0, context.authorId, context.message.id, "cancel"),
+            emoji: {
+                id: bot.emotes.FOXY_CRY
+            }
+        })])]
+    });
 }

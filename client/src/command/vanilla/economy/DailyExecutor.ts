@@ -1,9 +1,9 @@
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import ms from 'ms';
 import { bot } from '../../../FoxyLauncher';
 import { MessageFlags } from '../../../utils/discord/Message';
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function DailyExecutor(context: ChatInputInteractionContext, endCommand, t) {
+export default async function DailyExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const userData = await bot.database.getUser(context.author.id);
 
     const timeout = 43200000;

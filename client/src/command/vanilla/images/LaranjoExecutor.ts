@@ -1,9 +1,9 @@
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import * as Canvas from "canvas";
 import { serverURL } from "../../../../config.json";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function LaranjoExecutor(context: ChatInputInteractionContext, endCommand, t) {
-    const content = context.getOption<string>("text", false);
+export default async function LaranjoExecutor(context: UnleashedCommandExecutor, endCommand, t) {
+    const content = context.getOption<string>("text", "full-string");
     const canvas = Canvas.createCanvas(700, 600);
     const ctx = canvas.getContext('2d');
 

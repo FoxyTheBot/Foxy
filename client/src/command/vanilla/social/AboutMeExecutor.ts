@@ -1,9 +1,9 @@
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { MessageFlags } from "../../../utils/discord/Message";
 import { bot } from "../../../FoxyLauncher";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function AboutMeExecutor(context: ChatInputInteractionContext, endCommand, t) {
-    const text = context.getOption<string>("text", false);
+export default async function AboutMeExecutor(context: UnleashedCommandExecutor, endCommand, t) {
+    const text = context.getOption<string>("text", "full-string");
     const userData = await bot.database.getUser(context.author.id);
 
     if (text.length > 177) {

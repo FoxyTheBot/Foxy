@@ -1,10 +1,10 @@
 import { Member } from "discordeno/transformers";
 import { FoxyClient } from "../../structures/types/foxy";
-import ChatInputInteractionContext from "../../command/structures/ChatInputInteractionContext";
+import UnleashedCommandExecutor from "../../command/structures/UnleashedCommandExecutor";
 
 export default class ValAutoRoleModule {
     public bot: FoxyClient;
-    public context: ChatInputInteractionContext
+    public context: UnleashedCommandExecutor
     constructor(bot, context) {
         this.bot = bot;
         this.context = context;

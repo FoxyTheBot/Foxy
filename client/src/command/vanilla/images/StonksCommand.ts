@@ -1,9 +1,9 @@
 import * as Canvas from "canvas";
 import { serverURL } from '../../../../config.json';
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function StonksExecutor(context: ChatInputInteractionContext, endCommand, t) {
-    const content = context.getOption<string>("text", false);
+export default async function StonksExecutor(context: UnleashedCommandExecutor, endCommand, t) {
+    const content = context.getOption<string>("text", "full-string");
     const canvas = Canvas.createCanvas(800, 600);
     const ctx = canvas.getContext("2d");
 

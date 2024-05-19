@@ -1,7 +1,7 @@
 import { MessageFlags } from "../../../utils/discord/Message";
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function ValorantSetVisibilityExecutor(bot, context: ChatInputInteractionContext, endCommand, t) {
+export default async function ValorantSetVisibilityExecutor(bot, context: UnleashedCommandExecutor, endCommand, t) {
     const visibility = context.getOption<string>('visibility', false);
     const valUserInfo = await bot.database.getUser(context.author.id);
 

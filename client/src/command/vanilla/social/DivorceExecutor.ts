@@ -2,9 +2,9 @@ import { createActionRow, createButton, createCustomId } from "../../../utils/di
 import { ButtonStyles } from "discordeno/types";
 import { MessageFlags } from "../../../utils/discord/Message";
 import { bot } from "../../../FoxyLauncher";
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function DivorceExecutor(context: ChatInputInteractionContext, endCommand, t) {
+export default async function DivorceExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const userData = await bot.database.getUser(context.author.id);
     const partnerId = await userData.marryStatus.marriedWith;
 

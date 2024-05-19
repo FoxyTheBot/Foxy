@@ -9,6 +9,7 @@ const StonksCommand = createCommand({
         "pt-BR": "[Imagem] Crie uma imagem do stonks"
     },
     category: "image",
+    supportsLegacy: true,
     options: [
         {
             name: "text",

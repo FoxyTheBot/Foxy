@@ -1,7 +1,7 @@
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { bot } from "../../../FoxyLauncher";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function AskFoxyExecutor(context: ChatInputInteractionContext, t, endCommand) {
+export default async function AskFoxyExecutor(context: UnleashedCommandExecutor, t, endCommand) {
     const results = [
         t('commands:8ball.yes'),
         t('commands:8ball.no'),

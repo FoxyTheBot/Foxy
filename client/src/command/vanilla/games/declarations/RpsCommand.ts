@@ -1,6 +1,6 @@
 import { createCommand } from "../../../structures/createCommand";
 import RpsButtonExecutor from "../components/RpsButtonExecutor";
-import RpsExecutor from "../RpsExecutor";
+import RpsExecutor, { RpsLegacyExecutor } from "../RpsExecutor";
 
 const RpsCommand = createCommand({
     name: 'rps',
@@ -10,9 +10,9 @@ const RpsCommand = createCommand({
     },
     category: 'games',
     commandRelatedExecutions: [RpsButtonExecutor],
-    execute: async (context, endCommand, t) => {
+    execute: async (context, endCommand, t) => {''
         RpsExecutor(context, endCommand, t);
-    }
+    },
 });
 
 export default RpsCommand;

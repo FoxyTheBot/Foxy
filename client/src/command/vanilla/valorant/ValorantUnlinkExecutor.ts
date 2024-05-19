@@ -1,8 +1,8 @@
 import { ButtonStyles } from "discordeno/types";
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function ValorantUnlinkExecutor(bot, context: ChatInputInteractionContext, endCommand, t) {
+export default async function ValorantUnlinkExecutor(bot, context: UnleashedCommandExecutor, endCommand, t) {
     const userData = await bot.database.getUser(context.author.id);
 
     if (!userData.riotAccount.isLinked) {

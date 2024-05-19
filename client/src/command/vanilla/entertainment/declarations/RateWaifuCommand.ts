@@ -12,6 +12,7 @@ const RateWaifuCommand = createCommand({
         "pt-BR": "[Entretenimento] Avalie uma waifu"
     },
     category: "fun",
+    supportsLegacy: true,
     options: [{
         name: "user",
         nameLocalizations: {

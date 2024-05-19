@@ -1,10 +1,10 @@
 import { User } from "discordeno/transformers";
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { createEmbed } from "../../../utils/discord/Embed";
 import { createActionRow, createCustomId, createSelectMenu } from "../../../utils/discord/Component";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function ValorantMatchesExecutor(bot, context: ChatInputInteractionContext, endCommand, t) {
-    const user = context.getOption<User>('user', 'users') ?? context.author;
+export default async function ValorantMatchesExecutor(bot, context: UnleashedCommandExecutor, endCommand, t) {
+    const user = await context.getOption<User>('user', 'users') ?? context.author;
     const userData = await bot.database.getUser(user.id);
     if (!userData.riotAccount.isLinked) {
         context.sendReply({

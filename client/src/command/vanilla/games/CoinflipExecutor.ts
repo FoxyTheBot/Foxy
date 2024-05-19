@@ -1,6 +1,6 @@
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext"
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function CoinflipExecutor(context: ChatInputInteractionContext, endCommand, t) {
+export default async function CoinflipExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const coinflip = ["heads", "tails"];
     const coin = coinflip[Math.floor(Math.random() * coinflip.length)];
 

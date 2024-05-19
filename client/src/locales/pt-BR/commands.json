@@ -262,7 +262,7 @@
     "rep": {
         "cooldown": "Você já deu reputação para algúem, espere **{{cooldown}}**",
         "success": "Você deu reputação para **{{user}}**",
-        "self": "Você não pode dar reputação para você mesmo"
+        "self": "Você não pode dar reputação para si mesmo"
     },
     "marry": {
         "self": "Você não pode casar com você mesmo",
@@ -320,7 +320,9 @@
         "result": "Em um universo paralelo <@{{user}}> e <@{{mention}}> são {{fate}}"
     },
     "cancel": {
-        "result": "{{user}} cancelou {{mention}} por `{{reason}}`"
+        "result": "{{user}} cancelou {{mention}} por `{{reason}}`",
+        "noReason": "Você precisa falar um motivo",
+        "noUser": "Você precisa mencionar alguém para cancelar"
     },
     "8ball": {
         "yes": "Sim",
@@ -345,7 +347,7 @@
         }
     },
     "pay": {
-        "self": "Você não pode enviar cakes para você mesmo",
+        "self": "Você não pode enviar cakes para si mesmo",
         "notEnough": "Você não tem Cakes suficiente",
         "alert": "Você deseja mesmo transferir {{amount}} Cakes para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!",
         "success": "Você transferiu {{amount}} Cakes para {{user}}",

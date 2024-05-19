@@ -1,9 +1,9 @@
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { MessageFlags } from "../../../utils/discord/Message";
 import { bot } from "../../../FoxyLauncher";
 import { lylist } from '../../../structures/json/layoutList.json';
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function LayoutExecutor(context: ChatInputInteractionContext, endCommand, t) {
+export default async function LayoutExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const selectedOption = context.getOption<string>('layout', false, true);
     const layouts = lylist.map(data => data.id);
     if (!layouts.includes(selectedOption)) return context.sendReply({

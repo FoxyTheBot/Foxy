@@ -1,11 +1,11 @@
-import ChatInputInteractionContext from "../../structures/ChatInputInteractionContext";
 import { User } from "discordeno/transformers";
 import { bot } from "../../../FoxyLauncher";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import { ButtonStyles } from "discordeno/types";
+import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function BetExecutor(context: ChatInputInteractionContext, endCommand, t) {
-    const user = context.getOption<User>('user', 'users');
+export default async function BetExecutor(context: UnleashedCommandExecutor, endCommand, t) {
+    const user = await context.getOption<User>('user', 'users');
     const amount = context.getOption<number>('amount', false);
     const choice = context.getOption<string>('choice', false);
     let choices = ['heads', 'tails'];

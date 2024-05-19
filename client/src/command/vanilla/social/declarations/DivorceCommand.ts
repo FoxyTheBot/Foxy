@@ -12,6 +12,7 @@ const DivorceCommand = createCommand({
         "pt-BR": "[Social] Divorcie-se de seu parceiro"
     },
     category: "social",
+    supportsLegacy: true,
     commandRelatedExecutions: [DivorceButtonExecutor],
 
     execute: async (context, endCommand, t) => {
