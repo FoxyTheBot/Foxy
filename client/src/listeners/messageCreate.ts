@@ -9,64 +9,77 @@ import UnleashedCommandExecutor from "../command/structures/UnleashedCommandExec
 const setMessageCreateEvent = (): void => {
     bot.events.messageCreate = async (_, message) => {
         if (message.isFromBot) return;
-        if (message.content === `<@${bot.id}>` || message.content === `<@!${bot.id}>`) return bot.helpers.sendMessage(message.channelId, {
-            content: bot.locale("events:messageCreate.mentionMessage",
-                {
-                    botUsername: await bot.foxyRest.getUserDisplayName(bot.id), author: `<@${message.member.id}>`
+
+        const { content, channelId, authorId, member } = message;
+        const botMention = `<@${bot.id}>` || `<@!${bot.id}>`;
+
+        if (content === botMention) {
+            const botUsername = await bot.foxyRest.getUserDisplayName(bot.id);
+            return bot.helpers.sendMessage(channelId, {
+                content: bot.locale("events:messageCreate.mentionMessage", {
+                    botUsername,
+                    author: `<@${member.id}>`
                 })
-        });
-        const user = await bot.database.getUser(message.authorId);
-        const locale = global.t = i18next.getFixedT(user.userSettings.language || 'pt-BR');
+            });
+        }
+
+        const user = await bot.database.getUser(authorId);
+        const locale = i18next.getFixedT(user.userSettings.language || 'pt-BR');
         const context = new UnleashedCommandExecutor(locale, message);
 
         bot.locale = locale;
 
-        /* Legacy command handler for prefix commands */
-        async function FoxyLegacyHandler() {
-            if (!message.content.startsWith("f!")) return;
-            const command = bot.commands.get(message.content.split(' ')[0].slice(2))
-                || bot.commands.find((cmd) => cmd.aliases?.includes(message.content.split(' ')[0].slice(2)));
-            if (!command || !command.supportsLegacy) return;
-
-            const args = message.content.split(' ').slice(1);
-            if (command) {
-                function emptyFunction() { }
-                bot.helpers.startTyping(message.channelId);
-                await command.execute(context, emptyFunction, locale, args);
-                bot.helpers.triggerTypingIndicator(message.channelId);
-            }
+        if (user.isBanned) {
+            const banDate = user.banDate.toLocaleString(global.t.lng || 'pt-BR', {
+                timeZone: "America/Sao_Paulo",
+                hour: '2-digit',
+                minute: '2-digit',
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric'
+            });
+            const embed = createEmbed({
+                title: locale('events:ban.title'),
+                description: locale('events:ban.description'),
+                fields: [
+                    { name: locale('events:ban.reason'), value: user.banReason },
+                    { name: locale('events:ban.date'), value: banDate }
+                ]
+            });
+            return context.sendReply({
+                embeds: [embed],
+                components: [createActionRow([createButton({
+                    label: locale('events:ban.button'),
+                    style: ButtonStyles.Link,
+                    emoji: { id: bot.emotes.FOXY_CUPCAKE },
+                    url: 'https://forms.gle/bKfRKxoyFGZzRB7x8'
+                })])]
+            });
         }
 
-        try {
-            if (user.isBanned) {
-                const embed = createEmbed({
-                    title: locale('events:ban.title'),
-                    description: locale('events:ban.description'),
-                    fields: [
-                        { name: locale('events:ban.reason'), value: user.banReason },
-                        { name: locale('events:ban.date'), value: user.banDate.toLocaleString(global.t.lng || 'pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }
-                    ]
-                })
-                return context.sendReply({
-                    embeds: [embed],
-                    components: [createActionRow([createButton({
-                        label: locale('events:ban.button'),
-                        style: ButtonStyles.Link,
-                        emoji: {
-                            id: bot.emotes.FOXY_CUPCAKE
-                        },
-                        url: 'https://forms.gle/bKfRKxoyFGZzRB7x8'
-                    })])]
+        // Legacy command handler for prefix commands
+        if (content.startsWith("f!")) {
+            const commandName = content.split(' ')[0].slice(2);
+            const command = bot.commands.get(commandName) || bot.commands.find((cmd) => cmd.aliases?.includes(commandName));
+
+            if (command && command.supportsLegacy) {
+                const args = content.split(' ').slice(1);
+                try {
+                    bot.helpers.startTyping(channelId);
+                    await command.execute(context, () => {}, locale, args);
+                    bot.helpers.triggerTypingIndicator(channelId);
+                } catch (error) {
+                    logger.error(error);
+                }
+            } else if (command) {
+                context.sendReply({
+                    content: context.makeReply(bot.emotes.FOXY_CRY, locale('events:messageCreate.commandNotSupported', {
+                        command: command.name
+                    }))
                 });
-
-
             }
-
-            FoxyLegacyHandler();
-        } catch (error) {
-            logger.error(error);
         }
-    }
-}
+    };
+};
 
-export { setMessageCreateEvent }
+export { setMessageCreateEvent };
