@@ -95,7 +95,7 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
 
 
   async getImage(command: string) {
-    let baseURL = `${config.serverURL}/images/`;
+    let baseURL = `${config.serverURL}/roleplay/`;
     let url = new URL(baseURL + command);
     return await this.getContent(url.toString());
   }

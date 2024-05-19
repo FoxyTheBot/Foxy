@@ -13,6 +13,7 @@ import { get } from 'https';
 import { URL } from 'url';
 import { getArgsFromMessage, getOptionFromInteraction } from './GetCommandOption';
 import { foxyAPIToken } from '../../../config.json';
+import config from '../../../config.json';
 
 export type CanResolve = 'users' | 'members' | 'full-string' | false;
 // full-string is used for getting the full string of the argument
@@ -134,7 +135,7 @@ export default class UnleashedCommandExecutor {
     }
 
     async getImage(command: string): Promise<any> {
-        const baseURL = 'https://cakey.foxybot.win/images/';
+        const baseURL = `${config.serverURL}/roleplay/`;
         const url = new URL(baseURL + command);
         return await this.getContent(url.toString());
     }
