@@ -19,7 +19,7 @@ export default class DatabaseConnection {
     public decorations: any;
 
     constructor(client) {
-        mongoose.set("strictQuery", true)
+        mongoose.set("strictQuery", true);
         mongoose.connect(mongouri).catch((error) => {
             logger.error(`Failed to connect to database: `, error);
         });
@@ -33,12 +33,23 @@ export default class DatabaseConnection {
         this.decorations = mongoose.model('decorations', Schemas.avatarDecorationSchema);
         this.riotAccount = mongoose.model('riotAccount', Schemas.riotAccountSchema);
         this.client = client;
+
+        this._createIndexes();
+    }
+
+    _createIndexes() {
+        this.user.createIndexes({ _id: 1 });
+        this.user.createIndexes({ 'riotAccount.authCode': 1 });
+        this.commands.createIndexes({ commandName: 1 });
+        this.guilds.createIndexes({ _id: 1 });
+        this.backgrounds.createIndexes({ id: 1 });
+        this.decorations.createIndexes({ id: 1 });
     }
 
     async getUser(userId: BigInt): Promise<any> {
-        if (!userId) null;
+        if (!userId) return null;
         const user: User = await bot.helpers.getUser(String(userId));
-        let document = await this.user.findOne({ _id: user.id });
+        let document = await this.user.findOne({ _id: user.id }).lean();
 
         if (!document) {
             document = new this.user({
@@ -96,36 +107,39 @@ export default class DatabaseConnection {
                     region: null
                 },
                 premiumKeys: []
-            }).save();
+            });
+            await document.save();
         }
 
         return document;
     }
 
     async registerCommand(commandName: string, commandDescription: string): Promise<void> {
-        let commandFromDB = await this.commands.findOne({ commandName: commandName });
+        let commandFromDB = await this.commands.findOne({ commandName }).lean();
 
         if (!commandFromDB) {
             commandFromDB = new this.commands({
-                commandName: commandName,
+                commandName,
                 commandUsageCount: 0,
                 description: commandDescription,
                 isInactive: false,
                 subcommands: null,
                 usage: null
-            }).save();
-        } else {
-            commandFromDB.description = commandDescription
+            });
             await commandFromDB.save();
-
-            return;
+        } else {
+            await this.commands.updateOne(
+                { commandName },
+                { $set: { description: commandDescription } }
+            );
         }
     }
+
     async updateCommand(commandName: string): Promise<void> {
         let commandFromDB = await this.commands.findOneAndUpdate(
-            { commandName: commandName },
+            { commandName },
             { $inc: { commandUsageCount: 1 } },
-            { upsert: true, new: true }
+            { upsert: true, new: true, lean: true }
         );
 
         let command = await bot.commands.get(commandName);
@@ -136,31 +150,28 @@ export default class DatabaseConnection {
     }
 
     async getAllCommands(): Promise<void> {
-        let commandsData = await this.commands.find({});
-        return commandsData.map(command => command.toJSON());
+        let commandsData = await this.commands.find({}).lean();
+        return commandsData.map(command => command);
     }
 
     async getCode(code: string): Promise<any> {
-        const riotAccount = this.riotAccount.findOne({ authCode: code });
-        if (!riotAccount) return null;
-        return riotAccount;
+        const riotAccount = await this.riotAccount.findOne({ authCode: code }).lean();
+        return riotAccount || null;
     }
 
     async getAllUsageCount(): Promise<Number> {
-        let commandsData = await this.commands.find({});
-        let usageCount = 0;
-        commandsData.map(command => usageCount += command.commandUsageCount);
+        let commandsData = await this.commands.find({}).lean();
+        let usageCount = commandsData.reduce((acc, command) => acc + command.commandUsageCount, 0);
         return usageCount;
-
     }
 
     async getGuild(guildId: BigInt): Promise<any> {
-        let document = await this.guilds.findOne({ _id: guildId });
+        let document = await this.guilds.findOne({ _id: guildId }).lean();
         return document;
     }
 
     async addGuild(guildId: BigInt): Promise<any> {
-        let document = await this.guilds.findOne({ _id: guildId });
+        let document = await this.guilds.findOne({ _id: guildId }).lean();
 
         if (!document) {
             document = new this.guilds({
@@ -187,52 +198,45 @@ export default class DatabaseConnection {
                     radiantRole: null,
                 },
                 premiumKeys: []
-
-            }).save()
+            });
+            await document.save();
         }
 
         return document;
     }
 
     async removeGuild(guildId: BigInt): Promise<any> {
-        let document = await this.guilds.findOne({ _id: guildId });
-
-        if (document) {
-            document.delete();
-        } else {
-            return null;
-        }
-
+        let document = await this.guilds.findOneAndDelete({ _id: guildId }).lean();
         return document;
     }
 
-    async getAllUsers(): Promise<void> {
-        let usersData = await this.user.find({});
-        return usersData.map(user => user.toJSON());
+    async getAllUsers(page: number = 1, limit: number = 100): Promise<void> {
+        let usersData = await this.user.find({}).skip((page - 1) * limit).limit(limit).lean();
+        return usersData.map(user => user);
     }
 
-    async getAllGuilds(): Promise<void> {
-        let guildsData = await this.guilds.find({});
+    async getAllGuilds(): Promise<number> {
+        let guildsData = await this.guilds.find({}).lean();
         return guildsData.length;
     }
 
     async getAllBackgrounds(): Promise<Background[]> {
-        let backgroundsData = await this.backgrounds.find({});
-        return backgroundsData.map(background => background.toJSON());
+        let backgroundsData = await this.backgrounds.find({}).lean();
+        return backgroundsData.map(background => background);
     }
 
     async getAllDecorations(): Promise<any> {
-        let decorationsData = await this.decorations.find({});
-        return decorationsData.map(decoration => decoration.toJSON());
+        let decorationsData = await this.decorations.find({}).lean();
+        return decorationsData.map(decoration => decoration);
     }
 
     async getBackground(backgroundId: string): Promise<Background> {
-        let background = await this.backgrounds.findOne({ id: backgroundId });
+        let background = await this.backgrounds.findOne({ id: backgroundId }).lean();
         return background;
     }
 
     async getDecoration(decorationId: string): Promise<any> {
-        let decoration = await this.decorations.findOne({ id: decorationId });
+        let decoration = await this.decorations.findOne({ id: decorationId }).lean();
         return decoration;
     }
 }
