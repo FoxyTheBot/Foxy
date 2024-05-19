@@ -15,6 +15,8 @@ const componentExecutor = async (interaction: Interaction): Promise<void> => {
   // if command isn't a interaction
   if (!interaction.message.interaction) {
     const message = await bot.messages.get(BigInt(interaction.data?.customId.split('|')[2]));
+    if (!message) return;
+
     receivedCommandName = bot.commands.find((cmd) => cmd.name === message.content.split(' ')[0].replace('f!', '')
       || cmd.aliases?.includes(message.content.split(' ')[0].replace('f!', ''))).name;
   }
