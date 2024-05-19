@@ -20,10 +20,12 @@ export default class DatabaseConnection {
 
     constructor(client) {
         mongoose.set("strictQuery", true);
-        mongoose.connect(mongouri).catch((error) => {
+        mongoose.connect(mongouri).then(() => {
+            logger.info(`[DATABASE] Connected to database!`);
+            this._createIndexes();
+        }).catch((error) => {
             logger.error(`Failed to connect to database: `, error);
         });
-        logger.info(`[DATABASE] Connected to database!`);
 
         this.user = mongoose.model('user', Schemas.userSchema);
         this.commands = mongoose.model('commands', Schemas.commandsSchema);
@@ -33,8 +35,6 @@ export default class DatabaseConnection {
         this.decorations = mongoose.model('decorations', Schemas.avatarDecorationSchema);
         this.riotAccount = mongoose.model('riotAccount', Schemas.riotAccountSchema);
         this.client = client;
-
-        this._createIndexes();
     }
 
     _createIndexes() {
@@ -115,24 +115,11 @@ export default class DatabaseConnection {
     }
 
     async registerCommand(commandName: string, commandDescription: string): Promise<void> {
-        let commandFromDB = await this.commands.findOne({ commandName }).lean();
-
-        if (!commandFromDB) {
-            commandFromDB = new this.commands({
-                commandName,
-                commandUsageCount: 0,
-                description: commandDescription,
-                isInactive: false,
-                subcommands: null,
-                usage: null
-            });
-            await commandFromDB.save();
-        } else {
-            await this.commands.updateOne(
-                { commandName },
-                { $set: { description: commandDescription } }
-            );
-        }
+        let commandFromDB = await this.commands.findOneAndUpdate(
+            { commandName },
+            { $set: { description: commandDescription } },
+            { upsert: true, lean: true }
+        );
     }
 
     async updateCommand(commandName: string): Promise<void> {
@@ -149,9 +136,9 @@ export default class DatabaseConnection {
         return commandFromDB;
     }
 
-    async getAllCommands(): Promise<void> {
+    async getAllCommands(): Promise<any[]> {
         let commandsData = await this.commands.find({}).lean();
-        return commandsData.map(command => command);
+        return commandsData;
     }
 
     async getCode(code: string): Promise<any> {
@@ -159,7 +146,7 @@ export default class DatabaseConnection {
         return riotAccount || null;
     }
 
-    async getAllUsageCount(): Promise<Number> {
+    async getAllUsageCount(): Promise<number> {
         let commandsData = await this.commands.find({}).lean();
         let usageCount = commandsData.reduce((acc, command) => acc + command.commandUsageCount, 0);
         return usageCount;
@@ -171,37 +158,36 @@ export default class DatabaseConnection {
     }
 
     async addGuild(guildId: BigInt): Promise<any> {
-        let document = await this.guilds.findOne({ _id: guildId }).lean();
-
-        if (!document) {
-            document = new this.guilds({
-                _id: guildId,
-                GuildJoinLeaveModule: {
-                    isEnabled: false,
-                    joinMessage: null,
-                    alertWhenUserLeaves: false,
-                    leaveMessage: null,
-                    joinChannel: null,
-                    leaveChannel: null,
-                },
-                valAutoRoleModule: {
-                    isEnabled: false,
-                    unratedRole: null,
-                    ironRole: null,
-                    bronzeRole: null,
-                    silverRole: null,
-                    goldRole: null,
-                    platinumRole: null,
-                    diamondRole: null,
-                    ascendantRole: null,
-                    immortalRole: null,
-                    radiantRole: null,
-                },
-                premiumKeys: []
-            });
-            await document.save();
-        }
-
+        let document = await this.guilds.findOneAndUpdate(
+            { _id: guildId },
+            {
+                $setOnInsert: {
+                    GuildJoinLeaveModule: {
+                        isEnabled: false,
+                        joinMessage: null,
+                        alertWhenUserLeaves: false,
+                        leaveMessage: null,
+                        joinChannel: null,
+                        leaveChannel: null,
+                    },
+                    valAutoRoleModule: {
+                        isEnabled: false,
+                        unratedRole: null,
+                        ironRole: null,
+                        bronzeRole: null,
+                        silverRole: null,
+                        goldRole: null,
+                        platinumRole: null,
+                        diamondRole: null,
+                        ascendantRole: null,
+                        immortalRole: null,
+                        radiantRole: null,
+                    },
+                    premiumKeys: []
+                }
+            },
+            { upsert: true, lean: true, new: true }
+        );
         return document;
     }
 
