@@ -6,7 +6,7 @@ import UnleashedCommandExecutor from '../../structures/UnleashedCommandExecutor'
 import { bot } from '../../../FoxyLauncher';
 
 export default async function GirlFriendExecutor(context: UnleashedCommandExecutor, endCommand, t) {
-    const user = context.getOption<User>("user", "users");
+    const user = await context.getOption<User>("user", "users");
 
     if (!user) {
         context.sendReply({
