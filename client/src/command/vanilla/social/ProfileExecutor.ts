@@ -47,22 +47,3 @@ export default async function ProfileExecutor(context: UnleashedCommandExecutor,
         }
     }
 }
-
-export async function ProfileLegacyExecutor(message: ChatInputMessageContext, args, t) {
-    const userInfo = await message.getUser(args[0]);
-    const user = await bot.database.getUser(BigInt(userInfo.id));
-
-    if (user.isBanned) {
-        return message.sendReply({
-            content: t('commands:profile.banned', { user: await bot.foxyRest.getUserDisplayName(userInfo.id), reason: user.banReason, date: user.banDate.toLocaleString(global.t.lng, { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) })
-        });
-    }
-
-    const createProfile = new CreateProfile(t, userInfo, user);
-    const profile = createProfile.create();
-
-    return message.sendReply({
-        content: t('commands:profile.profile', { user: `<@${userInfo.id}>` }),
-        file: [{ name: 'profile.png', blob: await profile }]
-    });
-}
