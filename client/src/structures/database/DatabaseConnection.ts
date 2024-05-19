@@ -19,14 +19,19 @@ export default class DatabaseConnection {
     public decorations: any;
 
     constructor(client) {
-        mongoose.set("strictQuery", true);
-        mongoose.connect(mongouri).then(() => {
-            logger.info(`[DATABASE] Connected to database!`);
-            this._createIndexes();
-        }).catch((error) => {
-            logger.error(`Failed to connect to database: `, error);
-        });
+        this.client = client;
+        this.connect();
+        this.loadModels();
+    }
 
+    connect() {
+        mongoose.set("strictQuery", true);
+        mongoose.connect(mongouri)
+            .then(() => logger.info(`[DATABASE] Connected to database!`))
+            .catch(error => logger.error(`Failed to connect to database: `, error));
+    }
+
+    loadModels() {
         this.user = mongoose.model('user', Schemas.userSchema);
         this.commands = mongoose.model('commands', Schemas.commandsSchema);
         this.guilds = mongoose.model('guilds', Schemas.guildSchema);
@@ -34,80 +39,102 @@ export default class DatabaseConnection {
         this.backgrounds = mongoose.model('backgrounds', Schemas.backgroundSchema);
         this.decorations = mongoose.model('decorations', Schemas.avatarDecorationSchema);
         this.riotAccount = mongoose.model('riotAccount', Schemas.riotAccountSchema);
-        this.client = client;
     }
 
-    _createIndexes() {
-        this.user.createIndexes({ _id: 1 });
-        this.user.createIndexes({ 'riotAccount.authCode': 1 });
-        this.commands.createIndexes({ commandName: 1 });
-        this.guilds.createIndexes({ _id: 1 });
-        this.backgrounds.createIndexes({ id: 1 });
-        this.decorations.createIndexes({ id: 1 });
+    createUser(userId: string) {
+        return new this.user({
+            _id: userId,
+            userCreationTimestamp: new Date(),
+            isBanned: false,
+            banDate: null,
+            banReason: null,
+            userCakes: {
+                balance: 0,
+                lastDaily: null,
+            },
+            marryStatus: {
+                marriedWith: null,
+                marriedDate: null,
+                cantMarry: false,
+            },
+            userProfile: {
+                decoration: null,
+                decorationList: [],
+                background: "default",
+                backgroundList: ["default"],
+                repCount: 0,
+                lastRep: null,
+                layout: "default",
+                aboutme: null,
+            },
+            userPremium: {
+                premium: false,
+                premiumDate: null,
+                premiumType: null,
+            },
+            userSettings: {
+                language: 'pt-br'
+            },
+            petInfo: {
+                name: null,
+                type: null,
+                rarity: null,
+                level: 0,
+                hungry: 100,
+                happy: 100,
+                health: 100,
+                lastHungry: null,
+                lastHappy: null,
+                isDead: false,
+                isClean: true,
+                food: []
+            },
+            userTransactions: [],
+            riotAccount: {
+                isLinked: false,
+                puuid: null,
+                isPrivate: false,
+                region: null
+            },
+            premiumKeys: []
+        });
+    }
+
+    createGuild(guildId: string) {
+        return new this.guilds({
+            _id: guildId,
+            GuildJoinLeaveModule: {
+                isEnabled: false,
+                joinMessage: null,
+                alertWhenUserLeaves: false,
+                leaveMessage: null,
+                joinChannel: null,
+                leaveChannel: null,
+            },
+            valAutoRoleModule: {
+                isEnabled: false,
+                unratedRole: null,
+                ironRole: null,
+                bronzeRole: null,
+                silverRole: null,
+                goldRole: null,
+                platinumRole: null,
+                diamondRole: null,
+                ascendantRole: null,
+                immortalRole: null,
+                radiantRole: null,
+            },
+            premiumKeys: []
+        });
     }
 
     async getUser(userId: BigInt): Promise<any> {
         if (!userId) return null;
         const user: User = await bot.helpers.getUser(String(userId));
-        let document = await this.user.findOne({ _id: user.id }).lean();
+        let document = await this.user.findOne({ _id: user.id });
 
         if (!document) {
-            document = new this.user({
-                _id: user.id,
-                userCreationTimestamp: new Date(),
-                isBanned: false,
-                banDate: null,
-                banReason: null,
-                userCakes: {
-                    balance: 0,
-                    lastDaily: null,
-                },
-                marryStatus: {
-                    marriedWith: null,
-                    marriedDate: null,
-                    cantMarry: false,
-                },
-                userProfile: {
-                    decoration: null,
-                    decorationList: [],
-                    background: "default",
-                    backgroundList: ["default"],
-                    repCount: 0,
-                    lastRep: null,
-                    layout: "default",
-                    aboutme: null,
-                },
-                userPremium: {
-                    premium: false,
-                    premiumDate: null,
-                    premiumType: null,
-                },
-                userSettings: {
-                    language: 'pt-br'
-                },
-                petInfo: {
-                    name: null,
-                    type: null,
-                    rarity: null,
-                    level: 0,
-                    hungry: 100,
-                    happy: 100,
-                    health: 100,
-                    lastHungry: null,
-                    lastHappy: null,
-                    isDead: false,
-                    isClean: true,
-                    food: []
-                },
-                userTransactions: [],
-                riotAccount: {
-                    isLinked: false,
-                    puuid: null,
-                    isPrivate: false,
-                    region: null
-                },
-                premiumKeys: []
-            });
+            document = this.createUser(user.id.toString());
             await document.save();
         }
 
@@ -115,10 +142,10 @@ export default class DatabaseConnection {
     }
 
     async registerCommand(commandName: string, commandDescription: string): Promise<void> {
-        let commandFromDB = await this.commands.findOneAndUpdate(
+        await this.commands.findOneAndUpdate(
             { commandName },
-            { $set: { description: commandDescription } },
-            { upsert: true, lean: true }
+            { $set: { description: commandDescription }, $setOnInsert: { commandUsageCount: 0, isInactive: false, subcommands: null, usage: null } },
+            { upsert: true, new: true }
         );
     }
 
@@ -126,7 +153,7 @@ export default class DatabaseConnection {
         let commandFromDB = await this.commands.findOneAndUpdate(
             { commandName },
             { $inc: { commandUsageCount: 1 } },
-            { upsert: true, new: true, lean: true }
+            { upsert: true, new: true }
         );
 
         let command = await bot.commands.get(commandName);
@@ -136,93 +163,66 @@ export default class DatabaseConnection {
         return commandFromDB;
     }
 
-    async getAllCommands(): Promise<any[]> {
-        let commandsData = await this.commands.find({}).lean();
-        return commandsData;
+    async getAllCommands(): Promise<any> {
+        const commandsData = await this.commands.find({});
+        return commandsData.map(command => command.toJSON());
     }
 
     async getCode(code: string): Promise<any> {
-        const riotAccount = await this.riotAccount.findOne({ authCode: code }).lean();
+        const riotAccount = await this.riotAccount.findOne({ authCode: code });
         return riotAccount || null;
     }
 
     async getAllUsageCount(): Promise<number> {
-        let commandsData = await this.commands.find({}).lean();
-        let usageCount = commandsData.reduce((acc, command) => acc + command.commandUsageCount, 0);
-        return usageCount;
+        const commandsData = await this.commands.find({});
+        return commandsData.reduce((acc, command) => acc + command.commandUsageCount, 0);
     }
 
     async getGuild(guildId: BigInt): Promise<any> {
-        let document = await this.guilds.findOne({ _id: guildId }).lean();
-        return document;
+        return await this.guilds.findOne({ _id: guildId });
     }
 
     async addGuild(guildId: BigInt): Promise<any> {
-        let document = await this.guilds.findOneAndUpdate(
-            { _id: guildId },
-            {
-                $setOnInsert: {
-                    GuildJoinLeaveModule: {
-                        isEnabled: false,
-                        joinMessage: null,
-                        alertWhenUserLeaves: false,
-                        leaveMessage: null,
-                        joinChannel: null,
-                        leaveChannel: null,
-                    },
-                    valAutoRoleModule: {
-                        isEnabled: false,
-                        unratedRole: null,
-                        ironRole: null,
-                        bronzeRole: null,
-                        silverRole: null,
-                        goldRole: null,
-                        platinumRole: null,
-                        diamondRole: null,
-                        ascendantRole: null,
-                        immortalRole: null,
-                        radiantRole: null,
-                    },
-                    premiumKeys: []
-                }
-            },
-            { upsert: true, lean: true, new: true }
-        );
+        let document = await this.guilds.findOne({ _id: guildId });
+
+        if (!document) {
+            document = this.createGuild(guildId.toString());
+            await document.save();
+        }
+
         return document;
     }
 
-    async removeGuild(guildId: BigInt): Promise<any> {
-        let document = await this.guilds.findOneAndDelete({ _id: guildId }).lean();
-        return document;
+    async removeGuild(guildId: BigInt): Promise<boolean> {
+        const result = await this.guilds.deleteOne({ _id: guildId });
+        return result.deletedCount > 0;
     }
 
-    async getAllUsers(page: number = 1, limit: number = 100): Promise<void> {
-        let usersData = await this.user.find({}).skip((page - 1) * limit).limit(limit).lean();
-        return usersData.map(user => user);
+    async getAllUsers(): Promise<any> {
+        const usersData = await this.user.find({});
+        return usersData.map(user => user.toJSON());
     }
 
     async getAllGuilds(): Promise<number> {
-        let guildsData = await this.guilds.find({}).lean();
+        const guildsData = await this.guilds.find({});
         return guildsData.length;
     }
 
     async getAllBackgrounds(): Promise<Background[]> {
-        let backgroundsData = await this.backgrounds.find({}).lean();
-        return backgroundsData.map(background => background);
+        const backgroundsData = await this.backgrounds.find({});
+        return backgroundsData.map(background => background.toJSON());
     }
 
     async getAllDecorations(): Promise<any> {
-        let decorationsData = await this.decorations.find({}).lean();
-        return decorationsData.map(decoration => decoration);
+        const decorationsData = await this.decorations.find({});
+        return decorationsData.map(decoration => decoration.toJSON());
     }
 
     async getBackground(backgroundId: string): Promise<Background> {
-        let background = await this.backgrounds.findOne({ id: backgroundId }).lean();
-        return background;
+        return await this.backgrounds.findOne({ id: backgroundId });
     }
 
     async getDecoration(decorationId: string): Promise<any> {
-        let decoration = await this.decorations.findOne({ id: decorationId }).lean();
-        return decoration;
+        return await this.decorations.findOne({ id: decorationId });
     }
 }
