@@ -11,9 +11,12 @@ import { ComponentInteraction } from '../../structures/types/interaction';
 
 const componentExecutor = async (interaction: Interaction): Promise<void> => {
   let receivedCommandName = interaction.message?.interaction?.name;
+
+  // if command isn't a interaction
   if (!interaction.message.interaction) {
     const message = await bot.messages.get(BigInt(interaction.data?.customId.split('|')[2]));
-    receivedCommandName = message.content.split(' ')[0].replace('f!', '');
+    receivedCommandName = bot.commands.find((cmd) => cmd.name === message.content.split(' ')[0].replace('f!', '')
+      || cmd.aliases?.includes(message.content.split(' ')[0].replace('f!', ''))).name;
   }
 
   if (!receivedCommandName) return;
@@ -35,7 +38,7 @@ const componentExecutor = async (interaction: Interaction): Promise<void> => {
   };
   const user = await bot.database.getUser(interaction.user.id);
   const T = global.t = i18next.getFixedT(user.userSettings.language ?? 'pt-BR');
-  const command = bot.commands.get(commandName);
+  const command = bot.commands.get(commandName || receivedCommandName);
 
   if (!command) return errorReply(T('permissions:UNKNOWN_SLASH'));
   if (!command.commandRelatedExecutions || command.commandRelatedExecutions.length === 0) return;
