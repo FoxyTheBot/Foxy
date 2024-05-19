@@ -32,25 +32,29 @@ function getOptionFromInteraction<T>(
 ): T | undefined {
   let options = interaction.data?.options ?? [];
 
-  if (options[0]?.type === ApplicationCommandOptionTypes.SubCommandGroup)
-    options = options[0].options ?? [];
-
-  if (options[0]?.type === ApplicationCommandOptionTypes.SubCommand)
-    options = options[0].options ?? [];
+  for (const type of [
+    ApplicationCommandOptionTypes.SubCommandGroup,
+    ApplicationCommandOptionTypes.SubCommand,
+  ]) {
+    if (options[0]?.type === type) {
+      options = options[0].options ?? [];
+    }
+  }
 
   const found = options.find((option) => option.name === name) as unknown as { value: T } | undefined;
 
-  if (!found && required)
-    throw new Error(`Option ${name} is required in ${interaction.data?.name}`);
+  if (!found) {
+    if (required) throw new Error(`Option ${name} is required in ${interaction.data?.name}`);
+    return undefined;
+  }
 
-  if (!found) return undefined;
-
-  if (shouldResolve && shouldResolve !== "full-string")
+  if (shouldResolve && shouldResolve !== "full-string") {
     return interaction.data?.resolved?.[shouldResolve]?.get(
-      BigInt(found?.value as unknown as string),
+      BigInt(found.value as unknown as string),
     ) as unknown as T;
+  }
 
-  return found?.value as T;
+  return found.value as T;
 }
 
 function getArgsFromMessage<T>(
@@ -59,7 +63,7 @@ function getArgsFromMessage<T>(
   position: number,
   shouldResolve: CanResolve,
   messageContext: Message,
-  required?: boolean
+  required?: true,
 ): T;
 
 function getArgsFromMessage<T>(
@@ -68,7 +72,7 @@ function getArgsFromMessage<T>(
   position: number,
   shouldResolve: CanResolve,
   messageContext: Message,
-  required?: boolean
+  required?: boolean,
 ): T | undefined;
 
 function getArgsFromMessage<T>(
@@ -77,47 +81,27 @@ function getArgsFromMessage<T>(
   position: number,
   shouldResolve: CanResolve,
   messageContext: Message,
-  required?: boolean
-): T | undefined;
-
-function getArgsFromMessage<T>(
-  message: string,
-  name: string,
-  position: number,
-  shouldResolve: CanResolve,
-  messageContext: Message,
-  required?: boolean
+  required?: boolean,
 ): T | undefined {
+  const args = message.split(' ');
+
   if (shouldResolve === "users") {
-    const args = message.split(' ');
-    async function getUser(userId: string): Promise<User> {
+    async function getUser(userId: string): Promise<User | null> {
       const id = userId ? userId.replace(/[^0-9]/g, '') : userId;
       if (!id) return null;
       return bot.users.get(BigInt(id)) || await bot.helpers.getUser(id);
     }
-    return getUser(args[1]) as unknown as T;
+    return getUser(args[position]) as unknown as T;
   }
 
   if (shouldResolve === "full-string") {
-    const args = message.split(' ');
     const found = args.slice(position).join(' ') as unknown as T;
-
-    if (!found && required)
-      throw new Error(`Option ${name} is required in ${message}`);
-
-    if (!found) return undefined;
-
+    if (!found && required) throw new Error(`Option ${name} is required in ${message}`);
     return found;
   }
 
-  const args = message.split(' ');
   const found = args[position] as unknown as T;
-
-  if (!found && required)
-    throw new Error(`Option ${name} is required in ${message}`);
-
-  if (!found) return undefined;
-
+  if (!found && required) throw new Error(`Option ${name} is required in ${message}`);
   return found;
 }
 
