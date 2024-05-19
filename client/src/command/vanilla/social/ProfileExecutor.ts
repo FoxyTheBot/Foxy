@@ -1,7 +1,6 @@
 import { bot } from '../../../FoxyLauncher';
 import { User } from 'discordeno/transformers';
 import CreateProfile from '../../../utils/images/generators/GenerateProfile';
-import ChatInputMessageContext from "../../structures/ChatInputMessageContext";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
 export default async function ProfileExecutor(context: UnleashedCommandExecutor, endCommand, t) {
