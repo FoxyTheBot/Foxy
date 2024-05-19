@@ -191,8 +191,7 @@ export default class UnleashedCommandExecutor {
         if (this.interaction) {
             return getOptionFromInteraction<T>(this.interaction, name, shouldResolve, required) ?? this.interaction.user as unknown as T;
         } else {
-            console.log(this.message.content);
-            return getArgsFromMessage<T>(this.message.content, name, position || 1, shouldResolve, this.message, required) ?? this.author as unknown as T;
+            return getArgsFromMessage<T>(this.message.content, name, position || 1, shouldResolve, this.message, required) as unknown as T;
         }
     }
 
