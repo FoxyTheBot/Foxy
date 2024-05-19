@@ -23,20 +23,17 @@ const setMessageCreateEvent = (): void => {
 
         /* Legacy command handler for prefix commands */
         async function FoxyLegacyHandler() {
-            try {
-                if (!message.content.startsWith("f!")) return;
-                const command = bot.commands.get(message.content.split(' ')[0].slice(2))
-                    || bot.commands.find((cmd) => cmd.aliases?.includes(message.content.split(' ')[0].slice(2)));
-                if (!command || !command.supportsLegacy) return;
+            if (!message.content.startsWith("f!")) return;
+            const command = bot.commands.get(message.content.split(' ')[0].slice(2))
+                || bot.commands.find((cmd) => cmd.aliases?.includes(message.content.split(' ')[0].slice(2)));
+            if (!command || !command.supportsLegacy) return;
 
-                const args = message.content.split(' ').slice(1);
-
-                if (command) {
-                    function emptyFunction() { }
-                    await command.execute(context, emptyFunction, locale, args);
-                }
-            } catch (error) {
-                logger.error(error);
+            const args = message.content.split(' ').slice(1);
+            if (command) {
+                function emptyFunction() { }
+                bot.helpers.startTyping(message.channelId);
+                await command.execute(context, emptyFunction, locale, args);
+                bot.helpers.triggerTypingIndicator(message.channelId);
             }
         }
 
