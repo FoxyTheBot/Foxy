@@ -20,7 +20,7 @@ export class FoxyRestManager {
         this.valorantAPI = axios.create({
             baseURL: 'https://api.henrikdev.xyz',
             headers: {
-                "Authentication": config.valorantAPI
+                "Authorization": config.valorantAPI
             }
         });
     }
