@@ -1,9 +1,10 @@
+import { FoxyClient } from "../../../structures/types/foxy";
 import { createActionRow, createCustomId, createSelectMenu } from "../../../utils/discord/Component";
 import { MessageFlags } from "../../../utils/discord/Message";
 import ValAutoRoleModule from "../../../utils/modules/valAutoRoleModule";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export async function ValorantAutoRoleExecutor(bot, context, endCommand, t) {
+export async function ValorantAutoRoleExecutor(bot: FoxyClient, context, endCommand, t) {
     if (!bot.utils.calculatePermissions(context.guildMember.permissions).includes("MANAGE_ROLES" || "ADMINISTRATOR")) {
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:global.noPermission", {
@@ -17,7 +18,7 @@ export async function ValorantAutoRoleExecutor(bot, context, endCommand, t) {
     const guildInfo = await bot.database.getGuild(context.guildId);
     context.sendReply({
         embeds: [{
-            color: 0xfd4556,
+            color: bot.colors.VALORANT,
             title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.autorole.title')),
             description: t('commands:valorant.autorole.description'),
             fields: [{

@@ -13,7 +13,6 @@ const updateApplicationCommands = async (): Promise<void> => {
                 .filter((command) => !!command.devsOnly)
                 .array(),
         );
-
         logger.info('[READY] Slash Commands registered!');
     } catch (e) {
         logger.error('Error while registering commands', e);

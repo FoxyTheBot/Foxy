@@ -156,7 +156,7 @@ export default async function CakesExecutor(context: UnleashedCommandExecutor, e
             const transactions = transactionsTexts.reverse().slice(0, 10);
             const embed = createEmbed({
                 title: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:transactions.title', { user: `@${user.username}` })),
-                color: 0xfd446e,
+                color: bot.colors.FOXY_DEFAULT,
                 description: transactions.join('\n'),
                 footer: {
                     text: t('commands:transactions.footer', { total: userData.userTransactions.length.toString() })

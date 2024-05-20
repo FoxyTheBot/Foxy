@@ -15,7 +15,7 @@ export default async function RobloxExecutor(context: UnleashedCommandExecutor, 
                 getPlayerBadges(id).then((badges) => {
                     const embed = createEmbed({
                         title: context.getEmojiById(bot.emotes.ROBLOX) + " " + t("commands:roblox.title", { user: info.username }),
-                        color: 0xff0000,
+                        color: bot.colors.RED,
                         description: info.blurb,
                         fields: [{
                             name: t("commands:roblox.fields.id"),

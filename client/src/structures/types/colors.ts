@@ -28,7 +28,8 @@ const colors = {
     NOT_QUITE_BLACK: 0x23272a,
     RANDOM: Math.floor(Math.random() * (0xffffff + 1)),
     WHITE: 0xffffff,
-    BLACK: 0x000000
+    BLACK: 0x000000,
+    VALORANT: 0xfa4454
 }
 
 export { colors }

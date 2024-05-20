@@ -10,7 +10,7 @@ const RankSelectedExecutor = async (context: ComponentInteractionContext) => {
     await guildInfo.save();
     context.sendReply({
         embeds: [{
-            color: 0xfd4556,
+            color: bot.colors.VALORANT,
             title: context.makeReply(bot.emotes.VALORANT_LOGO, bot.locale('commands:valorant.autorole.title')),
             description: bot.locale('commands:valorant.autorole.description'),
             fields: [{

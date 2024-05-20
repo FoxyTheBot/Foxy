@@ -12,7 +12,7 @@ const ViewMatchHistory = async (context: ComponentInteractionContext) => {
 
     try {
         const embed = createEmbed({
-            color: 0xf84354,
+            color: bot.colors.VALORANT,
             thumbnail: {
                 url: valUserInfo.data.card.small
             },

@@ -558,6 +558,7 @@
         "cannotGetInfo": "Não foi possível encontrar informações",
         "noMatchesFound": "Não encontrei nenhuma partida do modo {{mode}} neste ato! Você chegou alguma partida {{mode}} nesse ato?",
         "noUser": "Este usuário não existe",
+        "cannotGetInfoDescription": "Não foi possível encontrar informações sobre este jogador, verifique se o nome de usuário está correto ou se o jogador chegou a jogar alguma partida recentemente.",
         "update-role": {
             "embed": {
                 "title": "VALORANT Autorole",

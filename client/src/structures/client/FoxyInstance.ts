@@ -15,6 +15,7 @@ import config from '../../../config.json';
 import express, { Application } from 'express';
 import { logger } from '../../utils/logger';
 import enableCachePlugin from 'discordeno/cache-plugin';
+import { colors } from '../types/colors';
 
 export default class FoxyInstance {
     public bot: FoxyClient;
@@ -47,6 +48,7 @@ export default class FoxyInstance {
         this.bot.commands = new Collection();
         this.bot.isProduction = config.productionEnv;
         this.bot.emotes = require('../json/emotes.json');
+        this.bot.colors = colors;
         this.bot.clientId = BigInt(config.clientId);
         this.bot.hasGuildPermission = botHasGuildPermissions;
         this.bot.database = new DatabaseConnection(this.bot);

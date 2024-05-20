@@ -1,11 +1,12 @@
 import { ButtonStyles } from "discordeno/types";
 import { createActionRow, createButton } from "../../../utils/discord/Component";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { FoxyClient } from "../../../structures/types/foxy";
 
-export default async function ValorantLinkExecutor(bot, context: UnleashedCommandExecutor, endCommand, t) {
+export default async function ValorantLinkExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {
     context.sendReply({
         embeds: [{
-            color: 0xff4454,
+            color: bot.colors.VALORANT,
             title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.linkAccountTitle')),
             description: t('commands:valorant.linkAccountDescription'),
             footer: {

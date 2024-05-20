@@ -1,10 +1,11 @@
+import { FoxyClient } from "../../../structures/types/foxy";
 import { createEmbed } from "../../../utils/discord/Embed";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
-export default async function ValorantHelpExecutor(bot, context: UnleashedCommandExecutor, endCommand, t) {
+export default async function ValorantHelpExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {
     context.sendReply({
         embeds: [createEmbed({
-            color: 0xf84354,
+            color: bot.colors.VALORANT,
             title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.help.embed.title')),
             description: t('commands:valorant.help.embed.description'),
             fields: [{

@@ -10,7 +10,7 @@ const RankSelectorExecutor = async (context: ComponentInteractionContext) => {
         embeds: [{
             title: context.makeReply(bot.emotes.VALORANT_LOGO, "VALORANT Autorole"),
             description: bot.locale("commands:valorant.autorole.rankSelector.description", { rank }),
-            color: 0xf84354
+            color: bot.colors.VALORANT
         }],
         components: [{
             type: MessageComponentTypes.ActionRow,

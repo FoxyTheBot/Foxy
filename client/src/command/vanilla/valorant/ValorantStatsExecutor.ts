@@ -3,8 +3,10 @@ import { ValUser } from "../../../structures/types/valuser";
 import RenderValorantProfile from "../../../utils/images/generators/RenderValorantProfile";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { colors } from "../../../structures/types/colors";
+import { FoxyClient } from "../../../structures/types/foxy";
 
-export default async function ValorantStatsExecutor(bot, context: UnleashedCommandExecutor, endCommand, t) {
+export default async function ValorantStatsExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>('user', 'users') ?? context.author;
     const mode = context.getOption<string>('mode', false) ?? "competitive";
 
@@ -25,13 +27,23 @@ export default async function ValorantStatsExecutor(bot, context: UnleashedComma
 
     context.sendReply({
         embeds: [{
-            color: 0xf84354,
+            color: bot.colors.VALORANT,
             title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.loadingTitle')),
             description: t('commands:valorant.loadingDescription')
         }]
     });
 
     const userInfo: ValUser = await bot.foxyRest.getValPlayerByUUID(await userData.riotAccount.puuid);
+    if (!userInfo.data.card) {
+        // When a user has not played for a long time, the API returns their cardless information
+        return context.sendReply({
+            embeds: [{
+                color: colors.RED,
+                title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.cannotGetInfo')),
+                description: t('commands:valorant.cannotGetInfoDescription')
+            }]
+        });
+    }
     const mmrInfo = await bot.foxyRest.getMMR(await userData.riotAccount.puuid);
 
     function getRank(rank: string) {
@@ -146,7 +158,7 @@ export default async function ValorantStatsExecutor(bot, context: UnleashedComma
     if (!matches.data.length) {
         context.sendReply({
             embeds: [{
-                color: 0xf84354,
+                color: bot.colors.RED,
                 title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.cannotGetInfo')),
                 description: t('commands:valorant.noMatchesFound', { mode: t(`commands:valorant.matchMode.${mode}`) })
             }]
@@ -162,7 +174,7 @@ export default async function ValorantStatsExecutor(bot, context: UnleashedComma
     legshotsPercentage = isNaN((legshots / (headshots + bodyshots + legshots)) * 100) ? 0 : (legshots / (headshots + bodyshots + legshots)) * 100
 
     const embed = {
-        color: 0xf84354,
+        color: bot.colors.VALORANT,
         title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.player.title', { username: userInfo.data.name, tag: userInfo.data.tag, rank: `${context.getEmojiById(rank.emoji)} ${formattedRank}` }),
         fields: [
             {
@@ -236,7 +248,7 @@ export default async function ValorantStatsExecutor(bot, context: UnleashedComma
     } else {
         context.sendReply({
             embeds: [{
-                color: 0xf84354,
+                color: bot.emotes.VALORANT,
                 title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.cannotGetInfo')),
                 description: t('commands:valorant.noUser')
             }]

@@ -2,8 +2,9 @@ import { User } from "discordeno/transformers";
 import { createEmbed } from "../../../utils/discord/Embed";
 import { createActionRow, createCustomId, createSelectMenu } from "../../../utils/discord/Component";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { FoxyClient } from "../../../structures/types/foxy";
 
-export default async function ValorantMatchesExecutor(bot, context: UnleashedCommandExecutor, endCommand, t) {
+export default async function ValorantMatchesExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>('user', 'users') ?? context.author;
     const userData = await bot.database.getUser(user.id);
     if (!userData.riotAccount.isLinked) {
@@ -22,7 +23,7 @@ export default async function ValorantMatchesExecutor(bot, context: UnleashedCom
 
     context.sendReply({
         embeds: [{
-            color: 0xf84354,
+            color: bot.colors.VALORANT,
             title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.loadingTitle')),
             description: t('commands:valorant.loadingDescription')
         }]
@@ -75,7 +76,7 @@ export default async function ValorantMatchesExecutor(bot, context: UnleashedCom
 
     try {
         const embed = createEmbed({
-            color: 0xf84354,
+            color: bot.colors.VALORANT,
             thumbnail: {
                 url: valUserInfo.data.card.small
             },

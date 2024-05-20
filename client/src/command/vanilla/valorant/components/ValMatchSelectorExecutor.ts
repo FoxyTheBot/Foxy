@@ -135,7 +135,7 @@ const ValMatchSelectorExecutor = async (context: ComponentInteractionContext) =>
     }
 
     const embed = createEmbed({
-        color: 0xf84354,
+        color: bot.colors.VALORANT,
         description: `**${bot.locale('commands:valorant.match.map')}:** ${matchInfo.metadata.map}` +
             `\n**${bot.locale('commands:valorant.match.mode')}:** ${bot.locale(`commands:valorant.match.modes.${matchInfo.metadata.mode.toLowerCase()}`)}` +
             `\n**${bot.locale('commands:valorant.match.rounds')}:** ${matchInfo.metadata.rounds_played}` +
