@@ -38,7 +38,7 @@ const CakeTransferExecutor = async (context: ComponentInteractionContext) => {
                 customId: createCustomId(0, context.author.id, context.commandId, value),
                 disabled: true,
                 emoji: {
-                    id: bot.emotes.FOXY_DAILY
+                    id: BigInt(bot.emotes.FOXY_DAILY)
                 }
             })])
         ]

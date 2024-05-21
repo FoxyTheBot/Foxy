@@ -8,8 +8,8 @@ export default async function HugExecutor(context: UnleashedCommandExecutor, end
     const embed = createEmbed({});
 
     const user = await context.getOption<User>("user", "users");
-    const hugGif: any = await context.getImage("hug");
-    embed.title = t('commands:hug.success', { user: await bot.foxyRest.getUserDisplayName(user.id), author: await bot.foxyRest.getUserDisplayName(context.author.id) }),
+    const hugGif: any = await bot.rest.foxy.getImage("roleplay", "hug");
+    embed.title = t('commands:hug.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
         embed.image = {
             url: hugGif.url
         }
@@ -27,14 +27,14 @@ export default async function HugExecutor(context: UnleashedCommandExecutor, end
                 0, 
                 user.id, 
                 context.commandId, 
-                await bot.foxyRest.getUserDisplayName(user.id),
+                await bot.rest.foxy.getUserDisplayName(user.id),
                 context.isMessage ? context.message.id : null,
                 context.isMessage ? context.channelId : null
             ),
             label: t('commands:hug.button'),
             style: ButtonStyles.Primary,
             emoji: {
-                id: bot.emotes.FOXY_HUG
+                id: BigInt(bot.emotes.FOXY_HUG)
             }
         })])]
     })

@@ -8,11 +8,11 @@ const HugExecutor = async (context: ComponentInteractionContext) => {
     const [user, messageId] = context.sentData;
     const hugGif: any = await context.getImage("hug");
     const embed = createEmbed({});
-    let commandAuthor = await bot.foxyRest.getUserDisplayName(context.author.id);
+    let commandAuthor = await bot.rest.foxy.getUserDisplayName(context.author.id);
     
     if (messageId) {
         const message = bot.messages.get(BigInt(messageId));
-        commandAuthor = await bot.foxyRest.getUserDisplayName(message.authorId);
+        commandAuthor = await bot.rest.foxy.getUserDisplayName(message.authorId);
     }
 
     embed.title = bot.locale('commands:hug.success', { user: commandAuthor, author: user }),
@@ -26,7 +26,7 @@ const HugExecutor = async (context: ComponentInteractionContext) => {
             label: bot.locale('commands:hug.button'),
             style: ButtonStyles.Secondary,
             emoji: {
-                id: bot.emotes.FOXY_HUG
+                id: BigInt(bot.emotes.FOXY_HUG)
             },
             disabled: true
         })])]

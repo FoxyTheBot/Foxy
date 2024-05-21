@@ -4,7 +4,6 @@ import { loadCommands } from '../../command/structures/loadCommands';
 import { transformInteraction } from '../internals/transformers/interactionResponse';
 import { loadLocales } from '../../utils/localeLoader';
 import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
-import { FoxyRestManager } from '../../utils/RestManager';
 import { setReadyEvent } from "../../listeners/ready";
 import DatabaseConnection from '../database/DatabaseConnection';
 import { setInteractionCreateEvent } from '../../listeners/interactionCreate';
@@ -15,7 +14,8 @@ import config from '../../../config.json';
 import express, { Application } from 'express';
 import { logger } from '../../utils/logger';
 import enableCachePlugin from 'discordeno/cache-plugin';
-import { colors } from '../types/colors';
+import { colors } from '../../utils/colors';
+import { FoxyRestManager } from '../../utils/RestManager';
 
 export default class FoxyInstance {
     public bot: FoxyClient;
@@ -52,7 +52,7 @@ export default class FoxyInstance {
         this.bot.clientId = BigInt(config.clientId);
         this.bot.hasGuildPermission = botHasGuildPermissions;
         this.bot.database = new DatabaseConnection(this.bot);
-        this.bot.foxyRest = new FoxyRestManager(this.bot);
+        this.bot.rest.foxy = new FoxyRestManager(this.bot);
     }
 
     private async setupCache() {

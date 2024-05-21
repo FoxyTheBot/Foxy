@@ -8,7 +8,7 @@ export default async function PatExecutor(context: UnleashedCommandExecutor, end
     const user = await context.getOption<User>("user", "users");
     const patGif: any = await context.getImage("pat");
     const embed = createEmbed({});
-    embed.title = t('commands:pat.success', { user: await bot.foxyRest.getUserDisplayName(user.id), author: await bot.foxyRest.getUserDisplayName(context.author.id) }),
+    embed.title = t('commands:pat.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
         embed.image = {
             url: patGif.url
         }
@@ -20,14 +20,14 @@ export default async function PatExecutor(context: UnleashedCommandExecutor, end
                 0,
                 user.id,
                 context.commandId,
-                await bot.foxyRest.getUserDisplayName(user.id),
+                await bot.rest.foxy.getUserDisplayName(user.id),
                 context.isMessage ? context.message.id : null,
                 context.isMessage ? context.channelId : null
             ),
             label: t('commands:pat.button'),
             style: ButtonStyles.Primary,
             emoji: {
-                id: bot.emotes.FOXY_WOW
+                id: BigInt(bot.emotes.FOXY_WOW)
             }
         })])]
     })

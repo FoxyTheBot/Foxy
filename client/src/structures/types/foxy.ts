@@ -1,10 +1,11 @@
-import { Bot, Collection, User } from 'discordeno';
+import { Bot, Collection, User, createRestManager } from 'discordeno';
 import { CommandInterface } from './command';
 import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
 import { BotWithCache } from 'discordeno/cache-plugin';
-import { FoxyRestManager } from '../../utils/RestManager';
 import DatabaseConnection from '../database/DatabaseConnection';
-import { colors } from './colors';
+import { colors } from '../../utils/colors';
+import { FoxyRestManager } from '../../utils/RestManager';
+import { emotes } from '../../utils/emotes';
 export interface IdentifiedData<T> {
   id: number;
   data: T;
@@ -17,11 +18,15 @@ export interface FoxyClient extends BotWithCache<Bot> {
   username: string;
   isProduction: boolean;
   database: DatabaseConnection;
-  emotes: any;
+  emotes: typeof emotes;
+  colors: typeof colors;
   config: Object;
   locale: Function;
   isReady: boolean;
-  colors: typeof colors;
   hasGuildPermission: typeof botHasGuildPermissions;
-  foxyRest: FoxyRestManager;
+  rest: Rest;
+}
+
+export interface Rest extends ReturnType<typeof createRestManager> {
+  foxy: FoxyRestManager;
 }

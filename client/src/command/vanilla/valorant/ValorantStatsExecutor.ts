@@ -1,9 +1,8 @@
 import { User } from "discordeno/transformers";
-import { ValUser } from "../../../structures/types/valuser";
 import RenderValorantProfile from "../../../utils/images/generators/RenderValorantProfile";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
-import { colors } from "../../../structures/types/colors";
+import { colors } from "../../../utils/colors";
 import { FoxyClient } from "../../../structures/types/foxy";
 
 export default async function ValorantStatsExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {
@@ -13,14 +12,14 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
     const userData = await bot.database.getUser(user.id);
     if (!userData.riotAccount.isLinked) {
         context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.notLinked', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.notLinked', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
         });
         return endCommand();
     }
 
     if (userData.riotAccount.isPrivate && context.author.id !== user.id) {
         context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.private', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.private', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
         });
         return endCommand();
     }
@@ -33,7 +32,7 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
         }]
     });
 
-    const userInfo: ValUser = await bot.foxyRest.getValPlayerByUUID(await userData.riotAccount.puuid);
+    const userInfo = await bot.rest.foxy.getValPlayerByUUID(await userData.riotAccount.puuid);
     if (!userInfo.data.card) {
         // When a user has not played for a long time, the API returns their cardless information
         return context.sendReply({
@@ -44,7 +43,7 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
             }]
         });
     }
-    const mmrInfo = await bot.foxyRest.getMMR(await userData.riotAccount.puuid);
+    const mmrInfo = await bot.rest.foxy.getMMR(await userData.riotAccount.puuid);
 
     function getRank(rank: string) {
         const rankMapping: { [key: string]: any } = {
@@ -86,8 +85,8 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
     const rank = getRank(mmrInfo.data.current_data.currenttierpatched ?? "Unrated");
     const highestRank = getRank(mmrInfo.data.highest_rank.patched_tier ?? "Unrated");
 
-    let matches = await bot.foxyRest.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode.replace(" ", "").toLowerCase());
-    if (!matches) matches = await bot.foxyRest.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, "unrated");
+    let matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode.replace(" ", "").toLowerCase());
+    if (!matches) matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, "unrated");
     const formattedRank = rank ? `${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${t('commands:valorant.player.ranks.UNRATED')}`;
     const formattedHighestRank = highestRank ? `${t(`commands:valorant.player.ranks.${highestRank.rank}`)} (${mmrInfo.data.highest_rank.season
         .toUpperCase()
@@ -239,7 +238,7 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
                 style: 1,
                 customId: createCustomId(1, context.author.id, context.commandId, user.id),
                 emoji: {
-                    id: bot.emotes.VALORANT_LOGO
+                    id: BigInt(bot.emotes.VALORANT_LOGO)
                 }
             })
             ])]
@@ -248,7 +247,7 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
     } else {
         context.sendReply({
             embeds: [{
-                color: bot.emotes.VALORANT,
+                color: bot.colors.VALORANT,
                 title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.cannotGetInfo')),
                 description: t('commands:valorant.noUser')
             }]

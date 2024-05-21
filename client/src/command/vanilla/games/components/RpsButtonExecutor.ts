@@ -13,7 +13,7 @@ const RpsButtonExecutor = async (context: ComponentInteractionContext) => {
 
     const embed = createEmbed({
         fields: [{
-            name: await bot.foxyRest.getUserDisplayName(context.author.id),
+            name: await bot.rest.foxy.getUserDisplayName(context.author.id),
             value: bot.locale(`commands:rps.button.${choice}`),
             inline: true
         }, {
@@ -35,11 +35,11 @@ const RpsButtonExecutor = async (context: ComponentInteractionContext) => {
             if (result === 'paper') {
                 embed.description = bot.locale('commands:rps.clientWon', { result: bot.locale(`commands:rps.button.${result}`) });
                 embed.fields = [{
-                    name: await bot.foxyRest.getUserDisplayName(context.author.id),
+                    name: await bot.rest.foxy.getUserDisplayName(context.author.id),
                     value: bot.locale(`commands:rps.button.${choice}`),
                     inline: true
                 }, {
-                    name: await bot.foxyRest.getUserDisplayName(bot.id),
+                    name: await bot.rest.foxy.getUserDisplayName(bot.id),
                     value: bot.locale(`commands:rps.button.${result}`),
                 }]
                 context.sendReply({
@@ -95,7 +95,7 @@ const RpsButtonExecutor = async (context: ComponentInteractionContext) => {
                     customId: createCustomId(0, context.author.id, context.commandId, "rock"),
                     disabled: true,
                     emoji: {
-                        id: bot.emotes.ROCK
+                        id: BigInt(bot.emotes.ROCK)
                     }
                 }), createButton({
                     label: bot.locale('commands:rps.button.paper'),
@@ -119,7 +119,7 @@ const RpsButtonExecutor = async (context: ComponentInteractionContext) => {
                     customId: createCustomId(0, context.author.id, context.commandId, "cancel"),
                     disabled: true,
                     emoji: {
-                        id: bot.emotes.FOXY_CRY
+                        id: BigInt(bot.emotes.FOXY_CRY)
                     }
                 })])]
             });

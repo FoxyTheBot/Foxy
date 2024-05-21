@@ -39,7 +39,7 @@ export default async function MarryExecutor(context: UnleashedCommandExecutor, e
 
     if (futurePartnerData.marryStatus.cantMarry) {
         context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.userNotMarriable', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.userNotMarriable', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
         })
         return endCommand();
     }
@@ -60,13 +60,13 @@ export default async function MarryExecutor(context: UnleashedCommandExecutor, e
 
     if (String(user.id) === userData.marryStatus.marriedWith) {
         context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.alreadyMarriedWithUser', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.alreadyMarriedWithUser', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
         })
         return endCommand();
     }
 
     context.sendReply({
-        content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:marry.ask', { user: await bot.foxyRest.getUserDisplayName(user.id), author: await bot.foxyRest.getUserDisplayName(context.author.id) })),
+        content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:marry.ask', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id) })),
         components: [createActionRow([createButton({
             customId: createCustomId(0, 
                 user.id, 

@@ -21,7 +21,7 @@ export default async function CakesExecutor(context: UnleashedCommandExecutor, e
             const balance = userData.userCakes.balance;
 
             context.sendReply({
-                content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:atm.success', { user: await bot.foxyRest.getUserDisplayName(user.id), balance: balance.toLocaleString(t.lng || 'pt-BR') }))
+                content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:atm.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), balance: balance.toLocaleString(t.lng || 'pt-BR') }))
             })
             endCommand();
             break;
@@ -62,13 +62,13 @@ export default async function CakesExecutor(context: UnleashedCommandExecutor, e
 
 
             context.sendReply({
-                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:pay.alert', { amount: value.toLocaleString(t.lng || 'pt-BR'), user: await bot.foxyRest.getUserDisplayName(user.id) })),
+                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:pay.alert', { amount: value.toLocaleString(t.lng || 'pt-BR'), user: await bot.rest.foxy.getUserDisplayName(user.id) })),
                 components: [createActionRow([createButton({
                     label: t('commands:pay.pay'),
                     style: ButtonStyles.Success,
                     customId: createCustomId(0, context.author.id, context.commandId, value, user.id),
                     emoji: {
-                        id: bot.emotes.FOXY_DAILY
+                        id: BigInt(bot.emotes.FOXY_DAILY)
                     }
                 })])]
             });

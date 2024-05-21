@@ -8,7 +8,7 @@ export default async function RpsExecutor(context: UnleashedCommandExecutor, end
     const embed = createEmbed({
         description: t('commands:rps.start'),
         fields: [{
-            name: await bot.foxyRest.getUserDisplayName(context.author.id),
+            name: await bot.rest.foxy.getUserDisplayName(context.author.id),
             value: t('commands:rps.defaultValue'),
             inline: true
         },
@@ -26,7 +26,7 @@ export default async function RpsExecutor(context: UnleashedCommandExecutor, end
             style: ButtonStyles.Primary,
             customId: createCustomId(0, context.author.id, context.commandId, "rock"),
             emoji: {
-                id: bot.emotes.ROCK
+                id: BigInt(bot.emotes.ROCK)
             }
         }), createButton({
             label: bot.locale('commands:rps.button.paper'),
@@ -47,7 +47,7 @@ export default async function RpsExecutor(context: UnleashedCommandExecutor, end
             style: ButtonStyles.Danger,
             customId: createCustomId(0, context.author.id, context.commandId, "cancel"),
             emoji: {
-                id: bot.emotes.FOXY_CRY
+                id: BigInt(bot.emotes.FOXY_CRY)
             }
         })])]
     });

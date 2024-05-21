@@ -1,5 +1,5 @@
 import { bot } from "../../../FoxyLauncher";
-import { colors } from "../../../structures/types/colors";
+import { colors } from "../../../utils/colors";
 import { createEmbed } from "../../../utils/discord/Embed";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 

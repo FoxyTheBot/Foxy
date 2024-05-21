@@ -16,7 +16,7 @@ export default class ValAutoRoleModule {
         const guildInfo = await this.bot.database.getGuild(guildId);
         const userInfo = await this.bot.database.getUser(member.id);
         if (!userInfo.riotAccount.isLinked) return;
-        const valUserInfo = await this.bot.foxyRest.getMMR(userInfo.riotAccount.puuid);
+        const valUserInfo = await this.bot.rest.foxy.getMMR(userInfo.riotAccount.puuid);
 
         const authorRoles = member.roles.map(role => role ? role.toString() : null);
         const valAutoRoleModuleRoles = Object.values(guildInfo.valAutoRoleModule);

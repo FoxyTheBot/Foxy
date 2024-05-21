@@ -8,7 +8,7 @@ export default async function TickleExecutor(context: UnleashedCommandExecutor, 
     const tickleGif: any = await context.getImage("tickle");
     const embed = createEmbed({});
 
-    embed.title = t('commands:tickle.success', { user: await bot.foxyRest.getUserDisplayName(user.id), author: await bot.foxyRest.getUserDisplayName(context.author.id) }),
+    embed.title = t('commands:tickle.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
         embed.image = {
             url: tickleGif.url
         }
@@ -30,14 +30,14 @@ export default async function TickleExecutor(context: UnleashedCommandExecutor, 
                 0, 
                 user.id, 
                 context.commandId, 
-                await bot.foxyRest.getUserDisplayName(user.id),
+                await bot.rest.foxy.getUserDisplayName(user.id),
                 context.isMessage ? context.message.id : null,
                 context.isMessage ? context.channelId : null
             ),
             label: t('commands:tickle.button'),
             style: ButtonStyles.Primary,
             emoji: {
-                id: bot.emotes.FOXY_CUPCAKE
+                id: BigInt(bot.emotes.FOXY_CUPCAKE)
             }
         })])]
     })

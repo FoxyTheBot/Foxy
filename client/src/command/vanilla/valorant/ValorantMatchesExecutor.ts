@@ -9,14 +9,14 @@ export default async function ValorantMatchesExecutor(bot: FoxyClient, context: 
     const userData = await bot.database.getUser(user.id);
     if (!userData.riotAccount.isLinked) {
         context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.notLinked', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.notLinked', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
         });
         return endCommand();
     }
 
     if (userData.riotAccount.isPrivate && context.author.id !== user.id) {
         context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.private', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.private', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
         });
         return endCommand();
     }
@@ -29,10 +29,10 @@ export default async function ValorantMatchesExecutor(bot: FoxyClient, context: 
         }]
     });
 
-    const matchInfo: any = await bot.foxyRest.getValMatchHistoryByUUID(userData.riotAccount.puuid, context.getOption<string>('mode', false), context.getOption<string>('map', false));
-    const valUserInfo = await bot.foxyRest.getValPlayerByUUID(userData.riotAccount.puuid);
+    const matchInfo: any = await bot.rest.foxy.getValMatchHistoryByUUID(userData.riotAccount.puuid, context.getOption<string>('mode', false), context.getOption<string>('map', false));
+    const valUserInfo = await bot.rest.foxy.getValPlayerByUUID(userData.riotAccount.puuid);
 
-    const mmrInfo = await bot.foxyRest.getMMR(await userData.riotAccount.puuid);
+    const mmrInfo = await bot.rest.foxy.getMMR(await userData.riotAccount.puuid);
 
     function getRank(rank: string) {
         const rankMapping: { [key: string]: any } = {

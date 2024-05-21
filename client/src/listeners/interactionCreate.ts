@@ -52,7 +52,7 @@ const setInteractionCreateEvent = (): void => {
                         label: locale('events:ban.button'),
                         style: ButtonStyles.Link,
                         emoji: {
-                            id: bot.emotes.FOXY_CUPCAKE
+                            id: BigInt(bot.emotes.FOXY_CUPCAKE)
                         },
                         url: 'https://forms.gle/bKfRKxoyFGZzRB7x8'
                     })])],

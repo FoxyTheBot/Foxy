@@ -6,7 +6,7 @@ export default async function SmileExecutor(context: UnleashedCommandExecutor, e
     const smileGif: any = await context.getImage("smile");
     const embed = createEmbed({});
     
-    embed.title = t('commands:smile.smiling', { author: await bot.foxyRest.getUserDisplayName(context.author.id) }),
+    embed.title = t('commands:smile.smiling', { author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
         embed.image = {
             url: smileGif.url
         }

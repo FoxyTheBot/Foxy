@@ -14,7 +14,7 @@ const setMessageCreateEvent = (): void => {
         const botMention = `<@${bot.id}>` || `<@!${bot.id}>`;
 
         if (content === botMention) {
-            const botUsername = await bot.foxyRest.getUserDisplayName(bot.id);
+            const botUsername = await bot.rest.foxy.getUserDisplayName(bot.id);
             return bot.helpers.sendMessage(channelId, {
                 content: bot.locale("events:messageCreate.mentionMessage", {
                     botUsername,
@@ -51,7 +51,7 @@ const setMessageCreateEvent = (): void => {
                 components: [createActionRow([createButton({
                     label: locale('events:ban.button'),
                     style: ButtonStyles.Link,
-                    emoji: { id: bot.emotes.FOXY_CUPCAKE },
+                    emoji: { id: BigInt(bot.emotes.FOXY_CUPCAKE) },
                     url: 'https://forms.gle/bKfRKxoyFGZzRB7x8'
                 })])]
             });

@@ -17,7 +17,7 @@ export default async function ProfileExecutor(context: UnleashedCommandExecutor,
                     content: context.makeReply(
                         bot.emotes.FOXY_RAGE,
                         t('commands:profile.banned', {
-                            user: await bot.foxyRest.getUserDisplayName(user.id),
+                            user: await bot.rest.foxy.getUserDisplayName(user.id),
                             reason: userData.banReason,
                             date: userData.banDate.toLocaleString(global.t.lng, {
                                 timeZone: "America/Sao_Paulo",

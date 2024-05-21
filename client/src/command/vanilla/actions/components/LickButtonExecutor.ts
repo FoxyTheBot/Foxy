@@ -8,11 +8,11 @@ const LickExecutor = async (context: ComponentInteractionContext) => {
     const [user, messageId] = context.sentData;
     const lickGif: any = await context.getImage("lick");
     const embed = createEmbed({});
-    let commandAuthor = await bot.foxyRest.getUserDisplayName(context.author.id);
+    let commandAuthor = await bot.rest.foxy.getUserDisplayName(context.author.id);
     
     if (messageId) {
         const message = bot.messages.get(BigInt(messageId));
-        commandAuthor = await bot.foxyRest.getUserDisplayName(message.authorId);
+        commandAuthor = await bot.rest.foxy.getUserDisplayName(message.authorId);
     }
 
     embed.title = bot.locale('commands:lick.success', { user: commandAuthor, author: user }),
@@ -26,7 +26,7 @@ const LickExecutor = async (context: ComponentInteractionContext) => {
             label: bot.locale('commands:lick.button'),
             style: ButtonStyles.Secondary,
             emoji: {
-                id: bot.emotes.FOXY_CUPCAKE
+                id: BigInt(bot.emotes.FOXY_CUPCAKE)
             },
             disabled: true
         })])]

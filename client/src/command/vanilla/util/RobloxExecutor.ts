@@ -70,7 +70,7 @@ export default async function RobloxExecutor(context: UnleashedCommandExecutor, 
                         components: [createActionRow([createButton({
                             label: t("commands:roblox.buttons.viewProfile"),
                             emoji: {
-                                id: bot.emotes.ROBLOX
+                                id: BigInt(bot.emotes.ROBLOX)
                             },
                             style: ButtonStyles.Link,
                             url: `https://www.roblox.com/users/${id}/profile`

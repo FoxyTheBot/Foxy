@@ -6,7 +6,7 @@ export default async function LaughExecutor(context: UnleashedCommandExecutor, e
     const embed = createEmbed({});
 
     const laughGif: any = await context.getImage("laugh");
-    embed.title = t('commands:laugh.success', { author: await bot.foxyRest.getUserDisplayName(context.author.id) }),
+    embed.title = t('commands:laugh.success', { author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
         embed.image = {
             url: laughGif.url
         }

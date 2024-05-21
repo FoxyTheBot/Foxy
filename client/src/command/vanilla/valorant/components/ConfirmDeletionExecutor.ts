@@ -24,7 +24,7 @@ const ConfirmDeletionExecutor = async (context: ComponentInteractionContext) => 
             label: bot.locale('commands:valorant.unlink.button.labelConfirmed'),
             style: ButtonStyles.Danger,
             emoji: {
-                id: bot.emotes.FOXY_CRY
+                id: BigInt(bot.emotes.FOXY_CRY)
             },
             customId: createCustomId(4, context.author.id, context.commandId),
             disabled: true,

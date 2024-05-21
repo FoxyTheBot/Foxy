@@ -66,10 +66,6 @@ export default class UnleashedCommandExecutor {
         return this.interaction ? this.interaction.member : this.message.member;
     }
 
-    makeReply(emoji: any, text: string): string {
-        return `${`<:emoji:${emoji}>` || '🐛'} **|** ${text}`;
-    }
-
     async followUp(options): Promise<void> {
         if (this.interaction) {
             await bot.helpers.sendFollowupMessage(this.interaction.token, {
@@ -87,7 +83,35 @@ export default class UnleashedCommandExecutor {
         }
     }
 
-    getEmojiById(id: BigInt): string {
+    makeReply(emoji: string, text: string): string {
+        return `${`<:emoji:${emoji}>` || `<:emoji:${bot.emotes.FOXY_WOW}>`} **|** ${text}`;
+    }
+
+    async sendReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
+        if (this.interaction) {
+            if (this.replied) {
+                await bot.helpers.editOriginalInteractionResponse(this.interaction.token, options);
+                return;
+            }
+
+            this.replied = true;
+
+            await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
+                type: InteractionResponseTypes.ChannelMessageWithSource,
+                data: options,
+            });
+        } else {
+            await bot.helpers.sendMessage(this.message.channelId, {
+                ...options as CreateMessage,
+                messageReference: {
+                    messageId: this.message.id,
+                    failIfNotExists: false
+                }
+            })
+        }
+    }
+
+    getEmojiById(id: BigInt | string): string {
         return `<:emoji:${id}>`;
     }
 
@@ -138,30 +162,6 @@ export default class UnleashedCommandExecutor {
         const baseURL = `${config.serverURL}/roleplay/`;
         const url = new URL(baseURL + command);
         return await this.getContent(url.toString());
-    }
-
-    async sendReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
-        if (this.interaction) {
-            if (this.replied) {
-                await bot.helpers.editOriginalInteractionResponse(this.interaction.token, options);
-                return;
-            }
-
-            this.replied = true;
-
-            await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
-                type: InteractionResponseTypes.ChannelMessageWithSource,
-                data: options,
-            });
-        } else {
-            await bot.helpers.sendMessage(this.message.channelId, {
-                ...options as CreateMessage,
-                messageReference: {
-                    messageId: this.message.id,
-                    failIfNotExists: false
-                }
-            })
-        }
     }
 
     locale(text: string, options: Record<string, unknown> = {}): string {

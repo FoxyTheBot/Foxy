@@ -18,7 +18,7 @@ export default async function ValorantLinkExecutor(bot: FoxyClient, context: Unl
             style: ButtonStyles.Link,
             url: `https://auth.riotgames.com/login#client_id=b54a5c51-dd72-400a-8a80-5ad42798cd27&redirect_uri=https://cakey.foxybot.win/rso/auth/callback&response_type=code&scope=openid&state=${context.author.id}`,
             emoji: {
-                id: bot.emotes.VALORANT_LOGO
+                id: BigInt(bot.emotes.VALORANT_LOGO)
             }
         })])]
     });

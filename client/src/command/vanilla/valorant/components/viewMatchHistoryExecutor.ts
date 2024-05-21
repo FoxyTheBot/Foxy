@@ -7,8 +7,8 @@ const ViewMatchHistory = async (context: ComponentInteractionContext) => {
     const userData = await bot.database.getUser(BigInt(user));
 
     context.sendDefer();
-    const matchInfo: any = await bot.foxyRest.getValMatchHistoryByUUID(userData.riotAccount.puuid);
-    const valUserInfo = await bot.foxyRest.getValPlayerByUUID(userData.riotAccount.puuid);
+    const matchInfo: any = await bot.rest.foxy.getValMatchHistoryByUUID(userData.riotAccount.puuid);
+    const valUserInfo = await bot.rest.foxy.getValPlayerByUUID(userData.riotAccount.puuid);
 
     try {
         const embed = createEmbed({

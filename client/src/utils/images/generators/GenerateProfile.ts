@@ -58,7 +58,7 @@ export default class CreateProfile {
 
         context.font = '70px sans-serif';
         context.fillStyle = font;
-        context.fillText(await bot.foxyRest.getUserDisplayName(this.user.id), canvas.width / 5.8, canvas.height / 1.3)
+        context.fillText(await bot.rest.foxy.getUserDisplayName(this.user.id), canvas.width / 5.8, canvas.height / 1.3)
 
         context.font = '40px sans-serif';
         context.fillStyle = font;
@@ -66,7 +66,7 @@ export default class CreateProfile {
 
         if (this.data.marryStatus.marriedWith) {
             moment.locale(this.locale.lng)
-            const partnerDisplayName = await bot.foxyRest.getUserDisplayName(this.data.marryStatus.marriedWith);
+            const partnerDisplayName = await bot.rest.foxy.getUserDisplayName(this.data.marryStatus.marriedWith);
             context.font = ('30px sans-serif');
             context.fillStyle = font;
             context.fillText(this.locale("commands:profile.marriedWith", {

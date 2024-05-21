@@ -7,7 +7,7 @@ const ValMatchSelectorExecutor = async (context: ComponentInteractionContext) =>
 
     const matchId = context.interaction.data.values[0];
     const [userPUUID] = context.sentData;
-    const match = await bot.foxyRest.getValMatch(matchId);
+    const match = await bot.rest.foxy.getValMatch(matchId);
     const matchInfo = match.data;
 
     function getRank(rank: string) {

@@ -100,7 +100,7 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
     return await this.getContent(url.toString());
   }
 
-  getEmojiById(id: BigInt) {
+  getEmojiById(id: BigInt | string) {
     return `<:emoji:${id}>`;
   }
 

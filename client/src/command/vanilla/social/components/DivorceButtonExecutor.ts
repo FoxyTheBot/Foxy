@@ -27,13 +27,13 @@ const DivorceButtonExecutor = async (context: ComponentInteractionContext) => {
     await partnerData.save();
 
     context.sendReply({
-        content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale("commands:divorce.divorced", { user: await bot.foxyRest.getUserDisplayName(userInfo.id) })),
+        content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale("commands:divorce.divorced", { user: await bot.rest.foxy.getUserDisplayName(userInfo.id) })),
         components: [createActionRow([createButton({
             customId: createCustomId(0, context.user.id, context.commandId),
             label: bot.locale("commands:divorce.confirmed"),
             style: ButtonStyles.Danger,
             emoji: {
-                id: bot.emotes.FOXY_CRY
+                id: BigInt(bot.emotes.FOXY_CRY)
             },
             disabled: true
         })])],

@@ -3,6 +3,7 @@ import { FoxyClient } from "../structures/types/foxy";
 import { User } from "../structures/types/user";
 import config from '../../config.json';
 import axios from "axios";
+import { FoxyImage, ValorantUser } from "../structures/types/responses";
 
 export class FoxyRestManager {
     public bot: FoxyClient;
@@ -51,7 +52,7 @@ export class FoxyRestManager {
 
     /* Valorant API */
 
-    async getValPlayer(username: string, tag: string) {
+    async getValPlayer(username: string, tag: string): Promise<ValorantUser> {
         return (await this.valorantAPI.get(`valorant/v1/account/${username}/${tag}`));
     }
 
@@ -85,7 +86,7 @@ export class FoxyRestManager {
         return (await this.valorantAPI.get(url)).data;
     }
 
-    async getValPlayerByUUID(puuid: string) {
+    async getValPlayerByUUID(puuid: string): Promise<ValorantUser> {
         return (await this.valorantAPI.get(`valorant/v1/by-puuid/account/${puuid}`)).data;
     }
 
@@ -95,5 +96,11 @@ export class FoxyRestManager {
 
     async getValMatch(matchId: string) {
         return (await this.valorantAPI.get(`valorant/v2/match/${matchId}`)).data;
+    }
+
+    /* Foxy API */
+
+    async getImage(commandCategory: string, commandName: string): Promise<FoxyImage> {
+        return (await this.api.get(`${commandCategory}/${commandName}`)).data;
     }
 }

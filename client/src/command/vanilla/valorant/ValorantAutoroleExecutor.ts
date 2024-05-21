@@ -80,7 +80,7 @@ export async function ValorantAutoRoleExecutor(bot: FoxyClient, context, endComm
                     label: t('commands:valorant.autorole.rankSelector.unrated'),
                     value: 'unratedRole',
                     emoji: {
-                        id: bot.emotes.UNRATED
+                        id: BigInt(bot.emotes.UNRATED)
                     },
                     description: guildInfo.valAutoRoleModule.unratedRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                 },
@@ -88,7 +88,7 @@ export async function ValorantAutoRoleExecutor(bot: FoxyClient, context, endComm
                     label: t('commands:valorant.autorole.rankSelector.iron'),
                     value: 'ironRole',
                     emoji: {
-                        id: bot.emotes.I3
+                        id: BigInt(bot.emotes.I3)
                     },
                     description: guildInfo.valAutoRoleModule.ironRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                 },
@@ -96,7 +96,7 @@ export async function ValorantAutoRoleExecutor(bot: FoxyClient, context, endComm
                     label: t('commands:valorant.autorole.rankSelector.bronze'),
                     value: 'bronzeRole',
                     emoji: {
-                        id: bot.emotes.B3
+                        id: BigInt(bot.emotes.B3)
                     },
                     description: guildInfo.valAutoRoleModule.bronzeRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                 },
@@ -104,7 +104,7 @@ export async function ValorantAutoRoleExecutor(bot: FoxyClient, context, endComm
                     label: t('commands:valorant.autorole.rankSelector.silver'),
                     value: 'silverRole',
                     emoji: {
-                        id: bot.emotes.S3
+                        id: BigInt(bot.emotes.S3)
                     },
                     description: guildInfo.valAutoRoleModule.silverRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
 
@@ -113,7 +113,7 @@ export async function ValorantAutoRoleExecutor(bot: FoxyClient, context, endComm
                     label: t('commands:valorant.autorole.rankSelector.gold'),
                     value: 'goldRole',
                     emoji: {
-                        id: bot.emotes.G3
+                        id: BigInt(bot.emotes.G3)
                     },
                     description: guildInfo.valAutoRoleModule.goldRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
 
@@ -122,7 +122,7 @@ export async function ValorantAutoRoleExecutor(bot: FoxyClient, context, endComm
                     label: t('commands:valorant.autorole.rankSelector.platinum'),
                     value: 'platinumRole',
                     emoji: {
-                        id: bot.emotes.P3
+                        id: BigInt(bot.emotes.P3)
                     },
                     description: guildInfo.valAutoRoleModule.platinumRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                 },
@@ -130,7 +130,7 @@ export async function ValorantAutoRoleExecutor(bot: FoxyClient, context, endComm
                     label: t('commands:valorant.autorole.rankSelector.diamond'),
                     value: 'diamondRole',
                     emoji: {
-                        id: bot.emotes.D3
+                        id: BigInt(bot.emotes.D3)
                     },
                     description: guildInfo.valAutoRoleModule.diamondRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
 
@@ -139,7 +139,7 @@ export async function ValorantAutoRoleExecutor(bot: FoxyClient, context, endComm
                     label: t('commands:valorant.autorole.rankSelector.ascendant'),
                     value: 'ascendantRole',
                     emoji: {
-                        id: bot.emotes.A3
+                        id: BigInt(bot.emotes.A3)
                     },
                     description: guildInfo.valAutoRoleModule.ascendantRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                 },
@@ -147,7 +147,7 @@ export async function ValorantAutoRoleExecutor(bot: FoxyClient, context, endComm
                     label: t('commands:valorant.autorole.rankSelector.immortal'),
                     value: 'immortalRole',
                     emoji: {
-                        id: bot.emotes.IM3
+                        id: BigInt(bot.emotes.IM3)
                     },
                     description: guildInfo.valAutoRoleModule.immortalRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                 },
@@ -155,7 +155,7 @@ export async function ValorantAutoRoleExecutor(bot: FoxyClient, context, endComm
                     label: t('commands:valorant.autorole.rankSelector.radiant'),
                     value: 'radiantRole',
                     emoji: {
-                        id: bot.emotes.R
+                        id: BigInt(bot.emotes.R)
                     },
                     description: guildInfo.valAutoRoleModule.radiantRole ? t('commands:valorant.autorole.configured') : t('commands:valorant.autorole.ranks.none')
                 }]

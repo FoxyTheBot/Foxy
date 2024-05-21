@@ -6,7 +6,7 @@ export default async function DanceExecutor(context: UnleashedCommandExecutor, e
     const embed = createEmbed({});
     const danceGif: any = await context.getImage("dance");
 
-    embed.title = t('commands:dance.dancing', { author: await bot.foxyRest.getUserDisplayName(context.author.id) }),
+    embed.title = t('commands:dance.dancing', { author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
         embed.image = {
             url: danceGif.url
         }

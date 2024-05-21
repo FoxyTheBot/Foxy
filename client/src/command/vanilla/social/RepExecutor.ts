@@ -39,7 +39,7 @@ export default async function RepExecutor(context: UnleashedCommandExecutor, end
         authorData.save();
         userData.save();
         context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:rep.success', { user: await bot.foxyRest.getUserDisplayName(user.id) }))
+            content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:rep.success', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
         })
         endCommand();
     }

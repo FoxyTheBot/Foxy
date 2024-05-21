@@ -27,7 +27,7 @@ export default async function BiteExecutor(context: UnleashedCommandExecutor, en
         return endCommand();
     }
 
-    embed.title = t('commands:bite.success', { target: await bot.foxyRest.getUserDisplayName(user.id), user: await bot.foxyRest.getUserDisplayName(context.author.id) }),
+    embed.title = t('commands:bite.success', { target: await bot.rest.foxy.getUserDisplayName(user.id), user: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
         embed.image = {
             url: biteGif.url
         }

@@ -27,7 +27,7 @@ export default async function SlapExecutor(context: UnleashedCommandExecutor, en
 
         return endCommand();
     }
-    embed.title = t('commands:slap.success', { target: await bot.foxyRest.getUserDisplayName(user.id), author: await bot.foxyRest.getUserDisplayName(context.author.id), user: await bot.foxyRest.getUserDisplayName(user.id) }),
+    embed.title = t('commands:slap.success', { target: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id), user: await bot.rest.foxy.getUserDisplayName(user.id) }),
         embed.image = {
             url: slapGif.url
         }
@@ -39,14 +39,14 @@ export default async function SlapExecutor(context: UnleashedCommandExecutor, en
                 0, 
                 user.id, 
                 context.commandId, 
-                await bot.foxyRest.getUserDisplayName(user.id),
+                await bot.rest.foxy.getUserDisplayName(user.id),
                 context.isMessage ? context.message.id : null,
                 context.isMessage ? context.channelId : null
             ),
             label: t('commands:slap.button'),
             style: ButtonStyles.Primary,
             emoji: {
-                id: bot.emotes.FOXY_SCARED,
+                id: BigInt(bot.emotes.FOXY_SCARED),
             }
         })])]
     })

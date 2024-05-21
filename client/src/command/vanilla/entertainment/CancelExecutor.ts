@@ -20,7 +20,7 @@ export default async function CancelExecutor(context: UnleashedCommandExecutor, 
     }
     
     context.sendReply({
-        content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:cancel.result', { user: await bot.foxyRest.getUserDisplayName(context.author.id), reason: content, mention: `<@!${user.id}>` }))
+        content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:cancel.result', { user: await bot.rest.foxy.getUserDisplayName(context.author.id), reason: content, mention: `<@!${user.id}>` }))
     })
 
     endCommand();
