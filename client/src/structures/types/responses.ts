@@ -1,4 +1,10 @@
-export interface ValUser {
+export interface FoxyImage {
+    url: string;
+}
+
+/* Valorant User */
+
+export interface ValorantUser {
     status: number;
     data: {
         puuid: string;
