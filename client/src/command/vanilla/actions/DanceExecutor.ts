@@ -4,7 +4,7 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 
 export default async function DanceExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const embed = createEmbed({});
-    const danceGif: any = await context.getImage("dance");
+    const danceGif = await bot.rest.foxy.getImage("roleplay", "dance");
 
     embed.title = t('commands:dance.dancing', { author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
         embed.image = {

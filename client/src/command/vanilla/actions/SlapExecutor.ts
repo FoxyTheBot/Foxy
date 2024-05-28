@@ -7,7 +7,7 @@ import { createActionRow, createButton, createCustomId } from "../../../utils/di
 
 export default async function SlapExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>("user", "users");
-    const slapGif: any = await context.getImage("slap");
+    const slapGif: any = await bot.rest.foxy.getImage("roleplay", "slap");
     const embed = createEmbed({});
 
     if (user.id === bot.id) {

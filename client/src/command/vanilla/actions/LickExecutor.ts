@@ -7,7 +7,7 @@ import { createActionRow, createButton, createCustomId } from "../../../utils/di
 
 export default async function LickExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>("user", "users");
-    const lickGif: any = await context.getImage("lick");
+    const lickGif = await bot.rest.foxy.getImage("roleplay", "lick");
     const embed = createEmbed({});
 
     embed.title = t('commands:lick.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),

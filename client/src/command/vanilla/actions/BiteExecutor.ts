@@ -7,7 +7,7 @@ import { createEmbed } from "../../../utils/discord/Embed";
 export default async function BiteExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const embed = createEmbed({});
     const user = await context.getOption<User>("user", "users");
-    const biteGif: any = await context.getImage("bite");
+    const biteGif = await bot.rest.foxy.getImage("roleplay", "bite");
 
     if (user.id === context.author.id) {
         context.sendReply({

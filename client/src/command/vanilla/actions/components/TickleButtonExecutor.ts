@@ -6,7 +6,7 @@ import { createEmbed } from "../../../../utils/discord/Embed";
 
 const TickleExecutor = async (context: ComponentInteractionContext) => {
     const [user, messageId] = context.sentData;
-    const tickleGif: any = await context.getImage("tickle");
+    const tickleGif = await bot.rest.foxy.getImage("roleplay", "tickle");
     const embed = createEmbed({});
     let commandAuthor = await bot.rest.foxy.getUserDisplayName(context.author.id);
 

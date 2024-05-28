@@ -6,7 +6,7 @@ import { createEmbed } from "../../../../utils/discord/Embed";
 
 const LickExecutor = async (context: ComponentInteractionContext) => {
     const [user, messageId] = context.sentData;
-    const lickGif: any = await context.getImage("lick");
+    const lickGif = await bot.rest.foxy.getImage("roleplay", "lick");
     const embed = createEmbed({});
     let commandAuthor = await bot.rest.foxy.getUserDisplayName(context.author.id);
     

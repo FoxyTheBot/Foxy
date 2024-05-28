@@ -6,7 +6,7 @@ import { createActionRow, createButton, createCustomId } from "../../../../utils
 
 const SlapExecutor = async (context: ComponentInteractionContext) => {
     const [user, messageId] = context.sentData;
-    const slapGif: any = await context.getImage("slap");
+    const slapGif = await bot.rest.foxy.getImage("roleplay", "slap");
     const embed = createEmbed({});
     let commandAuthor = await bot.rest.foxy.getUserDisplayName(context.author.id);
     

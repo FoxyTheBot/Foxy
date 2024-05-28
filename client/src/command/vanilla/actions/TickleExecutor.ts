@@ -5,7 +5,7 @@ import { bot } from "../../../FoxyLauncher";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 export default async function TickleExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>("user", "users");
-    const tickleGif: any = await context.getImage("tickle");
+    const tickleGif = await bot.rest.foxy.getImage("roleplay", "tickle");
     const embed = createEmbed({});
 
     embed.title = t('commands:tickle.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),

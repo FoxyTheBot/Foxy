@@ -6,7 +6,7 @@ import { createActionRow, createButton, createCustomId } from "../../../../utils
 
 const HugExecutor = async (context: ComponentInteractionContext) => {
     const [user, messageId] = context.sentData;
-    const hugGif: any = await context.getImage("hug");
+    const hugGif = await bot.rest.foxy.getImage("roleplay", "hug");
     const embed = createEmbed({});
     let commandAuthor = await bot.rest.foxy.getUserDisplayName(context.author.id);
     

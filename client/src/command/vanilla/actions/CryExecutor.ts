@@ -4,7 +4,7 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 
 export default async function CryExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const embed = createEmbed({})
-    const cryGif: any = await context.getImage("cry");
+    const cryGif: any = await bot.rest.foxy.getImage("roleplay", "cry");
     embed.title = t('commands:cry.crying', { author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
         embed.image = {
             url: cryGif.url

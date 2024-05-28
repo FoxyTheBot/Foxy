@@ -6,7 +6,7 @@ import { createActionRow, createButton, createCustomId } from "../../../utils/di
 
 export default async function PatExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>("user", "users");
-    const patGif: any = await context.getImage("pat");
+    const patGif = await bot.rest.foxy.getImage("roleplay", "pat");
     const embed = createEmbed({});
     embed.title = t('commands:pat.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
         embed.image = {

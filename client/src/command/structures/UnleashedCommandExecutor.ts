@@ -129,41 +129,6 @@ export default class UnleashedCommandExecutor {
         }
     }
 
-    getContent(url: string): Promise<any> {
-        return new Promise((resolve, reject) => {
-            get(url, {
-                headers: {
-                    'Authorization': `${foxyAPIToken}`,
-                }
-            }, (res) => {
-                const { statusCode } = res;
-                if (statusCode !== 200) {
-                    res.resume();
-                    reject(`Request failed. Status code: ${statusCode}`);
-                }
-                res.setEncoding('utf8');
-                let rawData = '';
-                res.on('data', (chunk) => { rawData += chunk; });
-                res.on('end', () => {
-                    try {
-                        const parsedData = JSON.parse(rawData);
-                        resolve(parsedData);
-                    } catch (e) {
-                        reject(`Error: ${e}`);
-                    }
-                });
-            }).on('error', (err) => {
-                reject(`Error: ${err.message}`);
-            });
-        });
-    }
-
-    async getImage(command: string): Promise<any> {
-        const baseURL = `${config.serverURL}/roleplay/`;
-        const url = new URL(baseURL + command);
-        return await this.getContent(url.toString());
-    }
-
     locale(text: string, options: Record<string, unknown> = {}): string {
         return this.i18n(text, options);
     }

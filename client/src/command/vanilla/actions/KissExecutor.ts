@@ -7,7 +7,7 @@ import { createActionRow, createButton, createCustomId } from "../../../utils/di
 
 export default async function KissExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>("user", "users");
-    const kissGif: any = await context.getImage("kiss");
+    const kissGif = await bot.rest.foxy.getImage("roleplay", "kiss");
     const embed = createEmbed({});
 
     if (user.id === bot.id) {
