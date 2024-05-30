@@ -240,4 +240,5 @@ interface Badge {
     asset: string;
     description: string;
     exclusive: boolean;
+    priority: number;
 }

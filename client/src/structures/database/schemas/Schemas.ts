@@ -162,6 +162,7 @@
         asset: String,
         description: String,
         exclusive: Boolean,
+        priority: Number,
     });
 
     export const Schemas = {
