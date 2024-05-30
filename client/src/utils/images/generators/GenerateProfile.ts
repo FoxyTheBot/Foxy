@@ -5,6 +5,7 @@ import { getUserAvatar } from '../../discord/User';
 import { serverURL } from '../../../../config.json';
 import { lylist } from '../../../structures/json/layoutList.json';
 import { User } from 'discordeno/transformers';
+import { logger } from '../../logger';
 
 let font = "#ffffff";
 export default class CreateProfile {
@@ -142,50 +143,59 @@ export default class CreateProfile {
     async insertBadges() {
         const defaultBadges = await bot.database.getBadges();
         const supportServer = bot.guilds.get(768267522670723094n);
-
-        let member = supportServer.members.get(this.user.id);
-        if (!member) {
-            member = await bot.helpers.getMember(supportServer.id, this.user.id);
-        }
-
-        const roles = member.roles;
-
         let userBadges;
-
-        if (this.data.isBanned) {
-            const bannedBadge = await Canvas.loadImage(`${serverURL}/assets/badges/banned.png`);
-            userBadges = [bannedBadge]
-        } else {
+        let member = supportServer.members.get(this.user.id);
+    
+        if (!member) {
+            try {
+                member = await bot.helpers.getMember(supportServer.id, this.user.id);
+            } catch (error: any) {
+                if (error.message.includes("Unknown Member")) {
+                    member = null;
+                } else {
+                    throw error; 
+                }
+            }
+        }
+    
+        if (member) {
+            const roles = member.roles;
             const roleBadges = roles
                 .map(r => r.toString())
                 .filter(r => defaultBadges.some(b => b.id === r));
-
+    
             userBadges = defaultBadges.filter(b => roleBadges.includes(b.id));
-
+        }
+    
+        if (this.data.isBanned) {
+            const bannedBadge = await Canvas.loadImage(`${serverURL}/assets/badges/banned.png`);
+            userBadges = [bannedBadge];
+        } else {
             if (this.data.marryStatus.marriedWith) {
                 const marriedBadge = defaultBadges.find(b => b.id === "married");
                 if (marriedBadge) {
                     userBadges.push(marriedBadge);
                 }
             }
-
+    
+            if (!userBadges) return null;
+            
             userBadges.sort((a, b) => b.priority - a.priority);
-
             userBadges = await Promise.all(
                 userBadges.map(badge => Canvas.loadImage(`${serverURL}/assets/badges/${badge.asset}`))
             );
         }
-
+    
         let x = 0;
         let y = 0;
-
+    
         userBadges.forEach(badge => {
             this.context.drawImage(badge, x + 10, y + 830, 50, 50);
             x += 60;
             if (x > 1300) {
                 x = 0;
-                y += 50
+                y += 50;
             }
         });
-    }
+    }    
 }
