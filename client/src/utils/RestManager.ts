@@ -28,21 +28,9 @@ export class FoxyRestManager {
 
     /* Requests to Discord API */
 
-    async sendDirectMessage(userId: BigString, data: Object) {
-        const DMChannel = await this.bot.rest.runMethod(this.bot.rest, "POST", this.bot.constants.routes.USER_DM(), {
-            recipient_id: userId
-        });
-
-        this.bot.helpers.sendMessage(DMChannel.id, data);
-    }
-
     async getUserDisplayName(userId: BigString) {
         const user = await this.bot.rest.runMethod(this.bot.rest, "GET", this.bot.constants.routes.USER(userId));
         return user.global_name || user.username;
-    }
-
-    async getBotGuilds(): Promise<Array<Object>> {
-        return await this.bot.rest.runMethod(this.bot.rest, "GET", this.bot.constants.routes.USER_GUILDS());
     }
 
     async getUser(userId: string): Promise<User> {
@@ -51,24 +39,7 @@ export class FoxyRestManager {
 
 
     /* Valorant API */
-
-    async getValPlayer(username: string, tag: string): Promise<ValorantUser> {
-        return (await this.valorantAPI.get(`valorant/v1/account/${username}/${tag}`));
-    }
-
-    async getValMatchHistory(username: string, tag: string, mode?: string, map?: string) {
-        const userInfo = await this.getValPlayer(username, tag).then(res => res.data);
-        if (!userInfo) return null;
-        const puuid = await userInfo.puuid;
-        let url = `valorant/v1/by-puuid/lifetime/matches/br/${puuid}?size=12`;
-
-        if (mode) url += `&mode=${mode}`;
-
-        if (map) url += `&map=${map}`;
-
-        return (await this.valorantAPI.get(url)).data;
-    }
-
+    
     async getValMatchHistoryByUUID(puuid: string, mode?: string, map?: string) {
         let url = `valorant/v1/by-puuid/lifetime/matches/br/${puuid}?size=12`;
 
