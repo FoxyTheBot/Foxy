@@ -34,6 +34,7 @@ export default class CreateProfile {
 
     async create() {
         let userAboutme = this.data.userProfile.aboutme || this.locale("commands:profile.noAboutme");
+
         if (userAboutme.length > 84) {
             userAboutme = userAboutme.match(/.{1,65}/g).join("\n");
         }
@@ -46,6 +47,21 @@ export default class CreateProfile {
             Canvas.loadImage(`${serverURL}/layouts/${this.data.userProfile.layout}`),
             Canvas.loadImage(`${serverURL}/backgrounds/${this.testMode && !this.mask ? this.code : this.data.userProfile.background}`)
         ]);
+
+        if (this.data.isBanned) {
+            userAboutme = bot.locale('commands:profile.banned', {
+                user: await bot.rest.foxy.getUserDisplayName(this.user.id),
+                reason: this.data.banReason,
+                date: this.data.banDate.toLocaleString(global.t.lng, {
+                    timeZone: "America/Sao_Paulo",
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric'
+                })
+            });
+        }
 
         if (this.testMode && !this.mask) {
             userAboutme = this.locale("commands:profile.testMode");
@@ -103,9 +119,24 @@ export default class CreateProfile {
             const mask = await Canvas.loadImage(`${serverURL}/masks/${this.code}`);
             context.drawImage(mask, this.canvas.width / 55.0, this.canvas.height / 1.69, 200, 200);
         }
+        if (this.data.isBanned) {
+            this.applyBlackAndWhiteFilter();
+        }
 
         const blob = new Blob([this.canvas.toBuffer()], { type: 'image/png' });
         return blob;
+    }
+
+    applyBlackAndWhiteFilter() {
+        const imageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
+        const data = imageData.data;
+
+        for (let i = 0; i < data.length; i += 4) {
+            const grayscale = data[i] * 0.3 + data[i + 1] * 0.59 + data[i + 2] * 0.11;
+            data[i] = data[i + 1] = data[i + 2] = grayscale;
+        }
+
+        this.context.putImageData(imageData, 0, 0);
     }
 
     async insertBadges() {
@@ -119,33 +150,41 @@ export default class CreateProfile {
 
         const roles = member.roles;
 
-        const roleBadges = roles
-            .map(r => r.toString())
-            .filter(r => defaultBadges.some(b => b.id === r));
+        let userBadges;
 
-        const userBadges = defaultBadges.filter(b => roleBadges.includes(b.id));
+        if (this.data.isBanned) {
+            const bannedBadge = await Canvas.loadImage(`${serverURL}/assets/badges/banned.png`);
+            userBadges = [bannedBadge]
+        } else {
+            const roleBadges = roles
+                .map(r => r.toString())
+                .filter(r => defaultBadges.some(b => b.id === r));
 
-        if (this.data.marryStatus.marriedWith) {
-            const marriedBadge = defaultBadges.find(b => b.id === "married");
-            if (marriedBadge) {
-                userBadges.push(marriedBadge);
+            userBadges = defaultBadges.filter(b => roleBadges.includes(b.id));
+
+            if (this.data.marryStatus.marriedWith) {
+                const marriedBadge = defaultBadges.find(b => b.id === "married");
+                if (marriedBadge) {
+                    userBadges.push(marriedBadge);
+                }
             }
-        }
-        userBadges.sort((a, b) => b.priority - a.priority);
 
-        const badgeImages = await Promise.all(
-            userBadges.map(badge => Canvas.loadImage(`${serverURL}/assets/badges/${badge.asset}`))
-        );
+            userBadges.sort((a, b) => b.priority - a.priority);
+
+            userBadges = await Promise.all(
+                userBadges.map(badge => Canvas.loadImage(`${serverURL}/assets/badges/${badge.asset}`))
+            );
+        }
 
         let x = 0;
         let y = 0;
 
-        badgeImages.forEach(badge => {
+        userBadges.forEach(badge => {
             this.context.drawImage(badge, x + 10, y + 830, 50, 50);
             x += 60;
             if (x > 1300) {
                 x = 0;
-                y += 50;
+                y += 50
             }
         });
     }
