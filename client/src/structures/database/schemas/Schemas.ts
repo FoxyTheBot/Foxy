@@ -156,6 +156,14 @@
         isMask: Boolean,
     }, { versionKey: false, id: false });
 
+    const badgesSchema = new mongoose.Schema({
+        id: String,
+        name: String,
+        asset: String,
+        description: String,
+        exclusive: Boolean,
+    });
+
     export const Schemas = {
         userSchema,
         guildSchema,
@@ -163,7 +171,8 @@
         backgroundSchema,
         riotAccountSchema,
         keySchema,
-        avatarDecorationSchema
+        avatarDecorationSchema,
+        badgesSchema,
     };
 
     /* End of bot related schemas */

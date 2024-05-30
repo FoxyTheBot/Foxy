@@ -1,4 +1,4 @@
-import Canvas from 'canvas';
+import Canvas, { CanvasRenderingContext2D } from 'canvas';
 import { bot } from "../../../FoxyLauncher";
 import moment from 'moment';
 import { getUserAvatar } from '../../discord/User';
@@ -15,7 +15,9 @@ export default class CreateProfile {
     private readonly testMode: boolean;
     private readonly code: string;
     private readonly mask: boolean;
-    private readonly locale: any
+    private readonly locale: any;
+    private canvas: Canvas.Canvas;
+    private context: CanvasRenderingContext2D;
 
     constructor(locale, user, data, testMode?, code?, mask?) {
         this.user = user;
@@ -26,7 +28,8 @@ export default class CreateProfile {
         this.code = code;
         this.mask = mask;
         this.locale = locale
-
+        this.canvas = Canvas.createCanvas(this.width, this.height);
+        this.context = this.canvas.getContext("2d");
     }
 
     async create() {
@@ -34,13 +37,12 @@ export default class CreateProfile {
         if (!userAboutme) userAboutme = `${this.locale("commands:profile.noAboutme")}`;
 
         if (userAboutme.length > 84) {
-            const aboutme = userAboutme.match(/.{1,59}/g);
+            const aboutme = userAboutme.match(/.{1,65}/g);
             userAboutme = aboutme.join("\n");
         }
         let background;
 
-        const canvas = Canvas.createCanvas(this.width, this.height);
-        const context = canvas.getContext("2d");
+        const context = this.canvas.getContext("2d");
         const isLayoutWhite = lylist.find((l) => l.id === this.data.userProfile.layout).darkText;
         let layout = await Canvas.loadImage(`${serverURL}/layouts/${this.data.userProfile.layout}`);
         background = await Canvas.loadImage(`${serverURL}/backgrounds/${this.data.userProfile.background}`);
@@ -50,33 +52,39 @@ export default class CreateProfile {
             userAboutme = this.locale("commands:profile.testMode");
         }
         if (isLayoutWhite) font = "#000000"; else font = "#ffffff";
-        context.drawImage(background, 0, 0, canvas.width, canvas.height)
-        context.drawImage(layout, 0, 0, canvas.width, canvas.height);
+        context.drawImage(background, 0, 0, this.canvas.width, this.canvas.height)
+        context.drawImage(layout, 0, 0, this.canvas.width, this.canvas.height);
 
         context.strokeStyle = '#74037b';
-        context.strokeRect(0, 0, canvas.width, canvas.height);
+        context.strokeRect(0, 0, this.canvas.width, this.canvas.height);
 
-        context.font = '70px sans-serif';
+        context.font = '70px Anton';
         context.fillStyle = font;
-        context.fillText(await bot.rest.foxy.getUserDisplayName(this.user.id), canvas.width / 5.8, canvas.height / 1.3)
+        context.fillText(this.user.username, this.canvas.width / 5.8, this.canvas.height / 1.35)
 
-        context.font = '40px sans-serif';
+        context.font = '43px Anton';
         context.fillStyle = font;
-        context.fillText(`Cakes: \n${this.data.userCakes.balance}\nReps: ${this.data.userProfile.repCount}`, canvas.width / 1.2, canvas.height / 1.4);
+        context.fillText(`Cakes: ${this.data.userCakes.balance.toLocaleString("pt-BR")}`
+            + `\nReps: ${this.data.userProfile.repCount.toLocaleString("pt-BR")}`,
+            this.canvas.width / 1.30, this.canvas.height / 1.4);
 
         if (this.data.marryStatus.marriedWith) {
             moment.locale(this.locale.lng)
-            const partnerDisplayName = await bot.rest.foxy.getUserDisplayName(this.data.marryStatus.marriedWith);
-            context.font = ('30px sans-serif');
+            const partnerUser = bot.users.get(this.data.marryStatus.marriedWith)
+                ?? await bot.helpers.getUser(this.data.marryStatus.marriedWith);
+            context.font = ('50px Anton');
+            const marriedCard = await Canvas.loadImage(`${serverURL}/assets/layouts/blue-married.png`);
+            context.drawImage(marriedCard, 0, 0, this.canvas.width, this.canvas.height);
             context.fillStyle = font;
-            context.fillText(this.locale("commands:profile.marriedWith", {
-                user: partnerDisplayName, relativeTime: moment(this.data.marryStatus.marriedDate, "YYYYMMDD").fromNow(), date: this.data.marryStatus.marriedDate.toLocaleString(this.locale.lng, { timeZone: "America/Sao_Paulo", year: 'numeric', month: 'numeric', day: 'numeric' })
-            }), canvas.width / 50, canvas.height - 15 / 1);
+            context.fillText("Casado(a) com:", this.canvas.width / 1.40, this.canvas.height / 16);
+            context.font = "35px Anton";
+            context.fillText(partnerUser.username, this.canvas.width / 1.40, this.canvas.height / 9);
+            context.fillText("Desde " + this.data.marryStatus.marriedDate.toLocaleString(this.locale.lng), this.canvas.width / 1.40, this.canvas.height / 6.5);
         }
 
-        context.font = ('30px sans-serif');
+        context.font = ('27px Anton');
         context.fillStyle = font;
-        context.fillText(userAboutme, canvas.width / 6.1, canvas.height / 1.2);
+        context.fillText(userAboutme, this.canvas.width / 5.8, this.canvas.height / 1.26);
         context.save();
 
         context.beginPath();
@@ -91,23 +99,65 @@ export default class CreateProfile {
         context.drawImage(avatar, 25, 600, 200, 200);
         context.restore();
 
+        await this.insertBadges();
         if (this.data.userProfile.decoration && !this.mask) {
             const mask = await Canvas.loadImage(`${serverURL}/masks/${this.data.userProfile.decoration}`);
-            const allMasks =(await bot.database.getAllDecorations()).find((m) => m.id === this.data.userProfile.decoration);
+            const allMasks = (await bot.database.getAllDecorations()).find((m) => m.id === this.data.userProfile.decoration);
 
             if (allMasks.type === "face-mask") {
-                context.drawImage(mask, canvas.width / 100.0, canvas.height / 1.45, 220, 210);
+                context.drawImage(mask, this.canvas.width / 100.0, this.canvas.height / 1.45, 220, 210);
             } else {
-                context.drawImage(mask, canvas.width / 55.0, canvas.height / 1.69, 200, 200)
+                context.drawImage(mask, this.canvas.width / 55.0, this.canvas.height / 1.69, 200, 200)
             }
         }
 
         if (this.testMode && this.mask) {
             const mask = await Canvas.loadImage(`${serverURL}/masks/${this.code}`);
-            context.drawImage(mask, canvas.width / 55.0, canvas.height / 1.69, 200, 200)
+            context.drawImage(mask, this.canvas.width / 55.0, this.canvas.height / 1.69, 200, 200)
         }
 
-        const blob = new Blob([canvas.toBuffer()], { type: 'image/png' });
+        const blob = new Blob([this.canvas.toBuffer()], { type: 'image/png' });
         return blob;
     }
+
+    async insertBadges() {
+        const defaultBadges = await bot.database.getBadges();
+        const supportServer = bot.guilds.get(768267522670723094n);
+        
+        let member = supportServer.members.get(this.user.id);
+        if (!member) {
+            member = await bot.helpers.getMember(supportServer.id, this.user.id);
+        }
+    
+        const roles = member.roles;
+    
+        const roleBadges = roles
+            .map(r => r.toString())
+            .filter(r => defaultBadges.some(b => b.id === r));
+    
+        const userBadges = defaultBadges.filter(b => roleBadges.includes(b.id));
+    
+        if (this.data.marryStatus.marriedWith) {
+            const marriedBadge = defaultBadges.find(b => b.id === "married");
+            if (marriedBadge) {
+                userBadges.push(marriedBadge);
+            }
+        }
+    
+        const badgeImages = await Promise.all(
+            userBadges.map(badge => Canvas.loadImage(`${serverURL}/assets/badges/${badge.asset}`))
+        );
+    
+        let x = 0;
+        let y = 0;
+    
+        badgeImages.forEach(badge => {
+            this.context.drawImage(badge, x + 10, y + 830, 50, 50);
+            x += 60;
+            if (x > 1300) {
+                x = 0;
+                y += 50;
+            }
+        });
+    }    
 }

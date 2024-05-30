@@ -17,6 +17,7 @@ export default class DatabaseConnection {
     public backgrounds: any;
     public layouts: any;
     public decorations: any;
+    public badges: any;
 
     constructor(client) {
         this.client = client;
@@ -36,6 +37,7 @@ export default class DatabaseConnection {
         this.commands = mongoose.model('commands', Schemas.commandsSchema);
         this.guilds = mongoose.model('guilds', Schemas.guildSchema);
         this.key = mongoose.model('key', Schemas.keySchema);
+        this.badges = mongoose.model('badges', Schemas.badgesSchema);
         this.backgrounds = mongoose.model('backgrounds', Schemas.backgroundSchema);
         this.decorations = mongoose.model('decorations', Schemas.avatarDecorationSchema);
         this.riotAccount = mongoose.model('riotAccount', Schemas.riotAccountSchema);
@@ -128,17 +130,22 @@ export default class DatabaseConnection {
         });
     }
 
-    async getUser(userId: BigInt): Promise<any> {
+    async getUser(userId: bigint): Promise<any> {
         if (!userId) return null;
-        const user: User = await bot.helpers.getUser(String(userId));
-        let document = await this.user.findOne({ _id: user.id });
+        const user: User = bot.users.get(userId)
+            ?? await bot.helpers.getUser(String(userId));
+        let document = await this.user.findOne({ _id: (await user).id });
 
         if (!document) {
-            document = this.createUser(user.id.toString());
+            document = this.createUser((await user).id.toString());
             await document.save();
         }
 
         return document;
+    }
+
+    async getBadges(): Promise<Badge[]> {
+        return await this.badges.find({});
     }
 
     async registerCommand(commandName: string, commandDescription: string): Promise<void> {
@@ -225,4 +232,12 @@ export default class DatabaseConnection {
     async getDecoration(decorationId: string): Promise<any> {
         return await this.decorations.findOne({ id: decorationId });
     }
+}
+
+interface Badge {
+    id: string;
+    name: string;
+    asset: string;
+    description: string;
+    exclusive: boolean;
 }
