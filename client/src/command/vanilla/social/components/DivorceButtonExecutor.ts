@@ -3,6 +3,7 @@ import { bot } from "../../../../FoxyLauncher";
 import { MessageFlags } from "../../../../utils/discord/Message";
 import { ButtonStyles } from "discordeno/types";
 import { createActionRow, createButton, createCustomId } from "../../../../utils/discord/Component";
+import { User } from "discordeno/*";
 
 const DivorceButtonExecutor = async (context: ComponentInteractionContext) => {
     const userData = await bot.database.getUser(context.user.id);
@@ -17,7 +18,8 @@ const DivorceButtonExecutor = async (context: ComponentInteractionContext) => {
     }
 
     const partnerData = await bot.database.getUser(BigInt(partnerId));
-    const userInfo = await bot.helpers.getUser(BigInt(userData.marryStatus.marriedWith));
+    const userInfo = await bot.users.get(BigInt(userData.marryStatus.marriedWith))
+        ?? bot.helpers.getUser(BigInt(userData.marryStatus.marriedWith));
 
     userData.marryStatus.marriedWith = null;
     userData.marryStatus.marriedDate = null;
@@ -27,7 +29,7 @@ const DivorceButtonExecutor = async (context: ComponentInteractionContext) => {
     await partnerData.save();
 
     context.sendReply({
-        content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale("commands:divorce.divorced", { user: await bot.rest.foxy.getUserDisplayName(userInfo.id) })),
+        content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale("commands:divorce.divorced", { user: await bot.rest.foxy.getUserDisplayName((await userInfo).id) })),
         components: [createActionRow([createButton({
             customId: createCustomId(0, context.user.id, context.commandId),
             label: bot.locale("commands:divorce.confirmed"),

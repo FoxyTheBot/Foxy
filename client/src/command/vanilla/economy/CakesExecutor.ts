@@ -21,7 +21,10 @@ export default async function CakesExecutor(context: UnleashedCommandExecutor, e
             const balance = userData.userCakes.balance;
 
             context.sendReply({
-                content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:atm.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), balance: balance.toLocaleString(t.lng || 'pt-BR') }))
+                content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:atm.success', {
+                    user: await bot.rest.foxy.getUserDisplayName(user.id),
+                    balance: balance.toLocaleString(t.lng || 'pt-BR')
+                }))
             })
             endCommand();
             break;
@@ -37,7 +40,7 @@ export default async function CakesExecutor(context: UnleashedCommandExecutor, e
             const amount = await context.getOption<number>('amount', false, null, 2);
             if (isNaN(amount) || amount.toString().includes("0x") || amount < 0 || !Number.isInteger(parseFloat(amount.toString()))) {
                 context.sendReply({
-                    content: "nananinanão seu safado"
+                    content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:transfer.invalidAmount'))
                 });
                 return endCommand();
             }
@@ -62,7 +65,10 @@ export default async function CakesExecutor(context: UnleashedCommandExecutor, e
 
 
             context.sendReply({
-                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:pay.alert', { amount: value.toLocaleString(t.lng || 'pt-BR'), user: await bot.rest.foxy.getUserDisplayName(user.id) })),
+                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:pay.alert', {
+                    amount: value.toLocaleString(t.lng || 'pt-BR'),
+                    user: await bot.rest.foxy.getUserDisplayName(user.id)
+                })),
                 components: [createActionRow([createButton({
                     label: t('commands:pay.pay'),
                     style: ButtonStyles.Success,
@@ -88,7 +94,9 @@ export default async function CakesExecutor(context: UnleashedCommandExecutor, e
                     }) && endCommand();
                 } else {
                     return context.sendReply({
-                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:transactions.userHasNoTransactions', { user: `<@${user.id}>` })),
+                        content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:transactions.userHasNoTransactions', {
+                            user: `<@${user.id}>`
+                        })),
                         flags: MessageFlags.EPHEMERAL
                     }) && endCommand();
                 }
@@ -102,51 +110,91 @@ export default async function CakesExecutor(context: UnleashedCommandExecutor, e
             for (const transaction of userData.userTransactions) {
                 switch (transaction.type) {
                     case TransactionType.DAILY: {
-                        transactionsTexts.push(t('commands:transactions.dailyTransaction', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
+                        transactionsTexts.push(t('commands:transactions.dailyTransaction', {
+                            date: new Date(transaction.date).toLocaleString('pt-BR'),
+                            amount: transaction.quantity.toString()
+                        }))
                         break;
                     }
                     case TransactionType.ADD_BY_ADMIN: {
-                        transactionsTexts.push(t('commands:transactions.addedByAdmin', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
+                        transactionsTexts.push(t('commands:transactions.addedByAdmin', {
+                            date: new Date(transaction.date).toLocaleString('pt-BR'),
+                            amount: transaction.quantity.toString()
+                        }))
                         break;
                     }
 
                     case TransactionType.SEND: {
-                        transactionsTexts.push(t('commands:transactions.sentCakes', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser(transaction.to)).username}` }))
+                        const user = await bot.users.get(transaction.to)
+                            ?? await bot.helpers.getUser(transaction.to);
+                        transactionsTexts.push(t('commands:transactions.sentCakes', {
+                            date: new Date(transaction.date).toLocaleString('pt-BR'),
+                            amount: transaction.quantity.toString(),
+                            user: `@${user.username}`
+                        }));
                         break;
                     }
 
                     case TransactionType.RECEIVE: {
-                        transactionsTexts.push(t('commands:transactions.receivedCakes', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), user: `@${(await bot.helpers.getUser((transaction.from))).username}` }))
+                        const fromUser = bot.users.get(transaction.from)
+                            ?? await bot.helpers.getUser(transaction.from);
+                        transactionsTexts.push(t('commands:transactions.receivedCakes', {
+                            date: new Date(transaction.date).toLocaleString('pt-BR'),
+                            amount: transaction.quantity.toString(),
+                            user: `@${fromUser.username}`
+                        }));
                         break;
                     }
 
                     case TransactionType.SPENT_AT_STORE: {
-                        transactionsTexts.push(t('commands:transactions.store', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
+                        transactionsTexts.push(t('commands:transactions.store', {
+                            date: new Date(transaction.date).toLocaleString('pt-BR'),
+                            amount: transaction.quantity.toString()
+                        }))
                         break;
                     }
 
                     case TransactionType.BOUGHT: {
-                        transactionsTexts.push(t('commands:transactions.bought', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
+                        transactionsTexts.push(t('commands:transactions.bought', {
+                            date: new Date(transaction.date).toLocaleString('pt-BR'),
+                            amount: transaction.quantity.toString()
+                        }))
                         break;
                     }
 
                     case TransactionType.PREMIUM_PERK: {
-                        transactionsTexts.push(t('commands:transactions.premiumPerk', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
+                        transactionsTexts.push(t('commands:transactions.premiumPerk', {
+                            date: new Date(transaction.date).toLocaleString('pt-BR'),
+                            amount: transaction.quantity.toString()
+                        }))
                         break;
                     }
 
                     case TransactionType.VOTE_REWARD: {
-                        transactionsTexts.push(t('commands:transactions.voteReward', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString() }))
+                        transactionsTexts.push(t('commands:transactions.voteReward', {
+                            date: new Date(transaction.date).toLocaleString('pt-BR'),
+                            amount: transaction.quantity.toString()
+                        }))
                     }
 
                     case 'bet': {
                         switch (transaction.received) {
                             case true: {
-                                transactionsTexts.push(t('commands:transactions.betWon', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), userWhoSent: `@${(await bot.helpers.getUser(String(transaction.to)))}`, userWhoReceived: `@${(await bot.helpers.getUser(transaction.from))}` }))
+                                transactionsTexts.push(t('commands:transactions.betWon', {
+                                    date: new Date(transaction.date).toLocaleString('pt-BR'),
+                                    amount: transaction.quantity.toString(),
+                                    userWhoSent: `@${(await bot.helpers.getUser(String(transaction.to)))}`,
+                                    userWhoReceived: `@${(await bot.helpers.getUser(transaction.from))}`
+                                }))
                             }
 
                             case false: {
-                                transactionsTexts.push(t('commands:transactions.betLost', { date: new Date(transaction.date).toLocaleString('pt-BR'), amount: transaction.quantity.toString(), userWhoSent: `@${(await bot.helpers.getUser(String(transaction.from)))}`, userWhoReceived: `@${(await bot.helpers.getUser(transaction.to))}` }))
+                                transactionsTexts.push(t('commands:transactions.betLost', {
+                                    date: new Date(transaction.date).toLocaleString('pt-BR'),
+                                    amount: transaction.quantity.toString(),
+                                    userWhoSent: `@${(await bot.helpers.getUser(String(transaction.from)))}`,
+                                    userWhoReceived: `@${(await bot.helpers.getUser(transaction.to))}`
+                                }))
                             }
                         }
                     }
@@ -155,7 +203,9 @@ export default async function CakesExecutor(context: UnleashedCommandExecutor, e
 
             const transactions = transactionsTexts.reverse().slice(0, 10);
             const embed = createEmbed({
-                title: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:transactions.title', { user: `@${user.username}` })),
+                title: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:transactions.title', {
+                    user: `@${user.username}`
+                })),
                 color: bot.colors.FOXY_DEFAULT,
                 description: transactions.join('\n'),
                 footer: {

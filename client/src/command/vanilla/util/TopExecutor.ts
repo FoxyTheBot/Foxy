@@ -16,9 +16,10 @@ export default async function TopExecutor(context: UnleashedCommandExecutor, end
             let fields = embed.fields = [];
             for (let i in data) {
                 if (Number(i) > 14) break;
-                let user = await bot.helpers.getUser(data[i]._id);
+                let user = await bot.users.get(BigInt(data[i]._id))
+                    ?? bot.helpers.getUser(data[i]._id);
                 fields.push({
-                    name: `${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - ${await bot.rest.foxy.getUserDisplayName(user.id)}`,
+                    name: `${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - ${await bot.rest.foxy.getUserDisplayName((await user).id)}`,
                     value: `**${parseInt(data[i].userCakes.balance).toLocaleString(t.lng || 'pt-BR')}** Cakes`,
                     inline: true,
                 });

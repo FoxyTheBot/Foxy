@@ -25,7 +25,7 @@ export default class FoxyInstance {
         this.startInstance();
     }
 
-    public async startInstance(): Promise<FoxyClient> {
+    private async startInstance(): Promise<FoxyClient> {
         this.bot = this.createBotInstance();
         enableCachePlugin(this.bot);
         await this.setupDefinitions();
@@ -66,6 +66,8 @@ export default class FoxyInstance {
         setInterval(() => {
             this.bot.dispatchedGuildIds.clear();
             this.bot.dispatchedChannelIds.clear();
+            this.bot.messages.clear();
+            this.bot.channels.clear();
         }, 3600000);
     }
 
