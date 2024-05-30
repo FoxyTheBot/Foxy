@@ -5,9 +5,7 @@ import { getUserAvatar } from '../../discord/User';
 import { serverURL } from '../../../../config.json';
 import { lylist } from '../../../structures/json/layoutList.json';
 import { User } from 'discordeno/transformers';
-import { logger } from '../../logger';
 
-let font = "#ffffff";
 export default class CreateProfile {
     private user: User;
     private data: any;
@@ -179,7 +177,7 @@ export default class CreateProfile {
             }
     
             if (!userBadges) return null;
-            
+
             userBadges.sort((a, b) => b.priority - a.priority);
             userBadges = await Promise.all(
                 userBadges.map(badge => Canvas.loadImage(`${serverURL}/assets/badges/${badge.asset}`))
