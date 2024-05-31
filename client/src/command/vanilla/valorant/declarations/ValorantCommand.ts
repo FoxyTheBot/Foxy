@@ -80,78 +80,79 @@ const ValorantCommand = createCommand({
                 "pt-BR": "[VALORANT] Veja as estatísticas de um jogador de VALORANT"
             },
             type: ApplicationCommandOptionTypes.SubCommand,
-            options: [{
-                name: "user",
-                nameLocalizations: {
-                    "pt-BR": "usuário"
-                },
-                description: "The user to see the stats",
-                descriptionLocalizations: {
-                    "pt-BR": "O usuário para ver as estatísticas"
-                },
-                type: ApplicationCommandOptionTypes.User,
-                required: false,
-            },
-            {
-                name: "mode",
-                nameLocalizations: {
-                    "pt-BR": "modo_de_jogo"
-                },
-                description: "The match mode",
-                descriptionLocalizations: {
-                    "pt-BR": "O modo da partida"
-                },
-                type: ApplicationCommandOptionTypes.String,
-                required: false,
-                choices: [{
-                    name: "Competitive",
+            options: [
+                {
+                    name: "mode",
                     nameLocalizations: {
-                        "pt-BR": "Competitivo"
+                        "pt-BR": "modo_de_jogo"
                     },
-                    value: "competitive",
+                    description: "The match mode",
+                    descriptionLocalizations: {
+                        "pt-BR": "O modo da partida"
+                    },
+                    type: ApplicationCommandOptionTypes.String,
+                    required: true,
+                    choices: [{
+                        name: "Competitive",
+                        nameLocalizations: {
+                            "pt-BR": "Competitivo"
+                        },
+                        value: "competitive",
+                    },
+                    {
+                        name: "Unrated",
+                        nameLocalizations: {
+                            "pt-BR": "Sem Classificação"
+                        },
+                        value: "unrated",
+                    },
+                    {
+                        name: "Spike Rush",
+                        nameLocalizations: {
+                            "pt-BR": "Disputa da Spike"
+                        },
+                        value: "spikerush",
+                    },
+                    {
+                        name: "Deathmatch",
+                        nameLocalizations: {
+                            "pt-BR": "Deathmatch"
+                        },
+                        value: "deathmatch",
+                    }, {
+                        name: "Escalation",
+                        nameLocalizations: {
+                            "pt-BR": "Escalada"
+                        },
+                        value: "escalation",
+                    },
+                    {
+                        name: "Team Deathmatch",
+                        nameLocalizations: {
+                            "pt-BR": "Team Deathmatch"
+                        },
+                        value: "teamdeathmatch",
+                    },
+                    {
+                        name: "Premier",
+                        nameLocalizations: {
+                            "pt-BR": "Premier"
+                        },
+                        value: "premier",
+                    }]
                 },
                 {
-                    name: "Unrated",
+                    name: "user",
                     nameLocalizations: {
-                        "pt-BR": "Sem Classificação"
+                        "pt-BR": "usuário"
                     },
-                    value: "unrated",
-                },
-                {
-                    name: "Spike Rush",
-                    nameLocalizations: {
-                        "pt-BR": "Disputa da Spike"
+                    description: "The user to see the stats",
+                    descriptionLocalizations: {
+                        "pt-BR": "O usuário para ver as estatísticas"
                     },
-                    value: "spikerush",
-                },
-                {
-                    name: "Deathmatch",
-                    nameLocalizations: {
-                        "pt-BR": "Deathmatch"
-                    },
-                    value: "deathmatch",
-                }, {
-                    name: "Escalation",
-                    nameLocalizations: {
-                        "pt-BR": "Escalada"
-                    },
-                    value: "escalation",
-                },
-                {
-                    name: "Team Deathmatch",
-                    nameLocalizations: {
-                        "pt-BR": "Team Deathmatch"
-                    },
-                    value: "teamdeathmatch",
-                },
-                {
-                    name: "Premier",
-                    nameLocalizations: {
-                        "pt-BR": "Premier"
-                    },
-                    value: "premier",
-                }]
-            }]
+                    type: ApplicationCommandOptionTypes.User,
+                    required: false,
+                }],
         },
         {
             name: "matches",
@@ -387,7 +388,7 @@ const ValorantCommand = createCommand({
                 ValorantStatsExecutor(bot, context, endCommand, t);
                 break;
             }
-            
+
             case 'verify': {
                 ValorantVerifyExecutor(bot, context, endCommand, t);
                 break;

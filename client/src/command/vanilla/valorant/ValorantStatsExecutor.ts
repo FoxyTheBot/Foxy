@@ -7,7 +7,7 @@ import { FoxyClient } from "../../../structures/types/foxy";
 
 export default async function ValorantStatsExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>('user', 'users') ?? context.author;
-    const mode = context.getOption<string>('mode', false) ?? "competitive";
+    const mode = context.getOption<string>('mode', false);
 
     const userData = await bot.database.getUser(user.id);
     if (!userData.riotAccount.isLinked) {
@@ -85,7 +85,7 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
     const rank = getRank(mmrInfo.data.current_data.currenttierpatched ?? "Unrated");
     const highestRank = getRank(mmrInfo.data.highest_rank.patched_tier ?? "Unrated");
 
-    let matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode?.toLowerCase());
+    let matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode);
     if (!matches) matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, "unrated");
     const formattedRank = rank ? `${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${t('commands:valorant.player.ranks.UNRATED')}`;
     const formattedHighestRank = highestRank ? `${t(`commands:valorant.player.ranks.${highestRank.rank}`)} (${mmrInfo.data.highest_rank.season
