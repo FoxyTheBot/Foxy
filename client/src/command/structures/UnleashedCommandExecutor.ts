@@ -9,11 +9,7 @@ import { Interaction, User } from 'discordeno/transformers';
 import { TFunction } from 'i18next';
 import { MessageFlags } from '../../utils/discord/Message';
 import { bot } from "../../FoxyLauncher";
-import { get } from 'https';
-import { URL } from 'url';
 import { getArgsFromMessage, getOptionFromInteraction } from './GetCommandOption';
-import { foxyAPIToken } from '../../../config.json';
-import config from '../../../config.json';
 
 export type CanResolve = 'users' | 'members' | 'full-string' | false;
 // full-string is used for getting the full string of the argument
@@ -159,7 +155,7 @@ export default class UnleashedCommandExecutor {
 
     getOption<T>(name: string, shouldResolve: CanResolve, required?: boolean, position?: number): T | undefined {
         if (this.interaction) {
-            return getOptionFromInteraction<T>(this.interaction, name, shouldResolve, required) ?? this.interaction.user as unknown as T;
+            return getOptionFromInteraction<T>(this.interaction, name, shouldResolve) ?? this.interaction.user as unknown as T;
         } else {
             return getArgsFromMessage<T>(this.message.content, name, position || 1, shouldResolve, this.message, required) as unknown as T;
         }
