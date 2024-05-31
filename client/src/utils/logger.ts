@@ -17,7 +17,6 @@ const logger = {
 
     criticalError: (...args: any[]): void => {
         console.error(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] \u001b[91mCRITICAL ERROR\u001b[0m >`, ...args);
-        process.exit(1);
     },
 
     log: (...args: any[]): void => {

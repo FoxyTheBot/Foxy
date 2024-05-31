@@ -69,7 +69,7 @@ const setMessageCreateEvent = (): void => {
                     await command.execute(context, () => { }, locale, args);
                     bot.helpers.triggerTypingIndicator(channelId);
                     if (bot.isProduction) {
-                        logger.commandLog(command.name, context.author,
+                        logger.commandLog(command.name, await context.author,
                             context.guildId ? context.guildId.toString() : "DM",
                             args.join(", ") || 'Nenhum'
                         );
