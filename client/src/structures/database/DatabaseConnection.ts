@@ -6,6 +6,8 @@ import { User } from 'discordeno/transformers';
 import { FoxyClient } from '../types/foxy';
 import { Schemas } from './schemas/Schemas';
 import { Background } from '../types/background';
+import { CommandInterface } from '../types/command';
+import { ApplicationCommandOptionTypes } from 'discordeno/types';
 
 export default class DatabaseConnection {
     public client: FoxyClient;
@@ -148,10 +150,68 @@ export default class DatabaseConnection {
         return await this.badges.find({});
     }
 
-    async registerCommand(commandName: string, commandDescription: string): Promise<void> {
+    async registerCommand(command: CommandInterface): Promise<void> {
+        const commandName = command.name;
         await this.commands.findOneAndUpdate(
             { commandName },
-            { $set: { description: commandDescription }, $setOnInsert: { commandUsageCount: 0, isInactive: false, subcommands: null, usage: null } },
+            {
+                $set: {
+                    description: command.description,
+                    category: command.category,
+
+                    // Localizations
+                    nameLocalizations: command.nameLocalizations || {},
+                    descriptionLocalizations: command.descriptionLocalizations || {},
+
+                    // Subcommands
+                    subcommands: command.options ?
+                        command.options.map(option => {
+                            if (option.type === ApplicationCommandOptionTypes.SubCommand) {
+                                console.log(option)
+                                return {
+                                    name: option.name,
+                                    description: option.description,
+                                    nameLocalizations: option.nameLocalizations,
+                                    descriptionLocalizations: option.descriptionLocalizations,
+                                }
+                            }
+                        }) || [] : [],
+
+                    // Subcommand groups
+                    subcommandGroups: command.options ?
+                        command.options.map(option => {
+                            if (option.type === ApplicationCommandOptionTypes.SubCommandGroup) {
+                                return {
+                                    name: option.name,
+                                    description: option.description,
+                                    nameLocalizations: {
+                                        "pt-BR": option.nameLocalizations["pt-BR"] || null,
+                                    },
+                                    descriptionLocalizations: {
+                                        "pt-BR": option.descriptionLocalizations["pt-BR"] || null,
+                                    },
+                                    subcommands: option.options.map(subcommand => {
+                                        return {
+                                            name: subcommand.name,
+                                            description: subcommand.description,
+                                            nameLocalizations: {
+                                                "pt-BR": subcommand.nameLocalizations["pt-BR"] || null,
+                                            },
+                                            descriptionLocalizations: {
+                                                "pt-BR": subcommand.descriptionLocalizations["pt-BR"] || null,
+                                            },
+                                        }
+                                    })
+                                }
+                            }
+                        }) || [] : [],
+                },
+                $setOnInsert: {
+                    commandUsageCount: 0,
+                    isInactive: false,
+                    usage: null,
+                }
+            },
             { upsert: true, new: true }
         );
     }

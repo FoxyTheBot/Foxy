@@ -14,7 +14,7 @@ const loadCommands = async (): Promise<void> => {
       const commandData = command.default as CommandInterface;
       try {
         bot.commands.set(commandData.name, commandData);
-        bot.database.registerCommand(commandData.name, commandData.description)
+        bot.database.registerCommand(commandData)
       } catch (error) {
         logger.error(`Error loading command ${commandData.name}: ${error}`);
       }

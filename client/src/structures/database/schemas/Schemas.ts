@@ -126,14 +126,47 @@
 
     /* Bot related schemas */
 
+    const subCommandSchema = new mongoose.Schema({
+        name: String,
+        description: String,
+        nameLocalizations: {
+            "pt-BR": String,
+        },
+        descriptionLocalizations: {
+            "pt-BR": String,
+        }
+    }, { versionKey: false, id: false });
+    
+    const subCommandGroupSchema = new mongoose.Schema({
+        name: String,
+        nameLocalizations: {
+            "pt-BR": String,
+        },
+        description: String,
+        descriptionLocalizations: {
+            "pt-BR": String,
+        },
+        subcommands: [subCommandSchema],
+    }, { versionKey: false, id: false });
+
+
     const commandsSchema = new mongoose.Schema({
         commandName: String,
         commandUsageCount: Number,
+        category: String,
         description: String,
         isInactive: Boolean,
-        subcommands: Array,
-        usage: Array
+        subcommands: [subCommandSchema],
+        subcommandGroups: [subCommandGroupSchema],
+        usage: Array,
+        nameLocalizations: {
+            "pt-BR": String,
+        },
+        descriptionLocalizations: {
+            "pt-BR": String,
+        },
     }, { versionKey: false, id: false });
+
 
     const backgroundSchema = new mongoose.Schema({
         id: String,
