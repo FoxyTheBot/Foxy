@@ -141,9 +141,8 @@ export default class CreateProfile {
     async insertBadges() {
         const defaultBadges = await bot.database.getBadges();
         const supportServer = bot.guilds.get(768267522670723094n);
-        let userBadges;
         let member = supportServer.members.get(this.user.id);
-    
+
         if (!member) {
             try {
                 member = await bot.helpers.getMember(supportServer.id, this.user.id);
@@ -151,42 +150,47 @@ export default class CreateProfile {
                 if (error.message.includes("Unknown Member")) {
                     member = null;
                 } else {
-                    throw error; 
+                    throw error;
                 }
             }
         }
-    
+
+        let userBadges = [];
+        const roleBadges = member.roles
+            .map(r => r.toString())
+            .filter(r => defaultBadges.some(b => b.id === r));
+
         if (member) {
-            const roles = member.roles;
-            const roleBadges = roles
-                .map(r => r.toString())
-                .filter(r => defaultBadges.some(b => b.id === r));
-    
             userBadges = defaultBadges.filter(b => roleBadges.includes(b.id));
         }
-    
+
         if (this.data.isBanned) {
             const bannedBadge = await Canvas.loadImage(`${serverURL}/assets/badges/banned.png`);
             userBadges = [bannedBadge];
         } else {
-            if (this.data.marryStatus.marriedWith) {
-                const marriedBadge = defaultBadges.find(b => b.id === "married");
-                if (marriedBadge) {
-                    userBadges.push(marriedBadge);
+            const additionalBadges = [
+                { condition: this.data.marryStatus.marriedWith, id: "married" },
+                { condition: this.data.riotAccount.isLinked, id: "valorant" }
+            ];
+
+            additionalBadges.forEach(({ condition, id }) => {
+                if (condition) {
+                    const badge = defaultBadges.find(b => b.id === id);
+                    if (badge) userBadges.push(badge);
                 }
-            }
-    
-            if (!userBadges) return null;
+            });
+
+            if (!userBadges.length) return null;
 
             userBadges.sort((a, b) => b.priority - a.priority);
             userBadges = await Promise.all(
                 userBadges.map(badge => Canvas.loadImage(`${serverURL}/assets/badges/${badge.asset}`))
             );
         }
-    
+
         let x = 0;
         let y = 0;
-    
+
         userBadges.forEach(badge => {
             this.context.drawImage(badge, x + 10, y + 830, 50, 50);
             x += 60;
@@ -195,5 +199,5 @@ export default class CreateProfile {
                 y += 50;
             }
         });
-    }    
+    }
 }
