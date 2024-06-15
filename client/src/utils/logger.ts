@@ -24,7 +24,7 @@ const logger = {
     },
 
     commandLog: (command: string, author: User, guild: string, args: string): void => {
-        setTimeout(() => {
+        setTimeout(async () => {
             bot.helpers.sendWebhookMessage(config.webhooks.event_log.id, config.webhooks.event_log.token, {
                 embeds: [{
                     title: "✨ | Comando executado",
@@ -34,7 +34,7 @@ const logger = {
                     },
                     {
                         name: "Autor",
-                        value: `${author.username} (${author.id})`
+                        value: `${await author.username} (${await author.id})`
                     },
                     {
                         name: "Servidor/DM",
