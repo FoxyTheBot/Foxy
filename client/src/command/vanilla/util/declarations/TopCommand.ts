@@ -9,14 +9,15 @@ const TopCommand = createCommand({
         "pt-BR": "[Utilitários] Veja o rank de cakes"
     },
     category: "util",
-    options: [{
-        name: "cakes",
-        description: "[Utils] See the cakes rank",
-        descriptionLocalizations: {
-            "pt-BR": "[Utilitários] Veja o rank de cakes"
-        },
-        type: ApplicationCommandOptionTypes.SubCommand
-    },
+    options: [
+    //     {
+    //     name: "cakes",
+    //     description: "[Utils] See the cakes rank",
+    //     descriptionLocalizations: {
+    //         "pt-BR": "[Utilitários] Veja o rank de cakes"
+    //     },
+    //     type: ApplicationCommandOptionTypes.SubCommand
+    // },
     {
         name: "commands",
         nameLocalizations: {

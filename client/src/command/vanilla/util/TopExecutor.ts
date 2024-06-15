@@ -6,32 +6,33 @@ export default async function TopExecutor(context: UnleashedCommandExecutor, end
     const subCommand = context.getSubCommand();
 
     switch (subCommand) {
-        case "cakes": {
-            let data: any = await bot.database.getAllUsers();
-            await context.sendDefer();
-            data = data.sort((a, b) => b.userCakes.balance - a.userCakes.balance);
+        // Removed for maintenance
+        // case "cakes": {
+        //     let data: any = await bot.database.getAllUsers();
+        //     await context.sendDefer();
+        //     data = data.sort((a, b) => b.userCakes.balance - a.userCakes.balance);
 
-            const embed = createEmbed({});
-            embed.title = context.makeReply(bot.emotes.FOXY_DAILY, "Cakes Global Rank");
-            let fields = embed.fields = [];
-            for (let i in data) {
-                if (Number(i) > 14) break;
-                let user = await bot.users.get(BigInt(data[i]._id))
-                    ?? bot.helpers.getUser(data[i]._id);
-                fields.push({
-                    name: `${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - ${await bot.rest.foxy.getUserDisplayName((await user).id)}`,
-                    value: `**${parseInt(data[i].userCakes.balance).toLocaleString(t.lng || 'pt-BR')}** Cakes`,
-                    inline: true,
-                });
-            }
+        //     const embed = createEmbed({});
+        //     embed.title = context.makeReply(bot.emotes.FOXY_DAILY, "Cakes Global Rank");
+        //     let fields = embed.fields = [];
+        //     for (let i in data) {
+        //         if (Number(i) > 14) break;
+        //         let user = await bot.users.get(BigInt(data[i]._id))
+        //             ?? bot.helpers.getUser(data[i]._id);
+        //         fields.push({
+        //             name: `${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - ${await bot.rest.foxy.getUserDisplayName((await user).id)}`,
+        //             value: `**${parseInt(data[i].userCakes.balance).toLocaleString(t.lng || 'pt-BR')}** Cakes`,
+        //             inline: true,
+        //         });
+        //     }
 
-            context.sendReply({
-                embeds: [embed],
-            });
+        //     context.sendReply({
+        //         embeds: [embed],
+        //     });
 
-            endCommand();
-            break;
-        }
+        //     endCommand();
+        //     break;
+        // }
 
         case 'commands': {
             let data: any = await bot.database.getAllCommands();
