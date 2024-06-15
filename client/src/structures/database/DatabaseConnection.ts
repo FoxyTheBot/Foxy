@@ -167,7 +167,6 @@ export default class DatabaseConnection {
                     subcommands: command.options ?
                         command.options.map(option => {
                             if (option.type === ApplicationCommandOptionTypes.SubCommand) {
-                                console.log(option)
                                 return {
                                     name: option.name,
                                     description: option.description,
@@ -294,11 +293,3 @@ export default class DatabaseConnection {
     }
 }
 
-interface Badge {
-    id: string;
-    name: string;
-    asset: string;
-    description: string;
-    exclusive: boolean;
-    priority: number;
-}
