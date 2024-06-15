@@ -38,52 +38,7 @@ export default class RenderValorantProfile {
         ctx.fillText(text, x, y);
         ctx.font = '60px Anton';
         ctx.fillText(highestElo, x, y + 100);
-        const xRankImage = x + -260;
-        const yRankImage = y + 115;
 
-        const imageWidth = 64;
-        const imageHeight = 64;
-
-        const rank = getRank(data.patchedHighestRank) ?? { rank: 'UNRATED' };
-        const rankImage = await Canvas.loadImage(`${config.serverURL}/assets/valorant/ranks/${rank.rank}.png`);
-        ctx.drawImage(rankImage, xRankImage, yRankImage, imageWidth, imageHeight);
-
-        function getRank(rank: string) {
-            const rankMapping: { [key: string]: any } = {
-                'Unrated': { rank: 'UNRATED' },
-                'Iron 1': { rank: 'I1' },
-                'Iron 2': { rank: 'I2' },
-                'Iron 3': { rank: 'I3' },
-                'Bronze 1': { rank: 'B1' },
-                'Bronze 2': { rank: 'B2' },
-                'Bronze 3': { rank: 'B3' },
-                'Silver 1': { rank: 'S1' },
-                'Silver 2': { rank: 'S2' },
-                'Silver 3': { rank: 'S3' },
-                'Gold 1': { rank: 'G1' },
-                'Gold 2': { rank: 'G2' },
-                'Gold 3': { rank: 'G3' },
-                'Platinum 1': { rank: 'P1' },
-                'Platinum 2': { rank: 'P2' },
-                'Platinum 3': { rank: 'P3' },
-                'Diamond 1': { rank: 'D1' },
-                'Diamond 2': { rank: 'D2' },
-                'Diamond 3': { rank: 'D3' },
-                'Ascendant 1': { rank: 'A1' },
-                'Ascendant 2': { rank: 'A2' },
-                'Ascendant 3': { rank: 'A3' },
-                'Immortal 1': { rank: 'IM1' },
-                'Immortal 2': { rank: 'IM2' },
-                'Immortal 3': { rank: 'IM3' },
-                'Radiant': { rank: 'R' },
-            };
-
-            if (rank in rankMapping) {
-                return rankMapping[rank];
-            } else {
-                return null;
-            }
-        }
         const characterText = bot.locale('commands:valorant.player.mostPlayedCharacter');
         const xCharacterText = xCharacter + characterImage.width / 2;
         const yCharacterText = yCharacter - 100;
