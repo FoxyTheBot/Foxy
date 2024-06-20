@@ -21,7 +21,7 @@ const setReadyEvent = (): void => {
                 createdAt: Date.now(),
             }],
 
-            status: "dnd",
+            status: "online",
         });
     }
 }
