@@ -3,7 +3,7 @@ import { serverURL } from "../../../../config.json";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
 export default async function LaranjoExecutor(context: UnleashedCommandExecutor, endCommand, t) {
-    const content = context.getOption<string>("text", "full-string");
+    const content = context.getOption<string>("text", false);
     const canvas = Canvas.createCanvas(700, 600);
     const ctx = canvas.getContext('2d');
 

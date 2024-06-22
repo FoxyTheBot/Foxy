@@ -2,6 +2,7 @@ import { ApplicationCommandOptionTypes } from "discordeno/types";
 import { createCommand } from "../../../structures/createCommand";
 import PetViewExecutor from "../PetViewExecutor";
 import PetChangeNameExecutor from "../PetChangeNameExecutor";
+import PetPlayActionExecutor from "../PetPlayActionExecutor";
 
 const PetCommand = createCommand({
     name: "pet",
@@ -156,7 +157,7 @@ const PetCommand = createCommand({
                 break;
             }
             case "play": {
-                // TODO
+                PetPlayActionExecutor(context, endCommand, t);
                 break;
             }
 

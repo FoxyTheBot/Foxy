@@ -3,7 +3,8 @@ import { bot } from "../../../FoxyLauncher";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
 export default async function AboutMeExecutor(context: UnleashedCommandExecutor, endCommand, t) {
-    const text = context.getOption<string>("text", "full-string");
+    const text = await context.getOption<string>("text", false);
+    console.log(text)
     const userData = await bot.database.getUser(context.author.id);
 
     if (text.length > 177) {

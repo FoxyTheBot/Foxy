@@ -3,7 +3,7 @@ import { serverURL } from "../../../../config.json";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
 export default async function ErrorExecutor(context: UnleashedCommandExecutor, endCommand, t) {
-    var content = context.getOption<string>("text", "full-string");
+    var content = context.getOption<string>("text", false);
     const canvas = Canvas.createCanvas(380, 208);
     const ctx = canvas.getContext("2d");
 

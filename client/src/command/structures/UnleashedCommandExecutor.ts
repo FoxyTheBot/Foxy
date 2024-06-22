@@ -11,8 +11,7 @@ import { MessageFlags } from '../../utils/discord/Message';
 import { bot } from "../../FoxyLauncher";
 import { getArgsFromMessage, getOptionFromInteraction } from './GetCommandOption';
 
-export type CanResolve = 'users' | 'members' | 'full-string' | false;
-// full-string is used for getting the full string of the argument
+export type CanResolve = 'users' | 'members' | false;
 
 export default class UnleashedCommandExecutor {
     public replied = false;

@@ -4,7 +4,7 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 
 export default async function CancelExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>('user', 'users');
-    const content = context.getOption<string>('reason', "full-string", null, 2);
+    const content = context.getOption<string>('reason', false, null, 2);
     if (!user) {
         context.sendReply({
             content: t('commands:cancel.noUser')
