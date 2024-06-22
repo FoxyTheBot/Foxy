@@ -5,9 +5,9 @@ import { bot } from '../../FoxyLauncher';
 import { User } from 'discordeno/transformers';
 import { FoxyClient } from '../types/foxy';
 import { Schemas } from './schemas/Schemas';
-import { Background } from '../types/background';
 import { CommandInterface } from '../types/command';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
+import { Background, Badge, Decoration } from '../types/profile';
 
 export default class DatabaseConnection {
     public client: FoxyClient;
@@ -279,7 +279,7 @@ export default class DatabaseConnection {
         return backgroundsData.map(background => background.toJSON());
     }
 
-    async getAllDecorations(): Promise<any> {
+    async getAllDecorations(): Promise<Decoration[]> {
         const decorationsData = await this.decorations.find({});
         return decorationsData.map(decoration => decoration.toJSON());
     }
@@ -288,7 +288,7 @@ export default class DatabaseConnection {
         return await this.backgrounds.findOne({ id: backgroundId });
     }
 
-    async getDecoration(decorationId: string): Promise<any> {
+    async getDecoration(decorationId: string): Promise<Decoration> {
         return await this.decorations.findOne({ id: decorationId });
     }
 }

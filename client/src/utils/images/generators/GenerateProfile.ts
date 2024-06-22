@@ -109,8 +109,8 @@ export default class CreateProfile {
 
         if (this.data.userProfile.decoration && !this.mask) {
             const mask = await Canvas.loadImage(`${serverURL}/masks/${this.data.userProfile.decoration}`);
-            const allMasks = (await bot.database.getAllDecorations()).find((m) => m.id === this.data.userProfile.decoration);
-            const maskPosition = allMasks.type === "face-mask" ? [this.canvas.width / 100.0, this.canvas.height / 1.45, 220, 210] : [this.canvas.width / 55.0, this.canvas.height / 1.69, 200, 200];
+            const currentMask = await bot.database.getDecoration(this.data.userProfile.decoration);
+            const maskPosition = currentMask.isMask ? [this.canvas.width / 100.0, this.canvas.height / 1.45, 220, 210] : [this.canvas.width / 55.0, this.canvas.height / 1.69, 200, 200];
             context.drawImage(mask, ...maskPosition as [number, number, number, number]);
         }
 
