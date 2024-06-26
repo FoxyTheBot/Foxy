@@ -6,17 +6,15 @@ import { ActivityTypes } from "discordeno/types";
 const setReadyEvent = (): void => {
     bot.events.ready = async (_, payload) => {
         logger.info(`[READY] Shard ${payload.shardId + 1} connected to Discord Gateway`);
-        if (bot.isProduction) {
-            postInfo({
-                guilds: await bot.database.getAllGuilds(),
-            });
-        }
+
+        bot.isProduction ? postInfo({ guilds: await bot.database.getAllGuilds() })
+            : logger.warn(`[DEVELOPMENT MODE] Running in development mode. Skipping Discord Bot List posting`);
 
         bot.helpers.editBotStatus({
             activities: [{
                 name: bot.isProduction ?
                     "Precisa de ajuda? Entre no meu servidor de suporte foxybot.win/br/support"
-                    : "I bless the rains down in Africa 🎶",
+                    : "Tactical nuke incoming!",
                 type: ActivityTypes.Game,
                 createdAt: Date.now(),
             }],

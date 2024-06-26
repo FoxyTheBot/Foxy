@@ -15,6 +15,7 @@ const loadCommands = async (): Promise<void> => {
       try {
         bot.commands.set(commandData.name, commandData);
         bot.database.registerCommand(commandData)
+        logger.info(`[COMMANDS] Registered ${commandData.name} command`);
       } catch (error) {
         logger.error(`Error loading command ${commandData.name}: ${error}`);
       }

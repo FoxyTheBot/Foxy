@@ -57,6 +57,7 @@ export default class FoxyInstance {
     }
 
     private async setupCache() {
+        this.bot.dispatchedGuildIds = new Set();
         this.bot.presences.maxSize = 1;
         this.bot.guilds.maxSize = 1000;
         this.bot.channels.maxSize = 1000;
@@ -107,9 +108,10 @@ export default class FoxyInstance {
         setGuildCreateEvent();
         setGuildDeleteEvent();
         setMessageCreateEvent();
-
         this.bot.gateway.manager.createShardOptions.events.message = async (shard, message) => {
-            // Handle unavailable guilds
+            /* Handle unavailable guilds because discordeno does not handle unavailable guilds by default
+            *  Reference: https://discordeno.js.org/api_reference/generated/interfaces/EventHandlers?_highlight=guilddelete#guilddelete
+            */
             if (message.t === 'GUILD_DELETE' && (message.d as DiscordUnavailableGuild).unavailable) {
                 return this.handleUnavailableGuild(message);
             }

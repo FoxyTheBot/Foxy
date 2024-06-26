@@ -89,7 +89,7 @@ function getArgsFromMessage<T>(
     return getUser(args[position]) as unknown as T;
   }
 
-  if (shouldResolve === "full-string") {
+  if (!shouldResolve) {
     const found = args.slice(position).join(' ') as unknown as T;
     if (!found && required) throw new Error(`Option ${name} is required in ${message}`);
     return found;

@@ -16,7 +16,7 @@ const componentExecutor = async (interaction: Interaction): Promise<void> => {
     if (!message) return;
 
     receivedCommandName = bot.commands.find((cmd) => {
-      const commandName = message.content.split(' ')[0].replace('f!', '');
+      const commandName = message.content.split(' ')[0].replace('..', '');
       return cmd.name === commandName || cmd.aliases?.includes(commandName);
     })?.name;
   }

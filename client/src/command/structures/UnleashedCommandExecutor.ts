@@ -10,6 +10,7 @@ import { TFunction } from 'i18next';
 import { MessageFlags } from '../../utils/discord/Message';
 import { bot } from "../../FoxyLauncher";
 import { getArgsFromMessage, getOptionFromInteraction } from './GetCommandOption';
+import { prefix } from '../../../config.json';
 
 export type CanResolve = 'users' | 'members' | false;
 
@@ -144,7 +145,7 @@ export default class UnleashedCommandExecutor {
 
             return command as string;
         } else {
-            return this.message.content.split(' ')[0].replace('f!', '');
+            return this.message.content.split(' ')[0].replace(prefix, '');
         }
     }
 

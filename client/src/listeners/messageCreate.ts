@@ -5,6 +5,7 @@ import { createEmbed } from "../utils/discord/Embed";
 import { createActionRow, createButton } from "../utils/discord/Component";
 import { ButtonStyles } from "discordeno/types";
 import UnleashedCommandExecutor from "../command/structures/UnleashedCommandExecutor";
+import { prefix } from '../../config.json';
 
 const setMessageCreateEvent = (): void => {
     bot.events.messageCreate = async (_, message) => {
@@ -30,7 +31,7 @@ const setMessageCreateEvent = (): void => {
         bot.locale = locale;
 
         // Legacy command handler for prefix commands
-        if (content.startsWith("f!")) {
+        if (content.startsWith(prefix)) {
             const commandName = content.split(' ')[0].slice(2);
             const command = bot.commands.get(commandName) || bot.commands.find((cmd) => cmd.aliases?.includes(commandName));
 
@@ -65,9 +66,7 @@ const setMessageCreateEvent = (): void => {
             if (command && command.supportsLegacy) {
                 const args = content.split(' ').slice(1);
                 try {
-                    bot.helpers.startTyping(channelId);
                     await command.execute(context, () => { }, locale, args);
-                    bot.helpers.triggerTypingIndicator(channelId);
                     if (bot.isProduction) {
                         logger.commandLog(command.name, await context.author,
                             context.guildId ? context.guildId.toString() : "DM",
