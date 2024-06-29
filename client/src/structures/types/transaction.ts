@@ -7,4 +7,6 @@ export enum TransactionType {
     BOUGHT = "bought",
     PREMIUM_PERK = "premiumPerk",
     VOTE_REWARD = "voteReward",
+    ROULETTE = "roulette",
+    BET = "bet",
 }

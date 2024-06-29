@@ -60,6 +60,7 @@ export default class FoxyInstance {
         this.bot.dispatchedGuildIds = new Set();
         this.bot.presences.maxSize = 1;
         this.bot.guilds.maxSize = 1000;
+        this.bot.members.maxSize = 1000;
         this.bot.channels.maxSize = 1000;
         this.bot.messages.maxSize = 100;
         this.bot.users.maxSize = 1000;
