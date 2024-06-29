@@ -145,7 +145,8 @@ export default class CreateProfile {
 
         if (!member) {
             try {
-                member = await bot.helpers.getMember(supportServer.id, this.user.id);
+                member = await bot.members.get(this.user.id)
+                ?? await bot.helpers.getMember(supportServer.id, this.user.id);
             } catch (error: any) {
                 if (error.message.includes("Unknown Member")) {
                     member = null;
@@ -156,9 +157,9 @@ export default class CreateProfile {
         }
 
         let userBadges = [];
-        const roleBadges = member.roles
+        const roleBadges = member?.roles
             .map(r => r.toString())
-            .filter(r => defaultBadges.some(b => b.id === r));
+            .filter(r => defaultBadges.some(b => b.id === r)) ?? null;
 
         if (member) {
             userBadges = defaultBadges.filter(b => roleBadges.includes(b.id));
