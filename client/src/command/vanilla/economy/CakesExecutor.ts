@@ -174,10 +174,18 @@ export default async function CakesExecutor(context: UnleashedCommandExecutor, e
                         transactionsTexts.push(t('commands:transactions.voteReward', {
                             date: new Date(transaction.date).toLocaleString('pt-BR'),
                             amount: transaction.quantity.toString()
-                        }))
+                        }));
+                        break;
+                    }
+                    case TransactionType.ROULETTE: {
+                        transactionsTexts.push(t('commands:transactions.roulette', {
+                            date: new Date(transaction.date).toLocaleString('pt-BR'),
+                            amount: transaction.quantity.toString()
+                        }));
+                        break;
                     }
 
-                    case 'bet': {
+                    case TransactionType.BET: {
                         switch (transaction.received) {
                             case true: {
                                 transactionsTexts.push(t('commands:transactions.betWon', {
