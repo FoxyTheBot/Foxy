@@ -100,7 +100,10 @@ export default class DatabaseConnection {
                 isPrivate: false,
                 region: null
             },
-            premiumKeys: []
+            premiumKeys: [],
+            roulette: {
+                availableSpins: 5,
+            }
         });
     }
 

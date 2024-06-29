@@ -74,7 +74,10 @@
             isPrivate: Boolean,
             region: String
         },
-        premiumKeys: [keySchema]
+        premiumKeys: [keySchema],
+        roulette: {
+            availableSpins: Number,
+        }
     }, { versionKey: false, id: false });
 
     const riotAccountSchema = new mongoose.Schema({
