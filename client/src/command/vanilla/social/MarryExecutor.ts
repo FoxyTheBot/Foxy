@@ -37,20 +37,6 @@ export default async function MarryExecutor(context: UnleashedCommandExecutor, e
         return endCommand();
     }
 
-    if (futurePartnerData.marryStatus.cantMarry) {
-        context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.userNotMarriable', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
-        })
-        return endCommand();
-    }
-
-    if (userData.marryStatus.cantMarry) {
-        context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.authorNotMarriable'))
-        })
-        return endCommand();
-    }
-
     if (userData.marryStatus.marriedWith) {
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.alreadyMarried'))
