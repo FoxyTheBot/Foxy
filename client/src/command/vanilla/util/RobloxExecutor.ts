@@ -80,12 +80,12 @@ export default async function RobloxExecutor(context: UnleashedCommandExecutor, 
                     return endCommand();
                 });
             })
+        } else {
+            context.sendReply({
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:roblox.fields.errors.userNotFound'))
+            });
+            return endCommand();
         }
-    }).catch((err) => {
-        context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:roblox.errors.userNotFound')),
-            flags: MessageFlags.EPHEMERAL
-        });
-        return endCommand();
     })
+    return endCommand();
 }

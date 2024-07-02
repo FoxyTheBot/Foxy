@@ -225,7 +225,7 @@
                 "notBanned": "Não"
             },
             "errors": {
-                "userNotFound": "Não consegui econtrar esse usuário, desculpa!"
+                "userNotFound": "Essa conta do Roblox não existe."
             }
         },
         "buttons": {
