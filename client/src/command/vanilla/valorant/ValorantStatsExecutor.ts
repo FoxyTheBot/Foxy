@@ -8,7 +8,7 @@ import { FoxyClient } from "../../../structures/types/foxy";
 export default async function ValorantStatsExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>('user', 'users') ?? context.author;
     const mode = context.getOption<string>('mode', false);
-
+    context.sendDefer();
     const userData = await bot.database.getUser(user.id);
     if (!userData.riotAccount.isLinked) {
         context.sendReply({
