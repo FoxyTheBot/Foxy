@@ -4,24 +4,16 @@ import CreateProfile from '../../../utils/images/generators/GenerateProfile';
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
 export default async function ProfileExecutor(context: UnleashedCommandExecutor, endCommand, t) {
-    const subcommand = context.getSubCommand();
+    const user = await context.getOption<User>('user', 'users') ?? context.author;
+    const userData = await bot.database.getUser(user.id);
 
-    switch (subcommand) {
-        case 'view':
-        case 'perfil':
-        case 'profile': {
-            const user = await context.getOption<User>('user', 'users') ?? context.author;
-            const userData = await bot.database.getUser(user.id);
+    await context.sendDefer();
+    const createProfile = new CreateProfile(t, user, userData);
+    const profile = createProfile.create();
 
-            await context.sendDefer();
-            const createProfile = new CreateProfile(t, user, userData);
-            const profile = createProfile.create();
-
-            context.sendReply({
-                content: context.makeReply(bot.emotes.FOXY_NICE, t('commands:profile.profile', { user: `<@${user.id}>` })),
-                file: [{ name: 'profile.png', blob: await profile }]
-            });
-            return endCommand();
-        }
-    }
+    context.sendReply({
+        content: context.makeReply(bot.emotes.FOXY_NICE, t('commands:profile.profile', { user: `<@${user.id}>` })),
+        file: [{ name: 'profile.png', blob: await profile }]
+    });
+    return endCommand();
 }
