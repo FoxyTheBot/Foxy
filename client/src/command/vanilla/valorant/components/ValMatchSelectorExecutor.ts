@@ -69,11 +69,6 @@ const ValMatchSelectorExecutor = async (context: ComponentInteractionContext) =>
             inline: true,
         },
         {
-            name: bot.locale('commands:valorant.match.economy.average'),
-            value: `\`\`\`${userStats.economy.spent.average.toString()} CR\`\`\``,
-            inline: true,
-        },
-        {
             name: bot.locale('commands:valorant.match.economy.overall'),
             value: `\`\`\`${userStats.economy.spent.overall.toString()} CR\`\`\``,
             inline: true,

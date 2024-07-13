@@ -3,6 +3,7 @@ import { createEmbed } from "../../../utils/discord/Embed";
 import { createActionRow, createCustomId, createSelectMenu } from "../../../utils/discord/Component";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { FoxyClient } from "../../../structures/types/foxy";
+import { MatchHistory } from "../../../structures/types/valorant/MatchHistory";
 
 export default async function ValorantMatchesExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>('user', 'users') ?? context.author;
@@ -29,9 +30,8 @@ export default async function ValorantMatchesExecutor(bot: FoxyClient, context: 
         }]
     });
 
-    const matchInfo: any = await bot.rest.foxy.getValMatchHistoryByUUID(userData.riotAccount.puuid, context.getOption<string>('mode', false), context.getOption<string>('map', false));
+    const matchInfo: MatchHistory = await bot.rest.foxy.getValMatchHistoryByUUID(userData.riotAccount.puuid, context.getOption<string>('mode', false) ?? null, context.getOption<string>('map', false) ?? null);
     const valUserInfo = await bot.rest.foxy.getValPlayerByUUID(userData.riotAccount.puuid);
-
     const mmrInfo = await bot.rest.foxy.getMMR(await userData.riotAccount.puuid);
 
     function getRank(rank: string) {
@@ -73,7 +73,7 @@ export default async function ValorantMatchesExecutor(bot: FoxyClient, context: 
 
     const rank = getRank(mmrInfo.data.current_data.currenttierpatched ?? "Unrated");
     const formattedRank = rank ? `${context.getEmojiById(rank.emoji)} ${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${context.getEmojiById(bot.emotes.UNRATED)} ${t('commands:valorant.player.ranks.UNRATED')}`;
-
+    
     try {
         const embed = createEmbed({
             color: bot.colors.VALORANT,
@@ -82,19 +82,12 @@ export default async function ValorantMatchesExecutor(bot: FoxyClient, context: 
             },
             title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.match.title', { username: valUserInfo.data.name, tag: valUserInfo.data.tag }) + ` - ${formattedRank}`,
             fields: matchInfo.data.map(match => {
-                let teamHasWon;
-                let result;
-                if (match.teams.red > match.teams.blue) {
-                    teamHasWon = "Red";
-                } else if (match.teams.red < match.teams.blue) {
-                    teamHasWon = "Blue";
-                } else {
-                    teamHasWon = "Draw";
-                    result = context.getEmojiById(bot.emotes.FOXY_RAGE) + " " + t('commands:valorant.match.draw');
-                }
+                const currentPlayer = match.players.find(player => player.puuid === userData.riotAccount.puuid);
+                let teamHasWon = match.teams[0].won ? "Red" : "Blue" || "Draw";
+                let result = context.getEmojiById(bot.emotes.FOXY_RAGE) + " " + t('commands:valorant.match.draw');
 
                 if (teamHasWon !== "Draw") {
-                    if (match.stats.team === teamHasWon) {
+                    if (currentPlayer.team_id === teamHasWon) {
                         result = context.getEmojiById(bot.emotes.FOXY_YAY) + " " + t('commands:valorant.match.win');
                     } else {
                         result = context.getEmojiById(bot.emotes.FOXY_CRY) + " " + t('commands:valorant.match.loss');
@@ -102,22 +95,22 @@ export default async function ValorantMatchesExecutor(bot: FoxyClient, context: 
                 }
 
 
-                if (match.meta.mode.toLowerCase() !== "deathmatch") {
+                if (match.metadata.queue.id.toLowerCase() !== "deathmatch") {
                     return {
-                        name: `${match.meta.map.name} | ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)} | ${match.teams.red ?? 0} - ${match.teams.blue ?? 0} | ${result}`,
-                        value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \n` +
-                            `K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n` +
-                            `Score: ${match.stats.score} \n` +
-                            `${t('commands:valorant.match.damageMade')}: ${match.stats.damage.made} \n` +
-                            `${t('commands:valorant.match.damageReceived')}: ${match.stats.damage.received} \n`,
+                        name: `${match.metadata.map.name} | ${bot.locale(`commands:valorant.match.modes.${match.metadata.queue.id.toLowerCase()}`)} | ${match.teams[0].rounds.won ?? 0} - ${match.teams[1].rounds.won ?? 0} | ${result}`,
+                        value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[currentPlayer.agent.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \n` +
+                            `K/D/A: ${currentPlayer.stats.kills}/${currentPlayer.stats.deaths}/${currentPlayer.stats.assists} \n` +
+                            `Score: ${currentPlayer.stats.score} \n` +
+                            `${t('commands:valorant.match.damageMade')}: ${currentPlayer.stats.damage.dealt} \n` +
+                            `${t('commands:valorant.match.damageReceived')}: ${currentPlayer.stats.damage.received} \n`,
                         inline: true
                     }
                 } else {
                     return {
-                        name: `${match.meta.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)}`,
-                        value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \n` +
-                            `K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists} \n` +
-                            `Score: ${match.stats.score}`,
+                        name: `${match.metadata.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.metadata.queue.id.toLowerCase()}`)}`,
+                        value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[currentPlayer.agent.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \n` +
+                            `K/D/A: ${currentPlayer.stats.kills}/${currentPlayer.stats.deaths}/${currentPlayer.stats.assists} \n` +
+                            `Score: ${currentPlayer.stats.score}`,
                         inline: true
                     }
                 }
@@ -134,12 +127,13 @@ export default async function ValorantMatchesExecutor(bot: FoxyClient, context: 
                 customId: createCustomId(0, context.author.id, context.commandId, await userData.riotAccount.puuid),
                 placeholder: t('commands:valorant.match.placeholder'),
                 options: matchInfo.data.map(match => {
+                    const currentPlayer = match.players.find(player => player.puuid === userData.riotAccount.puuid);
                     return {
-                        label: `${match.meta.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)}`,
-                        value: match.meta.id,
-                        description: `${match.stats.character.name} | K/D/A: ${match.stats.kills}/${match.stats.deaths}/${match.stats.assists}`,
+                        label: `${match.metadata.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.metadata.queue.id.toLowerCase()}`)}`,
+                        value: match.metadata.match_id,
+                        description: `${currentPlayer.agent.name} | K/D/A: ${currentPlayer.stats.kills}/${currentPlayer.stats.deaths}/${currentPlayer.stats.assists}`,
                         emoji: {
-                            id: bot.emotes[match.stats.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG]
+                            id: bot.emotes[currentPlayer.agent.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG]
                         }
                     }
                 })

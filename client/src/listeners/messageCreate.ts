@@ -9,8 +9,7 @@ import { prefix } from '../../config.json';
 
 const setMessageCreateEvent = (): void => {
     bot.events.messageCreate = async (_, message) => {
-        if (message.isFromBot) return;
-
+        if (message.isFromBot || !message.authorId || message.authorId === bot.id) return;
         const { content, channelId, authorId, member } = message;
         const botMention = `<@${bot.id}>` || `<@!${bot.id}>`;
 
@@ -24,13 +23,12 @@ const setMessageCreateEvent = (): void => {
             });
         }
 
-        const user = await bot.database.getUser(authorId);
+        const user = await bot.database.getUser(await authorId);
         const locale = i18next.getFixedT(user.userSettings.language || 'pt-BR');
         const context = new UnleashedCommandExecutor(locale, message);
 
         bot.locale = locale;
 
-        // Legacy command handler for prefix commands
         if (content.startsWith(prefix)) {
             const commandName = content.split(' ')[0].slice(2);
             const command = bot.commands.get(commandName) || bot.commands.find((cmd) => cmd.aliases?.includes(commandName));
@@ -80,7 +78,8 @@ const setMessageCreateEvent = (): void => {
                 }
             } else if (command) {
                 context.sendReply({
-                    content: context.makeReply(bot.emotes.FOXY_CRY, locale('events:messageCreate.commandNotSupported', {
+                    content: context.makeReply(
+                        bot.emotes.FOXY_CRY, locale('events:messageCreate.commandNotSupported', {
                         command: command.name
                     }))
                 });

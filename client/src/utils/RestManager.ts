@@ -4,6 +4,8 @@ import { User } from "../structures/types/user";
 import config from '../../config.json';
 import axios from "axios";
 import { FoxyImage, ValorantUser } from "../structures/types/responses";
+import { logger } from "./logger";
+import { MatchHistory } from "../structures/types/valorant/MatchHistory";
 
 export class FoxyRestManager {
     public bot: FoxyClient;
@@ -41,24 +43,31 @@ export class FoxyRestManager {
     /* Valorant API */
     
     async getValMatchHistoryByUUID(puuid: string, mode?: string, map?: string) {
-        let url = `valorant/v1/by-puuid/lifetime/matches/br/${puuid}?size=12`;
+        let url = `valorant/v4/by-puuid/matches/na/pc/${puuid}?size=12`;
 
         if (mode) url += `&mode=${mode}`;
-
         if (map) url += `&map=${map}`;
 
-        return (await this.valorantAPI.get(url)).data;
+        try {
+            return (await this.valorantAPI.get(url)).data;
+        } catch (error) {
+            return logger.error(error);
+        }
     }
 
-    async getAllValMatchHistoryByUUID(puuid: string, mode?: string) {
-        let url = `valorant/v1/by-puuid/lifetime/matches/br/${puuid}`;
+    async getAllValMatchHistoryByUUID(puuid: string, mode?: string, platform?: string): Promise<MatchHistory> {
+        let url = `valorant/v4/by-puuid/matches/na/${platform ?? "pc"}/${puuid}`;
         if (mode) url += `?&mode=${mode}`;
 
-        return (await this.valorantAPI.get(url)).data;
+        try {
+            return (await this.valorantAPI.get(url)).data;
+        } catch (error) {
+            return null && logger.error(error);
+        }
     }
 
     async getValPlayerByUUID(puuid: string): Promise<ValorantUser> {
-        return (await this.valorantAPI.get(`valorant/v1/by-puuid/account/${puuid}`)).data;
+        return (await this.valorantAPI.get(`valorant/v2/by-puuid/account/${puuid}`)).data;
     }
 
     async getMMR(puuid: string) {

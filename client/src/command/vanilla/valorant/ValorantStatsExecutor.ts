@@ -10,6 +10,7 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
     const mode = context.getOption<string>('mode', false);
     context.sendDefer();
     const userData = await bot.database.getUser(user.id);
+    
     if (!userData.riotAccount.isLinked) {
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.notLinked', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
@@ -120,15 +121,16 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
         legshots = 0;
 
     matches.data.forEach((match) => {
-        const characterName = match.stats.character.name || 'FOXY_SHRUG';
-        const mapName = match.meta.map.name || t('commands:valorant.unknownMap');
+        const currentPlayer = match.players.find(player => player.puuid === userData.riotAccount.puuid);
+        const characterName = currentPlayer.agent.name || "FOXY_SHRUG";
+        const mapName = match.metadata.map.name || t('commands:valorant.unknownMap');
         if (characterCounts[characterName]) {
             characterCounts[characterName]++;
         } else {
             characterCounts[characterName] = 1;
         }
 
-        if (match.meta.season.short !== "e9a1") return;
+        if (match.metadata.season.short !== "e9a1") return;
         if (characterCounts[characterName] > maxCharacterCount) {
             mostPlayedCharacter = characterName;
             if (mostPlayedCharacter === "KAY/O") mostPlayedCharacter = "KAYO";
@@ -146,12 +148,12 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
             maxMapCount = mapCounts[mapName];
         }
 
-        headshots += match.stats.shots.head;
-        bodyshots += match.stats.shots.body;
-        legshots += match.stats.shots.leg;
-        totalKills += match.stats.kills;
-        totalDeaths += match.stats.deaths;
-        totalAssists += match.stats.assists;
+        headshots += currentPlayer.stats.headshots;
+        bodyshots += currentPlayer.stats.bodyshots;
+        legshots += currentPlayer.stats.legshots;
+        totalKills += currentPlayer.stats.kills;
+        totalDeaths += currentPlayer.stats.deaths;
+        totalAssists += currentPlayer.stats.assists;
     });
 
     if (!matches.data.length) {

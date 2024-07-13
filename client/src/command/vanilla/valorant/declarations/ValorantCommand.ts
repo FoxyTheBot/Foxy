@@ -129,7 +129,7 @@ const ValorantCommand = createCommand({
                     {
                         name: "Team Deathmatch",
                         nameLocalizations: {
-                            "pt-BR": "Team Deathmatch"
+                            "pt-BR": "Mata-Mata em Equipe"
                         },
                         value: "teamdeathmatch",
                     },
@@ -224,9 +224,9 @@ const ValorantCommand = createCommand({
                 {
                     name: "Team Deathmatch",
                     nameLocalizations: {
-                        "pt-BR": "Team Deathmatch"
+                        "pt-BR": "Mata-Mata em Equipe"
                     },
-                    value: "team deathmatch",
+                    value: "teamdeathmatch",
                 }]
             },
             {
