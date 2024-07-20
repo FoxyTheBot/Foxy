@@ -4,10 +4,13 @@ import { createActionRow, createCustomId, createSelectMenu } from "../../../util
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { FoxyClient } from "../../../structures/types/foxy";
 import { MatchHistory } from "../../../structures/types/valorant/MatchHistory";
+import { colors } from "../../../utils/colors";
 
 export default async function ValorantMatchesExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>('user', 'users') ?? context.author;
     const userData = await bot.database.getUser(user.id);
+    context.sendDefer(userData.riotAccount.isPrivate);
+    
     if (!userData.riotAccount.isLinked) {
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.notLinked', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
@@ -32,6 +35,15 @@ export default async function ValorantMatchesExecutor(bot: FoxyClient, context: 
 
     const matchInfo: MatchHistory = await bot.rest.foxy.getValMatchHistoryByUUID(userData.riotAccount.puuid, context.getOption<string>('mode', false) ?? null, context.getOption<string>('map', false) ?? null);
     const valUserInfo = await bot.rest.foxy.getValPlayerByUUID(userData.riotAccount.puuid);
+    if (!valUserInfo) {
+        return context.sendReply({
+            embeds: [{
+                color: colors.RED,
+                title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.cannotGetInfo')),
+                description: t('commands:valorant.cannotGetInfoDescription')
+            }]
+        }).finally(endCommand);
+    }
     const mmrInfo = await bot.rest.foxy.getMMR(await userData.riotAccount.puuid);
 
     function getRank(rank: string) {
@@ -154,7 +166,7 @@ export default async function ValorantMatchesExecutor(bot: FoxyClient, context: 
         }
         context.sendReply({
             embeds: [embed],
-            components: [row]
+            components: [row],
         });
         return endCommand();
     } catch (err) {

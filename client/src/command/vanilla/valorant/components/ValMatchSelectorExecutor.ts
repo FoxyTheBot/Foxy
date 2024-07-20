@@ -3,12 +3,12 @@ import { bot } from "../../../../FoxyLauncher";
 import { createEmbed } from "../../../../utils/discord/Embed";
 
 const ValMatchSelectorExecutor = async (context: ComponentInteractionContext) => {
-    context.sendDefer();
-
     const matchId = context.interaction.data.values[0];
     const [userPUUID] = context.sentData;
     const match = await bot.rest.foxy.getValMatch(matchId);
+    const userData = await bot.database.getUser(context.author.id);
     const matchInfo = match.data;
+    context.sendDefer(userData.riotAccount.isPrivate);
 
     function getRank(rank: string) {
         const rankMapping: { [key: string]: any } = {

@@ -8,8 +8,9 @@ import { FoxyClient } from "../../../structures/types/foxy";
 export default async function ValorantStatsExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>('user', 'users') ?? context.author;
     const mode = context.getOption<string>('mode', false);
-    context.sendDefer();
     const userData = await bot.database.getUser(user.id);
+    
+    context.sendDefer(userData.riotAccount.isPrivate);
     
     if (!userData.riotAccount.isLinked) {
         context.sendReply({
@@ -44,6 +45,7 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
             }]
         });
     }
+
     const mmrInfo = await bot.rest.foxy.getMMR(await userData.riotAccount.puuid);
 
     function getRank(rank: string) {
