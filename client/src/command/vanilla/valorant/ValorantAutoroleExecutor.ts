@@ -1,7 +1,7 @@
 import { FoxyClient } from "../../../structures/types/foxy";
 import { createActionRow, createCustomId, createSelectMenu } from "../../../utils/discord/Component";
 import { MessageFlags } from "../../../utils/discord/Message";
-import ValAutoRoleModule from "../../../utils/modules/valAutoRoleModule";
+import ValAutoRoleModule from "../../../utils/modules/ValorantAutoRoleModule";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
 export async function ValorantAutoRoleExecutor(bot: FoxyClient, context, endCommand, t) {

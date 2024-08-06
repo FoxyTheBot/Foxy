@@ -136,9 +136,9 @@ export default class DatabaseConnection {
     }
 
     async getUser(userId: bigint): Promise<any> {
-        if (!userId) return null;
         const user: User = bot.users.get(userId)
             ?? await bot.helpers.getUser(String(userId));
+        if (!user) return null;
         let document = await this.user.findOne({ _id: (await user).id });
 
         if (!document) {

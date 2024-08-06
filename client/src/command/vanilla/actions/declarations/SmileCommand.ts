@@ -12,7 +12,7 @@ const SmileCommand = createCommand({
         "pt-BR": "[Roleplay] * sorrindo *"
     },
     category: 'roleplay',
-    supportsLegacy: true,
+    supportsLegacy: false,
 
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
       SmileExecutor(context, endCommand, t);

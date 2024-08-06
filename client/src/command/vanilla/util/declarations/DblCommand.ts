@@ -9,7 +9,7 @@ const DblCommand = createCommand({
         "pt-BR": '[Utils] Vote na Foxy no top.gg'
     },
     aliases: ['upvote'],
-    supportsLegacy: true,
+    supportsLegacy: false,
     category: 'util',
     options: [
         {

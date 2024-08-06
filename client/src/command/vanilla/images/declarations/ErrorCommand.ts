@@ -9,7 +9,7 @@ const ErrorCommand = createCommand({
         "pt-BR": "[Imagem] Crie uma caixa de dialogo de erro"
     },
     category: "image",
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [
         {
             name: "text",

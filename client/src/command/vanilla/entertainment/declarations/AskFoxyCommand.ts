@@ -9,7 +9,7 @@ const AskFoxyCommand = createCommand({
         'pt-BR': '[Entretenimento] Pergunte algo para a Foxy'
     },
     category: 'games',
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [{
         name: "foxy",
         description: "[Entertainment] Ask something to Foxy",

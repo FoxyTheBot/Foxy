@@ -13,7 +13,7 @@ const BiteCommand = createCommand({
         "pt-BR": "[Roleplay] Morda alguém"
     },
     category: 'roleplay',
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [
         {
             name: "user",

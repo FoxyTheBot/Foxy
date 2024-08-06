@@ -9,7 +9,7 @@ const RobloxCommand = createCommand({
         "pt-BR": "[Utilitários] Comandos relacionados ao Roblox"
     },
     category: "util",
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [{
         name: "search",
         nameLocalizations: {

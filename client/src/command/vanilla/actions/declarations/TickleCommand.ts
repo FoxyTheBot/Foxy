@@ -14,7 +14,7 @@ const tickleCommand = createCommand({
         "pt-BR": "[Roleplay] Faça cócegas em alguém"
     },
     category: 'roleplay',
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [
         {
             name: "user",

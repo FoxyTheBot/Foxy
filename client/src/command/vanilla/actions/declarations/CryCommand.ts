@@ -12,7 +12,7 @@ const CryCommand = createCommand({
         "pt-BR": "[Roleplay] * chorando *"
     },
     category: 'roleplay',
-    supportsLegacy: true,
+    supportsLegacy: false,
 
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
         CryExecutor(context, endCommand, t);

@@ -544,7 +544,7 @@
         "win": "Deu {{choice}}! {{author}} ganhou {{amount}} Cakes! Financiado por {{user}}",
         "lose": "Deu {{choice}}! {{user}} ganhou {{amount}} Cakes! Financiado por {{author}}",
         "deny": "Negar",
-        "denied": "Aposta negada",
+        "denied": "Parece que {{user}} não quer apostar",
         "betWithClient": {
             "lose": "Deu {{result}}! Eu ganhei {{amount}} cakes! >:3",
             "win": "Deu {{result}}! Parabéns, você ganhou {{amount}} cakes! :3"

@@ -4,6 +4,7 @@ import { createActionRow, createButton, createCustomId } from "../../../utils/di
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { colors } from "../../../utils/colors";
 import { FoxyClient } from "../../../structures/types/foxy";
+import { getRank } from "./utils/getRank";
 
 export default async function ValorantStatsExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>('user', 'users') ?? context.author;
@@ -48,47 +49,11 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
 
     const mmrInfo = await bot.rest.foxy.getMMR(await userData.riotAccount.puuid);
 
-    function getRank(rank: string) {
-        const rankMapping: { [key: string]: any } = {
-            'Unrated': { rank: 'UNRATED', emoji: bot.emotes.UNRATED },
-            'Iron 1': { rank: 'I1', emoji: bot.emotes.I1 },
-            'Iron 2': { rank: 'I2', emoji: bot.emotes.I2 },
-            'Iron 3': { rank: 'I3', emoji: bot.emotes.I3 },
-            'Bronze 1': { rank: 'B1', emoji: bot.emotes.B1 },
-            'Bronze 2': { rank: 'B2', emoji: bot.emotes.B2 },
-            'Bronze 3': { rank: 'B3', emoji: bot.emotes.B3 },
-            'Silver 1': { rank: 'S1', emoji: bot.emotes.S1 },
-            'Silver 2': { rank: 'S2', emoji: bot.emotes.S2 },
-            'Silver 3': { rank: 'S3', emoji: bot.emotes.S3 },
-            'Gold 1': { rank: 'G1', emoji: bot.emotes.G1 },
-            'Gold 2': { rank: 'G2', emoji: bot.emotes.G2 },
-            'Gold 3': { rank: 'G3', emoji: bot.emotes.G3 },
-            'Platinum 1': { rank: 'P1', emoji: bot.emotes.P1 },
-            'Platinum 2': { rank: 'P2', emoji: bot.emotes.P2 },
-            'Platinum 3': { rank: 'P3', emoji: bot.emotes.P3 },
-            'Diamond 1': { rank: 'D1', emoji: bot.emotes.D1 },
-            'Diamond 2': { rank: 'D2', emoji: bot.emotes.D2 },
-            'Diamond 3': { rank: 'D3', emoji: bot.emotes.D3 },
-            'Ascendant 1': { rank: 'A1', emoji: bot.emotes.A1 },
-            'Ascendant 2': { rank: 'A2', emoji: bot.emotes.A2 },
-            'Ascendant 3': { rank: 'A3', emoji: bot.emotes.A3 },
-            'Immortal 1': { rank: 'IM1', emoji: bot.emotes.IM1 },
-            'Immortal 2': { rank: 'IM2', emoji: bot.emotes.IM2 },
-            'Immortal 3': { rank: 'IM3', emoji: bot.emotes.IM3 },
-            'Radiant': { rank: 'R', emoji: bot.emotes.R },
-        };
-
-        if (rank in rankMapping) {
-            return rankMapping[rank];
-        } else {
-            return null;
-        }
-    }
 
     const rank = getRank(mmrInfo.data.current_data.currenttierpatched ?? "Unrated");
     const highestRank = getRank(mmrInfo.data.highest_rank.patched_tier ?? "Unrated");
 
-    let matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode);
+    let matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode ?? "competitive");
     if (!matches) matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, "unrated");
     const formattedRank = rank ? `${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${t('commands:valorant.player.ranks.UNRATED')}`;
     const formattedHighestRank = highestRank ? `${t(`commands:valorant.player.ranks.${highestRank.rank}`)} (${mmrInfo.data.highest_rank.season
@@ -102,8 +67,7 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
     let mostPlayedMap = t('commands:valorant.player.unknownMap');
     let maxCharacterCount = 0;
     let maxMapCount = 0;
-    let currentRR;
-    let formattedRR = mmrInfo.data.current_data.mmr_change_to_last_game;
+    let formattedRR: any = mmrInfo.data.current_data.mmr_change_to_last_game;
 
     if (formattedRR > 0) {
         formattedRR = `+${formattedRR}`;
@@ -121,18 +85,17 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
         headshots = 0,
         bodyshots = 0,
         legshots = 0;
-
-    matches.data.forEach((match) => {
-        const currentPlayer = match.players.find(player => player.puuid === userData.riotAccount.puuid);
-        const characterName = currentPlayer.agent.name || "FOXY_SHRUG";
-        const mapName = match.metadata.map.name || t('commands:valorant.unknownMap');
+    matches.data.map((match) => {
+        if (match.meta.season.short !== "e9a1") return;
+        const currentPlayer = match.stats
+        const characterName = currentPlayer.character.name || "FOXY_SHRUG";
+        const mapName = match.meta.map.name || t('commands:valorant.unknownMap');
         if (characterCounts[characterName]) {
             characterCounts[characterName]++;
         } else {
             characterCounts[characterName] = 1;
         }
 
-        if (match.metadata.season.short !== "e9a1") return;
         if (characterCounts[characterName] > maxCharacterCount) {
             mostPlayedCharacter = characterName;
             if (mostPlayedCharacter === "KAY/O") mostPlayedCharacter = "KAYO";
@@ -150,12 +113,12 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
             maxMapCount = mapCounts[mapName];
         }
 
-        headshots += currentPlayer.stats.headshots;
-        bodyshots += currentPlayer.stats.bodyshots;
-        legshots += currentPlayer.stats.legshots;
-        totalKills += currentPlayer.stats.kills;
-        totalDeaths += currentPlayer.stats.deaths;
-        totalAssists += currentPlayer.stats.assists;
+        headshots += currentPlayer.shots.head;
+        bodyshots += currentPlayer.shots.body;
+        legshots += currentPlayer.shots.leg;
+        totalKills += currentPlayer.kills;
+        totalDeaths += currentPlayer.deaths;
+        totalAssists += currentPlayer.assists;
     });
 
     if (!matches.data.length) {

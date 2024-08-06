@@ -17,6 +17,7 @@ import enableCachePlugin from 'discordeno/cache-plugin';
 import { colors } from '../../utils/colors';
 import { FoxyRestManager } from '../../utils/RestManager';
 import { emotes } from '../../utils/emotes';
+import i18next from 'i18next';
 
 export default class FoxyInstance {
     public bot: FoxyClient;

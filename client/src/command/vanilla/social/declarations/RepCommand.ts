@@ -9,7 +9,7 @@ const RepCommand = createCommand({
         "pt-BR": "[Social] Dê reputação para um usuário"
     },
     category: "social",
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [
         {
             name: "user",

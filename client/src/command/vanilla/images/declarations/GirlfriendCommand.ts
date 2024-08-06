@@ -9,7 +9,7 @@ const GirlfriendCommand = createCommand({
         "pt-BR": "[Imagem] Quem é a sua namorada?"
     },
     category: "image",
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [
         {
             name: "user",

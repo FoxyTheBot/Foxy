@@ -9,7 +9,7 @@ const NotStonksCommand = createCommand({
         "pt-BR": "[Imagem] Crie uma imagem do not stonks"
     },
     category: "image",
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [
         {
             name: "text",

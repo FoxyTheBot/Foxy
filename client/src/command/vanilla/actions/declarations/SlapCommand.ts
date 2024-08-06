@@ -14,7 +14,7 @@ const SlapCommand = createCommand({
         "pt-BR": "[Roleplay] Dê um tapa em alguém"
     },
     category: 'roleplay',
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [
         {
             name: "user",

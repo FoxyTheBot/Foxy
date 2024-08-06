@@ -33,20 +33,7 @@ export default class CreateProfile {
 
     async create() {
         let userAboutme = this.data.userProfile.aboutme || this.locale("commands:profile.noAboutme");
-
-        if (userAboutme.length > 84) {
-            userAboutme = userAboutme.match(/.{1,65}/g).join("\n");
-        }
-
-        const context = this.canvas.getContext("2d");
-        const layoutData = lylist.find((l) => l.id === this.data.userProfile.layout);
-        const isLayoutWhite = layoutData.darkText;
-
-        const [layout, background] = await Promise.all([
-            Canvas.loadImage(`${serverURL}/layouts/${this.data.userProfile.layout}`),
-            Canvas.loadImage(`${serverURL}/backgrounds/${this.testMode && !this.mask ? this.code : this.data.userProfile.background}`)
-        ]);
-
+        
         if (this.data.isBanned) {
             userAboutme = bot.locale('commands:profile.banned', {
                 user: await bot.rest.foxy.getUserDisplayName(this.user.id),
@@ -61,6 +48,19 @@ export default class CreateProfile {
                 })
             });
         }
+
+        if (userAboutme.length > 84) {
+            userAboutme = userAboutme.match(/.{1,65}/g).join("\n");
+        }
+
+        const context = this.canvas.getContext("2d");
+        const layoutData = lylist.find((l) => l.id === this.data.userProfile.layout);
+        const isLayoutWhite = layoutData.darkText;
+
+        const [layout, background] = await Promise.all([
+            Canvas.loadImage(`${serverURL}/layouts/${this.data.userProfile.layout}`),
+            Canvas.loadImage(`${serverURL}/backgrounds/${this.testMode && !this.mask ? this.code : this.data.userProfile.background}`)
+        ]);
 
         if (this.testMode && !this.mask) {
             userAboutme = this.locale("commands:profile.testMode");

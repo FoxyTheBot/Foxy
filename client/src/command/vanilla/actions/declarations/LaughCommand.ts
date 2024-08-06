@@ -11,7 +11,7 @@ const LaughCommand = createCommand({
         "pt-BR": "[Roleplay] * risadas *"
     },
     category: 'roleplay',
-    supportsLegacy: true,
+    supportsLegacy: false,
 
     execute: async (context, endCommand, t) => {
         LanguageExecutor(context, endCommand, t);

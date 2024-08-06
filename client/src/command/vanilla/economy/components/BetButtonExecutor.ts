@@ -11,7 +11,6 @@ const BetButtonExecutor = async (context: ComponentInteractionContext) => {
     var rand = Math.floor(Math.random() * avaliableChoices.length);
 
     context.sendReply({
-        content: context.makeReply(bot.emotes.FOXY_WOW, bot.locale('commands:bet.ask', { user: `<@!${targetId}>`, author: await bot.rest.foxy.getUserDisplayName(context.author.id), amount: amount.toString() })),
         components: [createActionRow([createButton({
             label: bot.locale('commands:bet.accept'),
             style: ButtonStyles.Success,
@@ -34,8 +33,10 @@ const BetButtonExecutor = async (context: ComponentInteractionContext) => {
 
     if (buttonType === "deny") {
         return context.followUp({
-            content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale('commands:bet.denied'))
-        })
+            content: context.makeReply(bot.emotes.FOXY_CRY, bot.locale('commands:bet.denied', {
+                user: await bot.rest.foxy.getUserDisplayName(targetId),
+            }))
+        });
     } else {
         if (Number(userData.userCakes.balance) < Number(amount)) {
             context.sendReply({

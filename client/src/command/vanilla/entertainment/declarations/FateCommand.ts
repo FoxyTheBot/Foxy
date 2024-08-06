@@ -9,7 +9,7 @@ const FateCommand = createCommand({
         "pt-BR": "[Entretenimento] Qual o seu destino com a pessoa"
     },
     category: 'fun',
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [
         {
             name: "user",

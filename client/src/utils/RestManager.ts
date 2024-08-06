@@ -5,7 +5,6 @@ import config from '../../config.json';
 import axios from "axios";
 import { FoxyImage, ValorantUser } from "../structures/types/responses";
 import { logger } from "./logger";
-import { MatchHistory } from "../structures/types/valorant/MatchHistory";
 
 export class FoxyRestManager {
     public bot: FoxyClient;
@@ -42,8 +41,8 @@ export class FoxyRestManager {
 
     /* Valorant API */
 
-    async getValMatchHistoryByUUID(puuid: string, mode?: string, map?: string) {
-        let url = `valorant/v4/by-puuid/matches/na/pc/${puuid}?size=12`;
+    async getValMatchHistoryByUUID(puuid: string, mode?: string, map?: string): Promise<MatchesResponse> {
+        let url = `/valorant/v1/by-puuid/stored-matches/na/${puuid}?size=12`;
         if (mode) url += `&mode=${mode}`;
         if (map) url += `&map=${map}`;
 
@@ -62,10 +61,9 @@ export class FoxyRestManager {
         }
     }
 
-    async getAllValMatchHistoryByUUID(puuid: string, mode?: string, platform?: string): Promise<MatchHistory> {
-        let url = `valorant/v4/by-puuid/matches/na/${platform ?? "pc"}/${puuid}`;
-        if (mode) url += `?&mode=${mode}`;
-
+    async getAllValMatchHistoryByUUID(puuid: string, mode?: string, platform?: string): Promise<MatchesResponse> {
+        let url = `/valorant/v1/by-puuid/stored-matches/na/${puuid}`;
+        
         try {
             const response = await this.valorantAPI.get(url);
             return response.data;
@@ -97,9 +95,9 @@ export class FoxyRestManager {
         }
     }
 
-    async getMMR(puuid: string) {
+    async getMMR(puuid: string): Promise<ApiResponse> {
         try {
-            const response = await this.valorantAPI.get(`valorant/v2/by-puuid/mmr/na/${puuid}`);
+            const response = await this.valorantAPI.get(`/valorant/v2/by-puuid/mmr/na/${puuid}`);
             return response.data;
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -125,7 +123,7 @@ export class FoxyRestManager {
                     return null;
                 }
             }
-            console.error('Error fetching match data:', error);
+            logger.error('Error fetching match data:', error);
             return null;
         }
     }

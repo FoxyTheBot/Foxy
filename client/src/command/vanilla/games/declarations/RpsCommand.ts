@@ -9,7 +9,7 @@ const RpsCommand = createCommand({
         "pt-BR": "[Jogos] Jogue pedra, papel ou tesoura com a Foxy"
     },
     category: 'games',
-    supportsLegacy: true,
+    supportsLegacy: false,
     commandRelatedExecutions: [RpsButtonExecutor],
     execute: async (context, endCommand, t) => {
         RpsExecutor(context, endCommand, t);

@@ -12,7 +12,7 @@ const DanceCommand = createCommand({
         "pt-BR": "[Roleplay] * dançando *"
     },
     category: 'roleplay',
-    supportsLegacy: true,
+    supportsLegacy: false,
 
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
         DanceExecutor(context, endCommand, t);

@@ -15,7 +15,7 @@ const KissCommand = createCommand({
         "pt-BR": "[Roleplay] Beije alguém"
     },
     category: 'roleplay',
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [
         {
             name: "user",

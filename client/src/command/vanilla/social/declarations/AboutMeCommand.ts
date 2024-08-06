@@ -12,7 +12,7 @@ const AboutMeCommand = createCommand({
         "pt-BR": "[Social] Defina o sobre mim do seu perfil"
     },
     category: "social",
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [
         {
             name: "text",

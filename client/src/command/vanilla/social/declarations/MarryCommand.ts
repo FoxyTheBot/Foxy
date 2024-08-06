@@ -13,7 +13,7 @@ const MarryCommand = createCommand({
         "pt-BR": "[Social] Case-se com seu parceiro(a)"
     },
     aliases: ["casar", "marriage", "nerfar"],
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [{
         name: "ask",
         nameLocalizations: {

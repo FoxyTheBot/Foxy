@@ -1,6 +1,6 @@
 {
   "name": "foxy",
-  "version": "2023.11.1",
+  "version": "2024",
   "description": "A multi-purpose bot for Discord developed using TypeScript",
   "repository": "git+https://github.com/FoxyTheBot/Foxy.git",
   "private": true,
@@ -8,7 +8,8 @@
     "client": "yarn workspace @foxy/client",
     "build:client": "yarn workspace @foxy/client build",
     "run:client": "yarn workspace @foxy/client start",
-    "run:all": "yarn run:server && yarn run:client",
+    "watch:client": "yarn workspace @foxy/client watch",
+    "nodemon:client": "yarn workspace @foxy/client nodemon",
     "debug:client": "yarn workspace @foxy/client debug"
   },
   "keywords": [
@@ -33,5 +34,8 @@
   "homepage": "https://github.com/FoxyTheBot/Foxy#readme",
   "dependencies": {
     "discordeno": "^18.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
   }
 }

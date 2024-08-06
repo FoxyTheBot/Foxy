@@ -10,7 +10,7 @@ const CakeCommand = createCommand({
         'pt-BR': 'Comandos relacionados a economia da Foxy'
     },
     aliases: ['atm', 'transfer', 'transactions'],
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [
         {
             name: "atm",

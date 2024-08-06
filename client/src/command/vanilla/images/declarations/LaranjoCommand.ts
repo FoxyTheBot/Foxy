@@ -9,7 +9,7 @@ const LaranjoCommand = createCommand({
         "pt-BR": "[Imagem] Crie uma imagem do laranjo"
     },
     category: "image",
-    supportsLegacy: true,
+    supportsLegacy: false,
     options: [
         {
             name: "text",
