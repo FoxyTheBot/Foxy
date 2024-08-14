@@ -1,140 +1,147 @@
-import { User } from "discordeno/transformers";
-import { createEmbed } from "../../../utils/discord/Embed";
-import { createActionRow, createCustomId, createSelectMenu } from "../../../utils/discord/Component";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { FoxyClient } from "../../../structures/types/foxy";
-import { MatchHistory } from "../../../structures/types/valorant/MatchHistory";
 import { colors } from "../../../utils/colors";
 import { getRank } from "./utils/getRank";
+import { createEmbed } from "../../../utils/discord/Embed";
+import { UserOverview } from "../../../structures/types/responses";
+import { createActionRow, createCustomId, createSelectMenu } from "../../../utils/discord/Component";
 
-export default async function ValorantMatchesExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {
-    const user = await context.getOption<User>('user', 'users') ?? context.author;
-    const userData = await bot.database.getUser(user.id);
-    context.sendDefer(userData.riotAccount.isPrivate);
-    
-    if (!userData.riotAccount.isLinked) {
-        context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.notLinked', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
-        });
-        return endCommand();
+export default class ValorantMatchesExecutor {
+    constructor(
+        private bot: FoxyClient,
+        private context: UnleashedCommandExecutor,
+        private endCommand: () => void,
+        private t: (key: string, args?: any) => string
+    ) { }
+
+    async execute() {
+        const userData = await this.bot.database.getUser(this.context.author.id);
+        this.context.sendDefer(userData.riotAccount.isPrivate);
+        this.createResponse(userData);
     }
 
-    if (userData.riotAccount.isPrivate && context.author.id !== user.id) {
-        context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.private', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
-        });
-        return endCommand();
+    private async getUserInfo(userData): Promise<UserOverview | null> {
+        if (!userData) return null;
+
+        const puuid = userData.riotAccount.puuid;
+        const user = await this.bot.rest.foxy.getValPlayerByUUID(puuid);
+        if (!user) return null;
+
+        const mmrInfo = await this.bot.rest.foxy.getMMR(puuid);
+        const rank = getRank(mmrInfo.data.current_data.currenttierpatched ?? "Unrated");
+        const formattedRank = rank
+            ? `${this.context.getEmojiById(rank.emoji)} ${this.t(`commands:valorant.player.ranks.${rank.rank}`)}`
+            : `${this.context.getEmojiById(this.bot.emotes.UNRATED)} ${this.t('commands:valorant.player.ranks.UNRATED')}`;
+
+        const matches = await this.bot.rest.foxy.getValMatchHistoryByUUID(
+            puuid,
+            this.context.getOption<string>('mode', false),
+            this.context.getOption<string>('map', false)
+        );
+
+        return {
+            // @ts-ignore - This is a valid response
+            user: user,
+            mmr: mmrInfo.data,
+            patchedRank: formattedRank,
+            matches: matches.data
+        };
     }
 
-    context.sendReply({
-        embeds: [{
-            color: bot.colors.VALORANT,
-            title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.loadingTitle')),
-            description: t('commands:valorant.loadingDescription')
-        }]
-    });
+    private async createResponse(userData) {
+        const userInfo = await this.getUserInfo(userData);
+        if (!userInfo) {
+            return this.sendErrorResponse(
+                this.t('commands:valorant.cannotGetInfo'),
+                this.t('commands:valorant.cannotGetInfoDescription')
+            );
+        }
 
-    const matchInfo = await bot.rest.foxy.getValMatchHistoryByUUID(userData.riotAccount.puuid, context.getOption<string>('mode', false) ?? null, context.getOption<string>('map', false) ?? null);
-    const valUserInfo = await bot.rest.foxy.getValPlayerByUUID(userData.riotAccount.puuid);
-    if (!valUserInfo) {
-        return context.sendReply({
+        try {
+            const embed = createEmbed({
+                color: this.bot.colors.VALORANT,
+                thumbnail: { url: userInfo.user.data.card.small },
+                title: `${this.context.getEmojiById(this.bot.emotes.VALORANT_LOGO)} ${this.t('commands:valorant.match.title', {
+                    username: userInfo.user.data.name,
+                    tag: userInfo.user.data.tag
+                })} - ${userInfo.patchedRank}`,
+                fields: this.createMatchFields(userInfo),
+                footer: { text: this.t('commands:valorant.match.footer') }
+            });
+
+            const row = this.createActionRow(userInfo);
+
+            await this.context.sendReply({
+                embeds: [embed],
+                components: [row]
+            }).finally(() => this.endCommand());
+        } catch (e) {
+            console.error(e);
+            this.sendErrorResponse(this.t('commands:valorant.match.notFound'));
+        }
+    }
+
+    private createMatchFields(userInfo: UserOverview) {
+        return userInfo.matches.map(match => {
+            const { metadata, teams } = match;
+            const currentPlayer = match.players.find(player => player.puuid === userInfo.user.data.puuid);
+            const result = this.getMatchResult(teams, currentPlayer.team_id);
+
+            return {
+                name: `${metadata.map.name} | ${this.bot.locale(`commands:valorant.match.modes.${metadata.queue.name.toLowerCase()}`)} | ${teams[0].rounds.won ?? 0} - ${teams[1].rounds.won ?? 0} | ${result}`,
+                value: `${this.t('commands:valorant.match.character')}: ${this.context.getEmojiById(this.bot.emotes[currentPlayer.agent.name.toUpperCase()] ?? this.bot.emotes.FOXY_SHRUG)} \n` +
+                    `K/D/A: ${currentPlayer.stats.kills}/${currentPlayer.stats.deaths}/${currentPlayer.stats.assists} \n` +
+                    `Score: ${currentPlayer.stats.score} \n`,
+                inline: true
+            };
+        });
+    }
+
+    private getMatchResult(teams: any, playerTeam: string) {
+        console.log(teams)
+        const teamHasWon = teams[0].won ? "Red" : "Blue" || "Draw";
+
+        if (teamHasWon === "Draw") {
+            return `${this.context.getEmojiById(this.bot.emotes.FOXY_RAGE)} ${this.t('commands:valorant.match.draw')}`;
+        }
+
+        return playerTeam === teamHasWon
+            ? `${this.context.getEmojiById(this.bot.emotes.FOXY_YAY)} ${this.t('commands:valorant.match.win')}`
+            : `${this.context.getEmojiById(this.bot.emotes.FOXY_CRY)} ${this.t('commands:valorant.match.loss')}`;
+    }
+
+    private createActionRow(userInfo: UserOverview) {
+        const options = userInfo.matches.length
+            ? userInfo.matches.map(match => {
+                const currentPlayer = match.players.find(player => player.puuid === userInfo.user.data.puuid);
+                return {
+                    label: `${match.metadata.map.name} - ${this.bot.locale(`commands:valorant.match.modes.${match.metadata.queue.name.toLowerCase()}`)}`,
+                    value: match.metadata.match_id,
+                    description: `${match.players.find(player => player.puuid === userInfo.user.data.puuid).agent.name} | K/D/A: ${currentPlayer.stats.kills}/${currentPlayer.stats.deaths}/${currentPlayer.stats.assists}`,
+                    emoji: { id: this.bot.emotes[currentPlayer.agent.name.toUpperCase()] ?? this.bot.emotes.FOXY_SHRUG }
+                }
+            })
+            : [{
+                label: this.t('commands:valorant.match.noMatches'),
+                value: 'noMatches',
+                description: this.t('commands:valorant.match.noMatchesDescription')
+            }];
+
+        return createActionRow([createSelectMenu({
+            customId: createCustomId(0, this.context.author.id, this.context.commandId, userInfo.user.data.puuid),
+            placeholder: this.t(userInfo.matches.length ? 'commands:valorant.match.placeholder' : 'commands:valorant.match.noMatches'),
+            disabled: !userInfo.matches.length,
+            options
+        })]);
+    }
+
+    private sendErrorResponse(title: string, description?: string) {
+        return this.context.sendReply({
             embeds: [{
                 color: colors.RED,
-                title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.cannotGetInfo')),
-                description: t('commands:valorant.cannotGetInfoDescription')
+                title: this.context.makeReply(this.bot.emotes.VALORANT_LOGO, title),
+                description
             }]
-        }).finally(endCommand);
-    }
-    const mmrInfo = await bot.rest.foxy.getMMR(await userData.riotAccount.puuid);
-
-    const rank = getRank(mmrInfo.data.current_data.currenttierpatched ?? "Unrated");
-    const formattedRank = rank ? `${context.getEmojiById(rank.emoji)} ${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${context.getEmojiById(bot.emotes.UNRATED)} ${t('commands:valorant.player.ranks.UNRATED')}`;
-    
-    try {
-        const embed = createEmbed({
-            color: bot.colors.VALORANT,
-            thumbnail: {
-                url: valUserInfo.data.card.small
-            },
-            title: context.getEmojiById(bot.emotes.VALORANT_LOGO) + " " + t('commands:valorant.match.title', { username: valUserInfo.data.name, tag: valUserInfo.data.tag }) + ` - ${formattedRank}`,
-            fields: matchInfo.data.map(match => {
-                const currentPlayer = match.stats;
-                let teamHasWon = match.teams[0].won ? "Red" : "Blue" || "Draw";
-                let result = context.getEmojiById(bot.emotes.FOXY_RAGE) + " " + t('commands:valorant.match.draw');
-
-                if (teamHasWon !== "Draw") {
-                    if (currentPlayer.team === teamHasWon) {
-                        result = context.getEmojiById(bot.emotes.FOXY_YAY) + " " + t('commands:valorant.match.win');
-                    } else {
-                        result = context.getEmojiById(bot.emotes.FOXY_CRY) + " " + t('commands:valorant.match.loss');
-                    }
-                }
-
-
-                if (match.meta.mode.toLowerCase() !== "deathmatch") {
-                    return {
-                        name: `${match.meta.map.name} | ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)} | ${match.teams[0].rounds.won ?? 0} - ${match.teams[1].rounds.won ?? 0} | ${result}`,
-                        value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[currentPlayer.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \n` +
-                            `K/D/A: ${currentPlayer.kills}/${currentPlayer.deaths}/${currentPlayer.assists} \n` +
-                            `Score: ${currentPlayer.score} \n`,
-                        inline: true
-                    }
-                } else {
-                    return {
-                        name: `${match.meta.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)}`,
-                        value: `${t('commands:valorant.match.character')}: ${context.getEmojiById(bot.emotes[currentPlayer.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG])} \n` +
-                            `K/D/A: ${currentPlayer.kills}/${currentPlayer.deaths}/${currentPlayer.assists} \n` +
-                            `Score: ${currentPlayer.score}`,
-                        inline: true
-                    }
-                }
-            }),
-            footer: {
-                text: t("commands:valorant.match.footer")
-            }
-        });
-
-        let row;
-
-        if (matchInfo.data.length !== 0) {
-            row = createActionRow([createSelectMenu({
-                customId: createCustomId(0, context.author.id, context.commandId, await userData.riotAccount.puuid),
-                placeholder: t('commands:valorant.match.placeholder'),
-                options: matchInfo.data.map(match => {
-                    const currentPlayer = match.stats;
-                    return {
-                        label: `${match.meta.map.name} - ${bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)}`,
-                        value: match.meta.id,
-                        description: `${currentPlayer.character} | K/D/A: ${currentPlayer.kills}/${currentPlayer.deaths}/${currentPlayer.assists}`,
-                        emoji: {
-                            id: bot.emotes[currentPlayer.character.name.toUpperCase() ?? bot.emotes.FOXY_SHRUG]
-                        }
-                    }
-                })
-            })])
-        } else {
-            embed.description = t('commands:valorant.match.noMatchesDescription');
-            row = createActionRow([createSelectMenu({
-                customId: createCustomId(0, context.author.id, context.commandId, await userData.riotAccount.puuid),
-                placeholder: t('commands:valorant.match.noMatches'),
-                disabled: true,
-                options: [{
-                    label: t('commands:valorant.match.noMatches'),
-                    value: 'noMatches',
-                    description: t('commands:valorant.match.noMatchesDescription')
-                }]
-            })])
-
-        }
-        context.sendReply({
-            embeds: [embed],
-            components: [row],
-        });
-        return endCommand();
-    } catch (err) {
-        context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:valorant.match.notFound'))
-        });
-        return endCommand();
+        }).finally(() => this.endCommand());
     }
 }

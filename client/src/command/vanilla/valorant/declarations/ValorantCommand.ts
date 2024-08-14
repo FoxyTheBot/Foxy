@@ -370,7 +370,7 @@ const ValorantCommand = createCommand({
             }
 
             case 'matches': {
-                ValorantMatchesExecutor(bot, context, endCommand, t);
+                new ValorantMatchesExecutor(bot, context, endCommand, t).execute();
                 break;
             }
 
