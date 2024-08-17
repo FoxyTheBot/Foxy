@@ -4,79 +4,64 @@ import { MessageFlags } from '../../../utils/discord/Message';
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { logger } from '../../../utils/logger';
 
-export default async function DailyExecutor(context: UnleashedCommandExecutor, endCommand, t) {
-    const userData = await bot.database.getUser(context.author.id);
+export default class DailyExecutor {
+    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+        try {
+            context.sendDefer(true);
+            const userData = await bot.database.getUser(context.author.id);
+            const timeout = 43200000; // 12 hours in milliseconds
+            const currentTime = Date.now();
+            const lastDaily = Number(userData.userCakes.lastDaily) || 0;
 
-    const timeout = 43200000;
-    let amount = Math.floor(Math.random() * 8000);
-    amount = Math.round(amount / 10) * 10;
-
-    const daily = await userData.userCakes.lastDaily;
-    const premiumType = await userData.userPremium.premiumType ?? 0;
-    var multiplier;
-    var oldquantity = amount;
-    if (daily !== null && timeout - (Date.now() - Number(daily)) > 0) {
-        const currentCooldown = ms(timeout - (Date.now() - Number(daily)));
-        context.sendReply({
-            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:daily.cooldown', { time: currentCooldown })),
-            flags: 64
-        });
-        return endCommand();
-    } else {
-        if (amount < 1000) amount = 1000;
-
-        switch (await premiumType.toString() ?? '0') {
-            case "1": {
-                amount = amount * 1.25;
-                multiplier = '1.25x'
-                break;
-            }
-
-            case "2": {
-                amount = amount * 1.5;
-                multiplier = '1.5x'
-                break;
-            }
-
-            case "3": {
-                amount = amount * 2;
-                multiplier = '2x'
-                break;
-            }
-        }
-
-        userData.userCakes.balance += amount;
-        userData.userCakes.lastDaily = new Date(Date.now());
-        userData.userTransactions.push({
-            to: String(context.author.id),
-            from: null,
-            quantity: amount,
-            date: new Date(Date.now()),
-            received: true,
-            type: 'daily'
-        });
-        userData.save().catch(err => logger.error(err));
-
-        const money = await userData.userCakes.balance;
-
-        switch (await userData.userPremium.premium) {
-            case true: {
-                context.sendReply({
-                    content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.dailyPremium', { boost: multiplier, amount: amount.toLocaleString(t.lng || 'pt-BR'), money: money.toLocaleString(t.lng || 'pt-BR'), old: oldquantity.toLocaleString(t.lng || 'pt-BR') })) + "\n" + context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:daily.dailyAlert')),
+            if (lastDaily && timeout > (currentTime - lastDaily)) {
+                const remainingTime = ms(timeout - (currentTime - lastDaily));
+                return context.sendReply({
+                    content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:daily.cooldown', {
+                        time: remainingTime
+                    })),
                     flags: MessageFlags.EPHEMERAL
-                });
-                break;
+                })
             }
 
-            default: {
-                context.sendReply({
-                    content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.daily', { amount: amount.toLocaleString(t.lng || 'pt-BR'), money: money.toLocaleString(t.lng || 'pt-BR') })) + context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:daily.dailyAlert')),
-                    flags: MessageFlags.EPHEMERAL
-                });
-                break;
-            }
+            let amount = Math.max(Math.floor(Math.random() * 8000) / 10 * 10, 1000);
+            const premiumType = userData.userPremium.premiumType ?? 0;
+            const multipliers = {
+                '1': 1.25,
+                '2': 1.5,
+                '3': 2
+            };
+
+            const multiplier = multipliers[premiumType.toString()] || 1;
+            amount *= multiplier;
+
+            userData.userCakes.balance += amount;
+            userData.userCakes.lastDaily = new Date(currentTime);
+            await bot.database.createTransaction(context.author.id, {
+                to: context.author.id,
+                from: null,
+                quantity: amount,
+                date: new Date(currentTime),
+                received: true,
+                type: 'daily'
+            });
+
+            await userData.save();
+
+            const balanceStr = userData.userCakes.balance.toLocaleString(t.lng || 'pt-BR');
+            const amountStr = amount.toLocaleString(t.lng || 'pt-BR');
+            const oldAmountStr = (userData.userCakes.balance - amount).toLocaleString(t.lng || 'pt-BR');
+            const replyContent = userData.userPremium.premium
+                ? context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.dailyPremium', { boost: `${multiplier}x`, amount: amountStr, money: balanceStr, old: oldAmountStr })) + "\n" + context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:daily.dailyAlert'))
+                : context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.daily', { amount: amountStr, money: balanceStr })) + context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:daily.dailyAlert'));
+
+            context.sendReply({
+                content: replyContent,
+                flags: MessageFlags.EPHEMERAL
+            })
+        } catch (err) {
+            logger.error(err);
+        } finally {
+            endCommand();
         }
-        endCommand();
-
     }
 }
