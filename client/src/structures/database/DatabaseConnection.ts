@@ -135,6 +135,21 @@ export default class DatabaseConnection {
         });
     }
 
+    async createTransaction(userId: bigint, transaction: Transaction) {
+        let document = await this.getUser(userId);
+
+        document.userTransactions.push({
+            to: transaction.to,
+            from: transaction.from ?? null,
+            quantity: transaction.quantity,
+            date: new Date(Date.now()),
+            received: transaction.received,
+            type: transaction.type
+        });
+
+        await document.save();
+    }
+
     async getUser(userId: bigint): Promise<any> {
         const user: User = bot.users.get(userId)
             ?? await bot.helpers.getUser(String(userId));
@@ -296,3 +311,11 @@ export default class DatabaseConnection {
     }
 }
 
+interface Transaction {
+    to: bigint,
+    from: bigint,
+    quantity: number,
+    date: Date,
+    received: boolean,
+    type: string
+}
