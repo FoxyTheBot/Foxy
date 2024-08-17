@@ -1,7 +1,9 @@
 import { createCommand } from "../../../structures/createCommand";
 import { ApplicationCommandOptionTypes } from "discordeno/types";
 import CakeTransferExecutor from "../components/CakeTransferExecutor";
-import CakesExecutor from "../CakesExecutor";
+import AtmExecutor from "../AtmExecutor";
+import TransferExecutor from "../TransferExecutor";
+import TransactionsExecutor from "../TransactionsExecutor";
 
 const CakeCommand = createCommand({
     name: 'cakes',
@@ -98,7 +100,22 @@ const CakeCommand = createCommand({
     commandRelatedExecutions: [CakeTransferExecutor],
     category: 'economy',
     execute: async (context, endCommand, t) => {
-        CakesExecutor(context, endCommand, t);
+        switch (context.subCommand) {
+            case 'atm': {
+                new AtmExecutor().execute(context, endCommand, t);
+                break;
+            }
+
+            case 'transfer': {
+                new TransferExecutor().execute(context, endCommand, t);
+                break;
+            }
+
+            case 'transactions': {
+                new TransactionsExecutor().execute(context, endCommand, t);
+                break;
+            }
+        }
     },
 });
 
