@@ -5,6 +5,7 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 import { logger } from '../../../utils/logger';
 
 export default class DailyExecutor {
+
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
         try {
             context.sendDefer(true);
