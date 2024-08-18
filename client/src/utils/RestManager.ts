@@ -2,14 +2,14 @@ import { BigString } from "discordeno/types";
 import { FoxyClient } from "../structures/types/foxy";
 import { User } from "../structures/types/user";
 import config from '../../config.json';
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import { FoxyImage, ValorantUser } from "../structures/types/responses";
 import { logger } from "./logger";
 
 export class FoxyRestManager {
     public bot: FoxyClient;
-    public api: any;
-    public valorantAPI: any;
+    public api: AxiosInstance;
+    public valorantAPI: AxiosInstance;
 
     constructor(bot) {
         this.bot = bot;
