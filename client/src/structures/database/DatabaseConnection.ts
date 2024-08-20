@@ -202,20 +202,20 @@ export default class DatabaseConnection {
                                     name: option.name,
                                     description: option.description,
                                     nameLocalizations: {
-                                        "pt-BR": option.nameLocalizations["pt-BR"] || null,
+                                        "pt-BR": option.nameLocalizations["pt-BR"] ?? null,
                                     },
                                     descriptionLocalizations: {
-                                        "pt-BR": option.descriptionLocalizations["pt-BR"] || null,
+                                        "pt-BR": option.descriptionLocalizations["pt-BR"] ?? null,
                                     },
                                     subcommands: option.options.map(subcommand => {
                                         return {
                                             name: subcommand.name,
                                             description: subcommand.description,
                                             nameLocalizations: {
-                                                "pt-BR": subcommand.nameLocalizations["pt-BR"] || null,
+                                                "pt-BR": subcommand.nameLocalizations["pt-BR"] ?? null,
                                             },
                                             descriptionLocalizations: {
-                                                "pt-BR": subcommand.descriptionLocalizations["pt-BR"] || null,
+                                                "pt-BR": subcommand.descriptionLocalizations["pt-BR"] ?? null,
                                             },
                                         }
                                     })

@@ -5,7 +5,7 @@ const bot = new FoxyInstance().bot;
 export { bot };
 
 process.on('unhandledRejection', (err: Error) => {
-    return logger.error(err);
+    logger.error(err);
 });
 
 process.on('uncaughtException', (err) => {
