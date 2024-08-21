@@ -21,3 +21,10 @@ export interface ValorantUser {
         last_update: number;
     }
 }
+
+export interface UserOverview {
+    user: ValorantUser;
+    mmr: any;
+    patchedRank: string;
+    matches: any;
+}
