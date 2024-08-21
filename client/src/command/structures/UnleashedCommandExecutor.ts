@@ -11,6 +11,7 @@ import { MessageFlags } from '../../utils/discord/Message';
 import { bot } from "../../FoxyLauncher";
 import { getArgsFromMessage, getOptionFromInteraction } from './GetCommandOption';
 import { prefix } from '../../../config.json';
+import { DiscordTimestamp } from '../../structures/types/timestamp';
 
 export type CanResolve = 'users' | 'members' | false;
 
@@ -111,16 +112,16 @@ export default class UnleashedCommandExecutor {
         return `<:emoji:${id}>`;
     }
 
-    convertToDiscordTimestamp(date: Date, type: "relative" | "shorttime" | "longtime" | "long-and-relative"): string {
+    convertToDiscordTimestamp(date: Date, type: DiscordTimestamp): string {
         const timestamp = Math.floor(date.getTime() / 1000).toFixed(0);
         switch (type) {
-            case "relative":
+            case 0:
                 return `<t:${timestamp}:R>`;
-            case "shorttime":
+            case 1:
                 return `<t:${timestamp}:t>`;
-            case "longtime":
+            case 2:
                 return `<t:${timestamp}:T>`;
-            case "long-and-relative":
+            case 3:
                 return `<t:${timestamp}:f> (<t:${timestamp}:R>)`;
         }
     }

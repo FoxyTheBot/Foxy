@@ -4,6 +4,7 @@ import { ButtonStyles } from "discordeno/types";
 import { getPlayerInfo, getPlayerBadges, getIdFromUsername, getPlayerThumbnail } from "noblox.js";
 import { bot } from "../../../FoxyLauncher";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { DiscordTimestamp } from "../../../structures/types/timestamp";
 
 export default async function RobloxExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const username = context.getOption("username", false);
@@ -33,7 +34,7 @@ export default async function RobloxExecutor(context: UnleashedCommandExecutor, 
             image: { url: skin[0].imageUrl },
             fields: [
                 { name: t("commands:roblox.fields.id"), value: `${id}`, inline: true },
-                { name: t("commands:roblox.fields.joinDate"), value: context.convertToDiscordTimestamp(info.joinDate, "long-and-relative"), inline: true },
+                { name: t("commands:roblox.fields.joinDate"), value: context.convertToDiscordTimestamp(info.joinDate, DiscordTimestamp.LONG_AND_RELATIVE), inline: true },
                 { name: t("commands:roblox.fields.username"), value: `${info.username}`, inline: true },
                 { name: t("commands:roblox.fields.isBanned"), value: `${info.isBanned ? t("commands:roblox.fields.status.banned") : t("commands:roblox.fields.status.notBanned")}`, inline: true },
                 { name: t("commands:roblox.fields.badges"), value: `${badges.length}`, inline: true },
