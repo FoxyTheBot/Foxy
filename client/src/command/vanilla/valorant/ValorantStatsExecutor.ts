@@ -7,12 +7,13 @@ import { FoxyClient } from "../../../structures/types/FoxyClient";
 import { getRank } from "./utils/getRank";
 
 export default async function ValorantStatsExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {
-    const user = await context.getOption<User>('user', 'users') ?? context.author;
+    let user = await context.getOption<User>('user', 'users') ?? context.author;
+    if (context.interaction.data.targetId) user = await bot.helpers.getUser(context.interaction.data.targetId);
     const mode = context.getOption<string>('mode', false);
     const userData = await bot.database.getUser(user.id);
-    
+
     context.sendDefer(userData.riotAccount.isPrivate);
-    
+
     if (!userData.riotAccount.isLinked) {
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:profile.val.notLinked', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
@@ -53,7 +54,7 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
     const rank = getRank(mmrInfo.data.current_data.currenttierpatched ?? "Unrated");
     const highestRank = getRank(mmrInfo.data.highest_rank.patched_tier ?? "Unrated");
 
-    let matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode ?? "competitive");
+    let matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode ?? "unrated");
     if (!matches) matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, "unrated");
     const formattedRank = rank ? `${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${t('commands:valorant.player.ranks.UNRATED')}`;
     const formattedHighestRank = highestRank ? `${t(`commands:valorant.player.ranks.${highestRank.rank}`)} (${mmrInfo.data.highest_rank.season
@@ -194,22 +195,32 @@ export default async function ValorantStatsExecutor(bot: FoxyClient, context: Un
             })
         }
 
-        context.sendReply({
-            embeds: [embed],
-            file: {
-                blob: await profileImage,
-                name: 'profile.png'
-            },
-            components: [createActionRow([createButton({
-                label: t('commands:valorant.player.viewMatches'),
-                style: 1,
-                customId: createCustomId(1, context.author.id, context.commandId, user.id),
-                emoji: {
-                    id: BigInt(bot.emotes.VALORANT_LOGO)
-                }
-            })
-            ])]
-        });
+        if (context.interaction.data.targetId) {
+            context.sendReply({
+                embeds: [embed],
+                file: {
+                    blob: await profileImage,
+                    name: 'profile.png'
+                },
+            });
+        } else {
+            context.sendReply({
+                embeds: [embed],
+                file: {
+                    blob: await profileImage,
+                    name: 'profile.png'
+                },
+                components: [createActionRow([createButton({
+                    label: t('commands:valorant.player.viewMatches'),
+                    style: 1,
+                    customId: createCustomId(1, context.author.id, context.commandId, user.id),
+                    emoji: {
+                        id: BigInt(bot.emotes.VALORANT_LOGO)
+                    }
+                })
+                ])]
+            });
+        }
         return endCommand();
     } else {
         context.sendReply({

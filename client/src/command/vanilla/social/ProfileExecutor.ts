@@ -4,7 +4,8 @@ import CreateProfile from '../../../utils/images/generators/GenerateProfile';
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
 export default async function ProfileExecutor(context: UnleashedCommandExecutor, endCommand, t) {
-    const user = await context.getOption<User>('user', 'users') ?? context.author;
+    let user = await context.getOption<User>('user', 'users') ?? context.author;
+    if (context.interaction.data.targetId) user = await bot.helpers.getUser(context.interaction.data.targetId);
     const userData = await bot.database.getUser(user.id);
 
     await context.sendDefer();

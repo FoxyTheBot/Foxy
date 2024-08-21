@@ -63,7 +63,7 @@ export class FoxyRestManager {
 
     async getAllValMatchHistoryByUUID(puuid: string, mode?: string, platform?: string): Promise<MatchesResponse> {
         let url = `/valorant/v1/by-puuid/stored-matches/na/${puuid}`;
-        
+        if (mode) url += `?mode=${mode}`;
         try {
             const response = await this.valorantAPI.get(url);
             return response.data;
