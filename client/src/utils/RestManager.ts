@@ -1,9 +1,9 @@
 import { BigString } from "discordeno/types";
-import { FoxyClient } from "../structures/types/foxy";
-import { User } from "../structures/types/user";
+import { FoxyClient } from "../structures/types/FoxyClient";
+import { User } from "../structures/types/DiscordUser";
 import config from '../../config.json';
 import axios, { AxiosInstance } from "axios";
-import { FoxyImage, ValorantUser } from "../structures/types/responses";
+import { FoxyImage, ValorantUser } from "../structures/types/APIResponses";
 import { logger } from "./logger";
 
 export class FoxyRestManager {

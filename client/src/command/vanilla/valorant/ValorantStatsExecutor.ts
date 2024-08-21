@@ -3,7 +3,7 @@ import RenderValorantProfile from "../../../utils/images/generators/RenderValora
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { colors } from "../../../utils/colors";
-import { FoxyClient } from "../../../structures/types/foxy";
+import { FoxyClient } from "../../../structures/types/FoxyClient";
 import { getRank } from "./utils/getRank";
 
 export default async function ValorantStatsExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {

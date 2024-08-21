@@ -1,4 +1,4 @@
-import { CommandInterface } from '../../structures/types/command';
+import { CommandInterface } from '../../structures/types/CommandInterfaces';
 
 const createCommand = (command: CommandInterface): CommandInterface =>
   command;

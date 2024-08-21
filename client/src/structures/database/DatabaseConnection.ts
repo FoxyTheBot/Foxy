@@ -3,11 +3,11 @@ import { logger } from '../../utils/logger';
 import { mongouri } from '../../../config.json';
 import { bot } from '../../FoxyLauncher';
 import { User } from 'discordeno/transformers';
-import { FoxyClient } from '../types/foxy';
+import { FoxyClient } from '../types/FoxyClient';
 import { Schemas } from './schemas/Schemas';
-import { CommandInterface } from '../types/command';
+import { CommandInterface } from '../types/CommandInterfaces';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
-import { Background, Badge, Decoration } from '../types/profile';
+import { Background, Badge, Decoration } from '../types/UserProfile';
 
 export default class DatabaseConnection {
     public client: FoxyClient;

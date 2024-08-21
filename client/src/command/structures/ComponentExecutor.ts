@@ -5,7 +5,7 @@ import { mentionUser } from '../../utils/discord/User';
 import { MessageFlags } from '../../utils/discord/Message';
 import { bot } from '../../FoxyLauncher';
 import ComponentInteractionContext from './ComponentInteractionContext';
-import { ComponentInteraction } from '../../structures/types/interaction';
+import { ComponentInteraction } from '../../structures/types/Interactions';
 
 const componentExecutor = async (interaction: Interaction): Promise<void> => {
   let receivedCommandName = interaction.message?.interaction?.name;

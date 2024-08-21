@@ -1,6 +1,6 @@
 import { InteractionResponseTypes, InteractionCallbackData } from 'discordeno';
 import { User } from 'discordeno/transformers';
-import { ComponentInteraction } from '../../structures/types/interaction';
+import { ComponentInteraction } from '../../structures/types/Interactions';
 import { bot } from "../../FoxyLauncher";
 import { get } from 'https';
 import { URL } from 'url';

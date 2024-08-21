@@ -11,7 +11,7 @@ import { MessageFlags } from '../../utils/discord/Message';
 import { bot } from "../../FoxyLauncher";
 import { getArgsFromMessage, getOptionFromInteraction } from './GetCommandOption';
 import { prefix } from '../../../config.json';
-import { DiscordTimestamp } from '../../structures/types/timestamp';
+import { DiscordTimestamp } from '../../structures/types/DiscordTimestamps';
 
 export type CanResolve = 'users' | 'members' | false;
 

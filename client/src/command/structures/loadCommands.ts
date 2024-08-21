@@ -1,4 +1,4 @@
-import { CommandInterface } from '../../structures/types/command';
+import { CommandInterface } from '../../structures/types/CommandInterfaces';
 import { bot } from "../../FoxyLauncher";
 import { resolve } from 'node:path';
 import { logger } from '../../utils/logger';

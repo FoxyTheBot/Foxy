@@ -1,5 +1,5 @@
 import { InputTextComponent } from 'discordeno/types';
-import { ModalInteraction } from '../../structures/types/interaction';
+import { ModalInteraction } from '../../structures/types/Interactions';
 
 type FieldData = {
   customId: string;

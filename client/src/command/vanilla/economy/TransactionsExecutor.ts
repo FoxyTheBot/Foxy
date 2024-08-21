@@ -2,7 +2,7 @@ import { User } from "discordeno/*";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { bot } from "../../../FoxyLauncher";
 import { MessageFlags } from "../../../utils/discord/Message";
-import { TransactionType } from "../../../structures/types/transaction";
+import { TransactionType } from "../../../structures/types/Transactions";
 import { createEmbed } from "../../../utils/discord/Embed";
 
 export default class TransactionsExecutor {

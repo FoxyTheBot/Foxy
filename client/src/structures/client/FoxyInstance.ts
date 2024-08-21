@@ -1,5 +1,5 @@
 import { handleInteractionCreate, Collection, DiscordUnavailableGuild, createBot, Intents, startBot } from 'discordeno';
-import { FoxyClient } from '../types/foxy';
+import { FoxyClient } from '../types/FoxyClient';
 import { loadCommands } from '../../command/structures/loadCommands';
 import { transformInteraction } from '../internals/transformers/interactionResponse';
 import { loadLocales } from '../../utils/localeLoader';

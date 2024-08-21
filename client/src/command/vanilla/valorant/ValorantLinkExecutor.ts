@@ -1,7 +1,7 @@
 import { ButtonStyles } from "discordeno/types";
 import { createActionRow, createButton } from "../../../utils/discord/Component";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
-import { FoxyClient } from "../../../structures/types/foxy";
+import { FoxyClient } from "../../../structures/types/FoxyClient";
 
 export default async function ValorantLinkExecutor(bot: FoxyClient, context: UnleashedCommandExecutor, endCommand, t) {
     context.sendReply({

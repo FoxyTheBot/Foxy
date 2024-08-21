@@ -1,9 +1,9 @@
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
-import { FoxyClient } from "../../../structures/types/foxy";
+import { FoxyClient } from "../../../structures/types/FoxyClient";
 import { colors } from "../../../utils/colors";
 import { getRank } from "./utils/getRank";
 import { createEmbed } from "../../../utils/discord/Embed";
-import { UserOverview } from "../../../structures/types/responses";
+import { UserOverview } from "../../../structures/types/APIResponses";
 import { createActionRow, createCustomId, createSelectMenu } from "../../../utils/discord/Component";
 
 export default class ValorantMatchesExecutor {

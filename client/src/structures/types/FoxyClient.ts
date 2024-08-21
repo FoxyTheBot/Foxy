@@ -1,5 +1,5 @@
 import { Bot, Collection, User, createRestManager } from 'discordeno';
-import { CommandInterface } from './command';
+import { CommandInterface } from './CommandInterfaces';
 import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
 import { BotWithCache } from 'discordeno/cache-plugin';
 import DatabaseConnection from '../database/DatabaseConnection';

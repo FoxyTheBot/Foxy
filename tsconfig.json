@@ -7,9 +7,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "CommonJS",
-    "typeRoots": [
-      "./node_modules/@types"
-    ],
     "resolveJsonModule": true,
     "outDir": "./build/",
     "removeComments": true,

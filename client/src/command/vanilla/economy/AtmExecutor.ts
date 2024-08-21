@@ -4,7 +4,7 @@ import { ButtonStyles } from "discordeno/types";
 import { createEmbed } from "../../../utils/discord/Embed";
 import { MessageFlags } from "../../../utils/discord/Message";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
-import { TransactionType } from "../../../structures/types/transaction";
+import { TransactionType } from "../../../structures/types/Transactions";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
 export default class AtmExecutor {

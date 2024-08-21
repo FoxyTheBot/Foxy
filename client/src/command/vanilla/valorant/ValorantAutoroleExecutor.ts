@@ -1,4 +1,4 @@
-import { FoxyClient } from "../../../structures/types/foxy";
+import { FoxyClient } from "../../../structures/types/FoxyClient";
 import { createActionRow, createCustomId, createSelectMenu } from "../../../utils/discord/Component";
 import { MessageFlags } from "../../../utils/discord/Message";
 import ValAutoRoleModule from "../../../utils/modules/ValorantAutoRoleModule";

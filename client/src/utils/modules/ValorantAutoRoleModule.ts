@@ -1,5 +1,5 @@
 import { Member } from "discordeno/transformers";
-import { FoxyClient } from "../../structures/types/foxy";
+import { FoxyClient } from "../../structures/types/FoxyClient";
 import UnleashedCommandExecutor from "../../command/structures/UnleashedCommandExecutor";
 
 export default class ValAutoRoleModule {

@@ -1,4 +1,4 @@
-import { FoxyClient } from "../../../structures/types/foxy";
+import { FoxyClient } from "../../../structures/types/FoxyClient";
 import { createEmbed } from "../../../utils/discord/Embed";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 

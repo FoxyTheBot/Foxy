@@ -4,7 +4,7 @@ import { ButtonStyles } from "discordeno/types";
 import { getPlayerInfo, getPlayerBadges, getIdFromUsername, getPlayerThumbnail } from "noblox.js";
 import { bot } from "../../../FoxyLauncher";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
-import { DiscordTimestamp } from "../../../structures/types/timestamp";
+import { DiscordTimestamp } from "../../../structures/types/DiscordTimestamps";
 
 export default async function RobloxExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const username = context.getOption("username", false);
