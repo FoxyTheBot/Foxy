@@ -57,8 +57,8 @@ export default class ValorantStatsExecutor {
         const rank = getRank(mmrInfo.data.current_data.currenttierpatched ?? "Unrated");
         const highestRank = getRank(mmrInfo.data.highest_rank.patched_tier ?? "Unrated");
 
-        let matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode ?? "unrated");
-        if (!matches) matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, "unrated");
+        let matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, mode ?? "competitive");
+        if (!matches) matches = await bot.rest.foxy.getAllValMatchHistoryByUUID(await userData.riotAccount.puuid, "competitive");
         const formattedRank = rank ? `${t(`commands:valorant.player.ranks.${rank.rank}`)}` : `${t('commands:valorant.player.ranks.UNRATED')}`;
         const formattedHighestRank = highestRank ? `${t(`commands:valorant.player.ranks.${highestRank.rank}`)} (${mmrInfo.data.highest_rank.season
             .toUpperCase()
