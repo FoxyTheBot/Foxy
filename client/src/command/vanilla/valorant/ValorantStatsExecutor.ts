@@ -5,6 +5,7 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 import { colors } from "../../../utils/colors";
 import { getRank } from "./utils/getRank";
 import { bot } from "../../../FoxyLauncher";
+import { MessageFlags } from "../../../utils/discord/Message";
 
 export default class ValorantStatsExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
@@ -14,7 +15,7 @@ export default class ValorantStatsExecutor {
         const mode = context.getOption<string>('mode', false);
         const userData = await bot.database.getUser(user.id);
 
-        context.sendDefer(userData.riotAccount.isPrivate);
+        context.interaction.data.targetId ? context.sendDefer(true) : context.sendDefer(userData.riotAccount.isPrivate);
 
         if (!userData.riotAccount.isLinked) {
             context.sendReply({
@@ -204,6 +205,7 @@ export default class ValorantStatsExecutor {
                         blob: await profileImage,
                         name: 'profile.png'
                     },
+                    flags: MessageFlags.EPHEMERAL
                 });
             } else {
                 context.sendReply({
