@@ -16,7 +16,7 @@ const ViewUserStatsCommand = createCommand({
     category: "util",
 
     execute: async (context, endCommand, t ) => {
-        ValorantStatsExecutor(bot, context, endCommand, t);
+        new ValorantStatsExecutor().execute(context, endCommand, t);
     }
 })
 

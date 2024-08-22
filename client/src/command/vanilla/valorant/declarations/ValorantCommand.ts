@@ -385,7 +385,7 @@ const ValorantCommand = createCommand({
             }
 
             case 'stats': {
-                ValorantStatsExecutor(bot, context, endCommand, t);
+                new ValorantStatsExecutor().execute(context, endCommand, t);
                 break;
             }
 
