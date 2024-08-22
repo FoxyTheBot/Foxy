@@ -1,15 +1,12 @@
 import { bot } from "../../../FoxyLauncher";
 import { User } from "discordeno/transformers";
-import { ButtonStyles } from "discordeno/types";
-import { createEmbed } from "../../../utils/discord/Embed";
-import { MessageFlags } from "../../../utils/discord/Message";
-import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
-import { TransactionType } from "../../../structures/types/Transactions";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
 export default class AtmExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        const user = await context.getOption<User>('user', 'users') ?? context.author;
+        const user = context.interaction.data.targetId ?
+            await bot.helpers.getUser(context.interaction.data.targetId)
+            : context.getOption<User>('user', 'users') ?? context.author;
 
         if (!user) {
             context.sendReply({
@@ -25,7 +22,8 @@ export default class AtmExecutor {
             content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:atm.success', {
                 user: await bot.rest.foxy.getUserDisplayName(user.id),
                 balance: balance.toLocaleString(t.lng || 'pt-BR')
-            }))
+            })),
+            flags: context.interaction.data.targetId ? 64 : 0
         });
 
         endCommand();
