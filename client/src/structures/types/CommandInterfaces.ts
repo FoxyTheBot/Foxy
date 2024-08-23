@@ -1,4 +1,4 @@
-import { CreateSlashApplicationCommand } from 'discordeno';
+import { ApplicationCommandTypes, CreateSlashApplicationCommand } from 'discordeno';
 import ComponentInteractionContext from '../../command/structures/ComponentInteractionContext';
 import UnleashedCommandExecutor from '../../command/structures/UnleashedCommandExecutor';
 
@@ -6,10 +6,24 @@ type CommandCategory = 'economy' | 'roleplay' | 'fun' | 'actions' | 'social' | '
 
 export interface ChatInputCommandConfig extends CreateSlashApplicationCommand {
   // Will also be used as command name for subcommands to be used as legacy commands
+  type?: ApplicationCommandTypes | ApplicationCommandTypes.ChatInput;
   aliases?: string[];
   supportsLegacy?: boolean | false;
   devsOnly?: true;
   category: CommandCategory;
+  integrationTypes?: IntegrationTypes[];
+  contexts?: IntegrationContexts[];
+}
+
+export enum IntegrationTypes {
+  GUILD_INSTALL = 0,
+  USER_INSTALL = 1,
+}
+
+export enum IntegrationContexts {
+  GUILD = 0,
+  BOT_DM = 1,
+  PRIVATE_CHANNEL = 3
 }
 
 export interface CommandInterface extends Readonly<ChatInputCommandConfig> {

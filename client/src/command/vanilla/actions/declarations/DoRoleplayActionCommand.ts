@@ -24,7 +24,7 @@ const DoRoleplayActionCommand = createCommand({
     commandRelatedExecutions: [KissButtonExecutor, HugExecutor, PatExecutor, TickleExecutor, LickExecutor],
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
         // EXPERIMENTAL
-        
+
         context.sendReply({
             content: context.makeReply(bot.emotes.FOXY_HUG, t('commands:roleplay.action')),
             flags: MessageFlags.EPHEMERAL,
