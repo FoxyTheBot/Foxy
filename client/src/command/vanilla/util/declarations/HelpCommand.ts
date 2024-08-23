@@ -1,3 +1,4 @@
+import { IntegrationContexts, IntegrationTypes } from '../../../../structures/types/CommandInterfaces';
 import { createCommand } from '../../../structures/createCommand';
 import HelpExecutor from '../HelpExecutor';
 
@@ -12,6 +13,8 @@ const HelpCommand = createCommand({
     },
     category: 'util',
     supportsLegacy: false,
+    integrationTypes: [IntegrationTypes.GUILD_INSTALL, IntegrationTypes.USER_INSTALL],
+    contexts: [IntegrationContexts.BOT_DM, IntegrationContexts.GUILD, IntegrationContexts.PRIVATE_CHANNEL],
     aliases: ['ajuda', 'commands', 'comandos'],
     execute: async (context, endCommand, t) => {
         HelpExecutor(context, endCommand, t);
