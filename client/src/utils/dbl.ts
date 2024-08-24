@@ -1,7 +1,6 @@
 import { Api } from '@top-gg/sdk';
-import config from '../../config.json';
 
-const api = new Api(config.dblauth);
+const api = new Api(process.env.DBL_TOKEN);
 const postInfo = async ({ guilds }) => {
         api.postStats({
             serverCount: guilds,

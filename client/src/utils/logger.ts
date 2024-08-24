@@ -1,5 +1,4 @@
 import { bot } from "../FoxyLauncher";
-import config from '../../config.json';
 import { User } from "discordeno/transformers";
 
 const logger = {
@@ -25,7 +24,7 @@ const logger = {
 
     commandLog: (command: string, author: User, guild: string, args: string): void => {
         setTimeout(async () => {
-            bot.helpers.sendWebhookMessage(config.webhooks.event_log.id, config.webhooks.event_log.token, {
+            bot.helpers.sendWebhookMessage(process.env.EVENTS_WEBHOOK_ID, process.env.EVENTS_WEBHOOK_TOKEN, {
                 embeds: [{
                     title: "✨ | Comando executado",
                     fields: [{

@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import { logger } from '../../utils/logger';
-import { mongouri } from '../../../config.json';
 import { bot } from '../../FoxyLauncher';
 import { User } from 'discordeno/transformers';
 import { FoxyClient } from '../types/FoxyClient';
@@ -29,7 +28,7 @@ export default class DatabaseConnection {
 
     connect() {
         mongoose.set("strictQuery", true);
-        mongoose.connect(mongouri)
+        mongoose.connect(process.env.MONGO_URI)
             .then(() => logger.info(`[DATABASE] Connected to database!`))
             .catch(error => logger.error(`Failed to connect to database: `, error));
     }

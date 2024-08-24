@@ -3,7 +3,7 @@ node_modules
 package-lock.json
 
 ## Confidential files
-config.json
+.env
 
 ## IDE files
 .idea

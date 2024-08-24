@@ -10,14 +10,12 @@ import { setInteractionCreateEvent } from '../../listeners/interactionCreate';
 import { setGuildCreateEvent } from '../../listeners/guildCreate';
 import { setGuildDeleteEvent } from '../../listeners/guildDelete';
 import { setMessageCreateEvent } from '../../listeners/messageCreate';
-import config from '../../../config.json';
 import express, { Application } from 'express';
 import { logger } from '../../utils/logger';
 import enableCachePlugin from 'discordeno/cache-plugin';
 import { colors } from '../../utils/colors';
 import { FoxyRestManager } from '../../utils/RestManager';
 import { emotes } from '../../utils/emotes';
-import i18next from 'i18next';
 
 export default class FoxyInstance {
     public bot: FoxyClient;
@@ -40,18 +38,18 @@ export default class FoxyInstance {
 
     private createBotInstance() {
         return createBot({
-            token: config.token,
+            token: process.env.DISCORD_TOKEN,
             intents: 37379 as Intents,
-            botId: BigInt(config.clientId),
+            botId: BigInt(process.env.CLIENT_ID),
         }) as FoxyClient;
     }
 
     private async setupDefinitions() {
         this.bot.commands = new Collection();
-        this.bot.isProduction = config.productionEnv;
+        this.bot.isProduction = Boolean(process.env.PRODUCTION);
         this.bot.emotes = emotes;
         this.bot.colors = colors;
-        this.bot.clientId = BigInt(config.clientId);
+        this.bot.clientId = BigInt(process.env.CLIENT_ID);
         this.bot.hasGuildPermission = botHasGuildPermissions;
         this.bot.database = new DatabaseConnection(this.bot);
         this.bot.rest.foxy = new FoxyRestManager(this.bot);
@@ -126,7 +124,7 @@ export default class FoxyInstance {
     }
 
     private async handleUnavailableGuild(message: any) {
-        return this.bot.helpers.sendWebhookMessage(config.webhooks.join_leave_guild.id, config.webhooks.join_leave_guild.token, {
+        return this.bot.helpers.sendWebhookMessage(process.env.JOIN_GUILD_WEBHOOK_ID, process.env.JOIN_GUILD_WEBHOOK_TOKEN, {
             embeds: [{
                 title: `<:emoji:${this.bot.emotes.FOXY_CRY}> **|** Servidor indisponivel!`,
                 description: `**ID:** ${(message.d as DiscordUnavailableGuild).id}`

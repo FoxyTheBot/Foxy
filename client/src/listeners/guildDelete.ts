@@ -1,5 +1,4 @@
 import { bot } from "../FoxyLauncher";
-import config from "../../config.json";
 
 const setGuildDeleteEvent = (): void => {
     bot.events.guildDelete = async (_, guild) => {
@@ -9,7 +8,7 @@ const setGuildDeleteEvent = (): void => {
         if (guildData) {
             await bot.database.removeGuild(guild).then((document) => {
                 setTimeout(() => {
-                    bot.helpers.sendWebhookMessage(config.webhooks.join_leave_guild.id, config.webhooks.join_leave_guild.token, {
+                    bot.helpers.sendWebhookMessage(process.env.JOIN_GUILD_WEBHOOK_ID, process.env.JOIN_GUILD_WEBHOOK_TOKEN, {
                         embeds: [{
                             title: `<:emoji:${bot.emotes.FOXY_CRY}> **|** Fui removida de um servidor!`,
                             description: `**ID:** ${guild}`,

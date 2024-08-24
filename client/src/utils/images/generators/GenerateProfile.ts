@@ -2,7 +2,6 @@ import Canvas, { CanvasRenderingContext2D } from 'canvas';
 import { bot } from "../../../FoxyLauncher";
 import moment from 'moment';
 import { getUserAvatar } from '../../discord/User';
-import { serverURL } from '../../../../config.json';
 import { lylist } from '../../../structures/json/layoutList.json';
 import { User } from 'discordeno/transformers';
 
@@ -58,8 +57,8 @@ export default class CreateProfile {
         const isLayoutWhite = layoutData.darkText;
 
         const [layout, background] = await Promise.all([
-            Canvas.loadImage(`${serverURL}/layouts/${this.data.userProfile.layout}`),
-            Canvas.loadImage(`${serverURL}/backgrounds/${this.testMode && !this.mask ? this.code : this.data.userProfile.background}`)
+            Canvas.loadImage(`${process.env.SERVER_URL}/layouts/${this.data.userProfile.layout}`),
+            Canvas.loadImage(`${process.env.SERVER_URL}/backgrounds/${this.testMode && !this.mask ? this.code : this.data.userProfile.background}`)
         ]);
 
         if (this.testMode && !this.mask) {
@@ -83,7 +82,7 @@ export default class CreateProfile {
         if (this.data.marryStatus.marriedWith) {
             moment.locale(this.locale.lng);
             const partnerUser = bot.users.get(this.data.marryStatus.marriedWith) || await bot.helpers.getUser(this.data.marryStatus.marriedWith);
-            const marriedCard = await Canvas.loadImage(`${serverURL}/assets/layouts/${this.data.userProfile.layout}-married.png`);
+            const marriedCard = await Canvas.loadImage(`${process.env.SERVER_URL}/assets/layouts/${this.data.userProfile.layout}-married.png`);
             context.drawImage(marriedCard, 0, 0, this.canvas.width, this.canvas.height);
             context.font = '50px Anton';
             context.fillText("Casado(a) com:", this.canvas.width / 1.40, this.canvas.height / 16);
@@ -108,14 +107,14 @@ export default class CreateProfile {
         await this.insertBadges();
 
         if (this.data.userProfile.decoration && !this.mask) {
-            const mask = await Canvas.loadImage(`${serverURL}/masks/${this.data.userProfile.decoration}`);
+            const mask = await Canvas.loadImage(`${process.env.SERVER_URL}/masks/${this.data.userProfile.decoration}`);
             const currentMask = await bot.database.getDecoration(this.data.userProfile.decoration);
             const maskPosition = currentMask.isMask ? [this.canvas.width / 100.0, this.canvas.height / 1.45, 220, 210] : [this.canvas.width / 55.0, this.canvas.height / 1.69, 200, 200];
             context.drawImage(mask, ...maskPosition as [number, number, number, number]);
         }
 
         if (this.testMode && this.mask) {
-            const mask = await Canvas.loadImage(`${serverURL}/masks/${this.code}`);
+            const mask = await Canvas.loadImage(`${process.env.SERVER_URL}/masks/${this.code}`);
             context.drawImage(mask, this.canvas.width / 55.0, this.canvas.height / 1.69, 200, 200);
         }
         if (this.data.isBanned) {
@@ -166,7 +165,7 @@ export default class CreateProfile {
         }
 
         if (this.data.isBanned) {
-            const bannedBadge = await Canvas.loadImage(`${serverURL}/assets/badges/banned.png`);
+            const bannedBadge = await Canvas.loadImage(`${process.env.SERVER_URL}/assets/badges/banned.png`);
             userBadges = [bannedBadge];
         } else {
             const additionalBadges = [
@@ -185,7 +184,7 @@ export default class CreateProfile {
 
             userBadges.sort((a, b) => b.priority - a.priority);
             userBadges = await Promise.all(
-                userBadges.map(badge => Canvas.loadImage(`${serverURL}/assets/badges/${badge.asset}`))
+                userBadges.map(badge => Canvas.loadImage(`${process.env.SERVER_URL}/assets/badges/${badge.asset}`))
             );
         }
 

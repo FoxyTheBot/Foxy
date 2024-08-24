@@ -1,5 +1,4 @@
 import * as Canvas from "canvas";
-import { serverURL } from "../../../../config.json";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
 export default async function LaranjoExecutor(context: UnleashedCommandExecutor, endCommand, t) {
@@ -7,7 +6,7 @@ export default async function LaranjoExecutor(context: UnleashedCommandExecutor,
     const canvas = Canvas.createCanvas(700, 600);
     const ctx = canvas.getContext('2d');
 
-    const background = await Canvas.loadImage(`${serverURL}/assets/commands/memes/laranjo.png`);
+    const background = await Canvas.loadImage(`${process.env.SERVER_URL}/assets/commands/memes/laranjo.png`);
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     ctx.strokeStyle = '#74037b';

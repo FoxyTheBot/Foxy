@@ -1,5 +1,4 @@
 import Canvas from "canvas";
-import config from "../../../../config.json";
 import { bot } from "../../../FoxyLauncher";
 
 export default class RenderValorantProfile {
@@ -16,10 +15,10 @@ export default class RenderValorantProfile {
         const canvas = Canvas.createCanvas(1920, 1080);
         const ctx = canvas.getContext('2d');
 
-        const background = await Canvas.loadImage(`${config.serverURL}/assets/valorant/background/main.jpg`);
+        const background = await Canvas.loadImage(`${process.env.SERVER_URL}/assets/valorant/background/main.jpg`);
 
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-        const characterImage = await Canvas.loadImage(`${config.serverURL}/assets/valorant/agents/${data.mostPlayedCharacter.toLowerCase()}.png`);
+        const characterImage = await Canvas.loadImage(`${process.env.SERVER_URL}/assets/valorant/agents/${data.mostPlayedCharacter.toLowerCase()}.png`);
         ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
@@ -122,17 +121,17 @@ export default class RenderValorantProfile {
 
         const maxShots = Math.max(data.headshotsPercentage, data.bodyshotsPercentage, data.legshotsPercentage);
         
-        let headURL = `${config.serverURL}/assets/valorant/body-damage/headshots.png`;
-        let torsoURL = `${config.serverURL}/assets/valorant/body-damage/bodyshots.png`;
-        let legsURL = `${config.serverURL}/assets/valorant/body-damage/legshots.png`;
+        let headURL = `${process.env.SERVER_URL}/assets/valorant/body-damage/headshots.png`;
+        let torsoURL = `${process.env.SERVER_URL}/assets/valorant/body-damage/bodyshots.png`;
+        let legsURL = `${process.env.SERVER_URL}/assets/valorant/body-damage/legshots.png`;
 
         if (maxShots) {
             if (maxShots === data.headshotsPercentage) {
-                headURL = `${config.serverURL}/assets/valorant/body-damage/headshots2.png`;
+                headURL = `${process.env.SERVER_URL}/assets/valorant/body-damage/headshots2.png`;
             } else if (maxShots === data.bodyshotsPercentage) {
-                torsoURL = `${config.serverURL}/assets/valorant/body-damage/bodyshots2.png`;
+                torsoURL = `${process.env.SERVER_URL}/assets/valorant/body-damage/bodyshots2.png`;
             } else if (maxShots === data.legshotsPercentage) {
-                legsURL = `${config.serverURL}/assets/valorant/body-damage/legshots2.png`;
+                legsURL = `${process.env.SERVER_URL}/assets/valorant/body-damage/legshots2.png`;
             }
         }
 

@@ -1,7 +1,6 @@
 import { BigString } from "discordeno/types";
 import { FoxyClient } from "../structures/types/FoxyClient";
 import { User } from "../structures/types/DiscordUser";
-import config from '../../config.json';
 import axios, { AxiosInstance } from "axios";
 import { FoxyImage, ValorantUser } from "../structures/types/APIResponses";
 import { logger } from "./logger";
@@ -14,15 +13,15 @@ export class FoxyRestManager {
     constructor(bot) {
         this.bot = bot;
         this.api = axios.create({
-            baseURL: config.serverURL,
+            baseURL: process.env.SERVER_URL,
             headers: {
-                "Authorization": config.foxyAPIToken
+                "Authorization": process.env.FOXY_API_TOKEN
             }
         });
         this.valorantAPI = axios.create({
             baseURL: 'https://api.henrikdev.xyz',
             headers: {
-                "Authorization": config.valorantAPI
+                "Authorization": process.env.VALORANT_TOKEN
             }
         });
     }

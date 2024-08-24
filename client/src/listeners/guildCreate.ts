@@ -1,5 +1,4 @@
 import { bot } from "../FoxyLauncher";
-import config from "../../config.json";
 
 const setGuildCreateEvent = (): void => {
     bot.events.guildCreate = async (_, guild) => {
@@ -7,7 +6,7 @@ const setGuildCreateEvent = (): void => {
         if (!guildData) {
             await bot.database.addGuild(guild.id);
             setTimeout(() => {
-                bot.helpers.sendWebhookMessage(config.webhooks.join_leave_guild.id, config.webhooks.join_leave_guild.token, {
+                bot.helpers.sendWebhookMessage(process.env.JOIN_GUILD_WEBHOOK_ID, process.env.JOIN_GUILD_WEBHOOK_TOKEN, {
                     embeds: [{
                         title: `<:emoji:${bot.emotes.FOXY_YAY}> **|** Fui adicionada em um servidor!`,
                         thumbnail: {

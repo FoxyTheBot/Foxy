@@ -1,6 +1,5 @@
 import { bot } from "../../FoxyLauncher";
 import { logger } from "../../utils/logger";
-import config from '../../../config.json';
 
 const updateApplicationCommands = async (): Promise<void> => {
     try {
@@ -8,7 +7,7 @@ const updateApplicationCommands = async (): Promise<void> => {
             bot.commands.filter((command) => !command.devsOnly).array()
         );
         await bot.helpers.upsertGuildApplicationCommands(
-            config.devGuildId,
+            process.env.DEV_GUILD_ID,
             bot.commands
                 .filter((command) => !!command.devsOnly)
                 .array(),

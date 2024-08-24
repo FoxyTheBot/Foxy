@@ -10,7 +10,6 @@ import { TFunction } from 'i18next';
 import { MessageFlags } from '../../utils/discord/Message';
 import { bot } from "../../FoxyLauncher";
 import { getArgsFromMessage, getOptionFromInteraction } from './GetCommandOption';
-import { prefix } from '../../../config.json';
 import { DiscordTimestamp } from '../../structures/types/DiscordTimestamps';
 
 export type CanResolve = 'users' | 'members' | false;
@@ -146,7 +145,7 @@ export default class UnleashedCommandExecutor {
 
             return command as string;
         } else {
-            return this.message.content.split(' ')[0].replace(prefix, '');
+            return this.message.content.split(' ')[0].replace(process.env.DEFAULT_PREFIX, '');
         }
     }
 
