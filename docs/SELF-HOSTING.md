@@ -26,30 +26,32 @@ yarn global add typescript
 ## Values that you need to change
 <br>
 
-```json
-{
-  "ownerId": "<YOUR-DISCORD-ID>",
-  "clientId": "<YOUR-BOT-ID>",
-  "devGuildId": "<YOUR-SERVER-ID>",
-  "serverURL": "<YOUR-API-KEY> (Check Cakey repository to configure your API)",
-  "productionEnv": false,
-  "token": "<YOUR-BOT-TOKEN>",
-  "mongouri": "<YOUR-MONGODB-URI>",
-  "dblauth": "<YOUR-TOPGG-TOKEN",
-    "foxyAPIToken": "<YOUR-API-TOKEN>",
-  "valorantAPI": "<YOUR-VALORANT-API-TOKEN> (Check HenrikDev VALORANT API)",
-  "webhooks": {
-    "guilds": {
-      "id": "<WEBHOOK-ID>",
-      "token": "<WEBHOOK-TOKEN>"
-    },
-    "event_log": {
-      "id": "<WEBHOOK-ID>",
-      "token": "<WEBHOOK-TOKEN>"
-    }
-  }
-}
 ```
+## Application settings
+DEFAULT_PREFIX=YOUR-PREFIX
+OWNER_ID=YOUR-DISCORD-ID
+CLIENT_ID=YOUR-BOT-ID
+DEV_GUILD_ID=BOT-SUPPORT-SERVER-ID
+SERVER_URL=YOUR-BOT-API
+PRODUCTION=false
+
+## Default Authentication
+DISCORD_TOKEN=YOUR-BOT-TOKEN
+MONGO_URI=YOUR-MONGODB-URI
+
+## API Keys
+FOXY_API_TOKEN=YOUR-FOXY-API-INSTANCE-TOKEN
+FOXY_LOCAL_API=YOUR-FOXY-LOCAL-API-INSTANCE-TOKEN
+VALORANT_API=YOUR-HENRIKDEV-VALORANT-API-KEY
+DBL_TOKEN=YOUR-DBL-TOKEN
+
+## Webhooks
+JOIN_GUILD_WEBHOOK_ID=YOUR-WEBHOOK
+JOIN_GUILD_WEBHOOK_TOKEN=YOUR-WEBHOOK
+EVENTS_WEBHOOK_ID=YOUR-WEBHOOK
+EVENTS_WEBHOOK_TOKEN=YOUR-WEBHOOK
+```
+
 <br>
 
 ## ✨ | Install all required dependencies
