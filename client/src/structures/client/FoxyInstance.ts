@@ -46,7 +46,7 @@ export default class FoxyInstance {
 
     private async setupDefinitions() {
         this.bot.commands = new Collection();
-        this.bot.isProduction = Boolean(process.env.PRODUCTION);
+        this.bot.isProduction = false;
         this.bot.emotes = emotes;
         this.bot.colors = colors;
         this.bot.clientId = BigInt(process.env.CLIENT_ID);
