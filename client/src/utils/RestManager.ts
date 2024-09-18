@@ -4,6 +4,7 @@ import { User } from "../structures/types/DiscordUser";
 import axios, { AxiosInstance } from "axios";
 import { FoxyImage, ValorantUser } from "../structures/types/APIResponses";
 import { logger } from "./logger";
+import { MatchesResponse } from "../structures/types/valorant/MatchInfo";
 
 export class FoxyRestManager {
     public bot: FoxyClient;

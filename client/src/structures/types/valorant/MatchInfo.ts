@@ -43,6 +43,10 @@ interface MatchStats {
       dealt: number;
       received: number;
   };
+  teams: {
+    red: number,
+    blue: number
+  }
 }
 
 interface MatchTeams {
@@ -50,7 +54,7 @@ interface MatchTeams {
   blue: number;
 }
 
-interface MatchData {
+export interface MatchData {
   meta: MatchMeta;
   stats: MatchStats;
   teams: MatchTeams;
@@ -63,7 +67,7 @@ interface MatchResults {
   after: number;
 }
 
-interface MatchesResponse {
+export interface MatchesResponse {
   status: number;
   name: string;
   tag: string;

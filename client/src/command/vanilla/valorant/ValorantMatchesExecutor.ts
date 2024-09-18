@@ -5,6 +5,7 @@ import { getRank } from "./utils/getRank";
 import { createEmbed } from "../../../utils/discord/Embed";
 import { UserOverview } from "../../../structures/types/APIResponses";
 import { createActionRow, createCustomId, createSelectMenu } from "../../../utils/discord/Component";
+import { MatchData } from "../../../structures/types/valorant/MatchInfo";
 
 export default class ValorantMatchesExecutor {
     constructor(
@@ -21,9 +22,10 @@ export default class ValorantMatchesExecutor {
     }
 
     private async getUserInfo(userData): Promise<UserOverview | null> {
-        if (!userData) return null;
+        if (!userData.riotAccount.puuid) return null;
 
-        const puuid = userData.riotAccount.puuid;
+        const puuid = await userData.riotAccount.puuid;
+        console.log(puuid)
         const user = await this.bot.rest.foxy.getValPlayerByUUID(puuid);
         if (!user) return null;
 
@@ -69,7 +71,7 @@ export default class ValorantMatchesExecutor {
                 footer: { text: this.t('commands:valorant.match.footer') }
             });
 
-            const row = this.createActionRow(userInfo);
+            const row = await this.createActionRow(userInfo);
 
             await this.context.sendReply({
                 embeds: [embed],
@@ -82,25 +84,26 @@ export default class ValorantMatchesExecutor {
     }
 
     private createMatchFields(userInfo: UserOverview) {
-        return userInfo.matches.map(match => {
-            const { metadata, teams } = match;
-            const currentPlayer = match.players.find(player => player.puuid === userInfo.user.data.puuid);
-            const result = this.getMatchResult(teams, currentPlayer.team_id);
+        return userInfo.matches.map((match: MatchData) => {
+            const { meta, teams } = match as MatchData;
+            console.log(match)
+            const currentPlayer = match.stats;
+            const result = this.getMatchResult(match);
 
             return {
-                name: `${metadata.map.name} | ${this.bot.locale(`commands:valorant.match.modes.${metadata.queue.name.toLowerCase()}`)} | ${teams[0].rounds.won ?? 0} - ${teams[1].rounds.won ?? 0} | ${result}`,
-                value: `${this.t('commands:valorant.match.character')}: ${this.context.getEmojiById(this.bot.emotes[currentPlayer.agent.name.toUpperCase()] ?? this.bot.emotes.FOXY_SHRUG)} \n` +
-                    `K/D/A: ${currentPlayer.stats.kills}/${currentPlayer.stats.deaths}/${currentPlayer.stats.assists} \n` +
-                    `Score: ${currentPlayer.stats.score} \n`,
+                name: `${meta.map.name} | ${this.bot.locale(`commands:valorant.match.modes.${meta.mode.toLowerCase()}`)} | ${teams.red ?? 0} - ${teams.blue ?? 0} | ${result}`,
+                value: `${this.t('commands:valorant.match.character')}: ${this.context.getEmojiById(this.bot.emotes[currentPlayer.character.name.toUpperCase()] ?? this.bot.emotes.FOXY_SHRUG)} \n` +
+                    `K/D/A: ${currentPlayer.kills}/${currentPlayer.deaths}/${currentPlayer.assists} \n` +
+                    `Score: ${currentPlayer.score} \n`,
                 inline: true
             };
         });
     }
 
-    private getMatchResult(teams: any, playerTeam: string) {
-        console.log(teams)
-        const teamHasWon = teams[0].won ? "Red" : "Blue" || "Draw";
-
+    private getMatchResult(match: MatchData) {
+        const teams = match.teams;
+        const playerTeam = match.stats.team;
+        const teamHasWon = teams.red > teams.blue ? "Red" : teams.red < teams.blue ? "Blue" : "Draw";
         if (teamHasWon === "Draw") {
             return `${this.context.getEmojiById(this.bot.emotes.FOXY_RAGE)} ${this.t('commands:valorant.match.draw')}`;
         }
@@ -112,13 +115,13 @@ export default class ValorantMatchesExecutor {
 
     private createActionRow(userInfo: UserOverview) {
         const options = userInfo.matches.length
-            ? userInfo.matches.map(match => {
-                const currentPlayer = match.players.find(player => player.puuid === userInfo.user.data.puuid);
+            ? userInfo.matches.map((match: MatchData) => {
+                const currentPlayer = match.stats;
                 return {
-                    label: `${match.metadata.map.name} - ${this.bot.locale(`commands:valorant.match.modes.${match.metadata.queue.name.toLowerCase()}`)}`,
-                    value: match.metadata.match_id,
-                    description: `${match.players.find(player => player.puuid === userInfo.user.data.puuid).agent.name} | K/D/A: ${currentPlayer.stats.kills}/${currentPlayer.stats.deaths}/${currentPlayer.stats.assists}`,
-                    emoji: { id: this.bot.emotes[currentPlayer.agent.name.toUpperCase()] ?? this.bot.emotes.FOXY_SHRUG }
+                    label: `${match.meta.map.name} - ${this.bot.locale(`commands:valorant.match.modes.${match.meta.mode.toLowerCase()}`)}`,
+                    value: match.meta.id,
+                    description: `${currentPlayer.character.name} | K/D/A: ${currentPlayer.kills}/${currentPlayer.deaths}/${currentPlayer.assists}`,
+                    emoji: { id: this.bot.emotes[currentPlayer.character.name.toUpperCase()] ?? this.bot.emotes.FOXY_SHRUG }
                 }
             })
             : [{
@@ -141,7 +144,7 @@ export default class ValorantMatchesExecutor {
                 color: colors.RED,
                 title: this.context.makeReply(this.bot.emotes.VALORANT_LOGO, title),
                 description
-            }]
+            }],
         }).finally(() => this.endCommand());
     }
 }
