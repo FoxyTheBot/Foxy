@@ -16,7 +16,7 @@ export default async function ValorantLinkExecutor(bot: FoxyClient, context: Unl
         components: [createActionRow([createButton({
             label: t('commands:valorant.linkAccountButton'),
             style: ButtonStyles.Link,
-            url: `https://auth.riotgames.com/login#client_id=b54a5c51-dd72-400a-8a80-5ad42798cd27&redirect_uri=https://cakey.foxybot.win/rso/auth/callback&response_type=code&scope=openid&state=${context.author.id}`,
+            url: `https://auth.riotgames.com/authorize?client_id=b54a5c51-dd72-400a-8a80-5ad42798cd27&method=riot_identity&platform=web&redirect_uri=https://cakey.foxybot.win/rso/auth/callback&response_type=code&scope=openid%20offline_access`,
             emoji: {
                 id: BigInt(bot.emotes.VALORANT_LOGO)
             }
