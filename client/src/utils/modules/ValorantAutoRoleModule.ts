@@ -43,21 +43,7 @@ export default class ValAutoRoleModule {
             })
         }
         if (!matchingRole) {
-            setTimeout(() => {
-                this.bot.helpers.addRole(guildId, member.id, role);
-                return this.context.sendReply({
-                    embeds: [{
-                        title: this.context.makeReply(this.bot.emotes.VALORANT_LOGO, this.bot.locale('commands:valorant.update-role.embed.title')),
-                        description: this.bot.locale('commands:valorant.update-role.embed.yourRolesHasBeenUpdated')
-                    }],
-                    flags: 64
-                })
-            }, 2000);
-        }
-
-        if (matchingRole) {
-            setTimeout(() => {
-                this.bot.helpers.removeRole(guildId, member.id, matchingRole);
+            try {
                 setTimeout(() => {
                     this.bot.helpers.addRole(guildId, member.id, role);
                     return this.context.sendReply({
@@ -68,7 +54,29 @@ export default class ValAutoRoleModule {
                         flags: 64
                     })
                 }, 2000);
-            }, 2000);
+            } catch (err) {
+                return "ROLE_NOT_FOUND"
+            }
+        }
+
+        if (matchingRole) {
+            try {
+                setTimeout(() => {
+                    this.bot.helpers.removeRole(guildId, member.id, matchingRole);
+                    setTimeout(() => {
+                        this.bot.helpers.addRole(guildId, member.id, role);
+                        return this.context.sendReply({
+                            embeds: [{
+                                title: this.context.makeReply(this.bot.emotes.VALORANT_LOGO, this.bot.locale('commands:valorant.update-role.embed.title')),
+                                description: this.bot.locale('commands:valorant.update-role.embed.yourRolesHasBeenUpdated')
+                            }],
+                            flags: 64
+                        })
+                    }, 2000);
+                }, 2000);
+            } catch (err) {
+                return "ROLE_NOT_FOUND"
+            }
         }
         return true;
     }

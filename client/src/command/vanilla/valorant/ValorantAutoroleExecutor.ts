@@ -181,12 +181,23 @@ export async function ValorantUpdateAutoroleExecutor(bot, context: UnleashedComm
             flags: 64
         });
     }
-    context.sendReply({
-        embeds: [{
-            title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.update-role.embed.title')),
-            description: t('commands:valorant.update-role.embed.description')
-        }],
-        flags: 64
-    })
-    return valAutoRoleModule.updateRole(context.guildMember);
+    return valAutoRoleModule.updateRole(context.guildMember).then((result) => {
+        if (result === "ROLE_NOT_FOUND") {
+            context.sendReply({
+                embeds: [{
+                    title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.update-role.embed.title')),
+                    description: t('commands:valorant.update-role.embed.roleNotFound')
+                }],
+                flags: 64
+            });
+        } else {
+            context.sendReply({
+                embeds: [{
+                    title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.update-role.embed.title')),
+                    description: t('commands:valorant.update-role.embed.description')
+                }],
+                flags: 64
+            });
+        }
+    });
 }

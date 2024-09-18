@@ -1,6 +1,5 @@
 import { ApplicationCommandTypes } from "discordeno/types";
 import { createCommand } from "../../../structures/createCommand";
-import { bot } from "../../../../FoxyLauncher";
 import ValorantStatsExecutor from "../ValorantStatsExecutor";
 
 const ViewUserStatsCommand = createCommand({

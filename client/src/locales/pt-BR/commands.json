@@ -564,6 +564,7 @@
             "embed": {
                 "title": "VALORANT Autorole",
                 "description": "Estou atualizando os seus cargos, isso pode levar um tempinho...",
+                "roleNotFound": "Não consegui atualizar/remover o cargo, pois ele não foi encontrado no servidor. \n\nVerifique se algum cargo foi deletado com o comando `/valorant autorole`",
                 "description-remove-role": "Estou removendo o seu cargo, isso pode levar um tempinho...",
                 "yourRolesHasBeenUpdated": "Seus cargos foram atualizados!",
                 "sameRole": "Você não precisa executar o comando, o seu cargo é o mesmo do seu ranque no VALORANT",
