@@ -742,6 +742,7 @@
             "redTeam": "{{emoji}} Atacante",
             "blueTeam": "{{emoji}} Defensor",
             "map": "Mapa",
+            "cluster": "Servidor",
             "noMatches": "Não encontrei nenhuma partida",
             "noMatchesDescription": "Não consegui encontrar nenhuma partida com os filtros aplicados.",
             "mode": "Modo",
