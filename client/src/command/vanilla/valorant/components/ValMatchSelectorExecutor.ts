@@ -4,12 +4,12 @@ import { createEmbed } from "../../../../utils/discord/Embed";
 import { getRank } from "../utils/getRank";
 
 const ValMatchSelectorExecutor = async (context: ComponentInteractionContext) => {
+    const userData = await bot.database.getUser(context.author.id);
+    context.sendDefer(userData.riotAccount.isPrivate);
     const matchId = context.interaction.data.values[0];
     const [userPUUID] = context.sentData;
     const match = await bot.rest.foxy.getValMatch(matchId);
-    const userData = await bot.database.getUser(context.author.id);
     const matchInfo = match.data;
-    context.sendDefer(userData.riotAccount.isPrivate);
 
     const userStats = matchInfo.players.all_players.find(player => player.puuid === userPUUID);
 
@@ -100,7 +100,7 @@ const ValMatchSelectorExecutor = async (context: ComponentInteractionContext) =>
         description: `**${bot.locale('commands:valorant.match.map')}:** ${matchInfo.metadata.map}` +
             `\n**${bot.locale('commands:valorant.match.mode')}:** ${bot.locale(`commands:valorant.match.modes.${matchInfo.metadata.mode.toLowerCase()}`)}` +
             `\n**${bot.locale('commands:valorant.match.rounds')}:** ${matchInfo.metadata.rounds_played}` +
-            `\n**Cluster:** ${matchInfo.metadata.cluster}` +
+            `\n**${bot.locale('commands:valorant.match.cluster')}:** ${matchInfo.metadata.cluster}` +
             `\n**${bot.locale('commands:valorant.match.startedAt')}:** <t:${matchInfo.metadata.game_start}:F>`,
         thumbnail: {
             url: userStats.assets.agent.small
