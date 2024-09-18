@@ -164,6 +164,7 @@ export async function ValorantAutoRoleExecutor(bot: FoxyClient, context, endComm
 }
 
 export async function ValorantUpdateAutoroleExecutor(bot, context: UnleashedCommandExecutor, endCommand, t) {
+    context.sendDefer(true);
     const valAutoRoleModule = new ValAutoRoleModule(bot, context);
     const userInfo = await bot.database.getUser(context.author.id);
     if (!bot.hasGuildPermission(bot, context.guildId, ["MANAGE_ROLES"] || ["ADMINISTRATOR"])) {
@@ -181,23 +182,5 @@ export async function ValorantUpdateAutoroleExecutor(bot, context: UnleashedComm
             flags: 64
         });
     }
-    return valAutoRoleModule.updateRole(context.guildMember).then((result) => {
-        if (result === "ROLE_NOT_FOUND") {
-            context.sendReply({
-                embeds: [{
-                    title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.update-role.embed.title')),
-                    description: t('commands:valorant.update-role.embed.roleNotFound')
-                }],
-                flags: 64
-            });
-        } else {
-            context.sendReply({
-                embeds: [{
-                    title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.update-role.embed.title')),
-                    description: t('commands:valorant.update-role.embed.description')
-                }],
-                flags: 64
-            });
-        }
-    });
-}
+    return valAutoRoleModule.updateRole(context.guildMember);
+};

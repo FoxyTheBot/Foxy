@@ -35,7 +35,10 @@ export default class ValorantStatsExecutor {
             embeds: [{
                 color: bot.colors.VALORANT,
                 title: context.makeReply(bot.emotes.VALORANT_LOGO, t('commands:valorant.loadingTitle')),
-                description: t('commands:valorant.loadingDescription')
+                description: t('commands:valorant.loadingDescription'),
+                thumbnail: {
+                    url: "https://cdn.discordapp.com/attachments/1068525425963302936/1286053794928398346/ezgif-5-05d8ce7646.gif?ex=66ec826e&is=66eb30ee&hm=8c801fd70277d0162e68fa69dbda0aab0bb2675d8ec03deeb8c997f1077a91c7&"
+                }
             }]
         });
 

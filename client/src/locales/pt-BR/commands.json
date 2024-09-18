@@ -562,12 +562,12 @@
         "cannotGetInfoDescription": "Não foi possível encontrar informações sobre este jogador, verifique se o nome de usuário está correto ou se o jogador chegou a jogar alguma partida recentemente.",
         "update-role": {
             "embed": {
-                "title": "VALORANT Autorole",
+                "title": "Valorant Autorole",
                 "description": "Estou atualizando os seus cargos, isso pode levar um tempinho...",
                 "roleNotFound": "Não consegui atualizar/remover o cargo, pois ele não foi encontrado no servidor. \n\nVerifique se algum cargo foi deletado com o comando `/valorant autorole`",
                 "description-remove-role": "Estou removendo o seu cargo, isso pode levar um tempinho...",
                 "yourRolesHasBeenUpdated": "Seus cargos foram atualizados!",
-                "sameRole": "Você não precisa executar o comando, o seu cargo é o mesmo do seu ranque no VALORANT",
+                "sameRole": "Seu cargo já foi atualizado, bobinho!",
                 "noPermission": "Eu não tenho permissão para fazer isso, eu preciso da permissão `Gerenciar Cargo` ou `Administrador` para conseguir te dar o cargo :("
             },
             "notLinkedAccount": "Para usar esse comando, você precisa ter uma conta da Riot Games vinculada! Utilize `/valorant vincular-conta` para vincular sua conta."

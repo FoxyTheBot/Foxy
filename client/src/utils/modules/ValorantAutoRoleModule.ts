@@ -4,80 +4,52 @@ import UnleashedCommandExecutor from "../../command/structures/UnleashedCommandE
 
 export default class ValAutoRoleModule {
     public bot: FoxyClient;
-    public context: UnleashedCommandExecutor
-    constructor(bot, context) {
+    public context: UnleashedCommandExecutor;
+    
+    constructor(bot: FoxyClient, context: UnleashedCommandExecutor) {
         this.bot = bot;
         this.context = context;
     }
 
     async updateRole(member: Member) {
         if (!member) return;
+
         const guildId = member.guildId;
         const guildInfo = await this.bot.database.getGuild(guildId);
         const userInfo = await this.bot.database.getUser(member.id);
-        if (!userInfo.riotAccount.isLinked) return;
+
+        if (!userInfo?.riotAccount?.isLinked) return;
+
         const valUserInfo = await this.bot.rest.foxy.getMMR(userInfo.riotAccount.puuid);
-
-        const authorRoles = member.roles.map(role => role ? role.toString() : null);
-        const valAutoRoleModuleRoles = Object.values(guildInfo.valAutoRoleModule);
-
-        const cleanedAuthorRoles = authorRoles.filter(role => role !== null).map(role => role.toLowerCase().trim());
-        const cleanedValAutoRoleModuleRoles = valAutoRoleModuleRoles.filter(role => role !== null && typeof role !== 'boolean').map(role => role);
-
-        const matchingRole = cleanedAuthorRoles.find(role => {
-            return cleanedValAutoRoleModuleRoles.includes(role);
-        });
-
-        const tier = valUserInfo.data.current_data.currenttierpatched || "unrated";
-        const patchedTier: string = tier.match(/[a-zA-Z]+/)[0].toLowerCase();
+        const currentTier = valUserInfo.data.current_data.currenttierpatched?.toLowerCase() || "unrated";
+        const patchedTier = currentTier.match(/[a-zA-Z]+/)?.[0] ?? "unrated";
         const role = guildInfo.valAutoRoleModule[patchedTier + "Role"];
 
         if (!role) return;
+
+        const authorRoles = member.roles.map(role => role.toString()?.toLowerCase()?.trim()).filter(Boolean);
+        const valAutoRoleModuleRoles = Object.values(guildInfo.valAutoRoleModule).filter(role => typeof role === 'string');
+        
+        const matchingRole = authorRoles.find(role => valAutoRoleModuleRoles.includes(role));
+
+        const roleChangeMessage = {
+            title: this.context.makeReply(this.bot.emotes.VALORANT_LOGO, this.bot.locale('commands:valorant.update-role.embed.title')),
+            description: ''
+        };
+
         if (matchingRole === role) {
-            return this.context.sendReply({
-                embeds: [{
-                    title: this.context.makeReply(this.bot.emotes.VALORANT_LOGO, this.bot.locale('commands:valorant.update-role.embed.title')),
-                    description:this.bot.locale('commands:valorant.update-role.embed.sameRole')
-                }],
-                flags: 64,
-            })
-        }
-        if (!matchingRole) {
-            try {
-                setTimeout(() => {
-                    this.bot.helpers.addRole(guildId, member.id, role);
-                    return this.context.sendReply({
-                        embeds: [{
-                            title: this.context.makeReply(this.bot.emotes.VALORANT_LOGO, this.bot.locale('commands:valorant.update-role.embed.title')),
-                            description: this.bot.locale('commands:valorant.update-role.embed.yourRolesHasBeenUpdated')
-                        }],
-                        flags: 64
-                    })
-                }, 2000);
-            } catch (err) {
-                return "ROLE_NOT_FOUND"
-            }
+            roleChangeMessage.description = this.bot.locale('commands:valorant.update-role.embed.sameRole');
+            return this.context.sendReply({ embeds: [roleChangeMessage], flags: 64 });
         }
 
-        if (matchingRole) {
-            try {
-                setTimeout(() => {
-                    this.bot.helpers.removeRole(guildId, member.id, matchingRole);
-                    setTimeout(() => {
-                        this.bot.helpers.addRole(guildId, member.id, role);
-                        return this.context.sendReply({
-                            embeds: [{
-                                title: this.context.makeReply(this.bot.emotes.VALORANT_LOGO, this.bot.locale('commands:valorant.update-role.embed.title')),
-                                description: this.bot.locale('commands:valorant.update-role.embed.yourRolesHasBeenUpdated')
-                            }],
-                            flags: 64
-                        })
-                    }, 2000);
-                }, 2000);
-            } catch (err) {
-                return "ROLE_NOT_FOUND"
-            }
+        try {
+            if (matchingRole) await this.bot.helpers.removeRole(guildId, member.id, matchingRole);
+            await this.bot.helpers.addRole(guildId, member.id, role);
+            roleChangeMessage.description = this.context.getEmojiById(this.bot.emotes.FOXY_YAY) + " " + this.bot.locale('commands:valorant.update-role.embed.yourRolesHasBeenUpdated');
+        } catch (err) {
+            roleChangeMessage.description = this.context.getEmojiById(this.bot.emotes.FOXY_CRY) + " " + this.bot.locale('commands:valorant.update-role.embed.roleNotFound');
         }
-        return true;
+
+        return this.context.sendReply({ embeds: [roleChangeMessage], flags: 64 });
     }
 }
