@@ -6,6 +6,7 @@ import { createEmbed } from "../../../utils/discord/Embed";
 import { UserOverview } from "../../../structures/types/APIResponses";
 import { createActionRow, createCustomId, createSelectMenu } from "../../../utils/discord/Component";
 import { MatchData } from "../../../structures/types/valorant/MatchInfo";
+import { logger } from "../../../utils/logger";
 
 export default class ValorantMatchesExecutor {
     constructor(
@@ -25,7 +26,6 @@ export default class ValorantMatchesExecutor {
         if (!userData.riotAccount.puuid) return null;
 
         const puuid = await userData.riotAccount.puuid;
-        console.log(puuid)
         const user = await this.bot.rest.foxy.getValPlayerByUUID(puuid);
         if (!user) return null;
 
@@ -78,7 +78,7 @@ export default class ValorantMatchesExecutor {
                 components: [row]
             }).finally(() => this.endCommand());
         } catch (e) {
-            console.error(e);
+            logger.error(e);
             this.sendErrorResponse(this.t('commands:valorant.match.notFound'));
         }
     }
@@ -86,7 +86,6 @@ export default class ValorantMatchesExecutor {
     private createMatchFields(userInfo: UserOverview) {
         return userInfo.matches.map((match: MatchData) => {
             const { meta, teams } = match as MatchData;
-            console.log(match)
             const currentPlayer = match.stats;
             const result = this.getMatchResult(match);
 
