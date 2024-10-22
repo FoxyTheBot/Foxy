@@ -21,7 +21,7 @@ const GirlfriendCommand = createCommand({
                 "pt-BR": "Mencione o usuário (ou não...)"
             },
             type: ApplicationCommandOptionTypes.User,
-            required: false
+            required: true
         }
     ],
     execute: async (context, endCommand, t) => {
