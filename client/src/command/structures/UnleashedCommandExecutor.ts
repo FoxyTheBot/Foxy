@@ -16,8 +16,8 @@ export type CanResolve = 'users' | 'members' | false;
 
 export default class UnleashedCommandExecutor {
     public replied = false;
-    public subCommand: string | undefined;
-    public subCommandGroup: string | undefined;
+    public subCommand?: string;
+    public subCommandGroup?: string;
 
     constructor(
         public i18n: TFunction,
@@ -25,16 +25,20 @@ export default class UnleashedCommandExecutor {
         public interaction?: Interaction | null,
     ) {
         if (interaction) {
-            let options = interaction.data?.options ?? [];
+            this.initializeSubCommandOptions(interaction);
+        }
+    }
 
-            if (options[0]?.type === ApplicationCommandOptionTypes.SubCommandGroup) {
-                this.subCommandGroup = options[0].name;
-                options = options[0].options ?? [];
-            }
+    private initializeSubCommandOptions(interaction: Interaction): void {
+        let options = interaction.data?.options ?? [];
 
-            if (options[0]?.type === ApplicationCommandOptionTypes.SubCommand) {
-                this.subCommand = options[0].name;
-            }
+        if (options[0]?.type === ApplicationCommandOptionTypes.SubCommandGroup) {
+            this.subCommandGroup = options[0].name;
+            options = options[0].options ?? [];
+        }
+
+        if (options[0]?.type === ApplicationCommandOptionTypes.SubCommand) {
+            this.subCommand = options[0].name;
         }
     }
 
@@ -43,7 +47,7 @@ export default class UnleashedCommandExecutor {
     }
 
     get commandId(): bigint {
-        return this.interaction ? this.interaction.data?.id : this.message.id;
+        return this.interaction?.data?.id ?? this.message.id;
     }
 
     get isMessage(): boolean {
@@ -51,28 +55,31 @@ export default class UnleashedCommandExecutor {
     }
 
     get channelId(): bigint {
-        return this.interaction ? this.interaction.channelId : this.message.channelId;
+        return this.interaction?.channelId ?? this.message.channelId;
     }
 
     get guildId(): bigint {
-        return this.interaction ? this.interaction.guildId : this.message.guildId;
+        return this.interaction?.guildId ?? this.message.guildId;
     }
 
     get guildMember() {
-        return this.interaction ? this.interaction.member : this.message.member;
+        return this.interaction?.member ?? this.message.member;
     }
 
-    async followUp(options): Promise<void> {
-        if (this.interaction) {
-            await bot.helpers.sendFollowupMessage(this.interaction.token, {
+    async followUp(options: InteractionCallbackData | CreateMessage): Promise<void> {
+        const { interaction, message } = this;
+        const messageOptions = options as CreateMessage;
+
+        if (interaction) {
+            await bot.helpers.sendFollowupMessage(interaction.token, {
                 type: InteractionResponseTypes.ChannelMessageWithSource,
                 data: options as InteractionCallbackData,
             });
-        } else {
-            await bot.helpers.sendMessage(this.message.channelId, {
-                ...options as CreateMessage,
+        } else if (message) {
+            await bot.helpers.sendMessage(message.channelId, {
+                ...messageOptions,
                 messageReference: {
-                    messageId: this.message.id,
+                    messageId: message.id,
                     failIfNotExists: false
                 }
             });
@@ -80,98 +87,82 @@ export default class UnleashedCommandExecutor {
     }
 
     makeReply(emoji: string, text: string): string {
-        return `${`<:emoji:${emoji}>` || `<:emoji:${bot.emotes.FOXY_WOW}>`} **|** ${text}`;
+        return `<:emoji:${emoji}> **|** ${text}` || `<:emoji:${bot.emotes.FOXY_WOW}> **|** ${text}`;
     }
 
     async sendReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
-        if (this.interaction) {
+        const { interaction, message } = this;
+
+        if (interaction) {
             if (this.replied) {
-                await bot.helpers.editOriginalInteractionResponse(this.interaction.token, options);
-                return;
+                await bot.helpers.editOriginalInteractionResponse(interaction.token, options);
+            } else {
+                this.replied = true;
+                await bot.helpers.sendInteractionResponse(interaction.id, interaction.token, {
+                    type: InteractionResponseTypes.ChannelMessageWithSource,
+                    data: options,
+                });
             }
-
-            this.replied = true;
-
-            await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
-                type: InteractionResponseTypes.ChannelMessageWithSource,
-                data: options,
-            });
-        } else {
-            await bot.helpers.sendMessage(this.message.channelId, {
+        } else if (message) {
+            await bot.helpers.sendMessage(message.channelId, {
                 ...options as CreateMessage,
                 messageReference: {
-                    messageId: this.message.id,
+                    messageId: message.id,
                     failIfNotExists: false
                 }
-            })
+            });
         }
     }
 
-    getEmojiById(id: BigInt | string): string {
+    getEmojiById(id: bigint | string): string {
         return `<:emoji:${id}>`;
     }
 
     convertToDiscordTimestamp(date: Date, type: DiscordTimestamp): string {
-        const timestamp = Math.floor(date.getTime() / 1000).toFixed(0);
-        switch (type) {
-            case 0:
-                return `<t:${timestamp}:R>`;
-            case 1:
-                return `<t:${timestamp}:t>`;
-            case 2:
-                return `<t:${timestamp}:T>`;
-            case 3:
-                return `<t:${timestamp}:f> (<t:${timestamp}:R>)`;
-        }
+        const timestamp = Math.floor(date.getTime() / 1000);
+        const formats = ["R", "t", "T", "f"];
+        return `<t:${timestamp}:${formats[type]}>${type === 3 ? ` (<t:${timestamp}:R>)` : ''}`;
     }
 
     locale(text: string, options: Record<string, unknown> = {}): string {
         return this.i18n(text, options);
     }
 
-    getSubCommandGroup(required = false): string {
-        const command = this.subCommandGroup;
-
-        if (!command && required)
-            throw new Error(`SubCommandGroup is required in ${this.interaction.data?.name}`);
-
-        return command as string;
+    getSubCommandGroup(required = false): string | undefined {
+        if (required && !this.subCommandGroup) {
+            throw new Error(`SubCommandGroup is required in ${this.interaction?.data?.name}`);
+        }
+        return this.subCommandGroup;
     }
 
-    getSubCommand(): string {
+    getSubCommand(required = true): string {
         if (this.interaction) {
-            const command = this.subCommand;
-            if (!command) throw new Error(`SubCommand is required in ${this.interaction.data?.name}`);
-
-            return command as string;
+            if (required && !this.subCommand) {
+                throw new Error(`SubCommand is required in ${this.interaction?.data?.name}`);
+            }
+            return this.subCommand as string;
         } else {
-            return this.message.content.split(' ')[0].replace(process.env.DEFAULT_PREFIX, '');
+            return this.message?.content.split(' ')[0].replace(process.env.DEFAULT_PREFIX, '') || '';
         }
     }
 
-    getOption<T>(name: string, shouldResolve: CanResolve, required: true, position?: number): T;
-
-    getOption<T>(name: string, shouldResolve: CanResolve, required?: false, position?: number): T | undefined;
-
-    getOption<T>(name: string, shouldResolve: CanResolve, required?: boolean, position?: number): T | undefined {
+    getOption<T>(name: string, shouldResolve: CanResolve, required = false, position = 1): T | undefined {
         if (this.interaction) {
             return getOptionFromInteraction<T>(this.interaction, name, shouldResolve, required);
         } else {
-            return getArgsFromMessage<T>(this.message.content, name, position || 1, shouldResolve, this.message, required) as unknown as T;
+            return getArgsFromMessage<T>(this.message?.content || '', name, position, shouldResolve, this.message, required) as unknown as T;
         }
     }
 
-    async sendDefer(EPHEMERAL = false): Promise<void> {
-        if (this.interaction) {
-            this.replied = true;
-            await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
-                type: InteractionResponseTypes.DeferredChannelMessageWithSource,
-                data: {
-                    flags: EPHEMERAL ? MessageFlags.EPHEMERAL : undefined,
-                },
-            });
-        } else {
-            return null;
-        }
+    async sendDefer(ephemeral = false): Promise<void> {
+        if (!this.interaction) return;
+
+        this.replied = true;
+        await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
+            type: InteractionResponseTypes.DeferredChannelMessageWithSource,
+            data: {
+                flags: ephemeral ? MessageFlags.EPHEMERAL : undefined,
+            },
+        });
     }
 }
