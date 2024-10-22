@@ -26,10 +26,6 @@ export default class UnleashedCommandExecutor {
         public message?: Message | null,
         public interaction?: Interaction | null,
     ) {
-        async () => {
-            const user = await bot.database.getUser(interaction.user.id);
-            this.currentPremiumTier = getTier(user.userPremium.premium, user.userPremium.premiumDate);
-        }
         if (interaction) {
             this.initializeSubCommandOptions(interaction);
         }
@@ -56,10 +52,6 @@ export default class UnleashedCommandExecutor {
         return this.interaction?.data?.id ?? this.message.id;
     }
 
-    get authorPremiumTier(): string {
-        return this.currentPremiumTier
-    }
-    
     get isMessage(): boolean {
         return !!this.message;
     }
@@ -122,6 +114,11 @@ export default class UnleashedCommandExecutor {
                 }
             });
         }
+    }
+
+    async getUserPremiumTier(): Promise<string> {
+        const user = await bot.database.getUser(this.author.id);
+        return getTier(user.userPremium.premiumType, user.userPremium.premiumDate);
     }
 
     getEmojiById(id: bigint | string): string {
