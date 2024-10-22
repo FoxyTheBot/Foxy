@@ -82,8 +82,8 @@ export default class FoxyInstance {
     private async setupServer() {
         this.server = express();
         this.server.use(express.json());
-        this.server.listen(3001, () => {
-            logger.info(`[SERVER] Server is running on port 3001`)
+        this.server.listen(8080, () => {
+            logger.info(`[SERVER] Server is running on port 8080`)
         });
 
         this.server.post("/status/update", async (req, res) => {

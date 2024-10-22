@@ -11,6 +11,7 @@ import { MessageFlags } from '../../utils/discord/Message';
 import { bot } from "../../FoxyLauncher";
 import { getArgsFromMessage, getOptionFromInteraction } from './GetCommandOption';
 import { DiscordTimestamp } from '../../structures/types/DiscordTimestamps';
+import { getTier } from '../../structures/types/PremiumTiers';
 
 export type CanResolve = 'users' | 'members' | false;
 
@@ -18,12 +19,17 @@ export default class UnleashedCommandExecutor {
     public replied = false;
     public subCommand?: string;
     public subCommandGroup?: string;
+    public currentPremiumTier?: string
 
     constructor(
         public i18n: TFunction,
         public message?: Message | null,
         public interaction?: Interaction | null,
     ) {
+        async () => {
+            const user = await bot.database.getUser(interaction.user.id);
+            this.currentPremiumTier = getTier(user.userPremium.premium);
+        }
         if (interaction) {
             this.initializeSubCommandOptions(interaction);
         }
@@ -50,6 +56,10 @@ export default class UnleashedCommandExecutor {
         return this.interaction?.data?.id ?? this.message.id;
     }
 
+    get authorPremiumTier(): string {
+        return this.currentPremiumTier
+    }
+    
     get isMessage(): boolean {
         return !!this.message;
     }

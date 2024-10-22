@@ -15,7 +15,7 @@ const setInteractionCreateEvent = (): void => {
         bot.locale = locale;
         const command = bot.commands.get(interaction.data?.name);
         const context = new UnleashedCommandExecutor(locale, null, interaction);
-
+        
         if (interaction.type === InteractionTypes.MessageComponent || interaction.type === InteractionTypes.ModalSubmit) {
             componentExecutor(interaction);
             return;
