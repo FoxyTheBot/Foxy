@@ -53,7 +53,7 @@ export default class TransactionsExecutor {
 
     async checkTransactionType(transaction, t, transactionsTexts) {
         switch (transaction.type) {
-            case TransactionType.DAILY: {
+            case TransactionType.DAILY_REWARD: {
                 transactionsTexts.push(t('commands:transactions.dailyTransaction', {
                     date: new Date(transaction.date).toLocaleString(t.lng || 'pt-BR'),
                     amount: transaction.quantity.toString()
