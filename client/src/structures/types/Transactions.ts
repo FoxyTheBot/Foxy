@@ -1,5 +1,5 @@
 export enum TransactionType {
-    DAILY = "daily",
+    DAILY_REWARD = "daily",
     ADD_BY_ADMIN = "addByAdmin",
     SEND = "send",
     RECEIVE = "receive",
