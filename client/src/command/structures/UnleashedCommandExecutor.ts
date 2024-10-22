@@ -28,7 +28,7 @@ export default class UnleashedCommandExecutor {
     ) {
         async () => {
             const user = await bot.database.getUser(interaction.user.id);
-            this.currentPremiumTier = getTier(user.userPremium.premium);
+            this.currentPremiumTier = getTier(user.userPremium.premium, user.userPremium.premiumDate);
         }
         if (interaction) {
             this.initializeSubCommandOptions(interaction);

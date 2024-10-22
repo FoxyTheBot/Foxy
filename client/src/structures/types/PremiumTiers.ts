@@ -5,10 +5,11 @@ export enum PremiumTiers {
     TIER_3 = "Foxy Premium III",
 }
 
-export function getTier(nameOrNumber: string): PremiumTiers | null {
+export function getTier(nameOrNumber: string, expiryAt: Date): PremiumTiers | null {
+    if (expiryAt < new Date()) return PremiumTiers.NONE;
+    
     switch (nameOrNumber) {
         case "0":
-        case null:
             return PremiumTiers.NONE;
         case "1":
         case "Foxy Premium I":
@@ -20,6 +21,6 @@ export function getTier(nameOrNumber: string): PremiumTiers | null {
         case "Foxy Premium III":
             return PremiumTiers.TIER_3;
         default:
-            return null;
+            return PremiumTiers.NONE;
     }
 }
