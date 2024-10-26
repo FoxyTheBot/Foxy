@@ -1,5 +1,5 @@
 import express from 'express';
-import { logger } from '../../../../common/utils/logger';
+import { logger } from '../../../common/utils/logger';
 require('dotenv').config({ path: '../../.env' });
 
 const app = express();

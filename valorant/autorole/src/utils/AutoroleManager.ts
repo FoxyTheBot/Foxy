@@ -1,6 +1,5 @@
-import { FoxyRestManager } from "../../../../../common/utils/RestManager";
-import DatabaseConnection from "../../../../../common/utils/database/DatabaseConnection";
-
+import { FoxyRestManager } from "../../../../common/utils/RestManager";
+import DatabaseConnection from "../../../../common/utils/database/DatabaseConnection";
 export default class ValAutoRoleModule {
     public rest: FoxyRestManager;
     public database: DatabaseConnection;
