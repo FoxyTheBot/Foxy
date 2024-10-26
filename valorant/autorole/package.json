@@ -1,0 +1,16 @@
+{
+    "name": "@foxy/val-autorole",
+    "version": "1.0.0",
+    "description": "",
+    "main": "build/valorant/autorole/src/AutoroleLauncher.js",
+    "scripts": {
+      "build": "npx tsc --project tsconfig.json",
+      "start": "node build/valorant/autorole/src/AutoroleLauncher.js",
+      "watch": "npx tsc --project tsconfig.json --watch",
+      "nodemon": "nodemon build/valorant/autorole/src/AutoroleLauncher.js",
+      "debug": "node --inspect build/valorant/autorole/src/AutoroleLauncher.js"
+    },
+    "author": "WinG4merBR",
+    "license": "AGPL-3.0"
+  }
+  
