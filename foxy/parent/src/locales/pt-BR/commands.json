@@ -586,7 +586,8 @@
             "ROLE_NOT_FOUND": "Não consegui atualizar/remover o cargo, pois ele não foi encontrado no servidor. \n\nVerifique se algum cargo foi deletado com o comando `/valorant autorole`",
             "ROLE_UPDATED": "Seus cargos foram atualizados!",
             "USER_NOT_IN_GUILD": "Você não está no servidor!",
-            "USER_NOT_LINKED": "Você não vinculou uma conta da Riot Games"
+            "USER_NOT_LINKED": "Você não vinculou uma conta da Riot Games",
+            "error": "Ocorreu um erro ao tentar atualizar os cargos, tente novamente mais tarde"
         },
         "unlink": {
             "embed": {

@@ -182,7 +182,7 @@ export async function ValorantUpdateAutoroleExecutor(bot: FoxyClient, context: U
         });
     }
 
-    const roleUpdater = await bot.rest.foxy.updateValorantRole(context.author.id.toString(), context.guildId.toString());
+    const roleUpdater = await bot.rest.foxy.updateValorantRole(context.author.id.toString(), context.guildId.toString()) ?? 'error';
 
     return context.sendReply({
         content: context.makeReply(bot.emotes.VALORANT_LOGO, t(`commands:valorant.update-role.${roleUpdater}`)),
