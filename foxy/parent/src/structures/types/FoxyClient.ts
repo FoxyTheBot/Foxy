@@ -6,6 +6,7 @@ import DatabaseConnection from '../../../../../common/utils/database/DatabaseCon
 import { colors } from '../../../../../common/utils/colors';
 import { FoxyRestManager } from '../../../../../common/utils/RestManager';
 import { emotes } from '../../../../../common/utils/emotes';
+import WebsocketManager from '../../utils/WebSocketClientManager';
 export interface IdentifiedData<T> {
   id: number;
   data: T;
@@ -25,6 +26,7 @@ export interface FoxyClient extends BotWithCache<Bot> {
   foxy: {
     constants: Object;
   };
+  ws: WebsocketManager;
   isReady: boolean;
   hasGuildPermission: typeof botHasGuildPermissions;
   rest: Rest;

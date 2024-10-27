@@ -27,3 +27,11 @@ const startServer = () => {
 };
 
 startServer();
+
+process.on("unhandledRejection", (err) => {
+    logger.error(`Unhandled rejection: ${err}`);
+});
+
+process.on("uncaughtException", (err) => {
+    logger.error(`Uncaught exception: ${err}`);
+});

@@ -16,6 +16,9 @@ import enableCachePlugin from 'discordeno/cache-plugin';
 import { colors } from '../../../common/utils/colors';
 import { FoxyRestManager } from '../../../common/utils/RestManager';
 import { emotes } from '../../../common/utils/emotes';
+import setGuildMemberAddEvent from './listeners/guildMemberAdd';
+import WebSocketClientManager from './utils/WebSocketClientManager';
+import setGuildMemberRemoveEvent from './listeners/guildMemberRemove';
 
 export default class FoxyInstance {
     public bot: FoxyClient;
@@ -77,6 +80,7 @@ export default class FoxyInstance {
         await loadLocales();
         this.bot.transformers.reverse.interactionResponse = transformInteraction;
         this.bot.handlers.INTEGRATION_CREATE = handleInteractionCreate;
+        this.bot.ws = new WebSocketClientManager();
     }
 
     private async setupServer() {
@@ -108,6 +112,9 @@ export default class FoxyInstance {
         setGuildCreateEvent();
         setGuildDeleteEvent();
         setMessageCreateEvent();
+        setGuildMemberAddEvent();
+        setGuildMemberRemoveEvent();
+
         this.bot.gateway.manager.createShardOptions.events.message = async (shard, message) => {
             /* Handle unavailable guilds because discordeno does not handle unavailable guilds by default
             *  Reference: https://discordeno.js.org/api_reference/generated/interfaces/EventHandlers?_highlight=guilddelete#guilddelete
