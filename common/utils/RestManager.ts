@@ -1,5 +1,5 @@
 import { BigString } from "discordeno/types";
-import { User } from "../../foxy/parent/src/structures/types/DiscordUser";
+import { User } from "../types/DiscordUser";
 import axios, { AxiosInstance } from "axios";
 import { FoxyImage, ValorantUser } from "../../foxy/parent/src/structures/types/APIResponses";
 import { logger } from "./logger";
@@ -62,6 +62,48 @@ export class FoxyRestManager {
 
     async getUserAsMember(userId: string, guildId: string) {
         return await this.rest.runMethod(this.rest, "GET", this.constants.routes.GUILD_MEMBER(guildId, userId));
+    }
+
+    async sendMessageToAChannelAsJSON(channelId: string, content: string) {
+        let jsonContent;
+
+        try {
+            jsonContent = JSON.parse(content);
+        } catch (error) {
+            console.warn("Failed to parse JSON, sending as string:", error);
+            jsonContent = { content };
+        }
+
+        const filteredContent: any = {
+            content: jsonContent.content || null,
+            embeds: jsonContent.embeds || [],
+            components: this.normalizeComponents(jsonContent.components || []),
+        };
+
+        try {
+            return await this.rest.runMethod(
+                this.rest,
+                "POST",
+                this.constants.routes.CHANNEL_MESSAGES(channelId),
+                filteredContent
+            );
+        } catch (error) {
+            console.error("Failed to send message:", error);
+            throw new Error("Message sending failed: " + error);
+        }
+    }
+
+    private normalizeComponents(components: any[]): any[] {
+        return components.map(componentGroup => ({
+            type: 1,
+            components: componentGroup.components.map((component: any) => {
+                if (component.type === 2 && component.style !== 5) {
+                    console.warn(`Button '${component.label}' has incorrect style. Setting to 'style: 5' (link).`);
+                    return { ...component, style: 5 };
+                }
+                return component;
+            })
+        }));
     }
 
     /* Valorant API */
@@ -160,6 +202,12 @@ export class FoxyRestManager {
     }
 
     async updateValorantRole(userId: string, guildId: string) {
-        return (await this.valorantAutoRoleAPI.get(this.foxyConstants.VALORANT_AUTOROLE_UPDATE(guildId, userId))).data.status;
+        try {
+            const request = await this.valorantAutoRoleAPI.get(this.foxyConstants.VALORANT_AUTOROLE_UPDATE(guildId, userId));
+            return request.data.status;
+        } catch (error) {
+            logger.error('Error updating Valorant role:', error);
+            return null;
+        }
     }
 }
