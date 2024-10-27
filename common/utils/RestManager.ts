@@ -8,12 +8,12 @@ import { ApiResponse } from '../../foxy/parent/src/structures/types/valorant/Pla
 import { createRestManager } from "discordeno/rest";
 import { createBotConstants } from "discordeno";
 import { constants } from "./constants";
-
+require('dotenv').config({ path: "../../.env" });
 export class FoxyRestManager {
     public api: AxiosInstance;
     public valorantAPI: AxiosInstance;
     public valorantAutoRoleAPI: AxiosInstance;
-
+    
     public rest = createRestManager({
         token: process.env.DISCORD_TOKEN,
         version: 10

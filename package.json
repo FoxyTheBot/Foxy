@@ -9,9 +9,7 @@
     "build:parent": "yarn workspace @foxy/parent build",
     "build:autorole": "yarn workspace @foxy/val-autorole build",
     "start:parent": "yarn workspace @foxy/parent start",
-    "start:autorole": "yarn workspace @foxy/val-autorole start",
-    "build:welcomer": "yarn workspace @foxy/welcomer build",
-    "start:welcomer": "yarn workspace @foxy/welcomer start"
+    "start:autorole": "yarn workspace @foxy/val-autorole start"
   },
   "keywords": [
     "nodejs",
@@ -31,8 +29,7 @@
   },
   "workspaces": [
     "foxy/parent",
-    "valorant/autorole",
-    "welcomer"
+    "valorant/autorole"
   ],
   "homepage": "https://github.com/FoxyTheBot/Foxy#readme",
   "dependencies": {

@@ -1,6 +1,8 @@
-import { Guild, User } from "discordeno";
-import DatabaseConnection from "../../../common/utils/database/DatabaseConnection";
-import { FoxyRestManager } from "../../../common/utils/RestManager";
+import { getGuildIconURL, Guild, User } from "discordeno";
+import DatabaseConnection from "../../../../../common/utils/database/DatabaseConnection";
+import { FoxyRestManager } from "../../../../../common/utils/RestManager";
+import { getUserAvatar } from "../discord/User";
+import { bot } from "../../FoxyLauncher";
 
 export default class WelcomerManager {
     public database: DatabaseConnection;
@@ -12,14 +14,17 @@ export default class WelcomerManager {
     }
 
     private getPlaceholders(guild: Guild, user: User): Record<string, string> {
+        const userAvatar = getUserAvatar(user, { size: 2048, enableGif: true });
+        const guildIcon = getGuildIconURL(bot, guild.id, guild.icon, { size: 2048 });
+
         return {
             "{user}": user.username,
             "{@user}": `<@${user.id}>`,
             "{user.id}": user.id.toString(),
             "{guild.name}": guild.name || "Unknown",
             "{guild.id}": guild.id.toString(),
-            "{user.avatar}": user.avatar?.toString() || "",
-            "{guild.icon}": guild.icon.toString() || "",
+            "{user.avatar}": userAvatar || "",
+            "{guild.icon}": guildIcon || "",
         };
     }
 

@@ -17,7 +17,6 @@ import { colors } from '../../../common/utils/colors';
 import { FoxyRestManager } from '../../../common/utils/RestManager';
 import { emotes } from '../../../common/utils/emotes';
 import setGuildMemberAddEvent from './listeners/guildMemberAdd';
-import WebSocketClientManager from './utils/WebSocketClientManager';
 import setGuildMemberRemoveEvent from './listeners/guildMemberRemove';
 
 export default class FoxyInstance {
@@ -80,7 +79,6 @@ export default class FoxyInstance {
         await loadLocales();
         this.bot.transformers.reverse.interactionResponse = transformInteraction;
         this.bot.handlers.INTEGRATION_CREATE = handleInteractionCreate;
-        this.bot.ws = new WebSocketClientManager();
     }
 
     private async setupServer() {
