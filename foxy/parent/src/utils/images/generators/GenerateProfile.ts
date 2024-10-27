@@ -169,8 +169,7 @@ export default class CreateProfile {
             userBadges = [bannedBadge];
         } else {
             const additionalBadges = [
-                { condition: this.data.marryStatus.marriedWith, id: "married" },
-                { condition: this.data.riotAccount.isLinked, id: "valorant" }
+                { condition: this.data.marryStatus.marriedWith, id: "married" }
             ];
 
             additionalBadges.forEach(({ condition, id }) => {

@@ -7,9 +7,7 @@
   "scripts": {
     "client": "yarn workspace @foxy/parent",
     "build:parent": "yarn workspace @foxy/parent build",
-    "build:autorole": "yarn workspace @foxy/val-autorole build",
-    "start:parent": "yarn workspace @foxy/parent start",
-    "start:autorole": "yarn workspace @foxy/val-autorole start"
+    "start:parent": "yarn workspace @foxy/parent start"
   },
   "keywords": [
     "nodejs",
@@ -28,8 +26,7 @@
     "url": "https://github.com/FoxyTheBot/Foxy/issues"
   },
   "workspaces": [
-    "foxy/parent",
-    "valorant/autorole"
+    "foxy/parent"
   ],
   "homepage": "https://github.com/FoxyTheBot/Foxy#readme",
   "dependencies": {
