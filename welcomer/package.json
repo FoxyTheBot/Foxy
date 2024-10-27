@@ -1,0 +1,15 @@
+{
+    "name": "@foxy/welcomer",
+    "version": "1.0.0",
+    "description": "",
+    "main": "build/welcomer/src/WelcomerLauncher.js",
+    "scripts": {
+      "build": "npx tsc --project tsconfig.json",
+      "start": "node build/welcomer/src/WelcomerLauncher.js",
+      "watch": "npx tsc --project tsconfig.json --watch",
+      "nodemon": "nodemon build/welcomer/src/WelcomerLauncher.js",
+      "debug": "node --inspect build/welcomer/src/WelcomerLauncher.js"
+    },
+    "author": "WinG4merBR",
+    "license": "AGPL-3.0"
+  }
