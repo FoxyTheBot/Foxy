@@ -16,7 +16,7 @@ export default class WelcomerManager {
             "{user}": user.username,
             "{@user}": `<@${user.id}>`,
             "{user.id}": user.id.toString(),
-            "{guild.name}": guild.name,
+            "{guild.name}": guild.name || "Unknown",
             "{guild.id}": guild.id.toString(),
             "{user.avatar}": user.avatar?.toString() || "",
             "{guild.icon}": guild.icon.toString() || "",
