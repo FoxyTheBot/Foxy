@@ -14,7 +14,7 @@ const setReadyEvent = (): void => {
             activities: [{
                 name: bot.isProduction ?
                     "Precisa de ajuda? Entre no meu servidor de suporte foxybot.win/br/support"
-                    : "Tactical nuke incoming!",
+                    : "yatta!",
                 type: ActivityTypes.Game,
                 createdAt: Date.now(),
             }],
