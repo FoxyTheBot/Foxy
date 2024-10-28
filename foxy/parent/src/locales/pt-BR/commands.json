@@ -432,6 +432,11 @@
             "win": "Deu {{result}}! Parabéns, você ganhou {{amount}} cakes! :3"
         }
     },
+    "8mile": {
+        "audioTooLarge": "Eu até queria ver como ficaria o vídeo com esse áudio, mas ele é muito grande... E se eu abrir ele e ele explodir e me levar junto? :(",
+        "unsupportedFormat": "Eu queria poder usar isso, mas não consigo, você precisa enviar um áudio do tipo MP3 ou WAV",
+        "error": "Desculpa, eu não consegui criar o vídeo, eu não sei o que aconteceu, tente novamente mais tarde :("
+    },
     "gosto": {
         "invalidContentType": "Eu queria poder usar isso, mas não consigo, você precisa enviar uma imagem do tipo PNG ou JPEG/JPG",
         "invalidAssets": "Eu não consigo usar o _nada_ como imagem, você precisa enviar uma imagem",

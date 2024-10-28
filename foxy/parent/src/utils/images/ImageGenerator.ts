@@ -7,6 +7,9 @@ import GirlfriendImageGenerator from "./generators/GirlfriendImageGenerator";
 import LaranjoImageGenerator from "./generators/LaranjoImageGenerator";
 import NotStonksImageGenerator from "./generators/NotStonksImageGenerator";
 import StonksImageGenerator from "./generators/StonksImageGenerator";
+import ModaImageGenerator from "./generators/ModaImageGenerator";
+import EminemVideoGenerator from "./generators/8MileVideoGenerator";
+import { Readable } from "stream";
 
 export default class ImageGenerator {
     private profileGenerator: CreateProfile
@@ -16,6 +19,8 @@ export default class ImageGenerator {
     private laranjoImageGenerator: LaranjoImageGenerator
     private notStonksImageGenerator: NotStonksImageGenerator
     private stonksImageGenerator: StonksImageGenerator
+    private modaImageGenerator: ModaImageGenerator
+    private Eminem8MileVideoGenerator: EminemVideoGenerator
 
     constructor() {
         this.profileGenerator = new CreateProfile();
@@ -25,6 +30,8 @@ export default class ImageGenerator {
         this.laranjoImageGenerator = new LaranjoImageGenerator();
         this.notStonksImageGenerator = new NotStonksImageGenerator();
         this.stonksImageGenerator = new StonksImageGenerator();
+        this.modaImageGenerator = new ModaImageGenerator();
+        this.Eminem8MileVideoGenerator = new EminemVideoGenerator();
     }
 
     generateProfile(locale, user, data, testMode?, code?, mask?): Promise<Blob> {
@@ -53,5 +60,22 @@ export default class ImageGenerator {
 
     generateStonksImage(text: string): Promise<Blob> {
         return this.stonksImageGenerator.generateImage(text);
+    }
+
+    generateModaImage(image: Attachment): Promise<Blob> {
+        return this.modaImageGenerator.generateImage(image);
+    }
+
+    generate8MileVideo(audio: Attachment) {
+        return this.Eminem8MileVideoGenerator.generateVideo(audio);
+    }
+
+    streamToBuffer(stream: Readable): Promise<Buffer> {
+        return new Promise((resolve, reject) => {
+            const chunks: Buffer[] = [];
+            stream.on("data", chunk => chunks.push(chunk));
+            stream.on("end", () => resolve(Buffer.concat(chunks)));
+            stream.on("error", reject);
+        });
     }
 }
