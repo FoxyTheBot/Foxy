@@ -13,7 +13,7 @@ import { getArgsFromMessage, getOptionFromInteraction } from './GetCommandOption
 import { DiscordTimestamp } from '../../structures/types/DiscordTimestamps';
 import { getTier } from '../../structures/types/PremiumTiers';
 
-export type CanResolve = 'users' | 'members' | false;
+export type CanResolve = 'users' | 'members' | 'attachments' | false;
 
 export default class UnleashedCommandExecutor {
     public replied = false;
