@@ -11,7 +11,7 @@ import { logger } from "../../../../../../common/utils/logger";
 const unlinkAsync = promisify(fs.unlink);
 
 export default class EminemVideoGenerator {
-  private MAX_AUDIO_SIZE: number = 1024 * 1024 * 10;
+  private MAX_AUDIO_SIZE: number = 1024 * 1024 * 8;
 
   async generateVideo(audio: Attachment): Promise<Readable> {
     if (!audio.contentType?.startsWith("audio") && !audio.contentType?.startsWith("video")) {

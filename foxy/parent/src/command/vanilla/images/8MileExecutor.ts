@@ -22,7 +22,7 @@ export default class EminemExecutor {
         try {
             context.sendDefer();
             const audio = await context.getOption<Attachment>("video_or_audio", "attachments");
-            if (audio.size > 1024 * 1024 * 10) {
+            if (audio.size > 1024 * 1024 * 8) {
                 return context.sendReply({
                     content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:8mile.audioTooLarge"))
                 })
