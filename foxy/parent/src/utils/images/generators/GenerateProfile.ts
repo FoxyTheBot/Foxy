@@ -3,41 +3,27 @@ import { bot } from "../../../FoxyLauncher";
 import moment from 'moment';
 import { getUserAvatar } from '../../discord/User';
 import { lylist } from '../../../structures/json/layoutList.json';
-import { User } from 'discordeno/transformers';
+import { ImageConstants } from '../utils/ImageConstants';
 
 export default class CreateProfile {
-    private user: User;
-    private data: any;
-    private readonly width: number;
-    private readonly height: number;
-    private readonly testMode: boolean;
-    private readonly code: string;
-    private readonly mask: boolean;
-    private readonly locale: any;
+    private readonly width: number = 1436;
+    private readonly height: number = 884;
     private canvas: Canvas.Canvas;
     private context: CanvasRenderingContext2D;
 
-    constructor(locale, user, data, testMode?, code?, mask?) {
-        this.user = user;
-        this.data = data;
-        this.width = 1436;
-        this.height = 884;
-        this.testMode = testMode;
-        this.code = code;
-        this.mask = mask;
-        this.locale = locale
+    constructor() {
         this.canvas = Canvas.createCanvas(this.width, this.height);
         this.context = this.canvas.getContext("2d");
     }
 
-    async create() {
-        let userAboutme = this.data.userProfile.aboutme || this.locale("commands:profile.noAboutme");
+    async create(locale, user, data, testMode?, code?, mask?) {
+        let userAboutme = data.userProfile.aboutme || locale("commands:profile.noAboutme");
         
-        if (this.data.isBanned) {
+        if (data.isBanned) {
             userAboutme = bot.locale('commands:profile.banned', {
-                user: await bot.rest.foxy.getUserDisplayName(this.user.id),
-                reason: this.data.banReason,
-                date: this.data.banDate.toLocaleString(global.t.lng, {
+                user: await bot.rest.foxy.getUserDisplayName(user.id),
+                reason: data.banReason,
+                date: data.banDate.toLocaleString(global.t.lng, {
                     timeZone: "America/Sao_Paulo",
                     hour: '2-digit',
                     minute: '2-digit',
@@ -53,16 +39,16 @@ export default class CreateProfile {
         }
 
         const context = this.canvas.getContext("2d");
-        const layoutData = lylist.find((l) => l.id === this.data.userProfile.layout);
+        const layoutData = lylist.find((l) => l.id === data.userProfile.layout);
         const isLayoutWhite = layoutData.darkText;
 
         const [layout, background] = await Promise.all([
-            Canvas.loadImage(`${process.env.SERVER_URL}/layouts/${this.data.userProfile.layout}`),
-            Canvas.loadImage(`${process.env.SERVER_URL}/backgrounds/${this.testMode && !this.mask ? this.code : this.data.userProfile.background}`)
+            Canvas.loadImage(ImageConstants.PROFILE_LAYOUT(data.userProfile.layout)),
+            Canvas.loadImage(ImageConstants.PROFILE_BACKGROUND(data.userProfile.background))
         ]);
 
-        if (this.testMode && !this.mask) {
-            userAboutme = this.locale("commands:profile.testMode");
+        if (testMode && !mask) {
+            userAboutme = locale("commands:profile.testMode");
         }
 
         const fontColor = isLayoutWhite ? "#000000" : "#ffffff";
@@ -74,21 +60,21 @@ export default class CreateProfile {
 
         context.font = '70px Anton';
         context.fillStyle = fontColor;
-        context.fillText(this.user.username, this.canvas.width / 5.8, this.canvas.height / 1.35);
+        context.fillText(user.username, this.canvas.width / 5.8, this.canvas.height / 1.35);
 
         context.font = '43px Anton';
-        context.fillText(`Cakes: ${this.data.userCakes.balance.toLocaleString("pt-BR")}\nReps: ${this.data.userProfile.repCount.toLocaleString("pt-BR")}`, this.canvas.width / 1.30, this.canvas.height / 1.4);
+        context.fillText(`Cakes: ${data.userCakes.balance.toLocaleString("pt-BR")}\nReps: ${data.userProfile.repCount.toLocaleString("pt-BR")}`, this.canvas.width / 1.30, this.canvas.height / 1.4);
 
-        if (this.data.marryStatus.marriedWith) {
-            moment.locale(this.locale.lng);
-            const partnerUser = bot.users.get(this.data.marryStatus.marriedWith) || await bot.helpers.getUser(this.data.marryStatus.marriedWith);
-            const marriedCard = await Canvas.loadImage(`${process.env.SERVER_URL}/assets/layouts/${this.data.userProfile.layout}-married.png`);
+        if (data.marryStatus.marriedWith) {
+            moment.locale(locale.lng);
+            const partnerUser = bot.users.get(data.marryStatus.marriedWith) || await bot.helpers.getUser(data.marryStatus.marriedWith);
+            const marriedCard = await Canvas.loadImage(ImageConstants.MARRIED_OVERLAY(data.userProfile.layout));
             context.drawImage(marriedCard, 0, 0, this.canvas.width, this.canvas.height);
             context.font = '50px Anton';
             context.fillText("Casado(a) com:", this.canvas.width / 1.40, this.canvas.height / 16);
             context.font = '35px Anton';
             context.fillText(partnerUser.username, this.canvas.width / 1.40, this.canvas.height / 9);
-            context.fillText(`Desde ${this.data.marryStatus.marriedDate.toLocaleString(this.locale.lng)}`, this.canvas.width / 1.40, this.canvas.height / 6.5);
+            context.fillText(`Desde ${data.marryStatus.marriedDate.toLocaleString(locale.lng)}`, this.canvas.width / 1.40, this.canvas.height / 6.5);
         }
 
         context.font = '27px Anton';
@@ -99,25 +85,21 @@ export default class CreateProfile {
         context.arc(125, 700, 100, 0, Math.PI * 2, true);
         context.closePath();
         context.clip();
-        let getAvatar = getUserAvatar(this.user, { size: 2048 }).replace(".jpg", "");
+        let getAvatar = getUserAvatar(user, { size: 2048 }).replace(".jpg", "");
         const avatar = await Canvas.loadImage(getAvatar);
         context.drawImage(avatar, 25, 600, 200, 200);
         context.restore();
 
-        await this.insertBadges();
+        await this.insertBadges(data, user);
 
-        if (this.data.userProfile.decoration && !this.mask) {
-            const mask = await Canvas.loadImage(`${process.env.SERVER_URL}/masks/${this.data.userProfile.decoration}`);
-            const currentMask = await bot.database.getDecoration(this.data.userProfile.decoration);
+        if (data.userProfile.decoration && !mask) {
+            const mask = await Canvas.loadImage(ImageConstants.PROFILE_DECORATION(data.userProfile.decoration));
+            const currentMask = await bot.database.getDecoration(data.userProfile.decoration);
             const maskPosition = currentMask.isMask ? [this.canvas.width / 100.0, this.canvas.height / 1.45, 220, 210] : [this.canvas.width / 55.0, this.canvas.height / 1.69, 200, 200];
             context.drawImage(mask, ...maskPosition as [number, number, number, number]);
         }
 
-        if (this.testMode && this.mask) {
-            const mask = await Canvas.loadImage(`${process.env.SERVER_URL}/masks/${this.code}`);
-            context.drawImage(mask, this.canvas.width / 55.0, this.canvas.height / 1.69, 200, 200);
-        }
-        if (this.data.isBanned) {
+        if (data.isBanned) {
             this.applyBlackAndWhiteFilter();
         }
 
@@ -137,15 +119,15 @@ export default class CreateProfile {
         this.context.putImageData(imageData, 0, 0);
     }
 
-    async insertBadges() {
+    async insertBadges(data, user) {
         const defaultBadges = await bot.database.getBadges();
         const supportServer = bot.guilds.get(768267522670723094n);
-        let member = supportServer.members.get(this.user.id);
+        let member = supportServer.members.get(user.id);
 
         if (!member) {
             try {
-                member = await bot.members.get(this.user.id)
-                ?? await bot.helpers.getMember(supportServer.id, this.user.id);
+                member = await bot.members.get(user.id)
+                ?? await bot.helpers.getMember(supportServer.id, user.id);
             } catch (error: any) {
                 if (error.message.includes("Unknown Member")) {
                     member = null;
@@ -164,12 +146,12 @@ export default class CreateProfile {
             userBadges = defaultBadges.filter(b => roleBadges.includes(b.id));
         }
 
-        if (this.data.isBanned) {
-            const bannedBadge = await Canvas.loadImage(`${process.env.SERVER_URL}/assets/badges/banned.png`);
+        if (data.isBanned) {
+            const bannedBadge = await Canvas.loadImage(ImageConstants.BANNED_BADGE);
             userBadges = [bannedBadge];
         } else {
             const additionalBadges = [
-                { condition: this.data.marryStatus.marriedWith, id: "married" }
+                { condition: data.marryStatus.marriedWith, id: "married" }
             ];
 
             additionalBadges.forEach(({ condition, id }) => {
@@ -183,7 +165,7 @@ export default class CreateProfile {
 
             userBadges.sort((a, b) => b.priority - a.priority);
             userBadges = await Promise.all(
-                userBadges.map(badge => Canvas.loadImage(`${process.env.SERVER_URL}/assets/badges/${badge.asset}`))
+                userBadges.map(badge => Canvas.loadImage(ImageConstants.PROFILE_BADGES(badge.asset)))
             );
         }
 

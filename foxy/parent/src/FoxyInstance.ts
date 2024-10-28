@@ -18,6 +18,7 @@ import { FoxyRestManager } from '../../../common/utils/RestManager';
 import { emotes } from '../../../common/utils/emotes';
 import setGuildMemberAddEvent from './listeners/guildMemberAdd';
 import setGuildMemberRemoveEvent from './listeners/guildMemberRemove';
+import ImageGenerator from './utils/images/ImageGenerator';
 
 export default class FoxyInstance {
     public bot: FoxyClient;
@@ -55,6 +56,7 @@ export default class FoxyInstance {
         this.bot.hasGuildPermission = botHasGuildPermissions;
         this.bot.database = new DatabaseConnection(this.bot);
         this.bot.rest.foxy = new FoxyRestManager();
+        this.bot.generators = new ImageGenerator();
     }
 
     private async setupCache() {
