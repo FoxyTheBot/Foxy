@@ -6,6 +6,8 @@ export const ImageConstants = {
     LARANJO_IMAGE: `${process.env.SERVER_URL}/assets/commands/memes/laranjo.png`,
     NOT_STONKS_IMAGE: `${process.env.SERVER_URL}/assets/commands/memes/notstonks.png`,
     STONKS_IMAGE: `${process.env.SERVER_URL}/assets/commands/memes/stonks.png`,
+    MODA_IMAGE: `${process.env.SERVER_URL}/assets/commands/memes/moda.png`,
+    EMINEM_VIDEO: `${process.env.SERVER_URL}/assets/commands/memes/8mile.mp4`,
 
     /* ---- [Profile Images] ---- */
     PROFILE_BACKGROUND(backgroundId: string) {
