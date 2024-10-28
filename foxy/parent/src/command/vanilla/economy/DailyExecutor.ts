@@ -26,6 +26,15 @@ export default class DailyExecutor {
                         id: BigInt(bot.emotes.FOXY_PETPET)
                     },
                     url: "https://foxybot.win/br/daily"
+                },
+                {
+                    type: MessageComponentTypes.Button,
+                    style: ButtonStyles.Link,
+                    label: t('commands:daily.embed.buyMore'),
+                    emoji: {
+                        id: BigInt(bot.emotes.FOXY_DAILY)
+                    },
+                    url: "https://foxybot.win/br/premium"
                 }]
             }],
             flags: MessageFlags.EPHEMERAL
