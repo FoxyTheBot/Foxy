@@ -11,7 +11,7 @@ export default async function BiteExecutor(context: UnleashedCommandExecutor, en
 
     if (user.id === context.author.id) {
         context.sendReply({
-            content: t('commands:bite.self'),
+            content: context.makeReply(bot.emotes.FOXY_RAGE, t('commands:bite.self')),
             flags: MessageFlags.EPHEMERAL
         });
 
@@ -20,7 +20,7 @@ export default async function BiteExecutor(context: UnleashedCommandExecutor, en
 
     if (user.id === bot.id) {
         context.sendReply({
-            content: t('commands:bite.bot'),
+            content: context.makeReply(bot.emotes.FOXY_RAGE, t('commands:bite.client')),
             flags: MessageFlags.EPHEMERAL
         });
 

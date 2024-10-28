@@ -20,7 +20,7 @@ export default async function DivorceExecutor(context: UnleashedCommandExecutor,
         ?? bot.helpers.getUser(userData.marryStatus.marriedWith);
 
     context.sendReply({
-        content: t("commands:divorce.confirm2", { user: await bot.rest.foxy.getUserDisplayName((await userInfo).id) }),
+        content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:divorce.confirm2", { user: await bot.rest.foxy.getUserDisplayName((await userInfo).id) })),
         components: [createActionRow([createButton({
             customId: createCustomId(0, context.author.id, context.commandId),
             label: t("commands:divorce.confirm"),

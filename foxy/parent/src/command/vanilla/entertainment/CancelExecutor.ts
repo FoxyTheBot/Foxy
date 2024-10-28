@@ -7,14 +7,14 @@ export default async function CancelExecutor(context: UnleashedCommandExecutor, 
     const content = context.getOption<string>('reason', false, null, 2);
     if (!user) {
         context.sendReply({
-            content: t('commands:cancel.noUser')
+            content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:cancel.noUser'))
         });
         return endCommand();
     }
 
     if (!content) {
         context.sendReply({
-            content: t('commands:cancel.noReason')
+            content: context.makeReply(bot.emotes.FOXY_RAGE, t('commands:cancel.noReason'))
         });
         return endCommand();
     }

@@ -12,7 +12,7 @@ export default async function SlapExecutor(context: UnleashedCommandExecutor, en
 
     if (user.id === bot.id) {
         context.sendReply({
-            content: t('commands:slap.bot'),
+            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:slap.bot')),
             flags: MessageFlags.EPHEMERAL
         });
 
@@ -21,7 +21,7 @@ export default async function SlapExecutor(context: UnleashedCommandExecutor, en
 
     if (user.id === context.author.id) {
         context.sendReply({
-            content: t('commands:slap.self'),
+            content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:slap.self')),
             flags: MessageFlags.EPHEMERAL
         });
 

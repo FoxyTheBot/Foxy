@@ -9,7 +9,7 @@ export default async function LanguageExecutor(context: UnleashedCommandExecutor
     await userData.save();
 
     context.sendReply({
-        content: t(`commands:lang.changed`, { language: t(`commands:lang.languages.${language}`) }),
+        content: context.makeReply(bot.emotes.FOXY_YAY, t(`commands:lang.changed`, { language: t(`commands:lang.languages.${language}`) })),
         flags: MessageFlags.EPHEMERAL
     })
 
