@@ -2,6 +2,7 @@ import { Attachment } from "discordeno/transformers";
 import { bot } from "../../../FoxyLauncher";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { logger } from "../../../../../../common/utils/logger";
+
 const SUPPORTED_FORMATS = [
     "audio/mpeg",
     "audio/wav",
@@ -34,14 +35,18 @@ export default class EminemExecutor {
                 })
             }
 
-            const eminemVideo = await bot.generators.generate8MileVideo(audio);
-            const videoBuffer = await bot.generators.streamToBuffer(eminemVideo);
-            const videoBlob = new Blob([videoBuffer], { type: 'video/mp4' });
+            const videoBuffer = await bot.rest.foxy.getArtistryImage("/memes/8mile", {
+                url: audio.url,
+                contentType: audio.contentType,
+                size: audio.size
+            });
+
+            const file = new File([videoBuffer], "8mile.mp4", { type: "video/mp4" });
 
             return context.sendReply({
                 file: {
                     name: "8mile.mp4",
-                    blob: videoBlob
+                    blob: file
                 }
             });
         } catch (error) {

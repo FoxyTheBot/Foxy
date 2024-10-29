@@ -7,12 +7,16 @@ export default class ModaExecutor {
         const image = await context.getOption<Attachment>("image", "attachments");
         context.sendDefer();
 
-        const modaMeme = await bot.generators.generateModaImage(image);
+        const modaMeme = await bot.rest.foxy.getArtistryImage("/memes/moda", {
+            asset: image.url
+        });
         
+        const file = new File([modaMeme], "moda.png", { type: "image/png" });
+
         return context.sendReply({
             file: {
                 name: "moda.png",
-                blob: modaMeme
+                blob: file
             }
         });
     }

@@ -5,12 +5,16 @@ export default async function LaranjoExecutor(context: UnleashedCommandExecutor,
     const content = context.getOption<string>("text", false);
     context.sendDefer();
 
-    const laranjoImage = await bot.generators.generateLaranjoImage(content);
+    const laranjoImage = await bot.rest.foxy.getArtistryImage("/memes/laranjo", {
+        text: content
+    });
+
+    const file = new File([laranjoImage], "laranja_laranjo.png", { type: "image/png" });
 
     context.sendReply({
         file: {
             name: "laranja_laranjo.png",
-            blob: laranjoImage
+            blob: file
         }
     });
     endCommand();

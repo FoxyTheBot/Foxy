@@ -12,11 +12,15 @@ export default async function ErrorExecutor(context: UnleashedCommandExecutor, e
         endCommand();
     }
 
-    const errorImage = await bot.generators.generateWindowsErrorImage(content);
+    const errorImage = await bot.rest.foxy.getArtistryImage("/memes/windowserror", {
+        text: content
+    });
+
+    const file = new File([errorImage], "error.png", { type: "image/png" });
     context.sendReply({
         file: {
             name: "error.png",
-            blob: errorImage
+            blob: file
         }
     })
 

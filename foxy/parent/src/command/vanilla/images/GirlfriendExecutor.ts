@@ -1,6 +1,7 @@
 import { User } from 'discordeno/transformers';
 import UnleashedCommandExecutor from '../../structures/UnleashedCommandExecutor';
 import { bot } from '../../../FoxyLauncher';
+import { getUserAvatar } from '../../../utils/discord/User';
 
 export default async function GirlFriendExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>("user", "users");
@@ -15,12 +16,16 @@ export default async function GirlFriendExecutor(context: UnleashedCommandExecut
         return endCommand();
     }
     
-    const girlfriendMeme = await bot.generators.generateGirlfriendImage(user);;
+    const girlfriendMeme = await bot.rest.foxy.getArtistryImage("/memes/girlfriend", {
+        avatar: getUserAvatar(user, { size: 2048 })
+    });
+    
+    const file = new File([girlfriendMeme], "namorada.png", { type: "image/png" });
 
     context.sendReply({
         file: {
             name: "namorada.png",
-            blob: girlfriendMeme
+            blob: file
         }
     });
 

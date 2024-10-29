@@ -8,6 +8,7 @@ import { createBotConstants } from "discordeno";
 require('dotenv').config({ path: "../../.env" });
 export class FoxyRestManager {
     public api: AxiosInstance;
+    public artistry: AxiosInstance;
 
     public rest = createRestManager({
         token: process.env.DISCORD_TOKEN,
@@ -20,6 +21,13 @@ export class FoxyRestManager {
             baseURL: process.env.SERVER_URL,
             headers: {
                 "Authorization": process.env.FOXY_API_TOKEN
+            }
+        });
+
+        this.artistry = axios.create({
+            baseURL: "http://localhost:3002",
+            headers: {
+                "Authorization": process.env.ARTISTRY_API_TOKEN
             }
         });
     }
@@ -96,6 +104,15 @@ export class FoxyRestManager {
     /* Foxy API */
 
     async getImage(commandCategory: string, commandName: string): Promise<FoxyImage> {
-        return (await this.api.get(`${commandCategory}/${commandName}`)).data;
+        return (await this.api.get(`${commandCategory}/${commandName}`));
     }
+
+    async getArtistryImage(
+        endpoint: string,
+        payload: Record<string, any>,
+    ): Promise<Buffer | any> {
+        const response = await this.artistry.post(endpoint, payload, { responseType: "arraybuffer" });
+        return response.data;
+    }
+
 }

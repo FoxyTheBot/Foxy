@@ -38,11 +38,18 @@ export default class GostoExecutor {
         }
 
         try {
-            const image = await bot.generators.generateGostoMeme(context, asset1, asset2, text);
+            const gostoImage = await bot.rest.foxy.getArtistryImage("/memes/gosto", {
+                asset1: asset1.url,
+                asset2: asset2.url,
+                text,
+            });
+            
+            const file = new File([gostoImage], "naosomosiguais.png", { type: "image/png" });
+
             return context.sendReply({
                 file: [{
                     name: `naosomosiguais_${Date.now()}.png`,
-                    blob: new Blob([image], { type: "image/png" }),
+                    blob: file
                 }],
             });
         } catch (error) {
