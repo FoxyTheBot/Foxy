@@ -25,7 +25,7 @@ export class FoxyRestManager {
         });
 
         this.artistry = axios.create({
-            baseURL: "http://localhost:3002",
+            baseURL: process.env.ARTISTRY_API_URL,
             headers: {
                 "Authorization": process.env.ARTISTRY_API_TOKEN
             }
