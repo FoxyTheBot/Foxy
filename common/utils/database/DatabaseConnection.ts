@@ -177,51 +177,9 @@ export default class DatabaseConnection {
                     description: command.description,
                     category: command.category,
 
-                    // Localizations
                     nameLocalizations: command.nameLocalizations || {},
                     descriptionLocalizations: command.descriptionLocalizations || {},
 
-                    // Subcommands
-                    subcommands: command.options ?
-                        command.options.map(option => {
-                            if (option.type === ApplicationCommandOptionTypes.SubCommand) {
-                                return {
-                                    name: option.name,
-                                    description: option.description,
-                                    nameLocalizations: option.nameLocalizations,
-                                    descriptionLocalizations: option.descriptionLocalizations,
-                                }
-                            }
-                        }) || [] : [],
-
-                    // Subcommand groups
-                    subcommandGroups: command.options ?
-                        command.options.map(option => {
-                            if (option.type === ApplicationCommandOptionTypes.SubCommandGroup) {
-                                return {
-                                    name: option.name,
-                                    description: option.description,
-                                    nameLocalizations: {
-                                        "pt-BR": option.nameLocalizations["pt-BR"] ?? null,
-                                    },
-                                    descriptionLocalizations: {
-                                        "pt-BR": option.descriptionLocalizations["pt-BR"] ?? null,
-                                    },
-                                    subcommands: option.options.map(subcommand => {
-                                        return {
-                                            name: subcommand.name,
-                                            description: subcommand.description,
-                                            nameLocalizations: {
-                                                "pt-BR": subcommand.nameLocalizations["pt-BR"] ?? null,
-                                            },
-                                            descriptionLocalizations: {
-                                                "pt-BR": subcommand.descriptionLocalizations["pt-BR"] ?? null,
-                                            },
-                                        }
-                                    })
-                                }
-                            }
-                        }) || [] : [],
                 },
                 $setOnInsert: {
                     commandUsageCount: 0,

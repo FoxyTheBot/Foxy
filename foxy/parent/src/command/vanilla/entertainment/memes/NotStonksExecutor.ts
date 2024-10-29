@@ -1,5 +1,5 @@
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
-import { bot } from "../../../FoxyLauncher";
+import UnleashedCommandExecutor from "../../../structures/UnleashedCommandExecutor";
+import { bot } from "../../../../FoxyLauncher";
 
 export default async function NotStonksExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const content = context.getOption<string>("text", false);

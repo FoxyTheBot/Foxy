@@ -1,7 +1,7 @@
 import { User } from 'discordeno/transformers';
-import UnleashedCommandExecutor from '../../structures/UnleashedCommandExecutor';
-import { bot } from '../../../FoxyLauncher';
-import { getUserAvatar } from '../../../utils/discord/User';
+import UnleashedCommandExecutor from '../../../structures/UnleashedCommandExecutor';
+import { bot } from '../../../../FoxyLauncher';
+import { getUserAvatar } from '../../../../utils/discord/User';
 
 export default async function GirlFriendExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>("user", "users");

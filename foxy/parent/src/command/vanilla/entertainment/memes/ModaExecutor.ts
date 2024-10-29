@@ -1,6 +1,6 @@
 import { Attachment } from "discordeno/transformers";
-import { bot } from "../../../FoxyLauncher";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { bot } from "../../../../FoxyLauncher";
+import UnleashedCommandExecutor from "../../../structures/UnleashedCommandExecutor";
 
 export default class ModaExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {

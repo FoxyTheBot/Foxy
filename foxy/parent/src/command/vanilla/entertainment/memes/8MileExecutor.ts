@@ -1,7 +1,7 @@
 import { Attachment } from "discordeno/transformers";
-import { bot } from "../../../FoxyLauncher";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
-import { logger } from "../../../../../../common/utils/logger";
+import { bot } from "../../../../FoxyLauncher";
+import UnleashedCommandExecutor from "../../../structures/UnleashedCommandExecutor";
+import { logger } from "../../../../../../../common/utils/logger";
 
 const SUPPORTED_FORMATS = [
     "audio/mpeg",

@@ -1,5 +1,5 @@
-import { bot } from "../../../FoxyLauncher";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { bot } from "../../../../FoxyLauncher";
+import UnleashedCommandExecutor from "../../../structures/UnleashedCommandExecutor";
 import { Attachment } from "discordeno/transformers";
 
 const MAX_DIMENSION = 4096;

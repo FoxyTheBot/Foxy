@@ -1,5 +1,5 @@
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
-import { bot } from "../../../FoxyLauncher";
+import UnleashedCommandExecutor from "../../../structures/UnleashedCommandExecutor";
+import { bot } from "../../../../FoxyLauncher";
 
 export default async function ErrorExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     var content = context.getOption<string>("text", false);
