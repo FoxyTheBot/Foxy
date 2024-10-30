@@ -43,17 +43,22 @@ export default class EminemExecutor {
 
             const file = new File([videoBuffer], "8mile.mp4", { type: "video/mp4" });
 
-            return context.sendReply({
+            context.sendReply({
                 file: {
                     name: "8mile.mp4",
                     blob: file
                 }
             });
+            
+            return endCommand();
+
         } catch (error) {
             context.sendReply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:8mile.error"))
             });
             logger.error(error);
+
+            return endCommand();
         }
     }
 }
