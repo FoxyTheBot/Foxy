@@ -9,7 +9,7 @@ const AnimeCommand = createCommand({
         "pt-BR": "[Utilitários] Pesquisa a informação de algum anime"
     },
     category: "util",
-    supportsLegacy: false,
+    supportsLegacy: true,
     options: [
         {
             name: 'anime',

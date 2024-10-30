@@ -44,9 +44,9 @@ function getOptionFromInteraction<T>(
 
   if (!found) return undefined;
 
-  if (shouldResolve)
+  if (shouldResolve && shouldResolve !== "full-string")
     return interaction.data?.resolved?.[shouldResolve]?.get(
-      BigInt(found?.value as unknown as string),
+      BigInt(found.value as unknown as string),
     ) as unknown as T;
 
   return found?.value as T;
@@ -89,6 +89,12 @@ function getArgsFromMessage<T>(
     return getUser(args[position]) as unknown as T;
   }
 
+  if (shouldResolve === "full-string") {
+    const found = args.slice(position).join(' ') as unknown as T;
+    if (!found && required) throw new Error(`Option ${name} is required in ${message}`);
+    return found;
+  }
+  
   if (!shouldResolve) {
     const found = args.slice(position).join(' ') as unknown as T;
     if (!found && required) throw new Error(`Option ${name} is required in ${message}`);

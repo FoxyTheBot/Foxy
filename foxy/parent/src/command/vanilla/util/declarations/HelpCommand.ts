@@ -12,7 +12,7 @@ const HelpCommand = createCommand({
         "pt-BR": '[Utilitários] Mostra a mensagem de ajuda'
     },
     category: 'util',
-    supportsLegacy: false,
+    supportsLegacy: true,
     integrationTypes: [IntegrationTypes.GUILD_INSTALL, IntegrationTypes.USER_INSTALL],
     contexts: [IntegrationContexts.BOT_DM, IntegrationContexts.GUILD, IntegrationContexts.PRIVATE_CHANNEL],
     aliases: ['ajuda', 'commands', 'comandos'],

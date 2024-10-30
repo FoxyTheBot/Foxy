@@ -13,7 +13,7 @@ import { getArgsFromMessage, getOptionFromInteraction } from './GetCommandOption
 import { DiscordTimestamp } from '../../structures/types/DiscordTimestamps';
 import { getTier } from '../../structures/types/PremiumTiers';
 
-export type CanResolve = 'users' | 'members' | 'attachments' | false;
+export type CanResolve = 'users' | 'members' | 'attachments' | 'full-string' | false;
 
 export default class UnleashedCommandExecutor {
     public replied = false;
@@ -106,13 +106,14 @@ export default class UnleashedCommandExecutor {
                 });
             }
         } else if (message) {
-            await bot.helpers.sendMessage(message.channelId, {
+            bot.helpers.sendMessage(message.channelId, {
                 ...options as CreateMessage,
                 messageReference: {
                     messageId: message.id,
                     failIfNotExists: false
                 }
             });
+            bot.helpers.triggerTypingIndicator(message.channelId);
         }
     }
 
@@ -162,14 +163,17 @@ export default class UnleashedCommandExecutor {
     }
 
     async sendDefer(ephemeral = false): Promise<void> {
-        if (!this.interaction) return;
+        if (this.interaction) {
 
-        this.replied = true;
-        await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
-            type: InteractionResponseTypes.DeferredChannelMessageWithSource,
-            data: {
-                flags: ephemeral ? MessageFlags.EPHEMERAL : undefined,
-            },
-        });
+            this.replied = true;
+            await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
+                type: InteractionResponseTypes.DeferredChannelMessageWithSource,
+                data: {
+                    flags: ephemeral ? MessageFlags.EPHEMERAL : undefined,
+                },
+            });
+        } else {
+            await bot.helpers.startTyping(this.message.channelId);
+        }
     }
 }
