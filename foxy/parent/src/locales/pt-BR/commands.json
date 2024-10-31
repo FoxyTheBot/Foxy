@@ -443,6 +443,12 @@
         "fileTooBig": "Eu até queria usar essa imagem, mas ela é muito grande... E se eu abrir ela e ela explodir e me levar junto? :(",
         "error": "Ocorreu um erro ao tentar processar a imagem, tente novamente mais tarde."
     },
+    "moda": {
+        "fileTooBig": "Eu até queria usar essa imagem, mas ela é muito grande... E se eu abrir ela e ela explodir e me levar junto? :(",
+        "invalidContentType": "Eu queria poder usar isso, mas não consigo, você precisa enviar uma imagem do tipo PNG ou JPEG/JPG",
+        "error": "Ocorreu um erro ao tentar processar a imagem, tente novamente mais tarde.",
+        "invalidAssets": "Eu não consigo usar o _nada_ como imagem, você precisa enviar uma imagem"
+    },
     "global": {
         "noUser": "Usuário não encontrado",
         "noPermission": "Ei! O que você está fazendo? Você precisa da permissão `{{permission}}` para fazer isso!",
