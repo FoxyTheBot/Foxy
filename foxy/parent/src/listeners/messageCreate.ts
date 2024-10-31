@@ -14,6 +14,12 @@ const setMessageCreateEvent = (): void => {
         const botMention = `<@${bot.id}>` || `<@!${bot.id}>`;
         const user = await bot.database.getUser(message.authorId);
         const locale = global.t = i18next.getFixedT(user.userSettings.language || 'pt-BR');
+        console.log(message.guildId)
+        let prefix = process.env.DEFAULT_PREFIX;
+        if (message.guildId) {
+            const guild = await bot.database.getGuild(message.guildId);
+            prefix = guild.guildSettings.prefix;
+        }
 
         if (content === botMention) {
             const botUsername = await bot.rest.foxy.getUserDisplayName(bot.id);
@@ -27,8 +33,11 @@ const setMessageCreateEvent = (): void => {
 
         const context = new UnleashedCommandExecutor(locale, message);
         bot.locale = locale;
-        if (content.startsWith(process.env.PREFIX)) {
-            const commandName = content.split(' ')[0].slice(2);
+
+        if (content.startsWith(prefix)) {
+            const prefixLength = prefix.length;
+            const commandName = content.split(' ')[0].slice(prefixLength);
+            console.log(commandName)
             const command = bot.commands.get(commandName) || bot.commands.find((cmd) => cmd.aliases?.includes(commandName));
             if (user.isBanned) {
                 const banDate = user.banDate.toLocaleString(global.t.lng || 'pt-BR', {

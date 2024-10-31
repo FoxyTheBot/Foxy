@@ -119,20 +119,20 @@ export default class DatabaseConnection {
                 joinChannel: null,
                 leaveChannel: null,
             },
-            valAutoRoleModule: {
+            AutoRoleModule: {
                 isEnabled: false,
-                unratedRole: null,
-                ironRole: null,
-                bronzeRole: null,
-                silverRole: null,
-                goldRole: null,
-                platinumRole: null,
-                diamondRole: null,
-                ascendantRole: null,
-                immortalRole: null,
-                radiantRole: null,
+                roles: []
             },
-            premiumKeys: []
+            premiumKeys: [],
+            guildSettings: {
+                prefix: process.env.DEFAULT_PREFIX,
+                disabledCommands: [],
+                blockedChannels: [],
+                sendMessageIfChannelIsBlocked: false,
+                deleteMessageIfCommandIsExecuted: false,
+                usersWhoCanAccessDashboard: [],
+            },
+            dashboardLogs: []
         });
     }
 
