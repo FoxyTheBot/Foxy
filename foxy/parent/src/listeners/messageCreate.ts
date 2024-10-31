@@ -10,14 +10,19 @@ import { commandLogger } from "../utils/commandLogger";
 const setMessageCreateEvent = (): void => {
     bot.events.messageCreate = async (_, message) => {
         if (message.isFromBot || !message.authorId || message.authorId === bot.id) return;
+
         const { content, channelId } = await message;
         const botMention = `<@${bot.id}>` || `<@!${bot.id}>`;
         const user = await bot.database.getUser(message.authorId);
-        const locale = global.t = i18next.getFixedT(user.userSettings.language || 'pt-BR');
-        console.log(message.guildId)
+        const locale: any = i18next.getFixedT(user.userSettings.language || 'pt-BR');
+        const context = new UnleashedCommandExecutor(locale, message);
+        bot.locale = locale;
+
         let prefix = process.env.DEFAULT_PREFIX;
+        let guild;
+
         if (message.guildId) {
-            const guild = await bot.database.getGuild(message.guildId);
+            guild = await bot.database.getGuild(message.guildId);
             prefix = guild.guildSettings.prefix;
         }
 
@@ -31,16 +36,20 @@ const setMessageCreateEvent = (): void => {
             });
         }
 
-        const context = new UnleashedCommandExecutor(locale, message);
-        bot.locale = locale;
-
         if (content.startsWith(prefix)) {
-            const prefixLength = prefix.length;
-            const commandName = content.split(' ')[0].slice(prefixLength);
-            console.log(commandName)
+            const commandName = content.slice(prefix.length).split(' ')[0];
             const command = bot.commands.get(commandName) || bot.commands.find((cmd) => cmd.aliases?.includes(commandName));
+
+            if (command && guild?.guildSettings.deleteMessageIfCommandIsExecuted) {
+                try {
+                    await bot.helpers.deleteMessage(channelId, message.id);
+                } catch (err) {
+                    logger.error("Can't delete message: ", err);
+                }
+            }
+
             if (user.isBanned) {
-                const banDate = user.banDate.toLocaleString(global.t.lng || 'pt-BR', {
+                const banDate = user.banDate.toLocaleString(locale.lng || 'pt-BR', {
                     timeZone: "America/Sao_Paulo",
                     hour: '2-digit',
                     minute: '2-digit',
@@ -66,27 +75,30 @@ const setMessageCreateEvent = (): void => {
                     })])]
                 });
             }
-            if (command && command.supportsLegacy) {
-                const args = content.split(' ').slice(1);
-                try {
-                    await command.execute(context, () => { }, locale, args);
-                    if (bot.isProduction) {
-                        commandLogger.commandLog(command.name, await context.author,
-                            context.guildId ? context.guildId.toString() : "DM",
-                            args.join(", ") || 'Nenhum'
-                        );
-                        bot.database.updateCommand(command.name);
+
+            if (command) {
+                if (command.supportsLegacy) {
+                    const args = content.split(' ').slice(1);
+                    try {
+                        await command.execute(context, () => {}, locale, args);
+                        if (bot.isProduction) {
+                            commandLogger.commandLog(command.name, await context.author,
+                                context.guildId ? context.guildId.toString() : "DM",
+                                args.join(", ") || 'Nenhum'
+                            );
+                            bot.database.updateCommand(command.name);
+                        }
+                    } catch (error) {
+                        logger.error(error);
                     }
-                } catch (error) {
-                    logger.error(error);
+                } else {
+                    context.sendReply({
+                        content: context.makeReply(
+                            bot.emotes.FOXY_CRY, locale('events:messageCreate.commandNotSupported', {
+                                command: command.name
+                            }))
+                    });
                 }
-            } else if (command) {
-                context.sendReply({
-                    content: context.makeReply(
-                        bot.emotes.FOXY_CRY, locale('events:messageCreate.commandNotSupported', {
-                            command: command.name
-                        }))
-                });
             }
         }
     };
