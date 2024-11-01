@@ -1,9 +1,10 @@
 import Canvas, { CanvasRenderingContext2D } from 'canvas';
 import { bot } from "../../../FoxyLauncher";
-import moment from 'moment';
 import { getUserAvatar } from '../../discord/User';
-import { lylist } from '../../../structures/json/layoutList.json';
 import { ImageConstants } from '../utils/ImageConstants';
+import { FoxyUser } from '../../../../../../common/utils/database/types/user';
+import { User } from 'discordeno/transformers';
+import { Layout } from '../../../../../../common/utils/database/DatabaseConnection';
 
 export default class CreateProfile {
     private readonly width: number = 1436;
@@ -16,169 +17,165 @@ export default class CreateProfile {
         this.context = this.canvas.getContext("2d");
     }
 
-    async create(locale, user, data, testMode?, code?, mask?) {
-        let userAboutme = data.userProfile.aboutme || locale("commands:profile.noAboutme");
-        
-        if (data.isBanned) {
-            userAboutme = bot.locale('commands:profile.banned', {
-                user: await bot.rest.foxy.getUserDisplayName(user.id),
-                reason: data.banReason,
-                date: data.banDate.toLocaleString(global.t.lng, {
-                    timeZone: "America/Sao_Paulo",
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    year: 'numeric',
-                    month: 'numeric',
-                    day: 'numeric'
-                })
-            });
-        }
+    async create(locale, user: User, data: FoxyUser) {
+        const layoutInfo = await bot.database.getLayout(data.userProfile.layout);
+        const userAboutMe = this.formatAboutMe(data.userProfile.aboutme || locale("commands:profile.noAboutme"), layoutInfo);
 
-        if (userAboutme.length > 84) {
-            userAboutme = userAboutme.match(/.{1,65}/g).join("\n");
-        }
-
-        const context = this.canvas.getContext("2d");
-        const layoutData = lylist.find((l) => l.id === data.userProfile.layout);
-        const isLayoutWhite = layoutData.darkText;
-
-        const [layout, background] = await Promise.all([
+        const [layout, background, marriedCard] = await Promise.all([
             Canvas.loadImage(ImageConstants.PROFILE_LAYOUT(data.userProfile.layout)),
-            Canvas.loadImage(ImageConstants.PROFILE_BACKGROUND(data.userProfile.background))
+            Canvas.loadImage(ImageConstants.PROFILE_BACKGROUND(data.userProfile.background)),
+            data.marryStatus.marriedWith ? Canvas.loadImage(ImageConstants.MARRIED_OVERLAY(data.userProfile.layout)) : null
         ]);
 
-        if (testMode && !mask) {
-            userAboutme = locale("commands:profile.testMode");
-        }
+        this.drawBackgroundAndLayout(background, layout);
+        this.drawUserDetails(user, data, userAboutMe, layoutInfo, marriedCard, locale);
+        await this.drawBadges(data, user, layoutInfo);
+        await this.drawDecoration(data, layoutInfo);
 
-        const fontColor = isLayoutWhite ? "#000000" : "#ffffff";
-        context.drawImage(background, 0, 0, this.canvas.width, this.canvas.height);
-        context.drawImage(layout, 0, 0, this.canvas.width, this.canvas.height);
-
-        context.strokeStyle = '#74037b';
-        context.strokeRect(0, 0, this.canvas.width, this.canvas.height);
-
-        context.font = '70px Anton';
-        context.fillStyle = fontColor;
-        context.fillText(user.username, this.canvas.width / 5.8, this.canvas.height / 1.35);
-
-        context.font = '43px Anton';
-        context.fillText(`Cakes: ${data.userCakes.balance.toLocaleString("pt-BR")}\nReps: ${data.userProfile.repCount.toLocaleString("pt-BR")}`, this.canvas.width / 1.30, this.canvas.height / 1.4);
-
-        if (data.marryStatus.marriedWith) {
-            moment.locale(locale.lng);
-            const partnerUser = bot.users.get(data.marryStatus.marriedWith) || await bot.helpers.getUser(data.marryStatus.marriedWith);
-            const marriedCard = await Canvas.loadImage(ImageConstants.MARRIED_OVERLAY(data.userProfile.layout));
-            context.drawImage(marriedCard, 0, 0, this.canvas.width, this.canvas.height);
-            context.font = '50px Anton';
-            context.fillText("Casado(a) com:", this.canvas.width / 1.40, this.canvas.height / 16);
-            context.font = '35px Anton';
-            context.fillText(partnerUser.username, this.canvas.width / 1.40, this.canvas.height / 9);
-            context.fillText(`Desde ${data.marryStatus.marriedDate.toLocaleString(locale.lng)}`, this.canvas.width / 1.40, this.canvas.height / 6.5);
-        }
-
-        context.font = '27px Anton';
-        context.fillText(userAboutme, this.canvas.width / 5.8, this.canvas.height / 1.26);
-        context.save();
-
-        context.beginPath();
-        context.arc(125, 700, 100, 0, Math.PI * 2, true);
-        context.closePath();
-        context.clip();
-        let getAvatar = getUserAvatar(user, { size: 2048 }).replace(".jpg", "");
-        const avatar = await Canvas.loadImage(getAvatar);
-        context.drawImage(avatar, 25, 600, 200, 200);
-        context.restore();
-
-        await this.insertBadges(data, user);
-
-        if (data.userProfile.decoration && !mask) {
-            const mask = await Canvas.loadImage(ImageConstants.PROFILE_DECORATION(data.userProfile.decoration));
-            const currentMask = await bot.database.getDecoration(data.userProfile.decoration);
-            const maskPosition = currentMask.isMask ? [this.canvas.width / 100.0, this.canvas.height / 1.45, 220, 210] : [this.canvas.width / 55.0, this.canvas.height / 1.69, 200, 200];
-            context.drawImage(mask, ...maskPosition as [number, number, number, number]);
-        }
-
-        if (data.isBanned) {
-            this.applyBlackAndWhiteFilter();
-        }
-
-        const blob = new Blob([this.canvas.toBuffer()], { type: 'image/png' });
-        return blob;
+        return new Blob([this.canvas.toBuffer()], { type: 'image/png' });
     }
 
-    applyBlackAndWhiteFilter() {
-        const imageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
-        const data = imageData.data;
-
-        for (let i = 0; i < data.length; i += 4) {
-            const grayscale = data[i] * 0.3 + data[i + 1] * 0.59 + data[i + 2] * 0.11;
-            data[i] = data[i + 1] = data[i + 2] = grayscale;
+    private formatAboutMe(aboutMe: string, layoutInfo: any) {
+        const limit = layoutInfo.profileSettings.aboutme.limit;
+        const breakLength = layoutInfo.profileSettings.aboutme.breakLength;
+        if (aboutMe.length > limit) {
+            return aboutMe.match(new RegExp(`.{1,${breakLength}}`, 'g')).join("\n");
         }
-
-        this.context.putImageData(imageData, 0, 0);
+        return aboutMe;
     }
 
-    async insertBadges(data, user) {
-        const defaultBadges = await bot.database.getBadges();
-        const supportServer = bot.guilds.get(768267522670723094n);
-        let member = supportServer.members.get(user.id);
+    private drawBackgroundAndLayout(background: Canvas.Image, layout: Canvas.Image) {
+        this.context.drawImage(background, 0, 0, this.canvas.width, this.canvas.height);
+        this.context.drawImage(layout, 0, 0, this.canvas.width, this.canvas.height);
+        this.context.strokeStyle = '#74037b';
+        this.context.strokeRect(0, 0, this.canvas.width, this.canvas.height);
+    }
 
-        if (!member) {
-            try {
-                member = await bot.members.get(user.id)
-                ?? await bot.helpers.getMember(supportServer.id, user.id);
-            } catch (error: any) {
-                if (error.message.includes("Unknown Member")) {
-                    member = null;
-                } else {
-                    throw error;
-                }
-            }
-        }
+    private async drawUserDetails(user: User,
+        data: FoxyUser,
+        userAboutMe: string,
+        layoutInfo: any,
+        marriedCard: Canvas.Image | null,
+        locale: any
+    ) {
+        const fontColor = layoutInfo.darkText ? "#000000" : "#ffffff";
 
-        let userBadges = [];
-        const roleBadges = member?.roles
-            .map(r => r.toString())
-            .filter(r => defaultBadges.some(b => b.id === r)) ?? null;
+        this.drawText(user.username, layoutInfo.profileSettings.fontSize.username,
+            layoutInfo.profileSettings.defaultFont,
+            fontColor,
+            layoutInfo.profileSettings.positions.usernamePosition
+        );
 
-        if (member) {
-            userBadges = defaultBadges.filter(b => roleBadges.includes(b.id));
-        }
+        this.drawText(`Cakes: ${data.userCakes.balance.toLocaleString("pt-BR")}`,
+            layoutInfo.profileSettings.fontSize.cakes,
+            layoutInfo.profileSettings.defaultFont,
+            fontColor, layoutInfo.profileSettings.positions.cakesPosition
+        );
 
-        if (data.isBanned) {
-            const bannedBadge = await Canvas.loadImage(ImageConstants.BANNED_BADGE);
-            userBadges = [bannedBadge];
-        } else {
-            const additionalBadges = [
-                { condition: data.marryStatus.marriedWith, id: "married" }
-            ];
+        if (marriedCard) {
+            this.context.drawImage(marriedCard, 0, 0, this.canvas.width, this.canvas.height);
+            this.drawText(`Casado(a) com:`,
+                layoutInfo.profileSettings.fontSize.married,
+                layoutInfo.profileSettings.defaultFont,
+                fontColor,
+                layoutInfo.profileSettings.positions.marriedPosition
+            );
 
-            additionalBadges.forEach(({ condition, id }) => {
-                if (condition) {
-                    const badge = defaultBadges.find(b => b.id === id);
-                    if (badge) userBadges.push(badge);
-                }
-            });
+            const partnerUser = bot.users.get(
+                BigInt(data.marryStatus.marriedWith)) || await bot.helpers.getUser(data.marryStatus.marriedWith);
+            this.drawText(partnerUser.username,
+                layoutInfo.profileSettings.fontSize.marriedSince,
+                layoutInfo.profileSettings.defaultFont,
+                fontColor,
+                layoutInfo.profileSettings.positions.marriedUsernamePosition
+            );
 
-            if (!userBadges.length) return null;
-
-            userBadges.sort((a, b) => b.priority - a.priority);
-            userBadges = await Promise.all(
-                userBadges.map(badge => Canvas.loadImage(ImageConstants.PROFILE_BADGES(badge.asset)))
+            this.drawText(`Desde ${data.marryStatus.marriedDate.toLocaleString(locale.lng)}`,
+                layoutInfo.profileSettings.fontSize.marriedSince,
+                layoutInfo.profileSettings.defaultFont,
+                fontColor,
+                layoutInfo.profileSettings.positions.marriedSincePosition
             );
         }
 
-        let x = 0;
-        let y = 0;
+        this.drawText(userAboutMe,
+            layoutInfo.profileSettings.fontSize.aboutme,
+            layoutInfo.profileSettings.defaultFont,
+            fontColor,
+            layoutInfo.profileSettings.positions.aboutmePosition
+        );
 
-        userBadges.forEach(badge => {
-            this.context.drawImage(badge, x + 10, y + 830, 50, 50);
+        this.drawUserAvatar(user, layoutInfo);
+    }
+
+    private drawText(text: string, fontSize: number, fontFamily: string, color: string, position: { x: number, y: number }) {
+        this.context.font = `${fontSize}px ${fontFamily}`;
+        this.context.fillStyle = color;
+        this.context.fillText(text, this.canvas.width / position.x, this.canvas.height / position.y);
+    }
+
+    private async drawUserAvatar(user: User, layoutInfo: any) {
+        const avatarUrl = getUserAvatar(user, { size: 2048 }).replace(".jpg", "");
+        const avatar = await Canvas.loadImage(avatarUrl);
+        this.context.save();
+        this.context.beginPath();
+        this.context.arc(125, 700, 100, 0, Math.PI * 2, true);
+        this.context.closePath();
+        this.context.clip();
+        this.context.drawImage(avatar,
+            layoutInfo.profileSettings.positions.avatarPosition.x,
+            layoutInfo.profileSettings.positions.avatarPosition.y,
+            200,
+            200
+        );
+        this.context.restore();
+    }
+
+    private async drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
+        const defaultBadges = await bot.database.getBadges();
+        const supportServer = bot.guilds.get(768267522670723094n);
+
+        let member = supportServer.members.get(user.id)
+            ?? await bot.members.get(user.id)
+            ?? await bot.helpers.getMember(supportServer.id, user.id);
+
+        const userBadges = this.getUserBadges(member, defaultBadges, data);
+        if (!userBadges.length) return;
+
+        let x = layoutInfo.profileSettings.positions.badgesPosition.x;
+        let y = layoutInfo.profileSettings.positions.badgesPosition.y;
+
+        for (const badge of userBadges) {
+            const badgeImage = await Canvas.loadImage(ImageConstants.PROFILE_BADGES(badge.asset));
+            this.context.drawImage(badgeImage, x, y, 50, 50);
             x += 60;
             if (x > 1300) {
                 x = 0;
                 y += 50;
             }
-        });
+        }
+    }
+
+    private getUserBadges(member: any, defaultBadges: any[], data: FoxyUser) {
+        const roleBadges = member?.roles.map(r => r.toString()).filter(r => defaultBadges.some(b => b.id === r)) || [];
+        const userBadges = roleBadges.map(id => defaultBadges.find(b => b.id === id)).filter(b => b) || [];
+
+        if (data.marryStatus.marriedWith) {
+            const marriedBadge = defaultBadges.find(b => b.id === "married");
+            if (marriedBadge) userBadges.push(marriedBadge);
+        }
+
+        return userBadges.sort((a, b) => b.priority - a.priority);
+    }
+
+    private async drawDecoration(data: FoxyUser, layoutInfo: Layout) {
+        if (data.userProfile.decoration) {
+            const decorationImage = await Canvas.loadImage(ImageConstants.PROFILE_DECORATION(data.userProfile.decoration));
+            this.context.drawImage(decorationImage,
+                this.canvas.width / layoutInfo.profileSettings.positions.decorationPosition.x,
+                this.canvas.height / layoutInfo.profileSettings.positions.decorationPosition.y,
+                200,
+                200);
+        }
     }
 }

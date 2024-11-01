@@ -7,7 +7,7 @@ export default class ImageGenerator {
         this.profileGenerator = new CreateProfile();
     }
 
-    generateProfile(locale, user, data, testMode?, code?, mask?): Promise<Blob> {
-        return this.profileGenerator.create(locale, user, data, testMode, code, mask);
+    generateProfile(locale, user, data): Promise<Blob> {
+        return this.profileGenerator.create(locale, user, data);
     }
 }

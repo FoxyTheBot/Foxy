@@ -42,6 +42,7 @@ export default class DatabaseConnection {
         this.guilds = mongoose.model('guilds', Schemas.guildSchema);
         this.key = mongoose.model('key', Schemas.keySchema);
         this.badges = mongoose.model('badges', Schemas.badgesSchema);
+        this.layouts = mongoose.model('layouts', Schemas.layoutSchema);
         this.backgrounds = mongoose.model('backgrounds', Schemas.backgroundSchema);
         this.decorations = mongoose.model('decorations', Schemas.avatarDecorationSchema);
         this.riotAccount = mongoose.model('riotAccount', Schemas.riotAccountSchema);
@@ -265,16 +266,53 @@ export default class DatabaseConnection {
         return await this.backgrounds.findOne({ id: backgroundId });
     }
 
+    async getLayout(layoutId: string): Promise<Layout> {
+        return await this.layouts.findOne({ id: layoutId });
+    }
+
     async getDecoration(decorationId: string): Promise<Decoration> {
         return await this.decorations.findOne({ id: decorationId });
     }
 }
+interface ProfileSettings {
+    defaultFont: string;
+    aboutme: {
+        limit: number;
+        breakLength: number;
+    }
+    fontSize: {
+        cakes: number;
+        username: number;
+        married: number;
+        marriedSince: number;
+        aboutme: number;
+    };
+    positions: {
+        avatarPosition: Position;
+        usernamePosition: Position;
+        aboutmePosition: Position;
+        marriedPosition: Position;
+        marriedSincePosition: Position;
+        marriedUsernamePosition: Position;
+        badgesPosition: Position;
+        decorationPosition: Position;
+        cakesPosition: Position;
+    };
+}
 
-interface Transaction {
-    to: bigint,
-    from: bigint,
-    quantity: number,
-    date: Date,
-    received: boolean,
-    type: string
+interface Position {
+    x: number;
+    y: number;
+}
+
+export interface Layout {
+    id: string;
+    name: string;
+    filename: string;
+    description: string | null;
+    cakes: number;
+    inactive: boolean;
+    author: string | null;
+    darkText: boolean;
+    profileSettings: ProfileSettings;
 }

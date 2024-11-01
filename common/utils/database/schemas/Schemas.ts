@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
 
-/* User related schemas */
+/* ========================= */
+/*      User Related Schemas */
+/* ========================= */
+
 const keySchema = new mongoose.Schema({
     key: String,
     used: Boolean,
@@ -8,6 +11,7 @@ const keySchema = new mongoose.Schema({
     pType: Number,
     guild: String,
 }, { versionKey: false, id: false });
+
 const transactionSchema = new mongoose.Schema({
     to: String,
     from: String,
@@ -15,9 +19,8 @@ const transactionSchema = new mongoose.Schema({
     date: Date,
     received: Boolean,
     type: String
-}, {
-    versionKey: false, id: false
-});
+}, { versionKey: false, id: false });
+
 const petSchema = new mongoose.Schema({
     name: String,
     type: String,
@@ -85,9 +88,10 @@ const riotAccountSchema = new mongoose.Schema({
     authCode: String,
 });
 
-/* End of user related schemas */
+/* ========================= */
+/*      Guild Related Schemas */
+/* ========================= */
 
-/* Guild related schemas */
 const keySchemaForGuilds = new mongoose.Schema({
     key: String,
     used: Boolean,
@@ -95,9 +99,7 @@ const keySchemaForGuilds = new mongoose.Schema({
     pType: Number,
     guild: String,
     owner: String,
-}, {
-    versionKey: false, id: false
-});
+}, { versionKey: false, id: false });
 
 const dashboardLogsSchema = new mongoose.Schema({
     _id: String,
@@ -132,9 +134,9 @@ const guildSchema = new mongoose.Schema({
     dashboardLogs: [dashboardLogsSchema]
 }, { versionKey: false, id: false });
 
-/* End of guild related schemas */
-
-/* Bot related schemas */
+/* ========================= */
+/*      Bot Related Schemas   */
+/* ========================= */
 
 const subCommandSchema = new mongoose.Schema({
     name: String,
@@ -159,7 +161,6 @@ const subCommandGroupSchema = new mongoose.Schema({
     subcommands: [subCommandSchema],
 }, { versionKey: false, id: false });
 
-
 const commandsSchema = new mongoose.Schema({
     commandName: String,
     commandUsageCount: Number,
@@ -176,7 +177,6 @@ const commandsSchema = new mongoose.Schema({
         "pt-BR": String,
     },
 }, { versionKey: false, id: false });
-
 
 const backgroundSchema = new mongoose.Schema({
     id: String,
@@ -208,6 +208,48 @@ const badgesSchema = new mongoose.Schema({
     priority: Number,
 });
 
+const positionSchema = new mongoose.Schema({
+    x: { type: Number, required: true },
+    y: { type: Number, required: true },
+}, { _id: false });
+
+const fontSizeSchema = new mongoose.Schema({
+    cakes: { type: Number, required: true },
+    username: { type: Number, required: true },
+    married: { type: Number, required: true },
+    marriedSince: { type: Number, required: true },
+    aboutme: { type: Number, required: true },
+}, { _id: false });
+
+const profileSettingsSchema = new mongoose.Schema({
+    defaultFont: { type: String, required: true },
+    aboutme: { limit: Number, breakLength: Number },
+    fontSize: fontSizeSchema,
+    positions: {
+        avatarPosition: positionSchema,
+        usernamePosition: positionSchema,
+        aboutmePosition: positionSchema,
+        marriedPosition: positionSchema,
+        marriedSincePosition: positionSchema,
+        marriedUsernamePosition: positionSchema,
+        badgesPosition: positionSchema,
+        decorationPosition: positionSchema,
+        cakesPosition: positionSchema,
+    },
+}, { _id: false });
+
+const layoutSchema = new mongoose.Schema({
+    id: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
+    filename: { type: String, required: true },
+    description: { type: String, default: null },
+    cakes: { type: Number, required: true },
+    inactive: { type: Boolean, required: true },
+    author: { type: String, default: null },
+    darkText: { type: Boolean, required: true },
+    profileSettings: profileSettingsSchema,
+}, { versionKey: false, id: false });
+
 export const Schemas = {
     userSchema,
     guildSchema,
@@ -217,6 +259,5 @@ export const Schemas = {
     keySchema,
     avatarDecorationSchema,
     badgesSchema,
+    layoutSchema,
 };
-
-/* End of bot related schemas */
