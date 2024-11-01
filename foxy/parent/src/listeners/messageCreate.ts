@@ -36,6 +36,8 @@ const setMessageCreateEvent = (): void => {
             });
         }
 
+        if (guild?.guildSettings.blockedChannels.includes(channelId)) return;
+        
         if (content.startsWith(prefix)) {
             const commandName = content.slice(prefix.length).split(' ')[0];
             const command = bot.commands.get(commandName) || bot.commands.find((cmd) => cmd.aliases?.includes(commandName));

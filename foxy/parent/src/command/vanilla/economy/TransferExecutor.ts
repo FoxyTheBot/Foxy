@@ -45,16 +45,16 @@ export default class TransferExecutor {
         }
 
         bot.database.createTransaction(context.author.id, {
-            to: user.id,
-            from: context.author.id,
+            to: user.id.toString(),
+            from: context.author.id.toString(),
             date: new Date(Date.now()),
             quantity: amount,
             received: false,
             type: 'send'
         });
         bot.database.createTransaction(user.id, {
-            to: user.id,
-            from: context.author.id,
+            to: user.id.toString(),
+            from: context.author.id.toString(),
             date: new Date(Date.now()),
             quantity: amount,
             received: true,

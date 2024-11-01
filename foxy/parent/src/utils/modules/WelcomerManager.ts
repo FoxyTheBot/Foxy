@@ -3,6 +3,7 @@ import DatabaseConnection from "../../../../../common/utils/database/DatabaseCon
 import { FoxyRestManager } from "../../../../../common/utils/RestManager";
 import { getUserAvatar } from "../discord/User";
 import { bot } from "../../FoxyLauncher";
+import { FoxyGuild } from "../../../../../common/utils/database/types/guild";
 
 export default class WelcomerManager {
     public database: DatabaseConnection;
@@ -61,7 +62,7 @@ export default class WelcomerManager {
 
         if (guildInfo.GuildJoinLeaveModule.alertWhenUserLeaves) {
             const placeholders = this.getPlaceholders(
-                { ...guildInfo, id: BigInt(guildId) } as Guild,
+                { ...guildInfo, id: BigInt(guildId) } as any,
                 user
             );
             const formattedMessage = this.applyPlaceholders(

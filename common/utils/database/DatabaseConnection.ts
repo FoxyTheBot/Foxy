@@ -1,12 +1,13 @@
 import mongoose from 'mongoose';
-import { User } from 'discordeno/transformers';
 import { Schemas } from './schemas/Schemas';
 import { CommandInterface } from '../../../foxy/parent/src/structures/types/CommandInterfaces';
-import { ApplicationCommandOptionTypes, DiscordUser } from 'discordeno/types';
+import { DiscordUser } from 'discordeno/types';
 import { Background, Badge, Decoration } from '../../types/UserProfile';
 import { FoxyClient } from '../../../foxy/parent/src/structures/types/FoxyClient';
 import { logger } from '../logger';
 import { FoxyRestManager } from '../RestManager';
+import { FoxyTransaction, FoxyUser } from './types/user';
+import { FoxyGuild } from './types/guild';
 
 export default class DatabaseConnection {
     public bot: FoxyClient;
@@ -108,7 +109,7 @@ export default class DatabaseConnection {
         });
     }
 
-    createGuild(guildId: string) {
+    createGuild(guildId: string): Promise<FoxyGuild> {
         return new this.guilds({
             _id: guildId,
             GuildJoinLeaveModule: {
@@ -136,7 +137,7 @@ export default class DatabaseConnection {
         });
     }
 
-    async createTransaction(userId: bigint, transaction: Transaction) {
+    async createTransaction(userId: bigint, transaction: FoxyTransaction) {
         let document = await this.getUser(userId);
 
         document.userTransactions.push({
@@ -151,7 +152,7 @@ export default class DatabaseConnection {
         await document.save();
     }
 
-    async getUser(userId: bigint): Promise<any> {
+    async getUser(userId: bigint): Promise<FoxyUser> {
         const user: DiscordUser = await this.rest.getUser(String(userId));
         if (!user) return null;
         let document = await this.user.findOne({ _id: (await user).id });
@@ -220,7 +221,7 @@ export default class DatabaseConnection {
         return commandsData.reduce((acc, command) => acc + command.commandUsageCount, 0);
     }
 
-    async getGuild(guildId: BigInt): Promise<any> {
+    async getGuild(guildId: BigInt): Promise<FoxyGuild> {
         return await this.guilds.findOne({ _id: guildId });
     }
 
