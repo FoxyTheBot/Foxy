@@ -3,14 +3,12 @@ import DatabaseConnection from "../../../../../common/utils/database/DatabaseCon
 import { FoxyRestManager } from "../../../../../common/utils/RestManager";
 import { getUserAvatar } from "../discord/User";
 import { bot } from "../../FoxyLauncher";
-import { FoxyGuild } from "../../../../../common/utils/database/types/guild";
 
 export default class WelcomerManager {
     public database: DatabaseConnection;
     public rest: FoxyRestManager;
 
     constructor() {
-        this.database = new DatabaseConnection();
         this.rest = new FoxyRestManager();
     }
 
@@ -41,7 +39,7 @@ export default class WelcomerManager {
     }
 
     async welcomeNewMember(guild: Guild, user: User) {
-        const guildInfo = await this.database.getGuild(BigInt(guild.id));
+        const guildInfo = await bot.database.getGuild(BigInt(guild.id));
 
         if (guildInfo.GuildJoinLeaveModule.isEnabled) {
             const placeholders = this.getPlaceholders(guild, user);
@@ -58,7 +56,7 @@ export default class WelcomerManager {
     }
 
     async byeMember(guildId: string, user: User) {
-        const guildInfo = await this.database.getGuild(BigInt(guildId));
+        const guildInfo = await bot.database.getGuild(BigInt(guildId));
 
         if (guildInfo.GuildJoinLeaveModule.alertWhenUserLeaves) {
             const placeholders = this.getPlaceholders(
