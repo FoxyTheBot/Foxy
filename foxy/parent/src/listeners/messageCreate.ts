@@ -6,6 +6,13 @@ import { createActionRow, createButton } from "../utils/discord/Component";
 import { ButtonStyles } from "discordeno/types";
 import { logger } from "../../../../common/utils/logger";
 import { commandLogger } from "../utils/commandLogger";
+import { FoxyGuild } from "../../../../common/utils/database/types/guild";
+import { DiscordTimestamp } from "../structures/types/DiscordTimestamps";
+
+const commandCooldowns: Map<string, number> = new Map(); // Map to store the last command execution timestamp
+const initialCooldownTime = 1000; // 1 second initial cooldown
+const maxCooldownTime = 60000; // Max cooldown time (e.g., 60 seconds)
+const cooldownIncreaseFactor = 2; // Factor by which to increase the cooldown
 
 const setMessageCreateEvent = (): void => {
     bot.events.messageCreate = async (_, message) => {
@@ -19,7 +26,7 @@ const setMessageCreateEvent = (): void => {
         bot.locale = locale;
 
         let prefix = process.env.DEFAULT_PREFIX;
-        let guild;
+        let guild: FoxyGuild | null = null;
 
         if (message.guildId) {
             guild = await bot.database.getGuild(message.guildId);
@@ -36,11 +43,40 @@ const setMessageCreateEvent = (): void => {
             });
         }
 
-        if (guild?.guildSettings.blockedChannels.includes(channelId)) return;
-        
         if (content.startsWith(prefix)) {
             const commandName = content.slice(prefix.length).split(' ')[0];
             const command = bot.commands.get(commandName) || bot.commands.find((cmd) => cmd.aliases?.includes(commandName));
+
+            const now = Date.now();
+            const cooldownKey = `${message.authorId}-${commandName}`;
+            const lastCommandTime = commandCooldowns.get(cooldownKey);
+            let cooldownTime = initialCooldownTime;
+
+            if (lastCommandTime) {
+                const timeSinceLastCommand = now - lastCommandTime;
+                if (timeSinceLastCommand < cooldownTime) {
+                    cooldownTime = Math.min(maxCooldownTime, cooldownTime * cooldownIncreaseFactor);
+                    
+                    setTimeout(() => {
+                        return context.sendReply({
+                            content: context.makeReply(bot.emotes.FOXY_RAGE, locale('events:messageCreate.commandCooldown', {
+                                time: context.convertToDiscordTimestamp(new Date(now + cooldownTime), DiscordTimestamp.RELATIVE)
+                            }))
+                        });
+                    }, cooldownTime);
+                    return;
+                }
+            }
+
+            commandCooldowns.set(cooldownKey, now);
+
+            if (guild?.guildSettings.sendMessageIfChannelIsBlocked && guild?.guildSettings.blockedChannels.includes(String(channelId))) {
+                return context.sendReply({
+                    content: context.makeReply(bot.emotes.FOXY_RAGE, locale('events:messageCreate.blockedChannel'))
+                });
+            }
+
+            if (guild?.guildSettings.blockedChannels.includes(String(channelId))) return;
 
             if (command && guild?.guildSettings.deleteMessageIfCommandIsExecuted) {
                 try {
@@ -82,7 +118,7 @@ const setMessageCreateEvent = (): void => {
                 if (command.supportsLegacy) {
                     const args = content.split(' ').slice(1);
                     try {
-                        await command.execute(context, () => {}, locale, args);
+                        await command.execute(context, () => { }, locale, args);
                         if (bot.isProduction) {
                             commandLogger.commandLog(command.name, await context.author,
                                 context.guildId ? context.guildId.toString() : "DM",
