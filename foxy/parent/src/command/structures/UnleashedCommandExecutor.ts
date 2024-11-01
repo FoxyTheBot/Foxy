@@ -19,7 +19,7 @@ export default class UnleashedCommandExecutor {
     public replied = false;
     public subCommand?: string;
     public subCommandGroup?: string;
-    public currentPremiumTier?: string
+    public currentPremiumTier?: string;
 
     constructor(
         public i18n: TFunction,
@@ -33,7 +33,7 @@ export default class UnleashedCommandExecutor {
 
     private initializeSubCommandOptions(interaction: Interaction): void {
         let options = interaction.data?.options ?? [];
-
+        
         if (options[0]?.type === ApplicationCommandOptionTypes.SubCommandGroup) {
             this.subCommandGroup = options[0].name;
             options = options[0].options ?? [];
@@ -69,57 +69,66 @@ export default class UnleashedCommandExecutor {
     }
 
     async followUp(options: InteractionCallbackData | CreateMessage): Promise<void> {
-        const { interaction, message } = this;
-        const messageOptions = options as CreateMessage;
-
-        if (interaction) {
-            await bot.helpers.sendFollowupMessage(interaction.token, {
+        if (this.interaction) {
+            await bot.helpers.sendFollowupMessage(this.interaction.token, {
                 type: InteractionResponseTypes.ChannelMessageWithSource,
                 data: options as InteractionCallbackData,
             });
-        } else if (message) {
-            await bot.helpers.sendMessage(message.channelId, {
-                ...messageOptions,
-                messageReference: {
-                    messageId: message.id,
-                    failIfNotExists: false
-                }
-            });
+        } else if (this.message) {
+            await this.sendMessageToChannel(options as CreateMessage);
         }
+    }
+
+    private async sendMessageToChannel(options: CreateMessage): Promise<boolean> {
+        await bot.helpers.sendMessage(this.message.channelId, {
+            ...options,
+            messageReference: {
+                messageId: this.message.id,
+                failIfNotExists: false,
+            }
+        });
+
+        return true;
     }
 
     makeReply(emoji: string, text: string): string {
         return `<:emoji:${emoji}> **|** ${text}` || `<:emoji:${bot.emotes.FOXY_WOW}> **|** ${text}`;
     }
 
-    async sendReply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
-        const { interaction, message } = this;
+    async reply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
+        if (this.interaction) {
+            await this.replyToInteraction(options);
+        } else if (this.message) {
+            bot.helpers.triggerTypingIndicator(this.message.channelId);
+            await this.sendMessageToChannel(options as CreateMessage);
+        }
+    }
 
-        if (interaction) {
+    private async replyToInteraction(options: InteractionCallbackData): Promise<void> {
+        try {
             if (this.replied) {
-                await bot.helpers.editOriginalInteractionResponse(interaction.token, options);
+                await bot.helpers.editOriginalInteractionResponse(this.interaction.token, options);
             } else {
                 this.replied = true;
-                await bot.helpers.sendInteractionResponse(interaction.id, interaction.token, {
+                await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
                     type: InteractionResponseTypes.ChannelMessageWithSource,
                     data: options,
                 });
             }
-        } else if (message) {
-            bot.helpers.sendMessage(message.channelId, {
-                ...options as CreateMessage,
-                messageReference: {
-                    messageId: message.id,
-                    failIfNotExists: false
-                }
-            });
-            bot.helpers.triggerTypingIndicator(message.channelId);
+        } catch (error) {
+            console.error('Failed to respond to interaction:', error);
+            throw new Error('Failed to send response to interaction');
         }
     }
 
     async getUserPremiumTier(): Promise<string> {
-        const user = await bot.database.getUser(this.author.id);
-        return getTier(user.userPremium.premiumType, user.userPremium.premiumDate);
+        try {
+            const user = await bot.database.getUser(this.author.id);
+            return getTier(user.userPremium.premiumType, user.userPremium.premiumDate);
+        } catch (error) {
+            console.error('Failed to get user premium tier:', error);
+            throw new Error('Could not retrieve user premium tier');
+        }
     }
 
     getEmojiById(id: bigint | string): string {
@@ -129,7 +138,7 @@ export default class UnleashedCommandExecutor {
     convertToDiscordTimestamp(date: Date, type: DiscordTimestamp): string {
         const timestamp = Math.floor(date.getTime() / 1000);
         const formats = ["R", "t", "T", "f"];
-        return `<t:${timestamp}:${formats[type]}>${type === 3 ? ` (<t:${timestamp}:R>)` : ''}`;
+        return `<t:${timestamp}:${formats[type]}${type === 3 ? ` (<t:${timestamp}:R>)` : ''}>`;
     }
 
     locale(text: string, options: Record<string, unknown> = {}): string {
@@ -155,16 +164,13 @@ export default class UnleashedCommandExecutor {
     }
 
     getOption<T>(name: string, shouldResolve: CanResolve, required = false, position = 1): T | undefined {
-        if (this.interaction) {
-            return getOptionFromInteraction<T>(this.interaction, name, shouldResolve, required);
-        } else {
-            return getArgsFromMessage<T>(this.message?.content || '', name, position, shouldResolve, this.message, required) as unknown as T;
-        }
+        return this.interaction 
+            ? getOptionFromInteraction<T>(this.interaction, name, shouldResolve, required) 
+            : getArgsFromMessage<T>(this.message?.content || '', name, position, shouldResolve, this.message, required) as unknown as T;
     }
 
     async sendDefer(ephemeral = false): Promise<void> {
         if (this.interaction) {
-
             this.replied = true;
             await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {
                 type: InteractionResponseTypes.DeferredChannelMessageWithSource,

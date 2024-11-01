@@ -6,7 +6,7 @@ export default async function RateWaifuExecutor(context: UnleashedCommandExecuto
     const user = await context.getOption<User>('user', 'users') ?? context.author;
 
     const result = Math.floor(Math.random() * 10) + 1;
-    context.sendReply({
+    context.reply({
         content: context.makeReply(bot.emotes.FOXY_THINK, t('commands:rate.result', { user: await bot.rest.foxy.getUserDisplayName(user.id), rate: result.toString() }))
     });
 

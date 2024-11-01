@@ -11,7 +11,7 @@ export default async function KissExecutor(context: UnleashedCommandExecutor, en
     const embed = createEmbed({});
 
     if (user.id === bot.id) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:kiss.bot')),
             flags: MessageFlags.EPHEMERAL
         });
@@ -20,7 +20,7 @@ export default async function KissExecutor(context: UnleashedCommandExecutor, en
     }
 
     if (user.id === context.author.id) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:kiss.self')),
             flags: MessageFlags.EPHEMERAL
         });
@@ -33,7 +33,7 @@ export default async function KissExecutor(context: UnleashedCommandExecutor, en
             url: kissGif.url
         }
 
-    context.sendReply({
+    context.reply({
         embeds: [embed],
         components: [createActionRow([createButton({
             customId: createCustomId(

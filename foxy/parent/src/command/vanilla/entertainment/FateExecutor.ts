@@ -6,7 +6,7 @@ export default async function FateExecutor(context: UnleashedCommandExecutor, en
     const user = await context.getOption<User>('user', 'users');
 
     if (!user) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:global.noUser'))
         });
 
@@ -24,7 +24,7 @@ export default async function FateExecutor(context: UnleashedCommandExecutor, en
     ]
 
     const rand = list[Math.floor(Math.random() * list.length)];
-    await context.sendReply({
+    await context.reply({
         content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:fate.result', { user: context.author.id.toString(), fate: rand, mention: user.id.toString() }))
     });
 

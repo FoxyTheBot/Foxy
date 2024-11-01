@@ -10,7 +10,7 @@ const BetButtonExecutor = async (context: ComponentInteractionContext) => {
     const mentionData = await bot.database.getUser(BigInt(targetId));
     var rand = Math.floor(Math.random() * avaliableChoices.length);
 
-    context.sendReply({
+    context.reply({
         components: [createActionRow([createButton({
             label: bot.locale('commands:bet.accept'),
             style: ButtonStyles.Success,
@@ -39,7 +39,7 @@ const BetButtonExecutor = async (context: ComponentInteractionContext) => {
         });
     } else {
         if (Number(userData.userCakes.balance) < Number(amount)) {
-            context.sendReply({
+            context.reply({
                 content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, bot.locale('commands:bet.not-enough', { amount: amount.toString(), user: await bot.rest.foxy.getUserDisplayName(context.author.id) })),
                 flags: 64
 
@@ -49,7 +49,7 @@ const BetButtonExecutor = async (context: ComponentInteractionContext) => {
         }
 
         if (await mentionData.userCakes.balance < Number(amount)) {
-            context.sendReply({
+            context.reply({
                 content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, bot.locale('commands:bet.not-enough-mention', { amount: amount.toString(), user: await bot.rest.foxy.getUserDisplayName(targetId) })),
                 flags: 64
             });

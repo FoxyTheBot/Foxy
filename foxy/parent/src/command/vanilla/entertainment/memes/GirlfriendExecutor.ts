@@ -8,7 +8,7 @@ export default async function GirlFriendExecutor(context: UnleashedCommandExecut
     context.sendDefer();
 
     if (!user) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:global.noUser')),
             flags: 64
         });
@@ -22,7 +22,7 @@ export default async function GirlFriendExecutor(context: UnleashedCommandExecut
     
     const file = new File([girlfriendMeme], "namorada.png", { type: "image/png" });
 
-    context.sendReply({
+    context.reply({
         file: {
             name: "namorada.png",
             blob: file

@@ -58,7 +58,7 @@ const setMessageCreateEvent = (): void => {
                     cooldownTime = Math.min(maxCooldownTime, cooldownTime * cooldownIncreaseFactor);
                     
                     setTimeout(() => {
-                        return context.sendReply({
+                        return context.reply({
                             content: context.makeReply(bot.emotes.FOXY_RAGE, locale('events:messageCreate.commandCooldown', {
                                 time: context.convertToDiscordTimestamp(new Date(now + cooldownTime), DiscordTimestamp.RELATIVE)
                             }))
@@ -71,7 +71,7 @@ const setMessageCreateEvent = (): void => {
             commandCooldowns.set(cooldownKey, now);
 
             if (guild?.guildSettings.sendMessageIfChannelIsBlocked && guild?.guildSettings.blockedChannels.includes(String(channelId))) {
-                return context.sendReply({
+                return context.reply({
                     content: context.makeReply(bot.emotes.FOXY_RAGE, locale('events:messageCreate.blockedChannel'))
                 });
             }
@@ -103,7 +103,7 @@ const setMessageCreateEvent = (): void => {
                         { name: locale('events:ban.date'), value: banDate }
                     ]
                 });
-                return context.sendReply({
+                return context.reply({
                     embeds: [embed],
                     components: [createActionRow([createButton({
                         label: locale('events:ban.button'),
@@ -130,7 +130,7 @@ const setMessageCreateEvent = (): void => {
                         logger.error(error);
                     }
                 } else {
-                    context.sendReply({
+                    context.reply({
                         content: context.makeReply(
                             bot.emotes.FOXY_CRY, locale('events:messageCreate.commandNotSupported', {
                                 command: command.name

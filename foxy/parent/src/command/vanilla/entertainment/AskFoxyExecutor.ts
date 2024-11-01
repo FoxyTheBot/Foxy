@@ -15,7 +15,7 @@ export default async function AskFoxyExecutor(context: UnleashedCommandExecutor,
 
     const result = results[Math.floor(Math.random() * results.length)];
 
-    context.sendReply({
+    context.reply({
         content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, result)
     });
     endCommand();

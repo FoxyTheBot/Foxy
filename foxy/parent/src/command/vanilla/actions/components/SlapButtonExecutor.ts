@@ -20,7 +20,7 @@ const SlapExecutor = async (context: ComponentInteractionContext) => {
             url: slapGif.url
         }
 
-    context.sendReply({
+    context.reply({
         components: [createActionRow([createButton({
             customId: createCustomId(0, user, context.commandId),
             label: bot.locale('commands:slap.button'),

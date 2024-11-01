@@ -9,7 +9,7 @@ export default async function DivorceExecutor(context: UnleashedCommandExecutor,
     const partnerId = await userData.marryStatus.marriedWith;
 
     if (!partnerId) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:divorce.notMarried")),
             flags: MessageFlags.EPHEMERAL
         })
@@ -19,7 +19,7 @@ export default async function DivorceExecutor(context: UnleashedCommandExecutor,
     const userInfo = await bot.users.get(BigInt(userData.marryStatus.marriedWith))
         ?? bot.helpers.getUser(userData.marryStatus.marriedWith);
 
-    context.sendReply({
+    context.reply({
         content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:divorce.confirm2", { user: await bot.rest.foxy.getUserDisplayName((await userInfo).id) })),
         components: [createActionRow([createButton({
             customId: createCustomId(0, context.author.id, context.commandId),

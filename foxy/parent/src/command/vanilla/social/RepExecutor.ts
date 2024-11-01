@@ -12,7 +12,7 @@ export default async function RepExecutor(context: UnleashedCommandExecutor, end
     }
 
     if (user.id === context.author.id) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:rep.self'))
         })
         return endCommand();
@@ -24,7 +24,7 @@ export default async function RepExecutor(context: UnleashedCommandExecutor, end
 
     if (repCooldown - (Date.now() - Number(authorData.userProfile.lastRep)) > 0) {
         const currentCooldown = ms(repCooldown - (Date.now() - Number(authorData.userProfile.lastRep)));
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:rep.cooldown', { cooldown: currentCooldown })),
             flags: MessageFlags.EPHEMERAL
         })
@@ -38,7 +38,7 @@ export default async function RepExecutor(context: UnleashedCommandExecutor, end
         authorData.userProfile.lastRep = new Date(Date.now());
         authorData.save();
         userData.save();
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:rep.success', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
         })
         endCommand();

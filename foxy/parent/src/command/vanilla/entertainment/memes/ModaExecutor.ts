@@ -13,7 +13,7 @@ export default class ModaExecutor {
         if (
             !CONTENT_TYPES.includes(image.contentType || "")
         ) {
-            return context.sendReply({
+            return context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:moda.invalidContentType")),
             });
         }
@@ -23,7 +23,7 @@ export default class ModaExecutor {
             (image.height ?? 0) > MAX_DIMENSION ||
             (image.size ?? 0) > 8 * 1024 * 1024
         ) {
-            return context.sendReply({
+            return context.reply({
                 content: context.makeReply(
                     bot.emotes.FOXY_CRY,
                     t("commands:moda.fileTooBig", { max: MAX_DIMENSION })
@@ -37,7 +37,7 @@ export default class ModaExecutor {
 
         const file = new File([modaMeme], "moda.png", { type: "image/png" });
 
-        return context.sendReply({
+        return context.reply({
             file: {
                 name: "moda.png",
                 blob: file

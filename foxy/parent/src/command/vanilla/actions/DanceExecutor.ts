@@ -11,7 +11,7 @@ export default async function DanceExecutor(context: UnleashedCommandExecutor, e
             url: danceGif.url
         }
 
-    context.sendReply({
+    context.reply({
         embeds: [embed],
     })
     endCommand();

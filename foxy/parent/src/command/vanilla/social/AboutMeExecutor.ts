@@ -7,11 +7,11 @@ export default async function AboutMeExecutor(context: UnleashedCommandExecutor,
     const userData = await bot.database.getUser(context.author.id);
 
     if (text.length > 177) {
-        context.sendReply({ content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:aboutme.tooLong", { length: text.length.toString() })) });
+        context.reply({ content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:aboutme.tooLong", { length: text.length.toString() })) });
         return endCommand();
     }
 
-    context.sendReply({
+    context.reply({
         content: context.makeReply(bot.emotes.FOXY_YAY, t("commands:aboutme.set", { aboutme: text })),
         flags: MessageFlags.EPHEMERAL
     })

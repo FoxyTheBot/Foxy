@@ -11,7 +11,7 @@ export default async function NotStonksExecutor(context: UnleashedCommandExecuto
 
     const file = new File([notStonksImage], "not_stonks.png", { type: "image/png" });
 
-    context.sendReply({
+    context.reply({
         file: {
             name: "not_stonks.png",
             blob: file

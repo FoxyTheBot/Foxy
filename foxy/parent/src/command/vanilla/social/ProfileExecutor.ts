@@ -9,7 +9,7 @@ export default async function ProfileExecutor(context: UnleashedCommandExecutor,
     await context.sendDefer();
     const profileImage = await bot.generators.generateProfile(t, user, userData);
 
-    context.sendReply({
+    context.reply({
         content: context.makeReply(bot.emotes.FOXY_NICE, t('commands:profile.profile', { user: `<@${user.id}>` })),
         file: [{ name: 'profile.png', blob: profileImage }]
     });

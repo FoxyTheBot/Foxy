@@ -7,21 +7,21 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 export default async function MarryExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>('user', 'users');
     if (!user) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser'))
         })
         return endCommand();
     }
 
     if (user.id === context.author.id) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.self'))
         })
         return endCommand();
     }
 
     if (user.id === bot.id) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.bot'))
         })
         return endCommand();
@@ -31,27 +31,27 @@ export default async function MarryExecutor(context: UnleashedCommandExecutor, e
     const futurePartnerData = await bot.database.getUser(user.id);
 
     if (futurePartnerData.marryStatus.marriedWith) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.alreadyMarriedWithSomeone'))
         })
         return endCommand();
     }
 
     if (userData.marryStatus.marriedWith) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.alreadyMarried'))
         })
         return endCommand();
     }
 
     if (String(user.id) === userData.marryStatus.marriedWith) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.alreadyMarriedWithUser', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
         })
         return endCommand();
     }
 
-    context.sendReply({
+    context.reply({
         content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:marry.ask', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id) })),
         components: [createActionRow([createButton({
             customId: createCustomId(0, 

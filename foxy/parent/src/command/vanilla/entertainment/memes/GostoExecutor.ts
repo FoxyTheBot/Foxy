@@ -16,7 +16,7 @@ export default class GostoExecutor {
             !CONTENT_TYPES.includes(asset1.contentType || "") ||
             !CONTENT_TYPES.includes(asset2.contentType || "")
         ) {
-            return context.sendReply({
+            return context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:gosto.invalidContentType")),
             });
         }
@@ -29,7 +29,7 @@ export default class GostoExecutor {
             (asset1.size ?? 0) > 8 * 1024 * 1024 ||
             (asset2.size ?? 0) > 8 * 1024 * 1024
         ) {
-            return context.sendReply({
+            return context.reply({
                 content: context.makeReply(
                     bot.emotes.FOXY_CRY,
                     t("commands:gosto.fileTooBig", { max: MAX_DIMENSION })
@@ -46,14 +46,14 @@ export default class GostoExecutor {
             
             const file = new File([gostoImage], "naosomosiguais.png", { type: "image/png" });
 
-            return context.sendReply({
+            return context.reply({
                 file: [{
                     name: `naosomosiguais_${Date.now()}.png`,
                     blob: file
                 }],
             });
         } catch (error) {
-            return context.sendReply({
+            return context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:gosto.error")),
             });
         }

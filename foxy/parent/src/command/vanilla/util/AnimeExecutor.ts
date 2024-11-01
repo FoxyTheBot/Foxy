@@ -11,7 +11,7 @@ export default async function AnimeExecutor(context: UnleashedCommandExecutor, e
         const data = await scraper.getInfoFromName(anime);
 
         if (!data) {
-            context.sendReply({
+            context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:anime.notFound'))
             });
             return endCommand();
@@ -38,9 +38,9 @@ export default async function AnimeExecutor(context: UnleashedCommandExecutor, e
             ]
         });
 
-        context.sendReply({ embeds: [embed] });
+        context.reply({ embeds: [embed] });
     } catch (error) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:anime.error'))
         });
     }

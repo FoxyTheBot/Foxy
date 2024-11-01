@@ -15,12 +15,12 @@ export default async function HugExecutor(context: UnleashedCommandExecutor, end
         }
 
     if (user.id === bot.id) {
-        context.sendReply({
+        context.reply({
             embeds: [embed],
         });
         return endCommand();
     }
-    context.sendReply({
+    context.reply({
         embeds: [embed],
         components: [createActionRow([createButton({
             customId: createCustomId(

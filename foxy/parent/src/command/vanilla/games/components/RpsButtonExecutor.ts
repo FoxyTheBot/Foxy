@@ -25,7 +25,7 @@ const RpsButtonExecutor = async (context: ComponentInteractionContext) => {
 
     if (result === choice) {
         embed.description = bot.locale('commands:rps.tie');
-        return context.sendReply({
+        return context.reply({
             embeds: [embed],
         })
     }
@@ -42,14 +42,14 @@ const RpsButtonExecutor = async (context: ComponentInteractionContext) => {
                     name: await bot.rest.foxy.getUserDisplayName(bot.id),
                     value: bot.locale(`commands:rps.button.${result}`),
                 }]
-                context.sendReply({
+                context.reply({
                     embeds: [embed],
                 });
                 return;
             }
 
             embed.description = bot.locale('commands:rps.won3');
-            context.sendReply({
+            context.reply({
                 embeds: [embed],
             });
             break;
@@ -62,7 +62,7 @@ const RpsButtonExecutor = async (context: ComponentInteractionContext) => {
             }
 
             embed.description = bot.locale('commands:rps.won2');
-            context.sendReply({
+            context.reply({
                 embeds: [embed],
             });
             break;
@@ -71,14 +71,14 @@ const RpsButtonExecutor = async (context: ComponentInteractionContext) => {
         case 'scissors': {
             if (result === 'rock') {
                 embed.description = bot.locale('commands:rps.clientWon', { result: bot.locale(`commands:rps.button.${result}`) });
-                context.sendReply({
+                context.reply({
                     embeds: [embed],
                 });
                 return;
             }
 
             embed.description = bot.locale('commands:rps.won');
-            context.sendReply({
+            context.reply({
                 embeds: [embed],
             });
             break;
@@ -87,7 +87,7 @@ const RpsButtonExecutor = async (context: ComponentInteractionContext) => {
         case 'cancel': {
             embed.description = bot.locale('commands:rps.cancelled', { emoji: context.getEmojiById(bot.emotes.FOXY_CRY) });
             embed.fields = null;
-            context.sendReply({
+            context.reply({
                 embeds: [embed],
                 components: [createActionRow([createButton({
                     label: bot.locale('commands:rps.button.rock'),

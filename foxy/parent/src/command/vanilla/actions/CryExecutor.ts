@@ -10,7 +10,7 @@ export default async function CryExecutor(context: UnleashedCommandExecutor, end
             url: cryGif.url
         }
 
-    context.sendReply({
+    context.reply({
         embeds: [embed],
     })
     endCommand();

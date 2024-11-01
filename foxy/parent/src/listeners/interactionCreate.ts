@@ -12,64 +12,69 @@ import { commandLogger } from '../utils/commandLogger';
 const setInteractionCreateEvent = (): void => {
     bot.events.interactionCreate = async (_, interaction) => {
         const user = await bot.database.getUser(interaction.user.id);
-        const locale = global.t = i18next.getFixedT(user.userSettings.language || 'pt-BR');
+        const locale: any = global.t = i18next.getFixedT(user.userSettings.language || 'pt-BR');
         bot.locale = locale;
-        const command = bot.commands.get(interaction.data?.name);
+
         const context = new UnleashedCommandExecutor(locale, null, interaction);
-        
+
         if (interaction.type === InteractionTypes.MessageComponent || interaction.type === InteractionTypes.ModalSubmit) {
             componentExecutor(interaction);
             return;
         }
 
-        async function FoxyHandler() {
-            await new Promise(async (res) => {
-                try {
-                    command.execute(context, res, locale);
-                    if (bot.isProduction) {
-                        commandLogger.commandLog(interaction.data?.name,
-                            interaction.user,
-                            interaction.guildId ? interaction.guildId.toString() : "DM",
-                            interaction.data?.options?.map((option) => option.value).join(' ') || 'Nenhum'
-                        );
-                        bot.database.updateCommand(interaction.data?.name);
-                    }
-                } catch (e) {
-                    logger.error(e);
-                    context.sendReply({ content: locale('events:interactionCreate.commandError'), flags: MessageFlags.EPHEMERAL })
-                }
+        const handleBan = async () => {
+            const embed = createEmbed({
+                title: locale('events:ban.title'),
+                description: locale('events:ban.description'),
+                fields: [
+                    { name: locale('events:ban.reason'), value: user.banReason },
+                    { name: locale('events:ban.date'), value: user.banDate.toLocaleString(locale.lng || 'pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }
+                ]
             });
-        }
+            await context.reply({
+                embeds: [embed],
+                components: [createActionRow([createButton({
+                    label: locale('events:ban.button'),
+                    style: ButtonStyles.Link,
+                    emoji: { id: BigInt(bot.emotes.FOXY_CUPCAKE) },
+                    url: 'https://forms.gle/bKfRKxoyFGZzRB7x8'
+                })])],
+                flags: MessageFlags.EPHEMERAL
+            });
+        };
 
+        // Função para executar o comando
+        const executeCommand = async () => {
+            const command = bot.commands.get(interaction.data?.name);
+            if (!command) return;
+
+            try {
+                await command.execute(context, () => {}, locale);
+                if (bot.isProduction) {
+                    commandLogger.commandLog(interaction.data?.name,
+                        interaction.user,
+                        interaction.guildId ? interaction.guildId.toString() : "DM",
+                        interaction.data?.options?.map(option => option.value).join(' ') || 'Nenhum'
+                    );
+                    bot.database.updateCommand(interaction.data?.name);
+                }
+            } catch (e) {
+                logger.error(e);
+                await context.reply({ content: locale('events:interactionCreate.commandError'), flags: MessageFlags.EPHEMERAL });
+            }
+        };
+
+        // Lógica principal
         try {
             if (user.isBanned) {
-                const embed = createEmbed({
-                    title: locale('events:ban.title'),
-                    description: locale('events:ban.description'),
-                    fields: [
-                        { name: locale('events:ban.reason'), value: user.banReason },
-                        { name: locale('events:ban.date'), value: user.banDate.toLocaleString(global.t.lng || 'pt-BR', { timeZone: "America/Sao_Paulo", hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'numeric', day: 'numeric' }) }
-                    ]
-                })
-                return context.sendReply({
-                    embeds: [embed],
-                    components: [createActionRow([createButton({
-                        label: locale('events:ban.button'),
-                        style: ButtonStyles.Link,
-                        emoji: {
-                            id: BigInt(bot.emotes.FOXY_CUPCAKE)
-                        },
-                        url: 'https://forms.gle/bKfRKxoyFGZzRB7x8'
-                    })])],
-                    flags: MessageFlags.EPHEMERAL
-                });
+                await handleBan();
+            } else {
+                await executeCommand();
             }
-
-            FoxyHandler();
         } catch (err) {
             logger.error(err);
         }
-    }
-}
+    };
+};
 
-export { setInteractionCreateEvent }
+export { setInteractionCreateEvent };

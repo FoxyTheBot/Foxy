@@ -16,14 +16,14 @@ export default async function LickExecutor(context: UnleashedCommandExecutor, en
         }
 
     if (user.id === bot.id) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:lick.bot')),
             flags: MessageFlags.EPHEMERAL
         });
 
         return endCommand();
     }
-    context.sendReply({
+    context.reply({
         embeds: [embed],
         components: [createActionRow([createButton({
             customId: createCustomId(

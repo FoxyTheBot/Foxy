@@ -9,7 +9,7 @@ export default class AtmExecutor {
             : context.getOption<User>('user', 'users') ?? context.author;
 
         if (!user) {
-            context.sendReply({
+            context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser'))
             });
 
@@ -18,7 +18,7 @@ export default class AtmExecutor {
         const userData = await bot.database.getUser(user.id);
         const balance = userData.userCakes.balance;
 
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:atm.success', {
                 user: await bot.rest.foxy.getUserDisplayName(user.id),
                 balance: balance.toLocaleString(t.lng || 'pt-BR')

@@ -17,13 +17,13 @@ export default async function TickleExecutor(context: UnleashedCommandExecutor, 
         embed.footer = {
             text: t('commands:tickle.bot')
         }
-        context.sendReply({
+        context.reply({
             embeds: [embed],
         });
 
         return endCommand();
     }
-    context.sendReply({
+    context.reply({
         embeds: [embed],
         components: [createActionRow([createButton({
             customId: createCustomId(

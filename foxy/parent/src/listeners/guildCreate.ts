@@ -4,7 +4,6 @@ const setGuildCreateEvent = (): void => {
     bot.events.guildCreate = async (_, guild) => {
         const guildData = await bot.database.getGuild(guild.id)
         if (!guildData) {
-            await bot.database.addGuild(guild.id);
             setTimeout(() => {
                 bot.helpers.sendWebhookMessage(process.env.JOIN_GUILD_WEBHOOK_ID, process.env.JOIN_GUILD_WEBHOOK_TOKEN, {
                     embeds: [{

@@ -8,7 +8,7 @@ export default async function LanguageExecutor(context: UnleashedCommandExecutor
     userData.userSettings.language = language;
     await userData.save();
 
-    context.sendReply({
+    context.reply({
         content: context.makeReply(bot.emotes.FOXY_YAY, t(`commands:lang.changed`, { language: t(`commands:lang.languages.${language}`) })),
         flags: MessageFlags.EPHEMERAL
     })

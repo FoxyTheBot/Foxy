@@ -12,12 +12,12 @@ export default class TransactionsExecutor {
 
         if (!userData.userTransactions.length) {
             if (context.author.id === user.id) {
-                return context.sendReply({
+                return context.reply({
                     content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:transactions.noTransactions')),
                     flags: MessageFlags.EPHEMERAL
                 }) && endCommand();
             } else {
-                return context.sendReply({
+                return context.reply({
                     content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:transactions.userHasNoTransactions', {
                         user: `<@${user.id}>`
                     })),
@@ -48,7 +48,7 @@ export default class TransactionsExecutor {
             }
         });
 
-        return context.sendReply({ embeds: [embed] });
+        return context.reply({ embeds: [embed] });
     }
 
     async checkTransactionType(transaction, t, transactionsTexts) {

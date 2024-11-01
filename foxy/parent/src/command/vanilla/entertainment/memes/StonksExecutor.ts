@@ -11,7 +11,7 @@ export default async function StonksExecutor(context: UnleashedCommandExecutor, 
 
     const file = new File([stonksImage], "stonks.png", { type: "image/png" });
 
-    context.sendReply({
+    context.reply({
         file: {
             name: "stonks.png",
             blob: file

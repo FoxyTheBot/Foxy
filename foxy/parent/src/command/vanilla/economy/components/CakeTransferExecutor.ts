@@ -29,7 +29,7 @@ const CakeTransferExecutor = async (context: ComponentInteractionContext) => {
     await userData.save();
     authorData.save();
 
-    context.sendReply({
+    context.reply({
         content: context.makeReply(bot.emotes.FOXY_YAY, bot.locale('commands:pay.success', { user: `<@${user}>`, amount: value })),
         components: [
             createActionRow([createButton({

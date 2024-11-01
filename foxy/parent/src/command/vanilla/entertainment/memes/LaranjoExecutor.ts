@@ -11,7 +11,7 @@ export default async function LaranjoExecutor(context: UnleashedCommandExecutor,
 
     const file = new File([laranjoImage], "laranja_laranjo.png", { type: "image/png" });
 
-    context.sendReply({
+    context.reply({
         file: {
             name: "laranja_laranjo.png",
             blob: file

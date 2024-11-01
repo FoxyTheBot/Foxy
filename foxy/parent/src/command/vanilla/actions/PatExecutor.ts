@@ -13,7 +13,7 @@ export default async function PatExecutor(context: UnleashedCommandExecutor, end
             url: patGif.url
         }
 
-    context.sendReply({
+    context.reply({
         embeds: [embed],
         components: [createActionRow([createButton({
             customId: createCustomId(

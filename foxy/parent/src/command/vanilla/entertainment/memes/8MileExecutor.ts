@@ -24,13 +24,13 @@ export default class EminemExecutor {
             context.sendDefer();
             const audio = await context.getOption<Attachment>("video_or_audio", "attachments");
             if (audio.size > 1024 * 1024 * 8) {
-                return context.sendReply({
+                return context.reply({
                     content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:8mile.audioTooLarge"))
                 })
             }
 
             if (!SUPPORTED_FORMATS.includes(audio.contentType)) {
-                return context.sendReply({
+                return context.reply({
                     content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:8mile.unsupportedFormat"))
                 })
             }
@@ -43,7 +43,7 @@ export default class EminemExecutor {
 
             const file = new File([videoBuffer], "8mile.mp4", { type: "video/mp4" });
 
-            context.sendReply({
+            context.reply({
                 file: {
                     name: "8mile.mp4",
                     blob: file
@@ -53,7 +53,7 @@ export default class EminemExecutor {
             return endCommand();
 
         } catch (error) {
-            context.sendReply({
+            context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:8mile.error"))
             });
             logger.error(error);

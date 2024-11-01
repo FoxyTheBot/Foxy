@@ -13,7 +13,7 @@ export default async function RobloxExecutor(context: UnleashedCommandExecutor, 
     try {
         const id = await getIdFromUsername(String(username));
         if (!id) {
-            context.sendReply({
+            context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:roblox.fields.errors.userNotFound'))
             });
             return endCommand();
@@ -46,7 +46,7 @@ export default async function RobloxExecutor(context: UnleashedCommandExecutor, 
             url: `https://www.roblox.com/users/${id}/profile`
         });
 
-        context.sendReply({
+        context.reply({
             embeds: [embed],
             components: [createActionRow([createButton({
                 label: t("commands:roblox.buttons.viewProfile"),
@@ -57,7 +57,7 @@ export default async function RobloxExecutor(context: UnleashedCommandExecutor, 
         });
 
     } catch (error) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:roblox.fields.errors.apiError'))
         });
     }

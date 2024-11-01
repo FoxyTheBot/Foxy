@@ -9,7 +9,7 @@ export default class TransferExecutor {
         const user = await context.getOption<User>('user', 'users');
 
         if (!user) {
-            context.sendReply({
+            context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser'))
             });
 
@@ -19,7 +19,7 @@ export default class TransferExecutor {
         const amount = await context.getOption<number>('amount', false);
 
         if (isNaN(amount) || amount.toString().includes("0x") || amount < 0 || !Number.isInteger(parseFloat(amount.toString()))) {
-            context.sendReply({
+            context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:transfer.invalidAmount'))
             });
             return endCommand();
@@ -29,7 +29,7 @@ export default class TransferExecutor {
         const value = Math.round(amount);
 
         if (user.id === context.author.id) {
-            context.sendReply({
+            context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:pay.self'))
             });
 
@@ -37,7 +37,7 @@ export default class TransferExecutor {
         }
 
         if (value > authorData.userCakes.balance.valueOf()) {
-            context.sendReply({
+            context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:pay.notEnough'))
             });
 
@@ -61,7 +61,7 @@ export default class TransferExecutor {
             type: 'receive'
         });
 
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:pay.alert', {
                 amount: value.toLocaleString(t.lng || 'pt-BR'),
                 user: await bot.rest.foxy.getUserDisplayName(user.id)

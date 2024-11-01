@@ -26,7 +26,7 @@ export default async function TopExecutor(context: UnleashedCommandExecutor, end
         //         });
         //     }
 
-        //     context.sendReply({
+        //     context.reply({
         //         embeds: [embed],
         //     });
 
@@ -58,7 +58,7 @@ export default async function TopExecutor(context: UnleashedCommandExecutor, end
                 });
             }
 
-            context.sendReply({
+            context.reply({
                 embeds: [embed],
             })
         }

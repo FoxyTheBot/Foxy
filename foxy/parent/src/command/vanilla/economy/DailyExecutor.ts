@@ -7,7 +7,7 @@ import { colors } from '../../../../../../common/utils/colors';
 export default class DailyExecutor {
 
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        context.sendReply({
+        context.reply({
             embeds: [{
                 color: colors.FOXY_DEFAULT,
                 title: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.embed.title')),

@@ -4,6 +4,6 @@ export default async function CoinflipExecutor(context: UnleashedCommandExecutor
     const coinflip = ["heads", "tails"];
     const coin = coinflip[Math.floor(Math.random() * coinflip.length)];
 
-    context.sendReply({ content: `${t("commands:coinflip.flipped")} **${t(`commands:coinflip.${coin}`)}**` })
+    context.reply({ content: `${t("commands:coinflip.flipped")} **${t(`commands:coinflip.${coin}`)}**` })
     endCommand();
 }

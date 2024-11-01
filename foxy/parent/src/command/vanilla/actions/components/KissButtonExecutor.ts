@@ -20,7 +20,7 @@ const KissExecutor = async (context: ComponentInteractionContext) => {
             url: kissGif.url
         }
 
-    context.sendReply({
+    context.reply({
         components: [createActionRow([createButton({
             customId: createCustomId(0, user, context.commandId),
             label: bot.locale('commands:kiss.button'),

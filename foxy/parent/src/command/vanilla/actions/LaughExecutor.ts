@@ -11,7 +11,7 @@ export default async function LaughExecutor(context: UnleashedCommandExecutor, e
             url: laughGif.url
         }
 
-    context.sendReply({
+    context.reply({
         embeds: [embed],
     })
     endCommand();

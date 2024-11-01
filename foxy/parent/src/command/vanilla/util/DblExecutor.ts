@@ -8,7 +8,7 @@ export default async function DblExecutor(context: UnleashedCommandExecutor, end
                 description: t('commands:upvote.description')
             });
 
-            context.sendReply({ embeds: [embed] });
+            context.reply({ embeds: [embed] });
 
             endCommand();
             break;

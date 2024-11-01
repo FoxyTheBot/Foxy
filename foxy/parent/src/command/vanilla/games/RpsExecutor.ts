@@ -19,7 +19,7 @@ export default async function RpsExecutor(context: UnleashedCommandExecutor, end
         }]
     });
 
-    context.sendReply({
+    context.reply({
         embeds: [embed],
         components: [createActionRow([createButton({
             label: bot.locale('commands:rps.button.rock'),

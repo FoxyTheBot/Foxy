@@ -6,7 +6,7 @@ export default async function ErrorExecutor(context: UnleashedCommandExecutor, e
     context.sendDefer();
 
     if (content.length > 100) {
-        context.sendReply({
+        context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:error.tooLong', { limit: "100" }))
         })
         endCommand();
@@ -17,7 +17,7 @@ export default async function ErrorExecutor(context: UnleashedCommandExecutor, e
     });
 
     const file = new File([errorImage], "error.png", { type: "image/png" });
-    context.sendReply({
+    context.reply({
         file: {
             name: "error.png",
             blob: file

@@ -11,7 +11,7 @@ export default async function SmileExecutor(context: UnleashedCommandExecutor, e
             url: smileGif.url
         }
 
-    context.sendReply({
+    context.reply({
         embeds: [embed],
     })
     endCommand();
