@@ -3,8 +3,13 @@ import { bot } from "../../../FoxyLauncher";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
 export default async function AboutMeExecutor(context: UnleashedCommandExecutor, endCommand, t) {
-    const text = await context.getOption<string>("text", false);
+    const text = context.interaction ? await context.getOption<string>('text', false) : context.getMessage(1, true);
     const userData = await bot.database.getUser(context.author.id);
+
+    if (!text) {
+        context.reply({ content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:aboutme.noText")) });
+        return endCommand();
+    }
 
     if (text.length > 177) {
         context.reply({ content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:aboutme.tooLong", { length: text.length.toString() })) });

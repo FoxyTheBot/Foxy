@@ -68,7 +68,11 @@ export default class UnleashedCommandExecutor {
         return this.interaction?.member ?? this.message.member;
     }
 
-    getMessage(argumentPosition?: number): string {
+    getMessage(argumentPosition?: number, getEntireContent?: boolean): string {
+        if (argumentPosition && getEntireContent) {
+            return this.message?.content.split(' ').slice(argumentPosition).join(' ') || '';
+        }
+
         if (!argumentPosition) {
             return this.message?.content.split(' ').slice(1).join(' ') || '';
         }

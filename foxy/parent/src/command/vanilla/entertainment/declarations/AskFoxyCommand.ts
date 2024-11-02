@@ -4,12 +4,15 @@ import AskFoxyExecutor from '../AskFoxyExecutor';
 
 const AskFoxyCommand = createCommand({
     name: 'ask',
+    nameLocalizations: {
+        'pt-BR': '8ball'
+    },
     description: '[Entertainment] Ask something to Foxy',
     descriptionLocalizations: {
         'pt-BR': '[Entretenimento] Pergunte algo para a Foxy'
     },
     category: 'games',
-    supportsLegacy: false,
+    supportsLegacy: true,
     options: [{
         name: "foxy",
         description: "[Entertainment] Ask something to Foxy",

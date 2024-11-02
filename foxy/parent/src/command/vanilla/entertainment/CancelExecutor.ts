@@ -4,7 +4,8 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 
 export default async function CancelExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>('user', 'users');
-    const content = context.getOption<string>('reason', false, null, 2);
+    const content = context.interaction ? await context.getOption<string>('content', false) : context.getMessage(2, true);
+    
     if (!user) {
         context.reply({
             content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:cancel.noUser'))
