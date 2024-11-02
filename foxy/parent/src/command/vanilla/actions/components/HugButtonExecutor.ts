@@ -5,7 +5,7 @@ import { ButtonStyles } from "discordeno/types";
 import { createActionRow, createButton, createCustomId } from "../../../../utils/discord/Component";
 
 const HugExecutor = async (context: ComponentInteractionContext) => {
-    const [user, messageId] = context.sentData;
+    const [user, messageId, channelId] = context.sentData;
     const hugGif = await bot.rest.foxy.getImage("roleplay", "hug");
     const embed = createEmbed({});
     let commandAuthor = await bot.rest.foxy.getUserDisplayName(context.author.id);

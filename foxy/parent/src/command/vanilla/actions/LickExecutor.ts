@@ -10,6 +10,15 @@ export default async function LickExecutor(context: UnleashedCommandExecutor, en
     const lickGif = await bot.rest.foxy.getImage("roleplay", "lick");
     const embed = createEmbed({});
 
+    if (!user) {
+        context.reply({
+            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser')),
+            flags: MessageFlags.EPHEMERAL
+        });
+
+        return endCommand();
+    }
+    
     embed.title = t('commands:lick.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
         embed.image = {
             url: lickGif.url

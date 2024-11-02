@@ -103,7 +103,7 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
     return `<:emoji:${id}>`;
   }
 
-  async reply(options: InteractionCallbackData & { attachments?: unknown[] }): Promise<void> {
+  async reply(options: InteractionCallbackData & { attachments?: unknown[] }, channelId?: string): Promise<void> {
     if (!this.replied) {
       this.replied = true;
       await bot.helpers.sendInteractionResponse(this.interaction.id, this.interaction.token, {

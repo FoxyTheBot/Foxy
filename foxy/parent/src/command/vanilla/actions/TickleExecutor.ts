@@ -3,10 +3,20 @@ import { ButtonStyles, User } from "discordeno";
 import { createEmbed } from "../../../utils/discord/Embed";
 import { bot } from "../../../FoxyLauncher";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
+import { MessageFlags } from "../../../utils/discord/Message";
 export default async function TickleExecutor(context: UnleashedCommandExecutor, endCommand, t) {
     const user = await context.getOption<User>("user", "users");
     const tickleGif = await bot.rest.foxy.getImage("roleplay", "tickle");
     const embed = createEmbed({});
+
+    if (!user) {
+        context.reply({
+            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser')),
+            flags: MessageFlags.EPHEMERAL
+        });
+
+        return endCommand();
+    }
 
     embed.title = t('commands:tickle.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
         embed.image = {

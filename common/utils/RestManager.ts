@@ -104,7 +104,7 @@ export class FoxyRestManager {
     /* Foxy API */
 
     async getImage(commandCategory: string, commandName: string): Promise<FoxyImage> {
-        return (await this.api.get(`${commandCategory}/${commandName}`));
+        return (await this.api.get(`${commandCategory}/${commandName}`)).data;
     }
 
     async getArtistryImage(

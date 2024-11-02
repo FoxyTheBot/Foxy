@@ -9,6 +9,15 @@ export default async function BiteExecutor(context: UnleashedCommandExecutor, en
     const user = await context.getOption<User>("user", "users");
     const biteGif = await bot.rest.foxy.getImage("roleplay", "bite");
 
+    if (!user) {
+        context.reply({
+            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser')),
+            flags: MessageFlags.EPHEMERAL
+        });
+
+        return endCommand();
+    }
+
     if (user.id === context.author.id) {
         context.reply({
             content: context.makeReply(bot.emotes.FOXY_RAGE, t('commands:bite.self')),

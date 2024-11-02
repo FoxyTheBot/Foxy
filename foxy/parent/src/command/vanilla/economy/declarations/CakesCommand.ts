@@ -11,7 +11,7 @@ const CakeCommand = createCommand({
     descriptionLocalizations: {
         'pt-BR': 'Comandos relacionados a economia da Foxy'
     },
-    aliases: ['atm', 'transfer', 'transactions'],
+    aliases: ['atm', 'transfer', 'transactions', 'pay', 'pagar', 'transações'],
     supportsLegacy: true,
     options: [
         {
@@ -106,11 +106,14 @@ const CakeCommand = createCommand({
                 break;
             }
 
+            case 'pay':
+            case 'pagar':
             case 'transfer': {
                 new TransferExecutor().execute(context, endCommand, t);
                 break;
             }
 
+            case 'transações':
             case 'transactions': {
                 new TransactionsExecutor().execute(context, endCommand, t);
                 break;

@@ -10,6 +10,15 @@ export default async function SlapExecutor(context: UnleashedCommandExecutor, en
     const slapGif: any = await bot.rest.foxy.getImage("roleplay", "slap");
     const embed = createEmbed({});
 
+    if (!user) {
+        context.reply({
+            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser')),
+            flags: MessageFlags.EPHEMERAL
+        });
+
+        return endCommand();
+    }
+    
     if (user.id === bot.id) {
         context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:slap.bot')),

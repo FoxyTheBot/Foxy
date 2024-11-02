@@ -10,6 +10,8 @@ const CoinflipCommand = createCommand({
     descriptionLocalizations: {
         "pt-BR": "[Jogos] Jogue cara ou coroa"
     },
+    aliases: ["caracoroa", "caraoucoroa"],
+    supportsLegacy: true,
     category: "games",
 
     execute: async (context, endCommand, t) => {

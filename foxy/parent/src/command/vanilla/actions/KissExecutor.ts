@@ -10,6 +10,15 @@ export default async function KissExecutor(context: UnleashedCommandExecutor, en
     const kissGif = await bot.rest.foxy.getImage("roleplay", "kiss");
     const embed = createEmbed({});
 
+    if (!user) {
+        context.reply({
+            content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser')),
+            flags: MessageFlags.EPHEMERAL
+        });
+
+        return endCommand();
+    }
+    
     if (user.id === bot.id) {
         context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:kiss.bot')),
