@@ -135,7 +135,7 @@ export default class DatabaseConnection {
                 usersWhoCanAccessDashboard: [],
             },
             dashboardLogs: []
-        });
+        }).save();
     }
 
     async createTransaction(userId: bigint, transaction: FoxyTransaction) {
