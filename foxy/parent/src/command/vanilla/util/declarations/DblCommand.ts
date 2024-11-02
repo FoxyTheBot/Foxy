@@ -23,7 +23,7 @@ const DblCommand = createCommand({
     ],
 
     execute: async (context, endCommand, t) => {
-        DblExecutor(context, endCommand, t);
+        new DblExecutor().execute(context, endCommand, t);
     }
 });
 

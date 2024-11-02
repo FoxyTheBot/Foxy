@@ -26,7 +26,7 @@ const FateCommand = createCommand({
     ],
 
     execute: async (context, endCommand, t) => {
-        FateExecutor(context, endCommand, t);
+        new FateExecutor().execute(context, endCommand, t);
     }
 });
 

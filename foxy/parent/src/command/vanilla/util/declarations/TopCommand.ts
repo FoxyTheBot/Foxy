@@ -10,28 +10,28 @@ const TopCommand = createCommand({
     },
     category: "util",
     options: [
-    //     {
-    //     name: "cakes",
-    //     description: "[Utils] See the cakes rank",
-    //     descriptionLocalizations: {
-    //         "pt-BR": "[Utilitários] Veja o rank de cakes"
-    //     },
-    //     type: ApplicationCommandOptionTypes.SubCommand
-    // },
-    {
-        name: "commands",
-        nameLocalizations: {
-            "pt-BR": "comandos"
-        },
-        description: "[Utils] See the commands rank",
-        descriptionLocalizations: {
-            "pt-BR": "[Utilitários] Veja o rank de comandos"
-        },
-        type: ApplicationCommandOptionTypes.SubCommand
-    }],
+        //     {
+        //     name: "cakes",
+        //     description: "[Utils] See the cakes rank",
+        //     descriptionLocalizations: {
+        //         "pt-BR": "[Utilitários] Veja o rank de cakes"
+        //     },
+        //     type: ApplicationCommandOptionTypes.SubCommand
+        // },
+        {
+            name: "commands",
+            nameLocalizations: {
+                "pt-BR": "comandos"
+            },
+            description: "[Utils] See the commands rank",
+            descriptionLocalizations: {
+                "pt-BR": "[Utilitários] Veja o rank de comandos"
+            },
+            type: ApplicationCommandOptionTypes.SubCommand
+        }],
 
     async execute(context, endCommand, t) {
-        TopExecutor(context, endCommand, t);
+        new TopExecutor().execute(context, endCommand, t);
     }
 })
 

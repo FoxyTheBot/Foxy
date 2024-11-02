@@ -32,7 +32,7 @@ const KissCommand = createCommand({
     ],
     commandRelatedExecutions: [KissButtonExecutor],
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-        KissExecutor(context, endCommand, t);
+        new KissExecutor().execute(context, endCommand, t);
     }
 });
 

@@ -17,7 +17,7 @@ const ViewUserProfileCommand = createCommand({
     type: ApplicationCommandTypes.User,
 
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-        ProfileExecutor(context, endCommand, t);
+        new ProfileExecutor().execute(context, endCommand, t);
     }
 });
 

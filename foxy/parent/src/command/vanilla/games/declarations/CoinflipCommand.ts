@@ -15,7 +15,7 @@ const CoinflipCommand = createCommand({
     category: "games",
 
     execute: async (context, endCommand, t) => {
-        CoinflipExecutor(context, endCommand, t);
+        new CoinflipExecutor().execute(context, endCommand, t);
     }
 });
 

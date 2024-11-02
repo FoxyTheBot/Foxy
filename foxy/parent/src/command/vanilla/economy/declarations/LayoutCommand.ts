@@ -40,7 +40,7 @@ const LayoutCommand = createCommand({
         }
     ],
     execute: async (context, endCommand, t) => {
-        LayoutExecutor(context, endCommand, t);
+        new LayoutExecutor().execute(context, endCommand, t);
     }
 });
 

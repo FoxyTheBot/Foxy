@@ -14,7 +14,7 @@ const LaughCommand = createCommand({
     supportsLegacy: false,
 
     execute: async (context, endCommand, t) => {
-        LanguageExecutor(context, endCommand, t);
+        new LanguageExecutor().execute(context, endCommand, t);
     }
 });
 

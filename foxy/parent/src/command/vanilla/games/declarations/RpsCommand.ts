@@ -12,7 +12,7 @@ const RpsCommand = createCommand({
     supportsLegacy: false,
     commandRelatedExecutions: [RpsButtonExecutor],
     execute: async (context, endCommand, t) => {
-        RpsExecutor(context, endCommand, t);
+        new RpsExecutor().execute(context, endCommand, t);
     },
 });
 
