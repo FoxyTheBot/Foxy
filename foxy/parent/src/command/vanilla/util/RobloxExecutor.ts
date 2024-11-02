@@ -7,7 +7,7 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 import { DiscordTimestamp } from "../../../structures/types/DiscordTimestamps";
 
 export default async function RobloxExecutor(context: UnleashedCommandExecutor, endCommand, t) {
-    const username = context.getOption("username", false);
+    const username = context.interaction ? context.getOption<string>('username', false) : context.getMessage(1);
     context.sendDefer();
 
     try {

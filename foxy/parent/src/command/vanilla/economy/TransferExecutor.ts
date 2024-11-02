@@ -16,17 +16,24 @@ export default class TransferExecutor {
             return endCommand();
         }
 
-        const amount = await context.getOption<number>('amount', false);
+        const amount = context.interaction ? await context.getOption<number>('amount', false) : context.getMessage(2);
 
-        if (isNaN(amount) || amount.toString().includes("0x") || amount < 0 || !Number.isInteger(parseFloat(amount.toString()))) {
+        const amountAsNumber = Number(amount);
+
+        if (
+            isNaN(amountAsNumber) ||                 
+            /0x/i.test(amount.toString()) ||       
+            parseFloat(amount.toString()) <= 0 ||       
+            !Number.isInteger(parseFloat(amount.toString()))
+        ) {
             context.reply({
-                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:transfer.invalidAmount'))
+                content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:pay.invalidAmount'))
             });
             return endCommand();
         }
-
+        
         const authorData = await bot.database.getUser(context.author.id);
-        const value = Math.round(amount);
+        const value = Math.round(amountAsNumber);
 
         if (user.id === context.author.id) {
             context.reply({
@@ -48,7 +55,7 @@ export default class TransferExecutor {
             to: user.id.toString(),
             from: context.author.id.toString(),
             date: new Date(Date.now()),
-            quantity: amount,
+            quantity: amountAsNumber,
             received: false,
             type: 'send'
         });
@@ -56,7 +63,7 @@ export default class TransferExecutor {
             to: user.id.toString(),
             from: context.author.id.toString(),
             date: new Date(Date.now()),
-            quantity: amount,
+            quantity: amountAsNumber,
             received: true,
             type: 'receive'
         });

@@ -68,6 +68,13 @@ export default class UnleashedCommandExecutor {
         return this.interaction?.member ?? this.message.member;
     }
 
+    getMessage(argumentPosition?: number): string {
+        if (!argumentPosition) {
+            return this.message?.content.split(' ').slice(1).join(' ') || '';
+        }
+        return this.message?.content.split(' ')[argumentPosition] || '';
+    }
+
     async followUp(options: InteractionCallbackData | CreateMessage): Promise<void> {
         if (this.interaction) {
             await bot.helpers.sendFollowupMessage(this.interaction.token, {
@@ -138,8 +145,14 @@ export default class UnleashedCommandExecutor {
     convertToDiscordTimestamp(date: Date, type: DiscordTimestamp): string {
         const timestamp = Math.floor(date.getTime() / 1000);
         const formats = ["R", "t", "T", "f"];
-        return `<t:${timestamp}:${formats[type]}${type === 3 ? ` (<t:${timestamp}:R>)` : ''}>`;
+        
+        if (type === 3) {
+            return `<t:${timestamp}:${formats[type]}> (<t:${timestamp}:R>)`;
+        } else {
+            return `<t:${timestamp}:${formats[type]}>`;
+        }
     }
+    
 
     locale(text: string, options: Record<string, unknown> = {}): string {
         return this.i18n(text, options);
@@ -179,7 +192,7 @@ export default class UnleashedCommandExecutor {
                 },
             });
         } else {
-            await bot.helpers.startTyping(this.message.channelId);
+            bot.helpers.startTyping(this.message.channelId);
         }
     }
 }

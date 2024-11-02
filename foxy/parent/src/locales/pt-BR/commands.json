@@ -299,6 +299,7 @@
     "pay": {
         "self": "Você não pode enviar cakes para si mesmo",
         "notEnough": "Você não tem Cakes suficiente",
+        "invalidAmount": "Desculpe, mas você precisa enviar uma quantidade válida de Cakes",
         "alert": "Você deseja mesmo transferir {{amount}} Cakes para {{user}}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!",
         "success": "Você transferiu {{amount}} Cakes para {{user}}",
         "pay": "Transferir",

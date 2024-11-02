@@ -4,7 +4,7 @@ import scraper from 'mal-scraper';
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
 export default async function AnimeExecutor(context: UnleashedCommandExecutor, endCommand, t) {
-    const anime = context.getOption<string>('anime', "full-string");
+    const anime = context.interaction ? context.getOption<string>('anime', false) : context.getMessage();
     await context.sendDefer();
 
     try {
