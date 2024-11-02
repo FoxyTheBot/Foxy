@@ -115,7 +115,7 @@ export default class CreateProfile {
     }
 
     private async drawUserAvatar(user: User, layoutInfo: any) {
-        const avatarUrl = getUserAvatar(user, { size: 2048 }).replace(".jpg", "");
+        const avatarUrl = getUserAvatar(user, { size: 2048 });
         const avatar = await Canvas.loadImage(avatarUrl);
         this.context.save();
         this.context.beginPath();
