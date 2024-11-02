@@ -1,0 +1,21 @@
+{
+    "ban": {
+        "title": "Você está **banido(a)**",
+        "description": "Se você quiser fazer um apelo de ban você pode fazer um apelo de ban \n\n Recomendo você ler os [termos de uso](https://foxybot.win/terms)",
+        "reason": "Motivo do banimento:",
+        "date": "Data do banimento:",
+        "button": "Fazer um apelo"
+    },
+    "messageCreate": {
+        "mentionMessage": "Olá {{author}}! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!",
+        "commandNotSupported": "Esse comando não é compatível com prefixo, utilize `/{{command}}`",
+        "blockedChannel": "Você não pode usar comandos nesse canal!",
+        "commandCooldown": "Você está usando comandos muito rápido!"
+    },
+    "interactionCreate": {
+        "commandError": "Infelizmente ocorreu um erro e não consegui executar esse comando, desculpa <:foxymedu:890688173951315988>, mas o erro já foi reportado para o meu desenvolvedor <:foxysunglasses:890688144280784926>"
+    },
+    "error": {
+        "title": "Ocorreu um erro no comando `{{cmd}}`! Isso foi reportado para o meu desenvolvedor!"
+    }
+}
