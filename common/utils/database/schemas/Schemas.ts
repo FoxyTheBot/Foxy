@@ -167,6 +167,7 @@ const commandsSchema = new mongoose.Schema({
     category: String,
     description: String,
     isInactive: Boolean,
+    supportsLegacy: Boolean,
     subcommands: [subCommandSchema],
     subcommandGroups: [subCommandGroupSchema],
     usage: Array,

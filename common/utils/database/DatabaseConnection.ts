@@ -181,7 +181,7 @@ export default class DatabaseConnection {
 
                     nameLocalizations: command.nameLocalizations || {},
                     descriptionLocalizations: command.descriptionLocalizations || {},
-
+                    supportsLegacy: command.supportsLegacy || false,
                 },
                 $setOnInsert: {
                     commandUsageCount: 0,
