@@ -22,7 +22,7 @@ const ProfileCommand = createCommand({
     }],
     
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-        ProfileExecutor(context, endCommand, t);
+        new ProfileExecutor().execute(context, endCommand, t);
     },
 });
 

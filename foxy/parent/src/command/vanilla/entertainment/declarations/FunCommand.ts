@@ -192,22 +192,22 @@ const FunCommand = createCommand({
                 new ModaExecutor().execute(context, endCommand, t);
                 break;
             case "windowserror":
-                ErrorExecutor(context, endCommand, t);
+                new ErrorExecutor().execute(context, endCommand, t);
                 break;
             case "girlfriend":
-                GirlfriendExecutor(context, endCommand, t);
+                new GirlfriendExecutor().execute(context, endCommand, t);
                 break;
             case "gosto":
                 new GostoExecutor().execute(context, endCommand, t);
                 break;
             case "laranjo":
-                LaranjoExecutor(context, endCommand, t);
+                new LaranjoExecutor().execute(context, endCommand, t);
                 break;
             case "not_stonks":
-                NotStonksExecutor(context, endCommand, t);
+                new NotStonksExecutor().execute(context, endCommand, t);
                 break;
             case "stonks":
-                StonksExecutor(context, endCommand, t);
+                new StonksExecutor().execute(context, endCommand, t);
                 break;
         }
     }

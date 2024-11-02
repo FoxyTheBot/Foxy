@@ -15,7 +15,7 @@ const DanceCommand = createCommand({
     supportsLegacy: false,
 
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-        DanceExecutor(context, endCommand, t);
+        new DanceExecutor().execute(context, endCommand, t);
     }
 });
 

@@ -29,7 +29,7 @@ const BiteCommand = createCommand({
         }
     ],
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-        BiteExecutor(context, endCommand, t);
+        new BiteExecutor().execute(context, endCommand, t);
     }
 });
 

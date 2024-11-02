@@ -33,7 +33,7 @@ const AskFoxyCommand = createCommand({
         ],
     }],
     execute: async (context, endCommand, t) => {
-        AskFoxyExecutor(context, t, endCommand);
+        new AskFoxyExecutor().execute(context, t, endCommand);
     }
 });
 

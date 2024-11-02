@@ -31,7 +31,7 @@ const patCommand = createCommand({
     ],
     commandRelatedExecutions: [PatButtonExecutor],
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-        PatExecutor(context, endCommand, t);
+        new PatExecutor().execute(context, endCommand, t);
     }
 });
 

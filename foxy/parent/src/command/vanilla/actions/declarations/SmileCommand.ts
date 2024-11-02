@@ -15,7 +15,7 @@ const SmileCommand = createCommand({
     supportsLegacy: false,
 
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-      SmileExecutor(context, endCommand, t);
+      new SmileExecutor().execute(context, endCommand, t);
     }
 });
 

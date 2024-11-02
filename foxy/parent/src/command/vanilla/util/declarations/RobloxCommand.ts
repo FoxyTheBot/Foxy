@@ -42,7 +42,7 @@ const RobloxCommand = createCommand({
         }]
     }],
     execute: async (context, endCommand, t) => {
-       RobloxExecutor(context, endCommand, t);
+        new RobloxExecutor().execute(context, endCommand, t);
     }
 });
 

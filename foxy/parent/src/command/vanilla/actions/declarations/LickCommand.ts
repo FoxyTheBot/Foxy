@@ -30,7 +30,7 @@ const LickCommand = createCommand({
     ],
     commandRelatedExecutions: [LickButtonExecutor],
     execute: async (context, endCommand, t) => {
-        LickExecutor(context, endCommand, t);
+        new LickExecutor().execute(context, endCommand, t);
     }
 });
 
