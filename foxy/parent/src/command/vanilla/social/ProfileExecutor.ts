@@ -3,7 +3,10 @@ import { User } from 'discordeno/transformers';
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 
 export default async function ProfileExecutor(context: UnleashedCommandExecutor, endCommand, t) {
-    const user = await context.getOption<User>('user', 'users') ?? context.author;
+    const user = context.interaction && context.interaction.data?.targetId
+        ? await bot.helpers.getUser(context.interaction.data.targetId)
+        : (await context.getOption<User>('user', 'users') || context.author);
+
     const userData = await bot.database.getUser(user.id);
 
     await context.sendDefer();

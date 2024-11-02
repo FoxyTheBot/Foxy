@@ -8,7 +8,7 @@ const DailyCommand = createCommand({
         'pt-BR': '[Economia] Receba seus cakes diários'
     },
     category: 'economy',
-    supportsLegacy: false,
+    supportsLegacy: true,
     execute: async (context, endCommand, t) => {
         new DailyExecutor().execute(context, endCommand, t);
     }

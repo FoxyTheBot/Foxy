@@ -12,7 +12,7 @@ const CakeCommand = createCommand({
         'pt-BR': 'Comandos relacionados a economia da Foxy'
     },
     aliases: ['atm', 'transfer', 'transactions'],
-    supportsLegacy: false,
+    supportsLegacy: true,
     options: [
         {
             name: "atm",
@@ -100,7 +100,7 @@ const CakeCommand = createCommand({
     commandRelatedExecutions: [CakeTransferExecutor],
     category: 'economy',
     execute: async (context, endCommand, t) => {
-        switch (context.subCommand) {
+        switch (context.getSubCommand()) {
             case 'atm': {
                 new AtmExecutor().execute(context, endCommand, t);
                 break;

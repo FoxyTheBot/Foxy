@@ -4,9 +4,9 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 
 export default class AtmExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        const user = context.interaction.data.targetId ?
-            await bot.helpers.getUser(context.interaction.data.targetId)
-            : context.getOption<User>('user', 'users') ?? context.author;
+        const user = context.interaction && context.interaction.data?.targetId
+            ? await bot.helpers.getUser(context.interaction.data.targetId)
+            : (await context.getOption<User>('user', 'users') || context.author);
 
         if (!user) {
             context.reply({
@@ -23,7 +23,7 @@ export default class AtmExecutor {
                 user: await bot.rest.foxy.getUserDisplayName(user.id),
                 balance: balance.toLocaleString(t.lng || 'pt-BR')
             })),
-            flags: context.interaction.data.targetId ? 64 : 0
+            flags: context.interaction?.data?.targetId ? 64 : 0
         });
 
         endCommand();
