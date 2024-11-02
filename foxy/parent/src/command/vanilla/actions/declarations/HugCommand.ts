@@ -14,7 +14,7 @@ const HugCommand = createCommand({
         "pt-BR": "[Roleplay] Abraçe alguém"
     },
     category: 'roleplay',
-    supportsLegacy: false,
+    supportsLegacy: true,
     options: [
         {
             name: "user",

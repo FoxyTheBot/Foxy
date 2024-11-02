@@ -14,7 +14,7 @@ const patCommand = createCommand({
         "pt-BR": "[Roleplay] Faça carinho em alguém"
     },
     category: 'roleplay',
-    supportsLegacy: false,
+    supportsLegacy: true,
     options: [
         {
             name: "user",

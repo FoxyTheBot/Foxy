@@ -13,7 +13,7 @@ const LickCommand = createCommand({
         "pt-BR": "[Roleplay] Lamba alguém"
     },
     category: 'roleplay',
-    supportsLegacy: false,
+    supportsLegacy: true,
     options: [
         {
             name: "user",
