@@ -3,7 +3,7 @@ import { bot } from "../../../FoxyLauncher";
 import { getUserAvatar } from '../../discord/User';
 import { ImageConstants } from '../utils/ImageConstants';
 import { FoxyUser } from '../../../../../../common/utils/database/types/user';
-import { User } from 'discordeno/transformers';
+import { Member, User } from 'discordeno/transformers';
 import { Layout } from '../../../../../../common/utils/database/DatabaseConnection';
 
 export default class CreateProfile {
@@ -135,9 +135,16 @@ export default class CreateProfile {
         const defaultBadges = await bot.database.getBadges();
         const supportServer = bot.guilds.get(768267522670723094n);
 
-        let member = supportServer.members.get(user.id)
-            ?? await bot.members.get(user.id)
-            ?? await bot.helpers.getMember(supportServer.id, user.id);
+        let member: Member | null = null;
+
+        if (supportServer) {
+            member = supportServer.members.get(user.id)
+                ?? await bot.members.get(user.id)
+                ?? await bot.helpers.getMember(supportServer.id, user.id).catch(() => null);
+        }
+
+        if (!member) return;
+
 
         const userBadges = this.getUserBadges(member, defaultBadges, data);
         if (!userBadges.length) return;
