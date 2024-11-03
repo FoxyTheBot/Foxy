@@ -6,6 +6,7 @@ import { logger } from "./logger";
 import { createRestManager } from "discordeno/rest";
 import { createBotConstants } from "discordeno";
 require('dotenv').config({ path: "../../.env" });
+
 export class FoxyRestManager {
     public api: AxiosInstance;
     public artistry: AxiosInstance;
@@ -35,33 +36,57 @@ export class FoxyRestManager {
     /* Requests to Discord API */
 
     async getUserDisplayName(userId: BigString) {
-        const user = await this.rest.runMethod(this.rest, "GET", this.constants.routes.USER(userId));
-        return user.global_name || user.username;
+        try {
+            const user = await this.rest.runMethod(this.rest, "GET", this.constants.routes.USER(userId));
+            return user.global_name || user.username;
+        } catch (error) {
+            logger.error("Failed to retrieve user display name:", error);
+            throw new Error("Failed to retrieve user display name.");
+        }
     }
 
     async getUser(userId: string): Promise<User> {
-        return await this.rest.runMethod(this.rest, "GET", this.constants.routes.USER(userId));
+        try {
+            return await this.rest.runMethod(this.rest, "GET", this.constants.routes.USER(userId));
+        } catch (error) {
+            logger.error("Failed to retrieve user:", error);
+            throw new Error("Failed to retrieve user.");
+        }
     }
 
     async addRole(userId: string, roleId: string, guildId: string) {
-        return await this.rest.runMethod(this.rest, "PUT", this.constants.routes.GUILD_MEMBER_ROLE(guildId, userId, roleId));
+        try {
+            return await this.rest.runMethod(this.rest, "PUT", this.constants.routes.GUILD_MEMBER_ROLE(guildId, userId, roleId));
+        } catch (error) {
+            logger.error("Failed to add role:", error);
+            throw new Error("Failed to add role.");
+        }
     }
 
     async removeRole(userId: string, roleId: string, guildId: string) {
-        return await this.rest.runMethod(this.rest, "DELETE", this.constants.routes.GUILD_MEMBER_ROLE(guildId, userId, roleId));
+        try {
+            return await this.rest.runMethod(this.rest, "DELETE", this.constants.routes.GUILD_MEMBER_ROLE(guildId, userId, roleId));
+        } catch (error) {
+            logger.error("Failed to remove role:", error);
+            throw new Error("Failed to remove role.");
+        }
     }
 
     async getUserAsMember(userId: string, guildId: string) {
-        return await this.rest.runMethod(this.rest, "GET", this.constants.routes.GUILD_MEMBER(guildId, userId));
+        try {
+            return await this.rest.runMethod(this.rest, "GET", this.constants.routes.GUILD_MEMBER(guildId, userId));
+        } catch (error) {
+            logger.error("Failed to retrieve user as member:", error);
+            throw new Error("Failed to retrieve user as member.");
+        }
     }
 
     async sendMessageToAChannelAsJSON(channelId: string, content: string) {
         let jsonContent;
-
         try {
             jsonContent = JSON.parse(content);
         } catch (error) {
-            console.warn("Failed to parse JSON, sending as string:", error);
+            logger.warn("Failed to parse JSON, sending as string:", error);
             jsonContent = { content };
         }
 
@@ -79,8 +104,8 @@ export class FoxyRestManager {
                 filteredContent
             );
         } catch (error) {
-            console.error("Failed to send message:", error);
-            throw new Error("Message sending failed: " + error);
+            logger.error("Failed to send message:", error);
+            throw new Error("Message sending failed.");
         }
     }
 
@@ -104,15 +129,23 @@ export class FoxyRestManager {
     /* Foxy API */
 
     async getImage(commandCategory: string, commandName: string): Promise<FoxyImage> {
-        return (await this.api.get(`${commandCategory}/${commandName}`)).data;
+        try {
+            const response = await this.api.get(`${commandCategory}/${commandName}`);
+            return response.data;
+        } catch (error) {
+            logger.error("Failed to retrieve image:", error);
+            throw new Error("Failed to retrieve image.");
+        }
     }
 
-    async getArtistryImage(
-        endpoint: string,
-        payload: Record<string, any>,
-    ): Promise<Buffer | any> {
-        const response = await this.artistry.post(endpoint, payload, { responseType: "arraybuffer" });
-        return response.data;
+    async getArtistryImage(endpoint: string, payload: Record<string, any>): Promise<Buffer | any> {
+        try {
+            const response = await this.artistry.post(endpoint, payload, { responseType: "arraybuffer" });
+            if (!Buffer.isBuffer(response.data)) return null;
+            return response.data;
+        } catch (error) {
+            logger.error("Failed to retrieve artistry image:", error);
+            throw new Error("Failed to retrieve artistry image.");
+        }
     }
-
 }
