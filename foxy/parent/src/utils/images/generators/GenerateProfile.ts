@@ -116,7 +116,9 @@ export default class CreateProfile {
 
     private async drawUserAvatar(user: User, layoutInfo: any) {
         const avatarUrl = getUserAvatar(user, { size: 2048 });
-        const avatar = await Canvas.loadImage(avatarUrl);
+        const normalizedAvatarUrl = this.normalizeAvatarUrl(avatarUrl);
+        
+        const avatar = await Canvas.loadImage(normalizedAvatarUrl);
         this.context.save();
         this.context.beginPath();
         this.context.arc(125, 700, 100, 0, Math.PI * 2, true);
@@ -129,6 +131,17 @@ export default class CreateProfile {
             200
         );
         this.context.restore();
+    }
+
+    private normalizeAvatarUrl(url: string): string {
+        const validExtensions = /\.(jpg|jpeg|png|gif)$/i;
+        const hasValidExtension = validExtensions.test(url);
+        
+        if (!hasValidExtension || (url.match(/\./g) || []).length > 1) {
+            return url.replace(/(\.[^\.]+)$/, '.png');
+        }
+    
+        return url;
     }
 
     private async drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
