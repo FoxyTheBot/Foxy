@@ -223,7 +223,10 @@ export default class DatabaseConnection {
     }
 
     async getGuild(guildId: BigInt): Promise<FoxyGuild> {
-        return await this.guilds.findOne({ _id: guildId });
+        const guild = await this.guilds.findOne({ _id: guildId });
+        if (!guild) return this.createGuild(guildId.toString());
+        
+        return guild;
     }
 
     async addGuild(guildId: BigInt): Promise<any> {
