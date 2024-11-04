@@ -45,6 +45,8 @@ const setMessageCreateEvent = (): void => {
 
         if (content.startsWith(prefix)) {
             const commandName = content.slice(prefix.length).split(' ')[0];
+            if(!commandName) return;
+
             const command = bot.commands.get(commandName) 
             || bot.commands.find((cmd) => cmd.aliases?.includes(commandName))
             || bot.commands.find((cmd) => cmd.nameLocalizations["pt-BR"]?.includes(commandName));
