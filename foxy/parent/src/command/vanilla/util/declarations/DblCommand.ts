@@ -8,8 +8,8 @@ const DblCommand = createCommand({
     descriptionLocalizations: {
         "pt-BR": '[Utils] Vote na Foxy no top.gg'
     },
-    aliases: ['upvote'],
-    supportsLegacy: false,
+    aliases: ['upvote', 'vote', 'votar', 'dbl', 'topgg'],
+    supportsLegacy: true,
     category: 'util',
     options: [
         {

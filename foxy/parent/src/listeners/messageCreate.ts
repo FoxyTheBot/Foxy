@@ -9,10 +9,10 @@ import { commandLogger } from "../utils/commandLogger";
 import { FoxyGuild } from "../../../../common/utils/database/types/guild";
 import { DiscordTimestamp } from "../structures/types/DiscordTimestamps";
 
-const commandCooldowns: Map<string, number> = new Map(); // Map to store the last command execution timestamp
-const initialCooldownTime = 1000; // 1 second initial cooldown
-const maxCooldownTime = 60000; // Max cooldown time (e.g., 60 seconds)
-const cooldownIncreaseFactor = 2; // Factor by which to increase the cooldown
+const commandCooldowns: Map<string, number> = new Map();
+const initialCooldownTime = 1000;
+const maxCooldownTime = 60000;
+const cooldownIncreaseFactor = 2;
 
 const setMessageCreateEvent = (): void => {
     bot.events.messageCreate = async (_, message) => {
@@ -48,7 +48,8 @@ const setMessageCreateEvent = (): void => {
             const command = bot.commands.get(commandName) 
             || bot.commands.find((cmd) => cmd.aliases?.includes(commandName))
             || bot.commands.find((cmd) => cmd.nameLocalizations["pt-BR"]?.includes(commandName));
-        
+            if (!command) return;
+            
             const now = Date.now();
             const cooldownKey = `${message.authorId}-${commandName}`;
             const lastCommandTime = commandCooldowns.get(cooldownKey);
