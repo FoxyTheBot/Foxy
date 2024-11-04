@@ -6,6 +6,7 @@ import { createActionRow, createButton, createCustomId } from "../../../utils/di
 export default class TransferExecutor {
 
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
+        if (context.message) return;
         const user = await context.getOption<User>('user', 'users');
 
         if (!user) {

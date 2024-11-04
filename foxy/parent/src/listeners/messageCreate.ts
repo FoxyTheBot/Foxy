@@ -48,7 +48,7 @@ const setMessageCreateEvent = (): void => {
             const command = bot.commands.get(commandName) 
             || bot.commands.find((cmd) => cmd.aliases?.includes(commandName))
             || bot.commands.find((cmd) => cmd.nameLocalizations["pt-BR"]?.includes(commandName));
-
+        
             const now = Date.now();
             const cooldownKey = `${message.authorId}-${commandName}`;
             const lastCommandTime = commandCooldowns.get(cooldownKey);
