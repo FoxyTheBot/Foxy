@@ -1,3 +1,5 @@
+import { bot } from "../../foxy/parent/src/FoxyLauncher";
+
 const logger = {
     error: (...args: any[]): void => {
         console.error(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] \u001b[31mERROR\u001b[0m >`, ...args);
@@ -18,6 +20,40 @@ const logger = {
     log: (...args: any[]): void => {
         console.log(...args);
     },
+
+    /* Shard related */
+
+    onShardConnecting: (shard): void => {
+        bot.helpers.sendWebhookMessage(process.env.WATCHDOG_WEBHOOK_ID, process.env.WATCHDOG_WEBHOOK_TOKEN, {
+            embeds: [{  
+                title: `🔗 | Shard ${shard.id + 1} está tentando se conectar...`
+            }]
+        });
+    },
+
+    onShardConnect: (shard): void => {
+        bot.helpers.sendWebhookMessage(process.env.WATCHDOG_WEBHOOK_ID, process.env.WATCHDOG_WEBHOOK_TOKEN, {
+            embeds: [{  
+                title: `🔗 | Shard ${shard.id + 1} conectada`
+            }]
+        });
+    },
+
+    onShardDisconnect: (shard): void => {
+        bot.helpers.sendWebhookMessage(process.env.WATCHDOG_WEBHOOK_ID, process.env.WATCHDOG_WEBHOOK_TOKEN, {
+            embeds: [{  
+                title: `🔗 | Shard ${shard.id + 1} desconectada`
+            }]
+        });
+    },
+
+    onShardReconnect: (shard): void => {
+        bot.helpers.sendWebhookMessage(process.env.WATCHDOG_WEBHOOK_ID, process.env.WATCHDOG_WEBHOOK_TOKEN, {
+            embeds: [{  
+                title: `🔗 | Tentando reconectar shard ${shard.id + 1}...`
+            }]
+        });
+    }
 }
 
 export { logger };

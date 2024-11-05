@@ -9,6 +9,11 @@ process.on('unhandledRejection', (err: Error) => {
     logger.error(err);
 });
 
+process.on('SIGINT', async () => {
+    logger.info('Process terminated');
+    process.exit(0);
+});
+
 process.on('uncaughtException', (err) => {
     logger.criticalError(err.stack);
 });
