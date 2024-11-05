@@ -53,6 +53,15 @@ const logger = {
                 title: `🔗 | Tentando reconectar shard ${shard.id + 1}...`
             }]
         });
+    },
+
+    onShardReady: (shard, guilds): void => {
+        bot.helpers.sendWebhookMessage(process.env.WATCHDOG_WEBHOOK_ID, process.env.WATCHDOG_WEBHOOK_TOKEN, {
+            embeds: [{  
+                title: `🔗 | Shard ${shard + 1} pronta`,
+                description: `**Guilds:** ${guilds}`
+            }]
+        });
     }
 }
 
