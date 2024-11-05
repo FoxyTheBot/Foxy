@@ -19,6 +19,10 @@ import { emotes } from '../../../common/utils/emotes';
 import setGuildMemberAddEvent from './listeners/guildMemberAdd';
 import setGuildMemberRemoveEvent from './listeners/guildMemberRemove';
 import ImageGenerator from './utils/images/ImageGenerator';
+import { onShardConnect } from './listeners/gateway/onShardConnect';
+import { onShardDisconnect } from './listeners/gateway/onShardDisconnect';
+import { onRequestedConnect } from './listeners/gateway/onRequestedConnect';
+import { onShardConnecting } from './listeners/gateway/onShardConnecting';
 
 export default class FoxyInstance {
     public bot: FoxyClient;
@@ -114,6 +118,10 @@ export default class FoxyInstance {
         setMessageCreateEvent();
         setGuildMemberAddEvent();
         setGuildMemberRemoveEvent();
+        onShardConnect();
+        onShardDisconnect();
+        onRequestedConnect();
+        onShardConnecting();
 
         this.bot.gateway.manager.createShardOptions.events.message = async (shard, message) => {
             /* Handle unavailable guilds because discordeno does not handle unavailable guilds by default

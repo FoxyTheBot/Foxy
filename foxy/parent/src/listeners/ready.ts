@@ -5,8 +5,7 @@ import { ActivityTypes } from "discordeno/types";
 
 const setReadyEvent = (): void => {
     bot.events.ready = async (_, payload) => {
-        logger.info(`[READY] Shard ${payload.shardId + 1} connected to Discord Gateway`);
-
+        logger.info(`[READY] Shard ${payload.shardId + 1} is ready with ${payload.guilds.length} guilds!`);
         bot.isProduction ? postInfo({ guilds: await bot.database.getAllGuilds() })
             : logger.warn(`[DEVELOPMENT MODE] Running in development mode. Skipping Discord Bot List posting`);
 
