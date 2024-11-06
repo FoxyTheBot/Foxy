@@ -23,6 +23,7 @@ import { onShardConnect } from './listeners/gateway/onShardConnect';
 import { onShardDisconnect } from './listeners/gateway/onShardDisconnect';
 import { onRequestedConnect } from './listeners/gateway/onRequestedConnect';
 import { onShardConnecting } from './listeners/gateway/onShardConnecting';
+import DebugUtils from './utils/test/DebugUtils';
 
 export default class FoxyInstance {
     public bot: FoxyClient;
@@ -48,12 +49,22 @@ export default class FoxyInstance {
             token: process.env.DISCORD_TOKEN,
             intents: 37379 as Intents,
             botId: BigInt(process.env.CLIENT_ID),
+            botGatewayData: {
+                sessionStartLimit: {
+                    total: 1000,
+                    remaining: 1000,
+                    resetAfter: 0,
+                    maxConcurrency: 1
+                },
+                shards: Number(process.env.SHARD_COUNT) || 1,
+                url: process.env.DISCORD_GATEWAY_URL
+            }
         }) as FoxyClient;
     }
 
     private async setupDefinitions() {
         this.bot.commands = new Collection();
-        this.bot.isProduction = false;
+        this.bot.isProduction = !process.argv.includes("--dev");
         this.bot.emotes = emotes;
         this.bot.colors = colors;
         this.bot.clientId = BigInt(process.env.CLIENT_ID);
@@ -66,18 +77,20 @@ export default class FoxyInstance {
     private async setupCache() {
         this.bot.dispatchedGuildIds = new Set();
         this.bot.presences.maxSize = 1;
-        this.bot.guilds.maxSize = 1000;
-        this.bot.members.maxSize = 1000;
-        this.bot.channels.maxSize = 1000;
+        this.bot.guilds.maxSize = 100;
+        this.bot.members.maxSize = 100;
+        this.bot.channels.maxSize = 100;
         this.bot.messages.maxSize = 100;
-        this.bot.users.maxSize = 1000;
+        this.bot.users.maxSize = 100;
 
         setInterval(() => {
             this.bot.dispatchedGuildIds.clear();
             this.bot.dispatchedChannelIds.clear();
             this.bot.messages.clear();
+            this.bot.cache.fetchAllMembersProcessingRequests.clear();
+            this.bot.cache.unrepliedInteractions.clear();
             this.bot.channels.clear();
-        }, 3600000);
+        }, 600000);
     }
 
     private async setupInternals() {
@@ -85,6 +98,10 @@ export default class FoxyInstance {
         await loadLocales();
         this.bot.transformers.reverse.interactionResponse = transformInteraction;
         this.bot.handlers.INTEGRATION_CREATE = handleInteractionCreate;
+
+        if (!this.bot.isProduction || process.argv.includes("--debug")) {
+            new DebugUtils(this.bot);
+        }
     }
 
     private async setupServer() {

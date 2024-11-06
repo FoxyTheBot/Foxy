@@ -36,6 +36,10 @@ export default class DatabaseConnection {
             .catch(error => logger.error(`Failed to connect to database: `, error));
     }
 
+    close() {
+        mongoose.connection.close();
+    }
+    
     loadModels() {
         this.user = mongoose.model('user', Schemas.userSchema);
         this.commands = mongoose.model('commands', Schemas.commandsSchema);

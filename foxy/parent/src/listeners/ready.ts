@@ -10,17 +10,17 @@ const setReadyEvent = (): void => {
         bot.isProduction ? postInfo({ guilds: await bot.database.getAllGuilds() })
             : logger.warn(`[DEVELOPMENT MODE] Running in development mode. Skipping Discord Bot List posting`);
 
-        bot.helpers.editBotStatus({
-            activities: [{
-                name: bot.isProduction ?
-                    "Precisa de ajuda? Entre no meu servidor de suporte foxybot.win/br/support"
-                    : "yatta!",
-                type: ActivityTypes.Game,
-                createdAt: Date.now(),
-            }],
-
-            status: "online",
-        });
+        if (bot.isProduction) {
+            bot.helpers.editBotStatus({
+                activities: [{
+                    name: "Precisa de ajuda? Entre no meu servidor de suporte foxybot.win/br/support",
+                    type: ActivityTypes.Game,
+                    createdAt: Date.now(),
+                }],
+    
+                status: "online",
+            });
+        }
     }
 }
 

@@ -6,9 +6,11 @@ const onShardDisconnect = async (): Promise<void> => {
         logger.error(`[SHARD] Shard ${shard.id + 1} disconnected!`);
         logger.onShardDisconnect(shard);
         try {
-            logger.info(`[SHARD] Trying to reconnect shard ${shard.id + 1}...`);
-            logger.onShardReconnect(shard);
-            await shard.resume();
+            setTimeout(async () => {
+                logger.info(`[SHARD] Trying to reconnect shard ${shard.id + 1}...`);
+                logger.onShardReconnect(shard);
+                await shard.resume();
+            }, 10000); // 10 seconds
         } catch (error) {
             logger.error(`[SHARD] Shard ${shard.id + 1} failed to reconnect.`, error);
         }

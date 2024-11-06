@@ -10,6 +10,7 @@ process.on('unhandledRejection', (err: Error) => {
 });
 
 process.on('SIGINT', async () => {
+    await bot.database.close();
     logger.info('Process terminated');
     process.exit(0);
 });

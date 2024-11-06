@@ -5,10 +5,11 @@
   "main": "build/foxy/parent/src/FoxyLauncher.js",
   "scripts": {
     "build": "npx tsc --project tsconfig.json",
-    "start": "node build/foxy/parent/src/FoxyLauncher.js",
+    "start": "node /foxy/parent/src/FoxyLauncher.js",
     "watch": "npx tsc --project tsconfig.json --watch",
     "nodemon": "nodemon build/foxy/parent/src/FoxyLauncher.js",
-    "debug": "node --inspect build/foxy/parent/src/FoxyLauncher.js"
+    "debug": "node build/foxy/parent/src/FoxyLauncher.js --debug",
+    "dev": "node build/foxy/parent/src/FoxyLauncher.js --dev"
   },
   "author": "WinG4merBR",
   "license": "AGPL-3.0",

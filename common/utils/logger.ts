@@ -13,6 +13,10 @@ const logger = {
         console.warn(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] \u001b[33mWARN\u001b[0m >`, ...args);
     },
 
+    debug: (...args: any[]): void => {
+        console.debug(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] \u001b[36mDEBUG\u001b[0m >`, ...args);
+    },
+    
     criticalError: (...args: any[]): void => {
         console.error(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] \u001b[91mCRITICAL ERROR\u001b[0m >`, ...args);
     },
