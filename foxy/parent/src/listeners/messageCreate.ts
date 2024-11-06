@@ -22,17 +22,7 @@ const setMessageCreateEvent = (): void => {
         const botMention = `<@${bot.id}>` || `<@!${bot.id}>`;
         const user = await bot.database.getUser(message.authorId);
         const locale: any = i18next.getFixedT(user.userSettings.language || 'pt-BR');
-        const context = new UnleashedCommandExecutor(locale, message);
-        bot.locale = locale;
-
-        let prefix = process.env.DEFAULT_PREFIX;
-        let guild: FoxyGuild | null = null;
-
-        if (message.guildId) {
-            guild = await bot.database.getGuild(message.guildId);
-            prefix = guild.guildSettings.prefix;
-        }
-
+       
         if (content === botMention) {
             const botUsername = await bot.rest.foxy.getUserDisplayName(bot.id);
             return bot.helpers.sendMessage(channelId, {
@@ -42,8 +32,19 @@ const setMessageCreateEvent = (): void => {
                 })
             });
         }
+        
+        let prefix = process.env.DEFAULT_PREFIX;
+        let guild: FoxyGuild | null = null;
+
+        if (message.guildId) {
+            guild = await bot.database.getGuild(message.guildId);
+            prefix = guild.guildSettings.prefix;
+        }
 
         if (content.startsWith(prefix)) {
+            const context = new UnleashedCommandExecutor(locale, message);
+            bot.locale = locale;
+
             const commandName = content.slice(prefix.length).split(' ')[0];
             if(!commandName) return;
 
