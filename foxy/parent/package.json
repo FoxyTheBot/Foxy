@@ -5,7 +5,7 @@
   "main": "build/foxy/parent/src/FoxyLauncher.js",
   "scripts": {
     "build": "npx tsc --project tsconfig.json",
-    "start": "node /foxy/parent/src/FoxyLauncher.js",
+    "start": "node build/foxy/parent/src/FoxyLauncher.js",
     "watch": "npx tsc --project tsconfig.json --watch",
     "nodemon": "nodemon build/foxy/parent/src/FoxyLauncher.js",
     "debug": "node build/foxy/parent/src/FoxyLauncher.js --debug",
