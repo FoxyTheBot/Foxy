@@ -63,6 +63,6 @@ export default class RobloxExecutor {
             });
         }
 
-        endCommand();
+        return endCommand();
     }
 }

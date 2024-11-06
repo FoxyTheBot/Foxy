@@ -14,6 +14,6 @@ export default class LanguageExecutor {
             flags: MessageFlags.EPHEMERAL
         })
 
-        endCommand();
+        return endCommand();
     }
 }

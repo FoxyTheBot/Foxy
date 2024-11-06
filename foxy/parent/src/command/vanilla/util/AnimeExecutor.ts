@@ -46,6 +46,6 @@ export default class AnimeExecutor {
             });
         }
 
-        endCommand();
+        return endCommand();
     }
 }

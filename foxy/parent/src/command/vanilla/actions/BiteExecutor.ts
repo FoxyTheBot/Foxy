@@ -45,6 +45,6 @@ export default class BiteExecutor {
         context.reply({
             embeds: [embed],
         })
-        endCommand();
+        return endCommand();
     }
 }

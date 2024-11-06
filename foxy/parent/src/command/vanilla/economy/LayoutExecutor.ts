@@ -18,6 +18,6 @@ export default class LayoutExecutor {
             content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:layouts.changed')),
             flags: MessageFlags.EPHEMERAL
         })
-        endCommand();
+        return endCommand();
     }
 }

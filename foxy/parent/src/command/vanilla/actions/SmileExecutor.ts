@@ -15,6 +15,6 @@ export default class SmileExecutor {
         context.reply({
             embeds: [embed],
         })
-        endCommand();
+        return endCommand();
     }
 }

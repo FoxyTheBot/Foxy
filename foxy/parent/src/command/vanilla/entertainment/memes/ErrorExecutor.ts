@@ -10,7 +10,7 @@ export default class ErrorExecutor {
             context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:error.tooLong', { limit: "100" }))
             })
-            endCommand();
+            return endCommand();
         }
 
         const errorImage = await bot.rest.foxy.getArtistryImage("/memes/windowserror", {

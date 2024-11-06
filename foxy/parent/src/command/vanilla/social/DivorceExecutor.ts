@@ -31,6 +31,6 @@ export default class DivorceExecutor {
             flags: MessageFlags.EPHEMERAL
         })
 
-        endCommand();
+        return endCommand();
     }
 }

@@ -25,6 +25,6 @@ export default class CancelExecutor {
             content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:cancel.result', { user: await bot.rest.foxy.getUserDisplayName(context.author.id), reason: content, mention: `<@!${user.id}>` }))
         })
 
-        endCommand();
+        return endCommand();
     }
 };

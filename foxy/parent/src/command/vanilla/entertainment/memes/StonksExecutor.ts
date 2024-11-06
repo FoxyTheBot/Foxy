@@ -19,6 +19,6 @@ export default class StonksExecutor {
             }
         });
 
-        endCommand();
+        return endCommand();
     }
 }

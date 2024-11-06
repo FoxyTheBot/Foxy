@@ -69,6 +69,6 @@ export default class MarryExecutor {
             })])],
         });
 
-        endCommand();
+        return endCommand();
     }
 }

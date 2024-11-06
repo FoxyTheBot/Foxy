@@ -15,6 +15,6 @@ export default class DanceExecutor {
         context.reply({
             embeds: [embed],
         })
-        endCommand();
+        return endCommand();
     }
 }

@@ -61,6 +61,6 @@ export default class KissExecutor {
                 }
             })])]
         })
-        endCommand();
+        return endCommand();
     }
 }

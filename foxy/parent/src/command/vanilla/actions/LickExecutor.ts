@@ -51,6 +51,6 @@ export default class LickExecutor {
                 }
             })])]
         })
-        endCommand();
+        return endCommand();
     }
 }

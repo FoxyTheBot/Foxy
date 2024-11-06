@@ -31,7 +31,7 @@ export default class TopExecutor {
             //         embeds: [embed],
             //     });
 
-            //     endCommand();
+            //     return endCommand();
             //     break;
             // }
 

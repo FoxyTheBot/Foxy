@@ -15,6 +15,6 @@ export default class LaughExecutor {
         context.reply({
             embeds: [embed],
         })
-        endCommand();
+        return endCommand();
     }
 }

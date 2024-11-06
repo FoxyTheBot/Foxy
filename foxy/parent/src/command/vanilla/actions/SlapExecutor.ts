@@ -60,6 +60,6 @@ export default class SlapExecutor {
                 }
             })])]
         })
-        endCommand();
+        return endCommand();
     }
 }

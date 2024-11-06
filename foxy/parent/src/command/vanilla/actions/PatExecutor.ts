@@ -43,6 +43,6 @@ export default class PatExecutor {
                 }
             })])]
         })
-        endCommand();
+        return endCommand();
     }
 }

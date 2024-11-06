@@ -19,6 +19,6 @@ export default class AskFoxyExecutor {
         context.reply({
             content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, result)
         });
-        endCommand();
+        return endCommand();
     }
 }

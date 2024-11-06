@@ -18,6 +18,6 @@ export default class LaranjoExecutor {
                 blob: file
             }
         });
-        endCommand();
+        return endCommand();
     }
 }

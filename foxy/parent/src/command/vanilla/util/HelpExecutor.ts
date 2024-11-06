@@ -36,6 +36,6 @@ export default class HelpExecutor {
             }
         });
         context.reply({ embeds: [embed] });
-        endCommand();
+        return endCommand();
     }
 }

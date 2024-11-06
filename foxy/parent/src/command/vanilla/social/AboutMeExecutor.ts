@@ -23,6 +23,6 @@ export default class AboutMeExecutor {
         })
         userData.userProfile.aboutme = text;
         await userData.save();
-        endCommand();
+        return endCommand();
     }
 }

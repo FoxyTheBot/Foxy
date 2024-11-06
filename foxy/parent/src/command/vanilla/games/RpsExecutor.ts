@@ -53,6 +53,6 @@ export default class RpsExecutor {
             })])]
         });
 
-        endCommand();
+        return endCommand();
     }
 }

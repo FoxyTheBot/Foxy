@@ -14,6 +14,6 @@ export default class CryExecutor {
         context.reply({
             embeds: [embed],
         })
-        endCommand();
+        return endCommand();
     }
 }

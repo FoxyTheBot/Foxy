@@ -29,7 +29,7 @@ export default class RepExecutor {
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:rep.cooldown', { cooldown: currentCooldown })),
                 flags: MessageFlags.EPHEMERAL
             })
-            endCommand();
+            return endCommand();
         } else {
             if (userData.userPremium.premiumType === '3') {
                 userData.userProfile.repCount += 2;
@@ -42,7 +42,7 @@ export default class RepExecutor {
             context.reply({
                 content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:rep.success', { user: await bot.rest.foxy.getUserDisplayName(user.id) }))
             })
-            endCommand();
+            return endCommand();
         }
     }
 }

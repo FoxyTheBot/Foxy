@@ -49,6 +49,6 @@ export default class HugExecutor {
                 }
             })])]
         })
-        endCommand();
+        return endCommand();
     }
 }

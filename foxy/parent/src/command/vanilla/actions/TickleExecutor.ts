@@ -53,6 +53,6 @@ export default class TickleExecutor {
                 }
             })])]
         })
-        endCommand();
+        return endCommand();
     }
 }

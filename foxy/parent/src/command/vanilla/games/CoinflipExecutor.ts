@@ -6,6 +6,6 @@ export default class CoinflipExecutor {
         const coin = coinflip[Math.floor(Math.random() * coinflip.length)];
 
         context.reply({ content: `${t("commands:coinflip.flipped")} **${t(`commands:coinflip.${coin}`)}**` })
-        endCommand();
+        return endCommand();
     }
 }
