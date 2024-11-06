@@ -3,26 +3,15 @@ import { FoxyClient } from "../../structures/types/FoxyClient";
 
 export default class DebugUtils {
     private bot: FoxyClient;
-    private supressDefaultListeners: boolean;
 
     constructor(bot: FoxyClient) {
         this.bot = bot;
 
-        new Promise(async (resolve) => {
-            await this.startExtraListeners();
-        });
+        this.startExtraListeners();
     }
 
-    async startExtraListeners(): Promise<void> {
+    startExtraListeners(): void {
         logger.warn(`[DEBUG] Starting extra listeners...`);
-        this.bot.helpers.editBotStatus({
-            activities: [{
-                name: `Snap back to reality, oh there goes gravity!`,
-                type: 0,
-                createdAt: Date.now(),
-            }],
-            status: "dnd",
-        });
 
         this.bot.gateway.manager.createShardOptions.events.identifying = async (shard) => {
             logger.debug(`[SHARD] Shard ${shard.id + 1} is identifying...`);
@@ -49,7 +38,7 @@ export default class DebugUtils {
         }
 
         this.bot.gateway.manager.createShardOptions.events.invalidSession = async (shard, invalid) => {
-            logger.debug(`[SHARD] Shard ${shard.id + 1} received invalid session!`);
+            logger.error(`[SHARD] Shard ${shard.id + 1} received invalid session!`);
         }
     }
 }

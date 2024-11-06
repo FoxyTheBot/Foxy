@@ -51,14 +51,14 @@ export default class FoxyInstance {
             botId: BigInt(process.env.CLIENT_ID),
             botGatewayData: {
                 sessionStartLimit: {
-                    total: 1000,
-                    remaining: 1000,
-                    resetAfter: 0,
-                    maxConcurrency: 1
+                    total: 100,
+                    remaining: 100,
+                    resetAfter: 1000 * 60, // 1 minute
+                    maxConcurrency: 2
                 },
                 shards: Number(process.env.SHARD_COUNT) || 1,
                 url: process.env.DISCORD_GATEWAY_URL
-            }
+            },
         }) as FoxyClient;
     }
 
@@ -98,6 +98,8 @@ export default class FoxyInstance {
         await loadLocales();
         this.bot.transformers.reverse.interactionResponse = transformInteraction;
         this.bot.handlers.INTEGRATION_CREATE = handleInteractionCreate;
+        this.bot.gateway.manager.createShardOptions.rateLimitResetInterval = 60000;
+        this.bot.gateway.manager.createShardOptions.maxRequestsPerRateLimitTick = 5;
 
         if (!this.bot.isProduction || process.argv.includes("--debug")) {
             new DebugUtils(this.bot);

@@ -10,7 +10,7 @@ const setReadyEvent = (): void => {
         if (bot.isProduction) {
             bot.helpers.editBotStatus({
                 activities: [{
-                    name: `Precisa de ajuda? Entre no meu servidor de suporte foxybot.win/br/support | Shard ${payload.shardId + 1}/${bot.gateway.manager.shards.size}`,
+                    name: `Precisa de ajuda? Entre no meu servidor de suporte foxybot.win/br/support | Shard ${payload.shardId + 1}/${bot.gateway.manager.totalShards}`,
                     type: ActivityTypes.Game,
                     createdAt: Date.now(),
                 }],
