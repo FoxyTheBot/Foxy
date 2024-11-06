@@ -16,7 +16,6 @@ const setInteractionCreateEvent = (): void => {
         bot.locale = locale;
 
         const context = new UnleashedCommandExecutor(locale, null, interaction);
-
         if (interaction.type === InteractionTypes.MessageComponent || interaction.type === InteractionTypes.ModalSubmit) {
             componentExecutor(interaction);
             return;
@@ -43,7 +42,6 @@ const setInteractionCreateEvent = (): void => {
             });
         };
 
-        // Função para executar o comando
         const executeCommand = async () => {
             const command = bot.commands.get(interaction.data?.name);
             if (!command) return;
@@ -64,7 +62,6 @@ const setInteractionCreateEvent = (): void => {
             }
         };
 
-        // Lógica principal
         try {
             if (user.isBanned) {
                 await handleBan();
