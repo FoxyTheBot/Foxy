@@ -13,11 +13,11 @@ const setReadyEvent = (): void => {
         if (bot.isProduction) {
             bot.helpers.editBotStatus({
                 activities: [{
-                    name: "Precisa de ajuda? Entre no meu servidor de suporte foxybot.win/br/support",
+                    name: `Precisa de ajuda? Entre no meu servidor de suporte foxybot.win/br/support | Shard ${payload.shardId + 1}/${bot.gateway.manager.shards.size}`,
                     type: ActivityTypes.Game,
                     createdAt: Date.now(),
                 }],
-    
+
                 status: "online",
             });
         }

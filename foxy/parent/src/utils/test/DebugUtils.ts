@@ -15,6 +15,14 @@ export default class DebugUtils {
 
     async startExtraListeners(): Promise<void> {
         logger.warn(`[DEBUG] Starting extra listeners...`);
+        this.bot.helpers.editBotStatus({
+            activities: [{
+                name: `Snap back to reality, oh there goes gravity!`,
+                type: 0,
+                createdAt: Date.now(),
+            }],
+            status: "dnd",
+        });
 
         this.bot.gateway.manager.createShardOptions.events.identifying = async (shard) => {
             logger.debug(`[SHARD] Shard ${shard.id + 1} is identifying...`);
