@@ -32,7 +32,7 @@ const logger = {
         setTimeout(() => {
             bot.helpers.sendWebhookMessage(process.env.WATCHDOG_WEBHOOK_ID, process.env.WATCHDOG_WEBHOOK_TOKEN, {
                 embeds: [{
-                    title: `🔗 | Shard ${shard.id + 1} está tentando se conectar...`
+                    title: `🔗 | Shard #${shard.id} está tentando se conectar...`
                 }]
             });
         }, 1000);
@@ -42,7 +42,7 @@ const logger = {
         setTimeout(() => {
             bot.helpers.sendWebhookMessage(process.env.WATCHDOG_WEBHOOK_ID, process.env.WATCHDOG_WEBHOOK_TOKEN, {
                 embeds: [{
-                    title: `🔗 | Shard ${shard.id + 1} conectada`
+                    title: `🔗 | Shard #${shard.id} conectada`
                 }]
             });
         }, 1000);
@@ -52,7 +52,7 @@ const logger = {
         setTimeout(() => {
             bot.helpers.sendWebhookMessage(process.env.WATCHDOG_WEBHOOK_ID, process.env.WATCHDOG_WEBHOOK_TOKEN, {
                 embeds: [{
-                    title: `🔗 | Shard ${shard.id + 1} desconectada`
+                    title: `🔗 | Shard #${shard.id} desconectada`
                 }]
             });
         }, 1000);
@@ -62,7 +62,7 @@ const logger = {
         setTimeout(() => {
             bot.helpers.sendWebhookMessage(process.env.WATCHDOG_WEBHOOK_ID, process.env.WATCHDOG_WEBHOOK_TOKEN, {
                 embeds: [{
-                    title: `🔗 | Tentando reconectar shard ${shard.id + 1}...`,
+                    title: `🔗 | Tentando reconectar shard #${shard.id}...`,
                     fields: [{
                         name: "Razão da desconexão",
                         value: ShardState[shard.state]

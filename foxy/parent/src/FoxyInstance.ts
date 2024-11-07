@@ -1,4 +1,4 @@
-import { handleInteractionCreate, Collection, DiscordUnavailableGuild, createBot, Intents, startBot } from 'discordeno';
+import { handleInteractionCreate, Collection, DiscordUnavailableGuild, createBot, Intents, startBot, createShardManager } from 'discordeno';
 import { FoxyClient } from './structures/types/FoxyClient';
 import { loadCommands } from './command/structures/loadCommands';
 import { transformInteraction } from './structures/internals/transformers/interactionResponse';
@@ -40,26 +40,33 @@ export default class FoxyInstance {
         await this.setupInternals();
         await this.setupServer();
         await this.setupCache();
+        await this.setupCommandsAndLocales();
         await startBot(this.bot);
         return this.bot;
     }
 
     private createBotInstance() {
-        return createBot({
+        const bot = createBot({
             token: process.env.DISCORD_TOKEN,
-            intents: 37379 as Intents,
+            intents: Intents.Guilds | Intents.GuildMessages | Intents.GuildMembers | Intents.MessageContent,
             botId: BigInt(process.env.CLIENT_ID),
+            events: {},
             botGatewayData: {
                 sessionStartLimit: {
                     total: 100,
                     remaining: 100,
                     resetAfter: 1000 * 60, // 1 minute
-                    maxConcurrency: 2
+                    maxConcurrency: process.env.MAX_CONCURRENCY ? Number(process.env.MAX_CONCURRENCY) : 1
                 },
                 shards: Number(process.env.SHARD_COUNT) || 1,
                 url: process.env.DISCORD_GATEWAY_URL
             },
         }) as FoxyClient;
+
+        bot.gateway.manager.createShardOptions.rateLimitResetInterval = 60000;
+        bot.gateway.manager.createShardOptions.maxRequestsPerRateLimitTick = 5;
+        bot.gateway.spawnShardDelay = 5000;
+        return bot;
     }
 
     private async setupDefinitions() {
@@ -94,18 +101,18 @@ export default class FoxyInstance {
     }
 
     private async setupInternals() {
-        await loadCommands();
-        await loadLocales();
         this.bot.transformers.reverse.interactionResponse = transformInteraction;
         this.bot.handlers.INTEGRATION_CREATE = handleInteractionCreate;
-        this.bot.gateway.manager.createShardOptions.rateLimitResetInterval = 60000;
-        this.bot.gateway.manager.createShardOptions.maxRequestsPerRateLimitTick = 5;
-
         if (!this.bot.isProduction || process.argv.includes("--debug")) {
             new DebugUtils(this.bot);
         }
     }
 
+    private async setupCommandsAndLocales() {
+        await loadCommands();
+        await loadLocales();
+    }
+    
     private async setupServer() {
         this.server = express();
         this.server.use(express.json());

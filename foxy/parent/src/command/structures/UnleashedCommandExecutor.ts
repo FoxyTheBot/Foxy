@@ -3,7 +3,8 @@ import {
     InteractionCallbackData,
     ApplicationCommandOptionTypes,
     Message,
-    CreateMessage
+    CreateMessage,
+    calculateShardId
 } from 'discordeno';
 import { Interaction, User } from 'discordeno/transformers';
 import { TFunction } from 'i18next';
@@ -52,6 +53,10 @@ export default class UnleashedCommandExecutor {
         return this.interaction?.data?.id ?? this.message.id;
     }
 
+    get currentShard(): string {
+        return `${calculateShardId(bot.gateway, this.guildId) + 1}/${bot.gateway.calculateTotalShards()}`
+    }
+    
     get isMessage(): boolean {
         return !!this.message;
     }
@@ -90,8 +95,8 @@ export default class UnleashedCommandExecutor {
         }
     }
 
-    private async sendMessageToChannel(options: CreateMessage): Promise<boolean> {
-        await bot.helpers.sendMessage(this.message.channelId, {
+    public async sendMessageToChannel(options: CreateMessage): Promise<Message> {
+       const message = await bot.helpers.sendMessage(this.message.channelId, {
             ...options,
             messageReference: {
                 messageId: this.message.id,
@@ -99,7 +104,11 @@ export default class UnleashedCommandExecutor {
             }
         });
 
-        return true;
+        return message;
+    }
+
+    public async editMessage(options: CreateMessage, messageId: bigint): Promise<void> {
+        bot.helpers.editMessage(this.message.channelId, messageId, options);
     }
 
     makeReply(emoji: string, text: string): string {

@@ -2,6 +2,7 @@ import { bot } from "../../../FoxyLauncher";
 import { colors } from "../../../../../../common/utils/colors";
 import { createEmbed } from "../../../utils/discord/Embed";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { calculateShardId } from "discordeno";
 
 export default class HelpExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
@@ -33,6 +34,9 @@ export default class HelpExecutor {
             ],
             thumbnail: {
                 url: "https://cdn.discordapp.com/attachments/1078322762550083736/1233237607010406482/Foxy.png?ex=662c5d85&is=662b0c05&hm=70d01fc36628386c9809fc1db26f10be9d9a4efedba2aa5ccfbba05cc0704888&"
+            },
+            footer: {
+                text: `Shard: ${context.currentShard}`
             }
         });
         context.reply({ embeds: [embed] });

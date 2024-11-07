@@ -14,31 +14,31 @@ export default class DebugUtils {
         logger.warn(`[DEBUG] Starting extra listeners...`);
 
         this.bot.gateway.manager.createShardOptions.events.identifying = async (shard) => {
-            logger.debug(`[SHARD] Shard ${shard.id + 1} is identifying...`);
+            logger.debug(`[SHARD] Shard #${shard.id} is identifying...`);
         }
 
         this.bot.gateway.manager.createShardOptions.events.hello = async (shard) => {
-            logger.debug(`[SHARD] Shard ${shard.id + 1} received hello packet!`);
+            logger.debug(`[SHARD] Shard #${shard.id} received hello packet!`);
         }
 
         this.bot.gateway.manager.createShardOptions.events.heartbeatAck = async (shard) => {
-            logger.debug(`[SHARD] Shard ${shard.id + 1} received heartbeat ack!`);
+            logger.debug(`[SHARD] Shard #${shard.id} received heartbeat ack!`);
         }
 
         this.bot.gateway.manager.createShardOptions.events.identified = async (shard) => {
-            logger.debug(`[SHARD] Shard ${shard.id + 1} identified!`);
+            logger.debug(`[SHARD] Shard #${shard.id} identified!`);
         }
 
         this.bot.gateway.manager.createShardOptions.events.resuming = async (shard) => {
-            logger.debug(`[SHARD] Shard ${shard.id + 1} is resuming...`);
+            logger.debug(`[SHARD] Shard #${shard.id} is resuming...`);
         }
 
         this.bot.gateway.manager.createShardOptions.events.resumed = async (shard) => {
-            logger.debug(`[SHARD] Shard ${shard.id + 1} resumed!`);
+            logger.debug(`[SHARD] Shard #${shard.id} resumed!`);
         }
 
         this.bot.gateway.manager.createShardOptions.events.invalidSession = async (shard, invalid) => {
-            logger.error(`[SHARD] Shard ${shard.id + 1} received invalid session!`);
+            logger.error(`[SHARD] Shard #${shard.id} received invalid session!`);
         }
     }
 }

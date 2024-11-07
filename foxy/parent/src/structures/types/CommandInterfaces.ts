@@ -9,6 +9,7 @@ export interface ChatInputCommandConfig extends CreateSlashApplicationCommand {
   type?: ApplicationCommandTypes | ApplicationCommandTypes.ChatInput;
   aliases?: string[];
   supportsLegacy?: boolean | false;
+  supportsSlash?: boolean | true;
   devsOnly?: true;
   category: CommandCategory;
   integrationTypes?: IntegrationTypes[];

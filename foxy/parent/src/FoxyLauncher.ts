@@ -1,5 +1,6 @@
 import { logger } from '../../../common/utils/logger';
 import FoxyInstance from './FoxyInstance';
+
 require('dotenv').config({ path: '../../.env' });
 
 const bot = new FoxyInstance().bot;
