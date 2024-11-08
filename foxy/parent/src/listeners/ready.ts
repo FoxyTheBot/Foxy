@@ -6,17 +6,15 @@ const setReadyEvent = (): void => {
     bot.events.ready = async (_, payload) => {
         logger.info(`[READY] Shard #${payload.shardId} is ready with ${payload.guilds.length} guilds!`);
         
-        if (bot.isProduction) {
-            bot.helpers.editBotStatus({
-                activities: [{
-                    name: `Precisa de ajuda? Entre no meu servidor de suporte foxybot.win/br/support | Shard ${payload.shardId + 1}/${bot.gateway.calculateTotalShards}`,
-                    type: ActivityTypes.Game,
-                    createdAt: Date.now(),
-                }],
+        await bot.helpers.editShardStatus(payload.shardId, {
+            activities: [{
+                name: `Precisa de ajuda? Entre no meu servidor de suporte foxybot.win/br/support | Shard ${payload.shardId + 1}/${bot.gateway.calculateTotalShards}`,
+                type: ActivityTypes.Game,
+                createdAt: Date.now(),
+            }],
 
-                status: "online",
-            });
-        }
+            status: "online",
+        });
     }
 }
 
