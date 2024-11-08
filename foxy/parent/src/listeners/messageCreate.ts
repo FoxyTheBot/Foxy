@@ -45,13 +45,12 @@ const setMessageCreateEvent = async (_: Bot, message: Message): Promise<unknown>
     if (content.startsWith(prefix)) {
         const context = new UnleashedCommandExecutor(locale, message);
         bot.locale = locale;
-
         const commandName = content.slice(prefix.length).split(' ')[0];
+
         if (!commandName) return;
 
         const command = bot.commands.get(commandName)
-            || bot.commands.find((cmd) => cmd.aliases?.includes(commandName))
-            || bot.commands.find((cmd) => cmd?.nameLocalizations["pt-BR"]?.includes(commandName));
+            || bot.commands.find((cmd) => cmd.aliases?.includes(commandName));
         if (!command) return;
 
         const now = Date.now();

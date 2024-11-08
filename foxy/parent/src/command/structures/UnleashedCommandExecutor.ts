@@ -34,7 +34,7 @@ export default class UnleashedCommandExecutor {
 
     private initializeSubCommandOptions(interaction: Interaction): void {
         let options = interaction.data?.options ?? [];
-        
+
         if (options[0]?.type === ApplicationCommandOptionTypes.SubCommandGroup) {
             this.subCommandGroup = options[0].name;
             options = options[0].options ?? [];
@@ -59,8 +59,8 @@ export default class UnleashedCommandExecutor {
         } else {
             return `${calculateShardId(bot.gateway, this.guildId) + 1}/${bot.gateway.calculateTotalShards()}`;
         }
-    }    
-    
+    }
+
     getRawShard(): number {
         if (!this.guildId) {
             return 0;
@@ -84,8 +84,8 @@ export default class UnleashedCommandExecutor {
         }
         return undefined;
     }
-    
-    
+
+
 
     get guildMember() {
         return this.interaction?.member ?? this.message.member;
@@ -114,7 +114,7 @@ export default class UnleashedCommandExecutor {
     }
 
     public async sendMessageToChannel(options: CreateMessage): Promise<Message> {
-       const message = await bot.helpers.sendMessage(this.message.channelId, {
+        const message = await bot.helpers.sendMessage(this.message.channelId, {
             ...options,
             messageReference: {
                 messageId: this.message.id,
@@ -176,14 +176,14 @@ export default class UnleashedCommandExecutor {
     convertToDiscordTimestamp(date: Date, type: DiscordTimestamp): string {
         const timestamp = Math.floor(date.getTime() / 1000);
         const formats = ["R", "t", "T", "f"];
-        
+
         if (type === 3) {
             return `<t:${timestamp}:${formats[type]}> (<t:${timestamp}:R>)`;
         } else {
             return `<t:${timestamp}:${formats[type]}>`;
         }
     }
-    
+
 
     locale(text: string, options: Record<string, unknown> = {}): string {
         return this.i18n(text, options);
@@ -196,20 +196,21 @@ export default class UnleashedCommandExecutor {
         return this.subCommandGroup;
     }
 
-    getSubCommand(required = true): string {
+    async getSubCommand(required = true): Promise<string> {
         if (this.interaction) {
             if (required && !this.subCommand) {
                 throw new Error(`SubCommand is required in ${this.interaction?.data?.name}`);
             }
             return this.subCommand as string;
         } else {
-            return this.message?.content.split(' ')[0].replace(process.env.DEFAULT_PREFIX, '') || '';
+            const guildPrefix = this.guildId ? (await bot.database.getGuild(this.guildId)).guildSettings.prefix : process.env.DEFAULT_PREFIX;
+            return this.message?.content.split(' ')[0].replace(guildPrefix, '') || '';
         }
     }
 
     getOption<T>(name: string, shouldResolve: CanResolve, required = false, position = 1): T | undefined {
-        return this.interaction 
-            ? getOptionFromInteraction<T>(this.interaction, name, shouldResolve, required) 
+        return this.interaction
+            ? getOptionFromInteraction<T>(this.interaction, name, shouldResolve, required)
             : getArgsFromMessage<T>(this.message?.content || '', name, position, shouldResolve, this.message, required) as unknown as T;
     }
 

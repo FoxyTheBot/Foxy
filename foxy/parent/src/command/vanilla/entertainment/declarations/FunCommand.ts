@@ -184,7 +184,7 @@ const FunCommand = createCommand({
     type: ApplicationCommandTypes.ChatInput,
 
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-        switch (context.getSubCommand()) {
+        switch (await context.getSubCommand()) {
             case "8mile":
                 new EminemExecutor().execute(context, endCommand, t);
                 break;

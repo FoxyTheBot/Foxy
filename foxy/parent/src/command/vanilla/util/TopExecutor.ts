@@ -4,7 +4,7 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 
 export default class TopExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        const subCommand = context.getSubCommand();
+        const subCommand = await context.getSubCommand();
 
         switch (subCommand) {
             // Removed for maintenance
