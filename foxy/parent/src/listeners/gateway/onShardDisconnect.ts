@@ -14,6 +14,7 @@ const onShardDisconnect = async (): Promise<void> => {
                     case ShardState.Offline:
                         logger.info(`[SHARD] Shard #${shard.id} is ${shard.state}. Attempting to connect...`);
                         await shard.connect();
+                        await shard.identify();
                         break;
 
                     case ShardState.Unidentified:

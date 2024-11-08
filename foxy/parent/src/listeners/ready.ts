@@ -1,7 +1,7 @@
 import { Bot } from "discordeno/*";
 import { logger } from "../../../../common/utils/logger"
 import { bot } from "../FoxyLauncher";
-import { ActivityTypes, DiscordReady } from "discordeno/types";
+import { ActivityTypes } from "discordeno/types";
 
 const setReadyEvent = async (_: Bot, payload): Promise<void> => {
     logger.info(`[READY] Shard #${payload.shardId} is ready with ${payload.guilds.length} guilds!`);

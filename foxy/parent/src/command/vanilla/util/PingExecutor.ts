@@ -11,7 +11,6 @@ export default class PingExecutor {
         const shardArray = bot.gateway.manager.shards;
         const currentShardData = shardArray.find((shard) => shard.id === currentShard);
         const currentShardRtt = currentShardData?.heart.rtt ? `${currentShardData.heart.rtt}ms` : "N/A";
-
         if (["detailed", "shards"].includes(await context.getMessage(1))) {
             const shards = shardArray.map((shard) => {
                 const shardEmote = bot.emotes[ShardState[shard.state].toUpperCase()] || bot.emotes['OFFLINE'];
