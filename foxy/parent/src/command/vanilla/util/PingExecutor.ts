@@ -28,8 +28,6 @@ export default class PingExecutor {
             const embeds = [];
             for (let i = 0; i < shards.length; i += MAX_FIELDS_PER_EMBED) {
                 embeds.push({
-                    title: "Shards",
-                    description: "Veja o estado e a latência de todas as shards da Foxy.",
                     fields: shards.slice(i, i + MAX_FIELDS_PER_EMBED),
                     footer: {
                         text: `Shard: ${context.currentShard} | Your Latency: ${ping}ms`

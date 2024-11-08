@@ -1,4 +1,4 @@
-import { Bot, Collection, User, createRestManager } from 'discordeno';
+import { Bot, Collection, Message, User, createRestManager } from 'discordeno';
 import { CommandInterface } from './CommandInterfaces';
 import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
 import { BotWithCache } from 'discordeno/cache-plugin';
@@ -30,6 +30,7 @@ export interface FoxyClient extends BotWithCache<Bot> {
   isReady: boolean;
   hasGuildPermission: typeof botHasGuildPermissions;
   rest: Rest;
+  handleUnavailableGuild: Promise<Message>
 }
 
 export interface Rest extends ReturnType<typeof createRestManager> {

@@ -16,7 +16,6 @@ import enableCachePlugin from 'discordeno/cache-plugin';
 import { colors } from '../../../common/utils/colors';
 import { FoxyRestManager } from '../../../common/utils/RestManager';
 import { emotes } from '../../../common/utils/emotes';
-import setGuildMemberAddEvent from './listeners/guildMemberAdd';
 import setGuildMemberRemoveEvent from './listeners/guildMemberRemove';
 import ImageGenerator from './utils/images/ImageGenerator';
 import { onShardConnect } from './listeners/gateway/onShardConnect';
@@ -24,6 +23,7 @@ import { onShardDisconnect } from './listeners/gateway/onShardDisconnect';
 import { onRequestedConnect } from './listeners/gateway/onRequestedConnect';
 import { onShardConnecting } from './listeners/gateway/onShardConnecting';
 import DebugUtils from './utils/test/DebugUtils';
+import setGuildMemberAddEvent from './listeners/guildMemberAdd';
 
 export default class FoxyInstance {
     public bot: FoxyClient;
@@ -50,7 +50,15 @@ export default class FoxyInstance {
             token: process.env.DISCORD_TOKEN,
             intents: Intents.Guilds | Intents.GuildMessages | Intents.GuildMembers | Intents.MessageContent,
             botId: BigInt(process.env.CLIENT_ID),
-            events: {},
+            events: {
+                guildCreate: (_, guild) => setGuildCreateEvent(_, guild),
+                guildDelete: (_, guild) => setGuildDeleteEvent(_, guild),
+                interactionCreate: (_, interaction) => setInteractionCreateEvent(_, interaction),
+                guildMemberAdd: (_, member, user) => setGuildMemberAddEvent(_, member, user),
+                guildMemberRemove: (_, member, guildId) => setGuildMemberRemoveEvent(_, member, guildId),
+                messageCreate: (_, message) => setMessageCreateEvent(_, message),
+                ready: (_, payload) => setReadyEvent(_, payload)
+            },
             botGatewayData: {
                 sessionStartLimit: {
                     total: 100,
@@ -137,18 +145,6 @@ export default class FoxyInstance {
     }
 
     private async setupEventsHandler() {
-        setReadyEvent();
-        setInteractionCreateEvent();
-        setGuildCreateEvent();
-        setGuildDeleteEvent();
-        setMessageCreateEvent();
-        setGuildMemberAddEvent();
-        setGuildMemberRemoveEvent();
-        onShardConnect();
-        onShardDisconnect();
-        onRequestedConnect();
-        onShardConnecting();
-
         this.bot.gateway.manager.createShardOptions.events.message = async (shard, message) => {
             /* Handle unavailable guilds because discordeno does not handle unavailable guilds by default
             *  Reference: https://discordeno.js.org/api_reference/generated/interfaces/EventHandlers?_highlight=guilddelete#guilddelete
@@ -162,6 +158,11 @@ export default class FoxyInstance {
 
             this.bot.handlers[message.t]?.(this.bot, message, shard.id);
         }
+
+        onShardConnect();
+        onShardDisconnect();
+        onRequestedConnect();
+        onShardConnecting();
     }
 
     private async handleUnavailableGuild(message: any) {
