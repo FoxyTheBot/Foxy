@@ -144,6 +144,24 @@ export default class FoxyInstance {
         });
     }
 
+    public shutdown() {
+        this.bot.gateway.manager.shards.forEach((shard) => {
+            logger.info(`[SHARD] Shard ${shard.id} is disconnecting...`);
+            shard.shutdown();
+        });
+        this.bot.database.close();
+        
+        this.bot.dispatchedGuildIds.clear();
+        this.bot.dispatchedChannelIds.clear();
+        this.bot.messages.clear();
+        this.bot.cache.fetchAllMembersProcessingRequests.clear();
+        this.bot.cache.unrepliedInteractions.clear();
+        this.bot.channels.clear();
+        this.bot.presences.clear();
+        this.bot.guilds.clear();
+        this.bot.members.clear();
+    }
+
     private async setupEventsHandler() {
         this.bot.gateway.manager.createShardOptions.events.message = async (shard, message) => {
             /* Handle unavailable guilds because discordeno does not handle unavailable guilds by default

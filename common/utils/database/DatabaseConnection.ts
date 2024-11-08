@@ -37,6 +37,7 @@ export default class DatabaseConnection {
     }
 
     close() {
+        logger.info(`[DATABASE] Closing connection to database...`);
         mongoose.connection.close();
     }
     

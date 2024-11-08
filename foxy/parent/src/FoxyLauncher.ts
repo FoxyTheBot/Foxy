@@ -3,7 +3,9 @@ import FoxyInstance from './FoxyInstance';
 
 require('dotenv').config({ path: '../../.env' });
 
-const bot = new FoxyInstance().bot;
+const botInstance = new FoxyInstance();
+const bot = botInstance.bot;
+
 export { bot };
 
 process.on('unhandledRejection', (err: Error) => {
@@ -11,7 +13,13 @@ process.on('unhandledRejection', (err: Error) => {
 });
 
 process.on('SIGINT', async () => {
-    await bot.database.close();
+    await botInstance.shutdown();
+    logger.info('Process terminated');
+    process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+    await botInstance.shutdown();
     logger.info('Process terminated');
     process.exit(0);
 });
