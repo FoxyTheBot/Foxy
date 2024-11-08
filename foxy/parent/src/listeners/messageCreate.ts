@@ -50,7 +50,7 @@ const setMessageCreateEvent = (): void => {
 
             const command = bot.commands.get(commandName) 
             || bot.commands.find((cmd) => cmd.aliases?.includes(commandName))
-            || bot.commands.find((cmd) => cmd.nameLocalizations["pt-BR"]?.includes(commandName));
+            || bot.commands.find((cmd) => cmd?.nameLocalizations["pt-BR"]?.includes(commandName));
             if (!command) return;
             
             const now = Date.now();
