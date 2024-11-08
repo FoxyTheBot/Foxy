@@ -61,6 +61,13 @@ export default class UnleashedCommandExecutor {
         }
     }    
     
+    getRawShard(): number {
+        if (!this.guildId) {
+            return 0;
+        } else {
+            return calculateShardId(bot.gateway, this.guildId);
+        }
+    }
     get isMessage(): boolean {
         return !!this.message;
     }
