@@ -5,7 +5,6 @@ import { ActivityTypes } from "discordeno/types";
 const setReadyEvent = (): void => {
     bot.events.ready = async (_, payload) => {
         logger.info(`[READY] Shard #${payload.shardId} is ready with ${payload.guilds.length} guilds!`);
-        logger.onShardReady(payload.shardId, payload.guilds.length);
         
         if (bot.isProduction) {
             bot.helpers.editBotStatus({

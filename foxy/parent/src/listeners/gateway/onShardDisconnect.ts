@@ -13,34 +13,29 @@ const onShardDisconnect = async (): Promise<void> => {
                     case ShardState.Disconnected:
                     case ShardState.Offline:
                         logger.info(`[SHARD] Shard #${shard.id} is ${shard.state}. Attempting to connect...`);
-                        logger.onShardReconnect(shard);
                         await shard.connect();
                         break;
 
                     case ShardState.Unidentified:
                         logger.info(`[SHARD] Shard #${shard.id} is Unidentified. Attempting to identify...`);
-                        logger.onShardReconnect(shard);
                         await bot.gateway.manager.requestIdentify(shard.id);
                         break;
 
                     case ShardState.Identifying:
                         logger.info(`[SHARD] Shard #${shard.id} is Identifying. Attempting to resume...`);
-                        logger.onShardReconnect(shard);
                         await shard.resume();
                         break;
 
                     case ShardState.Resuming:
                         logger.info(`[SHARD] Shard #${shard.id} is Resuming. No action taken.`);
-                        logger.onShardReconnect(shard);
                         break;
 
                     case ShardState.Connected:
-                        // Ignore "Connected" state, i don't know why it's being called here.
+                        // Ignore "Connected" state, i don't know why it's here.
                     break;
 
                     default:
                         logger.warn(`[SHARD] Shard #${shard.id} is in an unknown state. Attempting to resume...`);
-                        logger.onShardReconnect(shard);
                         await shard.resume();
                         break;
                 }

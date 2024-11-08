@@ -65,7 +65,7 @@ export default class FoxyInstance {
 
         bot.gateway.manager.createShardOptions.rateLimitResetInterval = 60000;
         bot.gateway.manager.createShardOptions.maxRequestsPerRateLimitTick = 5;
-        bot.gateway.spawnShardDelay = 5000;
+        bot.gateway.spawnShardDelay = process.env.SHARD_SPAWN_DELAY ? Number(process.env.SHARD_SPAWN_DELAY) : 5000;
         return bot;
     }
 

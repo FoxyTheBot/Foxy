@@ -54,8 +54,12 @@ export default class UnleashedCommandExecutor {
     }
 
     get currentShard(): string {
-        return `${calculateShardId(bot.gateway, this.guildId) + 1}/${bot.gateway.calculateTotalShards()}`
-    }
+        if (!this.guildId) {
+            return `0/${bot.gateway.calculateTotalShards()}`;
+        } else {
+            return `${calculateShardId(bot.gateway, this.guildId) + 1}/${bot.gateway.calculateTotalShards()}`;
+        }
+    }    
     
     get isMessage(): boolean {
         return !!this.message;
@@ -65,9 +69,16 @@ export default class UnleashedCommandExecutor {
         return this.interaction?.channelId ?? this.message.channelId;
     }
 
-    get guildId(): bigint {
-        return this.interaction?.guildId ?? this.message.guildId;
+    get guildId(): bigint | undefined {
+        if (this.interaction && this.interaction.guildId) {
+            return this.interaction.guildId;
+        } else if (this.message && this.message.guildId) {
+            return this.message.guildId;
+        }
+        return undefined;
     }
+    
+    
 
     get guildMember() {
         return this.interaction?.member ?? this.message.member;
