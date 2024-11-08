@@ -10,51 +10,74 @@ import { FoxyTransaction, FoxyUser } from './types/user';
 import { FoxyGuild } from './types/guild';
 
 export default class DatabaseConnection {
-    public bot: FoxyClient;
+    public bot?: FoxyClient;
     public rest: FoxyRestManager;
-    public key: any;
-    public user: any;
-    public commands: any;
-    public guilds: any;
-    public riotAccount: any;
-    public backgrounds: any;
-    public layouts: any;
-    public decorations: any;
-    public badges: any;
+    private cacheExpiration = 60000;
+    private lastCacheUpdate = 0;
+    private badgesCache: Badge[] = [];
+
+    public models: { // TODO: Add types for each model
+        user: any,
+        commands: any,
+        guilds: any,
+        key: any,
+        riotAccount: any,
+        backgrounds: any,
+        layouts: any,
+        decorations: any,
+        badges: any,
+    } = {} as any;
 
     constructor(bot?: FoxyClient) {
+        this.bot = bot;
+        this.rest = new FoxyRestManager();
         this.connect();
         this.loadModels();
-        this.rest = new FoxyRestManager();
-        if (bot) this.bot = bot;
     }
 
     connect() {
         mongoose.set("strictQuery", true);
-        mongoose.connect(process.env.MONGO_URI)
-            .then(() => logger.info(`[DATABASE] Connected to database!`))
-            .catch(error => logger.error(`Failed to connect to database: `, error));
+    
+        const mongoURI = process.env.MONGO_URI;
+        const mongoTimeout = Number(process.env.MONGO_TIMEOUT) || 10000;
+    
+        if (!mongoURI) {
+            logger.error('MongoDB URI is not defined in environment variables');
+            return;
+        }
+    
+        mongoose.connect(mongoURI, {
+            connectTimeoutMS: mongoTimeout,
+            socketTimeoutMS: mongoTimeout,
+        })
+        .then(() => {
+            logger.info(`[DATABASE] Connected to the database!`);
+        })
+        .catch(error => {
+            logger.error(`Failed to connect to the database: `, error);
+        });
     }
+    
 
     close() {
         logger.info(`[DATABASE] Closing connection to database...`);
         mongoose.connection.close();
     }
-    
+
     loadModels() {
-        this.user = mongoose.model('user', Schemas.userSchema);
-        this.commands = mongoose.model('commands', Schemas.commandsSchema);
-        this.guilds = mongoose.model('guilds', Schemas.guildSchema);
-        this.key = mongoose.model('key', Schemas.keySchema);
-        this.badges = mongoose.model('badges', Schemas.badgesSchema);
-        this.layouts = mongoose.model('layouts', Schemas.layoutSchema);
-        this.backgrounds = mongoose.model('backgrounds', Schemas.backgroundSchema);
-        this.decorations = mongoose.model('decorations', Schemas.avatarDecorationSchema);
-        this.riotAccount = mongoose.model('riotAccount', Schemas.riotAccountSchema);
+        this.models.user = mongoose.model('user', Schemas.userSchema);
+        this.models.commands = mongoose.model('commands', Schemas.commandsSchema);
+        this.models.guilds = mongoose.model('guilds', Schemas.guildSchema);
+        this.models.key = mongoose.model('key', Schemas.keySchema);
+        this.models.badges = mongoose.model('badges', Schemas.badgesSchema);
+        this.models.layouts = mongoose.model('layouts', Schemas.layoutSchema);
+        this.models.backgrounds = mongoose.model('backgrounds', Schemas.backgroundSchema);
+        this.models.decorations = mongoose.model('decorations', Schemas.avatarDecorationSchema);
+        this.models.riotAccount = mongoose.model('riotAccount', Schemas.riotAccountSchema);
     }
 
     createUser(userId: string) {
-        return new this.user({
+        return new this.models.user({
             _id: userId,
             userCreationTimestamp: new Date(),
             isBanned: false,
@@ -119,7 +142,7 @@ export default class DatabaseConnection {
     }
 
     createGuild(guildId: string): Promise<FoxyGuild> {
-        return new this.guilds({
+        return new this.models.guilds({
             _id: guildId,
             GuildJoinLeaveModule: {
                 isEnabled: false,
@@ -147,46 +170,53 @@ export default class DatabaseConnection {
     }
 
     async createTransaction(userId: bigint, transaction: FoxyTransaction) {
-        let document = await this.getUser(userId);
+        await this.models.user.findOneAndUpdate(
+            { _id: userId.toString() },
+            {
+                $push: {
+                    userTransactions: {
+                        to: transaction.to,
+                        from: transaction.from ?? null,
+                        quantity: transaction.quantity,
+                        date: new Date(),
+                        received: transaction.received,
+                        type: transaction.type,
+                    },
+                },
+            },
+            { upsert: true, new: true }
+        );
 
-        document.userTransactions.push({
-            to: transaction.to,
-            from: transaction.from ?? null,
-            quantity: transaction.quantity,
-            date: new Date(Date.now()),
-            received: transaction.received,
-            type: transaction.type
-        });
-
-        await document.save();
     }
 
     async getUser(userId: bigint): Promise<FoxyUser> {
         const user: DiscordUser = await this.rest.getUser(String(userId));
         if (!user) return null;
-        let document = await this.user.findOne({ _id: (await user).id });
-
+        let document = await this.models.user.findOne({ _id: user.id });
         if (!document) {
-            document = this.createUser((await user).id.toString());
+            document = this.createUser(user.id);
             await document.save();
         }
-
         return document;
     }
 
     async getBadges(): Promise<Badge[]> {
-        return await this.badges.find({});
+        const now = Date.now();
+        if (this.badgesCache.length && now - this.lastCacheUpdate < this.cacheExpiration) {
+            return this.badgesCache;
+        }
+        this.badgesCache = await this.models.badges.find({}).lean();
+        this.lastCacheUpdate = now;
+        return this.badgesCache;
     }
 
     async registerCommand(command: CommandInterface): Promise<void> {
-        const commandName = command.name;
-        await this.commands.findOneAndUpdate(
-            { commandName },
+        await this.models.commands.findOneAndUpdate(
+            { commandName: command.name },
             {
                 $set: {
                     description: command.description,
                     category: command.category,
-
                     nameLocalizations: command.nameLocalizations || {},
                     descriptionLocalizations: command.descriptionLocalizations || {},
                     supportsLegacy: command.supportsLegacy || false,
@@ -202,43 +232,36 @@ export default class DatabaseConnection {
     }
 
     async updateCommand(commandName: string): Promise<void> {
-        let commandFromDB = await this.commands.findOneAndUpdate(
+        const commandFromDB = await this.models.commands.findOneAndUpdate(
             { commandName },
             { $inc: { commandUsageCount: 1 } },
             { upsert: true, new: true }
         );
 
-        let command = await this.bot.commands.get(commandName);
-
+        const command = await this.bot?.commands.get(commandName);
         if (!command || command.devsOnly) return null;
-
         return commandFromDB;
     }
 
     async getAllCommands(): Promise<any> {
-        const commandsData = await this.commands.find({});
+        const commandsData = await this.models.commands.find({}).lean();
         return commandsData.map(command => command.toJSON());
     }
 
-    async getCode(code: string): Promise<any> {
-        const riotAccount = await this.riotAccount.findOne({ authCode: code });
-        return riotAccount || null;
-    }
-
     async getAllUsageCount(): Promise<number> {
-        const commandsData = await this.commands.find({});
+        const commandsData = await this.models.commands.find({}).lean();
         return commandsData.reduce((acc, command) => acc + command.commandUsageCount, 0);
     }
 
     async getGuild(guildId: BigInt): Promise<FoxyGuild> {
-        const guild = await this.guilds.findOne({ _id: guildId });
+        const guild = await this.models.guilds.findOne({ _id: guildId });
         if (!guild) return this.createGuild(guildId.toString());
-        
+
         return guild;
     }
 
     async addGuild(guildId: BigInt): Promise<any> {
-        let document = await this.guilds.findOne({ _id: guildId });
+        let document = await this.models.guilds.findOne({ _id: guildId });
 
         if (!document) {
             document = this.createGuild(guildId.toString());
@@ -249,40 +272,40 @@ export default class DatabaseConnection {
     }
 
     async removeGuild(guildId: BigInt): Promise<boolean> {
-        const result = await this.guilds.deleteOne({ _id: guildId });
+        const result = await this.models.guilds.deleteOne({ _id: guildId });
         return result.deletedCount > 0;
     }
 
     async getAllUsers(): Promise<any> {
-        const usersData = await this.user.find({});
+        const usersData = await this.models.user.find({}).lean();
         return usersData.map(user => user.toJSON());
     }
 
     async getAllGuilds(): Promise<number> {
-        const guildsData = await this.guilds.find({});
+        const guildsData = await this.models.guilds.find({}).lean();
         return guildsData.length;
     }
 
     async getAllBackgrounds(): Promise<Background[]> {
-        const backgroundsData = await this.backgrounds.find({});
+        const backgroundsData = await this.models.backgrounds.find({}).lean();
         return backgroundsData.map(background => background.toJSON());
     }
 
     async getAllDecorations(): Promise<Decoration[]> {
-        const decorationsData = await this.decorations.find({});
+        const decorationsData = await this.models.decorations.find({}).lean();
         return decorationsData.map(decoration => decoration.toJSON());
     }
 
     async getBackground(backgroundId: string): Promise<Background> {
-        return await this.backgrounds.findOne({ id: backgroundId });
+        return await this.models.backgrounds.findOne({ id: backgroundId }).lean();
     }
 
     async getLayout(layoutId: string): Promise<Layout> {
-        return await this.layouts.findOne({ id: layoutId });
+        return await this.models.layouts.findOne({ id: layoutId }).lean();
     }
 
     async getDecoration(decorationId: string): Promise<Decoration> {
-        return await this.decorations.findOne({ id: decorationId });
+        return await this.models.decorations.findOne({ id: decorationId }).lean();
     }
 }
 interface ProfileSettings {

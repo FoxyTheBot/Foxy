@@ -47,7 +47,9 @@ export class FoxyRestManager {
 
     async getUser(userId: string): Promise<User> {
         try {
-            return await this.rest.runMethod(this.rest, "GET", this.constants.routes.USER(userId));
+            const response = await this.rest.runMethod(this.rest, "GET", this.constants.routes.USER(userId));
+            if (typeof response !== "object") return null;
+            return response;
         } catch (error) {
             logger.error("Failed to retrieve user:", error);
             throw new Error("Failed to retrieve user.");
