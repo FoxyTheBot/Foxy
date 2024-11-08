@@ -37,7 +37,10 @@ const petSchema = new mongoose.Schema({
 }, { versionKey: false, id: false });
 
 const userSchema = new mongoose.Schema({
-    _id: String,
+    _id: {
+        type: "String",
+        required: true
+    },
     userCreationTimestamp: Date,
     isBanned: Boolean,
     banDate: Date,
@@ -109,7 +112,10 @@ const dashboardLogsSchema = new mongoose.Schema({
 }, { versionKey: false, id: false });
 
 const guildSchema = new mongoose.Schema({
-    _id: String,
+    _id: {
+        type: "String",
+        required: true
+    },
     GuildJoinLeaveModule: {
         isEnabled: Boolean,
         joinMessage: String,

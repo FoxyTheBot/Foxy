@@ -84,7 +84,14 @@ function getArgsFromMessage<T>(
     async function getUser(userId: string): Promise<User | null> {
       const id = userId ? userId.replace(/[^0-9]/g, '') : userId;
       if (!id) return null;
-      return bot.users.get(BigInt(id)) || await bot.helpers.getUser(id);
+      let user;
+      try {
+        user = bot.users.get(BigInt(id)) || await bot.helpers.getUser(id);
+      } catch (error) {
+        user = bot.users.get(messageContext.authorId) || await bot.helpers.getUser(messageContext.authorId);
+      }
+
+      return user;
     }
     return getUser(args[position]) as unknown as T;
   }
