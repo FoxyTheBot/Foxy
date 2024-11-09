@@ -10,15 +10,31 @@ import { ComponentInteraction } from '../../structures/types/Interactions';
 const componentExecutor = async (interaction: Interaction): Promise<void> => {
   let receivedCommandName = interaction.message?.interaction?.name;
 
-  if (!interaction.message.interaction) {
-    const messageId = interaction.data?.customId.split('|')[2];
-    const message = await bot.messages.get(BigInt(messageId)) || (await bot.helpers.getMessage(interaction.channelId, messageId));
+  if (!receivedCommandName && interaction.data?.customId) {
+    const customIdParts = interaction.data.customId.split('|');
+    let message = null;
+
+    for (const part of customIdParts) {
+      try {
+        const messageId = BigInt(part);
+        message = await bot.messages.get(messageId) || (await bot.helpers.getMessage(interaction.channelId, part));
+        if (message) break;
+      } catch {
+        continue;
+      }
+    }
+
     if (!message) return;
 
-    receivedCommandName = bot.commands.find((cmd) => {
-      const commandName = message.content.split(' ')[0].replace('..', '');
-      return cmd.name === commandName || cmd.aliases?.includes(commandName);
-    })?.name;
+    const getCommandName = async () => {
+      const prefix = (await bot.database.getGuild(interaction.guildId)).guildSettings.prefix ?? process.env.DEFAULT_PREFIX;
+      return bot.commands.find((cmd) => {
+        const commandName = message.content.split(' ')[0].replace(prefix, '');
+        return cmd.name === commandName || cmd.aliases?.includes(commandName);
+      })?.name;
+    };
+
+    receivedCommandName = await getCommandName();
   }
 
   if (!receivedCommandName || !interaction.data?.customId) return;
@@ -26,7 +42,7 @@ const componentExecutor = async (interaction: Interaction): Promise<void> => {
   const [executorIndex, interactionTarget] = interaction.data.customId.split('|');
   const commandName = receivedCommandName.split(' ')[0];
 
-  const errorReply = async (content: string): Promise<void> => {
+  const errorReply = async (content: string) => {
     await bot.helpers.sendInteractionResponse(interaction.id, interaction.token, {
       type: InteractionResponseTypes.ChannelMessageWithSource,
       data: {
@@ -42,7 +58,7 @@ const componentExecutor = async (interaction: Interaction): Promise<void> => {
   const command = bot.commands.get(commandName || receivedCommandName);
 
   if (!command) return errorReply(T('permissions:UNKNOWN_SLASH'));
-  if (!command.commandRelatedExecutions || command.commandRelatedExecutions.length === 0) return;
+  if (!command.commandRelatedExecutions?.length) return;
 
   const isUserBanned = await user.isBanned;
   if (isUserBanned) {
@@ -50,7 +66,7 @@ const componentExecutor = async (interaction: Interaction): Promise<void> => {
     return errorReply(T('permissions:BANNED_INFO', { banReason }));
   }
 
-  if (interactionTarget.length > 1 && interactionTarget !== `${interaction.user.id}`) {
+  if (interactionTarget !== `${interaction.user.id}` && interactionTarget.length > 1) {
     return errorReply(T('permissions:NOT_INTERACTION_OWNER', { owner: mentionUser(interactionTarget) }));
   }
 
@@ -62,11 +78,8 @@ const componentExecutor = async (interaction: Interaction): Promise<void> => {
   try {
     await execute(context);
   } catch (err) {
-    errorReply(T('events:error.title', { cmd: command.name }));
     console.error(err);
-    if (typeof err === 'string') {
-      err = new Error(err);
-    }
+    errorReply(T('events:error.title', { cmd: command.name }));
   }
 };
 

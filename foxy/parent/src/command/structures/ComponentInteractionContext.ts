@@ -5,6 +5,7 @@ import { bot } from "../../FoxyLauncher";
 import { get } from 'https';
 import { URL } from 'url';
 import { MessageFlags } from '../../utils/discord/Message';
+import { logger } from '../../../../../common/utils/logger';
 
 export type CanResolve = 'users' | 'members' | false;
 export default class <InteractionType extends ComponentInteraction = ComponentInteraction> {
@@ -50,10 +51,14 @@ export default class <InteractionType extends ComponentInteraction = ComponentIn
   }
 
   async followUp(options: InteractionCallbackData): Promise<void> {
-    await bot.helpers.sendFollowupMessage(this.interaction.token, {
-      type: InteractionResponseTypes.ChannelMessageWithSource,
-      data: options,
-    })
+    try {
+      await bot.helpers.sendFollowupMessage(this.interaction.token, {
+        type: InteractionResponseTypes.ChannelMessageWithSource,
+        data: options,
+      });
+    } catch (error) {
+      logger.error(error);
+    }
   }
 
   async sendDefer(EPHEMERAL = false): Promise<void> {

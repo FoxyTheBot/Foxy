@@ -80,7 +80,8 @@ export default class TransferExecutor {
                     context.author.id,
                     context.commandId,
                     value,
-                    user.id
+                    user.id,
+                    context.isMessage ? context.message.id : null
                 ),
                 emoji: {
                     id: BigInt(bot.emotes.FOXY_DAILY)
