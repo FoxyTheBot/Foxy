@@ -11,7 +11,7 @@ const HugExecutor = async (context: ComponentInteractionContext) => {
     let commandAuthor = await bot.rest.foxy.getUserDisplayName(context.author.id);
     
     if (messageId) {
-        const message = bot.messages.get(BigInt(messageId));
+        const message = bot.messages.get(BigInt(messageId)) || (await bot.helpers.getMessage(channelId, messageId));
         commandAuthor = await bot.rest.foxy.getUserDisplayName(message.authorId);
     }
 

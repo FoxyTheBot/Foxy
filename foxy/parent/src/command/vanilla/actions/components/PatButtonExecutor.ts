@@ -5,13 +5,13 @@ import { ButtonStyles } from "discordeno/types";
 import { createActionRow, createButton, createCustomId } from "../../../../utils/discord/Component";
 
 const PatExecutor = async (context: ComponentInteractionContext) => {
-    const [user, messageId] = context.sentData;
+    const [user, messageId, channelId] = context.sentData;
     const patGif = await bot.rest.foxy.getImage("roleplay", "pat");
     const embed = createEmbed({});
     let commandAuthor = await bot.rest.foxy.getUserDisplayName(context.author.id);
     
     if (messageId) {
-        const message = bot.messages.get(BigInt(messageId));
+        const message = bot.messages.get(BigInt(messageId)) || (await bot.helpers.getMessage(channelId, messageId));
         commandAuthor = await bot.rest.foxy.getUserDisplayName(message.authorId);
     }
 

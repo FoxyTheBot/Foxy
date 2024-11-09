@@ -17,7 +17,11 @@ const setInteractionCreateEvent = async (_: Bot, interaction: Interaction): Prom
 
     const context = new UnleashedCommandExecutor(locale, null, interaction);
     if (interaction.type === InteractionTypes.MessageComponent || interaction.type === InteractionTypes.ModalSubmit) {
-        componentExecutor(interaction);
+        try {
+            componentExecutor(interaction);
+        } catch (error) {
+            logger.error("Failed to execute component:", error);
+        }
         return;
     }
 

@@ -12,7 +12,7 @@ const componentExecutor = async (interaction: Interaction): Promise<void> => {
 
   if (!interaction.message.interaction) {
     const messageId = interaction.data?.customId.split('|')[2];
-    const message = await bot.messages.get(BigInt(messageId));
+    const message = await bot.messages.get(BigInt(messageId)) || (await bot.helpers.getMessage(interaction.channelId, messageId));
     if (!message) return;
 
     receivedCommandName = bot.commands.find((cmd) => {

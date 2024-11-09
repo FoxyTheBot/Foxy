@@ -5,13 +5,13 @@ import { createActionRow, createButton, createCustomId } from "../../../../utils
 import { createEmbed } from "../../../../utils/discord/Embed";
 
 const TickleExecutor = async (context: ComponentInteractionContext) => {
-    const [user, messageId] = context.sentData;
+    const [user, messageId, channelId] = context.sentData;
     const tickleGif = await bot.rest.foxy.getImage("roleplay", "tickle");
     const embed = createEmbed({});
     let commandAuthor = await bot.rest.foxy.getUserDisplayName(context.author.id);
 
     if (messageId) {
-        const message = bot.messages.get(BigInt(messageId));
+        const message = bot.messages.get(BigInt(messageId)) || (await bot.helpers.getMessage(channelId, messageId));
         commandAuthor = await bot.rest.foxy.getUserDisplayName(message.authorId);
     }
     

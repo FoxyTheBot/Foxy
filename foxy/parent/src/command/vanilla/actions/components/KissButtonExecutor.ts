@@ -5,13 +5,13 @@ import { createActionRow, createButton, createCustomId } from "../../../../utils
 import { createEmbed } from "../../../../utils/discord/Embed";
 
 const KissExecutor = async (context: ComponentInteractionContext) => {
-    const [user, messageId] = context.sentData;
+    const [user, messageId, channelId] = context.sentData;
     const kissGif = await bot.rest.foxy.getImage("roleplay", "kiss");
     const embed = createEmbed({});
     let commandAuthor = await bot.rest.foxy.getUserDisplayName(context.author.id);
     
     if (messageId) {
-        const message = bot.messages.get(BigInt(messageId));
+        const message = bot.messages.get(BigInt(messageId)) || (await bot.helpers.getMessage(channelId, messageId));
         commandAuthor = await bot.rest.foxy.getUserDisplayName(message.authorId);
     }
 

@@ -6,7 +6,6 @@ import { createActionRow, createButton, createCustomId } from "../../../utils/di
 export default class TransferExecutor {
 
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        if (context.message) return;
         const user = await context.getOption<User>('user', 'users');
 
         if (!user) {
@@ -22,9 +21,9 @@ export default class TransferExecutor {
         const amountAsNumber = Number(amount);
 
         if (
-            isNaN(amountAsNumber) ||                 
-            /0x/i.test(amount.toString()) ||       
-            parseFloat(amount.toString()) <= 0 ||       
+            isNaN(amountAsNumber) ||
+            /0x/i.test(amount.toString()) ||
+            parseFloat(amount.toString()) <= 0 ||
             !Number.isInteger(parseFloat(amount.toString()))
         ) {
             context.reply({
@@ -32,7 +31,7 @@ export default class TransferExecutor {
             });
             return endCommand();
         }
-        
+
         const authorData = await bot.database.getUser(context.author.id);
         const value = Math.round(amountAsNumber);
 
@@ -77,7 +76,12 @@ export default class TransferExecutor {
             components: [createActionRow([createButton({
                 label: t('commands:pay.pay'),
                 style: ButtonStyles.Success,
-                customId: createCustomId(0, context.author.id, context.commandId, value, user.id),
+                customId: createCustomId(0,
+                    context.author.id,
+                    context.commandId,
+                    value,
+                    user.id
+                ),
                 emoji: {
                     id: BigInt(bot.emotes.FOXY_DAILY)
                 }
