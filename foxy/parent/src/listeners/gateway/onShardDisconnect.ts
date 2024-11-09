@@ -32,8 +32,9 @@ const onShardDisconnect = async (): Promise<void> => {
                         break;
 
                     case ShardState.Connected:
-                        // Ignore "Connected" state, i don't know why it's here.
-                    break;
+                        // The shard received a reconnect opcode from Discord, no action needed.
+                        logger.info(`[SHARD] Shard #${shard.id} is already connected.`);
+                        break;
 
                     default:
                         logger.warn(`[SHARD] Shard #${shard.id} is in an unknown state. Attempting to resume...`);
