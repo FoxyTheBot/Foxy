@@ -15,6 +15,7 @@ export interface User {
     verified?: boolean,
     email?: string,
     flags?: number,
+    clan: string | null,
     premium_type?: number,
     public_flags?: number,
 }

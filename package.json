@@ -30,7 +30,9 @@
   ],
   "homepage": "https://github.com/FoxyTheBot/Foxy#readme",
   "dependencies": {
+    "@discordjs/rest": "^2.4.0",
     "axios": "^1.6.2",
+    "discord-api-types": "^0.37.104",
     "discordeno": "^18.0.1",
     "dotenv": "^16.4.5",
     "express": "5.0.0",

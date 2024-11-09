@@ -3,18 +3,18 @@ import { User } from "../types/DiscordUser";
 import axios, { AxiosInstance } from "axios";
 import { FoxyImage } from "../../foxy/parent/src/structures/types/APIResponses";
 import { logger } from "./logger";
-import { createRestManager } from "discordeno/rest";
 import { createBotConstants } from "discordeno";
+import { REST } from "@discordjs/rest";
+import { Routes } from 'discord-api-types/v10';
 require('dotenv').config({ path: "../../.env" });
 
 export class FoxyRestManager {
     public api: AxiosInstance;
     public artistry: AxiosInstance;
 
-    public rest = createRestManager({
-        token: process.env.DISCORD_TOKEN,
-        version: 10
-    });
+    public rest = new REST({ version: "10" })
+        .setToken(process.env.DISCORD_TOKEN);
+
     public constants = createBotConstants();
 
     constructor() {
@@ -37,7 +37,7 @@ export class FoxyRestManager {
 
     async getUserDisplayName(userId: BigString) {
         try {
-            const user = await this.rest.runMethod(this.rest, "GET", this.constants.routes.USER(userId));
+            const user = await this.rest.get(Routes.user(userId.toString())) as User;
             return user.global_name || user.username;
         } catch (error) {
             logger.error("Failed to retrieve user display name:", error);
@@ -47,36 +47,20 @@ export class FoxyRestManager {
 
     async getUser(userId: string): Promise<User> {
         try {
-            const response = await this.rest.runMethod(this.rest, "GET", this.constants.routes.USER(userId));
-            if (typeof response !== "object") return null;
-            return response;
+            const user = await this.rest.get(Routes.user(userId)) as User;
+            if (typeof user !== "object") return null;
+
+            return user;
         } catch (error) {
             logger.error("Failed to retrieve user:", error);
             throw new Error("Failed to retrieve user.");
         }
     }
 
-    async addRole(userId: string, roleId: string, guildId: string) {
-        try {
-            return await this.rest.runMethod(this.rest, "PUT", this.constants.routes.GUILD_MEMBER_ROLE(guildId, userId, roleId));
-        } catch (error) {
-            logger.error("Failed to add role:", error);
-            throw new Error("Failed to add role.");
-        }
-    }
-
-    async removeRole(userId: string, roleId: string, guildId: string) {
-        try {
-            return await this.rest.runMethod(this.rest, "DELETE", this.constants.routes.GUILD_MEMBER_ROLE(guildId, userId, roleId));
-        } catch (error) {
-            logger.error("Failed to remove role:", error);
-            throw new Error("Failed to remove role.");
-        }
-    }
-
     async getUserAsMember(userId: string, guildId: string) {
         try {
-            return await this.rest.runMethod(this.rest, "GET", this.constants.routes.GUILD_MEMBER(guildId, userId));
+            const response = await this.rest.get(Routes.guildMember(guildId, userId));
+            return response;
         } catch (error) {
             logger.error("Failed to retrieve user as member:", error);
             throw new Error("Failed to retrieve user as member.");
@@ -91,20 +75,20 @@ export class FoxyRestManager {
             logger.warn("Failed to parse JSON, sending as string:", error);
             jsonContent = { content };
         }
-
         const filteredContent: any = {
             content: jsonContent.content || null,
             embeds: jsonContent.embeds || [],
             components: this.normalizeComponents(jsonContent.components || []),
-        };
+        }
 
         try {
-            return await this.rest.runMethod(
-                this.rest,
-                "POST",
-                this.constants.routes.CHANNEL_MESSAGES(channelId),
-                filteredContent
-            );
+            const response = await this.rest.post(Routes.channelMessages(channelId), { 
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: filteredContent,
+             });
+            return response;
         } catch (error) {
             logger.error("Failed to send message:", error);
             throw new Error("Message sending failed.");

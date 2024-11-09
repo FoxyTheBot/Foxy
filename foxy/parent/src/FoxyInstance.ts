@@ -90,8 +90,6 @@ export default class FoxyInstance {
     }
 
     private async setupCache() {
-        this.bot.dispatchedGuildIds = new Set();
-        this.bot.presences.maxSize = 1;
         this.bot.guilds.maxSize = 100;
         this.bot.members.maxSize = 100;
         this.bot.channels.maxSize = 100;
@@ -99,8 +97,6 @@ export default class FoxyInstance {
         this.bot.users.maxSize = 100;
 
         setInterval(() => {
-            this.bot.dispatchedGuildIds.clear();
-            this.bot.dispatchedChannelIds.clear();
             this.bot.messages.clear();
             this.bot.cache.fetchAllMembersProcessingRequests.clear();
             this.bot.cache.unrepliedInteractions.clear();
