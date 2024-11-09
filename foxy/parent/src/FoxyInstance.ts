@@ -1,4 +1,4 @@
-import { handleInteractionCreate, Collection, DiscordUnavailableGuild, createBot, Intents, startBot, createShardManager } from 'discordeno';
+import { handleInteractionCreate, Collection, DiscordUnavailableGuild, createBot, Intents, startBot } from 'discordeno';
 import { FoxyClient } from './structures/types/FoxyClient';
 import { loadCommands } from './command/structures/loadCommands';
 import { transformInteraction } from './structures/internals/transformers/interactionResponse';
@@ -22,7 +22,7 @@ import { onShardConnect } from './listeners/gateway/onShardConnect';
 import { onShardDisconnect } from './listeners/gateway/onShardDisconnect';
 import { onRequestedConnect } from './listeners/gateway/onRequestedConnect';
 import { onShardConnecting } from './listeners/gateway/onShardConnecting';
-import DebugUtils from './utils/test/DebugUtils';
+import DebugUtils from './test/DebugUtils';
 import setGuildMemberAddEvent from './listeners/guildMemberAdd';
 
 export default class FoxyInstance {
@@ -90,17 +90,19 @@ export default class FoxyInstance {
     }
 
     private async setupCache() {
+        this.bot.presences.maxSize = 0;
         this.bot.guilds.maxSize = 100;
         this.bot.members.maxSize = 100;
-        this.bot.channels.maxSize = 100;
+        this.bot.channels.maxSize = 0;
         this.bot.messages.maxSize = 100;
         this.bot.users.maxSize = 100;
 
         setInterval(() => {
+            this.bot.dispatchedGuildIds.clear();
+            this.bot.dispatchedChannelIds.clear();
             this.bot.messages.clear();
             this.bot.cache.fetchAllMembersProcessingRequests.clear();
             this.bot.cache.unrepliedInteractions.clear();
-            this.bot.channels.clear();
         }, 600000);
     }
 

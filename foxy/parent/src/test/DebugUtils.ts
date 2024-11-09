@@ -1,5 +1,5 @@
-import { logger } from "../../../../../common/utils/logger";
-import { FoxyClient } from "../../structures/types/FoxyClient";
+import { logger } from "../../../../common/utils/logger";
+import { FoxyClient } from "../structures/types/FoxyClient";
 
 export default class DebugUtils {
     private bot: FoxyClient;
