@@ -3,7 +3,6 @@ import { bot } from "../../../../FoxyLauncher";
 import { MessageFlags } from "../../../../utils/discord/Message";
 import { ButtonStyles } from "discordeno/types";
 import { createActionRow, createButton, createCustomId } from "../../../../utils/discord/Component";
-import { User } from "discordeno/*";
 
 const DivorceButtonExecutor = async (context: ComponentInteractionContext) => {
     const userData = await bot.database.getUser(context.user.id);

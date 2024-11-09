@@ -189,8 +189,8 @@ export default class DatabaseConnection {
 
     }
 
-    async getUser(userId: bigint): Promise<FoxyUser> {
-        const user: DiscordUser = await this.rest.getUser(String(userId));
+    async getUser(userId: bigint): Promise<FoxyUser | null> {
+        const user: DiscordUser | null = await this.rest.getUser(String(userId));
         if (!user) return null;
         let document = await this.models.user.findOne({ _id: user.id });
         if (!document) {
@@ -231,7 +231,7 @@ export default class DatabaseConnection {
         );
     }
 
-    async updateCommand(commandName: string): Promise<void> {
+    async updateCommand(commandName: string): Promise<any | null> {
         const commandFromDB = await this.models.commands.findOneAndUpdate(
             { commandName },
             { $inc: { commandUsageCount: 1 } },

@@ -2,7 +2,6 @@ import { bot } from "../../../FoxyLauncher";
 import { colors } from "../../../../../../common/utils/colors";
 import { createEmbed } from "../../../utils/discord/Embed";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
-import { calculateShardId } from "discordeno";
 
 export default class HelpExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {

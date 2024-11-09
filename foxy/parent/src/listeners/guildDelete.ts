@@ -1,11 +1,11 @@
-import { Bot, Guild } from "discordeno";
+import { Bot } from "discordeno";
 import { bot } from "../FoxyLauncher";
 
 const setGuildDeleteEvent = async (_: Bot, guild: bigint): Promise<void> => {
     const guildData = bot.database.getGuild(guild);
 
     if (guildData) {
-        await bot.database.removeGuild(guild).then((document) => {
+        await bot.database.removeGuild(guild).then(() => {
             setTimeout(() => {
                 bot.helpers.sendWebhookMessage(process.env.JOIN_GUILD_WEBHOOK_ID, process.env.JOIN_GUILD_WEBHOOK_TOKEN, {
                     embeds: [{

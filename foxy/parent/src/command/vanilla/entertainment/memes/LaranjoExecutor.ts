@@ -2,7 +2,7 @@ import UnleashedCommandExecutor from "../../../structures/UnleashedCommandExecut
 import { bot } from "../../../../FoxyLauncher";
 
 export default class LaranjoExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute(context: UnleashedCommandExecutor, endCommand) {
         const content = context.getOption<string>("text", false);
         context.sendDefer();
 

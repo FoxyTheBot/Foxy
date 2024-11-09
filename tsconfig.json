@@ -4,6 +4,12 @@
     "lib": [
       "esnext"
     ],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": false,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "CommonJS",
@@ -18,8 +24,6 @@
     "strict": true,
     "noImplicitAny": false,
     "strictNullChecks": false,
-    "strictFunctionTypes": true,
-    "noImplicitThis": false,
     "skipLibCheck": true
   },
 }

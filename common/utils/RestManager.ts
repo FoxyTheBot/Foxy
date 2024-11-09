@@ -13,7 +13,7 @@ export class FoxyRestManager {
     public artistry: AxiosInstance;
 
     public rest = new REST({ version: "10" })
-        .setToken(process.env.DISCORD_TOKEN);
+        .setToken(process.env.DISCORD_TOKEN || "");
 
     public constants = createBotConstants();
 
@@ -45,7 +45,7 @@ export class FoxyRestManager {
         }
     }
 
-    async getUser(userId: string): Promise<User> {
+    async getUser(userId: string): Promise<User | null> {
         try {
             const user = await this.rest.get(Routes.user(userId)) as User;
             if (typeof user !== "object") return null;

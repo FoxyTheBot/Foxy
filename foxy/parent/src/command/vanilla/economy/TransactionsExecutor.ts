@@ -88,7 +88,9 @@ export default class TransactionsExecutor {
                     date: new Date(transaction.date).toLocaleString(t.lng || 'pt-BR'),
                     amount: transaction.quantity.toString(),
                     user: `@${fromUser.username}`
-                }))
+                }));
+
+                break;
             }
 
             case TransactionType.SPENT_AT_STORE: {
@@ -144,7 +146,9 @@ export default class TransactionsExecutor {
                             amount: transaction.quantity.toString(),
                             userWhoSent: `@${(await bot.helpers.getUser(String(transaction.to)))}`,
                             userWhoReceived: `@${(await bot.helpers.getUser(transaction.from))}`
-                        }))
+                        }));
+                        
+                        break;
                     }
 
                     case false: {

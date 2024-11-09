@@ -201,13 +201,13 @@ const FunCommand = createCommand({
                 new GostoExecutor().execute(context, endCommand, t);
                 break;
             case "laranjo":
-                new LaranjoExecutor().execute(context, endCommand, t);
+                new LaranjoExecutor().execute(context, endCommand);
                 break;
             case "not_stonks":
-                new NotStonksExecutor().execute(context, endCommand, t);
+                new NotStonksExecutor().execute(context, endCommand);
                 break;
             case "stonks":
-                new StonksExecutor().execute(context, endCommand, t);
+                new StonksExecutor().execute(context, endCommand);
                 break;
         }
     }

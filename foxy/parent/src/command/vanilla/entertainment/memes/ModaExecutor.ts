@@ -37,11 +37,13 @@ export default class ModaExecutor {
 
         const file = new File([modaMeme], "moda.png", { type: "image/png" });
 
-        return context.reply({
+        context.reply({
             file: {
                 name: "moda.png",
                 blob: file
             }
         });
+
+        return endCommand();
     }
 }

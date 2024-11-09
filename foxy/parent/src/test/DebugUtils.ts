@@ -37,7 +37,7 @@ export default class DebugUtils {
             logger.debug(`[SHARD] Shard #${shard.id} resumed!`);
         }
 
-        this.bot.gateway.manager.createShardOptions.events.invalidSession = async (shard, invalid) => {
+        this.bot.gateway.manager.createShardOptions.events.invalidSession = async (shard) => {
             logger.error(`[SHARD] Shard #${shard.id} received invalid session!`);
         }
     }

@@ -46,16 +46,20 @@ export default class GostoExecutor {
             
             const file = new File([gostoImage], "naosomosiguais.png", { type: "image/png" });
 
-            return context.reply({
+            context.reply({
                 file: [{
                     name: `naosomosiguais_${Date.now()}.png`,
                     blob: file
                 }],
             });
+
+            return endCommand();
         } catch (error) {
-            return context.reply({
+            context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:gosto.error")),
             });
+
+            return endCommand();
         }
     }
 }

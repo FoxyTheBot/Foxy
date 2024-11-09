@@ -61,7 +61,9 @@ export default class TopExecutor {
 
                 context.reply({
                     embeds: [embed],
-                })
+                });
+
+                return endCommand();
             }
         }
     }

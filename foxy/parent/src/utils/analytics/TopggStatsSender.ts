@@ -1,4 +1,4 @@
-import { Api, BotStats } from '@top-gg/sdk';
+import { Api } from '@top-gg/sdk';
 import cron from 'node-cron';
 import { logger } from '../../../../../common/utils/logger';
 import { FoxyClient } from '../../structures/types/FoxyClient';

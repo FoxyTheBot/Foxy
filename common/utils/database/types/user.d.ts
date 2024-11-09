@@ -22,12 +22,12 @@ export interface FoxyUser {
 
 export interface FoxyUserCakes {
     balance: number,
-    lastDaily: Date,
+    lastDaily: Date | null,
 }
 
 export interface FoxyUserMarriage {
-    marriedWith: string,
-    marriedDate: Date,
+    marriedWith: string | null,
+    marriedDate: Date | null,
     cantMarry: boolean,
 }
 

@@ -1,6 +1,3 @@
-import { ShardState } from "discordeno/gateway";
-import { bot } from "../../foxy/parent/src/FoxyLauncher";
-
 const logger = {
     error: (...args: any[]): void => {
         console.error(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] \u001b[31mERROR\u001b[0m >`, ...args);
@@ -25,62 +22,6 @@ const logger = {
     log: (...args: any[]): void => {
         console.log(...args);
     },
-
-    /* Shard related */
-
-    onShardConnecting: (shard): void => {
-        setTimeout(() => {
-            bot.helpers.sendWebhookMessage(process.env.WATCHDOG_WEBHOOK_ID, process.env.WATCHDOG_WEBHOOK_TOKEN, {
-                embeds: [{
-                    title: `🔗 | Shard #${shard.id} está tentando se conectar...`
-                }]
-            });
-        }, 1000);
-    },
-
-    onShardConnect: (shard): void => {
-        setTimeout(() => {
-            bot.helpers.sendWebhookMessage(process.env.WATCHDOG_WEBHOOK_ID, process.env.WATCHDOG_WEBHOOK_TOKEN, {
-                embeds: [{
-                    title: `🔗 | Shard #${shard.id} conectada`
-                }]
-            });
-        }, 1000);
-    },
-
-    onShardDisconnect: (shard): void => {
-        setTimeout(() => {
-            bot.helpers.sendWebhookMessage(process.env.WATCHDOG_WEBHOOK_ID, process.env.WATCHDOG_WEBHOOK_TOKEN, {
-                embeds: [{
-                    title: `🔗 | Shard #${shard.id} desconectada`
-                }]
-            });
-        }, 1000);
-    },
-
-    onShardReconnect: (shard): void => {
-        setTimeout(() => {
-            bot.helpers.sendWebhookMessage(process.env.WATCHDOG_WEBHOOK_ID, process.env.WATCHDOG_WEBHOOK_TOKEN, {
-                embeds: [{
-                    title: `🔗 | Tentando reconectar shard #${shard.id}...`,
-                    fields: [{
-                        name: "Razão da desconexão",
-                        value: ShardState[shard.state]
-                    }]
-                }]
-            })
-        }, 1000);
-    },
-
-    onShardReady: (shard, guilds): void => {
-        setTimeout(() => {
-            bot.helpers.sendWebhookMessage(process.env.WATCHDOG_WEBHOOK_ID, process.env.WATCHDOG_WEBHOOK_TOKEN, {
-                embeds: [{
-                    title: `🔗 | Shard ${shard + 1} está pronta com ${guilds} servidores!`
-                }]
-            });
-        }, 1000);
-    }
 }
 
 export { logger };

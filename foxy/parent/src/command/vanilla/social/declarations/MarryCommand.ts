@@ -1,5 +1,5 @@
 import { createCommand } from "../../../structures/createCommand";
-import { ApplicationCommandOptionTypes, ButtonStyles } from "discordeno/types";
+import { ApplicationCommandOptionTypes } from "discordeno/types";
 import MarryButtonExecutor from "../components/MarryButtonExecutor";
 import MarryExecutor from "../MarryExecutor";
 

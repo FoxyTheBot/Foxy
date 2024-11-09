@@ -4,7 +4,7 @@ import { createActionRow, createCustomId, createButton } from "../../../../utils
 import { ButtonStyles } from "discordeno/types";
 
 const CakeTransferExecutor = async (context: ComponentInteractionContext) => {
-    const [value, user, messageId, channelId] = context.sentData;
+    const [value, user] = context.sentData;
 
     const userData = await bot.database.getUser(BigInt(user));
     const authorData = await bot.database.getUser(context.author.id);
