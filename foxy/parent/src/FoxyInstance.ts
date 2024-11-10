@@ -54,7 +54,7 @@ export default class FoxyInstance {
                 guildCreate: (_, guild) => setGuildCreateEvent(_, guild),
                 guildDelete: (_, guild) => setGuildDeleteEvent(_, guild),
                 interactionCreate: (_, interaction) => setInteractionCreateEvent(_, interaction),
-                guildMemberAdd: (_, member) => setGuildMemberAddEvent(_, member),
+                guildMemberAdd: (_, member, user) => setGuildMemberAddEvent(_, member, user),
                 guildMemberRemove: (_, member, guildId) => setGuildMemberRemoveEvent(_, member, guildId),
                 messageCreate: (_, message) => setMessageCreateEvent(_, message),
                 ready: (_, payload) => setReadyEvent(_, payload)
