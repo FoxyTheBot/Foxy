@@ -11,7 +11,7 @@ export default class LayoutExecutor {
             content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:layouts.notFound')),
             flags: MessageFlags.EPHEMERAL
         });
-        const userData = await bot.database.getUser(context.author.id);
+        const userData = await bot.database.getUser((await context.getAuthor()).id);
         userData.userProfile.layout = selectedOption;
         await userData.save();
         context.reply({

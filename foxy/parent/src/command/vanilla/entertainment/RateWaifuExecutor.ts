@@ -4,7 +4,7 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 
 export default class RateWaifuExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        const user = await context.getOption<User>('user', 'users') ?? context.author;
+        const user = await context.getOption<User>('user', 'users') ?? (await context.getAuthor());
 
         if (!user) {
             context.reply({

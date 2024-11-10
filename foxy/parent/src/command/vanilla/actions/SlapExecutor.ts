@@ -29,7 +29,7 @@ export default class SlapExecutor {
             return endCommand();
         }
 
-        if (user.id === context.author.id) {
+        if (user.id === (await context.getAuthor()).id) {
             context.reply({
                 content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:slap.self')),
                 flags: MessageFlags.EPHEMERAL
@@ -37,7 +37,7 @@ export default class SlapExecutor {
 
             return endCommand();
         }
-        embed.title = t('commands:slap.success', { target: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id), user: await bot.rest.foxy.getUserDisplayName(user.id) }),
+        embed.title = t('commands:slap.success', { target: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id), user: await bot.rest.foxy.getUserDisplayName(user.id) }),
             embed.image = {
                 url: slapGif.url
             }

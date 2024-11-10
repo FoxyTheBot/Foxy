@@ -11,7 +11,7 @@ export default class HugExecutor {
 
         const user = await context.getOption<User>("user", "users");
         const hugGif = await bot.rest.foxy.getImage("roleplay", "hug");
-        embed.title = t('commands:hug.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
+        embed.title = t('commands:hug.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id) }),
             embed.image = {
                 url: hugGif.url
             }

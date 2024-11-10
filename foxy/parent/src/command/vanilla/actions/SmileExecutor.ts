@@ -7,7 +7,7 @@ export default class SmileExecutor {
         const smileGif = await bot.rest.foxy.getImage("roleplay", "smile");
         const embed = createEmbed({});
 
-        embed.title = t('commands:smile.smiling', { author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
+        embed.title = t('commands:smile.smiling', { author: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id) }),
             embed.image = {
                 url: smileGif.url
             }

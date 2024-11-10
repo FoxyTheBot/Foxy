@@ -29,7 +29,7 @@ export default class KissExecutor {
             return endCommand();
         }
 
-        if (user.id === context.author.id) {
+        if (user.id === (await context.getAuthor()).id) {
             context.reply({
                 content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:kiss.self')),
                 flags: MessageFlags.EPHEMERAL
@@ -38,7 +38,7 @@ export default class KissExecutor {
             return endCommand();
         }
 
-        embed.title = t('commands:kiss.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
+        embed.title = t('commands:kiss.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id) }),
             embed.image = {
                 url: kissGif.url
             }

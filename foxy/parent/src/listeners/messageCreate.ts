@@ -126,7 +126,7 @@ const setMessageCreateEvent = async (_: Bot, message: Message): Promise<unknown>
                 try {
                     await command.execute(context, () => { }, locale, args);
                     if (bot.isProduction) {
-                        commandLogger.commandLog(command.name, await context.author,
+                        commandLogger.commandLog(command.name, (await context.getAuthor()),
                             context.guildId ? context.guildId.toString() : "DM",
                             args.join(", ") || 'Nenhum'
                         );

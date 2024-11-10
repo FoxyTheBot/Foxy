@@ -6,7 +6,7 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 
 export default class DivorceExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        const userData = await bot.database.getUser(context.author.id);
+        const userData = await bot.database.getUser((await context.getAuthor()).id);
         const partnerId = await userData.marryStatus.marriedWith;
 
         if (!partnerId) {
@@ -23,7 +23,7 @@ export default class DivorceExecutor {
         context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:divorce.confirm2", { user: await bot.rest.foxy.getUserDisplayName((await userInfo).id) })),
             components: [createActionRow([createButton({
-                customId: createCustomId(0, context.author.id, context.commandId),
+                customId: createCustomId(0, (await context.getAuthor()).id, context.commandId),
                 label: t("commands:divorce.confirm"),
                 style: ButtonStyles.Danger
             }),

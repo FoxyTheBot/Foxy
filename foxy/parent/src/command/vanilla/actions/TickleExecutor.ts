@@ -20,7 +20,7 @@ export default class TickleExecutor {
             return endCommand();
         }
 
-        embed.title = t('commands:tickle.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
+        embed.title = t('commands:tickle.success', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id) }),
             embed.image = {
                 url: tickleGif.url
             }

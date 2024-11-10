@@ -7,11 +7,11 @@ import { createEmbed } from "../../../utils/discord/Embed";
 
 export default class TransactionsExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        const user = await context.getOption<User>('user', 'users') ?? context.author;
+        const user = await context.getOption<User>('user', 'users') ?? (await context.getAuthor());
         const userData = await bot.database.getUser(user.id);
 
         if (!userData.userTransactions.length) {
-            if (context.author.id === user.id) {
+            if ((await context.getAuthor()).id === user.id) {
                 return context.reply({
                     content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:transactions.noTransactions')),
                     flags: MessageFlags.EPHEMERAL

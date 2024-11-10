@@ -8,7 +8,7 @@ export default class HelpExecutor {
         const embed = createEmbed({
             title: context.getEmojiById(bot.emotes.FOXY_HOWDY) + " " + "Foxy",
             color: colors.FOXY_DEFAULT,
-            description: t('commands:help.bot.description', { user: `<@!${context.author.id}>` }),
+            description: t('commands:help.bot.description', { user: `<@!${(await context.getAuthor()).id}>` }),
             fields: [
                 {
                     name: context.getEmojiById(bot.emotes.FOXY_WOW) + " " + t('commands:help.bot.fields.addme'),

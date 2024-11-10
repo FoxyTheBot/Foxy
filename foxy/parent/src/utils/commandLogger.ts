@@ -13,7 +13,7 @@ const commandLogger = {
                     },
                     {
                         name: "Autor",
-                        value: `${await author.username} (${await author.id})`
+                        value: `${author.username} (${author.id})`
                     },
                     {
                         name: "Servidor/DM",

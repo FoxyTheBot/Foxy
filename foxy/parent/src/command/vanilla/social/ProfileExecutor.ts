@@ -6,7 +6,7 @@ export default class ProfileExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
         const user = context.interaction && context.interaction.data?.targetId
             ? await bot.helpers.getUser(context.interaction.data.targetId)
-            : (await context.getOption<User>('user', 'users') || context.author);
+            : (await context.getOption<User>('user', 'users') || (await context.getAuthor()));
 
         const userData = await bot.database.getUser(user.id);
 

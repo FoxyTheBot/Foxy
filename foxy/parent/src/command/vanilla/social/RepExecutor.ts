@@ -12,7 +12,7 @@ export default class RepExecutor {
             return endCommand();
         }
 
-        if (user.id === context.author.id) {
+        if (user.id === (await context.getAuthor()).id) {
             context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:rep.self'))
             })
@@ -20,7 +20,7 @@ export default class RepExecutor {
         }
 
         const userData = await bot.database.getUser(user.id);
-        const authorData = await bot.database.getUser(context.author.id);
+        const authorData = await bot.database.getUser((await context.getAuthor()).id);
         const repCooldown = 3600000;
 
         if (repCooldown - (Date.now() - Number(authorData.userProfile.lastRep)) > 0) {

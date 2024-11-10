@@ -26,7 +26,7 @@ export default class FateExecutor {
 
         const rand = list[Math.floor(Math.random() * list.length)];
         await context.reply({
-            content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:fate.result', { user: context.author.id.toString(), fate: rand, mention: user.id.toString() }))
+            content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:fate.result', { user: (await context.getAuthor()).id.toString(), fate: rand, mention: user.id.toString() }))
         });
 
         endCommand();

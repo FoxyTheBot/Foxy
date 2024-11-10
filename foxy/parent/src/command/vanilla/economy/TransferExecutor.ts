@@ -32,10 +32,10 @@ export default class TransferExecutor {
             return endCommand();
         }
 
-        const authorData = await bot.database.getUser(context.author.id);
+        const authorData = await bot.database.getUser((await context.getAuthor()).id);
         const value = Math.round(amountAsNumber);
 
-        if (user.id === context.author.id) {
+        if (user.id === (await context.getAuthor()).id) {
             context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:pay.self'))
             });
@@ -51,9 +51,9 @@ export default class TransferExecutor {
             return endCommand();
         }
 
-        bot.database.createTransaction(context.author.id, {
+        bot.database.createTransaction((await context.getAuthor()).id, {
             to: user.id.toString(),
-            from: context.author.id.toString(),
+            from: (await context.getAuthor()).id.toString(),
             date: new Date(Date.now()),
             quantity: amountAsNumber,
             received: false,
@@ -61,7 +61,7 @@ export default class TransferExecutor {
         });
         bot.database.createTransaction(user.id, {
             to: user.id.toString(),
-            from: context.author.id.toString(),
+            from: (await context.getAuthor()).id.toString(),
             date: new Date(Date.now()),
             quantity: amountAsNumber,
             received: true,
@@ -77,7 +77,7 @@ export default class TransferExecutor {
                 label: t('commands:pay.pay'),
                 style: ButtonStyles.Success,
                 customId: createCustomId(0,
-                    context.author.id,
+                    (await context.getAuthor()).id,
                     context.commandId,
                     value,
                     user.id,

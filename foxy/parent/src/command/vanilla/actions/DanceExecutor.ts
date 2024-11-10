@@ -7,7 +7,7 @@ export default class DanceExecutor {
         const embed = createEmbed({});
         const danceGif = await bot.rest.foxy.getImage("roleplay", "dance");
 
-        embed.title = t('commands:dance.dancing', { author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
+        embed.title = t('commands:dance.dancing', { author: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id) }),
             embed.image = {
                 url: danceGif.url
             }

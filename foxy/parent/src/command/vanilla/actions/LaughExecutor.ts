@@ -7,7 +7,7 @@ export default class LaughExecutor {
         const embed = createEmbed({});
 
         const laughGif = await bot.rest.foxy.getImage("roleplay", "laugh");
-        embed.title = t('commands:laugh.success', { author: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
+        embed.title = t('commands:laugh.success', { author: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id) }),
             embed.image = {
                 url: laughGif.url
             }

@@ -45,8 +45,10 @@ export default class UnleashedCommandExecutor {
         }
     }
 
-    get author(): User {
-        return this.interaction ? this.interaction.user : bot.users.get(this.message.authorId);
+    async getAuthor(): Promise<User> {
+        return this.interaction
+            ? this.interaction.user
+            : (bot.users.get(this.message.authorId) ?? await bot.helpers.getUser(this.message.authorId));
     }
 
     get commandId(): bigint {
@@ -161,7 +163,7 @@ export default class UnleashedCommandExecutor {
 
     async getUserPremiumTier(): Promise<string> {
         try {
-            const user = await bot.database.getUser(this.author.id);
+            const user = await bot.database.getUser((await this.getAuthor()).id);
             return getTier(user.userPremium.premiumType, user.userPremium.premiumDate);
         } catch (error) {
             console.error('Failed to get user premium tier:', error);

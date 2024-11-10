@@ -19,7 +19,7 @@ export default class BiteExecutor {
             return endCommand();
         }
 
-        if (user.id === context.author.id) {
+        if (user.id === (await context.getAuthor()).id) {
             context.reply({
                 content: context.makeReply(bot.emotes.FOXY_RAGE, t('commands:bite.self')),
                 flags: MessageFlags.EPHEMERAL
@@ -37,7 +37,7 @@ export default class BiteExecutor {
             return endCommand();
         }
 
-        embed.title = t('commands:bite.success', { target: await bot.rest.foxy.getUserDisplayName(user.id), user: await bot.rest.foxy.getUserDisplayName(context.author.id) }),
+        embed.title = t('commands:bite.success', { target: await bot.rest.foxy.getUserDisplayName(user.id), user: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id) }),
             embed.image = {
                 url: biteGif.url
             }

@@ -5,7 +5,7 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 export default class LanguageExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
         const language = context.getOption<string>('language', false);
-        const userData = await bot.database.getUser(context.author.id);
+        const userData = await bot.database.getUser((await context.getAuthor()).id);
         userData.userSettings.language = language;
         await userData.save();
 

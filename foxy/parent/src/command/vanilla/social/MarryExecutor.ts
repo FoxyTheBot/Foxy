@@ -14,7 +14,7 @@ export default class MarryExecutor {
             return endCommand();
         }
 
-        if (user.id === context.author.id) {
+        if (user.id === (await context.getAuthor()).id) {
             context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:marry.self'))
             })
@@ -28,7 +28,7 @@ export default class MarryExecutor {
             return endCommand();
         }
 
-        const userData = await bot.database.getUser(context.author.id);
+        const userData = await bot.database.getUser((await context.getAuthor()).id);
         const futurePartnerData = await bot.database.getUser(user.id);
 
         if (futurePartnerData.marryStatus.marriedWith) {
@@ -53,7 +53,7 @@ export default class MarryExecutor {
         }
 
         context.reply({
-            content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:marry.ask', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName(context.author.id) })),
+            content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:marry.ask', { user: await bot.rest.foxy.getUserDisplayName(user.id), author: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id) })),
             components: [createActionRow([createButton({
                 customId: createCustomId(0,
                     user.id,

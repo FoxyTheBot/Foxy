@@ -12,10 +12,10 @@ export default class BetExecutor {
         let choices = ['heads', 'tails'];
         const rand = Math.floor(Math.random() * choices.length);
 
-        const userData = await bot.database.getUser(context.author.id);
+        const userData = await bot.database.getUser((await context.getAuthor()).id);
         const mentionedUserData = await bot.database.getUser(user.id);
 
-        if (user.id === context.author.id) {
+        if (user.id === (await context.getAuthor()).id) {
             context.reply({
                 content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:bet.self')),
                 flags: 64
@@ -25,7 +25,7 @@ export default class BetExecutor {
 
         if (userData.userCakes.balance < amount.valueOf()) {
             context.reply({
-                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:bet.not-enough', { amount: amount.toLocaleString(t.lng || 'pt-BR'), user: await bot.rest.foxy.getUserDisplayName(context.author.id) })),
+                content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, t('commands:bet.not-enough', { amount: amount.toLocaleString(t.lng || 'pt-BR'), user: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id) })),
                 flags: 64
 
             });
@@ -45,13 +45,13 @@ export default class BetExecutor {
         if (user.id === bot.id) {
             if (choice === choices[rand]) {
                 context.reply({
-                    content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:bet.betWithClient.win', { user: await bot.rest.foxy.getUserDisplayName(context.author.id), result: t(`commands:bet.${choices[rand]}`), amount: amount.toLocaleString(t.lng || 'pt-BR') })),
+                    content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:bet.betWithClient.win', { user: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id), result: t(`commands:bet.${choices[rand]}`), amount: amount.toLocaleString(t.lng || 'pt-BR') })),
                     flags: 64
                 });
                 userData.userCakes.balance += Number(amount);
                 mentionedUserData.userCakes.balance -= Number(amount);
                 userData.userTransactions.push({
-                    to: String(context.author.id),
+                    to: String((await context.getAuthor()).id),
                     from: String(user.id),
                     quantity: amount,
                     date: new Date(Date.now()),
@@ -65,14 +65,14 @@ export default class BetExecutor {
 
             } else if (choice !== choices[rand]) {
                 context.reply({
-                    content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:bet.betWithClient.lose', { user: await bot.rest.foxy.getUserDisplayName(context.author.id), result: t(`commands:bet.${choices[rand]}`), amount: amount.toLocaleString(t.lng || 'pt-BR') })),
+                    content: context.makeReply(bot.emotes.FOXY_YAY, t('commands:bet.betWithClient.lose', { user: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id), result: t(`commands:bet.${choices[rand]}`), amount: amount.toLocaleString(t.lng || 'pt-BR') })),
                     flags: 64
                 });
                 userData.userCakes.balance -= Number(amount);
                 mentionedUserData.userCakes.balance += Number(amount);
                 userData.userTransactions.push({
                     to: String(user.id),
-                    from: String(context.author.id),
+                    from: String((await context.getAuthor()).id),
                     quantity: amount,
                     date: new Date(Date.now()),
                     received: false,
@@ -85,7 +85,7 @@ export default class BetExecutor {
             }
         } else {
             context.reply({
-                content: context.makeReply(bot.emotes.FOXY_WOW, t('commands:bet.ask', { user: `<@!${user.id}>`, author: await bot.rest.foxy.getUserDisplayName(context.author.id), amount: amount.toLocaleString(t.lng || 'pt-BR') })),
+                content: context.makeReply(bot.emotes.FOXY_WOW, t('commands:bet.ask', { user: `<@!${user.id}>`, author: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id), amount: amount.toLocaleString(t.lng || 'pt-BR') })),
                 components: [createActionRow([createButton({
                     label: t('commands:bet.accept'),
                     style: ButtonStyles.Success,
