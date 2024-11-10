@@ -83,7 +83,10 @@ const userSchema = new mongoose.Schema({
     premiumKeys: [keySchema],
     roulette: {
         availableSpins: Number,
-    }
+    },
+    lastVote: Date,
+    notifiedForVote: Boolean,
+    voteCount: Number,
 }, { versionKey: false, id: false });
 
 const riotAccountSchema = new mongoose.Schema({

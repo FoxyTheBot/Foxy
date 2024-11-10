@@ -16,7 +16,9 @@ export interface FoxyUser {
     roulette: {
         availableSpins: number,
     },
-
+    lastVote: Date | null,
+    notifiedForVote: boolean,
+    voteCount: number | null,
     save: () => Promise<void>,
 }
 

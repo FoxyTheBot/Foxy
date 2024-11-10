@@ -179,11 +179,20 @@ export default class CreateProfile {
     private getUserBadges(member: any, defaultBadges: any[], data: FoxyUser) {
         const roleBadges = member?.roles.map(r => r.toString()).filter(r => defaultBadges.some(b => b.id === r)) || [];
         const userBadges = roleBadges.map(id => defaultBadges.find(b => b.id === id)).filter(b => b) || [];
+        const twelveHoursAgo = Date.now() - 12 * 60 * 60 * 1000;
 
-        if (data.marryStatus.marriedWith) {
-            const marriedBadge = defaultBadges.find(b => b.id === "married");
-            if (marriedBadge) userBadges.push(marriedBadge);
-        }
+        const aditionalBadges = [
+            { id: "married", condition: data.marryStatus.marriedWith },
+            { id: "upvoter", condition: data.lastVote && new Date(data.lastVote).getTime() >= twelveHoursAgo },
+            { id: "premium", condition: data.userPremium.premiumDate && new Date(data.userPremium.premiumDate).getTime() >= Date.now() },
+            
+        ]
+
+        aditionalBadges.forEach(badge => {
+            if (badge.condition) {
+                userBadges.push(defaultBadges.find(b => b.id === badge.id));
+            }
+        });
 
         return userBadges.sort((a, b) => b.priority - a.priority);
     }
