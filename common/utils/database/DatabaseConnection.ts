@@ -21,7 +21,6 @@ export default class DatabaseConnection {
         commands: any,
         guilds: any,
         key: any,
-        riotAccount: any,
         backgrounds: any,
         layouts: any,
         decorations: any,
@@ -73,7 +72,6 @@ export default class DatabaseConnection {
         this.models.layouts = mongoose.model('layouts', Schemas.layoutSchema);
         this.models.backgrounds = mongoose.model('backgrounds', Schemas.backgroundSchema);
         this.models.decorations = mongoose.model('decorations', Schemas.avatarDecorationSchema);
-        this.models.riotAccount = mongoose.model('riotAccount', Schemas.riotAccountSchema);
     }
 
     createUser(userId: string) {
@@ -125,12 +123,6 @@ export default class DatabaseConnection {
                 food: []
             },
             userTransactions: [],
-            riotAccount: {
-                isLinked: false,
-                puuid: null,
-                isPrivate: false,
-                region: null
-            },
             premiumKeys: [],
             roulette: {
                 availableSpins: 5,

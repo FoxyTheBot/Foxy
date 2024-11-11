@@ -89,11 +89,6 @@ const userSchema = new mongoose.Schema({
     voteCount: Number,
 }, { versionKey: false, id: false });
 
-const riotAccountSchema = new mongoose.Schema({
-    puuid: String,
-    authCode: String,
-});
-
 /* ========================= */
 /*      Guild Related Schemas */
 /* ========================= */
@@ -266,7 +261,6 @@ export const Schemas = {
     guildSchema,
     commandsSchema,
     backgroundSchema,
-    riotAccountSchema,
     keySchema,
     avatarDecorationSchema,
     badgesSchema,
