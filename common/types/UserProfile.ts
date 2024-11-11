@@ -5,6 +5,7 @@ export interface Badge {
     description: string;
     exclusive: boolean;
     priority: number;
+    isFromGuild: string;
 }
 
 export interface Background {

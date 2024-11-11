@@ -147,7 +147,7 @@ export default class CreateProfile {
     private async drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
         const defaultBadges = await bot.database.getBadges();
         const supportServer = bot.guilds.get(768267522670723094n);
-
+        
         let member: Member | null = null;
 
         if (supportServer) {
@@ -159,7 +159,7 @@ export default class CreateProfile {
         if (!member) return;
 
 
-        const userBadges = this.getUserBadges(member, defaultBadges, data);
+        const userBadges = await this.getUserBadges(member, defaultBadges, data);
         if (!userBadges.length) return;
 
         let x = layoutInfo.profileSettings.positions.badgesPosition.x;
@@ -175,28 +175,52 @@ export default class CreateProfile {
             }
         }
     }
-
-    private getUserBadges(member: any, defaultBadges: any[], data: FoxyUser) {
-        const roleBadges = member?.roles.map(r => r.toString()).filter(r => defaultBadges.some(b => b.id === r)) || [];
-        const userBadges = roleBadges.map(id => defaultBadges.find(b => b.id === id)).filter(b => b) || [];
+    
+    private async getUserBadges(member: any, defaultBadges: any[], data: FoxyUser) {
+        const roleBadges = member?.roles
+            .map(r => r.toString())
+            .filter(r => defaultBadges.some(b => b.id === r)) || [];
+    
+        const userBadges = roleBadges
+            .map(id => defaultBadges.find(b => b.id === id))
+            .filter(b => b) || [];
+    
         const twelveHoursAgo = Date.now() - 12 * 60 * 60 * 1000;
-
-        const aditionalBadges = [
+    
+        for (const badge of defaultBadges) {
+            if (badge.isFromGuild) {
+                const guild = bot.guilds.get(BigInt(badge.isFromGuild)) || await bot.helpers.getGuild(BigInt(badge.isFromGuild));
+                const guildMember = await guild.members.get(member.id) 
+                    || await bot.helpers.getMember(guild.id, member.id).catch(() => null);
+    
+                if (guildMember) {
+                    userBadges.push(badge);
+                }
+            }
+        }
+    
+        const additionalBadges = [
             { id: "married", condition: data.marryStatus.marriedWith },
             { id: "upvoter", condition: data.lastVote && new Date(data.lastVote).getTime() >= twelveHoursAgo },
-            { id: "premium", condition: data.userPremium.premiumDate && new Date(data.userPremium.premiumDate).getTime() >= Date.now() },
-            
-        ]
-
-        aditionalBadges.forEach(badge => {
+            { id: "premium", condition: data.userPremium.premiumDate && new Date(data.userPremium.premiumDate).getTime() >= Date.now() }
+        ];
+    
+        additionalBadges.forEach(badge => {
             if (badge.condition) {
-                userBadges.push(defaultBadges.find(b => b.id === badge.id));
+                const badgeData = defaultBadges.find(b => b.id === badge.id);
+                if (badgeData && !userBadges.some(existingBadge => existingBadge.id === badge.id)) {
+                    userBadges.push(badgeData);
+                }
             }
         });
-
-        return userBadges.sort((a, b) => b.priority - a.priority);
+    
+        return userBadges
+            .filter((badge, index, self) =>
+                index === self.findIndex((b) => b.id === badge.id)
+            )
+            .sort((a, b) => b.priority - a.priority);
     }
-
+    
     private async drawDecoration(data: FoxyUser, layoutInfo: Layout) {
         if (data.userProfile.decoration) {
             const decorationImage = await Canvas.loadImage(ImageConstants.PROFILE_DECORATION(data.userProfile.decoration));

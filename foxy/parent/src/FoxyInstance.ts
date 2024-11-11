@@ -118,7 +118,7 @@ export default class FoxyInstance {
         await loadCommands();
         await loadLocales();
     }
-    
+
     private async setupServer() {
         this.server = express();
         this.server.use(express.json());
@@ -142,13 +142,13 @@ export default class FoxyInstance {
         });
     }
 
-    public shutdown() {
-        this.bot.gateway.manager.shards.forEach((shard) => {
+    public async shutdown() {
+        await this.bot.gateway.manager.shards.forEach((shard) => {
             logger.info(`[SHARD] Shard ${shard.id} is disconnecting...`);
             shard.shutdown();
         });
         this.bot.database.close();
-        
+
         this.bot.dispatchedGuildIds.clear();
         this.bot.dispatchedChannelIds.clear();
         this.bot.messages.clear();

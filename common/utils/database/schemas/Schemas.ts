@@ -216,6 +216,7 @@ const badgesSchema = new mongoose.Schema({
     description: String,
     exclusive: Boolean,
     priority: Number,
+    isFromGuild: String,
 });
 
 const positionSchema = new mongoose.Schema({
