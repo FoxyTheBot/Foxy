@@ -19,14 +19,14 @@ export default class CreateProfile {
 
     async create(locale, user: User, data: FoxyUser) {
         const layoutInfo = await bot.database.getLayout(data.userProfile.layout);
+        const backgroundInfo = await bot.database.getBackground(data.userProfile.background);
         const userAboutMe = this.formatAboutMe(data.userProfile.aboutme || locale("commands:profile.noAboutme"), layoutInfo);
 
         const [layout, background, marriedCard] = await Promise.all([
-            Canvas.loadImage(ImageConstants.PROFILE_LAYOUT(data.userProfile.layout)),
-            Canvas.loadImage(ImageConstants.PROFILE_BACKGROUND(data.userProfile.background)),
+            Canvas.loadImage(ImageConstants.PROFILE_LAYOUT(layoutInfo.filename)),
+            Canvas.loadImage(ImageConstants.PROFILE_BACKGROUND(backgroundInfo.filename)),
             data.marryStatus.marriedWith ? Canvas.loadImage(ImageConstants.MARRIED_OVERLAY(data.userProfile.layout)) : null
         ]);
-
         this.drawBackgroundAndLayout(background, layout);
         this.drawUserDetails(user, data, userAboutMe, layoutInfo, marriedCard, locale);
         await this.drawBadges(data, user, layoutInfo);
@@ -114,14 +114,21 @@ export default class CreateProfile {
         this.context.fillText(text, this.canvas.width / position.x, this.canvas.height / position.y);
     }
 
-    private async drawUserAvatar(user: User, layoutInfo: any) {
+    private async drawUserAvatar(user: User, layoutInfo: Layout) {
         const avatarUrl = getUserAvatar(user, { size: 2048 });
         const normalizedAvatarUrl = this.normalizeAvatarUrl(avatarUrl);
-        
+
         const avatar = await Canvas.loadImage(normalizedAvatarUrl);
         this.context.save();
         this.context.beginPath();
-        this.context.arc(125, 700, 100, 0, Math.PI * 2, true);
+        this.context.arc(
+            layoutInfo.profileSettings.positions.avatarPosition.arc?.x ?? 125,
+            layoutInfo.profileSettings.positions.avatarPosition.arc?.y ?? 700,
+            layoutInfo.profileSettings.positions.avatarPosition.arc?.radius ?? 100,
+            0,
+            Math.PI * 2,
+            true
+        );
         this.context.closePath();
         this.context.clip();
         this.context.drawImage(avatar,
@@ -136,18 +143,18 @@ export default class CreateProfile {
     private normalizeAvatarUrl(url: string): string {
         const validExtensions = /\.(jpg|jpeg|png|gif)$/i;
         const hasValidExtension = validExtensions.test(url);
-        
+
         if (!hasValidExtension || (url.match(/\./g) || []).length > 1) {
             return url.replace(/(\.[^\.]+)$/, '.png');
         }
-    
+
         return url;
     }
 
     private async drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
         const defaultBadges = await bot.database.getBadges();
         const supportServer = bot.guilds.get(768267522670723094n);
-        
+
         let member: Member | null = null;
 
         if (supportServer) {
@@ -175,36 +182,36 @@ export default class CreateProfile {
             }
         }
     }
-    
+
     private async getUserBadges(member: any, defaultBadges: any[], data: FoxyUser) {
         const roleBadges = member?.roles
             .map(r => r.toString())
             .filter(r => defaultBadges.some(b => b.id === r)) || [];
-    
+
         const userBadges = roleBadges
             .map(id => defaultBadges.find(b => b.id === id))
             .filter(b => b) || [];
-    
+
         const twelveHoursAgo = Date.now() - 12 * 60 * 60 * 1000;
-    
+
         for (const badge of defaultBadges) {
             if (badge.isFromGuild) {
                 const guild = bot.guilds.get(BigInt(badge.isFromGuild)) || await bot.helpers.getGuild(BigInt(badge.isFromGuild));
-                const guildMember = await guild.members.get(member.id) 
+                const guildMember = await guild.members.get(member.id)
                     || await bot.helpers.getMember(guild.id, member.id).catch(() => null);
-    
+
                 if (guildMember) {
                     userBadges.push(badge);
                 }
             }
         }
-    
+
         const additionalBadges = [
             { id: "married", condition: data.marryStatus.marriedWith },
             { id: "upvoter", condition: data.lastVote && new Date(data.lastVote).getTime() >= twelveHoursAgo },
             { id: "premium", condition: data.userPremium.premiumDate && new Date(data.userPremium.premiumDate).getTime() >= Date.now() }
         ];
-    
+
         additionalBadges.forEach(badge => {
             if (badge.condition) {
                 const badgeData = defaultBadges.find(b => b.id === badge.id);
@@ -213,14 +220,14 @@ export default class CreateProfile {
                 }
             }
         });
-    
+
         return userBadges
             .filter((badge, index, self) =>
                 index === self.findIndex((b) => b.id === badge.id)
             )
             .sort((a, b) => b.priority - a.priority);
     }
-    
+
     private async drawDecoration(data: FoxyUser, layoutInfo: Layout) {
         if (data.userProfile.decoration) {
             const decorationImage = await Canvas.loadImage(ImageConstants.PROFILE_DECORATION(data.userProfile.decoration));

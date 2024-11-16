@@ -41,6 +41,7 @@ export interface FoxyUserProfile {
     repCount: number,
     lastRep: Date,
     layout: string,
+    layoutList: string[],
     aboutme: string,
 }
 

@@ -62,6 +62,7 @@ const userSchema = new mongoose.Schema({
         repCount: Number,
         lastRep: Date,
         layout: String,
+        layoutList: Array,
         aboutme: String,
     },
     userPremium: {

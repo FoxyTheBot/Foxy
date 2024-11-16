@@ -98,6 +98,7 @@ export default class DatabaseConnection {
                 repCount: 0,
                 lastRep: null,
                 layout: "default",
+                layoutList: ["default"],
                 aboutme: null,
             },
             userPremium: {
@@ -280,12 +281,16 @@ export default class DatabaseConnection {
 
     async getAllBackgrounds(): Promise<Background[]> {
         const backgroundsData = await this.models.backgrounds.find({}).lean();
-        return backgroundsData.map(background => background.toJSON());
+        return backgroundsData;
     }
 
     async getAllDecorations(): Promise<Decoration[]> {
         const decorationsData = await this.models.decorations.find({}).lean();
-        return decorationsData.map(decoration => decoration.toJSON());
+        return decorationsData;
+    }
+
+    getAllLayouts(): Promise<Layout[]> {
+        return this.models.layouts.find({}).lean();
     }
 
     async getBackground(backgroundId: string): Promise<Background> {
@@ -329,6 +334,11 @@ interface ProfileSettings {
 interface Position {
     x: number;
     y: number;
+    arc: {
+        x: number;
+        y: number;
+        radius: number;
+    }
 }
 
 export interface Layout {

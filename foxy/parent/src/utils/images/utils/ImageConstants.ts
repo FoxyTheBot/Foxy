@@ -11,13 +11,13 @@ export const ImageConstants = {
 
     /* ---- [Profile Images] ---- */
     PROFILE_BACKGROUND(backgroundId: string) {
-        return `${process.env.SERVER_URL}/backgrounds/${backgroundId}`;
+        return `${process.env.SERVER_URL}/assets/backgrounds/${backgroundId}`;
     },
     PROFILE_LAYOUT(layoutId: string) {
-        return `${process.env.SERVER_URL}/layouts/${layoutId}`;
+        return `${process.env.SERVER_URL}/assets/layouts/${layoutId}`;
     },
     PROFILE_DECORATION(maskId: string) {
-        return `${process.env.SERVER_URL}/masks/${maskId}`;
+        return `${process.env.SERVER_URL}/assets/masks/${maskId}.png`;
     },
     MARRIED_OVERLAY(layoutId: string) {
         return `${process.env.SERVER_URL}/assets/layouts/${layoutId}-married.png`;
