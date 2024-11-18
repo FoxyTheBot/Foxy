@@ -37,6 +37,14 @@ export default class DebugUtils {
             logger.debug(`[SHARD] Shard #${shard.id} resumed!`);
         }
 
+        this.bot.gateway.manager.createShardOptions.events.requestedReconnect = async (shard) => {
+            logger.debug(`[SHARD] Shard #${shard.id} requested reconnect!`);
+        }
+
+        this.bot.gateway.manager.createShardOptions.events.connecting = async (shard) => {
+            logger.debug(`[SHARD] Shard #${shard.id} is connecting...`);
+        }
+        
         this.bot.gateway.manager.createShardOptions.events.invalidSession = async (shard) => {
             logger.error(`[SHARD] Shard #${shard.id} received invalid session!`);
         }

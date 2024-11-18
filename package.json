@@ -7,7 +7,8 @@
   "scripts": {
     "client": "yarn workspace @foxy/parent",
     "build:parent": "yarn workspace @foxy/parent build",
-    "start:parent": "yarn workspace @foxy/parent start"
+    "start:parent": "yarn workspace @foxy/parent start",
+    "watch:parent": "yarn workspace @foxy/parent watch"
   },
   "keywords": [
     "nodejs",
@@ -33,7 +34,7 @@
     "@discordjs/rest": "^2.4.0",
     "axios": "^1.6.2",
     "discord-api-types": "^0.37.104",
-    "discordeno": "^18.0.1",
+    "discordeno": "18.0.1",
     "dotenv": "^16.4.5",
     "express": "5.0.0",
     "mongoose": "^8.1.3"

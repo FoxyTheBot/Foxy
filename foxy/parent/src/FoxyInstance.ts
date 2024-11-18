@@ -20,8 +20,6 @@ import setGuildMemberRemoveEvent from './listeners/guildMemberRemove';
 import ImageGenerator from './utils/images/ImageGenerator';
 import { onShardConnect } from './listeners/gateway/onShardConnect';
 import { onShardDisconnect } from './listeners/gateway/onShardDisconnect';
-import { onRequestedConnect } from './listeners/gateway/onRequestedConnect';
-import { onShardConnecting } from './listeners/gateway/onShardConnecting';
 import DebugUtils from './test/DebugUtils';
 import setGuildMemberAddEvent from './listeners/guildMemberAdd';
 
@@ -177,8 +175,6 @@ export default class FoxyInstance {
 
         onShardConnect();
         onShardDisconnect();
-        onRequestedConnect();
-        onShardConnecting();
     }
 
     private async handleUnavailableGuild(message: any) {
