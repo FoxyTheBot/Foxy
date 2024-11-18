@@ -2,10 +2,6 @@
     "foxyGlobal": {
         "noPermission": "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {{user}}"
     },
-    "roll": {
-        "result": "Você rolou **{{amount}}d{{sides}}** e o resultado foi **{{result}}**",
-        "button": "Rolar novamente"
-    },
     "lang": {
         "title": "Escolha seu idioma",
         "default": "Seu idioma está definido como Português do Brasil",
@@ -14,30 +10,7 @@
         "languages": {
             "en-US": "Inglês",
             "es-ES": "Espanhol",
-            "fr-FR": "Francês",
-            "ja-JP": "Japonês",
-            "de-DE": "Alemão",
-            "it-IT": "Italiano",
-            "ru-RU": "Russo",
-            "ar-SA": "Árabe",
             "pt-BR": "Português do Brasil"
-        }
-    },
-    "pet": {
-        "view": {
-            "description": "Seu pet é do tipo {{type}}",
-            "fields": {
-                "level": "Nível",
-                "health": "Vida",
-                "hungry": "Alimentação",
-                "happy": "Felicidade",
-                "lastHungry": "Última alimentação",
-                "lastHappy": "Última vez feliz"
-            },
-            "buttons": {
-                "feed": "Alimentar",
-                "play": "Brincar"
-            }
         }
     },
     "anime": {
@@ -70,8 +43,7 @@
         "description": "Me ajude a crescer e ser um bot melhor votando em mim no <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nCada voto ajuda a me divulgar para outras pessoas na Discord Bot List <:catblush:768292358458179595>\n\nVocê pode estar votando a cada 12 horas, e de bônus, você ganha 1500 Cakes!\nQue tal você se juntar a todas as outras pessoas incríveis que votaram e que me ajudaram a crescer?\n\nPara votar é só [clicar aqui](https://top.gg/bot/1006520438865801296/vote)? :heart:",
         "top": {
             "title": "Top votantes da Foxy na Top.gg",
-            "votes": "Votos",
-            "ownerVotes": "Meu desenvolvedor possui {{votes}} votos"
+            "votes": "Votos"
         }
     },
     "rate": {
@@ -80,52 +52,7 @@
     "profile": {
         "profile": "Perfil de {{user}}",
         "noAboutme": "A Foxy é muito fofa e você pode alterar seu sobre mim com o comando /aboutme",
-        "marriedWith": "💍 Casado(a) com {{user}} desde {{date}} ({{relativeTime}})",
-        "premium": "{{badge}} Premium desde {{date}}",
-        "testMode": "Seu sobre mim será exibido assim!",
-        "banned": "Eu quebrei as regras da Foxy e fui banido pelo motivo: {{reason}} \nBanido desde {{date}}",
-        "marriableStatusSet": "Seus pedidos de casamentos foram {{status}}",
-        "marriableStatusAlreadySet": "Seus pedidos já foram {{status}}",
-        "yes": "bloqueados, agora você não receberá mais pedidos de casamento e nem poderá pedir em casamento",
-        "no": "desbloqueados, agora você receberá pedidos de casamento e poderá pedir em casamento",
-        "simpleYes": "bloqueados",
-        "simpleNo": "desbloqueados",
-        "val": {
-            "notLinked": "Desculpe, **{{user}}** não vinculou sua conta da Riot Games, então não posso exibir as informações desse jogador. \n\nPara vincular uma conta da Riot Games use o comando `/valorant vincular-conta`",
-            "private": "O perfil de **{{user}}** é privado"
-        }
-    },
-    "masks": {
-        "ears": "Orelhas de gato",
-        "horns": "Chifrinhos",
-        "halo": "Aréola",
-        "cowboy": "Chapéu de vaqueiro",
-        "topper": "Cartola",
-        "purchase": "Comprar",
-        "preview": "Pré-visualização",
-        "noMasks": "Você não possui nenhuma decoração de avatar",
-        "selectMask": "Selecione uma decoração de avatar",
-        "list": {
-            "ears": "Orelhas de gato",
-            "horns": "Chifrinhos",
-            "halo": "Aréola",
-            "cowboy": "Chapéu de vaqueiro",
-            "topper": "Cartola",
-            "yoru-mask": "Ultimate do Yoru"
-        },
-        "buy": {
-            "success": "Você comprou a decoração para seu avatar!",
-            "noMoney": "Você não tem Cakes o suficiente para adquirir esta decoração de avatar",
-            "preview": "Pré-visualização",
-            "purchase": "Comprar",
-            "purchased": "Comprado"
-        },
-        "set": {
-            "success": "Sua decoração de avatar foi alterada com sucesso!",
-            "notOwned": "Você não possui essa decoração de avatar",
-            "invalid": "Código inválido"
-        },
-        "alreadyOwned": "Você já possui essa decoração de avatar"
+        "marriedWith": "💍 Casado(a) com {{user}} desde {{date}} ({{relativeTime}})"
     },
     "kick": {
         "self": "Deixa outra pessoa fazer isso para você, é mais fácil",
@@ -133,18 +60,6 @@
         "success": "**{{user}}** meteu uma voadora em **{{target}}**"
     },
     "help": {
-        "commands": {
-            "title": "Lista de comandos",
-            "category": {
-                "economy": "Economia",
-                "social": "Social",
-                "fun": "Entretenimento",
-                "image": "Imagens",
-                "misc": "Outros",
-                "utils": "Utilitários",
-                "rp": "Roleplay"
-            }
-        },
         "bot": {
             "description": "Olá {{user}}, eu sou a Foxy, um multiuso para o seu servidor! Eu tenho muitas funcionalidades, como economia, diversão, utilitários e muito mais!",
             "fields": {
@@ -185,22 +100,6 @@
     "aboutme": {
         "set": "Seu sobre mim foi alterado para `{{aboutme}}`",
         "tooLong": "Eu até queria colocar isso no seu perfil, mas é muito grande, o limite é de **117** caracteres."
-    },
-    "layouts": {
-        "default": "Padrão",
-        "red": "Vermelho",
-        "blue": "Azul",
-        "purple": "Roxo",
-        "cyan": "Ciano",
-        "changed": "Você alterou o layout do seu perfil",
-        "notFound": "Layout não encontrado"
-    },
-    "user": {
-        "avatar": {
-            "click": "Veja o avatar no seu navegador",
-            "title": "Avatar de {{user}}",
-            "footer": "Achei fofo :3"
-        }
     },
     "ship": {
         "question": "Será que vai rolar ou não?",
@@ -274,7 +173,7 @@
         "noReason": "Cancelar sem motivo é muito feio, dê um motivo para cancelar",
         "noUser": "Ué, você quer cancelar o _nada_? Mencione alguém para cancelar"
     },
-    "8ball": {
+    "EightBall": {
         "yes": "Sim",
         "no": "Não",
         "maybe": "Talvez",
@@ -294,6 +193,11 @@
             "title": "Comandos mais utilizados",
             "footer": "Meus comandos foram executados {{total}} vezes",
             "usageCount": "**{{usageCount}}** Usos"
+        },
+        "cakes": {
+            "global": {
+                "title": "Ranking global de Cakes"
+            }
         }
     },
     "pay": {
@@ -311,32 +215,6 @@
             "description": "Pegue sua recompensa diária! Você pode pegar sua recompensa diária a cada 24 horas!\n\n**Aviso:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!",
             "button": "Pegar recompensa",
             "buyMore": "Comprar mais Cakes"
-        }
-    },
-    "russianroulette": {
-        "notEnoughCakes": "Você não tem Cakes suficientes para jogar!",
-        "notEnoughCakesMentionedUser": "O usuário mencionado não tem Cakes suficientes para jogar!",
-        "cantPlayWithYourself": "Você não pode jogar Roleta Russa consigo mesmo!",
-        "win": "{{winner}} ganhou e tomou {{cakes}} Cakes de {{loser}}!",
-        "lose": "{{loser}} perdeu e tomou {{cakes}} Cakes de {{winner}}!"
-    },
-    "AutoRole": {
-        "addrole": {
-            "alreadyAdded": "Este cargo já foi adicionado",
-            "added": "Cargo adicionado com sucesso",
-            "maxRoles": "Você não pode adicionar mais cargos, o limite é de 5 cargos"
-        },
-        "removerole": {
-            "removed": "Cargo removido com sucesso",
-            "notAdded": "Este cargo não foi adicionado"
-        },
-        "enable": {
-            "enabled": "Módulo ativado",
-            "alreadyEnabled": "O módulo já está ativado"
-        },
-        "disable": {
-            "disabled": "Módulo desativado",
-            "alreadyDisabled": "O módulo já está desativado"
         }
     },
     "atm": {

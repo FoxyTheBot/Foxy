@@ -269,9 +269,9 @@ export default class DatabaseConnection {
         return result.deletedCount > 0;
     }
 
-    async getAllUsers(): Promise<any> {
+    async getAllUsers(): Promise<FoxyUser[]> {
         const usersData = await this.models.user.find({}).lean();
-        return usersData.map(user => user.toJSON());
+        return usersData;
     }
 
     async getAllGuilds(): Promise<number> {

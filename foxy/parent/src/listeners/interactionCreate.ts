@@ -1,4 +1,4 @@
-import i18next from 'i18next';
+import i18next, { TFunction } from 'i18next';
 import { MessageFlags } from '../utils/discord/Message';
 import { bot } from '../FoxyLauncher';
 import { createEmbed } from '../utils/discord/Embed';
@@ -12,7 +12,7 @@ import { Bot, Interaction } from 'discordeno';
 
 const setInteractionCreateEvent = async (_: Bot, interaction: Interaction): Promise<void> => {
     const user = await bot.database.getUser(interaction.user.id);
-    const locale: any = global.t = i18next.getFixedT(user.userSettings.language || 'pt-BR');
+    const locale = global.t = i18next.getFixedT(user.userSettings.language || 'pt-BR') as TFunction & { lng: string };
     bot.locale = locale;
 
     const context = new UnleashedCommandExecutor(locale, null, interaction);
@@ -50,7 +50,6 @@ const setInteractionCreateEvent = async (_: Bot, interaction: Interaction): Prom
         const command = bot.commands.get(interaction.data?.name);
         if (!command) return;
 
-        console.log(interaction.data?.options);
         try {
             await command.execute(context, () => { }, locale);
             if (bot.isProduction) {
@@ -87,12 +86,15 @@ const setInteractionCreateEvent = async (_: Bot, interaction: Interaction): Prom
                 function processOptions(options, callback) {
                     return options?.map(option => callback(option)).join(' ') || null;
                 }
-                
+
                 bot.database.updateCommand(interaction.data?.name);
             }
         } catch (e) {
             logger.error(e);
-            await context.reply({ content: locale('events:interactionCreate.commandError'), flags: MessageFlags.EPHEMERAL });
+            await context.reply({
+                content: locale('events:interactionCreate.commandError'),
+                flags: MessageFlags.EPHEMERAL
+            });
         }
     };
 

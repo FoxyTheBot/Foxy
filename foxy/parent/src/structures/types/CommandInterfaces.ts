@@ -1,6 +1,7 @@
 import { ApplicationCommandTypes, CreateSlashApplicationCommand } from 'discordeno';
 import ComponentInteractionContext from '../../command/structures/ComponentInteractionContext';
 import UnleashedCommandExecutor from '../../command/structures/UnleashedCommandExecutor';
+import { TFunction } from 'i18next';
 
 type CommandCategory = 'economy' | 'roleplay' | 'fun' | 'actions' | 'social' | 'util' | 'games' | 'image' | 'dev' | 'mod';
 
@@ -31,7 +32,7 @@ export interface CommandInterface extends Readonly<ChatInputCommandConfig> {
   readonly execute?: (
     context: UnleashedCommandExecutor,
     endCommand: (...args: unknown[]) => unknown,
-    t: any,
+    t: TFunction & { lng: string },
     args?: string[],
   ) => Promise<unknown>;
 

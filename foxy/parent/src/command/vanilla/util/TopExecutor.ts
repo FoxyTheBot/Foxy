@@ -5,35 +5,39 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 export default class TopExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
         const subCommand = await context.getSubCommand();
+        await context.sendDefer();
 
         switch (subCommand) {
-            // Removed for maintenance
-            // case "cakes": {
-            //     let data: any = await bot.database.getAllUsers();
-            //     await context.sendDefer();
-            //     data = data.sort((a, b) => b.userCakes.balance - a.userCakes.balance);
+            case "cakes": {
+                const users = await bot.database.getAllUsers();
+                const sortedData = users.sort((a, b) => b.userCakes.balance - a.userCakes.balance);
+                const embed = createEmbed({});
+                
+                embed.title = context.makeReply(bot.emotes.FOXY_DAILY, t('commands:top.cakes.global.title'));
 
-            //     const embed = createEmbed({});
-            //     embed.title = context.makeReply(bot.emotes.FOXY_DAILY, "Cakes Global Rank");
-            //     let fields = embed.fields = [];
-            //     for (let i in data) {
-            //         if (Number(i) > 14) break;
-            //         let user = await bot.users.get(BigInt(data[i]._id))
-            //             ?? bot.helpers.getUser(data[i]._id);
-            //         fields.push({
-            //             name: `${parseInt(data.map(m => m._id).indexOf(data[i]._id)) + 1}º - ${await bot.rest.foxy.getUserDisplayName((await user).id)}`,
-            //             value: `**${parseInt(data[i].userCakes.balance).toLocaleString(t.lng || 'pt-BR')}** Cakes`,
-            //             inline: true,
-            //         });
-            //     }
+                const fields = await Promise.all(
+                    sortedData.slice(0, 15).map(async (userData, index) => {
+                        const user = await bot.users.get(BigInt(userData._id)) ?? bot.helpers.getUser(userData._id);
+                        const displayName = await bot.rest.foxy.getUserDisplayName((await user).id);
+                        return {
+                            name: `${index + 1}º - ${displayName}`,
+                            value: `**${userData.userCakes.balance.toLocaleString(t.lng || 'pt-BR')}** Cakes`,
+                            inline: true,
+                        };
+                    })
+                );
 
-            //     context.reply({
-            //         embeds: [embed],
-            //     });
+                embed.fields = fields;
+                embed.footer = {
+                    text: `Você está em ${parseInt(String(sortedData.map(m => m._id).indexOf(String(context.interaction.user.id)))) + 1}º lugar`
+                }
+                
+                context.reply({
+                    embeds: [embed],
+                });
 
-            //     return endCommand();
-            //     break;
-            // }
+                return endCommand();
+            }
 
             case 'commands': {
                 let data: any = await bot.database.getAllCommands();

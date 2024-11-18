@@ -45,7 +45,7 @@ export default class EminemExecutor {
 
             context.reply({
                 file: {
-                    name: "8mile.mp4",
+                    name: `8mile_${context.interaction.user.id}.mp4`,
                     blob: file
                 }
             });

@@ -4,16 +4,18 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 export default class AskFoxyExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
         const results = [
-            t('commands:8ball.yes'),
-            t('commands:8ball.no'),
-            t('commands:8ball.maybe'),
-            t('commands:8ball.idk'),
-            t('commands:8ball.idk2'),
-            t('commands:8ball.probablyyes'),
-            t('commands:8ball.probablyno'),
-            t('commands:8ball.probably')
+            t('commands:EightBall.yes'),
+            t('commands:EightBall.no'),
+            t('commands:EightBall.maybe'),
+            t('commands:EightBall.idk'),
+            t('commands:EightBall.idk2'),
+            t('commands:EightBall.probablyyes'),
+            t('commands:EightBall.probablyno'),
+            t('commands:EightBall.probably')
         ];
 
+        // TODO: Fix this returning undefined
+        
         const result = results[Math.floor(Math.random() * results.length)];
         
         context.reply({

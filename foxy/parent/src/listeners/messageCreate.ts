@@ -1,4 +1,4 @@
-import i18next from "i18next";
+import i18next, { TFunction } from "i18next";
 import { bot } from "../FoxyLauncher";
 import UnleashedCommandExecutor from "../command/structures/UnleashedCommandExecutor";
 import { createEmbed } from "../utils/discord/Embed";
@@ -22,7 +22,7 @@ const setMessageCreateEvent = async (_: Bot, message: Message): Promise<unknown>
     const { content, channelId } = await message;
     const botMention = `<@${bot.id}>` || `<@!${bot.id}>`;
     const user = await bot.database.getUser(message.authorId);
-    const locale: any = i18next.getFixedT(user.userSettings.language || 'pt-BR');
+    const locale = i18next.getFixedT(user.userSettings.language || 'pt-BR') as TFunction & { lng: string };
 
     if (content === botMention) {
         const botUsername = await bot.rest.foxy.getUserDisplayName(bot.id);
