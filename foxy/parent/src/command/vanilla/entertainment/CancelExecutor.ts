@@ -1,10 +1,10 @@
 import { bot } from "../../../FoxyLauncher";
-import { User } from "discordeno/transformers";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExtendedUser } from "../../../structures/types/DiscordUser";
 
 export default class CancelExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        const user = await context.getOption<User>('user', 'users');
+        const user = await context.getOption<ExtendedUser>('user', 'users');
         const content = context.interaction ? await context.getOption<string>('content', false) : context.getMessage(2, true);
 
         if (!user) {
@@ -22,7 +22,7 @@ export default class CancelExecutor {
         }
 
         context.reply({
-            content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:cancel.result', { user: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id), reason: content, mention: `<@!${user.id}>` }))
+            content: context.makeReply(bot.emotes.FOXY_SCARED, t('commands:cancel.result', { user: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id), reason: content, mention: user.asMention }))
         })
 
         return endCommand();

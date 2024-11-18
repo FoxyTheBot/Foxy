@@ -6,13 +6,14 @@ import {
     CreateMessage,
     calculateShardId
 } from 'discordeno';
-import { Interaction, User } from 'discordeno/transformers';
+import { Interaction } from 'discordeno/transformers';
 import { TFunction } from 'i18next';
 import { MessageFlags } from '../../utils/discord/Message';
 import { bot } from "../../FoxyLauncher";
 import { getArgsFromMessage, getOptionFromInteraction } from './GetCommandOption';
 import { DiscordTimestamp } from '../../structures/types/DiscordTimestamps';
 import { getTier } from '../../structures/types/PremiumTiers';
+import { ExtendedUser } from '../../structures/types/DiscordUser';
 
 export type CanResolve = 'users' | 'members' | 'attachments' | 'full-string' | false;
 
@@ -45,10 +46,12 @@ export default class UnleashedCommandExecutor {
         }
     }
 
-    async getAuthor(): Promise<User> {
-        return this.interaction
-            ? this.interaction.user
-            : (bot.users.get(this.message.authorId) ?? await bot.helpers.getUser(this.message.authorId));
+    async getAuthor(): Promise<ExtendedUser> {
+        const user = this.interaction ? this.interaction.user : (await bot.helpers.getUser(this.message.authorId));
+        return {
+            ...user,
+            asMention: `<@${user.id}>`
+        }
     }
 
     get commandId(): bigint {

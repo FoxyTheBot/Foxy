@@ -1,7 +1,8 @@
-import { Interaction, Message, User } from 'discordeno/transformers';
+import { Interaction, Message } from 'discordeno/transformers';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
 import { CanResolve } from './UnleashedCommandExecutor';
 import { bot } from '../../FoxyLauncher';
+import { ExtendedUser } from '../../structures/types/DiscordUser';
 
 function getOptionFromInteraction<T>(
   interaction: Interaction,
@@ -81,7 +82,7 @@ function getArgsFromMessage<T>(
   const args = message.split(' ');
 
   if (shouldResolve === "users") {
-    async function getUser(userId: string): Promise<User | null> {
+    async function getUser(userId: string): Promise<ExtendedUser | null> {
       const id = userId ? userId.replace(/[^0-9]/g, '') : userId;
       if (!id) return null;
       let user;
@@ -91,7 +92,10 @@ function getArgsFromMessage<T>(
         user = bot.users.get(messageContext.authorId) || await bot.helpers.getUser(messageContext.authorId);
       }
 
-      return user;
+      return {
+        ...user,
+        asMention: `<@${user.id}>`,
+      };
     }
     return getUser(args[position]) as unknown as T;
   }

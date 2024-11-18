@@ -1,12 +1,12 @@
-import { User } from "discordeno/transformers";
 import { bot } from "../../../FoxyLauncher";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import { ButtonStyles } from "discordeno/types";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExtendedUser } from "../../../structures/types/DiscordUser";
 
 export default class BetExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        const user = await context.getOption<User>('user', 'users');
+        const user = await context.getOption<ExtendedUser>('user', 'users');
         const amount = context.getOption<number>('amount', false);
         const choice = context.getOption<string>('choice', false);
         let choices = ['heads', 'tails'];
@@ -85,7 +85,7 @@ export default class BetExecutor {
             }
         } else {
             context.reply({
-                content: context.makeReply(bot.emotes.FOXY_WOW, t('commands:bet.ask', { user: `<@!${user.id}>`, author: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id), amount: amount.toLocaleString(t.lng || 'pt-BR') })),
+                content: context.makeReply(bot.emotes.FOXY_WOW, t('commands:bet.ask', { user: user.asMention, author: await bot.rest.foxy.getUserDisplayName((await context.getAuthor()).id), amount: amount.toLocaleString(t.lng || 'pt-BR') })),
                 components: [createActionRow([createButton({
                     label: t('commands:bet.accept'),
                     style: ButtonStyles.Success,
