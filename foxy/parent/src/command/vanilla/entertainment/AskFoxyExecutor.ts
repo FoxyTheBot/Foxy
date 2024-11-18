@@ -15,7 +15,7 @@ export default class AskFoxyExecutor {
         ];
 
         const result = results[Math.floor(Math.random() * results.length)];
-
+        
         context.reply({
             content: context.makeReply(bot.emotes.FOXY_DRINKING_COFFEE, result)
         });

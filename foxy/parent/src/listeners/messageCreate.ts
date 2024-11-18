@@ -128,7 +128,7 @@ const setMessageCreateEvent = async (_: Bot, message: Message): Promise<unknown>
                     if (bot.isProduction) {
                         commandLogger.commandLog(command.name, (await context.getAuthor()),
                             context.guildId ? context.guildId.toString() : "DM",
-                            args.join(", ") || 'Nenhum'
+                            args.join(", ") || 'Not applicable',
                         );
                         bot.database.updateCommand(command.name);
                     }

@@ -50,14 +50,44 @@ const setInteractionCreateEvent = async (_: Bot, interaction: Interaction): Prom
         const command = bot.commands.get(interaction.data?.name);
         if (!command) return;
 
+        console.log(interaction.data?.options);
         try {
             await command.execute(context, () => { }, locale);
             if (bot.isProduction) {
-                commandLogger.commandLog(interaction.data?.name,
+                commandLogger.commandLog(
+                    interaction.data?.name,
                     interaction.user,
                     interaction.guildId ? interaction.guildId.toString() : "DM",
-                    interaction.data?.options?.map(option => option.value).join(' ') || 'Nenhum'
+
+                    processOptions(interaction.data?.options, (option) => {
+                        if (option.type === 1) {
+                            return option.options?.map(suboption => suboption.value).join(' ') || option.value;
+                        }
+                        if (option.type === 2) {
+                            return option.options?.map(suboption =>
+                                suboption.options?.map(subsuboption => subsuboption.value).join(' ') || 'None'
+                            ).filter(Boolean).join(' ') || 'None';
+                        }
+                        return null;
+                    }) || 'Non applicable',
+
+                    processOptions(interaction.data?.options, (option) => {
+                        if (option.type === 1) {
+                            return option.name;
+                        }
+                        if (option.type === 2) {
+                            return option.options?.map(suboption =>
+                                suboption.type === 1 ? suboption.name : null
+                            ).filter(Boolean).join(' ') || 'Non applicable';
+                        }
+                        return null;
+                    }) || 'Non applicable'
                 );
+
+                function processOptions(options, callback) {
+                    return options?.map(option => callback(option)).join(' ') || null;
+                }
+                
                 bot.database.updateCommand(interaction.data?.name);
             }
         } catch (e) {
