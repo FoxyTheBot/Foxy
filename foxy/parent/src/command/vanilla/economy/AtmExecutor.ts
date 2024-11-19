@@ -1,12 +1,12 @@
 import { bot } from "../../../FoxyLauncher";
-import { User } from "discordeno/transformers";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExtendedUser } from "../../../structures/types/DiscordUser";
 
 export default class AtmExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
         const user = context.interaction && context.interaction.data?.targetId
-            ? await bot.helpers.getUser(context.interaction.data.targetId)
-            : (await context.getOption<User>('user', 'users') || (await context.getAuthor()));
+            ? await bot.foxy.helpers.getUser(context.interaction.data.targetId)
+            : (await context.getOption<ExtendedUser>('user', 'users') || (await context.getAuthor()));
 
         if (!user) {
             context.reply({
@@ -20,7 +20,7 @@ export default class AtmExecutor {
 
         context.reply({
             content: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:atm.success', {
-                user: await bot.rest.foxy.getUserDisplayName(user.id),
+                user: user.asMention,
                 balance: balance.toLocaleString(t.lng || 'pt-BR')
             })),
             flags: context.interaction?.data?.targetId ? 64 : 0

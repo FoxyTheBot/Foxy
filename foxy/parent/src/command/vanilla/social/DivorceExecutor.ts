@@ -18,7 +18,7 @@ export default class DivorceExecutor {
         }
 
         const userInfo = await bot.users.get(BigInt(userData.marryStatus.marriedWith))
-            ?? bot.helpers.getUser(userData.marryStatus.marriedWith);
+            ?? bot.foxy.helpers.getUser(userData.marryStatus.marriedWith);
 
         context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:divorce.confirm2", { user: await bot.rest.foxy.getUserDisplayName((await userInfo).id) })),

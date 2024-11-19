@@ -12,12 +12,12 @@ export default class TopExecutor {
                 const users = await bot.database.getAllUsers();
                 const sortedData = users.sort((a, b) => b.userCakes.balance - a.userCakes.balance);
                 const embed = createEmbed({});
-                
+
                 embed.title = context.makeReply(bot.emotes.FOXY_DAILY, t('commands:top.cakes.global.title'));
 
                 const fields = await Promise.all(
                     sortedData.slice(0, 15).map(async (userData, index) => {
-                        const user = await bot.users.get(BigInt(userData._id)) ?? bot.helpers.getUser(userData._id);
+                        const user = await bot.users.get(BigInt(userData._id)) ?? bot.foxy.helpers.getUser(userData._id);
                         const displayName = await bot.rest.foxy.getUserDisplayName((await user).id);
                         return {
                             name: `${index + 1}º - ${displayName}`,
@@ -31,7 +31,7 @@ export default class TopExecutor {
                 embed.footer = {
                     text: `Você está em ${parseInt(String(sortedData.map(m => m._id).indexOf(String(context.interaction.user.id)))) + 1}º lugar`
                 }
-                
+
                 context.reply({
                     embeds: [embed],
                 });

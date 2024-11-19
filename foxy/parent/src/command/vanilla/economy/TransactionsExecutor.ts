@@ -1,13 +1,13 @@
-import { User } from "discordeno/*";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { bot } from "../../../FoxyLauncher";
 import { MessageFlags } from "../../../utils/discord/Message";
 import { TransactionType } from "../../../structures/types/Transactions";
 import { createEmbed } from "../../../utils/discord/Embed";
+import { ExtendedUser } from "../../../structures/types/DiscordUser";
 
 export default class TransactionsExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        const user = await context.getOption<User>('user', 'users') ?? (await context.getAuthor());
+        const user = await context.getOption<ExtendedUser>('user', 'users') ?? (await context.getAuthor());
         const userData = await bot.database.getUser(user.id);
 
         if (!userData.userTransactions.length) {
@@ -72,7 +72,7 @@ export default class TransactionsExecutor {
             }
 
             case TransactionType.SEND: {
-                const user = await bot.users.get(transaction.to) ?? await bot.helpers.getUser(transaction.to);
+                const user = await bot.users.get(transaction.to) ?? await bot.foxy.helpers.getUser(transaction.to);
                 transactionsTexts.push(t('commands:transactions.send', {
                     date: new Date(transaction.date).toLocaleString(t.lng || 'pt-BR'),
                     amount: transaction.quantity.toString(),
@@ -83,7 +83,7 @@ export default class TransactionsExecutor {
             }
 
             case TransactionType.RECEIVE: {
-                const fromUser = bot.users.get(transaction.from) ?? await bot.helpers.getUser(transaction.from);
+                const fromUser = bot.users.get(transaction.from) ?? await bot.foxy.helpers.getUser(transaction.from);
                 transactionsTexts.push(t('commands:transactions.receive', {
                     date: new Date(transaction.date).toLocaleString(t.lng || 'pt-BR'),
                     amount: transaction.quantity.toString(),
@@ -144,10 +144,10 @@ export default class TransactionsExecutor {
                         transactionsTexts.push(t('commands:transactions.betWon', {
                             date: new Date(transaction.date).toLocaleString('pt-BR'),
                             amount: transaction.quantity.toString(),
-                            userWhoSent: `@${(await bot.helpers.getUser(String(transaction.to)))}`,
-                            userWhoReceived: `@${(await bot.helpers.getUser(transaction.from))}`
+                            userWhoSent: `@${(await bot.foxy.helpers.getUser(String(transaction.to)))}`,
+                            userWhoReceived: `@${(await bot.foxy.helpers.getUser(transaction.from))}`
                         }));
-                        
+
                         break;
                     }
 
@@ -155,8 +155,8 @@ export default class TransactionsExecutor {
                         transactionsTexts.push(t('commands:transactions.betLost', {
                             date: new Date(transaction.date).toLocaleString('pt-BR'),
                             amount: transaction.quantity.toString(),
-                            userWhoSent: `@${(await bot.helpers.getUser(String(transaction.from)))}`,
-                            userWhoReceived: `@${(await bot.helpers.getUser(transaction.to))}`
+                            userWhoSent: `@${(await bot.foxy.helpers.getUser(String(transaction.from)))}`,
+                            userWhoReceived: `@${(await bot.foxy.helpers.getUser(transaction.to))}`
                         }))
                     }
                 }

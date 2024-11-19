@@ -1,10 +1,10 @@
-import { User } from "discordeno/transformers";
 import { bot } from "../../../FoxyLauncher";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExtendedUser } from "../../../structures/types/DiscordUser";
 
 export default class RateWaifuExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        const user = await context.getOption<User>('user', 'users') ?? (await context.getAuthor());
+        const user = await context.getOption<ExtendedUser>('user', 'users') ?? (await context.getAuthor());
 
         if (!user) {
             context.reply({

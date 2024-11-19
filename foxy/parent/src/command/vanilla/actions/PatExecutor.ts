@@ -1,13 +1,14 @@
-import { ButtonStyles, User } from "discordeno";
+import { ButtonStyles } from "discordeno";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { createEmbed } from "../../../utils/discord/Embed";
 import { bot } from "../../../FoxyLauncher";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import { MessageFlags } from "../../../utils/discord/Message";
+import { ExtendedUser } from "../../../structures/types/DiscordUser";
 
 export default class PatExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        const user = await context.getOption<User>("user", "users");
+        const user = await context.getOption<ExtendedUser>("user", "users");
         const patGif = await bot.rest.foxy.getImage("roleplay", "pat");
         const embed = createEmbed({});
 

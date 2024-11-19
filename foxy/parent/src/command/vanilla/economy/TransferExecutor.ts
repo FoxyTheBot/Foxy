@@ -1,12 +1,13 @@
-import { ButtonStyles, User } from "discordeno";
+import { ButtonStyles } from "discordeno";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { bot } from "../../../FoxyLauncher";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
+import { ExtendedUser } from "../../../structures/types/DiscordUser";
 
 export default class TransferExecutor {
 
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        const user = await context.getOption<User>('user', 'users');
+        const user = await context.getOption<ExtendedUser>('user', 'users');
 
         if (!user) {
             context.reply({

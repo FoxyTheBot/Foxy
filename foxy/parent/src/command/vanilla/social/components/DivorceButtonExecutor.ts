@@ -18,7 +18,7 @@ const DivorceButtonExecutor = async (context: ComponentInteractionContext) => {
 
     const partnerData = await bot.database.getUser(BigInt(partnerId));
     const userInfo = await bot.users.get(BigInt(userData.marryStatus.marriedWith))
-        ?? bot.helpers.getUser(BigInt(userData.marryStatus.marriedWith));
+        ?? bot.foxy.helpers.getUser(BigInt(userData.marryStatus.marriedWith));
 
     userData.marryStatus.marriedWith = null;
     userData.marryStatus.marriedDate = null;

@@ -1,13 +1,14 @@
-import { ButtonStyles, User } from "discordeno";
+import { ButtonStyles } from "discordeno";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { createEmbed } from "../../../utils/discord/Embed";
 import { bot } from "../../../FoxyLauncher";
 import { MessageFlags } from "../../../utils/discord/Message";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
+import { ExtendedUser } from "../../../structures/types/DiscordUser";
 
 export default class LickExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        const user = await context.getOption<User>("user", "users");
+        const user = await context.getOption<ExtendedUser>("user", "users");
         const lickGif = await bot.rest.foxy.getImage("roleplay", "lick");
         const embed = createEmbed({});
 

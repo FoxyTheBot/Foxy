@@ -1,13 +1,13 @@
-import { User } from "discordeno";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { MessageFlags } from "../../../utils/discord/Message";
 import { bot } from "../../../FoxyLauncher";
 import { createEmbed } from "../../../utils/discord/Embed";
+import { ExtendedUser } from "../../../structures/types/DiscordUser";
 
 export default class BiteExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
         const embed = createEmbed({});
-        const user = await context.getOption<User>("user", "users");
+        const user = await context.getOption<ExtendedUser>("user", "users");
         const biteGif = await bot.rest.foxy.getImage("roleplay", "bite");
 
         if (!user) {

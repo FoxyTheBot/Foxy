@@ -1,12 +1,12 @@
 import { bot } from "../../../FoxyLauncher";
 import { createButton, createCustomId, createActionRow } from "../../../utils/discord/Component";
 import { ButtonStyles } from "discordeno/types";
-import { User } from "discordeno/transformers";
 import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExtendedUser } from "../../../structures/types/DiscordUser";
 
 export default class MarryExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
-        const user = await context.getOption<User>('user', 'users');
+        const user = await context.getOption<ExtendedUser>('user', 'users');
         if (!user) {
             context.reply({
                 content: context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser'))
