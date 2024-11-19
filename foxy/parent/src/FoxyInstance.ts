@@ -22,6 +22,7 @@ import { onShardConnect } from './listeners/gateway/onShardConnect';
 import { onShardDisconnect } from './listeners/gateway/onShardDisconnect';
 import DebugUtils from './test/DebugUtils';
 import setGuildMemberAddEvent from './listeners/guildMemberAdd';
+import FoxyHelpers from './utils/helpers/FoxyHelpers';
 
 export default class FoxyInstance {
     public bot: FoxyClient;
@@ -83,6 +84,9 @@ export default class FoxyInstance {
         this.bot.clientId = BigInt(process.env.CLIENT_ID);
         this.bot.hasGuildPermission = botHasGuildPermissions;
         this.bot.database = new DatabaseConnection(this.bot);
+        this.bot.foxy = {
+            helpers: new FoxyHelpers(this.bot)
+        }
         this.bot.rest.foxy = new FoxyRestManager();
         this.bot.generators = new ImageGenerator();
     }

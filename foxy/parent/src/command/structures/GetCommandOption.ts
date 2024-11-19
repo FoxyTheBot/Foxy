@@ -45,6 +45,22 @@ function getOptionFromInteraction<T>(
 
   if (!found) return undefined;
 
+  if (shouldResolve === "users") {
+    async function getUser(userId: string): Promise<ExtendedUser | null> {
+      const id = userId ? userId.replace(/[^0-9]/g, '') : userId;
+      if (!id) return null;
+      let user;
+      try {
+        user = await bot.foxy.helpers.getUser(id);
+      } catch (error) {
+        user = await bot.foxy.helpers.getUser(interaction.user.id);
+      }
+
+      return user;
+    }
+    return getUser(found.value as unknown as string) as unknown as T;
+  }
+
   if (shouldResolve && shouldResolve !== "full-string")
     return interaction.data?.resolved?.[shouldResolve]?.get(
       BigInt(found.value as unknown as string),
@@ -87,15 +103,12 @@ function getArgsFromMessage<T>(
       if (!id) return null;
       let user;
       try {
-        user = bot.users.get(BigInt(id)) || await bot.helpers.getUser(id);
+        user = await bot.foxy.helpers.getUser(id);
       } catch (error) {
-        user = bot.users.get(messageContext.authorId) || await bot.helpers.getUser(messageContext.authorId);
+        user = await bot.foxy.helpers.getUser(messageContext.authorId);
       }
 
-      return {
-        ...user,
-        asMention: `<@${user.id}>`,
-      };
+      return user;
     }
     return getUser(args[position]) as unknown as T;
   }

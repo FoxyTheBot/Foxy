@@ -29,7 +29,6 @@ export default class FoxyHelpers {
     async getMember(userId: string | bigint, guildId: string | bigint): Promise<Member | null> {
         const response = this.bot.members.get(BigInt(userId))
             ?? await this.bot.rest.foxy.getUserAsMember(String(userId), String(guildId));
-        console.log(response);
         if (!response) return null;
 
         return await response as Member;

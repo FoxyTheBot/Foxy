@@ -47,7 +47,7 @@ export default class UnleashedCommandExecutor {
     }
 
     async getAuthor(): Promise<ExtendedUser> {
-        const user = this.interaction ? this.interaction.user : (await bot.helpers.getUser(this.message.authorId));
+        const user = this.interaction ? this.interaction.user : (await bot.foxy.helpers.getUser(this.message.authorId));
         return {
             ...user,
             asMention: `<@${user.id}>`
