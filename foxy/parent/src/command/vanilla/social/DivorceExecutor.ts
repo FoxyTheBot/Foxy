@@ -7,6 +7,7 @@ import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor"
 export default class DivorceExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
         const userData = await bot.database.getUser((await context.getAuthor()).id);
+        context.sendDefer(true);
         const partnerId = await userData.marryStatus.marriedWith;
 
         if (!partnerId) {
@@ -17,8 +18,7 @@ export default class DivorceExecutor {
             return endCommand();
         }
 
-        const userInfo = await bot.users.get(BigInt(userData.marryStatus.marriedWith))
-            ?? bot.foxy.helpers.getUser(userData.marryStatus.marriedWith);
+        const userInfo = await bot.foxy.helpers.getUser(userData.marryStatus.marriedWith);
 
         context.reply({
             content: context.makeReply(bot.emotes.FOXY_CRY, t("commands:divorce.confirm2", { user: await bot.rest.foxy.getUserDisplayName((await userInfo).id) })),

@@ -81,8 +81,7 @@ export default class CreateProfile {
                 layoutInfo.profileSettings.positions.marriedPosition
             );
 
-            const partnerUser = bot.users.get(
-                BigInt(data.marryStatus.marriedWith)) || await bot.foxy.helpers.getUser(data.marryStatus.marriedWith);
+            const partnerUser = await bot.foxy.helpers.getUser(data.marryStatus.marriedWith);
             this.drawText(partnerUser.username,
                 layoutInfo.profileSettings.fontSize.marriedSince,
                 layoutInfo.profileSettings.defaultFont,

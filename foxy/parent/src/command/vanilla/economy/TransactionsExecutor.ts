@@ -72,7 +72,7 @@ export default class TransactionsExecutor {
             }
 
             case TransactionType.SEND: {
-                const user = await bot.users.get(transaction.to) ?? await bot.foxy.helpers.getUser(transaction.to);
+                const user = await bot.foxy.helpers.getUser(transaction.to);
                 transactionsTexts.push(t('commands:transactions.send', {
                     date: new Date(transaction.date).toLocaleString(t.lng || 'pt-BR'),
                     amount: transaction.quantity.toString(),
@@ -83,7 +83,7 @@ export default class TransactionsExecutor {
             }
 
             case TransactionType.RECEIVE: {
-                const fromUser = bot.users.get(transaction.from) ?? await bot.foxy.helpers.getUser(transaction.from);
+                const fromUser = await bot.foxy.helpers.getUser(transaction.from);
                 transactionsTexts.push(t('commands:transactions.receive', {
                     date: new Date(transaction.date).toLocaleString(t.lng || 'pt-BR'),
                     amount: transaction.quantity.toString(),

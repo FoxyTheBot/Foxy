@@ -7,7 +7,7 @@ const handleWelcomerModule = new WelcomerManager();
 
 const setGuildMemberAddEvent = async (_: Bot, member: Member, user: User): Promise<void> => {
     const guildData = await bot.database.getGuild(member.guildId);
-    const guildInfo = await bot.guilds.get(member.guildId) ?? await bot.helpers.getGuild(member.guildId);
+    const guildInfo = await bot.foxy.helpers.getGuild(member.guildId);
 
     if (guildData.GuildJoinLeaveModule.isEnabled) {
         handleWelcomerModule.welcomeNewMember(guildInfo, user ?? member.user);

@@ -17,7 +17,7 @@ export default class TopExecutor {
 
                 const fields = await Promise.all(
                     sortedData.slice(0, 15).map(async (userData, index) => {
-                        const user = await bot.users.get(BigInt(userData._id)) ?? bot.foxy.helpers.getUser(userData._id);
+                        const user = await bot.foxy.helpers.getUser(userData._id);
                         const displayName = await bot.rest.foxy.getUserDisplayName((await user).id);
                         return {
                             name: `${index + 1}º - ${displayName}`,
