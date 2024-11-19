@@ -6,7 +6,6 @@ const createLogDirectory = () => {
     
     if (!fs.existsSync(logDirectory)) {
         fs.mkdirSync(logDirectory, { recursive: true });
-        console.log('Diretório de logs criado na raiz do projeto:', logDirectory);
     }
 };
 

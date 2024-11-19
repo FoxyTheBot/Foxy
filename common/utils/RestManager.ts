@@ -3,7 +3,7 @@ import { User } from "../types/DiscordUser";
 import axios, { AxiosInstance } from "axios";
 import { FoxyImage } from "../../foxy/parent/src/structures/types/APIResponses";
 import { logger } from "./logger";
-import { createBotConstants } from "discordeno";
+import { createBotConstants, Guild, Member } from "discordeno";
 import { REST } from "@discordjs/rest";
 import { Routes } from 'discord-api-types/v10';
 require('dotenv').config({ path: "../../.env" });
@@ -47,20 +47,34 @@ export class FoxyRestManager {
 
     async getUser(userId: string): Promise<User | null> {
         try {
-            const user = await this.rest.get(Routes.user(userId)) as User;
+            const user = await this.rest.get(Routes.user(userId));
             if (typeof user !== "object") return null;
 
-            return user;
+            return user as User;
         } catch (error) {
             logger.error("Failed to retrieve user:", error);
             throw new Error("Failed to retrieve user.");
         }
     }
 
-    async getUserAsMember(userId: string, guildId: string) {
+    async getGuild(guildId: string): Promise<Guild | null> { 
+        try {
+            const response = await this.rest.get(Routes.guild(guildId));
+            if (typeof response !== "object") return null;
+
+            return response as Guild;
+        } catch (error) {
+            logger.error("Failed to retrieve guild:", error);
+            throw new Error("Failed to retrieve guild.");
+        }
+    }
+
+    async getUserAsMember(userId: string, guildId: string): Promise<Member> {
         try {
             const response = await this.rest.get(Routes.guildMember(guildId, userId));
-            return response;
+            if (typeof response !== "object") return null;
+            
+            return response as Member;
         } catch (error) {
             logger.error("Failed to retrieve user as member:", error);
             throw new Error("Failed to retrieve user as member.");
