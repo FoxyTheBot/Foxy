@@ -12,7 +12,8 @@ export default class FoxyHelpers {
     }
 
     async getUser(id: string | bigint): Promise<ExtendedUser | null> {
-        const response = this.bot.users.get(BigInt(id)) ?? await this.bot.rest.foxy.getUser(String(id));
+        const idAsStr = String(id);
+        const response = this.bot.users.get(BigInt(idAsStr)) ?? await this.bot.rest.foxy.getUser(idAsStr);
         if (!response) return null;
 
         const user = await response as ExtendedUser;
@@ -29,6 +30,7 @@ export default class FoxyHelpers {
     async getMember(userId: string | bigint, guildId: string | bigint): Promise<Member | null> {
         const response = this.bot.members.get(BigInt(userId))
             ?? await this.bot.rest.foxy.getUserAsMember(String(userId), String(guildId));
+        
         if (!response) return null;
 
         return await response as Member;

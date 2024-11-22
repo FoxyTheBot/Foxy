@@ -5,6 +5,7 @@ import { ImageConstants } from '../utils/ImageConstants';
 import { FoxyUser } from '../../../../../../common/utils/database/types/user';
 import { Member, User } from 'discordeno/transformers';
 import { Layout } from '../../../../../../common/utils/database/DatabaseConnection';
+import { Badge } from '../../../../../../common/types/UserProfile';
 
 export default class CreateProfile {
     private readonly width: number = 1436;
@@ -180,7 +181,7 @@ export default class CreateProfile {
         }
     }
 
-    private async getUserBadges(member: any, defaultBadges: any[], data: FoxyUser) {
+    private async getUserBadges(member: Member, defaultBadges: Badge[], data: FoxyUser) {
         const roleBadges = member?.roles
             .map(r => r.toString())
             .filter(r => defaultBadges.some(b => b.id === r)) || [];
@@ -193,8 +194,8 @@ export default class CreateProfile {
 
         for (const badge of defaultBadges) {
             if (badge.isFromGuild) {
-                const guild = await bot.foxy.helpers.getGuild(badge.guildId);
-                const guildMember = await bot.foxy.helpers.getMember(member.id, guild.id).catch(() => null);
+                const guild = await bot.foxy.helpers.getGuild(badge.isFromGuild);
+                const guildMember = await bot.foxy.helpers.getMember(member.user.id, guild.id);
 
                 if (guildMember) {
                     userBadges.push(badge);
