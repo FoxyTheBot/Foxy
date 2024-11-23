@@ -10,7 +10,6 @@ import { setInteractionCreateEvent } from './listeners/interactionCreate';
 import { setGuildCreateEvent } from './listeners/guildCreate';
 import { setGuildDeleteEvent } from './listeners/guildDelete';
 import { setMessageCreateEvent } from './listeners/messageCreate';
-import express, { Application } from 'express';
 import { logger } from '../../../common/utils/logger';
 import enableCachePlugin from 'discordeno/cache-plugin';
 import { colors } from '../../../common/utils/colors';
@@ -18,15 +17,16 @@ import { FoxyRestManager } from '../../../common/utils/RestManager';
 import { emotes } from '../../../common/utils/emotes';
 import setGuildMemberRemoveEvent from './listeners/guildMemberRemove';
 import ImageGenerator from './utils/images/ImageGenerator';
-import { onShardConnect } from './listeners/gateway/onShardConnect';
-import { onShardDisconnect } from './listeners/gateway/onShardDisconnect';
+import { onShardConnect } from './listeners/onShardConnect';
+import { onShardDisconnect } from './listeners/onShardDisconnect';
 import DebugUtils from './test/DebugUtils';
 import setGuildMemberAddEvent from './listeners/guildMemberAdd';
 import FoxyHelpers from './utils/helpers/FoxyHelpers';
+import FoxyStatusServer from './utils/status/server/FoxyStatusServer';
 
 export default class FoxyInstance {
     public bot: FoxyClient;
-    private server: Application;
+
     constructor() {
         this.startInstance();
     }
@@ -37,7 +37,7 @@ export default class FoxyInstance {
         await this.setupDefinitions();
         await this.setupEventsHandler();
         await this.setupInternals();
-        await this.setupServer();
+        this.setupUtils();
         await this.setupCache();
         await this.setupCommandsAndLocales();
         await startBot(this.bot);
@@ -83,12 +83,6 @@ export default class FoxyInstance {
         this.bot.colors = colors;
         this.bot.clientId = BigInt(process.env.CLIENT_ID);
         this.bot.hasGuildPermission = botHasGuildPermissions;
-        this.bot.database = new DatabaseConnection(this.bot);
-        this.bot.foxy = {
-            helpers: new FoxyHelpers(this.bot)
-        }
-        this.bot.rest.foxy = new FoxyRestManager();
-        this.bot.generators = new ImageGenerator();
     }
 
     private async setupCache() {
@@ -121,27 +115,14 @@ export default class FoxyInstance {
         await loadLocales();
     }
 
-    private async setupServer() {
-        this.server = express();
-        this.server.use(express.json());
-        this.server.listen(process.env.FOXY_STATUS_PORT, () => {
-            logger.info(`[SERVER] Foxy Status Server is running on port ${process.env.FOXY_STATUS_PORT}`);
-        });
-
-        this.server.post("/status/update", async (req, res) => {
-            const { name, type, status, url } = req.body;
-
-            this.bot.helpers.editBotStatus({
-                activities: [{
-                    name: name,
-                    type: type,
-                    url: url,
-                    createdAt: Date.now()
-                }],
-                status: status
-            })
-            return res.status(200).json({ success: true });
-        });
+    private setupUtils() {
+        this.bot.database = new DatabaseConnection(this.bot);
+        this.bot.foxy = {
+            helpers: new FoxyHelpers(this.bot)
+        }
+        this.bot.rest.foxy = new FoxyRestManager();
+        this.bot.generators = new ImageGenerator();
+        new FoxyStatusServer(this.bot).start();
     }
 
     public async shutdown() {
@@ -164,9 +145,6 @@ export default class FoxyInstance {
 
     private async setupEventsHandler() {
         this.bot.gateway.manager.createShardOptions.events.message = async (shard, message) => {
-            /* Handle unavailable guilds because discordeno does not handle unavailable guilds by default
-            *  Reference: https://discordeno.js.org/api_reference/generated/interfaces/EventHandlers?_highlight=guilddelete#guilddelete
-            */
             if (message.t === 'GUILD_DELETE' && (message.d as DiscordUnavailableGuild).unavailable) {
                 return this.handleUnavailableGuild(message);
             }

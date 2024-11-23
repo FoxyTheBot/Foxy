@@ -42,7 +42,7 @@ function setupSignalHandlers(botInstance: FoxyInstance) {
 
 async function shutdown(botInstance: FoxyInstance) {
     await botInstance.shutdown();
-    logger.info('Process terminated');
+    logger.info('[SHUTDOWN] Bye bye');
     process.exit(0);
 }
 

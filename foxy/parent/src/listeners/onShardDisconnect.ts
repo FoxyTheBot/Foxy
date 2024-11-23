@@ -1,6 +1,6 @@
 import { ShardState } from "discordeno/gateway";
-import { logger } from "../../../../../common/utils/logger";
-import { bot } from "../../FoxyLauncher";
+import { logger } from "../../../../common/utils/logger";
+import { bot } from "../FoxyLauncher";
 
 const onShardDisconnect = async (): Promise<void> => {
     bot.gateway.manager.createShardOptions.events.disconnected = async (shard) => {

@@ -1,5 +1,5 @@
-import { logger } from "../../../../../common/utils/logger";
-import { bot } from "../../FoxyLauncher"
+import { logger } from "../../../../common/utils/logger";
+import { bot } from "../FoxyLauncher"
 
 const onShardConnect = (): void => {
     bot.gateway.manager.createShardOptions.events.connected = async (shard) => {

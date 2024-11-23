@@ -8,7 +8,7 @@ export default class FoxyHelpers {
 
     constructor(bot: FoxyClient) {
         this.bot = bot;
-        logger.debug('FoxyHelpers initialized');
+        logger.info('[UTILS] FoxyHelpers initialized');
     }
 
     async getUser(id: string | bigint): Promise<ExtendedUser | null> {
