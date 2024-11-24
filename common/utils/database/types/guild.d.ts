@@ -7,6 +7,7 @@ export interface FoxyGuild {
     dashboardLogs: DashboardLog[],
 
     save: () => Promise<void>,
+    isNew?: boolean | false,
 }
 
 export interface WelcomerModule {

@@ -134,8 +134,8 @@ export default class DatabaseConnection {
         });
     }
 
-    createGuild(guildId: string): Promise<FoxyGuild> {
-        return new this.models.guilds({
+    createGuild(guildId: string): Promise<FoxyGuild> {   
+        const document = new this.models.guilds({
             _id: guildId,
             GuildJoinLeaveModule: {
                 isEnabled: false,
@@ -160,6 +160,11 @@ export default class DatabaseConnection {
             },
             dashboardLogs: []
         }).save();
+
+        return {
+            ...document,
+            isNew: true
+        }
     }
 
     async createTransaction(userId: bigint, transaction: FoxyTransaction) {
