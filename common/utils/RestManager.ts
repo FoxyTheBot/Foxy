@@ -69,15 +69,14 @@ export class FoxyRestManager {
         }
     }
 
-    async getUserAsMember(userId: string, guildId: string): Promise<Member> {
+    async getUserAsMember(userId: string, guildId: string): Promise<Member | null> {
         try {
             const response = await this.rest.get(Routes.guildMember(guildId, userId));
             if (typeof response !== "object") return null;
             
             return response as Member;
         } catch (error) {
-            logger.error("Failed to retrieve user as member:", error);
-            throw new Error("Failed to retrieve user as member.");
+            return null;
         }
     }
 
