@@ -56,6 +56,7 @@ export default class FoxyInstance {
                 guildMemberAdd: (_, member, user) => setGuildMemberAddEvent(_, member, user),
                 guildMemberRemove: (_, member, guildId) => setGuildMemberRemoveEvent(_, member, guildId),
                 messageCreate: (_, message) => setMessageCreateEvent(_, message),
+                messageUpdate: (_, message) => setMessageCreateEvent(_, message),
                 ready: (_, payload) => setReadyEvent(_, payload)
             },
             botGatewayData: {

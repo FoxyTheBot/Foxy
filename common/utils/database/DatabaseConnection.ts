@@ -36,27 +36,27 @@ export default class DatabaseConnection {
 
     connect() {
         mongoose.set("strictQuery", true);
-    
+
         const mongoURI = process.env.MONGO_URI;
         const mongoTimeout = Number(process.env.MONGO_TIMEOUT) || 10000;
-    
+
         if (!mongoURI) {
             logger.error('MongoDB URI is not defined in environment variables');
             return;
         }
-    
+
         mongoose.connect(mongoURI, {
             connectTimeoutMS: mongoTimeout,
             socketTimeoutMS: mongoTimeout,
         })
-        .then(() => {
-            logger.info(`[DATABASE] Connected to the database!`);
-        })
-        .catch(error => {
-            logger.error(`Failed to connect to the database: `, error);
-        });
+            .then(() => {
+                logger.info(`[DATABASE] Connected to the database!`);
+            })
+            .catch(error => {
+                logger.error(`Failed to connect to the database: `, error);
+            });
     }
-    
+
 
     close() {
         logger.info(`[DATABASE] Closing connection to database...`);
@@ -134,7 +134,7 @@ export default class DatabaseConnection {
         });
     }
 
-    createGuild(guildId: string): Promise<FoxyGuild> {   
+    createGuild(guildId: string): Promise<FoxyGuild> {
         const document = new this.models.guilds({
             _id: guildId,
             GuildJoinLeaveModule: {
@@ -215,8 +215,8 @@ export default class DatabaseConnection {
                 $set: {
                     description: command.description,
                     category: command.category,
-                    nameLocalizations: command.nameLocalizations || {},
-                    descriptionLocalizations: command.descriptionLocalizations || {},
+                    nameLocalizations: command.nameLocalizations || null,
+                    descriptionLocalizations: command.descriptionLocalizations || null,
                     supportsLegacy: command.supportsLegacy || false,
                 },
                 $setOnInsert: {

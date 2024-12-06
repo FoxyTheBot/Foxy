@@ -7,7 +7,7 @@
         "button": "Fazer um apelo"
     },
     "messageCreate": {
-        "mentionMessage": "Olá {{author}}! Meu nome é {{botUsername}}, eu uso apenas comandos de /, Utilize `/help` ou `/ajuda` para obter ajuda!",
+        "mentionMessage": "Olá {{commandAuthor}}! Meu nome é Foxy, meu prefixo nesse servidor é `{{prefix}}` e `/`, Utilize `/help` ou `{{prefix}}help` para obter ajuda!",
         "commandNotSupported": "Esse comando não é compatível com prefixo, utilize `/{{command}}`",
         "blockedChannel": "Você não pode usar comandos nesse canal!",
         "commandCooldown": "Você está usando comandos muito rápido!"

@@ -19,20 +19,12 @@ const cooldownIncreaseFactor = 2;
 const setMessageCreateEvent = async (_: Bot, message: Message): Promise<unknown> => {
     if (message.isFromBot || !message.authorId || message.authorId === bot.id) return;
 
-    const { content, channelId } = await message;
+    const { channelId } = await message;
+    const content = message.content.toLowerCase();
     const botMention = `<@${bot.id}>` || `<@!${bot.id}>`;
     const user = await bot.database.getUser(message.authorId);
     const locale = i18next.getFixedT(user.userSettings.language || 'pt-BR') as TFunction & { lng: string };
-
-    if (content === botMention) {
-        const botUsername = await bot.rest.foxy.getUserDisplayName(bot.id);
-        return bot.helpers.sendMessage(channelId, {
-            content: locale("events:messageCreate.mentionMessage", {
-                botUsername,
-                author: `<@${message.authorId}>`
-            })
-        });
-    }
+    const context = new UnleashedCommandExecutor(locale, message);
 
     let prefix = process.env.DEFAULT_PREFIX;
     let guild: FoxyGuild | null = null;
@@ -42,8 +34,22 @@ const setMessageCreateEvent = async (_: Bot, message: Message): Promise<unknown>
         prefix = guild.guildSettings.prefix;
     }
 
+    if (content === botMention) {
+        const botUsername = await bot.rest.foxy.getUserDisplayName(bot.id);
+        return context.reply({
+            content: context.makeReply(bot.emotes.FOXY_CUPCAKE, locale("events:messageCreate.mentionMessage", {
+                botUsername,
+                commandAuthor: `<@${message.authorId}>`,
+                prefix
+            }))
+        })
+    }
+
+    if (content.startsWith(`<@${bot.id}>`)) { 
+        prefix = `<@${bot.id}> `;
+    }
+
     if (content.startsWith(prefix)) {
-        const context = new UnleashedCommandExecutor(locale, message);
         bot.locale = locale;
         const commandName = content.slice(prefix.length).split(' ')[0];
 
