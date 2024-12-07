@@ -5,7 +5,7 @@ import { ExtendedUser } from "../../../structures/types/DiscordUser";
 export default class CancelExecutor {
     async execute(context: UnleashedCommandExecutor, endCommand, t) {
         const user = await context.getOption<ExtendedUser>('user', 'users');
-        const content = context.interaction ? await context.getOption<string>('content', false) : context.getMessage(2, true);
+        const content = context.interaction ? await context.getOption<string>('reason', false) : context.getMessage(2, true);
 
         if (!user) {
             context.reply({

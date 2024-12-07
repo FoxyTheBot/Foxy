@@ -13,8 +13,6 @@ export default class AskFoxyExecutor {
             t('commands:EightBall.probablyno'),
             t('commands:EightBall.probably')
         ];
-
-        // TODO: Fix this returning undefined
         
         const result = results[Math.floor(Math.random() * results.length)];
         
