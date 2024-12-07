@@ -16,7 +16,7 @@ const ViewUserAtmCommand = createCommand({
     type: ApplicationCommandTypes.User,
 
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-        new AtmExecutor().execute(context, endCommand, t);
+        new AtmExecutor().execute({ context, endCommand, t });
     }
 });
 

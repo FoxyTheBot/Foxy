@@ -84,7 +84,7 @@ const BetCommand = createCommand({
     ],
     commandRelatedExecutions: [BetButtonExecutor],
     execute: async (context, endCommand, t) => {
-        new BetExecutor().execute(context, endCommand, t);
+        new BetExecutor().execute({ context, endCommand, t });
     }
 });
 

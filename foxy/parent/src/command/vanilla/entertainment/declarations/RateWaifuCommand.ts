@@ -28,7 +28,7 @@ const RateWaifuCommand = createCommand({
     }],
 
     execute: async (context, endCommand, t) => {
-        new RateWaifuExecutor().execute(context, endCommand, t);
+        new RateWaifuExecutor().execute({ context, endCommand, t });
     }
 })
 

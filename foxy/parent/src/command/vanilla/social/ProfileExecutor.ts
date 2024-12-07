@@ -1,9 +1,9 @@
 import { bot } from '../../../FoxyLauncher';
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { ExtendedUser } from '../../../structures/types/DiscordUser';
+import { ExecutorParams } from '../../structures/CommandExecutor';
 
 export default class ProfileExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const user = context.interaction && context.interaction.data?.targetId
             ? await bot.foxy.helpers.getUser(context.interaction.data.targetId)
             : (await context.getOption<ExtendedUser>('user', 'users') || (await context.getAuthor()));

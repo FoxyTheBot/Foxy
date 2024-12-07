@@ -17,7 +17,7 @@ const HelpCommand = createCommand({
     contexts: [IntegrationContexts.BOT_DM, IntegrationContexts.GUILD, IntegrationContexts.PRIVATE_CHANNEL],
     aliases: ['ajuda', 'commands', 'comandos'],
     execute: async (context, endCommand, t) => {
-        new HelpExecutor().execute(context, endCommand, t);
+        new HelpExecutor().execute({ context, endCommand, t });
     },
 });
 

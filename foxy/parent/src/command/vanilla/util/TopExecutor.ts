@@ -1,9 +1,9 @@
 import { createEmbed } from "../../../utils/discord/Embed";
 import { bot } from "../../../FoxyLauncher";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class TopExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const subCommand = await context.getSubCommand();
         await context.sendDefer();
 

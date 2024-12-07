@@ -3,11 +3,11 @@ import { createActionRow, createButton } from "../../../utils/discord/Component"
 import { ButtonStyles } from "discordeno/types";
 import { getPlayerInfo, getPlayerBadges, getIdFromUsername, getPlayerThumbnail } from "noblox.js";
 import { bot } from "../../../FoxyLauncher";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 import { DiscordTimestamp } from "../../../structures/types/DiscordTimestamps";
 
 export default class RobloxExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const username = context.interaction ? context.getOption<string>('username', false) : context.getMessage(1);
         context.sendDefer();
 

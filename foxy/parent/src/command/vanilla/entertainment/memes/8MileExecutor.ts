@@ -1,6 +1,6 @@
 import { Attachment } from "discordeno/transformers";
 import { bot } from "../../../../FoxyLauncher";
-import UnleashedCommandExecutor from "../../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../../structures/CommandExecutor";
 import { logger } from "../../../../../../../common/utils/logger";
 
 const SUPPORTED_FORMATS = [
@@ -19,7 +19,7 @@ const SUPPORTED_FORMATS = [
 ];
 
 export default class EminemExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         try {
             context.sendDefer();
             const audio = await context.getOption<Attachment>("video_or_audio", "attachments");
@@ -49,7 +49,7 @@ export default class EminemExecutor {
                     blob: file
                 }
             });
-            
+
             return endCommand();
 
         } catch (error) {

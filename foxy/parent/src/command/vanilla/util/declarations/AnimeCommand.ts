@@ -21,7 +21,7 @@ const AnimeCommand = createCommand({
     ],
 
     execute: async (context, endCommand, t) => {
-        new AnimeExecutor().execute(context, endCommand, t);
+        new AnimeExecutor().execute({ context, endCommand, t });
     }
 });
 

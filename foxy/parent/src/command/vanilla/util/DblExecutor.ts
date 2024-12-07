@@ -1,8 +1,8 @@
 import { createEmbed } from "../../../utils/discord/Embed";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class DblExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const embed = createEmbed({
             description: t('commands:upvote.description')
         });

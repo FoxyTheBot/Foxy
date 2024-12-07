@@ -2,10 +2,10 @@ import { ButtonStyles } from "discordeno/types";
 import { bot } from '../../../FoxyLauncher';
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import { createEmbed } from "../../../utils/discord/Embed";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class RpsExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const embed = createEmbed({
             description: t('commands:rps.start'),
             fields: [{

@@ -1,7 +1,7 @@
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class CoinflipExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const coinflip = ["heads", "tails"];
         const coin = coinflip[Math.floor(Math.random() * coinflip.length)];
 

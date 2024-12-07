@@ -41,7 +41,7 @@ const cancelCommand = createCommand({
     ],
 
     execute: async (context, endCommand, t) => {
-        new CancelExecutor().execute(context, endCommand, t);
+        new CancelExecutor().execute({ context, endCommand, t });
     }
 });
 

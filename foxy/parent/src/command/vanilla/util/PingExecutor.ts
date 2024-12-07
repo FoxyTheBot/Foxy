@@ -1,9 +1,9 @@
 import { ShardState } from "discordeno/gateway";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 import { bot } from "../../../FoxyLauncher";
 
 export default class PingExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand) {
+    async execute({ context, endCommand }: ExecutorParams) {
         const botReply = await context.sendMessageToChannel({ content: "Pinging..." });
         const ping = botReply.timestamp - context.message.timestamp;
 

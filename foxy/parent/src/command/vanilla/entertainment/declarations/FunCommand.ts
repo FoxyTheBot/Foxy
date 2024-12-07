@@ -186,28 +186,28 @@ const FunCommand = createCommand({
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
         switch (await context.getSubCommand()) {
             case "8mile":
-                new EminemExecutor().execute(context, endCommand, t);
+                new EminemExecutor().execute({ context, endCommand, t });
                 break;
             case "antes_que_vire_moda":
-                new ModaExecutor().execute(context, endCommand, t);
+                new ModaExecutor().execute({ context, endCommand, t });
                 break;
             case "windowserror":
-                new ErrorExecutor().execute(context, endCommand, t);
+                new ErrorExecutor().execute({ context, endCommand, t });
                 break;
             case "girlfriend":
-                new GirlfriendExecutor().execute(context, endCommand, t);
+                new GirlfriendExecutor().execute({ context, endCommand, t });
                 break;
             case "gosto":
-                new GostoExecutor().execute(context, endCommand, t);
+                new GostoExecutor().execute({ context, endCommand, t });
                 break;
             case "laranjo":
-                new LaranjoExecutor().execute(context, endCommand);
+                new LaranjoExecutor().execute({ context, endCommand });
                 break;
             case "not_stonks":
-                new NotStonksExecutor().execute(context, endCommand);
+                new NotStonksExecutor().execute({ context, endCommand });
                 break;
             case "stonks":
-                new StonksExecutor().execute(context, endCommand);
+                new StonksExecutor().execute({ context, endCommand });
                 break;
         }
     }

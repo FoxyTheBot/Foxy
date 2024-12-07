@@ -7,6 +7,7 @@ const setGuildDeleteEvent = async (_: Bot, guild: bigint): Promise<void> => {
 
     if (guildData) {
         logger.info(`[GUILD_DELETE] I've been removed from guild: ${guild}`);
+        await bot.database.removeGuild(guild);
 
         setTimeout(async () => {
             bot.helpers.sendWebhookMessage(process.env.LEAVE_GUILD_WEBHOOK_ID, process.env.LEAVE_GUILD_WEBHOOK_TOKEN, {
@@ -19,7 +20,7 @@ const setGuildDeleteEvent = async (_: Bot, guild: bigint): Promise<void> => {
                     }]
                 }]
             });
-        });
+        }, 1000);
     }
 }
 

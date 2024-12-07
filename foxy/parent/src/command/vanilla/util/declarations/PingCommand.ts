@@ -9,8 +9,8 @@ const PingCommand = createCommand({
     supportsSlash: false,
     supportsLegacy: true,
 
-    execute: async (context: UnleashedCommandExecutor, endCommand) => {
-        new PingExecutor().execute(context, endCommand);
+    execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
+        new PingExecutor().execute({ context, endCommand, t });
     }
 });
 

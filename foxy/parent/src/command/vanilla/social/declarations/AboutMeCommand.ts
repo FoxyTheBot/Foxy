@@ -29,7 +29,7 @@ const AboutMeCommand = createCommand({
     ],
 
     execute: async (context, endCommand, t) => {
-        new AboutMeExecutor().execute(context, endCommand, t);
+        new AboutMeExecutor().execute({ context, endCommand, t });
     }
 });
 

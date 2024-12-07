@@ -24,7 +24,7 @@ const RepCommand = createCommand({
     ],
 
     execute: async (context, endCommand, t) => {
-        new RepExecutor().execute(context, endCommand, t);
+        new RepExecutor().execute({ context, endCommand, t });
     }
 });
 

@@ -1,8 +1,7 @@
 import { bot } from "../../../FoxyLauncher";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
-
+import { ExecutorParams } from "../../structures/CommandExecutor";
 export default class AskFoxyExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const results = [
             t('commands:EightBall.yes'),
             t('commands:EightBall.no'),

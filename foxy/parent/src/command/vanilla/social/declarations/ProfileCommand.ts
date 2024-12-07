@@ -20,9 +20,9 @@ const ProfileCommand = createCommand({
         type: ApplicationCommandOptionTypes.User,
         required: false
     }],
-    
+
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-        new ProfileExecutor().execute(context, endCommand, t);
+        new ProfileExecutor().execute({ context, endCommand, t });
     },
 });
 

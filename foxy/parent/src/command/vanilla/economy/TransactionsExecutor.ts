@@ -1,12 +1,12 @@
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { bot } from "../../../FoxyLauncher";
 import { MessageFlags } from "../../../utils/discord/Message";
 import { TransactionType } from "../../../structures/types/Transactions";
 import { createEmbed } from "../../../utils/discord/Embed";
 import { ExtendedUser } from "../../../structures/types/DiscordUser";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class TransactionsExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const user = await context.getOption<ExtendedUser>('user', 'users') ?? (await context.getAuthor());
         const userData = await bot.database.getUser(user.id);
 

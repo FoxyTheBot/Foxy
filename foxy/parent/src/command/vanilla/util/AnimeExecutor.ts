@@ -1,10 +1,10 @@
 import { createEmbed } from "../../../utils/discord/Embed";
 import { bot } from '../../../FoxyLauncher';
 import scraper from 'mal-scraper';
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class AnimeExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const anime = context.interaction ? context.getOption<string>('anime', false) : context.getMessage();
         await context.sendDefer();
 

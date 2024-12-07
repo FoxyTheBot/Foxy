@@ -1,8 +1,8 @@
-import UnleashedCommandExecutor from "../../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../../structures/CommandExecutor";
 import { bot } from "../../../../FoxyLauncher";
 
 export default class StonksExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand) {
+    async execute({ context, endCommand }: ExecutorParams) {
         context.sendDefer();
         const content = context.getOption<string>("text", false);
 

@@ -10,7 +10,7 @@ const TopCommand = createCommand({
     },
     category: "util",
     options: [
-            {
+        {
             name: "cakes",
             description: "[Economy] See the cakes rank",
             descriptionLocalizations: {
@@ -31,7 +31,7 @@ const TopCommand = createCommand({
         }],
 
     async execute(context, endCommand, t) {
-        new TopExecutor().execute(context, endCommand, t);
+        new TopExecutor().execute({ context, endCommand, t });
     }
 })
 

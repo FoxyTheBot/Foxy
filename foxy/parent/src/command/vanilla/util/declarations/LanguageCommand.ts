@@ -31,7 +31,7 @@ const LanguageCommand = createCommand({
         },
     ],
     execute: async (context, endCommand, t) => {
-        new LanguageExecutor().execute(context, endCommand, t);
+        new LanguageExecutor().execute({ context, endCommand, t });
     }
 });
 

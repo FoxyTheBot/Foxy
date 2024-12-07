@@ -1,8 +1,8 @@
-import UnleashedCommandExecutor from "../../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../../structures/CommandExecutor";
 import { bot } from "../../../../FoxyLauncher";
 
 export default class ErrorExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         var content = context.getOption<string>("text", false);
         context.sendDefer();
 

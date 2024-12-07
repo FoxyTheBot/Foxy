@@ -1,7 +1,6 @@
 import { createCommand } from '../../../structures/createCommand';
 import { ApplicationCommandOptionTypes } from 'discordeno/types';
 import BiteExecutor from '../BiteExecutor';
-import UnleashedCommandExecutor from '../../../structures/UnleashedCommandExecutor';
 
 const BiteCommand = createCommand({
     name: 'bite',
@@ -28,8 +27,8 @@ const BiteCommand = createCommand({
             required: true
         }
     ],
-    execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-        new BiteExecutor().execute(context, endCommand, t);
+    execute: async (context, endCommand, t) => {
+        new BiteExecutor().execute({ context, endCommand, t });
     }
 });
 

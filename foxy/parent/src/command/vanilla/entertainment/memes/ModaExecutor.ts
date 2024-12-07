@@ -1,12 +1,12 @@
 import { Attachment } from "discordeno/transformers";
 import { bot } from "../../../../FoxyLauncher";
-import UnleashedCommandExecutor from "../../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../../structures/CommandExecutor";
 
 const MAX_DIMENSION = 4096;
 const CONTENT_TYPES = ["image/png", "image/jpeg", "image/jpg"];
 
 export default class ModaExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const image = await context.getOption<Attachment>("image", "attachments");
         context.sendDefer();
 

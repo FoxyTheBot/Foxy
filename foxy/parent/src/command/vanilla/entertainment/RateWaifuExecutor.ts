@@ -1,9 +1,9 @@
 import { bot } from "../../../FoxyLauncher";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { ExtendedUser } from "../../../structures/types/DiscordUser";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class RateWaifuExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const user = await context.getOption<ExtendedUser>('user', 'users') ?? (await context.getAuthor());
 
         if (!user) {

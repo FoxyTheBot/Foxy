@@ -1,9 +1,9 @@
 import { bot } from "../../../FoxyLauncher";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { ExtendedUser } from "../../../structures/types/DiscordUser";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class CancelExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const user = await context.getOption<ExtendedUser>('user', 'users');
         const content = context.interaction ? await context.getOption<string>('reason', false) : context.getMessage(2, true);
 

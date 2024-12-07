@@ -1,13 +1,13 @@
 import { ButtonStyles } from "discordeno";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { bot } from "../../../FoxyLauncher";
 import { MessageFlags } from "../../../utils/discord/Message";
 import { createEmbed } from "../../../utils/discord/Embed";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import { ExtendedUser } from "../../../structures/types/DiscordUser";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class SlapExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const user = await context.getOption<ExtendedUser>("user", "users");
         const slapGif: any = await bot.rest.foxy.getImage("roleplay", "slap");
         const embed = createEmbed({});

@@ -1,9 +1,9 @@
 import { MessageFlags } from "../../../utils/discord/Message";
 import { bot } from "../../../FoxyLauncher";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class AboutMeExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const text = context.interaction ? await context.getOption<string>('text', false) : context.getMessage(1, true);
         const userData = await bot.database.getUser((await context.getAuthor()).id);
 

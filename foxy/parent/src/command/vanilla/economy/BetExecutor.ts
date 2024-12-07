@@ -1,11 +1,11 @@
 import { bot } from "../../../FoxyLauncher";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import { ButtonStyles } from "discordeno/types";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { ExtendedUser } from "../../../structures/types/DiscordUser";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class BetExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const user = await context.getOption<ExtendedUser>('user', 'users');
         const amount = context.getOption<number>('amount', false);
         const choice = context.getOption<string>('choice', false);

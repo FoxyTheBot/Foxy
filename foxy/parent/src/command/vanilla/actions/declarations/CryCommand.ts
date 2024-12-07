@@ -15,7 +15,7 @@ const CryCommand = createCommand({
     supportsLegacy: false,
 
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-        new CryExecutor().execute(context, endCommand, t);
+        new CryExecutor().execute({ context, endCommand, t });
     }
 });
 

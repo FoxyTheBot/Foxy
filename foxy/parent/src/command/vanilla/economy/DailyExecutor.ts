@@ -1,12 +1,12 @@
 import { ButtonStyles, MessageComponentTypes } from 'discordeno/types';
 import { bot } from '../../../FoxyLauncher';
 import { MessageFlags } from '../../../utils/discord/Message';
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { colors } from '../../../../../../common/utils/colors';
+import { ExecutorParams } from '../../structures/CommandExecutor';
 
 export default class DailyExecutor {
 
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         context.reply({
             embeds: [{
                 color: colors.FOXY_DEFAULT,

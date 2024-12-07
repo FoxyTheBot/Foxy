@@ -1,9 +1,9 @@
 import { bot } from "../../../FoxyLauncher";
 import { createEmbed } from "../../../utils/discord/Embed";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class DanceExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const embed = createEmbed({});
         const danceGif = await bot.rest.foxy.getImage("roleplay", "dance");
 

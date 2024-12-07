@@ -1,13 +1,13 @@
 import { ButtonStyles } from "discordeno";
 import { createEmbed } from "../../../utils/discord/Embed";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
 import { bot } from "../../../FoxyLauncher";
 import { createActionRow, createButton, createCustomId } from "../../../utils/discord/Component";
 import { MessageFlags } from "../../../utils/discord/Message";
 import { ExtendedUser } from "../../../structures/types/DiscordUser";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class HugExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const embed = createEmbed({});
 
         const user = await context.getOption<ExtendedUser>("user", "users");

@@ -1,12 +1,12 @@
 import { bot } from "../../../../FoxyLauncher";
-import UnleashedCommandExecutor from "../../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../../structures/CommandExecutor";
 import { Attachment } from "discordeno/transformers";
 
 const MAX_DIMENSION = 4096;
 const CONTENT_TYPES = ["image/png", "image/jpeg", "image/jpg"];
 
 export default class GostoExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         context.sendDefer();
         const asset1 = await context.getOption<Attachment>("asset1", "attachments");
         const asset2 = await context.getOption<Attachment>("asset2", "attachments");

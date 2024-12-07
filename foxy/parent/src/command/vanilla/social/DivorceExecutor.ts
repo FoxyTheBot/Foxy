@@ -2,10 +2,10 @@ import { createActionRow, createButton, createCustomId } from "../../../utils/di
 import { ButtonStyles } from "discordeno/types";
 import { MessageFlags } from "../../../utils/discord/Message";
 import { bot } from "../../../FoxyLauncher";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class DivorceExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const userData = await bot.database.getUser((await context.getAuthor()).id);
         context.sendDefer(true);
         const partnerId = await userData.marryStatus.marriedWith;

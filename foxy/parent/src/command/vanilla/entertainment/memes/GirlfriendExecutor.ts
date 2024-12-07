@@ -1,10 +1,10 @@
-import UnleashedCommandExecutor from '../../../structures/UnleashedCommandExecutor';
+import { ExecutorParams } from "../../../structures/CommandExecutor";
 import { bot } from '../../../../FoxyLauncher';
 import { getUserAvatar } from '../../../../utils/discord/User';
 import { ExtendedUser } from '../../../../structures/types/DiscordUser';
 
 export default class GirlFriendExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const user = await context.getOption<ExtendedUser>("user", "users");
         context.sendDefer();
 

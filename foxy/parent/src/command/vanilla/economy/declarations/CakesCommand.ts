@@ -102,20 +102,20 @@ const CakeCommand = createCommand({
     execute: async (context, endCommand, t) => {
         switch (await context.getSubCommand()) {
             case 'atm': {
-                new AtmExecutor().execute(context, endCommand, t);
+                new AtmExecutor().execute({ context, endCommand, t });
                 break;
             }
 
             case 'pay':
             case 'pagar':
             case 'transfer': {
-                new TransferExecutor().execute(context, endCommand, t);
+                new TransferExecutor().execute({ context, endCommand, t });
                 break;
             }
 
             case 'transações':
             case 'transactions': {
-                new TransactionsExecutor().execute(context, endCommand, t);
+                new TransactionsExecutor().execute({ context, endCommand, t });
                 break;
             }
         }

@@ -41,7 +41,7 @@ const MarryCommand = createCommand({
     commandRelatedExecutions: [MarryButtonExecutor],
 
     execute: async (context, endCommand, t) => {
-        new MarryExecutor().execute(context, endCommand, t);
+        new MarryExecutor().execute({ context, endCommand, t });
     }
 });
 

@@ -10,7 +10,7 @@ const DailyCommand = createCommand({
     category: 'economy',
     supportsLegacy: true,
     execute: async (context, endCommand, t) => {
-        new DailyExecutor().execute(context, endCommand, t);
+        new DailyExecutor().execute({ context, endCommand, t });
     }
 });
 

@@ -31,7 +31,7 @@ const HugCommand = createCommand({
     ],
     commandRelatedExecutions: [HugButtonExecutor],
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-      new HugExecutor().execute(context, endCommand, t); 
+        new HugExecutor().execute({ context, endCommand, t });
     }
 });
 

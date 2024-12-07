@@ -31,7 +31,7 @@ const tickleCommand = createCommand({
     ],
     commandRelatedExecutions: [TickleButtonExecutor],
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-       new TickleExecutor().execute(context, endCommand, t);
+        new TickleExecutor().execute({ context, endCommand, t });
     }
 });
 

@@ -16,7 +16,7 @@ const DivorceCommand = createCommand({
     commandRelatedExecutions: [DivorceButtonExecutor],
 
     execute: async (context, endCommand, t) => {
-        new DivorceExecutor().execute(context, endCommand, t);
+        new DivorceExecutor().execute({ context, endCommand, t });
     }
 });
 

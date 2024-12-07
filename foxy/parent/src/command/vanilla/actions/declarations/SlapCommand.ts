@@ -31,7 +31,7 @@ const SlapCommand = createCommand({
     ],
     commandRelatedExecutions: [SlapButtonExecutor],
     execute: async (context: UnleashedCommandExecutor, endCommand, t) => {
-        new SlapExecutor().execute(context, endCommand, t);
+        new SlapExecutor().execute({ context, endCommand, t });
     }
 });
 

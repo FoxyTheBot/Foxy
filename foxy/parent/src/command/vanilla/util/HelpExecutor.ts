@@ -1,10 +1,10 @@
 import { bot } from "../../../FoxyLauncher";
 import { colors } from "../../../../../../common/utils/colors";
 import { createEmbed } from "../../../utils/discord/Embed";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 
 export default class HelpExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const embed = createEmbed({
             title: context.getEmojiById(bot.emotes.FOXY_HOWDY) + " " + "Foxy",
             color: colors.FOXY_DEFAULT,

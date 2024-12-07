@@ -1,11 +1,11 @@
 import { bot } from "../../../FoxyLauncher";
 import ms from "ms";
 import { MessageFlags } from "../../../utils/discord/Message";
-import UnleashedCommandExecutor from "../../structures/UnleashedCommandExecutor";
+import { ExecutorParams } from "../../structures/CommandExecutor";
 import { ExtendedUser } from "../../../structures/types/DiscordUser";
 
 export default class RepExecutor {
-    async execute(context: UnleashedCommandExecutor, endCommand, t) {
+    async execute({ context, endCommand, t }: ExecutorParams) {
         const user = await context.getOption<ExtendedUser>('user', 'users');
         if (!user) {
             context.makeReply(bot.emotes.FOXY_CRY, t('commands:global.noUser'));
