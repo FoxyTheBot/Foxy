@@ -13,7 +13,7 @@ export default class DailyExecutor {
                 title: context.makeReply(bot.emotes.FOXY_DAILY, t('commands:daily.embed.title')),
                 description: context.makeReply(bot.emotes.FOXY_YAY, t('commands:daily.embed.description')),
                 thumbnail: {
-                    url: "https://cdn.discordapp.com/emojis/915736630495686696.png?size=2048"
+                    url: bot.foxy.constants.DAILY_EMOJI
                 }
             }],
             components: [{
@@ -25,7 +25,7 @@ export default class DailyExecutor {
                     emoji: {
                         id: BigInt(bot.emotes.FOXY_PETPET)
                     },
-                    url: "https://foxybot.win/br/daily"
+                    url: bot.foxy.constants.DAILY
                 },
                 {
                     type: MessageComponentTypes.Button,
@@ -34,7 +34,7 @@ export default class DailyExecutor {
                     emoji: {
                         id: BigInt(bot.emotes.FOXY_DAILY)
                     },
-                    url: "https://foxybot.win/br/premium"
+                    url: bot.foxy.constants.PREMIUM
                 }]
             }],
             flags: MessageFlags.EPHEMERAL

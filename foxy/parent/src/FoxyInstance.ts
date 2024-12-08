@@ -23,6 +23,7 @@ import DebugUtils from './test/DebugUtils';
 import setGuildMemberAddEvent from './listeners/guildMemberAdd';
 import FoxyHelpers from './utils/helpers/FoxyHelpers';
 import FoxyStatusServer from './utils/status/server/FoxyStatusServer';
+import { constants } from './structures/types/constants';
 
 export default class FoxyInstance {
     public bot: FoxyClient;
@@ -119,7 +120,8 @@ export default class FoxyInstance {
     private setupUtils() {
         this.bot.database = new DatabaseConnection(this.bot);
         this.bot.foxy = {
-            helpers: new FoxyHelpers(this.bot)
+            helpers: new FoxyHelpers(this.bot),
+            constants: constants
         }
         this.bot.rest.foxy = new FoxyRestManager();
         this.bot.generators = new ImageGenerator();

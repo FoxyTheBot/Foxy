@@ -34,17 +34,26 @@ export default class RobloxExecutor {
                 thumbnail: { url: thumbnail[0].imageUrl },
                 image: { url: skin[0].imageUrl },
                 fields: [
-                    { name: t("commands:roblox.fields.id"), value: `${id}`, inline: true },
-                    { name: t("commands:roblox.fields.joinDate"), value: context.convertToDiscordTimestamp(info.joinDate, DiscordTimestamp.LONG_AND_RELATIVE), inline: true },
-                    { name: t("commands:roblox.fields.username"), value: `${info.username}`, inline: true },
-                    { name: t("commands:roblox.fields.isBanned"), value: `${info.isBanned ? t("commands:roblox.fields.status.banned") : t("commands:roblox.fields.status.notBanned")}`, inline: true },
-                    { name: t("commands:roblox.fields.badges"), value: `${badges.length}`, inline: true },
-                    { name: t('commands:roblox.fields.nickname'), value: `${info.displayName}`, inline: true },
-                    { name: t('commands:roblox.fields.followers'), value: `${info.followerCount}`, inline: true },
-                    { name: t('commands:roblox.fields.following'), value: `${info.followingCount}`, inline: true },
-                    { name: t('commands:roblox.fields.friends'), value: `${info.friendCount}`, inline: true }
+                    { name: t("commands:roblox.fields.id"), value: String(id), inline: true },
+                    {
+                        name: t("commands:roblox.fields.joinDate"),
+                        value: context.convertToDiscordTimestamp(info.joinDate, DiscordTimestamp.LONG_AND_RELATIVE),
+                        inline: true
+                    },
+                    { name: t("commands:roblox.fields.username"), value: info.username, inline: true },
+                    {
+                        name: t("commands:roblox.fields.isBanned"),
+                        value: `${info.isBanned ? t("commands:roblox.fields.status.banned") :
+                            t("commands:roblox.fields.status.notBanned")}`,
+                        inline: true
+                    },
+                    { name: t("commands:roblox.fields.badges"), value: String(badges.length), inline: true },
+                    { name: t('commands:roblox.fields.nickname'), value: info.displayName, inline: true },
+                    { name: t('commands:roblox.fields.followers'), value: String(info.followerCount), inline: true },
+                    { name: t('commands:roblox.fields.following'), value: String(info.followingCount), inline: true },
+                    { name: t('commands:roblox.fields.friends'), value: String(info.friendCount), inline: true }
                 ],
-                url: `https://www.roblox.com/users/${id}/profile`
+                url: bot.foxy.constants.ROBLOX_PROFILE(id)
             });
 
             context.reply({
@@ -53,7 +62,7 @@ export default class RobloxExecutor {
                     label: t("commands:roblox.buttons.viewProfile"),
                     emoji: { id: BigInt(bot.emotes.ROBLOX) },
                     style: ButtonStyles.Link,
-                    url: `https://www.roblox.com/users/${id}/profile`
+                    url: bot.foxy.constants.ROBLOX_PROFILE(id)
                 })])]
             });
 

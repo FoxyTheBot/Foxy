@@ -8,6 +8,7 @@ import { FoxyRestManager } from '../../../../../common/utils/RestManager';
 import { emotes } from '../../../../../common/utils/emotes';
 import ImageGenerator from '../../utils/images/ImageGenerator';
 import FoxyHelpers from '../../utils/helpers/FoxyHelpers';
+import { constants } from './constants';
 
 export interface IdentifiedData<T> {
   id: number;
@@ -27,6 +28,7 @@ export interface FoxyClient extends BotWithCache<Bot> {
   locale: Function;
   foxy: {
     helpers: FoxyHelpers;
+    constants: typeof constants;
   };
   generators: ImageGenerator;
   isReady: boolean;

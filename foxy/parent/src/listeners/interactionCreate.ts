@@ -40,7 +40,7 @@ const setInteractionCreateEvent = async (_: Bot, interaction: Interaction): Prom
                 label: locale('events:ban.button'),
                 style: ButtonStyles.Link,
                 emoji: { id: BigInt(bot.emotes.FOXY_CUPCAKE) },
-                url: 'https://forms.gle/bKfRKxoyFGZzRB7x8'
+                url: bot.foxy.constants.UNBAN_FORM_URL
             })])],
             flags: MessageFlags.EPHEMERAL
         });

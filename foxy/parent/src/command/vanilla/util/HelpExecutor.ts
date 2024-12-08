@@ -12,27 +12,27 @@ export default class HelpExecutor {
             fields: [
                 {
                     name: context.getEmojiById(bot.emotes.FOXY_WOW) + " " + t('commands:help.bot.fields.addme'),
-                    value: `[${t('help.bot.fields.add')}](https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255)`,
+                    value: `[${t('help.bot.fields.add')}](${bot.foxy.constants.INVITE_LINK})`,
                 },
                 {
                     name: context.getEmojiById(bot.emotes.FOXY_CUPCAKE) + " " + t('commands:help.bot.fields.support'),
-                    value: `https://foxybot.win/br/support`,
+                    value: bot.foxy.constants.SUPPORT_SERVER,
                 },
                 {
                     name: context.getEmojiById(bot.emotes.FOXY_PRAY) + " " + t('commands:help.bot.fields.crowdin'),
-                    value: "https://foxybot.win/translate",
+                    value: bot.foxy.constants.CROWDIN,
                 },
                 {
                     name: context.getEmojiById(bot.emotes.FOXY_SUNGLASSES) + " " + t('commands:help.bot.fields.website'),
-                    value: "https://foxybot.win",
+                    value: bot.foxy.constants.FOXY_WEBSITE,
                 },
                 {
                     name: context.getEmojiById(bot.emotes.FOXY_WOW) + " " + t('commands:help.bot.fields.privacy'),
-                    value: "https://foxybot.win/br/support/terms",
+                    value: bot.foxy.constants.TERMS,
                 }
             ],
             thumbnail: {
-                url: "https://cdn.discordapp.com/attachments/1078322762550083736/1233237607010406482/Foxy.png?ex=662c5d85&is=662b0c05&hm=70d01fc36628386c9809fc1db26f10be9d9a4efedba2aa5ccfbba05cc0704888&"
+                url: bot.foxy.constants.FOXY_AVATAR
             }
         });
         context.reply({ embeds: [embed] });
