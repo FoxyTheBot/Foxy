@@ -10,7 +10,7 @@ const setGuildDeleteEvent = async (_: Bot, guild: bigint): Promise<void> => {
         await bot.database.removeGuild(guild);
 
         setTimeout(async () => {
-            bot.helpers.sendWebhookMessage(process.env.LEAVE_GUILD_WEBHOOK_ID, process.env.LEAVE_GUILD_WEBHOOK_TOKEN, {
+            bot.helpers.sendWebhookMessage(process.env.JOIN_GUILD_WEBHOOK_ID, process.env.JOIN_GUILD_WEBHOOK_TOKEN, {
                 embeds: [{
                     title: `<:emoji:${bot.emotes.FOXY_CRY}> **|** Servidor removido!`,
                     fields: [{
