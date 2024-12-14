@@ -1,4 +1,4 @@
-import { Bot, Collection, Message, User, createRestManager } from 'discordeno';
+import { Bot, Collection, Message, User, createHelpers, createRestManager } from 'discordeno';
 import { CommandInterface } from './CommandInterfaces';
 import { botHasGuildPermissions } from 'discordeno/permissions-plugin';
 import { BotWithCache } from 'discordeno/cache-plugin';
@@ -22,21 +22,25 @@ export interface FoxyClient extends BotWithCache<Bot> {
   username: string;
   isProduction: boolean;
   database: DatabaseConnection;
+  helpers: ExtendedHelpers;
+  rest: ExtendedRest;
   emotes: typeof emotes;
   colors: typeof colors;
   config: Object;
   locale: Function;
   foxy: {
-    helpers: FoxyHelpers;
     constants: typeof constants;
   };
   generators: ImageGenerator;
   isReady: boolean;
   hasGuildPermission: typeof botHasGuildPermissions;
-  rest: Rest;
   handleUnavailableGuild: Promise<Message>
 }
 
-export interface Rest extends ReturnType<typeof createRestManager> {
+export interface ExtendedRest extends ReturnType<typeof createRestManager> {
   foxy: FoxyRestManager;
+}
+
+export interface ExtendedHelpers extends ReturnType<typeof createHelpers> {
+  foxy: FoxyHelpers;
 }

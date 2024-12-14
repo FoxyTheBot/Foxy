@@ -21,9 +21,9 @@ import { onShardConnect } from './listeners/onShardConnect';
 import { onShardDisconnect } from './listeners/onShardDisconnect';
 import DebugUtils from './test/DebugUtils';
 import setGuildMemberAddEvent from './listeners/guildMemberAdd';
-import FoxyHelpers from './utils/helpers/FoxyHelpers';
 import FoxyStatusServer from './utils/status/server/FoxyStatusServer';
 import { constants } from './structures/types/constants';
+import FoxyHelpers from './utils/helpers/FoxyHelpers';
 
 export default class FoxyInstance {
     public bot: FoxyClient;
@@ -106,7 +106,7 @@ export default class FoxyInstance {
 
     private async setupInternals() {
         this.bot.transformers.reverse.interactionResponse = transformInteraction;
-        this.bot.handlers.INTEGRATION_CREATE = handleInteractionCreate;
+        this.bot.handlers.INTERACTION_CREATE = handleInteractionCreate;
         if (!this.bot.isProduction || process.argv.includes("--debug")) {
             new DebugUtils(this.bot);
         }
@@ -120,10 +120,10 @@ export default class FoxyInstance {
     private setupUtils() {
         this.bot.database = new DatabaseConnection(this.bot);
         this.bot.foxy = {
-            helpers: new FoxyHelpers(this.bot),
             constants: constants
         }
         this.bot.rest.foxy = new FoxyRestManager();
+        this.bot.helpers.foxy = new FoxyHelpers(this.bot);
         this.bot.generators = new ImageGenerator();
         new FoxyStatusServer(this.bot).start();
     }

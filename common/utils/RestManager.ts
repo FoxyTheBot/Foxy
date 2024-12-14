@@ -52,8 +52,7 @@ export class FoxyRestManager {
 
             return user as User;
         } catch (error) {
-            logger.error("Failed to retrieve user:", error);
-            throw new Error("Failed to retrieve user.");
+            logger.error(`Failed to retrieve user: ${userId}`, error);
         }
     }
 

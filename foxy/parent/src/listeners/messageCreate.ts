@@ -45,7 +45,7 @@ const setMessageCreateEvent = async (_: Bot, message: Message): Promise<unknown>
         })
     }
 
-    if (content.startsWith(`<@${bot.id}>`)) { 
+    if (content.startsWith(`<@${bot.id}>`)) {
         prefix = `<@${bot.id}> `;
     }
 
@@ -72,7 +72,7 @@ const setMessageCreateEvent = async (_: Bot, message: Message): Promise<unknown>
                 setTimeout(() => {
                     return context.reply({
                         content: context.makeReply(bot.emotes.FOXY_RAGE, locale('events:messageCreate.commandCooldown', {
-                            time: context.convertToDiscordTimestamp(new Date(now + cooldownTime), DiscordTimestamp.RELATIVE)
+                            time: bot.helpers.foxy.convertToDiscordTimestamp(new Date(now + cooldownTime), DiscordTimestamp.RELATIVE)
                         }))
                     });
                 }, cooldownTime);

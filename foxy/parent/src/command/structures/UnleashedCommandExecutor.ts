@@ -11,7 +11,6 @@ import { TFunction } from 'i18next';
 import { MessageFlags } from '../../utils/discord/Message';
 import { bot } from "../../FoxyLauncher";
 import { getArgsFromMessage, getOptionFromInteraction } from './GetCommandOption';
-import { DiscordTimestamp } from '../../structures/types/DiscordTimestamps';
 import { getTier } from '../../structures/types/PremiumTiers';
 import { ExtendedUser } from '../../structures/types/DiscordUser';
 
@@ -47,7 +46,7 @@ export default class UnleashedCommandExecutor {
     }
 
     async getAuthor(): Promise<ExtendedUser> {
-        const user = this.interaction ? this.interaction.user : (await bot.foxy.helpers.getUser(this.message.authorId));
+        const user = this.interaction ? this.interaction.user : (await bot.helpers.foxy.getUser(this.message.authorId));
         return {
             ...user,
             asMention: `<@${user.id}>`
@@ -89,8 +88,6 @@ export default class UnleashedCommandExecutor {
         }
         return undefined;
     }
-
-
 
     get guildMember() {
         return this.interaction?.member ?? this.message.member;
@@ -173,22 +170,6 @@ export default class UnleashedCommandExecutor {
             throw new Error('Could not retrieve user premium tier');
         }
     }
-
-    getEmojiById(id: bigint | string): string {
-        return `<:emoji:${id}>`;
-    }
-
-    convertToDiscordTimestamp(date: Date, type: DiscordTimestamp): string {
-        const timestamp = Math.floor(date.getTime() / 1000);
-        const formats = ["R", "t", "T", "f"];
-
-        if (type === 3) {
-            return `<t:${timestamp}:${formats[type]}> (<t:${timestamp}:R>)`;
-        } else {
-            return `<t:${timestamp}:${formats[type]}>`;
-        }
-    }
-
 
     locale(text: string, options: Record<string, unknown> = {}): string {
         return this.i18n(text, options);

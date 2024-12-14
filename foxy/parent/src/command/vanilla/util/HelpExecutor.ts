@@ -6,28 +6,28 @@ import { ExecutorParams } from "../../structures/CommandExecutor";
 export default class HelpExecutor {
     async execute({ context, endCommand, t }: ExecutorParams) {
         const embed = createEmbed({
-            title: context.getEmojiById(bot.emotes.FOXY_HOWDY) + " " + "Foxy",
+            title: bot.helpers.foxy.getEmojiById(bot.emotes.FOXY_HOWDY) + " " + "Foxy",
             color: colors.FOXY_DEFAULT,
             description: t('commands:help.bot.description', { user: (await context.getAuthor()).asMention }),
             fields: [
                 {
-                    name: context.getEmojiById(bot.emotes.FOXY_WOW) + " " + t('commands:help.bot.fields.addme'),
+                    name: bot.helpers.foxy.getEmojiById(bot.emotes.FOXY_WOW) + " " + t('commands:help.bot.fields.addme'),
                     value: `[${t('help.bot.fields.add')}](${bot.foxy.constants.INVITE_LINK})`,
                 },
                 {
-                    name: context.getEmojiById(bot.emotes.FOXY_CUPCAKE) + " " + t('commands:help.bot.fields.support'),
+                    name: bot.helpers.foxy.getEmojiById(bot.emotes.FOXY_CUPCAKE) + " " + t('commands:help.bot.fields.support'),
                     value: bot.foxy.constants.SUPPORT_SERVER,
                 },
                 {
-                    name: context.getEmojiById(bot.emotes.FOXY_PRAY) + " " + t('commands:help.bot.fields.crowdin'),
+                    name: bot.helpers.foxy.getEmojiById(bot.emotes.FOXY_PRAY) + " " + t('commands:help.bot.fields.crowdin'),
                     value: bot.foxy.constants.CROWDIN,
                 },
                 {
-                    name: context.getEmojiById(bot.emotes.FOXY_SUNGLASSES) + " " + t('commands:help.bot.fields.website'),
+                    name: bot.helpers.foxy.getEmojiById(bot.emotes.FOXY_SUNGLASSES) + " " + t('commands:help.bot.fields.website'),
                     value: bot.foxy.constants.FOXY_WEBSITE,
                 },
                 {
-                    name: context.getEmojiById(bot.emotes.FOXY_WOW) + " " + t('commands:help.bot.fields.privacy'),
+                    name: bot.helpers.foxy.getEmojiById(bot.emotes.FOXY_WOW) + " " + t('commands:help.bot.fields.privacy'),
                     value: bot.foxy.constants.TERMS,
                 }
             ],

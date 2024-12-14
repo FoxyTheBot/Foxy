@@ -28,7 +28,7 @@ export default class RobloxExecutor {
             ]);
 
             const embed = createEmbed({
-                title: context.getEmojiById(bot.emotes.ROBLOX) + " " + t("commands:roblox.title", { user: info.username }),
+                title: bot.helpers.foxy.getEmojiById(bot.emotes.ROBLOX) + " " + t("commands:roblox.title", { user: info.username }),
                 color: bot.colors.RED,
                 description: info.blurb,
                 thumbnail: { url: thumbnail[0].imageUrl },
@@ -37,7 +37,7 @@ export default class RobloxExecutor {
                     { name: t("commands:roblox.fields.id"), value: String(id), inline: true },
                     {
                         name: t("commands:roblox.fields.joinDate"),
-                        value: context.convertToDiscordTimestamp(info.joinDate, DiscordTimestamp.LONG_AND_RELATIVE),
+                        value: bot.helpers.foxy.convertToDiscordTimestamp(info.joinDate, DiscordTimestamp.LONG_AND_RELATIVE),
                         inline: true
                     },
                     { name: t("commands:roblox.fields.username"), value: info.username, inline: true },

@@ -5,7 +5,7 @@ import { ExecutorParams } from "../../structures/CommandExecutor";
 export default class AtmExecutor {
     async execute({ context, endCommand, t }: ExecutorParams) {
         const user = context.interaction && context.interaction.data?.targetId
-            ? await bot.foxy.helpers.getUser(context.interaction.data.targetId)
+            ? await bot.helpers.foxy.getUser(context.interaction.data.targetId)
             : (await context.getOption<ExtendedUser>('user', 'users') || (await context.getAuthor()));
 
         if (!user) {

@@ -51,9 +51,9 @@ function getOptionFromInteraction<T>(
       if (!id) return null;
       let user;
       try {
-        user = await bot.foxy.helpers.getUser(id);
+        user = await bot.helpers.foxy.getUser(id);
       } catch (error) {
-        user = await bot.foxy.helpers.getUser(interaction.user.id);
+        user = await bot.helpers.foxy.getUser(interaction.user.id);
       }
 
       return user;
@@ -103,9 +103,9 @@ function getArgsFromMessage<T>(
       if (!id) return null;
       let user;
       try {
-        user = await bot.foxy.helpers.getUser(id);
+        user = await bot.helpers.foxy.getUser(id);
       } catch (error) {
-        user = await bot.foxy.helpers.getUser(messageContext.authorId);
+        user = await bot.helpers.foxy.getUser(messageContext.authorId);
       }
 
       return user;
@@ -118,7 +118,7 @@ function getArgsFromMessage<T>(
     if (!found && required) throw new Error(`Option ${name} is required in ${message}`);
     return found;
   }
-  
+
   if (!shouldResolve) {
     const found = args.slice(position).join(' ') as unknown as T;
     if (!found && required) throw new Error(`Option ${name} is required in ${message}`);

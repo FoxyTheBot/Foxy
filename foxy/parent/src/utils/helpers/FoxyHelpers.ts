@@ -2,6 +2,7 @@ import { Guild, Member } from "discordeno/transformers";
 import { ExtendedUser } from "../../structures/types/DiscordUser";
 import { FoxyClient } from "../../structures/types/FoxyClient";
 import { logger } from "../../../../../common/utils/logger";
+import { DiscordTimestamp } from "../../structures/types/DiscordTimestamps";
 
 export default class FoxyHelpers {
     private bot: FoxyClient;
@@ -34,5 +35,20 @@ export default class FoxyHelpers {
         if (!response) return null;
 
         return await response as Member;
+    }
+
+    getEmojiById(id: bigint | string): string {
+        return `<:emoji:${id}>`;
+    }
+
+    convertToDiscordTimestamp(date: Date, type: DiscordTimestamp): string {
+        const timestamp = Math.floor(date.getTime() / 1000);
+        const formats = ["R", "t", "T", "f"];
+
+        if (type === 3) {
+            return `<t:${timestamp}:${formats[type]}> (<t:${timestamp}:R>)`;
+        } else {
+            return `<t:${timestamp}:${formats[type]}>`;
+        }
     }
 }

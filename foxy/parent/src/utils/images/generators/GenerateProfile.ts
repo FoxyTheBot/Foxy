@@ -82,7 +82,7 @@ export default class CreateProfile {
                 layoutInfo.profileSettings.positions.marriedPosition
             );
 
-            const partnerUser = await bot.foxy.helpers.getUser(data.marryStatus.marriedWith);
+            const partnerUser = await bot.helpers.foxy.getUser(data.marryStatus.marriedWith);
             this.drawText(partnerUser.username,
                 layoutInfo.profileSettings.fontSize.marriedSince,
                 layoutInfo.profileSettings.defaultFont,
@@ -153,12 +153,12 @@ export default class CreateProfile {
 
     private async drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
         const defaultBadges = await bot.database.getBadges();
-        const supportServer = await bot.foxy.helpers.getGuild(768267522670723094n);
+        const supportServer = await bot.helpers.foxy.getGuild(768267522670723094n);
 
         let member: Member | null = null;
 
         if (supportServer) {
-            member = await bot.foxy.helpers.getMember(user.id, supportServer.id).catch(() => null);
+            member = await bot.helpers.foxy.getMember(user.id, supportServer.id).catch(() => null);
         }
 
         if (!member) return;
@@ -194,8 +194,8 @@ export default class CreateProfile {
 
         for (const badge of defaultBadges) {
             if (badge.isFromGuild) {
-                const guild = await bot.foxy.helpers.getGuild(badge.isFromGuild);
-                const guildMember = await bot.foxy.helpers.getMember(member.user.id, guild.id);
+                const guild = await bot.helpers.foxy.getGuild(badge.isFromGuild);
+                const guildMember = await bot.helpers.foxy.getMember(member.user.id, guild.id);
 
                 if (guildMember) {
                     userBadges.push(badge);
