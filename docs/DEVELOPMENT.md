@@ -1,62 +1,85 @@
-### 📕 | Warning:
-If you are here with the purpose to make a self-hosting version of Foxy, please check [our self-hosting guide](SELF-HOSTING.md)
-<br>
+# Developing Foxy
 
-## 🏗 | Preparing the environment
+Originally, Foxy was developed in TypeScript, but it has now transitioned to Kotlin for enhanced performance and maintainability. I decided to move to Kotlin due to numerous issues with Node.js, TypeScript, and the TypeScript Compiler, which made development unproductive. Kotlin is our chosen language because of its expressive syntax and robust features.
 
-### ⚠ | Requirements:
+## Compiling Foxy
 
-- NodeJS v17.x or higher (LTS Recommended)
-- Git
-- yarn
-- TypeScript Compiler (tsc)
-<br>
+### Requirements
 
-## 🤔 | How can I run Foxy?
-<br>
-<p>You need to install TypeScript Compiler (tsc)</p>
+- **PowerShell** (Windows) or **Terminal** (Linux/MacOS).
+  > While the Windows Command Prompt may work, it's recommended to use PowerShell for better compatibility.
+- **JDK 17 or higher**, preferably from [Adoptium](https://adoptium.net/). Ensure the `JAVA_HOME` environment variable is set correctly.
+    - **To check JAVA\_HOME:**
+        - PowerShell: `echo $env:JAVA_HOME`
+        - Bash: `echo $JAVA_HOME`
+- **Git** for version control.
+- **Gradle**, included in the project, but having it installed globally is optional.
+
+### Preparing the Environment
+
+Clone the repository using Git:
 
 ```bash
-yarn global add typescript
+git clone -b master https://github.com/FoxyTheBot/Foxy.git
 ```
 
-## Values that you need to change
-<br>
+Navigate to the project folder:
 
+```bash
+cd Foxy
 ```
-## Application settings
-DEFAULT_PREFIX=YOUR-PREFIX
-OWNER_ID=YOUR-DISCORD-ID
-CLIENT_ID=YOUR-BOT-ID
-DEV_GUILD_ID=BOT-SUPPORT-SERVER-ID
-SERVER_URL=YOUR-BOT-API
-PRODUCTION=false
 
-## Default Authentication
-DISCORD_TOKEN=YOUR-BOT-TOKEN
-MONGO_URI=YOUR-MONGODB-URI
+### Compiling with Gradle
 
-## API Keys
-FOXY_API_TOKEN=YOUR-FOXY-API-INSTANCE-TOKEN
-FOXY_LOCAL_API=YOUR-FOXY-LOCAL-API-INSTANCE-TOKEN
-DBL_TOKEN=YOUR-DBL-TOKEN
+Build the project with Gradle by running:
 
-## Webhooks
-JOIN_GUILD_WEBHOOK_ID=YOUR-WEBHOOK
-JOIN_GUILD_WEBHOOK_TOKEN=YOUR-WEBHOOK
-EVENTS_WEBHOOK_ID=YOUR-WEBHOOK
-EVENTS_WEBHOOK_TOKEN=YOUR-WEBHOOK
+```bash
+./gradlew build
 ```
-<br>
 
-## ✨ | Install all required dependencies
-Just type `yarn` in the root folder
+> If you have Gradle installed globally, you can use `gradle build` instead of `./gradlew build`.
 
-## 💻 | Compiling Foxy
-- If you want to compile only Foxy client, type: `yarn build:client`
-<br>
+> If Gradle reports missing methods or unsupported features in your JDK, update to the latest JDK 17+ version from [Adoptium](https://adoptium.net/).
 
-<p>Check the console to see if there are any errors... Well, we hope that there are none.</p>
+## Running Foxy
 
-## 🤩 | Starting Foxy
-- In your terminal, start the Foxy Client: `yarn run:client`
+This section is tailored for developers who want to contribute or modify Foxy. If you're interested in self-hosting Foxy, check out the [self-hosting guide](SELF-HOSTING.md).
+
+### Requirements
+
+- All tools and dependencies from the "Compiling Foxy" section.
+- **JetBrains IntelliJ IDEA** (Community Edition is sufficient).
+
+### Opening Foxy in IntelliJ IDEA
+
+1. Open IntelliJ IDEA.
+2. Navigate to **File > Open** and select the folder where you cloned Foxy.
+3. When prompted, click "Trust Project" to allow IntelliJ to load it.
+4. Wait for IntelliJ to download dependencies and index the project.
+
+### Running Foxy within IntelliJ IDEA
+
+To run Foxy from IntelliJ:
+
+1. Locate the `FoxyLauncher` class in the project.
+2. Right-click on the file and select **Run 'FoxyLauncher'**.
+3. On the first run, Foxy will generate a `foxy.conf` file in the project root.
+4. Configure the `foxy.conf` file as needed and rerun `FoxyLauncher`.
+
+If everything is configured correctly, Foxy will start successfully without unexpected explosions!
+
+### Running Foxy Outside IntelliJ
+
+1. Build the project using the ShadowJar plugin:
+
+```bash
+./gradlew shadowJar
+```
+
+2. Locate the generated JAR file in the `build/libs` folder.
+3. Ensure the `foxy.conf` file is properly configured.
+4. Run the JAR file using:
+
+```bash
+java -jar build/libs/foxy-all.jar
+```
