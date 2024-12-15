@@ -1,0 +1,12 @@
+commands:
+  command:
+    fun:
+      eminem:
+        8mile:
+          description: "[Video] Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
+          wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar um áudio do tipo MP3 ou WAV"
+          fileTooBig: "Eu até queria ver como ficaria o vídeo com esse áudio, mas ele é muito grande... E se eu abrir ele e ele explodir e me levar junto? :("
+
+    cakes:
+      atm:
+        balance: "{0} possui **{1}** cakes"
