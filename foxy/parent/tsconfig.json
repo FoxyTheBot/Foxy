@@ -23,6 +23,7 @@
     "../common/utils/logger.ts",
     "../common/utils/colors.ts",
     "../common/utils/emotes.ts",
-    "../common/utils/constants.ts"
-, "../../common/types/DiscordUser.ts"  ]
+    "../common/utils/constants.ts",
+    "../../common/types/DiscordUser.ts"
+  ]
 }

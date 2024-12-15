@@ -8,7 +8,7 @@ import { FoxyRestManager } from '../../../../../common/utils/RestManager';
 import { emotes } from '../../../../../common/utils/emotes';
 import ImageGenerator from '../../utils/images/ImageGenerator';
 import FoxyHelpers from '../../utils/helpers/FoxyHelpers';
-import { constants } from './constants';
+import { constants } from '../../../../../common/utils/constants';
 
 export interface IdentifiedData<T> {
   id: number;

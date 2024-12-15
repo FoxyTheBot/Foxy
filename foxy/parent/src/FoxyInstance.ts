@@ -22,7 +22,7 @@ import { onShardDisconnect } from './listeners/onShardDisconnect';
 import DebugUtils from './test/DebugUtils';
 import setGuildMemberAddEvent from './listeners/guildMemberAdd';
 import FoxyStatusServer from './utils/status/server/FoxyStatusServer';
-import { constants } from './structures/types/constants';
+import { constants } from '../../../common/utils/constants';
 import FoxyHelpers from './utils/helpers/FoxyHelpers';
 
 export default class FoxyInstance {
