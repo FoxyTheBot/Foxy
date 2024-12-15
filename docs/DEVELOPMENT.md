@@ -20,7 +20,7 @@ Originally, Foxy was developed in TypeScript, but it has now transitioned to Kot
 Clone the repository using Git:
 
 ```bash
-git clone -b master https://github.com/YourRepository/Foxy.git
+git clone -b master https://github.com/FoxyTheBot/Foxy.git
 ```
 
 Navigate to the project folder:

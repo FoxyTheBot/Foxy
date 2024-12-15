@@ -28,12 +28,10 @@ class FoxyCommandManager(val instance: FoxyInstance) {
                 privateGuild.updateCommands().addCommands(
                     command.create().build()
                 ).await()
-                println("Registered private command /${command.create().name}")
             } else {
                 action.addCommands(
                     command.create().build()
                 )
-                println("Registered /${command.create().name} command!")
             }
         }
 
