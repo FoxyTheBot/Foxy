@@ -12,7 +12,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.utils.data.*
 import org.bson.Document
 
-class MongoDBClient(val instance: FoxyInstance) {
+class MongoDBClient(private val instance: FoxyInstance) {
 
     private var mongoClient: MongoClient? = null
     private var database: MongoDatabase? = null
@@ -39,7 +39,7 @@ class MongoDBClient(val instance: FoxyInstance) {
     }
 
 
-    fun createUser(userId: String): FoxyUser {
+    private fun createUser(userId: String): FoxyUser {
         val collection: MongoCollection<Document> = database!!.getCollection("users")
 
         val newUser = FoxyUser(
