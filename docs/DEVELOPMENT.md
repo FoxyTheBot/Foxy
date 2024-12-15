@@ -1,8 +1,8 @@
-# 👩‍Developing Foxy
+# Developing Foxy
 
-Originally, Foxy was developed in TypeScript, but it has now transitioned to Kotlin for enhanced performance and maintainability. I decided to move to Kotlin due to numerous issues with Node.js, TypeScript, and the TypeScript Compiler, which made development unproductive. Kotlin is our chosen language because of its expressive syntax and robust features. 💖
+Originally, Foxy was developed in TypeScript, but it has now transitioned to Kotlin for enhanced performance and maintainability. I decided to move to Kotlin due to numerous issues with Node.js, TypeScript, and the TypeScript Compiler, which made development unproductive. Kotlin is our chosen language because of its expressive syntax and robust features.
 
-## 🛠️ Compiling Foxy
+## Compiling Foxy
 
 ### Requirements
 
