@@ -24,7 +24,6 @@ subprojects {
         implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
 
         // DB
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         implementation("org.mongodb:mongodb-driver-sync:5.1.4")
 
         // Ktor
@@ -50,6 +49,7 @@ subprojects {
 tasks.test {
     useJUnitPlatform()
 }
+
 kotlin {
     jvmToolchain(17)
 }
