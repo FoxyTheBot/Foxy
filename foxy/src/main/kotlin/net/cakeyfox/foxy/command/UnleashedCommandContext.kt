@@ -18,11 +18,8 @@ class UnleashedCommandContext(val event: SlashCommandInteractionEvent, client: F
         DiscordLocale.ENGLISH_US to "en-us",
     )
     val authorData = instance.mongoClient.getDiscordUser(event.user.id)
-    val locale = if (event.isFromGuild) {
-        FoxyLocale(parsedLocale[event.guildLocale] ?: parsedLocale[event.userLocale] ?: "en-us")
-    } else {
-        FoxyLocale(parsedLocale[event.userLocale] ?: "en-us")
-    }
+    val locale = FoxyLocale(parsedLocale[event.userLocale] ?: "pt-br")
+
 
     suspend fun reply(ephemeral: Boolean = false, block: InlineMessage<*>.() -> Unit): Message? {
         val msg = MessageCreateBuilder {
@@ -43,6 +40,6 @@ class UnleashedCommandContext(val event: SlashCommandInteractionEvent, client: F
     }
 
     fun makeReply(emoteId: String, content: String): String {
-        return "<:emoji:$emoteId> **|** ${content}"
+        return "<:emoji:$emoteId> **|** $content"
     }
 }

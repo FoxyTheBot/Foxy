@@ -18,7 +18,7 @@ class EminemExecutor: FoxySlashCommandExecutor() {
             context.reply {
                 content = context.makeReply(
                     FoxyEmotes.FOXY_CRY,
-                    context.locale["commands.command.fun.eminem.8mile.fileTooBig"]
+                    context.locale["8mile.fileTooBig"]
                     )
             }
             return
@@ -28,7 +28,7 @@ class EminemExecutor: FoxySlashCommandExecutor() {
             context.reply {
                 content = context.makeReply(
                     FoxyEmotes.FOXY_CRY,
-                    context.locale["commands.command.fun.eminem.8mile.wrongContentType"]
+                    context.locale["8mile.wrongContentType"]
                 )
             }
             return
@@ -45,7 +45,7 @@ class EminemExecutor: FoxySlashCommandExecutor() {
             context.reply {
                 content = context.makeReply(
                     FoxyEmotes.FOXY_CRY,
-                    context.locale["fun.eminem.8mile.fileNotSupported"]
+                    context.locale["8mile.fileNotSupported"]
                 )
             }
             throw IllegalArgumentException("Unsupported image! Status code: ${response.status}")
@@ -53,7 +53,7 @@ class EminemExecutor: FoxySlashCommandExecutor() {
             context.reply {
                 content = context.makeReply(
                     FoxyEmotes.FOXY_CRY,
-                    context.locale["fun.eminem.8mile.unexpectedError", response.status.toString()]
+                    context.locale["8mile.unexpectedError", response.status.toString()]
                 )
             }
 

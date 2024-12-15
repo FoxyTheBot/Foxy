@@ -2,6 +2,7 @@ package net.cakeyfox.foxy.command.vanilla.economy.declarations
 
 import net.cakeyfox.foxy.command.structure.FoxySlashCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.economy.AtmExecutor
+import net.cakeyfox.foxy.command.vanilla.economy.DailyExecutor
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
@@ -13,6 +14,7 @@ class CakesCommand: FoxySlashCommandDeclarationWrapper {
         subCommand(
             "atm",
             "cakes.atm.description",
+            baseName = this@command.name,
             block = {
                 executor = AtmExecutor()
                 addOption(
@@ -31,8 +33,10 @@ class CakesCommand: FoxySlashCommandDeclarationWrapper {
         subCommand(
             "daily",
             "cakes.daily.description",
+            baseName = this@command.baseName,
             block = {
                 executor = DailyExecutor()
+                baseName = this@command.name
             }
         )
     }

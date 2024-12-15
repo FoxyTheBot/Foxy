@@ -27,6 +27,7 @@ class FoxyLocale(val locale: String) {
         for (k in keyList) {
             current = current.get(k)
             if (current == null) {
+                println("Chave não encontrada: $key em $resourcePath")
                 return "!!{${key}}!!"
             }
         }

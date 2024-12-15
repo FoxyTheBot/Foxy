@@ -16,7 +16,7 @@ class AtmExecutor: FoxySlashCommandExecutor() {
         context.reply {
             content = context.makeReply(
                 FoxyEmotes.FOXY_DAILY,
-                context.locale["commands.command.cakes.atm.balance", user.asMention, formattedBalance]
+                context.locale["cakes.atm.balance", user.asMention, formattedBalance]
             )
         }
     }
