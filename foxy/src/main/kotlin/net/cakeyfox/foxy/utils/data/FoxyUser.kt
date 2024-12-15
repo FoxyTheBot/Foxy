@@ -61,7 +61,6 @@ data class UserProfile(
 @Serializable
 data class UserPremium(
     val premium: Boolean = false,
-    @SerialName("premiumExpiresAt")
     @Serializable(with = MongoDateSerializer::class)
     val premiumDate: Instant? = null,
     val premiumType: String? = null
@@ -92,11 +91,8 @@ data class PetInfo(
 
 @Serializable
 data class Transaction(
-    @SerialName("sentTo")
     val to: String? = null,
-    @SerialName("sentFrom")
     val from: String? = null,
-    @SerialName("amount")
     val quantity: Int? = null,
     @Serializable(with = MongoDateSerializer::class)
     val date: Instant? = null,
@@ -112,7 +108,6 @@ data class Key(
     @Serializable(with = MongoDateSerializer::class)
     val expiresAt: Instant,
     val pType: String,
-    @SerialName("usedBy")
     val guild: String
 )
 

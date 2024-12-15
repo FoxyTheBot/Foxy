@@ -11,8 +11,8 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 
-class MajorEventListener(val instance: FoxyInstance): ListenerAdapter() {
-    val coroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+class MajorEventListener(private val instance: FoxyInstance): ListenerAdapter() {
+    private val coroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
 
     override fun onGenericInteractionCreate(event: GenericInteractionCreateEvent) {
       coroutineScope.launch {

@@ -5,6 +5,7 @@ import com.mongodb.client.MongoClients
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.MongoDatabase
 import kotlinx.datetime.Clock
+import kotlinx.datetime.toJavaInstant
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import net.cakeyfox.foxy.FoxyInstance
@@ -15,7 +16,10 @@ class MongoDBClient(val instance: FoxyInstance) {
 
     private var mongoClient: MongoClient? = null
     private var database: MongoDatabase? = null
-    private var json = Json { ignoreUnknownKeys = true }
+    private var json = Json {
+        encodeDefaults = true
+        ignoreUnknownKeys = true
+    }
 
     fun init() {
         mongoClient = MongoClients.create(instance.config.get("mongo_uri"))
@@ -44,19 +48,46 @@ class MongoDBClient(val instance: FoxyInstance) {
             isBanned = false,
             banDate = null,
             banReason = "",
-            userCakes = UserCakes(0, null),
+            userCakes = UserCakes(balance = 0, lastDaily = null),
             marryStatus = MarryStatus(
-                "",
-                null,
-                false
+                marriedWith = null,
+                marriedDate = null,
+                cantMarry = false
             ),
-            userProfile = UserProfile("", listOf(), "", listOf(), 0, null, "", listOf(), ""),
-            userPremium = UserPremium(false, null, ""),
-            userSettings = UserSettings(""),
-            petInfo = PetInfo("", "", "", 0, 0, 0, 0, null, null, false, false, listOf()),
-            userTransactions = listOf(),
-            premiumKeys = listOf(),
-            roulette = Roulette(5),
+            userProfile = UserProfile(
+                decoration = "",
+                decorationList = emptyList(),
+                background = "default",
+                backgroundList = listOf("default"),
+                repCount = 0,
+                lastRep = null,
+                layout = "default",
+                layoutList = listOf("default"),
+                aboutme = ""
+            ),
+            userPremium = UserPremium(
+                premium = false,
+                premiumDate = null,
+                premiumType = ""
+            ),
+            userSettings = UserSettings(language = "pt-br"),
+            petInfo = PetInfo(
+                name = "",
+                type = "",
+                rarity = "",
+                level = 0,
+                hungry = 100,
+                happy = 100,
+                health = 100,
+                lastHungry = null,
+                lastHappy = null,
+                isDead = false,
+                isClean = true,
+                food = emptyList()
+            ),
+            userTransactions = emptyList(),
+            premiumKeys = emptyList(),
+            roulette = Roulette(availableSpins = 5),
             lastVote = null,
             notifiedForVote = false,
             voteCount = 0
@@ -64,6 +95,8 @@ class MongoDBClient(val instance: FoxyInstance) {
 
         val documentToJSON = json.encodeToString(newUser)
         val document = Document.parse(documentToJSON)
+        document["userCreationTimestamp"] = java.util.Date.from(newUser.userCreationTimestamp.toJavaInstant())
+
         collection.insertOne(document)
 
         return newUser

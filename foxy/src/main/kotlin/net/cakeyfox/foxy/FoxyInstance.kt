@@ -20,7 +20,7 @@ class FoxyInstance {
         commandHandler = FoxyCommandManager(this)
         mongoClient = MongoDBClient(this)
         mongoClient.init()
-        artistryClient = ArtistryClient("uwu")
+        artistryClient = ArtistryClient(config.get("artistry_token"))
 
         jda = JDABuilder.createDefault(config.get("discord_token")).build()
         jda.addEventListener(MajorEventListener(this))
