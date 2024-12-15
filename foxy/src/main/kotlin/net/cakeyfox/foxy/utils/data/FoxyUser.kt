@@ -1,8 +1,7 @@
 package net.cakeyfox.foxy.utils.data
 
-import MongoDateSerializer
+import net.cakeyfox.foxy.utils.database.utils.MongoDateSerializer
 import kotlinx.datetime.Instant
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable

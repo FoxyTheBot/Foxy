@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.utils
+package net.cakeyfox.foxy.utils.database
 
 import com.mongodb.client.MongoClient
 import com.mongodb.client.MongoClients

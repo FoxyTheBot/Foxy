@@ -1,3 +1,5 @@
+package net.cakeyfox.foxy.utils.database.utils
+
 import kotlinx.datetime.Instant
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind

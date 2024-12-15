@@ -6,7 +6,7 @@ import net.cakeyfox.foxy.listeners.MajorEventListener
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.cakeyfox.foxy.utils.FoxyConfig
-import net.cakeyfox.foxy.utils.MongoDBClient
+import net.cakeyfox.foxy.utils.database.MongoDBClient
 
 class FoxyInstance {
     lateinit var jda: JDA
