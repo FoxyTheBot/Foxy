@@ -1,4 +1,4 @@
-# 👩‍💻 Developing Foxy
+# 👩‍Developing Foxy
 
 Originally, Foxy was developed in TypeScript, but it has now transitioned to Kotlin for enhanced performance and maintainability. I decided to move to Kotlin due to numerous issues with Node.js, TypeScript, and the TypeScript Compiler, which made development unproductive. Kotlin is our chosen language because of its expressive syntax and robust features. 💖
 
@@ -15,7 +15,7 @@ Originally, Foxy was developed in TypeScript, but it has now transitioned to Kot
 - **Git** for version control.
 - **Gradle**, included in the project, but having it installed globally is optional.
 
-### 🧹 Preparing the Environment
+### Preparing the Environment
 
 Clone the repository using Git:
 
@@ -29,7 +29,7 @@ Navigate to the project folder:
 cd Foxy
 ```
 
-### 🐘 Compiling with Gradle
+### Compiling with Gradle
 
 Build the project with Gradle by running:
 
@@ -39,25 +39,25 @@ Build the project with Gradle by running:
 
 > If you have Gradle installed globally, you can use `gradle build` instead of `./gradlew build`.
 
-> If Gradle reports missing methods or unsupported features in your JDK, update to the latest JDK 17+ version from [Adoptium](https://adoptium.net/). 🚀
+> If Gradle reports missing methods or unsupported features in your JDK, update to the latest JDK 17+ version from [Adoptium](https://adoptium.net/).
 
-## 💫 Running Foxy
+## Running Foxy
 
 This section is tailored for developers who want to contribute or modify Foxy. If you're interested in self-hosting Foxy, check out the [self-hosting guide](SELF-HOSTING.md).
 
-### 👷 Requirements
+### Requirements
 
 - All tools and dependencies from the "Compiling Foxy" section.
 - **JetBrains IntelliJ IDEA** (Community Edition is sufficient).
 
-### 🧹 Opening Foxy in IntelliJ IDEA
+### Opening Foxy in IntelliJ IDEA
 
 1. Open IntelliJ IDEA.
 2. Navigate to **File > Open** and select the folder where you cloned Foxy.
 3. When prompted, click "Trust Project" to allow IntelliJ to load it.
 4. Wait for IntelliJ to download dependencies and index the project.
 
-### 🏃‍♂️ Running Foxy within IntelliJ IDEA
+### Running Foxy within IntelliJ IDEA
 
 To run Foxy from IntelliJ:
 
@@ -66,9 +66,9 @@ To run Foxy from IntelliJ:
 3. On the first run, Foxy will generate a `foxy.conf` file in the project root.
 4. Configure the `foxy.conf` file as needed and rerun `FoxyLauncher`.
 
-If everything is configured correctly, Foxy will start successfully! 🚀
+If everything is configured correctly, Foxy will start successfully without unexpected explosions!
 
-### 🐳 Running Foxy Outside IntelliJ
+### Running Foxy Outside IntelliJ
 
 1. Build the project using the ShadowJar plugin:
 
@@ -83,6 +83,3 @@ If everything is configured correctly, Foxy will start successfully! 🚀
 ```bash
 java -jar build/libs/foxy-all.jar
 ```
-
-Enjoy using Foxy! 🦊
-
