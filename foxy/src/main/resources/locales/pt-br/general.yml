@@ -1,6 +1,7 @@
 # Strings used for command register
 commands:
   command:
+
     fun:
       description: "Comandos divertidos para você se divertir com seus amigos"
       eminem:
@@ -11,11 +12,20 @@ commands:
         options:
           video_or_audio:
             description: "O áudio ou vídeo que será usado no vídeo"
+
       antes_que_vire_moda:
         description: "[Imagem] Montagem do meme 'Antes que vire moda, já vou avisando que sou fã de:'"
         options:
           image:
             description: "A imagem que será usada no meme"
+
+    ask:
+      description: "[Diversão] Comandos relacionados a perguntas e respostas"
+      foxy:
+        description: "[Diversão] Faça uma pergunta para a Foxy"
+        options:
+          question:
+            description: "A pergunta que será feita para a Foxy"
 
     cakes:
       description: "Comandos relacionados a economia da Foxy"
@@ -33,6 +43,7 @@ commands:
       ping:
         description: "Verifica a latência do bot"
 
+
 # Strings used in the command
 8mile:
   wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar um áudio do tipo MP3 ou WAV"
@@ -46,3 +57,18 @@ moda:
   wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar uma imagem do tipo PNG ou JPG"
   fileNotSupported: "Eu queria fazer a montagem, mas não consigo abrir esse tipo de arquivo... :("
   imageTooBig: "Eu até queria fazer a montagem, mas a imagem é muito grande... E se eu abrir ela e ela explodir e me levar junto? :("
+
+ask:
+  foxy:
+    noYes: "Não sei responder isso, mas sim!"
+    yesNo: "Não sei responder isso, mas não!"
+    noNo: "Não, não!"
+    yesSure: "Com certeza!"
+    noWay: "De jeito nenhum!"
+    noComment: "Prefiro não comentar..."
+    noIdea: "Não faço ideia..."
+    cantAnswer: "Não posso responder isso..."
+    askLater: "Pergunte mais tarde..."
+    maybe: "Talvez..."
+    no: "Não"
+    yes: "Sim"

@@ -1,6 +1,7 @@
 # Strings used for command register
 commands:
   command:
+
     fun:
       description: "Comandos divertidos para você se divertir com seus amigos"
       eminem:
@@ -11,11 +12,20 @@ commands:
         options:
           video_or_audio:
             description: "O áudio ou vídeo que será usado no vídeo"
+
       antes_que_vire_moda:
         description: "[Imagem] Montagem do meme 'Antes que vire moda, já vou avisando que sou fã de:'"
         options:
           image:
             description: "A imagem que será usada no meme"
+
+    ask:
+      description: "[Diversão] Comandos relacionados a perguntas e respostas"
+      foxy:
+        description: "[Diversão] Faça uma pergunta para a Foxy"
+        options:
+          question:
+            description: "A pergunta que será feita para a Foxy"
 
     cakes:
       description: "Comandos relacionados a economia da Foxy"
@@ -32,6 +42,7 @@ commands:
       description: "Comandos relacionados ao bot"
       ping:
         description: "Verifica a latência do bot"
+
 
 # Strings used in the command
 8mile:
