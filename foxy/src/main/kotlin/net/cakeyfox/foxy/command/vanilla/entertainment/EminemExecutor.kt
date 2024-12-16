@@ -11,7 +11,7 @@ import java.io.InputStream
 
 class EminemExecutor: FoxySlashCommandExecutor() {
     override suspend fun execute(context: UnleashedCommandContext) {
-        context.event.deferReply().queue()
+        context.defer()
         val attachment = context.event.getOption("video_or_audio")!!.asAttachment
 
         if (attachment.size > FileRequirements.maxSize) {

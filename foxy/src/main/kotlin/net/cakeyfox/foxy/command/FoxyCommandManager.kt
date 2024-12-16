@@ -5,7 +5,6 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.structure.FoxySlashCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.CakesCommand
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.FunCommand
-import net.cakeyfox.foxy.command.vanilla.utils.declarations.FoxyCommand
 import net.dv8tion.jda.api.interactions.commands.Command
 
 class FoxyCommandManager(val instance: FoxyInstance) {
@@ -39,7 +38,6 @@ class FoxyCommandManager(val instance: FoxyInstance) {
     }
 
     init {
-        register(FoxyCommand())
         register(FunCommand())
         register(CakesCommand())
     }

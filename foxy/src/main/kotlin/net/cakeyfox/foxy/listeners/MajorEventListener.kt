@@ -29,7 +29,8 @@ class MajorEventListener(private val instance: FoxyInstance): ListenerAdapter() 
                       val subCommandName = event.subcommandName
 
                       val subCommandGroup =
-                          if (subCommandGroupName != null) command.getSubCommandGroup(subCommandGroupName) else null
+                          if (subCommandGroupName != null)
+                              command.getSubCommandGroup(subCommandGroupName) else null
                       val subCommand = if (subCommandName != null) {
                           if (subCommandGroup != null) {
                               subCommandGroup.getSubCommand(subCommandName)

@@ -2,41 +2,40 @@
 commands:
   command:
     fun:
-      description: "Comandos divertidos para você se divertir com seus amigos"
+      description: "Fun commands to enjoy with your friends"
       eminem:
-        description: "[Video] Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
+        description: "[Video] Generates a video with a scene from the movie 8 Mile and a custom audio"
         8mile:
-          description: "[Video] Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
+          description: "[Video] Generates a video with a scene from the movie 8 Mile and a custom audio"
       8mile:
         options:
           video_or_audio:
-            description: "O áudio ou vídeo que será usado no vídeo"
+            description: "The audio or video that will be used in the video"
 
     cakes:
-      description: "TODO"
+      description: "Commands related to Foxy's economy"
       atm:
-        description: "TODO"
+        description: "[Economy] Check your cake balance"
         options:
           user:
-            description: "TODO"
+            description: "Check another user's cake balance"
 
       daily:
-        description: "TODO"
+        description: "[Economy] Receive your daily cakes"
 
     foxy:
-      description: "Comandos relacionados ao bot"
+      description: "Commands related to the bot"
       ping:
-        description: "Verifica a latência do bot"
+        description: "Checks the bot's latency"
 
       info:
-        description: "Mostra informações sobre o bot"
+        description: "Displays information about the bot"
 
 # Strings used in the command
-strings:
-  8mile:
-    wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar um áudio do tipo MP3 ou WAV"
-    fileTooBig: "Eu até queria ver como ficaria o vídeo com esse áudio, mas ele é muito grande... E se eu abrir ele e ele explodir e me levar junto? :("
+8mile:
+  wrongContentType: "I wish I could use this, but I can't. You need to send an audio file in MP3 or WAV format."
+  fileTooBig: "I would love to see how the video would look with this audio, but it's too big... What if I open it and it explodes, taking me with it? :("
 
-  cakes:
-    atm:
-      balance: "{0} possui **{1}** cakes"
+cakes:
+  atm:
+    balance: "{0} has **{1}** Cakes"

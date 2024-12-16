@@ -38,4 +38,4 @@ commands:
 
 cakes:
   atm:
-    balance: "{0} possui **{1}** cakes"
+    balance: "{0} possui **{1}** Cakes"
