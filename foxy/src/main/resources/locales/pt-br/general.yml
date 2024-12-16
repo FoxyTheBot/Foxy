@@ -39,9 +39,17 @@ commands:
         description: "[Economia] Receba seus cakes diários"
 
     foxy:
-      description: "Comandos relacionados ao bot"
+      description: "[Utilitários] Comandos relacionados ao bot"
       ping:
-        description: "Verifica a latência do bot"
+        description: "[Utilitários] Verifica a latência do bot"
+
+    aboutme:
+      description: "[Social] Comandos relacionados ao seu perfil"
+      change:
+        description: "[Social] Altera o texto do seu perfil"
+        options:
+          text:
+            description: "O texto que será exibido no seu perfil"
 
 
 # Strings used in the command
@@ -72,3 +80,7 @@ ask:
     maybe: "Talvez..."
     no: "Não"
     yes: "Sim"
+
+aboutme:
+  success: "O texto do seu perfil foi alterado para `{0}`!"
+  tooLong: "O texto do seu perfil não pode ter mais de 177 caracteres!"
