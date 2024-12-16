@@ -11,6 +11,11 @@ commands:
         options:
           video_or_audio:
             description: "O áudio ou vídeo que será usado no vídeo"
+      antes_que_vire_moda:
+        description: "[Imagem] Montagem do meme 'Antes que vire moda, já vou avisando que sou fã de:'"
+        options:
+          image:
+            description: "A imagem que será usada no meme"
 
     cakes:
       description: "Comandos relacionados a economia da Foxy"
@@ -28,9 +33,6 @@ commands:
       ping:
         description: "Verifica a latência do bot"
 
-      info:
-        description: "Mostra informações sobre o bot"
-
 # Strings used in the command
 8mile:
   wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar um áudio do tipo MP3 ou WAV"
@@ -39,3 +41,8 @@ commands:
 cakes:
   atm:
     balance: "{0} possui **{1}** Cakes"
+
+moda:
+  wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar uma imagem do tipo PNG ou JPG"
+  fileNotSupported: "Eu queria fazer a montagem, mas não consigo abrir esse tipo de arquivo... :("
+  imageTooBig: "Eu até queria fazer a montagem, mas a imagem é muito grande... E se eu abrir ela e ela explodir e me levar junto? :("
