@@ -4,6 +4,7 @@ import dev.minn.jda.ktx.coroutines.await
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.structure.FoxySlashCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.CakesCommand
+import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.AskFoxyCommand
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.FunCommand
 import net.dv8tion.jda.api.interactions.commands.Command
 
@@ -40,5 +41,6 @@ class FoxyCommandManager(private val instance: FoxyInstance) {
     init {
         register(FunCommand())
         register(CakesCommand())
+        register(AskFoxyCommand())
     }
 }

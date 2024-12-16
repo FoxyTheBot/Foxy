@@ -7,7 +7,9 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.serialization.json.JsonObject
 
-class ArtistryClient (artistryToken: String) {
+class ArtistryClient (
+    private val artistryToken: String
+) {
     private val client = HttpClient(CIO) {
         install(HttpTimeout) {
             requestTimeoutMillis = 15000
@@ -20,6 +22,7 @@ class ArtistryClient (artistryToken: String) {
         val response = client.post {
             url("https://artistry.foxybot.win/$endpoint")
             header("Content-Type", "application/json")
+            header("Authorization", artistryToken)
             setBody(data.toString())
         }
 

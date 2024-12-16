@@ -1,6 +1,7 @@
 package net.cakeyfox.foxy.listeners
 
 import kotlinx.coroutines.*
+import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.UnleashedCommandContext
@@ -10,9 +11,11 @@ import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
+import kotlin.reflect.jvm.jvmName
 
 class MajorEventListener(private val instance: FoxyInstance): ListenerAdapter() {
     private val coroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+    private val logger = KotlinLogging.logger(this::class.jvmName)
 
     override fun onGenericInteractionCreate(event: GenericInteractionCreateEvent) {
       coroutineScope.launch {
@@ -57,7 +60,7 @@ class MajorEventListener(private val instance: FoxyInstance): ListenerAdapter() 
                 Activity.customStatus(Constants.DEFAULT_ACTIVITY))
 
             val commands = instance.commandHandler.handle()
-            println("Registered ${commands?.size} commands")
+            logger.info { "Registered ${commands?.size} commands" }
         }
     }
 }

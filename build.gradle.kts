@@ -38,8 +38,9 @@ subprojects {
         implementation("io.ktor:ktor-client-core:${Versions.KTOR}")
         implementation("io.ktor:ktor-client-cio:${Versions.KTOR}")
 
-        // Logback
+        // Logging
         implementation("ch.qos.logback:logback-classic:1.5.3")
+        implementation("io.github.microutils:kotlin-logging:${Versions.KOTLIN_LOGGING}")
 
         // Serialization
         implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.KOTLIN_SERIALIZATION}")

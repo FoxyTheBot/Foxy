@@ -3,10 +3,14 @@ package net.cakeyfox.foxy.utils.locales
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import mu.KotlinLogging
 import java.io.InputStream
+import kotlin.reflect.jvm.jvmName
 
 class FoxyLocale(val locale: String) {
     private val mapper = ObjectMapper(YAMLFactory()).registerKotlinModule()
+    private val logger = KotlinLogging.logger(this::class.jvmName)
+
     companion object {
         const val PATH = "locales"
     }
@@ -16,7 +20,7 @@ class FoxyLocale(val locale: String) {
         val inputStream: InputStream? = this::class.java.classLoader.getResourceAsStream(resourcePath)
 
         if (inputStream == null) {
-            return "!!{${key}}!! Arquivo não encontrado: $resourcePath"
+            return "!!{${key}}!! File not found: $resourcePath"
         }
 
         val tree = mapper.readTree(inputStream)
@@ -27,7 +31,7 @@ class FoxyLocale(val locale: String) {
         for (k in keyList) {
             current = current.get(k)
             if (current == null) {
-                println("Chave não encontrada: $key em $resourcePath")
+                logger.warn { "Key $key not found in $resourcePath" }
                 return "!!{${key}}!!"
             }
         }
