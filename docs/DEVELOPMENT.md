@@ -73,7 +73,7 @@ If everything is configured correctly, Foxy will start successfully without unex
 1. Build the project using the ShadowJar plugin:
 
 ```bash
-./gradlew shadowJar
+./gradlew :foxy:shadowJar
 ```
 
 2. Locate the generated JAR file in the `build/libs` folder.
@@ -81,5 +81,5 @@ If everything is configured correctly, Foxy will start successfully without unex
 4. Run the JAR file using:
 
 ```bash
-java -jar build/libs/foxy-all.jar
+java -jar foxy/build/libs/Foxy-VERSION.jar
 ```
