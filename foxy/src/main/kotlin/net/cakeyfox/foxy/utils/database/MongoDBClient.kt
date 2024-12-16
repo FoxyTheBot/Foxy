@@ -13,6 +13,7 @@ import net.cakeyfox.foxy.utils.data.*
 import org.bson.Document
 
 class MongoDBClient(private val instance: FoxyInstance) {
+    lateinit var users: MongoCollection<Document>
 
     private var mongoClient: MongoClient? = null
     private var database: MongoDatabase? = null
@@ -24,6 +25,7 @@ class MongoDBClient(private val instance: FoxyInstance) {
     init {
         mongoClient = MongoClients.create(instance.config.get("mongo_uri"))
         database = mongoClient?.getDatabase(instance.config.get("db_name"))
+        users = database!!.getCollection("users")
     }
 
     fun getDiscordUser(userId: String): FoxyUser {
@@ -39,9 +41,14 @@ class MongoDBClient(private val instance: FoxyInstance) {
     }
 
 
-    private fun createUser(userId: String): FoxyUser {
-        val collection: MongoCollection<Document> = database!!.getCollection("users")
+    fun updateUser(userId: String, updates: Map<String, Any>) {
+        val query = Document("_id", userId)
+        val update = Document("\$set", Document(updates))
 
+        users.updateOne(query, update)
+    }
+
+    private fun createUser(userId: String): FoxyUser {
         val newUser = FoxyUser(
             _id = userId,
             userCreationTimestamp = Clock.System.now(),
@@ -97,7 +104,7 @@ class MongoDBClient(private val instance: FoxyInstance) {
         val document = Document.parse(documentToJSON)
         document["userCreationTimestamp"] = java.util.Date.from(newUser.userCreationTimestamp.toJavaInstant())
 
-        collection.insertOne(document)
+        users.insertOne(document)
 
         return newUser
     }

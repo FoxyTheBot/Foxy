@@ -13,6 +13,7 @@ import java.util.*
 class UnleashedCommandContext(val event: SlashCommandInteractionEvent, client: FoxyInstance) {
     val jda = event.jda
     val instance = client
+    val db = instance.mongoClient
     private val parsedLocale = hashMapOf(
         DiscordLocale.PORTUGUESE_BRAZILIAN to "pt-br",
         DiscordLocale.ENGLISH_US to "en-us",
