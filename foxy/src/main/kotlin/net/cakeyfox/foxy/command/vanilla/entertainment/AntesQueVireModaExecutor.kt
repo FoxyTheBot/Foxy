@@ -9,7 +9,7 @@ import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
 import net.dv8tion.jda.api.utils.FileUpload
 import java.io.InputStream
 
-val supportedTypes = listOf(
+private val supportedTypes = listOf(
     "image/png",
     "image/jpeg",
     "image/jpg"
@@ -31,7 +31,7 @@ class AntesQueVireModaExecutor: FoxySlashCommandExecutor() {
             return
         }
 
-        if (attachment.size > FileRequirements.maxSize) {
+        if (attachment.size > maxSize) {
             context.reply {
                 content = context.makeReply(
                     FoxyEmotes.FOXY_CRY,

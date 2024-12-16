@@ -9,12 +9,29 @@ import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
 import net.dv8tion.jda.api.utils.FileUpload
 import java.io.InputStream
 
+private val supportedTypes = listOf(
+    "audio/mpeg",
+    "audio/wav",
+    "audio/aac",
+    "audio/ogg",
+    "audio/flac",
+    "audio/opus",
+    "audio/x-m4a",
+    "video/mp4",
+    "video/x-msvideo",
+    "video/x-matroska",
+    "video/ogg",
+    "video/x-flv"
+)
+
+val maxSize = 8_000_000 // 8MB
+
 class EminemExecutor: FoxySlashCommandExecutor() {
     override suspend fun execute(context: UnleashedCommandContext) {
         context.defer()
         val attachment = context.event.getOption("video_or_audio")!!.asAttachment
 
-        if (attachment.size > FileRequirements.maxSize) {
+        if (attachment.size > maxSize) {
             context.reply {
                 content = context.makeReply(
                     FoxyEmotes.FOXY_CRY,
@@ -24,7 +41,7 @@ class EminemExecutor: FoxySlashCommandExecutor() {
             return
         }
 
-        if (attachment.contentType !in FileRequirements.supportedTypes) {
+        if (attachment.contentType !in supportedTypes) {
             context.reply {
                 content = context.makeReply(
                     FoxyEmotes.FOXY_CRY,
@@ -69,24 +86,4 @@ class EminemExecutor: FoxySlashCommandExecutor() {
 
         return
     }
-}
-
-
-object FileRequirements {
-    val supportedTypes = listOf(
-        "audio/mpeg",
-        "audio/wav",
-        "audio/aac",
-        "audio/ogg",
-        "audio/flac",
-        "audio/opus",
-        "audio/x-m4a",
-        "video/mp4",
-        "video/x-msvideo",
-        "video/x-matroska",
-        "video/ogg",
-        "video/x-flv"
-    )
-
-    val maxSize = 8_000_000 // 8MB
 }
