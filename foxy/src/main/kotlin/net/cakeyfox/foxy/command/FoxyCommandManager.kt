@@ -7,8 +7,8 @@ import net.cakeyfox.foxy.command.vanilla.economy.declarations.CakesCommand
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.FunCommand
 import net.dv8tion.jda.api.interactions.commands.Command
 
-class FoxyCommandManager(val instance: FoxyInstance) {
-    val commands = mutableListOf<FoxySlashCommandDeclarationWrapper>()
+class FoxyCommandManager(private val instance: FoxyInstance) {
+    private val commands = mutableListOf<FoxySlashCommandDeclarationWrapper>()
 
     operator fun get(name: String): FoxySlashCommandDeclarationWrapper? {
         return commands.find { it.create().name == name }
