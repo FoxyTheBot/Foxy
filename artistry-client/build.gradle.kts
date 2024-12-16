@@ -1,10 +1,11 @@
 plugins {
     id("java")
-    kotlin("jvm") version "2.0.0"
+    kotlin("jvm") version Versions.KOTLIN
+    `java-library`
 }
 
 group = "net.cakeyfox"
-version = "1.0-SNAPSHOT"
+version = Versions.FOXY_VERSION
 
 repositories {
     mavenCentral()

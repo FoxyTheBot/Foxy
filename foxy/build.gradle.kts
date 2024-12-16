@@ -1,10 +1,16 @@
 plugins {
-    kotlin("jvm") version "2.0.0"
-    kotlin("plugin.serialization") version "2.0.0"
+    kotlin("jvm") version Versions.KOTLIN
+    kotlin("plugin.serialization") version Versions.KOTLIN_SERIALIZATION
+    id("com.github.johnrengelman.shadow")
+    application
 }
 
 group = "net.cakeyfox"
-version = "1.0-SNAPSHOT"
+version = Versions.FOXY_VERSION
+
+application {
+    mainClass.set("net.cakeyfox.foxy.FoxyLauncher")
+}
 
 repositories {
     mavenCentral()
@@ -17,6 +23,15 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+
+tasks {
+    shadowJar {
+        archiveBaseName.set("Foxy")
+        archiveVersion.set(version.toString())
+        archiveClassifier.set("")
+    }
 }
 
 kotlin {
