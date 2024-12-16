@@ -15,6 +15,8 @@ private val supportedTypes = listOf(
     "image/jpg"
 )
 
+private const val maxSize = 8_000_000 // 8MB
+
 class AntesQueVireModaExecutor: FoxySlashCommandExecutor() {
     override suspend fun execute(context: UnleashedCommandContext) {
         context.defer()

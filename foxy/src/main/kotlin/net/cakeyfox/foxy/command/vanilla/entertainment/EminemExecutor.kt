@@ -24,7 +24,7 @@ private val supportedTypes = listOf(
     "video/x-flv"
 )
 
-val maxSize = 8_000_000 // 8MB
+private const val maxSize = 8_000_000 // 8MB
 
 class EminemExecutor: FoxySlashCommandExecutor() {
     override suspend fun execute(context: UnleashedCommandContext) {

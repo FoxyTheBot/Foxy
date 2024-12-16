@@ -2,40 +2,47 @@
 commands:
   command:
     fun:
-      description: "Fun commands to enjoy with your friends"
+      description: "Comandos divertidos para você se divertir com seus amigos"
       eminem:
-        description: "[Video] Generates a video with a scene from the movie 8 Mile and a custom audio"
+        description: "[Video] Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
         8mile:
-          description: "[Video] Generates a video with a scene from the movie 8 Mile and a custom audio"
+          description: "[Video] Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
       8mile:
         options:
           video_or_audio:
-            description: "The audio or video that will be used in the video"
+            description: "O áudio ou vídeo que será usado no vídeo"
+      antes_que_vire_moda:
+        description: "[Imagem] Montagem do meme 'Antes que vire moda, já vou avisando que sou fã de:'"
+        options:
+          image:
+            description: "A imagem que será usada no meme"
 
     cakes:
-      description: "Commands related to Foxy's economy"
+      description: "Comandos relacionados a economia da Foxy"
       atm:
-        description: "[Economy] Check your cake balance"
+        description: "[Economia] Veja a sua quantidade de cakes"
         options:
           user:
-            description: "Check another user's cake balance"
+            description: "Veja a quantidade de cakes de outro usuário"
 
       daily:
-        description: "[Economy] Receive your daily cakes"
+        description: "[Economia] Receba seus cakes diários"
 
     foxy:
-      description: "Commands related to the bot"
+      description: "Comandos relacionados ao bot"
       ping:
-        description: "Checks the bot's latency"
-
-      info:
-        description: "Displays information about the bot"
+        description: "Verifica a latência do bot"
 
 # Strings used in the command
 8mile:
-  wrongContentType: "I wish I could use this, but I can't. You need to send an audio file in MP3 or WAV format."
-  fileTooBig: "I would love to see how the video would look with this audio, but it's too big... What if I open it and it explodes, taking me with it? :("
+  wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar um áudio do tipo MP3 ou WAV"
+  fileTooBig: "Eu até queria ver como ficaria o vídeo com esse áudio, mas ele é muito grande... E se eu abrir ele e ele explodir e me levar junto? :("
 
 cakes:
   atm:
-    balance: "{0} has **{1}** Cakes"
+    balance: "{0} possui **{1}** Cakes"
+
+moda:
+  wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar uma imagem do tipo PNG ou JPG"
+  fileNotSupported: "Eu queria fazer a montagem, mas não consigo abrir esse tipo de arquivo... :("
+  imageTooBig: "Eu até queria fazer a montagem, mas a imagem é muito grande... E se eu abrir ela e ela explodir e me levar junto? :("

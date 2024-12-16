@@ -2,29 +2,27 @@ package net.cakeyfox.foxy
 
 import net.cakeyfox.artistry.ArtistryClient
 import net.cakeyfox.foxy.command.FoxyCommandManager
+import net.cakeyfox.foxy.listeners.GuildEventListener
 import net.cakeyfox.foxy.listeners.MajorEventListener
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.cakeyfox.foxy.utils.FoxyConfig
 import net.cakeyfox.foxy.utils.database.MongoDBClient
 
-class FoxyInstance {
-    lateinit var jda: JDA
-    lateinit var mongoClient: MongoDBClient
-    lateinit var commandHandler: FoxyCommandManager
-    lateinit var config: FoxyConfig
-    lateinit var artistryClient: ArtistryClient
+class FoxyInstance(
+    val config: FoxyConfig
+) {
+    var jda: JDA
+    var mongoClient: MongoDBClient = MongoDBClient(this)
+    var commandHandler: FoxyCommandManager = FoxyCommandManager(this)
+    var artistryClient: ArtistryClient = ArtistryClient(config.get("artistry_token"))
 
-    fun start() {
-        config = FoxyConfig()
-        commandHandler = FoxyCommandManager(this)
-        mongoClient = MongoDBClient(this)
-        mongoClient.init()
-        artistryClient = ArtistryClient(config.get("artistry_token"))
-
+    init {
         jda = JDABuilder.createDefault(config.get("discord_token"))
             .build()
-        jda.addEventListener(MajorEventListener(this))
-        jda.awaitReady()
+        jda.addEventListener(
+            MajorEventListener(this),
+            GuildEventListener(this)
+        )
     }
 }

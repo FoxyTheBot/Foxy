@@ -21,7 +21,7 @@ class MongoDBClient(private val instance: FoxyInstance) {
         ignoreUnknownKeys = true
     }
 
-    fun init() {
+    init {
         mongoClient = MongoClients.create(instance.config.get("mongo_uri"))
         database = mongoClient?.getDatabase(instance.config.get("db_name"))
     }
