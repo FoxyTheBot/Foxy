@@ -19,7 +19,7 @@ class ProfileCommand: FoxySlashCommandDeclarationWrapper {
 
                 addOption(
                     OptionData(
-                        OptionType.STRING,
+                        OptionType.USER,
                         "user",
                         "profile.view.option.user",
                         false
