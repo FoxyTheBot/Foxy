@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData
 
+// TODO: Add support to name localizations for command, subcommand, group, and options
 class FoxySlashCommandDeclarationBuilder(
     val name: String,
     val description: String,

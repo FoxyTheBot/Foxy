@@ -5,3 +5,4 @@ rootProject.name = "Foxy"
 include("foxy")
 include("artistry-client")
 include("common")
+include("cirno-serializable")
