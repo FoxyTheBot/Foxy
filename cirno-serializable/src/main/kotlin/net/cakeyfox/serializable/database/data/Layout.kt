@@ -1,4 +1,4 @@
-package net.cakeyfox.serializable.database
+package net.cakeyfox.serializable.database.data
 
 import kotlinx.serialization.Serializable
 
@@ -55,7 +55,7 @@ data class Positions(
 data class Position(
     val x: Float,
     val y: Float,
-    val arc: Arc ? = null,
+    val arc: Arc? = null,
 )
 
 @Serializable
