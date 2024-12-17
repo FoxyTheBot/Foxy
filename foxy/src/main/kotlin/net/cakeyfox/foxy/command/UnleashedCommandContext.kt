@@ -8,7 +8,6 @@ import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.interactions.DiscordLocale
-import java.util.*
 
 class UnleashedCommandContext(val event: SlashCommandInteractionEvent, client: FoxyInstance) {
     val jda = event.jda
@@ -18,7 +17,7 @@ class UnleashedCommandContext(val event: SlashCommandInteractionEvent, client: F
         DiscordLocale.PORTUGUESE_BRAZILIAN to "pt-br",
         DiscordLocale.ENGLISH_US to "en-us",
     )
-    val authorData = instance.mongoClient.getDiscordUser(event.user.id)
+    val authorData = instance.mongoClient.userUtils.getDiscordUser(event.user.id)
     val locale = FoxyLocale(parsedLocale[event.userLocale] ?: "pt-br")
 
 
@@ -30,8 +29,7 @@ class UnleashedCommandContext(val event: SlashCommandInteractionEvent, client: F
         if (event.isAcknowledged) {
             return event.hook.sendMessage(msg.build()).await()
         } else {
-            var defer = event.deferReply(ephemeral).await()
-
+            val defer = event.deferReply(ephemeral).await()
             return defer.sendMessage(msg.build()).await()
         }
     }

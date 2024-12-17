@@ -42,7 +42,7 @@ class MajorEventListener(private val instance: FoxyInstance): ListenerAdapter() 
                           }
                       } else null
 
-                      if (context.db.getDiscordUser(event.user.id).isBanned) {
+                      if (context.db.userUtils.getDiscordUser(event.user.id).isBanned) {
                           instance.utils.handleBan(event, context)
                           return@launch
                       }

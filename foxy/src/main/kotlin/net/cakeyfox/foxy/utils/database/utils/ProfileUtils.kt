@@ -17,14 +17,14 @@ class ProfileUtils(
         val collection: MongoCollection<Document> = instance.mongoClient.database!!.getCollection("backgrounds")
 
         val query = Document("id", backgroundId)
-        val existingUserDocument = collection.find(query).firstOrNull()
+        val existingDocument = collection.find(query).firstOrNull()
 
-        if (existingUserDocument == null) {
+        if (existingDocument == null) {
             logger.error { "Background $backgroundId not found" }
             throw Exception("Background $backgroundId not found")
         }
 
-        val documentToJSON = existingUserDocument?.toJson()
+        val documentToJSON = existingDocument.toJson()
         return instance.mongoClient.json.decodeFromString<Background>(documentToJSON!!)
     }
 
@@ -32,14 +32,14 @@ class ProfileUtils(
         val collection: MongoCollection<Document> = instance.mongoClient.database!!.getCollection("layouts")
 
         val query = Document("id", layoutId)
-        val existingUserDocument = collection.find(query).firstOrNull()
+        val existingDocument = collection.find(query).firstOrNull()
 
-        if (existingUserDocument == null) {
+        if (existingDocument == null) {
             logger.error { "Layout $layoutId not found" }
             throw Exception("Layout $layoutId not found")
         }
 
-        val documentToJSON = existingUserDocument?.toJson()
+        val documentToJSON = existingDocument.toJson()
         println(layoutId)
         return instance.mongoClient.json.decodeFromString<Layout>(documentToJSON!!)
     }

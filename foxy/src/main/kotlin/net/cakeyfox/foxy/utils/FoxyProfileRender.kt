@@ -36,7 +36,7 @@ class FoxyProfileRender {
     }
 
     suspend fun create(context: UnleashedCommandContext, user: User): ByteArrayInputStream {
-        val data = context.db.getDiscordUser(user.id)
+        val data = context.db.userUtils.getDiscordUser(user.id)
         val layoutInfo = context.db.profileUtils.getLayout(data.userProfile.layout)
         val backgroundInfo = context.db.profileUtils.getBackground(data.userProfile.background)
         val userAboutMe = formatAboutMe(

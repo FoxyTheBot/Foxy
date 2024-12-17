@@ -15,7 +15,7 @@ class FoxyUtils(
     }
 
     suspend fun handleBan(event: SlashCommandInteractionEvent, context: UnleashedCommandContext) {
-        val user = context.db.getDiscordUser(event.user.id)
+        val user = context.db.userUtils.getDiscordUser(event.user.id)
 
         context.reply {
             embed {
