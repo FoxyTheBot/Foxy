@@ -9,7 +9,7 @@ import kotlinx.datetime.toJavaInstant
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.utils.data.*
+import net.cakeyfox.serializable.database.*
 import org.bson.Document
 
 class MongoDBClient(private val instance: FoxyInstance) {
