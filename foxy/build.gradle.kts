@@ -19,6 +19,7 @@ repositories {
 dependencies {
     implementation(project(":artistry-client"))
     implementation(project(":common"))
+    implementation(project(":cirno-serializable"))
 }
 
 tasks.test {

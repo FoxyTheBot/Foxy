@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.utils.database.utils
+package net.cakeyfox.serializable.database.utils
 
 import kotlinx.datetime.Instant
 import kotlinx.serialization.KSerializer
