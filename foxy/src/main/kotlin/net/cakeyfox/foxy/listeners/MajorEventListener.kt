@@ -22,6 +22,10 @@ class MajorEventListener(private val instance: FoxyInstance): ListenerAdapter() 
           when (event) {
               is SlashCommandInteractionEvent -> {
                   val commandName = event.fullCommandName.split(" ").first()
+                    if (event.isFromGuild) {
+                        // This will be used to create a guild object in the database if it doesn't exist
+                        event.guild?.let { instance.mongoClient.guildUtils.getGuild(it.id) }
+                    }
 
                   val command = instance.commandHandler[commandName]?.create()
 
