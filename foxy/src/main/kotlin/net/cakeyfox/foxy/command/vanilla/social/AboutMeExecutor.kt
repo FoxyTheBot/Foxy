@@ -4,19 +4,18 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.UnleashedCommandContext
 import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
 
-class AboutMeExecutor: FoxySlashCommandExecutor() {
+class AboutMeExecutor : FoxySlashCommandExecutor() {
     override suspend fun execute(context: UnleashedCommandContext) {
         val text = context.event.getOption("text")!!.asString
 
         if (text.length > 177) {
             context.reply {
-                content = context.makeReply(
-                    FoxyEmotes.FOXY_CRY,
-                    context.locale["aboutme.tooLong"]
-                )
+                content = context.prettyResponse {
+                    emoteId = FoxyEmotes.FOXY_CRY
+                    content = context.locale["aboutme.tooLong"]
+                }
+                return@reply
             }
-
-            return
         }
 
         context.db.userUtils.updateUser(
@@ -25,9 +24,10 @@ class AboutMeExecutor: FoxySlashCommandExecutor() {
         )
 
         context.reply {
-            content = context.makeReply(FoxyEmotes.FOXY_YAY,
-                context.locale["aboutme.success", text]
-            )
+           content = context.prettyResponse {
+                emoteId = FoxyEmotes.FOXY_YAY
+                content = context.locale["aboutme.success", text]
+            }
         }
     }
 }
