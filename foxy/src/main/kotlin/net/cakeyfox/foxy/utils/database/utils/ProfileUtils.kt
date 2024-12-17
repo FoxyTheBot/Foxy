@@ -3,8 +3,8 @@ package net.cakeyfox.foxy.utils.database.utils
 import com.mongodb.client.MongoCollection
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.serializable.database.Background
-import net.cakeyfox.serializable.database.Layout
+import net.cakeyfox.serializable.database.data.Background
+import net.cakeyfox.serializable.database.data.Layout
 import org.bson.Document
 import kotlin.reflect.jvm.jvmName
 

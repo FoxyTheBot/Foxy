@@ -4,9 +4,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.command.UnleashedCommandContext
-import net.cakeyfox.serializable.database.FoxyUser
-import net.cakeyfox.serializable.database.Layout
-import net.cakeyfox.serializable.database.Position
+import net.cakeyfox.serializable.database.data.FoxyUser
+import net.cakeyfox.serializable.database.data.Layout
+import net.cakeyfox.serializable.database.data.Position
 import net.dv8tion.jda.api.entities.User
 import java.awt.Color
 import java.awt.Font

@@ -5,7 +5,7 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.toJavaInstant
 import kotlinx.serialization.encodeToString
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.serializable.database.*
+import net.cakeyfox.serializable.database.data.*
 import org.bson.Document
 
 class UserUtils(
