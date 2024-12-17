@@ -8,20 +8,24 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.toJavaInstant
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
+import net.cakeyfox.foxy.utils.database.utils.ProfileUtils
 import net.cakeyfox.serializable.database.*
 import org.bson.Document
+import kotlin.reflect.jvm.jvmName
 
 class MongoDBClient(instance: FoxyInstance) {
     // TODO: Create all methods to interact with the Foxy database
-    private var users: MongoCollection<Document>
-
-    private var mongoClient: MongoClient? = null
-    private var database: MongoDatabase? = null
-    private var json = Json {
+    var users: MongoCollection<Document>
+    private var logger = KotlinLogging.logger(this::class.jvmName)
+    var mongoClient: MongoClient? = null
+    var database: MongoDatabase? = null
+    var json = Json {
         encodeDefaults = true
         ignoreUnknownKeys = true
     }
+    val profileUtils = ProfileUtils(instance)
 
     init {
         mongoClient = MongoClients.create(instance.config.get("mongo_uri"))
