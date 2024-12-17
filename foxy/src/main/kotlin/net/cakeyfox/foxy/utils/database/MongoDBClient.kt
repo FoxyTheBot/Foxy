@@ -13,6 +13,7 @@ import net.cakeyfox.serializable.database.*
 import org.bson.Document
 
 class MongoDBClient(instance: FoxyInstance) {
+    // TODO: Create all methods to interact with the Foxy database
     private var users: MongoCollection<Document>
 
     private var mongoClient: MongoClient? = null
