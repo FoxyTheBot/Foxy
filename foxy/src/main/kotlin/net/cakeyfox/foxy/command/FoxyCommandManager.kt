@@ -7,6 +7,7 @@ import net.cakeyfox.foxy.command.vanilla.economy.declarations.CakesCommand
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.AskFoxyCommand
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.FunCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.AboutMeCommand
+import net.cakeyfox.foxy.command.vanilla.social.declarations.ProfileCommand
 import net.dv8tion.jda.api.interactions.commands.Command
 
 class FoxyCommandManager(private val instance: FoxyInstance) {
@@ -44,5 +45,6 @@ class FoxyCommandManager(private val instance: FoxyInstance) {
         register(CakesCommand())
         register(AskFoxyCommand())
         register(AboutMeCommand())
+        register(ProfileCommand())
     }
 }
