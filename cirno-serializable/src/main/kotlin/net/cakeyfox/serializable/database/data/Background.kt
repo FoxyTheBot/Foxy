@@ -6,9 +6,9 @@ import kotlinx.serialization.Serializable
 data class Background(
     val id: String,
     val name: String,
-    val cakes: Int,
+    val cakes: Int? = 0,
     val filename: String,
-    val description: String,
-    val author: String,
+    val description: String? = null,
+    val author: String? = null,
     val inactive: Boolean = false
 )
