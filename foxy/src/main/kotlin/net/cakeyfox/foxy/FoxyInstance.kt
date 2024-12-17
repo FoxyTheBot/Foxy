@@ -7,6 +7,7 @@ import net.cakeyfox.foxy.listeners.MajorEventListener
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.cakeyfox.foxy.utils.FoxyConfig
+import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.database.MongoDBClient
 
 class FoxyInstance(
@@ -16,6 +17,7 @@ class FoxyInstance(
     var mongoClient: MongoDBClient = MongoDBClient(this)
     var commandHandler: FoxyCommandManager = FoxyCommandManager(this)
     var artistryClient: ArtistryClient = ArtistryClient(config.get("artistry_token"))
+    var utils = FoxyUtils(this)
 
     init {
         jda = JDABuilder.createDefault(config.get("discord_token"))

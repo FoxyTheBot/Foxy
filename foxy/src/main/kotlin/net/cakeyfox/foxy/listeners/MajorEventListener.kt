@@ -42,6 +42,11 @@ class MajorEventListener(private val instance: FoxyInstance): ListenerAdapter() 
                           }
                       } else null
 
+                      if (context.db.getDiscordUser(event.user.id).isBanned) {
+                          instance.utils.handleBan(event, context)
+                          return@launch
+                      }
+
                       if (subCommand != null) {
                           subCommand.executor?.execute(context)
                       } else if (subCommandGroupName == null && subCommandName == null) {

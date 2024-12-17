@@ -11,6 +11,11 @@ import kotlinx.serialization.json.JsonDecoder
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 
+/*
+    * This serializer is used to serialize and deserialize MongoDB date objects.
+    * For example: {"$date": "2021-08-01T00:00:00Z"}
+ */
+
 object MongoDateSerializer : KSerializer<Instant> {
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("MongoDate", PrimitiveKind.STRING)

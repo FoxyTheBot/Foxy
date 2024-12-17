@@ -84,3 +84,11 @@ ask:
 aboutme:
   success: "O texto do seu perfil foi alterado para `{0}`!"
   tooLong: "O texto do seu perfil não pode ter mais de 177 caracteres!"
+
+ban:
+  title: "Você está **banido(a)**"
+  description: "Se você quiser fazer um apelo de ban você pode fazer um apelo de ban \n\n Recomendo você ler os [termos de uso](https://foxybot.win/terms)"
+  field:
+    reason: "Motivo do banimento:"
+    date: "Data do banimento:"
+  button: "Fazer um apelo"
