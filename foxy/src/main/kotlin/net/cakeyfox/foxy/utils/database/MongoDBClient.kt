@@ -7,6 +7,7 @@ import com.mongodb.client.MongoDatabase
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
+import net.cakeyfox.foxy.utils.database.utils.GuildUtils
 import net.cakeyfox.foxy.utils.database.utils.ProfileUtils
 import net.cakeyfox.foxy.utils.database.utils.UserUtils
 import org.bson.Document
@@ -16,6 +17,8 @@ class MongoDBClient(instance: FoxyInstance) {
     // TODO: Create all methods to interact with the Foxy database
 
     var users: MongoCollection<Document>
+    val guilds: MongoCollection<Document>
+
     private var logger = KotlinLogging.logger(this::class.jvmName)
     private var mongoClient: MongoClient? = null
     var database: MongoDatabase? = null
@@ -25,11 +28,13 @@ class MongoDBClient(instance: FoxyInstance) {
     }
     val profileUtils = ProfileUtils(instance)
     val userUtils = UserUtils(instance)
+    val guildUtils = GuildUtils(this)
 
     init {
         mongoClient = MongoClients.create(instance.config.get("mongo_uri"))
         database = mongoClient?.getDatabase(instance.config.get("db_name"))
         users = database!!.getCollection("users")
+        guilds = database!!.getCollection("guilds")
         logger.info { "Connected to ${instance.config.get("db_name")} database" }
     }
 }
