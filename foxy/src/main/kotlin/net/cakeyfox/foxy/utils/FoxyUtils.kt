@@ -10,7 +10,7 @@ class FoxyUtils(
     val instance: FoxyInstance
 ) {
     fun convertISOToDiscordTimestamp(iso: Instant): String {
-        val convertedDate = iso?.epochSeconds?.let { "<t:$it:f>" } ?: "N/A"
+        val convertedDate = iso.epochSeconds.let { "<t:$it:f>" }
         return convertedDate
     }
 

@@ -12,8 +12,8 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.serializable.database.*
 import org.bson.Document
 
-class MongoDBClient(private val instance: FoxyInstance) {
-    lateinit var users: MongoCollection<Document>
+class MongoDBClient(instance: FoxyInstance) {
+    private var users: MongoCollection<Document>
 
     private var mongoClient: MongoClient? = null
     private var database: MongoDatabase? = null
