@@ -18,17 +18,7 @@ object Constants {
         return "https://www.roblox.com/users/$id/profile"
     }
 
-    const val DEFAULT_ACTIVITY = "foxybot.win | f!help"
-
-    /* ---- [Memes] ---- */
-    const val GOSTO_IMAGE = "https://cakey.foxybot.win/assets/commands/memes/naosomosiguais.png"
-    const val GIRLFRIEND_IMAGE = "https://cakey.foxybot.win/assets/commands/memes/namorada.png"
-    const val WINDOWS_ERROR_IMAGE = "https://cakey.foxybot.win/assets/commands/memes/windows.png"
-    const val LARANJO_IMAGE = "https://cakey.foxybot.win/assets/commands/memes/laranjo.png"
-    const val NOT_STONKS_IMAGE = "https://cakey.foxybot.win/assets/commands/memes/notstonks.png"
-    const val STONKS_IMAGE = "https://cakey.foxybot.win/assets/commands/memes/stonks.png"
-    const val MODA_IMAGE = "https://cakey.foxybot.win/assets/commands/memes/moda.png"
-    const val EMINEM_VIDEO = "https://cakey.foxybot.win/assets/commands/memes/8mile.mp4"
+    const val DEFAULT_ACTIVITY = "🛍 Visite minha loja diária e compre itens para o seu perfil! | foxybot.win/br/store"
 
     /* ---- [Profile Images] ---- */
     fun PROFILE_BACKGROUND(backgroundId: String): String {
@@ -50,6 +40,4 @@ object Constants {
     fun PROFILE_BADGES(badgeId: String): String {
         return "https://cakey.foxybot.win/assets/badges/$badgeId"
     }
-
-    const val BANNED_BADGE = "https://cakey.foxybot.win/assets/badges/banned.png"
 }
