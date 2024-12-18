@@ -106,8 +106,7 @@ data class Key(
     val used: Boolean,
     @Serializable(with = MongoDateSerializer::class)
     val expiresAt: Instant,
-    val pType: String,
-    val guild: String
+    val pType: Int? = null
 )
 
 @Serializable
