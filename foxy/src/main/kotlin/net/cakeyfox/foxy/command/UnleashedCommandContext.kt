@@ -39,11 +39,6 @@ class UnleashedCommandContext(val event: SlashCommandInteractionEvent, client: F
         event.deferReply(ephemeral).await()
     }
 
-    @Deprecated("Use prettyResponse instead")
-    fun makeReply(emoteId: String, content: String): String {
-        return "<:emoji:${emoteId}> **|** $content"
-    }
-
     fun prettyResponse(reply: ReplyBuilder.() -> Unit): String {
         val response = ReplyBuilder().apply(reply)
 

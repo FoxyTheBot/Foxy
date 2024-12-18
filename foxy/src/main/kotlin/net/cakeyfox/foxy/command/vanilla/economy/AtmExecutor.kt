@@ -14,10 +14,10 @@ class AtmExecutor: FoxySlashCommandExecutor() {
             .format(userBalance)
 
         context.reply {
-            content = context.makeReply(
-                FoxyEmotes.FOXY_DAILY,
-                context.locale["cakes.atm.balance", user.asMention, formattedBalance]
-            )
+            content = context.prettyResponse {
+                emoteId = FoxyEmotes.FOXY_DAILY
+                content = context.locale["cakes.atm.balance", user.asMention, formattedBalance]
+            }
         }
     }
 }

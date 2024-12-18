@@ -8,10 +8,10 @@ class DailyExecutor: FoxySlashCommandExecutor() {
     override suspend fun execute(context: UnleashedCommandContext) {
         context.reply(true) {
             embed {
-                title = context.makeReply(
-                    FoxyEmotes.FOXY_DAILY,
-                    context.locale["cakes.daily.embed.title"],
-                )
+                title = context.prettyResponse {
+                    emoteId = FoxyEmotes.FOXY_DAILY
+                    content = context.locale["cakes.daily.embed.title"]
+                }
 
                 description = context.locale["cakes.daily.embed.description"]
             }

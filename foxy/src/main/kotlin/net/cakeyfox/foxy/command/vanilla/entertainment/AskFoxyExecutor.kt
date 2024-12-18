@@ -21,7 +21,10 @@ class AskFoxyExecutor: FoxySlashCommandExecutor() {
         )
 
         context.reply {
-            content = context.makeReply(FoxyEmotes.FOXY_THINK, getRandomAnswer(answers))
+            content = context.prettyResponse {
+                emoteId = FoxyEmotes.FOXY_THINK
+                content = getRandomAnswer(answers)
+            }
         }
     }
 

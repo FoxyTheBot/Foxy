@@ -24,10 +24,10 @@ class AntesQueVireModaExecutor: FoxySlashCommandExecutor() {
 
         if (attachment.width > 1920 || attachment.height > 1080) {
             context.reply {
-                content = context.makeReply(
-                    FoxyEmotes.FOXY_CRY,
-                    context.locale["moda.imageTooBig"]
-                )
+                content = context.prettyResponse {
+                    emoteId = FoxyEmotes.FOXY_CRY
+                    content = context.locale["moda.imageTooBig"]
+                }
             }
 
             return
@@ -35,10 +35,10 @@ class AntesQueVireModaExecutor: FoxySlashCommandExecutor() {
 
         if (attachment.size > maxSize) {
             context.reply {
-                content = context.makeReply(
-                    FoxyEmotes.FOXY_CRY,
-                    context.locale["moda.fileTooBig"]
-                )
+                content = context.prettyResponse {
+                    emoteId = FoxyEmotes.FOXY_CRY
+                    content = context.locale["moda.fileTooBig"]
+                }
             }
 
             return
@@ -46,10 +46,10 @@ class AntesQueVireModaExecutor: FoxySlashCommandExecutor() {
 
         if (attachment.contentType !in supportedTypes) {
             context.reply {
-                content = context.makeReply(
-                    FoxyEmotes.FOXY_CRY,
-                    context.locale["moda.wrongContentType"]
-                )
+                content = context.prettyResponse {
+                    emoteId = FoxyEmotes.FOXY_CRY
+                    content = context.locale["moda.wrongContentType"]
+                }
             }
 
             return
@@ -61,18 +61,18 @@ class AntesQueVireModaExecutor: FoxySlashCommandExecutor() {
 
         if (response.status.value in 400..499) {
             context.reply {
-                content = context.makeReply(
-                    FoxyEmotes.FOXY_CRY,
-                    context.locale["moda.fileNotSupported"]
-                )
+                content = context.prettyResponse {
+                    emoteId = FoxyEmotes.FOXY_CRY
+                    content = context.locale["moda.fileNotSupported"]
+                }
             }
             throw IllegalArgumentException("Unsupported image! Status code: ${response.status}")
         } else if (response.status.value !in 200..299) {
             context.reply {
-                content = context.makeReply(
-                    FoxyEmotes.FOXY_CRY,
-                    context.locale["moda.unexpectedError", response.status.toString()]
-                )
+                content = context.prettyResponse {
+                    emoteId = FoxyEmotes.FOXY_CRY
+                    content = context.locale["moda.unexpectedError", response.status.toString()]
+                }
             }
 
             throw IllegalArgumentException("Error processing image! Status code: ${response.status}")

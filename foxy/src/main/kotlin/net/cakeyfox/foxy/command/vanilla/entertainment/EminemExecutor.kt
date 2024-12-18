@@ -33,20 +33,20 @@ class EminemExecutor: FoxySlashCommandExecutor() {
 
         if (attachment.size > maxSize) {
             context.reply {
-                content = context.makeReply(
-                    FoxyEmotes.FOXY_CRY,
-                    context.locale["8mile.fileTooBig"]
-                    )
+                content = context.prettyResponse {
+                    emoteId = FoxyEmotes.FOXY_CRY
+                    content = context.locale["8mile.fileTooBig"]
+                }
             }
             return
         }
 
         if (attachment.contentType !in supportedTypes) {
             context.reply {
-                content = context.makeReply(
-                    FoxyEmotes.FOXY_CRY,
-                    context.locale["8mile.wrongContentType"]
-                )
+                content = context.prettyResponse {
+                    emoteId = FoxyEmotes.FOXY_CRY
+                    content = context.locale["8mile.wrongContentType"]
+                }
             }
             return
         }
@@ -60,18 +60,18 @@ class EminemExecutor: FoxySlashCommandExecutor() {
 
         if (response.status.value in 400..499) {
             context.reply {
-                content = context.makeReply(
-                    FoxyEmotes.FOXY_CRY,
-                    context.locale["8mile.fileNotSupported"]
-                )
+                content = context.prettyResponse {
+                    emoteId = FoxyEmotes.FOXY_CRY
+                    content = context.locale["8mile.fileNotSupported"]
+                }
             }
             throw IllegalArgumentException("Unsupported image! Status code: ${response.status}")
         } else if (response.status.value !in 200..299) {
             context.reply {
-                content = context.makeReply(
-                    FoxyEmotes.FOXY_CRY,
-                    context.locale["8mile.unexpectedError", response.status.toString()]
-                )
+                content = context.prettyResponse {
+                    emoteId = FoxyEmotes.FOXY_CRY
+                    content = context.locale["8mile.unexpectedError", response.status.toString()]
+                }
             }
 
             throw IllegalArgumentException("Error processing image! Status code: ${response.status}")
