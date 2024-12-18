@@ -225,7 +225,7 @@ class FoxyProfileRender(
     }
 
 
-    private suspend fun getUserBadges(member: Member, defaultBadges: List<Badge>, data: FoxyUser): List<Badge> {
+    private fun getUserBadges(member: Member, defaultBadges: List<Badge>, data: FoxyUser): List<Badge> {
         val userBadges = mutableListOf<Badge>()
 
         val roleBadges = member.roles
