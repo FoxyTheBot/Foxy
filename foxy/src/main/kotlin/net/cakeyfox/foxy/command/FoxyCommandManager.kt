@@ -41,10 +41,24 @@ class FoxyCommandManager(private val instance: FoxyInstance) {
     }
 
     init {
-        register(FunCommand())
+        /* ---- [Roleplay] ---- */
+        // TODO: Migrate roleplay commands
+
+        /* ---- [Economy] ---- */
         register(CakesCommand())
+
+        /* ---- [Entertainment] ---- */
+        register(FunCommand())
         register(AskFoxyCommand())
+
+        /* ---- [Games] ---- */
+        // TODO: Migrate games commands
+
+        /* ---- [Social] ---- */
         register(AboutMeCommand())
         register(ProfileCommand())
+
+        /* ---- [Utils] ---- */
+        // TODO: Migrate utils commands
     }
 }
