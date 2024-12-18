@@ -101,8 +101,7 @@ class FoxyProfileRender(
             layoutInfo.profileSettings.positions.usernamePosition
         )
 
-        val formattedBalance = NumberFormat.getNumberInstance(Locale("pt", "BR"))
-            .format(data.userCakes.balance)
+        val formattedBalance = context.utils.formatNumber(data.userCakes.balance, "pt", "BR")
 
         drawText(
             "Cakes: $formattedBalance",
@@ -204,22 +203,26 @@ class FoxyProfileRender(
 
         val member = context.instance.helpers.getMemberById(user.id, Constants.SUPPORT_SERVER_ID)
 
-        val userBadges = getUserBadges(member, defaultBadges, data)
-        if (userBadges.isEmpty()) {
-            return
+        val userBadges = member?.let { getUserBadges(it, defaultBadges, data) }
+        if (userBadges != null) {
+            if (userBadges.isEmpty()) {
+                return
+            }
         }
 
         var x = layoutInfo.profileSettings.positions.badgesPosition.x
         var y = layoutInfo.profileSettings.positions.badgesPosition.y
 
-        for (badge in userBadges) {
-            val badgeImage = loadImage(Constants.PROFILE_BADGES(badge.asset))
-            graphics.drawImage(badgeImage, x.toInt(), y.toInt(), 50, 50, null)
+        if (userBadges != null) {
+            for (badge in userBadges) {
+                val badgeImage = loadImage(Constants.PROFILE_BADGES(badge.asset))
+                graphics.drawImage(badgeImage, x.toInt(), y.toInt(), 50, 50, null)
 
-            x += 60
-            if (x > 1300) {
-                x = layoutInfo.profileSettings.positions.badgesPosition.x
-                y += 50
+                x += 60
+                if (x > 1300) {
+                    x = layoutInfo.profileSettings.positions.badgesPosition.x
+                    y += 50
+                }
             }
         }
     }
