@@ -5,8 +5,10 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.UnleashedCommandContext
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
+import java.text.NumberFormat
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class FoxyUtils(
     val instance: FoxyInstance
@@ -24,6 +26,11 @@ class FoxyUtils(
 
             return formatter.format(instant)
         }
+    }
+
+    fun formatNumber(number: Int, language: String, country: String): String {
+        return NumberFormat.getNumberInstance(Locale(language, country))
+            .format(number)
     }
 
     suspend fun handleBan(event: SlashCommandInteractionEvent, context: UnleashedCommandContext) {

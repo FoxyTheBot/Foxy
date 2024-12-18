@@ -10,8 +10,7 @@ class AtmExecutor: FoxySlashCommandExecutor() {
     override suspend fun execute(context: UnleashedCommandContext) {
         val user = context.event.getOption("user")?.asUser ?: context.event.user
         val userBalance = context.instance.mongoClient.userUtils.getDiscordUser(user.id).userCakes.balance
-        val formattedBalance = NumberFormat.getNumberInstance(Locale("pt", "BR"))
-            .format(userBalance)
+        val formattedBalance = context.utils.formatNumber(userBalance, "pt", "BR")
 
         context.reply {
             content = context.prettyResponse {

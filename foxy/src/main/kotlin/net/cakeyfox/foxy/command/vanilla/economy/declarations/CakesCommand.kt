@@ -29,15 +29,5 @@ class CakesCommand: FoxySlashCommandDeclarationWrapper {
                 )
             }
         )
-
-        subCommand(
-            "daily",
-            "cakes.daily.description",
-            baseName = this@command.baseName,
-            block = {
-                executor = DailyExecutor()
-                baseName = this@command.name
-            }
-        )
     }
 }
