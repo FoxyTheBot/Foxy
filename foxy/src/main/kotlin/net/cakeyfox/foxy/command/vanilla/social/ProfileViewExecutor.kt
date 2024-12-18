@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy.command.vanilla.social
 
+import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.UnleashedCommandContext
 import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
 import net.cakeyfox.foxy.utils.FoxyProfileRender
@@ -15,6 +16,10 @@ class ProfileViewExecutor: FoxySlashCommandExecutor() {
         val file = FileUpload.fromData(profile.readBytes(), "profile.png")
 
         context.reply {
+            content = context.prettyResponse {
+                emoteId = FoxyEmotes.FOXY_THINK
+                content = context.locale["profile.view", user.asMention]
+            }
             files.plusAssign(file)
         }
     }
