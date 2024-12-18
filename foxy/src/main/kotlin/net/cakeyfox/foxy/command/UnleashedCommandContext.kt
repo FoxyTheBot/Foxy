@@ -4,6 +4,7 @@ import dev.minn.jda.ktx.coroutines.await
 import dev.minn.jda.ktx.messages.InlineMessage
 import dev.minn.jda.ktx.messages.MessageCreateBuilder
 import net.cakeyfox.foxy.FoxyInstance
+import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
@@ -19,6 +20,7 @@ class UnleashedCommandContext(val event: SlashCommandInteractionEvent, client: F
     )
     val authorData = instance.mongoClient.userUtils.getDiscordUser(event.user.id)
     val locale = FoxyLocale(parsedLocale[event.userLocale] ?: "pt-br")
+    val utils = FoxyUtils(instance)
 
 
     suspend fun reply(ephemeral: Boolean = false, block: InlineMessage<*>.() -> Unit): Message? {

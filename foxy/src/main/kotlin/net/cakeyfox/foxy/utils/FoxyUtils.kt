@@ -5,6 +5,8 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.UnleashedCommandContext
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 class FoxyUtils(
     val instance: FoxyInstance
@@ -12,6 +14,15 @@ class FoxyUtils(
     fun convertISOToDiscordTimestamp(iso: Instant): String {
         val convertedDate = iso.epochSeconds.let { "<t:$it:f>" }
         return convertedDate
+    }
+
+    fun convertToHumanReadableDate(iso: Instant) {
+        iso.let {
+            val instant = java.time.Instant.ofEpochMilli(it.toEpochMilliseconds())
+            val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+                .withZone(ZoneId.systemDefault())
+            formatter.format(instant)
+        }
     }
 
     suspend fun handleBan(event: SlashCommandInteractionEvent, context: UnleashedCommandContext) {

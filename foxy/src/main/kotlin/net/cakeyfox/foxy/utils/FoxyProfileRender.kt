@@ -20,8 +20,6 @@ import java.io.ByteArrayOutputStream
 import java.net.URL
 import java.text.NumberFormat
 import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.imageio.ImageIO
 
@@ -111,12 +109,7 @@ class FoxyProfileRender(
             layoutInfo.profileSettings.positions.cakesPosition
         )
         if (data.marryStatus.marriedWith != null) {
-            val marriedDateFormatted = data.marryStatus.marriedDate?.let {
-                val instant = Instant.ofEpochMilli(it.toEpochMilliseconds())
-                val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
-                    .withZone(ZoneId.systemDefault())
-                formatter.format(instant)
-            }
+            val marriedDateFormatted = context.utils.convertToHumanReadableDate(data.marryStatus.marriedDate!!)
 
             marriedCard?.let {
                 graphics.drawImage(it, 0, 0, width, height, null)
@@ -138,7 +131,7 @@ class FoxyProfileRender(
                     layoutInfo.profileSettings.positions.marriedUsernamePosition
                 )
                 drawText(
-                    "Desde ${marriedDateFormatted?.toString()}",
+                    "Desde $marriedDateFormatted",
                     layoutInfo.profileSettings.fontSize.marriedSince,
                     layoutInfo.profileSettings.defaultFont,
                     fontColor,
