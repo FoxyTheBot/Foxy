@@ -41,8 +41,12 @@ class FoxyCommandManager(private val instance: FoxyInstance) {
     }
 
     init {
+        /*
+        * TODO: Migrate all Foxy commands
+        * https://github.com/FoxyTheBot/Foxy/tree/master/foxy/parent/src/command/vanilla
+        */
+
         /* ---- [Roleplay] ---- */
-        // TODO: Migrate roleplay commands
 
         /* ---- [Economy] ---- */
         register(CakesCommand())
@@ -52,13 +56,11 @@ class FoxyCommandManager(private val instance: FoxyInstance) {
         register(AskFoxyCommand())
 
         /* ---- [Games] ---- */
-        // TODO: Migrate games commands
 
         /* ---- [Social] ---- */
         register(AboutMeCommand())
         register(ProfileCommand())
 
         /* ---- [Utils] ---- */
-        // TODO: Migrate utils commands
     }
 }
