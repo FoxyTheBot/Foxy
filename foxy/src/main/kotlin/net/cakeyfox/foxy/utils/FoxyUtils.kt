@@ -16,12 +16,13 @@ class FoxyUtils(
         return convertedDate
     }
 
-    fun convertToHumanReadableDate(iso: Instant) {
+    fun convertToHumanReadableDate(iso: Instant): String {
         iso.let {
             val instant = java.time.Instant.ofEpochMilli(it.toEpochMilliseconds())
             val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
                 .withZone(ZoneId.systemDefault())
-            formatter.format(instant)
+
+            return formatter.format(instant)
         }
     }
 
