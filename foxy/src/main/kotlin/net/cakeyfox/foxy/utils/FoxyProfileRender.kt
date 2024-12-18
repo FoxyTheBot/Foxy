@@ -114,7 +114,7 @@ class FoxyProfileRender(
             marriedCard?.let {
                 graphics.drawImage(it, 0, 0, width, height, null)
                 drawText(
-                    "Casado(a) com:", // TODO: Use locale instead of hardcoded string
+                    context.locale["profile.marriedWith"],
                     layoutInfo.profileSettings.fontSize.married,
                     layoutInfo.profileSettings.defaultFont,
                     fontColor,
@@ -131,7 +131,7 @@ class FoxyProfileRender(
                     layoutInfo.profileSettings.positions.marriedUsernamePosition
                 )
                 drawText(
-                    "Desde $marriedDateFormatted", // TODO: Use locale instead of hardcoded string
+                    context.locale["profile.marriedSince", marriedDateFormatted],
                     layoutInfo.profileSettings.fontSize.marriedSince,
                     layoutInfo.profileSettings.defaultFont,
                     fontColor,

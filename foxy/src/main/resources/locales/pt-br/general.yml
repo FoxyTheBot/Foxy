@@ -92,3 +92,7 @@ ban:
     reason: "Motivo do banimento:"
     date: "Data do banimento:"
   button: "Fazer um apelo"
+
+profile:
+  marriedWith: "Casado(a) com:"
+  marriedSince: "Desde {0}"
