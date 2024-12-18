@@ -18,7 +18,7 @@ object Constants {
         return "https://www.roblox.com/users/$id/profile"
     }
 
-    const val DEFAULT_ACTIVITY = "🛍 Visite minha loja diária e compre itens para o seu perfil! | foxybot.win/br/store"
+    const val DEFAULT_ACTIVITY = "💕 Visite minha loja diária e compre itens para o seu perfil! | foxybot.win/br/store"
 
     /* ---- [Profile Images] ---- */
     fun PROFILE_BACKGROUND(backgroundId: String): String {

@@ -18,7 +18,6 @@ class UnleashedCommandContext(val event: SlashCommandInteractionEvent, client: F
         DiscordLocale.PORTUGUESE_BRAZILIAN to "pt-br",
         DiscordLocale.ENGLISH_US to "en-us",
     )
-    val authorData = instance.mongoClient.userUtils.getDiscordUser(event.user.id)
     val locale = FoxyLocale(parsedLocale[event.userLocale] ?: "pt-br")
     val utils = FoxyUtils(instance)
 
