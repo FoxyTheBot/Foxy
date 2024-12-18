@@ -18,7 +18,11 @@ import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.net.URL
+import java.text.NumberFormat
 import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.*
 import javax.imageio.ImageIO
 
 /*
@@ -96,14 +100,24 @@ class FoxyProfileRender(
             layoutInfo.profileSettings.positions.usernamePosition
         )
 
+        val formattedBalance = NumberFormat.getNumberInstance(Locale("pt", "BR"))
+            .format(data.userCakes.balance)
+
         drawText(
-            "Cakes: ${data.userCakes.balance}",
+            "Cakes: $formattedBalance",
             layoutInfo.profileSettings.fontSize.cakes,
             layoutInfo.profileSettings.defaultFont,
             fontColor,
             layoutInfo.profileSettings.positions.cakesPosition
         )
         if (data.marryStatus.marriedWith != null) {
+            val marriedDateFormatted = data.marryStatus.marriedDate?.let {
+                val instant = Instant.ofEpochMilli(it.toEpochMilliseconds())
+                val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+                    .withZone(ZoneId.systemDefault())
+                formatter.format(instant)
+            }
+
             marriedCard?.let {
                 graphics.drawImage(it, 0, 0, width, height, null)
                 drawText(
@@ -124,7 +138,7 @@ class FoxyProfileRender(
                     layoutInfo.profileSettings.positions.marriedUsernamePosition
                 )
                 drawText(
-                    "Desde ${data.marryStatus.marriedDate}",
+                    "Desde ${marriedDateFormatted?.toString()}",
                     layoutInfo.profileSettings.fontSize.marriedSince,
                     layoutInfo.profileSettings.defaultFont,
                     fontColor,
