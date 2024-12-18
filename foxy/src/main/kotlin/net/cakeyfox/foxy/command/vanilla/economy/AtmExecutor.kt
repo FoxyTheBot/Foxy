@@ -3,8 +3,6 @@ package net.cakeyfox.foxy.command.vanilla.economy
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.UnleashedCommandContext
 import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
-import java.text.NumberFormat
-import java.util.Locale
 
 class AtmExecutor: FoxySlashCommandExecutor() {
     override suspend fun execute(context: UnleashedCommandContext) {

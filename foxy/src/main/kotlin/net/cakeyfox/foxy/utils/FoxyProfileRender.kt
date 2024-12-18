@@ -19,9 +19,7 @@ import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.net.URL
-import java.text.NumberFormat
 import java.time.Instant
-import java.util.*
 import javax.imageio.ImageIO
 import kotlin.reflect.jvm.jvmName
 

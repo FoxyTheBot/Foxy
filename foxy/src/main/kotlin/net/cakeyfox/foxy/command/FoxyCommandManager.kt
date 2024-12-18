@@ -4,6 +4,7 @@ import dev.minn.jda.ktx.coroutines.await
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.structure.FoxySlashCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.CakesCommand
+import net.cakeyfox.foxy.command.vanilla.economy.declarations.DailyCommand
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.AskFoxyCommand
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.FunCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.AboutMeCommand
@@ -50,6 +51,7 @@ class FoxyCommandManager(private val instance: FoxyInstance) {
 
         /* ---- [Economy] ---- */
         register(CakesCommand())
+        register(DailyCommand())
 
         /* ---- [Entertainment] ---- */
         register(FunCommand())

@@ -2,7 +2,6 @@ package net.cakeyfox.foxy.command.vanilla.economy.declarations
 
 import net.cakeyfox.foxy.command.structure.FoxySlashCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.economy.AtmExecutor
-import net.cakeyfox.foxy.command.vanilla.economy.DailyExecutor
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
