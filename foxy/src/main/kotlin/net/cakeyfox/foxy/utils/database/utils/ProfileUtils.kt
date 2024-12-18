@@ -42,7 +42,6 @@ class ProfileUtils(
         }
 
         val documentToJSON = existingDocument.toJson()
-        println(layoutId)
         return instance.mongoClient.json.decodeFromString<Layout>(documentToJSON!!)
     }
 

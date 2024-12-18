@@ -124,10 +124,10 @@ class FoxyProfileRender(
                     layoutInfo.profileSettings.positions.marriedPosition
                 )
 
-                val partnerUser = context.jda.retrieveUserById(data.marryStatus.marriedWith!!).complete()
+                val partnerUser = context.instance.helpers.getUserById(data.marryStatus.marriedWith!!)
 
                 drawText(
-                    partnerUser!!.globalName ?: partnerUser.name,
+                    partnerUser.globalName ?: partnerUser.name,
                     layoutInfo.profileSettings.fontSize.marriedSince,
                     layoutInfo.profileSettings.defaultFont,
                     fontColor,
@@ -202,39 +202,36 @@ class FoxyProfileRender(
     private suspend fun drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
         val defaultBadges = context.db.profileUtils.getBadges()
 
-        val supportServer = context.jda.getGuildById(Constants.SUPPORT_SERVER_ID)
-        val member = supportServer?.retrieveMemberById(user.id)?.complete()
+        val member = context.instance.helpers.getMemberById(user.id, Constants.SUPPORT_SERVER_ID)
 
-        val userBadges = member?.let { getUserBadges(it, defaultBadges, data) }
-        if (userBadges != null) {
-            if (userBadges.isEmpty()) {
-                return
-            }
+        val userBadges = getUserBadges(member, defaultBadges, data)
+        if (userBadges.isEmpty()) {
+            return
         }
 
         var x = layoutInfo.profileSettings.positions.badgesPosition.x
         var y = layoutInfo.profileSettings.positions.badgesPosition.y
 
-        if (userBadges != null) {
-            for (badge in userBadges) {
-                val badgeImage = loadImage(Constants.PROFILE_BADGES(badge.asset))
-                graphics.drawImage(badgeImage, x.toInt(), y.toInt(), 50, 50, null)
+        for (badge in userBadges) {
+            val badgeImage = loadImage(Constants.PROFILE_BADGES(badge.asset))
+            graphics.drawImage(badgeImage, x.toInt(), y.toInt(), 50, 50, null)
 
-                x += 60
-                if (x > 1300) {
-                    x = layoutInfo.profileSettings.positions.badgesPosition.x
-                    y += 50
-                }
+            x += 60
+            if (x > 1300) {
+                x = layoutInfo.profileSettings.positions.badgesPosition.x
+                y += 50
             }
         }
     }
 
 
-    private fun getUserBadges(member: Member, defaultBadges: List<Badge>, data: FoxyUser): List<Badge> {
+    private suspend fun getUserBadges(member: Member, defaultBadges: List<Badge>, data: FoxyUser): List<Badge> {
         val userBadges = mutableListOf<Badge>()
 
         val roleBadges = member.roles
-            .mapNotNull { role -> defaultBadges.find { it.id == role.id } }
+            .mapNotNull { role -> defaultBadges.find {
+                it.id == role.id
+            } }
         userBadges.addAll(roleBadges)
 
         val twelveHoursAgo = System.currentTimeMillis() - 12 * 60 * 60 * 1000
@@ -271,10 +268,9 @@ class FoxyProfileRender(
         }
 
         defaultBadges.filter { it.isFromGuild != null }.forEach { badge ->
-            val guild = context.jda.getGuildById(badge.isFromGuild!!)
-            val guildMember = guild?.retrieveMemberById(member.user.id)?.complete()
-
-            if (guildMember != null && userBadges.none { it.id == badge.id }) {
+            if (userBadges.none {
+                it.id == badge.id || it.isFromGuild == badge.isFromGuild
+            }) {
                 userBadges.add(badge)
             }
         }

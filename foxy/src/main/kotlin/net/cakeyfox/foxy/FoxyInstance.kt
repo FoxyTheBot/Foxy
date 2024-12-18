@@ -7,18 +7,21 @@ import net.cakeyfox.foxy.listeners.MajorEventListener
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.cakeyfox.foxy.utils.FoxyConfig
+import net.cakeyfox.foxy.utils.FoxyHelpers
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.database.MongoDBClient
 import net.dv8tion.jda.api.requests.GatewayIntent
+import net.dv8tion.jda.api.utils.cache.CacheFlag
 
 class FoxyInstance(
     val config: FoxyConfig
 ) {
     var jda: JDA
-    var mongoClient: MongoDBClient = MongoDBClient(this)
-    var commandHandler: FoxyCommandManager = FoxyCommandManager(this)
-    var artistryClient: ArtistryClient = ArtistryClient(config.get("artistry_token"))
-    var utils = FoxyUtils(this)
+    val mongoClient: MongoDBClient = MongoDBClient(this)
+    val commandHandler: FoxyCommandManager = FoxyCommandManager(this)
+    val artistryClient: ArtistryClient = ArtistryClient(config.get("artistry_token"))
+    val utils = FoxyUtils(this)
+    val helpers = FoxyHelpers(this)
 
     init {
         jda = JDABuilder.createDefault(config.get("discord_token"))
@@ -30,6 +33,8 @@ class FoxyInstance(
                 GatewayIntent.GUILD_EMOJIS_AND_STICKERS,
                 GatewayIntent.SCHEDULED_EVENTS
             )
+            .enableCache(CacheFlag.SCHEDULED_EVENTS)
+            .enableCache(CacheFlag.MEMBER_OVERRIDES)
             .build()
         jda.addEventListener(
             MajorEventListener(this),
