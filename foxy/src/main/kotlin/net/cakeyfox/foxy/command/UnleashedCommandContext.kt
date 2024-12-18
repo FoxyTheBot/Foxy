@@ -40,7 +40,7 @@ class UnleashedCommandContext(val event: SlashCommandInteractionEvent, client: F
 
     @Deprecated("Use prettyResponse instead")
     fun makeReply(emoteId: String, content: String): String {
-        return "<:emoji:${emoteId}> **|** ${content}"
+        return "<:emoji:${emoteId}> **|** $content"
     }
 
     fun prettyResponse(reply: ReplyBuilder.() -> Unit): String {
