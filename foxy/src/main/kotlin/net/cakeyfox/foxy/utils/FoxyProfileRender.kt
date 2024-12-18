@@ -2,6 +2,7 @@ package net.cakeyfox.foxy.utils
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.command.UnleashedCommandContext
 import net.cakeyfox.serializable.database.data.Badge
@@ -22,6 +23,7 @@ import java.text.NumberFormat
 import java.time.Instant
 import java.util.*
 import javax.imageio.ImageIO
+import kotlin.reflect.jvm.jvmName
 
 /*
     * This code is based on the original code:
@@ -36,6 +38,7 @@ class FoxyProfileRender(
     private val height = 884
     private var image: BufferedImage = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
     private var graphics: Graphics2D = image.createGraphics()
+    private val logger = KotlinLogging.logger(this::class.jvmName)
 
     suspend fun create(user: User): ByteArrayInputStream {
         val data = context.db.userUtils.getDiscordUser(user.id)
@@ -114,7 +117,7 @@ class FoxyProfileRender(
             marriedCard?.let {
                 graphics.drawImage(it, 0, 0, width, height, null)
                 drawText(
-                    "Casado(a) com:",
+                    "Casado(a) com:", // TODO: Use locale instead of hardcoded string
                     layoutInfo.profileSettings.fontSize.married,
                     layoutInfo.profileSettings.defaultFont,
                     fontColor,
@@ -131,7 +134,7 @@ class FoxyProfileRender(
                     layoutInfo.profileSettings.positions.marriedUsernamePosition
                 )
                 drawText(
-                    "Desde $marriedDateFormatted",
+                    "Desde $marriedDateFormatted", // TODO: Use locale instead of hardcoded string
                     layoutInfo.profileSettings.fontSize.marriedSince,
                     layoutInfo.profileSettings.defaultFont,
                     fontColor,
@@ -163,7 +166,7 @@ class FoxyProfileRender(
         return if (fontName in availableFonts) {
             Font(fontName, Font.PLAIN, fontSize)
         } else {
-            println("Warning: Font '$fontName' not found. Falling back to default.")
+            logger.warn { "Font '$fontName' not found. Falling back to default." }
             null
         }
     }
@@ -196,18 +199,15 @@ class FoxyProfileRender(
         graphics.clip = null
     }
 
-    // TODO: Fix badges not being drawn correctly
     private suspend fun drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
-        println("Drawing badges")
-
         val defaultBadges = context.db.profileUtils.getBadges()
 
-        val member = context.jda.guilds.firstNotNullOfOrNull { guild -> guild.getMember(user) }
+        val supportServer = context.jda.getGuildById(Constants.SUPPORT_SERVER_ID)
+        val member = supportServer?.retrieveMemberById(user.id)?.complete()
 
         val userBadges = member?.let { getUserBadges(it, defaultBadges, data) }
         if (userBadges != null) {
             if (userBadges.isEmpty()) {
-                println("No badges to draw")
                 return
             }
         }
@@ -219,7 +219,6 @@ class FoxyProfileRender(
             for (badge in userBadges) {
                 val badgeImage = loadImage(Constants.PROFILE_BADGES(badge.asset))
                 graphics.drawImage(badgeImage, x.toInt(), y.toInt(), 50, 50, null)
-                println("Drawing badge ${badge.id} at $x, $y")
 
                 x += 60
                 if (x > 1300) {
@@ -237,8 +236,6 @@ class FoxyProfileRender(
         val roleBadges = member.roles
             .mapNotNull { role -> defaultBadges.find { it.id == role.id } }
         userBadges.addAll(roleBadges)
-
-        println("Role-based badges: ${roleBadges.map { it.id }}")
 
         val twelveHoursAgo = System.currentTimeMillis() - 12 * 60 * 60 * 1000
         val additionalBadges = listOf(
@@ -275,14 +272,13 @@ class FoxyProfileRender(
 
         defaultBadges.filter { it.isFromGuild != null }.forEach { badge ->
             val guild = context.jda.getGuildById(badge.isFromGuild!!)
-            val guildMember = guild?.getMember(member.user)
+            val guildMember = guild?.retrieveMemberById(member.user.id)?.complete()
 
             if (guildMember != null && userBadges.none { it.id == badge.id }) {
                 userBadges.add(badge)
             }
         }
 
-        println("Final user badges: ${userBadges.map { it.id }}")
         return userBadges.distinctBy { it.id }.sortedByDescending { it.priority }
     }
 
@@ -302,7 +298,6 @@ class FoxyProfileRender(
     }
 
     private suspend fun loadImage(url: String): BufferedImage {
-        println(url)
         return withContext(Dispatchers.IO) {
             ImageIO.read(URL(url))
         }
