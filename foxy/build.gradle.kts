@@ -34,6 +34,9 @@ dependencies {
     implementation("io.ktor:ktor-client-core:${Versions.KTOR}")
     implementation("io.ktor:ktor-client-cio:${Versions.KTOR}")
 
+    // Caffeine Cache
+    implementation("com.github.ben-manes.caffeine:caffeine:${Versions.CAFFEINE}")
+
     // Coroutines and DateTime
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.KOTLIN_COROUTINES}")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.KOTLINX_DATE_TIME}")
