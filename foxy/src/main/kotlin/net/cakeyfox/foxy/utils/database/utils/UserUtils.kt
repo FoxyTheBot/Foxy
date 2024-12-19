@@ -4,15 +4,15 @@ import com.mongodb.client.MongoCollection
 import kotlinx.datetime.Clock
 import kotlinx.datetime.toJavaInstant
 import kotlinx.serialization.encodeToString
-import net.cakeyfox.foxy.FoxyInstance
+import net.cakeyfox.foxy.utils.database.MongoDBClient
 import net.cakeyfox.serializable.database.data.*
 import org.bson.Document
 
 class UserUtils(
-    private val instance: FoxyInstance
+    private val client: MongoDBClient
 ) {
     fun getDiscordUser(userId: String): FoxyUser {
-        val collection: MongoCollection<Document> = instance.mongoClient.database!!.getCollection("users")
+        val collection: MongoCollection<Document> = client.database!!.getCollection("users")
 
         val query = Document("_id", userId)
         val existingUserDocument = collection.find(query).firstOrNull()
@@ -20,7 +20,7 @@ class UserUtils(
 
         val documentToJSON = existingUserDocument.toJson()
 
-        return instance.mongoClient.json.decodeFromString<FoxyUser>(documentToJSON)
+        return client.json.decodeFromString<FoxyUser>(documentToJSON)
     }
 
 
@@ -28,7 +28,7 @@ class UserUtils(
         val query = Document("_id", userId)
         val update = Document("\$set", Document(updates))
 
-        instance.mongoClient.users.updateOne(query, update)
+        client.users.updateOne(query, update)
     }
 
     private fun createUser(userId: String): FoxyUser {
@@ -83,11 +83,11 @@ class UserUtils(
             voteCount = 0
         )
 
-        val documentToJSON = instance.mongoClient.json.encodeToString(newUser)
+        val documentToJSON = client.json.encodeToString(newUser)
         val document = Document.parse(documentToJSON)
         document["userCreationTimestamp"] = java.util.Date.from(newUser.userCreationTimestamp.toJavaInstant())
 
-        instance.mongoClient.users.insertOne(document)
+        client.users.insertOne(document)
 
         return newUser
     }

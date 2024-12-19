@@ -12,7 +12,7 @@ class WelcomerManager(
     val welcomer = WelcomerJSONParser()
 
     override fun onGuildJoin(event: GuildMemberJoinEvent) {
-        val guildData = instance.mongoClient.guildUtils.getGuild(event.guild.id)
+        val guildData = instance.mongoClient.utils.guild.getGuild(event.guild.id)
 
         if (guildData.GuildJoinLeaveModule.isEnabled) {
             val placeholders = welcomer.getPlaceholders(event.guild, event.user)
@@ -28,7 +28,7 @@ class WelcomerManager(
     }
 
     override fun onGuildLeave(event: GuildMemberRemoveEvent) {
-        val guildData = instance.mongoClient.guildUtils.getGuild(event.guild.id)
+        val guildData = instance.mongoClient.utils.guild.getGuild(event.guild.id)
 
         if (guildData.GuildJoinLeaveModule.alertWhenUserLeaves) {
             val placeholders = welcomer.getPlaceholders(event.guild, event.user)

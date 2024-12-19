@@ -18,7 +18,7 @@ class AboutMeExecutor : FoxySlashCommandExecutor() {
             }
         }
 
-        context.db.userUtils.updateUser(
+        context.db.utils.user.updateUser(
             context.event.user.id,
             mapOf("userProfile.aboutme" to text)
         )

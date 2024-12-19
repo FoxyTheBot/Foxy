@@ -33,9 +33,9 @@ class FoxyProfileRender(
     private val logger = KotlinLogging.logger(this::class.jvmName)
 
     suspend fun create(user: User): ByteArrayInputStream {
-        val data = context.db.userUtils.getDiscordUser(user.id)
-        val layoutInfo = context.db.profileUtils.getLayout(data.userProfile.layout)
-        val backgroundInfo = context.db.profileUtils.getBackground(data.userProfile.background)
+        val data = context.db.utils.user.getDiscordUser(user.id)
+        val layoutInfo = context.db.utils.profile.getLayout(data.userProfile.layout)
+        val backgroundInfo = context.db.utils.profile.getBackground(data.userProfile.background)
         val userAboutMe = formatAboutMe(
             data.userProfile.aboutme ?: "",
             layoutInfo
@@ -191,7 +191,7 @@ class FoxyProfileRender(
     }
 
     private suspend fun drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
-        val defaultBadges = context.db.profileUtils.getBadges()
+        val defaultBadges = context.db.utils.profile.getBadges()
 
         val member = context.instance.helpers.getMemberById(user.id, Constants.SUPPORT_SERVER_ID)
 

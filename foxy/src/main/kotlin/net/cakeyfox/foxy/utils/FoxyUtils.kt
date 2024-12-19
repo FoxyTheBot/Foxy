@@ -18,6 +18,10 @@ class FoxyUtils(
         return convertedDate
     }
 
+    fun convertJavaDateToISO(date: Date): Instant {
+        return Instant.fromEpochMilliseconds(date.time)
+    }
+
     fun convertToHumanReadableDate(iso: Instant): String {
         iso.let {
             val instant = java.time.Instant.ofEpochMilli(it.toEpochMilliseconds())
@@ -34,7 +38,7 @@ class FoxyUtils(
     }
 
     suspend fun handleBan(event: SlashCommandInteractionEvent, context: UnleashedCommandContext) {
-        val user = context.db.userUtils.getDiscordUser(event.user.id)
+        val user = context.db.utils.user.getDiscordUser(event.user.id)
 
         context.reply {
             embed {

@@ -24,7 +24,7 @@ class MajorEventListener(private val instance: FoxyInstance): ListenerAdapter() 
                   val commandName = event.fullCommandName.split(" ").first()
                     if (event.isFromGuild) {
                         // This will be used to create a guild object in the database if it doesn't exist
-                        event.guild?.let { instance.mongoClient.guildUtils.getGuild(it.id) }
+                        event.guild?.let { instance.mongoClient.utils.guild.getGuild(it.id) }
                     }
 
                   val command = instance.commandHandler[commandName]?.create()
@@ -46,7 +46,7 @@ class MajorEventListener(private val instance: FoxyInstance): ListenerAdapter() 
                           }
                       } else null
 
-                      if (context.db.userUtils.getDiscordUser(event.user.id).isBanned) {
+                      if (context.db.utils.user.getDiscordUser(event.user.id).isBanned) {
                           instance.utils.handleBan(event, context)
                           return@launch
                       }
