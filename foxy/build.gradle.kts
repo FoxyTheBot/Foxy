@@ -20,6 +20,33 @@ dependencies {
     implementation(project(":artistry-client"))
     implementation(project(":common"))
     implementation(project(":cirno-serializable"))
+
+    // Discord
+    implementation("net.dv8tion:JDA:${Versions.JDA}")
+    implementation("club.minnced:jda-ktx:${Versions.JDA_KTX}")
+
+    // DB
+    implementation("org.mongodb:mongodb-driver-sync:${Versions.MONGODB}")
+
+    // Ktor
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:${Versions.KTOR}")
+    implementation("io.ktor:ktor-client-core:${Versions.KTOR}")
+    implementation("io.ktor:ktor-client-cio:${Versions.KTOR}")
+
+    // Coroutines and DateTime
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.KOTLIN_COROUTINES}")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.KOTLINX_DATE_TIME}")
+
+    // Logging
+    implementation("ch.qos.logback:logback-classic:1.5.3")
+    implementation("io.github.microutils:kotlin-logging:${Versions.KOTLIN_LOGGING}")
+
+    // Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.KOTLIN_SERIALIZATION}")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-hocon:${Versions.KOTLIN_SERIALIZATION}")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${Versions.JACKSON}")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.JACKSON}")
 }
 
 tasks.test {
