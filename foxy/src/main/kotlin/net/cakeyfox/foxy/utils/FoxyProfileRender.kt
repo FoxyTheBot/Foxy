@@ -23,12 +23,6 @@ import java.time.Instant
 import javax.imageio.ImageIO
 import kotlin.reflect.jvm.jvmName
 
-/*
-    * This code is based on the original code:
-    * https://github.com/FoxyTheBot/Foxy/blob/master/foxy/parent/src/utils/images/generators/GenerateProfile.ts
-    * TODO: Refactor this code to use Kotlin's best practices
- */
-
 class FoxyProfileRender(
     val context: UnleashedCommandContext
 ) {
