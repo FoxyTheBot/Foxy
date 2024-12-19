@@ -18,7 +18,7 @@ class EconomyUtils(
                 "userTransactions",
                 Document()
                     .append("to", transaction.to)
-                    .append("from", transaction.from ?: null)
+                    .append("from", transaction.from)
                     .append("quantity", transaction.quantity)
                     .append("date", Date())
                     .append("received", transaction.received)
