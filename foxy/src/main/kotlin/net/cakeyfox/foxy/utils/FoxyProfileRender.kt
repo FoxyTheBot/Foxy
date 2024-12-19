@@ -14,6 +14,7 @@ import net.dv8tion.jda.api.entities.User
 import java.awt.Color
 import java.awt.Font
 import java.awt.Graphics2D
+import java.awt.RenderingHints
 import java.awt.geom.Ellipse2D
 import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
@@ -32,7 +33,14 @@ class FoxyProfileRender(
     private var graphics: Graphics2D = image.createGraphics()
     private val logger = KotlinLogging.logger(this::class.jvmName)
 
+    init {
+        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
+        graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB)
+        graphics.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY)
+    }
+
     suspend fun create(user: User): ByteArrayInputStream {
+
         val data = context.db.utils.user.getDiscordUser(user.id)
         val layoutInfo = context.db.utils.profile.getLayout(data.userProfile.layout)
         val backgroundInfo = context.db.utils.profile.getBackground(data.userProfile.background)
@@ -118,7 +126,7 @@ class FoxyProfileRender(
                 val partnerUser = context.instance.helpers.getUserById(data.marryStatus.marriedWith!!)
 
                 drawText(
-                    partnerUser.globalName ?: partnerUser.name,
+                    partnerUser.name,
                     layoutInfo.profileSettings.fontSize.marriedSince,
                     layoutInfo.profileSettings.defaultFont,
                     fontColor,
@@ -164,8 +172,8 @@ class FoxyProfileRender(
 
     private suspend fun drawUserAvatar(user: User, layoutInfo: Layout) {
         val avatarUrl = user.avatarUrl ?: user.defaultAvatarUrl
-
-        val avatar: BufferedImage = loadImage(avatarUrl)
+        val avatarWithSize = avatarUrl.plus("?size=2048")
+        val avatar: BufferedImage = loadImage(avatarWithSize)
 
         val arcX = layoutInfo.profileSettings.positions.avatarPosition.arc?.x ?: 125f
         val arcY = layoutInfo.profileSettings.positions.avatarPosition.arc?.y ?: 700f
