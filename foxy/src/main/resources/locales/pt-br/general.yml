@@ -2,6 +2,9 @@
 commands:
   command:
 
+    daily:
+      description: "[Economia] Receba seus cakes diários"
+
     fun:
       description: "Comandos divertidos para você se divertir com seus amigos"
       eminem:
@@ -51,6 +54,14 @@ commands:
           text:
             description: "O texto que será exibido no seu perfil"
 
+    profile:
+      description: "[Social] Veja o seu lindo perfil ou o de outro usuário"
+      view:
+        description: "[Social] Veja o seu lindp perfil ou o de outro usuário"
+      options:
+        user:
+          description: "O usuário que você deseja ver o perfil"
+
 
 # Strings used in the command
 8mile:
@@ -96,3 +107,4 @@ ban:
 profile:
   marriedWith: "Casado(a) com:"
   marriedSince: "Desde {0}"
+  view: "Perfil de {0}"

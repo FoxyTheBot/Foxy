@@ -17,11 +17,8 @@ class FoxyLocale(val locale: String) {
 
     operator fun get(key: String, vararg placeholder: String): String {
         val resourcePath = "$PATH/$locale/general.yml"
-        val inputStream: InputStream? = this::class.java.classLoader.getResourceAsStream(resourcePath)
-
-        if (inputStream == null) {
-            return "!!{${key}}!! File not found: $resourcePath"
-        }
+        val inputStream: InputStream = this::class.java.classLoader.getResourceAsStream(resourcePath)
+            ?: return "!!{${key}}!! File not found: $resourcePath"
 
         val tree = mapper.readTree(inputStream)
 
