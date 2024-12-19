@@ -12,9 +12,9 @@ class ArtistryClient (
 ) {
     private val client = HttpClient(CIO) {
         install(HttpTimeout) {
-            requestTimeoutMillis = 15000
-            connectTimeoutMillis = 15000
-            socketTimeoutMillis = 15000
+            requestTimeoutMillis = 60_000
+            connectTimeoutMillis = 60_000
+            socketTimeoutMillis = 60_000
         }
     }
 
