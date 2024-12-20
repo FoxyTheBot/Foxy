@@ -5,6 +5,7 @@ import net.cakeyfox.foxy.command.FoxyCommandManager
 import net.cakeyfox.foxy.command.component.FoxyComponentManager
 import net.cakeyfox.foxy.listeners.GuildEventListener
 import net.cakeyfox.foxy.listeners.MajorEventListener
+import net.cakeyfox.foxy.utils.ActivityUpdater
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.cakeyfox.foxy.utils.FoxyConfig
@@ -24,6 +25,7 @@ class FoxyInstance(
     val utils = FoxyUtils(this)
     val helpers = FoxyHelpers(this)
     val interactionManager = FoxyComponentManager()
+    private val activity = ActivityUpdater(this)
 
     init {
         jda = JDABuilder.createDefault(config.get("discord_token"))

@@ -11,7 +11,7 @@ import kotlinx.datetime.Instant
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.FoxyInteractionContext
-import net.cakeyfox.serializable.database.data.ActionResponse
+import net.cakeyfox.serializable.data.ActionResponse
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import java.text.NumberFormat
 import java.time.ZoneId
@@ -46,7 +46,7 @@ class FoxyUtils(
         }
     }
 
-    fun formatNumber(number: Int, language: String, country: String): String {
+    fun formatNumber(number: Double, language: String, country: String): String {
         return NumberFormat.getNumberInstance(Locale(language, country))
             .format(number)
     }
