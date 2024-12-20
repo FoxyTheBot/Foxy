@@ -8,7 +8,7 @@ import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.User
 
 class WelcomerJSONParser {
-    val objectMapper = ObjectMapper()
+    private val objectMapper = ObjectMapper()
 
     fun parseDiscordJsonMessage(
         jsonString: String,
@@ -97,7 +97,7 @@ class WelcomerJSONParser {
         )
     }
 
-    fun replacePlaceholders(message: String, placeholders: Map<String, String?>): String {
+    private fun replacePlaceholders(message: String, placeholders: Map<String, String?>): String {
         var formattedMessage = message
 
         placeholders.forEach { (key, value) ->

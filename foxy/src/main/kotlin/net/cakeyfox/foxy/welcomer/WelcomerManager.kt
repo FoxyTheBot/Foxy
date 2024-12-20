@@ -9,7 +9,7 @@ import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent
 class WelcomerManager(
     val instance: FoxyInstance
 ): WelcomerWrapper {
-    val welcomer = WelcomerJSONParser()
+    private val welcomer = WelcomerJSONParser()
 
     override fun onGuildJoin(event: GuildMemberJoinEvent) {
         val guildData = instance.mongoClient.utils.guild.getGuild(event.guild.id)
