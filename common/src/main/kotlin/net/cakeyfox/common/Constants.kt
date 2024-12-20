@@ -20,7 +20,7 @@ object Constants {
 
     const val DEFAULT_ACTIVITY = "💕 Visite minha loja diária e compre itens para o seu perfil! | foxybot.win/br/store"
 
-    /* ---- [Profile Images] ---- */
+    /* ---- [Profile Assets] ---- */
     fun PROFILE_BACKGROUND(backgroundId: String): String {
         return "https://cakey.foxybot.win/assets/backgrounds/$backgroundId"
     }
