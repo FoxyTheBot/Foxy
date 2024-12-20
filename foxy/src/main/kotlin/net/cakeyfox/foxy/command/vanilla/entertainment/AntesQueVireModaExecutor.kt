@@ -4,8 +4,9 @@ import io.ktor.client.call.*
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.command.UnleashedCommandContext
+import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
+import net.dv8tion.jda.api.entities.Message.Attachment
 import net.dv8tion.jda.api.utils.FileUpload
 import java.io.InputStream
 
@@ -18,9 +19,9 @@ private val supportedTypes = listOf(
 private const val maxSize = 8_000_000 // 8MB
 
 class AntesQueVireModaExecutor: FoxySlashCommandExecutor() {
-    override suspend fun execute(context: UnleashedCommandContext) {
+    override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
-        val attachment = context.event.getOption("image")!!.asAttachment
+        val attachment = context.getOption<Attachment>("image")!!
 
         if (attachment.width > 1920 || attachment.height > 1080) {
             context.reply {

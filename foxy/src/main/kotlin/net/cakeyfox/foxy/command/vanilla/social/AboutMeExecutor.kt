@@ -1,12 +1,12 @@
 package net.cakeyfox.foxy.command.vanilla.social
 
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.command.UnleashedCommandContext
+import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
 
 class AboutMeExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: UnleashedCommandContext) {
-        val text = context.event.getOption("text")!!.asString
+    override suspend fun execute(context: FoxyInteractionContext) {
+        val text = context.getOption<String>("text")!!
 
         if (text.length > 177) {
             context.reply {
