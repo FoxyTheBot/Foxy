@@ -3,6 +3,7 @@ package net.cakeyfox.foxy.command
 import dev.minn.jda.ktx.coroutines.await
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.structure.FoxySlashCommandDeclarationWrapper
+import net.cakeyfox.foxy.command.vanilla.actions.declarations.ActionsCommand
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.CakesCommand
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.DailyCommand
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.AskFoxyCommand
@@ -48,6 +49,7 @@ class FoxyCommandManager(private val instance: FoxyInstance) {
         */
 
         /* ---- [Roleplay] ---- */
+        register(ActionsCommand())
 
         /* ---- [Economy] ---- */
         register(CakesCommand())
