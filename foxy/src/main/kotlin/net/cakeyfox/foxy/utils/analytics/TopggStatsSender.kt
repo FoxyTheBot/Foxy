@@ -4,12 +4,11 @@ import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.http.content.*
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
 import net.cakeyfox.foxy.utils.analytics.utils.StatsSender
+import net.cakeyfox.serializable.data.TopggBotStats
 import kotlin.reflect.jvm.jvmName
 
 class TopggStatsSender(
@@ -24,7 +23,7 @@ class TopggStatsSender(
             header("Authorization", token)
             accept(ContentType.Application.Json)
             setBody(
-                TextContent(Json.encodeToString(BotStats(guildCount)), ContentType.Application.Json)
+                TextContent(Json.encodeToString(TopggBotStats(guildCount)), ContentType.Application.Json)
             )
         }
 
@@ -36,10 +35,4 @@ class TopggStatsSender(
         logger.info { "Successfully sent stats to top.gg" }
         return true
     }
-
-    @Serializable
-    data class BotStats(
-        @SerialName("server_count")
-        val serverCount: Long
-    )
 }
