@@ -25,7 +25,7 @@ class FoxyInstance(
     val utils = FoxyUtils(this)
     val helpers = FoxyHelpers(this)
     val interactionManager = FoxyComponentManager()
-    private val activity = ActivityUpdater(this)
+
 
     init {
         jda = JDABuilder.createDefault(config.get("discord_token"))
@@ -44,5 +44,7 @@ class FoxyInstance(
             MajorEventListener(this),
             GuildEventListener(this)
         )
+
+        ActivityUpdater(this)
     }
 }
