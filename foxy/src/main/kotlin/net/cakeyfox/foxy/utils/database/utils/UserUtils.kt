@@ -38,7 +38,7 @@ class UserUtils(
             isBanned = false,
             banDate = null,
             banReason = "",
-            userCakes = UserCakes(balance = 0, lastDaily = null),
+            userCakes = UserCakes(balance = 0.0, lastDaily = null),
             marryStatus = MarryStatus(
                 marriedWith = null,
                 marriedDate = null,

@@ -30,7 +30,7 @@ data class FoxyUser(
 
 @Serializable
 data class UserCakes(
-    val balance: Int = 0,
+    val balance: Double = 0.0,
     @Serializable(with = MongoDateSerializer::class)
     val lastDaily: Instant? = null
 )
@@ -92,7 +92,7 @@ data class PetInfo(
 data class Transaction(
     val to: String? = null,
     val from: String? = null,
-    val quantity: Int? = null,
+    val quantity: Double = 0.0,
     @Serializable(with = MongoDateSerializer::class)
     val date: Instant? = null,
     val received: Boolean = false,
