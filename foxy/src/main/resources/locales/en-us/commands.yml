@@ -44,4 +44,4 @@ profile:
   view: "Perfil de {0}"
 
 kiss:
-  description: "{0} kissed {1}! :heart:"
+  description: " :heart: **{0} kissed {1}!**"
