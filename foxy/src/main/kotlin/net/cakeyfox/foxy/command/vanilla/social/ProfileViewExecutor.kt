@@ -1,16 +1,17 @@
 package net.cakeyfox.foxy.command.vanilla.social
 
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.command.UnleashedCommandContext
+import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
-import net.cakeyfox.foxy.utils.FoxyProfileRender
+import net.cakeyfox.foxy.utils.profile.FoxyProfileRender
+import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.utils.FileUpload
 
 class ProfileViewExecutor: FoxySlashCommandExecutor() {
-    override suspend fun execute(context: UnleashedCommandContext) {
+    override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
 
-        val user = context.event.getOption("user")?.asUser ?: context.event.user
+        val user = context.getOption<User>("user") ?: context.event.user
 
         val profile = FoxyProfileRender(context).create(user)
         val file = FileUpload.fromData(profile.readBytes(), "profile.png")

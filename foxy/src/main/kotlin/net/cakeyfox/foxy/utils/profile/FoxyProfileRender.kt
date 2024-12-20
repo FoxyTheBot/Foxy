@@ -1,10 +1,10 @@
-package net.cakeyfox.foxy.utils
+package net.cakeyfox.foxy.utils.profile
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
-import net.cakeyfox.foxy.command.UnleashedCommandContext
+import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.serializable.database.data.Badge
 import net.cakeyfox.serializable.database.data.FoxyUser
 import net.cakeyfox.serializable.database.data.Layout
@@ -25,7 +25,7 @@ import javax.imageio.ImageIO
 import kotlin.reflect.jvm.jvmName
 
 class FoxyProfileRender(
-    val context: UnleashedCommandContext
+    val context: FoxyInteractionContext
 ) {
     private val width = 1436
     private val height = 884
@@ -89,7 +89,7 @@ class FoxyProfileRender(
         userAboutMe: String,
         layoutInfo: Layout,
         marriedCard: BufferedImage?,
-        context: UnleashedCommandContext
+        context: FoxyInteractionContext
     ) {
         val fontColor = if (layoutInfo.darkText) Color.BLACK else Color.WHITE
 
@@ -302,5 +302,3 @@ class FoxyProfileRender(
         }
     }
 }
-
-data class BadgeCondition(val id: String, val condition: Any)

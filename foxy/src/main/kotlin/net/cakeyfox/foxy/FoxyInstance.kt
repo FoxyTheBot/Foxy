@@ -2,6 +2,7 @@ package net.cakeyfox.foxy
 
 import net.cakeyfox.artistry.ArtistryClient
 import net.cakeyfox.foxy.command.FoxyCommandManager
+import net.cakeyfox.foxy.command.component.FoxyComponentManager
 import net.cakeyfox.foxy.listeners.GuildEventListener
 import net.cakeyfox.foxy.listeners.MajorEventListener
 import net.dv8tion.jda.api.JDA
@@ -22,6 +23,7 @@ class FoxyInstance(
     val artistryClient: ArtistryClient = ArtistryClient(config.get("artistry_token"))
     val utils = FoxyUtils(this)
     val helpers = FoxyHelpers(this)
+    val interactionManager = FoxyComponentManager()
 
     init {
         jda = JDABuilder.createDefault(config.get("discord_token"))

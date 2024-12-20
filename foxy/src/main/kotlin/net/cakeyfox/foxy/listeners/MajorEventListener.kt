@@ -1,14 +1,18 @@
 package net.cakeyfox.foxy.listeners
 
+import dev.minn.jda.ktx.coroutines.await
 import kotlinx.coroutines.*
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
+import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.command.UnleashedCommandContext
+import net.cakeyfox.foxy.command.FoxyInteractionContext
+import net.cakeyfox.foxy.command.component.ComponentId
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
+import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
 import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import kotlin.reflect.jvm.jvmName
@@ -30,7 +34,7 @@ class MajorEventListener(private val instance: FoxyInstance): ListenerAdapter() 
                   val command = instance.commandHandler[commandName]?.create()
 
                   if (command != null) {
-                      val context = UnleashedCommandContext(event, instance)
+                      val context = FoxyInteractionContext(event, instance)
 
                       val subCommandGroupName = event.subcommandGroup
                       val subCommandName = event.subcommandName
@@ -56,7 +60,38 @@ class MajorEventListener(private val instance: FoxyInstance): ListenerAdapter() 
                       } else if (subCommandGroupName == null && subCommandName == null) {
                           command.executor?.execute(context)
                       }
+
+                      logger.info { "${context.user.name} (${context.user.id}) executed ${event.fullCommandName} in ${context.guild?.name} (${context.guild?.id})" }
                   }
+              }
+
+              is ButtonInteractionEvent -> {
+                  val componentId = try {
+                      ComponentId(event.componentId)
+                  } catch (e: IllegalArgumentException) {
+                      logger.info { "Invalid component ID: ${event.componentId}" }
+                      return@launch
+                  }
+
+                  val callbackId = instance.interactionManager.componentCallbacks[componentId.uniqueId]
+                  val context = FoxyInteractionContext(event, instance)
+
+                  if (callbackId == null) {
+                      event.editButton(
+                          event.button.asDisabled()
+                      ).await()
+
+                      context.reply {
+                          content = context.prettyResponse {
+                              emoteId = FoxyEmotes.FOXY_CRY
+                                content = context.locale["commands.componentExpired"]
+                          }
+                      }
+
+                      return@launch
+                  }
+
+                  callbackId.invoke(context)
               }
           }
       }
