@@ -16,29 +16,39 @@ class FoxyLocale(val locale: String) {
     }
 
     operator fun get(key: String, vararg placeholder: String): String {
-        val resourcePath = "$PATH/$locale/general.yml"
-        val inputStream: InputStream = this::class.java.classLoader.getResourceAsStream(resourcePath)
-            ?: return "!!{${key}}!! File not found: $resourcePath"
+        val resourcePaths = listOf(
+            "$PATH/$locale/general.yml",
+            "$PATH/$locale/commands.yml",
+            "$PATH/$locale/permissions.yml"
+        )
 
-        val tree = mapper.readTree(inputStream)
+        for (resourcePath in resourcePaths) {
+            val inputStream: InputStream = this::class.java.classLoader.getResourceAsStream(resourcePath)
+                ?: continue
 
-        val keyList = key.split(".")
-        var current = tree
+            val tree = mapper.readTree(inputStream)
 
-        for (k in keyList) {
-            current = current.get(k)
-            if (current == null) {
-                logger.warn { "Key $key not found in $resourcePath" }
-                return "!!{${key}}!!"
+            val keyList = key.split(".")
+            var current = tree
+
+            for (k in keyList) {
+                current = current.get(k)
+                if (current == null) {
+                    break
+                }
+            }
+
+            if (current != null) {
+                var result = current.asText()
+                placeholder.forEachIndexed { index, s ->
+                    result = result.replace("{${index}}", s)
+                }
+                return result
             }
         }
 
-        var result = current.asText()
-
-        placeholder.forEachIndexed { index, s ->
-            result = result.replace("{${index}}", s)
-        }
-
-        return result
+        logger.warn { "!!{${key}}!! Key not found in any resource file" }
+        return "!!{${key}}!!"
     }
+
 }
