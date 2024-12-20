@@ -43,7 +43,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.KOTLINX_DATE_TIME}")
 
     // Logging
-    implementation("ch.qos.logback:logback-classic:1.5.3")
+    implementation("ch.qos.logback:logback-classic:${Versions.LOGBACK}")
     implementation("io.github.microutils:kotlin-logging:${Versions.KOTLIN_LOGGING}")
 
     // Serialization
