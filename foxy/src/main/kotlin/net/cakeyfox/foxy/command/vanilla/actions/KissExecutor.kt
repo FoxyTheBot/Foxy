@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy.command.vanilla.actions
 
+import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
@@ -15,6 +16,7 @@ class KissExecutor: FoxySlashCommandExecutor() {
             embed {
                 description = context.locale["kiss.description", context.event.user.asMention, user.asMention]
                 image = response
+                color = Colors.FOXY_DEFAULT
             }
 
             actionRow(
@@ -23,12 +25,13 @@ class KissExecutor: FoxySlashCommandExecutor() {
                     ButtonStyle.PRIMARY,
                     context.jda.getEmojiById(FoxyEmotes.FOXY_HUG),
                     context.locale["kiss.button"],
-                ) {
+                ) { it ->
                     val secondResponse = context.instance.utils.getActionImage("kiss")
                     it.reply {
                         embed {
                             description = context.locale["kiss.description", user.asMention, context.event.user.asMention]
                             image = secondResponse
+                            color = Colors.FOXY_DEFAULT
                         }
 
                         actionRow(
@@ -43,6 +46,7 @@ class KissExecutor: FoxySlashCommandExecutor() {
                                     embed {
                                         description = context.locale["kiss.description", context.event.user.asMention, user.asMention]
                                         image = thirdResponse
+                                        color = Colors.FOXY_DEFAULT
                                     }
                                 }
                             }
