@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy.utils
 
+import dev.minn.jda.ktx.coroutines.await
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import net.cakeyfox.foxy.FoxyInstance
@@ -14,7 +15,7 @@ class FoxyHelpers(
 
         return guild.getMemberById(userId) ?: withContext(Dispatchers.IO) {
             try {
-                guild.retrieveMemberById(userId).complete()
+                guild.retrieveMemberById(userId).await()
             } catch (e: Exception) {
                 null
             }
