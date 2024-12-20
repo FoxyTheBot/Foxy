@@ -1,9 +1,17 @@
 package net.cakeyfox.foxy.utils
 
+import io.ktor.client.*
+import io.ktor.client.call.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.request.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.datetime.Instant
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.command.UnleashedCommandContext
+import net.cakeyfox.foxy.command.FoxyInteractionContext
+import net.cakeyfox.serializable.database.data.ActionResponse
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import java.text.NumberFormat
 import java.time.ZoneId
@@ -13,13 +21,19 @@ import java.util.*
 class FoxyUtils(
     val instance: FoxyInstance
 ) {
+    val client = HttpClient(CIO) {
+        install(HttpTimeout) {
+            requestTimeoutMillis = 60_000
+        }
+
+        install(ContentNegotiation) {
+            json()
+        }
+    }
+
     fun convertISOToDiscordTimestamp(iso: Instant): String {
         val convertedDate = iso.epochSeconds.let { "<t:$it:f>" }
         return convertedDate
-    }
-
-    fun convertJavaDateToISO(date: Date): Instant {
-        return Instant.fromEpochMilliseconds(date.time)
     }
 
     fun convertToHumanReadableDate(iso: Instant): String {
@@ -37,7 +51,13 @@ class FoxyUtils(
             .format(number)
     }
 
-    suspend fun handleBan(event: SlashCommandInteractionEvent, context: UnleashedCommandContext) {
+    suspend fun getActionImage(action: String): String {
+        val response: ActionResponse = client.get("https://nekos.life/api/v2/img/$action").body()
+
+        return response.url
+    }
+
+    suspend fun handleBan(event: SlashCommandInteractionEvent, context: FoxyInteractionContext) {
         val user = context.db.utils.user.getDiscordUser(event.user.id)
 
         context.reply {
