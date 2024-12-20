@@ -1,0 +1,55 @@
+package net.cakeyfox.foxy.command.vanilla.actions
+
+import net.cakeyfox.common.FoxyEmotes
+import net.cakeyfox.foxy.command.FoxyInteractionContext
+import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
+import net.dv8tion.jda.api.entities.User
+import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
+
+class KissExecutor: FoxySlashCommandExecutor() {
+    override suspend fun execute(context: FoxyInteractionContext) {
+        val user = context.getOption<User>("user")!!
+        val response = context.instance.utils.getActionImage("kiss")
+
+        context.reply {
+            embed {
+                description = context.locale["kiss.description", context.event.user.asMention, user.asMention]
+                image = response
+            }
+
+            actionRow(
+                context.instance.interactionManager.createButtonForUser(
+                    user,
+                    ButtonStyle.PRIMARY,
+                    context.jda.getEmojiById(FoxyEmotes.FOXY_HUG),
+                    context.locale["kiss.button"],
+                ) {
+                    val secondResponse = context.instance.utils.getActionImage("kiss")
+                    it.reply {
+                        embed {
+                            description = context.locale["kiss.description", user.asMention, context.event.user.asMention]
+                            image = secondResponse
+                        }
+
+                        actionRow(
+                            context.instance.interactionManager.createButtonForUser(
+                                context.event.user,
+                                ButtonStyle.PRIMARY,
+                                context.jda.getEmojiById(FoxyEmotes.FOXY_HUG),
+                                context.locale["kiss.button"],
+                            ) {
+                                val thirdResponse = context.instance.utils.getActionImage("kiss")
+                                it.reply {
+                                    embed {
+                                        description = context.locale["kiss.description", context.event.user.asMention, user.asMention]
+                                        image = thirdResponse
+                                    }
+                                }
+                            }
+                        )
+                    }
+                }
+            )
+        }
+    }
+}
