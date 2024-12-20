@@ -35,7 +35,7 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:${Versions.KTOR}")
     implementation("io.ktor:ktor-client-cio:${Versions.KTOR}")
 
-    // Caffeine Cache
+    // Caching
     implementation("com.github.ben-manes.caffeine:caffeine:${Versions.CAFFEINE}")
 
     // Coroutines and DateTime
