@@ -1,110 +1,92 @@
-# Strings used for command register
 commands:
+  onlyUserCanInteractWithThisComponent: "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {0}!"
   command:
-
     daily:
+      name: "daily"
       description: "[Economia] Receba seus cakes diários"
 
     fun:
+      name: "fun"
       description: "Comandos divertidos para você se divertir com seus amigos"
       eminem:
+        name: "eminem"
         description: "[Video] Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
         8mile:
+          name: "8mile"
           description: "[Video] Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
       8mile:
+        name: "8mile"
         options:
           video_or_audio:
+            name: "video_ou_audio"
             description: "O áudio ou vídeo que será usado no vídeo"
 
       antes_que_vire_moda:
+        name: "antes_que_vire_moda"
         description: "[Imagem] Montagem do meme 'Antes que vire moda, já vou avisando que sou fã de:'"
         options:
           image:
+            name: "imagem"
             description: "A imagem que será usada no meme"
 
     ask:
+      name: "perguntar"
       description: "[Diversão] Comandos relacionados a perguntas e respostas"
       foxy:
+        name: "foxy"
         description: "[Diversão] Faça uma pergunta para a Foxy"
         options:
           question:
+            name: "pergunta"
             description: "A pergunta que será feita para a Foxy"
 
     cakes:
+      name: "cakes"
       description: "Comandos relacionados a economia da Foxy"
       atm:
+        name: "atm"
         description: "[Economia] Veja a sua quantidade de cakes"
         options:
           user:
+            name: "usuário"
             description: "Veja a quantidade de cakes de outro usuário"
 
-      daily:
-        description: "[Economia] Receba seus cakes diários"
-
     foxy:
+      name: "foxy"
       description: "[Utilitários] Comandos relacionados ao bot"
       ping:
+        name: "ping"
         description: "[Utilitários] Verifica a latência do bot"
 
     aboutme:
+      name: "sobremim"
       description: "[Social] Comandos relacionados ao seu perfil"
       change:
+        name: "alterar"
         description: "[Social] Altera o texto do seu perfil"
         options:
           text:
+            name: "texto"
             description: "O texto que será exibido no seu perfil"
 
     profile:
+      name: "perfil"
       description: "[Social] Veja o seu lindo perfil ou o de outro usuário"
       view:
-        description: "[Social] Veja o seu lindp perfil ou o de outro usuário"
+        name: "ver"
+        description: "[Social] Veja o seu lindo perfil ou o de outro usuário"
       options:
         user:
+          name: "usuário"
           description: "O usuário que você deseja ver o perfil"
 
-
-# Strings used in the command
-8mile:
-  wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar um áudio do tipo MP3 ou WAV"
-  fileTooBig: "Eu até queria ver como ficaria o vídeo com esse áudio, mas ele é muito grande... E se eu abrir ele e ele explodir e me levar junto? :("
-
-cakes:
-  atm:
-    balance: "{0} possui **{1}** Cakes"
-
-moda:
-  wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar uma imagem do tipo PNG ou JPG"
-  fileNotSupported: "Eu queria fazer a montagem, mas não consigo abrir esse tipo de arquivo... :("
-  imageTooBig: "Eu até queria fazer a montagem, mas a imagem é muito grande... E se eu abrir ela e ela explodir e me levar junto? :("
-
-ask:
-  foxy:
-    noYes: "Não sei responder isso, mas sim!"
-    yesNo: "Não sei responder isso, mas não!"
-    noNo: "Não, não!"
-    yesSure: "Com certeza!"
-    noWay: "De jeito nenhum!"
-    noComment: "Prefiro não comentar..."
-    noIdea: "Não faço ideia..."
-    cantAnswer: "Não posso responder isso..."
-    askLater: "Pergunte mais tarde..."
-    maybe: "Talvez..."
-    no: "Não"
-    yes: "Sim"
-
-aboutme:
-  success: "O texto do seu perfil foi alterado para `{0}`!"
-  tooLong: "O texto do seu perfil não pode ter mais de 177 caracteres!"
-
-ban:
-  title: "Você está **banido(a)**"
-  description: "Se você quiser fazer um apelo de ban você pode fazer um apelo de ban \n\n Recomendo você ler os [termos de uso](https://foxybot.win/terms)"
-  field:
-    reason: "Motivo do banimento:"
-    date: "Data do banimento:"
-  button: "Fazer um apelo"
-
-profile:
-  marriedWith: "Casado(a) com:"
-  marriedSince: "Desde {0}"
-  view: "Perfil de {0}"
+    actions:
+      name: "ações"
+      description: "Comandos de ações para você se divertir com seus amigos"
+      kiss:
+        name: "beijar"
+        description: "[Diversão] Beije alguém"
+        options:
+            user:
+              name: "usuário"
+              description: "O usuário que você deseja beijar"

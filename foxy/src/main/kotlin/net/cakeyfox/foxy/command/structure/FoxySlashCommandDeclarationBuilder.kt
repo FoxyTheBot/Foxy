@@ -10,7 +10,6 @@ import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData
 
-// TODO: Add support to name localizations for command, subcommand, group, and options
 class FoxySlashCommandDeclarationBuilder(
     val name: String,
     val description: String,
@@ -57,10 +56,16 @@ class FoxySlashCommandDeclarationBuilder(
     fun addPermission(vararg permission: Permission) {
         permission.forEach { permissions.add(it) }
     }
-
+    
     fun addOption(vararg option: OptionData, isSubCommand: Boolean = false, baseName: String) {
         option.forEach { op ->
             if (isSubCommand) {
+                op.setNameLocalizations(
+                    mapOf(
+                        DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${name}.options.${op.name}.name"],
+                        DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${name}.options.${op.name}.name"]
+                    )
+                )
                 op.setDescriptionLocalizations(
                     mapOf(
                         DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${name}.options.${op.name}.description"],
@@ -68,6 +73,12 @@ class FoxySlashCommandDeclarationBuilder(
                     )
                 )
             } else {
+                op.setNameLocalizations(
+                    mapOf(
+                        DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.$baseName.options.${op.name}.name"],
+                        DiscordLocale.ENGLISH_US to enUsLocale["commands.command.$baseName.options.${op.name}.name"]
+                    )
+                )
                 op.setDescriptionLocalizations(
                     mapOf(
                         DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.$baseName.options.${op.name}.description"],
@@ -88,6 +99,13 @@ class FoxySlashCommandDeclarationBuilder(
 
         fun build(): SlashCommandData {
             val commandData = Command(name, description) {
+                setNameLocalizations(
+                    mapOf(
+                        DiscordLocale.ENGLISH_US to enUsLocale["commands.command.$name.name"],
+                        DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.$name.name"]
+                    )
+                )
+
                 setDescriptionLocalizations(mapOf(
                     DiscordLocale.ENGLISH_US to enUsLocale["commands.command.$name.description"],
                     DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.$name.description"]
@@ -99,6 +117,13 @@ class FoxySlashCommandDeclarationBuilder(
                 subCommands.forEach { subCmd ->
                     addSubcommands(
                         Subcommand(subCmd.name, subCmd.description) {
+                            setNameLocalizations(
+                                mapOf(
+                                    DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${subCmd.name}.name"],
+                                    DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${subCmd.name}.name"]
+                                )
+                            )
+
                             setDescriptionLocalizations(mapOf(
                                 DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${subCmd.name}.description"],
                                 DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${subCmd.name}.description"]
@@ -114,6 +139,13 @@ class FoxySlashCommandDeclarationBuilder(
                             it.subCommands.forEach { subCommand ->
                                 addSubcommands(
                                     Subcommand(subCommand.name, subCommand.description) {
+                                        setNameLocalizations(
+                                            mapOf(
+                                                DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${it.name}.${subCommand.name}.name"],
+                                                DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${it.name}.${subCommand.name}.name"]
+                                            )
+                                        )
+
                                         setDescriptionLocalizations(mapOf(
                                             DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${it.name}.${subCommand.name}.description"],
                                             DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${it.name}.${subCommand.name}.description"]
