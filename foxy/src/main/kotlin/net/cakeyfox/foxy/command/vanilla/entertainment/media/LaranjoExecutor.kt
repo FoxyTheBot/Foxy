@@ -25,7 +25,6 @@ class LaranjoExecutor : FoxySlashCommandExecutor() {
             }
 
             throw IllegalArgumentException("Error while generating image! Received ${laranjoImage.status}")
-            return
         }
 
         val image = laranjoImage.body<InputStream>()

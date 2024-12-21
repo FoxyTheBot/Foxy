@@ -37,7 +37,6 @@ class ErrorExecutor : FoxySlashCommandExecutor() {
             }
 
             throw IllegalArgumentException("Error while generating image! Received ${errorImage.status}")
-            return
         }
 
         val image = errorImage.body<InputStream>()

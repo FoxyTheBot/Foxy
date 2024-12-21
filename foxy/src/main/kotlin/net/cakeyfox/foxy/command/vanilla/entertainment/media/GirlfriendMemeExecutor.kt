@@ -26,7 +26,6 @@ class GirlfriendMemeExecutor : FoxySlashCommandExecutor() {
             }
 
             throw IllegalArgumentException("Error while generating image! Received ${girlfriendImageBuffer.status}")
-            return
         }
 
         val image = girlfriendImageBuffer.body<InputStream>()
