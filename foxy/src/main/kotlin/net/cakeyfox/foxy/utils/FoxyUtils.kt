@@ -51,6 +51,11 @@ class FoxyUtils(
             .format(number)
     }
 
+    fun formatLongNumber(number: Long, language: String, country: String): String {
+        return NumberFormat.getNumberInstance(Locale(language, country))
+            .format(number)
+    }
+
     suspend fun getActionImage(action: String): String {
         val response: ActionResponse = try {
             client.get("https://nekos.life/api/v2/img/$action").body()
