@@ -154,3 +154,25 @@ commands:
     help:
       name: "ajuda"
       description: "[Utilitários] Veja informações sobre a Foxy"
+
+    top:
+      name: "top"
+      description: "[Economia] Veja o ranking dos usuários mais ricos"
+      cakes:
+        name: "cakes"
+        description: "[Economia] Veja o ranking dos usuários mais ricos"
+
+    language:
+      name: "idioma"
+      description: "[Utilitários] Altera o idioma do bot"
+
+    marry:
+      name: "casar"
+      description: "[Social] Case com alguém"
+      propose:
+        name: "pedir"
+        description: "[Social] Peça alguém em casamento"
+      options:
+        user:
+          name: "usuário"
+          description: "O usuário que você deseja pedir em casamento"

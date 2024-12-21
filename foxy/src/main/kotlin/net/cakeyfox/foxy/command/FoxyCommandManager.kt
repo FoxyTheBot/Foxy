@@ -9,8 +9,10 @@ import net.cakeyfox.foxy.command.vanilla.economy.declarations.DailyCommand
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.AskFoxyCommand
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.FunCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.AboutMeCommand
+import net.cakeyfox.foxy.command.vanilla.social.declarations.MarryCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.ProfileCommand
 import net.cakeyfox.foxy.command.vanilla.utils.declarations.HelpCommand
+import net.cakeyfox.foxy.command.vanilla.utils.declarations.TopCommand
 import net.dv8tion.jda.api.interactions.commands.Command
 
 class FoxyCommandManager(private val instance: FoxyInstance) {
@@ -55,6 +57,7 @@ class FoxyCommandManager(private val instance: FoxyInstance) {
         /* ---- [Economy] ---- */
         register(CakesCommand())
         register(DailyCommand())
+        register(TopCommand())
 
         /* ---- [Entertainment] ---- */
         register(FunCommand())
@@ -65,6 +68,7 @@ class FoxyCommandManager(private val instance: FoxyInstance) {
         /* ---- [Social] ---- */
         register(AboutMeCommand())
         register(ProfileCommand())
+        register(MarryCommand())
 
         /* ---- [Utils] ---- */
         register(HelpCommand())

@@ -87,17 +87,17 @@ commands:
         name: "beijar"
         description: "[Diversão] Beije alguém"
         options:
-            user:
-              name: "usuário"
-              description: "O usuário que você deseja beijar"
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja beijar"
 
       bite:
         name: "morder"
         description: "[Diversão] Morda alguém"
         options:
-            user:
-              name: "usuário"
-              description: "O usuário que você deseja morder"
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja morder"
 
       dance:
         name: "dançar"
@@ -107,9 +107,9 @@ commands:
         name: "abraçar"
         description: "[Diversão] Abraçe alguém"
         options:
-            user:
-              name: "usuário"
-              description: "O usuário que você deseja abraçar"
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja abraçar"
 
       laugh:
         name: "rir"
@@ -119,25 +119,25 @@ commands:
         name: "lamber"
         description: "[Diversão] Lamba alguém"
         options:
-            user:
-              name: "usuário"
-              description: "O usuário que você deseja lamber"
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja lamber"
 
       pat:
         name: "acariciar"
         description: "[Diversão] Acaricie alguém"
         options:
-            user:
-              name: "usuário"
-              description: "O usuário que você deseja acariciar"
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja acariciar"
 
       slap:
         name: "tapa"
         description: "[Diversão] Dê um tapa em alguém"
         options:
-            user:
-              name: "usuário"
-              description: "O usuário que você deseja dar um tapa"
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja dar um tapa"
 
       smile:
         name: "sorrir"
@@ -147,10 +147,32 @@ commands:
         name: "cócegas"
         description: "[Diversão] Faça cosquinhas em alguém"
         options:
-            user:
-              name: "usuário"
-              description: "O usuário que você deseja fazer cosquinhas"
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja fazer cosquinhas"
 
     help:
       name: "ajuda"
       description: "[Utilitários] Veja informações sobre a Foxy"
+
+    top:
+      name: "top"
+      description: "[Economia] Veja o ranking dos usuários mais ricos"
+      cakes:
+        name: "cakes"
+        description: "[Economia] Veja o ranking dos usuários mais ricos"
+
+    language:
+        name: "idioma"
+        description: "[Utilitários] Altera o idioma do bot"
+
+    marry:
+      name: "casar"
+      description: "[Social] Case com alguém"
+      propose:
+        name: "pedir"
+        description: "[Social] Peça alguém em casamento"
+      options:
+        user:
+          name: "usuário"
+          description: "O usuário que você deseja pedir em casamento"
