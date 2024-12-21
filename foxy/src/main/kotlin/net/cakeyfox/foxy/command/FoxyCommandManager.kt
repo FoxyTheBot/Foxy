@@ -11,6 +11,7 @@ import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.FunCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.AboutMeCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.MarryCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.ProfileCommand
+import net.cakeyfox.foxy.command.vanilla.utils.declarations.DblCommand
 import net.cakeyfox.foxy.command.vanilla.utils.declarations.HelpCommand
 import net.cakeyfox.foxy.command.vanilla.utils.declarations.TopCommand
 import net.dv8tion.jda.api.interactions.commands.Command
@@ -72,5 +73,6 @@ class FoxyCommandManager(private val instance: FoxyInstance) {
 
         /* ---- [Utils] ---- */
         register(HelpCommand())
+        register(DblCommand())
     }
 }
