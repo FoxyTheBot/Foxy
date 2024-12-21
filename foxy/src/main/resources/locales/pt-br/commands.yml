@@ -54,3 +54,12 @@ hug:
 
 dance:
   description: "{0} **está dançando**"
+
+help:
+  description: "Olá {0}, eu sou a Foxy, um multiuso para o seu servidor! Eu tenho muitas funcionalidades, como economia, diversão, utilitários e muito mais!"
+  field:
+    addMe: "{0} Gostou das minhas funcionalidades? Me adicione no seu servidor!"
+    addMeValue: "Me adicione clicando aqui"
+    support: "{0} Precisa de ajuda? Entre no meu servidor de suporte!"
+    terms: "{0} Leia os termos de uso para evitar problemas"
+    website: "{0} Meu website onde você pode me adicionar e ver mais informações"

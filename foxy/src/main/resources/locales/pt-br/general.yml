@@ -150,3 +150,7 @@ commands:
             user:
               name: "usuário"
               description: "O usuário que você deseja fazer cosquinhas"
+
+    help:
+      name: "ajuda"
+      description: "[Utilitários] Veja informações sobre a Foxy"
