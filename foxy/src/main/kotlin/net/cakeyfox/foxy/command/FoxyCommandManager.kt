@@ -9,6 +9,7 @@ import net.cakeyfox.foxy.command.vanilla.economy.declarations.DailyCommand
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.AskFoxyCommand
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.FunCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.AboutMeCommand
+import net.cakeyfox.foxy.command.vanilla.social.declarations.DivorceCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.MarryCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.ProfileCommand
 import net.cakeyfox.foxy.command.vanilla.utils.declarations.DblCommand
@@ -70,6 +71,7 @@ class FoxyCommandManager(private val instance: FoxyInstance) {
         register(AboutMeCommand())
         register(ProfileCommand())
         register(MarryCommand())
+        register(DivorceCommand())
 
         /* ---- [Utils] ---- */
         register(HelpCommand())

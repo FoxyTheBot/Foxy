@@ -24,11 +24,18 @@ class UserUtils(
     }
 
 
-    fun updateUser(userId: String, updates: Map<String, Any>) {
+    fun updateUser(userId: String, updates: Map<String, Any?>) {
         val query = Document("_id", userId)
         val update = Document("\$set", Document(updates))
 
         client.users.updateOne(query, update)
+    }
+
+    fun updateUsers(users: List<FoxyUser>, updates: Map<String, Any?>) {
+        val query = Document("_id", Document("\$in", users.map { it._id }))
+        val update = Document("\$set", Document(updates))
+
+        client.users.updateMany(query, update)
     }
 
     fun getAllUsers(): List<FoxyUser> {
