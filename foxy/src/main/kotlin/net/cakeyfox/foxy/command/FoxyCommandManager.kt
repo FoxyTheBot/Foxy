@@ -6,8 +6,7 @@ import net.cakeyfox.foxy.command.structure.FoxySlashCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.actions.declarations.ActionsCommand
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.CakesCommand
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.DailyCommand
-import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.AskFoxyCommand
-import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.FunCommand
+import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.*
 import net.cakeyfox.foxy.command.vanilla.social.declarations.AboutMeCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.DivorceCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.MarryCommand
@@ -64,6 +63,9 @@ class FoxyCommandManager(private val instance: FoxyInstance) {
         /* ---- [Entertainment] ---- */
         register(FunCommand())
         register(AskFoxyCommand())
+        register(FateCommand())
+        register(CancelCommand())
+        register(RateWaifuCommand())
 
         /* ---- [Games] ---- */
 

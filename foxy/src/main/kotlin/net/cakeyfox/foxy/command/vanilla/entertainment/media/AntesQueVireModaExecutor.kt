@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.command.vanilla.entertainment
+package net.cakeyfox.foxy.command.vanilla.entertainment.media
 
 import io.ktor.client.call.*
 import kotlinx.serialization.json.buildJsonObject
@@ -6,39 +6,43 @@ import kotlinx.serialization.json.put
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
-import net.dv8tion.jda.api.entities.Message.Attachment
+import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.utils.FileUpload
 import java.io.InputStream
 
 private val supportedTypes = listOf(
-    "audio/mpeg",
-    "audio/wav",
-    "audio/aac",
-    "audio/ogg",
-    "audio/flac",
-    "audio/opus",
-    "audio/x-m4a",
-    "video/mp4",
-    "video/x-msvideo",
-    "video/x-matroska",
-    "video/ogg",
-    "video/x-flv"
+    "image/png",
+    "image/jpeg",
+    "image/jpg"
 )
 
 private const val maxSize = 8_000_000 // 8MB
 
-class EminemExecutor: FoxySlashCommandExecutor() {
+
+class AntesQueVireModaExecutor: FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
-        val attachment = context.getOption<Attachment>("video_or_audio")!!
+        val attachment = context.getOption<Message.Attachment>("image")!!
+
+        if (attachment.width > 1920 || attachment.height > 1080) {
+            context.reply {
+                content = context.prettyResponse {
+                    emoteId = FoxyEmotes.FOXY_CRY
+                    content = context.locale["moda.imageTooBig"]
+                }
+            }
+
+            return
+        }
 
         if (attachment.size > maxSize) {
             context.reply {
                 content = context.prettyResponse {
                     emoteId = FoxyEmotes.FOXY_CRY
-                    content = context.locale["8mile.fileTooBig"]
+                    content = context.locale["moda.fileTooBig"]
                 }
             }
+
             return
         }
 
@@ -46,24 +50,22 @@ class EminemExecutor: FoxySlashCommandExecutor() {
             context.reply {
                 content = context.prettyResponse {
                     emoteId = FoxyEmotes.FOXY_CRY
-                    content = context.locale["8mile.wrongContentType"]
+                    content = context.locale["moda.wrongContentType"]
                 }
             }
+
             return
         }
 
-
-        val response = context.instance.artistryClient.generateImage("memes/8mile", buildJsonObject {
-            put("url", attachment.url)
-            put("contentType", attachment.contentType)
-            put("size", attachment.size)
+        val response = context.instance.artistryClient.generateImage("memes/moda", buildJsonObject {
+            put("asset", attachment.url)
         })
 
         if (response.status.value in 400..499) {
             context.reply {
                 content = context.prettyResponse {
                     emoteId = FoxyEmotes.FOXY_CRY
-                    content = context.locale["8mile.fileNotSupported"]
+                    content = context.locale["moda.fileNotSupported"]
                 }
             }
             throw IllegalArgumentException("Unsupported image! Status code: ${response.status}")
@@ -71,18 +73,17 @@ class EminemExecutor: FoxySlashCommandExecutor() {
             context.reply {
                 content = context.prettyResponse {
                     emoteId = FoxyEmotes.FOXY_CRY
-                    content = context.locale["8mile.unexpectedError", response.status.toString()]
+                    content = context.locale["moda.unexpectedError", response.status.toString()]
                 }
             }
 
             throw IllegalArgumentException("Error processing image! Status code: ${response.status}")
         }
 
-        val video = response.body<InputStream>()
-        val file = FileUpload.fromData(video.readBytes(), "8mile.mp4")
+        val image = response.body<InputStream>()
 
         context.reply {
-            files.plusAssign(file)
+            files.plusAssign(FileUpload.fromData(image.readBytes(), "moda.png"))
         }
     }
 }

@@ -29,6 +29,84 @@ commands:
             name: "imagem"
             description: "A imagem que será usada no meme"
 
+      windows_error:
+        name: "windows_error"
+        description: "[Imagem] Gera um meme de erro do Windows"
+        options:
+          message:
+            name: "texto"
+            description: "O texto que será exibido no meme"
+
+      girlfriend:
+        name: "namorada"
+        description: "[Social] Que legal, mas olha minha namorada!"
+        options:
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja exibir a namorada"
+
+      nao_somos_iguais:
+        name: "nao_somos_iguais"
+        description: "[Imagem] Montagem do meme 'Não somos iguais, mas somos parecidos'"
+        options:
+          first_image:
+            name: "primeira_imagem"
+            description: "A primeira imagem que será usada no meme"
+          second_image:
+            name: "segunda_imagem"
+            description: "A segunda imagem que será usada no meme"
+          text:
+            name: "texto"
+            description: "O texto que será exibido no meme"
+
+      laranjo:
+        name: "laranjo"
+        description: "[Imagem] Gera um meme do Laranjo"
+        options:
+          text:
+            name: "texto"
+            description: "O texto que será exibido no meme"
+
+      stonks:
+        name: "stonks"
+        description: "[Imagem] Gera um meme de stonks"
+        options:
+          text:
+            name: "texto"
+            description: "O texto que será exibido no meme"
+
+      not_stonks:
+        name: "not_stonks"
+        description: "[Imagem] Gera um meme de not stonks"
+        options:
+          text:
+            name: "texto"
+            description: "O texto que será exibido no meme"
+
+    fate:
+      name: "fate"
+      description: "[Diversão] Descubra o seu destino com uma pessoa"
+      options:
+        user:
+          name: "usuário"
+          description: "O usuário que você deseja descobrir o destino"
+
+    cancel:
+      name: "cancelar"
+      description: "[Diversão] Cancele uma pessoa que fez algo errado"
+      options:
+        reason:
+          name: "motivo"
+          description: "O motivo do porque você quer cancelar esse usuário"
+
+    ratewaifu:
+      name: "avaliar_waifu"
+      description: "[Diversão] Avalie a sua waifu"
+      options:
+        user:
+          name: "usuário"
+          description: "O usuário que você deseja avaliar"
+
     ask:
       name: "perguntar"
       description: "[Diversão] Comandos relacionados a perguntas e respostas"
@@ -167,8 +245,8 @@ commands:
         description: "[Economia] Veja o ranking dos usuários mais ricos"
 
     language:
-        name: "idioma"
-        description: "[Utilitários] Altera o idioma do bot"
+      name: "idioma"
+      description: "[Utilitários] Altera o idioma do bot"
 
     marry:
       name: "casar"

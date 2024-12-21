@@ -10,7 +10,6 @@ import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.dv8tion.jda.api.entities.ISnowflake
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
-import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent
