@@ -25,7 +25,7 @@ class FoxyHelpers(
     suspend fun getUserById(userId: String): User {
         return instance.jda.getUserById(userId) ?: withContext(Dispatchers.IO) {
             try {
-                instance.jda.retrieveUserById(userId).complete()
+                instance.jda.retrieveUserById(userId).await()
             } catch (e: Exception) {
                 throw IllegalArgumentException("User not found", e)
             }
