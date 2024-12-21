@@ -52,7 +52,11 @@ class FoxyUtils(
     }
 
     suspend fun getActionImage(action: String): String {
-        val response: ActionResponse = client.get("https://nekos.life/api/v2/img/$action").body()
+        val response: ActionResponse = try {
+            client.get("https://nekos.life/api/v2/img/$action").body()
+        } catch (e: Exception) {
+            client.get("https://cakey.foxybot.win/roleplay/$action").body()
+        }
 
         return response.url
     }
