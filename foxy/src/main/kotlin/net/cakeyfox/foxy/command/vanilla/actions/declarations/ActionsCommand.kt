@@ -71,16 +71,46 @@ class ActionsCommand: FoxySlashCommandDeclarationWrapper {
 
         subCommand("pat", "actions.pat.description") {
             baseName = this@command.name
+            addOption(
+                OptionData(
+                    OptionType.USER,
+                    "user",
+                    "actions.pat.options.user",
+                    true
+                ),
+                isSubCommand = true,
+                baseName = this@command.name
+            )
             executor = PatExecutor()
         }
 
         subCommand("lick", "actions.lick.description") {
             baseName = this@command.name
+            addOption(
+                OptionData(
+                    OptionType.USER,
+                    "user",
+                    "actions.lick.options.user",
+                    true
+                ),
+                isSubCommand = true,
+                baseName = this@command.name
+            )
             executor = LickExecutor()
         }
 
         subCommand("slap", "actions.slap.description") {
             baseName = this@command.name
+            addOption(
+                OptionData(
+                    OptionType.USER,
+                    "user",
+                    "actions.slap.options.user",
+                    true
+                ),
+                isSubCommand = true,
+                baseName = this@command.name
+            )
             executor = SlapExecutor()
         }
 
