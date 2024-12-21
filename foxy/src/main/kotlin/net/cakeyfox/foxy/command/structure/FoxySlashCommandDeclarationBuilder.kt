@@ -56,7 +56,13 @@ class FoxySlashCommandDeclarationBuilder(
     fun addPermission(vararg permission: Permission) {
         permission.forEach { permissions.add(it) }
     }
-    
+
+    fun addOptions(vararg options: List<OptionData>, isSubCommand: Boolean = false, baseName: String) {
+        options.forEach { option ->
+            addOption(*option.toTypedArray(), isSubCommand = isSubCommand, baseName = baseName)
+        }
+    }
+
     fun addOption(vararg option: OptionData, isSubCommand: Boolean = false, baseName: String) {
         option.forEach { op ->
             if (isSubCommand) {
