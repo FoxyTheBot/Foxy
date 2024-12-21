@@ -13,17 +13,6 @@ class MarryExecutor : FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val user = context.getOption<User>("user")!!
 
-        if (user == null) {
-            context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
-                    content = context.locale["marry.youNeedToMentionAUser"]
-                }
-            }
-
-            return
-        }
-
         if (user.id == context.event.user.id) {
             context.reply {
                 content = context.prettyResponse {
