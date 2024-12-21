@@ -1,3 +1,0 @@
-files:
-  - source: /client/src/locales/pt-BR/*.json
-    translation: /client/src/locales/%locale%/%original_file_name%

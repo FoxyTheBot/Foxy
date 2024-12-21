@@ -1,0 +1,186 @@
+commands:
+  onlyUserCanInteractWithThisComponent: "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {0}!"
+  command:
+    daily:
+      name: "daily"
+      description: "[Economy] Claim your daily cakes"
+
+    fun:
+      name: "fun"
+      description: "Fun commands to enjoy with your friends"
+      eminem:
+        name: "eminem"
+        description: "[Video] Generates a video with a scene from the movie 8 Mile and custom audio"
+        8mile:
+          name: "8mile"
+          description: "[Video] Generates a video with a scene from the movie 8 Mile and custom audio"
+      8mile:
+        name: "8mile"
+        options:
+          video_or_audio:
+            name: "video_or_audio"
+            description: "The audio or video to be used in the clip"
+
+      antes_que_vire_moda:
+        name: "antes_que_vire_moda"
+        description: "[Image] A meme montage: 'Before it becomes a trend, I'm already a fan of:'"
+        options:
+          image:
+            name: "image"
+            description: "The image to be used in the meme"
+
+    ask:
+      name: "ask"
+      description: "[Fun] Commands related to questions and answers"
+      foxy:
+        name: "foxy"
+        description: "[Fun] Ask a question to Foxy"
+        options:
+          question:
+            name: "question"
+            description: "The question to be asked to Foxy"
+
+    cakes:
+      name: "cakes"
+      description: "Commands related to Foxy's economy"
+      atm:
+        name: "atm"
+        description: "[Economy] Check your cake balance"
+        options:
+          user:
+            name: "user"
+            description: "Check the cake balance of another user"
+
+    foxy:
+      name: "foxy"
+      description: "[Utilities] Commands related to the bot"
+      ping:
+        name: "ping"
+        description: "[Utilities] Check the bot's latency"
+
+    aboutme:
+      name: "aboutme"
+      description: "[Social] Commands related to your profile"
+      change:
+        name: "change"
+        description: "[Social] Change the text of your profile"
+        options:
+          text:
+            name: "text"
+            description: "The text to be displayed on your profile"
+
+    profile:
+      name: "profile"
+      description: "[Social] View your lovely profile or someone else's"
+      view:
+        name: "view"
+        description: "[Social] View your lovely profile or someone else's"
+      options:
+        user:
+          name: "user"
+          description: "The user whose profile you want to view"
+
+    actions:
+      name: "ações"
+      description: "Comandos de ações para você se divertir com seus amigos"
+      kiss:
+        name: "beijar"
+        description: "[Diversão] Beije alguém"
+        options:
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja beijar"
+
+      bite:
+        name: "morder"
+        description: "[Diversão] Morda alguém"
+        options:
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja morder"
+
+      dance:
+        name: "dançar"
+        description: "[Diversão] Mostre seus passos de dança!"
+
+      hug:
+        name: "abraçar"
+        description: "[Diversão] Abraçe alguém"
+        options:
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja abraçar"
+
+      laugh:
+        name: "rir"
+        description: "[Diversão] Mostre que você é uma pessoa alegre"
+
+      lick:
+        name: "lamber"
+        description: "[Diversão] Lamba alguém"
+        options:
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja lamber"
+
+      pat:
+        name: "acariciar"
+        description: "[Diversão] Acaricie alguém"
+        options:
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja acariciar"
+
+      slap:
+        name: "tapa"
+        description: "[Diversão] Dê um tapa em alguém"
+        options:
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja dar um tapa"
+
+      smile:
+        name: "sorrir"
+        description: "[Diversão] Mostre que você é uma pessoa alegre"
+
+      tickles:
+        name: "cócegas"
+        description: "[Diversão] Faça cosquinhas em alguém"
+        options:
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja fazer cosquinhas"
+
+    help:
+      name: "ajuda"
+      description: "[Utilitários] Veja informações sobre a Foxy"
+
+    dbl:
+        name: "dbl"
+        description: "[Utilities] Vote for Foxy on top.gg"
+
+    top:
+      name: "top"
+      description: "[Economia] Veja o ranking dos usuários mais ricos"
+      cakes:
+        name: "cakes"
+        description: "[Economia] Veja o ranking dos usuários mais ricos"
+
+    language:
+      name: "idioma"
+      description: "[Utilitários] Altera o idioma do bot"
+
+    marry:
+      name: "casar"
+      description: "[Social] Case com alguém"
+      propose:
+        name: "pedir"
+        description: "[Social] Peça alguém em casamento"
+      options:
+        user:
+          name: "usuário"
+          description: "O usuário que você deseja pedir em casamento"
+
+    divorce:
+      name: "divorciar"
+      description: "[Social] Se divorcie do seu parceiro"
