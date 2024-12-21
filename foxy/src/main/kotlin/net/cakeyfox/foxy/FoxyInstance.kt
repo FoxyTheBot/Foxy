@@ -4,6 +4,7 @@ import net.cakeyfox.artistry.ArtistryClient
 import net.cakeyfox.foxy.command.FoxyCommandManager
 import net.cakeyfox.foxy.command.component.FoxyComponentManager
 import net.cakeyfox.foxy.listeners.GuildEventListener
+import net.cakeyfox.foxy.listeners.InteractionEventListener
 import net.cakeyfox.foxy.listeners.MajorEventListener
 import net.cakeyfox.foxy.utils.ActivityUpdater
 import net.dv8tion.jda.api.JDA
@@ -42,7 +43,8 @@ class FoxyInstance(
             .build()
         jda.addEventListener(
             MajorEventListener(this),
-            GuildEventListener(this)
+            GuildEventListener(this),
+            InteractionEventListener(this)
         )
 
         ActivityUpdater(this)
