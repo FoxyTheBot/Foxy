@@ -31,6 +31,19 @@ class UserUtils(
         client.users.updateOne(query, update)
     }
 
+    fun getAllUsers(): List<FoxyUser> {
+        val collection: MongoCollection<Document> = client.database!!.getCollection("users")
+
+        val users = mutableListOf<FoxyUser>()
+
+        collection.find().forEach {
+            val documentToJSON = it.toJson()
+            users.add(client.json.decodeFromString(documentToJSON))
+        }
+
+        return users
+    }
+
     private fun createUser(userId: String): FoxyUser {
         val newUser = FoxyUser(
             _id = userId,
