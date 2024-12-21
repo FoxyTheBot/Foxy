@@ -10,6 +10,7 @@ import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.AskFoxyComma
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.FunCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.AboutMeCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.ProfileCommand
+import net.cakeyfox.foxy.command.vanilla.utils.declarations.HelpCommand
 import net.dv8tion.jda.api.interactions.commands.Command
 
 class FoxyCommandManager(private val instance: FoxyInstance) {
@@ -66,5 +67,6 @@ class FoxyCommandManager(private val instance: FoxyInstance) {
         register(ProfileCommand())
 
         /* ---- [Utils] ---- */
+        register(HelpCommand())
     }
 }
