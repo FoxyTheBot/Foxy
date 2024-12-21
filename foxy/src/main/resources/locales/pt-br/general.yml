@@ -90,3 +90,63 @@ commands:
             user:
               name: "usuário"
               description: "O usuário que você deseja beijar"
+
+      bite:
+        name: "morder"
+        description: "[Diversão] Morda alguém"
+        options:
+            user:
+              name: "usuário"
+              description: "O usuário que você deseja morder"
+
+      dance:
+        name: "dançar"
+        description: "[Diversão] Mostre seus passos de dança!"
+
+      hug:
+        name: "abraçar"
+        description: "[Diversão] Abraçe alguém"
+        options:
+            user:
+              name: "usuário"
+              description: "O usuário que você deseja abraçar"
+
+      laugh:
+        name: "rir"
+        description: "[Diversão] Mostre que você é uma pessoa alegre"
+
+      lick:
+        name: "lamber"
+        description: "[Diversão] Lamba alguém"
+        options:
+            user:
+              name: "usuário"
+              description: "O usuário que você deseja lamber"
+
+      pat:
+        name: "acariciar"
+        description: "[Diversão] Acaricie alguém"
+        options:
+            user:
+              name: "usuário"
+              description: "O usuário que você deseja acariciar"
+
+      slap:
+        name: "tapa"
+        description: "[Diversão] Dê um tapa em alguém"
+        options:
+            user:
+              name: "usuário"
+              description: "O usuário que você deseja dar um tapa"
+
+      smile:
+        name: "sorrir"
+        description: "[Diversão] Mostre que você é uma pessoa alegre"
+
+      tickles:
+        name: "cócegas"
+        description: "[Diversão] Faça cosquinhas em alguém"
+        options:
+            user:
+              name: "usuário"
+              description: "O usuário que você deseja fazer cosquinhas"

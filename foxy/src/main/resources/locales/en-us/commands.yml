@@ -39,9 +39,18 @@ ban:
   button: "Fazer um apelo"
 
 profile:
-  marriedWith: "Casado(a) com:"
-  marriedSince: "Desde {0}"
-  view: "Perfil de {0}"
+  marriedWith: "Married with:"
+  marriedSince: "since {0}"
+  view: "{0}'s profile"
 
 kiss:
   description: " :heart: **{0} kissed {1}!**"
+
+bite:
+  description: " :rage: **{0} bit {1}!**"
+
+hug:
+  description: " :hugging: **{0} hugged {1}!**"
+
+dance:
+  description: "{0} **is dancing**"

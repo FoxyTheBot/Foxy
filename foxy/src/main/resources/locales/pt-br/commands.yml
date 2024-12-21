@@ -45,3 +45,12 @@ profile:
 
 kiss:
   description: ":heart: **{0} beijou {1}!**"
+
+bite:
+  description: " :rage: **{0} mordeu {1}!**"
+
+hug:
+  description: " :hugging: **{0} abraçou {1}!**"
+
+dance:
+  description: "{0} **está dançando**"
