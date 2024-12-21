@@ -44,4 +44,9 @@ object FoxyEmotes {
     const val OFFLINE = "1304276914265133097"
     const val KOTLIN = "1317932082244358215"
     const val JAVA = "1317934020285304843"
+
+    // Unicode Emotes
+    const val FLAG_BR = "\uD83C\uDDE7\uD83C\uDDF7"
+    const val FLAG_US = "\uD83C\uDDFA\uD83C\uDDF8"
+    const val RING = "\uD83D\uDC8D"
 }
