@@ -109,7 +109,7 @@ class FoxyInteractionContext(
                 }
             }
 
-            else -> throw IllegalStateException("Cannot edit this event type.")
+            else -> throw IllegalStateException("Cannot edit this event type. ${event.javaClass}")
         }
     }
 

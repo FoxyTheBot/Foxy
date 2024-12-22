@@ -140,6 +140,20 @@ commands:
             name: "amount"
             description: "The amount of cakes you want to pay"
 
+      coinflipbet:
+        name: "coinflipbet"
+        description: "[Economia] Aposte em cara ou coroa"
+        options:
+          amount:
+            name: "quantidade"
+            description: "A quantidade de cakes que você deseja apostar"
+          side:
+            name: "lado"
+            description: "O lado que você deseja apostar"
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja desafiar"
+
     foxy:
       name: "foxy"
       description: "[Utilities] Commands related to the bot"

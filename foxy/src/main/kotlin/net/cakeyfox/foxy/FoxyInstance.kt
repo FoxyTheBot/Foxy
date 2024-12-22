@@ -28,6 +28,8 @@ class FoxyInstance(
     val interactionManager = FoxyComponentManager()
 
 
+    // TODO: Implements sharding manager
+
     init {
         jda = JDABuilder.createDefault(config.get("discord_token"))
             .setEnabledIntents(

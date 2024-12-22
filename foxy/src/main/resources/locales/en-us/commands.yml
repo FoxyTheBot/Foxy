@@ -54,3 +54,9 @@ hug:
 
 dance:
   description: "{0} **is dancing**"
+
+coinflipbet:
+  proposal: "**{0}**, **{1}** quer fazer uma aposta de {2} Cakes! Ele(a) aposta que a moeda irá cair em **{3}**. Você aceita a aposta?"
+  betResult: "Deu **{0}**! {1} ganhou a aposta e ganhou {2} Cakes! Pago por {3} hihihi"
+  heads: "cara"
+  tails: "coroa"

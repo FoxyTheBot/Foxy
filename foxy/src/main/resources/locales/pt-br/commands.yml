@@ -70,3 +70,9 @@ daily:
     description: "Pegue sua recompensa diária! Você pode pegar sua recompensa diária a cada 24 horas!\n\n**Aviso:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!"
     redeemDaily: "Pegar recompensa"
     buyMore: "Quero mais Cakes!"
+
+coinflipbet:
+  proposal: "**{0}**, **{1}** quer fazer uma aposta de {2} Cakes! Ele(a) aposta que a moeda irá cair em **{3}**. Você aceita a aposta?"
+  betResult: "Deu **{0}**! {1} ganhou a aposta e ganhou {2} Cakes! Pago por {3} hihihi"
+  heads: "cara"
+  tails: "coroa"
