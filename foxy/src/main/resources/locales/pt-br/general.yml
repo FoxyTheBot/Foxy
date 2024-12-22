@@ -128,6 +128,16 @@ commands:
           user:
             name: "usuário"
             description: "Veja a quantidade de cakes de outro usuário"
+      pay:
+        name: "pagar"
+        description: "[Economia] Pague alguém"
+        options:
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja pagar"
+          amount:
+            name: "quantidade"
+            description: "A quantidade de cakes que você deseja pagar"
 
     foxy:
       name: "foxy"

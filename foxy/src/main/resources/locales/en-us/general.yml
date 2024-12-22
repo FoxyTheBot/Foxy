@@ -129,6 +129,17 @@ commands:
             name: "user"
             description: "Check the cake balance of another user"
 
+      pay:
+        name: "pagar"
+        description: "[Economia] Pague alguém"
+        options:
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja pagar"
+          amount:
+            name: "quantidade"
+            description: "A quantidade de cakes que você deseja pagar"
+
     foxy:
       name: "foxy"
       description: "[Utilities] Commands related to the bot"
