@@ -17,7 +17,13 @@ object Constants {
         return "https://www.roblox.com/users/$id/profile"
     }
 
-    const val DEFAULT_ACTIVITY = "foxybot.win | /help"
+    fun DEFAULT_ACTIVITY(environment: String): String {
+        return when(environment) {
+            "development" -> "I'm Cirno! ᗜˬᗜ"
+            "production" -> "foxybot.win | /help"
+            else -> "foxybot.win | /help"
+        }
+    }
 
     /* ---- [Profile Assets] ---- */
     fun PROFILE_BACKGROUND(backgroundId: String): String {
