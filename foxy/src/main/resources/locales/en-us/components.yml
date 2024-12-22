@@ -6,3 +6,7 @@ hug:
 
 bite:
   button: "Bite back"
+
+coinflipbet:
+  acceptButton: "Accept"
+  declineButton: "Decline"
