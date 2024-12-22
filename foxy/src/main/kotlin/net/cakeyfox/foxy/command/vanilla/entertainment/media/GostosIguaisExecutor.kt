@@ -5,12 +5,12 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
-import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.utils.FileUpload
 import java.io.InputStream
 
-class GostosIguaisExecutor : FoxySlashCommandExecutor() {
+class GostosIguaisExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
 

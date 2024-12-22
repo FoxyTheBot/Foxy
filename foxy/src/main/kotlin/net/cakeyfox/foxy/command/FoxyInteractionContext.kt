@@ -5,6 +5,7 @@ import dev.minn.jda.ktx.messages.InlineMessage
 import dev.minn.jda.ktx.messages.MessageCreateBuilder
 import dev.minn.jda.ktx.messages.MessageEditBuilder
 import net.cakeyfox.foxy.FoxyInstance
+import net.cakeyfox.foxy.command.structure.ReplyBuilder
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.dv8tion.jda.api.entities.ISnowflake
@@ -142,9 +143,3 @@ class FoxyInteractionContext(
         return "<:emoji:${response.emoteId}> **|** ${response.content}"
     }
 }
-
-data class ReplyBuilder(
-    var emoteId: String? = "1070906796274888795",
-    var content: String = "",
-    var unicodeEmote: String? = null
-)

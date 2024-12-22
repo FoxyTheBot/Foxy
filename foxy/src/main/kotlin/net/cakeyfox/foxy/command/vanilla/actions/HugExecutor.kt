@@ -3,11 +3,11 @@ package net.cakeyfox.foxy.command.vanilla.actions
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
-import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
-class HugExecutor : FoxySlashCommandExecutor() {
+class HugExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val user = context.getOption<User>("user")!!
         val response = context.utils.getActionImage("hug")

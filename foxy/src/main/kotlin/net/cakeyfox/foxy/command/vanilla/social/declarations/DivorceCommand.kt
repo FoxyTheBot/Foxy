@@ -1,9 +1,9 @@
 package net.cakeyfox.foxy.command.vanilla.social.declarations
 
-import net.cakeyfox.foxy.command.structure.FoxySlashCommandDeclarationWrapper
+import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.social.DivorceExecutor
 
-class DivorceCommand : FoxySlashCommandDeclarationWrapper {
+class DivorceCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "divorce",
         "divorce.description"

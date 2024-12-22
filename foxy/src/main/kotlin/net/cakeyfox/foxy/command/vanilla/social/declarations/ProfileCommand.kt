@@ -1,11 +1,11 @@
 package net.cakeyfox.foxy.command.vanilla.social.declarations
 
-import net.cakeyfox.foxy.command.structure.FoxySlashCommandDeclarationWrapper
+import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.social.ProfileViewExecutor
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
-class ProfileCommand: FoxySlashCommandDeclarationWrapper {
+class ProfileCommand: FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "profile",
         "profile.description"

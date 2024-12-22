@@ -1,11 +1,11 @@
 package net.cakeyfox.foxy.command.vanilla.actions.declarations
 
-import net.cakeyfox.foxy.command.structure.FoxySlashCommandDeclarationWrapper
+import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.actions.*
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
-class ActionsCommand: FoxySlashCommandDeclarationWrapper {
+class ActionsCommand: FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "actions",
         "actions.description"

@@ -1,9 +1,9 @@
 package net.cakeyfox.foxy.command.vanilla.utils.declarations
 
-import net.cakeyfox.foxy.command.structure.FoxySlashCommandDeclarationWrapper
+import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.utils.TopCakesExecutor
 
-class TopCommand : FoxySlashCommandDeclarationWrapper {
+class TopCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "top",
         "top.description",

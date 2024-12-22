@@ -10,14 +10,14 @@ import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData
 
-class FoxySlashCommandDeclarationBuilder(
+class FoxyCommandDeclarationBuilder(
     val name: String,
     val description: String,
     val isPrivate: Boolean,
-    var executor: FoxySlashCommandExecutor? = null
+    var executor: FoxyCommandExecutor? = null
 ) {
-    val subCommands = mutableListOf<FoxySlashCommandDeclarationBuilder>()
-    val subCommandGroups = mutableListOf<FoxySlashCommandGroupBuilder>()
+    val subCommands = mutableListOf<FoxyCommandDeclarationBuilder>()
+    val subCommandGroups = mutableListOf<FoxyCommandGroupBuilder>()
     val permissions = mutableListOf<Permission>()
     val options = mutableListOf<OptionData>()
     var baseName = ""
@@ -29,9 +29,9 @@ class FoxySlashCommandDeclarationBuilder(
         description: String,
         isPrivate: Boolean = false,
         baseName: String? = null,
-        block: FoxySlashCommandDeclarationBuilder.() -> Unit
+        block: FoxyCommandDeclarationBuilder.() -> Unit
     ) {
-        val subCommand = FoxySlashCommandDeclarationBuilder(name, description, isPrivate)
+        val subCommand = FoxyCommandDeclarationBuilder(name, description, isPrivate)
         subCommand.baseName = baseName ?: this.name
         subCommand.block()
         subCommands.add(subCommand)
@@ -45,9 +45,9 @@ class FoxySlashCommandDeclarationBuilder(
         name: String,
         description: String,
         baseName: String,
-        block: FoxySlashCommandGroupBuilder.() -> Unit
+        block: FoxyCommandGroupBuilder.() -> Unit
     ) {
-        val group = FoxySlashCommandGroupBuilder(name, description)
+        val group = FoxyCommandGroupBuilder(name, description)
         group.block()
         this.baseName = baseName
         subCommandGroups.add(group)
@@ -95,11 +95,11 @@ class FoxySlashCommandDeclarationBuilder(
             options.add(op)
         }
     }
-        fun getSubCommand(name: String): FoxySlashCommandDeclarationBuilder? {
+        fun getSubCommand(name: String): FoxyCommandDeclarationBuilder? {
             return subCommands.find { it.name == name }
         }
 
-        fun getSubCommandGroup(name: String): FoxySlashCommandGroupBuilder? {
+        fun getSubCommandGroup(name: String): FoxyCommandGroupBuilder? {
             return subCommandGroups.find { it.name == name }
         }
 

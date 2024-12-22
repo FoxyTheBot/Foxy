@@ -2,7 +2,7 @@ package net.cakeyfox.foxy.command
 
 import dev.minn.jda.ktx.coroutines.await
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.command.structure.FoxySlashCommandDeclarationWrapper
+import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.actions.declarations.ActionsCommand
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.CakesCommand
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.DailyCommand
@@ -17,13 +17,13 @@ import net.cakeyfox.foxy.command.vanilla.utils.declarations.TopCommand
 import net.dv8tion.jda.api.interactions.commands.Command
 
 class FoxyCommandManager(private val instance: FoxyInstance) {
-    private val commands = mutableListOf<FoxySlashCommandDeclarationWrapper>()
+    private val commands = mutableListOf<FoxyCommandDeclarationWrapper>()
 
-    operator fun get(name: String): FoxySlashCommandDeclarationWrapper? {
+    operator fun get(name: String): FoxyCommandDeclarationWrapper? {
         return commands.find { it.create().name == name }
     }
 
-    private fun register(command: FoxySlashCommandDeclarationWrapper) {
+    private fun register(command: FoxyCommandDeclarationWrapper) {
         commands.add(command)
     }
 

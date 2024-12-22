@@ -2,9 +2,9 @@ package net.cakeyfox.foxy.command.vanilla.entertainment
 
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
-import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
 
-class FateExecutor : FoxySlashCommandExecutor() {
+class FateExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val fateList = listOf(
             context.locale["fate.couple"],

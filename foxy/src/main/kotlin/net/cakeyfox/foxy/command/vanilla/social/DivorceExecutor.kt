@@ -2,10 +2,10 @@ package net.cakeyfox.foxy.command.vanilla.social
 
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
-import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
-class DivorceExecutor : FoxySlashCommandExecutor() {
+class DivorceExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         if (context.authorData.marryStatus.marriedWith == null) {
             context.reply {

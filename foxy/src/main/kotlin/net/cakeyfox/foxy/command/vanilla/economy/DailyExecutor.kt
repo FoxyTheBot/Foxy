@@ -2,9 +2,9 @@ package net.cakeyfox.foxy.command.vanilla.economy
 
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
-import net.cakeyfox.foxy.command.structure.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
 
-class DailyExecutor: FoxySlashCommandExecutor() {
+class DailyExecutor: FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.reply(true) {
             embed {
