@@ -7,19 +7,20 @@ import io.ktor.http.content.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
+import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.utils.analytics.utils.StatsSender
 import net.cakeyfox.serializable.data.TopggBotStats
 import kotlin.reflect.jvm.jvmName
 
 class TopggStatsSender(
-    private val http: HttpClient,
-    private val clientId: Long,
-    private val token: String
+    val instance: FoxyInstance
 ): StatsSender {
     private val logger = KotlinLogging.logger(this::class.jvmName)
+    private val token = instance.config.get("dbl_token")
+    private val clientId = instance.jda.selfUser.id
 
     override suspend fun send(guildCount: Long): Boolean {
-        val response = http.post("https://top.gg/api/bots/$clientId/stats") {
+        val response = instance.httpClient.post("https://top.gg/api/bots/$clientId/stats") {
             header("Authorization", token)
             accept(ContentType.Application.Json)
             setBody(
