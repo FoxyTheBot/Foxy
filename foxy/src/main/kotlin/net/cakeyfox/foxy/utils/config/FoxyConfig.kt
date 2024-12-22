@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.utils
+package net.cakeyfox.foxy.utils.config
 
 import java.io.IOException
 import java.util.Properties
