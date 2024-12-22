@@ -63,3 +63,10 @@ help:
     support: "{0} Precisa de ajuda? Entre no meu servidor de suporte!"
     terms: "{0} Leia os termos de uso para evitar problemas"
     website: "{0} Meu website onde você pode me adicionar e ver mais informações"
+
+daily:
+  embed:
+    title: "Recompensa diária"
+    description: "Pegue sua recompensa diária! Você pode pegar sua recompensa diária a cada 24 horas!\n\n**Aviso:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!"
+    redeemDaily: "Pegar recompensa"
+    buyMore: "Quero mais Cakes!"

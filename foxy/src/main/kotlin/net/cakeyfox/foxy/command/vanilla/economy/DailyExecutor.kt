@@ -10,10 +10,24 @@ class DailyExecutor: FoxySlashCommandExecutor() {
             embed {
                 title = context.prettyResponse {
                     emoteId = FoxyEmotes.FOXY_DAILY
-                    content = context.locale["cakes.daily.embed.title"]
+                    content = context.locale["daily.embed.title"]
                 }
 
-                description = context.locale["cakes.daily.embed.description"]
+                description = context.locale["daily.embed.description"]
+
+                actionRow(
+                    context.instance.interactionManager.createLinkButton(
+                        context.jda.getEmojiById(FoxyEmotes.FOXY_PETPET)!!,
+                        context.locale["daily.embed.redeemDaily"],
+                        "https://foxybot.win/br/daily"
+                    ),
+
+                    context.instance.interactionManager.createLinkButton(
+                        context.jda.getEmojiById(FoxyEmotes.FOXY_DAILY)!!,
+                        context.locale["daily.embed.buyMore"],
+                        "https://foxybot.win/br/premium"
+                    )
+                )
             }
         }
     }

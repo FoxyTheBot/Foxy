@@ -40,6 +40,18 @@ class FoxyComponentManager {
         callback: suspend (FoxyInteractionContext) -> (Unit)
     ) = createButton(targetUser.idLong, style, emoji, label, builder, callback)
 
+    fun createLinkButton(
+        emoji: Emoji? = null,
+        label: String = "",
+        url: String,
+        builder: (ButtonBuilder).() -> (Unit) = {},
+    ) = linkButton(
+        emoji,
+        label,
+        url,
+        builder
+    )
+
     fun createButton(
         targetUserId: Long,
         style: ButtonStyle,
@@ -65,6 +77,22 @@ class FoxyComponentManager {
         }
 
         callback.invoke(it)
+    }
+
+    fun linkButton(
+        emoji: Emoji? = null,
+        label: String = "",
+        url: String,
+        builder: (ButtonBuilder).() -> (Unit) = {},
+    ): Button {
+        return Button.of(
+            ButtonStyle.LINK,
+            url,
+            label,
+            emoji
+        ).let {
+            ButtonBuilder(it).apply(builder).button
+        }
     }
 
     fun button(
