@@ -1,8 +1,8 @@
-package net.cakeyfox.foxy.welcomer
+package net.cakeyfox.foxy.modules.welcomer
 
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.welcomer.utils.WelcomerWrapper
-import net.cakeyfox.foxy.welcomer.utils.WelcomerJSONParser
+import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerWrapper
+import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerJSONParser
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent
 
