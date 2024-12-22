@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy.command.vanilla.economy.declarations
 
+import dev.minn.jda.ktx.interactions.commands.choice
 import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.economy.AtmExecutor
 import net.cakeyfox.foxy.command.vanilla.economy.PayExecutor
@@ -55,6 +56,41 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
                     ),
                     baseName = this@command.name,
                     isSubCommand = true
+                )
+            }
+        )
+
+        subCommand(
+            "coinflip_bet",
+            "cakes.coinflip_bet.description",
+            baseName = this@command.name,
+            block = {
+                addOptions(
+                    listOf(
+                        OptionData(
+                            OptionType.USER,
+                            "user",
+                            "cakes.coinflip_bet.option.user",
+                            true
+                        ),
+
+                        OptionData(
+                            OptionType.INTEGER,
+                            "amount",
+                            "cakes.coinflip_bet.option.amount",
+                            true
+                        ),
+
+                        OptionData(
+                            OptionType.STRING,
+                            "side",
+                            "cakes.coinflip_bet.option.side",
+                            true
+                        ).choice("Heads", "heads")
+                            .choice("Tails", "tails")
+                    ),
+                    isSubCommand = true,
+                    baseName = this@command.name
                 )
             }
         )
