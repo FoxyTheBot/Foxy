@@ -8,7 +8,7 @@ class RateWaifuExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val user = context.getOption<User>("user")!!
 
-        val rating = (user.idLong % 100).toInt()
+        val rating = (0..10).random()
 
         context.reply {
             content = context.prettyResponse {
