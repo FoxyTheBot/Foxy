@@ -1,0 +1,19 @@
+package net.cakeyfox.foxy.command.vanilla.entertainment
+
+import net.cakeyfox.foxy.command.FoxyInteractionContext
+import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.dv8tion.jda.api.entities.User
+
+class RateWaifuExecutor : FoxyCommandExecutor() {
+    override suspend fun execute(context: FoxyInteractionContext) {
+        val user = context.getOption<User>("user")!!
+
+        val rating = (0..10).random()
+
+        context.reply {
+            content = context.prettyResponse {
+                content = context.locale["ratewaifu.success", "<@!${user.id}>", rating.toString()]
+            }
+        }
+    }
+}

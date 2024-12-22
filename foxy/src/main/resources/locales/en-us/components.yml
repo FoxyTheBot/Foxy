@@ -1,0 +1,8 @@
+kiss:
+  button: "Kiss back"
+
+hug:
+  button: "Hug back"
+
+bite:
+  button: "Bite back"

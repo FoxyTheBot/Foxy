@@ -1,0 +1,62 @@
+8mile:
+  wrongContentType: "I wish I could use this, but I can't. You need to send an audio file in MP3 or WAV format."
+  fileTooBig: "I’d love to see how this video turns out with that audio, but it’s too big... What if I open it and it explodes and takes me with it? :("
+
+cakes:
+  atm:
+    balance: "{0} has **{1}** Cakes"
+
+moda:
+  wrongContentType: "I wish I could use this, but I can't. You need to send an image in PNG or JPG format."
+  fileNotSupported: "I’d love to create the montage, but I can’t open this file type... :("
+  imageTooBig: "I’d love to create the montage, but the image is too big... What if I open it and it explodes and takes me with it? :("
+
+ask:
+  foxy:
+    noYes: "I can't answer that, but yes!"
+    yesNo: "I can't answer that, but no!"
+    noNo: "No, no!"
+    yesSure: "Definitely!"
+    noWay: "No way!"
+    noComment: "I'd rather not comment..."
+    noIdea: "I have no idea..."
+    cantAnswer: "I can't answer that..."
+    askLater: "Ask me later..."
+    maybe: "Maybe..."
+    no: "No"
+    yes: "Yes"
+
+aboutme:
+  success: "Your profile text has been updated to `{0}`!"
+  tooLong: "Your profile text cannot exceed 177 characters!"
+
+ban:
+  title: "You are **banned**"
+  description: "If you want to appeal your ban, you can submit a ban appeal. \n\nI recommend reading the [terms of use](https://foxybot.win/terms)."
+  field:
+    reason: "Reason for the ban:"
+    date: "Date of the ban:"
+  button: "Submit an appeal"
+
+profile:
+  marriedWith: "Married with:"
+  marriedSince: "since {0}"
+  view: "{0}'s profile"
+
+kiss:
+  description: " :heart: **{0} kissed {1}!**"
+
+bite:
+  description: " :rage: **{0} bit {1}!**"
+
+hug:
+  description: " :hugging: **{0} hugged {1}!**"
+
+dance:
+  description: "{0} **is dancing**"
+
+coinflipbet:
+  proposal: "**{0}**, **{1}** quer fazer uma aposta de {2} Cakes! Ele(a) aposta que a moeda irá cair em **{3}**. Você aceita a aposta?"
+  betResult: "Deu **{0}**! {1} ganhou a aposta e ganhou {2} Cakes! Pago por {3} hihihi"
+  heads: "cara"
+  tails: "coroa"

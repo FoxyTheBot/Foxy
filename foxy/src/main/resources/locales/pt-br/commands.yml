@@ -1,0 +1,78 @@
+8mile:
+  wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar um áudio do tipo MP3 ou WAV"
+  fileTooBig: "Eu até queria ver como ficaria o vídeo com esse áudio, mas ele é muito grande... E se eu abrir ele e ele explodir e me levar junto? :("
+
+cakes:
+  atm:
+    balance: "{0} possui **{1}** Cakes"
+
+moda:
+  wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar uma imagem do tipo PNG ou JPG"
+  fileNotSupported: "Eu queria fazer a montagem, mas não consigo abrir esse tipo de arquivo... :("
+  imageTooBig: "Eu até queria fazer a montagem, mas a imagem é muito grande... E se eu abrir ela e ela explodir e me levar junto? :("
+
+ask:
+  foxy:
+    noYes: "Não sei responder isso, mas sim!"
+    yesNo: "Não sei responder isso, mas não!"
+    noNo: "Não, não!"
+    yesSure: "Com certeza!"
+    noWay: "De jeito nenhum!"
+    noComment: "Prefiro não comentar..."
+    noIdea: "Não faço ideia..."
+    cantAnswer: "Não posso responder isso..."
+    askLater: "Pergunte mais tarde..."
+    maybe: "Talvez..."
+    no: "Não"
+    yes: "Sim"
+
+aboutme:
+  success: "O texto do seu perfil foi alterado para `{0}`!"
+  tooLong: "O texto do seu perfil não pode ter mais de 177 caracteres!"
+
+ban:
+  title: "Você está **banido(a)**"
+  description: "Se você quiser fazer um apelo de ban você pode fazer um apelo de ban \n\n Recomendo você ler os [termos de uso](https://foxybot.win/terms)"
+  field:
+    reason: "Motivo do banimento:"
+    date: "Data do banimento:"
+  button: "Fazer um apelo"
+
+profile:
+  marriedWith: "Casado(a) com:"
+  marriedSince: "Desde {0}"
+  view: "Perfil de {0}"
+
+kiss:
+  description: ":heart: **{0} beijou {1}!**"
+
+bite:
+  description: " :rage: **{0} mordeu {1}!**"
+
+hug:
+  description: " :hugging: **{0} abraçou {1}!**"
+
+dance:
+  description: "{0} **está dançando**"
+
+help:
+  description: "Olá {0}, eu sou a Foxy, um multiuso para o seu servidor! Eu tenho muitas funcionalidades, como economia, diversão, utilitários e muito mais!"
+  field:
+    addMe: "{0} Gostou das minhas funcionalidades? Me adicione no seu servidor!"
+    addMeValue: "Me adicione clicando aqui"
+    support: "{0} Precisa de ajuda? Entre no meu servidor de suporte!"
+    terms: "{0} Leia os termos de uso para evitar problemas"
+    website: "{0} Meu website onde você pode me adicionar e ver mais informações"
+
+daily:
+  embed:
+    title: "Recompensa diária"
+    description: "Pegue sua recompensa diária! Você pode pegar sua recompensa diária a cada 24 horas!\n\n**Aviso:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!"
+    redeemDaily: "Pegar recompensa"
+    buyMore: "Quero mais Cakes!"
+
+coinflipbet:
+  proposal: "**{0}**, **{1}** quer fazer uma aposta de {2} Cakes! Ele(a) aposta que a moeda irá cair em **{3}**. Você aceita a aposta?"
+  betResult: "Deu **{0}**! {1} ganhou a aposta e ganhou {2} Cakes! Pago por {3} hihihi"
+  heads: "cara"
+  tails: "coroa"

@@ -1,0 +1,298 @@
+commands:
+  onlyUserCanInteractWithThisComponent: "Hey! What are you doing? You can't do that! You're not {0}!"
+  command:
+    daily:
+      name: "daily"
+      description: "[Economy] Claim your daily cakes"
+
+    fun:
+      name: "fun"
+      description: "Fun commands to enjoy with your friends"
+      eminem:
+        name: "eminem"
+        description: "[Video] Generates a video with a scene from the movie 8 Mile and custom audio"
+        8mile:
+          name: "8mile"
+          description: "[Video] Generates a video with a scene from the movie 8 Mile and custom audio"
+      8mile:
+        name: "8mile"
+        options:
+          video_or_audio:
+            name: "video_or_audio"
+            description: "The audio or video to be used in the clip"
+
+      antes_que_vire_moda:
+        name: "antes_que_vire_moda"
+        description: "[Image] A meme montage: 'Before it becomes a trend, I'm already a fan of:'"
+        options:
+          image:
+            name: "image"
+            description: "The image to be used in the meme"
+
+      windows_error:
+        name: "windows_error"
+        description: "[Image] Generates a Windows error meme"
+        options:
+          message:
+            name: "text"
+            description: "The text to be displayed on the meme"
+
+      girlfriend:
+        name: "girlfriend"
+        description: "[Social] That's great, but check out my girlfriend!"
+        options:
+          user:
+            name: "user"
+            description: "The user whose girlfriend you want to show"
+
+      nao_somos_iguais:
+        name: "we_are_not_the_same"
+        description: "[Image] Montage of the meme 'We are not the same, but we are similar'"
+        options:
+          first_image:
+            name: "first_image"
+            description: "The first image to be used in the meme"
+          second_image:
+            name: "second_image"
+            description: "The second image to be used in the meme"
+          text:
+            name: "text"
+            description: "The text to be displayed on the meme"
+
+      laranjo:
+        name: "laranjo"
+        description: "[Image] Generates a Laranjo meme"
+        options:
+          text:
+            name: "text"
+            description: "The text to be displayed on the meme"
+
+      stonks:
+        name: "stonks"
+        description: "[Image] Generates a stonks meme"
+        options:
+          text:
+            name: "text"
+            description: "The text to be displayed on the meme"
+
+      not_stonks:
+        name: "not_stonks"
+        description: "[Image] Generates a not stonks meme"
+        options:
+          text:
+            name: "text"
+            description: "The text to be displayed on the meme"
+
+    fate:
+      name: "fate"
+      description: "[Fun] Discover your destiny with someone"
+      options:
+        user:
+          name: "user"
+          description: "The user whose destiny you want to discover"
+
+    cancel:
+      name: "cancelar"
+      description: "[Diversão] Cancele uma pessoa que fez algo errado"
+      someone:
+        name: "alguém"
+        description: "[Diversão] Cancele uma pessoa que fez algo errado"
+      options:
+        reason:
+          name: "motivo"
+          description: "O motivo do porque você quer cancelar esse usuário"
+        user:
+          name: "usuário"
+          description: "O usuário que você deseja cancelar"
+
+    ratewaifu:
+      name: "avaliar_waifu"
+      description: "[Diversão] Avalie a sua waifu"
+      rate:
+        name: "avaliar"
+        description: "[Diversão] Avalie a sua waifu"
+      options:
+        user:
+          name: "usuário"
+          description: "O usuário que você deseja avaliar"
+
+    ask:
+      name: "ask"
+      description: "[Fun] Commands related to questions and answers"
+      foxy:
+        name: "foxy"
+        description: "[Fun] Ask a question to Foxy"
+        options:
+          question:
+            name: "question"
+            description: "The question to be asked to Foxy"
+
+    cakes:
+      name: "cakes"
+      description: "Commands related to Foxy's economy"
+      atm:
+        name: "atm"
+        description: "[Economy] Check your cake balance"
+        options:
+          user:
+            name: "user"
+            description: "Check the cake balance of another user"
+
+      pay:
+        name: "pay"
+        description: "[Economy] Pay someone"
+        options:
+          user:
+            name: "user"
+            description: "The user you want to pay"
+          amount:
+            name: "amount"
+            description: "The amount of cakes you want to pay"
+
+      coinflipbet:
+        name: "coinflipbet"
+        description: "[Economia] Aposte em cara ou coroa"
+        options:
+          amount:
+            name: "quantidade"
+            description: "A quantidade de cakes que você deseja apostar"
+          side:
+            name: "lado"
+            description: "O lado que você deseja apostar"
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja desafiar"
+
+    foxy:
+      name: "foxy"
+      description: "[Utilities] Commands related to the bot"
+      ping:
+        name: "ping"
+        description: "[Utilities] Check the bot's latency"
+
+    aboutme:
+      name: "aboutme"
+      description: "[Social] Commands related to your profile"
+      change:
+        name: "change"
+        description: "[Social] Change the text of your profile"
+        options:
+          text:
+            name: "text"
+            description: "The text to be displayed on your profile"
+
+    profile:
+      name: "profile"
+      description: "[Social] View your lovely profile or someone else's"
+      view:
+        name: "view"
+        description: "[Social] View your lovely profile or someone else's"
+      options:
+        user:
+          name: "user"
+          description: "The user whose profile you want to view"
+
+    actions:
+      name: "actions"
+      description: "Action commands to have fun with your friends"
+      kiss:
+        name: "kiss"
+        description: "[Fun] Kiss someone"
+        options:
+          user:
+            name: "user"
+            description: "The user you want to kiss"
+
+      bite:
+        name: "bite"
+        description: "[Fun] Bite someone"
+        options:
+          user:
+            name: "user"
+            description: "The user you want to bite"
+
+      dance:
+        name: "dance"
+        description: "[Fun] Show off your dance moves!"
+
+      hug:
+        name: "hug"
+        description: "[Fun] Hug someone"
+        options:
+          user:
+            name: "user"
+            description: "The user you want to hug"
+
+      laugh:
+        name: "laugh"
+        description: "[Fun] Show that you're a joyful person"
+
+      lick:
+        name: "lick"
+        description: "[Fun] Lick someone"
+        options:
+          user:
+            name: "user"
+            description: "The user you want to lick"
+
+      pat:
+        name: "pat"
+        description: "[Fun] Pat someone"
+        options:
+          user:
+            name: "user"
+            description: "The user you want to pat"
+
+      slap:
+        name: "slap"
+        description: "[Fun] Slap someone"
+        options:
+          user:
+            name: "user"
+            description: "The user you want to slap"
+
+      smile:
+        name: "smile"
+        description: "[Fun] Show that you're a joyful person"
+
+      tickles:
+        name: "tickles"
+        description: "[Fun] Tickle someone"
+        options:
+          user:
+            name: "user"
+            description: "The user you want to tickle"
+
+    help:
+      name: "help"
+      description: "[Utilities] View information about Foxy"
+
+    dbl:
+      name: "dbl"
+      description: "[Utilities] Vote for Foxy on top.gg"
+
+    top:
+      name: "top"
+      description: "[Economy] View the ranking of the richest users"
+      cakes:
+        name: "cakes"
+        description: "[Economy] View the ranking of the richest users"
+
+    language:
+      name: "language"
+      description: "[Utilities] Change the bot's language"
+
+    marry:
+      name: "marry"
+      description: "[Social] Marry someone"
+      propose:
+        name: "propose"
+        description: "[Social] Propose to someone"
+      options:
+        user:
+          name: "user"
+          description: "The user you want to propose to"
+
+    divorce:
+      name: "divorce"
+      description: "[Social] Divorce your partner"

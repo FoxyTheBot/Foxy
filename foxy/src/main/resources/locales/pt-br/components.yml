@@ -1,0 +1,12 @@
+kiss:
+  button: "Retribuir Beijo"
+
+hug:
+  button: "Retribuir Abraço"
+
+bite:
+  button: "Morder de volta"
+
+coinflipbet:
+  acceptButton: "Aceitar"
+  declineButton: "Recusar"
