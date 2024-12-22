@@ -1,5 +1,5 @@
 commands:
-  onlyUserCanInteractWithThisComponent: "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {0}!"
+  onlyUserCanInteractWithThisComponent: "Hey! What are you doing? You can't do that! You're not {0}!"
   command:
     daily:
       name: "daily"
@@ -31,73 +31,73 @@ commands:
 
       windows_error:
         name: "windows_error"
-        description: "[Imagem] Gera um meme de erro do Windows"
+        description: "[Image] Generates a Windows error meme"
         options:
           message:
-            name: "texto"
-            description: "O texto que será exibido no meme"
+            name: "text"
+            description: "The text to be displayed on the meme"
 
       girlfriend:
-        name: "namorada"
-        description: "[Social] Que legal, mas olha minha namorada!"
+        name: "girlfriend"
+        description: "[Social] That's great, but check out my girlfriend!"
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja exibir a namorada"
+            name: "user"
+            description: "The user whose girlfriend you want to show"
 
       nao_somos_iguais:
-        name: "nao_somos_iguais"
-        description: "[Imagem] Montagem do meme 'Não somos iguais, mas somos parecidos'"
+        name: "we_are_not_the_same"
+        description: "[Image] Montage of the meme 'We are not the same, but we are similar'"
         options:
           first_image:
-            name: "primeira_imagem"
-            description: "A primeira imagem que será usada no meme"
+            name: "first_image"
+            description: "The first image to be used in the meme"
           second_image:
-            name: "segunda_imagem"
-            description: "A segunda imagem que será usada no meme"
+            name: "second_image"
+            description: "The second image to be used in the meme"
           text:
-            name: "texto"
-            description: "O texto que será exibido no meme"
+            name: "text"
+            description: "The text to be displayed on the meme"
 
       laranjo:
         name: "laranjo"
-        description: "[Imagem] Gera um meme do Laranjo"
+        description: "[Image] Generates a Laranjo meme"
         options:
           text:
-            name: "texto"
-            description: "O texto que será exibido no meme"
+            name: "text"
+            description: "The text to be displayed on the meme"
 
       stonks:
         name: "stonks"
-        description: "[Imagem] Gera um meme de stonks"
+        description: "[Image] Generates a stonks meme"
         options:
           text:
-            name: "texto"
-            description: "O texto que será exibido no meme"
+            name: "text"
+            description: "The text to be displayed on the meme"
 
       not_stonks:
         name: "not_stonks"
-        description: "[Imagem] Gera um meme de not stonks"
+        description: "[Image] Generates a not stonks meme"
         options:
           text:
-            name: "texto"
-            description: "O texto que será exibido no meme"
+            name: "text"
+            description: "The text to be displayed on the meme"
 
     fate:
       name: "fate"
-      description: "[Diversão] Descubra o seu destino com uma pessoa"
+      description: "[Fun] Discover your destiny with someone"
       options:
         user:
-          name: "usuário"
-          description: "O usuário que você deseja descobrir o destino"
+          name: "user"
+          description: "The user whose destiny you want to discover"
 
     cancel:
-      name: "cancelar"
-      description: "[Diversão] Cancele uma pessoa que fez algo errado"
+      name: "cancel"
+      description: "[Fun] Cancel someone who did something wrong"
       options:
         reason:
-          name: "motivo"
-          description: "O motivo do porque você quer cancelar esse usuário"
+          name: "reason"
+          description: "The reason why you want to cancel this user"
 
     ratewaifu:
       name: "ratewaifu"
@@ -130,15 +130,15 @@ commands:
             description: "Check the cake balance of another user"
 
       pay:
-        name: "pagar"
-        description: "[Economia] Pague alguém"
+        name: "pay"
+        description: "[Economy] Pay someone"
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja pagar"
+            name: "user"
+            description: "The user you want to pay"
           amount:
-            name: "quantidade"
-            description: "A quantidade de cakes que você deseja pagar"
+            name: "amount"
+            description: "The amount of cakes you want to pay"
 
     foxy:
       name: "foxy"
@@ -170,79 +170,79 @@ commands:
           description: "The user whose profile you want to view"
 
     actions:
-      name: "ações"
-      description: "Comandos de ações para você se divertir com seus amigos"
+      name: "actions"
+      description: "Action commands to have fun with your friends"
       kiss:
-        name: "beijar"
-        description: "[Diversão] Beije alguém"
+        name: "kiss"
+        description: "[Fun] Kiss someone"
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja beijar"
+            name: "user"
+            description: "The user you want to kiss"
 
       bite:
-        name: "morder"
-        description: "[Diversão] Morda alguém"
+        name: "bite"
+        description: "[Fun] Bite someone"
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja morder"
+            name: "user"
+            description: "The user you want to bite"
 
       dance:
-        name: "dançar"
-        description: "[Diversão] Mostre seus passos de dança!"
+        name: "dance"
+        description: "[Fun] Show off your dance moves!"
 
       hug:
-        name: "abraçar"
-        description: "[Diversão] Abraçe alguém"
+        name: "hug"
+        description: "[Fun] Hug someone"
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja abraçar"
+            name: "user"
+            description: "The user you want to hug"
 
       laugh:
-        name: "rir"
-        description: "[Diversão] Mostre que você é uma pessoa alegre"
+        name: "laugh"
+        description: "[Fun] Show that you're a joyful person"
 
       lick:
-        name: "lamber"
-        description: "[Diversão] Lamba alguém"
+        name: "lick"
+        description: "[Fun] Lick someone"
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja lamber"
+            name: "user"
+            description: "The user you want to lick"
 
       pat:
-        name: "acariciar"
-        description: "[Diversão] Acaricie alguém"
+        name: "pat"
+        description: "[Fun] Pat someone"
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja acariciar"
+            name: "user"
+            description: "The user you want to pat"
 
       slap:
-        name: "tapa"
-        description: "[Diversão] Dê um tapa em alguém"
+        name: "slap"
+        description: "[Fun] Slap someone"
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja dar um tapa"
+            name: "user"
+            description: "The user you want to slap"
 
       smile:
-        name: "sorrir"
-        description: "[Diversão] Mostre que você é uma pessoa alegre"
+        name: "smile"
+        description: "[Fun] Show that you're a joyful person"
 
       tickles:
-        name: "cócegas"
-        description: "[Diversão] Faça cosquinhas em alguém"
+        name: "tickles"
+        description: "[Fun] Tickle someone"
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja fazer cosquinhas"
+            name: "user"
+            description: "The user you want to tickle"
 
     help:
-      name: "ajuda"
-      description: "[Utilitários] Veja informações sobre a Foxy"
+      name: "help"
+      description: "[Utilities] View information about Foxy"
 
     dbl:
       name: "dbl"
@@ -250,26 +250,26 @@ commands:
 
     top:
       name: "top"
-      description: "[Economia] Veja o ranking dos usuários mais ricos"
+      description: "[Economy] View the ranking of the richest users"
       cakes:
         name: "cakes"
-        description: "[Economia] Veja o ranking dos usuários mais ricos"
+        description: "[Economy] View the ranking of the richest users"
 
     language:
-      name: "idioma"
-      description: "[Utilitários] Altera o idioma do bot"
+      name: "language"
+      description: "[Utilities] Change the bot's language"
 
     marry:
-      name: "casar"
-      description: "[Social] Case com alguém"
+      name: "marry"
+      description: "[Social] Marry someone"
       propose:
-        name: "pedir"
-        description: "[Social] Peça alguém em casamento"
+        name: "propose"
+        description: "[Social] Propose to someone"
       options:
         user:
-          name: "usuário"
-          description: "O usuário que você deseja pedir em casamento"
+          name: "user"
+          description: "The user you want to propose to"
 
     divorce:
-      name: "divorciar"
-      description: "[Social] Se divorcie do seu parceiro"
+      name: "divorce"
+      description: "[Social] Divorce your partner"

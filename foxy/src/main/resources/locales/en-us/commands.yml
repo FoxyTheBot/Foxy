@@ -1,42 +1,42 @@
 8mile:
-  wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar um áudio do tipo MP3 ou WAV"
-  fileTooBig: "Eu até queria ver como ficaria o vídeo com esse áudio, mas ele é muito grande... E se eu abrir ele e ele explodir e me levar junto? :("
+  wrongContentType: "I wish I could use this, but I can't. You need to send an audio file in MP3 or WAV format."
+  fileTooBig: "I’d love to see how this video turns out with that audio, but it’s too big... What if I open it and it explodes and takes me with it? :("
 
 cakes:
   atm:
-    balance: "{0} possui **{1}** Cakes"
+    balance: "{0} has **{1}** Cakes"
 
 moda:
-  wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar uma imagem do tipo PNG ou JPG"
-  fileNotSupported: "Eu queria fazer a montagem, mas não consigo abrir esse tipo de arquivo... :("
-  imageTooBig: "Eu até queria fazer a montagem, mas a imagem é muito grande... E se eu abrir ela e ela explodir e me levar junto? :("
+  wrongContentType: "I wish I could use this, but I can't. You need to send an image in PNG or JPG format."
+  fileNotSupported: "I’d love to create the montage, but I can’t open this file type... :("
+  imageTooBig: "I’d love to create the montage, but the image is too big... What if I open it and it explodes and takes me with it? :("
 
 ask:
   foxy:
-    noYes: "Não sei responder isso, mas sim!"
-    yesNo: "Não sei responder isso, mas não!"
-    noNo: "Não, não!"
-    yesSure: "Com certeza!"
-    noWay: "De jeito nenhum!"
-    noComment: "Prefiro não comentar..."
-    noIdea: "Não faço ideia..."
-    cantAnswer: "Não posso responder isso..."
-    askLater: "Pergunte mais tarde..."
-    maybe: "Talvez..."
-    no: "Não"
-    yes: "Sim"
+    noYes: "I can't answer that, but yes!"
+    yesNo: "I can't answer that, but no!"
+    noNo: "No, no!"
+    yesSure: "Definitely!"
+    noWay: "No way!"
+    noComment: "I'd rather not comment..."
+    noIdea: "I have no idea..."
+    cantAnswer: "I can't answer that..."
+    askLater: "Ask me later..."
+    maybe: "Maybe..."
+    no: "No"
+    yes: "Yes"
 
 aboutme:
-  success: "O texto do seu perfil foi alterado para `{0}`!"
-  tooLong: "O texto do seu perfil não pode ter mais de 177 caracteres!"
+  success: "Your profile text has been updated to `{0}`!"
+  tooLong: "Your profile text cannot exceed 177 characters!"
 
 ban:
-  title: "Você está **banido(a)**"
-  description: "Se você quiser fazer um apelo de ban você pode fazer um apelo de ban \n\n Recomendo você ler os [termos de uso](https://foxybot.win/terms)"
+  title: "You are **banned**"
+  description: "If you want to appeal your ban, you can submit a ban appeal. \n\nI recommend reading the [terms of use](https://foxybot.win/terms)."
   field:
-    reason: "Motivo do banimento:"
-    date: "Data do banimento:"
-  button: "Fazer um apelo"
+    reason: "Reason for the ban:"
+    date: "Date of the ban:"
+  button: "Submit an appeal"
 
 profile:
   marriedWith: "Married with:"
