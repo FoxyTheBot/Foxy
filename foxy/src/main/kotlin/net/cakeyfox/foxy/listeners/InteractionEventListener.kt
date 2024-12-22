@@ -54,10 +54,20 @@ class InteractionEventListener(
                             return@launch
                         }
 
-                        if (subCommand != null) {
-                            subCommand.executor?.execute(context)
-                        } else if (subCommandGroupName == null && subCommandName == null) {
-                            command.executor?.execute(context)
+                        try {
+                            if (subCommand != null) {
+                                subCommand.executor?.execute(context)
+                            } else if (subCommandGroupName == null && subCommandName == null) {
+                                command.executor?.execute(context)
+                            }
+                        } catch (e: Exception) {
+                            logger.error(e) { "An error occurred while executing command: ${event.fullCommandName}" }
+                            context.reply {
+                                content = context.prettyResponse {
+                                    emoteId = FoxyEmotes.FOXY_CRY
+                                    content = context.locale["commands.error", e.message.toString()]
+                                }
+                            }
                         }
 
                         logger.info { "${context.user.name} (${context.user.id}) executed ${event.fullCommandName} in ${context.guild?.name} (${context.guild?.id})" }

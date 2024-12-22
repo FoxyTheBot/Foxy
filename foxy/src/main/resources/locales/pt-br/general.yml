@@ -1,6 +1,7 @@
 commands:
   onlyUserCanInteractWithThisComponent: "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {0}!"
   componentExpired: "Pera, cadê? Eu não acho as informações da interação... Parece que expirou! Execute o comando novamente."
+  error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
 
   command:
     daily:
