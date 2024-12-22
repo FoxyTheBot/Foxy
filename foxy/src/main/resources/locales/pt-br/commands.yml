@@ -76,3 +76,15 @@ coinflipbet:
   betResult: "Deu **{0}**! {1} ganhou a aposta e ganhou {2} Cakes! Pago por {3} hihihi"
   heads: "cara"
   tails: "coroa"
+
+tickle:
+    description: " :joy: **{0} fez cócegas em {1}!**"
+
+laugh:
+    description: " :joy: **{0} está rindo!**"
+
+pay:
+  description: "Você deseja mesmo transferir {0} Cakes para {1}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!"
+
+marry:
+  proposal: "Ei, {0}, um passarinho me contou que **{1}** quer casar com você, você aceita?"
