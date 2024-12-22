@@ -9,6 +9,8 @@ import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
 class BiteExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
+        context.defer()
+
         val user = context.getOption<User>("user")!!
         val response = context.utils.getActionImage("bite")
 

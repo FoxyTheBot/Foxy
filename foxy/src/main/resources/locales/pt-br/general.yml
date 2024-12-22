@@ -94,14 +94,23 @@ commands:
     cancel:
       name: "cancelar"
       description: "[Diversão] Cancele uma pessoa que fez algo errado"
+      someone:
+        name: "alguém"
+        description: "[Diversão] Cancele uma pessoa que fez algo errado"
       options:
         reason:
           name: "motivo"
           description: "O motivo do porque você quer cancelar esse usuário"
+        user:
+          name: "usuário"
+          description: "O usuário que você deseja cancelar"
 
     ratewaifu:
       name: "avaliar_waifu"
       description: "[Diversão] Avalie a sua waifu"
+      rate:
+        name: "avaliar"
+        description: "[Diversão] Avalie a sua waifu"
       options:
         user:
           name: "usuário"

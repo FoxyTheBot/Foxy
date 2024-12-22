@@ -40,7 +40,7 @@ class ErrorExecutor : FoxyCommandExecutor() {
         }
 
         val image = errorImage.body<InputStream>()
-        val file = FileUpload.fromData(image.readBytes(), "error_${context.user.id}.png")
+        val file = FileUpload.fromData(image, "error_${context.user.id}.png")
 
         context.reply {
             files.plusAssign(file)

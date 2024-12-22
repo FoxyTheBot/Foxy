@@ -29,7 +29,7 @@ class GirlfriendMemeExecutor : FoxyCommandExecutor() {
         }
 
         val image = girlfriendImageBuffer.body<InputStream>()
-        val imageAsFile = FileUpload.fromData(image.readBytes(), "girlfriend_${context.user.id}.png")
+        val imageAsFile = FileUpload.fromData(image, "girlfriend_${context.user.id}.png")
 
         context.reply {
             files.plusAssign(imageAsFile)

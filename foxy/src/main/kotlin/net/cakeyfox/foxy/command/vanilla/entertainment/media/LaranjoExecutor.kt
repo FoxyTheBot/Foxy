@@ -28,7 +28,7 @@ class LaranjoExecutor : FoxyCommandExecutor() {
         }
 
         val image = laranjoImage.body<InputStream>()
-        val file = FileUpload.fromData(image.readBytes(), "laranjo_${context.user.id}.png")
+        val file = FileUpload.fromData(image, "laranjo_${context.user.id}.png")
 
         context.reply {
             files.plusAssign(file)

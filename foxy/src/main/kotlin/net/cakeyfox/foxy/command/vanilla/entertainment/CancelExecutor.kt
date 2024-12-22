@@ -6,6 +6,8 @@ import net.dv8tion.jda.api.entities.User
 
 class CancelExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
+        context.defer()
+
         val user = context.getOption<User>("user")!!
         val reason = context.getOption<String>("reason")!!
 

@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
 class KissExecutor: FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
+        context.defer()
         val user = context.getOption<User>("user")!!
         val response = context.instance.utils.getActionImage("kiss")
 

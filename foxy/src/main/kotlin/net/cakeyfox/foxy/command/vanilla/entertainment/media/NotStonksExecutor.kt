@@ -28,7 +28,7 @@ class NotStonksExecutor : FoxyCommandExecutor() {
         }
 
         val response = notStonksImage.body<InputStream>()
-        val imageAsFile = FileUpload.fromData(response.readBytes(), "not_stonks.png")
+        val imageAsFile = FileUpload.fromData(response, "not_stonks.png")
 
         context.reply {
             files.plusAssign(imageAsFile)

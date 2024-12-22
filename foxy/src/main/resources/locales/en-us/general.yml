@@ -92,20 +92,29 @@ commands:
           description: "The user whose destiny you want to discover"
 
     cancel:
-      name: "cancel"
-      description: "[Fun] Cancel someone who did something wrong"
+      name: "cancelar"
+      description: "[Diversão] Cancele uma pessoa que fez algo errado"
+      someone:
+        name: "alguém"
+        description: "[Diversão] Cancele uma pessoa que fez algo errado"
       options:
         reason:
-          name: "reason"
-          description: "The reason why you want to cancel this user"
+          name: "motivo"
+          description: "O motivo do porque você quer cancelar esse usuário"
+        user:
+          name: "usuário"
+          description: "O usuário que você deseja cancelar"
 
     ratewaifu:
-      name: "ratewaifu"
-      description: "[Fun] Rate your waifu"
+      name: "avaliar_waifu"
+      description: "[Diversão] Avalie a sua waifu"
+      rate:
+        name: "avaliar"
+        description: "[Diversão] Avalie a sua waifu"
       options:
         user:
-          name: "user"
-          description: "The user you want to rate"
+          name: "usuário"
+          description: "O usuário que você deseja avaliar"
 
     ask:
       name: "ask"

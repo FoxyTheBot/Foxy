@@ -10,15 +10,33 @@ class CancelCommand : FoxyCommandDeclarationWrapper {
         "cancel",
         "cancel.description"
     ) {
-        executor = CancelExecutor()
-        addOption(
-            OptionData(
-                OptionType.STRING,
-                "reason",
-                "cancel.reason.description",
-                true
-            ),
-            baseName = this@command.name
+        subCommand(
+            "someone",
+            "cancel.someone.description",
+            baseName = this@command.name,
+
+            block = {
+                executor = CancelExecutor()
+                addOptions(
+                    listOf(
+                        OptionData(
+                            OptionType.USER,
+                            "user",
+                            "cancel.someone.user.description",
+                            true
+                        ),
+
+                        OptionData(
+                            OptionType.STRING,
+                            "reason",
+                            "cancel.someone.reason.description",
+                            true
+                        )
+                    ),
+
+                    baseName = this@command.name
+                )
+            }
         )
     }
 }

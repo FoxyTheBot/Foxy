@@ -6,6 +6,7 @@ import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
 
 class SmileExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
+        context.defer()
         val response = context.instance.utils.getActionImage("smile")
 
         context.reply {

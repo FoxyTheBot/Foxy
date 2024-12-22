@@ -7,6 +7,8 @@ import net.dv8tion.jda.api.entities.User
 
 class PatExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
+        context.defer()
+
         val response = context.instance.utils.getActionImage("pat")
         val user = context.getOption<User>("user")!!
 

@@ -83,7 +83,7 @@ class AntesQueVireModaExecutor: FoxyCommandExecutor() {
         val image = response.body<InputStream>()
 
         context.reply {
-            files.plusAssign(FileUpload.fromData(image.readBytes(), "moda.png"))
+            files.plusAssign(FileUpload.fromData(image, "moda.png"))
         }
     }
 }

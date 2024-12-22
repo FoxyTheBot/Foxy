@@ -80,7 +80,7 @@ class EminemExecutor: FoxyCommandExecutor() {
         }
 
         val video = response.body<InputStream>()
-        val file = FileUpload.fromData(video.readBytes(), "8mile_${context.user.id}.mp4")
+        val file = FileUpload.fromData(video, "8mile_${context.user.id}.mp4")
 
         context.reply {
             files.plusAssign(file)

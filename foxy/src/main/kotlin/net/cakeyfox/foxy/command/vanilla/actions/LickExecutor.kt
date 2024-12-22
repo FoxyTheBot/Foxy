@@ -7,6 +7,8 @@ import net.dv8tion.jda.api.entities.User
 
 class LickExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
+        context.defer()
+
         val response = context.instance.utils.getActionImage("lick")
         val user = context.getOption<User>("user")!!
 
