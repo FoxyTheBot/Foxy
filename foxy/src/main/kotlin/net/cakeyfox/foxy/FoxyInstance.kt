@@ -1,5 +1,10 @@
 package net.cakeyfox.foxy
 
+import io.ktor.client.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.serialization.kotlinx.json.*
 import net.cakeyfox.artistry.ArtistryClient
 import net.cakeyfox.foxy.command.FoxyCommandManager
 import net.cakeyfox.foxy.command.component.FoxyComponentManager
@@ -9,7 +14,7 @@ import net.cakeyfox.foxy.listeners.MajorEventListener
 import net.cakeyfox.foxy.utils.ActivityUpdater
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
-import net.cakeyfox.foxy.utils.FoxyConfig
+import net.cakeyfox.foxy.utils.config.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyHelpers
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.database.MongoDBClient
@@ -26,7 +31,16 @@ class FoxyInstance(
     val utils = FoxyUtils(this)
     val helpers = FoxyHelpers(this)
     val interactionManager = FoxyComponentManager()
+    val environment = config.get("environment")
+    val httpClient = HttpClient(CIO) {
+        install(HttpTimeout) {
+            requestTimeoutMillis = 60_000
+        }
 
+        install(ContentNegotiation) {
+            json()
+        }
+    }
 
     // TODO: Implements sharding manager
 

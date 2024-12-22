@@ -22,16 +22,6 @@ import java.util.*
 class FoxyUtils(
     val instance: FoxyInstance
 ) {
-    val client = HttpClient(CIO) {
-        install(HttpTimeout) {
-            requestTimeoutMillis = 60_000
-        }
-
-        install(ContentNegotiation) {
-            json()
-        }
-    }
-
     fun convertISOToDiscordTimestamp(iso: Instant): String {
         val convertedDate = iso.epochSeconds.let { "<t:$it:f>" }
         return convertedDate
@@ -59,9 +49,9 @@ class FoxyUtils(
 
     suspend fun getActionImage(action: String): String {
         val response: ActionResponse = try {
-            client.get("https://nekos.life/api/v2/img/$action").body()
+            instance.httpClient.get("https://nekos.life/api/v2/img/$action").body()
         } catch (e: Exception) {
-            client.get("https://cakey.foxybot.win/roleplay/$action").body()
+            instance.httpClient.get("https://cakey.foxybot.win/roleplay/$action").body()
         }
 
         return response.url
