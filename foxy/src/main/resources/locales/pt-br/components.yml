@@ -10,3 +10,6 @@ bite:
 coinflipbet:
   acceptButton: "Aceitar"
   declineButton: "Recusar"
+
+ban:
+  appealButton: "Fazer um apelo"

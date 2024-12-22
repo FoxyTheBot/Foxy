@@ -8,6 +8,7 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.datetime.Instant
+import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.FoxyInteractionContext
@@ -89,6 +90,14 @@ class FoxyUtils(
                     inline = false
                 }
             }
+
+            actionRow(
+                instance.interactionManager.createLinkButton(
+                    context.jda.getEmojiById(FoxyEmotes.FOXY_CUPCAKE)!!,
+                    context.locale["ban.appealButton"],
+                    Constants.UNBAN_FORM_URL
+                )
+            )
         }
     }
 }
