@@ -1,6 +1,5 @@
 package net.cakeyfox.foxy.utils.analytics
 
-import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.http.content.*
