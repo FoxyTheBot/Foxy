@@ -1,7 +1,15 @@
 # TODO: Translate this to English
 antiraid:
   title: "Foxy Anti-Raid"
-  tooFastMessages: "O membro **{0}** ({1}) esté enviando muitas mensagens em um curto período de tempo."
+  tooFastMessages: "O membro **{0}** está enviando muitas mensagens em um curto período de tempo."
   membersJoiningTooQuickly: "Muitos membros estão entrando no servidor em um curto período de tempo."
   reasons:
     userIsSendingMessagesTooFast: "Anti-Raid: O membro está enviando muitas mensagens em um curto período de tempo."
+  fields:
+    user: "Usuário"
+    actionTaken: "Ação tomada"
+  actions:
+    NOTHING: "Nada foi feito"
+    BAN: "O membro foi banido"
+    KICK: "O membro foi expulso"
+    TIMEOUT: "O membro foi castigado"
