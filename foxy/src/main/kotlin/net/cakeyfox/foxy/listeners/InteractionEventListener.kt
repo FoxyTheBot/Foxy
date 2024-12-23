@@ -65,7 +65,7 @@ class InteractionEventListener(
                             context.reply {
                                 content = context.prettyResponse {
                                     emoteId = FoxyEmotes.FOXY_CRY
-                                    content = context.locale["commands.error", e.message.toString()]
+                                    content = context.locale["commands.error", e.toString()]
                                 }
                             }
                         }
