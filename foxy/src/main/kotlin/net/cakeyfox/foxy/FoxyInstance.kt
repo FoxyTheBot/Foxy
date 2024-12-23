@@ -45,7 +45,7 @@ class FoxyInstance(
     // TODO: Implements sharding manager
 
     init {
-        jda = JDABuilder.createDefault(config.get("discord_token"))
+        jda = JDABuilder.createDefault(config.get("token"))
             .setEnabledIntents(
                 GatewayIntent.GUILD_MEMBERS,
                 GatewayIntent.MESSAGE_CONTENT,
