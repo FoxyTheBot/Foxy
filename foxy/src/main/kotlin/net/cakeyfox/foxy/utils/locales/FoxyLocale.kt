@@ -19,7 +19,8 @@ class FoxyLocale(val locale: String) {
         val resourcePaths = listOf(
             "$PATH/$locale/general.yml",
             "$PATH/$locale/commands.yml",
-            "$PATH/$locale/components.yml"
+            "$PATH/$locale/components.yml",
+            "$PATH/$locale/modules.yml"
         )
 
         for (resourcePath in resourcePaths) {
