@@ -6,8 +6,11 @@ import dev.minn.jda.ktx.coroutines.await
 import dev.minn.jda.ktx.messages.InlineMessage
 import dev.minn.jda.ktx.messages.MessageCreateBuilder
 import mu.KotlinLogging
+import net.cakeyfox.common.Colors
+import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
+import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.interactions.DiscordLocale
@@ -47,14 +50,28 @@ class AntiRaidSystem(
             val joinThreshold = guildInfo.antiRaidModule.newUsersThreshold
             val channelId = guildInfo.antiRaidModule.alertChannel ?: return
             val userId = event.user.id
+            val action = guildInfo.antiRaidModule.actionForMassJoin
 
             timestamps.add(currentTimestamp)
 
             if ((timestamps?.size ?: 0) > joinThreshold) {
                 sendWarningToAChannel(userId, channelId) {
                     embed {
-                        title = locale["antiraid.title"]
+                        title = pretty(FoxyEmotes.FOXY_RAGE, locale["antiraid.title"])
                         description = locale["antiraid.membersJoiningTooQuickly"]
+                        color = Colors.RED
+                        thumbnail = event.user.avatarUrl
+                        field {
+                            name = pretty(FoxyEmotes.FOXY_DRINKING_COFFEE, locale["antiraid.fields.user"])
+                            value = "${event.user.name} (`${event.user.id}`)"
+                            inline = false
+                        }
+
+                        field {
+                            name = pretty(FoxyEmotes.FOXY_BAN, locale["antiraid.fields.actionTaken"])
+                            value = locale["antiraid.actions.$action"]
+                            inline = false
+                        }
                     }
                 }
 
@@ -93,6 +110,7 @@ class AntiRaidSystem(
             val timestamps = messageCache.get(userId) { mutableListOf() }
             val messageThreshold = guildInfo.antiRaidModule.messagesThreshold
             val channelId = guildInfo.antiRaidModule.alertChannel ?: return
+            val action = guildInfo.antiRaidModule.action
             if (event.guild.ownerId == event.author.id || !event.isFromGuild) return
 
             timestamps.add(currentTimestamp)
@@ -100,8 +118,21 @@ class AntiRaidSystem(
             if ((timestamps?.size ?: 0) > messageThreshold) {
                 sendWarningToAChannel(event.author.id, channelId) {
                     embed {
-                        title = locale["antiraid.title"]
-                        description = locale["antiraid.tooFastMessages", event.author.asMention]
+                        title = pretty(FoxyEmotes.FOXY_RAGE, locale["antiraid.title"])
+                        description = locale["antiraid.tooFastMessages", event.author.asMention, event.author.id]
+                        color = Colors.RED
+                        thumbnail = event.author.avatarUrl
+                        field {
+                            name = pretty(FoxyEmotes.FOXY_DRINKING_COFFEE, locale["antiraid.fields.user"])
+                            value = "${event.author.name} (`${event.author.id}`)"
+                            inline = false
+                        }
+
+                        field {
+                            name = pretty(FoxyEmotes.FOXY_BAN, locale["antiraid.fields.actionTaken"])
+                            value = locale["antiraid.actions.$action"]
+                            inline = false
+                        }
                     }
                 }
 
