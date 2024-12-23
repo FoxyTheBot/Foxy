@@ -9,6 +9,7 @@ data class Guild(
     val _id: String,
     val GuildJoinLeaveModule: WelcomerModule,
     val AutoRoleModule: AutoRoleModule,
+    val antiRaidModule: AntiRaidModule,
     val premiumKeys: List<Key> = emptyList(),
     val guildSettings: GuildSettings,
     val dashboardLogs: List<DashboardLog> = emptyList(),
@@ -25,6 +26,20 @@ data class WelcomerModule(
 )
 
 @Serializable
+data class AntiRaidModule(
+    val isEnabled: Boolean = false,
+    val handleJoin: Boolean = false,
+    val messagesThreshold: Int = 8,
+    val newUsersThreshold: Int = 5,
+    val alertChannel: String? = null,
+    val action: String = "TIMEOUT",
+    val timeoutDuration: Long = 10000,
+    val banDuration: Int = 7,
+    val whitelistedChannels: List<String> = emptyList(),
+    val whitelistedRoles: List<String> = emptyList(),
+)
+
+@Serializable
 data class AutoRoleModule(
     val isEnabled: Boolean = false,
     val roles: List<String> = emptyList(),
@@ -33,6 +48,7 @@ data class AutoRoleModule(
 @Serializable
 data class GuildSettings(
     val prefix: String = "f!",
+    val language: String = "pt-BR",
     val disabledCommands: List<String> = emptyList(),
     val blockedChannels: List<String> = emptyList(),
     val sendMessageIfChannelIsBlocked: Boolean = false,

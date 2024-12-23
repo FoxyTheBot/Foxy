@@ -11,8 +11,7 @@ class HelpExecutor : FoxyCommandExecutor() {
         context.reply {
             embed {
                 description = context.prettyResponse {
-                    FoxyEmotes.FOXY_WOW
-                    context.locale["help.description", context.user.asMention]
+                    content = context.locale["help.description", context.user.asMention]
                 }
                 color = Colors.FOXY_DEFAULT
                 thumbnail = context.instance.jda.selfUser.effectiveAvatarUrl
