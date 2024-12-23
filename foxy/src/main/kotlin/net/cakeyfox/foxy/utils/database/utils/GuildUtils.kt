@@ -132,8 +132,7 @@ class GuildUtils(
                 messagesThreshold = 8,
                 newUsersThreshold = 5,
                 alertChannel = null,
-                action = "TIMEOUT",
-                banDuration = 7
+                action = "TIMEOUT"
             )
 
             AutoRoleModule::class -> AutoRoleModule()
