@@ -30,6 +30,17 @@ class BiteExecutor : FoxyCommandExecutor() {
                 ) {
                     val secondResponse = context.utils.getActionImage("bite")
 
+                    it.edit {
+                        actionRow(
+                            context.instance.interactionManager.createButtonForUser(
+                                context.event.user,
+                                ButtonStyle.PRIMARY,
+                                context.jda.getEmojiById(FoxyEmotes.FOXY_HUG),
+                                context.locale["bite.button"]
+                            ) { }.asDisabled()
+                        )
+                    }
+
                     it.reply {
                         embed {
                             description = context.locale["bite.description", user.asMention, context.event.user.asMention]
@@ -45,6 +56,17 @@ class BiteExecutor : FoxyCommandExecutor() {
                                 context.locale["bite.button"]
                             ) {
                                 val thirdResponse = context.utils.getActionImage("bite")
+
+                                it.edit {
+                                    actionRow(
+                                        context.instance.interactionManager.createButtonForUser(
+                                            context.event.user,
+                                            ButtonStyle.PRIMARY,
+                                            context.jda.getEmojiById(FoxyEmotes.FOXY_HUG),
+                                            context.locale["bite.button"]
+                                        ) { }.asDisabled()
+                                    )
+                                }
 
                                 it.reply {
                                     embed {
