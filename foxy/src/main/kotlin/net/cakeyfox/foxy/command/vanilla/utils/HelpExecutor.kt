@@ -11,6 +11,7 @@ class HelpExecutor : FoxyCommandExecutor() {
         context.reply {
             embed {
                 description = context.prettyResponse {
+                    emoteId = FoxyEmotes.FoxyHowdy
                     content = context.locale["help.description", context.user.asMention]
                 }
                 color = Colors.FOXY_DEFAULT
