@@ -15,6 +15,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent
 import net.dv8tion.jda.api.interactions.DiscordLocale
+import net.dv8tion.jda.api.interactions.InteractionHook
 import net.dv8tion.jda.api.interactions.commands.OptionType
 
 class FoxyInteractionContext(
@@ -140,6 +141,6 @@ class FoxyInteractionContext(
             return "${response.unicodeEmote} **|** ${response.content}"
         }
 
-        return "<:emoji:${response.emoteId}> **|** ${response.content}"
+        return "<:emoji${response.emoteId}> **|** ${response.content}"
     }
 }

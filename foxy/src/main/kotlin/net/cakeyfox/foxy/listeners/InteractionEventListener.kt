@@ -64,7 +64,7 @@ class InteractionEventListener(
                             logger.error(e) { "An error occurred while executing command: ${event.fullCommandName}" }
                             context.reply {
                                 content = context.prettyResponse {
-                                    emoteId = FoxyEmotes.FOXY_CRY
+                                    emoteId = FoxyEmotes.FoxyCry
                                     content = context.locale["commands.error", e.toString()]
                                 }
                             }
@@ -92,7 +92,7 @@ class InteractionEventListener(
 
                         context.reply {
                             content = context.prettyResponse {
-                                emoteId = FoxyEmotes.FOXY_CRY
+                                emoteId = FoxyEmotes.FoxyCry
                                 content = context.locale["commands.componentExpired"]
                             }
                         }
@@ -105,7 +105,7 @@ class InteractionEventListener(
             }
         }
     }
-
+    
     override fun onStringSelectInteraction(event: StringSelectInteractionEvent) {
         coroutineScope.launch {
             val componentId = try {
@@ -129,7 +129,7 @@ class InteractionEventListener(
 
                     context.reply(true) {
                         context.prettyResponse {
-                            emoteId = FoxyEmotes.FOXY_CRY
+                            emoteId = FoxyEmotes.FoxyCry
                             content = context.locale["commands.componentExpired"]
                         }
                     }

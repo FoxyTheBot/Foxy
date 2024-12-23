@@ -27,7 +27,7 @@ class AntesQueVireModaExecutor: FoxyCommandExecutor() {
         if (attachment.width > 1920 || attachment.height > 1080) {
             context.reply {
                 content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
+                    emoteId = FoxyEmotes.FoxyCry
                     content = context.locale["moda.imageTooBig"]
                 }
             }
@@ -38,7 +38,7 @@ class AntesQueVireModaExecutor: FoxyCommandExecutor() {
         if (attachment.size > maxSize) {
             context.reply {
                 content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
+                    emoteId = FoxyEmotes.FoxyCry
                     content = context.locale["moda.fileTooBig"]
                 }
             }
@@ -49,7 +49,7 @@ class AntesQueVireModaExecutor: FoxyCommandExecutor() {
         if (attachment.contentType !in supportedTypes) {
             context.reply {
                 content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
+                    emoteId = FoxyEmotes.FoxyCry
                     content = context.locale["moda.wrongContentType"]
                 }
             }
@@ -64,7 +64,7 @@ class AntesQueVireModaExecutor: FoxyCommandExecutor() {
         if (response.status.value in 400..499) {
             context.reply {
                 content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
+                    emoteId = FoxyEmotes.FoxyCry
                     content = context.locale["moda.fileNotSupported"]
                 }
             }

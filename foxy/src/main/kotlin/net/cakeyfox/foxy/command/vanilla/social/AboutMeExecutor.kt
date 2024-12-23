@@ -11,7 +11,7 @@ class AboutMeExecutor : FoxyCommandExecutor() {
         if (text.length > 177) {
             context.reply {
                 content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
+                    emoteId = FoxyEmotes.FoxyCry
                     content = context.locale["aboutme.tooLong"]
                 }
                 return@reply
@@ -25,7 +25,7 @@ class AboutMeExecutor : FoxyCommandExecutor() {
 
         context.reply {
            content = context.prettyResponse {
-                emoteId = FoxyEmotes.FOXY_YAY
+                emoteId = FoxyEmotes.FoxyYay
                 content = context.locale["aboutme.success", text]
             }
         }

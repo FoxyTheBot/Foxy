@@ -13,7 +13,7 @@ class AtmExecutor: FoxyCommandExecutor() {
 
         context.reply {
             content = context.prettyResponse {
-                emoteId = FoxyEmotes.FOXY_DAILY
+                emoteId = FoxyEmotes.FoxyDaily
                 content = context.locale["cakes.atm.balance", user.asMention, formattedBalance]
             }
         }

@@ -25,7 +25,7 @@ class FateExecutor : FoxyCommandExecutor() {
         context.reply {
             content = context.prettyResponse {
                 content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_YAY
+                    emoteId = FoxyEmotes.FoxyYay
                     content = context.locale["fate.onAParallelUniverse", user.asMention, fate]
                 }
             }

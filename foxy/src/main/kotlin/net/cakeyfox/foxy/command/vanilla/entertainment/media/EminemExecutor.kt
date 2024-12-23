@@ -36,7 +36,7 @@ class EminemExecutor: FoxyCommandExecutor() {
         if (attachment.size > maxSize) {
             context.reply {
                 content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
+                    emoteId = FoxyEmotes.FoxyCry
                     content = context.locale["8mile.fileTooBig"]
                 }
             }
@@ -46,7 +46,7 @@ class EminemExecutor: FoxyCommandExecutor() {
         if (attachment.contentType !in supportedTypes) {
             context.reply {
                 content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
+                    emoteId = FoxyEmotes.FoxyCry
                     content = context.locale["8mile.wrongContentType"]
                 }
             }
@@ -63,7 +63,7 @@ class EminemExecutor: FoxyCommandExecutor() {
         if (response.status.value in 400..499) {
             context.reply {
                 content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
+                    emoteId = FoxyEmotes.FoxyCry
                     content = context.locale["8mile.fileNotSupported"]
                 }
             }

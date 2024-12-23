@@ -51,7 +51,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
 
         context.reply {
             content = context.prettyResponse {
-                emoteId = FoxyEmotes.FOXY_DAILY
+                emoteId = FoxyEmotes.FoxyDaily
                 content = context.locale[
                     "coinflipbet.proposal",
                     user.asMention,
@@ -65,7 +65,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
                 context.instance.interactionManager.createButtonForUser(
                     user,
                     ButtonStyle.SUCCESS,
-                    context.jda.getEmojiById(FoxyEmotes.FOXY_DAILY)!!,
+                    context.jda.getEmojiById(FoxyEmotes.FoxyDaily)!!,
                     context.locale["coinflipbet.acceptButton"]
                 ) {
                     val result = flipCoin()
@@ -87,7 +87,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
 
                         editAndDisableButtons(
                             it,
-                            FoxyEmotes.FOXY_DAILY,
+                            FoxyEmotes.FoxyDaily,
                             context.locale[
                                 "coinflipbet.betResult",
                                 context.locale["coinflipbet.$result"],
@@ -115,7 +115,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
 
                         editAndDisableButtons(
                             it,
-                            FoxyEmotes.FOXY_DAILY,
+                            FoxyEmotes.FoxyDaily,
                             context.locale[
                                 "coinflipbet.betResult",
                                 context.locale["coinflipbet.$result"],
@@ -131,12 +131,12 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
                 context.instance.interactionManager.createButtonForUser(
                     user,
                     ButtonStyle.DANGER,
-                    context.jda.getEmojiById(FoxyEmotes.FOXY_CRY)!!,
+                    context.jda.getEmojiById(FoxyEmotes.FoxyCry)!!,
                     context.locale["coinflipbet.declineButton"]
                 ) {
                     editAndDisableButtons(
                         it,
-                        FoxyEmotes.FOXY_CRY,
+                        FoxyEmotes.FoxyCry,
                         context.locale["coinflipbet.declined"]
                     )
                 }
@@ -160,14 +160,14 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
                    context.instance.interactionManager.createButtonForUser(
                        context.user,
                        ButtonStyle.SUCCESS,
-                       context.jda.getEmojiById(FoxyEmotes.FOXY_DAILY)!!,
+                       context.jda.getEmojiById(FoxyEmotes.FoxyDaily)!!,
                        context.locale["coinflipbet.acceptButton"]
                    ) { }.asDisabled(),
 
                    context.instance.interactionManager.createButtonForUser(
                        context.user,
                        ButtonStyle.DANGER,
-                       context.jda.getEmojiById(FoxyEmotes.FOXY_CRY)!!,
+                       context.jda.getEmojiById(FoxyEmotes.FoxyCry)!!,
                        context.locale["coinflipbet.declineButton"]
                    ) { }.asDisabled()
                )
@@ -178,14 +178,14 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
                    context.instance.interactionManager.createButtonForUser(
                        context.user,
                        ButtonStyle.SUCCESS,
-                       context.jda.getEmojiById(FoxyEmotes.FOXY_DAILY)!!,
+                       context.jda.getEmojiById(FoxyEmotes.FoxyDaily)!!,
                        context.locale["coinflipbet.acceptButton"]
                    ) { }.asDisabled(),
 
                    context.instance.interactionManager.createButtonForUser(
                        context.user,
                        ButtonStyle.DANGER,
-                       context.jda.getEmojiById(FoxyEmotes.FOXY_CRY)!!,
+                       context.jda.getEmojiById(FoxyEmotes.FoxyCry)!!,
                        context.locale["coinflipbet.declineButton"]
                    ) { }.asDisabled()
                )

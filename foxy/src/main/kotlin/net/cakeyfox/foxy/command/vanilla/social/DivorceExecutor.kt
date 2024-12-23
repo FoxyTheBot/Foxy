@@ -23,7 +23,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
 
         context.reply(true) {
             content = context.prettyResponse {
-                emoteId = FoxyEmotes.FOXY_CRY
+                emoteId = FoxyEmotes.FoxyCry
                 content = context.locale["divorce.confirm", "<@!${partnerAsUser.id}>"]
             }
 
@@ -31,7 +31,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
                 context.instance.interactionManager.createButtonForUser(
                     context.user,
                     ButtonStyle.DANGER,
-                    context.jda.getEmojiById(FoxyEmotes.FOXY_CRY),
+                    context.jda.getEmojiById(FoxyEmotes.FoxyCry),
                     context.locale["divorce.confirmButton"]
                 ) {
                     context.db.utils.user.updateUsers(
@@ -47,14 +47,14 @@ class DivorceExecutor : FoxyCommandExecutor() {
 
                     it.edit {
                         content = context.prettyResponse {
-                            emoteId = FoxyEmotes.FOXY_YAY
+                            emoteId = FoxyEmotes.FoxyYay
                             content = context.locale["divorce.success"]
 
                             actionRow(
                                 context.instance.interactionManager.createButtonForUser(
                                     context.user,
                                     ButtonStyle.PRIMARY,
-                                    context.jda.getEmojiById(FoxyEmotes.FOXY_CRY),
+                                    context.jda.getEmojiById(FoxyEmotes.FoxyCry),
                                     context.locale["divorce.confirmButton"]
                                 ) { }.asDisabled()
                             )

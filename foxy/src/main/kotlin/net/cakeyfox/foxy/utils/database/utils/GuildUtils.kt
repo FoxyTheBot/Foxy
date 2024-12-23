@@ -52,6 +52,7 @@ class GuildUtils(
                 isEnabled = false,
                 roles = emptyList(),
             ),
+            internalEconomy = InternalEconomy(),
             premiumKeys = emptyList(),
             guildSettings = GuildSettings(
                 prefix = "f!",
@@ -138,6 +139,7 @@ class GuildUtils(
             AutoRoleModule::class -> AutoRoleModule()
             WelcomerModule::class -> WelcomerModule()
             GuildSettings::class -> GuildSettings()
+            InternalEconomy::class -> InternalEconomy()
             else -> null
         }
     }

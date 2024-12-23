@@ -68,7 +68,7 @@ class FoxyComponentManager {
         if (targetUserId != it.user.idLong) {
             it.reply(true) {
                 content = it.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_RAGE
+                    emoteId = FoxyEmotes.FoxyRage
                     content = it.locale["commands.onlyUserCanInteractWithThisComponent", "<@${targetUserId}>"]
                 }
             }
@@ -135,7 +135,7 @@ class FoxyComponentManager {
         if (target.idLong != context.user.idLong) {
             context.reply(true) {
                 content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_RAGE
+                    emoteId = FoxyEmotes.FoxyRage
                     content = context.locale["commands.onlyUserCanInteractWithThisComponent", target.asMention, target.id]
                 }
             }

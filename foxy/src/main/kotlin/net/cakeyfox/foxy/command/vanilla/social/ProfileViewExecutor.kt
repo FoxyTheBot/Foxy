@@ -18,7 +18,7 @@ class ProfileViewExecutor: FoxyCommandExecutor() {
 
         context.reply {
             content = context.prettyResponse {
-                emoteId = FoxyEmotes.FOXY_DRINKING_COFFEE
+                emoteId = FoxyEmotes.FoxyDrinkingCoffee
                 content = context.locale["profile.view", user.asMention]
             }
             files.plusAssign(file)

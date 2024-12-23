@@ -25,7 +25,7 @@ class HugExecutor : FoxyCommandExecutor() {
                 context.instance.interactionManager.createButtonForUser(
                     user,
                     ButtonStyle.PRIMARY,
-                    context.jda.getEmojiById(FoxyEmotes.FOXY_HUG),
+                    context.jda.getEmojiById(FoxyEmotes.FoxyHug),
                     context.locale["hug.button"]
                 ) { it ->
                     val secondResponse = context.utils.getActionImage("hug")
@@ -41,7 +41,7 @@ class HugExecutor : FoxyCommandExecutor() {
                             context.instance.interactionManager.createButtonForUser(
                                 context.event.user,
                                 ButtonStyle.PRIMARY,
-                                context.jda.getEmojiById(FoxyEmotes.FOXY_HUG),
+                                context.jda.getEmojiById(FoxyEmotes.FoxyHug),
                                 context.locale["hug.button"]
                             ) {
                                 val thirdResponse = context.utils.getActionImage("hug")

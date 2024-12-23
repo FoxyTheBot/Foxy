@@ -25,7 +25,7 @@ class TopCakesExecutor : FoxyCommandExecutor() {
             embed {
                 title = context.locale["top.cakes.embed.title"]
                 color = Colors.FOXY_DEFAULT
-                thumbnail = context.jda.getEmojiById(FoxyEmotes.FOXY_DAILY)?.imageUrl
+                thumbnail = context.jda.getEmojiById(FoxyEmotes.FoxyDaily)?.imageUrl
                 topUsersWithName.forEach { (rank, username, cakes) ->
                     field {
                         name = "$rank. $username"

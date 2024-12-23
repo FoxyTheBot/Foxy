@@ -18,7 +18,7 @@ class ErrorExecutor : FoxyCommandExecutor() {
         if (text.length > 100) {
             context.reply {
                 content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
+                    emoteId = FoxyEmotes.FoxyCry
                     content = context.locale["error.tooLong"]
                 }
             }

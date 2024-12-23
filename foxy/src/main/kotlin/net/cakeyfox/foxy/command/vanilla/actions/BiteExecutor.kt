@@ -25,9 +25,9 @@ class BiteExecutor : FoxyCommandExecutor() {
                 context.instance.interactionManager.createButtonForUser(
                     user,
                     ButtonStyle.PRIMARY,
-                    context.jda.getEmojiById(FoxyEmotes.FOXY_HUG),
+                    context.jda.getEmojiById(FoxyEmotes.FoxyHug),
                     context.locale["bite.button"]
-                ) {
+                ) { it ->
                     val secondResponse = context.utils.getActionImage("bite")
 
                     it.edit {
@@ -35,7 +35,7 @@ class BiteExecutor : FoxyCommandExecutor() {
                             context.instance.interactionManager.createButtonForUser(
                                 context.event.user,
                                 ButtonStyle.PRIMARY,
-                                context.jda.getEmojiById(FoxyEmotes.FOXY_HUG),
+                                context.jda.getEmojiById(FoxyEmotes.FoxyHug),
                                 context.locale["bite.button"]
                             ) { }.asDisabled()
                         )
@@ -52,9 +52,9 @@ class BiteExecutor : FoxyCommandExecutor() {
                             context.instance.interactionManager.createButtonForUser(
                                 context.event.user,
                                 ButtonStyle.PRIMARY,
-                                context.jda.getEmojiById(FoxyEmotes.FOXY_HUG),
+                                context.jda.getEmojiById(FoxyEmotes.FoxyHug),
                                 context.locale["bite.button"]
-                            ) {
+                            ) { it ->
                                 val thirdResponse = context.utils.getActionImage("bite")
 
                                 it.edit {
@@ -62,7 +62,7 @@ class BiteExecutor : FoxyCommandExecutor() {
                                         context.instance.interactionManager.createButtonForUser(
                                             context.event.user,
                                             ButtonStyle.PRIMARY,
-                                            context.jda.getEmojiById(FoxyEmotes.FOXY_HUG),
+                                            context.jda.getEmojiById(FoxyEmotes.FoxyHug),
                                             context.locale["bite.button"]
                                         ) { }.asDisabled()
                                     )

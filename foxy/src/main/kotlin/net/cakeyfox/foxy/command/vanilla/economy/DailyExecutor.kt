@@ -9,7 +9,7 @@ class DailyExecutor: FoxyCommandExecutor() {
         context.reply(true) {
             embed {
                 title = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_DAILY
+                    emoteId = FoxyEmotes.FoxyDaily
                     content = context.locale["daily.embed.title"]
                 }
 
@@ -17,13 +17,13 @@ class DailyExecutor: FoxyCommandExecutor() {
 
                 actionRow(
                     context.instance.interactionManager.createLinkButton(
-                        context.jda.getEmojiById(FoxyEmotes.FOXY_PETPET)!!,
+                        context.jda.getEmojiById(FoxyEmotes.FoxyPetPet)!!,
                         context.locale["daily.embed.redeemDaily"],
                         "https://foxybot.win/br/daily"
                     ),
 
                     context.instance.interactionManager.createLinkButton(
-                        context.jda.getEmojiById(FoxyEmotes.FOXY_DAILY)!!,
+                        context.jda.getEmojiById(FoxyEmotes.FoxyDaily)!!,
                         context.locale["daily.embed.buyMore"],
                         "https://foxybot.win/br/premium"
                     )

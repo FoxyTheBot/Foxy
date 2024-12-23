@@ -59,18 +59,18 @@ class AntiRaidSystem(
             if ((timestamps?.size ?: 0) > joinThreshold) {
                 sendWarningToAChannel(userId, channelId) {
                     embed {
-                        title = pretty(FoxyEmotes.FOXY_RAGE, locale["antiraid.title"])
+                        title = pretty(FoxyEmotes.FoxyRage, locale["antiraid.title"])
                         description = locale["antiraid.membersJoiningTooQuickly"]
                         color = Colors.RED
                         thumbnail = event.user.avatarUrl
                         field {
-                            name = pretty(FoxyEmotes.FOXY_DRINKING_COFFEE, locale["antiraid.fields.user"])
+                            name = pretty(FoxyEmotes.FoxyDrinkingCoffee, locale["antiraid.fields.user"])
                             value = "${event.user.name} (`${event.user.id}`)"
                             inline = false
                         }
 
                         field {
-                            name = pretty(FoxyEmotes.FOXY_BAN, locale["antiraid.fields.actionTaken"])
+                            name = pretty(FoxyEmotes.FoxyBan, locale["antiraid.fields.actionTaken"])
                             value = locale["antiraid.actions.$action"]
                             inline = false
                         }
@@ -114,18 +114,18 @@ class AntiRaidSystem(
             if ((timestamps?.size ?: 0) > messageThreshold) {
                 sendWarningToAChannel(event.author.id, channelId) {
                     embed {
-                        title = pretty(FoxyEmotes.FOXY_RAGE, locale["antiraid.title"])
+                        title = pretty(FoxyEmotes.FoxyRage, locale["antiraid.title"])
                         description = locale["antiraid.tooFastMessages", event.author.asMention, event.author.id]
                         color = Colors.RED
                         thumbnail = event.author.avatarUrl
                         field {
-                            name = pretty(FoxyEmotes.FOXY_DRINKING_COFFEE, locale["antiraid.fields.user"])
+                            name = pretty(FoxyEmotes.FoxyDrinkingCoffee, locale["antiraid.fields.user"])
                             value = "${event.author.name} (`${event.author.id}`)"
                             inline = false
                         }
 
                         field {
-                            name = pretty(FoxyEmotes.FOXY_BAN, locale["antiraid.fields.actionTaken"])
+                            name = pretty(FoxyEmotes.FoxyBan, locale["antiraid.fields.actionTaken"])
                             value = locale["antiraid.actions.$action"]
                             inline = false
                         }

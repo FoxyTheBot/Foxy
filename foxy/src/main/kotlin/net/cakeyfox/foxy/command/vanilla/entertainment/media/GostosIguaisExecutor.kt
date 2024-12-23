@@ -49,7 +49,7 @@ class GostosIguaisExecutor : FoxyCommandExecutor() {
     private suspend fun handleInvalidAttachment(context: FoxyInteractionContext) {
         context.reply {
             content = context.prettyResponse {
-                emoteId = FoxyEmotes.FOXY_CRY
+                emoteId = FoxyEmotes.FoxyCry
                 content = context.locale["gostosiguais.invalidAttachment"]
             }
         }
@@ -58,7 +58,7 @@ class GostosIguaisExecutor : FoxyCommandExecutor() {
     private suspend fun replyNotImages(context: FoxyInteractionContext) {
         context.reply {
             content = context.prettyResponse {
-                emoteId = FoxyEmotes.FOXY_CRY
+                emoteId = FoxyEmotes.FoxyCry
                 content = context.locale["gostosiguais.notImages"]
             }
         }
@@ -67,7 +67,7 @@ class GostosIguaisExecutor : FoxyCommandExecutor() {
     private suspend fun replyFileTooBig(context: FoxyInteractionContext) {
         context.reply {
             content = context.prettyResponse {
-                emoteId = FoxyEmotes.FOXY_CRY
+                emoteId = FoxyEmotes.FoxyCry
                 content = context.locale["gostosiguais.fileTooBig"]
             }
         }

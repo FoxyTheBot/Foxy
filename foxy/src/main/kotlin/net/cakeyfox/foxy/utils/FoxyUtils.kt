@@ -58,7 +58,7 @@ class FoxyUtils(
         context.reply {
             embed {
                 title = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_RAGE
+                    emoteId = FoxyEmotes.FoxyRage
                     content = context.locale["ban.title"]
                 }
 
@@ -78,7 +78,7 @@ class FoxyUtils(
 
             actionRow(
                 instance.interactionManager.createLinkButton(
-                    context.jda.getEmojiById(FoxyEmotes.FOXY_CUPCAKE)!!,
+                    context.jda.getEmojiById(FoxyEmotes.FoxyCupcake)!!,
                     context.locale["ban.appealButton"],
                     Constants.UNBAN_FORM_URL
                 )

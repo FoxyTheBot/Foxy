@@ -17,7 +17,7 @@ class PayExecutor : FoxyCommandExecutor() {
 
         context.reply {
             content = context.prettyResponse {
-                emoteId = FoxyEmotes.FOXY_YAY
+                emoteId = FoxyEmotes.FoxyYay
                 content = context.locale["pay.confirm", amount.toString(), userToPay.asMention]
             }
 
@@ -25,7 +25,7 @@ class PayExecutor : FoxyCommandExecutor() {
                 context.instance.interactionManager.createButtonForUser(
                     context.user,
                     ButtonStyle.SUCCESS,
-                    context.jda.getEmojiById(FoxyEmotes.FOXY_DAILY)!!,
+                    context.jda.getEmojiById(FoxyEmotes.FoxyDaily)!!,
                     context.locale["pay.confirmButton"]
                 ) {
 
@@ -45,7 +45,7 @@ class PayExecutor : FoxyCommandExecutor() {
 
                     it.edit {
                         content = context.prettyResponse {
-                            emoteId = FoxyEmotes.FOXY_YAY
+                            emoteId = FoxyEmotes.FoxyYay
                             content = context.locale["pay.success", amount.toString(), userToPay.asMention]
                         }
 
@@ -53,7 +53,7 @@ class PayExecutor : FoxyCommandExecutor() {
                             context.instance.interactionManager.createButtonForUser(
                                 context.user,
                                 ButtonStyle.SECONDARY,
-                                context.jda.getEmojiById(FoxyEmotes.FOXY_DAILY)!!,
+                                context.jda.getEmojiById(FoxyEmotes.FoxyDaily)!!,
                                 context.locale["pay.confirmedButton"]
                             ) { }.asDisabled()
                         )
@@ -67,7 +67,7 @@ class PayExecutor : FoxyCommandExecutor() {
         if (amount <= 0) {
             context.reply {
                 content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
+                    emoteId = FoxyEmotes.FoxyCry
                     content = context.locale["error.invalidAmount"]
                 }
             }
@@ -78,7 +78,7 @@ class PayExecutor : FoxyCommandExecutor() {
         if (context.authorData.userCakes.balance < amount) {
             context.reply {
                 content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
+                    emoteId = FoxyEmotes.FoxyCry
                     content = context.locale["error.notEnoughCakes"]
                 }
             }
@@ -89,7 +89,7 @@ class PayExecutor : FoxyCommandExecutor() {
         if (userToPay.id == context.user.id) {
             context.reply {
                 content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
+                    emoteId = FoxyEmotes.FoxyCry
                     content = context.locale["pay.cantPayYourself"]
                 }
             }

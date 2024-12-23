@@ -24,7 +24,7 @@ class KissExecutor: FoxyCommandExecutor() {
                 context.instance.interactionManager.createButtonForUser(
                     user,
                     ButtonStyle.PRIMARY,
-                    context.jda.getEmojiById(FoxyEmotes.FOXY_HUG),
+                    context.jda.getEmojiById(FoxyEmotes.FoxyHug),
                     context.locale["kiss.button"],
                 ) { it ->
                     val secondResponse = context.instance.utils.getActionImage("kiss")
@@ -39,7 +39,7 @@ class KissExecutor: FoxyCommandExecutor() {
                             context.instance.interactionManager.createButtonForUser(
                                 context.event.user,
                                 ButtonStyle.PRIMARY,
-                                context.jda.getEmojiById(FoxyEmotes.FOXY_HUG),
+                                context.jda.getEmojiById(FoxyEmotes.FoxyHug),
                                 context.locale["kiss.button"],
                             ) {
                                 val thirdResponse = context.instance.utils.getActionImage("kiss")

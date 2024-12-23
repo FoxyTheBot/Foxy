@@ -22,7 +22,7 @@ class AskFoxyExecutor: FoxyCommandExecutor() {
 
         context.reply {
             content = context.prettyResponse {
-                emoteId = FoxyEmotes.FOXY_THINK
+                emoteId = FoxyEmotes.FoxyThink
                 content = getRandomAnswer(answers)
             }
         }

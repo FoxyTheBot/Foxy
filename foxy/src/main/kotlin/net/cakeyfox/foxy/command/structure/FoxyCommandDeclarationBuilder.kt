@@ -16,13 +16,13 @@ class FoxyCommandDeclarationBuilder(
     val isPrivate: Boolean,
     var executor: FoxyCommandExecutor? = null
 ) {
-    val subCommands = mutableListOf<FoxyCommandDeclarationBuilder>()
-    val subCommandGroups = mutableListOf<FoxyCommandGroupBuilder>()
-    val permissions = mutableListOf<Permission>()
-    val options = mutableListOf<OptionData>()
-    var baseName = ""
+    private val subCommands = mutableListOf<FoxyCommandDeclarationBuilder>()
+    private val subCommandGroups = mutableListOf<FoxyCommandGroupBuilder>()
+    private val permissions = mutableListOf<Permission>()
+    private val options = mutableListOf<OptionData>()
     private val enUsLocale = FoxyLocale("en-us")
     private val ptBrLocale = FoxyLocale("pt-br")
+    var baseName = ""
 
     fun subCommand(
         name: String,
