@@ -13,7 +13,7 @@ class CancelExecutor : FoxyCommandExecutor() {
 
         context.reply {
             content = context.prettyResponse {
-                content = context.locale["cancel.success", user.asMention, reason]
+                content = context.locale["cancel.userCancelledBecause", user.asMention, reason]
             }
         }
     }

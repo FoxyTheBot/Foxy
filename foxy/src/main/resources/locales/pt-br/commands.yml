@@ -83,8 +83,38 @@ tickle:
 laugh:
     description: " :joy: **{0} está rindo!**"
 
+lick:
+  description: " :joy: **{0} lambeu {1}**"
+
+pat:
+  description: " :heart: **{0} fez cafuné em {1}**"
+
+smile:
+  description: " :smiley: **{0} está sorrindo, pois é uma pessoa muito feliz!**"
+
+slap:
+  description: " :rage: **{0} deu um tabefe bem dado no(a) {1}**"
+
+cancel:
+  userCancelledBecause: "**{0} foi cancelado(a) por {1}**"
+
 pay:
   description: "Você deseja mesmo transferir {0} Cakes para {1}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!"
 
 marry:
   proposal: "Ei, {0}, um passarinho me contou que **{1}** quer casar com você, você aceita?"
+
+divorce:
+  notMarried: "Bobinho(a), você precisa se casar antes de se divorciar."
+
+fate:
+  onAParallelUniverse: "Em um universo pararelo você e {0} são **{1}**"
+
+dbl:
+  embed:
+    description: "Me ajude a crescer e ser um bot melhor votando em mim no <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nCada voto ajuda a me divulgar para outras pessoas na Discord Bot List <:catblush:768292358458179595>\n\nVocê pode estar votando a cada 12 horas, e de bônus, você ganha 1500 Cakes!\nQue tal você se juntar a todas as outras pessoas incríveis que votaram e que me ajudaram a crescer?\n\nPara votar é só [clicar aqui](https://top.gg/bot/1006520438865801296/vote)? :heart:"
+
+top:
+  cakes:
+    embed:
+      title: "Top Global de Cakes"
