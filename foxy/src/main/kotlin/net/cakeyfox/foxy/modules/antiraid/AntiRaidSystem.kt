@@ -11,6 +11,8 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.foxy.utils.pretty
+import net.dv8tion.jda.api.entities.Guild
+import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.interactions.DiscordLocale
@@ -31,7 +33,7 @@ class AntiRaidSystem(
 
     // Will store the alerts to avoid alert spam
     private val alertsSent: Cache<String, Unit> = Caffeine.newBuilder()
-        .expireAfterWrite(1, TimeUnit.HOURS)
+        .expireAfterWrite(5, TimeUnit.SECONDS)
         .build()
 
     private val parsedLocale = hashMapOf(
@@ -76,22 +78,14 @@ class AntiRaidSystem(
                 }
 
                 try {
-                    when (guildInfo.antiRaidModule.actionForMassJoin) {
-                        "BAN" -> {
-                            event.guild.ban(
-                                event.user,
-                                0,
-                                TimeUnit.SECONDS
-                                ).reason(locale["antiraid.reasons.userIsSendingMessagesTooFast"])
-                        }
-
-                        "KICK" -> {
-                            event.guild.kick(event.user)
-                                .reason(locale["antiraid.reasons.userIsSendingMessagesTooFast"])
-                        }
-
-                        // Foxy will only warn the server staff if no action was configured
-                        else -> return
+                    if (action != null) {
+                        takeAnAction(
+                            event.guild,
+                            event.user,
+                            action,
+                            locale["antiraid.reasons.userIsSendingMessagesTooFast"],
+                            guildInfo
+                        )
                     }
                 } catch (e: Exception) {
                     logger.warn { "Can't take an action for user $userId on ${event.guild.id}! Error: ${e.message}" }
@@ -112,6 +106,8 @@ class AntiRaidSystem(
             val channelId = guildInfo.antiRaidModule.alertChannel ?: return
             val action = guildInfo.antiRaidModule.action
             if (event.guild.ownerId == event.author.id || !event.isFromGuild) return
+            if (guildInfo.antiRaidModule.whitelistedChannels.contains(event.channel.id)) return
+            if (event.member?.roles?.any { guildInfo.antiRaidModule.whitelistedRoles.contains(it.id) } == true) return
 
             timestamps.add(currentTimestamp)
 
@@ -136,37 +132,17 @@ class AntiRaidSystem(
                     }
                 }
 
-               try {
-                   when (guildInfo.antiRaidModule.action) {
-                       "TIMEOUT" -> {
-                           event.guild.timeoutFor(
-                               event.author,
-                               guildInfo.antiRaidModule.timeoutDuration,
-                               TimeUnit.MILLISECONDS
-                           ).queue()
-                       }
-
-                       "KICK" -> {
-                           event.guild.kick(event.author).reason(
-                               locale["antiraid.reasons.userIsSendingMessagesTooFast"]
-                           ).queue()
-                       }
-
-                       "BAN" -> {
-                           event.guild.ban(
-                               event.author,
-                               0,
-                               TimeUnit.SECONDS
-                           ).reason(
-                               locale["antiraid.reasons.userIsSendingMessagesTooFast"]
-                           ).queue()
-                       }
-
-                       else -> throw IllegalArgumentException("Invalid action type! Received ${guildInfo.antiRaidModule.action}")
-                   }
-               } catch (e: Exception) {
-                   logger.warn { "Can't take an action for user $userId on ${event.guild.id}! Error: ${e.message}" }
-               }
+                try {
+                    takeAnAction(
+                        event.guild,
+                        event.author,
+                        action,
+                        locale["antiraid.reasons.userIsSendingMessagesTooFast"],
+                        guildInfo
+                    )
+                } catch (e: Exception) {
+                    logger.warn { "Can't take an action for user $userId on ${event.guild.id}! Error: ${e.message}" }
+                }
             }
         }
     }
@@ -181,5 +157,37 @@ class AntiRaidSystem(
         }
 
         channel.sendMessage(msg.build()).await()
+    }
+
+    private fun takeAnAction(
+        guild: Guild,
+        user: User,
+        action: String,
+        message: String,
+        guildInfo: net.cakeyfox.serializable.database.data.Guild
+    ) {
+        when (action) {
+            "TIMEOUT" -> {
+                guild.timeoutFor(
+                    user,
+                    guildInfo.antiRaidModule.timeoutDuration,
+                    TimeUnit.MILLISECONDS
+                ).queue()
+            }
+
+            "KICK" -> {
+                guild.kick(user).reason(message).queue()
+            }
+
+            "BAN" -> {
+                guild.ban(
+                    user,
+                    0,
+                    TimeUnit.SECONDS
+                ).reason(message).queue()
+            }
+
+            else -> throw IllegalArgumentException("Invalid action type! Received $action")
+        }
     }
 }
