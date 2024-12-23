@@ -122,6 +122,18 @@ class ActionsCommand: FoxyCommandDeclarationWrapper {
         subCommand("tickles", "actions.tickles.description") {
             baseName = this@command.name
             executor = TickleExecutor()
+
+            addOption(
+                OptionData(
+                    OptionType.USER,
+                    "user",
+                    "actions.tickles.options.user",
+                    true
+                ),
+
+                isSubCommand = true,
+                baseName = this@command.name
+            )
         }
     }
 }

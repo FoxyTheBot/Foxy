@@ -18,12 +18,6 @@ class LaranjoExecutor : FoxyCommandExecutor() {
         })
 
         if (laranjoImage.status.value !in 200..299) {
-            context.reply {
-                content = context.prettyResponse {
-                    content = context.locale["laranjo.errorWhileGenerating"]
-                }
-            }
-
             throw IllegalArgumentException("Error while generating image! Received ${laranjoImage.status}")
         }
 

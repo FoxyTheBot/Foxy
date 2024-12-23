@@ -13,3 +13,11 @@ coinflipbet:
 
 ban:
   appealButton: "Fazer um apelo"
+
+marry:
+  acceptButton: "Aceitar pedido"
+  acceptedButton: "Pedido aceito"
+
+pay:
+  confirmButton: "Confirmar Transferência"
+  confirmedButton: "Transferência Realizada"

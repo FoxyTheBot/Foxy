@@ -18,12 +18,6 @@ class StonksExecutor : FoxyCommandExecutor() {
         })
 
         if (stonksImage.status.value !in 200..299) {
-            context.reply {
-                content = context.prettyResponse {
-                    content = context.locale["stonks.errorWhileGenerating"]
-                }
-            }
-
             throw IllegalArgumentException("Error while generating image! Received ${stonksImage.status}")
         }
 

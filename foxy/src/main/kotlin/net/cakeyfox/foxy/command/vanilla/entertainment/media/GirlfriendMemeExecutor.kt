@@ -19,12 +19,6 @@ class GirlfriendMemeExecutor : FoxyCommandExecutor() {
         })
 
         if (girlfriendImageBuffer.status.value !in 200..299) {
-            context.reply {
-                content = context.prettyResponse {
-                    content = context.locale["error.errorWhileGenerating"]
-                }
-            }
-
             throw IllegalArgumentException("Error while generating image! Received ${girlfriendImageBuffer.status}")
         }
 

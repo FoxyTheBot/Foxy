@@ -29,13 +29,6 @@ class ErrorExecutor : FoxyCommandExecutor() {
         })
 
         if (errorImage.status.value !in 200..299) {
-            context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
-                    content = context.locale["error.errorWhileGenerating"]
-                }
-            }
-
             throw IllegalArgumentException("Error while generating image! Received ${errorImage.status}")
         }
 

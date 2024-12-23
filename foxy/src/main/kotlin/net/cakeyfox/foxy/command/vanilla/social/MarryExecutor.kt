@@ -14,7 +14,7 @@ class MarryExecutor : FoxyCommandExecutor() {
         val user = context.getOption<User>("user")!!
 
         if (user.id == context.event.user.id) {
-            context.reply {
+            context.reply(true) {
                 content = context.prettyResponse {
                     emoteId = FoxyEmotes.FOXY_CRY
                     content = context.locale["marry.cantMarryYourself"]
@@ -25,7 +25,7 @@ class MarryExecutor : FoxyCommandExecutor() {
         }
 
         if (user.id == context.instance.jda.selfUser.id) {
-            context.reply {
+            context.reply(true) {
                 content = context.prettyResponse {
                     emoteId = FoxyEmotes.FOXY_CRY
                     content = context.locale["marry.cantMarryMe"]
@@ -38,7 +38,7 @@ class MarryExecutor : FoxyCommandExecutor() {
         val userData = context.db.utils.user.getDiscordUser(user.id)
 
         if (userData.marryStatus.marriedWith != null) {
-            context.reply {
+            context.reply(true) {
                 content = context.prettyResponse {
                     emoteId = FoxyEmotes.FOXY_CRY
                     content = context.locale["marry.userAlreadyMarried"]
@@ -62,7 +62,7 @@ class MarryExecutor : FoxyCommandExecutor() {
         context.reply {
             content = context.prettyResponse {
                 unicodeEmote = FoxyEmotes.RING
-                content = context.locale["marry.proposal", user.asMention]
+                content = context.locale["marry.proposal", user.asMention, context.user.asMention]
             }
 
             actionRow(
@@ -70,7 +70,7 @@ class MarryExecutor : FoxyCommandExecutor() {
                     user,
                     ButtonStyle.SUCCESS,
                     context.jda.getEmojiById(FoxyEmotes.FOXY_CUPCAKE)!!,
-                    context.locale["marry.accept"],
+                    context.locale["marry.acceptButton"],
                 ) {
                     context.db.utils.user.updateUser(
                         context.event.user.id,

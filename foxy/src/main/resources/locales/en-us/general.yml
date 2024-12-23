@@ -87,11 +87,14 @@ commands:
 
     fate:
       name: "fate"
-      description: "[Fun] Discover your destiny with someone"
-      options:
-        user:
-          name: "user"
-          description: "The user whose destiny you want to discover"
+      description: "[Diversão] Descubra o seu destino com uma pessoa"
+      with_user:
+        name: "com_alguém"
+        description: "[Diversão] Descubra o seu destino com uma pessoa"
+        options:
+          user:
+            name: "usuário"
+            description: "O usuário que você quer descobrir o seu destino"
 
     cancel:
       name: "cancelar"

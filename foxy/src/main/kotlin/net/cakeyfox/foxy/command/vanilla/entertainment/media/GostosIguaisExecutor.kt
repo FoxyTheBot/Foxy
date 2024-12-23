@@ -35,13 +35,6 @@ class GostosIguaisExecutor : FoxyCommandExecutor() {
         })
 
         if (image.status.value !in 200..299) {
-            context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
-                    content = context.locale["gostosiguais.errorWhileGenerating"]
-                }
-            }
-
             throw IllegalArgumentException("Error while generating image! Received ${image.status}")
         }
 

@@ -46,7 +46,7 @@ class PayExecutor : FoxyCommandExecutor() {
                     it.edit {
                         content = context.prettyResponse {
                             emoteId = FoxyEmotes.FOXY_YAY
-                            content = context.locale["pay.success"]
+                            content = context.locale["pay.success", amount.toString(), userToPay.asMention]
                         }
 
                         actionRow(

@@ -45,7 +45,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
                         )
                     )
 
-                    it.reply {
+                    it.edit {
                         content = context.prettyResponse {
                             emoteId = FoxyEmotes.FOXY_YAY
                             content = context.locale["divorce.success"]

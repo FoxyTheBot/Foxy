@@ -67,16 +67,9 @@ class EminemExecutor: FoxyCommandExecutor() {
                     content = context.locale["8mile.fileNotSupported"]
                 }
             }
-            throw IllegalArgumentException("Unsupported image! Status code: ${response.status}")
+            return
         } else if (response.status.value !in 200..299) {
-            context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
-                    content = context.locale["8mile.unexpectedError", response.status.toString()]
-                }
-            }
-
-            throw IllegalArgumentException("Error processing image! Status code: ${response.status}")
+            throw IllegalArgumentException("Error processing video! Status code: ${response.status}")
         }
 
         val video = response.body<InputStream>()

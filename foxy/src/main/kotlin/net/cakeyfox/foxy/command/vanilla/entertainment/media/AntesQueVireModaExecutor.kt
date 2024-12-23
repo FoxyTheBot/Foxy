@@ -68,15 +68,8 @@ class AntesQueVireModaExecutor: FoxyCommandExecutor() {
                     content = context.locale["moda.fileNotSupported"]
                 }
             }
-            throw IllegalArgumentException("Unsupported image! Status code: ${response.status}")
+            return
         } else if (response.status.value !in 200..299) {
-            context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FOXY_CRY
-                    content = context.locale["moda.unexpectedError", response.status.toString()]
-                }
-            }
-
             throw IllegalArgumentException("Error processing image! Status code: ${response.status}")
         }
 

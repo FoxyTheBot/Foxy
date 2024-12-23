@@ -11,7 +11,7 @@ class LaughExecutor : FoxyCommandExecutor() {
 
         context.reply {
             embed {
-                description = context.locale["laugh.description"]
+                description = context.locale["laugh.description", context.user.asMention]
                 color = Colors.PURPLE
                 image = response
             }

@@ -11,7 +11,7 @@ class SmileExecutor : FoxyCommandExecutor() {
 
         context.reply {
             embed {
-                description = context.locale["smile.description"]
+                description = context.locale["smile.description", context.user.asMention]
                 color = Colors.BLUE
                 image = response
             }
