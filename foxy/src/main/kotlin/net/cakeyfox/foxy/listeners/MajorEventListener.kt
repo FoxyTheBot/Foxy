@@ -38,7 +38,9 @@ class MajorEventListener(private val instance: FoxyInstance): ListenerAdapter() 
         coroutineScope.launch {
             if (event.author.isBot) return@launch
 
-            antiRaid.handleMessage(event)
+            if (event.isFromGuild) {
+                antiRaid.handleMessage(event)
+            }
         }
     }
 }
