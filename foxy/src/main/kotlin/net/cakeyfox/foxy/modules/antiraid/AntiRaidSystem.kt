@@ -7,8 +7,10 @@ import dev.minn.jda.ktx.messages.InlineMessage
 import dev.minn.jda.ktx.messages.MessageCreateBuilder
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
+import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.interactions.DiscordLocale
 import java.util.concurrent.TimeUnit
 import kotlin.reflect.jvm.jvmName
 
@@ -29,24 +31,53 @@ class AntiRaidSystem(
         .expireAfterWrite(1, TimeUnit.HOURS)
         .build()
 
+    private val parsedLocale = hashMapOf(
+        DiscordLocale.PORTUGUESE_BRAZILIAN to "pt-br",
+        DiscordLocale.ENGLISH_US to "en-us",
+    )
+
     suspend fun handleJoin(event: GuildMemberJoinEvent) {
         val guildId = event.guild.idLong
         val guildInfo = instance.mongoClient.utils.guild.getGuild(event.guild.id)
+        val locale = FoxyLocale(parsedLocale[event.guild.locale] ?: "en-us")
 
         if (guildInfo.antiRaidModule.handleJoin) {
             val currentTimestamp = System.currentTimeMillis()
             val timestamps = joinCache.get(guildId.toString()) { mutableListOf() }
             val joinThreshold = guildInfo.antiRaidModule.newUsersThreshold
             val channelId = guildInfo.antiRaidModule.alertChannel ?: return
+            val userId = event.user.id
 
             timestamps.add(currentTimestamp)
 
             if ((timestamps?.size ?: 0) > joinThreshold) {
-                sendWarningToAChannel(event.user.id, channelId) {
+                sendWarningToAChannel(userId, channelId) {
                     embed {
-                        title = "Sistema Anti-Raid"
-                        description = "Muitos membros estão entrando no servidor em um curto período de tempo."
+                        title = locale["antiraid.title"]
+                        description = locale["antiraid.membersJoiningTooQuickly"]
                     }
+                }
+
+                try {
+                    when (guildInfo.antiRaidModule.actionForMassJoin) {
+                        "BAN" -> {
+                            event.guild.ban(
+                                event.user,
+                                0,
+                                TimeUnit.SECONDS
+                                ).reason(locale["antiraid.reasons.userIsSendingMessagesTooFast"])
+                        }
+
+                        "KICK" -> {
+                            event.guild.kick(event.user)
+                                .reason(locale["antiraid.reasons.userIsSendingMessagesTooFast"])
+                        }
+
+                        // Foxy will only warn the server staff if no action was configured
+                        else -> return
+                    }
+                } catch (e: Exception) {
+                    logger.warn { "Can't take an action for user $userId on ${event.guild.id}! Error: ${e.message}" }
                 }
             }
         }
@@ -55,6 +86,7 @@ class AntiRaidSystem(
     suspend fun handleMessage(event: MessageReceivedEvent) {
         val guildInfo = instance.mongoClient.utils.guild.getGuild(event.guild.id)
         val userId = "${event.guild.id}:${event.author.id}"
+        val locale = FoxyLocale(parsedLocale[event.guild.locale] ?: "en-us")
 
         if (guildInfo.antiRaidModule.isEnabled) {
             val currentTimestamp = System.currentTimeMillis()
@@ -68,8 +100,8 @@ class AntiRaidSystem(
             if ((timestamps?.size ?: 0) > messageThreshold) {
                 sendWarningToAChannel(event.author.id, channelId) {
                     embed {
-                        title = "Sistema Anti-Raid"
-                        description = "O usuário ${event.author.asMention} está enviando mensagens muito rápido."
+                        title = locale["antiraid.title"]
+                        description = locale["antiraid.tooFastMessages", event.author.asMention]
                     }
                 }
 
@@ -84,15 +116,19 @@ class AntiRaidSystem(
                        }
 
                        "KICK" -> {
-                           event.guild.kick(event.author).reason("Anti-Raid: Mensagens em excesso").queue()
+                           event.guild.kick(event.author).reason(
+                               locale["antiraid.reasons.userIsSendingMessagesTooFast"]
+                           ).queue()
                        }
 
                        "BAN" -> {
                            event.guild.ban(
                                event.author,
-                               guildInfo.antiRaidModule.banDuration,
-                               TimeUnit.DAYS
-                           ).reason("Anti-Raid: Mensagens em excesso").queue()
+                               0,
+                               TimeUnit.SECONDS
+                           ).reason(
+                               locale["antiraid.reasons.userIsSendingMessagesTooFast"]
+                           ).queue()
                        }
 
                        else -> throw IllegalArgumentException("Invalid action type! Received ${guildInfo.antiRaidModule.action}")

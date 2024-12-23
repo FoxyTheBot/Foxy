@@ -33,8 +33,8 @@ data class AntiRaidModule(
     val newUsersThreshold: Int = 5,
     val alertChannel: String? = null,
     val action: String = "TIMEOUT",
+    val actionForMassJoin: String? = null,
     val timeoutDuration: Long = 10000,
-    val banDuration: Int = 7,
     val whitelistedChannels: List<String> = emptyList(),
     val whitelistedRoles: List<String> = emptyList(),
 )
