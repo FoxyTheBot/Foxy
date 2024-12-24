@@ -63,7 +63,7 @@ class InteractionEventListener(
                             }
                         } catch (e: Exception) {
                             logger.error(e) { "An error occurred while executing command: ${event.fullCommandName}" }
-                            context.reply {
+                            context.reply(true) {
                                 content = pretty(
                                     FoxyEmotes.FoxyCry,
                                     context.locale["commands.error", e.toString()]
@@ -91,7 +91,7 @@ class InteractionEventListener(
                             event.button.asDisabled()
                         ).await()
 
-                        context.reply {
+                        context.reply(true) {
                             content = pretty(
                                 FoxyEmotes.FoxyCry,
                                 context.locale["commands.componentExpired"]
