@@ -18,6 +18,7 @@ import java.awt.geom.Ellipse2D
 import java.awt.image.BufferedImage
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import java.net.URL
 import java.time.Instant
 import javax.imageio.ImageIO
@@ -162,19 +163,24 @@ class FoxyProfileRender(
     }
 
     private fun drawText(text: String, fontSize: Int, fontFamily: String, color: Color, position: Position) {
-        graphics.font = getSystemFont(fontFamily, fontSize) ?: Font("SansSerif", Font.PLAIN, fontSize)
+        graphics.font = getFont(fontFamily, fontSize) ?: Font("SansSerif", Font.PLAIN, fontSize)
         graphics.color = color
         graphics.drawString(text, (width / position.x), (height / position.y))
     }
 
-    private fun getSystemFont(fontName: String, fontSize: Int): Font? {
-        val ge = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment()
-        val availableFonts = ge.availableFontFamilyNames
+    private fun getFont(fontName: String, fontSize: Int): Font? {
+        val fontStream: InputStream? = this::class.java.classLoader.getResourceAsStream("profile/fonts/$fontName.ttf")
 
-        return if (fontName in availableFonts) {
-            Font(fontName, Font.PLAIN, fontSize)
+        return if (fontStream != null) {
+            try {
+                val customFont = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(Font.PLAIN, fontSize.toFloat())
+                customFont
+            } catch (e: Exception) {
+                logger.error(e) { "Can't load font $fontName" }
+                null
+            }
         } else {
-            logger.warn { "Font '$fontName' not found. Falling back to default." }
+            logger.error { "$fontName font not found on resources path" }
             null
         }
     }
