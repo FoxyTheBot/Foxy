@@ -6,6 +6,7 @@ import kotlinx.serialization.json.put
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.utils.FileUpload
 import java.io.InputStream
@@ -26,10 +27,10 @@ class AntesQueVireModaExecutor: FoxyCommandExecutor() {
 
         if (attachment.width > 1920 || attachment.height > 1080) {
             context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyCry
-                    content = context.locale["moda.imageTooBig"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["moda.imageTooBig"]
+                )
             }
 
             return
@@ -37,10 +38,10 @@ class AntesQueVireModaExecutor: FoxyCommandExecutor() {
 
         if (attachment.size > maxSize) {
             context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyCry
-                    content = context.locale["moda.fileTooBig"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["moda.fileTooBig"]
+                )
             }
 
             return
@@ -48,10 +49,10 @@ class AntesQueVireModaExecutor: FoxyCommandExecutor() {
 
         if (attachment.contentType !in supportedTypes) {
             context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyCry
-                    content = context.locale["moda.wrongContentType"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["moda.wrongContentType"]
+                )
             }
 
             return
@@ -63,10 +64,10 @@ class AntesQueVireModaExecutor: FoxyCommandExecutor() {
 
         if (response.status.value in 400..499) {
             context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyCry
-                    content = context.locale["moda.fileNotSupported"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["moda.fileNotSupported"]
+                )
             }
             return
         } else if (response.status.value !in 200..299) {

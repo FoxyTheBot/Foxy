@@ -5,17 +5,20 @@ import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.utils.pretty
 
 class HelpExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.reply {
             embed {
-                description = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyHowdy
-                    content = context.locale["help.description", context.user.asMention]
-                }
+                description = pretty(
+                    FoxyEmotes.FoxyHowdy,
+                    context.locale["help.description", context.user.asMention]
+                )
+
                 color = Colors.FOXY_DEFAULT
                 thumbnail = context.instance.jda.selfUser.effectiveAvatarUrl
+
                 // Yes, using "emoji" instead of emoji name will work
                 field {
                     name = context.locale["help.field.addMe", "<:emoji:${FoxyEmotes.FoxyWow}>"]

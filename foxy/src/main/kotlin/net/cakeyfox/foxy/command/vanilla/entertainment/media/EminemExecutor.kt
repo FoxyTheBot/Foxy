@@ -6,6 +6,7 @@ import kotlinx.serialization.json.put
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.utils.FileUpload
 import java.io.InputStream
@@ -35,20 +36,20 @@ class EminemExecutor: FoxyCommandExecutor() {
 
         if (attachment.size > maxSize) {
             context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyCry
-                    content = context.locale["8mile.fileTooBig"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["8mile.fileTooBig"]
+                )
             }
             return
         }
 
         if (attachment.contentType !in supportedTypes) {
             context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyCry
-                    content = context.locale["8mile.wrongContentType"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["8mile.wrongContentType"]
+                )
             }
             return
         }
@@ -62,10 +63,10 @@ class EminemExecutor: FoxyCommandExecutor() {
 
         if (response.status.value in 400..499) {
             context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyCry
-                    content = context.locale["8mile.fileNotSupported"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["8mile.fileNotSupported"]
+                )
             }
             return
         } else if (response.status.value !in 200..299) {

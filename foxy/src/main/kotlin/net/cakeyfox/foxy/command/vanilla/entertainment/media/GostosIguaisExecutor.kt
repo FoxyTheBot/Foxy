@@ -6,6 +6,7 @@ import kotlinx.serialization.json.put
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.utils.FileUpload
 import java.io.InputStream
@@ -48,28 +49,28 @@ class GostosIguaisExecutor : FoxyCommandExecutor() {
 
     private suspend fun handleInvalidAttachment(context: FoxyInteractionContext) {
         context.reply {
-            content = context.prettyResponse {
-                emoteId = FoxyEmotes.FoxyCry
-                content = context.locale["gostosiguais.invalidAttachment"]
-            }
+            content = pretty(
+                FoxyEmotes.FoxyCry,
+                context.locale["gostosiguais.invalidAttachment"]
+            )
         }
     }
 
     private suspend fun replyNotImages(context: FoxyInteractionContext) {
         context.reply {
-            content = context.prettyResponse {
-                emoteId = FoxyEmotes.FoxyCry
-                content = context.locale["gostosiguais.notImages"]
-            }
+            content = pretty(
+                FoxyEmotes.FoxyCry,
+                context.locale["gostosiguais.notImages"]
+            )
         }
     }
 
     private suspend fun replyFileTooBig(context: FoxyInteractionContext) {
         context.reply {
-            content = context.prettyResponse {
-                emoteId = FoxyEmotes.FoxyCry
-                content = context.locale["gostosiguais.fileTooBig"]
-            }
+            content = pretty(
+                FoxyEmotes.FoxyCry,
+                context.locale["gostosiguais.fileTooBig"]
+            )
         }
     }
 }

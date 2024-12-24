@@ -3,6 +3,7 @@ package net.cakeyfox.foxy.command.vanilla.economy
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
@@ -16,10 +17,10 @@ class PayExecutor : FoxyCommandExecutor() {
         val userToPayData = context.db.utils.user.getDiscordUser(userToPay.id)
 
         context.reply {
-            content = context.prettyResponse {
-                emoteId = FoxyEmotes.FoxyYay
-                content = context.locale["pay.confirm", amount.toString(), userToPay.asMention]
-            }
+            content = pretty(
+                FoxyEmotes.FoxyYay,
+                context.locale["pay.confirm", amount.toString(), userToPay.asMention]
+            )
 
             actionRow(
                 context.instance.interactionManager.createButtonForUser(
@@ -44,10 +45,10 @@ class PayExecutor : FoxyCommandExecutor() {
                     )
 
                     it.edit {
-                        content = context.prettyResponse {
-                            emoteId = FoxyEmotes.FoxyYay
-                            content = context.locale["pay.success", amount.toString(), userToPay.asMention]
-                        }
+                        content = pretty(
+                            FoxyEmotes.FoxyCry,
+                            context.locale["pay.success", amount.toString(), userToPay.asMention]
+                        )
 
                         actionRow(
                             context.instance.interactionManager.createButtonForUser(
@@ -66,10 +67,10 @@ class PayExecutor : FoxyCommandExecutor() {
     private suspend fun isAbleToPay(context: FoxyInteractionContext, userToPay: User, amount: Long) {
         if (amount <= 0) {
             context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyCry
-                    content = context.locale["error.invalidAmount"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["error.invalidAmount"]
+                )
             }
 
             return
@@ -77,10 +78,10 @@ class PayExecutor : FoxyCommandExecutor() {
 
         if (context.authorData.userCakes.balance < amount) {
             context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyCry
-                    content = context.locale["error.notEnoughCakes"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["error.notEnoughCakes"]
+                )
             }
 
             return
@@ -88,10 +89,10 @@ class PayExecutor : FoxyCommandExecutor() {
 
         if (userToPay.id == context.user.id) {
             context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyCry
-                    content = context.locale["pay.cantPayYourself"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["pay.cantPayYourself"]
+                )
             }
 
             return

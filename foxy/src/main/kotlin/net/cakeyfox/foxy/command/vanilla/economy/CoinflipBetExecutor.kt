@@ -3,6 +3,7 @@ package net.cakeyfox.foxy.command.vanilla.economy
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
@@ -15,51 +16,55 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
 
         if (amount < 1) {
             context.reply {
-                content = context.prettyResponse {
-                    content = context.locale["coinflipbet.amountTooLow"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["coinflipbet.amountTooLow"]
+                )
             }
             return
         }
 
         if (amount > userToBet.userCakes.balance) {
             context.reply {
-                content = context.prettyResponse {
-                    content = context.locale["coinflipbet.userHasNotEnoughBalance"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["coinflipbet.userHasNotEnoughBalance"]
+                )
             }
             return
         }
 
         if (amount > context.authorData.userCakes.balance) {
             context.reply {
-                content = context.prettyResponse {
-                    content = context.locale["coinflipbet.youHaveNotEnoughBalance"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["coinflipbet.youHaveNotEnoughBalance"]
+                )
             }
             return
         }
 
         if (user.id == context.user.id) {
             context.reply {
-                content = context.prettyResponse {
-                    content = context.locale["coinflipbet.cannotBetAgainstYourself"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["coinflipbet.cannotBetAgainstYourself"]
+                )
             }
             return
         }
 
         context.reply {
-            content = context.prettyResponse {
-                emoteId = FoxyEmotes.FoxyDaily
-                content = context.locale[
+            content = pretty(
+                FoxyEmotes.FoxyDaily,
+                context.locale[
                     "coinflipbet.proposal",
                     user.asMention,
                     context.user.asMention,
                     amount.toString(),
                     context.locale["coinflipbet.$side"]
                 ]
-            }
+            )
 
             actionRow(
                 context.instance.interactionManager.createButtonForUser(
@@ -148,57 +153,62 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
         return if (Math.random() < 0.5) "heads" else "tails"
     }
 
-    private suspend fun editAndDisableButtons(context: FoxyInteractionContext, emoji: String, message: String, isFollowUp: Boolean = false) {
-       if (!isFollowUp) {
-           context.edit {
-               content = context.prettyResponse {
-                   emoteId = emoji
-                   content = message
-               }
+    private suspend fun editAndDisableButtons(
+        context: FoxyInteractionContext,
+        emoji: String,
+        message: String,
+        isFollowUp: Boolean = false
+    ) {
+        if (!isFollowUp) {
+            context.edit {
+                content = pretty(
+                    emoji,
+                    message
+                )
 
-               actionRow(
-                   context.instance.interactionManager.createButtonForUser(
-                       context.user,
-                       ButtonStyle.SUCCESS,
-                       FoxyEmotes.FoxyDaily,
-                       context.locale["coinflipbet.acceptButton"]
-                   ) { }.asDisabled(),
+                actionRow(
+                    context.instance.interactionManager.createButtonForUser(
+                        context.user,
+                        ButtonStyle.SUCCESS,
+                        FoxyEmotes.FoxyDaily,
+                        context.locale["coinflipbet.acceptButton"]
+                    ) { }.asDisabled(),
 
-                   context.instance.interactionManager.createButtonForUser(
-                       context.user,
-                       ButtonStyle.DANGER,
-                       FoxyEmotes.FoxyCry,
-                       context.locale["coinflipbet.declineButton"]
-                   ) { }.asDisabled()
-               )
-           }
-       } else {
-           context.edit {
-               actionRow(
-                   context.instance.interactionManager.createButtonForUser(
-                       context.user,
-                       ButtonStyle.SUCCESS,
-                       FoxyEmotes.FoxyDaily,
-                       context.locale["coinflipbet.acceptButton"]
-                   ) { }.asDisabled(),
+                    context.instance.interactionManager.createButtonForUser(
+                        context.user,
+                        ButtonStyle.DANGER,
+                        FoxyEmotes.FoxyCry,
+                        context.locale["coinflipbet.declineButton"]
+                    ) { }.asDisabled()
+                )
+            }
+        } else {
+            context.edit {
+                actionRow(
+                    context.instance.interactionManager.createButtonForUser(
+                        context.user,
+                        ButtonStyle.SUCCESS,
+                        FoxyEmotes.FoxyDaily,
+                        context.locale["coinflipbet.acceptButton"]
+                    ) { }.asDisabled(),
 
-                   context.instance.interactionManager.createButtonForUser(
-                       context.user,
-                       ButtonStyle.DANGER,
-                       FoxyEmotes.FoxyCry,
-                       context.locale["coinflipbet.declineButton"]
-                   ) { }.asDisabled()
-               )
-           }
+                    context.instance.interactionManager.createButtonForUser(
+                        context.user,
+                        ButtonStyle.DANGER,
+                        FoxyEmotes.FoxyCry,
+                        context.locale["coinflipbet.declineButton"]
+                    ) { }.asDisabled()
+                )
+            }
 
-           // Let's send a follow-up message with the result
+            // Let's send a follow-up message with the result
 
-              context.reply {
-                content = context.prettyResponse {
-                     emoteId = emoji
-                     content = message
-                }
-              }
-       }
+            context.reply {
+                content = pretty(
+                    emoji,
+                    message
+                )
+            }
+        }
     }
 }

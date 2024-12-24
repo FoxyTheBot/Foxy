@@ -1,7 +1,9 @@
 package net.cakeyfox.foxy.command.vanilla.entertainment
 
+import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.User
 
 class RateWaifuExecutor : FoxyCommandExecutor() {
@@ -11,9 +13,10 @@ class RateWaifuExecutor : FoxyCommandExecutor() {
         val rating = (0..10).random()
 
         context.reply {
-            content = context.prettyResponse {
-                content = context.locale["ratewaifu.success", "<@!${user.id}>", rating.toString()]
-            }
+            content = pretty(
+                FoxyEmotes.FoxyYay,
+                context.locale["ratewaifu.success", user.asMention, rating.toString()]
+            )
         }
     }
 }

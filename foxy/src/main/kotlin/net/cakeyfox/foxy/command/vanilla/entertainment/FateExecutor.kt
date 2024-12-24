@@ -3,6 +3,7 @@ package net.cakeyfox.foxy.command.vanilla.entertainment
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.User
 
 class FateExecutor : FoxyCommandExecutor() {
@@ -23,12 +24,10 @@ class FateExecutor : FoxyCommandExecutor() {
         val fate = fateList.random()
 
         context.reply {
-            content = context.prettyResponse {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyYay
-                    content = context.locale["fate.onAParallelUniverse", user.asMention, fate]
-                }
-            }
+            content = pretty(
+                FoxyEmotes.FoxyYay,
+                context.locale["fate.onAParallelUniverse", user.asMention, fate]
+            )
         }
     }
 }

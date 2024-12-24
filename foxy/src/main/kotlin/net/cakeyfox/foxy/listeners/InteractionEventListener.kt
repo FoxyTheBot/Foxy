@@ -7,6 +7,7 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.component.ComponentId
+import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
@@ -63,10 +64,10 @@ class InteractionEventListener(
                         } catch (e: Exception) {
                             logger.error(e) { "An error occurred while executing command: ${event.fullCommandName}" }
                             context.reply {
-                                content = context.prettyResponse {
-                                    emoteId = FoxyEmotes.FoxyCry
-                                    content = context.locale["commands.error", e.toString()]
-                                }
+                                content = pretty(
+                                    FoxyEmotes.FoxyCry,
+                                    context.locale["commands.error", e.toString()]
+                                )
                             }
                         }
 
@@ -91,10 +92,10 @@ class InteractionEventListener(
                         ).await()
 
                         context.reply {
-                            content = context.prettyResponse {
-                                emoteId = FoxyEmotes.FoxyCry
-                                content = context.locale["commands.componentExpired"]
-                            }
+                            content = pretty(
+                                FoxyEmotes.FoxyCry,
+                                context.locale["commands.componentExpired"]
+                            )
                         }
 
                         return@launch
@@ -128,10 +129,10 @@ class InteractionEventListener(
                     ).await()
 
                     context.reply(true) {
-                        context.prettyResponse {
-                            emoteId = FoxyEmotes.FoxyCry
-                            content = context.locale["commands.componentExpired"]
-                        }
+                        content = pretty(
+                            FoxyEmotes.FoxyCry,
+                            context.locale["commands.componentExpired"]
+                        )
                     }
 
                     return@launch

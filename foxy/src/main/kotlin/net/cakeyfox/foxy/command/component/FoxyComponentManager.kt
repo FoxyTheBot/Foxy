@@ -71,10 +71,10 @@ class FoxyComponentManager(
     ) {
         if (targetUserId != it.user.idLong) {
             it.reply(true) {
-                content = it.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyRage
-                    content = it.locale["commands.onlyUserCanInteractWithThisComponent", "<@${targetUserId}>"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyRage,
+                    it.locale["commands.onlyUserCanInteractWithThisComponent", "<@${targetUserId}>"]
+                )
             }
 
             return@button

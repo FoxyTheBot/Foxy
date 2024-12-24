@@ -3,6 +3,7 @@ package net.cakeyfox.foxy.command.vanilla.social
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.utils.pretty
 import net.cakeyfox.foxy.utils.profile.FoxyProfileRender
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.utils.FileUpload
@@ -17,10 +18,11 @@ class ProfileViewExecutor: FoxyCommandExecutor() {
         val file = FileUpload.fromData(profile.readBytes(), "profile.png")
 
         context.reply {
-            content = context.prettyResponse {
-                emoteId = FoxyEmotes.FoxyDrinkingCoffee
-                content = context.locale["profile.view", user.asMention]
-            }
+            content = pretty(
+                FoxyEmotes.FoxyDrinkingCoffee,
+                context.locale["profile.view", user.asMention]
+            )
+
             files.plusAssign(file)
         }
     }

@@ -57,10 +57,10 @@ class FoxyUtils(
 
         context.reply {
             embed {
-                title = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyRage
-                    content = context.locale["ban.title"]
-                }
+                title = pretty(
+                    FoxyEmotes.FoxyRage,
+                    context.locale["ban.title"]
+                )
 
                 description = context.locale["ban.description"]
                 field {

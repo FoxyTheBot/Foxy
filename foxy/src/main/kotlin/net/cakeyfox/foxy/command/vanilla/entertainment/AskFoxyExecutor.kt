@@ -3,6 +3,7 @@ package net.cakeyfox.foxy.command.vanilla.entertainment
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.utils.pretty
 
 class AskFoxyExecutor: FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
@@ -21,10 +22,10 @@ class AskFoxyExecutor: FoxyCommandExecutor() {
         )
 
         context.reply {
-            content = context.prettyResponse {
-                emoteId = FoxyEmotes.FoxyThink
-                content = getRandomAnswer(answers)
-            }
+            content = pretty(
+                FoxyEmotes.FoxyThink,
+                getRandomAnswer(answers)
+            )
         }
     }
 

@@ -1,7 +1,9 @@
 package net.cakeyfox.foxy.command.vanilla.entertainment
 
+import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.User
 
 class CancelExecutor : FoxyCommandExecutor() {
@@ -12,9 +14,10 @@ class CancelExecutor : FoxyCommandExecutor() {
         val reason = context.getOption<String>("reason")!!
 
         context.reply {
-            content = context.prettyResponse {
-                content = context.locale["cancel.userCancelledBecause", user.asMention, reason]
-            }
+            content = pretty(
+                FoxyEmotes.FoxyDrinkingCoffee,
+                context.locale["cancel.userCancelledBecause", user.asMention, reason]
+            )
         }
     }
 }
