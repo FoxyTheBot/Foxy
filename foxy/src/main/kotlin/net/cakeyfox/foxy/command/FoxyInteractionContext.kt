@@ -133,6 +133,7 @@ class FoxyInteractionContext(
         else -> throw IllegalStateException("Cannot defer this event type")
     }
 
+    @Deprecated("Use pretty instead (net.cakeyfox.foxy.utils.pretty)")
     fun prettyResponse(reply: ReplyBuilder.() -> Unit): String {
         val response = ReplyBuilder().apply(reply)
 
