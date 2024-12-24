@@ -192,6 +192,10 @@ class AntiRaidSystem(
                 }
             }
 
+            AntiRaidActions.DoNothing -> {
+                return
+            }
+
             else -> throw IllegalArgumentException("Invalid action type! Received $action")
         }
     }
