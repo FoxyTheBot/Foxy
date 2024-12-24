@@ -1,14 +1,13 @@
 package net.cakeyfox.foxy.utils.profile
 
+import com.github.benmanes.caffeine.cache.Cache
+import com.github.benmanes.caffeine.cache.Caffeine
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.command.FoxyInteractionContext
-import net.cakeyfox.serializable.database.data.Badge
-import net.cakeyfox.serializable.database.data.FoxyUser
-import net.cakeyfox.serializable.database.data.Layout
-import net.cakeyfox.serializable.database.data.Position
+import net.cakeyfox.serializable.database.data.*
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.entities.User
 import java.awt.Color
@@ -21,6 +20,7 @@ import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.net.URL
 import java.time.Instant
+import java.util.concurrent.TimeUnit
 import javax.imageio.ImageIO
 import kotlin.reflect.jvm.jvmName
 
@@ -33,17 +33,26 @@ class FoxyProfileRender(
     private var graphics: Graphics2D = image.createGraphics()
     private val logger = KotlinLogging.logger(this::class.jvmName)
 
+    companion object {
+        val backgroundCache: Cache<String, Background> = Caffeine.newBuilder()
+            .build()
+
+        val layoutCache: Cache<String, Layout> = Caffeine.newBuilder()
+            .build()
+
+        val badgeCache: Cache<String, List<Badge>> = Caffeine.newBuilder()
+            .build()
+    }
+
     init {
-        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
         graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB)
         graphics.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY)
     }
 
     suspend fun create(user: User): ByteArrayInputStream {
-
         val data = context.db.utils.user.getDiscordUser(user.id)
-        val layoutInfo = context.db.utils.profile.getLayout(data.userProfile.layout)
-        val backgroundInfo = context.db.utils.profile.getBackground(data.userProfile.background)
+        val layoutInfo = layoutCache.get(data.userProfile.layout) { context.db.utils.profile.getLayout(it) }!!
+        val backgroundInfo = backgroundCache.get(data.userProfile.background) { context.db.utils.profile.getBackground(it) }!!
         val userAboutMe = formatAboutMe(
             data.userProfile.aboutme ?: "",
             layoutInfo
@@ -59,6 +68,7 @@ class FoxyProfileRender(
         drawBadges(data, user, layoutInfo)
         drawDecoration(data, layoutInfo)
 
+        cleanUp()
         return withContext(Dispatchers.IO) {
             val outputStream = ByteArrayOutputStream()
             ImageIO.write(image, "png", outputStream)
@@ -77,9 +87,9 @@ class FoxyProfileRender(
     }
 
     private fun drawBackgroundAndLayout(background: BufferedImage, layout: BufferedImage) {
+        graphics.clearRect(0, 0, width, height)
         graphics.drawImage(background, 0, 0, width, height, null)
         graphics.drawImage(layout, 0, 0, width, height, null)
-        graphics.color = Color(116, 3, 123)
         graphics.drawRect(0, 0, width, height)
     }
 
@@ -199,7 +209,7 @@ class FoxyProfileRender(
     }
 
     private suspend fun drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
-        val defaultBadges = context.db.utils.profile.getBadges()
+        val defaultBadges = badgeCache.get("default") { context.db.utils.profile.getBadges() }!!
 
         val member = context.instance.helpers.getMemberById(user.id, Constants.SUPPORT_SERVER_ID)
 
@@ -300,5 +310,10 @@ class FoxyProfileRender(
         return withContext(Dispatchers.IO) {
             ImageIO.read(URL(url))
         }
+    }
+
+    private fun cleanUp() {
+        graphics.dispose()
+        image.flush()
     }
 }
