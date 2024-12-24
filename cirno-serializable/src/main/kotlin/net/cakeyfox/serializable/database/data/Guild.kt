@@ -40,13 +40,17 @@ data class InternalEconomy(
 
 @Serializable
 data class AntiRaidModule(
-    val isEnabled: Boolean = false,
-    val handleJoin: Boolean = false,
+    val handleMultipleMessages: Boolean = false,
+    val handleMultipleJoins: Boolean = false,
+    val handleMultipleChars: Boolean = false,
     val messagesThreshold: Int = 8,
     val newUsersThreshold: Int = 5,
+    val repeatedCharsThreshold: Int = 10,
+    val warnsThreshold: Int = 3,
     val alertChannel: String? = null,
-    val action: String = "TIMEOUT",
-    val actionForMassJoin: String? = null,
+    val actionForMassJoin: String = "NOTHING",
+    val actionForMassMessage: String = "TIMEOUT",
+    val actionForMassChars: String = "WARN",
     val timeoutDuration: Long = 10000,
     val whitelistedChannels: List<String> = emptyList(),
     val whitelistedRoles: List<String> = emptyList(),

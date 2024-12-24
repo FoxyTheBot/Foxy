@@ -45,9 +45,7 @@ class GuildUtils(
                 leaveMessage = null,
                 joinMessage = null,
             ),
-            antiRaidModule = AntiRaidModule(
-                isEnabled = false,
-            ),
+            antiRaidModule = AntiRaidModule(),
             AutoRoleModule = AutoRoleModule(
                 isEnabled = false,
                 roles = emptyList(),
@@ -128,14 +126,7 @@ class GuildUtils(
             Double::class -> 0.0
             Long::class -> 0L
             List::class -> emptyList<Any>()
-            AntiRaidModule::class -> AntiRaidModule(
-                isEnabled = false,
-                messagesThreshold = 8,
-                newUsersThreshold = 5,
-                alertChannel = null,
-                action = "TIMEOUT"
-            )
-
+            AntiRaidModule::class -> AntiRaidModule()
             AutoRoleModule::class -> AutoRoleModule()
             WelcomerModule::class -> WelcomerModule()
             GuildSettings::class -> GuildSettings()
