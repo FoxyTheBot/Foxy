@@ -5,6 +5,7 @@ import kotlinx.datetime.toJavaInstant
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 import java.util.Date
@@ -15,10 +16,10 @@ class MarryExecutor : FoxyCommandExecutor() {
 
         if (user.id == context.event.user.id) {
             context.reply(true) {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyCry
-                    content = context.locale["marry.cantMarryYourself"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["marry.cantMarryYourself"]
+                )
             }
 
             return
@@ -26,10 +27,10 @@ class MarryExecutor : FoxyCommandExecutor() {
 
         if (user.id == context.instance.jda.selfUser.id) {
             context.reply(true) {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyCry
-                    content = context.locale["marry.cantMarryMe"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["marry.cantMarryMe"]
+                )
             }
 
             return
@@ -39,10 +40,10 @@ class MarryExecutor : FoxyCommandExecutor() {
 
         if (userData.marryStatus.marriedWith != null) {
             context.reply(true) {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyCry
-                    content = context.locale["marry.userAlreadyMarried"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["marry.userAlreadyMarried"]
+                )
             }
 
             return
@@ -50,26 +51,27 @@ class MarryExecutor : FoxyCommandExecutor() {
 
         if (context.authorData.marryStatus.marriedWith != null) {
             context.reply {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyCry
-                    content = context.locale["marry.youAlreadyMarried"]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["marry.youAlreadyMarried"]
+                )
             }
 
             return
         }
 
         context.reply {
-            content = context.prettyResponse {
-                unicodeEmote = FoxyEmotes.Ring
-                content = context.locale["marry.proposal", user.asMention, context.user.asMention]
-            }
+            content = pretty(
+                FoxyEmotes.Ring,
+                context.locale["marry.proposal", user.asMention, context.user.asMention],
+                true
+            )
 
             actionRow(
                 context.instance.interactionManager.createButtonForUser(
                     user,
                     ButtonStyle.SUCCESS,
-                    context.jda.getEmojiById(FoxyEmotes.FoxyCupcake)!!,
+                    FoxyEmotes.FoxyCupcake,
                     context.locale["marry.acceptButton"],
                 ) {
                     context.db.utils.user.updateUser(
@@ -89,16 +91,17 @@ class MarryExecutor : FoxyCommandExecutor() {
                     )
 
                     it.edit {
-                        content = context.prettyResponse {
-                            unicodeEmote = FoxyEmotes.Ring
-                            content = context.locale["marry.accepted", user.asMention]
-                        }
+                        content = pretty(
+                            FoxyEmotes.Ring,
+                            context.locale["marry.accepted", user.asMention],
+                            true
+                        )
 
                         actionRow(
                             context.instance.interactionManager.createButtonForUser(
                                 user,
                                 ButtonStyle.SUCCESS,
-                                context.jda.getEmojiById(FoxyEmotes.FoxyCupcake)!!,
+                                FoxyEmotes.FoxyCupcake,
                                 context.locale["marry.acceptedButton"]
                             ) { }.asDisabled()
                         )

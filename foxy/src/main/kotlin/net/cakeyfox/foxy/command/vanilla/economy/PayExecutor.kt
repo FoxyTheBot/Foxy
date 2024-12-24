@@ -25,7 +25,7 @@ class PayExecutor : FoxyCommandExecutor() {
                 context.instance.interactionManager.createButtonForUser(
                     context.user,
                     ButtonStyle.SUCCESS,
-                    context.jda.getEmojiById(FoxyEmotes.FoxyDaily)!!,
+                    FoxyEmotes.FoxyDaily,
                     context.locale["pay.confirmButton"]
                 ) {
 
@@ -53,7 +53,7 @@ class PayExecutor : FoxyCommandExecutor() {
                             context.instance.interactionManager.createButtonForUser(
                                 context.user,
                                 ButtonStyle.SECONDARY,
-                                context.jda.getEmojiById(FoxyEmotes.FoxyDaily)!!,
+                                FoxyEmotes.FoxyDaily,
                                 context.locale["pay.confirmedButton"]
                             ) { }.asDisabled()
                         )

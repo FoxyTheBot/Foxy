@@ -31,7 +31,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
                 context.instance.interactionManager.createButtonForUser(
                     context.user,
                     ButtonStyle.DANGER,
-                    context.jda.getEmojiById(FoxyEmotes.FoxyCry),
+                    FoxyEmotes.FoxyCry,
                     context.locale["divorce.confirmButton"]
                 ) {
                     context.db.utils.user.updateUsers(
@@ -54,7 +54,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
                                 context.instance.interactionManager.createButtonForUser(
                                     context.user,
                                     ButtonStyle.PRIMARY,
-                                    context.jda.getEmojiById(FoxyEmotes.FoxyCry),
+                                    FoxyEmotes.FoxyCry,
                                     context.locale["divorce.confirmButton"]
                                 ) { }.asDisabled()
                             )

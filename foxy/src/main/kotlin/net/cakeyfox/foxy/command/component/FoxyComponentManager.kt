@@ -2,7 +2,9 @@ package net.cakeyfox.foxy.command.component
 
 import com.github.benmanes.caffeine.cache.Caffeine
 import net.cakeyfox.common.FoxyEmotes
+import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.FoxyInteractionContext
+import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.entities.emoji.Emoji
 import net.dv8tion.jda.api.interactions.components.LayoutComponent
@@ -14,7 +16,9 @@ import java.util.UUID
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.toJavaDuration
 
-class FoxyComponentManager {
+class FoxyComponentManager(
+    val instance: FoxyInstance
+) {
     companion object {
         val delay = 15.minutes
     }
@@ -34,7 +38,7 @@ class FoxyComponentManager {
     fun createButtonForUser(
         targetUser: User,
         style: ButtonStyle,
-        emoji: Emoji? = null,
+        emoji: String? = null,
         label: String = "",
         builder: (ButtonBuilder).() -> (Unit) = {},
         callback: suspend (FoxyInteractionContext) -> (Unit)
@@ -55,7 +59,7 @@ class FoxyComponentManager {
     fun createButton(
         targetUserId: Long,
         style: ButtonStyle,
-        emoji: Emoji? = null,
+        emoji: String? = null,
         label: String = "",
         builder: (ButtonBuilder).() -> (Unit) = {},
         callback: suspend (FoxyInteractionContext) -> (Unit)
@@ -97,7 +101,7 @@ class FoxyComponentManager {
 
     fun button(
         style: ButtonStyle,
-        emoji: Emoji? = null,
+        emoji: String? = null,
         label: String = "",
         builder: (ButtonBuilder).() -> (Unit) = {},
         callback: suspend (FoxyInteractionContext) -> (Unit)
@@ -108,7 +112,7 @@ class FoxyComponentManager {
             style,
             ComponentId(buttonId).toString(),
             label,
-            emoji
+            emoji?.let { instance.jda.getEmojiById(it) }
         ).let {
             ButtonBuilder(it).apply(builder).button
         }
@@ -134,10 +138,10 @@ class FoxyComponentManager {
     ) { context, strings ->
         if (target.idLong != context.user.idLong) {
             context.reply(true) {
-                content = context.prettyResponse {
-                    emoteId = FoxyEmotes.FoxyRage
-                    content = context.locale["commands.onlyUserCanInteractWithThisComponent", target.asMention, target.id]
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyRage,
+                    context.locale["commands.onlyUserCanInteractWithThisComponent", target.asMention, target.id]
+                )
             }
             return@stringSelectMenu
         }

@@ -4,6 +4,7 @@ import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
@@ -12,6 +13,17 @@ class KissExecutor: FoxyCommandExecutor() {
         context.defer()
         val user = context.getOption<User>("user")!!
         val response = context.instance.utils.getActionImage("kiss")
+
+        if (user == context.jda.selfUser) {
+            context.reply {
+                content = pretty(
+                    FoxyEmotes.FoxyRage,
+                    context.locale["kiss.kissBot"]
+                )
+            }
+
+            return
+        }
 
         context.reply {
             embed {
@@ -24,7 +36,7 @@ class KissExecutor: FoxyCommandExecutor() {
                 context.instance.interactionManager.createButtonForUser(
                     user,
                     ButtonStyle.PRIMARY,
-                    context.jda.getEmojiById(FoxyEmotes.FoxyHug),
+                    FoxyEmotes.FoxyHug,
                     context.locale["kiss.button"],
                 ) { it ->
                     val secondResponse = context.instance.utils.getActionImage("kiss")
@@ -39,7 +51,7 @@ class KissExecutor: FoxyCommandExecutor() {
                             context.instance.interactionManager.createButtonForUser(
                                 context.event.user,
                                 ButtonStyle.PRIMARY,
-                                context.jda.getEmojiById(FoxyEmotes.FoxyHug),
+                                FoxyEmotes.FoxyHug,
                                 context.locale["kiss.button"],
                             ) {
                                 val thirdResponse = context.instance.utils.getActionImage("kiss")

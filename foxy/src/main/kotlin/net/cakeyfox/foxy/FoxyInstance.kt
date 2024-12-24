@@ -30,7 +30,7 @@ class FoxyInstance(
     val artistryClient: ArtistryClient = ArtistryClient(config.get("artistry_token"))
     val utils = FoxyUtils(this)
     val helpers = FoxyHelpers(this)
-    val interactionManager = FoxyComponentManager()
+    val interactionManager = FoxyComponentManager(this)
     val environment = config.get("environment")
     val httpClient = HttpClient(CIO) {
         install(HttpTimeout) {
