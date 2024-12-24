@@ -33,7 +33,7 @@ class AntiRaidSystem(
 
     // Will store the alerts to avoid alert spam
     private val alertsSent: Cache<String, Unit> = Caffeine.newBuilder()
-        .expireAfterWrite(5, TimeUnit.SECONDS)
+        .expireAfterWrite(2, TimeUnit.SECONDS)
         .build()
 
     private val parsedLocale = hashMapOf(
