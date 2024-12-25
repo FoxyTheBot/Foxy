@@ -12,6 +12,10 @@ plugins {
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
+            /*
+            Thanks to MrPowerGamerBR!
+            https://github.com/LorittaBot/DeviousJDA
+             */
             library("deviousjda", "com.github.LorittaBot", "DeviousJDA").version("665dd9215b")
         }
     }
