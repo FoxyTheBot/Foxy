@@ -201,19 +201,45 @@ class AntiRaidSystem(
     }
 
     private fun hasExcessiveRepeatedSequences(message: String, limit: Int): Boolean {
-        var repetitionCount = 1
-        var maxRepetitions = 1
+        if (message.isBlank()) return false
 
-        for (i in 1 until message.length) {
-            if (message[i] == message[i - 1]) {
-                repetitionCount++
-                maxRepetitions = maxOf(maxRepetitions, repetitionCount)
+        val normalizedMessage = message.trim().lowercase()
+
+        var charRepetitionCount = 1
+        var maxCharRepetition = 1
+        for (i in 1 until normalizedMessage.length) {
+            if (normalizedMessage[i] == normalizedMessage[i - 1]) {
+                charRepetitionCount++
+                maxCharRepetition = maxOf(maxCharRepetition, charRepetitionCount)
             } else {
-                repetitionCount = 1
+                charRepetitionCount = 1
             }
         }
 
-        return maxRepetitions > limit
+        if (maxCharRepetition > limit) {
+            return true
+        }
+
+        val words = normalizedMessage.split("\\s+".toRegex())
+        val wordFrequency = mutableMapOf<String, Int>()
+
+        for (word in words) {
+            val condensedWord = word.replace(Regex("(.)\\1+"), "$1")
+            wordFrequency[condensedWord] = wordFrequency.getOrDefault(condensedWord, 0) + 1
+            if (wordFrequency[condensedWord]!! > limit) {
+                return true
+            }
+        }
+
+        for (patternLength in 1..(normalizedMessage.length / 2)) {
+            val pattern = normalizedMessage.substring(0, patternLength)
+            val repeatedPattern = pattern.repeat(limit + 1)
+            if (normalizedMessage.startsWith(repeatedPattern)) {
+                return true
+            }
+        }
+
+        return false
     }
 
     private suspend fun sendWarningToAChannel(
