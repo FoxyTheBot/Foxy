@@ -56,19 +56,4 @@ class ProfileUtils(
 
         return badges
     }
-
-    fun getDecoration(decorationId: String): Decoration {
-        val collection: MongoCollection<Document> = client.database!!.getCollection("decorations")
-
-        val query = Document("id", decorationId)
-        val existingDocument = collection.find(query).firstOrNull()
-
-        if (existingDocument == null) {
-            logger.error { "Decoration $decorationId not found" }
-            throw Exception("Decoration $decorationId not found")
-        }
-
-        val documentToJSON = existingDocument.toJson()
-        return client.json.decodeFromString<Decoration>(documentToJSON!!)
-    }
 }
