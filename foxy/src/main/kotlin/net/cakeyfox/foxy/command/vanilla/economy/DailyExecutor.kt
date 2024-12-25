@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy.command.vanilla.economy
 
+import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
@@ -14,19 +15,20 @@ class DailyExecutor: FoxyCommandExecutor() {
                     context.locale["daily.embed.title"]
                 )
 
+                thumbnail = Constants.DAILY_EMOJI
                 description = context.locale["daily.embed.description"]
 
                 actionRow(
                     context.foxy.interactionManager.createLinkButton(
                         context.jda.getEmojiById(FoxyEmotes.FoxyPetPet)!!,
                         context.locale["daily.embed.redeemDaily"],
-                        "https://foxybot.win/br/daily"
+                        Constants.DAILY
                     ),
 
                     context.foxy.interactionManager.createLinkButton(
                         context.jda.getEmojiById(FoxyEmotes.FoxyDaily)!!,
                         context.locale["daily.embed.buyMore"],
-                        "https://foxybot.win/br/premium"
+                        Constants.PREMIUM
                     )
                 )
             }
