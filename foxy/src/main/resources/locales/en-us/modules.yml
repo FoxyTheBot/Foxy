@@ -1,16 +1,15 @@
-# TODO: Translate this to English
 antiraid:
   title: "Foxy Anti-Raid"
-  tooFastMessages: "O membro **{0}** esté enviando muitas mensagens em um curto período de tempo."
-  membersJoiningTooQuickly: "Muitos membros estão entrando no servidor em um curto período de tempo."
-  userIsSendingRepeatedSequences: "{0} Você não pode spammar nesse canal."
+  tooFastMessages: "The member **{0}** is sending too many messages in a short period of time."
+  membersJoiningTooQuickly: "Too many members are joining the server in a short period of time."
+  userIsSendingRepeatedSequences: "{0} You cannot spam in this channel."
   reasons:
-    userIsSendingMessagesTooFast: "Anti-Raid: O membro está enviando muitas mensagens em um curto período de tempo."
+    userIsSendingMessagesTooFast: "Anti-Raid: The member is sending too many messages in a short period of time."
   fields:
-    user: "Usuário"
-    actionTaken: "Ação tomada"
+    user: "User"
+    actionTaken: "Action Taken"
   actions:
-    NOTHING: "Nada foi feito"
-    BAN: "O membro foi banido"
-    KICK: "O membro foi expulso"
-    TIMEOUT: "O membro foi castigado"
+    NOTHING: "No action taken"
+    BAN: "The member was banned"
+    KICK: "The member was kicked"
+    TIMEOUT: "The member was timed out"
