@@ -13,7 +13,7 @@ import kotlin.reflect.jvm.jvmName
 
 class MongoDBClient(foxy: FoxyInstance) {
     var users: MongoCollection<Document>
-    val guilds: MongoCollection<Document>
+    private val guilds: MongoCollection<Document>
 
     private var logger = KotlinLogging.logger(this::class.jvmName)
     private var mongoClient: MongoClient? = null
