@@ -50,7 +50,7 @@ class InteractionEventListener(
                             }
                         } else null
 
-                        if (context.db.utils.user.getDiscordUser(event.user.id).isBanned) {
+                        if (context.db.utils.user.getDiscordUser(event.user.id).isBanned == true) {
                             instance.utils.handleBan(event, context)
                             return@launch
                         }

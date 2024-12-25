@@ -1,5 +1,6 @@
 package net.cakeyfox.serializable.database.data
 
+import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import net.cakeyfox.serializable.database.utils.MongoDateSerializer
@@ -8,8 +9,8 @@ import net.cakeyfox.serializable.database.utils.MongoDateSerializer
 data class FoxyUser(
     val _id: String,
     @Serializable(with = MongoDateSerializer::class)
-    val userCreationTimestamp: Instant,
-    val isBanned: Boolean,
+    val userCreationTimestamp: Instant = Clock.System.now(),
+    val isBanned: Boolean? = false,
     @Serializable(with = MongoDateSerializer::class)
     val banDate: Instant? = null,
     val banReason: String? = null,
@@ -67,7 +68,7 @@ data class UserPremium(
 
 @Serializable
 data class UserSettings(
-    val language: String = "pt-br"
+    val language: String = "pt-BR"
 )
 
 @Serializable

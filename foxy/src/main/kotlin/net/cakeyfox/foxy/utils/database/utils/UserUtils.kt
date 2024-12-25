@@ -54,53 +54,15 @@ class UserUtils(
     private fun createUser(userId: String): FoxyUser {
         val newUser = FoxyUser(
             _id = userId,
-            userCreationTimestamp = Clock.System.now(),
-            isBanned = false,
-            banDate = null,
-            banReason = "",
-            userCakes = UserCakes(balance = 0.0, lastDaily = null),
-            marryStatus = MarryStatus(
-                marriedWith = null,
-                marriedDate = null,
-                cantMarry = false
-            ),
-            userProfile = UserProfile(
-                decoration = "",
-                decorationList = emptyList(),
-                background = "default",
-                backgroundList = listOf("default"),
-                repCount = 0,
-                lastRep = null,
-                layout = "default",
-                layoutList = listOf("default"),
-                aboutme = ""
-            ),
-            userPremium = UserPremium(
-                premium = false,
-                premiumDate = null,
-                premiumType = ""
-            ),
+            userCakes = UserCakes(balance = 0.0),
+            marryStatus = MarryStatus(),
+            userProfile = UserProfile(),
+            userPremium = UserPremium(),
             userSettings = UserSettings(language = "pt-br"),
-            petInfo = PetInfo(
-                name = "",
-                type = "",
-                rarity = "",
-                level = 0,
-                hungry = 100,
-                happy = 100,
-                health = 100,
-                lastHungry = null,
-                lastHappy = null,
-                isDead = false,
-                isClean = true,
-                food = emptyList()
-            ),
+            petInfo = PetInfo(),
             userTransactions = emptyList(),
             premiumKeys = emptyList(),
-            roulette = Roulette(availableSpins = 5),
-            lastVote = null,
-            notifiedForVote = false,
-            voteCount = 0
+            roulette = Roulette(),
         )
 
         val documentToJSON = client.json.encodeToString(newUser)
