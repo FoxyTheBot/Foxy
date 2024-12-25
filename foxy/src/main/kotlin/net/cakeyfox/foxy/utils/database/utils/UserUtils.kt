@@ -1,7 +1,6 @@
 package net.cakeyfox.foxy.utils.database.utils
 
 import com.mongodb.client.MongoCollection
-import kotlinx.datetime.Clock
 import kotlinx.datetime.toJavaInstant
 import kotlinx.serialization.encodeToString
 import net.cakeyfox.foxy.utils.database.MongoDBClient
