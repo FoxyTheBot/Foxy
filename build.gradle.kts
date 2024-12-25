@@ -11,6 +11,8 @@ version = Versions.FOXY_VERSION
 allprojects {
     repositories {
         mavenCentral()
+        maven("https://jitpack.io")
+        maven("https://m2.dv8tion.net/releases")
     }
 }
 

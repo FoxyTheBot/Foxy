@@ -22,7 +22,11 @@ dependencies {
     implementation(project(":cirno-serializable"))
 
     // Discord
-    implementation("net.dv8tion:JDA:${Versions.JDA}")
+    /*
+    Thanks to MrPowerGamerBR!
+    https://github.com/LorittaBot/DeviousJDA
+     */
+    implementation(libs.deviousjda)
     implementation("club.minnced:jda-ktx:${Versions.JDA_KTX}")
 
     // DB
