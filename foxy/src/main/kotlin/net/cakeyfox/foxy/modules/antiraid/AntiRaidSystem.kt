@@ -14,6 +14,7 @@ import net.cakeyfox.foxy.modules.antiraid.utils.AntiRaidActions
 import net.cakeyfox.foxy.modules.antiraid.utils.WarningBuilder
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.foxy.utils.pretty
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
@@ -25,7 +26,10 @@ import kotlin.reflect.jvm.jvmName
 class AntiRaidSystem(
     val instance: FoxyInstance
 ) {
-    private val logger = KotlinLogging.logger(this::class.jvmName)
+    companion object {
+        private val logger = KotlinLogging.logger(this::class.jvmName)
+    }
+
     private val joinCache: Cache<String, MutableList<Long>> = Caffeine.newBuilder()
         .expireAfterWrite(10, TimeUnit.SECONDS)
         .build()
@@ -159,44 +163,56 @@ class AntiRaidSystem(
         guildInfo: net.cakeyfox.serializable.database.data.Guild,
         event: MessageReceivedEvent? = null
     ) {
-        when (action) {
-            AntiRaidActions.Timeout -> {
-                guild.timeoutFor(
-                    user,
-                    guildInfo.antiRaidModule.timeoutDuration,
-                    TimeUnit.MILLISECONDS
-                ).queue()
-            }
+        try {
+            when (action) {
+                AntiRaidActions.Timeout -> {
+                    if (guild.selfMember.hasPermission(Permission.MODERATE_MEMBERS)) {
+                        guild.timeoutFor(
+                            user,
+                            guildInfo.antiRaidModule.timeoutDuration,
+                            TimeUnit.MILLISECONDS
+                        ).queue()
+                    } else return
+                }
 
-            AntiRaidActions.Kick -> {
-                guild.kick(user).reason(message).queue()
-            }
+                AntiRaidActions.Kick -> {
+                    if (guild.selfMember.hasPermission(Permission.KICK_MEMBERS)) {
+                        guild.kick(user).reason(message).queue()
+                    } else return
+                }
 
-            AntiRaidActions.Ban -> {
-                guild.ban(
-                    user,
-                    0,
-                    TimeUnit.SECONDS
-                ).reason(message).queue()
-            }
+                AntiRaidActions.Ban -> {
+                    if (guild.selfMember.hasPermission(Permission.BAN_MEMBERS)) {
+                        guild.ban(
+                            user,
+                            0,
+                            TimeUnit.SECONDS
+                        ).reason(message).queue()
+                    } else return
+                }
 
-            AntiRaidActions.WarnUser -> {
-                if (event != null) {
-                    event.message.delete().queue()
-                    sendAlertToUser(event.channel.id, event.author.id) {
-                        content = pretty(
-                            FoxyEmotes.FoxyRage,
-                            message
-                        )
+                AntiRaidActions.WarnUser -> {
+                    if (event != null) {
+                        if (guild.selfMember.hasPermission(Permission.MESSAGE_MANAGE)) {
+                            event.message.delete().queue()
+                            sendAlertToUser(event.channel.id, event.author.id) {
+                                content = pretty(
+                                    FoxyEmotes.FoxyRage,
+                                    message
+                                )
+                            }
+                        }
                     }
                 }
-            }
 
-            AntiRaidActions.DoNothing -> {
-                return
-            }
+                AntiRaidActions.DoNothing -> {
+                    return
+                }
 
-            else -> throw IllegalArgumentException("Invalid action type! Received $action")
+                else -> throw IllegalArgumentException("Invalid action type! Received $action")
+            }
+        } catch (e: Exception) {
+            logger.warn { "Can't take an action for user ${user.id}! Missing permissions?"}
         }
     }
 
