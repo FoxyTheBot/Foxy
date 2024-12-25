@@ -49,7 +49,7 @@ object FoxyLauncher {
     }
 
     private fun copyFromJar(input: String, output: String) {
-        val inputStream = FoxyLauncher::class.java.getResourceAsStream(input) ?: return
+        val inputStream = this::class.java.getResourceAsStream(input) ?: return
         File(output).writeBytes(inputStream.readAllBytes())
     }
 }
