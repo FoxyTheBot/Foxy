@@ -12,7 +12,6 @@ data class Guild(
     val antiRaidModule: AntiRaidModule,
     val premiumKeys: List<Key> = emptyList(),
     val guildSettings: GuildSettings,
-    val internalEconomy: InternalEconomy,
     val dashboardLogs: List<DashboardLog> = emptyList(),
 )
 
@@ -24,18 +23,6 @@ data class WelcomerModule(
     val leaveMessage: String? = null,
     val joinChannel: String? = null,
     val leaveChannel: String? = null,
-)
-
-@Serializable
-data class InternalEconomy(
-    val isEnabled: Boolean = false,
-    val currencyName: String = "Coin",
-    val currencyPluralName: String = "Coins",
-    val currencySign: String = "$",
-    val startingBalance: Long = 100,
-    val minimumBalance: Long = 0,
-    val maximumBalance: Long? = null,
-    val minimumBalanceAlert: Boolean = false,
 )
 
 @Serializable
