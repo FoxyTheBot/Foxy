@@ -11,6 +11,7 @@ class HelpCommand : FoxyCommandDeclarationWrapper {
         "help.description",
         interactionContexts = listOf(
             InteractionContextType.GUILD,
+            InteractionContextType.BOT_DM,
             InteractionContextType.PRIVATE_CHANNEL
         ),
         integrationType = listOf(

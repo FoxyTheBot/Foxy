@@ -2,13 +2,23 @@ package net.cakeyfox.foxy.command.vanilla.actions.declarations
 
 import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.actions.*
+import net.dv8tion.jda.api.interactions.IntegrationType
+import net.dv8tion.jda.api.interactions.InteractionContextType
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
 class ActionsCommand: FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "actions",
-        "actions.description"
+        "actions.description",
+        interactionContexts = listOf(
+            InteractionContextType.GUILD,
+            InteractionContextType.PRIVATE_CHANNEL
+        ),
+        integrationType = listOf(
+            IntegrationType.GUILD_INSTALL,
+            IntegrationType.USER_INSTALL
+        )
     ) {
         baseName = this@command.name
 

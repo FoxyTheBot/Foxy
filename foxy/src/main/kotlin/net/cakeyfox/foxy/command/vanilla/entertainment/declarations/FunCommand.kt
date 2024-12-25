@@ -2,13 +2,24 @@ package net.cakeyfox.foxy.command.vanilla.entertainment.declarations
 
 import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.entertainment.media.*
+import net.dv8tion.jda.api.interactions.IntegrationType
+import net.dv8tion.jda.api.interactions.InteractionContextType
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
 class FunCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "fun",
-        "fun.description"
+        "fun.description",
+        integrationType = listOf(
+            IntegrationType.GUILD_INSTALL,
+            IntegrationType.USER_INSTALL
+        ),
+        interactionContexts = listOf(
+            InteractionContextType.BOT_DM,
+            InteractionContextType.GUILD,
+            InteractionContextType.PRIVATE_CHANNEL
+        )
     ) {
         subCommandGroup(
             "eminem",

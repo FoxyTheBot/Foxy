@@ -71,7 +71,7 @@ class InteractionEventListener(
                             }
                         }
 
-                        logger.info { "${context.user.name} (${context.user.id}) executed ${event.fullCommandName} in ${context.guild?.name} (${context.guild?.id})" }
+                        logger.info { "${context.user.name} (${context.user.id}) executed ${event.fullCommandName} in ${context.guild?.name ?: "DM"} (${context.guild?.id ?: "Can't get ID"})" }
                     }
                 }
 
