@@ -1,27 +1,22 @@
 package net.cakeyfox.foxy.utils.config
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.io.IOException
 import java.util.Properties
 
-class FoxyConfig {
-    private val props = Properties()
-
-    init {
-        loadConfig()
-    }
-
-    private fun loadConfig() {
-        val resourceStream = javaClass.classLoader.getResourceAsStream("foxy.conf")
-            ?: throw IllegalStateException("Could not find foxy.conf")
-
-        try {
-            resourceStream.use { props.load(it) }
-        } catch (e: IOException) {
-            throw IllegalStateException("Could not load foxy.conf", e)
-        }
-    }
-
-    fun get(key: String): String {
-        return props.getProperty(key) ?: throw IllegalStateException("Could not find key $key in foxy.conf")
-    }
-}
+@Serializable
+data class FoxyConfig(
+    val ownerId: String = "687867247116812378",
+    val guildId: String = "768267522670723094",
+    val environment: String = "development",
+    val discordToken: String = "<KEY>",
+    val mongoUri: String = "mongodb://localhost:27017",
+    val dbName: String = "foxy",
+    val mongoTimeout: Long = 10000,
+    val foxyApiKey: String = "<KEY>",
+    val dblToken: String = "<KEY>",
+    val artistryUrl: String = "https://artistry.foxybot.win",
+    val artistryKey: String = "<KEY>",
+    val activityPort: Int = 8080
+)

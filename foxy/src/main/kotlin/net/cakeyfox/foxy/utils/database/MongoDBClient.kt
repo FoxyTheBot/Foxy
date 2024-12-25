@@ -25,10 +25,10 @@ class MongoDBClient(foxy: FoxyInstance) {
     val utils = DatabaseUtils(this)
 
     init {
-        mongoClient = MongoClients.create(foxy.config.get("mongo_uri"))
-        database = mongoClient?.getDatabase(foxy.config.get("db_name"))
+        mongoClient = MongoClients.create(foxy.config.mongoUri)
+        database = mongoClient?.getDatabase(foxy.config.dbName)
         users = database!!.getCollection("users")
         guilds = database!!.getCollection("guilds")
-        logger.info { "Connected to ${foxy.config.get("db_name")} database" }
+        logger.info { "Connected to ${foxy.config.dbName} database" }
     }
 }

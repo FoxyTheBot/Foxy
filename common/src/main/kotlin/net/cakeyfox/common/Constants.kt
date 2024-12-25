@@ -1,5 +1,7 @@
 package net.cakeyfox.common
 
+import kotlinx.serialization.hocon.Hocon
+
 object Constants {
     const val UNBAN_FORM_URL = "https://forms.gle/bKfRKxoyFGZzRB7x8"
     const val FOXY_WEBSITE = "https://foxybot.win"
@@ -10,7 +12,7 @@ object Constants {
     const val PREMIUM = "https://foxybot.win/br/premium"
     const val DAILY = "https://foxybot.win/br/daily"
     const val DAILY_EMOJI = "https://cdn.discordapp.com/emojis/915736630495686696.png?size=2048"
-
+    val HOCON = Hocon { useArrayPolymorphism = true }
     const val SUPPORT_SERVER_ID = "768267522670723094"
 
     fun robloxProfile(id: Long): String {

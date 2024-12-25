@@ -15,7 +15,7 @@ class TopggStatsSender(
     val foxy: FoxyInstance
 ): StatsSender {
     private val logger = KotlinLogging.logger(this::class.jvmName)
-    private val token = foxy.config.get("dbl_token")
+    private val token = foxy.config.dblToken
     private val clientId = foxy.jda.selfUser.id
 
     override suspend fun send(guildCount: Long): Boolean {

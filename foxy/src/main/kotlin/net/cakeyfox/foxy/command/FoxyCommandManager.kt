@@ -29,7 +29,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
 
     suspend fun handle(): MutableList<Command>? {
         val action = foxy.jda.updateCommands()
-        val privateGuild = foxy.jda.getGuildById(foxy.config.get("guildId"))!!
+        val privateGuild = foxy.jda.getGuildById(foxy.config.guildId)!!
 
         commands.forEach { command ->
             if (command.create().isPrivate) {

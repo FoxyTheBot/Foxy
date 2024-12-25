@@ -27,11 +27,11 @@ class FoxyInstance(
     var jda: JDA
     val mongoClient: MongoDBClient = MongoDBClient(this)
     val commandHandler: FoxyCommandManager = FoxyCommandManager(this)
-    val artistryClient: ArtistryClient = ArtistryClient(config.get("artistry_token"))
+    val artistryClient: ArtistryClient = ArtistryClient(config.artistryKey)
     val utils = FoxyUtils(this)
     val helpers = FoxyHelpers(this)
     val interactionManager = FoxyComponentManager(this)
-    val environment = config.get("environment")
+    val environment = config.environment
     val httpClient = HttpClient(CIO) {
         install(HttpTimeout) {
             requestTimeoutMillis = 60_000
@@ -45,7 +45,7 @@ class FoxyInstance(
     // TODO: Implements sharding manager
 
     init {
-        jda = JDABuilder.createDefault(config.get("token"))
+        jda = JDABuilder.createDefault(config.discordToken)
             .setEnabledIntents(
                 GatewayIntent.GUILD_MEMBERS,
                 GatewayIntent.MESSAGE_CONTENT,

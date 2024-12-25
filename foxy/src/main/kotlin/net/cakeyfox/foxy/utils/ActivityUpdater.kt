@@ -22,7 +22,7 @@ class ActivityUpdater(
     val foxy: FoxyInstance
 ) {
     private val logger = KotlinLogging.logger(this::class.jvmName)
-    private val server = embeddedServer(Netty, port = 3000) {
+    private val server = embeddedServer(Netty, port = foxy.config.activityPort) {
         install(ContentNegotiation) {
             json(
                 Json {

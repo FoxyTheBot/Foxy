@@ -16,5 +16,5 @@ build
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-/foxy/src/main/resources/foxy.conf
+foxy.conf
 /.kotlin/
