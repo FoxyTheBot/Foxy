@@ -13,22 +13,22 @@ import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import kotlin.reflect.jvm.jvmName
 
-class MajorEventListener(private val instance: FoxyInstance): ListenerAdapter() {
+class MajorEventListener(private val foxy: FoxyInstance): ListenerAdapter() {
     private val logger = KotlinLogging.logger(this::class.jvmName)
     private val coroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
-    private val antiRaid = AntiRaidSystem(instance)
-    private val topggStats = TopggStatsSender(instance)
+    private val antiRaid = AntiRaidSystem(foxy)
+    private val topggStats = TopggStatsSender(foxy)
 
     override fun onReady(event: ReadyEvent) {
         coroutineScope.launch {
             event.jda.presence.setPresence(
                 OnlineStatus.ONLINE,
-                Activity.customStatus(Constants.DEFAULT_ACTIVITY(instance.environment)))
+                Activity.customStatus(Constants.DEFAULT_ACTIVITY(foxy.environment)))
 
-            val commands = instance.commandHandler.handle()
+            val commands = foxy.commandHandler.handle()
             logger.info { "Registered ${commands?.size} commands" }
 
-            if (instance.environment == "production") {
+            if (foxy.environment == "production") {
                 topggStats.send(event.jda.guildCache.size())
             }
         }

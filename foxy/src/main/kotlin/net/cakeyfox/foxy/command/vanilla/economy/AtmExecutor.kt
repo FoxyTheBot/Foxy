@@ -9,7 +9,7 @@ import net.dv8tion.jda.api.entities.User
 class AtmExecutor: FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val user = context.getOption<User>("user") ?: context.event.user
-        val userBalance = context.instance.mongoClient.utils.user.getDiscordUser(user.id).userCakes.balance
+        val userBalance = context.foxy.mongoClient.utils.user.getDiscordUser(user.id).userCakes.balance
         val formattedBalance = context.utils.formatNumber(userBalance, "pt", "BR")
 
         context.reply {

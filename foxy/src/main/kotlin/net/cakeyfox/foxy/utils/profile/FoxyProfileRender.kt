@@ -133,7 +133,7 @@ class FoxyProfileRender(
                     layoutInfo.profileSettings.positions.marriedPosition
                 )
 
-                val partnerUser = context.instance.helpers.getUserById(data.marryStatus.marriedWith!!)
+                val partnerUser = context.foxy.helpers.getUserById(data.marryStatus.marriedWith!!)
 
                 drawText(
                     partnerUser.name,
@@ -216,7 +216,7 @@ class FoxyProfileRender(
     private suspend fun drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
         val defaultBadges = badgeCache.get("default") { context.db.utils.profile.getBadges() }!!
 
-        val member = context.instance.helpers.getMemberById(user.id, Constants.SUPPORT_SERVER_ID)
+        val member = context.foxy.helpers.getMemberById(user.id, Constants.SUPPORT_SERVER_ID)
 
         val userBadges = member?.let { getUserBadges(it, defaultBadges, data) }
         if (userBadges != null) {

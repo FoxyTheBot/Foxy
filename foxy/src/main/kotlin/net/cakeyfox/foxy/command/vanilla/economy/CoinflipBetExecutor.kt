@@ -67,7 +67,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
             )
 
             actionRow(
-                context.instance.interactionManager.createButtonForUser(
+                context.foxy.interactionManager.createButtonForUser(
                     user,
                     ButtonStyle.SUCCESS,
                     FoxyEmotes.FoxyDaily,
@@ -133,7 +133,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
                     }
                 },
 
-                context.instance.interactionManager.createButtonForUser(
+                context.foxy.interactionManager.createButtonForUser(
                     user,
                     ButtonStyle.DANGER,
                     FoxyEmotes.FoxyCry,
@@ -167,14 +167,14 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
                 )
 
                 actionRow(
-                    context.instance.interactionManager.createButtonForUser(
+                    context.foxy.interactionManager.createButtonForUser(
                         context.user,
                         ButtonStyle.SUCCESS,
                         FoxyEmotes.FoxyDaily,
                         context.locale["coinflipbet.acceptButton"]
                     ) { }.asDisabled(),
 
-                    context.instance.interactionManager.createButtonForUser(
+                    context.foxy.interactionManager.createButtonForUser(
                         context.user,
                         ButtonStyle.DANGER,
                         FoxyEmotes.FoxyCry,
@@ -185,14 +185,14 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
         } else {
             context.edit {
                 actionRow(
-                    context.instance.interactionManager.createButtonForUser(
+                    context.foxy.interactionManager.createButtonForUser(
                         context.user,
                         ButtonStyle.SUCCESS,
                         FoxyEmotes.FoxyDaily,
                         context.locale["coinflipbet.acceptButton"]
                     ) { }.asDisabled(),
 
-                    context.instance.interactionManager.createButtonForUser(
+                    context.foxy.interactionManager.createButtonForUser(
                         context.user,
                         ButtonStyle.DANGER,
                         FoxyEmotes.FoxyCry,

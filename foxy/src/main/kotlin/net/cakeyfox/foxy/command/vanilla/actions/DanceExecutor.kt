@@ -7,7 +7,7 @@ class DanceExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
 
-        val response = context.instance.utils.getActionImage("dance")
+        val response = context.foxy.utils.getActionImage("dance")
 
         context.reply {
             embed {

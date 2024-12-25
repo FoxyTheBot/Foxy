@@ -17,13 +17,13 @@ class DailyExecutor: FoxyCommandExecutor() {
                 description = context.locale["daily.embed.description"]
 
                 actionRow(
-                    context.instance.interactionManager.createLinkButton(
+                    context.foxy.interactionManager.createLinkButton(
                         context.jda.getEmojiById(FoxyEmotes.FoxyPetPet)!!,
                         context.locale["daily.embed.redeemDaily"],
                         "https://foxybot.win/br/daily"
                     ),
 
-                    context.instance.interactionManager.createLinkButton(
+                    context.foxy.interactionManager.createLinkButton(
                         context.jda.getEmojiById(FoxyEmotes.FoxyDaily)!!,
                         context.locale["daily.embed.buyMore"],
                         "https://foxybot.win/br/premium"

@@ -16,7 +16,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter
 import kotlin.reflect.jvm.jvmName
 
 class InteractionEventListener(
-    private val instance: FoxyInstance
+    private val foxy: FoxyInstance
 ) : ListenerAdapter() {
     private val coroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
     private val logger = KotlinLogging.logger(this::class.jvmName)
@@ -28,13 +28,13 @@ class InteractionEventListener(
                     val commandName = event.fullCommandName.split(" ").first()
                     if (event.isFromGuild) {
                         // This will be used to create a guild object in the database if it doesn't exist
-                        event.guild?.let { instance.mongoClient.utils.guild.getGuild(it.id) }
+                        event.guild?.let { foxy.mongoClient.utils.guild.getGuild(it.id) }
                     }
 
-                    val command = instance.commandHandler[commandName]?.create()
+                    val command = foxy.commandHandler[commandName]?.create()
 
                     if (command != null) {
-                        val context = FoxyInteractionContext(event, instance)
+                        val context = FoxyInteractionContext(event, foxy)
 
                         val subCommandGroupName = event.subcommandGroup
                         val subCommandName = event.subcommandName
@@ -51,7 +51,7 @@ class InteractionEventListener(
                         } else null
 
                         if (context.db.utils.user.getDiscordUser(event.user.id).isBanned == true) {
-                            instance.utils.handleBan(event, context)
+                            foxy.utils.handleBan(event, context)
                             return@launch
                         }
 
@@ -83,8 +83,8 @@ class InteractionEventListener(
                         return@launch
                     }
 
-                    val callbackId = instance.interactionManager.componentCallbacks[componentId.uniqueId]
-                    val context = FoxyInteractionContext(event, instance)
+                    val callbackId = foxy.interactionManager.componentCallbacks[componentId.uniqueId]
+                    val context = FoxyInteractionContext(event, foxy)
 
                     if (callbackId == null) {
                         event.editButton(
@@ -117,10 +117,10 @@ class InteractionEventListener(
             }
 
             try {
-                val callback = instance.interactionManager.stringSelectMenuCallbacks[componentId.uniqueId]
+                val callback = foxy.interactionManager.stringSelectMenuCallbacks[componentId.uniqueId]
                 val context = FoxyInteractionContext(
                     event,
-                    instance
+                    foxy
                 )
 
                 if (callback == null) {

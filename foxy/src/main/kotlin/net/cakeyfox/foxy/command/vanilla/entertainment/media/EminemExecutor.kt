@@ -55,7 +55,7 @@ class EminemExecutor: FoxyCommandExecutor() {
         }
 
 
-        val response = context.instance.artistryClient.generateImage("memes/8mile", buildJsonObject {
+        val response = context.foxy.artistryClient.generateImage("memes/8mile", buildJsonObject {
             put("url", attachment.url)
             put("contentType", attachment.contentType)
             put("size", attachment.size)

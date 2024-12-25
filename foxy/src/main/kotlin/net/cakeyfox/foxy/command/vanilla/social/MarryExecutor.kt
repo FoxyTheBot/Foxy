@@ -25,7 +25,7 @@ class MarryExecutor : FoxyCommandExecutor() {
             return
         }
 
-        if (user.id == context.instance.jda.selfUser.id) {
+        if (user.id == context.foxy.jda.selfUser.id) {
             context.reply(true) {
                 content = pretty(
                     FoxyEmotes.FoxyCry,
@@ -68,7 +68,7 @@ class MarryExecutor : FoxyCommandExecutor() {
             )
 
             actionRow(
-                context.instance.interactionManager.createButtonForUser(
+                context.foxy.interactionManager.createButtonForUser(
                     user,
                     ButtonStyle.SUCCESS,
                     FoxyEmotes.FoxyCupcake,
@@ -98,7 +98,7 @@ class MarryExecutor : FoxyCommandExecutor() {
                         )
 
                         actionRow(
-                            context.instance.interactionManager.createButtonForUser(
+                            context.foxy.interactionManager.createButtonForUser(
                                 user,
                                 ButtonStyle.SUCCESS,
                                 FoxyEmotes.FoxyCupcake,

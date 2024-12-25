@@ -12,7 +12,7 @@ class KissExecutor: FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
         val user = context.getOption<User>("user")!!
-        val response = context.instance.utils.getActionImage("kiss")
+        val response = context.foxy.utils.getActionImage("kiss")
 
         if (user == context.jda.selfUser) {
             context.reply {
@@ -33,13 +33,13 @@ class KissExecutor: FoxyCommandExecutor() {
             }
 
             actionRow(
-                context.instance.interactionManager.createButtonForUser(
+                context.foxy.interactionManager.createButtonForUser(
                     user,
                     ButtonStyle.PRIMARY,
                     FoxyEmotes.FoxyHug,
                     context.locale["kiss.button"],
                 ) { it ->
-                    val secondResponse = context.instance.utils.getActionImage("kiss")
+                    val secondResponse = context.foxy.utils.getActionImage("kiss")
                     it.reply {
                         embed {
                             description = context.locale["kiss.description", user.asMention, context.event.user.asMention]
@@ -48,13 +48,13 @@ class KissExecutor: FoxyCommandExecutor() {
                         }
 
                         actionRow(
-                            context.instance.interactionManager.createButtonForUser(
+                            context.foxy.interactionManager.createButtonForUser(
                                 context.event.user,
                                 ButtonStyle.PRIMARY,
                                 FoxyEmotes.FoxyHug,
                                 context.locale["kiss.button"],
                             ) {
-                                val thirdResponse = context.instance.utils.getActionImage("kiss")
+                                val thirdResponse = context.foxy.utils.getActionImage("kiss")
                                 it.reply {
                                     embed {
                                         description = context.locale["kiss.description", context.event.user.asMention, user.asMention]

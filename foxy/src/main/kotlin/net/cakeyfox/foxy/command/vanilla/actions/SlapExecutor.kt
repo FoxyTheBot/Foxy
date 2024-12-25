@@ -8,7 +8,7 @@ import net.dv8tion.jda.api.entities.User
 class SlapExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
-        val response = context.instance.utils.getActionImage("slap")
+        val response = context.foxy.utils.getActionImage("slap")
         val user = context.getOption<User>("user")!!
 
         context.reply {

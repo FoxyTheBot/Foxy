@@ -21,14 +21,14 @@ class FoxyInteractionContext(
     val event: GenericInteractionCreateEvent, client: FoxyInstance
 ) {
     val jda = event.jda
-    val instance = client
-    val db = instance.mongoClient
+    val foxy = client
+    val db = foxy.mongoClient
     private val parsedLocale = hashMapOf(
         DiscordLocale.PORTUGUESE_BRAZILIAN to "pt-br",
         DiscordLocale.ENGLISH_US to "en-us",
     )
     val locale = FoxyLocale(parsedLocale[event.userLocale] ?: "en-us")
-    val utils = FoxyUtils(instance)
+    val utils = FoxyUtils(foxy)
     val user = event.user
     val authorData = db.utils.user.getDiscordUser(user.id)
     val guild = event.guild

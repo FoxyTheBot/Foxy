@@ -17,7 +17,7 @@ import kotlin.time.Duration.Companion.minutes
 import kotlin.time.toJavaDuration
 
 class FoxyComponentManager(
-    val instance: FoxyInstance
+    val foxy: FoxyInstance
 ) {
     companion object {
         val delay = 15.minutes
@@ -112,7 +112,7 @@ class FoxyComponentManager(
             style,
             ComponentId(buttonId).toString(),
             label,
-            emoji?.let { instance.jda.getEmojiById(it) }
+            emoji?.let { foxy.jda.getEmojiById(it) }
         ).let {
             ButtonBuilder(it).apply(builder).button
         }

@@ -16,22 +16,22 @@ import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import kotlin.reflect.jvm.jvmName
 
-class GuildEventListener(private val instance: FoxyInstance): ListenerAdapter() {
+class GuildEventListener(private val foxy: FoxyInstance): ListenerAdapter() {
     private val logger = KotlinLogging.logger(this::class.jvmName)
-    private val welcomer = WelcomerManager(instance)
-    private val antiRaid = AntiRaidSystem(instance)
+    private val welcomer = WelcomerManager(foxy)
+    private val antiRaid = AntiRaidSystem(foxy)
     private val coroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
 
     override fun onGenericGuild(event: GenericGuildEvent) {
         coroutineScope.launch {
             when (event) {
                 is GuildJoinEvent -> {
-                    instance.mongoClient.utils.guild.getGuild(event.guild.id)
+                    foxy.mongoClient.utils.guild.getGuild(event.guild.id)
                     logger.info { "Joined guild ${event.guild.name}" }
                 }
 
                 is GuildLeaveEvent -> {
-                    instance.mongoClient.utils.guild.deleteGuild(event.guild.id)
+                    foxy.mongoClient.utils.guild.deleteGuild(event.guild.id)
                     logger.info { "Left guild ${event.guild.name}" }
                 }
 

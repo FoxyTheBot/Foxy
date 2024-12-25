@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.reflect.jvm.jvmName
 
 class AntiRaidSystem(
-    val instance: FoxyInstance
+    val foxy: FoxyInstance
 ) {
     companion object {
         private val logger = KotlinLogging.logger(this::class.jvmName)
@@ -55,7 +55,7 @@ class AntiRaidSystem(
     // Handling mass joins
     suspend fun handleJoin(event: GuildMemberJoinEvent) {
         val guildId = event.guild.idLong
-        val guildInfo = instance.mongoClient.utils.guild.getGuild(event.guild.id)
+        val guildInfo = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
         val locale = FoxyLocale(parsedLocale[event.guild.locale] ?: "en-us")
 
         if (guildInfo.antiRaidModule.handleMultipleJoins) {
@@ -95,7 +95,7 @@ class AntiRaidSystem(
 
     // Handling mass messages
     suspend fun handleMessage(event: MessageReceivedEvent) {
-        val guildInfo = instance.mongoClient.utils.guild.getGuild(event.guild.id)
+        val guildInfo = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
         val userId = "${event.guild.id}:${event.author.id}"
         val locale = FoxyLocale(parsedLocale[event.guild.locale] ?: "en-us")
         val currentTimestamp = System.currentTimeMillis()
@@ -269,7 +269,7 @@ class AntiRaidSystem(
         alertsSent.put(targetId, Unit)
         val message = WarningBuilder().apply(block)
 
-        val channel = instance.jda.getTextChannelById(channelId) ?: return
+        val channel = foxy.jda.getTextChannelById(channelId) ?: return
         val msg = MessageCreateBuilder {
             embed {
                 title = pretty(
@@ -299,7 +299,7 @@ class AntiRaidSystem(
     private suspend fun sendAlertToUser(channelId: String, userId: String, block: InlineMessage<*>.() -> Unit) {
         if (userAlertsSent.getIfPresent(userId) != null) return
         userAlertsSent.put(userId, Unit)
-        val channel = instance.jda.getTextChannelById(channelId) ?: return
+        val channel = foxy.jda.getTextChannelById(channelId) ?: return
         val msg = MessageCreateBuilder {
             apply(block)
         }

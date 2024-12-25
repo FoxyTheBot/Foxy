@@ -15,7 +15,7 @@ class TopCakesExecutor : FoxyCommandExecutor() {
         val topUsers = sorted.take(15)
         val topUsersWithName = topUsers.mapIndexed { index, user ->
             val rank = index + 1
-            val userInfo = context.instance.helpers.getUserById(user._id)
+            val userInfo = context.foxy.helpers.getUserById(user._id)
             val username = userInfo.globalName ?: userInfo.name
             val cakes = context.utils.formatLongNumber(user.userCakes.balance.toLong(), "pt", "BR")
             Triple(rank, username, cakes)

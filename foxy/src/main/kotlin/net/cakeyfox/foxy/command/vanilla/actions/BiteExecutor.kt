@@ -22,7 +22,7 @@ class BiteExecutor : FoxyCommandExecutor() {
             }
 
             actionRow(
-                context.instance.interactionManager.createButtonForUser(
+                context.foxy.interactionManager.createButtonForUser(
                     user,
                     ButtonStyle.PRIMARY,
                     FoxyEmotes.FoxyHug,
@@ -32,7 +32,7 @@ class BiteExecutor : FoxyCommandExecutor() {
 
                     it.edit {
                         actionRow(
-                            context.instance.interactionManager.createButtonForUser(
+                            context.foxy.interactionManager.createButtonForUser(
                                 context.event.user,
                                 ButtonStyle.PRIMARY,
                                 FoxyEmotes.FoxyHug,
@@ -49,7 +49,7 @@ class BiteExecutor : FoxyCommandExecutor() {
                         }
 
                         actionRow(
-                            context.instance.interactionManager.createButtonForUser(
+                            context.foxy.interactionManager.createButtonForUser(
                                 context.event.user,
                                 ButtonStyle.PRIMARY,
                                 FoxyEmotes.FoxyHug,
@@ -59,7 +59,7 @@ class BiteExecutor : FoxyCommandExecutor() {
 
                                 it.edit {
                                     actionRow(
-                                        context.instance.interactionManager.createButtonForUser(
+                                        context.foxy.interactionManager.createButtonForUser(
                                             context.event.user,
                                             ButtonStyle.PRIMARY,
                                             FoxyEmotes.FoxyHug,

@@ -19,7 +19,7 @@ import net.dv8tion.jda.api.entities.Activity.ActivityType
 import kotlin.reflect.jvm.jvmName
 
 class ActivityUpdater(
-    val instance: FoxyInstance
+    val foxy: FoxyInstance
 ) {
     private val logger = KotlinLogging.logger(this::class.jvmName)
     private val server = embeddedServer(Netty, port = 3000) {
@@ -48,7 +48,7 @@ class ActivityUpdater(
                     return@post
                 }
 
-                instance.jda.presence.setPresence(
+                foxy.jda.presence.setPresence(
                     request.status?.let { OnlineStatus.fromKey(it) } ?: OnlineStatus.ONLINE,
                     Activity.of(
                         ActivityType.fromKey(request.type),

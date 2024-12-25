@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 class FoxyUtils(
-    val instance: FoxyInstance
+    val foxy: FoxyInstance
 ) {
     fun convertISOToDiscordTimestamp(iso: Instant): String {
         val convertedDate = iso.epochSeconds.let { "<t:$it:f>" }
@@ -44,9 +44,9 @@ class FoxyUtils(
 
     suspend fun getActionImage(action: String): String {
         val response: ActionResponse = try {
-            instance.httpClient.get("https://nekos.life/api/v2/img/$action").body()
+            foxy.httpClient.get("https://nekos.life/api/v2/img/$action").body()
         } catch (e: Exception) {
-            instance.httpClient.get("https://cakey.foxybot.win/roleplay/$action").body()
+            foxy.httpClient.get("https://cakey.foxybot.win/roleplay/$action").body()
         }
 
         return response.url
@@ -77,7 +77,7 @@ class FoxyUtils(
             }
 
             actionRow(
-                instance.interactionManager.createLinkButton(
+                foxy.interactionManager.createLinkButton(
                     context.jda.getEmojiById(FoxyEmotes.FoxyCupcake)!!,
                     context.locale["ban.appealButton"],
                     Constants.UNBAN_FORM_URL

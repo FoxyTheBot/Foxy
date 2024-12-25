@@ -9,7 +9,7 @@ class LickExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
 
-        val response = context.instance.utils.getActionImage("lick")
+        val response = context.foxy.utils.getActionImage("lick")
         val user = context.getOption<User>("user")!!
 
         context.reply {

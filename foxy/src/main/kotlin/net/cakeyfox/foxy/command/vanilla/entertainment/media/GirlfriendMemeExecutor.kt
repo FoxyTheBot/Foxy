@@ -14,7 +14,7 @@ class GirlfriendMemeExecutor : FoxyCommandExecutor() {
         context.defer()
         val user = context.getOption<User>("user")
 
-        val girlfriendImageBuffer = context.instance.artistryClient.generateImage("memes/girlfriend", buildJsonObject {
+        val girlfriendImageBuffer = context.foxy.artistryClient.generateImage("memes/girlfriend", buildJsonObject {
             put("avatar", user?.avatarUrl)
         })
 

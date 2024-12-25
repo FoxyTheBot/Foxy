@@ -29,7 +29,7 @@ class GostosIguaisExecutor : FoxyCommandExecutor() {
             return replyFileTooBig(context)
         }
 
-        val image = context.instance.artistryClient.generateImage("memes/gosto", buildJsonObject {
+        val image = context.foxy.artistryClient.generateImage("memes/gosto", buildJsonObject {
             put("asset1", attachment1.url)
             put("asset2", attachment2.url)
             put("text", text)

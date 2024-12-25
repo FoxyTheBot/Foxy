@@ -12,14 +12,14 @@ import net.cakeyfox.serializable.data.TopggBotStats
 import kotlin.reflect.jvm.jvmName
 
 class TopggStatsSender(
-    val instance: FoxyInstance
+    val foxy: FoxyInstance
 ): StatsSender {
     private val logger = KotlinLogging.logger(this::class.jvmName)
-    private val token = instance.config.get("dbl_token")
-    private val clientId = instance.jda.selfUser.id
+    private val token = foxy.config.get("dbl_token")
+    private val clientId = foxy.jda.selfUser.id
 
     override suspend fun send(guildCount: Long): Boolean {
-        val response = instance.httpClient.post("https://top.gg/api/bots/$clientId/stats") {
+        val response = foxy.httpClient.post("https://top.gg/api/bots/$clientId/stats") {
             header("Authorization", token)
             accept(ContentType.Application.Json)
             setBody(

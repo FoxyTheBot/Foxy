@@ -7,7 +7,7 @@ import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
 class LaughExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
-        val response = context.instance.utils.getActionImage("laugh")
+        val response = context.foxy.utils.getActionImage("laugh")
 
         context.reply {
             embed {

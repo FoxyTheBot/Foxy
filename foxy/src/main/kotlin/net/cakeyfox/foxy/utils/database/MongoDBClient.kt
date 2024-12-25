@@ -11,7 +11,7 @@ import net.cakeyfox.foxy.utils.database.utils.*
 import org.bson.Document
 import kotlin.reflect.jvm.jvmName
 
-class MongoDBClient(instance: FoxyInstance) {
+class MongoDBClient(foxy: FoxyInstance) {
     var users: MongoCollection<Document>
     val guilds: MongoCollection<Document>
 
@@ -25,10 +25,10 @@ class MongoDBClient(instance: FoxyInstance) {
     val utils = DatabaseUtils(this)
 
     init {
-        mongoClient = MongoClients.create(instance.config.get("mongo_uri"))
-        database = mongoClient?.getDatabase(instance.config.get("db_name"))
+        mongoClient = MongoClients.create(foxy.config.get("mongo_uri"))
+        database = mongoClient?.getDatabase(foxy.config.get("db_name"))
         users = database!!.getCollection("users")
         guilds = database!!.getCollection("guilds")
-        logger.info { "Connected to ${instance.config.get("db_name")} database" }
+        logger.info { "Connected to ${foxy.config.get("db_name")} database" }
     }
 }

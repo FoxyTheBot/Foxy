@@ -21,7 +21,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
         val partner = context.db.utils.user.getDiscordUser(
             context.authorData.marryStatus.marriedWith!!
         )
-        val partnerAsUser = context.instance.helpers.getUserById(partner._id)
+        val partnerAsUser = context.foxy.helpers.getUserById(partner._id)
 
         context.reply(true) {
             content = pretty(
@@ -30,7 +30,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
             )
 
             actionRow(
-                context.instance.interactionManager.createButtonForUser(
+                context.foxy.interactionManager.createButtonForUser(
                     context.user,
                     ButtonStyle.DANGER,
                     FoxyEmotes.FoxyCry,
@@ -55,7 +55,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
 
 
                         actionRow(
-                            context.instance.interactionManager.createButtonForUser(
+                            context.foxy.interactionManager.createButtonForUser(
                                 context.user,
                                 ButtonStyle.PRIMARY,
                                 FoxyEmotes.FoxyCry,

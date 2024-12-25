@@ -13,7 +13,7 @@ class LaranjoExecutor : FoxyCommandExecutor() {
         context.defer()
         val text = context.getOption<String>("text")!!
 
-        val laranjoImage = context.instance.artistryClient.generateImage("memes/laranjo", buildJsonObject {
+        val laranjoImage = context.foxy.artistryClient.generateImage("memes/laranjo", buildJsonObject {
             put("text", text)
         })
 

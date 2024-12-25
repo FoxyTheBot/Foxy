@@ -16,7 +16,7 @@ import net.cakeyfox.foxy.command.vanilla.utils.declarations.HelpCommand
 import net.cakeyfox.foxy.command.vanilla.utils.declarations.TopCommand
 import net.dv8tion.jda.api.interactions.commands.Command
 
-class FoxyCommandManager(private val instance: FoxyInstance) {
+class FoxyCommandManager(private val foxy: FoxyInstance) {
     private val commands = mutableListOf<FoxyCommandDeclarationWrapper>()
 
     operator fun get(name: String): FoxyCommandDeclarationWrapper? {
@@ -28,8 +28,8 @@ class FoxyCommandManager(private val instance: FoxyInstance) {
     }
 
     suspend fun handle(): MutableList<Command>? {
-        val action = instance.jda.updateCommands()
-        val privateGuild = instance.jda.getGuildById(instance.config.get("guildId"))!!
+        val action = foxy.jda.updateCommands()
+        val privateGuild = foxy.jda.getGuildById(foxy.config.get("guildId"))!!
 
         commands.forEach { command ->
             if (command.create().isPrivate) {

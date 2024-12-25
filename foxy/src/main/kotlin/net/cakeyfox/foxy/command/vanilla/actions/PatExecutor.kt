@@ -9,7 +9,7 @@ class PatExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
 
-        val response = context.instance.utils.getActionImage("pat")
+        val response = context.foxy.utils.getActionImage("pat")
         val user = context.getOption<User>("user")!!
 
         context.reply {

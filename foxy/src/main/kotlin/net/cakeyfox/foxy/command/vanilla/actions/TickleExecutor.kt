@@ -9,7 +9,7 @@ class TickleExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
         val user = context.getOption<User>("user")!!
-        val response = context.instance.utils.getActionImage("tickle")
+        val response = context.foxy.utils.getActionImage("tickle")
 
         context.reply {
             embed {

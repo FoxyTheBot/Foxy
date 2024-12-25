@@ -17,7 +17,7 @@ class HelpExecutor : FoxyCommandExecutor() {
                 )
 
                 color = Colors.FOXY_DEFAULT
-                thumbnail = context.instance.jda.selfUser.effectiveAvatarUrl
+                thumbnail = context.foxy.jda.selfUser.effectiveAvatarUrl
 
                 // Yes, using "emoji" instead of emoji name will work
                 field {

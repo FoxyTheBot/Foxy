@@ -13,7 +13,7 @@ class NotStonksExecutor : FoxyCommandExecutor() {
         context.defer()
         val text = context.getOption<String>("text")!!
 
-        val notStonksImage = context.instance.artistryClient.generateImage("memes/notstonks", buildJsonObject {
+        val notStonksImage = context.foxy.artistryClient.generateImage("memes/notstonks", buildJsonObject {
             put("text", text)
         })
 

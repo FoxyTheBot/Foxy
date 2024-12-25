@@ -8,10 +8,10 @@ import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.entities.User
 
 class FoxyHelpers(
-    private val instance: FoxyInstance
+    private val foxy: FoxyInstance
 ) {
     suspend fun getMemberById(userId: String, guildId: String): Member? {
-        val guild = instance.jda.getGuildById(guildId) ?: return null
+        val guild = foxy.jda.getGuildById(guildId) ?: return null
 
         return guild.getMemberById(userId) ?: withContext(Dispatchers.IO) {
             try {
@@ -23,9 +23,9 @@ class FoxyHelpers(
     }
 
     suspend fun getUserById(userId: String): User {
-        return instance.jda.getUserById(userId) ?: withContext(Dispatchers.IO) {
+        return foxy.jda.getUserById(userId) ?: withContext(Dispatchers.IO) {
             try {
-                instance.jda.retrieveUserById(userId).await()
+                foxy.jda.retrieveUserById(userId).await()
             } catch (e: Exception) {
                 throw IllegalArgumentException("User not found", e)
             }

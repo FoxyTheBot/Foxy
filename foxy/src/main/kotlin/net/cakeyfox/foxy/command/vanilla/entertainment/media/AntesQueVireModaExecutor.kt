@@ -58,7 +58,7 @@ class AntesQueVireModaExecutor: FoxyCommandExecutor() {
             return
         }
 
-        val response = context.instance.artistryClient.generateImage("memes/moda", buildJsonObject {
+        val response = context.foxy.artistryClient.generateImage("memes/moda", buildJsonObject {
             put("asset", attachment.url)
         })
 

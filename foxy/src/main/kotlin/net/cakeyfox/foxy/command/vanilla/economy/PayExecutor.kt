@@ -23,7 +23,7 @@ class PayExecutor : FoxyCommandExecutor() {
             )
 
             actionRow(
-                context.instance.interactionManager.createButtonForUser(
+                context.foxy.interactionManager.createButtonForUser(
                     context.user,
                     ButtonStyle.SUCCESS,
                     FoxyEmotes.FoxyDaily,
@@ -51,7 +51,7 @@ class PayExecutor : FoxyCommandExecutor() {
                         )
 
                         actionRow(
-                            context.instance.interactionManager.createButtonForUser(
+                            context.foxy.interactionManager.createButtonForUser(
                                 context.user,
                                 ButtonStyle.SECONDARY,
                                 FoxyEmotes.FoxyDaily,
