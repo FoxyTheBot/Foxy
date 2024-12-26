@@ -40,9 +40,10 @@ class FoxyProfileRender(
         private val logger = KotlinLogging.logger(this::class.jvmName)
         private const val width = 1436
         private const val height = 884
-        private var image: BufferedImage = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
-        private var graphics: Graphics2D = image.createGraphics()
     }
+
+    private var image: BufferedImage = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
+    private var graphics: Graphics2D = image.createGraphics()
 
     init {
         graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB)
