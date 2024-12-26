@@ -14,7 +14,7 @@ import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.jvmName
 
 class GuildUtils(
-    private val db: MongoDBClient
+    private val client: MongoDBClient
 ) {
     private val logger = KotlinLogging.logger(this::class.jvmName)
 
@@ -27,42 +27,25 @@ class GuildUtils(
     }
 
     fun deleteGuild(guildId: String) {
-        val guilds = db.database!!.getCollection("guilds")
+        val guilds = client.database.getCollection("guilds")
         val query = Document("_id", guildId)
         guilds.deleteOne(query)
     }
 
     private fun createGuild(guildId: String): Guild {
-        val guilds = db.database!!.getCollection("guilds")
+        val guilds = client.database.getCollection("guilds")
 
         val newGuild = Guild(
             _id = guildId,
-            GuildJoinLeaveModule = WelcomerModule(
-                isEnabled = false,
-                joinChannel = null,
-                alertWhenUserLeaves = false,
-                leaveChannel = null,
-                leaveMessage = null,
-                joinMessage = null,
-            ),
+            GuildJoinLeaveModule = WelcomerModule(),
             antiRaidModule = AntiRaidModule(),
-            AutoRoleModule = AutoRoleModule(
-                isEnabled = false,
-                roles = emptyList(),
-            ),
+            AutoRoleModule = AutoRoleModule(),
             premiumKeys = emptyList(),
-            guildSettings = GuildSettings(
-                prefix = "f!",
-                disabledCommands = emptyList(),
-                blockedChannels = emptyList(),
-                usersWhoCanAccessDashboard = emptyList(),
-                deleteMessageIfCommandIsExecuted = false,
-                sendMessageIfChannelIsBlocked = false,
-            ),
+            guildSettings = GuildSettings(),
             dashboardLogs = emptyList(),
         )
 
-        val documentToJSON = db.json.encodeToString(newGuild)
+        val documentToJSON = client.json.encodeToString(newGuild)
         val document = Document.parse(documentToJSON)
         guilds.insertOne(document)
 
@@ -72,7 +55,7 @@ class GuildUtils(
     // Adding missing fields if necessary
 
     private fun updateGuildWithNewFields(guildId: String): Guild {
-        val guilds = db.database!!.getCollection("guilds")
+        val guilds = client.database.getCollection("guilds")
 
         val query = Document("_id", guildId)
         val existingDocument = guilds.find(query).firstOrNull() ?: return createGuild(guildId)
@@ -84,9 +67,9 @@ class GuildUtils(
 
         val updatedJsonNode = ensureFields(Guild::class, jsonNode, guildId)
 
-        val updatedGuild = db.json.decodeFromString<Guild>(updatedJsonNode.toString())
+        val updatedGuild = client.json.decodeFromString<Guild>(updatedJsonNode.toString())
 
-        val updatedDocument = Document.parse(db.json.encodeToString(updatedGuild))
+        val updatedDocument = Document.parse(client.json.encodeToString(updatedGuild))
         val update = Document("\$set", updatedDocument)
         guilds.updateOne(query, update)
 
