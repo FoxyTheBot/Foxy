@@ -27,12 +27,6 @@ import kotlin.reflect.jvm.jvmName
 class FoxyProfileRender(
     val context: FoxyInteractionContext
 ) {
-    private val width = 1436
-    private val height = 884
-    private var image: BufferedImage = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
-    private var graphics: Graphics2D = image.createGraphics()
-    private val logger = KotlinLogging.logger(this::class.jvmName)
-
     companion object {
         val backgroundCache: Cache<String, Background> = Caffeine.newBuilder()
             .build()
@@ -42,6 +36,12 @@ class FoxyProfileRender(
 
         val badgeCache: Cache<String, List<Badge>> = Caffeine.newBuilder()
             .build()
+
+        private val logger = KotlinLogging.logger(this::class.jvmName)
+        private const val width = 1436
+        private const val height = 884
+        private var image: BufferedImage = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
+        private var graphics: Graphics2D = image.createGraphics()
     }
 
     init {
