@@ -24,5 +24,5 @@ tasks.test {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(Versions.JVM_TARGET)
 }
