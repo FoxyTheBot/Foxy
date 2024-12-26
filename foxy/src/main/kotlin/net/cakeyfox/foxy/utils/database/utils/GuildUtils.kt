@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy.utils.database.utils
 
+import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -40,9 +41,7 @@ class GuildUtils(
             GuildJoinLeaveModule = WelcomerModule(),
             antiRaidModule = AntiRaidModule(),
             AutoRoleModule = AutoRoleModule(),
-            premiumKeys = emptyList(),
             guildSettings = GuildSettings(),
-            dashboardLogs = emptyList(),
         )
 
         val documentToJSON = client.json.encodeToString(newGuild)
@@ -63,6 +62,7 @@ class GuildUtils(
         val documentToJSON = existingDocument.toJson()
 
         val objectMapper = ObjectMapper()
+        objectMapper.enable(DeserializationFeature.USE_LONG_FOR_INTS)
         val jsonNode = objectMapper.readTree(documentToJSON)
 
         val updatedJsonNode = ensureFields(Guild::class, jsonNode, guildId)
@@ -91,7 +91,7 @@ class GuildUtils(
             }
 
             if (updatedJsonNode.has(fieldName) && updatedJsonNode.get(fieldName).isNull) {
-                logger.info { "Field $fieldName don't have a value, adding a value." }
+                logger.info { "Field $fieldName doesn't have a value, adding a value." }
                 val defaultValue = getDefaultValue(property.returnType.classifier as KClass<*>)
                 updatedJsonNode.putPOJO(fieldName, defaultValue)
             }

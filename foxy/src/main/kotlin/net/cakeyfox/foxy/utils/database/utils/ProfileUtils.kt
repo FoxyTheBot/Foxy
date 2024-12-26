@@ -15,7 +15,7 @@ class ProfileUtils(
     private val logger = KotlinLogging.logger(this::class.jvmName)
 
     fun getBackground(backgroundId: String): Background {
-        val collection: MongoCollection<Document> = client.database!!.getCollection("backgrounds")
+        val collection: MongoCollection<Document> = client.database.getCollection("backgrounds")
 
         val query = Document("id", backgroundId)
         val existingDocument = collection.find(query).firstOrNull()
@@ -30,7 +30,7 @@ class ProfileUtils(
     }
 
     fun getLayout(layoutId: String): Layout {
-        val collection: MongoCollection<Document> = client.database!!.getCollection("layouts")
+        val collection: MongoCollection<Document> = client.database.getCollection("layouts")
 
         val query = Document("id", layoutId)
         val existingDocument = collection.find(query).firstOrNull()
@@ -45,7 +45,7 @@ class ProfileUtils(
     }
 
     fun getBadges(): List<Badge> {
-        val collection: MongoCollection<Document> = client.database!!.getCollection("badges")
+        val collection: MongoCollection<Document> = client.database.getCollection("badges")
 
         val badges = mutableListOf<Badge>()
         collection.find().forEach {

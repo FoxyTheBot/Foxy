@@ -1,8 +1,6 @@
 package net.cakeyfox.serializable.database.data
 
-import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
-import net.cakeyfox.serializable.database.utils.MongoDateSerializer
 
 @Serializable
 data class Guild(
@@ -62,9 +60,7 @@ data class GuildSettings(
 
 @Serializable
 data class DashboardLog(
-    val _id: String,
-    val user: String,
-    val action: String,
-    @Serializable(with = MongoDateSerializer::class)
-    val date: Instant
+    val authorId: String?,
+    val actionType: String?,
+    val date: Long
 )

@@ -23,12 +23,15 @@ class FoxyHelpers(
     }
 
     suspend fun getUserById(userId: String): User {
-        return foxy.jda.getUserById(userId) ?: withContext(Dispatchers.IO) {
-            try {
+        return try {
+            foxy.jda.getUserById(userId) ?: withContext(Dispatchers.IO) {
                 foxy.jda.retrieveUserById(userId).await()
-            } catch (e: Exception) {
-                throw IllegalArgumentException("User not found", e)
             }
-        }
+        } catch (e: IllegalArgumentException) {
+            throw IllegalArgumentException("Invalid User ID: $userId", e)
+        } catch (e: Exception) {
+            throw RuntimeException("Failed to retrieve user by ID: $userId", e)
+        } ?: throw IllegalArgumentException("User not found for ID: $userId")
     }
+
 }
