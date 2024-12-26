@@ -8,7 +8,7 @@ import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
-class KissExecutor: FoxyCommandExecutor() {
+class KissExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
         val user = context.getOption<User>("user")!!
@@ -40,9 +40,21 @@ class KissExecutor: FoxyCommandExecutor() {
                     context.locale["kiss.button"],
                 ) { it ->
                     val secondResponse = context.foxy.utils.getActionImage("kiss")
+                    it.edit {
+                        actionRow(
+                            context.foxy.interactionManager.createButtonForUser(
+                                user,
+                                ButtonStyle.PRIMARY,
+                                FoxyEmotes.FoxyHug,
+                                context.locale["kiss.button"],
+                            ) { }.asDisabled()
+                        )
+                    }
+
                     it.reply {
                         embed {
-                            description = context.locale["kiss.description", user.asMention, context.event.user.asMention]
+                            description =
+                                context.locale["kiss.description", user.asMention, context.event.user.asMention]
                             image = secondResponse
                             color = Colors.FOXY_DEFAULT
                         }
@@ -55,9 +67,21 @@ class KissExecutor: FoxyCommandExecutor() {
                                 context.locale["kiss.button"],
                             ) {
                                 val thirdResponse = context.foxy.utils.getActionImage("kiss")
+                                it.edit {
+                                    actionRow(
+                                        context.foxy.interactionManager.createButtonForUser(
+                                            user,
+                                            ButtonStyle.PRIMARY,
+                                            FoxyEmotes.FoxyHug,
+                                            context.locale["kiss.button"],
+                                        ) { }.asDisabled()
+                                    )
+                                }
+
                                 it.reply {
                                     embed {
-                                        description = context.locale["kiss.description", context.event.user.asMention, user.asMention]
+                                        description =
+                                            context.locale["kiss.description", context.event.user.asMention, user.asMention]
                                         image = thirdResponse
                                         color = Colors.FOXY_DEFAULT
                                     }
