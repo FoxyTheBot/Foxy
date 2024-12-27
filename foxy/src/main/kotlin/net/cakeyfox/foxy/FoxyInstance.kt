@@ -53,6 +53,7 @@ class FoxyInstance(
             )
             .enableCache(CacheFlag.SCHEDULED_EVENTS)
             .enableCache(CacheFlag.MEMBER_OVERRIDES)
+            .disableCache(CacheFlag.VOICE_STATE)
             .build()
         jda.addEventListener(
             MajorEventListener(this),
