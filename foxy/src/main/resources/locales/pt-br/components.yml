@@ -18,6 +18,9 @@ marry:
   acceptButton: "Aceitar pedido"
   acceptedButton: "Pedido aceito"
 
+divorce:
+  confirmButton: "Divorciar"
+
 pay:
   confirmButton: "Confirmar Transferência"
   confirmedButton: "Transferência Realizada"

@@ -117,6 +117,7 @@ marry:
 divorce:
   notMarried: "Bobinho(a), você precisa se casar antes de se divorciar."
   success: "Prontinho, agora vocês estão divorciados!"
+  confirm: "Você tem certeza que quer se divorciar de {0}?"
 
 fate:
   onAParallelUniverse: "Em um universo pararelo você e {0} são **{1}**"
