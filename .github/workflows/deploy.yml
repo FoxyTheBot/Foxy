@@ -13,16 +13,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
       - name: Deploy to server
-        uses: easingthemes/ssh-deploy@main
         env:
-            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            REMOTE_HOST: ${{ secrets.SSH_HOST }}
-            REMOTE_USER: ${{ secrets.SSH_USER }}
-            REMOTE_PORT: ${{ secrets.SSH_PORT }}
-            TARGET: ${{ secrets.SSH_TARGET }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_TARGET: ${{ secrets.SSH_TARGET }}
+        run: |
+            ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SSH_HOST << EOF
+            cd $SSH_TARGET
+            git pull origin master
+            ./gradlew :foxy:shadowJar --no-daemon
+            mv foxy/build/libs/Foxy-*.jar $SSH_TARGET
+            echo "Build completed and deployed!"
+          EOF
