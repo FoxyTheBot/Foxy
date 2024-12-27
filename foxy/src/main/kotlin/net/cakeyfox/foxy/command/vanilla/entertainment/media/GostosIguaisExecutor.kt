@@ -1,6 +1,8 @@
 package net.cakeyfox.foxy.command.vanilla.entertainment.media
 
 import io.ktor.client.call.*
+import io.ktor.utils.io.*
+import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.cakeyfox.common.FoxyEmotes
@@ -39,7 +41,7 @@ class GostosIguaisExecutor : FoxyCommandExecutor() {
             throw IllegalArgumentException("Error while generating image! Received ${image.status}")
         }
 
-        val imageBuffer = image.body<InputStream>()
+        val imageBuffer = image.body<ByteReadChannel>().readRemaining().readByteArray()
         val imageAsFile = FileUpload.fromData(imageBuffer, "naosomosiguais.png")
 
         context.reply {

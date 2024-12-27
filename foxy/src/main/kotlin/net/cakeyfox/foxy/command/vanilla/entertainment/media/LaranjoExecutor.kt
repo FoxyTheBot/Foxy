@@ -1,6 +1,8 @@
 package net.cakeyfox.foxy.command.vanilla.entertainment.media
 
 import io.ktor.client.call.*
+import io.ktor.utils.io.*
+import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.cakeyfox.foxy.command.FoxyInteractionContext
@@ -21,7 +23,7 @@ class LaranjoExecutor : FoxyCommandExecutor() {
             throw IllegalArgumentException("Error while generating image! Received ${laranjoImage.status}")
         }
 
-        val image = laranjoImage.body<InputStream>()
+        val image = laranjoImage.body<ByteReadChannel>().readRemaining().readByteArray()
         val file = FileUpload.fromData(image, "laranjo_${context.user.id}.png")
 
         context.reply {

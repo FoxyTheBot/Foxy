@@ -1,6 +1,9 @@
 package net.cakeyfox.foxy.command.vanilla.entertainment.media
 
 import io.ktor.client.call.*
+import io.ktor.utils.io.*
+import io.ktor.utils.io.core.*
+import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.cakeyfox.common.FoxyEmotes
@@ -74,7 +77,7 @@ class AntesQueVireModaExecutor: FoxyCommandExecutor() {
             throw IllegalArgumentException("Error processing image! Status code: ${response.status}")
         }
 
-        val image = response.body<InputStream>()
+        val image = response.body<ByteReadChannel>().readRemaining().readByteArray()
 
         context.reply {
             files.plusAssign(FileUpload.fromData(image, "moda.png"))

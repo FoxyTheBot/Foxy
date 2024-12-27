@@ -1,6 +1,8 @@
 package net.cakeyfox.foxy.command.vanilla.entertainment.media
 
 import io.ktor.client.call.*
+import io.ktor.utils.io.*
+import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.cakeyfox.foxy.command.FoxyInteractionContext
@@ -22,7 +24,7 @@ class GirlfriendMemeExecutor : FoxyCommandExecutor() {
             throw IllegalArgumentException("Error while generating image! Received ${girlfriendImageBuffer.status}")
         }
 
-        val image = girlfriendImageBuffer.body<InputStream>()
+        val image = girlfriendImageBuffer.body<ByteReadChannel>().readRemaining().readByteArray()
         val imageAsFile = FileUpload.fromData(image, "girlfriend_${context.user.id}.png")
 
         context.reply {

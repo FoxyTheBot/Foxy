@@ -1,6 +1,8 @@
 package net.cakeyfox.foxy.command.vanilla.entertainment.media
 
 import io.ktor.client.call.*
+import io.ktor.utils.io.*
+import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.cakeyfox.common.FoxyEmotes
@@ -73,7 +75,7 @@ class EminemExecutor: FoxyCommandExecutor() {
             throw IllegalArgumentException("Error processing video! Status code: ${response.status}")
         }
 
-        val video = response.body<InputStream>()
+        val video = response.body<ByteReadChannel>().readRemaining().readByteArray()
         val file = FileUpload.fromData(video, "8mile_${context.user.id}.mp4")
 
         context.reply {

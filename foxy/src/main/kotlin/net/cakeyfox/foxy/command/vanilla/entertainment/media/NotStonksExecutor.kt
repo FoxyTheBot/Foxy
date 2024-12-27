@@ -1,6 +1,8 @@
 package net.cakeyfox.foxy.command.vanilla.entertainment.media
 
 import io.ktor.client.call.*
+import io.ktor.utils.io.*
+import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.cakeyfox.foxy.command.FoxyInteractionContext
@@ -21,7 +23,7 @@ class NotStonksExecutor : FoxyCommandExecutor() {
             throw IllegalArgumentException("Error while generating image! Received ${notStonksImage.status}")
         }
 
-        val response = notStonksImage.body<InputStream>()
+        val response = notStonksImage.body<ByteReadChannel>().readRemaining().readByteArray()
         val imageAsFile = FileUpload.fromData(response, "not_stonks.png")
 
         context.reply {
