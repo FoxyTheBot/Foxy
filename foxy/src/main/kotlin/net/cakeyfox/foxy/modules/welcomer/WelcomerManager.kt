@@ -12,11 +12,12 @@ import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent
 
 class WelcomerManager(
     val foxy: FoxyInstance
-): WelcomerWrapper {
+) : WelcomerWrapper {
     private val welcomer = WelcomerJSONParser()
+    private val scope = CoroutineScope(Dispatchers.IO)
 
     override fun onGuildJoin(event: GuildMemberJoinEvent) {
-        CoroutineScope(Dispatchers.Default).launch {
+        scope.launch {
             val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
 
             if (guildData.GuildJoinLeaveModule.isEnabled) {
@@ -28,15 +29,14 @@ class WelcomerManager(
                 val channel = event.guild.getTextChannelById(guildData.GuildJoinLeaveModule.joinChannel ?: "0")
                     ?: return@launch
 
-                withContext(Dispatchers.Main) {
-                    channel.sendMessage(content).setEmbeds(embeds).queue()
-                }
+                channel.sendMessage(content).setEmbeds(embeds).queue()
+
             }
         }
     }
 
     override fun onGuildLeave(event: GuildMemberRemoveEvent) {
-        CoroutineScope(Dispatchers.Default).launch {
+        scope.launch {
             val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
 
             if (guildData.GuildJoinLeaveModule.alertWhenUserLeaves) {
@@ -48,9 +48,7 @@ class WelcomerManager(
                 val channel = event.guild.getTextChannelById(guildData.GuildJoinLeaveModule.leaveChannel ?: "0")
                     ?: return@launch
 
-                withContext(Dispatchers.Main) {
-                    channel.sendMessage(content).setEmbeds(embeds).queue()
-                }
+                channel.sendMessage(content).setEmbeds(embeds).queue()
             }
         }
     }
