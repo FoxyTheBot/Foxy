@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy.command.vanilla.social
 
+import dev.minn.jda.ktx.coroutines.await
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
@@ -21,7 +22,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
         val partner = context.db.utils.user.getDiscordUser(
             context.authorData.marryStatus.marriedWith!!
         )
-        val partnerAsUser = context.jda.getUserById(partner._id)!!
+        val partnerAsUser = context.jda.retrieveUserById(partner._id).await()
 
         context.reply(true) {
             content = pretty(
