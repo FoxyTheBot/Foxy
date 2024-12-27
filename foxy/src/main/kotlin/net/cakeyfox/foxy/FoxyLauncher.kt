@@ -33,7 +33,7 @@ object FoxyLauncher {
 
         val config = readConfigFile<FoxyConfig>(configFile)
         runBlocking {
-            FoxyInstance(config)
+            FoxyInstance(config).start()
         }
     }
 

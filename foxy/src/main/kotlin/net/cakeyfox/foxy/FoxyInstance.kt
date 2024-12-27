@@ -23,26 +23,32 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag
 class FoxyInstance(
     val config: FoxyConfig
 ) {
-    var jda: JDA
-    val mongoClient: MongoDBClient = MongoDBClient(this)
-    val commandHandler: FoxyCommandManager = FoxyCommandManager(this)
-    val artistryClient: ArtistryClient = ArtistryClient(config.artistryKey)
-    val utils = FoxyUtils(this)
-    val interactionManager = FoxyComponentManager(this)
-    val environment = config.environment
-    val httpClient = HttpClient(CIO) {
-        install(HttpTimeout) {
-            requestTimeoutMillis = 60_000
+    lateinit var jda: JDA
+    lateinit var mongoClient: MongoDBClient
+    lateinit var commandHandler: FoxyCommandManager
+    lateinit var artistryClient: ArtistryClient
+    lateinit var utils: FoxyUtils
+    lateinit var interactionManager: FoxyComponentManager
+    lateinit var environment: String
+    lateinit var httpClient: HttpClient
+
+    fun start() {
+        mongoClient = MongoDBClient(this)
+        commandHandler = FoxyCommandManager(this)
+        utils = FoxyUtils(this)
+        interactionManager = FoxyComponentManager(this)
+        environment = config.environment
+        artistryClient = ArtistryClient(config.artistryKey)
+        httpClient = HttpClient(CIO) {
+            install(HttpTimeout) {
+                requestTimeoutMillis = 60_000
+            }
+
+            install(ContentNegotiation) {
+                json()
+            }
         }
 
-        install(ContentNegotiation) {
-            json()
-        }
-    }
-
-    // TODO: Implements sharding manager
-
-    init {
         jda = JDABuilder.createDefault(config.discordToken)
             .setEnabledIntents(
                 GatewayIntent.GUILD_MEMBERS,
@@ -55,11 +61,14 @@ class FoxyInstance(
             .enableCache(CacheFlag.MEMBER_OVERRIDES)
             .disableCache(CacheFlag.VOICE_STATE)
             .build()
+
         jda.addEventListener(
             MajorEventListener(this),
             GuildEventListener(this),
             InteractionEventListener(this)
         )
+
+        jda.awaitReady()
 
         ActivityUpdater(this)
     }
