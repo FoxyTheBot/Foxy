@@ -15,7 +15,7 @@ class ProfileViewExecutor: FoxyCommandExecutor() {
         val user = context.getOption<User>("user") ?: context.event.user
 
         val profile = FoxyProfileRender(context).create(user)
-        val file = FileUpload.fromData(profile.readBytes(), "profile.png")
+        val file = FileUpload.fromData(profile, "profile.png")
 
         context.reply {
             content = pretty(

@@ -4,7 +4,6 @@ import com.github.benmanes.caffeine.cache.Cache
 import com.github.benmanes.caffeine.cache.Caffeine
 import dev.minn.jda.ktx.coroutines.await
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
@@ -19,7 +18,6 @@ import java.awt.Graphics2D
 import java.awt.RenderingHints
 import java.awt.geom.Ellipse2D
 import java.awt.image.BufferedImage
-import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.net.URL
@@ -53,40 +51,26 @@ class FoxyProfileRender(
         graphics.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY)
     }
 
-    suspend fun create(user: User): ByteArrayInputStream {
+    suspend fun create(user: User): ByteArray {
+        val data = context.db.utils.user.getDiscordUser(user.id)
+        val layoutInfo = layoutCache.get(data.userProfile.layout) { context.db.utils.profile.getLayout(it) }!!
+        val backgroundInfo = backgroundCache.get(data.userProfile.background) { context.db.utils.profile.getBackground(it) }!!
+        val userAboutMe = formatAboutMe(data.userProfile.aboutme ?: "", layoutInfo)
+
+        val layout = loadImage(Constants.PROFILE_LAYOUT(layoutInfo.filename))
+        val background = loadImage(Constants.PROFILE_BACKGROUND(backgroundInfo.filename))
+        val marriedCard = if (data.marryStatus.marriedWith != null) loadImage(Constants.MARRIED_OVERLAY(data.userProfile.layout)) else null
+
+        drawBackgroundAndLayout(background, layout)
+        drawUserDetails(user, data, userAboutMe, layoutInfo, marriedCard, context)
+        drawBadges(data, user, layoutInfo)
+        drawDecoration(data, layoutInfo)
+
+        cleanUp()
         return withContext(Dispatchers.IO) {
-            val data = context.db.utils.user.getDiscordUser(user.id)
-
-            val layoutInfoDeferred = async { layoutCache.get(data.userProfile.layout) { context.db.utils.profile.getLayout(it) }!! }
-            val backgroundInfoDeferred = async { backgroundCache.get(data.userProfile.background) { context.db.utils.profile.getBackground(it) }!! }
-            val badgesDeferred = async { badgeCache.get("default") { context.db.utils.profile.getBadges() }!! }
-
-            val layoutInfo = layoutInfoDeferred.await()
-            val backgroundInfo = backgroundInfoDeferred.await()
-            val defaultBadges = badgesDeferred.await()
-
-            val userAboutMe = formatAboutMe(data.userProfile.aboutme ?: "", layoutInfo)
-
-            val layoutImageDeferred = async { loadImage(Constants.PROFILE_LAYOUT(layoutInfo.filename)) }
-            val backgroundImageDeferred = async { loadImage(Constants.PROFILE_BACKGROUND(backgroundInfo.filename)) }
-            val marriedCardDeferred = async {
-                if (data.marryStatus.marriedWith != null) loadImage(Constants.MARRIED_OVERLAY(data.userProfile.layout)) else null
-            }
-
-            val layout = layoutImageDeferred.await()
-            val background = backgroundImageDeferred.await()
-            val marriedCard = marriedCardDeferred.await()
-
-            drawBackgroundAndLayout(background, layout)
-            drawUserDetails(user, data, userAboutMe, layoutInfo, marriedCard, context)
-            drawBadges(data, user, layoutInfo, defaultBadges)
-            drawDecoration(data, layoutInfo)
-
-            cleanUp()
-
             val outputStream = ByteArrayOutputStream()
             ImageIO.write(image, "png", outputStream)
-            ByteArrayInputStream(outputStream.toByteArray())
+            outputStream.toByteArray()
         }
     }
 
@@ -117,62 +101,24 @@ class FoxyProfileRender(
     ) {
         val fontColor = if (layoutInfo.darkText) Color.BLACK else Color.WHITE
 
-        drawText(
-            user.name,
-            layoutInfo.profileSettings.fontSize.username,
-            layoutInfo.profileSettings.defaultFont,
-            fontColor,
-            layoutInfo.profileSettings.positions.usernamePosition
-        )
+        drawText(user.name, layoutInfo.profileSettings.fontSize.username, layoutInfo.profileSettings.defaultFont, fontColor, layoutInfo.profileSettings.positions.usernamePosition)
 
         val formattedBalance = context.utils.formatNumber(data.userCakes.balance, "pt", "BR")
+        drawText("Cakes: $formattedBalance", layoutInfo.profileSettings.fontSize.cakes, layoutInfo.profileSettings.defaultFont, fontColor, layoutInfo.profileSettings.positions.cakesPosition)
 
-        drawText(
-            "Cakes: $formattedBalance",
-            layoutInfo.profileSettings.fontSize.cakes,
-            layoutInfo.profileSettings.defaultFont,
-            fontColor,
-            layoutInfo.profileSettings.positions.cakesPosition
-        )
         if (data.marryStatus.marriedWith != null) {
             val marriedDateFormatted = context.utils.convertToHumanReadableDate(data.marryStatus.marriedDate!!)
-
             marriedCard?.let {
                 graphics.drawImage(it, 0, 0, width, height, null)
-                drawText(
-                    context.locale["profile.marriedWith"],
-                    layoutInfo.profileSettings.fontSize.married,
-                    layoutInfo.profileSettings.defaultFont,
-                    fontColor,
-                    layoutInfo.profileSettings.positions.marriedPosition
-                )
+                drawText(context.locale["profile.marriedWith"], layoutInfo.profileSettings.fontSize.married, layoutInfo.profileSettings.defaultFont, fontColor, layoutInfo.profileSettings.positions.marriedPosition)
 
                 val partnerUser = context.jda.retrieveUserById(data.marryStatus.marriedWith!!).await()
-
-                drawText(
-                    partnerUser.name,
-                    layoutInfo.profileSettings.fontSize.marriedSince,
-                    layoutInfo.profileSettings.defaultFont,
-                    fontColor,
-                    layoutInfo.profileSettings.positions.marriedUsernamePosition
-                )
-                drawText(
-                    context.locale["profile.marriedSince", marriedDateFormatted],
-                    layoutInfo.profileSettings.fontSize.marriedSince,
-                    layoutInfo.profileSettings.defaultFont,
-                    fontColor,
-                    layoutInfo.profileSettings.positions.marriedSincePosition
-                )
+                drawText(partnerUser.name, layoutInfo.profileSettings.fontSize.marriedSince, layoutInfo.profileSettings.defaultFont, fontColor, layoutInfo.profileSettings.positions.marriedUsernamePosition)
+                drawText(context.locale["profile.marriedSince", marriedDateFormatted], layoutInfo.profileSettings.fontSize.marriedSince, layoutInfo.profileSettings.defaultFont, fontColor, layoutInfo.profileSettings.positions.marriedSincePosition)
             }
         }
 
-        drawText(
-            userAboutMe,
-            layoutInfo.profileSettings.fontSize.aboutme,
-            layoutInfo.profileSettings.defaultFont,
-            fontColor,
-            layoutInfo.profileSettings.positions.aboutmePosition
-        )
+        drawText(userAboutMe, layoutInfo.profileSettings.fontSize.aboutme, layoutInfo.profileSettings.defaultFont, fontColor, layoutInfo.profileSettings.positions.aboutmePosition)
         drawUserAvatar(user, layoutInfo)
     }
 
@@ -187,9 +133,7 @@ class FoxyProfileRender(
 
         return if (fontStream != null) {
             try {
-                val customFont =
-                    Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(Font.PLAIN, fontSize.toFloat())
-                customFont
+                Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(Font.PLAIN, fontSize.toFloat())
             } catch (e: Exception) {
                 logger.error(e) { "Can't load font $fontName" }
                 null
@@ -214,12 +158,7 @@ class FoxyProfileRender(
 
         val clippingShape = arcRadius.times(2).let {
             arcRadius.times(2).let { it1 ->
-                Ellipse2D.Float(
-                    arcX.minus(arcRadius),
-                    arcY.minus(arcRadius),
-                    it.toFloat(),
-                    it1.toFloat()
-                )
+                Ellipse2D.Float(arcX.minus(arcRadius), arcY.minus(arcRadius), it.toFloat(), it1.toFloat())
             }
         }
 
@@ -228,7 +167,9 @@ class FoxyProfileRender(
         graphics.clip = null
     }
 
-    private suspend fun drawBadges(data: FoxyUser, user: User, layoutInfo: Layout, defaultBadges: List<Badge>) {
+    private suspend fun drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
+        val defaultBadges = badgeCache.get("default") { context.db.utils.profile.getBadges() }!!
+
         val member = try {
             context.jda.getGuildById(Constants.SUPPORT_SERVER_ID)
                 ?.retrieveMemberById(user.id)
@@ -241,10 +182,11 @@ class FoxyProfileRender(
             }
         }
 
-        val userBadges = member?.let { getUserBadges(it, defaultBadges, data) }
-            ?: getFallbackBadges(defaultBadges, data)
+        val userBadges = member?.let { getUserBadges(it, defaultBadges, data) } ?: getFallbackBadges(defaultBadges, data)
 
-        if (userBadges.isEmpty()) return
+        if (userBadges.isEmpty()) {
+            return
+        }
 
         var x = layoutInfo.profileSettings.positions.badgesPosition.x
         var y = layoutInfo.profileSettings.positions.badgesPosition.y
@@ -266,26 +208,17 @@ class FoxyProfileRender(
 
         val twelveHoursAgo = System.currentTimeMillis() - 12 * 60 * 60 * 1000
         val additionalBadges = listOf(
-            BadgeCondition(
-                "married",
-                data.marryStatus.marriedWith != null
-            ),
-            BadgeCondition(
-                "upvoter",
-                data.lastVote?.let {
-                    val dateString = it.toString().substringAfter("\$date\": \"").substringBefore("\"")
-                    val instant = Instant.parse(dateString)
-                    instant.toEpochMilli() >= twelveHoursAgo
-                } ?: false
-            ),
-            BadgeCondition(
-                "premium",
-                data.userPremium.premiumDate?.let {
-                    val dateString = it.toString().substringAfter("\$date\": \"").substringBefore("\"")
-                    val instant = Instant.parse(dateString)
-                    instant.toEpochMilli() >= System.currentTimeMillis()
-                } ?: false
-            )
+            BadgeCondition("married", data.marryStatus.marriedWith != null),
+            BadgeCondition("upvoter", data.lastVote?.let {
+                val dateString = it.toString().substringAfter("\$date\": \"").substringBefore("\"")
+                val instant = Instant.parse(dateString)
+                instant.toEpochMilli() >= twelveHoursAgo
+            } ?: false),
+            BadgeCondition("premium", data.userPremium.premiumDate?.let {
+                val dateString = it.toString().substringAfter("\$date\": \"").substringBefore("\"")
+                val instant = Instant.parse(dateString)
+                instant.toEpochMilli() >= System.currentTimeMillis()
+            } ?: false)
         )
 
         additionalBadges.forEach { condition ->
@@ -313,26 +246,17 @@ class FoxyProfileRender(
 
         val twelveHoursAgo = System.currentTimeMillis() - 12 * 60 * 60 * 1000
         val additionalBadges = listOf(
-            BadgeCondition(
-                "married",
-                data.marryStatus.marriedWith != null
-            ),
-            BadgeCondition(
-                "upvoter",
-                data.lastVote?.let {
-                    val dateString = it.toString().substringAfter("\$date\": \"").substringBefore("\"")
-                    val instant = Instant.parse(dateString)
-                    instant.toEpochMilli() >= twelveHoursAgo
-                } ?: false
-            ),
-            BadgeCondition(
-                "premium",
-                data.userPremium.premiumDate?.let {
-                    val dateString = it.toString().substringAfter("\$date\": \"").substringBefore("\"")
-                    val instant = Instant.parse(dateString)
-                    instant.toEpochMilli() >= System.currentTimeMillis()
-                } ?: false
-            )
+            BadgeCondition("married", data.marryStatus.marriedWith != null),
+            BadgeCondition("upvoter", data.lastVote?.let {
+                val dateString = it.toString().substringAfter("\$date\": \"").substringBefore("\"")
+                val instant = Instant.parse(dateString)
+                instant.toEpochMilli() >= twelveHoursAgo
+            } ?: false),
+            BadgeCondition("premium", data.userPremium.premiumDate?.let {
+                val dateString = it.toString().substringAfter("\$date\": \"").substringBefore("\"")
+                val instant = Instant.parse(dateString)
+                instant.toEpochMilli() >= System.currentTimeMillis()
+            } ?: false)
         )
 
         additionalBadges.forEach { condition ->
@@ -355,18 +279,10 @@ class FoxyProfileRender(
         return userBadges.distinctBy { it.id }.sortedByDescending { it.priority }
     }
 
-
     private suspend fun drawDecoration(data: FoxyUser, layoutInfo: Layout) {
         data.userProfile.decoration?.let {
             val decorationImage = loadImage(Constants.PROFILE_DECORATION(it))
-            graphics.drawImage(
-                decorationImage,
-                (width / layoutInfo.profileSettings.positions.decorationPosition.x).toInt(),
-                (height / layoutInfo.profileSettings.positions.decorationPosition.y).toInt(),
-                200,
-                200,
-                null
-            )
+            graphics.drawImage(decorationImage, (width / layoutInfo.profileSettings.positions.decorationPosition.x).toInt(), (height / layoutInfo.profileSettings.positions.decorationPosition.y).toInt(), 200, 200, null)
         }
     }
 
