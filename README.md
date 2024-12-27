@@ -12,7 +12,7 @@
 </div>
  <br>
 
-## 💜 | Inviting Foxy to your server 
+## 💜 | Inviting Foxy to your server
 If you want to test Foxy features you can add her by [clicking here](https://foxybot.win/add)
 
 ## 👨‍💻 | Contributing
@@ -22,3 +22,12 @@ If you want to contribute to Foxy, you can read the tutorial by [clicking here](
 - If you need help, you can enter in My Discord Server!
 
 <a href="https://foxybot.win/discord"><img src="https://discordapp.com/api/guilds/768267522670723094/widget.png?style=banner3"></a>
+
+## ✨ Powered by
+<img align="left" src="https://www.yourkit.com/images/yklogo.png">
+<br><br><br>
+<p>YourKit supports open source projects with innovative and intelligent tools
+for monitoring and profiling Java and .NET applications.
+YourKit is the creator of <a href="https://www.yourkit.com/java/profiler/">YourKit Java Profiler</a>,
+<a href="https://www.yourkit.com/dotnet-profiler/">YourKit .NET Profiler</a>,
+and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>. </p>
