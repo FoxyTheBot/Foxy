@@ -8,6 +8,7 @@ import net.cakeyfox.foxy.FoxyInstance
 
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
+import net.cakeyfox.serializable.database.data.FoxyUser
 import net.dv8tion.jda.api.entities.ISnowflake
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
@@ -30,8 +31,11 @@ class FoxyInteractionContext(
     val locale = FoxyLocale(parsedLocale[event.userLocale] ?: "en-us")
     val utils = FoxyUtils(foxy)
     val user = event.user
-    val authorData = db.utils.user.getDiscordUser(user.id)
     val guild = event.guild
+
+    suspend fun getAuthorData(): FoxyUser {
+        return db.utils.user.getDiscordUser(user.id)
+    }
 
     suspend fun reply(ephemeral: Boolean = false, block: InlineMessage<*>.() -> Unit): ISnowflake? {
         val msg = MessageCreateBuilder {

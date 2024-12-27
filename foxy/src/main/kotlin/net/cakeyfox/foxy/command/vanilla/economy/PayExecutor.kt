@@ -33,7 +33,7 @@ class PayExecutor : FoxyCommandExecutor() {
                     context.db.utils.user.updateUser(
                         context.user.id,
                         mapOf(
-                            "userCakes.balance" to context.authorData.userCakes.balance - amount
+                            "userCakes.balance" to context.getAuthorData().userCakes.balance - amount
                         )
                     )
 
@@ -76,7 +76,7 @@ class PayExecutor : FoxyCommandExecutor() {
             return
         }
 
-        if (context.authorData.userCakes.balance < amount) {
+        if (context.getAuthorData().userCakes.balance < amount) {
             context.reply {
                 content = pretty(
                     FoxyEmotes.FoxyCry,

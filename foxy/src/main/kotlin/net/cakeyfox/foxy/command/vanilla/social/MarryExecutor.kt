@@ -48,7 +48,7 @@ class MarryExecutor : FoxyCommandExecutor() {
             return
         }
 
-        if (context.authorData.marryStatus.marriedWith != null) {
+        if (context.getAuthorData().marryStatus.marriedWith != null) {
             context.reply {
                 content = pretty(
                     FoxyEmotes.FoxyCry,

@@ -9,7 +9,7 @@ import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
 class DivorceExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
-        if (context.authorData.marryStatus.marriedWith == null) {
+        if (context.getAuthorData().marryStatus.marriedWith == null) {
             context.reply {
                 content = pretty(
                     FoxyEmotes.FoxyCry,
@@ -20,7 +20,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
         }
 
         val partner = context.db.utils.user.getDiscordUser(
-            context.authorData.marryStatus.marriedWith!!
+            context.getAuthorData().marryStatus.marriedWith!!
         )
         val partnerAsUser = context.jda.retrieveUserById(partner._id).await()
 
@@ -39,7 +39,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
                 ) {
                     context.db.utils.user.updateUsers(
                         listOf(
-                            context.authorData,
+                            context.getAuthorData(),
                             partner
                         ),
                         mapOf(

@@ -6,48 +6,58 @@ import kotlinx.serialization.encodeToString
 import net.cakeyfox.foxy.utils.database.MongoDBClient
 import net.cakeyfox.serializable.database.data.*
 import org.bson.Document
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class UserUtils(
     private val client: MongoDBClient
 ) {
-    fun getDiscordUser(userId: String): FoxyUser {
-        val collection: MongoCollection<Document> = client.database!!.getCollection("users")
 
-        val query = Document("_id", userId)
-        val existingUserDocument = collection.find(query).firstOrNull()
-            ?: return createUser(userId)
+    suspend fun getDiscordUser(userId: String): FoxyUser {
+        return withContext(Dispatchers.IO) {
+            val collection: MongoCollection<Document> = client.database.getCollection("users")
 
-        val documentToJSON = existingUserDocument.toJson()
+            val query = Document("_id", userId)
+            val existingUserDocument = collection.find(query).firstOrNull()
+                ?: return@withContext createUser(userId)
 
-        return client.json.decodeFromString<FoxyUser>(documentToJSON)
-    }
+            val documentToJSON = existingUserDocument.toJson()
 
-
-    fun updateUser(userId: String, updates: Map<String, Any?>) {
-        val query = Document("_id", userId)
-        val update = Document("\$set", Document(updates))
-
-        client.users.updateOne(query, update)
-    }
-
-    fun updateUsers(users: List<FoxyUser>, updates: Map<String, Any?>) {
-        val query = Document("_id", Document("\$in", users.map { it._id }))
-        val update = Document("\$set", Document(updates))
-
-        client.users.updateMany(query, update)
-    }
-
-    fun getAllUsers(): List<FoxyUser> {
-        val collection: MongoCollection<Document> = client.database!!.getCollection("users")
-
-        val users = mutableListOf<FoxyUser>()
-
-        collection.find().forEach {
-            val documentToJSON = it.toJson()
-            users.add(client.json.decodeFromString(documentToJSON))
+            return@withContext client.json.decodeFromString<FoxyUser>(documentToJSON)
         }
+    }
 
-        return users
+    suspend fun updateUser(userId: String, updates: Map<String, Any?>) {
+        withContext(Dispatchers.IO) {
+            val query = Document("_id", userId)
+            val update = Document("\$set", Document(updates))
+
+            client.users.updateOne(query, update)
+        }
+    }
+
+    suspend fun updateUsers(users: List<FoxyUser>, updates: Map<String, Any?>) {
+        withContext(Dispatchers.IO) {
+            val query = Document("_id", Document("\$in", users.map { it._id }))
+            val update = Document("\$set", Document(updates))
+
+            client.users.updateMany(query, update)
+        }
+    }
+
+    suspend fun getAllUsers(): List<FoxyUser> {
+        return withContext(Dispatchers.IO) {
+            val collection: MongoCollection<Document> = client.database!!.getCollection("users")
+
+            val users = mutableListOf<FoxyUser>()
+
+            collection.find().forEach {
+                val documentToJSON = it.toJson()
+                users.add(client.json.decodeFromString(documentToJSON))
+            }
+
+            return@withContext users
+        }
     }
 
     private fun createUser(userId: String): FoxyUser {

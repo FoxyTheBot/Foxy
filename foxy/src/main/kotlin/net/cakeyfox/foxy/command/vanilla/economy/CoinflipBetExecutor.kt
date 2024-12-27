@@ -34,7 +34,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
             return
         }
 
-        if (amount > context.authorData.userCakes.balance) {
+        if (amount > context.getAuthorData().userCakes.balance) {
             context.reply {
                 content = pretty(
                     FoxyEmotes.FoxyCry,
@@ -79,7 +79,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
                         context.db.utils.user.updateUser(
                             context.user.id,
                             mapOf(
-                                "userCakes.balance" to context.authorData.userCakes.balance + amount
+                                "userCakes.balance" to context.getAuthorData().userCakes.balance + amount
                             )
                         )
 
@@ -107,7 +107,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
                         context.db.utils.user.updateUser(
                             context.user.id,
                             mapOf(
-                                "userCakes.balance" to context.authorData.userCakes.balance - amount
+                                "userCakes.balance" to context.getAuthorData().userCakes.balance - amount
                             )
                         )
 
