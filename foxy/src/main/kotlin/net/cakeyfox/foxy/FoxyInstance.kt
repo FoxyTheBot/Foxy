@@ -15,7 +15,6 @@ import net.cakeyfox.foxy.utils.ActivityUpdater
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.cakeyfox.foxy.utils.config.FoxyConfig
-import net.cakeyfox.foxy.utils.FoxyHelpers
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.database.MongoDBClient
 import net.dv8tion.jda.api.requests.GatewayIntent
@@ -29,7 +28,6 @@ class FoxyInstance(
     val commandHandler: FoxyCommandManager = FoxyCommandManager(this)
     val artistryClient: ArtistryClient = ArtistryClient(config.artistryKey)
     val utils = FoxyUtils(this)
-    val helpers = FoxyHelpers(this)
     val interactionManager = FoxyComponentManager(this)
     val environment = config.environment
     val httpClient = HttpClient(CIO) {
@@ -50,7 +48,6 @@ class FoxyInstance(
                 GatewayIntent.GUILD_MEMBERS,
                 GatewayIntent.MESSAGE_CONTENT,
                 GatewayIntent.GUILD_MESSAGES,
-                GatewayIntent.GUILD_VOICE_STATES,
                 GatewayIntent.GUILD_EMOJIS_AND_STICKERS,
                 GatewayIntent.SCHEDULED_EVENTS
             )

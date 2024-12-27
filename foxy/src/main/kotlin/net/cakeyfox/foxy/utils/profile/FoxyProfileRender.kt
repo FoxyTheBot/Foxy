@@ -2,6 +2,7 @@ package net.cakeyfox.foxy.utils.profile
 
 import com.github.benmanes.caffeine.cache.Cache
 import com.github.benmanes.caffeine.cache.Caffeine
+import dev.minn.jda.ktx.coroutines.await
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import mu.KotlinLogging
@@ -134,7 +135,7 @@ class FoxyProfileRender(
                     layoutInfo.profileSettings.positions.marriedPosition
                 )
 
-                val partnerUser = context.foxy.helpers.getUserById(data.marryStatus.marriedWith!!)
+                val partnerUser = context.jda.retrieveUserById(data.marryStatus.marriedWith!!).await()
 
                 drawText(
                     partnerUser.name,
@@ -217,7 +218,7 @@ class FoxyProfileRender(
     private suspend fun drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
         val defaultBadges = badgeCache.get("default") { context.db.utils.profile.getBadges() }!!
 
-        val member = context.foxy.helpers.getMemberById(user.id, Constants.SUPPORT_SERVER_ID)
+        val member = context.jda.getGuildById(Constants.SUPPORT_SERVER_ID)?.retrieveMemberById(user.id)?.await()
 
         val userBadges = member?.let { getUserBadges(it, defaultBadges, data) }
         if (userBadges != null) {
