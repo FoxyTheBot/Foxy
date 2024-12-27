@@ -8,7 +8,6 @@ import kotlinx.serialization.json.put
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
 import net.dv8tion.jda.api.utils.FileUpload
-import java.io.InputStream
 
 class StonksExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {

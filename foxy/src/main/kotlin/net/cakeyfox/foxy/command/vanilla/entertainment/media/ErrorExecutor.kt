@@ -10,7 +10,6 @@ import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
 import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.utils.FileUpload
-import java.io.InputStream
 
 class ErrorExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {

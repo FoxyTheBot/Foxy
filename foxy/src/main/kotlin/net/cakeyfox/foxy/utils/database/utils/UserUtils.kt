@@ -47,7 +47,7 @@ class UserUtils(
 
     suspend fun getAllUsers(): List<FoxyUser> {
         return withContext(Dispatchers.IO) {
-            val collection: MongoCollection<Document> = client.database!!.getCollection("users")
+            val collection: MongoCollection<Document> = client.database.getCollection("users")
 
             val users = mutableListOf<FoxyUser>()
 

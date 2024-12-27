@@ -2,7 +2,6 @@ package net.cakeyfox.foxy.command.vanilla.entertainment.media
 
 import io.ktor.client.call.*
 import io.ktor.utils.io.*
-import io.ktor.utils.io.core.*
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
@@ -12,7 +11,6 @@ import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
 import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.utils.FileUpload
-import java.io.InputStream
 
 private val supportedTypes = listOf(
     "image/png",
