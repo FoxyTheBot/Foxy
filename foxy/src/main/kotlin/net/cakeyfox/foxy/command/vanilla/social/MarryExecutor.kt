@@ -1,14 +1,13 @@
 package net.cakeyfox.foxy.command.vanilla.social
 
-import kotlinx.datetime.Clock
-import kotlinx.datetime.toJavaInstant
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
 import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
-import java.util.Date
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
 class MarryExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
@@ -59,6 +58,7 @@ class MarryExecutor : FoxyCommandExecutor() {
 
             return
         }
+        val marriedDate = ZonedDateTime.now(ZoneId.systemDefault()).toInstant()
 
         context.reply {
             content = pretty(
@@ -78,7 +78,7 @@ class MarryExecutor : FoxyCommandExecutor() {
                         context.event.user.id,
                         mapOf(
                             "marryStatus.marriedWith" to user.id,
-                            "marryStatus.marriedDate" to Date.from(Clock.System.now().toJavaInstant())
+                            "marryStatus.marriedDate" to marriedDate
                         )
                     )
 
@@ -86,7 +86,7 @@ class MarryExecutor : FoxyCommandExecutor() {
                         user.id,
                         mapOf(
                             "marryStatus.marriedWith" to context.event.user.id,
-                            "marryStatus.marriedDate" to Date.from(Clock.System.now().toJavaInstant())
+                            "marryStatus.marriedDate" to marriedDate
                         )
                     )
 
