@@ -11,6 +11,7 @@ import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.serializable.database.data.*
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.entities.User
+import net.dv8tion.jda.api.exceptions.ErrorResponseException
 import java.awt.Color
 import java.awt.Font
 import java.awt.Graphics2D
@@ -54,7 +55,8 @@ class FoxyProfileRender(
     suspend fun create(user: User): ByteArrayInputStream {
         val data = context.db.utils.user.getDiscordUser(user.id)
         val layoutInfo = layoutCache.get(data.userProfile.layout) { context.db.utils.profile.getLayout(it) }!!
-        val backgroundInfo = backgroundCache.get(data.userProfile.background) { context.db.utils.profile.getBackground(it) }!!
+        val backgroundInfo =
+            backgroundCache.get(data.userProfile.background) { context.db.utils.profile.getBackground(it) }!!
         val userAboutMe = formatAboutMe(
             data.userProfile.aboutme ?: "",
             layoutInfo
@@ -175,7 +177,8 @@ class FoxyProfileRender(
 
         return if (fontStream != null) {
             try {
-                val customFont = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(Font.PLAIN, fontSize.toFloat())
+                val customFont =
+                    Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(Font.PLAIN, fontSize.toFloat())
                 customFont
             } catch (e: Exception) {
                 logger.error(e) { "Can't load font $fontName" }
@@ -218,40 +221,88 @@ class FoxyProfileRender(
     private suspend fun drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
         val defaultBadges = badgeCache.get("default") { context.db.utils.profile.getBadges() }!!
 
-        val member = context.jda.getGuildById(Constants.SUPPORT_SERVER_ID)?.retrieveMemberById(user.id)?.await()
+        val member = try {
+            context.jda.getGuildById(Constants.SUPPORT_SERVER_ID)
+                ?.retrieveMemberById(user.id)
+                ?.await()
+        } catch (e: ErrorResponseException) {
+            if (e.errorCode == 10007) {
+                null
+            } else {
+                throw e
+            }
+        }
 
         val userBadges = member?.let { getUserBadges(it, defaultBadges, data) }
-        if (userBadges != null) {
-            if (userBadges.isEmpty()) {
-                return
-            }
+            ?: getFallbackBadges(defaultBadges, data)
+
+        if (userBadges.isEmpty()) {
+            return
         }
 
         var x = layoutInfo.profileSettings.positions.badgesPosition.x
         var y = layoutInfo.profileSettings.positions.badgesPosition.y
 
-        if (userBadges != null) {
-            for (badge in userBadges) {
-                val badgeImage = loadImage(Constants.PROFILE_BADGES(badge.asset))
-                graphics.drawImage(badgeImage, x.toInt(), y.toInt(), 50, 50, null)
+        for (badge in userBadges) {
+            val badgeImage = loadImage(Constants.PROFILE_BADGES(badge.asset))
+            graphics.drawImage(badgeImage, x.toInt(), y.toInt(), 50, 50, null)
 
-                x += 60
-                if (x > 1300) {
-                    x = layoutInfo.profileSettings.positions.badgesPosition.x
-                    y += 50
-                }
+            x += 60
+            if (x > 1300) {
+                x = layoutInfo.profileSettings.positions.badgesPosition.x
+                y += 50
             }
         }
     }
 
+    private fun getFallbackBadges(defaultBadges: List<Badge>, data: FoxyUser): List<Badge> {
+        val userBadges = mutableListOf<Badge>()
+
+        val twelveHoursAgo = System.currentTimeMillis() - 12 * 60 * 60 * 1000
+        val additionalBadges = listOf(
+            BadgeCondition(
+                "married",
+                data.marryStatus.marriedWith != null
+            ),
+            BadgeCondition(
+                "upvoter",
+                data.lastVote?.let {
+                    val dateString = it.toString().substringAfter("\$date\": \"").substringBefore("\"")
+                    val instant = Instant.parse(dateString)
+                    instant.toEpochMilli() >= twelveHoursAgo
+                } ?: false
+            ),
+            BadgeCondition(
+                "premium",
+                data.userPremium.premiumDate?.let {
+                    val dateString = it.toString().substringAfter("\$date\": \"").substringBefore("\"")
+                    val instant = Instant.parse(dateString)
+                    instant.toEpochMilli() >= System.currentTimeMillis()
+                } ?: false
+            )
+        )
+
+        additionalBadges.forEach { condition ->
+            if (condition.condition as Boolean) {
+                val badge = defaultBadges.find { it.id == condition.id }
+                if (badge != null) {
+                    userBadges.add(badge)
+                }
+            }
+        }
+
+        return userBadges.distinctBy { it.id }.sortedByDescending { it.priority }
+    }
 
     private fun getUserBadges(member: Member, defaultBadges: List<Badge>, data: FoxyUser): List<Badge> {
         val userBadges = mutableListOf<Badge>()
 
         val roleBadges = member.roles
-            .mapNotNull { role -> defaultBadges.find {
-                it.id == role.id
-            } }
+            .mapNotNull { role ->
+                defaultBadges.find {
+                    it.id == role.id
+                }
+            }
         userBadges.addAll(roleBadges)
 
         val twelveHoursAgo = System.currentTimeMillis() - 12 * 60 * 60 * 1000
@@ -289,8 +340,8 @@ class FoxyProfileRender(
 
         defaultBadges.filter { it.isFromGuild != null }.forEach { badge ->
             if (userBadges.none {
-                it.id == badge.id || it.isFromGuild == badge.isFromGuild
-            }) {
+                    it.id == badge.id || it.isFromGuild == badge.isFromGuild
+                }) {
                 userBadges.add(badge)
             }
         }
