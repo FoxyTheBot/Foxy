@@ -1,9 +1,6 @@
 package net.cakeyfox.foxy.modules.welcomer
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerWrapper
 import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerJSONParser
@@ -14,7 +11,7 @@ class WelcomerManager(
     val foxy: FoxyInstance
 ) : WelcomerWrapper {
     private val welcomer = WelcomerJSONParser()
-    private val scope = CoroutineScope(Dispatchers.IO)
+    private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     override fun onGuildJoin(event: GuildMemberJoinEvent) {
         scope.launch {
