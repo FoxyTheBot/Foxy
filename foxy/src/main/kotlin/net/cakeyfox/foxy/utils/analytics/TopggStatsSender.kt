@@ -3,6 +3,8 @@ package net.cakeyfox.foxy.utils.analytics
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.http.content.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
@@ -19,20 +21,22 @@ class TopggStatsSender(
     private val clientId = foxy.jda.selfUser.id
 
     override suspend fun send(guildCount: Long): Boolean {
-        val response = foxy.httpClient.post("https://top.gg/api/bots/$clientId/stats") {
-            header("Authorization", token)
-            accept(ContentType.Application.Json)
-            setBody(
-                TextContent(Json.encodeToString(TopggBotStats(guildCount)), ContentType.Application.Json)
-            )
-        }
+        return withContext(Dispatchers.IO) {
+            val response = foxy.httpClient.post("https://top.gg/api/bots/$clientId/stats") {
+                header("Authorization", token)
+                accept(ContentType.Application.Json)
+                setBody(
+                    TextContent(Json.encodeToString(TopggBotStats(guildCount)), ContentType.Application.Json)
+                )
+            }
 
-        if (response.status != HttpStatusCode.OK) {
-            logger.error { "Failed to send stats to top.gg: ${response.status}" }
-            return false
-        }
+            if (response.status != HttpStatusCode.OK) {
+                logger.error { "Failed to send stats to top.gg: ${response.status}" }
+                return@withContext false
+            }
 
-        logger.info { "Successfully sent stats to top.gg" }
-        return true
+            logger.info { "Successfully sent stats to top.gg" }
+            return@withContext true
+        }
     }
 }

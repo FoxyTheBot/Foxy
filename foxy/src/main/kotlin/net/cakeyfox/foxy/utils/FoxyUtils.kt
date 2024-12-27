@@ -2,6 +2,8 @@ package net.cakeyfox.foxy.utils
 
 import io.ktor.client.call.*
 import io.ktor.client.request.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.datetime.Instant
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
@@ -43,13 +45,15 @@ class FoxyUtils(
     }
 
     suspend fun getActionImage(action: String): String {
-        val response: ActionResponse = try {
-            foxy.httpClient.get("https://nekos.life/api/v2/img/$action").body()
-        } catch (e: Exception) {
-            foxy.httpClient.get("https://cakey.foxybot.win/roleplay/$action").body()
-        }
+        return withContext(Dispatchers.IO) {
+            val response: ActionResponse = try {
+                foxy.httpClient.get("https://nekos.life/api/v2/img/$action").body()
+            } catch (e: Exception) {
+                foxy.httpClient.get("https://cakey.foxybot.win/roleplay/$action").body()
+            }
 
-        return response.url
+            return@withContext response.url
+        }
     }
 
     suspend fun handleBan(event: SlashCommandInteractionEvent, context: FoxyInteractionContext) {

@@ -4,6 +4,7 @@ import com.github.benmanes.caffeine.cache.Cache
 import com.github.benmanes.caffeine.cache.Caffeine
 import dev.minn.jda.ktx.coroutines.await
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
@@ -53,27 +54,36 @@ class FoxyProfileRender(
     }
 
     suspend fun create(user: User): ByteArrayInputStream {
-        val data = context.db.utils.user.getDiscordUser(user.id)
-        val layoutInfo = layoutCache.get(data.userProfile.layout) { context.db.utils.profile.getLayout(it) }!!
-        val backgroundInfo =
-            backgroundCache.get(data.userProfile.background) { context.db.utils.profile.getBackground(it) }!!
-        val userAboutMe = formatAboutMe(
-            data.userProfile.aboutme ?: "",
-            layoutInfo
-        )
-
-        val layout = loadImage(Constants.PROFILE_LAYOUT(layoutInfo.filename))
-        val background = loadImage(Constants.PROFILE_BACKGROUND(backgroundInfo.filename))
-        val marriedCard =
-            if (data.marryStatus.marriedWith != null) loadImage(Constants.MARRIED_OVERLAY(data.userProfile.layout)) else null
-
-        drawBackgroundAndLayout(background, layout)
-        drawUserDetails(user, data, userAboutMe, layoutInfo, marriedCard, context)
-        drawBadges(data, user, layoutInfo)
-        drawDecoration(data, layoutInfo)
-
-        cleanUp()
         return withContext(Dispatchers.IO) {
+            val data = context.db.utils.user.getDiscordUser(user.id)
+
+            val layoutInfoDeferred = async { layoutCache.get(data.userProfile.layout) { context.db.utils.profile.getLayout(it) }!! }
+            val backgroundInfoDeferred = async { backgroundCache.get(data.userProfile.background) { context.db.utils.profile.getBackground(it) }!! }
+            val badgesDeferred = async { badgeCache.get("default") { context.db.utils.profile.getBadges() }!! }
+
+            val layoutInfo = layoutInfoDeferred.await()
+            val backgroundInfo = backgroundInfoDeferred.await()
+            val defaultBadges = badgesDeferred.await()
+
+            val userAboutMe = formatAboutMe(data.userProfile.aboutme ?: "", layoutInfo)
+
+            val layoutImageDeferred = async { loadImage(Constants.PROFILE_LAYOUT(layoutInfo.filename)) }
+            val backgroundImageDeferred = async { loadImage(Constants.PROFILE_BACKGROUND(backgroundInfo.filename)) }
+            val marriedCardDeferred = async {
+                if (data.marryStatus.marriedWith != null) loadImage(Constants.MARRIED_OVERLAY(data.userProfile.layout)) else null
+            }
+
+            val layout = layoutImageDeferred.await()
+            val background = backgroundImageDeferred.await()
+            val marriedCard = marriedCardDeferred.await()
+
+            drawBackgroundAndLayout(background, layout)
+            drawUserDetails(user, data, userAboutMe, layoutInfo, marriedCard, context)
+            drawBadges(data, user, layoutInfo, defaultBadges)
+            drawDecoration(data, layoutInfo)
+
+            cleanUp()
+
             val outputStream = ByteArrayOutputStream()
             ImageIO.write(image, "png", outputStream)
             ByteArrayInputStream(outputStream.toByteArray())
@@ -218,9 +228,7 @@ class FoxyProfileRender(
         graphics.clip = null
     }
 
-    private suspend fun drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
-        val defaultBadges = badgeCache.get("default") { context.db.utils.profile.getBadges() }!!
-
+    private suspend fun drawBadges(data: FoxyUser, user: User, layoutInfo: Layout, defaultBadges: List<Badge>) {
         val member = try {
             context.jda.getGuildById(Constants.SUPPORT_SERVER_ID)
                 ?.retrieveMemberById(user.id)
@@ -236,9 +244,7 @@ class FoxyProfileRender(
         val userBadges = member?.let { getUserBadges(it, defaultBadges, data) }
             ?: getFallbackBadges(defaultBadges, data)
 
-        if (userBadges.isEmpty()) {
-            return
-        }
+        if (userBadges.isEmpty()) return
 
         var x = layoutInfo.profileSettings.positions.badgesPosition.x
         var y = layoutInfo.profileSettings.positions.badgesPosition.y
