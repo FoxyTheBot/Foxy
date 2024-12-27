@@ -32,6 +32,10 @@ jobs:
           SSH_PORT: ${{ secrets.SSH_PORT }}
           SSH_TARGET: ${{ secrets.SSH_TARGET }}
         run: |
+          mkdir -p ~/.ssh
+          echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
           scp -o StrictHostKeyChecking=no -P $SSH_PORT foxy/build/libs/Foxy-*.jar $SSH_USER@$SSH_HOST:$SSH_TARGET/
 
           ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SSH_HOST << EOF
