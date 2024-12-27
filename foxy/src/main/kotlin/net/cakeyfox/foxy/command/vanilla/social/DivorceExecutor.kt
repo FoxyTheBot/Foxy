@@ -27,7 +27,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
         context.reply(true) {
             content = pretty(
                 FoxyEmotes.FoxyCry,
-                context.locale["divorce.confirm", partnerAsUser.asMention]
+                context.locale["divorce.confirm", partnerAsUser.globalName ?: partnerAsUser.name]
             )
 
             actionRow(
@@ -58,7 +58,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
                         actionRow(
                             context.foxy.interactionManager.createButtonForUser(
                                 context.user,
-                                ButtonStyle.PRIMARY,
+                                ButtonStyle.SECONDARY,
                                 FoxyEmotes.FoxyCry,
                                 context.locale["divorce.confirmButton"]
                             ) { }.asDisabled()
