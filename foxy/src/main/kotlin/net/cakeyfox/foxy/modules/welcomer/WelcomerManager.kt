@@ -1,5 +1,9 @@
 package net.cakeyfox.foxy.modules.welcomer
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerWrapper
 import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerJSONParser
@@ -12,34 +16,42 @@ class WelcomerManager(
     private val welcomer = WelcomerJSONParser()
 
     override fun onGuildJoin(event: GuildMemberJoinEvent) {
-        val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
+        CoroutineScope(Dispatchers.Default).launch {
+            val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
 
-        if (guildData.GuildJoinLeaveModule.isEnabled) {
-            val placeholders = welcomer.getPlaceholders(event.guild, event.user)
-            val rawMessage = guildData.GuildJoinLeaveModule.joinMessage ?: return
+            if (guildData.GuildJoinLeaveModule.isEnabled) {
+                val placeholders = welcomer.getPlaceholders(event.guild, event.user)
+                val rawMessage = guildData.GuildJoinLeaveModule.joinMessage ?: return@launch
 
-            val (content, embeds) = welcomer.parseDiscordJsonMessage(rawMessage, placeholders)
+                val (content, embeds) = welcomer.parseDiscordJsonMessage(rawMessage, placeholders)
 
-            val channel = event.guild.getTextChannelById(guildData.GuildJoinLeaveModule.joinChannel ?: "0")
-                ?: return
+                val channel = event.guild.getTextChannelById(guildData.GuildJoinLeaveModule.joinChannel ?: "0")
+                    ?: return@launch
 
-            channel.sendMessage(content).setEmbeds(embeds).queue()
+                withContext(Dispatchers.Main) {
+                    channel.sendMessage(content).setEmbeds(embeds).queue()
+                }
+            }
         }
     }
 
     override fun onGuildLeave(event: GuildMemberRemoveEvent) {
-        val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
+        CoroutineScope(Dispatchers.Default).launch {
+            val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
 
-        if (guildData.GuildJoinLeaveModule.alertWhenUserLeaves) {
-            val placeholders = welcomer.getPlaceholders(event.guild, event.user)
-            val rawMessage = guildData.GuildJoinLeaveModule.leaveMessage ?: return
+            if (guildData.GuildJoinLeaveModule.alertWhenUserLeaves) {
+                val placeholders = welcomer.getPlaceholders(event.guild, event.user)
+                val rawMessage = guildData.GuildJoinLeaveModule.leaveMessage ?: return@launch
 
-            val (content, embeds) = welcomer.parseDiscordJsonMessage(rawMessage, placeholders)
+                val (content, embeds) = welcomer.parseDiscordJsonMessage(rawMessage, placeholders)
 
-            val channel = event.guild.getTextChannelById(guildData.GuildJoinLeaveModule.leaveChannel ?: "0")
-                ?: return
+                val channel = event.guild.getTextChannelById(guildData.GuildJoinLeaveModule.leaveChannel ?: "0")
+                    ?: return@launch
 
-            channel.sendMessage(content).setEmbeds(embeds).queue()
+                withContext(Dispatchers.Main) {
+                    channel.sendMessage(content).setEmbeds(embeds).queue()
+                }
+            }
         }
     }
 }

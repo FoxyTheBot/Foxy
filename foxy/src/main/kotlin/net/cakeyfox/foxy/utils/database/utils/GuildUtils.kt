@@ -10,6 +10,8 @@ import org.bson.Document
 import kotlin.reflect.KClass
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.ObjectNode
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.jvmName
@@ -23,7 +25,7 @@ class GuildUtils(
         ignoreUnknownKeys = true
     }
 
-    fun getGuild(guildId: String): Guild {
+    suspend fun getGuild(guildId: String): Guild {
         return updateGuildWithNewFields(guildId)
     }
 
@@ -53,27 +55,29 @@ class GuildUtils(
 
     // Adding missing fields if necessary
 
-    private fun updateGuildWithNewFields(guildId: String): Guild {
-        val guilds = client.database.getCollection("guilds")
+    private suspend fun updateGuildWithNewFields(guildId: String): Guild {
+        return withContext(Dispatchers.IO) {
+            val guilds = client.database.getCollection("guilds")
 
-        val query = Document("_id", guildId)
-        val existingDocument = guilds.find(query).firstOrNull() ?: return createGuild(guildId)
+            val query = Document("_id", guildId)
+            val existingDocument = guilds.find(query).firstOrNull() ?: return@withContext createGuild(guildId)
 
-        val documentToJSON = existingDocument.toJson()
+            val documentToJSON = existingDocument.toJson()
 
-        val objectMapper = ObjectMapper()
-        objectMapper.enable(DeserializationFeature.USE_LONG_FOR_INTS)
-        val jsonNode = objectMapper.readTree(documentToJSON)
+            val objectMapper = ObjectMapper()
+            objectMapper.enable(DeserializationFeature.USE_LONG_FOR_INTS)
+            val jsonNode = objectMapper.readTree(documentToJSON)
 
-        val updatedJsonNode = ensureFields(Guild::class, jsonNode, guildId)
+            val updatedJsonNode = ensureFields(Guild::class, jsonNode, guildId)
 
-        val updatedGuild = client.json.decodeFromString<Guild>(updatedJsonNode.toString())
+            val updatedGuild = client.json.decodeFromString<Guild>(updatedJsonNode.toString())
 
-        val updatedDocument = Document.parse(client.json.encodeToString(updatedGuild))
-        val update = Document("\$set", updatedDocument)
-        guilds.updateOne(query, update)
+            val updatedDocument = Document.parse(client.json.encodeToString(updatedGuild))
+            val update = Document("\$set", updatedDocument)
+            guilds.updateOne(query, update)
 
-        return updatedGuild
+            updatedGuild
+        }
     }
 
     // Check missing fields and add them
