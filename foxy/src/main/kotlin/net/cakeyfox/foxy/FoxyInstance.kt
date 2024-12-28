@@ -36,6 +36,7 @@ class FoxyInstance(
 
     fun start() {
         val logger = KotlinLogging.logger(this::class.jvmName)
+        val activityUpdater = ActivityUpdater(this)
         mongoClient = MongoDBClient(this)
         commandHandler = FoxyCommandManager(this)
         utils = FoxyUtils(this)
@@ -73,12 +74,11 @@ class FoxyInstance(
 
         jda.awaitReady()
 
-        ActivityUpdater(this)
-
         Runtime.getRuntime().addShutdownHook(Thread {
             logger.info { "Shutting down..." }
-            jda.awaitShutdown()
+            jda.shutdown()
             httpClient.close()
+            activityUpdater.shutdown()
         })
     }
 }

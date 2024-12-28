@@ -16,6 +16,7 @@ import net.cakeyfox.serializable.data.ActivityUpdateRequest
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.entities.Activity.ActivityType
+import okhttp3.internal.wait
 import kotlin.reflect.jvm.jvmName
 
 class ActivityUpdater(
@@ -67,5 +68,10 @@ class ActivityUpdater(
 
     init {
         server.start(wait = false)
+    }
+
+    fun shutdown() {
+        logger.info { "Shutting down ActivityUpdater server" }
+        server.stop()
     }
 }
