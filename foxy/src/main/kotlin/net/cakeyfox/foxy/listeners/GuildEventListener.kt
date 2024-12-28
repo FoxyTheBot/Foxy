@@ -24,12 +24,12 @@ class GuildEventListener(private val foxy: FoxyInstance) : ListenerAdapter() {
             when (event) {
                 is GuildJoinEvent -> {
                     foxy.mongoClient.utils.guild.getGuild(event.guild.id)
-                    logger.info { "Joined guild ${event.guild.name}" }
+                    logger.info { "Joined guild ${event.guild.name} - ${event.guild.id}" }
                 }
 
                 is GuildLeaveEvent -> {
                     foxy.mongoClient.utils.guild.deleteGuild(event.guild.id)
-                    logger.info { "Left guild ${event.guild.name}" }
+                    logger.info { "Left guild ${event.guild.name} - ${event.guild.id}" }
                 }
 
                 is GuildMemberJoinEvent -> {
