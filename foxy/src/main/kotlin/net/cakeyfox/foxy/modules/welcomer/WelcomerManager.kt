@@ -11,42 +11,37 @@ class WelcomerManager(
     val foxy: FoxyInstance
 ) : WelcomerWrapper {
     private val welcomer = WelcomerJSONParser()
-    private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
-    override fun onGuildJoin(event: GuildMemberJoinEvent) {
-        scope.launch {
-            val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
+    override suspend fun onGuildJoin(event: GuildMemberJoinEvent) {
+        val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
 
-            if (guildData.GuildJoinLeaveModule.isEnabled) {
-                val placeholders = welcomer.getPlaceholders(event.guild, event.user)
-                val rawMessage = guildData.GuildJoinLeaveModule.joinMessage ?: return@launch
+        if (guildData.GuildJoinLeaveModule.isEnabled) {
+            val placeholders = welcomer.getPlaceholders(event.guild, event.user)
+            val rawMessage = guildData.GuildJoinLeaveModule.joinMessage ?: return
 
-                val (content, embeds) = welcomer.parseDiscordJsonMessage(rawMessage, placeholders)
+            val (content, embeds) = welcomer.parseDiscordJsonMessage(rawMessage, placeholders)
 
-                val channel = event.guild.getTextChannelById(guildData.GuildJoinLeaveModule.joinChannel ?: "0")
-                    ?: return@launch
+            val channel = event.guild.getTextChannelById(guildData.GuildJoinLeaveModule.joinChannel ?: "0")
+                ?: return
 
-                channel.sendMessage(content).setEmbeds(embeds).queue()
+            channel.sendMessage(content).setEmbeds(embeds).queue()
 
-            }
         }
     }
 
-    override fun onGuildLeave(event: GuildMemberRemoveEvent) {
-        scope.launch {
-            val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
+    override suspend fun onGuildLeave(event: GuildMemberRemoveEvent) {
+        val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
 
-            if (guildData.GuildJoinLeaveModule.alertWhenUserLeaves) {
-                val placeholders = welcomer.getPlaceholders(event.guild, event.user)
-                val rawMessage = guildData.GuildJoinLeaveModule.leaveMessage ?: return@launch
+        if (guildData.GuildJoinLeaveModule.alertWhenUserLeaves) {
+            val placeholders = welcomer.getPlaceholders(event.guild, event.user)
+            val rawMessage = guildData.GuildJoinLeaveModule.leaveMessage ?: return
 
-                val (content, embeds) = welcomer.parseDiscordJsonMessage(rawMessage, placeholders)
+            val (content, embeds) = welcomer.parseDiscordJsonMessage(rawMessage, placeholders)
 
-                val channel = event.guild.getTextChannelById(guildData.GuildJoinLeaveModule.leaveChannel ?: "0")
-                    ?: return@launch
+            val channel = event.guild.getTextChannelById(guildData.GuildJoinLeaveModule.leaveChannel ?: "0")
+                ?: return
 
-                channel.sendMessage(content).setEmbeds(embeds).queue()
-            }
+            channel.sendMessage(content).setEmbeds(embeds).queue()
         }
     }
 }
