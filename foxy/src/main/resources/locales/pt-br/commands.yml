@@ -121,6 +121,14 @@ divorce:
 
 fate:
   onAParallelUniverse: "Em um universo pararelo você e {0} são **{1}**"
+  couple: "um casal"
+  friend: "amigos"
+  enemy: "inimigos"
+  soulmate: "almas gêmeas"
+  crush: "apaixonados um no outro (mas nenhum dos dois sabem)"
+  sibling: "irmãos"
+  parent: "parentes"
+  married: "casados"
 
 dbl:
   embed:

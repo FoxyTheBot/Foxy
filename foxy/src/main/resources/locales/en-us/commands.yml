@@ -121,6 +121,14 @@ divorce:
 
 fate:
   onAParallelUniverse: "In a parallel universe, you and {0} are **{1}**."
+  couple: "a couple"
+  friend: "friends"
+  enemy: "enemies"
+  soulmate: "soulmates"
+  crush: "crushes (but neither of them knows)"
+  sibling: "siblings"
+  parent: "parents"
+  married: "married"
 
 dbl:
   embed:
