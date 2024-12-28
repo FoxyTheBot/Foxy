@@ -194,7 +194,7 @@ class AntiRaidSystem(
                 AntiRaidActions.WarnUser -> {
                     if (event != null) {
                         if (guild.selfMember.hasPermission(Permission.MESSAGE_MANAGE)) {
-                            event.message.delete().queue()
+                            event.message.delete().reason(message).queue()
                             sendAlertToUser(event.channel.id, event.author.id) {
                                 content = pretty(
                                     FoxyEmotes.FoxyRage,
@@ -212,7 +212,7 @@ class AntiRaidSystem(
                 else -> throw IllegalArgumentException("Invalid action type! Received $action")
             }
         } catch (e: Exception) {
-            logger.warn { "Can't take an action for user ${user.id}! Missing permissions?"}
+            logger.warn { "Can't take an action for user ${user.id}! Missing permissions?" }
         }
     }
 
