@@ -29,10 +29,12 @@ class GuildUtils(
         return updateGuildWithNewFields(guildId)
     }
 
-    fun deleteGuild(guildId: String) {
-        val guilds = client.database.getCollection("guilds")
-        val query = Document("_id", guildId)
-        guilds.deleteOne(query)
+    suspend fun deleteGuild(guildId: String) {
+        withContext(Dispatchers.IO) {
+            val guilds = client.database.getCollection("guilds")
+            val query = Document("_id", guildId)
+            guilds.deleteOne(query)
+        }
     }
 
     private fun createGuild(guildId: String): Guild {

@@ -1,9 +1,6 @@
 package net.cakeyfox.foxy.listeners
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.modules.antiraid.AntiRaidSystem
@@ -16,7 +13,7 @@ import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import kotlin.reflect.jvm.jvmName
 
-class GuildEventListener(private val foxy: FoxyInstance): ListenerAdapter() {
+class GuildEventListener(private val foxy: FoxyInstance) : ListenerAdapter() {
     private val logger = KotlinLogging.logger(this::class.jvmName)
     private val welcomer = WelcomerManager(foxy)
     private val antiRaid = AntiRaidSystem(foxy)
