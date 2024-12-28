@@ -5,6 +5,7 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
+import mu.KotlinLogging
 import net.cakeyfox.artistry.ArtistryClient
 import net.cakeyfox.foxy.command.FoxyCommandManager
 import net.cakeyfox.foxy.command.component.FoxyComponentManager
@@ -19,6 +20,7 @@ import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.database.MongoDBClient
 import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.utils.cache.CacheFlag
+import kotlin.reflect.jvm.jvmName
 
 class FoxyInstance(
     val config: FoxyConfig
@@ -33,6 +35,7 @@ class FoxyInstance(
     lateinit var httpClient: HttpClient
 
     fun start() {
+        val logger = KotlinLogging.logger(this::class.jvmName)
         mongoClient = MongoDBClient(this)
         commandHandler = FoxyCommandManager(this)
         utils = FoxyUtils(this)
@@ -71,5 +74,11 @@ class FoxyInstance(
         jda.awaitReady()
 
         ActivityUpdater(this)
+
+        Runtime.getRuntime().addShutdownHook(Thread {
+            logger.info { "Shutting down..." }
+            jda.awaitShutdown()
+            httpClient.close()
+        })
     }
 }

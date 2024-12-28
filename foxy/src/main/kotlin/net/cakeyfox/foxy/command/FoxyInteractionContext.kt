@@ -4,23 +4,25 @@ import dev.minn.jda.ktx.coroutines.await
 import dev.minn.jda.ktx.messages.InlineMessage
 import dev.minn.jda.ktx.messages.MessageCreateBuilder
 import dev.minn.jda.ktx.messages.MessageEditBuilder
+import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.serializable.database.data.FoxyUser
-import net.dv8tion.jda.api.entities.ISnowflake
-import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent
 import net.dv8tion.jda.api.interactions.DiscordLocale
+import net.dv8tion.jda.api.interactions.InteractionHook
 import net.dv8tion.jda.api.interactions.commands.OptionType
+import kotlin.reflect.jvm.jvmName
 
 class FoxyInteractionContext(
     val event: GenericInteractionCreateEvent, client: FoxyInstance
 ) {
+    private val logger = KotlinLogging.logger(this::class.jvmName)
     val jda = event.jda
     val foxy = client
     val db = foxy.mongoClient
@@ -37,36 +39,48 @@ class FoxyInteractionContext(
         return db.utils.user.getDiscordUser(user.id)
     }
 
-    suspend fun reply(ephemeral: Boolean = false, block: InlineMessage<*>.() -> Unit): ISnowflake? {
+    suspend fun reply(ephemeral: Boolean = false, block: InlineMessage<*>.() -> Unit): Any? {
         val msg = MessageCreateBuilder {
             apply(block)
         }
 
         return when (event) {
             is SlashCommandInteractionEvent -> {
-                if (event.isAcknowledged) {
-                    event.hook.setEphemeral(ephemeral).sendMessage(msg.build()).await()
-                } else {
-                    val defer = defer(ephemeral)
+                try {
+                    if (event.isAcknowledged) {
+                        event.hook.setEphemeral(ephemeral).sendMessage(msg.build()).await()
+                    } else {
+                        val defer = defer(ephemeral)
 
-                    defer?.sendMessage(msg.build())?.await()
+                        defer.sendMessage(msg.build()).queue()
+                    }
+                } catch (e: Exception) {
+                    logger.warn { "Failed to reply command! It was deleted? ${e.message}" }
                 }
             }
 
             is ButtonInteractionEvent -> {
-                if (event.isAcknowledged) {
-                    event.hook.setEphemeral(ephemeral).sendMessage(msg.build()).await()
-                } else {
-                    val defer = defer(ephemeral)
-                    defer?.sendMessage(msg.build())?.await()
+                try {
+                    if (event.isAcknowledged) {
+                        event.hook.setEphemeral(ephemeral).sendMessage(msg.build()).await()
+                    } else {
+                        val defer = defer(ephemeral)
+                        defer.sendMessage(msg.build()).queue()
+                    }
+                } catch (e: Exception) {
+                    logger.warn { "Failed to reply button! It was deleted? ${e.message}"}
                 }
             }
 
             is StringSelectInteractionEvent -> {
-                if (event.isAcknowledged) {
-                    event.hook
-                } else {
-                    event.deferReply().setEphemeral(ephemeral).await()
+                try {
+                    if (event.isAcknowledged) {
+                        event.hook
+                    } else {
+                        event.deferReply().setEphemeral(ephemeral).queue()
+                    }
+                } catch (e: Exception) {
+                    logger.warn { "Failed to reply string select! It was deleted? ${e.message}"}
                 }
             }
 
@@ -91,7 +105,7 @@ class FoxyInteractionContext(
         }
     }
 
-    suspend fun edit(block: InlineMessage<*>.() -> Unit): Message? {
+    suspend fun edit(block: InlineMessage<*>.() -> Unit): Unit? {
         val msg = MessageEditBuilder {
             apply(block)
         }
@@ -99,17 +113,17 @@ class FoxyInteractionContext(
         return when (event) {
             is ButtonInteractionEvent -> {
                 if (event.isAcknowledged) {
-                    event.hook.editOriginal(msg.build()).await()
+                    event.hook.editOriginal(msg.build()).queue()
                 } else {
-                    event.deferEdit().await()?.editOriginal(msg.build())?.await()
+                    event.deferEdit().await()?.editOriginal(msg.build())?.queue()
                 }
             }
 
             is StringSelectInteractionEvent -> {
                 if (event.isAcknowledged) {
-                    event.hook.editOriginal(msg.build()).await()
+                    event.hook.editOriginal(msg.build()).queue()
                 } else {
-                    event.deferEdit().await()?.editOriginal(msg.build())?.await()
+                    event.deferEdit().await()?.editOriginal(msg.build())?.queue()
                 }
             }
 
@@ -117,20 +131,30 @@ class FoxyInteractionContext(
         }
     }
 
-    suspend fun defer(ephemeral: Boolean = false) = when (event) {
+    suspend fun defer(ephemeral: Boolean = false): InteractionHook = when (event) {
         is SlashCommandInteractionEvent -> {
-            if (event.isAcknowledged) {
+            try {
+                if (event.isAcknowledged) {
+                    event.hook
+                } else {
+                    event.deferReply().setEphemeral(ephemeral).await()
+                }
+            } catch (e: Exception) {
+                logger.warn { "Failed to defer command! It was deleted? ${e.message}" }
                 event.hook
-            } else {
-                event.deferReply().setEphemeral(ephemeral).await()
             }
         }
 
         is ButtonInteractionEvent -> {
-            if (event.isAcknowledged) {
+            try {
+                if (event.isAcknowledged) {
+                    event.hook
+                } else {
+                    event.deferReply().setEphemeral(ephemeral).await()
+                }
+            } catch (e: Exception) {
+                logger.warn { "Failed to defer button! It was deleted? ${e.message}"}
                 event.hook
-            } else {
-                event.deferReply().setEphemeral(ephemeral).await()
             }
         }
 
