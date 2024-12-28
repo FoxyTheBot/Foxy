@@ -25,7 +25,7 @@ class WelcomerJSONParser {
                 embedsNode.mapNotNull { embedObj ->
                     if (embedObj is JsonNode) {
                         EmbedBuilder().apply {
-                            embedObj.get("title")?.let {
+                            embedObj.get("title")?.let { it ->
                                 if (!it.isNull) {
                                     it.asText()?.takeIf { it.isNotEmpty() }?.let {
                                         setTitle(replacePlaceholders(it, placeholders))
@@ -33,7 +33,7 @@ class WelcomerJSONParser {
                                 }
                             }
 
-                            embedObj.get("description")?.let {
+                            embedObj.get("description")?.let { it ->
                                 if (!it.isNull) {
                                     it.asText()?.takeIf { it.isNotEmpty() }?.let {
                                         setDescription(replacePlaceholders(it, placeholders))
@@ -45,7 +45,7 @@ class WelcomerJSONParser {
                                 setColor(it)
                             }
 
-                            embedObj.get("footer")?.get("text")?.let {
+                            embedObj.get("footer")?.get("text")?.let { it ->
                                 if (!it.isNull) {
                                     it.asText()?.takeIf { it.isNotEmpty() }?.let {
                                         setFooter(replacePlaceholders(it, placeholders), null)
@@ -53,7 +53,7 @@ class WelcomerJSONParser {
                                 }
                             }
 
-                            embedObj.get("image")?.get("url")?.let {
+                            embedObj.get("image")?.get("url")?.let { it ->
                                 if (!it.isNull) {
                                     it.asText()?.takeIf { it.isNotEmpty() }?.let { url ->
                                         val replacedUrl = replacePlaceholders(url, placeholders)
@@ -62,7 +62,7 @@ class WelcomerJSONParser {
                                 }
                             }
 
-                            embedObj.get("thumbnail")?.get("url")?.let {
+                            embedObj.get("thumbnail")?.get("url")?.let { it ->
                                 if (!it.isNull) {
                                     it.asText()?.takeIf { it.isNotEmpty() }?.let { url ->
                                         val replacedUrl = replacePlaceholders(url, placeholders)
