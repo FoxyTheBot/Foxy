@@ -42,6 +42,7 @@ profile:
   marriedWith: "Married to:"
   marriedSince: "Since {0}"
   view: "{0}'s profile"
+  defaultAboutMe: "Change your about me using /aboutme command"
 
 kiss:
   description: ":heart: **{0} kissed {1}!**"

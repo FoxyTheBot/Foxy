@@ -55,7 +55,7 @@ class FoxyProfileRender(
         val data = context.db.utils.user.getDiscordUser(user.id)
         val layoutInfo = layoutCache.get(data.userProfile.layout) { context.db.utils.profile.getLayout(it) }!!
         val backgroundInfo = backgroundCache.get(data.userProfile.background) { context.db.utils.profile.getBackground(it) }!!
-        val userAboutMe = formatAboutMe(data.userProfile.aboutme ?: "", layoutInfo)
+        val userAboutMe = formatAboutMe(data.userProfile.aboutme ?: context.locale["profile.defaultAboutMe"], layoutInfo)
 
         val layout = loadImage(Constants.PROFILE_LAYOUT(layoutInfo.filename))
         val background = loadImage(Constants.PROFILE_BACKGROUND(backgroundInfo.filename))

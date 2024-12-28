@@ -42,6 +42,7 @@ profile:
   marriedWith: "Casado(a) com:"
   marriedSince: "Desde {0}"
   view: "Perfil de {0}"
+  defaultAboutMe: "Use /sobremim para alterar o seu sobre mim"
 
 kiss:
   description: ":heart: **{0} beijou {1}!**"
