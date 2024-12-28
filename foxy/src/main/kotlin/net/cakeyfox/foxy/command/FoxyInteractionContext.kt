@@ -39,7 +39,7 @@ class FoxyInteractionContext(
         return db.utils.user.getDiscordUser(user.id)
     }
 
-    suspend fun reply(ephemeral: Boolean = false, block: InlineMessage<*>.() -> Unit): Any? {
+    suspend fun reply(ephemeral: Boolean = false, block: InlineMessage<*>.() -> Unit): Any {
         val msg = MessageCreateBuilder {
             apply(block)
         }
