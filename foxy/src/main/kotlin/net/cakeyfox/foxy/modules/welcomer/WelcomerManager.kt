@@ -1,6 +1,5 @@
 package net.cakeyfox.foxy.modules.welcomer
 
-import kotlinx.coroutines.*
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerWrapper
 import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerJSONParser
