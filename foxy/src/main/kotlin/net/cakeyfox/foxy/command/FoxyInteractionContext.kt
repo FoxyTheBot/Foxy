@@ -48,7 +48,7 @@ class FoxyInteractionContext(
             is SlashCommandInteractionEvent -> {
                 try {
                     if (event.isAcknowledged) {
-                        event.hook.setEphemeral(ephemeral).sendMessage(msg.build()).await()
+                        event.hook.setEphemeral(ephemeral).sendMessage(msg.build()).queue()
                     } else {
                         val defer = defer(ephemeral)
 
@@ -62,7 +62,7 @@ class FoxyInteractionContext(
             is ButtonInteractionEvent -> {
                 try {
                     if (event.isAcknowledged) {
-                        event.hook.setEphemeral(ephemeral).sendMessage(msg.build()).await()
+                        event.hook.setEphemeral(ephemeral).sendMessage(msg.build()).queue()
                     } else {
                         val defer = defer(ephemeral)
                         defer.sendMessage(msg.build()).queue()
