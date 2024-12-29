@@ -92,7 +92,7 @@ class WelcomerJSONParser {
             "{guild.name}" to guild.name,
             "{guild.id}" to guild.id,
             "{guild.memberCount}" to guild.memberCount.toString(),
-            "{user.avatar}" to user.avatarUrl,
+            "{user.avatar}" to user.effectiveAvatarUrl + "?size=2048",
             "{guild.icon}" to guild.iconUrl
         )
     }
