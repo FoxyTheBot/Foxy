@@ -6,8 +6,11 @@ import dev.minn.jda.ktx.coroutines.await
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import mu.KotlinLogging
+import net.cakeyfox.common.Colors
 import net.cakeyfox.common.Constants
+import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
+import net.cakeyfox.foxy.utils.pretty
 import net.cakeyfox.serializable.database.data.*
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.entities.User
@@ -51,8 +54,32 @@ class FoxyProfileRender(
         graphics.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY)
     }
 
-    suspend fun create(user: User): ByteArray {
+    suspend fun create(user: User): ByteArray? {
         val data = context.db.utils.user.getDiscordUser(user.id)
+
+        if (data.isBanned == true) {
+            context.reply {
+                embed {
+                    title = pretty(FoxyEmotes.FoxyRage, context.locale["profile.isBanned", user.name])
+                    color = Colors.RED
+                    field {
+                        name = pretty(FoxyEmotes.FoxyDrinkingCoffee, context.locale["profile.banReason"])
+                        value = data.banReason ?: context.locale["profile.noBanReasonProvided"]
+                        inline = false
+                    }
+
+                    field {
+                        name = pretty(FoxyEmotes.FoxyBan, context.locale["profile.bannedSince"])
+                        value = data.banDate?.let { context.utils.convertISOToDiscordTimestamp(it) }.toString()
+                        inline = false
+                    }
+                }
+            }
+
+            cleanUp()
+            return null
+        }
+
         val layoutInfo = layoutCache.get(data.userProfile.layout) { context.db.utils.profile.getLayout(it) }!!
         val backgroundInfo = backgroundCache.get(data.userProfile.background) { context.db.utils.profile.getBackground(it) }!!
         val userAboutMe = formatAboutMe(data.userProfile.aboutme ?: context.locale["profile.defaultAboutMe"], layoutInfo)

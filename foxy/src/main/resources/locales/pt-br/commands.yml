@@ -43,6 +43,9 @@ profile:
   marriedSince: "Desde {0}"
   view: "Perfil de {0}"
   defaultAboutMe: "Use /sobremim para alterar o seu sobre mim"
+  isBanned: "{0} está banido!"
+  banReason: "Motivo do banimento:"
+  bannedSince: "Banido desde:"
 
 kiss:
   description: ":heart: **{0} beijou {1}!**"

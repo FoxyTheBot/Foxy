@@ -43,6 +43,9 @@ profile:
   marriedSince: "Since {0}"
   view: "{0}'s profile"
   defaultAboutMe: "Change your about me using /aboutme command"
+  isBanned: "{0} is banned!"
+  banReason: "Ban reason:"
+  bannedSince: "Banned since:"
 
 kiss:
   description: ":heart: **{0} kissed {1}!**"
