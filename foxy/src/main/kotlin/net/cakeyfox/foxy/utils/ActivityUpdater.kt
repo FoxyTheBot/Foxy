@@ -41,10 +41,7 @@ class ActivityUpdater(
 
                 if (request.type !in 0..5) {
                     logger.error { "Invalid activity type: ${request.type}" }
-                    call.respondText {
-                        HttpStatusCode.BadRequest
-                        "Invalid activity type: ${request.type}"
-                    }
+                    call.respond(HttpStatusCode.BadRequest, "Invalid activity type: ${request.type}")
                     return@post
                 }
 
@@ -57,10 +54,7 @@ class ActivityUpdater(
                     )
                 )
 
-                call.respondText {
-                    HttpStatusCode.OK
-                    "Activity updated"
-                }
+                call.respond(HttpStatusCode.OK, "Activity updated")
             }
         }
     }
