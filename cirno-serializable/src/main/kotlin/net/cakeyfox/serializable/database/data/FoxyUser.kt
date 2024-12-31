@@ -20,12 +20,12 @@ data class FoxyUser(
     val userPremium: UserPremium,
     val userSettings: UserSettings,
     val petInfo: PetInfo? = null,
-    val userTransactions: List<Transaction> = emptyList(),
-    val premiumKeys: List<Key> = emptyList(),
-    val roulette: Roulette,
+    val userTransactions: List<Transaction>? = emptyList(),
+    val premiumKeys: List<Key>? = emptyList(),
+    val roulette: Roulette? = null,
     @Serializable(with = MongoDateSerializer::class)
     val lastVote: Instant? = null,
-    val notifiedForVote: Boolean = false,
+    val notifiedForVote: Boolean? = false,
     val voteCount: Int? = null
 )
 
