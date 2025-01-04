@@ -4,7 +4,7 @@ import kotlinx.coroutines.*
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.modules.antiraid.AntiRaidSystem
+import net.cakeyfox.foxy.modules.antiraid.AntiRaidModule
 import net.cakeyfox.foxy.utils.analytics.TopggStatsSender
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
@@ -16,7 +16,7 @@ import kotlin.reflect.jvm.jvmName
 class MajorEventListener(private val foxy: FoxyInstance): ListenerAdapter() {
     private val logger = KotlinLogging.logger(this::class.jvmName)
     private val coroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
-    private val antiRaid = AntiRaidSystem(foxy)
+    private val antiRaid = AntiRaidModule(foxy)
     private val topggStats = TopggStatsSender(foxy)
 
     override fun onReady(event: ReadyEvent) {

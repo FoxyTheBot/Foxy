@@ -6,7 +6,7 @@ import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerJSONParser
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent
 
-class WelcomerManager(
+class WelcomerModule(
     val foxy: FoxyInstance
 ) : WelcomerWrapper {
     private val welcomer = WelcomerJSONParser()

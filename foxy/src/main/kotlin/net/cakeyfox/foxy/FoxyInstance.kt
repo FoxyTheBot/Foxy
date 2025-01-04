@@ -37,7 +37,7 @@ class FoxyInstance(
     fun start() {
         val logger = KotlinLogging.logger(this::class.jvmName)
         val activityUpdater = ActivityUpdater(this)
-        mongoClient = MongoDBClient(this)
+        mongoClient = MongoDBClient()
         commandHandler = FoxyCommandManager(this)
         utils = FoxyUtils(this)
         interactionManager = FoxyComponentManager(this)
@@ -53,6 +53,7 @@ class FoxyInstance(
             }
         }
 
+        mongoClient.start(this)
         jda = JDABuilder.createDefault(config.discordToken)
             .setEnabledIntents(
                 GatewayIntent.GUILD_MEMBERS,
@@ -78,6 +79,7 @@ class FoxyInstance(
             logger.info { "Shutting down..." }
             jda.shutdown()
             httpClient.close()
+            mongoClient.close()
             activityUpdater.shutdown()
         })
     }

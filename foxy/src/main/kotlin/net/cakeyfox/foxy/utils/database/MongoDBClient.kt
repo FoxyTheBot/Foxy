@@ -11,15 +11,15 @@ import net.cakeyfox.foxy.FoxyInstance
 import org.bson.Document
 import kotlin.reflect.jvm.jvmName
 
-class MongoDBClient(foxy: FoxyInstance) {
+class MongoDBClient() {
     companion object {
         private var logger = KotlinLogging.logger(this::class.jvmName)
     }
 
-    var users: MongoCollection<Document>
-    var guilds: MongoCollection<Document>
-    var mongoClient: MongoClient
-    var database: MongoDatabase
+    private lateinit var mongoClient: MongoClient
+    private lateinit var guilds: MongoCollection<Document>
+    lateinit var users: MongoCollection<Document>
+    lateinit var database: MongoDatabase
 
     val json = Json {
         encodeDefaults = true
@@ -28,11 +28,16 @@ class MongoDBClient(foxy: FoxyInstance) {
 
     val utils = DatabaseUtils(this)
 
-    init {
+    fun start(foxy: FoxyInstance) {
         mongoClient = MongoClients.create(foxy.config.mongoUri)
         database = mongoClient.getDatabase(foxy.config.dbName)
         users = database.getCollection("users")
         guilds = database.getCollection("guilds")
         logger.info { "Connected to ${foxy.config.dbName} database" }
+    }
+
+    fun close() {
+        mongoClient.close()
+        logger.info { "Disconnected from MongoDB" }
     }
 }

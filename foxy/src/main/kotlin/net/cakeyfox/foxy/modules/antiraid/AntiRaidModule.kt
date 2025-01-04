@@ -23,7 +23,7 @@ import net.dv8tion.jda.api.interactions.DiscordLocale
 import java.util.concurrent.TimeUnit
 import kotlin.reflect.jvm.jvmName
 
-class AntiRaidSystem(
+class AntiRaidModule(
     val foxy: FoxyInstance
 ) {
     companion object {
