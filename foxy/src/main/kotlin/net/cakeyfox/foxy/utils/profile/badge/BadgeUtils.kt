@@ -41,14 +41,6 @@ object BadgeUtils {
             }
         }
 
-        defaultBadges.filter { it.isFromGuild != null }.forEach { badge ->
-            if (userBadges.none {
-                    it.id == badge.id || it.isFromGuild == badge.isFromGuild
-                }) {
-                userBadges.add(badge)
-            }
-        }
-
         return userBadges.distinctBy { it.id }.sortedByDescending { it.priority }
     }
 

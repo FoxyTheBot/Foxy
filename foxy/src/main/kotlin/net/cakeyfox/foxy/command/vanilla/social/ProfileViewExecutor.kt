@@ -4,9 +4,7 @@ import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
-import net.cakeyfox.foxy.utils.image.ImageUtils
 import net.cakeyfox.foxy.utils.pretty
-import net.cakeyfox.foxy.utils.profile.FoxyProfileRender
 import net.cakeyfox.foxy.utils.profile.ProfileRender
 import net.cakeyfox.foxy.utils.profile.config.ProfileConfig
 import net.dv8tion.jda.api.entities.User

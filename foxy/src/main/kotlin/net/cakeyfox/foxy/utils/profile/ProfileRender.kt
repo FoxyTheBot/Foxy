@@ -29,7 +29,7 @@ import kotlin.system.measureTimeMillis
 class ProfileRender(
     private val config: ProfileConfig, private val context: FoxyInteractionContext
 ) {
-    lateinit var graphics: Graphics2D
+    private lateinit var graphics: Graphics2D
     lateinit var image: BufferedImage
 
     companion object {
@@ -56,11 +56,11 @@ class ProfileRender(
                 }
 
                 val layoutDeferred = async {
-                    ProfileCacheManager.loadImageFromCache(Constants.PROFILE_LAYOUT(layoutInfoDeferred.await().filename))!!
+                    ProfileCacheManager.loadImageFromCache(Constants.PROFILE_LAYOUT(layoutInfoDeferred.await().filename))
                 }
 
                 val backgroundDeferred = async {
-                    ProfileCacheManager.loadImageFromCache(Constants.PROFILE_BACKGROUND(backgroundInfoDeferred.await().filename))!!
+                    ProfileCacheManager.loadImageFromCache(Constants.PROFILE_BACKGROUND(backgroundInfoDeferred.await().filename))
                 }
 
                 val layout = layoutDeferred.await()
