@@ -18,9 +18,9 @@ object ProfileCacheManager {
         .maximumSize(100)
         .build()
 
-    suspend fun loadImageFromCache(url: String): BufferedImage? {
+    suspend fun loadImageFromCache(url: String): BufferedImage {
         return imageCache.getIfPresent(url) ?: run {
-            val image = ImageUtils.loadImageFromURL(url)
+            val image = ImageUtils.loadProfileAssetFromURL(url)
             imageCache.put(url, image)
             image
         }
