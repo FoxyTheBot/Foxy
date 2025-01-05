@@ -121,7 +121,7 @@ class ProfileRender(
         }
 
         val userAboutMe =
-            ProfileUtils.formatAboutMe(userData.userProfile.aboutme ?: context.locale["profile.defaultAbouMe"], layout)
+            ProfileUtils.formatAboutMe(userData.userProfile.aboutme ?: context.locale["profile.defaultAboutMe"], layout)
 
         graphics.drawTextWithFont(config.profileWidth, config.profileHeight) {
             text = userAboutMe
@@ -137,12 +137,12 @@ class ProfileRender(
             val avatarDeferred = async {
                 val avatarUrl = user.avatarUrl ?: user.defaultAvatarUrl
                 val avatarWithSize = avatarUrl.plus("?size=1024")
-                ImageUtils.loadImageFromURL(avatarWithSize)
+                ImageUtils.loadProfileAssetFromURL(avatarWithSize)
             }
 
             val decorationDeferred = async {
                 data.userProfile.decoration?.let {
-                    ImageUtils.loadImageFromURL(Constants.PROFILE_DECORATION(it))
+                    ImageUtils.loadProfileAssetFromURL(Constants.PROFILE_DECORATION(it))
                 }
             }
 
@@ -181,7 +181,7 @@ class ProfileRender(
 
     private suspend fun drawDecoration(data: FoxyUser, layoutInfo: Layout) {
         data.userProfile.decoration?.let {
-            val decorationImage = ImageUtils.loadImageFromURL(Constants.PROFILE_DECORATION(it))
+            val decorationImage = ImageUtils.loadProfileAssetFromURL(Constants.PROFILE_DECORATION(it))
             graphics.drawImage(
                 decorationImage,
                 (config.profileWidth / layoutInfo.profileSettings.positions.decorationPosition.x).toInt(),
@@ -218,7 +218,7 @@ class ProfileRender(
         var y = layoutInfo.profileSettings.positions.badgesPosition.y
 
         for (badge in userBadges) {
-            val badgeImage = ImageUtils.loadImageFromURL(Constants.PROFILE_BADGES(badge.asset))
+            val badgeImage = ImageUtils.loadProfileAssetFromURL(Constants.PROFILE_BADGES(badge.asset))
             graphics.drawImage(badgeImage, x.toInt(), y.toInt(), 50, 50, null)
 
             x += 60
@@ -231,7 +231,7 @@ class ProfileRender(
 
     private suspend fun drawMarryInfo(userData: FoxyUser, layout: Layout) {
         val marriedDateFormatted = context.utils.convertToHumanReadableDate(userData.marryStatus.marriedDate!!)
-        val marriedOverlay = ImageUtils.loadImageFromURL(Constants.MARRIED_OVERLAY(layout.id))
+        val marriedOverlay = ImageUtils.loadProfileAssetFromURL(Constants.MARRIED_OVERLAY(layout.id))
         val color = if (layout.darkText) Color.BLACK else Color.WHITE
         val partnerUser = context.jda.retrieveUserById(userData.marryStatus.marriedWith!!).await()
 

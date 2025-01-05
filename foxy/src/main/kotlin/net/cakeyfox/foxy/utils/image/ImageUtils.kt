@@ -33,7 +33,7 @@ object ImageUtils {
         }
     }
 
-    suspend fun loadImageFromURL(url: String): BufferedImage {
+    suspend fun loadProfileAssetFromURL(url: String): BufferedImage {
         return withContext(Dispatchers.IO) {
             try {
                 ProfileCacheManager.imageCache.get(url) {
