@@ -46,7 +46,7 @@ class PayExecutor : FoxyCommandExecutor() {
 
                     it.edit {
                         content = pretty(
-                            FoxyEmotes.FoxyCry,
+                            FoxyEmotes.FoxyYay,
                             context.locale["pay.success", amount.toString(), userToPay.asMention]
                         )
 

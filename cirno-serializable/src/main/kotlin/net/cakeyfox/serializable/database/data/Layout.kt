@@ -1,6 +1,7 @@
 package net.cakeyfox.serializable.database.data
 
 import kotlinx.serialization.Serializable
+import net.cakeyfox.serializable.data.ImagePosition
 
 @Serializable
 data class Layout(
@@ -40,27 +41,14 @@ data class FontSize(
 
 @Serializable
 data class Positions(
-    val avatarPosition: Position,
-    val usernamePosition: Position,
-    val aboutmePosition: Position,
-    val marriedPosition: Position,
-    val marriedSincePosition: Position,
-    val marriedUsernamePosition: Position,
-    val badgesPosition: Position,
-    val decorationPosition: Position,
-    val cakesPosition: Position,
+    val avatarPosition: ImagePosition,
+    val usernamePosition: ImagePosition,
+    val aboutmePosition: ImagePosition,
+    val marriedPosition: ImagePosition,
+    val marriedSincePosition: ImagePosition,
+    val marriedUsernamePosition: ImagePosition,
+    val badgesPosition: ImagePosition,
+    val decorationPosition: ImagePosition,
+    val cakesPosition: ImagePosition,
 )
 
-@Serializable
-data class Position(
-    val x: Float,
-    val y: Float,
-    val arc: Arc? = null,
-)
-
-@Serializable
-data class Arc(
-    val x: Float,
-    val y: Float,
-    val radius: Int,
-)

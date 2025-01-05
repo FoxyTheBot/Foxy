@@ -11,6 +11,8 @@ import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.utils.pretty
+import net.cakeyfox.foxy.utils.profile.badge.BadgeCondition
+import net.cakeyfox.serializable.data.ImagePosition
 import net.cakeyfox.serializable.database.data.*
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.entities.User
@@ -28,25 +30,21 @@ import java.time.Instant
 import javax.imageio.ImageIO
 import kotlin.reflect.jvm.jvmName
 
+// TODO: Refactor this
 class FoxyProfileRender(
     val context: FoxyInteractionContext
 ) {
     companion object {
-        val backgroundCache: Cache<String, Background> = Caffeine.newBuilder()
-            .build()
-
-        val layoutCache: Cache<String, Layout> = Caffeine.newBuilder()
-            .build()
-
-        val badgeCache: Cache<String, List<Badge>> = Caffeine.newBuilder()
-            .build()
+        val backgroundCache: Cache<String, Background> = Caffeine.newBuilder().build()
+        val layoutCache: Cache<String, Layout> = Caffeine.newBuilder().build()
+        val badgeCache: Cache<String, List<Badge>> = Caffeine.newBuilder().build()
 
         private val logger = KotlinLogging.logger(this::class.jvmName)
-        private const val width = 1436
-        private const val height = 884
+        private const val PROFILE_WIDTH = 1436
+        private const val PROFILE_HEIGHT = 884
     }
 
-    private var image: BufferedImage = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
+    private var image: BufferedImage = BufferedImage(PROFILE_WIDTH, PROFILE_HEIGHT, BufferedImage.TYPE_INT_ARGB)
     private var graphics: Graphics2D = image.createGraphics()
 
     init {
@@ -112,10 +110,10 @@ class FoxyProfileRender(
     }
 
     private fun drawBackgroundAndLayout(background: BufferedImage, layout: BufferedImage) {
-        graphics.clearRect(0, 0, width, height)
-        graphics.drawImage(background, 0, 0, width, height, null)
-        graphics.drawImage(layout, 0, 0, width, height, null)
-        graphics.drawRect(0, 0, width, height)
+        graphics.clearRect(0, 0, PROFILE_WIDTH, PROFILE_HEIGHT)
+        graphics.drawImage(background, 0, 0, PROFILE_WIDTH, PROFILE_HEIGHT, null)
+        graphics.drawImage(layout, 0, 0, PROFILE_WIDTH, PROFILE_HEIGHT, null)
+        graphics.drawRect(0, 0, PROFILE_WIDTH, PROFILE_HEIGHT)
     }
 
     private suspend fun drawUserDetails(
@@ -136,7 +134,7 @@ class FoxyProfileRender(
         if (data.marryStatus.marriedWith != null) {
             val marriedDateFormatted = context.utils.convertToHumanReadableDate(data.marryStatus.marriedDate!!)
             marriedCard?.let {
-                graphics.drawImage(it, 0, 0, width, height, null)
+                graphics.drawImage(it, 0, 0, PROFILE_WIDTH, PROFILE_HEIGHT, null)
                 drawText(context.locale["profile.marriedWith"], layoutInfo.profileSettings.fontSize.married, layoutInfo.profileSettings.defaultFont, fontColor, layoutInfo.profileSettings.positions.marriedPosition)
 
                 val partnerUser = context.jda.retrieveUserById(data.marryStatus.marriedWith!!).await()
@@ -149,10 +147,10 @@ class FoxyProfileRender(
         drawUserAvatar(user, layoutInfo)
     }
 
-    private fun drawText(text: String, fontSize: Int, fontFamily: String, color: Color, position: Position) {
+    private fun drawText(text: String, fontSize: Int, fontFamily: String, color: Color, position: ImagePosition) {
         graphics.font = getFont(fontFamily, fontSize) ?: Font("SansSerif", Font.PLAIN, fontSize)
         graphics.color = color
-        graphics.drawString(text, (width / position.x), (height / position.y))
+        graphics.drawString(text, (PROFILE_WIDTH / position.x), (PROFILE_HEIGHT / position.y))
     }
 
     private fun getFont(fontName: String, fontSize: Int): Font? {
@@ -309,7 +307,7 @@ class FoxyProfileRender(
     private suspend fun drawDecoration(data: FoxyUser, layoutInfo: Layout) {
         data.userProfile.decoration?.let {
             val decorationImage = loadImage(Constants.PROFILE_DECORATION(it))
-            graphics.drawImage(decorationImage, (width / layoutInfo.profileSettings.positions.decorationPosition.x).toInt(), (height / layoutInfo.profileSettings.positions.decorationPosition.y).toInt(), 200, 200, null)
+            graphics.drawImage(decorationImage, (PROFILE_WIDTH / layoutInfo.profileSettings.positions.decorationPosition.x).toInt(), (PROFILE_HEIGHT / layoutInfo.profileSettings.positions.decorationPosition.y).toInt(), 200, 200, null)
         }
     }
 
