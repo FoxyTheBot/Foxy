@@ -14,6 +14,7 @@ import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import kotlin.reflect.jvm.jvmName
+import kotlin.system.measureTimeMillis
 
 class InteractionEventListener(
     private val foxy: FoxyInstance
@@ -56,11 +57,14 @@ class InteractionEventListener(
                         }
 
                         try {
-                            if (subCommand != null) {
-                                subCommand.executor?.execute(context)
-                            } else if (subCommandGroupName == null && subCommandName == null) {
-                                command.executor?.execute(context)
+                            val executionTime = measureTimeMillis {
+                                if (subCommand != null) {
+                                    subCommand.executor?.execute(context)
+                                } else if (subCommandGroupName == null && subCommandName == null) {
+                                    command.executor?.execute(context)
+                                }
                             }
+                            logger.info { "Command /${event.fullCommandName} executed in ${executionTime}ms" }
                         } catch (e: Exception) {
                             logger.error(e) { "An error occurred while executing command: ${event.fullCommandName}" }
                             context.reply(true) {
@@ -106,7 +110,7 @@ class InteractionEventListener(
             }
         }
     }
-    
+
     override fun onStringSelectInteraction(event: StringSelectInteractionEvent) {
         coroutineScope.launch {
             val componentId = try {

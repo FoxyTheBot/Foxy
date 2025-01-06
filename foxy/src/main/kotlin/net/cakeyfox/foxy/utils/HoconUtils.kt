@@ -7,5 +7,6 @@ import kotlinx.serialization.hocon.decodeFromConfig
 
 object HoconUtils {
     @OptIn(ExperimentalSerializationApi::class)
-    inline fun <reified T> Hocon.decodeFromString(string: String): T = decodeFromConfig(ConfigFactory.parseString(string).resolve())
+    inline fun <reified T> Hocon.decodeFromString(string: String): T =
+        decodeFromConfig(ConfigFactory.parseString(string).resolve())
 }
