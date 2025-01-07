@@ -11,6 +11,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val user = context.getOption<User>("user")!!
         val amount = context.getOption<Long>("amount")!!
+        val formattedAmount = context.utils.formatLongNumber(amount, "pt", "BR")
         val side = context.getOption<String>("side")!!
         val userToBet = context.db.utils.user.getDiscordUser(user.id)
 
@@ -61,7 +62,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
                     "coinflipbet.proposal",
                     user.asMention,
                     context.user.asMention,
-                    amount.toString(),
+                    formattedAmount,
                     context.locale["coinflipbet.$side"]
                 ]
             )
@@ -97,7 +98,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
                                 "coinflipbet.betResult",
                                 context.locale["coinflipbet.$result"],
                                 context.user.asMention, // User who won
-                                amount.toString(),
+                                formattedAmount,
                                 user.asMention // User who lost
                             ],
                             true
@@ -125,7 +126,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
                                 "coinflipbet.betResult",
                                 context.locale["coinflipbet.$result"],
                                 user.asMention, // User who won
-                                amount.toString(),
+                                formattedAmount,
                                 context.user.asMention // User who lost
                             ],
                             true
