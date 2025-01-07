@@ -8,7 +8,7 @@ Originally, Foxy was developed in TypeScript, but it has now transitioned to Kot
 
 - **PowerShell** (Windows) or **Terminal** (Linux/MacOS).
   > While the Windows Command Prompt may work, it's recommended to use PowerShell for better compatibility.
-- **JDK 17 or higher**, preferably from [Adoptium](https://adoptium.net/). Ensure the `JAVA_HOME` environment variable is set correctly.
+- **JDK 21 or higher**, preferably from [Adoptium](https://adoptium.net/). Ensure the `JAVA_HOME` environment variable is set correctly.
     - **To check JAVA\_HOME:**
         - PowerShell: `echo $env:JAVA_HOME`
         - Bash: `echo $JAVA_HOME`
@@ -76,7 +76,7 @@ If everything is configured correctly, Foxy will start successfully without unex
 ./gradlew :foxy:shadowJar
 ```
 
-2. Locate the generated JAR file in the `build/libs` folder.
+2. Locate the generated JAR file in the `foxy/build/libs` folder.
 3. Ensure the `foxy.conf` file is properly configured.
 4. Run the JAR file using:
 
