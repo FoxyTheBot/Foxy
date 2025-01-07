@@ -26,7 +26,7 @@ class TopggStatsSender(
                 header("Authorization", token)
                 accept(ContentType.Application.Json)
                 setBody(
-                    TextContent(Json.encodeToString(TopggBotStats(330)), ContentType.Application.Json)
+                    TextContent(Json.encodeToString(TopggBotStats(guildCount)), ContentType.Application.Json)
                 )
             }
 
