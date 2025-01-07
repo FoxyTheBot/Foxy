@@ -2,6 +2,8 @@ package net.cakeyfox.foxy.command.vanilla.entertainment.media
 
 import io.ktor.client.call.*
 import io.ktor.utils.io.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
@@ -56,11 +58,13 @@ class EminemExecutor: FoxyCommandExecutor() {
         }
 
 
-        val response = context.foxy.artistryClient.generateImage("memes/8mile", buildJsonObject {
-            put("url", attachment.url)
-            put("contentType", attachment.contentType)
-            put("size", attachment.size)
-        })
+        val response = withContext(Dispatchers.IO) {
+            context.foxy.artistryClient.generateImage("memes/8mile", buildJsonObject {
+                put("url", attachment.url)
+                put("contentType", attachment.contentType)
+                put("size", attachment.size)
+            })
+        }
 
         if (response.status.value in 400..499) {
             context.reply {

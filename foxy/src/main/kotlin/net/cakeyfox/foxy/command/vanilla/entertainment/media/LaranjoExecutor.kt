@@ -2,6 +2,8 @@ package net.cakeyfox.foxy.command.vanilla.entertainment.media
 
 import io.ktor.client.call.*
 import io.ktor.utils.io.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
@@ -14,9 +16,11 @@ class LaranjoExecutor : FoxyCommandExecutor() {
         context.defer()
         val text = context.getOption<String>("text")!!
 
-        val laranjoImage = context.foxy.artistryClient.generateImage("memes/laranjo", buildJsonObject {
-            put("text", text)
-        })
+        val laranjoImage = withContext(Dispatchers.IO) {
+            context.foxy.artistryClient.generateImage("memes/laranjo", buildJsonObject {
+                put("text", text)
+            })
+        }
 
         if (laranjoImage.status.value !in 200..299) {
             throw IllegalArgumentException("Error while generating image! Received ${laranjoImage.status}")

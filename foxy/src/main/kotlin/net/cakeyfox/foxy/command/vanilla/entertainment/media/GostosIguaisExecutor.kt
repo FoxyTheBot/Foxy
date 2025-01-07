@@ -2,6 +2,8 @@ package net.cakeyfox.foxy.command.vanilla.entertainment.media
 
 import io.ktor.client.call.*
 import io.ktor.utils.io.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
@@ -30,11 +32,13 @@ class GostosIguaisExecutor : FoxyCommandExecutor() {
             return replyFileTooBig(context)
         }
 
-        val image = context.foxy.artistryClient.generateImage("memes/gosto", buildJsonObject {
-            put("asset1", attachment1.url)
-            put("asset2", attachment2.url)
-            put("text", text)
-        })
+        val image = withContext(Dispatchers.IO) {
+            context.foxy.artistryClient.generateImage("memes/gosto", buildJsonObject {
+                put("asset1", attachment1.url)
+                put("asset2", attachment2.url)
+                put("text", text)
+            })
+        }
 
         if (image.status.value !in 200..299) {
             throw IllegalArgumentException("Error while generating image! Received ${image.status}")

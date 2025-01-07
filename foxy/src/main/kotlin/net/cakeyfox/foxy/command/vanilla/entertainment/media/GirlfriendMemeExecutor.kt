@@ -2,6 +2,8 @@ package net.cakeyfox.foxy.command.vanilla.entertainment.media
 
 import io.ktor.client.call.*
 import io.ktor.utils.io.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
@@ -15,9 +17,11 @@ class GirlfriendMemeExecutor : FoxyCommandExecutor() {
         context.defer()
         val user = context.getOption<User>("user")
 
-        val girlfriendImageBuffer = context.foxy.artistryClient.generateImage("memes/girlfriend", buildJsonObject {
-            put("avatar", user?.avatarUrl)
-        })
+        val girlfriendImageBuffer = withContext(Dispatchers.IO) {
+            context.foxy.artistryClient.generateImage("memes/girlfriend", buildJsonObject {
+                put("avatar", user?.avatarUrl)
+            })
+        }
 
         if (girlfriendImageBuffer.status.value !in 200..299) {
             throw IllegalArgumentException("Error while generating image! Received ${girlfriendImageBuffer.status}")
