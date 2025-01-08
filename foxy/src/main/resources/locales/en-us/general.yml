@@ -9,7 +9,7 @@ commands:
 
     ping:
       name: "ping"
-      description: "pings the bot"
+      description: "[Utils] View Foxy's latency"
 
     fun:
       name: "fun"

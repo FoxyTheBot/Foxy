@@ -10,7 +10,7 @@ commands:
 
     ping:
       name: "ping"
-      description: "pings the bot"
+      description: "[Utilitários] Veja a latência da Foxy"
 
     fun:
       name: "fun"
