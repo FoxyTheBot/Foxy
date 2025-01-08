@@ -45,15 +45,16 @@ class ActivityUpdater(
                     return@post
                 }
 
-                foxy.jda.presence.setPresence(
-                    request.status?.let { OnlineStatus.fromKey(it) } ?: OnlineStatus.ONLINE,
+                foxy.jda.shards.forEach {
+                    request.status?.let { OnlineStatus.fromKey(it) } ?: OnlineStatus.ONLINE
                     Activity.of(
                         ActivityType.fromKey(request.type),
                         request.name,
                         request.url
                     )
-                )
 
+                    logger.info { "Updating status for shard: #${it.shardInfo.shardId}" }
+                }
                 call.respond(HttpStatusCode.OK, "Activity updated")
             }
         }

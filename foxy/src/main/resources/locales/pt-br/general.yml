@@ -8,6 +8,10 @@ commands:
       name: "daily"
       description: "[Economia] Receba seus cakes diários"
 
+    ping:
+      name: "ping"
+      description: "pings the bot"
+
     fun:
       name: "fun"
       description: "Comandos divertidos para você se divertir com seus amigos"

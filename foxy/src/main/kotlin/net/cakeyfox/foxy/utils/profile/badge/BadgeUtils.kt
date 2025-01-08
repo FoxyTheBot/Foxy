@@ -6,6 +6,8 @@ import net.dv8tion.jda.api.entities.Member
 import java.time.Instant
 
 object BadgeUtils {
+    private val twelveHoursAgo = System.currentTimeMillis() - 12 * 60 * 60 * 1000
+
     fun getBadges(member: Member, defaultBadges: List<Badge>, data: FoxyUser): List<Badge> {
         val userBadges = mutableListOf<Badge>()
 
@@ -17,7 +19,6 @@ object BadgeUtils {
             }
         userBadges.addAll(roleBadges)
 
-        val twelveHoursAgo = System.currentTimeMillis() - 12 * 60 * 60 * 1000
         val additionalBadges = listOf(
             BadgeCondition("married", data.marryStatus.marriedWith != null),
             BadgeCondition("upvoter", data.lastVote?.let {
@@ -41,13 +42,20 @@ object BadgeUtils {
             }
         }
 
+        defaultBadges.filter { it.isFromGuild != null }.forEach { badge ->
+            if (userBadges.none {
+                    it.id == badge.id || it.isFromGuild == badge.isFromGuild
+                }) {
+                userBadges.add(badge)
+            }
+        }
+
         return userBadges.distinctBy { it.id }.sortedByDescending { it.priority }
     }
 
     fun getFallbackBadges(defaultBadges: List<Badge>, userData: FoxyUser): List<Badge> {
         val userBadges = mutableListOf<Badge>()
 
-        val twelveHoursAgo = System.currentTimeMillis() - 12 * 60 * 60 * 1000
         val additionalBadges = listOf(
             BadgeCondition("married", userData.marryStatus.marriedWith != null),
             BadgeCondition("upvoter", userData.lastVote?.let {

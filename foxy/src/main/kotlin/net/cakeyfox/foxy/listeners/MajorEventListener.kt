@@ -25,9 +25,6 @@ class MajorEventListener(private val foxy: FoxyInstance): ListenerAdapter() {
                 OnlineStatus.ONLINE,
                 Activity.customStatus(Constants.DEFAULT_ACTIVITY(foxy.environment)))
 
-            val commands = foxy.commandHandler.handle()
-            logger.info { "Registered ${commands?.size} commands" }
-
             if (foxy.environment == "production") {
                 topggStats.send(event.jda.guildCache.size())
             }

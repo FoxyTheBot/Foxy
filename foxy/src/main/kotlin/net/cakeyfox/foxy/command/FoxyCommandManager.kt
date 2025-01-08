@@ -1,6 +1,7 @@
 package net.cakeyfox.foxy.command
 
 import dev.minn.jda.ktx.coroutines.await
+import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.actions.declarations.ActionsCommand
@@ -13,11 +14,14 @@ import net.cakeyfox.foxy.command.vanilla.social.declarations.MarryCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.ProfileCommand
 import net.cakeyfox.foxy.command.vanilla.utils.declarations.DblCommand
 import net.cakeyfox.foxy.command.vanilla.utils.declarations.HelpCommand
+import net.cakeyfox.foxy.command.vanilla.utils.declarations.PingCommand
 import net.cakeyfox.foxy.command.vanilla.utils.declarations.TopCommand
 import net.dv8tion.jda.api.interactions.commands.Command
+import kotlin.reflect.jvm.jvmName
 
 class FoxyCommandManager(private val foxy: FoxyInstance) {
     private val commands = mutableListOf<FoxyCommandDeclarationWrapper>()
+    private val logger = KotlinLogging.logger(this::class.jvmName)
 
     operator fun get(name: String): FoxyCommandDeclarationWrapper? {
         return commands.find { it.create().name == name }
@@ -27,24 +31,24 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         commands.add(command)
     }
 
-    suspend fun handle(): MutableList<Command>? {
-        val action = foxy.jda.updateCommands()
-        val privateGuild = foxy.jda.getGuildById(foxy.config.guildId)!!
+    suspend fun handle(): MutableList<Command> {
+        val allCommands = mutableListOf<Command>()
+        logger.info { "Starting command handling for ${foxy.jda.shards.size + 1} shards" }
+        foxy.jda.shards.forEach { shard ->
+            val action = shard.updateCommands()
 
-        commands.forEach { command ->
-            if (command.create().isPrivate) {
-                privateGuild.updateCommands().addCommands(
-                    command.create().build()
-                ).await()
-            } else {
-                action.addCommands(
-                    command.create().build()
-                )
+            commands.forEach { command ->
+                action.addCommands(command.create().build())
             }
+
+            val registeredCommands = action.await()
+            allCommands.addAll(registeredCommands)
+            logger.info { "${commands.size} commands registered on shard ${shard.shardInfo.shardId}" }
         }
 
-        return action.await()
+        return allCommands
     }
+
 
     init {
         /* ---- [Roleplay] ---- */
@@ -71,5 +75,6 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         /* ---- [Utils] ---- */
         register(HelpCommand())
         register(DblCommand())
+        register(PingCommand())
     }
 }

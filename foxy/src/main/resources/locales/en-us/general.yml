@@ -7,6 +7,10 @@ commands:
       name: "daily"
       description: "[Economy] Claim your daily cakes"
 
+    ping:
+      name: "ping"
+      description: "pings the bot"
+
     fun:
       name: "fun"
       description: "Fun commands to enjoy with your friends"
