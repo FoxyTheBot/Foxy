@@ -4,19 +4,57 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class FoxyConfig(
-    val applicationId: String,
-    val ownerId: String,
-    val guildId: String,
     val environment: String,
-    val discordToken: String,
-    val minShards: Int,
-    val maxShards: Int,
-    val totalShards: Int,
-    val mongoUri: String,
-    val dbName: String,
-    val mongoTimeout: Long,
-    val foxyApiKey: String,
-    val dblToken: String,
-    val artistryKey: String,
-    val activityPort: Int
-)
+    val discord: DiscordSettings,
+    val database: DatabaseSettings,
+    val others: OtherSettings
+) {
+    @Serializable
+    data class DiscordSettings(
+        val ownerId: String,
+        val guildId: String,
+        val applicationId: String,
+        val token: String,
+        val totalShards: Int,
+        val clusters: List<Cluster>
+    )
+
+    @Serializable
+    data class Cluster(
+        val id: String,
+        val name: String,
+        val minShard: Int,
+        val maxShard: Int,
+        val canPublishStats: Boolean
+    )
+
+    @Serializable
+    data class DatabaseSettings(
+        val uri: String,
+        val databaseName: String,
+        val requestTimeout: Int
+    )
+
+    @Serializable
+    data class OtherSettings(
+        val foxyApi: FoxyAPISettings,
+        val artistry: ArtistrySettings,
+        val activityUpdater: ActivityUpdaterSettings,
+        val topggToken: String,
+    ) {
+        @Serializable
+        data class FoxyAPISettings(
+            val key: String
+        )
+
+        @Serializable
+        data class ArtistrySettings(
+            val key: String
+        )
+
+        @Serializable
+        data class ActivityUpdaterSettings(
+            val port: Int
+        )
+    }
+}
