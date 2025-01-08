@@ -84,7 +84,7 @@ class FoxyInstance(
 
         this.commandHandler.handle()
 
-        selfUser = shardManager.getShardById(0)?.selfUser!!
+        selfUser = shardManager.shards.first().selfUser
 
         Runtime.getRuntime().addShutdownHook(thread(false) {
             try {
