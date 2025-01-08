@@ -29,7 +29,7 @@ import kotlin.reflect.jvm.jvmName
 class FoxyInstance(
     val config: FoxyConfig
 ) {
-    lateinit var jda: ShardManager
+    lateinit var shardManager: ShardManager
     lateinit var mongoClient: MongoDBClient
     lateinit var commandHandler: FoxyCommandManager
     lateinit var artistryClient: ArtistryClient
@@ -59,7 +59,7 @@ class FoxyInstance(
         }
 
         mongoClient.start(this)
-        jda = DefaultShardManagerBuilder.create(
+        shardManager = DefaultShardManagerBuilder.create(
             GatewayIntent.GUILD_MEMBERS,
             GatewayIntent.MESSAGE_CONTENT,
             GatewayIntent.GUILD_MESSAGES,
@@ -84,12 +84,12 @@ class FoxyInstance(
 
         this.commandHandler.handle()
 
-        selfUser = jda.getShardById(0)?.selfUser!!
+        selfUser = shardManager.getShardById(0)?.selfUser!!
 
         Runtime.getRuntime().addShutdownHook(thread(false) {
             try {
                 logger.info { "Foxy is shutting down..." }
-                jda.shards.forEach { shard ->
+                shardManager.shards.forEach { shard ->
                     shard.removeEventListener(*shard.registeredListeners.toTypedArray())
                     logger.info { "Shutting down shard #${shard.shardInfo.shardId}..."}
                     shard.shutdown()

@@ -45,7 +45,7 @@ class ActivityUpdater(
                     return@post
                 }
 
-                foxy.jda.shards.forEach {
+                foxy.shardManager.shards.forEach {
                     request.status?.let { OnlineStatus.fromKey(it) } ?: OnlineStatus.ONLINE
                     Activity.of(
                         ActivityType.fromKey(request.type),

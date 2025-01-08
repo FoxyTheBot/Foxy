@@ -269,7 +269,7 @@ class AntiRaidModule(
         alertsSent.put(targetId, Unit)
         val message = WarningBuilder().apply(block)
 
-        val channel = foxy.jda.getTextChannelById(channelId) ?: return
+        val channel = foxy.shardManager.getTextChannelById(channelId) ?: return
         val msg = MessageCreateBuilder {
             embed {
                 title = pretty(
@@ -299,7 +299,7 @@ class AntiRaidModule(
     private suspend fun sendAlertToUser(channelId: String, userId: String, block: InlineMessage<*>.() -> Unit) {
         if (userAlertsSent.getIfPresent(userId) != null) return
         userAlertsSent.put(userId, Unit)
-        val channel = foxy.jda.getTextChannelById(channelId) ?: return
+        val channel = foxy.shardManager.getTextChannelById(channelId) ?: return
         val msg = MessageCreateBuilder {
             apply(block)
         }

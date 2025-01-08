@@ -112,7 +112,7 @@ class FoxyComponentManager(
             style,
             ComponentId(buttonId).toString(),
             label,
-            emoji?.let { foxy.jda.getEmojiById(it) }
+            emoji?.let { foxy.shardManager.getEmojiById(it) }
         ).let {
             ButtonBuilder(it).apply(builder).button
         }
