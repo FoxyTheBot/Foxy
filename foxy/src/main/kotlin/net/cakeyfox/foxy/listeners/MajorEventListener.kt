@@ -14,7 +14,6 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter
 import kotlin.reflect.jvm.jvmName
 
 class MajorEventListener(private val foxy: FoxyInstance): ListenerAdapter() {
-    private val logger = KotlinLogging.logger(this::class.jvmName)
     private val coroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
     private val antiRaid = AntiRaidModule(foxy)
     private val topggStats = TopggStatsSender(foxy)

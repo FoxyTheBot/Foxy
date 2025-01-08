@@ -71,7 +71,7 @@ class FoxyInstance(
             InteractionEventListener(this)
         )
             .setShardsTotal(config.totalShards)
-            .setShards(config.minClusterShard, config.maxClusterShard)
+            .setShards(config.minShards, config.maxShards)
             .disableCache(CacheFlag.entries)
             .enableCache(
                 CacheFlag.EMOJI,
