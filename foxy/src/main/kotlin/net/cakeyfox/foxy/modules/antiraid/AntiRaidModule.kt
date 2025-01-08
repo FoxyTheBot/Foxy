@@ -212,7 +212,7 @@ class AntiRaidModule(
                 else -> throw IllegalArgumentException("Invalid action type! Received $action")
             }
         } catch (e: Exception) {
-            logger.warn { "Can't take an action for user ${user.id}! Missing permissions?" }
+            logger.warn { "Can't take an action for user ${user.id} on guild ${guild.id}! Missing permissions? ${e.message}" }
         }
     }
 
