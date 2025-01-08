@@ -17,10 +17,10 @@ class PingExecutor : FoxyCommandExecutor() {
             InetAddress.getLocalHost().hostName
         }
 
-        val response = pretty(FoxyEmotes.FoxyHowdy, "Ping\n") +
-                pretty(FoxyEmotes.FoxyWow, "Gateway Ping: ${gatewayPing}ms\n") +
-                pretty(FoxyEmotes.FoxyThink, "Shard ID: ${currentShardId}/${totalShards}\n") +
-                pretty(FoxyEmotes.FoxyCupcake, "Cluster: `$hostname`")
+        val response = pretty(FoxyEmotes.FoxyHowdy, "**Pong!**\n") +
+                pretty(FoxyEmotes.FoxyWow, "**Gateway Ping:** `${gatewayPing}ms`\n") +
+                pretty(FoxyEmotes.FoxyThink, "**Shard ID:** `${currentShardId}/${totalShards}`\n") +
+                pretty(FoxyEmotes.FoxyCupcake, "**Cluster:** `$hostname`")
 
         context.reply {
             content = response
