@@ -6,7 +6,7 @@ Originally, Foxy was developed in TypeScript, but it has now transitioned to Kot
 
 ### Requirements
 
-- **PowerShell** (Windows) or **Terminal** (Linux/MacOS).
+- **PowerShell** (Windows) or **Terminal** (Linux/macOS).
   > While the Windows Command Prompt may work, it's recommended to use PowerShell for better compatibility.
 - **JDK 21 or higher**, preferably from [Adoptium](https://adoptium.net/). Ensure the `JAVA_HOME` environment variable is set correctly.
     - **To check JAVA\_HOME:**
@@ -42,9 +42,6 @@ Build the project with Gradle by running:
 > If Gradle reports missing methods or unsupported features in your JDK, update to the latest JDK 17+ version from [Adoptium](https://adoptium.net/).
 
 ## Running Foxy
-
-This section is tailored for developers who want to contribute or modify Foxy. If you're interested in self-hosting Foxy, check out the [self-hosting guide](SELF-HOSTING.md).
-
 ### Requirements
 
 - All tools and dependencies from the "Compiling Foxy" section.
