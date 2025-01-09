@@ -1,10 +1,7 @@
 package net.cakeyfox.foxy.utils.image
 
-import io.ktor.client.*
-import io.ktor.client.call.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.request.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import net.cakeyfox.foxy.utils.profile.ProfileCacheManager
 import net.cakeyfox.serializable.data.ImagePosition
@@ -13,21 +10,21 @@ import java.awt.Font
 import java.awt.Graphics2D
 import java.awt.image.BufferedImage
 import java.io.InputStream
+import java.net.URL
 import javax.imageio.ImageIO
 import kotlin.reflect.jvm.jvmName
 
 object ImageUtils {
     private val logger = KotlinLogging.logger(this::class.jvmName)
-    private val client = HttpClient(CIO)
 
-    private fun getFont(fontName: String, fontSize: Int): Font? {
+    fun getFont(fontName: String, fontSize: Int): Font? {
         val fontStream: InputStream? = this::class.java.classLoader.getResourceAsStream("fonts/$fontName.ttf")
 
         return if (fontStream != null) {
             try {
                 Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(Font.PLAIN, fontSize.toFloat())
             } catch (e: Exception) {
-                logger.error(e) { "Can't load font $fontName" }
+                logger.error(e) { "Can't load font $fontName " }
                 null
             }
         } else {
@@ -39,22 +36,9 @@ object ImageUtils {
     suspend fun loadProfileAssetFromURL(url: String): BufferedImage {
         return withContext(Dispatchers.IO) {
             try {
-                val cachedImage = ProfileCacheManager.imageCache.getIfPresent(url)
-
-                if (cachedImage != null) {
-                    return@withContext cachedImage
-                }
-
-                val resultImage = try {
+                ProfileCacheManager.imageCache.get(url) {
                     downloadImage(url)
-                } catch (e: Exception) {
-                    logger.error(e) { "Error downloading image from $url" }
-                    BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB)
                 }
-
-                ProfileCacheManager.imageCache.put(url, resultImage)
-
-                resultImage
             } catch (e: Exception) {
                 logger.error(e) { "Error loading image from $url" }
                 BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB)
@@ -62,21 +46,21 @@ object ImageUtils {
         }
     }
 
-    private suspend fun downloadImage(url: String): BufferedImage {
-        return try {
-            val response = client.get(url)
-            val inputStream: InputStream = response.body()
-
-            withContext(Dispatchers.IO) {
-                ImageIO.read(inputStream) ?: BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB)
+    private fun downloadImage(url: String): BufferedImage {
+        try {
+            val connection = URL(url).openConnection().apply {
+                setRequestProperty("User-Agent", "Mozilla/5.0")
+                connectTimeout = 5000
+                readTimeout = 5000
             }
+
+            return ImageIO.read(connection.inputStream)
         } catch (e: Exception) {
             logger.error(e) { "Error downloading image from $url" }
-            BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB)
-        } finally {
-            client.close()
+            return BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB)
         }
     }
+
 
     fun Graphics2D.drawTextWithFont(width: Int, height: Int, textConfig: TextConfig.() -> Unit) {
         val config = TextConfig().apply(textConfig)

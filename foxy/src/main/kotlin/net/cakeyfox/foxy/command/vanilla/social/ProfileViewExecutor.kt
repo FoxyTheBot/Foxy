@@ -1,7 +1,5 @@
 package net.cakeyfox.foxy.command.vanilla.social
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
@@ -40,10 +38,7 @@ class ProfileViewExecutor: FoxyCommandExecutor() {
             return
         }
 
-        val profile = withContext(Dispatchers.IO) {
-            ProfileRender(ProfileConfig(1436, 884), context).create(user, userData)
-        }
-
+        val profile = ProfileRender(ProfileConfig(1436, 884), context).create(user, userData)
         val file = FileUpload.fromData(profile, "profile.png")
 
         context.reply {
