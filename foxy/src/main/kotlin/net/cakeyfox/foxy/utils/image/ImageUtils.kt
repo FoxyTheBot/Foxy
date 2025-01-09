@@ -73,7 +73,7 @@ object ImageUtils {
         var text: String = "",
         var fontSize: Int = 16,
         var fontFamily: String = "SansSerif",
-        var fontColor: Color = java.awt.Color.WHITE,
+        var fontColor: Color = Color.WHITE,
         var textPosition: ImagePosition = ImagePosition(0f, 0f, null)
     )
 }

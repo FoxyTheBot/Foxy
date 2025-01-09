@@ -25,7 +25,8 @@ data class FoxyConfig(
         val name: String,
         val minShard: Int,
         val maxShard: Int,
-        val canPublishStats: Boolean
+        val canPublishStats: Boolean,
+        val clusterUrl: String,
     )
 
     @Serializable
@@ -40,6 +41,7 @@ data class FoxyConfig(
         val foxyApi: FoxyAPISettings,
         val artistry: ArtistrySettings,
         val activityUpdater: ActivityUpdaterSettings,
+        val statsSenderPort: Int,
         val topggToken: String,
     ) {
         @Serializable

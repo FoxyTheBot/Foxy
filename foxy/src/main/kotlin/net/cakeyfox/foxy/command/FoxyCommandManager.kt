@@ -33,7 +33,6 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
 
     suspend fun handle(): MutableList<Command> {
         val allCommands = mutableListOf<Command>()
-        logger.info { "Starting command handling for ${foxy.shardManager.shards.size + 1} shards" }
         foxy.shardManager.shards.forEach { shard ->
             val action = shard.updateCommands()
 
