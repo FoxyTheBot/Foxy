@@ -9,7 +9,7 @@ object Versions {
     const val JDA = "5.0.0-beta.24"
     const val KTOR = "3.0.0"
     const val KOTLIN_SERIALIZATION = "1.6.0"
-    const val KOTLIN_COROUTINES = "1.6.0"
+    const val KOTLIN_COROUTINES = "1.6.4"
     const val KOTLIN_LOGGING = "2.1.16"
     const val JVM_TARGET = 21
     const val LOGBACK = "1.5.3"
