@@ -7,6 +7,8 @@ import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
 
 class TopCakesExecutor : FoxyCommandExecutor() {
+    // TODO: Optimize this
+
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
 
