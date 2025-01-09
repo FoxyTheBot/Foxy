@@ -54,7 +54,7 @@ class FoxyInstance(
         val logger = KotlinLogging.logger(this::class.jvmName)
         val activityUpdater = ActivityUpdater(this)
         val clusterId = withContext(Dispatchers.IO) {
-            InetAddress.getLocalHost().hostName
+            InetAddress.getLocalHost().hostName.lowercase()
         }
         currentCluster = config.discord.clusters.find { it.id == clusterId }
             ?: throw IllegalStateException("Unknown cluster $clusterId, check your config file!")
