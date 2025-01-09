@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package net.cakeyfox.foxy.utils.image
 
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +19,7 @@ import kotlin.reflect.jvm.jvmName
 object ImageUtils {
     private val logger = KotlinLogging.logger(this::class.jvmName)
 
-    fun getFont(fontName: String, fontSize: Int): Font? {
+    private fun getFont(fontName: String, fontSize: Int): Font? {
         val fontStream: InputStream? = this::class.java.classLoader.getResourceAsStream("fonts/$fontName.ttf")
 
         return if (fontStream != null) {
@@ -36,8 +38,13 @@ object ImageUtils {
     suspend fun loadProfileAssetFromURL(url: String): BufferedImage {
         return withContext(Dispatchers.IO) {
             try {
-                ProfileCacheManager.imageCache.get(url) {
-                    downloadImage(url)
+                val image = ProfileCacheManager.imageCache.getIfPresent(url)
+                if (image != null) {
+                    return@withContext image
+                } else {
+                    val downloadedImage = downloadImage(url)
+                    ProfileCacheManager.imageCache.put(url, downloadedImage)
+                    return@withContext downloadedImage
                 }
             } catch (e: Exception) {
                 logger.error(e) { "Error loading image from $url" }
@@ -46,15 +53,9 @@ object ImageUtils {
         }
     }
 
-    private fun downloadImage(url: String): BufferedImage {
+    private suspend fun downloadImage(url: String): BufferedImage {
         try {
-            val connection = URL(url).openConnection().apply {
-                setRequestProperty("User-Agent", "Mozilla/5.0")
-                connectTimeout = 5000
-                readTimeout = 5000
-            }
-
-            return ImageIO.read(connection.inputStream)
+            return readImage(URL(url))
         } catch (e: Exception) {
             logger.error(e) { "Error downloading image from $url" }
             return BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB)
@@ -76,4 +77,6 @@ object ImageUtils {
         var fontColor: Color = Color.WHITE,
         var textPosition: ImagePosition = ImagePosition(0f, 0f, null)
     )
+
+    private suspend fun readImage(image: URL) = withContext(Dispatchers.IO) { ImageIO.read(image) }!!
 }
