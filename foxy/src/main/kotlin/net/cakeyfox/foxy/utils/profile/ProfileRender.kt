@@ -10,10 +10,10 @@ import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.utils.image.ImageUtils
 import net.cakeyfox.foxy.utils.image.ImageUtils.drawTextWithFont
+import net.cakeyfox.foxy.utils.profile.ProfileUtils.getOrFetchFromCache
 import net.cakeyfox.foxy.utils.profile.badge.BadgeUtils
 import net.cakeyfox.foxy.utils.profile.config.ProfileConfig
-import net.cakeyfox.serializable.database.data.FoxyUser
-import net.cakeyfox.serializable.database.data.Layout
+import net.cakeyfox.serializable.database.data.*
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.exceptions.ErrorResponseException
 import java.awt.Color
@@ -39,33 +39,30 @@ class ProfileRender(
     suspend fun create(user: User, userData: FoxyUser): ByteArray {
         val renderTime = measureTimeMillis {
             coroutineScope {
-                val layoutInfoDeferred = async {
-                    ProfileCacheManager.layoutCache.get(userData.userProfile.layout) {
-                        context.db.utils.profile.getLayout(
-                            it
-                        )
-                    }
+                val layoutInfo: Layout = getOrFetchFromCache(
+                    ProfileCacheManager.layoutCache,
+                    userData.userProfile.layout
+                ) { layoutKey ->
+                    context.db.utils.profile.getLayout(layoutKey)
                 }
 
-                val backgroundInfoDeferred = async {
-                    ProfileCacheManager.backgroundCache.get(userData.userProfile.background) {
-                        context.db.utils.profile.getBackground(
-                            it
-                        )
-                    }
+                val backgroundInfo: Background = getOrFetchFromCache(
+                    ProfileCacheManager.backgroundCache,
+                    userData.userProfile.background
+                ) { backgroundKey ->
+                    context.db.utils.profile.getBackground(backgroundKey)
                 }
 
                 val layoutDeferred = async {
-                    ProfileCacheManager.loadImageFromCache(Constants.PROFILE_LAYOUT(layoutInfoDeferred.await().filename))
+                    ProfileCacheManager.loadImageFromCache(Constants.PROFILE_LAYOUT(layoutInfo.filename))
                 }
 
                 val backgroundDeferred = async {
-                    ProfileCacheManager.loadImageFromCache(Constants.PROFILE_BACKGROUND(backgroundInfoDeferred.await().filename))
+                    ProfileCacheManager.loadImageFromCache(Constants.PROFILE_BACKGROUND(backgroundInfo.filename))
                 }
 
                 val layout = layoutDeferred.await()
                 val background = backgroundDeferred.await()
-                val layoutInfo = layoutInfoDeferred.await()
 
                 image = BufferedImage(layout.width, layout.height, BufferedImage.TYPE_INT_ARGB)
                 graphics = image.createGraphics()
@@ -180,8 +177,23 @@ class ProfileRender(
     }
 
     private suspend fun drawDecoration(data: FoxyUser, layoutInfo: Layout) {
-        data.userProfile.decoration?.let {
-            val decorationImage = ImageUtils.loadProfileAssetFromURL(Constants.PROFILE_DECORATION(it))
+        if (data.userProfile.decoration != null) {
+            val decorationInfo = getOrFetchFromCache(
+                ProfileCacheManager.decorationCache,
+                data.userProfile.decoration!!
+            ) { decorationKey ->
+                context.db.utils.profile.getDecoration(decorationKey)
+            }
+
+            val decorationImage =
+                ImageUtils.loadProfileAssetFromURL(
+                    Constants.PROFILE_DECORATION(
+                        decorationInfo.filename.replace(
+                            ".png",
+                            ""
+                        )
+                    )
+                )
             graphics.drawImage(
                 decorationImage,
                 (config.profileWidth / layoutInfo.profileSettings.positions.decorationPosition.x).toInt(),
@@ -194,7 +206,12 @@ class ProfileRender(
     }
 
     private suspend fun drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
-        val defaultBadges = ProfileCacheManager.badgesCache.get("default") { context.db.utils.profile.getBadges() }!!
+        val defaultBadges = getOrFetchFromCache(
+            ProfileCacheManager.badgesCache,
+            "default"
+        ) {
+            context.db.utils.profile.getBadges()
+        }
 
         val member = try {
             context.jda.getGuildById(Constants.SUPPORT_SERVER_ID)
@@ -208,7 +225,10 @@ class ProfileRender(
             }
         }
 
-        val userBadges = member?.let { BadgeUtils.getBadges(it, defaultBadges, data) } ?: BadgeUtils.getFallbackBadges(defaultBadges, data)
+        val userBadges = member?.let { BadgeUtils.getBadges(it, defaultBadges, data) } ?: BadgeUtils.getFallbackBadges(
+            defaultBadges,
+            data
+        )
 
         if (userBadges.isEmpty()) {
             return

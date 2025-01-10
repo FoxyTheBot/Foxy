@@ -1,5 +1,8 @@
 package net.cakeyfox.foxy.utils.profile
 
+import com.github.benmanes.caffeine.cache.Cache
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import net.cakeyfox.serializable.database.data.Layout
 
 object ProfileUtils {
@@ -11,6 +14,16 @@ object ProfileUtils {
             aboutMe.chunked(breakLength).joinToString("\n")
         } else {
             aboutMe
+        }
+    }
+
+    suspend fun <T> getOrFetchFromCache(
+        cache: Cache<String, T>,
+        key: String,
+        fetchFromDb: suspend (String) -> T
+    ): T {
+        return cache.getIfPresent(key) ?: withContext(Dispatchers.IO) {
+            fetchFromDb(key).also { cache.put(key, it) }
         }
     }
 }
