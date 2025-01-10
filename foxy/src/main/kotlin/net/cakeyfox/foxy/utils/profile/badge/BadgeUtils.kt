@@ -19,21 +19,7 @@ object BadgeUtils {
             }
         userBadges.addAll(roleBadges)
 
-        val additionalBadges = listOf(
-            BadgeCondition("married", data.marryStatus.marriedWith != null),
-            BadgeCondition("upvoter", data.lastVote?.let {
-                val dateString = it.toString().substringAfter("\$date\": \"").substringBefore("\"")
-                val instant = Instant.parse(dateString)
-                instant.toEpochMilli() >= twelveHoursAgo
-            } ?: false),
-            BadgeCondition("premium", data.userPremium.premiumDate?.let {
-                val dateString = it.toString().substringAfter("\$date\": \"").substringBefore("\"")
-                val instant = Instant.parse(dateString)
-                instant.toEpochMilli() >= System.currentTimeMillis()
-            } ?: false)
-        )
-
-        additionalBadges.forEach { condition ->
+        getAdditionalBadges(data).forEach { condition ->
             if (condition.condition as Boolean) {
                 val badge = defaultBadges.find { it.id == condition.id }
                 if (badge != null && userBadges.none { it.id == badge.id }) {
@@ -56,7 +42,20 @@ object BadgeUtils {
     fun getFallbackBadges(defaultBadges: List<Badge>, userData: FoxyUser): List<Badge> {
         val userBadges = mutableListOf<Badge>()
 
-        val additionalBadges = listOf(
+        getAdditionalBadges(userData).forEach { condition ->
+            if (condition.condition as Boolean) {
+                val badge = defaultBadges.find { it.id == condition.id }
+                if (badge != null) {
+                    userBadges.add(badge)
+                }
+            }
+        }
+
+        return userBadges.distinctBy { it.id }.sortedByDescending { it.priority }
+    }
+
+    private fun getAdditionalBadges(userData: FoxyUser): List<BadgeCondition> {
+        return listOf(
             BadgeCondition("married", userData.marryStatus.marriedWith != null),
             BadgeCondition("upvoter", userData.lastVote?.let {
                 val dateString = it.toString().substringAfter("\$date\": \"").substringBefore("\"")
@@ -70,15 +69,5 @@ object BadgeUtils {
             } ?: false)
         )
 
-        additionalBadges.forEach { condition ->
-            if (condition.condition as Boolean) {
-                val badge = defaultBadges.find { it.id == condition.id }
-                if (badge != null) {
-                    userBadges.add(badge)
-                }
-            }
-        }
-
-        return userBadges.distinctBy { it.id }.sortedByDescending { it.priority }
     }
 }
