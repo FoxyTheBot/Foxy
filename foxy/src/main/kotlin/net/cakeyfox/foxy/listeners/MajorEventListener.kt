@@ -20,13 +20,14 @@ class MajorEventListener(foxy: FoxyInstance): ListenerAdapter() {
         }
     }
 
-    override fun onMessageReceived(event: MessageReceivedEvent) {
-        coroutineScope.launch {
-            if (event.author.isBot) return@launch
-
-            if (event.isFromGuild) {
-                antiRaid.handleMessage(event)
-            }
-        }
-    }
+    // TODO: Implement a good way to handle messages
+//    override fun onMessageReceived(event: MessageReceivedEvent) {
+//        coroutineScope.launch {
+//            if (event.author.isBot) return@launch
+//
+//            if (event.isFromGuild) {
+//                antiRaid.handleMessage(event)
+//            }
+//        }
+//    }
 }
