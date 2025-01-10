@@ -3,7 +3,7 @@ package net.cakeyfox.foxy.utils
 object HostnameUtils {
     fun getHostname(): String {
         try {
-            val process = Runtime.getRuntime().exec("hostname")
+            val process = ProcessBuilder("hostname").start()
             val reader = process.inputStream.bufferedReader()
             val hostname = reader.readLine()
             reader.close()
