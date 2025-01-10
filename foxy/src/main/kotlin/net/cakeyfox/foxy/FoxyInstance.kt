@@ -5,9 +5,7 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import net.cakeyfox.artistry.ArtistryClient
 import net.cakeyfox.common.Constants
@@ -30,20 +28,19 @@ import net.dv8tion.jda.api.sharding.ShardManager
 import net.dv8tion.jda.api.utils.ChunkingFilter
 import net.dv8tion.jda.api.utils.MemberCachePolicy
 import net.dv8tion.jda.api.utils.cache.CacheFlag
-import java.net.InetAddress
 import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.concurrent.thread
 import kotlin.reflect.jvm.jvmName
 
 class FoxyInstance(
-    val config: FoxyConfig
+    val config: FoxyConfig,
+    val currentCluster: FoxyConfig.Cluster
 ) {
     lateinit var shardManager: ShardManager
     lateinit var mongoClient: MongoDBClient
     lateinit var commandHandler: FoxyCommandManager
     lateinit var artistryClient: ArtistryClient
     lateinit var utils: FoxyUtils
-    lateinit var currentCluster: FoxyConfig.Cluster
     lateinit var interactionManager: FoxyComponentManager
     lateinit var httpClient: HttpClient
     lateinit var selfUser: User
@@ -53,11 +50,6 @@ class FoxyInstance(
     suspend fun start() {
         val logger = KotlinLogging.logger(this::class.jvmName)
         val activityUpdater = ActivityUpdater(this)
-        val clusterId = withContext(Dispatchers.IO) {
-            InetAddress.getLocalHost().hostName.lowercase()
-        }
-        currentCluster = config.discord.clusters.find { it.id == clusterId }
-            ?: throw IllegalStateException("Unknown cluster $clusterId, check your config file!")
 
         environment = config.environment
         mongoClient = MongoDBClient()
