@@ -1,3 +1,5 @@
+greetings: "Hello {0}! My name is Foxy, my prefix on this server is `/`, Use `/help` to get help!"
+
 commands:
   onlyUserCanInteractWithThisComponent: "Hey! What are you doing? You can't do that! You're not {0}!"
   componentExpired: "Wait, where is it? I can't find the interaction information... It seems to have expired! Run the command again."
