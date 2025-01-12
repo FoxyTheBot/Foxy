@@ -11,6 +11,7 @@ import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.modules.antiraid.utils.AntiRaidActions
+import net.cakeyfox.foxy.modules.antiraid.utils.AntiRaidUtils
 import net.cakeyfox.foxy.modules.antiraid.utils.WarningBuilder
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.foxy.utils.pretty
@@ -78,16 +79,23 @@ class AntiRaidModule(
                     )
 
                     sendWarningToAChannel(
-                        userId, antiRaidSettings.alertChannel ?: return,
+                        userId,
+                        antiRaidSettings.alertChannel ?: return,
                         user = event.user,
                         locale = locale
                     ) {
                         content = locale["antiraid.membersJoiningTooQuickly"]
                         actionTaken = antiRaidSettings.actionForMassJoin
                     }
-
                 } catch (e: Exception) {
-                    logger.warn { "Can't take an action for user $userId on ${event.guild.id}! Error: ${e.message}" }
+                    return sendWarningToAChannel(
+                        userId, antiRaidSettings.alertChannel ?: return,
+                        user = event.user,
+                        locale = locale
+                    ) {
+                        content = locale["antiraid.membersJoiningTooQuickly"]
+                        actionTaken = locale["antiraid.cantTakeAction"]
+                    }
                 }
             }
         }
@@ -120,7 +128,6 @@ class AntiRaidModule(
                         guildInfo
                     )
 
-
                     sendWarningToAChannel(
                         event.author.id,
                         antiRaidSettings.alertChannel ?: return,
@@ -130,14 +137,21 @@ class AntiRaidModule(
                         content = locale["antiraid.tooFastMessages", event.author.asMention, event.author.id]
                         actionTaken = antiRaidSettings.actionForMassMessage
                     }
-
                 } catch (e: Exception) {
-                    logger.warn { "Can't take an action for user $userId on ${event.guild.id}! Error: ${e.message}" }
+                    return sendWarningToAChannel(
+                        event.author.id,
+                        antiRaidSettings.alertChannel ?: return,
+                        user = event.author,
+                        locale = locale
+                    ) {
+                        content = locale["antiraid.tooFastMessages", event.author.asMention, event.author.id]
+                        actionTaken = locale["antiraid.cantTakeAction"]
+                    }
                 }
             }
 
 
-            if (hasExcessiveRepeatedSequences(event.message.contentRaw, antiRaidSettings.repeatedCharsThreshold)) {
+            if (AntiRaidUtils.hasExcessiveRepeatedSequences(event.message.contentRaw, antiRaidSettings.repeatedCharsThreshold)) {
                 return try {
                     takeAnAction(
                         event.guild,
@@ -148,7 +162,15 @@ class AntiRaidModule(
                         event
                     )
                 } catch (e: Exception) {
-                    logger.warn { "Can't take an action for user $userId on ${event.guild.id}! Error: ${e.message}" }
+                    sendWarningToAChannel(
+                        event.author.id,
+                        antiRaidSettings.alertChannel ?: return,
+                        user = event.author,
+                        locale = locale
+                    ) {
+                        content = locale["antiraid.userIsSendingRepeatedSequences", event.author.asMention]
+                        actionTaken = locale["antiraid.cantTakeAction"]
+                    }
                 }
             }
         }
@@ -212,50 +234,8 @@ class AntiRaidModule(
                 else -> throw IllegalArgumentException("Invalid action type! Received $action")
             }
         } catch (e: Exception) {
-            logger.warn { "Can't take an action for user ${user.id} on guild ${guild.id}! Missing permissions? ${e.message}" }
+            logger.error(e) { "An error occurred while taking action: $action" }
         }
-    }
-
-    private fun hasExcessiveRepeatedSequences(message: String, limit: Int): Boolean {
-        if (message.isBlank()) return false
-
-        val normalizedMessage = message.trim().lowercase()
-
-        var charRepetitionCount = 1
-        var maxCharRepetition = 1
-        for (i in 1 until normalizedMessage.length) {
-            if (normalizedMessage[i] == normalizedMessage[i - 1]) {
-                charRepetitionCount++
-                maxCharRepetition = maxOf(maxCharRepetition, charRepetitionCount)
-            } else {
-                charRepetitionCount = 1
-            }
-        }
-
-        if (maxCharRepetition > limit) {
-            return true
-        }
-
-        val words = normalizedMessage.split("\\s+".toRegex())
-        val wordFrequency = mutableMapOf<String, Int>()
-
-        for (word in words) {
-            val condensedWord = word.replace(Regex("(.)\\1+"), "$1")
-            wordFrequency[condensedWord] = wordFrequency.getOrDefault(condensedWord, 0) + 1
-            if (wordFrequency[condensedWord]!! > limit) {
-                return true
-            }
-        }
-
-        for (patternLength in 1..(normalizedMessage.length / 2)) {
-            val pattern = normalizedMessage.substring(0, patternLength)
-            val repeatedPattern = pattern.repeat(limit + 1)
-            if (normalizedMessage.startsWith(repeatedPattern)) {
-                return true
-            }
-        }
-
-        return false
     }
 
     private suspend fun sendWarningToAChannel(
