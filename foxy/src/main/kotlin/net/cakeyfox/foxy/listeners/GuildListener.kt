@@ -14,7 +14,7 @@ import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import kotlin.reflect.jvm.jvmName
 
-class GuildEventListener(private val foxy: FoxyInstance) : ListenerAdapter() {
+class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
     private val logger = KotlinLogging.logger(this::class.jvmName)
     private val welcomer = WelcomerModule(foxy)
     private val antiRaid = AntiRaidModule(foxy)
