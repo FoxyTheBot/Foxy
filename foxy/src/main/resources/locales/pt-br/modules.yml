@@ -3,6 +3,8 @@ antiraid:
   tooFastMessages: "O membro **{0}** esté enviando muitas mensagens em um curto período de tempo."
   membersJoiningTooQuickly: "Muitos membros estão entrando no servidor em um curto período de tempo."
   userIsSendingRepeatedSequences: "{0} Você não pode spammar nesse canal."
+  cantTakeAction: "Eu não consigo tomar nenhuma ação contra esse membro. Estou sem permissões?"
+
   reasons:
     userIsSendingMessagesTooFast: "Anti-Raid: O membro está enviando muitas mensagens em um curto período de tempo."
   fields:
