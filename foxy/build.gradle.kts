@@ -38,6 +38,8 @@ dependencies {
     implementation("io.ktor:ktor-client-cio:${Versions.KTOR}")
     implementation("io.ktor:ktor-server-content-negotiation:${Versions.KTOR}")
 
+    implementation("com.google.guava:guava:32.1.3-jre")
+
     // Caching
     implementation("com.github.ben-manes.caffeine:caffeine:${Versions.CAFFEINE}")
 

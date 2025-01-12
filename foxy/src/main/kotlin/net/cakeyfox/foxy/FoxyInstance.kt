@@ -5,20 +5,21 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
-import kotlinx.coroutines.Job
 import mu.KotlinLogging
 import net.cakeyfox.artistry.ArtistryClient
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.command.FoxyCommandManager
 import net.cakeyfox.foxy.command.component.FoxyComponentManager
-import net.cakeyfox.foxy.listeners.GuildEventListener
-import net.cakeyfox.foxy.listeners.InteractionEventListener
-import net.cakeyfox.foxy.listeners.MajorEventListener
+import net.cakeyfox.foxy.listeners.GuildListener
+import net.cakeyfox.foxy.listeners.InteractionsListener
+import net.cakeyfox.foxy.listeners.MessageListener
 import net.cakeyfox.foxy.utils.ActivityUpdater
 import net.cakeyfox.foxy.utils.config.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.analytics.TopggStatsSender
 import net.cakeyfox.foxy.utils.database.MongoDBClient
+import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
+import net.cakeyfox.foxy.utils.threads.ThreadUtils
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.entities.User
@@ -28,7 +29,6 @@ import net.dv8tion.jda.api.sharding.ShardManager
 import net.dv8tion.jda.api.utils.ChunkingFilter
 import net.dv8tion.jda.api.utils.MemberCachePolicy
 import net.dv8tion.jda.api.utils.cache.CacheFlag
-import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.concurrent.thread
 import kotlin.reflect.jvm.jvmName
 
@@ -46,6 +46,8 @@ class FoxyInstance(
     lateinit var selfUser: User
     private lateinit var topggStatsSender: TopggStatsSender
     private lateinit var environment: String
+    private val activeJobs = ThreadUtils.activeJobs
+    val threadPoolManager = ThreadPoolManager()
 
     suspend fun start() {
         val logger = KotlinLogging.logger(this::class.jvmName)
@@ -75,10 +77,11 @@ class FoxyInstance(
             GatewayIntent.GUILD_EMOJIS_AND_STICKERS,
             GatewayIntent.SCHEDULED_EVENTS
         ).addEventListeners(
-            MajorEventListener(this),
-            GuildEventListener(this),
-            InteractionEventListener(this)
+            GuildListener(this),
+            InteractionsListener(this),
+            MessageListener(this)
         )
+            .setAutoReconnect(true)
             .setStatus(OnlineStatus.ONLINE)
             .setActivity(Activity.customStatus(Constants.DEFAULT_ACTIVITY(config.environment)))
             .setShardsTotal(config.discord.totalShards)
@@ -121,6 +124,4 @@ class FoxyInstance(
             }
         })
     }
-
-    private val activeJobs = ConcurrentLinkedQueue<Job>()
 }
