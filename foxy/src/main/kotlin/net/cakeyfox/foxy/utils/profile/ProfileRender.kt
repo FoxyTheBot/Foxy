@@ -214,12 +214,14 @@ class ProfileRender(
             context.db.utils.profile.getBadges()
         }
 
+
         val member = try {
-            context.jda.getGuildById(Constants.SUPPORT_SERVER_ID)
+            context.foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
                 ?.retrieveMemberById(user.id)
                 ?.await()
         } catch (e: ErrorResponseException) {
             if (e.errorCode == 10007) {
+                println(e)
                 null
             } else {
                 throw e
