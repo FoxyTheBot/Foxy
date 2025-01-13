@@ -42,6 +42,7 @@ class GuildUtils(
 
         val newGuild = Guild(
             _id = guildId,
+            guildAddedAt = System.currentTimeMillis(),
             GuildJoinLeaveModule = WelcomerModule(),
             antiRaidModule = AntiRaidModule(),
             AutoRoleModule = AutoRoleModule(),

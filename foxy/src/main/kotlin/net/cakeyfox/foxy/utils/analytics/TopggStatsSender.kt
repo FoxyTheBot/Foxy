@@ -42,11 +42,8 @@ class TopggStatsSender(
         logger.info { "Running TopggStatsSender on Main Cluster" }
 
         statsSenderJob = CoroutineScope(Dispatchers.IO).launch {
-            while (true) {
-                val serverCounts = getServerCountsFromClusters()
-                sendStatsToTopGG(serverCounts)
-                delay(3600000)
-            }
+            val serverCounts = getServerCountsFromClusters()
+            sendStatsToTopGG(serverCounts)
         }
     }
 

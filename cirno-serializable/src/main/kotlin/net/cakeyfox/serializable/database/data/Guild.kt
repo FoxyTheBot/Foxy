@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Guild(
     val _id: String,
+    val guildAddedAt: Long,
     val GuildJoinLeaveModule: WelcomerModule,
     val AutoRoleModule: AutoRoleModule,
     val antiRaidModule: AntiRaidModule,
