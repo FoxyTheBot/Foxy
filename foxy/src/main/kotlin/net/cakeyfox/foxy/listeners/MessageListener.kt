@@ -34,7 +34,6 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
             if (event.isFromGuild) {
                 antiRaid.handleMessage(event)
             }
-
         }
     }
 }
