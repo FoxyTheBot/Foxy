@@ -83,7 +83,7 @@ class FoxyInstance(
         )
             .setAutoReconnect(true)
             .setStatus(OnlineStatus.ONLINE)
-            .setActivity(Activity.customStatus(Constants.DEFAULT_ACTIVITY(config.environment)))
+            .setActivity(Activity.customStatus(Constants.getDefaultActivity(config.environment)))
             .setShardsTotal(config.discord.totalShards)
             .setShards(currentCluster.minShard, currentCluster.maxShard)
             .setMemberCachePolicy(MemberCachePolicy.ALL)

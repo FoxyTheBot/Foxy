@@ -19,32 +19,32 @@ object Constants {
     const val SUPPORT_SERVER_ID = "768267522670723094"
 
 
-    fun DEFAULT_ACTIVITY(environment: String): String {
+    fun getDefaultActivity(environment: String): String {
         return when(environment) {
-            "development" -> "I'm Cirno! ᗜˬᗜ"
-            "production" -> "foxybot.win | /help"
-            else -> "foxybot.win | /help"
+            "development" -> "https://youtu.be/0OIqlp2U9EQ"
+            "production" -> "foxybot.win · /help"
+            else -> "foxybot.win · /help"
         }
     }
 
     /* ---- [Profile Assets] ---- */
-    fun PROFILE_BACKGROUND(backgroundId: String): String {
+    fun getProfileBackground(backgroundId: String): String {
         return "https://cakey.foxybot.win/assets/backgrounds/$backgroundId"
     }
 
-    fun PROFILE_LAYOUT(layoutId: String): String {
+    fun getProfileLayout(layoutId: String): String {
         return "https://cakey.foxybot.win/assets/layouts/$layoutId"
     }
 
-    fun PROFILE_DECORATION(maskId: String): String {
+    fun getProfileDecoration(maskId: String): String {
         return "https://cakey.foxybot.win/assets/masks/$maskId.png"
     }
 
-    fun MARRIED_OVERLAY(layoutId: String): String {
+    fun getMarriedOverlay(layoutId: String): String {
         return "https://cakey.foxybot.win/assets/layouts/${layoutId}-married.png"
     }
 
-    fun PROFILE_BADGES(badgeId: String): String {
+    fun getProfileBadge(badgeId: String): String {
         return "https://cakey.foxybot.win/assets/badges/$badgeId"
     }
 }
