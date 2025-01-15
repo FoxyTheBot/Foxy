@@ -2,6 +2,7 @@ package net.cakeyfox.foxy.modules.welcomer.utils
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import net.cakeyfox.common.Placeholders
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.MessageEmbed
@@ -85,15 +86,15 @@ class WelcomerJSONParser {
 
     fun getPlaceholders(guild: Guild, user: User): Map<String, String?> {
         return mapOf(
-            "{user}" to user.globalName,
-            "{@user}" to user.asMention,
-            "{user.username}" to user.name,
-            "{user.id}" to user.id,
-            "{guild.name}" to guild.name,
-            "{guild.id}" to guild.id,
-            "{guild.memberCount}" to guild.memberCount.toString(),
-            "{user.avatar}" to user.effectiveAvatarUrl + "?size=2048",
-            "{guild.icon}" to guild.iconUrl
+            Placeholders.USER_GLOBAL_NAME to user.globalName,
+            Placeholders.USER_MENTION to user.asMention,
+            Placeholders.USER_USERNAME to user.name,
+            Placeholders.USER_ID to user.id,
+            Placeholders.GUILD_NAME to guild.name,
+            Placeholders.GUILD_ID to guild.id,
+            Placeholders.GUILD_MEMBERS to guild.memberCount.toString(),
+            Placeholders.USER_AVATAR to user.effectiveAvatarUrl + "?size=2048",
+            Placeholders.GUILD_ICON to guild.iconUrl
         )
     }
 

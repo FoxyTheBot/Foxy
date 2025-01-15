@@ -3,6 +3,7 @@ package net.cakeyfox.foxy.modules.welcomer
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerWrapper
 import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerJSONParser
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent
 
@@ -23,8 +24,9 @@ class WelcomerModule(
             val channel = event.guild.getTextChannelById(guildData.GuildJoinLeaveModule.joinChannel ?: "0")
                 ?: return
 
-            channel.sendMessage(content).setEmbeds(embeds).queue()
-
+            if (channel.canTalk() && event.guild.selfMember.hasPermission(Permission.MESSAGE_SEND)) {
+                channel.sendMessage(content).setEmbeds(embeds).queue()
+            }
         }
     }
 
@@ -40,7 +42,9 @@ class WelcomerModule(
             val channel = event.guild.getTextChannelById(guildData.GuildJoinLeaveModule.leaveChannel ?: "0")
                 ?: return
 
-            channel.sendMessage(content).setEmbeds(embeds).queue()
+            if (channel.canTalk() && event.guild.selfMember.hasPermission(Permission.MESSAGE_SEND)) {
+                channel.sendMessage(content).setEmbeds(embeds).queue()
+            }
         }
     }
 }
