@@ -66,7 +66,7 @@ object ImageUtils {
     fun Graphics2D.drawTextWithFont(width: Int, height: Int, textConfig: TextConfig.() -> Unit) {
         val config = TextConfig().apply(textConfig)
         this.font = getFont(config.fontFamily, config.fontSize) ?: Font("SansSerif", Font.PLAIN, config.fontSize)
-        this.color = color
+        this.color = config.fontColor
         this.drawString(config.text, (width / config.textPosition.x), (height / config.textPosition.y))
     }
 
