@@ -21,29 +21,31 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
     private val autoRole = AutoRoleModule(foxy)
     private val coroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
 
-    override fun onGenericGuild(event: GenericGuildEvent) {
-        coroutineScope.launch {
-            when (event) {
-                is GuildJoinEvent -> {
-                    foxy.mongoClient.utils.guild.getGuild(event.guild.id)
-                    logger.info { "Joined guild ${event.guild.name} - ${event.guild.id}" }
-                }
+    override fun onGuildJoin(event: GuildJoinEvent) {
+        coroutineScope.launch(foxy.coroutineDispatcher) {
+            foxy.mongoClient.utils.guild.getGuild(event.guild.id)
+            logger.info { "Joined guild ${event.guild.name} - ${event.guild.id}" }
+        }
+    }
 
-                is GuildLeaveEvent -> {
-                    foxy.mongoClient.utils.guild.deleteGuild(event.guild.id)
-                    logger.info { "Left guild ${event.guild.name} - ${event.guild.id}" }
-                }
+    override fun onGuildLeave(event: GuildLeaveEvent) {
+        coroutineScope.launch(foxy.coroutineDispatcher) {
+            foxy.mongoClient.utils.guild.deleteGuild(event.guild.id)
+            logger.info { "Left guild ${event.guild.name} - ${event.guild.id}" }
+        }
+    }
 
-                is GuildMemberJoinEvent -> {
-                    welcomer.onGuildJoin(event)
-                    antiRaid.handleJoin(event)
-                    autoRole.handleUser(event)
-                }
+    override fun onGuildMemberJoin(event: GuildMemberJoinEvent) {
+        coroutineScope.launch(foxy.coroutineDispatcher) {
+            welcomer.onGuildJoin(event)
+            antiRaid.handleJoin(event)
+            autoRole.handleUser(event)
+        }
+    }
 
-                is GuildMemberRemoveEvent -> {
-                    welcomer.onGuildLeave(event)
-                }
-            }
+    override fun onGuildMemberRemove(event: GuildMemberRemoveEvent) {
+        coroutineScope.launch(foxy.coroutineDispatcher) {
+            welcomer.onGuildLeave(event)
         }
     }
 }

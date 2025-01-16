@@ -5,6 +5,7 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
+import kotlinx.coroutines.asCoroutineDispatcher
 import mu.KotlinLogging
 import net.cakeyfox.artistry.ArtistryClient
 import net.cakeyfox.common.Constants
@@ -48,6 +49,8 @@ class FoxyInstance(
     private lateinit var environment: String
     private val activeJobs = ThreadUtils.activeJobs
     val threadPoolManager = ThreadPoolManager()
+    val coroutineExecutor = ThreadUtils.createThreadPool("CoroutineExecutor [%d]")
+    val coroutineDispatcher = coroutineExecutor.asCoroutineDispatcher()
 
     suspend fun start() {
         val logger = KotlinLogging.logger(this::class.jvmName)
