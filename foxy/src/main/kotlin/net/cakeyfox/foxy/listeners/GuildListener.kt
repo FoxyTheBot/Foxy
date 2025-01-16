@@ -6,7 +6,6 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.modules.antiraid.AntiRaidModule
 import net.cakeyfox.foxy.modules.autorole.AutoRoleModule
 import net.cakeyfox.foxy.modules.welcomer.WelcomerModule
-import net.dv8tion.jda.api.events.guild.GenericGuildEvent
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent
 import net.dv8tion.jda.api.events.guild.GuildLeaveEvent
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
