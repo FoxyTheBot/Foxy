@@ -221,6 +221,7 @@ class ProfileRender(
                 ?.await()
         } catch (e: ErrorResponseException) {
             if (e.errorCode == 10007) {
+                logger.info { "User ${user.id} is not in the support server" }
                 null
             } else {
                 throw e
