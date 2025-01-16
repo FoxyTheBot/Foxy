@@ -8,6 +8,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.component.ComponentId
 import net.cakeyfox.foxy.utils.pretty
+import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent
@@ -76,8 +77,11 @@ class InteractionsListener(
                         )
                     }
                 }
-
-                logger.info { "${context.user.name} (${context.user.id}) executed ${event.fullCommandName} in ${context.guild?.name ?: "DM"} (${context.guild?.id ?: "Can't get ID"})" }
+                if (event.channelType == ChannelType.PRIVATE) {
+                    logger.info { "${context.user.name} (${context.user.id}) executed ${event.fullCommandName} on a private channel" }
+                } else {
+                    logger.info { "${context.user.name} (${context.user.id}) executed ${event.fullCommandName} in ${context.guild?.name} (${context.guild?.id})" }
+                }
             }
         }
     }
@@ -114,7 +118,7 @@ class InteractionsListener(
     }
 
     override fun onStringSelectInteraction(event: StringSelectInteractionEvent) {
-        coroutineScope.launch {
+        coroutineScope.launch(foxy.coroutineDispatcher) {
             val componentId = try {
                 ComponentId(event.componentId)
             } catch (e: IllegalArgumentException) {
