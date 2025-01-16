@@ -12,8 +12,8 @@ class ThreadPoolManager {
     private val coroutineMessageExecutor: ExecutorService = ThreadUtils.createThreadPool("MessageExecutor [%d]")
     private val coroutineMessageDispatcher = coroutineMessageExecutor.asCoroutineDispatcher()
     private val activeJobs = ThreadUtils.activeJobs
+    private val coroutineScope = CoroutineScope(coroutineMessageDispatcher + SupervisorJob())
 
-    @OptIn(DelicateCoroutinesApi::class)
     fun launchMessageJob(event: Event, block: suspend CoroutineScope.() -> Unit) {
         val coroutineName = when (event) {
             is MessageReceivedEvent -> "Message ${event.message} by user ${event.author}"
@@ -23,7 +23,7 @@ class ThreadPoolManager {
         }
 
         val start = System.currentTimeMillis()
-        val job = GlobalScope.launch(
+        val job = coroutineScope.launch(
             coroutineMessageDispatcher + CoroutineName(coroutineName),
             block = block
         )
