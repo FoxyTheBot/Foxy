@@ -221,7 +221,6 @@ class ProfileRender(
                 ?.await()
         } catch (e: ErrorResponseException) {
             if (e.errorCode == 10007) {
-                println(e)
                 null
             } else {
                 throw e
