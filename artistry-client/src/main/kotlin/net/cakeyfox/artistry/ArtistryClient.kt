@@ -20,7 +20,7 @@ class ArtistryClient (
 
     suspend fun generateImage(endpoint: String, data: JsonObject): HttpResponse {
         val response = client.post {
-            url("https://artistry.foxybot.win/$endpoint")
+            url("http://localhost:3040/v1/$endpoint")
             header("Content-Type", "application/json")
             header("Authorization", artistryToken)
             setBody(data.toString())
