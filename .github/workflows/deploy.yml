@@ -44,7 +44,5 @@ jobs:
           
             scp -o StrictHostKeyChecking=no -P $SSH_PORT foxy/build/libs/Foxy-*.jar $SSH_USER@$SERVER:$SSH_TARGET/ > /dev/null 2>&1
           
-            ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SERVER > /dev/null 2>&1 << EOF
-              echo "Deploy completed on server $((index + 1))!"
-            EOF
+            ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SERVER "echo 'Deploy completed on server $((index + 1))!'"
           done
