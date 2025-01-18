@@ -24,10 +24,10 @@ jobs:
           chmod +x ./gradlew
           ./gradlew :foxy:shadowJar --no-daemon
 
-      - name: Deploy JAR to Server
+      - name: Deploying Foxy to clusters
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SERVERS: ${{ secrets.SERVERS }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
           SSH_TARGET: ${{ secrets.SSH_TARGET }}
@@ -36,8 +36,15 @@ jobs:
           echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
-          scp -o StrictHostKeyChecking=no -P $SSH_PORT foxy/build/libs/Foxy-*.jar $SSH_USER@$SSH_HOST:$SSH_TARGET/
+          IFS=',' read -r -a server_array <<< "$SERVERS"
 
-          ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SSH_HOST << EOF
-            echo "Deploy completed!"
-          EOF
+          for index in "${!server_array[@]}"; do
+            echo "Deploying to server $((index + 1)) of ${#server_array[@]}..."
+            SERVER=${server_array[$index]}
+          
+            scp -o StrictHostKeyChecking=no -P $SSH_PORT foxy/build/libs/Foxy-*.jar $SSH_USER@$SERVER:$SSH_TARGET/ > /dev/null 2>&1
+          
+            ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SERVER > /dev/null 2>&1 << EOF
+              echo "Deploy completed on server $((index + 1))!"
+            EOF
+          done
