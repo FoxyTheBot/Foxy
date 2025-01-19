@@ -214,16 +214,21 @@ class ProfileRender(
             context.db.utils.profile.getBadges()
         }
 
-        val roles = context.foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
-            ?.retrieveMember(user)
-            ?.await()
-            ?.roles
-            ?.map { it.id } ?: run {
-            logger.info { "Guild not found on this cluster" }
-            ClusterUtils.getMemberRolesFromCluster(context.foxy, Constants.SUPPORT_SERVER_ID.toLong(), user.idLong)
+        val roles = try {
+            context.foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
+                ?.retrieveMember(user)
+                ?.await()
+                ?.roles
+                ?.map { it.id } ?: run {
+                logger.info { "Guild not found on this cluster" }
+                ClusterUtils.getMemberRolesFromCluster(context.foxy, Constants.SUPPORT_SERVER_ID.toLong(), user.idLong)
+            }
+        } catch (e: Exception) {
+            null
         }
 
-        val userBadges = BadgeUtils.getBadges(roles, defaultBadges, data)
+        val userBadges = roles?.let { BadgeUtils.getBadges(it, defaultBadges, data) }
+            ?: BadgeUtils.getFallbackBadges(defaultBadges, data)
 
         if (userBadges.isEmpty()) {
             return

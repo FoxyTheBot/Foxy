@@ -22,7 +22,9 @@ class GetUserRolesFromAGuild {
                 return@get
             }
 
-            val member = guild.retrieveMemberById(userId).await() ?: run {
+            val member = try {
+                guild.retrieveMemberById(userId).await()
+            } catch (e: Exception) {
                 call.respond(HttpStatusCode.NotFound, null)
                 return@get
             }
