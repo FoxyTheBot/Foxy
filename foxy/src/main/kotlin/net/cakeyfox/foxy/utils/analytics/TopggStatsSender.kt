@@ -53,7 +53,7 @@ class TopggStatsSender(
             clusterUrls.map { url ->
                 async {
                     try {
-                        val response = client.get("$url/api/v1/guilds")
+                        val response = client.get("$url/guilds")
                         Json.decodeFromString<ClusterStats>(response.bodyAsText()).serverCount
                     } catch (e: Exception) {
                         logger.error(e) { "Failed to fetch server count from $url" }
