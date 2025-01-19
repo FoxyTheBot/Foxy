@@ -54,7 +54,7 @@ object ClusterUtils {
                     return roles
                 }
             } catch (e: Exception) {
-                logger.error(e) { "Failed to fetch roles for member $memberId in guild $guildId from cluster ${cluster.id}" }
+                // If user is not in the guild, return empty list
                 return emptyList()
             }
         }
