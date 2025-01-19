@@ -15,7 +15,7 @@ class FoxyInternalAPI(
     val foxy: FoxyInstance
 ) {
     init {
-        embeddedServer(Netty, port = 8080) {
+        embeddedServer(Netty, port = foxy.config.others.statsSenderPort) {
             install(ContentNegotiation) {
                 json()
             }
