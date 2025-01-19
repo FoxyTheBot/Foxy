@@ -23,6 +23,7 @@ class GuildUtils(
 
     val json = Json {
         ignoreUnknownKeys = true
+        coerceInputValues = true
     }
 
     suspend fun getGuild(guildId: String): Guild {

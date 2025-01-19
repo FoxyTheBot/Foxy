@@ -5,18 +5,9 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.http.content.*
-import io.ktor.serialization.kotlinx.json.*
-import io.ktor.server.application.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
-import io.ktor.server.plugins.contentnegotiation.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
 import kotlinx.coroutines.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.buildJsonObject
-import kotlinx.serialization.json.put
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.serializable.data.ClusterStats
@@ -33,8 +24,6 @@ class TopggStatsSender(
     init {
         if (foxy.currentCluster.canPublishStats && foxy.config.environment == "production") {
             startMainClusterRoutine()
-        } else {
-            startHttpServer()
         }
     }
 
@@ -64,7 +53,7 @@ class TopggStatsSender(
             clusterUrls.map { url ->
                 async {
                     try {
-                        val response = client.get(url)
+                        val response = client.get("$url/api/v1/guilds")
                         Json.decodeFromString<ClusterStats>(response.bodyAsText()).serverCount
                     } catch (e: Exception) {
                         logger.error(e) { "Failed to fetch server count from $url" }
@@ -108,27 +97,5 @@ class TopggStatsSender(
             logger.info { "Sending $serverCount servers to Top.gg" }
             return@withContext true
         }
-    }
-
-    private fun startHttpServer() {
-        embeddedServer(Netty, port = foxy.config.others.statsSenderPort) {
-            install(ContentNegotiation) {
-                json()
-            }
-
-            routing {
-                get("/guilds") {
-                    val serverCount = foxy.shardManager.shards.sumOf { it.guilds.size }
-                    val response = buildJsonObject {
-                        put("serverCount", serverCount)
-                    }
-                    val jsonString = Json.encodeToString(response)
-                    call.respondText(
-                        contentType = ContentType.Application.Json,
-                        text = jsonString
-                    )
-                }
-            }
-        }.start(wait = false)
     }
 }

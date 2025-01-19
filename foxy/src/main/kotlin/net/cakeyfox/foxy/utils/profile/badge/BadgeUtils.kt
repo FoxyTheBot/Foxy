@@ -8,15 +8,16 @@ import java.time.Instant
 object BadgeUtils {
     private val twelveHoursAgo = System.currentTimeMillis() - 12 * 60 * 60 * 1000
 
-    fun getBadges(member: Member, defaultBadges: List<Badge>, data: FoxyUser): List<Badge> {
+    fun getBadges(roles: List<String>, defaultBadges: List<Badge>, data: FoxyUser): List<Badge> {
         val userBadges = mutableListOf<Badge>()
 
-        val roleBadges = member.roles
+        val roleBadges = roles
             .mapNotNull { role ->
                 defaultBadges.find {
-                    it.id == role.id
+                    it.id == role
                 }
             }
+
         userBadges.addAll(roleBadges)
 
         getAdditionalBadges(data).forEach { condition ->

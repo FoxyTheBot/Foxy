@@ -8,6 +8,7 @@ import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.command.FoxyInteractionContext
+import net.cakeyfox.foxy.utils.ClusterUtils
 import net.cakeyfox.foxy.utils.image.ImageUtils
 import net.cakeyfox.foxy.utils.image.ImageUtils.drawTextWithFont
 import net.cakeyfox.foxy.utils.profile.ProfileUtils.getOrFetchFromCache
@@ -15,7 +16,6 @@ import net.cakeyfox.foxy.utils.profile.badge.BadgeUtils
 import net.cakeyfox.foxy.utils.profile.config.ProfileConfig
 import net.cakeyfox.serializable.database.data.*
 import net.dv8tion.jda.api.entities.User
-import net.dv8tion.jda.api.exceptions.ErrorResponseException
 import java.awt.Color
 import java.awt.Graphics2D
 import java.awt.RenderingHints
@@ -214,24 +214,16 @@ class ProfileRender(
             context.db.utils.profile.getBadges()
         }
 
-
-        val member = try {
-            context.foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
-                ?.retrieveMemberById(user.id)
-                ?.await()
-        } catch (e: ErrorResponseException) {
-            if (e.errorCode == 10007) {
-                logger.info { "User ${user.id} is not in the support server" }
-                null
-            } else {
-                throw e
-            }
+        val roles = context.foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
+            ?.retrieveMember(user)
+            ?.await()
+            ?.roles
+            ?.map { it.id } ?: run {
+            logger.info { "Guild not found on this cluster" }
+            ClusterUtils.getMemberRolesFromCluster(context.foxy, Constants.SUPPORT_SERVER_ID.toLong(), user.idLong)
         }
 
-        val userBadges = member?.let { BadgeUtils.getBadges(it, defaultBadges, data) } ?: BadgeUtils.getFallbackBadges(
-            defaultBadges,
-            data
-        )
+        val userBadges = BadgeUtils.getBadges(roles, defaultBadges, data)
 
         if (userBadges.isEmpty()) {
             return

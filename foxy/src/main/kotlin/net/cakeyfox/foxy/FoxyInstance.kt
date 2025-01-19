@@ -18,6 +18,7 @@ import net.cakeyfox.foxy.utils.ActivityUpdater
 import net.cakeyfox.foxy.utils.config.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.analytics.TopggStatsSender
+import net.cakeyfox.foxy.utils.api.FoxyInternalAPI
 import net.cakeyfox.foxy.utils.database.MongoDBClient
 import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
 import net.cakeyfox.foxy.utils.threads.ThreadUtils
@@ -48,13 +49,14 @@ class FoxyInstance(
     private lateinit var topggStatsSender: TopggStatsSender
     private lateinit var environment: String
     private val activeJobs = ThreadUtils.activeJobs
+    private val coroutineExecutor = ThreadUtils.createThreadPool("CoroutineExecutor [%d]")
     val threadPoolManager = ThreadPoolManager()
-    val coroutineExecutor = ThreadUtils.createThreadPool("CoroutineExecutor [%d]")
     val coroutineDispatcher = coroutineExecutor.asCoroutineDispatcher()
 
     suspend fun start() {
         val logger = KotlinLogging.logger(this::class.jvmName)
         val activityUpdater = ActivityUpdater(this)
+        FoxyInternalAPI(this)
 
         environment = config.environment
         mongoClient = MongoDBClient()

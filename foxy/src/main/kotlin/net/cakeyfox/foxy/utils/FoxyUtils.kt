@@ -82,7 +82,7 @@ class FoxyUtils(
 
             actionRow(
                 foxy.interactionManager.createLinkButton(
-                    context.jda.getEmojiById(FoxyEmotes.FoxyCupcake)!!,
+                    context.jda.getEmojiById(FoxyEmotes.FoxyCupcake),
                     context.locale["ban.appealButton"],
                     Constants.UNBAN_FORM_URL
                 )
