@@ -37,6 +37,8 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:${Versions.KTOR}")
     implementation("io.ktor:ktor-client-cio:${Versions.KTOR}")
     implementation("io.ktor:ktor-server-content-negotiation:${Versions.KTOR}")
+    implementation("io.ktor:ktor-server-auth:${Versions.KTOR}")
+
 
     implementation("com.google.guava:guava:32.1.3-jre")
 
