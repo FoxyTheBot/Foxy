@@ -47,7 +47,7 @@ object ClusterUtils {
                     foxy.httpClient.get {
                         url(cluster.clusterUrl + "/api/v1/guilds/$guildId/users/$memberId/roles")
                         header("Content-Type", "application/json")
-                        header("Authorization", foxy.config.others.internalApi.key)
+                        header("Authorization", "Bearer ${foxy.config.others.internalApi.key}")
                     }
                 }.let {
                     val roles = json.decodeFromString(it.bodyAsText()) as List<String>
