@@ -55,11 +55,11 @@ class ProfileRender(
                 }
 
                 val layoutDeferred = async {
-                    ProfileCacheManager.loadImageFromCache(Constants.getProfileLayout(layoutInfo.filename))
+                    ProfileCacheManager.loadImageFromFile(Constants.getProfileLayout(layoutInfo.filename))
                 }
 
                 val backgroundDeferred = async {
-                    ProfileCacheManager.loadImageFromCache(Constants.getProfileBackground(backgroundInfo.filename))
+                    ProfileCacheManager.loadImageFromFile(Constants.getProfileBackground(backgroundInfo.filename))
                 }
 
                 val layout = layoutDeferred.await()
@@ -140,7 +140,7 @@ class ProfileRender(
 
             val decorationDeferred = async {
                 data.userProfile.decoration?.let {
-                    ImageUtils.loadProfileAssetFromURL(Constants.getProfileDecoration(it))
+                    ProfileCacheManager.loadImageFromFile(Constants.getProfileDecoration(it))
                 }
             }
 
@@ -187,7 +187,7 @@ class ProfileRender(
             }
 
             val decorationImage =
-                ImageUtils.loadProfileAssetFromURL(
+                ProfileCacheManager.loadImageFromFile(
                     Constants.getProfileDecoration(
                         decorationInfo.filename.replace(
                             ".png",
@@ -238,7 +238,7 @@ class ProfileRender(
         var y = layoutInfo.profileSettings.positions.badgesPosition.y
 
         for (badge in userBadges) {
-            val badgeImage = ImageUtils.loadProfileAssetFromURL(Constants.getProfileBadge(badge.asset))
+            val badgeImage = ProfileCacheManager.loadImageFromFile(Constants.getProfileBadge(badge.asset))
             graphics.drawImage(badgeImage, x.toInt(), y.toInt(), 50, 50, null)
 
             x += 60
@@ -251,7 +251,7 @@ class ProfileRender(
 
     private suspend fun drawMarryInfo(userData: FoxyUser, layout: Layout) {
         val marriedDateFormatted = context.utils.convertToHumanReadableDate(userData.marryStatus.marriedDate!!)
-        val marriedOverlay = ImageUtils.loadProfileAssetFromURL(Constants.getMarriedOverlay(layout.id))
+        val marriedOverlay = ProfileCacheManager.loadImageFromFile(Constants.getMarriedOverlay(layout.id))
         val color = if (layout.darkText) Color.BLACK else Color.WHITE
         val partnerUser = context.jda.retrieveUserById(userData.marryStatus.marriedWith!!).await()
 

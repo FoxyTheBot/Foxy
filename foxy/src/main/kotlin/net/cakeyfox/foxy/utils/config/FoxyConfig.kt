@@ -39,11 +39,17 @@ data class FoxyConfig(
     @Serializable
     data class OtherSettings(
         val foxyApi: FoxyAPISettings,
+        val internalApi: InternalApi,
         val artistry: ArtistrySettings,
         val activityUpdater: ActivityUpdaterSettings,
         val statsSenderPort: Int,
         val topggToken: String,
     ) {
+        @Serializable
+        data class InternalApi(
+            val key: String
+        )
+
         @Serializable
         data class FoxyAPISettings(
             val key: String

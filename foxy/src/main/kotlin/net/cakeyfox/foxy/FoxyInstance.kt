@@ -49,6 +49,7 @@ class FoxyInstance(
     private lateinit var topggStatsSender: TopggStatsSender
     private lateinit var environment: String
     private val activeJobs = ThreadUtils.activeJobs
+    private val currentClusterName = if (config.discord.clusters.size < 2) null else currentCluster.name
     private val coroutineExecutor = ThreadUtils.createThreadPool("CoroutineExecutor [%d]")
     val threadPoolManager = ThreadPoolManager()
     val coroutineDispatcher = coroutineExecutor.asCoroutineDispatcher()
@@ -88,7 +89,14 @@ class FoxyInstance(
         )
             .setAutoReconnect(true)
             .setStatus(OnlineStatus.ONLINE)
-            .setActivity(Activity.customStatus(Constants.getDefaultActivity(config.environment)))
+            .setActivity(
+                Activity.customStatus(
+                    Constants.getDefaultActivity(
+                        config.environment,
+                        currentClusterName
+                    )
+                )
+            )
             .setShardsTotal(config.discord.totalShards)
             .setShards(currentCluster.minShard, currentCluster.maxShard)
             .setMemberCachePolicy(MemberCachePolicy.ALL)
