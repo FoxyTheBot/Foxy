@@ -110,6 +110,9 @@ cancel:
 pay:
   confirm: "Você deseja mesmo transferir **{0} Cakes** para {1}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!"
   success: "Você transferiu **{0} Cakes** para {1}!"
+  notEnoughBalance: "Você não tem Cakes suficientes para transferir!"
+  cantPayYourself: "Você não pode transferir Cakes para você mesmo!"
+  invalidAmount: "Você precisa transferir uma quantidade válida de Cakes!"
 
 marry:
   proposal: "Ei, {0}, um passarinho me contou que **{1}** quer casar com você, você aceita?"

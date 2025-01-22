@@ -110,6 +110,9 @@ cancel:
 pay:
   confirm: "Do you really want to transfer **{0} Cakes** to {1}? \nThe Foxy Team **is not responsible** for lost Cakes, so make sure you're transferring to someone trustworthy! \nTrading NSFW(+18) content for Cakes is prohibited!"
   success: "You transferred **{0} Cakes** to {1}!"
+  notEnoughBalance: "You don't have enough Cakes to transfer!"
+  cantPayYourself: "You can't pay yourself!"
+  invalidAmount: "You need to transfer a valid amount of Cakes!"
 
 marry:
   proposal: "Hey, {0}, a little birdie told me that **{1}** wants to marry you. Do you accept?"
