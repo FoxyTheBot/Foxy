@@ -70,7 +70,7 @@ class PayExecutor : FoxyCommandExecutor() {
             context.reply {
                 content = pretty(
                     FoxyEmotes.FoxyCry,
-                    context.locale["error.invalidAmount"]
+                    context.locale["pay.invalidAmount"]
                 )
             }
 
@@ -81,7 +81,7 @@ class PayExecutor : FoxyCommandExecutor() {
             context.reply {
                 content = pretty(
                     FoxyEmotes.FoxyCry,
-                    context.locale["error.notEnoughCakes"]
+                    context.locale["pay.notEnoughCakes"]
                 )
             }
 
