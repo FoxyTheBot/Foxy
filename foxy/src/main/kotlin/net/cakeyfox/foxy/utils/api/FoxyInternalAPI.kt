@@ -47,7 +47,7 @@ class FoxyInternalAPI(
                     GetUserRolesFromAGuild().apply { getUserRolesFromAGuild(foxy) }
                 }
 
-                staticFiles("/assets", File("foxy/src/main/resources/profile"))
+                staticFiles("/assets", File(this::class.java.classLoader.getResource("profile")!!.file))
             }
         }.start(wait = false)
     }
