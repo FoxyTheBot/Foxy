@@ -53,7 +53,9 @@ class TopggStatsSender(
             clusterUrls.map { url ->
                 async {
                     try {
-                        val response = client.get("$url/guilds")
+                        val response = client.get("$url/guilds", {
+                            header("Authorization", "Bearer ${foxy.config.others.internalApi.key}")
+                        })
                         Json.decodeFromString<ClusterStats>(response.bodyAsText()).serverCount
                     } catch (e: Exception) {
                         logger.error(e) { "Failed to fetch server count from $url" }
