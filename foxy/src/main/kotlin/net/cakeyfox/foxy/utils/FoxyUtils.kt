@@ -82,7 +82,7 @@ class FoxyUtils(
 
             actionRow(
                 foxy.interactionManager.createLinkButton(
-                    FoxyEmotes.FoxyCupcake,
+                    FoxyEmotes.FoxyCake,
                     context.locale["ban.appealButton"],
                     Constants.UNBAN_FORM_URL
                 )

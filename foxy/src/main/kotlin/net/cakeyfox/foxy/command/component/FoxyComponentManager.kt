@@ -93,7 +93,7 @@ class FoxyComponentManager(
             ButtonStyle.LINK,
             url,
             label,
-            Emoji.fromFormatted("<:emoji:$emoji")
+            emoji?.let { Emoji.fromFormatted(it) }
         ).let {
             ButtonBuilder(it).apply(builder).button
         }
@@ -112,7 +112,7 @@ class FoxyComponentManager(
             style,
             ComponentId(buttonId).toString(),
             label,
-            emoji?.let { Emoji.fromFormatted("<:emoji:$emoji") }
+            emoji?.let { Emoji.fromFormatted(it) }
         ).let {
             ButtonBuilder(it).apply(builder).button
         }

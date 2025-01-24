@@ -119,6 +119,7 @@ marry:
   userAlreadyMarried: "You can't marry someone who's already married! Stealing someone's partner is not cool!"
   cantMarryMe: "No, sorry, but I don't want to marry you!"
   cantMarryYourself: "Self-love is great, but you can't marry yourself."
+  cantMarryBot: "You can't marry bots!"
   accepted: "Proposal accepted! Best wishes to the happy couple! :3"
 
 divorce:

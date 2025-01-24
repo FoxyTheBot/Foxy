@@ -24,6 +24,17 @@ class MarryExecutor : FoxyCommandExecutor() {
             return
         }
 
+        if (user.isBot) {
+            context.reply(true) {
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["marry.cantMarryBot", user.asMention]
+                )
+            }
+
+            return
+        }
+
         if (user.id == context.foxy.selfUser.id) {
             context.reply(true) {
                 content = pretty(
@@ -63,15 +74,14 @@ class MarryExecutor : FoxyCommandExecutor() {
         context.reply {
             content = pretty(
                 FoxyEmotes.Ring,
-                context.locale["marry.proposal", user.asMention, context.user.asMention],
-                true
+                context.locale["marry.proposal", user.asMention, context.user.asMention]
             )
 
             actionRow(
                 context.foxy.interactionManager.createButtonForUser(
                     user,
                     ButtonStyle.SUCCESS,
-                    FoxyEmotes.FoxyCupcake,
+                    FoxyEmotes.FoxyCake,
                     context.locale["marry.acceptButton"],
                 ) {
                     context.db.utils.user.updateUser(
@@ -93,15 +103,14 @@ class MarryExecutor : FoxyCommandExecutor() {
                     it.edit {
                         content = pretty(
                             FoxyEmotes.Ring,
-                            context.locale["marry.accepted", user.asMention],
-                            true
+                            context.locale["marry.accepted", user.asMention]
                         )
 
                         actionRow(
                             context.foxy.interactionManager.createButtonForUser(
                                 user,
                                 ButtonStyle.SUCCESS,
-                                FoxyEmotes.FoxyCupcake,
+                                FoxyEmotes.FoxyCake,
                                 context.locale["marry.acceptedButton"]
                             ) { }.asDisabled()
                         )

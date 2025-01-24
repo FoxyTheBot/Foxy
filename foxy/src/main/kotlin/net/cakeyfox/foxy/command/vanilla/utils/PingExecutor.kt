@@ -23,13 +23,13 @@ class PingExecutor : FoxyCommandExecutor() {
                 color = Colors.FOXY_DEFAULT
 
                 field {
-                    name = pretty(FoxyEmotes.FoxyCupcake, "Gateway Ping:")
+                    name = pretty(FoxyEmotes.FoxyCake, "Gateway Ping:")
                     value = "`${gatewayPing}ms`"
                     inline = false
                 }
 
                 field {
-                    name = pretty(FoxyEmotes.FoxyThink, "Shard")
+                    name = pretty(FoxyEmotes.FoxyHm, "Shard")
                     value = "`${currentShardId}/${totalShards}`"
                     inline = false
                 }

@@ -119,6 +119,7 @@ marry:
   userAlreadyMarried: "Você não pode se casar com quem já está casado! Talaricagem é feio!"
   cantMarryMe: "Não, desculpa, mas eu não quero me casar com você!"
   cantMarryYourself: "Amor próprio é algo bom, mas você não pode casar com você mesmo"
+  cantMarryBot: "Você não pode se casar com bots!"
   accepted: "Pedido aceito! Felicidades para o casal! :3"
 
 divorce:
