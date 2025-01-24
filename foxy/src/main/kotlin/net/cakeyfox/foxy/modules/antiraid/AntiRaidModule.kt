@@ -65,7 +65,6 @@ class AntiRaidModule(
             val userId = event.user.id
             val antiRaidSettings = guildInfo.antiRaidModule
 
-
             timestamps.add(currentTimestamp)
 
             if ((timestamps?.size ?: 0) > antiRaidSettings.newUsersThreshold) {

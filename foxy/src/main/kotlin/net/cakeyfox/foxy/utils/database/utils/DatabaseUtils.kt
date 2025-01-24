@@ -9,4 +9,5 @@ class DatabaseUtils(
     val economy = EconomyUtils(client)
     val guild = GuildUtils(client)
     val user = UserUtils(client)
+    val bot = BotUtils(client)
 }

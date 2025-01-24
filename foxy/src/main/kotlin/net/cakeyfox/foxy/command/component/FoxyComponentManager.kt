@@ -45,7 +45,7 @@ class FoxyComponentManager(
     ) = createButton(targetUser.idLong, style, emoji, label, builder, callback)
 
     fun createLinkButton(
-        emoji: Emoji? = null,
+        emoji: String? = null,
         label: String = "",
         url: String,
         builder: (ButtonBuilder).() -> (Unit) = {},
@@ -56,7 +56,7 @@ class FoxyComponentManager(
         builder
     )
 
-    fun createButton(
+    private fun createButton(
         targetUserId: Long,
         style: ButtonStyle,
         emoji: String? = null,
@@ -83,8 +83,8 @@ class FoxyComponentManager(
         callback.invoke(it)
     }
 
-    fun linkButton(
-        emoji: Emoji? = null,
+    private fun linkButton(
+        emoji: String? = null,
         label: String = "",
         url: String,
         builder: (ButtonBuilder).() -> (Unit) = {},
@@ -93,7 +93,7 @@ class FoxyComponentManager(
             ButtonStyle.LINK,
             url,
             label,
-            emoji
+            Emoji.fromFormatted("<:emoji:$emoji")
         ).let {
             ButtonBuilder(it).apply(builder).button
         }
@@ -112,7 +112,7 @@ class FoxyComponentManager(
             style,
             ComponentId(buttonId).toString(),
             label,
-            emoji?.let { foxy.shardManager.getEmojiById(it) }
+            emoji?.let { Emoji.fromFormatted("<:emoji:$emoji") }
         ).let {
             ButtonBuilder(it).apply(builder).button
         }
@@ -149,7 +149,7 @@ class FoxyComponentManager(
         callback.invoke(context, strings)
     }
 
-    fun stringSelectMenu(
+    private fun stringSelectMenu(
         builder: (StringSelectMenu.Builder).() -> (Unit) = {},
         callback: suspend (FoxyInteractionContext, List<String>) -> (Unit)
     ): StringSelectMenu {
@@ -160,7 +160,7 @@ class FoxyComponentManager(
             .build()
     }
 
-    fun modal(
+    private fun modal(
         title: String,
         builder: (ModalBuilder).() -> (Unit) = {},
         callback: suspend (FoxyInteractionContext) -> (Unit)

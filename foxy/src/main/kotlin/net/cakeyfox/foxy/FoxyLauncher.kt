@@ -44,9 +44,25 @@ object FoxyLauncher {
 
         val config = readConfigFile<FoxyConfig>(configFile)
         val hostname = HostnameUtils.getHostname()
-        val currentCluster = config.discord.clusters.find { it.id == hostname }
+        val clusterId = if (config.discord.getClusterIdFromHostname) {
+            try {
+                // If the hostname is in the expected format, extract the ID after the "-"
+                hostname.split("-")[1].toInt()
+            } catch (e: IndexOutOfBoundsException) {
+                logger.error { "Invalid hostname ($hostname)! The hostname must contain '-' followed by a numeric ID (e.g., foxy-1)." }
+                exitProcess(1)
+            } catch (e: NumberFormatException) {
+                logger.error { "Invalid ID in hostname ($hostname)! The value after '-' must be a number (e.g., foxy-1)." }
+                exitProcess(1)
+            }
+
+        } else {
+            config.discord.replicaId
+        }
+
+        val currentCluster = config.discord.clusters.find { it.id == clusterId }
             ?: run {
-                logger.error { "Cluster $hostname not found in config file" }
+                logger.error { "Cluster $hostname (${clusterId}) not found in config file" }
                 exitProcess(1)
             }
 

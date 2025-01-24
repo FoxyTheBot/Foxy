@@ -19,18 +19,18 @@ object Constants {
     const val SUPPORT_SERVER_ID = "768267522670723094"
 
 
-    fun getDefaultActivity(environment: String, clusterName: String?): String {
+    fun getDefaultActivity(activity: String, environment: String, clusterName: String?): String {
         if (clusterName != null) {
             return when(environment) {
                 "development" -> "https://youtu.be/0OIqlp2U9EQ | Cluster: $clusterName"
-                "production" -> "foxybot.win · /help | Cluster: $clusterName"
-                else -> "foxybot.win · /help | Cluster: $clusterName"
+                "production" -> "$activity | Cluster: $clusterName"
+                else -> "$activity | Cluster: $clusterName"
             }
         } else {
             return when(environment) {
                 "development" -> "https://youtu.be/0OIqlp2U9EQ"
-                "production" -> "foxybot.win · /help"
-                else -> "foxybot.win · /help"
+                "production" -> activity
+                else -> activity
             }
         }
     }

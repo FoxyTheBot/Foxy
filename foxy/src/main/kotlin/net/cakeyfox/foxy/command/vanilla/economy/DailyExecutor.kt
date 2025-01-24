@@ -20,13 +20,13 @@ class DailyExecutor: FoxyCommandExecutor() {
 
                 actionRow(
                     context.foxy.interactionManager.createLinkButton(
-                        context.foxy.shardManager.getEmojiById(FoxyEmotes.FoxyPetPet),
+                        FoxyEmotes.FoxyPetPet,
                         context.locale["daily.embed.redeemDaily"],
                         Constants.DAILY
                     ),
 
                     context.foxy.interactionManager.createLinkButton(
-                        context.foxy.shardManager.getEmojiById(FoxyEmotes.FoxyDaily),
+                        FoxyEmotes.FoxyDaily,
                         context.locale["daily.embed.buyMore"],
                         Constants.PREMIUM
                     )

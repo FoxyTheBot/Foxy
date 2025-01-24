@@ -14,7 +14,6 @@ import net.cakeyfox.foxy.command.component.FoxyComponentManager
 import net.cakeyfox.foxy.listeners.GuildListener
 import net.cakeyfox.foxy.listeners.InteractionsListener
 import net.cakeyfox.foxy.listeners.MessageListener
-import net.cakeyfox.foxy.utils.ActivityUpdater
 import net.cakeyfox.foxy.utils.config.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.analytics.TopggStatsSender
@@ -46,18 +45,20 @@ class FoxyInstance(
     lateinit var interactionManager: FoxyComponentManager
     lateinit var httpClient: HttpClient
     lateinit var selfUser: User
+
+    private lateinit var foxyInternalAPI: FoxyInternalAPI
     private lateinit var topggStatsSender: TopggStatsSender
     private lateinit var environment: String
+
     private val activeJobs = ThreadUtils.activeJobs
     private val currentClusterName = if (config.discord.clusters.size < 2) null else currentCluster.name
     private val coroutineExecutor = ThreadUtils.createThreadPool("CoroutineExecutor [%d]")
+
     val threadPoolManager = ThreadPoolManager()
     val coroutineDispatcher = coroutineExecutor.asCoroutineDispatcher()
 
     suspend fun start() {
         val logger = KotlinLogging.logger(this::class.jvmName)
-        val activityUpdater = ActivityUpdater(this)
-        FoxyInternalAPI(this)
 
         environment = config.environment
         mongoClient = MongoDBClient()
@@ -88,10 +89,13 @@ class FoxyInstance(
             MessageListener(this)
         )
             .setAutoReconnect(true)
-            .setStatus(OnlineStatus.ONLINE)
+            .setStatus(
+                OnlineStatus.fromKey(mongoClient.utils.bot.getBotSettings().status)
+            )
             .setActivity(
                 Activity.customStatus(
                     Constants.getDefaultActivity(
+                        mongoClient.utils.bot.getActivity(),
                         config.environment,
                         currentClusterName
                     )
@@ -115,6 +119,7 @@ class FoxyInstance(
 
         selfUser = shardManager.shards.first().selfUser
         topggStatsSender = TopggStatsSender(this)
+        foxyInternalAPI = FoxyInternalAPI(this)
 
         Runtime.getRuntime().addShutdownHook(thread(false) {
             try {
@@ -126,7 +131,7 @@ class FoxyInstance(
                 }
                 httpClient.close()
                 mongoClient.close()
-                activityUpdater.shutdown()
+                foxyInternalAPI.stop()
 
                 activeJobs.forEach {
                     logger.info { "Cancelling job $it" }

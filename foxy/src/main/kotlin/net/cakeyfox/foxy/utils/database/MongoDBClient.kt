@@ -1,14 +1,14 @@
 package net.cakeyfox.foxy.utils.database
 
-import com.mongodb.client.MongoClient
-import com.mongodb.client.MongoClients
-import com.mongodb.client.MongoCollection
-import com.mongodb.client.MongoDatabase
+import com.mongodb.kotlin.client.coroutine.MongoClient
+import com.mongodb.kotlin.client.coroutine.MongoCollection
+import com.mongodb.kotlin.client.coroutine.MongoDatabase
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
 import net.cakeyfox.foxy.utils.database.utils.DatabaseUtils
 import net.cakeyfox.foxy.FoxyInstance
-import org.bson.Document
+import net.cakeyfox.serializable.database.data.FoxyUser
+import net.cakeyfox.serializable.database.data.Guild
 import kotlin.reflect.jvm.jvmName
 
 class MongoDBClient {
@@ -17,8 +17,8 @@ class MongoDBClient {
     }
 
     private lateinit var mongoClient: MongoClient
-    private lateinit var guilds: MongoCollection<Document>
-    lateinit var users: MongoCollection<Document>
+    private lateinit var guilds: MongoCollection<Guild>
+    lateinit var users: MongoCollection<FoxyUser>
     lateinit var database: MongoDatabase
 
     val json = Json {
@@ -29,7 +29,7 @@ class MongoDBClient {
     val utils = DatabaseUtils(this)
 
     fun start(foxy: FoxyInstance) {
-        mongoClient = MongoClients.create(foxy.config.database.uri)
+        mongoClient = MongoClient.create(foxy.config.database.uri)
         database = mongoClient.getDatabase(foxy.config.database.databaseName)
         users = database.getCollection("users")
         guilds = database.getCollection("guilds")

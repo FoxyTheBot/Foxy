@@ -1,6 +1,6 @@
 package net.cakeyfox.foxy.utils.database.utils
 
-import com.mongodb.client.MongoCollection
+import kotlinx.coroutines.flow.firstOrNull
 import mu.KotlinLogging
 import net.cakeyfox.foxy.utils.database.MongoDBClient
 import net.cakeyfox.serializable.database.data.Background
@@ -15,8 +15,8 @@ class ProfileUtils(
 ) {
     private val logger = KotlinLogging.logger(this::class.jvmName)
 
-    fun getBackground(backgroundId: String): Background {
-        val collection: MongoCollection<Document> = client.database.getCollection("backgrounds")
+    suspend fun getBackground(backgroundId: String): Background {
+        val collection = client.database.getCollection<Document>("backgrounds")
 
         val query = Document("id", backgroundId)
         val existingDocument = collection.find(query).firstOrNull()
@@ -30,8 +30,8 @@ class ProfileUtils(
         return client.json.decodeFromString<Background>(documentToJSON!!)
     }
 
-    fun getLayout(layoutId: String): Layout {
-        val collection: MongoCollection<Document> = client.database.getCollection("layouts")
+    suspend fun getLayout(layoutId: String): Layout {
+        val collection = client.database.getCollection<Document>("layouts")
 
         val query = Document("id", layoutId)
         val existingDocument = collection.find(query).firstOrNull()
@@ -45,8 +45,8 @@ class ProfileUtils(
         return client.json.decodeFromString<Layout>(documentToJSON!!)
     }
 
-    fun getDecoration(decorationId: String): Decoration {
-        val collection: MongoCollection<Document> = client.database.getCollection("decorations")
+    suspend fun getDecoration(decorationId: String): Decoration {
+        val collection = client.database.getCollection<Document>("decorations")
 
         val query = Document("id", decorationId)
         val existingDocument = collection.find(query).firstOrNull()
@@ -60,11 +60,11 @@ class ProfileUtils(
         return client.json.decodeFromString<Decoration>(documentToJSON!!)
     }
 
-    fun getBadges(): List<Badge> {
-        val collection: MongoCollection<Document> = client.database.getCollection("badges")
+    suspend fun getBadges(): List<Badge> {
+        val collection= client.database.getCollection<Document>("badges")
 
         val badges = mutableListOf<Badge>()
-        collection.find().forEach {
+        collection.find().collect {
             val documentToJSON = it.toJson()
             badges.add(client.json.decodeFromString<Badge>(documentToJSON!!))
         }

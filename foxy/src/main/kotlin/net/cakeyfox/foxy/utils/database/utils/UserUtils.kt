@@ -1,13 +1,14 @@
 package net.cakeyfox.foxy.utils.database.utils
 
-import com.mongodb.client.MongoCollection
 import kotlinx.datetime.toJavaInstant
 import kotlinx.serialization.encodeToString
 import net.cakeyfox.foxy.utils.database.MongoDBClient
 import net.cakeyfox.serializable.database.data.*
 import org.bson.Document
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.withContext
+import com.mongodb.client.model.Filters.eq
 
 class UserUtils(
     private val client: MongoDBClient
@@ -15,10 +16,9 @@ class UserUtils(
 
     suspend fun getDiscordUser(userId: String): FoxyUser {
         return withContext(Dispatchers.IO) {
-            val collection: MongoCollection<Document> = client.database.getCollection("users")
+            val collection = client.database.getCollection<Document>("users")
 
-            val query = Document("_id", userId)
-            val existingUserDocument = collection.find(query).firstOrNull()
+            val existingUserDocument = collection.find(eq("_id", userId)).firstOrNull()
                 ?: return@withContext createUser(userId)
 
             val documentToJSON = existingUserDocument.toJson()
@@ -47,11 +47,11 @@ class UserUtils(
 
     suspend fun getAllUsers(): List<FoxyUser> {
         return withContext(Dispatchers.IO) {
-            val collection: MongoCollection<Document> = client.database.getCollection("users")
+            val collection = client.database.getCollection<Document>("users")
 
             val users = mutableListOf<FoxyUser>()
 
-            collection.find().forEach {
+            collection.find().collect {
                 val documentToJSON = it.toJson()
                 users.add(client.json.decodeFromString(documentToJSON))
             }
@@ -60,7 +60,9 @@ class UserUtils(
         }
     }
 
-    private fun createUser(userId: String): FoxyUser {
+    private suspend fun createUser(userId: String): FoxyUser {
+        val collection = client.database.getCollection<Document>("users")
+
         val newUser = FoxyUser(
             _id = userId,
             userCakes = UserCakes(balance = 0.0),
@@ -78,7 +80,7 @@ class UserUtils(
         val document = Document.parse(documentToJSON)
         document["userCreationTimestamp"] = java.util.Date.from(newUser.userCreationTimestamp.toJavaInstant())
 
-        client.users.insertOne(document)
+        collection.insertOne(document)
 
         return newUser
     }

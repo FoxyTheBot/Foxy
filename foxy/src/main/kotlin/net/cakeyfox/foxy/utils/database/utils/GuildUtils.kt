@@ -11,8 +11,10 @@ import kotlin.reflect.KClass
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.ObjectNode
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.withContext
 import mu.KotlinLogging
+import com.mongodb.client.model.Filters.eq
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.jvmName
 
@@ -32,14 +34,13 @@ class GuildUtils(
 
     suspend fun deleteGuild(guildId: String) {
         withContext(Dispatchers.IO) {
-            val guilds = client.database.getCollection("guilds")
-            val query = Document("_id", guildId)
-            guilds.deleteOne(query)
+            val guilds = client.database.getCollection<Document>("guilds")
+            guilds.deleteOne(eq("_id", guildId))
         }
     }
 
-    private fun createGuild(guildId: String): Guild {
-        val guilds = client.database.getCollection("guilds")
+    private suspend fun createGuild(guildId: String): Guild {
+        val guilds = client.database.getCollection<Document>("guilds")
 
         val newGuild = Guild(
             _id = guildId,
@@ -61,10 +62,11 @@ class GuildUtils(
 
     private suspend fun updateGuildWithNewFields(guildId: String): Guild {
         return withContext(Dispatchers.IO) {
-            val guilds = client.database.getCollection("guilds")
+            val guilds = client.database.getCollection<Document>("guilds")
 
-            val query = Document("_id", guildId)
-            val existingDocument = guilds.find(query).firstOrNull() ?: return@withContext createGuild(guildId)
+            val existingDocument =
+                guilds.find(eq("_id", guildId))
+                    .firstOrNull() ?: return@withContext createGuild(guildId)
 
             val documentToJSON = existingDocument.toJson()
 
@@ -78,7 +80,7 @@ class GuildUtils(
 
             val updatedDocument = Document.parse(client.json.encodeToString(updatedGuild))
             val update = Document("\$set", updatedDocument)
-            guilds.updateOne(query, update)
+            guilds.updateOne(eq("_id", guildId), update)
 
             updatedGuild
         }

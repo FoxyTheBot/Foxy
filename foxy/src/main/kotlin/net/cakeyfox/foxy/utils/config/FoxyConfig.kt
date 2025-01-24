@@ -16,12 +16,14 @@ data class FoxyConfig(
         val applicationId: String,
         val token: String,
         val totalShards: Int,
+        val getClusterIdFromHostname: Boolean,
+        val replicaId: Int,
         val clusters: List<Cluster>
     )
 
     @Serializable
     data class Cluster(
-        val id: String,
+        val id: Int,
         val name: String,
         val minShard: Int,
         val maxShard: Int,
@@ -41,13 +43,12 @@ data class FoxyConfig(
         val foxyApi: FoxyAPISettings,
         val internalApi: InternalApi,
         val artistry: ArtistrySettings,
-        val activityUpdater: ActivityUpdaterSettings,
-        val statsSenderPort: Int,
         val topggToken: String,
     ) {
         @Serializable
         data class InternalApi(
-            val key: String
+            val key: String,
+            val port: Int
         )
 
         @Serializable
@@ -58,11 +59,6 @@ data class FoxyConfig(
         @Serializable
         data class ArtistrySettings(
             val key: String
-        )
-
-        @Serializable
-        data class ActivityUpdaterSettings(
-            val port: Int
         )
     }
 }

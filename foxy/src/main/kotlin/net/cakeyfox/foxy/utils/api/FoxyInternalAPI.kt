@@ -9,46 +9,52 @@ import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.utils.api.routes.GetGuildInfo
-import net.cakeyfox.foxy.utils.api.routes.GetGuildsFromCluster
-import net.cakeyfox.foxy.utils.api.routes.GetUserRolesFromAGuild
+import net.cakeyfox.foxy.utils.api.routes.*
 import java.io.File
+import kotlin.reflect.jvm.jvmName
 
 class FoxyInternalAPI(
     val foxy: FoxyInstance
 ) {
-    init {
-        embeddedServer(Netty, port = foxy.config.others.statsSenderPort) {
-            install(ContentNegotiation) {
-                json()
-            }
+    private val logger = KotlinLogging.logger(this::class.jvmName)
+    private val server = embeddedServer(Netty, port = foxy.config.others.internalApi.port) {
+        install(ContentNegotiation) {
+            json()
+        }
 
-            install(Authentication) {
-                bearer("auth-bearer") {
-                    authenticate { tokenCredential ->
-                        if (tokenCredential.token == foxy.config.others.internalApi.key) {
-                            UserIdPrincipal("authenticatedUser")
-                        } else {
-                            null
-                        }
+        install(Authentication) {
+            bearer("auth-bearer") {
+                authenticate { tokenCredential ->
+                    if (tokenCredential.token == foxy.config.others.internalApi.key) {
+                        UserIdPrincipal("authenticatedUser")
+                    } else {
+                        null
                     }
                 }
             }
+        }
 
-            routing {
-                get("/") {
-                    call.respondRedirect(Constants.FOXY_WEBSITE)
-                }
-                authenticate("auth-bearer") {
-                    GetGuildsFromCluster().apply { getGuildsFromCluster(foxy) }
-                    GetGuildInfo().apply { getGuildInfo(foxy) }
-                    GetUserRolesFromAGuild().apply { getUserRolesFromAGuild(foxy) }
-                }
-
-                staticFiles("/assets", File(this::class.java.classLoader.getResource("profile")!!.file))
+        routing {
+            get("/") {
+                call.respondRedirect(Constants.FOXY_WEBSITE)
             }
-        }.start(wait = false)
+            authenticate("auth-bearer") {
+                GetGuildsFromCluster().apply { getGuildsFromCluster(foxy) }
+                GetGuildInfo().apply { getGuildInfo(foxy) }
+                GetUserRolesFromAGuild().apply { getUserRolesFromAGuild(foxy) }
+                GetClusterInfo().apply { getClusterInfo(foxy) }
+                UpdateActivityRoute().apply { updateActivity(foxy) }
+            }
+
+            staticFiles("/assets", File(this::class.java.classLoader.getResource("profile")!!.file))
+        }
+    }.start(wait = false)
+
+    fun stop() {
+        server.stop()
+        logger.info { "FoxyInternalAPI server stopped" }
     }
 }

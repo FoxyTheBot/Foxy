@@ -13,6 +13,8 @@ class PingExecutor : FoxyCommandExecutor() {
         val totalShards = context.jda.shardInfo.shardTotal
         val minClusterShards = context.foxy.currentCluster.minShard
         val maxClusterShards = context.foxy.currentCluster.maxShard
+        val currentClusterId = context.foxy.currentCluster.id
+        val currentClusterName = context.foxy.currentCluster.name
 
         context.reply {
             embed {
@@ -34,7 +36,8 @@ class PingExecutor : FoxyCommandExecutor() {
 
                 field {
                     name = pretty(FoxyEmotes.FoxyDrinkingCoffee, "Cluster:")
-                    value = "`${context.foxy.currentCluster.name}` **(Shard ${minClusterShards}/${maxClusterShards})**"
+                    value =
+                        "Cluster $currentClusterId - `${currentClusterName}` **[$minClusterShards-$maxClusterShards]**"
                     inline = false
                 }
             }

@@ -25,8 +25,9 @@ dependencies {
     implementation(libs.deviousjda)
     implementation("club.minnced:jda-ktx:${Versions.JDA_KTX}")
 
-    // DB
-    implementation("org.mongodb:mongodb-driver-sync:${Versions.MONGODB}")
+    // MongoDB
+    implementation("org.mongodb:bson-kotlinx:5.3.0")
+    implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.3.0")
 
     // Ktor
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -39,7 +40,7 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation:${Versions.KTOR}")
     implementation("io.ktor:ktor-server-auth:${Versions.KTOR}")
 
-
+    // ThreadFactoryBuilder
     implementation("com.google.guava:guava:32.1.3-jre")
 
     // Caching

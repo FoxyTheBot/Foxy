@@ -12,7 +12,9 @@ import java.util.Date
 class EconomyUtils(
     private val client: MongoDBClient
 ) {
-    fun createTransaction(userId: String, transaction: Transaction) {
+    suspend fun createTransaction(userId: String, transaction: Transaction) {
+        val collection = client.database.getCollection<Document>("users")
+
         val update = combine(
             push(
                 "userTransactions",
@@ -28,6 +30,6 @@ class EconomyUtils(
 
         val updateOptions = UpdateOptions().upsert(true)
 
-        client.users.updateOne(eq("_id", userId), update, updateOptions)
+        collection.updateOne(eq("_id", userId), update, updateOptions)
     }
 }
