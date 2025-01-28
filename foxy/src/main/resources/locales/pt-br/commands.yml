@@ -117,6 +117,7 @@ pay:
 marry:
   proposal: "Ei, {0}, um passarinho me contou que **{1}** quer casar com você, você aceita?"
   userAlreadyMarried: "Você não pode se casar com quem já está casado! Talaricagem é feio!"
+  youAlreadyMarried: "Você já está casado(a)!"
   cantMarryMe: "Não, desculpa, mas eu não quero me casar com você!"
   cantMarryYourself: "Amor próprio é algo bom, mas você não pode casar com você mesmo"
   cantMarryBot: "Você não pode se casar com bots!"
@@ -148,4 +149,4 @@ ratewaifu:
 top:
   cakes:
     embed:
-      title: "Top Global de Cakes"
+      title: "Ranking Global de Cakes"

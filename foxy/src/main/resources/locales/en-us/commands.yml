@@ -117,6 +117,7 @@ pay:
 marry:
   proposal: "Hey, {0}, a little birdie told me that **{1}** wants to marry you. Do you accept?"
   userAlreadyMarried: "You can't marry someone who's already married! Stealing someone's partner is not cool!"
+  youAlreadyMarried: "You're already married!"
   cantMarryMe: "No, sorry, but I don't want to marry you!"
   cantMarryYourself: "Self-love is great, but you can't marry yourself."
   cantMarryBot: "You can't marry bots!"
