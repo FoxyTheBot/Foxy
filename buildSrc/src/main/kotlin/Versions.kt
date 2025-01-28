@@ -14,7 +14,7 @@ object Versions {
     const val LOGBACK = "1.5.16"
     const val CAFFEINE = "3.1.8"
     const val KOTLINX_DATE_TIME = "0.3.3"
-    const val JDA_KTX = "0.11.0-beta.20"
+    const val JDA_KTX = "0.12.0"
     const val SHADOW_JAR = "7.1.2"
     const val MONGODB = "5.1.4"
     const val JACKSON = "2.18.0"
