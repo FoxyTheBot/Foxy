@@ -9,9 +9,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.withContext
 import com.mongodb.client.model.Filters.eq
+import com.mongodb.client.model.Indexes.descending
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.toList
+import net.cakeyfox.foxy.FoxyInstance
 
 class UserUtils(
-    private val client: MongoDBClient
+    private val client: MongoDBClient,
+    private val foxy: FoxyInstance
 ) {
 
     suspend fun getDiscordUser(userId: String): FoxyUser {
@@ -45,18 +50,17 @@ class UserUtils(
         }
     }
 
-    suspend fun getAllUsers(): List<FoxyUser> {
+    suspend fun getTopUsersByCakes(): List<FoxyUser> {
         return withContext(Dispatchers.IO) {
             val collection = client.database.getCollection<Document>("users")
-
-            val users = mutableListOf<FoxyUser>()
-
-            collection.find().collect {
-                val documentToJSON = it.toJson()
-                users.add(client.json.decodeFromString(documentToJSON))
-            }
-
-            return@withContext users
+            collection.find()
+                .sort(descending("userCakes.balance"))
+                .limit(foxy.config.others.leaderboardLimit)
+                .map { document ->
+                    val documentToJSON = document.toJson()
+                    client.json.decodeFromString<FoxyUser>(documentToJSON)
+                }
+                .toList()
         }
     }
 

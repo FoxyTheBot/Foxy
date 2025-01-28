@@ -5,12 +5,13 @@ import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.economy.AtmExecutor
 import net.cakeyfox.foxy.command.vanilla.economy.CoinflipBetExecutor
 import net.cakeyfox.foxy.command.vanilla.economy.PayExecutor
+import net.cakeyfox.foxy.command.vanilla.economy.TopCakesExecutor
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
-class CakesCommand : FoxyCommandDeclarationWrapper {
+class CakesCommand: FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "cakes",
         "cakes.description",
@@ -41,6 +42,16 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
                     isSubCommand = true,
                     baseName = this@command.name
                 )
+            }
+        )
+
+        subCommand(
+            "top",
+            "cakes.top.description",
+            baseName = this@command.name,
+
+            block = {
+                executor = TopCakesExecutor()
             }
         )
 

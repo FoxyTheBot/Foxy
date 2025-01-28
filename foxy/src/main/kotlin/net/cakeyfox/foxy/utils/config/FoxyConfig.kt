@@ -42,6 +42,7 @@ data class FoxyConfig(
     data class OtherSettings(
         val foxyApi: FoxyAPISettings,
         val internalApi: InternalApi,
+        val leaderboardLimit: Int,
         val artistry: ArtistrySettings,
         val topggToken: String,
     ) {

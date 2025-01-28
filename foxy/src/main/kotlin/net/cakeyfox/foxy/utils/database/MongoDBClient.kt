@@ -11,7 +11,9 @@ import net.cakeyfox.serializable.database.data.FoxyUser
 import net.cakeyfox.serializable.database.data.Guild
 import kotlin.reflect.jvm.jvmName
 
-class MongoDBClient {
+class MongoDBClient(
+    foxy: FoxyInstance
+) {
     companion object {
         private var logger = KotlinLogging.logger(this::class.jvmName)
     }
@@ -26,7 +28,7 @@ class MongoDBClient {
         ignoreUnknownKeys = true
     }
 
-    val utils = DatabaseUtils(this)
+    val utils = DatabaseUtils(this, foxy)
 
     fun start(foxy: FoxyInstance) {
         mongoClient = MongoClient.create(foxy.config.database.uri)

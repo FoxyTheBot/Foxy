@@ -148,7 +148,9 @@ commands:
           user:
             name: "user"
             description: "Check the cake balance of another user"
-
+      top:
+        name: "top"
+        description: "[Economia] View the Cakes leaderboard"
       pay:
         name: "pay"
         description: "[Economy] Pay someone"

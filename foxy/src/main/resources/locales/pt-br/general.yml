@@ -149,6 +149,9 @@ commands:
           user:
             name: "usuário"
             description: "Veja a quantidade de cakes de outro usuário"
+      top:
+        name: "top"
+        description: "[Economia] Veja quem são os usuários mais ricos."
       pay:
         name: "pagar"
         description: "[Economia] Pague alguém"
@@ -281,13 +284,6 @@ commands:
     dbl:
       name: "dbl"
       description: "[Utilities] Vote na Foxy na Top.gg"
-
-    top:
-      name: "top"
-      description: "[Economia] Veja o ranking dos usuários mais ricos"
-      cakes:
-        name: "cakes"
-        description: "[Economia] Veja o ranking dos usuários mais ricos"
 
     language:
       name: "idioma"

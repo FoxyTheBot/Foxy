@@ -14,6 +14,7 @@ import net.cakeyfox.foxy.command.component.FoxyComponentManager
 import net.cakeyfox.foxy.listeners.GuildListener
 import net.cakeyfox.foxy.listeners.InteractionsListener
 import net.cakeyfox.foxy.listeners.MessageListener
+import net.cakeyfox.foxy.utils.FoxyCacheManager
 import net.cakeyfox.foxy.utils.config.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.analytics.TopggStatsSender
@@ -44,6 +45,7 @@ class FoxyInstance(
     lateinit var utils: FoxyUtils
     lateinit var interactionManager: FoxyComponentManager
     lateinit var httpClient: HttpClient
+    lateinit var cacheManager: FoxyCacheManager
     lateinit var selfUser: User
 
     private lateinit var foxyInternalAPI: FoxyInternalAPI
@@ -61,7 +63,7 @@ class FoxyInstance(
         val logger = KotlinLogging.logger(this::class.jvmName)
 
         environment = config.environment
-        mongoClient = MongoDBClient()
+        mongoClient = MongoDBClient(this)
         commandHandler = FoxyCommandManager(this)
         utils = FoxyUtils(this)
         interactionManager = FoxyComponentManager(this)
@@ -109,7 +111,7 @@ class FoxyInstance(
             .enableCache(
                 CacheFlag.EMOJI,
                 CacheFlag.STICKER,
-                CacheFlag.MEMBER_OVERRIDES
+                CacheFlag.MEMBER_OVERRIDES,
             )
             .setToken(config.discord.token)
             .setEnableShutdownHook(false)
@@ -120,6 +122,8 @@ class FoxyInstance(
         selfUser = shardManager.shards.first().selfUser
         topggStatsSender = TopggStatsSender(this)
         foxyInternalAPI = FoxyInternalAPI(this)
+        cacheManager = FoxyCacheManager(this)
+        cacheManager.loadCakesLeaderboard()
 
         Runtime.getRuntime().addShutdownHook(thread(false) {
             try {
