@@ -37,24 +37,23 @@ object Constants {
 
     /* ---- [Profile Assets] ---- */
 
-    fun getProfileBackground(backgroundId: String): InputStream {
-        return javaClass.getResourceAsStream("/profile/backgrounds/$backgroundId")!!
+    fun getProfileBackground(backgroundId: String): String {
+        return "https://stuff.foxybot.win/backgrounds/$backgroundId"
     }
 
-    fun getProfileLayout(layoutId: String): InputStream {
-        return javaClass.getResourceAsStream("/profile/layouts/$layoutId")!!
+    fun getProfileLayout(layoutId: String): String {
+        return "https://stuff.foxybot.win/layouts/$layoutId"
     }
 
-    fun getProfileDecoration(maskId: String): InputStream {
-        return javaClass.getResourceAsStream("/profile/decorations/$maskId.png")!!
+    fun getProfileDecoration(maskId: String): String {
+        return "https://stuff.foxybot.win/decorations/$maskId.png"
     }
 
-    fun getMarriedOverlay(layoutId: String): InputStream {
-        return javaClass.getResourceAsStream("/profile/layouts/${layoutId}-married.png")!!
+    fun getMarriedOverlay(layoutId: String): String {
+        return "https://stuff.foxybot.win/layouts/${layoutId}-married.png"
     }
 
-    fun getProfileBadge(badgeId: String): InputStream {
-        return javaClass.getResourceAsStream("/profile/badges/$badgeId")!!
+    fun getProfileBadge(badgeId: String): String {
+        return "https://stuff.foxybot.win/badges/$badgeId"
     }
-
 }

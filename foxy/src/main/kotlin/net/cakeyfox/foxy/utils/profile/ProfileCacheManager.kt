@@ -2,6 +2,7 @@ package net.cakeyfox.foxy.utils.profile
 
 import com.github.benmanes.caffeine.cache.Cache
 import com.github.benmanes.caffeine.cache.Caffeine
+import net.cakeyfox.foxy.utils.image.ImageUtils
 import net.cakeyfox.serializable.database.data.Background
 import net.cakeyfox.serializable.database.data.Badge
 import net.cakeyfox.serializable.database.data.Decoration
@@ -19,5 +20,11 @@ object ProfileCacheManager {
         .maximumSize(100)
         .build()
 
-    fun loadImageFromFile(stream: InputStream): BufferedImage = ImageIO.read(stream)
+    suspend fun loadImageFromCache(url: String): BufferedImage {
+        return imageCache.getIfPresent(url) ?: run {
+            val image = ImageUtils.loadProfileAssetFromURL(url)
+            imageCache.put(url, image)
+            image
+        }
+    }
 }

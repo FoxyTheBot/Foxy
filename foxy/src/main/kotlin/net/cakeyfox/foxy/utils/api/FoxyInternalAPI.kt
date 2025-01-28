@@ -4,7 +4,6 @@ import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.engine.*
-import io.ktor.server.http.content.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.response.*
@@ -13,13 +12,11 @@ import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.utils.api.routes.*
-import java.io.File
-import kotlin.reflect.jvm.jvmName
 
 class FoxyInternalAPI(
     val foxy: FoxyInstance
 ) {
-    private val logger = KotlinLogging.logger(this::class.jvmName)
+    private val logger = KotlinLogging.logger { }
     private val server = embeddedServer(Netty, port = foxy.config.others.internalApi.port) {
         install(ContentNegotiation) {
             json()
@@ -48,8 +45,6 @@ class FoxyInternalAPI(
                 GetClusterInfo().apply { getClusterInfo(foxy) }
                 UpdateActivityRoute().apply { updateActivity(foxy) }
             }
-
-            staticFiles("/assets", File(this::class.java.classLoader.getResource("profile")!!.file))
         }
     }.start(wait = false)
 
