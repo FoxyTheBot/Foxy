@@ -33,7 +33,10 @@ class ServerInfoExecutor : FoxyCommandExecutor() {
                 title = guildInfo.name
 
                 thumbnail = guildInfo.icon ?: "https://cdn.discordapp.com/embed/avatars/0.png"
-                image = guildInfo.splashUrl + "?size=2048"
+
+                if (guildInfo.splashUrl != null) {
+                    image = guildInfo.splashUrl + "?size=2048"
+                }
 
                 field {
                     name = "ID"
