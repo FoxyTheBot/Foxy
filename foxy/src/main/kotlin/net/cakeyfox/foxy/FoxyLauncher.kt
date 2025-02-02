@@ -9,7 +9,7 @@ import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.utils.HoconUtils.decodeFromString
 import net.cakeyfox.foxy.utils.HostnameUtils
-import net.cakeyfox.foxy.utils.config.FoxyConfig
+import net.cakeyfox.serializable.database.utils.FoxyConfig
 import java.io.File
 import javax.imageio.ImageIO
 import kotlin.reflect.jvm.jvmName
@@ -55,7 +55,6 @@ object FoxyLauncher {
                 logger.error { "Invalid ID in hostname ($hostname)! The value after '-' must be a number (e.g., foxy-1)." }
                 exitProcess(1)
             }
-
         } else {
             config.discord.replicaId
         }

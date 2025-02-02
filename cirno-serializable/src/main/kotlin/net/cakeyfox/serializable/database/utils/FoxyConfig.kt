@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.utils.config
+package net.cakeyfox.serializable.database.utils
 
 import kotlinx.serialization.Serializable
 
@@ -59,6 +59,7 @@ data class FoxyConfig(
 
         @Serializable
         data class ArtistrySettings(
+            val url: String,
             val key: String
         )
     }

@@ -15,7 +15,7 @@ import net.cakeyfox.foxy.listeners.GuildListener
 import net.cakeyfox.foxy.listeners.InteractionsListener
 import net.cakeyfox.foxy.listeners.MessageListener
 import net.cakeyfox.foxy.utils.FoxyCacheManager
-import net.cakeyfox.foxy.utils.config.FoxyConfig
+import net.cakeyfox.serializable.database.utils.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.analytics.TopggStatsSender
 import net.cakeyfox.foxy.utils.api.FoxyInternalAPI
@@ -67,7 +67,7 @@ class FoxyInstance(
         commandHandler = FoxyCommandManager(this)
         utils = FoxyUtils(this)
         interactionManager = FoxyComponentManager(this)
-        artistryClient = ArtistryClient(config.others.artistry.key)
+        artistryClient = ArtistryClient(config, config.others.artistry.key)
         httpClient = HttpClient(CIO) {
             install(HttpTimeout) {
                 requestTimeoutMillis = 60_000
