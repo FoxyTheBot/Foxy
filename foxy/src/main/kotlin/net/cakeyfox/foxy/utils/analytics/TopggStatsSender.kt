@@ -10,7 +10,8 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.serializable.data.ClusterStats
+import net.cakeyfox.serializable.data.cluster.ClusterStats
+import java.util.concurrent.TimeUnit
 import kotlin.reflect.jvm.jvmName
 
 class TopggStatsSender(
@@ -31,8 +32,11 @@ class TopggStatsSender(
         logger.info { "Running TopggStatsSender on Main Cluster" }
 
         statsSenderJob = CoroutineScope(Dispatchers.IO).launch {
-            val serverCounts = getServerCountsFromClusters()
-            sendStatsToTopGG(serverCounts)
+            while (true) {
+                val serverCounts = getServerCountsFromClusters()
+                sendStatsToTopGG(serverCounts)
+                delay(TimeUnit.HOURS.toMillis(1))
+            }
         }
     }
 
