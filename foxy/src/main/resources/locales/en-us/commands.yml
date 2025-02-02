@@ -11,6 +11,30 @@ moda:
   fileNotSupported: "I wanted to make the montage, but I can't open this type of file... :("
   imageTooBig: "I would love to make the montage, but the image is too big... What if I open it and it explodes and takes me with it? :("
 
+server:
+  info:
+    owner: "Owner"
+    members: "Members"
+    roles: "Roles"
+    channels: "Channels"
+    emojis: "Emojis"
+    boosts: "Boosts"
+    created: "Created at"
+    joined: "Joined at"
+    verificationLevel: "Verification level"
+    region: "Region"
+    features: "Features"
+    afkChannel: "AFK Channel"
+    afkTimeout: "AFK Timeout"
+    cluster: "Guild Cluster: {0} ({1}) - Shard: {2}"
+    textChannels: "Text Channels"
+    voiceChannels: "Voice Channels"
+    createdAt: "Created at"
+    joinedAt: "Joined at"
+    firstEmojis: "Some emojis"
+    serverNotFound: "I couldn't find the server with the ID `{0}`"
+    invalidServerId: "You need to provide a valid server ID!"
+
 ask:
   foxy:
     noYes: "I can't answer that, but yes!"

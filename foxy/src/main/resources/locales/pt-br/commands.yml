@@ -11,6 +11,30 @@ moda:
   fileNotSupported: "Eu queria fazer a montagem, mas não consigo abrir esse tipo de arquivo... :("
   imageTooBig: "Eu até queria fazer a montagem, mas a imagem é muito grande... E se eu abrir ela e ela explodir e me levar junto? :("
 
+server:
+  info:
+    owner: "Dono"
+    members: "Membros"
+    roles: "Cargos"
+    channels: "Canais"
+    emojis: "Emojis"
+    boosts: "Boosts"
+    created: "Criado em"
+    joined: "Entrou em"
+    verificationLevel: "Nível de verificação"
+    region: "Região"
+    features: "Recursos"
+    afkChannel: "Canal AFK"
+    afkTimeout: "Tempo AFK"
+    cluster: "Foxy Cluster {0} ({1}) - Shard: {2}"
+    textChannels: "Canais de texto"
+    voiceChannels: "Canais de voz"
+    createdAt: "Criado há"
+    joinedAt: "Entrei há"
+    firstEmojis: "Alguns emojis"
+    serverNotFound: "Eu não consegui encontrar o servidor com o ID `{0}`"
+    invalidServerId: "Você precisa fornecer um ID de servidor válido!"
+
 ask:
   foxy:
     noYes: "Não sei responder isso, mas sim!"
@@ -87,10 +111,10 @@ coinflipbet:
   tails: "coroa"
 
 tickle:
-    description: " :joy: **{0} fez cócegas em {1}!**"
+  description: " :joy: **{0} fez cócegas em {1}!**"
 
 laugh:
-    description: " :joy: **{0} está rindo!**"
+  description: " :joy: **{0} está rindo!**"
 
 lick:
   description: " :joy: **{0} lambeu {1}**"
