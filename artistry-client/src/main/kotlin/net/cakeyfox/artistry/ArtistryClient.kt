@@ -6,8 +6,10 @@ import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.serialization.json.JsonObject
+import net.cakeyfox.serializable.database.utils.FoxyConfig
 
 class ArtistryClient (
+    private val config: FoxyConfig,
     private val artistryToken: String
 ) {
     private val client = HttpClient(CIO) {
@@ -20,7 +22,7 @@ class ArtistryClient (
 
     suspend fun generateImage(endpoint: String, data: JsonObject): HttpResponse {
         val response = client.post {
-            url("https://artistry.foxybot.win/v1/$endpoint")
+            url(config.others.artistry.url + endpoint)
             header("Content-Type", "application/json")
             header("Authorization", artistryToken)
             setBody(data.toString())

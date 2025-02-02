@@ -12,6 +12,8 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":cirno-serializable"))
+
     // Ktor
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.ktor:ktor-serialization-kotlinx-json:${Versions.KTOR}")
