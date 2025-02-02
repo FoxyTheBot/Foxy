@@ -7,6 +7,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
+import mu.KotlinLogging
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
@@ -24,11 +25,15 @@ private const val maxSize = 8_000_000 // 8MB
 
 
 class AntesQueVireModaExecutor: FoxyCommandExecutor() {
+    companion object {
+        private val logger = KotlinLogging.logger {  }
+    }
+
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
         val attachment = context.getOption<Message.Attachment>("image")!!
 
-        if (attachment.width > 1920 || attachment.height > 1080) {
+        if (attachment.width > 1920 || attachment.height > 1440) {
             context.reply {
                 content = pretty(
                     FoxyEmotes.FoxyCry,
@@ -67,6 +72,7 @@ class AntesQueVireModaExecutor: FoxyCommandExecutor() {
             })
         }
 
+        logger.debug { "Received response: ${response.status} from Artistry Server" }
         if (response.status.value in 400..499) {
             context.reply {
                 content = pretty(
@@ -74,6 +80,7 @@ class AntesQueVireModaExecutor: FoxyCommandExecutor() {
                     context.locale["moda.fileNotSupported"]
                 )
             }
+
             return
         } else if (response.status.value !in 200..299) {
             throw IllegalArgumentException("Error processing image! Status code: ${response.status}")
