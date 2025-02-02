@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy.utils.api.routes
 
+import dev.minn.jda.ktx.coroutines.await
 import io.ktor.http.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -25,16 +26,17 @@ class GetGuildInfo {
             }
             val availableStaticEmojis = guild.emojis.filter { it.isAvailable && !it.isAnimated }
             val firstEmojis = availableStaticEmojis.take(30).map { "<:${it.name}:${it.id}>" }
+            val guildOwner = guild.retrieveOwner().await()
 
             val guildInfoAsJson = buildJsonObject {
                 put("id", guild.id)
                 put("name", guild.name)
                 put("icon", guild.icon?.url)
                 put("owner", buildJsonObject {
-                    put("id", guild.owner?.user?.id)
-                    put("username", guild.owner?.user?.name)
-                    put("discriminator", guild.owner?.user?.discriminator)
-                    put("avatar", guild.owner?.user?.effectiveAvatarUrl)
+                    put("id", guildOwner?.user?.id)
+                    put("username", guildOwner?.user?.name)
+                    put("discriminator", guildOwner?.user?.discriminator)
+                    put("avatar", guildOwner?.user?.effectiveAvatarUrl)
                 })
                 put("textChannels", buildJsonArray { guild.textChannels.forEach { add(it.id) } })
                 put("voiceChannels", buildJsonArray { guild.voiceChannels.forEach { add(it.id) } })

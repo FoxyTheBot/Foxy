@@ -2,6 +2,7 @@ package net.cakeyfox.foxy.utils
 
 import com.github.benmanes.caffeine.cache.Cache
 import com.github.benmanes.caffeine.cache.Caffeine
+import dev.minn.jda.ktx.coroutines.await
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
@@ -41,15 +42,17 @@ object ClusterUtils {
         return if (cluster.id == foxy.currentCluster.id) {
             foxy.shardManager.getGuildById(guildId)?.let {
                 val availableStaticEmojis = it.emojis.filter { emoji -> emoji.isAvailable && !emoji.isAnimated }
+                val guildOwner = it.retrieveOwner().await()
+
                 CustomGuildInfo(
                     id = it.idLong,
                     name = it.name,
                     icon = it.iconUrl,
                     owner = CustomGuildInfo.GuildOwner(
-                        id = it.owner?.user?.idLong ?: 0,
-                        username = it.owner?.user?.name ?: "Unknown",
-                        discriminator = it.owner?.user?.discriminator ?: "0000",
-                        avatar = it.owner?.user?.effectiveAvatarUrl
+                        id = guildOwner.idLong,
+                        username = guildOwner?.user?.name ?: "Unknown",
+                        discriminator = guildOwner?.user?.discriminator ?: "0000",
+                        avatar = guildOwner?.user?.effectiveAvatarUrl
                     ),
                     textChannels = it.textChannels.map { channel -> channel.name },
                     voiceChannels = it.voiceChannels.map { channel -> channel.name },
