@@ -6,6 +6,17 @@ commands:
   error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
 
   command:
+    server:
+      name: "servidor"
+      description: "[Utilitários] Veja informações sobre o servidor"
+      info:
+        name: "info"
+        description: "[Utilitários] Veja informações sobre o servidor"
+        options:
+          server_id:
+            name: "id_do_servidor"
+            description: "O ID do servidor que você deseja ver as informações"
+
     daily:
       name: "daily"
       description: "[Economia] Receba seus cakes diários"
