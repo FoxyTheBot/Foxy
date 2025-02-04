@@ -8,7 +8,7 @@ object Versions {
     // Libraries
     const val KTOR = "3.0.3"
     const val KOTLIN_SERIALIZATION = "1.6.0"
-    const val KOTLIN_COROUTINES = "1.6.4"
+    const val KOTLIN_COROUTINES = "1.8.1"
     const val KOTLIN_LOGGING = "2.1.16"
     const val JVM_TARGET = 21
     const val LOGBACK = "1.5.16"
