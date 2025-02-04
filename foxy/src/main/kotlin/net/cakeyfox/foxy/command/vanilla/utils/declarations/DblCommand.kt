@@ -20,6 +20,14 @@ class DblCommand : FoxyCommandDeclarationWrapper {
             IntegrationType.USER_INSTALL
         )
     ) {
-        executor = DblExecutor()
+        subCommand(
+            "vote",
+            "dbl.vote.description",
+            baseName = this@command.name,
+
+            block = {
+                executor = DblExecutor()
+            }
+        )
     }
 }

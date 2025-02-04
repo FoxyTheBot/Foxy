@@ -16,6 +16,7 @@ object Constants {
     @OptIn(ExperimentalSerializationApi::class)
     val HOCON = Hocon { useArrayPolymorphism = true }
     const val SUPPORT_SERVER_ID = "768267522670723094"
+    const val UPVOTE_URL = "https://top.gg/bot/1006520438865801296/vote"
 
 
     fun getDefaultActivity(activity: String, environment: String, clusterName: String?): String {
