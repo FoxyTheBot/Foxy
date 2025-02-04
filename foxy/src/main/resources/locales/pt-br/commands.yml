@@ -5,6 +5,30 @@
 cakes:
   atm:
     balance: "{0} possui **{1}** Cakes"
+    balanceTitle: "Saldo de {0}"
+    lorittaBalance: "Loritta Sonhos"
+    foxyBalance: "Foxy Cakes"
+  convert:
+    minimumAmount: "Você precisa converter pelo menos 1000 Sonhos ou Cakes!"
+    exchangeDisabled: "As conversões foram desativadas temporariamente!"
+    lorittaToFoxyDisabled: "A conversão de Sonhos para Cakes foi desativada temporariamente!"
+    foxyToLorittaDisabled: "A conversão de Cakes para Sonhos foi desativada temporariamente!"
+    botNotInGuild: "Eu preciso estar no servidor e ter permissões de administrador para realizar a conversão! Me adicione no servidor clicando [aqui]({0})!"
+    lorittaNotInGuild: "Você precisa adicionar a Loritta no servidor para realizar a conversão! Adicione clicando [aqui]({0})!"
+    botNeedsAdmin: "Eu preciso ter permissões de administrador para realizar a conversão! Pois a Loritta verifica se eu tenho essa permissão!"
+    foxyBankHasNoSonhos: "O banco Foxy não tem sonhos o suficiente para realizar a conversão!"
+    success:
+      title: "Conversão Pendente"
+      loritta_to_foxy: "Você está prestes a converter **{0} Sonhos para Cakes**! Você tem **1 minuto** para confirmar a transferência na Loritta! Após esse tempo, irei verificar novamente!"
+      foxy_to_loritta: "Você está prestes a converter **{0} Cakes para Sonhos**! Você tem **1 minuto** para confirmar a transferência na Loritta! Após esse tempo, irei verificar novamente!"
+    successConfirmed:
+      title: "Conversão Confirmada"
+      loritta_to_foxy: "A sua conversão de **{0} Sonhos para Cakes** foi confirmada pelo Governo da LorittaLand e pelo Governo dos Bolos!"
+      foxy_to_loritta: "Você converteu **{0} Cakes para Sonhos**!"
+    failed:
+        title: "Conversão Cancelada"
+        loritta_to_foxy: "A sua conversão de **{0} Sonhos para Cakes** foi cancelada por inatividade!"
+        foxy_to_loritta: "A sua conversão de **{0} Cakes para Sonhos** foi cancelada por inatividade!"
 
 moda:
   wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar uma imagem do tipo PNG ou JPG"

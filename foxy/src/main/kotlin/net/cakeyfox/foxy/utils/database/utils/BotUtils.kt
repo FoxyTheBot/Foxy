@@ -23,7 +23,21 @@ class BotUtils(
                 return BotSettings(
                     activity = "foxybot.win · /help",
                     status = "online",
-                    avatarUrl = null
+                    avatarUrl = null,
+                    exchangeSettings = BotSettings.ExchangeSettings(
+                        transactionFee = 0,
+                        isExchangeEnabled = true,
+                        foxyToLorittaExchange = BotSettings.ExchangeSettings.FoxyLorittaExchange(
+                            exchangeRate = 0,
+                            minimumAmount = 0,
+                            isExchangeEnabled = true
+                        ),
+                        lorittaToFoxyExchange = BotSettings.ExchangeSettings.FoxyLorittaExchange(
+                            exchangeRate = 0,
+                            minimumAmount = 0,
+                            isExchangeEnabled = true
+                        )
+                    )
                 )
             }
 
@@ -49,14 +63,44 @@ class BotUtils(
     data class BotSettings(
         val activity: String,
         val status: String,
-        val avatarUrl: String?
-    )
+        val avatarUrl: String?,
+        val exchangeSettings: ExchangeSettings
+    ) {
+        @Serializable
+        data class ExchangeSettings(
+            val transactionFee: Long,
+            val isExchangeEnabled: Boolean,
+            val foxyToLorittaExchange: FoxyLorittaExchange,
+            val lorittaToFoxyExchange: FoxyLorittaExchange
+        ) {
+            @Serializable
+            data class FoxyLorittaExchange(
+                val exchangeRate: Long,
+                val minimumAmount: Long,
+                val isExchangeEnabled: Boolean
+            )
+        }
+    }
 
     private suspend fun createBotSettings(botSettingsCollection: MongoCollection<Document>) {
         val botSettings = BotSettings(
             activity = "foxybot.win · /help",
             status = "online",
-            avatarUrl = null
+            avatarUrl = null,
+            exchangeSettings = BotSettings.ExchangeSettings(
+                transactionFee = 0,
+                isExchangeEnabled = true,
+                foxyToLorittaExchange = BotSettings.ExchangeSettings.FoxyLorittaExchange(
+                    exchangeRate = 0,
+                    minimumAmount = 0,
+                    isExchangeEnabled = true
+                ),
+                lorittaToFoxyExchange = BotSettings.ExchangeSettings.FoxyLorittaExchange(
+                    exchangeRate = 0,
+                    minimumAmount = 0,
+                    isExchangeEnabled = true
+                )
+            )
         )
 
         logger.info { "Creating new bot settings document" }

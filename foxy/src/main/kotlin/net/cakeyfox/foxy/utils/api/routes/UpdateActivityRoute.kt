@@ -25,10 +25,7 @@ class UpdateActivityRoute {
                 return@post
             }
 
-            if (request.status != null) {
-                foxy.shardManager.setStatus(OnlineStatus.fromKey(request.status))
-            }
-
+            foxy.shardManager.setStatus(OnlineStatus.fromKey(request.status))
             foxy.shardManager.setActivity(
                 Activity.of(
                     ActivityType.fromKey(request.type),

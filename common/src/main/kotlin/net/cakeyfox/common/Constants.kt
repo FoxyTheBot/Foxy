@@ -13,7 +13,7 @@ object Constants {
     const val PREMIUM = "https://foxybot.win/br/premium"
     const val DAILY = "https://foxybot.win/br/daily"
     const val DAILY_EMOJI = "https://cdn.discordapp.com/emojis/915736630495686696.png?size=2048"
-
+    const val LORITTA_INVITE = "https://discord.com/oauth2/authorize?client_id=297153970613387264&scope=bot+identify+guilds+email+applications.commands&permissions=2080374975"
     @OptIn(ExperimentalSerializationApi::class)
     val HOCON = Hocon { useArrayPolymorphism = true }
     const val SUPPORT_SERVER_ID = "768267522670723094"

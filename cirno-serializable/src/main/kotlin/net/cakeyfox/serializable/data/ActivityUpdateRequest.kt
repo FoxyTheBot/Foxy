@@ -7,5 +7,5 @@ data class ActivityUpdateRequest(
     val name: String = "uwu",
     val type: Int = 0,
     val url: String? = null,
-    val status: String? = "online",
+    val status: String = "online",
 )

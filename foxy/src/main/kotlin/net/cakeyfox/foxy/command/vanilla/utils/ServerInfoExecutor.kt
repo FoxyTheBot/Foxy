@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy.command.vanilla.utils
 
+import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
@@ -33,6 +34,7 @@ class ServerInfoExecutor : FoxyCommandExecutor() {
                 title = guildInfo.name
 
                 thumbnail = guildInfo.icon ?: "https://cdn.discordapp.com/embed/avatars/0.png"
+                color = Colors.FOXY_DEFAULT
 
                 if (guildInfo.splashUrl != null) {
                     image = guildInfo.splashUrl + "?size=2048"

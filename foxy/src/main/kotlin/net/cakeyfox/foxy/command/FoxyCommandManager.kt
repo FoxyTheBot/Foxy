@@ -12,15 +12,12 @@ import net.cakeyfox.foxy.command.vanilla.social.declarations.AboutMeCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.DivorceCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.MarryCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.ProfileCommand
-import net.cakeyfox.foxy.command.vanilla.utils.declarations.DblCommand
-import net.cakeyfox.foxy.command.vanilla.utils.declarations.HelpCommand
-import net.cakeyfox.foxy.command.vanilla.utils.declarations.PingCommand
-import net.cakeyfox.foxy.command.vanilla.utils.declarations.ServerCommand
+import net.cakeyfox.foxy.command.vanilla.utils.declarations.*
 import net.dv8tion.jda.api.interactions.commands.Command
 import kotlin.reflect.jvm.jvmName
 
 class FoxyCommandManager(private val foxy: FoxyInstance) {
-    private val commands = mutableListOf<FoxyCommandDeclarationWrapper>()
+    val commands = mutableListOf<FoxyCommandDeclarationWrapper>()
     private val logger = KotlinLogging.logger(this::class.jvmName)
 
     operator fun get(name: String): FoxyCommandDeclarationWrapper? {

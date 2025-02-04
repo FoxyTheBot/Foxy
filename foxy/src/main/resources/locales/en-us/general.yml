@@ -16,6 +16,17 @@ commands:
             name: "id_do_servidor"
             description: "O ID do servidor que você deseja ver as informações"
 
+    user:
+      name: "user"
+      description: "[Utilitários] Veja informações sobre um usuário"
+      info:
+        name: "info"
+        description: "[Utilitários] Veja informações sobre um usuário"
+        options:
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja ver as informações"
+
     daily:
       name: "daily"
       description: "[Economy] Claim your daily cakes"
@@ -154,11 +165,27 @@ commands:
       description: "Commands related to Foxy's economy"
       atm:
         name: "atm"
-        description: "[Economy] Check your cake balance"
+        description: "[Economia] Veja a sua quantidade de cakes"
         options:
           user:
-            name: "user"
-            description: "Check the cake balance of another user"
+            name: "usuário"
+            description: "Veja a quantidade de cakes de outro usuário"
+          type:
+            name: "tipo"
+            description: "O tipo de informação que você deseja ver"
+
+      # TODO: Translate this
+      convert:
+        name: "convert"
+        description: "[Economia] Converta seus Cakes em dinheiro"
+        options:
+          amount:
+            name: "quantidade"
+            description: "A quantidade de cakes que você deseja converter"
+          from:
+            name: "de"
+            description: "A moeda que você deseja converter"
+
       top:
         name: "top"
         description: "[Economia] View the Cakes leaderboard"

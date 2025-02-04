@@ -6,6 +6,7 @@ import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.serialization.json.Json
 import mu.KotlinLogging
 import net.cakeyfox.artistry.ArtistryClient
 import net.cakeyfox.common.Constants
@@ -56,6 +57,9 @@ class FoxyInstance(
     private val currentClusterName = if (config.discord.clusters.size < 2) null else currentCluster.name
     private val coroutineExecutor = ThreadUtils.createThreadPool("CoroutineExecutor [%d]")
 
+    val json = Json {
+        ignoreUnknownKeys = true
+    }
     val threadPoolManager = ThreadPoolManager()
     val coroutineDispatcher = coroutineExecutor.asCoroutineDispatcher()
 
@@ -83,8 +87,8 @@ class FoxyInstance(
             GatewayIntent.GUILD_MEMBERS,
             GatewayIntent.MESSAGE_CONTENT,
             GatewayIntent.GUILD_MESSAGES,
-            GatewayIntent.GUILD_EMOJIS_AND_STICKERS,
-            GatewayIntent.SCHEDULED_EVENTS
+            GatewayIntent.SCHEDULED_EVENTS,
+            GatewayIntent.GUILD_EXPRESSIONS
         ).addEventListeners(
             GuildListener(this),
             InteractionsListener(this),

@@ -19,6 +19,8 @@ data class WelcomerModule(
     val isEnabled: Boolean = false,
     val joinMessage: String? = null,
     val alertWhenUserLeaves: Boolean = false,
+    val sendDmWelcomeMessage: Boolean = false,
+    val dmWelcomeMessage: String? = null,
     val leaveMessage: String? = null,
     val joinChannel: String? = null,
     val leaveChannel: String? = null,

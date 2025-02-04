@@ -22,7 +22,9 @@ dependencies {
     implementation(project(":cirno-serializable"))
 
     // Discord
-    implementation(libs.deviousjda)
+    implementation(libs.jda) {
+        exclude(module="opus-java")
+    }
     implementation("club.minnced:jda-ktx:${Versions.JDA_KTX}")
 
     // MongoDB

@@ -2,16 +2,13 @@ package net.cakeyfox.foxy.command.vanilla.economy.declarations
 
 import dev.minn.jda.ktx.interactions.commands.choice
 import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
-import net.cakeyfox.foxy.command.vanilla.economy.AtmExecutor
-import net.cakeyfox.foxy.command.vanilla.economy.CoinflipBetExecutor
-import net.cakeyfox.foxy.command.vanilla.economy.PayExecutor
-import net.cakeyfox.foxy.command.vanilla.economy.TopCakesExecutor
+import net.cakeyfox.foxy.command.vanilla.economy.*
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
-class CakesCommand: FoxyCommandDeclarationWrapper {
+class CakesCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "cakes",
         "cakes.description",
@@ -32,19 +29,60 @@ class CakesCommand: FoxyCommandDeclarationWrapper {
             baseName = this@command.name,
             block = {
                 executor = AtmExecutor()
-                addOption(
-                    OptionData(
-                        OptionType.USER,
-                        "user",
-                        "cakes.atm.option.user",
-                        false
+                addOptions(
+                    listOf(
+                        OptionData(
+                            OptionType.USER,
+                            "user",
+                            "cakes.atm.option.user",
+                            false
+                        ),
+
+                        OptionData(
+                            OptionType.STRING,
+                            "type",
+                            "cakes.atm.option.type",
+                            false
+                        ).choice("Loritta e Foxy", "full")
+                            .choice("Apenas Foxy", "normal")
                     ),
+
                     isSubCommand = true,
                     baseName = this@command.name
                 )
             }
         )
 
+        subCommand(
+            "convert",
+            "cakes.convert.description",
+            baseName = this@command.name,
+
+            block = {
+                addOptions(
+                    listOf(
+                        OptionData(
+                            OptionType.INTEGER,
+                            "amount",
+                            "cakes.convert.option.amount",
+                            true
+                        ),
+
+                        OptionData(
+                            OptionType.STRING,
+                            "from",
+                            "cakes.convert.option.from",
+                            true
+                        )
+                            .choice( "Sonhos (Loritta) para Cakes (Foxy)", "loritta_to_foxy")
+                    ),
+                    isSubCommand = true,
+                    baseName = this@command.name
+                )
+
+                executor = CakesConvertExecutor()
+            }
+        )
         subCommand(
             "top",
             "cakes.top.description",
@@ -76,7 +114,7 @@ class CakesCommand: FoxyCommandDeclarationWrapper {
                             "amount",
                             "cakes.pay.option.amount",
                             true
-                        ),
+                        ).setMinValue(1000)
                     ),
                     baseName = this@command.name,
                     isSubCommand = true

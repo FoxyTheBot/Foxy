@@ -7,24 +7,13 @@ pluginManagement {
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
-            /*
-            Thanks to MrPowerGamerBR!
-            https://github.com/LorittaBot/DeviousJDA
-             */
-            library("deviousjda", "com.github.LorittaBot", "DeviousJDA").version("665dd9215b")
+            library("jda", "net.dv8tion", "JDA").version("5.3.0")
         }
     }
 }
 rootProject.name = "Foxy"
 
-/* ---- [Foxy] ---- */
 include("foxy")
-
-/* ---- [Artistry] ---- */
 include("artistry-client")
-
-/* ---- [Common] ---- */
 include("common")
-
-/* ---- [Serializable] ---- */
 include("cirno-serializable")

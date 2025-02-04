@@ -17,6 +17,17 @@ commands:
             name: "id_do_servidor"
             description: "O ID do servidor que você deseja ver as informações"
 
+    user:
+      name: "user"
+      description: "[Utilitários] Veja informações sobre um usuário"
+      info:
+        name: "info"
+        description: "[Utilitários] Veja informações sobre um usuário"
+        options:
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja ver as informações"
+
     daily:
       name: "daily"
       description: "[Economia] Receba seus cakes diários"
@@ -160,6 +171,20 @@ commands:
           user:
             name: "usuário"
             description: "Veja a quantidade de cakes de outro usuário"
+          type:
+            name: "tipo"
+            description: "O tipo de informação que você deseja ver"
+      convert:
+        name: "converter"
+        description: "[Economia] Converta seus Cakes para Sonhos da Loritta"
+        options:
+          amount:
+            name: "quantidade"
+            description: "A quantidade de cakes que você deseja converter"
+          from:
+            name: "tipo_de_transação"
+            description: "O tipo de transação que você deseja fazer"
+
       top:
         name: "top"
         description: "[Economia] Veja quem são os usuários mais ricos."

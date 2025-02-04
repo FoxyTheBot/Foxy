@@ -6,7 +6,6 @@ import dev.minn.jda.ktx.messages.MessageCreateBuilder
 import dev.minn.jda.ktx.messages.MessageEditBuilder
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
-
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.serializable.database.data.FoxyUser
@@ -20,11 +19,11 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 import kotlin.reflect.jvm.jvmName
 
 class FoxyInteractionContext(
-    val event: GenericInteractionCreateEvent, client: FoxyInstance
+    val event: GenericInteractionCreateEvent,
+    val foxy: FoxyInstance
 ) {
     private val logger = KotlinLogging.logger(this::class.jvmName)
     val jda = event.jda
-    val foxy = client
     val db = foxy.mongoClient
     private val parsedLocale = hashMapOf(
         DiscordLocale.PORTUGUESE_BRAZILIAN to "pt-br",
