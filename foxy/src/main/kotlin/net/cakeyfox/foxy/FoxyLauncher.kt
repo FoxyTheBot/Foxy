@@ -65,7 +65,7 @@ object FoxyLauncher {
                 exitProcess(1)
             }
 
-        logger.info { "Starting Foxy on cluster ${currentCluster.name} (${currentCluster.id})" }
+        logger.info { "Starting Foxy on Cluster ${currentCluster.id} (${currentCluster.name})" }
 
         runBlocking {
             FoxyInstance(config, currentCluster).start()

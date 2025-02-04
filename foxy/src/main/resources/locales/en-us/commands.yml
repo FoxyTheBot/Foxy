@@ -10,7 +10,7 @@ cakes:
     foxyBalance: "Foxy Cakes"
     # TODO: Translate this
   convert:
-    minimumAmount: "Você precisa converter pelo menos 1000 Sonhos ou Cakes!"
+    minimumAmount: "You need to convert at least 1000 Sonhos or Cakes!"
     exchangeDisabled: "As conversões foram desativadas temporariamente!"
     lorittaToFoxyDisabled: "A conversão de Sonhos para Cakes foi desativada temporariamente!"
     foxyToLorittaDisabled: "A conversão de Cakes para Sonhos foi desativada temporariamente!"
@@ -190,7 +190,7 @@ fate:
 
 dbl:
   embed:
-    description: "Help me grow and become a better bot by voting for me on <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nEvery vote helps to promote me to more people on the Discord Bot List <:catblush:768292358458179595>\n\nYou can vote every 12 hours, and as a bonus, you'll get 1500 Cakes!\nHow about joining all the amazing people who voted and helped me grow?\n\nTo vote, just [click here](https://top.gg/bot/1006520438865801296/vote)! :heart:"
+    description: "Help me grow and become a better bot by voting for me on <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nEvery vote helps to promote me to more people on the Discord Bot List <:catblush:768292358458179595>\n\nYou can vote every 12 hours, and as a bonus, you'll get 1500 Cakes!\nHow about joining all the amazing people who voted and helped me grow? :heart:"
 
 ratewaifu:
   success: "Hmm... I give a rating of **{0}/10** to {1}"

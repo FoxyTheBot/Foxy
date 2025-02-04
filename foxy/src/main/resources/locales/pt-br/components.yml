@@ -24,3 +24,6 @@ divorce:
 pay:
   confirmButton: "Confirmar Transferência"
   confirmedButton: "Transferência Realizada"
+
+dbl:
+  clickHereToVote: "Clique aqui para votar"

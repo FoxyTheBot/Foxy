@@ -24,3 +24,6 @@ divorce:
 pay:
   confirmButton: "Confirm Transaction"
   confirmedButton: "Transaction Confirmed"
+
+dbl:
+  clickHereToVote: "Click here to vote"

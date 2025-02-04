@@ -320,6 +320,9 @@ commands:
     dbl:
       name: "dbl"
       description: "[Utilities] Vote na Foxy na Top.gg"
+      vote:
+        name: "votar"
+        description: "[Utilities] Vote na Foxy na Top.gg"
 
     language:
       name: "idioma"

@@ -321,6 +321,9 @@ commands:
     dbl:
       name: "dbl"
       description: "[Utilities] Vote for Foxy on top.gg"
+      vote:
+        name: "vote"
+        description: "[Utilities] Vote for Foxy on top.gg"
 
     top:
       name: "top"
