@@ -1,18 +1,28 @@
 package net.cakeyfox.foxy.modules.welcomer
 
+import mu.KotlinLogging
+import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerWrapper
 import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerJSONParser
+import net.cakeyfox.foxy.utils.pretty
+import net.cakeyfox.serializable.database.data.Guild
 import net.dv8tion.jda.api.Permission
+import net.dv8tion.jda.api.entities.emoji.Emoji
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent
+import net.dv8tion.jda.api.interactions.components.buttons.Button
+import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
 class WelcomerModule(
     val foxy: FoxyInstance
-) : WelcomerWrapper {
+) {
+    companion object {
+        private val logger = KotlinLogging.logger { }
+    }
+
     private val welcomer = WelcomerJSONParser()
 
-    override suspend fun onGuildJoin(event: GuildMemberJoinEvent) {
+    suspend fun onGuildJoin(event: GuildMemberJoinEvent) {
         val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
 
         if (guildData.GuildJoinLeaveModule.isEnabled) {
@@ -20,6 +30,8 @@ class WelcomerModule(
             val rawMessage = guildData.GuildJoinLeaveModule.joinMessage ?: return
 
             val (content, embeds) = welcomer.parseDiscordJsonMessage(rawMessage, placeholders)
+
+            if (guildData.GuildJoinLeaveModule.sendDmWelcomeMessage) sendDmMessage(event, guildData, placeholders)
 
             val channel = event.guild.getTextChannelById(guildData.GuildJoinLeaveModule.joinChannel ?: "0")
                 ?: return
@@ -30,7 +42,7 @@ class WelcomerModule(
         }
     }
 
-    override suspend fun onGuildLeave(event: GuildMemberRemoveEvent) {
+    suspend fun onGuildLeave(event: GuildMemberRemoveEvent) {
         val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
 
         if (guildData.GuildJoinLeaveModule.alertWhenUserLeaves) {
@@ -45,6 +57,39 @@ class WelcomerModule(
             if (channel.canTalk() && event.guild.selfMember.hasPermission(Permission.MESSAGE_SEND)) {
                 channel.sendMessage(content).setEmbeds(embeds).queue()
             }
+        }
+    }
+
+    private fun sendDmMessage(event: GuildMemberJoinEvent, guildData: Guild, placeholders: Map<String, String?>) {
+        val rawDmMessage = guildData.GuildJoinLeaveModule.dmWelcomeMessage ?: return
+        val (dmContent, dmEmbeds) = welcomer.parseDiscordJsonMessage(rawDmMessage, placeholders)
+        val formattedContent = """
+            > ${
+            pretty(
+                FoxyEmotes.FoxyCake,
+                "**Mensagem enviada pelo servidor: ${event.guild.name} `(${event.guild.id})`**"
+            )
+        }
+            
+            $dmContent
+        """.trimIndent()
+
+        try {
+            event.user.openPrivateChannel().queue { channel ->
+                if (channel.canTalk()) { // In this case, will check if user is a bot
+                    try {
+                        channel
+                            .sendMessage(formattedContent)
+                            .setEmbeds(dmEmbeds)
+                            .queue()
+                        logger.debug { "Sent welcome message to ${event.user.name} (${event.user.id})" }
+                    } catch (e: Exception) {
+                        logger.warn { "Can't DM ${event.user.name} (${event.user.id})! Maybe closed?" }
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            logger.error(e) { "Failed to open private channel with ${event.user.name} (${event.user.id})" }
         }
     }
 }
