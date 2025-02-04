@@ -48,12 +48,10 @@ class FoxyComponentManager(
         emoji: String? = null,
         label: String = "",
         url: String,
-        builder: (ButtonBuilder).() -> (Unit) = {},
     ) = linkButton(
         emoji,
         label,
-        url,
-        builder
+        url
     )
 
     private fun createButton(
@@ -87,16 +85,13 @@ class FoxyComponentManager(
         emoji: String? = null,
         label: String = "",
         url: String,
-        builder: (ButtonBuilder).() -> (Unit) = {},
     ): Button {
         return Button.of(
             ButtonStyle.LINK,
             url,
             label,
             emoji?.let { Emoji.fromFormatted(it) }
-        ).let {
-            ButtonBuilder(it).apply(builder).button
-        }
+        )
     }
 
     fun button(
