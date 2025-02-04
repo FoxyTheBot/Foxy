@@ -7,11 +7,8 @@ import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerJSONParser
 import net.cakeyfox.foxy.utils.pretty
 import net.cakeyfox.serializable.database.data.Guild
 import net.dv8tion.jda.api.Permission
-import net.dv8tion.jda.api.entities.emoji.Emoji
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent
-import net.dv8tion.jda.api.interactions.components.buttons.Button
-import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
 class WelcomerModule(
     val foxy: FoxyInstance

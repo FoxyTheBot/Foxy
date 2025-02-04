@@ -2,7 +2,6 @@ package net.cakeyfox.foxy.listeners
 
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.modules.antiraid.AntiRaidModule
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.foxy.utils.pretty
