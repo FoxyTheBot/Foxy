@@ -2,17 +2,22 @@ package net.cakeyfox.foxy.command
 
 import dev.minn.jda.ktx.coroutines.await
 import mu.KotlinLogging
+import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.actions.declarations.ActionsCommand
+import net.cakeyfox.foxy.command.vanilla.dev.declarations.ServerInviteCommand
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.CakesCommand
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.DailyCommand
+import net.cakeyfox.foxy.command.vanilla.economy.declarations.SlotsCommand
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.*
+import net.cakeyfox.foxy.command.vanilla.games.declarations.RussianRouletteCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.AboutMeCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.DivorceCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.MarryCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.ProfileCommand
 import net.cakeyfox.foxy.command.vanilla.utils.declarations.*
+import net.cakeyfox.foxy.utils.ClusterUtils
 import net.dv8tion.jda.api.interactions.commands.Command
 import kotlin.reflect.jvm.jvmName
 
@@ -34,7 +39,19 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
             val action = shard.updateCommands()
 
             commands.forEach { command ->
-                action.addCommands(command.create().build())
+                if (command.create().isPrivate) {
+                    val supportServerShardId = ClusterUtils.getShardIdFromGuildId(
+                        Constants.SUPPORT_SERVER_ID.toLong(),
+                        foxy.config.discord.totalShards
+                    )
+                    if (shard.shardInfo.shardId == supportServerShardId) {
+                        val supportServer = foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
+                        supportServer?.updateCommands()?.addCommands(command.create().build())?.await()
+                        logger.info { "Registered /${command.create().name} as private command (Shard: #${shard.shardInfo.shardId})" }
+                    }
+                } else {
+                    action.addCommands(command.create().build())
+                }
             }
 
             val registeredCommands = action.await()
@@ -53,6 +70,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         /* ---- [Economy] ---- */
         register(CakesCommand())
         register(DailyCommand())
+        register(SlotsCommand())
 
         /* ---- [Entertainment] ---- */
         register(FunCommand())
@@ -60,6 +78,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(FateCommand())
         register(CancelCommand())
         register(RateWaifuCommand())
+        register(RussianRouletteCommand())
 
         /* ---- [Social] ---- */
         register(AboutMeCommand())
@@ -72,5 +91,8 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(DblCommand())
         register(PingCommand())
         register(ServerCommand())
+
+        /* ---- [Staff] ---- */
+        register(ServerInviteCommand())
     }
 }
