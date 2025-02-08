@@ -19,10 +19,8 @@ import java.util.*
 class FoxyUtils(
     val foxy: FoxyInstance
 ) {
-    val loritta = LorittaUtils(foxy)
-
     fun convertISOToDiscordTimestamp(iso: Instant): String {
-        val convertedDate = iso.epochSeconds.let { "<t:$it:f> (<:$it:R>" }
+        val convertedDate = iso.epochSeconds.let { "<t:$it:f> (<t:$it:R>)" }
         return convertedDate
     }
 
