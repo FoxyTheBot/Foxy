@@ -59,6 +59,21 @@ class GetGuildInfo {
                     put("canPublishStats", foxy.currentCluster.canPublishStats)
                     put("clusterUrl", foxy.currentCluster.clusterUrl)
                 })
+                put("invites", buildJsonArray {
+                    guild.retrieveInvites().await().forEach {
+                        buildJsonObject {
+                            put("url", it.url)
+                            put("maxAge", it.maxAge)
+                            put("maxUses", it.maxUses)
+                            put("temporary", it.isTemporary)
+                            put("uses", it.uses)
+                            put("createdBy", buildJsonObject {
+                                put("name", it.inviter?.name)
+                                put("id", it.inviter?.id)
+                            })
+                        }
+                    }
+                })
             }
 
             call.respondText(
