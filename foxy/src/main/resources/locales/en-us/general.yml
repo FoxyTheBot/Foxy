@@ -5,6 +5,21 @@ commands:
   componentExpired: "Wait, where is it? I can't find the interaction information... It seems to have expired! Run the command again."
 
   command:
+    serverinvite:
+      name: "convite"
+      description: "[Utilitários] Obtém convites de um servidor por ID"
+      retrieve:
+        name: "obter"
+        description: "[Utilitários] Obtém convites de um servidor por ID"
+        options:
+          server_id:
+            name: "id_do_servidor"
+            description: "O ID do servidor que você deseja obter os convites"
+
+    russian-roulette:
+      name: "roleta_russa"
+      description: "[Diversão] Jogue roleta russa comigo"
+
     server:
       name: "servidor"
       description: "[Utilitários] Veja informações sobre o servidor"
@@ -159,6 +174,20 @@ commands:
           question:
             name: "question"
             description: "The question to be asked to Foxy"
+
+    slots:
+      name: "slots"
+      description: "[Economia] Jogue nas máquinas caça-níqueis"
+      chart:
+        name: "tabela"
+        description: "[Economia] Veja a tabela de pagamentos das máquinas caça-níqueis"
+      bet:
+        name: "apostar"
+        description: "[Economia] Jogue nas máquinas caça-níqueis"
+        options:
+          amount:
+            name: "quantidade"
+            description: "A quantidade de cakes que você deseja apostar"
 
     cakes:
       name: "cakes"

@@ -2,34 +2,21 @@
   wrongContentType: "I wish I could use this, but I can't. You need to send an audio file of type MP3 or WAV."
   fileTooBig: "I would love to see how the video would turn out with this audio, but it's too big... What if I open it and it explodes and takes me with it? :("
 
+slots:
+  embed:
+    title: "Caça-Níqueis da Foxy"
+    winnings: "Você ganhou:"
+    winningsValue: "**{0} Cakes**!"
+    loss: "Você perdeu:"
+    lossValue: "**{0} Cakes**!"
+  chart:
+    embed:
+      title: "Tabela de Multiplicadores"
+      description: "Será que a sorte está ao seu lado?"
+
 cakes:
   atm:
     balance: "{0} has **{1}** Cakes"
-    balanceTitle: "{0}'s balance"
-    lorittaBalance: "Loritta Sonhos"
-    foxyBalance: "Foxy Cakes"
-    # TODO: Translate this
-  convert:
-    minimumAmount: "You need to convert at least 1000 Sonhos or Cakes!"
-    exchangeDisabled: "As conversões foram desativadas temporariamente!"
-    lorittaToFoxyDisabled: "A conversão de Sonhos para Cakes foi desativada temporariamente!"
-    foxyToLorittaDisabled: "A conversão de Cakes para Sonhos foi desativada temporariamente!"
-    botNotInGuild: "Eu preciso estar no servidor e ter permissões de administrador para realizar a conversão! Me adicione no servidor clicando [aqui]({0})!"
-    lorittaNotInGuild: "Você precisa adicionar a Loritta no servidor para realizar a conversão! Adicione clicando [aqui]({0})!"
-    botNeedsAdmin: "Eu preciso ter permissões de administrador para realizar a conversão! Pois a Loritta verifica se eu tenho essa permissão!"
-    foxyBankHasNoSonhos: "O banco Foxy não tem sonhos o suficiente para realizar a conversão!"
-    success:
-      title: "Conversão Pendente"
-      loritta_to_foxy: "Você está prestes a converter **{0} Sonhos para Cakes**! Você tem **1 minuto** para confirmar a transferência na Loritta! Após esse tempo, irei verificar novamente!"
-      foxy_to_loritta: "Você está prestes a converter **{0} Cakes para Sonhos**! Você tem **1 minuto** para confirmar a transferência na Loritta! Após esse tempo, irei verificar novamente!"
-    successConfirmed:
-      title: "Conversão Confirmada"
-      loritta_to_foxy: "A sua conversão de **{0} Sonhos para Cakes** foi confirmada pelo Governo da LorittaLand e pelo Governo dos Bolos!"
-      foxy_to_loritta: "Você converteu **{0} Cakes para Sonhos**!"
-    failed:
-      title: "Conversão Cancelada"
-      loritta_to_foxy: "A sua conversão de **{0} Sonhos para Cakes** foi cancelada por inatividade!"
-      foxy_to_loritta: "A sua conversão de **{0} Cakes para Sonhos** foi cancelada por inatividade!"
 
 moda:
   wrongContentType: "I wish I could use this, but I can't. You need to send an image of type PNG or JPG."
