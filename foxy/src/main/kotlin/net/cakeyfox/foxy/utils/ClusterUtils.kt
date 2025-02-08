@@ -65,7 +65,20 @@ object ClusterUtils {
                     createdAt = it.timeCreated.toEpochSecond(),
                     joinedAt = it.selfMember.timeJoined.toEpochSecond(),
                     firstEmojis = availableStaticEmojis.take(30).map { emoji -> "<:${emoji.name}:${emoji.id}>" },
-                    clusterInfo = cluster
+                    clusterInfo = cluster,
+                    invites = it.retrieveInvites().await().map { invite ->
+                        CustomGuildInfo.Invite(
+                            url = invite.url,
+                            maxAge = invite.maxAge,
+                            maxUses = invite.maxUses,
+                            temporary = invite.isTemporary,
+                            uses = invite.uses,
+                            createdBy = CustomGuildInfo.InviteOwner(
+                                name = invite.inviter?.name ?: "Unknown",
+                                id = invite.inviter?.id ?: "0"
+                            )
+                        )
+                    }
                 )
             }
         } else {
