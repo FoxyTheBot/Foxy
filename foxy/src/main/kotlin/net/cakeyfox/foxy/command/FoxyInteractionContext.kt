@@ -38,7 +38,10 @@ class FoxyInteractionContext(
         return db.utils.user.getDiscordUser(user.id)
     }
 
-    suspend fun reply(ephemeral: Boolean = false, block: InlineMessage<*>.() -> Unit): Any {
+    suspend fun reply(
+        ephemeral: Boolean = false,
+        block: InlineMessage<*>.() -> Unit
+    ): Any {
         val msg = MessageCreateBuilder {
             apply(block)
         }
@@ -64,10 +67,11 @@ class FoxyInteractionContext(
                         event.hook.setEphemeral(ephemeral).sendMessage(msg.build()).queue()
                     } else {
                         val defer = defer(ephemeral)
+
                         defer.sendMessage(msg.build()).queue()
                     }
                 } catch (e: Exception) {
-                    logger.warn { "Failed to reply button! It was deleted? ${e.message}"}
+                    logger.warn { "Failed to reply button! It was deleted? ${e.message}" }
                 }
             }
 
@@ -79,7 +83,7 @@ class FoxyInteractionContext(
                         event.deferReply().setEphemeral(ephemeral).queue()
                     }
                 } catch (e: Exception) {
-                    logger.warn { "Failed to reply string select! It was deleted? ${e.message}"}
+                    logger.warn { "Failed to reply string select! It was deleted? ${e.message}" }
                 }
             }
 
@@ -110,6 +114,12 @@ class FoxyInteractionContext(
         }
 
         return when (event) {
+            is SlashCommandInteractionEvent -> {
+                if (event.isAcknowledged) {
+                    event.hook.editOriginal(msg.build()).queue()
+                } else null
+            }
+
             is ButtonInteractionEvent -> {
                 if (event.isAcknowledged) {
                     event.hook.editOriginal(msg.build()).queue()
@@ -152,7 +162,7 @@ class FoxyInteractionContext(
                     event.deferReply().setEphemeral(ephemeral).await()
                 }
             } catch (e: Exception) {
-                logger.warn { "Failed to defer button! It was deleted? ${e.message}"}
+                logger.warn { "Failed to defer button! It was deleted? ${e.message}" }
                 event.hook
             }
         }
