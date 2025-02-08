@@ -52,37 +52,6 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
                 )
             }
         )
-
-        subCommand(
-            "convert",
-            "cakes.convert.description",
-            baseName = this@command.name,
-
-            block = {
-                addOptions(
-                    listOf(
-                        OptionData(
-                            OptionType.INTEGER,
-                            "amount",
-                            "cakes.convert.option.amount",
-                            true
-                        ),
-
-                        OptionData(
-                            OptionType.STRING,
-                            "from",
-                            "cakes.convert.option.from",
-                            true
-                        )
-                            .choice( "Sonhos (Loritta) para Cakes (Foxy)", "loritta_to_foxy")
-                    ),
-                    isSubCommand = true,
-                    baseName = this@command.name
-                )
-
-                executor = CakesConvertExecutor()
-            }
-        )
         subCommand(
             "top",
             "cakes.top.description",
