@@ -36,15 +36,7 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
                             "user",
                             "cakes.atm.option.user",
                             false
-                        ),
-
-                        OptionData(
-                            OptionType.STRING,
-                            "type",
-                            "cakes.atm.option.type",
-                            false
-                        ).choice("Loritta e Foxy", "full")
-                            .choice("Apenas Foxy", "normal")
+                        )
                     ),
 
                     isSubCommand = true,
