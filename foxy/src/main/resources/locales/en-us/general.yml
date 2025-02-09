@@ -5,6 +5,17 @@ commands:
   componentExpired: "Wait, where is it? I can't find the interaction information... It seems to have expired! Run the command again."
 
   command:
+    rob:
+      name: "rob"
+      description: "[Economy] Rob someone"
+      someone:
+        name: "someone"
+        description: "[Economia] Rob someone"
+        options:
+          user:
+            name: "user"
+            description: "User you want to rob"
+
     serverinvite:
       name: "convite"
       description: "[Utilitários] Obtém convites de um servidor por ID"

@@ -6,6 +6,17 @@ commands:
   error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
 
   command:
+    rob:
+      name: "roubar"
+      description: "[Economia] Roube alguém"
+      someone:
+        name: "alguém"
+        description: "[Economia] Roube alguém"
+        options:
+          user:
+            name: "usuário"
+            description: "O usuário que você deseja roubar"
+
     serverinvite:
       name: "convite"
       description: "[Utilitários] Obtém convites de um servidor por ID"
