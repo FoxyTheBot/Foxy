@@ -15,8 +15,6 @@ class PayExecutor : FoxyCommandExecutor() {
 
         isAbleToPay(context, userToPay, amount)
 
-        val userToPayData = context.db.utils.user.getDiscordUser(userToPay.id)
-
         context.reply {
             content = pretty(
                 FoxyEmotes.FoxyYay,
@@ -31,19 +29,8 @@ class PayExecutor : FoxyCommandExecutor() {
                     context.locale["pay.confirmButton"]
                 ) {
 
-                    context.db.utils.user.updateUser(
-                        context.user.id,
-                        mapOf(
-                            "userCakes.balance" to context.getAuthorData().userCakes.balance - amount
-                        )
-                    )
-
-                    context.db.utils.user.updateUser(
-                        userToPay.id,
-                        mapOf(
-                            "userCakes.balance" to userToPayData.userCakes.balance + amount
-                        )
-                    )
+                    context.db.utils.user.removeCakesFromAUser(context.user.id, amount)
+                    context.db.utils.user.addCakesToAUser(userToPay.id, amount)
 
                     it.edit {
                         content = pretty(

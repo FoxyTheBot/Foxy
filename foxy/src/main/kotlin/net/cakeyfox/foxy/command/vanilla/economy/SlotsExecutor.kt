@@ -37,10 +37,7 @@ class SlotsExecutor : FoxyCommandExecutor() {
 
         context.reply {
             embed {
-                title = pretty(
-                    "🎰",
-                    context.locale["slots.embed.title"]
-                )
+                title = pretty("🎰", context.locale["slots.embed.title"])
                 description = "```$result```"
                 color = if (winnings > 0) Colors.GREEN else Colors.RED
 
@@ -71,18 +68,14 @@ class SlotsExecutor : FoxyCommandExecutor() {
         }
 
         if (winnings > 0) {
-            context.foxy.mongoClient.utils.user.updateUser(
+            context.foxy.mongoClient.utils.user.addCakesToAUser(
                 context.user.id,
-                mapOf(
-                    "userCakes.balance" to userData.userCakes.balance + winnings - amount
-                )
+                winnings - amount
             )
         } else {
-            context.foxy.mongoClient.utils.user.updateUser(
+            context.foxy.mongoClient.utils.user.removeCakesFromAUser(
                 context.user.id,
-                mapOf(
-                    "userCakes.balance" to userData.userCakes.balance - amount
-                )
+                amount
             )
         }
     }

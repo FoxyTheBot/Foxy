@@ -64,6 +64,24 @@ class UserUtils(
         }
     }
 
+    suspend fun addCakesToAUser(userId: String, amount: Long) {
+        withContext(Dispatchers.IO) {
+            val query = Document("_id", userId)
+            val update = Document("\$inc", Document("userCakes.balance", amount.toDouble()))
+
+            client.users.updateOne(query, update)
+        }
+    }
+
+    suspend fun removeCakesFromAUser(userId: String, amount: Long) {
+        withContext(Dispatchers.IO) {
+            val query = Document("_id", userId)
+            val update = Document("\$inc", Document("userCakes.balance", -amount.toDouble()))
+
+            client.users.updateOne(query, update)
+        }
+    }
+
     private suspend fun createUser(userId: String): FoxyUser {
         val collection = client.database.getCollection<Document>("users")
 
