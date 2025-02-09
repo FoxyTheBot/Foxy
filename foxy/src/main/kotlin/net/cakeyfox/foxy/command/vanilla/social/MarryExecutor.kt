@@ -47,6 +47,7 @@ class MarryExecutor : FoxyCommandExecutor() {
         }
 
         val userData = context.db.utils.user.getDiscordUser(user.id)
+        val authorData = context.getAuthorData()
 
         if (userData.marryStatus.marriedWith != null) {
             context.reply(true) {
@@ -69,13 +70,71 @@ class MarryExecutor : FoxyCommandExecutor() {
 
             return
         }
+
+        val isUserPremium =
+            if (userData.userPremium.premiumDate != null) {
+                userData.userPremium.premiumDate!!.epochSeconds > System.currentTimeMillis() / 1000
+            } else false
+
+        val isAuthorPremium =
+            if (authorData.userPremium.premiumDate != null) {
+                authorData.userPremium.premiumDate!!.epochSeconds > System.currentTimeMillis() / 1000
+            } else false
+
+        if (isUserPremium || isAuthorPremium) {
+            buildMarryMessage(context)
+        } else {
+            if (context.getAuthorData().userCakes.balance < 6000) {
+                context.reply(true) {
+                    content = pretty(
+                        FoxyEmotes.FoxyCry,
+                        context.locale["marry.authorHasNoCakes"]
+                    )
+                }
+
+                return
+
+            } else if (userData.userCakes.balance < 6000) {
+                context.reply {
+                    content = pretty(
+                        FoxyEmotes.FoxyCry,
+                        context.locale["marry.userHasNoCakes", user.asMention]
+                    )
+                }
+
+                return
+            } else buildMarryMessage(context)
+        }
+    }
+
+    private suspend fun buildMarryMessage(context: FoxyInteractionContext) {
+        val user = context.getOption<User>("user")!!
+        val userData = context.db.utils.user.getDiscordUser(user.id)
+        val authorData = context.getAuthorData()
+        val isUserPremium =
+            if (userData.userPremium.premiumDate != null) {
+                userData.userPremium.premiumDate!!.epochSeconds > System.currentTimeMillis() / 1000
+            } else false
+
+        val isAuthorPremium =
+            if (authorData.userPremium.premiumDate != null) {
+                authorData.userPremium.premiumDate!!.epochSeconds > System.currentTimeMillis() / 1000
+            } else false
+
         val marriedDate = ZonedDateTime.now(ZoneId.systemDefault()).toInstant()
 
         context.reply {
-            content = pretty(
-                FoxyEmotes.Ring,
-                context.locale["marry.proposal", user.asMention, context.user.asMention]
-            )
+            content = if (isUserPremium || isAuthorPremium) {
+                pretty(
+                    FoxyEmotes.Ring,
+                    context.locale["marry.premiumProposal", user.asMention, context.user.asMention]
+                )
+            } else {
+                pretty(
+                    FoxyEmotes.Ring,
+                    context.locale["marry.proposal", user.asMention, context.user.asMention]
+                )
+            }
 
             actionRow(
                 context.foxy.interactionManager.createButtonForUser(
@@ -88,7 +147,8 @@ class MarryExecutor : FoxyCommandExecutor() {
                         context.event.user.id,
                         mapOf(
                             "marryStatus.marriedWith" to user.id,
-                            "marryStatus.marriedDate" to marriedDate
+                            "marryStatus.marriedDate" to marriedDate,
+                            "userCakes.balance" to authorData.userCakes.balance - 6000
                         )
                     )
 
@@ -96,7 +156,8 @@ class MarryExecutor : FoxyCommandExecutor() {
                         user.id,
                         mapOf(
                             "marryStatus.marriedWith" to context.event.user.id,
-                            "marryStatus.marriedDate" to marriedDate
+                            "marryStatus.marriedDate" to marriedDate,
+                            "userCakes.balance" to userData.userCakes.balance - 6000
                         )
                     )
 
