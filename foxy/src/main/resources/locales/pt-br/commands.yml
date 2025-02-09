@@ -2,6 +2,9 @@
   wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar um áudio do tipo MP3 ou WAV"
   fileTooBig: "Eu até queria ver como ficaria o vídeo com esse áudio, mas ele é muito grande... E se eu abrir ele e ele explodir e me levar junto? :("
 
+commands:
+  earlyAccess: "Esse comando está em beta e apenas usuários premium possuem acesso antecipado. Se você quiser ter acesso a esse comando e muitos outros, você pode se tornar um usuário premium clicando [aqui](https://foxybot.win/br/premium)"
+
 slots:
   embed:
     title: "Caça-Níqueis da Foxy"
@@ -143,6 +146,12 @@ slap:
 cancel:
   userCancelledBecause: "**{0} foi cancelado(a) por `{1}`**"
 
+rob:
+  youFailedAndLostCakes: "Você foi pego e perdeu **{0} Cakes**!"
+  youFailedAndGotArrested: "Você foi pego e foi preso(a)!"
+  userNotEnoughCakes: "{0} não tem Cakes suficientes para roubar! Coitado(a)!"
+  success: "Você roubou **{0} Cakes** de {1}!"
+
 pay:
   confirm: "Você deseja mesmo transferir **{0} Cakes** para {1}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!"
   success: "Você transferiu **{0} Cakes** para {1}!"
@@ -151,7 +160,10 @@ pay:
   invalidAmount: "Você precisa transferir uma quantidade válida de Cakes!"
 
 marry:
-  proposal: "Ei, {0}, um passarinho me contou que **{1}** quer casar com você, você aceita?"
+  authorHasNoCakes: "Casamentos custam **6.000 Cakes** para cada pessoa, e você não tem Cakes suficientes!"
+  userHasNoCakes: "Casamentos custam **6.000 Cakes** para cada pessoa, e {0} não tem Cakes suficientes!"
+  proposal: "Ei, {0}, um passarinho me contou que **{1}** quer casar com você, você aceita? Casamentos custam 6.000 Cakes para cada pessoa!"
+  premiumProposal: "Ei, {0}, um passarinho me contou que **{1}** quer casar com você, você aceita? Casamentos são gratuitos para usuários premium!"
   userAlreadyMarried: "Você não pode se casar com quem já está casado! Talaricagem é feio!"
   youAlreadyMarried: "Você já está casado(a)!"
   cantMarryMe: "Não, desculpa, mas eu não quero me casar com você!"
