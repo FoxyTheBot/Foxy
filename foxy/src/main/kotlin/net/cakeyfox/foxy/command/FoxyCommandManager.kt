@@ -9,6 +9,7 @@ import net.cakeyfox.foxy.command.vanilla.actions.declarations.ActionsCommand
 import net.cakeyfox.foxy.command.vanilla.dev.declarations.ServerInviteCommand
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.CakesCommand
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.DailyCommand
+import net.cakeyfox.foxy.command.vanilla.economy.declarations.RobCommand
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.SlotsCommand
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.*
 import net.cakeyfox.foxy.command.vanilla.games.declarations.RussianRouletteCommand
@@ -71,6 +72,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(CakesCommand())
         register(DailyCommand())
         register(SlotsCommand())
+        register(RobCommand())
 
         /* ---- [Entertainment] ---- */
         register(FunCommand())

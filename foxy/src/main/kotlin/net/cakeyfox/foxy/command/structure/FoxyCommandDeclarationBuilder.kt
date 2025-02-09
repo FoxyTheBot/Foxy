@@ -16,6 +16,7 @@ class FoxyCommandDeclarationBuilder(
     val name: String,
     val description: String,
     val isPrivate: Boolean,
+    val availableForEarlyAccess: Boolean = false,
     val integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
     val interactionContexts: List<InteractionContextType> = listOf(InteractionContextType.GUILD),
     var executor: FoxyCommandExecutor? = null
@@ -41,6 +42,7 @@ class FoxyCommandDeclarationBuilder(
             name,
             description,
             isPrivate,
+            availableForEarlyAccess,
             integrationType,
             interactionContexts
         )

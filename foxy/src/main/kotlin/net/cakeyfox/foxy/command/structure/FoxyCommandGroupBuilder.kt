@@ -13,11 +13,19 @@ class FoxyCommandGroupBuilder(
         name: String,
         description: String,
         isPrivate: Boolean = false,
+        availableForEarlyAccess: Boolean = false,
         integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
         interactionContexts: List<InteractionContextType> = listOf(InteractionContextType.GUILD),
         block: FoxyCommandDeclarationBuilder.() -> Unit
     ) {
-        val subCommand = FoxyCommandDeclarationBuilder(name, description, isPrivate, integrationType, interactionContexts)
+        val subCommand = FoxyCommandDeclarationBuilder(
+            name,
+            description,
+            isPrivate,
+            availableForEarlyAccess,
+            integrationType,
+            interactionContexts
+        )
         subCommand.block()
         subCommands.add(subCommand)
     }

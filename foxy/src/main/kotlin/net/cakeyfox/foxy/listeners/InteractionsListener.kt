@@ -7,6 +7,8 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.component.ComponentId
+import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationBuilder
+import net.cakeyfox.foxy.utils.PremiumUtils
 import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
@@ -62,9 +64,9 @@ class InteractionsListener(
                 try {
                     val executionTime = measureTimeMillis {
                         if (subCommand != null) {
-                            subCommand.executor?.execute(context)
+                            isEarlyAccessOnlyCommand(context, subCommand)
                         } else if (subCommandGroupName == null && subCommandName == null) {
-                            command.executor?.execute(context)
+                            isEarlyAccessOnlyCommand(context, command)
                         }
                     }
                     logger.info { "Command /${event.fullCommandName} executed in ${executionTime}ms" }
@@ -153,5 +155,24 @@ class InteractionsListener(
                 e.printStackTrace()
             }
         }
+    }
+
+    private suspend fun isEarlyAccessOnlyCommand(
+        context: FoxyInteractionContext,
+        command: FoxyCommandDeclarationBuilder
+    ) {
+        val isEarlyAccessEligible = PremiumUtils.eligibleForEarlyAccess(context)
+
+        if (command.availableForEarlyAccess) {
+            if (!isEarlyAccessEligible) {
+                context.reply(true) {
+                    content = pretty(
+                        FoxyEmotes.FoxyCry,
+                        context.locale["commands.earlyAccess"]
+                    )
+                }
+                return
+            } else command.executor?.execute(context)
+        } else command.executor?.execute(context)
     }
 }
