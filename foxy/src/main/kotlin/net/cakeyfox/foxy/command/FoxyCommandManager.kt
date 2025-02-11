@@ -80,7 +80,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(FateCommand())
         register(CancelCommand())
         register(RateWaifuCommand())
-        register(RussianRouletteCommand())
+        // register(RussianRouletteCommand())
 
         /* ---- [Social] ---- */
         register(AboutMeCommand())
