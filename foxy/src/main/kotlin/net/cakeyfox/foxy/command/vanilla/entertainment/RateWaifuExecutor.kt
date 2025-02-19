@@ -9,13 +9,15 @@ import net.dv8tion.jda.api.entities.User
 class RateWaifuExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val user = context.getOption<User>("user")!!
-
         val rating = (0..10).random()
 
         context.reply {
             content = pretty(
                 FoxyEmotes.FoxyYay,
-                context.locale["ratewaifu.success", user.asMention, rating.toString()]
+                context.locale["ratewaifu.success",
+                    rating.toString(),
+                    user.asMention
+                ]
             )
         }
     }
