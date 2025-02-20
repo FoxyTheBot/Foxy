@@ -1,0 +1,592 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:500");
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Muli&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+:root {
+  /* Primary Colors */
+  --reimu-primary-color: #e7385d;
+  --reimu-secondary-color: #f5e1f7;
+  --reimu-tertiary-color: #e9d5ff;
+  /* Backgrounds and Gradients */
+  --reimu-background-color: #ffffff;
+  --reimu-loading-overlay-color: rgba(255, 255, 255, 0.8);
+  --reimu-feature-session-background: #f5e1f7;
+  --reimu-feature-card-background: #f2e6fa;
+  --reimu-feature-card-font-color: #333;
+  /* Sidebar */
+  --reimu-sidebar-color: #f8f4fc;
+  --reimu-sidebar-font-size: 14px;
+  --reimu-sidebar-font-weight: 500;
+  --reimu-sidebar-font-color: #333;
+  /* Header */
+  --reimu-navbar-color: #e7385d;
+  --reimu-navbar-text-color: #fff;
+  --reimu-navbar-text-hover-color: #555;
+  --reimu-navbar-font-size: 17px;
+  --reimu-navbar-font-family: var(--reimu-default-font-family);
+  /* Mobile Nav */
+  --reimu-mobile-nav-color: #f8f4fc;
+  --reimu-mobile-nav-text-color: #333;
+  /* Buttons */
+  --reimu-button-color: #e7385d;
+  --reimu-button-hover-color: #e71946;
+  --reimu-button-active-color: #e7385d;
+  --reimu-button-font-color: #fff;
+  --reimu-button-font-size: 14px;
+  --reimu-button-font-weight: 500;
+  --reimu-button-border-radius: 2px;
+  --reimu-button-padding: 10px 20px;
+  /* Specific Element Colors */
+  --reimu-server-card-color: #f06272;
+  --reimu-backdrop-blur: blur(12px);
+  /* Premium Cards */
+  --reimu-premium-card-background: #f5e1f7;
+  --reimu-premium-card-border: 1px solid #e7385d;
+  --reimu-premium-recommended-color: #f06272;
+  --reimu-premium-card-font-color: #333;
+  --reimu-premium-recommended-flag-font-color: #fff;
+  --reimu-premium-recommended-flag-color: #e7385d;
+  --reimu-premium-card-button-color: #e7385d;
+  --reimu-premium-card-button-font-color: #fff;
+  /* Fonts */
+  --reimu-greetings-font: "Cookie";
+  --reimu-default-font-color: #333;
+  --reimu-default-button-font-family: Roboto, sans-serif;
+  --reimu-default-font-family: Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+html {
+  background: url("/assets/images/background-white.png"), var(--reimu-background-color) !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  height: 100%;
+  width: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: var(--reimu-primary-color);
+}
+
+body {
+  color: var(--reimu-default-font-color);
+  transition: color 0.3s ease-in-out;
+}
+
+.popup-wrapper {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+.popup-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+.popup-wrapper #user-avatar {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.popup-wrapper .popup {
+  background-color: #fff;
+  margin: 10% auto;
+  width: 80%;
+  border-radius: 5px;
+  max-width: 35rem;
+  margin-left: auto;
+  margin-right: auto;
+  animation: scaleIn 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+}
+.popup-wrapper .popup .content {
+  padding: 1rem;
+}
+.popup-wrapper .popup .content .title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.popup-wrapper .popup #purchaseForm {
+  padding: 0rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.popup-wrapper .popup #importForm {
+  padding: 0rem !important;
+}
+.popup-wrapper .popup .form-content {
+  padding: 1rem;
+  font-family: var(--reimu-default-font-family);
+}
+.popup-wrapper .popup .popup-buttons {
+  padding: 1em;
+  background-color: #cecece;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+  border-radius: 0px 0px 7px 7px;
+}
+.popup-wrapper .popup .popup-buttons .popup-button {
+  background-color: var(--reimu-button-color);
+  color: white;
+  border: none;
+  padding: var(--reimu-button-padding);
+  border-radius: var(--reimu-button-border-radius);
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.popup-wrapper .popup .popup-buttons .popup-button:hover {
+  background-color: var(--reimu-button-hover-color);
+}
+.popup-wrapper .popup .popup-buttons .popup-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.popup-wrapper .popup .popup-buttons .popup-button:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.popup-wrapper .popup .popup-buttons .popup-button.cancel {
+  background-color: transparent;
+  color: #000000;
+  border: 1px solid #616161;
+}
+.popup-wrapper .popup .popup-buttons .popup-button.cancel:hover {
+  background-color: #616161;
+  color: var(--reimu-default-font-color);
+}
+.popup-wrapper .popup h2 {
+  color: #ff4655;
+  font-size: 24px;
+  margin-left: 5px;
+  font-family: var(--reimu-default-font-family);
+  margin-bottom: 10px;
+}
+.popup-wrapper .popup .description {
+  color: #000000;
+  font-size: 15px;
+  margin-bottom: 10px;
+  margin-left: 0rem;
+  text-align: left;
+  margin-right: 0rem;
+}
+.popup-wrapper .popup h3 {
+  color: #000000;
+  font-size: 15px;
+  font-family: var(--reimu-default-font-family);
+  margin-bottom: 5px;
+  margin-top: 3%;
+  margin-right: 12%;
+  text-align: left;
+}
+.popup-wrapper .popup .avatar-wrapper {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+}
+.popup-wrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: var(--reimu-default-font-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .popup-content {
+    width: 95%;
+    padding: 10px;
+    margin: 25% auto;
+  }
+  .popup-content h2 {
+    font-size: 18px;
+  }
+  .popup-content h3 {
+    font-size: 12px;
+  }
+  .popup-content button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+@media (max-width: 768px) {
+  #save {
+    color: var(--reimu-default-font-color);
+    display: block;
+    padding: 10px 10px;
+    border-radius: 5px;
+    background-color: #359553;
+    border: none;
+    outline: none;
+    font-family: var(--reimu-default-font-family);
+    font-size: 14px;
+    margin-bottom: 0rem;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  .popup-content {
+    width: 90%;
+    padding: 15px;
+    margin: 20% auto;
+  }
+  .popup-content h2 {
+    font-size: 20px;
+  }
+  .popup-content h3 {
+    font-size: 14px;
+  }
+  .popup-content button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+footer {
+  background-color: #e7385d;
+  color: white !important;
+  position: absolute;
+  z-index: 9999;
+  margin-top: auto;
+  padding: 16px 72px;
+  overflow: hidden;
+  font-family: var(--reimu-default-font-family);
+  position: relative;
+  margin-top: auto;
+  text-align: center;
+}
+footer .footer-paragraph {
+  color: #fff;
+  font-size: 1em;
+  margin: 0;
+  font-family: var(--reimu-default-font-family);
+}
+footer .social-networks {
+  display: flex;
+  justify-content: center;
+  gap: 0.25em;
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-add h2 {
+  font-family: var(--reimu-default-font-family);
+  font-size: 1.3em;
+  margin: 10px auto 1% auto;
+  color: #e7385d;
+}
+.footer-add a button {
+  appearance: none;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  font-family: "Roboto", sans-serif;
+  line-height: 20px;
+  font-size: 17px;
+  color: #fff;
+  min-width: 36px;
+  margin: 1.5% auto;
+  padding: 0.55rem 1rem;
+  box-sizing: border-box;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  background: #3ba55c;
+  animation: float 5s ease-in-out infinite;
+  display: flex;
+}
+.footer-add p {
+  font-family: var(--reimu-default-font-family);
+  color: #fff;
+  margin: 0;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  footer {
+    padding: 16px 24px;
+  }
+  .footer-add h2 {
+    font-size: 1.1em;
+  }
+  footer .social-networks {
+    font-size: 2em;
+  }
+}
+.ad.vertical {
+  position: fixed;
+  right: 0;
+  margin-left: 1%;
+  top: 50px;
+  z-index: 10;
+}
+
+/* end */
+main .greetings {
+  color: var(--reimu-default-font-color);
+  font-size: 40px;
+  font-family: "Cookie";
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+main .greetings-2 {
+  color: var(--reimu-default-font-color);
+  font-size: 40px;
+  font-family: "Cookie";
+  margin-left: 5px;
+  margin-top: 1px;
+}
+
+.foxy-logo {
+  width: 10rem;
+  height: auto;
+  margin-top: 2%;
+  transition-duration: 0.5s;
+}
+
+.feature-card-section {
+  padding: 30px;
+  opacity: inherit;
+  background-color: var(--reimu-feature-session-background);
+  border-color: #000;
+  position: relative;
+  text-align: center;
+}
+
+.main-buttons {
+  padding: 10px 20px;
+  border: none;
+  font-size: 17px;
+  color: #ffffff;
+  background-color: #0569ff;
+  border-radius: 7px;
+  font-weight: 700;
+  transition: 0.5s;
+  margin-left: 5px;
+  font-family: var(--reimu-default-font-family);
+  transition-property: box-shadow;
+  cursor: pointer;
+}
+.main-buttons#add {
+  background-color: var(--reimu-primary-color);
+}
+.main-buttons#add:hover {
+  background-color: var(--reimu-button-hover-color);
+  transition: 0.5s;
+}
+.main-buttons#add:active {
+  background-color: var(--reimu-primary-color);
+  transition: 0.5s;
+}
+.main-buttons#add:not(:hover) {
+  transition: 0.5s;
+}
+
+.main-buttons:hover {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+main {
+  margin-bottom: 6rem;
+  /* padding-left: 30%; */
+  /* padding-right: 37%; */
+  margin-top: 15%;
+  /* margin-left: -40%; */
+  transition-duration: 0.5s;
+  text-align: center;
+  cursor: default;
+}
+
+.feature-card-section {
+  padding: 30px;
+  background-color: var(--reimu-feature-session-background);
+  border-color: #000;
+  position: relative;
+  text-align: center;
+}
+.feature-card-section .title {
+  font-family: var(--reimu-default-font-family);
+  font-size: 200%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  color: #e7385d;
+}
+.feature-card-section p {
+  font-family: var(--reimu-default-font-family);
+  font-size: 15px;
+  color: var(--reimu-feature-card-font-color);
+  margin-left: auto;
+}
+.feature-card-section .feature-card__title {
+  font-family: var(--reimu-default-font-family);
+  font-size: 20px;
+  margin-top: 20px;
+  color: var(--reimu-feature-card-font-color);
+}
+.feature-card-section .description {
+  font-family: var(--reimu-default-font-family);
+  color: var(--reimu-feature-card-font-color);
+}
+.feature-card-section .feature-card {
+  display: flex;
+  margin: 20px;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: var(--reimu-feature-card-background);
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+.feature-card-section .feature-card.right {
+  flex-direction: row;
+}
+.feature-card-section .feature-card.left {
+  flex-direction: row-reverse;
+}
+.feature-card-section .feature-card.centralized {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.feature-card-section .feature-card .text-container {
+  flex: 1;
+  text-align: left;
+  margin-right: 20px;
+  padding: 0 10px;
+}
+.feature-card-section .feature-card h1 {
+  font-family: var(--reimu-default-font-family);
+  font-size: 160%;
+  margin: 0 0 10px 0;
+  color: var(--reimu-primary-color);
+}
+.feature-card-section .feature-card h2 {
+  font-family: var(--reimu-default-font-family);
+  font-size: 110%;
+  margin: 0;
+  color: var(--reimu-feature-card-font-color);
+}
+.feature-card-section .feature-card .feature-card-image {
+  width: 10rem;
+  height: auto;
+  margin-left: 20px;
+}
+@media (max-width: 768px) {
+  .feature-card-section .feature-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .feature-card-section .feature-card .text-container {
+    margin-right: 0;
+    padding: 0;
+    margin-top: 20px;
+  }
+  .feature-card-section .feature-card .feature-card-image {
+    display: none;
+  }
+}
+
+.server-name {
+  color: var(--reimu-feature-card-font-color) !important;
+  margin-top: 1rem !important;
+}
+
+main {
+  margin-top: 8rem;
+}
+main .title {
+  color: var(--reimu-default-font-color);
+  font-size: 40px;
+  font-family: var(--reimu-greetings-font);
+  margin-left: 5px;
+  margin-top: 1rem;
+}
+main .title-2 {
+  color: var(--reimu-default-font-color);
+  font-size: 40px;
+  font-family: var(--reimu-greetings-font);
+  margin-left: 5px;
+  margin-top: 1px;
+}
+
+.server-card {
+  border-radius: 10px;
+  padding: 15px;
+  color: var(--reimu-default-font-color);
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+  transition: transform 0.3s;
+}
+.server-card img {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: -5px;
+}
+.server-card .server-name {
+  font-size: 20px;
+  margin-bottom: -10px;
+}
+.server-card h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.server-card p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+.server-card:hover {
+  transform: scale(1.1);
+}
+.server-card:active {
+  transform: scale(1);
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+/*# sourceMappingURL=main.css.map */

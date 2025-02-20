@@ -1,0 +1,228 @@
+.itens {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: -5rem;
+    margin-left: 5rem;
+    margin-right: 3rem;
+
+    &.decorations {
+        margin-top: 5rem;
+        margin-bottom: 3rem;
+
+        .item {
+            .item__icon {
+                img {
+                    width: 11rem;
+                    border-radius: 0.625rem;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+    .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0rem;
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
+        margin: 0.595rem;
+        background-color: var(--reimu-secondary-color);
+        border-radius: 0.625rem;
+        transition: transform 0.3s ease-in-out;
+
+        &.common {
+            border: 0.125rem solid #2196f3;
+        }
+
+        &.uncommon {
+            border: 0.125rem solid #4caf50;
+        }
+
+        &.rare {
+            border: 0.125rem solid #ff9800;
+        }
+
+        &.epic {
+            border: 0.125rem solid #9c27b0;
+        }
+
+        &.legendary {
+            border: 0.125rem solid #e7385d;
+        }
+
+        .purchased {
+            color: var(--reimu-default-font-color);
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 0.3125rem;
+        }
+
+        .item__icon {
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .item_info {
+            text-align: center;
+            margin-top: -0.125rem;
+
+            h1 {
+                margin: 0;
+                font-size: 1.25rem;
+            }
+
+            h5 {
+                font-size: 0.999rem;
+            }
+
+            #common {
+                color: #2196f3;
+            }
+
+            #uncommon {
+                color: #4caf50;
+            }
+
+            #rare {
+                color: #ff9800;
+            }
+
+            #epic {
+                color: #9c27b0;
+            }
+
+            #legendary {
+                color: #e7385d;
+            }
+
+            .item-name {
+                color: var(--reimu-default-font-color);
+                font-size: 1.2rem;
+                font-family: var(--reimu-default-font-family);
+                text-align: center;
+
+                &.limited {
+                    color: (--reimu-secondary-color);
+                }
+
+            }
+
+            h1 {
+                font-size: 1.25rem;
+                font-weight: bold;
+                padding: 0.3125rem 0.625rem;
+                border-radius: 0.3125rem;
+                display: inline-block;
+            }
+
+            .purchased {
+                display: block;
+                margin-top: 0.3125rem;
+                color: rgb(75, 207, 75);
+                font-size: 1rem;
+                font-weight: bold;
+            }
+
+            .cakes {
+                display: block;
+                margin-top: 0.3125rem;
+                font-size: 1rem;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.item {
+    margin: 1.25rem;
+    padding: 0.625rem 1.25rem;
+    color: var(--reimu-default-font-color);
+    font-family: var(--reimu-default-font-family);
+    font-size: 0.875rem;
+    text-decoration: none;
+    flex: 1 0 calc(25rem - 2rem);
+    max-width: calc(25rem - 2rem);
+    min-width: 20rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.5s;
+
+    &:not(:hover) {
+        transform: scale(1);
+    }
+
+    &:hover {
+        transform: scale(1.06);
+        transition: 0.5s;
+    }
+
+    &.disabled {
+        cursor: not-allowed;
+    }
+}
+
+.flag {
+    position: absolute;
+    top: 4%;
+    left: 0;
+    padding: 5px 10px;
+    background: var(--reimu-secondary-color);
+    color: var(--reimu-default-font-color);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 0 0 5px 0;
+    transform: rotate(-40deg);
+    z-index: 1;
+    margin-left: -5%;
+
+    &.limited {
+        margin-left: -10%;
+        background: #e7385d;
+    }
+}
+
+.selected {
+    border: 0.125rem solid #4caf50;
+}
+
+#countdown {
+    color: #e7385d;
+    font-size: 1.5rem;
+    font-family: var(--reimu-default-font-family);
+    text-align: center;
+    margin: 1.3rem 0;
+    margin-left: 1rem;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+}

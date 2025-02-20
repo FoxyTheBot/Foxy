@@ -1,0 +1,288 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import "components/buttons";
+@import "components/background";
+@import "components/inline-emoji";
+
+main {
+    padding-left: 28%;
+    padding-right: 30%;
+    margin-top: 15%;
+    transition-duration: 0.5s;
+    text-align: center;
+}
+
+main .store_image {
+    width: 50%;
+    height: 40%;
+    text-align: center;
+    margin-top: -5%;
+}
+
+main h1 {
+    color: #e7385d;
+    font-size: 25px;
+    font-family: var(--reimu-default-font-family);
+
+    margin-top: 5%;
+}
+
+main .products {
+    display: flex;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 15%;
+    margin-left: -30%;
+    margin-right: 30%;
+    max-width: 100%;
+    flex-direction: row;
+
+}
+
+.product {
+    width: 50%;
+    height: 200px;
+    max-width: 100%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 1rem;
+}
+
+main .daily_image {
+    width: 15%;
+    text-align: center;
+    margin-top: -5%;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-bottom: -3%;
+}
+
+main .daily-page {
+    text-align: center;
+    margin-left: 35%;
+    margin-right: -30%;
+    margin-top: -20%;
+}
+
+main .ad {
+    text-align: center;
+    margin-left: 36%;
+    margin-right: -30%;
+    margin-top: 1%;
+}
+
+main .daily-page .title {
+    color: #e7385d;
+    font-size: 40px;
+    font-family: var(--reimu-default-font-family);
+    margin-top: -60%;
+    margin-left: 30%;
+}
+
+.daily-page {
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.fade-out {
+    opacity: 0;
+
+}
+
+#secondContent {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.cf-turnstile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+}
+
+main .user__avatar {
+    width: 45%;
+    height: 45%;
+    border-radius: 50%;
+    margin-top: -30%;
+    margin-bottom: 5%;
+}
+
+main h1 {
+    color: #e7385d;
+    font-size: 25px;
+}
+
+main #coins {
+    background: linear-gradient(to right, #e7385d, #a6ff7d, #e7385d, #f185ff, #e7385d);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 6s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+
+    0%,
+    100% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+}
+
+main h3 {
+    color: var(--reimu-default-font-color);
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+main h4 {
+    color: var(--reimu-default-font-color);
+    font-size: 15px;
+    font-family: var(--reimu-default-font-family);
+    margin-left: 5px;
+}
+
+main a {
+    list-style: none;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    background: rgb(56, 56, 56);
+    border-radius: 300px;
+    position: relative;
+    background-size: 100%;
+    left: 50%;
+}
+
+main h2 {
+    color: var(--reimu-default-font-color);
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--reimu-default-font-family) !important;
+}
+
+@media (max-width: 768px) {
+    main {
+        padding-left: 10%;
+        padding-right: 10%;
+        margin-top: 10%;
+    }
+
+    main h1 {
+        font-size: 22px;
+    }
+
+    .daily-page {
+        margin-top: 0;
+        margin-left: -10%;
+        margin-right: 50%;
+    }
+
+    main .result .daily_image {
+        width: 50%;
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    main .products {
+        flex-direction: column;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .product {
+        width: 100%;
+    }
+
+    main .store_image,
+    main .daily_image {
+        width: 80%;
+        height: auto;
+        margin-top: 5%;
+    }
+
+    main .daily-page .title {
+        font-size: 30px;
+        margin-left: 0;
+    }
+
+    main .user__avatar {
+        width: 60%;
+        height: auto;
+    }
+
+    main h2,
+    main h3,
+    main h4 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding-left: 5%;
+        padding-right: 5%;
+        margin-top: 5%;
+    }
+
+    main h1 {
+        font-size: 20px;
+    }
+
+    main .products {
+        flex-direction: column;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .product {
+        width: 100%;
+    }
+
+    main .store_image,
+    main .daily_image {
+        width: 100%;
+        height: auto;
+    }
+
+    main .daily-page {
+        margin: 0 auto;
+        margin-left: 20%;
+        margin-top: -70%;
+        width: 100%;
+    }
+
+    main .daily-page .title {
+        font-size: 25px;
+        margin-left: 5%;
+        text-align: center;
+    }
+
+    main .user__avatar {
+        width: 70%;
+        height: auto;
+    }
+
+    main h2,
+    main h3,
+    main h4 {
+        font-size: 14px;
+    }
+}

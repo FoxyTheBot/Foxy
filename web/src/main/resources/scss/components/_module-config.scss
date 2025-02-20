@@ -1,0 +1,371 @@
+@import "switch";
+@import "forms";
+
+.config-wrapper {
+    padding: 1rem;
+    margin-left: 20.4rem;
+    margin-right: 10.4rem;
+    height: 100vh;
+
+    .module-title {
+        color: var(--reimu-primary-color);
+        font-size: 2rem;
+        font-family: sans-serif;
+        margin: 2rem 0 1rem;
+        text-align: center;
+    }
+
+    .module-description {
+        color: var(--reimu-default-font-color);
+        font-size: 1rem;
+        font-family: sans-serif;
+        text-align: center;
+        margin-left: 0rem;
+        margin-right: 0;
+    }
+
+    .config-module-wrapper {
+        justify-content: center;
+
+        .config-module-form {
+            margin-left: auto;
+            margin-right: auto;
+
+            .config-module {
+                margin-top: 2rem;
+                background-color: var(--reimu-secondary-color);
+                padding: 1rem;
+                border-radius: 5px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin-left: -3rem;
+                margin-right: -2rem;
+                border: 1px solid var(--reimu-tertiary-color);
+
+                .module-name {
+                    color: var(--reimu-default-font-color);
+                    font-size: 1rem;
+                    font-family: sans-serif;
+                    font-weight: 700;
+                    margin-right: 1rem;
+                }
+
+                .switch {
+                    margin-left: auto;
+                    margin-top: 0.5rem;
+                }
+
+                .toggleable-options {
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 1rem;
+
+                    .toggleable-option-title {
+                        color: var(--reimu-default-font-color);
+                        font-size: 1rem;
+                        font-family: sans-serif;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .toggleable-option {
+                        margin-top: 0.5rem;
+                        margin-right: 0;
+
+                        &.embed-config {
+                            margin-top: 2rem;
+                            background-color: #fff;
+                            border-left: 4px solid #5865F2;
+                            border-radius: 8px;
+                            padding: 12px;
+                            max-width: 500px;
+                            font-family: 'Arial', sans-serif;
+                        }
+                    }
+
+                    .toggleable-option:not(:last-child) {
+                        margin-top: 0.5rem;
+                    }
+                }
+            }
+
+            .selected-channels {
+                margin-top: 10px;
+            }
+
+            .channel-selector button {
+                margin-left: 8px;
+            }
+
+            .channel-mention {
+                display: inline-flex;
+                align-items: center;
+                background-color: var(--reimu-tertiary-color);
+                color: #7289da;
+                font-family: sans-serif;
+                padding: 4px 8px;
+                border-radius: 4px;
+                margin: 5px 5px 0 0;
+            }
+
+            .channel-mention button {
+                background: transparent;
+                color: var(--reimu-default-font-color);
+                border: none;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+form {
+    width: 83%;
+    padding: 0 1rem;
+
+    select,
+    input,
+    textarea,
+    #inline-input {
+        width: calc(100% - 20px);
+    }
+
+    select {
+        display: block;
+        padding: 1rem;
+        border-radius: 5px;
+        background-color: #fff;
+        border: 2px solid #ccc;
+        outline: none;
+        font-family: sans-serif;
+        font-size: 15px;
+        margin-bottom: 10px;
+        margin-top: 0.625rem;
+        box-sizing: border-box;
+
+        &:disabled {
+            opacity: .5;
+        }
+
+        &:focus {
+            border-color: var(--reimu-primary-color);
+            box-shadow: 0 0 5px rgba(88, 101, 242, 0.5);
+        }
+    }
+
+    input {
+        display: block;
+        padding: 10px 10px;
+        border-radius: 5px;
+        background-color: #fff;
+        border: 2px solid #ccc;
+        outline: none;
+        font-family: sans-serif;
+        font-size: 15px;
+        margin-bottom: 10px;
+        margin-top: 0.625rem;
+        box-sizing: border-box;
+
+        &:focus {
+            border-color: var(--reimu-primary-color);
+            box-shadow: 0 0 5px rgba(88, 101, 242, 0.5);
+        }
+    }
+
+    textarea {
+        display: block;
+        padding: 12px 10px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        border: 2px solid #d1d1d1;
+        outline: none;
+        font-family: sans-serif;
+        font-size: 15px;
+        margin-bottom: 12px;
+        margin-top: 0.625rem;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        resize: vertical;
+    }
+
+    textarea:hover {
+        background-color: #f0f0f0;
+    }
+
+    textarea:focus {
+        border-color: var(--reimu-primary-color);
+        box-shadow: 0 0 8px rgba(88, 101, 242, 0.4);
+    }
+
+    .button-wrapper {
+        display: flex;
+    }
+
+    button {
+        display: block;
+        padding: var(--reimu-button-padding);
+        border-radius: var(--reimu-button-border-radius);
+        background-color: var(--reimu-button-color);
+        border: none;
+        margin: 0.2rem;
+        outline: none;
+        font-family: var(--reimu-default-button-font-family);
+        font-size: var(--reimu-button-font-size);
+        font-weight: var(--reimu-button-font-weight);
+        color: var(--reimu-button-font-color);
+        margin-bottom: 10px;
+        margin-top: 0.525rem;
+        cursor: pointer;
+        box-sizing: border-box;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: #e71946;
+            transition: background-color 0.3s;
+        }
+    }
+
+    .save-button {
+        display: block;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #2ecc71;
+        border: none;
+        outline: none;
+        font-family: sans-serif;
+        font-size: 14px;
+        color: var(--reimu-default-font-color);
+        margin-bottom: 10px;
+        margin-top: 3rem;
+        cursor: pointer;
+        box-sizing: border-box;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: #27ae60;
+            transition: background-color 0.3s;
+        }
+    }
+
+    #inline-input {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #fff;
+        border: 2px solid #ccc;
+        outline: none;
+        font-family: sans-serif;
+        font-size: 19px;
+        margin-bottom: 10px;
+        margin-top: 0.625rem;
+        box-sizing: border-box;
+
+        &:focus {
+            border-color: var(--reimu-primary-color);
+            box-shadow: 0 0 5px rgba(88, 101, 242, 0.5);
+        }
+    }
+}
+
+#saveButton {
+    background-color: #248045;
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+}
+
+.actions-wrapper {
+    color: white;
+    display: flex;
+    background-color: var(--reimu-secondary-color);
+    position: sticky;
+    bottom: 1em;
+    border-radius: 5px;
+    padding: 1em;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.01), 0 0px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--reimu-tertiary-color);
+    justify-content: center;
+    align-items: center;
+    transform: scale(1.025);
+    z-index: 25;
+    bottom: -100px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.actions-wrapper.show {
+    bottom: 1em;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.save-message {
+    color: var(--reimu-default-font-color);
+    font-size: 0.925rem;
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 0rem;
+}
+
+.actions {
+    margin-left: auto;
+    display: flex;
+    gap: 0.5em;
+}
+
+.embedColor {
+    width: 10%;
+    height: 40px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+    margin-bottom: 15px;
+
+    &:focus {
+        border-color: var(--reimu-primary-color);
+    }
+
+    &:invalid {
+        border-color: #dc3545;
+    }
+}
+
+@media (max-width: 768px) {
+    .config-wrapper {
+        margin-left: 0rem;
+        margin-right: 0rem;
+
+        .module-description {
+            display: block;
+        }
+
+        .config-module-wrapper {
+            justify-content: center;
+            margin: 0;
+
+            .config-module-form {
+                margin-left: 0;
+
+                .config-module {
+                    margin-left: -1rem;
+                    margin-right: -5rem;
+                    margin-bottom: 3rem;
+                }
+            }
+        }
+
+        .actions-wrapper {
+            margin-right: -4rem;
+        }
+
+        .module-title {
+            margin-left: 1rem;
+        }
+    }
+
+}

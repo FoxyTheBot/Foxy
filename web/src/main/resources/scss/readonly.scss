@@ -1,0 +1,452 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+@import "components/background";
+@import "components/discord-invite";
+@import "components/footer";
+@import "components/buttons";
+@import "components/inline-emoji";
+
+.command-category-name {
+    color: var(--reimu-default-font-color);
+    text-align: center;
+    font-family: var(--reimu-default-font-family);
+    font-size: 30px;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+.pocket-foxy-wrapper {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 64fr 36fr;
+
+    .pocket-foxy {
+        max-height: 100%;
+        width: 15rem;
+        object-fit: contain;
+        text-align: center;
+        aspect-ratio: 16 / 12;
+
+        @media only screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        display: block;
+        
+    }
+}
+
+main {
+    padding-left: 25%;
+    padding-right: 5%;
+    margin-top: 8%;
+    margin-left: 5%;
+    transition-duration: 0.5s;
+}
+
+
+h2 {
+    color: var(--reimu-default-font-color);
+    font-size: 25px;
+    margin-bottom: 10px;
+    font-family: Montserrat;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(120, 120, 255);
+}
+
+.connection-logo {
+    width: 50%;
+    height: 50%;
+    margin-left: 15%;
+    margin-right: 10%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    text-align: center;
+    display: block;
+    transition-duration: 0.5s;
+
+}
+
+.example {
+    border-radius: 2%;
+    animation: float 6s ease-in-out infinite;
+    transition-duration: 0.5s;
+}
+
+.feature-card-section {
+    padding: 30px;
+    opacity: inherit;
+}
+
+.feature-card-section .title {
+    font-family: Montserrat;
+    font-size: 150%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.feature-card-section .feature-card__title {
+    font-family: Montserrat;
+    font-size: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    color: rgb(255, 255, 255);
+}
+
+
+.left-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: #36393f;
+    transition: left .3s ease;
+}
+
+.separator {
+    height: 1px;
+    width: 100%;
+    background-color: #2f3136;
+    margin: 10px 0;
+}
+
+.left-sidebar .entry {
+    padding: 10px 20px;
+    color: var(--reimu-default-font-color);
+    font-family: sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color .2s ease;
+}
+
+.entries {
+    margin-top: 70px;
+}
+
+.section-title {
+    color: var(--reimu-default-font-color);
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-left: 20px;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#selected {
+    background-color: #2f3136;
+}
+
+.feature-card-section .description {
+    font-family: Montserrat;
+    text-align: center;
+    color: var(--reimu-default-font-color);
+}
+
+.feature-card-section .card-row {
+    margin-top: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+}
+
+.feature-card-section .card-row .card {
+    width: 80%;
+    max-width: 250px;
+    padding: 35px 20px 35px 20px;
+    background-color: #221f1f;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.feature-card-section .card-row .card p {
+    font-family: Montserrat;
+    font-size: 15px;
+    color: var(--reimu-default-font-color);
+    margin-left: auto;
+}
+
+main h1 {
+    color: #e7385d;
+    font-size: 40px;
+    margin-bottom: 5%;
+    font-family: Montserrat;
+}
+
+main .tos-title {
+    color: #e7385d;
+    font-size: 40px;
+    margin-bottom: 5%;
+    font-family: sans-serif;
+}
+
+main .title {
+    color: #e7385d;
+    font-size: 25px;
+    margin-bottom: 1%;
+    font-family: "Segoe UI";
+}
+
+main li {
+    margin-bottom: 0.5%;
+}
+
+main .description {
+    color: var(--reimu-default-font-color);
+    font-size: 17px;
+    margin-bottom: 2%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main .support-server {
+    color: var(--reimu-default-font-color);
+    font-size: 17px;
+    margin-bottom: 30%;
+    margin-left: 38%;
+}
+
+main .server-title {
+    text-align: center;
+    font-family: var(--reimu-default-font-family)
+}
+
+main .rule {
+    margin-bottom: 2%;
+}
+
+main .appeal-title {
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    color: #e7385d;
+}
+
+main .server-description {
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+main .support-description {
+    color: var(--reimu-default-font-color);
+    font-size: 17px;
+    margin-bottom: 2%;
+    text-align: center;
+}
+
+.commands-title {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    margin-top: -5%;
+}
+
+.command {
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: inline-block;
+    margin-left: 2%;
+}
+
+table {
+    border-collapse: separate;
+    width: 90%;
+    margin: 20px auto;
+    background-color: var(--reimu-primary-color);
+    font-family: var(--reimu-default-font-family);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-spacing: 0;
+}
+
+th {
+    color: #fff;
+    padding: 12px 15px;
+    font-weight: 600;
+    font-size: 1.1em;
+    text-align: left;
+    position: sticky;
+    top: 0;
+}
+
+td {
+    padding: 12px 15px;
+    text-align: left;
+    background-color: var(--reimu-secondary-color);
+    color: var(--reimu-default-font-color);
+    border-bottom: 1px solid #f0f0f0;
+}
+
+tr:nth-child(even) td {
+    background-color: var(--reimu-tertiary-color);
+}
+
+tr:hover td {
+    background-color: var(--reimu-primary-color);
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.commands-title {
+    text-align: center;
+    font-family: var(--reimu-default-font-family);
+    font-size: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: #e7385d;
+}
+
+td:first-child {
+    font-weight: 500;
+    font-size: 1em;
+}
+
+td:last-child {
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+a {
+    text-decoration: none;
+    color: #e7385d;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 768px) {
+    table {
+        width: 100%;
+        font-size: 0.9em;
+    }
+
+    th,
+    td {
+        padding: 10px 12px;
+    }
+}
+
+main .tos {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    transition-duration: 0.5s;
+}
+
+main .tos .term h2 {
+    color: var(--reimu-default-font-color);
+    font-size: 25px;
+    font-family: Montserrat;
+    margin-bottom: 1%;
+}
+
+main .tos .term h3 {
+    color: var(--reimu-default-font-color);
+    font-size: 18px;
+    font-family: Montserrat;
+    margin-bottom: 2%;
+}
+
+p {
+    font-family: Montserrat;
+    color: var(--reimu-default-font-color);
+}
+
+main h3 {
+    color: var(--reimu-default-font-color);
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+main a {
+    list-style: none;
+}
+
+.main2 {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 5%;
+    margin-bottom: 15%;
+    transition-duration: 0.5s;
+}
+
+.main2 h1 {
+    color: #e7385d;
+    font-size: 40px;
+    font-family: Montserrat;
+}
+
+.main2 h3 {
+    color: var(--reimu-default-font-color);
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+.main2 a {
+    list-style: none;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .left-sidebar {
+        display: none;
+    }
+
+    main {
+        text-align: center;
+        margin-top: 40%;
+        margin-bottom: 15%;
+        margin-right: 5%;
+        margin-left: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+        font-size: 20px;
+        transition-duration: 0.5;
+    }
+
+    main .support-description {
+        margin-top: 10%;
+    }
+
+    main .commands-title {
+        margin-top: 1rem;
+    }
+
+    main .server-title {
+        margin-top: 10%;
+    }
+
+    main .server-description {
+        margin-top: 3%;
+        margin-bottom: 5%;
+    }
+
+    main h1 {
+        font-size: 10vw;
+    }
+
+    main h3 {
+        font-size: 4vw;
+    }
+}
