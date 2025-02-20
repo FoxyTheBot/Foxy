@@ -64,4 +64,4 @@ jobs:
 
         run: |
             echo "Finally deploying Jar to server :)"          
-            scp -o StrictHostKeyChecking=no -P $SSH_PORT web/build/libs/FoxyWeb-*.jar $SSH_WEBSITE_USER@WEBSITE_SERVER:$SSH_WEBSITE_TARGET/ > /dev/null 2>&1
+            scp -v -o StrictHostKeyChecking=no -P $SSH_PORT web/build/libs/FoxyWeb-*.jar $SSH_WEBSITE_USER@WEBSITE_SERVER:$SSH_WEBSITE_TARGET/ > /dev/null 2>&1
