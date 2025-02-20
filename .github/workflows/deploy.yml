@@ -58,7 +58,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           WEBSITE_SERVER: ${{ secrets.WEBSITE_SERVER }}
-          SSH_WEBSITE_USER: ${{ secrets.SSH_USER }}
+          SSH_WEBSITE_USER: ${{ secrets.SSH_WEBSITE_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
           SSH_WEBSITE_TARGET: ${{ secrets.SSH_WEBSITE_TARGET }}
 
