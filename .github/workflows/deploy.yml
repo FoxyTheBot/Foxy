@@ -1,4 +1,4 @@
-name: Continuous Integration
+çname: Continuous Integration
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Build JAR with Gradle
+      - name: Build Foxy with Gradle
         run: |
           chmod +x ./gradlew
           ./gradlew :foxy:shadowJar --no-daemon
@@ -46,3 +46,22 @@ jobs:
           
             ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SERVER "echo 'Deploy completed on server $((index + 1))!'"
           done
+
+      - name: Build Foxy Website with Gradle
+        run: |
+          chmod +x ./gradlew
+          echo "Building SCSS files"
+          ./gradlew :web:compileSass
+          ./gradlew :web:shadowJar --no-daemon
+
+      - name: Deploying Foxy Website to server
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          WEBSITE_SERVER: ${{ secrets.WEBSITE_SERVER }}
+          SSH_WEBSITE_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_WEBSITE_TARGET: ${{ secrets.SSH_WEBSITE_TARGET }}
+
+        run: |
+            echo "Finally deploying Jar to server :)"          
+            scp -o StrictHostKeyChecking=no -P $SSH_PORT web/build/libs/FoxyWeb-*.jar $SSH_USER@WEBSITE_SERVER:$SSH_WEBSITE_TARGET/ > /dev/null 2>&1
