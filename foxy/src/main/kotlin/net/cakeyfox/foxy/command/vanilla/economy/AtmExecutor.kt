@@ -10,12 +10,16 @@ class AtmExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val user = context.getOption<User>("user") ?: context.event.user
         val userBalance = context.foxy.mongoClient.utils.user.getDiscordUser(user.id).userCakes.balance
-        val formattedBalance = context.utils.formatNumber(userBalance, "pt", "BR")
+        val formattedBalance = context.utils.formatUserBalance(userBalance.toLong(), context.locale)
 
         context.reply {
             content = pretty(
                 FoxyEmotes.FoxyDaily,
-                context.locale["cakes.atm.balance", user.asMention, formattedBalance]
+                context.locale[
+                    "cakes.atm.balance",
+                    user.asMention,
+                    formattedBalance
+                ]
             )
         }
     }

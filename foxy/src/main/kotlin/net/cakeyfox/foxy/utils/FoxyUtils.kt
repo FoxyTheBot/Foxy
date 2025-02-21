@@ -9,6 +9,7 @@ import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.FoxyInteractionContext
+import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.serializable.data.ActionResponse
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import java.text.NumberFormat
@@ -22,6 +23,17 @@ class FoxyUtils(
     fun convertISOToDiscordTimestamp(iso: Instant): String {
         val convertedDate = iso.epochSeconds.let { "<t:$it:f> (<t:$it:R>)" }
         return convertedDate
+    }
+
+    fun formatUserBalance(balance: Long, locale: FoxyLocale): String {
+        val formattedNumber = formatNumber(balance.toDouble(), "pt", "BR")
+        val formattedBalance = if (balance.toInt() == 1) {
+            locale["cakes.atm.singleCake"]
+        } else {
+            locale["cakes.atm.multipleCakes"]
+        }
+
+        return "**$formattedNumber $formattedBalance**"
     }
 
     fun convertLongToDiscordTimestamp(epoch: Long): String {
@@ -39,7 +51,7 @@ class FoxyUtils(
         }
     }
 
-    fun formatNumber(number: Double, language: String, country: String): String {
+    private fun formatNumber(number: Double, language: String, country: String): String {
         return NumberFormat.getNumberInstance(Locale(language, country))
             .format(number)
     }

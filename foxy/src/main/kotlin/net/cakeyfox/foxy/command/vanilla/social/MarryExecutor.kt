@@ -20,7 +20,6 @@ class MarryExecutor : FoxyCommandExecutor() {
                     context.locale["marry.cantMarryYourself"]
                 )
             }
-
             return
         }
 
@@ -31,7 +30,6 @@ class MarryExecutor : FoxyCommandExecutor() {
                     context.locale["marry.cantMarryBot", user.asMention]
                 )
             }
-
             return
         }
 
@@ -42,7 +40,6 @@ class MarryExecutor : FoxyCommandExecutor() {
                     context.locale["marry.cantMarryMe"]
                 )
             }
-
             return
         }
 
@@ -56,7 +53,6 @@ class MarryExecutor : FoxyCommandExecutor() {
                     context.locale["marry.userAlreadyMarried"]
                 )
             }
-
             return
         }
 
@@ -67,7 +63,6 @@ class MarryExecutor : FoxyCommandExecutor() {
                     context.locale["marry.youAlreadyMarried"]
                 )
             }
-
             return
         }
 
@@ -101,7 +96,6 @@ class MarryExecutor : FoxyCommandExecutor() {
                         context.locale["marry.userHasNoCakes", user.asMention]
                     )
                 }
-
                 return
             } else buildMarryMessage(context)
         }

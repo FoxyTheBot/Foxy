@@ -10,24 +10,16 @@ class RateWaifuCommand : FoxyCommandDeclarationWrapper {
         "ratewaifu",
         "ratewaifu.description"
     ) {
-        subCommand(
-            "rate",
-            "ratewaifu.rate.description",
-            baseName = this@command.name,
-
-            block = {
-                executor = RateWaifuExecutor()
-
-                addOption(
-                    OptionData(
-                        OptionType.USER,
-                        "user",
-                        "ratewaifu.user.description",
-                        true
-                    ),
-                    baseName = this@command.name
-                )
-            }
+        addOption(
+            OptionData(
+                OptionType.USER,
+                "user",
+                "ratewaifu.user.description",
+                true
+            ),
+            baseName = this@command.name
         )
+
+        executor = RateWaifuExecutor()
     }
 }

@@ -9,9 +9,7 @@ slots:
   embed:
     title: "Caça-Níqueis da Foxy"
     winnings: "Você ganhou:"
-    winningsValue: "**{0} Cakes**!"
     loss: "Você perdeu:"
-    lossValue: "**{0} Cakes**!"
   chart:
     embed:
       title: "Tabela de Multiplicadores"
@@ -19,7 +17,9 @@ slots:
 
 cakes:
   atm:
-    balance: "{0} has **{1}** Cakes"
+    balance: "{0} has **{1} {2}**"
+    singleCake: "Cake"
+    multipleCakes: "Cakes"
 
 rob:
   youFailedAndLostCakes: "Você foi pego e perdeu **{0} Cakes**!"
@@ -123,8 +123,8 @@ daily:
     buyMore: "I want more Cakes!"
 
 coinflipbet:
-  proposal: "**{0}**, **{1}** wants to place a bet of {2} Cakes! They bet the coin will land on **{3}**. Do you accept the bet?"
-  betResult: "It landed on **{0}**! {1} won the bet and gained {2} Cakes, paid by {3}. Hihihi!"
+  proposal: "**{0}**, **{1}** wants to place a bet of {2}! They bet the coin will land on **{3}**. Do you accept the bet?"
+  betResult: "It landed on **{0}**! {1} won the bet and gained {2}, paid by {3}. Hihihi!"
   youHaveNotEnoughBalance: "You don't have enough Cakes to bet!"
   declined: "The bet request was declined :/"
   heads: "heads"
@@ -152,8 +152,8 @@ cancel:
   userCancelledBecause: "**{0} was canceled by `{1}`**"
 
 pay:
-  confirm: "Do you really want to transfer **{0} Cakes** to {1}? \nThe Foxy Team **is not responsible** for lost Cakes, so make sure you're transferring to someone trustworthy! \nTrading NSFW(+18) content for Cakes is prohibited!"
-  success: "You transferred **{0} Cakes** to {1}!"
+  confirm: "Do you really want to transfer **{0}** to {1}? \nThe Foxy Team **is not responsible** for lost Cakes, so make sure you're transferring to someone trustworthy! \nTrading NSFW(+18) content for Cakes is prohibited!"
+  success: "You transferred **{0}** to {1}!"
   notEnoughBalance: "You don't have enough Cakes to transfer!"
   cantPayYourself: "You can't pay yourself!"
   invalidAmount: "You need to transfer a valid amount of Cakes!"

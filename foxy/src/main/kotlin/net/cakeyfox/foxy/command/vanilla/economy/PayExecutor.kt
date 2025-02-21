@@ -11,7 +11,9 @@ class PayExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val userToPay = context.getOption<User>("user")!!
         val amount = context.getOption<Long>("amount")!!
-        val formattedAmount = context.utils.formatLongNumber(amount, "pt", "BR")
+        val formattedAmount = context.utils.formatUserBalance(amount, context.locale)
+        val userBalance = context.getAuthorData().userCakes.balance.toLong() - amount
+        val formattedBalance = context.utils.formatUserBalance(userBalance, context.locale)
 
         isAbleToPay(context, userToPay, amount)
 
@@ -35,7 +37,12 @@ class PayExecutor : FoxyCommandExecutor() {
                     it.edit {
                         content = pretty(
                             FoxyEmotes.FoxyYay,
-                            context.locale["pay.success", formattedAmount, userToPay.asMention]
+                            context.locale[
+                                "pay.success",
+                                formattedAmount,
+                                userToPay.asMention,
+                                formattedBalance
+                            ]
                         )
 
                         actionRow(

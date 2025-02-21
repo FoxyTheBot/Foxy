@@ -12,13 +12,13 @@ class RussianRouletteExecutor : FoxyCommandExecutor() {
 
         context.reply {
             embed {
-                title = "Roleta Russa"
-                description = "Você girou o tambor e apontou a arma para si..."
+                title = context.locale["russianRoulette.embed.title"]
+                description = context.locale["russianRoulette.embed.description"]
                 color = Colors.ORANGE
 
                 field {
-                    name = "Balas no tambor"
-                    value = "O tambor contém $totalBullets balas."
+                    name = context.locale["russianRoulette.embed.bullets"]
+                    value = "🔫 ".repeat(totalBullets)
                 }
             }
         }
@@ -29,26 +29,24 @@ class RussianRouletteExecutor : FoxyCommandExecutor() {
         delay(2000)
         context.edit {
             embed {
-                title = "Roleta Russa"
-                description = "Você mesmo com medo, puxou o gatilho e..."
+                title = context.locale["russianRoulette.embed.title"]
+                description = context.locale["russianRoulette.embed.suspense"]
                 color = Colors.RANDOM
             }
         }
         delay(2000)
 
-        if (userBullet == bulletInChamber) {
-            context.edit {
+        context.edit {
+            if (userBullet == bulletInChamber) {
                 embed {
-                    title = "Roleta Russa"
-                    description = "Você morreu! A bala estava na câmara $bulletInChamber."
+                    title = context.locale["russianRoulette.embed.title"]
+                    description = context.locale["russianRoulette.embed.youDie", bulletInChamber.toString()]
                     color = Colors.RED
                 }
-            }
-        } else {
-            context.edit {
+            } else {
                 embed {
-                    title = "Roleta Russa"
-                    description = "Você sobreviveu! A bala estava na câmara $bulletInChamber."
+                    title = context.locale["russianRoulette.embed.title"]
+                    description = context.locale["russianRoulette.embed.youSurvived", bulletInChamber.toString()]
                     color = Colors.GREEN
                 }
             }

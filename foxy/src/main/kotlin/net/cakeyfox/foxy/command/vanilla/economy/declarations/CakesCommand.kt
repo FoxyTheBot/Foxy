@@ -75,7 +75,7 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
                             "amount",
                             "cakes.pay.option.amount",
                             true
-                        ).setMinValue(1000)
+                        )
                     ),
                     baseName = this@command.name,
                     isSubCommand = true

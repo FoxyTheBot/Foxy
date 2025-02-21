@@ -109,9 +109,9 @@ class ProfileRender(
 
         if (userData.marryStatus.marriedWith != null) drawMarryInfo(userData, layout)
 
-        val formattedBalance = context.utils.formatNumber(userData.userCakes.balance, "pt", "BR")
+        val formattedBalance = context.utils.formatUserBalance(userData.userCakes.balance.toLong(), context.locale)
         graphics.drawTextWithFont(config.profileWidth, config.profileHeight) {
-            text = "$formattedBalance Cakes"
+            text = formattedBalance
             fontFamily = layout.profileSettings.defaultFont
             fontSize = layout.profileSettings.fontSize.cakes
             fontColor = color

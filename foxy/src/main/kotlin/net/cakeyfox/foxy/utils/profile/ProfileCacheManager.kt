@@ -8,8 +8,6 @@ import net.cakeyfox.serializable.database.data.Badge
 import net.cakeyfox.serializable.database.data.Decoration
 import net.cakeyfox.serializable.database.data.Layout
 import java.awt.image.BufferedImage
-import java.io.InputStream
-import javax.imageio.ImageIO
 
 object ProfileCacheManager {
     val backgroundCache: Cache<String, Background> = Caffeine.newBuilder().build()

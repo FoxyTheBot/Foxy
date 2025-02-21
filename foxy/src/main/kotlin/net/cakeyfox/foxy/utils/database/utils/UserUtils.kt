@@ -1,7 +1,6 @@
 package net.cakeyfox.foxy.utils.database.utils
 
 import kotlinx.datetime.toJavaInstant
-import kotlinx.serialization.encodeToString
 import net.cakeyfox.foxy.utils.database.MongoDBClient
 import net.cakeyfox.serializable.database.data.*
 import org.bson.Document
@@ -18,7 +17,6 @@ class UserUtils(
     private val client: MongoDBClient,
     private val foxy: FoxyInstance
 ) {
-
     suspend fun getDiscordUser(userId: String): FoxyUser {
         return withContext(Dispatchers.IO) {
             val collection = client.database.getCollection<Document>("users")

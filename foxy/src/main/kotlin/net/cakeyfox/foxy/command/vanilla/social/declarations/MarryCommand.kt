@@ -13,33 +13,23 @@ class MarryCommand : FoxyCommandDeclarationWrapper {
         "marry.description",
 
         interactionContexts = listOf(
-            InteractionContextType.GUILD,
-            InteractionContextType.BOT_DM,
-            InteractionContextType.PRIVATE_CHANNEL
+            InteractionContextType.GUILD
         ),
 
         integrationType = listOf(
-            IntegrationType.USER_INSTALL,
             IntegrationType.GUILD_INSTALL
         )
     ) {
-        subCommand(
-            "propose",
-            "marry.propose.description",
-            baseName = this@command.name,
-            block = {
-                addOption(
-                    OptionData(
-                        OptionType.USER,
-                        "user",
-                        "marry.user.description",
-                        true
-                    ),
-                    baseName = this@command.name
-                )
-
-                executor = MarryExecutor()
-            }
+        addOption(
+            OptionData(
+                OptionType.USER,
+                "user",
+                "marry.user.description",
+                true
+            ),
+            baseName = this@command.name
         )
+
+        executor = MarryExecutor()
     }
 }

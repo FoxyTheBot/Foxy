@@ -5,16 +5,24 @@ commands:
   componentExpired: "Wait, where is it? I can't find the interaction information... It seems to have expired! Run the command again."
 
   command:
+    ship:
+      name: "ship"
+      description: "[Social] Ship two users"
+      options:
+        user1:
+          name: "user1"
+          description: "The first user to be shipped"
+        user2:
+          name: "user2"
+          description: "The second user to be shipped"
+
     rob:
       name: "rob"
       description: "[Economy] Rob someone"
-      someone:
-        name: "someone"
-        description: "[Economia] Rob someone"
-        options:
-          user:
-            name: "user"
-            description: "User you want to rob"
+      options:
+        user:
+          name: "user"
+          description: "User you want to rob"
 
     serverinvite:
       name: "convite"
@@ -142,13 +150,10 @@ commands:
     fate:
       name: "fate"
       description: "[Diversão] Descubra o seu destino com uma pessoa"
-      with_user:
-        name: "com_alguém"
-        description: "[Diversão] Descubra o seu destino com uma pessoa"
-        options:
-          user:
-            name: "usuário"
-            description: "O usuário que você quer descobrir o seu destino"
+      options:
+        user:
+          name: "usuário"
+          description: "O usuário que você quer descobrir o seu destino"
 
     cancel:
       name: "cancelar"
@@ -264,13 +269,10 @@ commands:
     aboutme:
       name: "aboutme"
       description: "[Social] Commands related to your profile"
-      change:
-        name: "change"
-        description: "[Social] Change the text of your profile"
-        options:
-          text:
-            name: "text"
-            description: "The text to be displayed on your profile"
+      options:
+        text:
+          name: "text"
+          description: "The text to be displayed on your profile"
 
     profile:
       name: "profile"

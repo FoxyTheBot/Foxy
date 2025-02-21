@@ -5,13 +5,20 @@
 commands:
   earlyAccess: "Esse comando está em beta e apenas usuários premium possuem acesso antecipado. Se você quiser ter acesso a esse comando e muitos outros, você pode se tornar um usuário premium clicando [aqui](https://foxybot.win/br/premium)"
 
+russianRoulette:
+  embed:
+    title: "Roleta Russa"
+    description: "Você girou o tambor e apontou a arma para si..."
+    bullets: "Balas no tambor:"
+    suspense: "Você puxou o gatilho..."
+    youDie: "Você morreu! A bala estava na câmara {0}."
+    youSurvived: "Você sobreviveu! A bala estava na câmara {0}."
+
 slots:
   embed:
     title: "Caça-Níqueis da Foxy"
     winnings: "Você ganhou:"
-    winningsValue: "**{0} Cakes**!"
     loss: "Você perdeu:"
-    lossValue: "**{0} Cakes**!"
   chart:
     embed:
       title: "Tabela de Multiplicadores"
@@ -19,7 +26,9 @@ slots:
 
 cakes:
   atm:
-    balance: "{0} possui **{1}** Cakes"
+    balance: "{0} possui {1}"
+    singleCake: "Cake"
+    multipleCakes: "Cakes"
 
 moda:
   wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar uma imagem do tipo PNG ou JPG"
@@ -118,8 +127,8 @@ daily:
     buyMore: "Quero mais Cakes!"
 
 coinflipbet:
-  proposal: "**{0}**, **{1}** quer fazer uma aposta de {2} Cakes! Ele(a) aposta que a moeda irá cair em **{3}**. Você aceita a aposta?"
-  betResult: "Deu **{0}**! {1} ganhou a aposta e ganhou {2} Cakes! Pago por {3} hihihi"
+  proposal: "**{0}**, **{1}** quer fazer uma aposta de {2}! Ele(a) aposta que a moeda irá cair em **{3}**. Você aceita a aposta?"
+  betResult: "Deu **{0}**! {1} ganhou a aposta e ganhou {2}! Pago por {3} hihihi"
   youHaveNotEnoughBalance: "Você não tem cakes o suficiente para apostar!"
   declined: "O pedido de aposta foi recusado :/"
   heads: "cara"
@@ -153,8 +162,8 @@ rob:
   success: "Você roubou **{0} Cakes** de {1}!"
 
 pay:
-  confirm: "Você deseja mesmo transferir **{0} Cakes** para {1}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!"
-  success: "Você transferiu **{0} Cakes** para {1}!"
+  confirm: "Você deseja mesmo transferir {0} para {1}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!"
+  success: "Você transferiu {0} para {1}! Você agora tem {2}!"
   notEnoughBalance: "Você não tem Cakes suficientes para transferir!"
   cantPayYourself: "Você não pode transferir Cakes para você mesmo!"
   invalidAmount: "Você precisa transferir uma quantidade válida de Cakes!"

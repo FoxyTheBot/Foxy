@@ -7,24 +7,17 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.actions.declarations.ActionsCommand
 import net.cakeyfox.foxy.command.vanilla.dev.declarations.ServerInviteCommand
-import net.cakeyfox.foxy.command.vanilla.economy.declarations.CakesCommand
-import net.cakeyfox.foxy.command.vanilla.economy.declarations.DailyCommand
-import net.cakeyfox.foxy.command.vanilla.economy.declarations.RobCommand
-import net.cakeyfox.foxy.command.vanilla.economy.declarations.SlotsCommand
+import net.cakeyfox.foxy.command.vanilla.economy.declarations.*
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.*
 import net.cakeyfox.foxy.command.vanilla.games.declarations.RussianRouletteCommand
-import net.cakeyfox.foxy.command.vanilla.social.declarations.AboutMeCommand
-import net.cakeyfox.foxy.command.vanilla.social.declarations.DivorceCommand
-import net.cakeyfox.foxy.command.vanilla.social.declarations.MarryCommand
-import net.cakeyfox.foxy.command.vanilla.social.declarations.ProfileCommand
+import net.cakeyfox.foxy.command.vanilla.social.declarations.*
 import net.cakeyfox.foxy.command.vanilla.utils.declarations.*
 import net.cakeyfox.foxy.utils.ClusterUtils
 import net.dv8tion.jda.api.interactions.commands.Command
-import kotlin.reflect.jvm.jvmName
 
 class FoxyCommandManager(private val foxy: FoxyInstance) {
     val commands = mutableListOf<FoxyCommandDeclarationWrapper>()
-    private val logger = KotlinLogging.logger(this::class.jvmName)
+    private val logger = KotlinLogging.logger { }
 
     operator fun get(name: String): FoxyCommandDeclarationWrapper? {
         return commands.find { it.create().name == name }
@@ -36,6 +29,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
 
     suspend fun handle(): MutableList<Command> {
         val allCommands = mutableListOf<Command>()
+
         foxy.shardManager.shards.forEach { shard ->
             val action = shard.updateCommands()
 
@@ -72,6 +66,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(CakesCommand())
         register(DailyCommand())
         register(SlotsCommand())
+//        register(RouletteCommand())
         register(RobCommand())
 
         /* ---- [Entertainment] ---- */
@@ -80,7 +75,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(FateCommand())
         register(CancelCommand())
         register(RateWaifuCommand())
-        // register(RussianRouletteCommand())
+        register(RussianRouletteCommand())
 
         /* ---- [Social] ---- */
         register(AboutMeCommand())

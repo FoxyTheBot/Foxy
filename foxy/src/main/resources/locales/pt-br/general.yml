@@ -6,16 +6,24 @@ commands:
   error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
 
   command:
+    ship:
+      name: "ship"
+      description: "[Social] Ship two users"
+      options:
+        user1:
+          name: "user1"
+          description: "The first user to be shipped"
+        user2:
+          name: "user2"
+          description: "The second user to be shipped"
+
     rob:
       name: "roubar"
       description: "[Economia] Roube alguém"
-      someone:
-        name: "alguém"
-        description: "[Economia] Roube alguém"
-        options:
-          user:
-            name: "usuário"
-            description: "O usuário que você deseja roubar"
+      options:
+        user:
+          name: "usuário"
+          description: "O usuário que você deseja roubar"
 
     serverinvite:
       name: "convite"
@@ -142,13 +150,10 @@ commands:
     fate:
       name: "fate"
       description: "[Diversão] Descubra o seu destino com uma pessoa"
-      with_user:
-        name: "com_alguém"
-        description: "[Diversão] Descubra o seu destino com uma pessoa"
-        options:
-          user:
-            name: "usuário"
-            description: "O usuário que você quer descobrir o seu destino"
+      options:
+        user:
+          name: "usuário"
+          description: "O usuário que você quer descobrir o seu destino"
 
     cancel:
       name: "cancelar"
@@ -262,13 +267,10 @@ commands:
     aboutme:
       name: "sobremim"
       description: "[Social] Comandos relacionados ao seu perfil"
-      change:
-        name: "alterar"
-        description: "[Social] Altera o texto do seu perfil"
-        options:
-          text:
-            name: "texto"
-            description: "O texto que será exibido no seu perfil"
+      options:
+        text:
+          name: "texto"
+          description: "O texto que será exibido no seu perfil"
 
     profile:
       name: "perfil"

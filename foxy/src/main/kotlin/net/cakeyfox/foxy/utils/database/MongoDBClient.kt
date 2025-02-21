@@ -9,13 +9,14 @@ import net.cakeyfox.foxy.utils.database.utils.DatabaseUtils
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.serializable.database.data.FoxyUser
 import net.cakeyfox.serializable.database.data.Guild
+import java.util.concurrent.TimeUnit
 import kotlin.reflect.jvm.jvmName
 
 class MongoDBClient(
     foxy: FoxyInstance
 ) {
     companion object {
-        private var logger = KotlinLogging.logger(this::class.jvmName)
+        private var logger = KotlinLogging.logger { }
     }
 
     private lateinit var mongoClient: MongoClient
@@ -32,6 +33,7 @@ class MongoDBClient(
 
     fun start(foxy: FoxyInstance) {
         mongoClient = MongoClient.create(foxy.config.database.uri)
+        mongoClient.withTimeout(10, TimeUnit.SECONDS)
         database = mongoClient.getDatabase(foxy.config.database.databaseName)
         users = database.getCollection("users")
         guilds = database.getCollection("guilds")

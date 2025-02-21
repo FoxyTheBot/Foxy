@@ -20,25 +20,16 @@ class RobCommand : FoxyCommandDeclarationWrapper {
             InteractionContextType.GUILD
         )
     ) {
-        subCommand(
-            "someone",
-            "rob.someone.description",
-            baseName = this@command.name,
-
-            block = {
-                addOption(
-                    OptionData(
-                        OptionType.USER,
-                        "user",
-                        "rob.someone.option.user",
-                        true
-                    ),
-                    isSubCommand = true,
-                    baseName = this@command.name
-                )
-
-                executor = RobExecutor()
-            }
+        addOption(
+            OptionData(
+                OptionType.USER,
+                "user",
+                "option.user",
+                true
+            ),
+            baseName = this@command.name
         )
+
+        executor = RobExecutor()
     }
 }

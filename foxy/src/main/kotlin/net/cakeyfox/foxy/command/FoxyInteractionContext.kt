@@ -108,6 +108,20 @@ class FoxyInteractionContext(
         }
     }
 
+    suspend fun deferEdit(): InteractionHook? {
+        return when (event) {
+            is ButtonInteractionEvent -> {
+                event.deferEdit().await()
+            }
+
+            is StringSelectInteractionEvent -> {
+                event.deferEdit().await()
+            }
+
+            else -> throw IllegalStateException("Cannot defer edit this event type")
+        }
+    }
+
     suspend fun edit(block: InlineMessage<*>.() -> Unit): Unit? {
         val msg = MessageEditBuilder {
             apply(block)

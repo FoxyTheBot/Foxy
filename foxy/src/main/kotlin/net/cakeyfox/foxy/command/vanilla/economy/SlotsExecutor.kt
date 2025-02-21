@@ -47,10 +47,10 @@ class SlotsExecutor : FoxyCommandExecutor() {
                             FoxyEmotes.FoxyYay,
                             context.locale["slots.embed.winnings"]
                         )
-                        value = context.locale[
-                            "slots.embed.winningsValue",
-                            context.utils.formatLongNumber(winnings, "pt", "BR")
-                        ]
+                        value = context.utils.formatUserBalance(
+                            winnings,
+                            context.locale
+                        )
                     }
                 } else {
                     field {
@@ -58,10 +58,10 @@ class SlotsExecutor : FoxyCommandExecutor() {
                             FoxyEmotes.FoxyCry,
                             context.locale["slots.embed.loss"]
                         )
-                        value = context.locale[
-                            "slots.embed.lossValue",
-                            context.utils.formatLongNumber(amount, "pt", "BR")
-                        ]
+                        value = context.utils.formatUserBalance(
+                            amount,
+                            context.locale
+                        )
                     }
                 }
             }

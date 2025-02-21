@@ -51,5 +51,4 @@ class FoxyLocale(val locale: String) {
         logger.warn { "!!{${key}}!! Key not found in any resource file" }
         return "!!{${key}}!!"
     }
-
 }

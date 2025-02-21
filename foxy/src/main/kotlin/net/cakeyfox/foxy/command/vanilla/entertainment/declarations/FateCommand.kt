@@ -10,23 +10,16 @@ class FateCommand : FoxyCommandDeclarationWrapper {
         "fate",
         "fate.description"
     ) {
-        subCommand(
-            "with_user",
-            "fate.with_user.description",
+        addOption(
+            OptionData(
+                OptionType.USER,
+                "user",
+                "fate.user.description",
+                true
+            ),
             baseName = this@command.name
-        ) {
-            executor = FateExecutor()
+        )
 
-            addOption(
-                OptionData(
-                    OptionType.USER,
-                    "user",
-                    "fate.user.description",
-                    true
-                ),
-                isSubCommand = true,
-                baseName = this@command.name
-            )
-        }
+        executor = FateExecutor()
     }
 }

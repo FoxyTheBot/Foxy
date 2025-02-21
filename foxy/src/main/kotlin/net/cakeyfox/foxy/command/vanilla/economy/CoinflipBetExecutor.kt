@@ -11,7 +11,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val user = context.getOption<User>("user")!!
         val amount = context.getOption<Long>("amount")!!
-        val formattedAmount = context.utils.formatLongNumber(amount, "pt", "BR")
+        val formattedAmount = context.utils.formatUserBalance(amount, context.locale)
         val side = context.getOption<String>("side")!!
         val userToBet = context.db.utils.user.getDiscordUser(user.id)
 
