@@ -1,6 +1,7 @@
 plugins {
+    java
     kotlin("jvm") version Versions.KOTLIN
-    kotlin("plugin.serialization") version Versions.KOTLIN_SERIALIZATION
+    kotlin("plugin.serialization") version Versions.KOTLIN
     id("com.github.johnrengelman.shadow")
     application
 }
