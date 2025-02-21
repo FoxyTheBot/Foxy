@@ -5,6 +5,8 @@ build
 !**/src/test/**/build/
 .idea
 
+### Compiled CSS
+css/
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
