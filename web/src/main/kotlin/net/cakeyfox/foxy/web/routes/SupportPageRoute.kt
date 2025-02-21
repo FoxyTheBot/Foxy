@@ -1,9 +1,8 @@
 package net.cakeyfox.foxy.web.routes
 
 import io.ktor.http.*
-import io.ktor.server.html.*
+import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import kotlinx.html.unsafe
 import net.cakeyfox.foxy.web.frontend.info.SupportPageBuilder
 import net.cakeyfox.foxy.web.utils.Locale
 
@@ -12,8 +11,8 @@ class SupportPageRoute {
         get(path) {
             val locale = Locale(call.parameters["lang"] ?: "br")
 
-            call.respondHtml(HttpStatusCode.OK) {
-                unsafe { +SupportPageBuilder(locale).build() }
+            call.respondText(contentType = ContentType.Text.Html) {
+                SupportPageBuilder(locale).build()
             }
         }
     }

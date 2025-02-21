@@ -2,7 +2,7 @@ package net.cakeyfox.foxy.web.frontend.info
 
 import kotlinx.html.*
 import kotlinx.html.stream.createHTML
-import net.cakeyfox.foxy.web.frontend.global.AnalyticsScripts
+import net.cakeyfox.foxy.web.frontend.global.BaseHeadBuilder
 import net.cakeyfox.foxy.web.frontend.global.HeaderBuilder
 import net.cakeyfox.foxy.web.utils.Locale
 
@@ -18,7 +18,7 @@ class SupportPageBuilder(private val locale: Locale) {
                 link(rel = "stylesheet", href = "/styles/invite.css")
                 link(rel = "stylesheet", href = "/styles/footer.css")
 
-                unsafe { AnalyticsScripts().build() }
+                unsafe { BaseHeadBuilder().build() }
             }
 
             body {
