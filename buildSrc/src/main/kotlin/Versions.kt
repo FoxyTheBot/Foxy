@@ -17,8 +17,4 @@ object Versions {
     const val JDA_KTX = "0.12.0"
     const val SHADOW_JAR = "7.1.2"
     const val JACKSON = "2.18.0"
-    const val HIKARICP = "6.2.1"
-    const val EXPOSED = "0.59.0"
-    const val POSTGRESQL = "42.7.1"
-    const val KOTLINX_HTML = "0.8.0"
 }
