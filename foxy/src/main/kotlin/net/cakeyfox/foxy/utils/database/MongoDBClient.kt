@@ -10,7 +10,6 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.serializable.database.data.FoxyUser
 import net.cakeyfox.serializable.database.data.Guild
 import java.util.concurrent.TimeUnit
-import kotlin.reflect.jvm.jvmName
 
 class MongoDBClient(
     foxy: FoxyInstance

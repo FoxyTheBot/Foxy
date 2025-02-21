@@ -1,7 +1,6 @@
 plugins {
-    id("java")
+    kotlin("multiplatform")
     id("com.github.johnrengelman.shadow")
-    `java-library`
 }
 
 group = "net.cakeyfox"
@@ -11,22 +10,16 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-hocon:${Versions.KOTLIN_SERIALIZATION}")
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
-
-tasks {
-    shadowJar {
-        archiveBaseName.set("common")
-        archiveVersion.set("1.0.0")
-        archiveClassifier.set("")
-    }
-}
-
 kotlin {
-    jvmToolchain(Versions.JVM_TARGET)
+    jvm {
+        compilations.all {
+            kotlinOptions.jvmTarget = Versions.JVM_TARGET.toString()
+        }
+    }
+
+    jvm().compilations["main"].defaultSourceSet {
+        dependencies {
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-hocon:${Versions.KOTLIN_SERIALIZATION}")
+        }
+    }
 }

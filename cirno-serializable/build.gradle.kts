@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm")
-    kotlin("plugin.serialization") version Versions.KOTLIN_SERIALIZATION
+    kotlin("multiplatform")
+    kotlin("plugin.serialization") version Versions.KOTLIN
 }
 
 group = "net.cakeyfox"
@@ -10,24 +10,40 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation(kotlin("test"))
-
-    // DateTime
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.KOTLINX_DATE_TIME}")
-
-    // MongoDB ObjectId
-    implementation("org.mongodb:bson:4.11.0")
-
-    // Serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.KOTLIN_SERIALIZATION}")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-hocon:${Versions.KOTLIN_SERIALIZATION}")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.JACKSON}")
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
 kotlin {
-    jvmToolchain(Versions.JVM_TARGET)
+    jvm {
+        compilations.all {
+            kotlinOptions.jvmTarget = Versions.JVM_TARGET.toString()
+        }
+
+        withJava()
+    }
+
+    js(IR) {
+        browser()
+        nodejs()
+    }
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib-common"))
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.KOTLINX_DATE_TIME}")
+            }
+        }
+
+        val jvmMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib-jdk8"))
+            }
+        }
+
+        val jsMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib-js"))
+            }
+        }
+    }
 }

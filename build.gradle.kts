@@ -1,6 +1,9 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
+    java
     kotlin("jvm") version Versions.KOTLIN
-    kotlin("plugin.serialization") version Versions.KOTLIN_SERIALIZATION
+    kotlin("plugin.serialization") version Versions.KOTLIN
     id("com.github.johnrengelman.shadow") version Versions.SHADOW_JAR
     base
 }
@@ -17,28 +20,7 @@ allprojects {
 }
 
 subprojects {
-    apply(plugin = "org.jetbrains.kotlin.jvm")
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
-
-tasks {
-    shadowJar {
-        archiveBaseName.set("Foxy")
-        archiveVersion.set(version.toString())
-        archiveClassifier.set("")
-
-        configurations = listOf(project.configurations.runtimeClasspath.get())
+    tasks.withType<KotlinCompile> {
+        kotlinOptions.javaParameters = true
     }
-
-    test {
-        useJUnitPlatform()
-    }
-}
-
-
-kotlin {
-    jvmToolchain(Versions.JVM_TARGET)
 }
