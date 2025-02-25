@@ -39,7 +39,7 @@ Build the project with Gradle by running:
 
 > If you have Gradle installed globally, you can use `gradle build` instead of `./gradlew build`.
 
-> If Gradle reports missing methods or unsupported features in your JDK, update to the latest JDK 17+ version from [Adoptium](https://adoptium.net/).
+> If Gradle reports missing methods or unsupported features in your JDK, update to the latest JDK 21+ version from [Adoptium](https://adoptium.net/).
 
 ## Running Foxy
 ### Requirements
