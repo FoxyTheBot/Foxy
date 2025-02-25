@@ -25,7 +25,7 @@ class FoxyUtils(
         return convertedDate
     }
 
-    fun formatUserBalance(balance: Long, locale: FoxyLocale): String {
+    fun formatUserBalance(balance: Long, locale: FoxyLocale, isBold: Boolean = true): String {
         val formattedNumber = formatNumber(balance.toDouble(), "pt", "BR")
         val formattedBalance = if (balance.toInt() == 1) {
             locale["cakes.atm.singleCake"]
@@ -33,7 +33,9 @@ class FoxyUtils(
             locale["cakes.atm.multipleCakes"]
         }
 
-        return "**$formattedNumber $formattedBalance**"
+        if (isBold) {
+            return "**$formattedNumber $formattedBalance**"
+        } else return "$formattedNumber $formattedBalance"
     }
 
     fun convertLongToDiscordTimestamp(epoch: Long): String {

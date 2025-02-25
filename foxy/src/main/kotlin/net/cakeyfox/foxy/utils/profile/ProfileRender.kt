@@ -109,7 +109,11 @@ class ProfileRender(
 
         if (userData.marryStatus.marriedWith != null) drawMarryInfo(userData, layout)
 
-        val formattedBalance = context.utils.formatUserBalance(userData.userCakes.balance.toLong(), context.locale)
+        val formattedBalance = context.utils.formatUserBalance(
+            userData.userCakes.balance.toLong(),
+            context.locale,
+            false
+        )
         graphics.drawTextWithFont(config.profileWidth, config.profileHeight) {
             text = formattedBalance
             fontFamily = layout.profileSettings.defaultFont
