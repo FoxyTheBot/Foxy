@@ -30,15 +30,16 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
     suspend fun handle(): MutableList<Command> {
         val allCommands = mutableListOf<Command>()
 
+        val supportServerShardId = ClusterUtils.getShardIdFromGuildId(
+            Constants.SUPPORT_SERVER_ID.toLong(),
+            foxy.config.discord.totalShards
+        )
+
         foxy.shardManager.shards.forEach { shard ->
             val action = shard.updateCommands()
 
             commands.forEach { command ->
                 if (command.create().isPrivate) {
-                    val supportServerShardId = ClusterUtils.getShardIdFromGuildId(
-                        Constants.SUPPORT_SERVER_ID.toLong(),
-                        foxy.config.discord.totalShards
-                    )
                     if (shard.shardInfo.shardId == supportServerShardId) {
                         val supportServer = foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
                         supportServer?.updateCommands()?.addCommands(command.create().build())?.await()
