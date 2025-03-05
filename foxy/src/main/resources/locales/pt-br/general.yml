@@ -6,6 +6,10 @@ commands:
   error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
 
   command:
+    dashboard:
+      name: "dashboard"
+      description: "[Utilitários] Acesse o painel de configuração do servidor atual"
+
     ship:
       name: "ship"
       description: "[Social] Ship two users"

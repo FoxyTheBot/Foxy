@@ -5,6 +5,14 @@
 commands:
   earlyAccess: "Esse comando está em beta e apenas usuários premium possuem acesso antecipado. Se você quiser ter acesso a esse comando e muitos outros, você pode se tornar um usuário premium clicando [aqui](https://foxybot.win/br/premium)"
 
+dashboard:
+  embed:
+    title: "Painel de Controle"
+    description: "Quer deixar o servidor `{0}` incrível e mas não sabe por onde começar? Acesse o painel de controle para configurar o seu servidor!"
+    button: "Acessar o Painel de Controle"
+    noPermission: "Você precisa da permissão `Gerenciar Servidor` para utilizar esse comando"
+    guildNotFound: "Eu preciso estar nesse servidor para isso funcionar!"
+
 russianRoulette:
   embed:
     title: "Roleta Russa"

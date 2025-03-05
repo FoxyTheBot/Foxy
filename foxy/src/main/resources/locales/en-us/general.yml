@@ -5,6 +5,10 @@ commands:
   componentExpired: "Wait, where is it? I can't find the interaction information... It seems to have expired! Run the command again."
 
   command:
+    dashboard:
+      name: "dashboard"
+      description: "[Utils] Access the current server dashboard"
+
     ship:
       name: "ship"
       description: "[Social] Ship two users"

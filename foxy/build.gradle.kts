@@ -29,8 +29,8 @@ dependencies {
     implementation("club.minnced:jda-ktx:${Versions.JDA_KTX}")
 
     // MongoDB
-    implementation("org.mongodb:bson-kotlinx:5.3.0")
-    implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.3.0")
+    implementation("org.mongodb:bson-kotlinx:${Versions.MONGODB}")
+    implementation("org.mongodb:mongodb-driver-kotlin-coroutine:${Versions.MONGODB}")
 
     // Ktor
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")

@@ -29,6 +29,7 @@ class ServerInviteRetrieveExecutor : FoxyCommandExecutor() {
         context.reply(true) {
             embed {
                 title = "Convites do servidor ${guild.name}"
+                thumbnail = guild.icon
                 color = Colors.RANDOM
                 description = invites.take(5)
                     .joinToString("\n") {

@@ -33,7 +33,6 @@ import net.dv8tion.jda.api.utils.ChunkingFilter
 import net.dv8tion.jda.api.utils.MemberCachePolicy
 import net.dv8tion.jda.api.utils.cache.CacheFlag
 import kotlin.concurrent.thread
-import kotlin.reflect.jvm.jvmName
 
 class FoxyInstance(
     val config: FoxyConfig,
@@ -57,14 +56,12 @@ class FoxyInstance(
     private val currentClusterName = if (config.discord.clusters.size < 2) null else currentCluster.name
     private val coroutineExecutor = ThreadUtils.createThreadPool("CoroutineExecutor [%d]")
 
-    val json = Json {
-        ignoreUnknownKeys = true
-    }
+    val json = Json { ignoreUnknownKeys = true }
     val threadPoolManager = ThreadPoolManager()
     val coroutineDispatcher = coroutineExecutor.asCoroutineDispatcher()
 
     suspend fun start() {
-        val logger = KotlinLogging.logger(this::class.jvmName)
+        val logger = KotlinLogging.logger { }
 
         environment = config.environment
         mongoClient = MongoDBClient(this)
@@ -73,13 +70,8 @@ class FoxyInstance(
         interactionManager = FoxyComponentManager(this)
         artistryClient = ArtistryClient(config, config.others.artistry.key)
         httpClient = HttpClient(CIO) {
-            install(HttpTimeout) {
-                requestTimeoutMillis = 60_000
-            }
-
-            install(ContentNegotiation) {
-                json()
-            }
+            install(HttpTimeout) { requestTimeoutMillis = 60_000 }
+            install(ContentNegotiation) { json() }
         }
 
         mongoClient.start(this)

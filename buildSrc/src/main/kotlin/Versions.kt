@@ -17,4 +17,5 @@ object Versions {
     const val JDA_KTX = "0.12.0"
     const val SHADOW_JAR = "7.1.2"
     const val JACKSON = "2.18.0"
+    const val MONGODB = "5.3.0"
 }

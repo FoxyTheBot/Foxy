@@ -4,10 +4,10 @@ import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
-import io.ktor.http.content.*
 import kotlinx.coroutines.*
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.serializable.data.cluster.ClusterStats
@@ -88,12 +88,10 @@ class TopggStatsSender(
             val response = foxy.httpClient.post("https://top.gg/api/bots/$clientId/stats") {
                 header("Authorization", token)
                 accept(ContentType.Application.Json)
-                setBody(
-                    TextContent(
-                        Json.encodeToString(ClusterStats.TopggBotStats(serverCount)),
-                        ContentType.Application.Json
-                    )
-                )
+                setBody(buildJsonObject {
+                    put("server_count", serverCount)
+                    put("shard_count", foxy.config.discord.totalShards)
+                })
             }
 
             if (response.status != HttpStatusCode.OK) {
