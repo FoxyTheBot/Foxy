@@ -89,6 +89,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(DblCommand())
         register(PingCommand())
         register(ServerCommand())
+        register(DashboardCommand())
 
         /* ---- [Staff] ---- */
         register(ServerInviteCommand())
