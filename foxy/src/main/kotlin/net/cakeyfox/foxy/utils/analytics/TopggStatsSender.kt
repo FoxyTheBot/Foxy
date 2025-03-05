@@ -1,9 +1,11 @@
 package net.cakeyfox.foxy.utils.analytics
 
 import io.ktor.client.*
+import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.buildJsonObject
@@ -41,7 +43,9 @@ class TopggStatsSender(
     }
 
     private suspend fun getServerCountsFromClusters(): Int {
-        val client = HttpClient()
+        val client = HttpClient {
+            install(ContentNegotiation) { json() }
+        }
         val clusterUrls = foxy.config.discord.clusters
             .mapNotNull { if (!it.canPublishStats) it.clusterUrl else null }
 
