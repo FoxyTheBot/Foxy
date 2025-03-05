@@ -17,7 +17,7 @@ slots:
 
 cakes:
   atm:
-    balance: "{0} has **{1} {2}**"
+    balance: "{0} has **{1}**"
     singleCake: "Cake"
     multipleCakes: "Cakes"
 
