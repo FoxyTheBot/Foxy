@@ -91,7 +91,7 @@ class TopggStatsSender(
         return withContext(Dispatchers.IO) {
             val response = foxy.httpClient.post("https://top.gg/api/bots/$clientId/stats") {
                 header("Authorization", token)
-                accept(ContentType.Application.Json)
+                contentType(ContentType.Application.Json)
                 setBody(buildJsonObject {
                     put("server_count", serverCount)
                     put("shard_count", foxy.config.discord.totalShards)
