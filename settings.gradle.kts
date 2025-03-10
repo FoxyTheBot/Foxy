@@ -14,7 +14,7 @@ dependencyResolutionManagement {
         }
     }
 }
-rootProject.name = "Foxy"
+rootProject.name = "foxy-parent"
 
 include("foxy")
 include("artistry-client")
