@@ -21,7 +21,7 @@ class RobExecutor : FoxyCommandExecutor() {
 
         // TODO: Add cooldown field to database
 
-        val userToRobData = context.db.utils.user.getDiscordUser(userToRob.id)
+        val userToRobData = context.db.utils.user.getFoxyProfile(userToRob.id)
 
         if (userToRobData.userCakes.balance < 100) {
             context.reply(true) {

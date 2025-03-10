@@ -13,7 +13,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
         val amount = context.getOption<Long>("amount")!!
         val formattedAmount = context.utils.formatUserBalance(amount, context.locale)
         val side = context.getOption<String>("side")!!
-        val userToBet = context.db.utils.user.getDiscordUser(user.id)
+        val userToBet = context.db.utils.user.getFoxyProfile(user.id)
 
         if (amount < 1) {
             context.reply {

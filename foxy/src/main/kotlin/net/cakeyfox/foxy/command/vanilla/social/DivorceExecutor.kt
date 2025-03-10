@@ -19,7 +19,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
             return
         }
 
-        val partner = context.db.utils.user.getDiscordUser(
+        val partner = context.db.utils.user.getFoxyProfile(
             context.getAuthorData().marryStatus.marriedWith!!
         )
         val partnerAsUser = context.jda.retrieveUserById(partner._id).await()

@@ -56,7 +56,7 @@ class InteractionsListener(
                     }
                 } else null
 
-                if (context.db.utils.user.getDiscordUser(event.user.id).isBanned == true) {
+                if (context.db.utils.user.getFoxyProfile(event.user.id).isBanned == true) {
                     foxy.utils.handleBan(event, context)
                     return@launchMessageJob
                 }

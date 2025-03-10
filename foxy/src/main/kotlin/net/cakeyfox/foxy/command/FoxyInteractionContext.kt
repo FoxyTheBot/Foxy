@@ -35,7 +35,7 @@ class FoxyInteractionContext(
     val guild = event.guild
 
     suspend fun getAuthorData(): FoxyUser {
-        return db.utils.user.getDiscordUser(user.id)
+        return db.utils.user.getFoxyProfile(user.id)
     }
 
     suspend fun reply(

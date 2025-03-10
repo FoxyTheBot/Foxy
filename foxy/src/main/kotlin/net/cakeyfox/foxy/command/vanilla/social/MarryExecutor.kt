@@ -43,7 +43,7 @@ class MarryExecutor : FoxyCommandExecutor() {
             return
         }
 
-        val userData = context.db.utils.user.getDiscordUser(user.id)
+        val userData = context.db.utils.user.getFoxyProfile(user.id)
         val authorData = context.getAuthorData()
 
         if (userData.marryStatus.marriedWith != null) {
@@ -103,7 +103,7 @@ class MarryExecutor : FoxyCommandExecutor() {
 
     private suspend fun buildMarryMessage(context: FoxyInteractionContext) {
         val user = context.getOption<User>("user")!!
-        val userData = context.db.utils.user.getDiscordUser(user.id)
+        val userData = context.db.utils.user.getFoxyProfile(user.id)
         val authorData = context.getAuthorData()
         val isUserPremium =
             if (userData.userPremium.premiumDate != null) {

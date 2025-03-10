@@ -17,7 +17,7 @@ class UserUtils(
     private val client: MongoDBClient,
     private val foxy: FoxyInstance
 ) {
-    suspend fun getDiscordUser(userId: String): FoxyUser {
+    suspend fun getFoxyProfile(userId: String): FoxyUser {
         return withContext(Dispatchers.IO) {
             val collection = client.database.getCollection<Document>("users")
 
