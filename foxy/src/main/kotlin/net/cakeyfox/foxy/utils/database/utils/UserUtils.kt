@@ -62,7 +62,7 @@ class UserUtils(
         }
     }
 
-    suspend fun addCakesToAUser(userId: String, amount: Long) {
+    suspend fun addCakesToUser(userId: String, amount: Long) {
         withContext(Dispatchers.IO) {
             val query = Document("_id", userId)
             val update = Document("\$inc", Document("userCakes.balance", amount.toDouble()))
@@ -71,7 +71,7 @@ class UserUtils(
         }
     }
 
-    suspend fun removeCakesFromAUser(userId: String, amount: Long) {
+    suspend fun removeCakesFromUser(userId: String, amount: Long) {
         withContext(Dispatchers.IO) {
             val query = Document("_id", userId)
             val update = Document("\$inc", Document("userCakes.balance", -amount.toDouble()))
