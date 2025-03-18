@@ -9,7 +9,7 @@ import net.dv8tion.jda.api.entities.User
 class RobExecutor : FoxyCommandExecutor() {
     companion object {
         private const val ROB_CHANCE = 0.5
-        private const val ROB_COOLDOWN = 86400000 // 24 horas
+        private const val ROB_COOLDOWN = 86400000 // 24 hours
     }
 
     override suspend fun execute(context: FoxyInteractionContext) {
@@ -45,7 +45,12 @@ class RobExecutor : FoxyCommandExecutor() {
 
         if (userToRobData.userCakes.balance < 100) {
             context.reply(true) {
-                content = pretty(FoxyEmotes.FoxyCry, context.locale["rob.userNotEnoughCakes", userToRob.asMention])
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["rob.userNotEnoughCakes",
+                        userToRob.asMention
+                    ]
+                )
             }
             return
         }
