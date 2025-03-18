@@ -168,6 +168,7 @@ rob:
   youFailedAndGotArrested: "Você foi pego e foi preso(a)!"
   userNotEnoughCakes: "{0} não tem Cakes suficientes para roubar! Coitado(a)!"
   success: "Você roubou **{0} Cakes** de {1}!"
+  cooldown: "Você só pode roubar novamente em {0}!"
 
 pay:
   confirm: "Você deseja mesmo transferir {0} para {1}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!"

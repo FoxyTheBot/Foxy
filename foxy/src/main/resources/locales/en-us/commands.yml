@@ -25,6 +25,8 @@ rob:
   youFailedAndLostCakes: "Você foi pego e perdeu **{0} Cakes**!"
   youFailedAndGotArrested: "Você foi pego e foi preso(a)!"
   userNotEnoughCakes: "{0} não tem Cakes suficientes para roubar! Coitado(a)!"
+  success: "Você roubou **{0} Cakes** de {1}!"
+  cooldown: "Você precisa esperar **{0}** para roubar novamente!"
 
 moda:
   wrongContentType: "I wish I could use this, but I can't. You need to send an image of type PNG or JPG."

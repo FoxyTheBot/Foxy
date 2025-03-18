@@ -12,7 +12,7 @@ class RobCommand : FoxyCommandDeclarationWrapper {
         "rob",
         "rob.description",
 
-        availableForEarlyAccess = true,
+        availableForEarlyAccess = false,
         integrationType = listOf(
             IntegrationType.GUILD_INSTALL
         ),

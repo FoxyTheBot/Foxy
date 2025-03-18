@@ -20,6 +20,7 @@ data class FoxyUser(
     val userPremium: UserPremium,
     val userSettings: UserSettings,
     val petInfo: PetInfo? = null,
+    val lastRob: Long? = 0,
     val userTransactions: List<Transaction>? = emptyList(),
     val premiumKeys: List<Key>? = emptyList(),
     val roulette: Roulette? = null,

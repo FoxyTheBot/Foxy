@@ -33,9 +33,9 @@ class FoxyUtils(
             locale["cakes.atm.multipleCakes"]
         }
 
-        if (isBold) {
-            return "**$formattedNumber $formattedBalance**"
-        } else return "$formattedNumber $formattedBalance"
+        return if (isBold) {
+            "**$formattedNumber $formattedBalance**"
+        } else "$formattedNumber $formattedBalance"
     }
 
     fun convertLongToDiscordTimestamp(epoch: Long): String {
