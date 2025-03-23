@@ -43,7 +43,7 @@ class MarryExecutor : FoxyCommandExecutor() {
             return
         }
 
-        val userData = context.db.utils.user.getFoxyProfile(user.id)
+        val userData = context.database.user.getFoxyProfile(user.id)
         val authorData = context.getAuthorData()
 
         if (userData.marryStatus.marriedWith != null) {
@@ -103,7 +103,7 @@ class MarryExecutor : FoxyCommandExecutor() {
 
     private suspend fun buildMarryMessage(context: FoxyInteractionContext) {
         val user = context.getOption<User>("user")!!
-        val userData = context.db.utils.user.getFoxyProfile(user.id)
+        val userData = context.database.user.getFoxyProfile(user.id)
         val authorData = context.getAuthorData()
         val isUserPremium =
             if (userData.userPremium.premiumDate != null) {
@@ -137,7 +137,7 @@ class MarryExecutor : FoxyCommandExecutor() {
                     FoxyEmotes.FoxyCake,
                     context.locale["marry.acceptButton"],
                 ) {
-                    context.db.utils.user.updateUser(
+                    context.database.user.updateUser(
                         context.event.user.id,
                         mapOf(
                             "marryStatus.marriedWith" to user.id,
@@ -146,7 +146,7 @@ class MarryExecutor : FoxyCommandExecutor() {
                         )
                     )
 
-                    context.db.utils.user.updateUser(
+                    context.database.user.updateUser(
                         user.id,
                         mapOf(
                             "marryStatus.marriedWith" to context.event.user.id,

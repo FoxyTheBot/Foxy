@@ -19,7 +19,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
             return
         }
 
-        val partner = context.db.utils.user.getFoxyProfile(
+        val partner = context.database.user.getFoxyProfile(
             context.getAuthorData().marryStatus.marriedWith!!
         )
         val partnerAsUser = context.jda.retrieveUserById(partner._id).await()
@@ -37,7 +37,7 @@ class DivorceExecutor : FoxyCommandExecutor() {
                     FoxyEmotes.FoxyCry,
                     context.locale["divorce.confirmButton"]
                 ) {
-                    context.db.utils.user.updateUsers(
+                    context.database.user.updateUsers(
                         listOf(
                             context.getAuthorData(),
                             partner

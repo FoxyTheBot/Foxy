@@ -3,13 +3,12 @@ package net.cakeyfox.foxy.utils.database.utils
 import com.mongodb.kotlin.client.coroutine.MongoCollection
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
 import mu.KotlinLogging
-import net.cakeyfox.foxy.utils.database.MongoDBClient
+import net.cakeyfox.foxy.utils.database.DatabaseClient
 import org.bson.Document
 
 class BotUtils(
-    val client: MongoDBClient
+    val client: DatabaseClient
 ) {
     companion object {
         private val logger = KotlinLogging.logger {  }

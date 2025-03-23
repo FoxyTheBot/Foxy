@@ -5,13 +5,13 @@ import com.mongodb.kotlin.client.coroutine.MongoCollection
 import com.mongodb.kotlin.client.coroutine.MongoDatabase
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
-import net.cakeyfox.foxy.utils.database.utils.DatabaseUtils
 import net.cakeyfox.foxy.FoxyInstance
+import net.cakeyfox.foxy.utils.database.utils.*
 import net.cakeyfox.serializable.database.data.FoxyUser
 import net.cakeyfox.serializable.database.data.Guild
 import java.util.concurrent.TimeUnit
 
-class MongoDBClient(
+class DatabaseClient(
     foxy: FoxyInstance
 ) {
     companion object {
@@ -28,7 +28,11 @@ class MongoDBClient(
         ignoreUnknownKeys = true
     }
 
-    val utils = DatabaseUtils(this, foxy)
+    val profile = ProfileUtils(this)
+    val economy = EconomyUtils(this)
+    val guild = GuildUtils(this)
+    val user = UserUtils(this, foxy)
+    val bot = BotUtils(this)
 
     fun start(foxy: FoxyInstance) {
         mongoClient = MongoClient.create(foxy.config.database.uri)

@@ -20,7 +20,7 @@ import net.cakeyfox.serializable.database.utils.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.analytics.TopggStatsSender
 import net.cakeyfox.foxy.utils.api.FoxyInternalAPI
-import net.cakeyfox.foxy.utils.database.MongoDBClient
+import net.cakeyfox.foxy.utils.database.DatabaseClient
 import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
 import net.cakeyfox.foxy.utils.threads.ThreadUtils
 import net.dv8tion.jda.api.OnlineStatus
@@ -39,7 +39,7 @@ class FoxyInstance(
     val currentCluster: FoxyConfig.Cluster
 ) {
     lateinit var shardManager: ShardManager
-    lateinit var mongoClient: MongoDBClient
+    lateinit var database: DatabaseClient
     lateinit var commandHandler: FoxyCommandManager
     lateinit var artistryClient: ArtistryClient
     lateinit var utils: FoxyUtils
@@ -64,7 +64,7 @@ class FoxyInstance(
         val logger = KotlinLogging.logger { }
 
         environment = config.environment
-        mongoClient = MongoDBClient(this)
+        database = DatabaseClient(this)
         commandHandler = FoxyCommandManager(this)
         utils = FoxyUtils(this)
         interactionManager = FoxyComponentManager(this)
@@ -74,7 +74,7 @@ class FoxyInstance(
             install(ContentNegotiation) { json() }
         }
 
-        mongoClient.start(this)
+        database.start(this)
         shardManager = DefaultShardManagerBuilder.create(
             GatewayIntent.GUILD_MEMBERS,
             GatewayIntent.MESSAGE_CONTENT,
@@ -88,12 +88,12 @@ class FoxyInstance(
         )
             .setAutoReconnect(true)
             .setStatus(
-                OnlineStatus.fromKey(mongoClient.utils.bot.getBotSettings().status)
+                OnlineStatus.fromKey(database.bot.getBotSettings().status)
             )
             .setActivity(
                 Activity.customStatus(
                     Constants.getDefaultActivity(
-                        mongoClient.utils.bot.getActivity(),
+                        database.bot.getActivity(),
                         config.environment,
                         currentClusterName
                     )
@@ -130,7 +130,7 @@ class FoxyInstance(
                     shard.shutdown()
                 }
                 httpClient.close()
-                mongoClient.close()
+                database.close()
                 foxyInternalAPI.stop()
 
                 activeJobs.forEach {

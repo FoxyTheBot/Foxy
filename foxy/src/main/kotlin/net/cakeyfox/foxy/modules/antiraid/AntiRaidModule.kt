@@ -56,7 +56,7 @@ class AntiRaidModule(
     // Handling mass joins
     suspend fun handleJoin(event: GuildMemberJoinEvent) {
         val guildId = event.guild.idLong
-        val guildInfo = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
+        val guildInfo = foxy.database.guild.getGuild(event.guild.id)
         val locale = FoxyLocale(parsedLocale[event.guild.locale] ?: "en-us")
 
         if (guildInfo.antiRaidModule.handleMultipleJoins) {
@@ -102,7 +102,7 @@ class AntiRaidModule(
 
     // Handling mass messages
     suspend fun handleMessage(event: MessageReceivedEvent) {
-        val guildInfo = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
+        val guildInfo = foxy.database.guild.getGuild(event.guild.id)
         val userId = "${event.guild.id}:${event.author.id}"
         val locale = FoxyLocale(parsedLocale[event.guild.locale] ?: "en-us")
         val currentTimestamp = System.currentTimeMillis()

@@ -1,7 +1,7 @@
 package net.cakeyfox.foxy.utils.database.utils
 
 import kotlinx.datetime.toJavaInstant
-import net.cakeyfox.foxy.utils.database.MongoDBClient
+import net.cakeyfox.foxy.utils.database.DatabaseClient
 import net.cakeyfox.serializable.database.data.*
 import org.bson.Document
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.toList
 import net.cakeyfox.foxy.FoxyInstance
 
 class UserUtils(
-    private val client: MongoDBClient,
+    private val client: DatabaseClient,
     private val foxy: FoxyInstance
 ) {
     suspend fun getFoxyProfile(userId: String): FoxyUser {

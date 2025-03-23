@@ -13,7 +13,7 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
         val amount = context.getOption<Long>("amount")!!
         val formattedAmount = context.utils.formatUserBalance(amount, context.locale)
         val side = context.getOption<String>("side")!!
-        val userToBet = context.db.utils.user.getFoxyProfile(user.id)
+        val userToBet = context.database.user.getFoxyProfile(user.id)
 
         if (amount < 1) {
             context.reply {
@@ -77,14 +77,14 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
                     val result = flipCoin()
 
                     if (side == result) {
-                        context.db.utils.user.updateUser(
+                        context.database.user.updateUser(
                             context.user.id,
                             mapOf(
                                 "userCakes.balance" to context.getAuthorData().userCakes.balance + amount
                             )
                         )
 
-                        context.db.utils.user.updateUser(
+                        context.database.user.updateUser(
                             user.id,
                             mapOf(
                                 "userCakes.balance" to userToBet.userCakes.balance - amount
@@ -105,14 +105,14 @@ class CoinflipBetExecutor : FoxyCommandExecutor() {
                         )
 
                     } else {
-                        context.db.utils.user.updateUser(
+                        context.database.user.updateUser(
                             context.user.id,
                             mapOf(
                                 "userCakes.balance" to context.getAuthorData().userCakes.balance - amount
                             )
                         )
 
-                        context.db.utils.user.updateUser(
+                        context.database.user.updateUser(
                             user.id,
                             mapOf(
                                 "userCakes.balance" to userToBet.userCakes.balance + amount

@@ -68,12 +68,12 @@ class SlotsExecutor : FoxyCommandExecutor() {
         }
 
         if (winnings > 0) {
-            context.foxy.mongoClient.utils.user.addCakesToUser(
+            context.foxy.database.user.addCakesToUser(
                 context.user.id,
                 winnings - amount
             )
         } else {
-            context.foxy.mongoClient.utils.user.removeCakesFromUser(
+            context.foxy.database.user.removeCakesFromUser(
                 context.user.id,
                 amount
             )

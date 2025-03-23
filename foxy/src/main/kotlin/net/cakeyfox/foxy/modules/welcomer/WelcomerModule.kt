@@ -22,7 +22,7 @@ class WelcomerModule(
     private val welcomer = WelcomerJSONParser()
 
     suspend fun onGuildJoin(event: GuildMemberJoinEvent) {
-        val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
+        val guildData = foxy.database.guild.getGuild(event.guild.id)
 
         if (guildData.GuildJoinLeaveModule.isEnabled) {
             val placeholders = getAllPlaceholders(event.guild, event.user)
@@ -42,7 +42,7 @@ class WelcomerModule(
     }
 
     suspend fun onGuildLeave(event: GuildMemberRemoveEvent) {
-        val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
+        val guildData = foxy.database.guild.getGuild(event.guild.id)
 
         if (guildData.GuildJoinLeaveModule.alertWhenUserLeaves) {
             val placeholders = getAllPlaceholders(event.guild, event.user)

@@ -22,7 +22,7 @@ class FoxyCacheManager(
 
     suspend fun loadCakesLeaderboard(): List<Triple<Int, String, String>> {
        val executionTime = measureTimeMillis {
-            val users = foxy.mongoClient.utils.user.getTopUsersByCakes()
+            val users = foxy.database.user.getTopUsersByCakes()
             val sorted = users.sortedByDescending { it.userCakes.balance }
 
             val topUsers = sorted.take(foxy.config.others.leaderboardLimit)

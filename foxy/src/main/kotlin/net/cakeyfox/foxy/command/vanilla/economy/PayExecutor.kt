@@ -31,8 +31,8 @@ class PayExecutor : FoxyCommandExecutor() {
                     context.locale["pay.confirmButton"]
                 ) {
 
-                    context.db.utils.user.removeCakesFromUser(context.user.id, amount)
-                    context.db.utils.user.addCakesToUser(userToPay.id, amount)
+                    context.database.user.removeCakesFromUser(context.user.id, amount)
+                    context.database.user.addCakesToUser(userToPay.id, amount)
 
                     it.edit {
                         content = pretty(

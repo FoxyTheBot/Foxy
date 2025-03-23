@@ -34,7 +34,7 @@ class InteractionsListener(
             val commandName = event.fullCommandName.split(" ").first()
             if (event.isFromGuild) {
                 // This will be used to create a guild object in the database if it doesn't exist
-                event.guild?.let { foxy.mongoClient.utils.guild.getGuild(it.id) }
+                event.guild?.let { foxy.database.guild.getGuild(it.id) }
             }
 
             val command = foxy.commandHandler[commandName]?.create()
@@ -56,7 +56,7 @@ class InteractionsListener(
                     }
                 } else null
 
-                if (context.db.utils.user.getFoxyProfile(event.user.id).isBanned == true) {
+                if (context.database.user.getFoxyProfile(event.user.id).isBanned == true) {
                     foxy.utils.handleBan(event, context)
                     return@launchMessageJob
                 }

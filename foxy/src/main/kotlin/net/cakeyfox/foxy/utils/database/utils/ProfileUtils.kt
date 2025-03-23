@@ -2,7 +2,7 @@ package net.cakeyfox.foxy.utils.database.utils
 
 import kotlinx.coroutines.flow.firstOrNull
 import mu.KotlinLogging
-import net.cakeyfox.foxy.utils.database.MongoDBClient
+import net.cakeyfox.foxy.utils.database.DatabaseClient
 import net.cakeyfox.serializable.database.data.Background
 import net.cakeyfox.serializable.database.data.Badge
 import net.cakeyfox.serializable.database.data.Decoration
@@ -11,7 +11,7 @@ import org.bson.Document
 import kotlin.reflect.jvm.jvmName
 
 class ProfileUtils(
-    private val client: MongoDBClient
+    private val client: DatabaseClient
 ) {
     private val logger = KotlinLogging.logger(this::class.jvmName)
 

@@ -22,14 +22,14 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
 
     override fun onGuildJoin(event: GuildJoinEvent) {
         coroutineScope.launch(foxy.coroutineDispatcher) {
-            foxy.mongoClient.utils.guild.getGuild(event.guild.id)
+            foxy.database.guild.getGuild(event.guild.id)
             logger.info { "Joined guild ${event.guild.name} - ${event.guild.id}" }
         }
     }
 
     override fun onGuildLeave(event: GuildLeaveEvent) {
         coroutineScope.launch(foxy.coroutineDispatcher) {
-            foxy.mongoClient.utils.guild.deleteGuild(event.guild.id)
+            foxy.database.guild.deleteGuild(event.guild.id)
             logger.info { "Left guild ${event.guild.name} - ${event.guild.id}" }
         }
     }

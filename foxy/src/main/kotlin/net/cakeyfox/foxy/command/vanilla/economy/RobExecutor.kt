@@ -41,7 +41,7 @@ class RobExecutor : FoxyCommandExecutor() {
             return
         }
 
-        val userToRobData = context.db.utils.user.getFoxyProfile(userToRob.id)
+        val userToRobData = context.database.user.getFoxyProfile(userToRob.id)
 
         if (userToRobData.userCakes.balance < 100) {
             context.reply(true) {
@@ -55,15 +55,15 @@ class RobExecutor : FoxyCommandExecutor() {
             return
         }
 
-        context.db.utils.user.updateUser(
+        context.database.user.updateUser(
             context.user.id,
             mapOf("lastRob" to System.currentTimeMillis())
         )
 
         if (Math.random() < ROB_CHANCE) {
             val amount = (userToRobData.userCakes.balance * 0.1).toLong()
-            context.db.utils.user.removeCakesFromUser(userToRob.id, amount)
-            context.db.utils.user.addCakesToUser(context.user.id, amount)
+            context.database.user.removeCakesFromUser(userToRob.id, amount)
+            context.database.user.addCakesToUser(context.user.id, amount)
 
             context.reply {
                 content = pretty(
@@ -77,7 +77,7 @@ class RobExecutor : FoxyCommandExecutor() {
             }
         } else {
             if (commandAuthorData.userCakes.balance > 1000) {
-                context.db.utils.user.removeCakesFromUser(context.user.id, 1000)
+                context.database.user.removeCakesFromUser(context.user.id, 1000)
                 context.reply {
                     content = pretty(
                         FoxyEmotes.FoxyCry,

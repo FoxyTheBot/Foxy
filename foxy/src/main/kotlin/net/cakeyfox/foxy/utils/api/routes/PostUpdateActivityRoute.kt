@@ -11,7 +11,7 @@ import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.entities.Activity.ActivityType
 
-class UpdateActivityRoute {
+class PostUpdateActivityRoute {
     private val logger = KotlinLogging.logger { }
 
     fun Route.updateActivity(foxy: FoxyInstance) {

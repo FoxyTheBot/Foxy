@@ -17,7 +17,7 @@ class ProfileViewExecutor: FoxyCommandExecutor() {
         context.defer()
 
         val user = context.getOption<User>("user") ?: context.event.user
-        val userData = context.db.utils.user.getFoxyProfile(user.id)
+        val userData = context.database.user.getFoxyProfile(user.id)
 
         if (userData.isBanned == true) {
             context.reply {

@@ -16,7 +16,7 @@ class AutoRoleModule(
     suspend fun handleUser(event: GuildMemberJoinEvent) {
         if (!event.guild.selfMember.hasPermission(Permission.MANAGE_ROLES)) return
 
-        val guildData = foxy.mongoClient.utils.guild.getGuild(event.guild.id)
+        val guildData = foxy.database.guild.getGuild(event.guild.id)
         val member = event.member
 
         if (guildData.AutoRoleModule.isEnabled) {

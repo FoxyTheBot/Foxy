@@ -7,7 +7,7 @@ import kotlin.time.Duration.Companion.days
 
 object PremiumUtils {
     suspend fun eligibleForEarlyAccess(context: FoxyInteractionContext): Boolean {
-        val user = context.db.utils.user.getFoxyProfile(context.user.id)
+        val user = context.database.user.getFoxyProfile(context.user.id)
         var isEligible = false
 
         if (isUserPremium(user)) {

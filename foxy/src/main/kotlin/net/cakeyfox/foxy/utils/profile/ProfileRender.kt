@@ -44,14 +44,14 @@ class ProfileRender(
                     ProfileCacheManager.layoutCache,
                     userData.userProfile.layout
                 ) { layoutKey ->
-                    context.db.utils.profile.getLayout(layoutKey)
+                    context.database.profile.getLayout(layoutKey)
                 }
 
                 val backgroundInfo: Background = getOrFetchFromCache(
                     ProfileCacheManager.backgroundCache,
                     userData.userProfile.background
                 ) { backgroundKey ->
-                    context.db.utils.profile.getBackground(backgroundKey)
+                    context.database.profile.getBackground(backgroundKey)
                 }
 
                 val layoutDeferred = async {
@@ -187,7 +187,7 @@ class ProfileRender(
                 ProfileCacheManager.decorationCache,
                 data.userProfile.decoration!!
             ) { decorationKey ->
-                context.db.utils.profile.getDecoration(decorationKey)
+                context.database.profile.getDecoration(decorationKey)
             }
 
             val decorationImage =
@@ -215,7 +215,7 @@ class ProfileRender(
             ProfileCacheManager.badgesCache,
             "default"
         ) {
-            context.db.utils.profile.getBadges()
+            context.database.profile.getBadges()
         }
 
         val roles = try {

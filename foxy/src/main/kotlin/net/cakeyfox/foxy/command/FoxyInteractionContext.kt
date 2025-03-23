@@ -22,9 +22,9 @@ class FoxyInteractionContext(
     val event: GenericInteractionCreateEvent,
     val foxy: FoxyInstance
 ) {
-    private val logger = KotlinLogging.logger(this::class.jvmName)
+    private val logger = KotlinLogging.logger { }
     val jda = event.jda
-    val db = foxy.mongoClient
+    val database = foxy.database
     private val parsedLocale = hashMapOf(
         DiscordLocale.PORTUGUESE_BRAZILIAN to "pt-br",
         DiscordLocale.ENGLISH_US to "en-us",
@@ -35,7 +35,7 @@ class FoxyInteractionContext(
     val guild = event.guild
 
     suspend fun getAuthorData(): FoxyUser {
-        return db.utils.user.getFoxyProfile(user.id)
+        return database.user.getFoxyProfile(user.id)
     }
 
     suspend fun reply(

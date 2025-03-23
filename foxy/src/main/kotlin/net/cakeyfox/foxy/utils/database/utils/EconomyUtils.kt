@@ -4,13 +4,13 @@ import com.mongodb.client.model.Filters.eq
 import com.mongodb.client.model.Updates.combine
 import com.mongodb.client.model.Updates.push
 import com.mongodb.client.model.UpdateOptions
-import net.cakeyfox.foxy.utils.database.MongoDBClient
+import net.cakeyfox.foxy.utils.database.DatabaseClient
 import net.cakeyfox.serializable.database.data.Transaction
 import org.bson.Document
 import java.util.Date
 
 class EconomyUtils(
-    private val client: MongoDBClient
+    private val client: DatabaseClient
 ) {
     suspend fun createTransaction(userId: String, transaction: Transaction) {
         val collection = client.database.getCollection<Document>("users")

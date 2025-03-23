@@ -2,9 +2,8 @@ package net.cakeyfox.foxy.utils.database.utils
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import net.cakeyfox.foxy.utils.database.MongoDBClient
+import net.cakeyfox.foxy.utils.database.DatabaseClient
 import net.cakeyfox.serializable.database.data.*
 import org.bson.Document
 import kotlin.reflect.KClass
@@ -19,7 +18,7 @@ import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.jvmName
 
 class GuildUtils(
-    private val client: MongoDBClient
+    private val client: DatabaseClient
 ) {
     private val logger = KotlinLogging.logger(this::class.jvmName)
 
