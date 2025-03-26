@@ -16,7 +16,6 @@ import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionE
 import net.dv8tion.jda.api.interactions.DiscordLocale
 import net.dv8tion.jda.api.interactions.InteractionHook
 import net.dv8tion.jda.api.interactions.commands.OptionType
-import kotlin.reflect.jvm.jvmName
 
 class FoxyInteractionContext(
     val event: GenericInteractionCreateEvent,
