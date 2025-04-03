@@ -5,6 +5,10 @@ commands:
   componentExpired: "Wait, where is it? I can't find the interaction information... It seems to have expired! Run the command again."
 
   command:
+    roulette:
+      name: "roleta"
+      description: "[Economia] Ganhe prêmios jogando roleta"
+
     dashboard:
       name: "dashboard"
       description: "[Utils] Access the current server dashboard"

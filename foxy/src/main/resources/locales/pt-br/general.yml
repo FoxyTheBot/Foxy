@@ -6,6 +6,10 @@ commands:
   error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
 
   command:
+    roulette:
+      name: "roleta"
+      description: "[Economia] Ganhe prêmios jogando roleta"
+
     dashboard:
       name: "dashboard"
       description: "[Utilitários] Acesse o painel de configuração do servidor atual"

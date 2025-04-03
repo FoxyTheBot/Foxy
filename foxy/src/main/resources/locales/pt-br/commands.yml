@@ -177,6 +177,12 @@ pay:
   cantPayYourself: "Você não pode transferir Cakes para você mesmo!"
   invalidAmount: "Você precisa transferir uma quantidade válida de Cakes!"
 
+roulette:
+  spinResultWin: "Você girou a roleta e ganhou {0}!"
+  spinResultLose: "Você girou e não ganhou nada!"
+  notEnoughCakes: "Você precisa de **1.000 Cakes** para girar a roleta!"
+  spinTimeout: "Você não pode girar a roleta novamente tão cedo! Tente novamente em {0}!"
+
 marry:
   authorHasNoCakes: "Casamentos custam **6.000 Cakes** para cada pessoa, e você não tem Cakes suficientes!"
   userHasNoCakes: "Casamentos custam **6.000 Cakes** para cada pessoa, e {0} não tem Cakes suficientes!"
