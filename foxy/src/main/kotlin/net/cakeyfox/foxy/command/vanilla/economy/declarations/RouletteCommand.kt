@@ -23,28 +23,6 @@ class RouletteCommand : FoxyCommandDeclarationWrapper {
             InteractionContextType.PRIVATE_CHANNEL
         )
     ) {
-        addOptions(
-            listOf(
-                OptionData(
-                    OptionType.INTEGER,
-                    "amount",
-                    "roulette.option.amount",
-                    true
-                ),
-
-                OptionData(
-                    OptionType.STRING,
-                    "color",
-                    "roulette.option.color",
-                    true
-                ).choice("Red", "red")
-                    .choice("Black", "black")
-                    .choice("Green", "green")
-            ),
-
-            baseName = this@command.name
-        )
-
         executor = RouletteExecutor()
     }
 }
