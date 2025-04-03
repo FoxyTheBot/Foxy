@@ -113,5 +113,6 @@ data class Key(
 
 @Serializable
 data class Roulette(
-    val availableSpins: Int = 5
+    val availableSpins: Int = 5,
+    val lastSpin: Long? = 0,
 )
