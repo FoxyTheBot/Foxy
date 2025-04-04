@@ -37,7 +37,7 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
     override fun onGuildMemberJoin(event: GuildMemberJoinEvent) {
         coroutineScope.launch(foxy.coroutineDispatcher) {
             welcomer.onGuildJoin(event)
-            antiRaid.handleJoin(event)
+//            antiRaid.handleJoin(event)
             autoRole.handleUser(event)
         }
     }

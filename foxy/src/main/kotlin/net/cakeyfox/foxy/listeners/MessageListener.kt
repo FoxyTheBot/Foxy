@@ -30,10 +30,10 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
             ).queue()
         }
 
-        foxy.threadPoolManager.launchMessageJob(event) {
-            if (event.isFromGuild) {
-                antiRaid.handleMessage(event)
-            }
-        }
+//        foxy.threadPoolManager.launchMessageJob(event) {
+//            if (event.isFromGuild) {
+//                antiRaid.handleMessage(event)
+//            }
+//        }
     }
 }
