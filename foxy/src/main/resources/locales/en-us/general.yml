@@ -5,6 +5,10 @@ commands:
   componentExpired: "Wait, where is it? I can't find the interaction information... It seems to have expired! Run the command again."
 
   command:
+    status:
+      name: "status"
+      description: "[Mágica] Veja o consumo da JVM e outras informações"
+
     roulette:
       name: "roleta"
       description: "[Economia] Ganhe prêmios jogando roleta"
@@ -57,6 +61,14 @@ commands:
           server_id:
             name: "id_do_servidor"
             description: "O ID do servidor que você deseja ver as informações"
+
+      icon:
+        name: "icone"
+        description: "[Utilitários] Veja o ícone do servidor"
+        options:
+          server_id:
+            name: "id_do_servidor"
+            description: "O ID do servidor que você deseja ver o ícone"
 
     user:
       name: "user"

@@ -7,6 +7,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.actions.declarations.ActionsCommand
 import net.cakeyfox.foxy.command.vanilla.dev.declarations.ServerInviteCommand
+import net.cakeyfox.foxy.command.vanilla.dev.declarations.StatusCommand
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.*
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.*
 import net.cakeyfox.foxy.command.vanilla.games.declarations.RussianRouletteCommand
@@ -42,8 +43,11 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
                 if (command.create().isPrivate) {
                     if (shard.shardInfo.shardId == supportServerShardId) {
                         val supportServer = foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
+                        val commandName = command.create().name
+                        val currentShardId = shard.shardInfo.shardId
+
                         supportServer?.updateCommands()?.addCommands(command.create().build())?.await()
-                        logger.info { "Registered /${command.create().name} as private command (Shard: #${shard.shardInfo.shardId})" }
+                        logger.info { "Registered /$commandName as private command (Shard: #$currentShardId)" }
                     }
                 } else {
                     action.addCommands(command.create().build())
@@ -93,5 +97,6 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
 
         /* ---- [Staff] ---- */
         register(ServerInviteCommand())
+        register(StatusCommand())
     }
 }
