@@ -31,20 +31,10 @@ object PremiumUtils {
     private fun getPremiumType(user: FoxyUser): Int {
         return PremiumType.entries.find { it.s == user.userPremium.premiumType }?.let {
             when (it) {
-                PremiumType.TIER1_LEGACY, PremiumType.TIER1_FULLNAME -> 1
-                PremiumType.TIER2_LEGACY, PremiumType.TIER2_FULLNAME -> 2
-                PremiumType.TIER3_LEGACY, PremiumType.TIER3_FULLNAME -> 3
+                PremiumType.TIER1_LEGACY, PremiumType.TIER1 -> 1
+                PremiumType.TIER2_LEGACY, PremiumType.TIER2 -> 2
+                PremiumType.TIER3_LEGACY, PremiumType.TIER3 -> 3
             }
         } ?: 0
-    }
-
-    private enum class PremiumType(val s: String) {
-        TIER1_LEGACY("1"),
-        TIER2_LEGACY("2"),
-        TIER3_LEGACY("3"),
-
-        TIER1_FULLNAME("Foxy Premium I"),
-        TIER2_FULLNAME("Foxy Premium II"),
-        TIER3_FULLNAME("Foxy Premium III"),
     }
 }
