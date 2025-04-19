@@ -43,12 +43,9 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
                 if (command.create().isPrivate) {
                     if (shard.shardInfo.shardId == supportServerShardId) {
                         val supportServer = foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
-                        val commandName = command.create().name
-                        val currentShardId = shard.shardInfo.shardId
 
                         supportServer?.updateCommands()?.addCommands(command.create().build())?.await()
-                        logger.info { "Registered /$commandName as private command (Shard: #$currentShardId)" }
-                    }
+                        logger.info { "Registered /${command.create().name} as private command (Shard: #${shard.shardInfo.shardId})" }                    }
                 } else {
                     action.addCommands(command.create().build())
                 }
