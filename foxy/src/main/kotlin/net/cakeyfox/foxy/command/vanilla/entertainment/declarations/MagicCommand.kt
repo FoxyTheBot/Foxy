@@ -7,10 +7,11 @@ import net.dv8tion.jda.api.interactions.InteractionContextType
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
-class FunCommand : FoxyCommandDeclarationWrapper {
+class MagicCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
-        "fun",
+        "magic",
         "fun.description",
+        category = "magic",
         integrationType = listOf(
             IntegrationType.GUILD_INSTALL,
             IntegrationType.USER_INSTALL

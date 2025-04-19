@@ -21,8 +21,9 @@ class SlotsCommand : FoxyCommandDeclarationWrapper {
             InteractionContextType.GUILD,
             InteractionContextType.BOT_DM,
             InteractionContextType.PRIVATE_CHANNEL
-        )
-    ) {
+        ),
+        category = "economy",
+        ) {
         subCommand(
             "chart",
             "slots.chart.description",

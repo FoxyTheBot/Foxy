@@ -11,6 +11,7 @@ interface FoxyCommandDeclarationWrapper {
         description: String,
         isPrivate: Boolean = false,
         availableForEarlyAccess: Boolean = false,
+        category: String,
         integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
         interactionContexts: List<InteractionContextType> = listOf(InteractionContextType.GUILD),
         block: FoxyCommandDeclarationBuilder.() -> Unit
@@ -19,6 +20,7 @@ interface FoxyCommandDeclarationWrapper {
             name,
             description,
             isPrivate,
+            category,
             availableForEarlyAccess,
             integrationType,
             interactionContexts

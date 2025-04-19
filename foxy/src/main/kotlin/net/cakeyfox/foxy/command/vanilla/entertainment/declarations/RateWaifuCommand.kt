@@ -8,8 +8,9 @@ import net.dv8tion.jda.api.interactions.commands.build.OptionData
 class RateWaifuCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "ratewaifu",
-        "ratewaifu.description"
-    ) {
+        "ratewaifu.description",
+        category = "fun",
+        ) {
         addOption(
             OptionData(
                 OptionType.USER,

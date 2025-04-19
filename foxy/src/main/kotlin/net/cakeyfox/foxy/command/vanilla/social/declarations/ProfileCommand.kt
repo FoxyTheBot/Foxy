@@ -11,7 +11,7 @@ class ProfileCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "profile",
         "profile.description",
-
+        category = "social",
         interactionContexts = listOf(
             InteractionContextType.GUILD,
             InteractionContextType.PRIVATE_CHANNEL

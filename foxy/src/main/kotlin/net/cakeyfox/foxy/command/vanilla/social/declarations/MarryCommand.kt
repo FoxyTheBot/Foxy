@@ -11,7 +11,7 @@ class MarryCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "marry",
         "marry.description",
-
+        category = "social",
         interactionContexts = listOf(
             InteractionContextType.GUILD
         ),

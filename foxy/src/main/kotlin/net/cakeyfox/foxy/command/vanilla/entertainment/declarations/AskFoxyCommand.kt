@@ -9,6 +9,7 @@ class AskFoxyCommand: FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "ask",
         "ask.foxy.description",
+        category = "fun",
         ) {
             subCommand(
                 "foxy",

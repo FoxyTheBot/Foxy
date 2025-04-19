@@ -8,19 +8,19 @@ commands:
   command:
     status:
       name: "status"
-      description: "[Mágica] Veja o consumo da JVM e outras informações"
+      description: "Veja o consumo da JVM e outras informações"
 
     roulette:
       name: "roleta"
-      description: "[Economia] Ganhe prêmios jogando roleta"
+      description: "Ganhe prêmios jogando roleta"
 
     dashboard:
       name: "dashboard"
-      description: "[Utilitários] Acesse o painel de configuração do servidor atual"
+      description: "Acesse o painel de configuração do servidor atual"
 
     ship:
       name: "ship"
-      description: "[Social] Ship two users"
+      description: "Ship two users"
       options:
         user1:
           name: "user1"
@@ -31,7 +31,7 @@ commands:
 
     rob:
       name: "roubar"
-      description: "[Economia] Roube alguém"
+      description: "Roube alguém"
       options:
         user:
           name: "usuário"
@@ -39,10 +39,10 @@ commands:
 
     serverinvite:
       name: "convite"
-      description: "[Utilitários] Obtém convites de um servidor por ID"
+      description: "Obtém convites de um servidor por ID"
       retrieve:
         name: "obter"
-        description: "[Utilitários] Obtém convites de um servidor por ID"
+        description: "Obtém convites de um servidor por ID"
         options:
           server_id:
             name: "id_do_servidor"
@@ -50,13 +50,13 @@ commands:
 
     russian-roulette:
       name: "roleta-russa"
-      description: "[Diversão] Jogue roleta russa comigo"
+      description: "Jogue roleta russa comigo"
     server:
       name: "servidor"
-      description: "[Utilitários] Veja informações sobre o servidor"
+      description: "Veja informações sobre o servidor"
       info:
         name: "info"
-        description: "[Utilitários] Veja informações sobre o servidor"
+        description: "Veja informações sobre o servidor"
         options:
           server_id:
             name: "id_do_servidor"
@@ -64,7 +64,7 @@ commands:
 
       icon:
         name: "icone"
-        description: "[Utilitários] Veja o ícone do servidor"
+        description: "Veja o ícone do servidor"
         options:
           server_id:
             name: "id_do_servidor"
@@ -72,10 +72,10 @@ commands:
 
     user:
       name: "user"
-      description: "[Utilitários] Veja informações sobre um usuário"
+      description: "Veja informações sobre um usuário"
       info:
         name: "info"
-        description: "[Utilitários] Veja informações sobre um usuário"
+        description: "Veja informações sobre um usuário"
         options:
           user:
             name: "usuário"
@@ -83,23 +83,24 @@ commands:
 
     daily:
       name: "daily"
-      description: "[Economia] Receba seus cakes diários"
+      description: "Receba seus cakes diários"
 
     ping:
       name: "ping"
-      description: "[Utilitários] Veja a latência da Foxy"
+      description: "Veja a latência da Foxy"
 
-    fun:
-      name: "fun"
+    magic:
+      name: "mágica"
       description: "Comandos divertidos para você se divertir com seus amigos"
       eminem:
         name: "eminem"
-        description: "[Video] Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
+        description: "Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
         8mile:
           name: "8mile"
-          description: "[Video] Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
+          description: "Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
       8mile:
         name: "8mile"
+        description: "Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
         options:
           video_or_audio:
             name: "video_ou_audio"
@@ -107,7 +108,7 @@ commands:
 
       antes_que_vire_moda:
         name: "antes_que_vire_moda"
-        description: "[Imagem] Montagem do meme 'Antes que vire moda, já vou avisando que sou fã de:'"
+        description: "Montagem do meme 'Antes que vire moda, já vou avisando que sou fã de:'"
         options:
           image:
             name: "imagem"
@@ -115,7 +116,7 @@ commands:
 
       windows_error:
         name: "windows_error"
-        description: "[Imagem] Gera um meme de erro do Windows"
+        description: "Gera um meme de erro do Windows"
         options:
           message:
             name: "texto"
@@ -123,7 +124,7 @@ commands:
 
       girlfriend:
         name: "namorada"
-        description: "[Social] Que legal, mas olha minha namorada!"
+        description: "Que legal, mas olha minha namorada!"
         options:
           user:
             name: "usuário"
@@ -131,7 +132,7 @@ commands:
 
       nao_somos_iguais:
         name: "nao_somos_iguais"
-        description: "[Imagem] Montagem do meme 'Não somos iguais, mas somos parecidos'"
+        description: "Montagem do meme 'Não somos iguais, mas somos parecidos'"
         options:
           first_image:
             name: "primeira_imagem"
@@ -145,7 +146,7 @@ commands:
 
       laranjo:
         name: "laranjo"
-        description: "[Imagem] Gera um meme do Laranjo"
+        description: "Gera um meme do Laranjo"
         options:
           text:
             name: "texto"
@@ -153,7 +154,7 @@ commands:
 
       stonks:
         name: "stonks"
-        description: "[Imagem] Gera um meme de stonks"
+        description: "Gera um meme de stonks"
         options:
           text:
             name: "texto"
@@ -161,7 +162,7 @@ commands:
 
       not_stonks:
         name: "not_stonks"
-        description: "[Imagem] Gera um meme de not stonks"
+        description: "Gera um meme de not stonks"
         options:
           text:
             name: "texto"
@@ -169,7 +170,7 @@ commands:
 
     fate:
       name: "fate"
-      description: "[Diversão] Descubra o seu destino com uma pessoa"
+      description: "Descubra o seu destino com uma pessoa"
       options:
         user:
           name: "usuário"
@@ -177,10 +178,10 @@ commands:
 
     cancel:
       name: "cancelar"
-      description: "[Diversão] Cancele uma pessoa que fez algo errado"
+      description: "Cancele uma pessoa que fez algo errado"
       someone:
         name: "alguém"
-        description: "[Diversão] Cancele uma pessoa que fez algo errado"
+        description: "Cancele uma pessoa que fez algo errado"
       options:
         reason:
           name: "motivo"
@@ -191,10 +192,10 @@ commands:
 
     ratewaifu:
       name: "avaliar_waifu"
-      description: "[Diversão] Avalie a sua waifu"
+      description: "Avalie a sua waifu"
       rate:
         name: "avaliar"
-        description: "[Diversão] Avalie a sua waifu"
+        description: "Avalie a sua waifu"
       options:
         user:
           name: "usuário"
@@ -202,10 +203,10 @@ commands:
 
     ask:
       name: "perguntar"
-      description: "[Diversão] Comandos relacionados a perguntas e respostas"
+      description: "Comandos relacionados a perguntas e respostas"
       foxy:
         name: "foxy"
-        description: "[Diversão] Faça uma pergunta para a Foxy"
+        description: "Faça uma pergunta para a Foxy"
         options:
           question:
             name: "pergunta"
@@ -213,13 +214,13 @@ commands:
 
     slots:
       name: "slots"
-      description: "[Economia] Jogue nas máquinas caça-níqueis"
+      description: "Jogue nas máquinas caça-níqueis"
       chart:
         name: "tabela"
-        description: "[Economia] Veja a tabela de pagamentos das máquinas caça-níqueis"
+        description: "Veja a tabela de pagamentos das máquinas caça-níqueis"
       bet:
         name: "apostar"
-        description: "[Economia] Jogue nas máquinas caça-níqueis"
+        description: "Jogue nas máquinas caça-níqueis"
         options:
           amount:
             name: "quantidade"
@@ -230,7 +231,7 @@ commands:
       description: "Comandos relacionados a economia da Foxy"
       atm:
         name: "atm"
-        description: "[Economia] Veja a sua quantidade de cakes"
+        description: "Veja a sua quantidade de cakes"
         options:
           user:
             name: "usuário"
@@ -240,7 +241,7 @@ commands:
             description: "O tipo de informação que você deseja ver"
       convert:
         name: "converter"
-        description: "[Economia] Converta seus Cakes para Sonhos da Loritta"
+        description: "Converta seus Cakes para Sonhos da Loritta"
         options:
           amount:
             name: "quantidade"
@@ -251,10 +252,10 @@ commands:
 
       top:
         name: "top"
-        description: "[Economia] Veja quem são os usuários mais ricos."
+        description: "Veja quem são os usuários mais ricos."
       pay:
         name: "pagar"
-        description: "[Economia] Pague alguém"
+        description: "Pague alguém"
         options:
           user:
             name: "usuário"
@@ -265,7 +266,7 @@ commands:
 
       coinflipbet:
         name: "coinflipbet"
-        description: "[Economia] Aposte em cara ou coroa"
+        description: "Aposte em cara ou coroa"
         options:
           amount:
             name: "quantidade"
@@ -279,14 +280,14 @@ commands:
 
     foxy:
       name: "foxy"
-      description: "[Utilitários] Comandos relacionados ao bot"
+      description: "Comandos relacionados ao bot"
       ping:
         name: "ping"
-        description: "[Utilitários] Verifica a latência do bot"
+        description: "Verifica a latência do bot"
 
     aboutme:
       name: "sobremim"
-      description: "[Social] Comandos relacionados ao seu perfil"
+      description: "Comandos relacionados ao seu perfil"
       options:
         text:
           name: "texto"
@@ -294,10 +295,10 @@ commands:
 
     profile:
       name: "perfil"
-      description: "[Social] Veja o seu lindo perfil ou o de outro usuário"
+      description: "Veja o seu lindo perfil ou o de outro usuário"
       view:
         name: "ver"
-        description: "[Social] Veja o seu lindo perfil ou o de outro usuário"
+        description: "Veja o seu lindo perfil ou o de outro usuário"
       options:
         user:
           name: "usuário"
@@ -308,7 +309,7 @@ commands:
       description: "Comandos de ações para você se divertir com seus amigos"
       kiss:
         name: "beijar"
-        description: "[Diversão] Beije alguém"
+        description: "Beije alguém"
         options:
           user:
             name: "usuário"
@@ -316,7 +317,7 @@ commands:
 
       bite:
         name: "morder"
-        description: "[Diversão] Morda alguém"
+        description: "Morda alguém"
         options:
           user:
             name: "usuário"
@@ -324,11 +325,11 @@ commands:
 
       dance:
         name: "dançar"
-        description: "[Diversão] Mostre seus passos de dança!"
+        description: "Mostre seus passos de dança!"
 
       hug:
         name: "abraçar"
-        description: "[Diversão] Abraçe alguém"
+        description: "Abraçe alguém"
         options:
           user:
             name: "usuário"
@@ -336,11 +337,11 @@ commands:
 
       laugh:
         name: "rir"
-        description: "[Diversão] Mostre que você é uma pessoa alegre"
+        description: "Mostre que você é uma pessoa alegre"
 
       lick:
         name: "lamber"
-        description: "[Diversão] Lamba alguém"
+        description: "Lamba alguém"
         options:
           user:
             name: "usuário"
@@ -348,7 +349,7 @@ commands:
 
       pat:
         name: "acariciar"
-        description: "[Diversão] Acaricie alguém"
+        description: "Acaricie alguém"
         options:
           user:
             name: "usuário"
@@ -356,7 +357,7 @@ commands:
 
       slap:
         name: "tapa"
-        description: "[Diversão] Dê um tapa em alguém"
+        description: "Dê um tapa em alguém"
         options:
           user:
             name: "usuário"
@@ -364,11 +365,11 @@ commands:
 
       smile:
         name: "sorrir"
-        description: "[Diversão] Mostre que você é uma pessoa alegre"
+        description: "Mostre que você é uma pessoa alegre"
 
       tickles:
         name: "cócegas"
-        description: "[Diversão] Faça cosquinhas em alguém"
+        description: "Faça cosquinhas em alguém"
         options:
           user:
             name: "usuário"
@@ -376,25 +377,25 @@ commands:
 
     help:
       name: "ajuda"
-      description: "[Utilitários] Veja informações sobre a Foxy"
+      description: "Veja informações sobre a Foxy"
 
     dbl:
       name: "dbl"
-      description: "[Utilities] Vote na Foxy na Top.gg"
+      description: "Vote na Foxy na Top.gg"
       vote:
         name: "votar"
-        description: "[Utilities] Vote na Foxy na Top.gg"
+        description: "Vote na Foxy na Top.gg"
 
     language:
       name: "idioma"
-      description: "[Utilitários] Altera o idioma do bot"
+      description: "Altera o idioma do bot"
 
     marry:
       name: "casar"
-      description: "[Social] Case com alguém"
+      description: "Case com alguém"
       propose:
         name: "pedir"
-        description: "[Social] Peça alguém em casamento"
+        description: "Peça alguém em casamento"
       options:
         user:
           name: "usuário"
@@ -402,4 +403,4 @@ commands:
 
     divorce:
       name: "divorciar"
-      description: "[Social] Se divorcie do seu parceiro"
+      description: "Se divorcie do seu parceiro"

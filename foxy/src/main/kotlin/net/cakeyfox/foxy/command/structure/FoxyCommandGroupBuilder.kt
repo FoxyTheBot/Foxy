@@ -13,6 +13,7 @@ class FoxyCommandGroupBuilder(
         name: String,
         description: String,
         isPrivate: Boolean = false,
+        category: String,
         availableForEarlyAccess: Boolean = false,
         integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
         interactionContexts: List<InteractionContextType> = listOf(InteractionContextType.GUILD),
@@ -22,6 +23,7 @@ class FoxyCommandGroupBuilder(
             name,
             description,
             isPrivate,
+            category,
             availableForEarlyAccess,
             integrationType,
             interactionContexts

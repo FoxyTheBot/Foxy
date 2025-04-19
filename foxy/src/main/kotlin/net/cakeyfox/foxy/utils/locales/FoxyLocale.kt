@@ -20,7 +20,8 @@ class FoxyLocale(val locale: String) {
             "$PATH/$locale/general.yml",
             "$PATH/$locale/commands.yml",
             "$PATH/$locale/components.yml",
-            "$PATH/$locale/modules.yml"
+            "$PATH/$locale/modules.yml",
+            "$PATH/$locale/utils.yml"
         )
 
         for (resourcePath in resourcePaths) {

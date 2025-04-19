@@ -5,7 +5,7 @@ import net.cakeyfox.foxy.command.vanilla.economy.DailyExecutor
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
 
-class DailyCommand: FoxyCommandDeclarationWrapper {
+class DailyCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "daily",
         "daily.description",
@@ -19,6 +19,8 @@ class DailyCommand: FoxyCommandDeclarationWrapper {
             IntegrationType.GUILD_INSTALL,
             IntegrationType.USER_INSTALL
         ),
+        category = "economy",
+
         block = {
             executor = DailyExecutor()
         }

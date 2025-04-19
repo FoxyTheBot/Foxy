@@ -8,8 +8,9 @@ import net.dv8tion.jda.api.interactions.commands.build.OptionData
 class CancelCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "cancel",
-        "cancel.description"
-    ) {
+        "cancel.description",
+        category = "fun",
+        ) {
         addOptions(
             listOf(
                 OptionData(

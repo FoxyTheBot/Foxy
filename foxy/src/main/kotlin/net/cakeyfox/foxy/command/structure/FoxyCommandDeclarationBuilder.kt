@@ -16,6 +16,7 @@ class FoxyCommandDeclarationBuilder(
     val name: String,
     val description: String,
     val isPrivate: Boolean,
+    var category: String,
     val availableForEarlyAccess: Boolean = false,
     val integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
     val interactionContexts: List<InteractionContextType> = listOf(InteractionContextType.GUILD),
@@ -33,6 +34,7 @@ class FoxyCommandDeclarationBuilder(
         name: String,
         description: String,
         isPrivate: Boolean = false,
+        category: String = this.category,
         integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
         interactionContexts: List<InteractionContextType> = listOf(InteractionContextType.GUILD),
         baseName: String? = null,
@@ -42,6 +44,7 @@ class FoxyCommandDeclarationBuilder(
             name,
             description,
             isPrivate,
+            category,
             availableForEarlyAccess,
             integrationType,
             interactionContexts
@@ -129,11 +132,19 @@ class FoxyCommandDeclarationBuilder(
 
             this.setIntegrationTypes(integrationType[0], *integrationType.drop(1).toTypedArray())
             this.setContexts(interactionContexts[0], *interactionContexts.drop(1).toTypedArray())
+            val enUsCategory = enUsLocale["categories.$category"]
+            val ptBrCategory = ptBrLocale["categories.$category"]
 
             setDescriptionLocalizations(
                 mapOf(
-                    DiscordLocale.ENGLISH_US to enUsLocale["commands.command.$name.description"],
-                    DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.$name.description"]
+                    DiscordLocale.PORTUGUESE_BRAZILIAN to buildDescription(
+                        ptBrCategory,
+                        ptBrLocale["commands.command.$name.description"]
+                    ),
+                    DiscordLocale.ENGLISH_US to buildDescription(
+                        enUsCategory,
+                        enUsLocale["commands.command.$name.description"]
+                    )
                 )
             )
 
@@ -152,10 +163,17 @@ class FoxyCommandDeclarationBuilder(
 
                         setDescriptionLocalizations(
                             mapOf(
-                                DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${subCmd.name}.description"],
-                                DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${subCmd.name}.description"]
+                                DiscordLocale.ENGLISH_US to buildDescription(
+                                    enUsCategory,
+                                    enUsLocale["commands.command.${baseName}.${subCmd.name}.description"]
+                                ),
+                                DiscordLocale.PORTUGUESE_BRAZILIAN to buildDescription(
+                                    ptBrCategory,
+                                    ptBrLocale["commands.command.${baseName}.${subCmd.name}.description"]
+                                )
                             )
                         )
+
                         this.addOptions(subCmd.commandOptions)
                     }
                 )
@@ -176,8 +194,14 @@ class FoxyCommandDeclarationBuilder(
 
                                     setDescriptionLocalizations(
                                         mapOf(
-                                            DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${it.name}.${subCommand.name}.description"],
-                                            DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${it.name}.${subCommand.name}.description"]
+                                            DiscordLocale.ENGLISH_US to buildDescription(
+                                                enUsCategory,
+                                                enUsLocale["commands.command.${baseName}.${it.name}.${subCommand.name}.description"]
+                                            ),
+                                            DiscordLocale.PORTUGUESE_BRAZILIAN to buildDescription(
+                                                ptBrCategory,
+                                                ptBrLocale["commands.command.${baseName}.${it.name}.${subCommand.name}.description"]
+                                            )
                                         )
                                     )
                                     this.addOptions(subCommand.commandOptions)
@@ -191,5 +215,9 @@ class FoxyCommandDeclarationBuilder(
         }
 
         return commandData
+    }
+
+    private fun buildDescription(category: String, description: String): String {
+        return "[$category] - $description"
     }
 }

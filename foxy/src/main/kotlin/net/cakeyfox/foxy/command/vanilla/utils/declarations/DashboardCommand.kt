@@ -9,6 +9,7 @@ class DashboardCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         name = "dashboard",
         description = "description",
+        category = "utils",
         interactionContexts = listOf(
             InteractionContextType.GUILD
         ),

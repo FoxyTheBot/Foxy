@@ -10,7 +10,7 @@ import net.cakeyfox.foxy.command.vanilla.dev.declarations.ServerInviteCommand
 import net.cakeyfox.foxy.command.vanilla.dev.declarations.StatusCommand
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.*
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.*
-import net.cakeyfox.foxy.command.vanilla.games.declarations.RussianRouletteCommand
+import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.RussianRouletteCommand
 import net.cakeyfox.foxy.command.vanilla.social.declarations.*
 import net.cakeyfox.foxy.command.vanilla.utils.declarations.*
 import net.cakeyfox.foxy.utils.ClusterUtils
@@ -72,7 +72,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(RobCommand())
 
         /* ---- [Entertainment] ---- */
-        register(FunCommand())
+        register(MagicCommand())
         register(AskFoxyCommand())
         register(FateCommand())
         register(CancelCommand())

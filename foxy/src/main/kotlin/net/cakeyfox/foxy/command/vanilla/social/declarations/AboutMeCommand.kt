@@ -11,6 +11,7 @@ class AboutMeCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "aboutme",
         "aboutme.description",
+        category = "social",
         integrationType = listOf(
             IntegrationType.USER_INSTALL,
             IntegrationType.GUILD_INSTALL

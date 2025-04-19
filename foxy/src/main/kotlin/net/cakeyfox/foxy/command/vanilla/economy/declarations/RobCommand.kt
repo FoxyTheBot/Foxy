@@ -18,8 +18,9 @@ class RobCommand : FoxyCommandDeclarationWrapper {
         ),
         interactionContexts = listOf(
             InteractionContextType.GUILD
-        )
-    ) {
+        ),
+        category = "economy",
+        ) {
         addOption(
             OptionData(
                 OptionType.USER,

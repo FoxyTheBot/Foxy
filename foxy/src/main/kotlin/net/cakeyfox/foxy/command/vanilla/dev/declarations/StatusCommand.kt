@@ -7,7 +7,8 @@ class StatusCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         name = "status",
         description = "status.description",
-        isPrivate = true
+        isPrivate = true,
+        category = "dev"
     ) {
         executor = StatusExecutor()
     }

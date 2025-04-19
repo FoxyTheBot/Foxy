@@ -9,7 +9,7 @@ class DivorceCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "divorce",
         "divorce.description",
-
+        category = "social",
         interactionContexts = listOf(
             InteractionContextType.GUILD,
             InteractionContextType.BOT_DM,

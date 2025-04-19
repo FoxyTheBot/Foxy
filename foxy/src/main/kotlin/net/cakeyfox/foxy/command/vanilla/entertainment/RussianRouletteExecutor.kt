@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.command.vanilla.games
+package net.cakeyfox.foxy.command.vanilla.entertainment
 
 import kotlinx.coroutines.delay
 import net.cakeyfox.common.Colors

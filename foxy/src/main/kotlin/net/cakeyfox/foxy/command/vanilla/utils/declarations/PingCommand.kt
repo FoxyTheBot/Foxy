@@ -10,7 +10,7 @@ class PingCommand : FoxyCommandDeclarationWrapper {
     override fun create(): FoxyCommandDeclarationBuilder = command(
         "ping",
         "ping.description",
-
+        category = "utils",
         interactionContexts = listOf(
             InteractionContextType.BOT_DM,
             InteractionContextType.GUILD,

@@ -18,8 +18,9 @@ class RouletteCommand : FoxyCommandDeclarationWrapper {
             InteractionContextType.GUILD,
             InteractionContextType.BOT_DM,
             InteractionContextType.PRIVATE_CHANNEL
-        )
-    ) {
+        ),
+        category = "economy",
+        ) {
         executor = RouletteExecutor()
     }
 }

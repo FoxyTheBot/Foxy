@@ -9,6 +9,7 @@ class DblCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "dbl",
         "dbl.description",
+        category = "utils",
         interactionContexts = listOf(
             InteractionContextType.BOT_DM,
             InteractionContextType.GUILD,

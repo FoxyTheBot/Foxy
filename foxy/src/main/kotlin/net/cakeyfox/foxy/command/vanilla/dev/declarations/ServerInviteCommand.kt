@@ -9,7 +9,8 @@ class ServerInviteCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "serverinvite",
         "serverinvite.description",
-        isPrivate = true
+        isPrivate = true,
+        category = "dev"
     ) {
         subCommand(
             "retrieve",

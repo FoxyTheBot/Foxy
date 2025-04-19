@@ -9,6 +9,7 @@ class HelpCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "help",
         "help.description",
+        category = "utils",
         interactionContexts = listOf(
             InteractionContextType.GUILD,
             InteractionContextType.BOT_DM,

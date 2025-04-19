@@ -8,8 +8,9 @@ import net.dv8tion.jda.api.interactions.commands.build.OptionData
 class FateCommand : FoxyCommandDeclarationWrapper {
     override fun create() = command(
         "fate",
-        "fate.description"
-    ) {
+        "fate.description",
+        category = "fun",
+        ) {
         addOption(
             OptionData(
                 OptionType.USER,

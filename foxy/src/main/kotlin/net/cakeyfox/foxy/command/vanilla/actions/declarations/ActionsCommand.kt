@@ -18,7 +18,8 @@ class ActionsCommand: FoxyCommandDeclarationWrapper {
         integrationType = listOf(
             IntegrationType.GUILD_INSTALL,
             IntegrationType.USER_INSTALL
-        )
+        ),
+        category = "actions"
     ) {
         baseName = this@command.name
 

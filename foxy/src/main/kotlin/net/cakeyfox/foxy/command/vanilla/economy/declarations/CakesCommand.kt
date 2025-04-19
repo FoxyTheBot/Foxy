@@ -21,7 +21,8 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
         integrationType = listOf(
             IntegrationType.USER_INSTALL,
             IntegrationType.GUILD_INSTALL
-        )
+        ),
+        category = "economy"
     ) {
         subCommand(
             "atm",

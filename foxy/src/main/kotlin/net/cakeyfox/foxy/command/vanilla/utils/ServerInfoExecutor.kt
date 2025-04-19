@@ -10,8 +10,9 @@ import net.cakeyfox.foxy.utils.pretty
 class ServerInfoExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
-        val serverId = context.getOption<String>("server_id") ?: context.guild!!.id
-        if (serverId.toLongOrNull() == null) {
+        val serverId = context.getOption<String>("server_id") ?: context.guild?.id
+
+        if (serverId?.toLongOrNull() == null) {
             context.reply {
                 content = pretty(FoxyEmotes.FoxyCry, context.locale["server.info.invalidServerId"])
             }
