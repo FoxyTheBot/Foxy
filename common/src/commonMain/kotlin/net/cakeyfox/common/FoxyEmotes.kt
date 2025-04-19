@@ -46,4 +46,7 @@ object FoxyEmotes {
     const val FlagBr = "\uD83C\uDDE7\uD83C\uDDF7"
     const val FlagUs = "\uD83C\uDDFA\uD83C\uDDF8"
     const val Ring = "\uD83D\uDC8D"
+    const val Computer = "\uD83D\uDCBB"
+    const val Thread = "\uD83E\uDDF5"
+    const val Graph = "\uD83D\uDCC8"
 }
