@@ -291,7 +291,6 @@ class ProfileRender(
         graphics.clearRect(0, 0, config.profileWidth, config.profileHeight)
         graphics.drawImage(background, 0, 0, config.profileWidth, config.profileHeight, null)
         graphics.drawImage(layout, 0, 0, config.profileWidth, config.profileHeight, null)
-        graphics.drawRect(0, 0, config.profileWidth, config.profileHeight)
     }
 
     private fun cleanUp() {
