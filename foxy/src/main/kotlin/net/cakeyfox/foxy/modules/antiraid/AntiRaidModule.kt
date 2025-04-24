@@ -12,7 +12,6 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.modules.antiraid.utils.AntiRaidActions
 import net.cakeyfox.foxy.modules.antiraid.utils.AntiRaidUtils
-import net.cakeyfox.foxy.modules.antiraid.utils.WarningBuilder
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.Permission
@@ -29,6 +28,11 @@ class AntiRaidModule(
 ) {
     companion object {
         private val logger = KotlinLogging.logger(this::class.jvmName)
+
+        data class WarningBody(
+            var content: String? = "",
+            var actionTaken: String? = ""
+        )
     }
 
     private val joinCache: Cache<String, MutableList<Long>> = Caffeine.newBuilder()
@@ -242,11 +246,11 @@ class AntiRaidModule(
         channelId: String,
         user: User,
         locale: FoxyLocale,
-        block: WarningBuilder.() -> Unit
+        block: WarningBody.() -> Unit
     ) {
         if (alertsSent.getIfPresent(targetId) != null) return
         alertsSent.put(targetId, Unit)
-        val message = WarningBuilder().apply(block)
+        val message = WarningBody().apply(block)
 
         val channel = foxy.shardManager.getTextChannelById(channelId) ?: return
         val msg = MessageCreateBuilder {
