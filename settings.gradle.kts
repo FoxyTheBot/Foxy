@@ -10,7 +10,7 @@ plugins {
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
-            library("jda", "net.dv8tion", "JDA").version("5.3.0")
+            library("jda", "net.dv8tion", "JDA").version("5.4.0")
         }
     }
 }
