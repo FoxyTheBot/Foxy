@@ -20,6 +20,9 @@ jobs:
           java-version: '21'
 
       - name: Build Foxy with Gradle
+        env:
+          GIT_COMMIT: ${{ github.sha }}
+          GITHUB_RUN_NUMBER: ${{ github.run_number }}
         run: |
           chmod +x ./gradlew
           ./gradlew :foxy:shadowJar --no-daemon
