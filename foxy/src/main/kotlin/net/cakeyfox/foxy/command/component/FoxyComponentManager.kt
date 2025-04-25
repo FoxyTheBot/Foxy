@@ -5,12 +5,12 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.utils.pretty
+import net.dv8tion.jda.api.components.actionrow.ActionRow
+import net.dv8tion.jda.api.components.button.Button
+import net.dv8tion.jda.api.components.button.ButtonStyle
+import net.dv8tion.jda.api.components.selects.StringSelectMenu
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.entities.emoji.Emoji
-import net.dv8tion.jda.api.interactions.components.LayoutComponent
-import net.dv8tion.jda.api.interactions.components.buttons.Button
-import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
-import net.dv8tion.jda.api.interactions.components.selections.StringSelectMenu
 import net.dv8tion.jda.api.interactions.modals.Modal
 import java.util.UUID
 import kotlin.time.Duration.Companion.minutes
@@ -181,7 +181,7 @@ class FoxyComponentManager(
             }
 
         @get:JvmSynthetic
-        var components: List<LayoutComponent>
+        var components: List<ActionRow>
             @Deprecated("", level = DeprecationLevel.ERROR)
             get() = throw UnsupportedOperationException()
             set(value) {
@@ -190,7 +190,6 @@ class FoxyComponentManager(
     }
 
     class ButtonBuilder(internal var button: Button) {
-
         @get:JvmSynthetic
         var emoji: Emoji
             @Deprecated("", level = DeprecationLevel.ERROR)
