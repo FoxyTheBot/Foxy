@@ -3,6 +3,7 @@ package net.cakeyfox.foxy.command.vanilla.dev
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.utils.VersionInfo
 import net.cakeyfox.foxy.utils.pretty
 import java.lang.management.ManagementFactory
 import com.sun.management.OperatingSystemMXBean as SunOperatingSystemMXBean
@@ -29,21 +30,14 @@ class StatusExecutor : FoxyCommandExecutor() {
         val threads = threadMXBean.threadCount
         val peakThreads = threadMXBean.peakThreadCount
 
-        val processCpu = if (osBean is SunOperatingSystemMXBean)
-            (osBean.processCpuLoad * 100).takeIf { it >= 0 }?.let { "%.2f".format(it) } ?: "N/A"
-        else "N/A"
-
-        val systemCpu = if (osBean is SunOperatingSystemMXBean)
-            (osBean.systemCpuLoad * 100).takeIf { it >= 0 }?.let { "%.2f".format(it) } ?: "N/A"
-        else "N/A"
-
         val msg = buildString {
             appendLine(pretty(FoxyEmotes.FoxyDrinkingCoffee, "**Foxy's Status**"))
+            appendLine(pretty(FoxyEmotes.FoxyYay, "Build Number: #${VersionInfo.buildNumber}"))
+            appendLine(pretty(FoxyEmotes.FoxyBread, "Commit: ${VersionInfo.commitHash.take(8)}"))
+            appendLine(pretty(FoxyEmotes.FoxySee, "Environment: ${VersionInfo.environment}"))
             appendLine(pretty(FoxyEmotes.Computer, "Used memory: ${usedMemory}MB"))
             appendLine(pretty(FoxyEmotes.Computer, "Allocated memory: ${totalMemory}MB"))
             appendLine(pretty(FoxyEmotes.Computer, "Max memory: ${maxMemory}MB"))
-            appendLine(pretty(FoxyEmotes.Computer, "JVM CPU: $processCpu%"))
-            appendLine(pretty(FoxyEmotes.Computer, "System CPU: $systemCpu%"))
             appendLine(pretty(FoxyEmotes.Thread, "Active threads: $threads"))
             appendLine(pretty(FoxyEmotes.Graph, "Peak threads: $peakThreads"))
             appendLine(pretty(FoxyEmotes.FoxyYay, "Total Shards: ${foxy.config.discord.totalShards}"))
