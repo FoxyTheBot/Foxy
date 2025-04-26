@@ -69,7 +69,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(DailyCommand())
         register(SlotsCommand())
 //        register(RouletteCommand())
-        register(RobCommand())
+//        register(RobCommand())
 
         /* ---- [Entertainment] ---- */
         register(MagicCommand())
