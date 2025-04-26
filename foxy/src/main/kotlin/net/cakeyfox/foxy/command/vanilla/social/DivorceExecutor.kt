@@ -5,7 +5,7 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
 import net.cakeyfox.foxy.utils.pretty
-import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
+import net.dv8tion.jda.api.components.button.ButtonStyle
 
 class DivorceExecutor : FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {

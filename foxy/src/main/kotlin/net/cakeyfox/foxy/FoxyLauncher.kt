@@ -55,9 +55,8 @@ object FoxyLauncher {
                 logger.error { "Invalid ID in hostname ($hostname)! The value after '-' must be a number (e.g., foxy-1)." }
                 exitProcess(1)
             }
-        } else {
-            config.discord.replicaId
-        }
+        } else config.discord.replicaId
+
 
         val currentCluster = config.discord.clusters.find { it.id == clusterId }
             ?: run {

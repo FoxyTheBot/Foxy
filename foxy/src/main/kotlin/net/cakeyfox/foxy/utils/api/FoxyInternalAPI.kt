@@ -27,9 +27,7 @@ class FoxyInternalAPI(
                 authenticate { tokenCredential ->
                     if (tokenCredential.token == foxy.config.others.internalApi.key) {
                         UserIdPrincipal("authenticatedUser")
-                    } else {
-                        null
-                    }
+                    } else null
                 }
             }
         }
