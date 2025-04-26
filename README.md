@@ -1,7 +1,5 @@
-<p align="center">
-<img width="35%" src="https://cdn.discordapp.com/attachments/1078322762550083736/1095835653444481145/FOXYY.png">
-<br>
-<h1 align="center">[DEPRECATED] Foxy</h1>
+<p align="center"><br>
+<h1 align="center">🦊 Foxy 🦊</h1>
 
  </p>
 <p align="center">
@@ -12,16 +10,16 @@
 <img src="https://img.shields.io/badge/license-AGPL%20v3-blue.svg">
 </p>
 
-
 ## ⚠ | Warning
 
-You are in a deprecated branch, all files from this branch may not work properly
+You are on a deprecated branch. All files from this branch may not work properly.
 
-## 💜 | Inviting Foxy to your server 
-Use the public instance without hosting stuff, If you're here to see or use the code, why don't you try Foxy's public version? It's recommended using the public instance
+## 💜 | Inviting Foxy to your server
 
+If you're looking to use Foxy without hosting it yourself, you can join the public instance. For those who wish to see or use the code, we recommend trying Foxy's public version.
 
 ## 🤔 | Need help?
-- If you need help, you can enter in My Discord Server!
+
+If you need assistance, feel free to join my Discord server!
 
 <a href="https://foxybot.win/discord"><img src="https://discordapp.com/api/guilds/768267522670723094/widget.png?style=banner3"></a>
