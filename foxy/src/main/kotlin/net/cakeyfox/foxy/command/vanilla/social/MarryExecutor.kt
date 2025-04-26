@@ -5,7 +5,7 @@ import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
 import net.cakeyfox.foxy.utils.pretty
 import net.dv8tion.jda.api.entities.User
-import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
+import net.dv8tion.jda.api.components.button.ButtonStyle
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
