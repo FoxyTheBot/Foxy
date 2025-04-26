@@ -69,18 +69,6 @@ tasks.test {
 
 
 tasks {
-    val commitHash: String = System.getenv("GIT_COMMIT") ?: "unknown"
-    val buildNumber: String = System.getenv("GITHUB_RUN_NUMBER") ?: "dev"
-
-    processResources {
-        filesMatching("**/version.properties") {
-            expand(
-                "commitHash" to commitHash,
-                "buildNumber" to buildNumber,
-            )
-        }
-    }
-
     shadowJar {
         archiveBaseName.set("Foxy")
         archiveVersion.set(version.toString())
