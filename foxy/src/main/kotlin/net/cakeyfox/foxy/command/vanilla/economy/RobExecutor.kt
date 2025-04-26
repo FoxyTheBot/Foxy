@@ -10,6 +10,7 @@ class RobExecutor : FoxyCommandExecutor() {
     companion object {
         private const val ROB_CHANCE = 0.5
         private const val ROB_COOLDOWN = 86400000 // 24 hours
+        private const val MAX_VALUE = 2_000L
     }
 
     override suspend fun execute(context: FoxyInteractionContext) {
@@ -61,7 +62,8 @@ class RobExecutor : FoxyCommandExecutor() {
         )
 
         if (Math.random() < ROB_CHANCE) {
-            val amount = (userToRobData.userCakes.balance * 0.1).toLong()
+            var amount = (userToRobData.userCakes.balance * 0.1).toLong()
+            if (amount > MAX_VALUE) amount = MAX_VALUE
             context.database.user.removeCakesFromUser(userToRob.id, amount)
             context.database.user.addCakesToUser(context.user.id, amount)
 
