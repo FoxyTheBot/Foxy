@@ -15,7 +15,18 @@ class PayExecutor : FoxyCommandExecutor() {
         val userBalance = context.getAuthorData().userCakes.balance.toLong() - amount
         val formattedBalance = context.utils.formatUserBalance(userBalance, context.locale)
 
-        isAbleToPay(context, userToPay, amount)
+        if (userToPay.id == context.user.id) {
+            context.reply {
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["pay.cantPayYourself"]
+                )
+            }
+
+            return
+        }
+
+        if (!isAbleToPay(context, amount)) return
 
         context.reply {
             content = pretty(
@@ -59,7 +70,7 @@ class PayExecutor : FoxyCommandExecutor() {
         }
     }
 
-    private suspend fun isAbleToPay(context: FoxyInteractionContext, userToPay: User, amount: Long) {
+    private suspend fun isAbleToPay(context: FoxyInteractionContext, amount: Long): Boolean {
         if (amount <= 0) {
             context.reply {
                 content = pretty(
@@ -68,29 +79,20 @@ class PayExecutor : FoxyCommandExecutor() {
                 )
             }
 
-            return
+            return false
         }
 
         if (context.getAuthorData().userCakes.balance < amount) {
             context.reply {
                 content = pretty(
                     FoxyEmotes.FoxyCry,
-                    context.locale["pay.notEnoughCakes"]
+                    context.locale["pay.notEnoughBalance"]
                 )
             }
 
-            return
+            return false
         }
 
-        if (userToPay.id == context.user.id) {
-            context.reply {
-                content = pretty(
-                    FoxyEmotes.FoxyCry,
-                    context.locale["pay.cantPayYourself"]
-                )
-            }
-
-            return
-        }
+        return true
     }
 }
