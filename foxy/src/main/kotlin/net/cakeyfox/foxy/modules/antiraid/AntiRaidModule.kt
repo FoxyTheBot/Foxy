@@ -185,7 +185,7 @@ class AntiRaidModule(
         user: User,
         action: String,
         message: String,
-        guildInfo: net.cakeyfox.serializable.database.data.Guild,
+        guildInfo: net.cakeyfox.foxy.database.data.Guild,
         event: MessageReceivedEvent? = null
     ) {
         try {

@@ -14,7 +14,7 @@ import net.cakeyfox.foxy.utils.image.ImageUtils.drawTextWithFont
 import net.cakeyfox.foxy.utils.profile.ProfileUtils.getOrFetchFromCache
 import net.cakeyfox.foxy.utils.profile.badge.BadgeUtils
 import net.cakeyfox.foxy.utils.profile.config.ProfileConfig
-import net.cakeyfox.serializable.database.data.*
+import net.cakeyfox.foxy.database.data.*
 import net.dv8tion.jda.api.entities.User
 import java.awt.Color
 import java.awt.Graphics2D

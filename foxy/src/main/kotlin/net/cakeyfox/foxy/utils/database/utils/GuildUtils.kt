@@ -4,14 +4,12 @@ import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import kotlinx.serialization.json.Json
 import net.cakeyfox.foxy.utils.database.DatabaseClient
-import net.cakeyfox.serializable.database.data.*
+import net.cakeyfox.foxy.database.data.*
 import org.bson.Document
 import kotlin.reflect.KClass
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.ObjectNode
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import com.mongodb.client.model.Filters.eq
 import kotlin.reflect.full.memberProperties
@@ -32,40 +30,42 @@ class GuildUtils(
     }
 
     suspend fun deleteGuild(guildId: String) {
-        withContext(Dispatchers.IO) {
+        client.withRetry {
             val guilds = client.database.getCollection<Document>("guilds")
             guilds.deleteOne(eq("_id", guildId))
         }
     }
 
     private suspend fun createGuild(guildId: String): Guild {
-        val guilds = client.database.getCollection<Document>("guilds")
+        return client.withRetry {
+            val guilds = client.database.getCollection<Document>("guilds")
 
-        val newGuild = Guild(
-            _id = guildId,
-            guildAddedAt = System.currentTimeMillis(),
-            GuildJoinLeaveModule = WelcomerModule(),
-            antiRaidModule = AntiRaidModule(),
-            AutoRoleModule = AutoRoleModule(),
-            guildSettings = GuildSettings(),
-        )
+            val newGuild = Guild(
+                _id = guildId,
+                guildAddedAt = System.currentTimeMillis(),
+                GuildJoinLeaveModule = WelcomerModule(),
+                antiRaidModule = AntiRaidModule(),
+                AutoRoleModule = AutoRoleModule(),
+                guildSettings = GuildSettings(),
+            )
 
-        val documentToJSON = client.json.encodeToString(newGuild)
-        val document = Document.parse(documentToJSON)
-        guilds.insertOne(document)
+            val documentToJSON = client.foxy.json.encodeToString(newGuild)
+            val document = Document.parse(documentToJSON)
+            guilds.insertOne(document)
 
-        return newGuild
+            newGuild
+        }
     }
 
     // Adding missing fields if necessary
 
     private suspend fun updateGuildWithNewFields(guildId: String): Guild {
-        return withContext(Dispatchers.IO) {
+        return client.withRetry {
             val guilds = client.database.getCollection<Document>("guilds")
 
             val existingDocument =
                 guilds.find(eq("_id", guildId))
-                    .firstOrNull() ?: return@withContext createGuild(guildId)
+                    .firstOrNull() ?: return@withRetry createGuild(guildId)
 
             val documentToJSON = existingDocument.toJson()
 
@@ -75,9 +75,9 @@ class GuildUtils(
 
             val updatedJsonNode = ensureFields(Guild::class, jsonNode, guildId)
 
-            val updatedGuild = client.json.decodeFromString<Guild>(updatedJsonNode.toString())
+            val updatedGuild = client.foxy.json.decodeFromString<Guild>(updatedJsonNode.toString())
 
-            val updatedDocument = Document.parse(client.json.encodeToString(updatedGuild))
+            val updatedDocument = Document.parse(client.foxy.json.encodeToString(updatedGuild))
             val update = Document("\$set", updatedDocument)
             guilds.updateOne(eq("_id", guildId), update)
 

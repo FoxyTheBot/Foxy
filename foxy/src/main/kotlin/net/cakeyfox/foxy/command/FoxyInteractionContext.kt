@@ -6,9 +6,9 @@ import dev.minn.jda.ktx.messages.MessageCreateBuilder
 import dev.minn.jda.ktx.messages.MessageEditBuilder
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
+import net.cakeyfox.foxy.database.data.FoxyUser
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
-import net.cakeyfox.serializable.database.data.FoxyUser
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent

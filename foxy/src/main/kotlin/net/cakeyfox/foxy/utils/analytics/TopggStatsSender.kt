@@ -43,9 +43,7 @@ class TopggStatsSender(
     }
 
     private suspend fun getServerCountsFromClusters(): Int {
-        val client = HttpClient {
-            install(ContentNegotiation) { json() }
-        }
+        val client = foxy.httpClient
         val clusterUrls = foxy.config.discord.clusters
             .mapNotNull { if (!it.canPublishStats) it.clusterUrl else null }
 

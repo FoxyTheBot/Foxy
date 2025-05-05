@@ -1,8 +1,7 @@
 package net.cakeyfox.foxy.utils.profile.badge
 
-import net.cakeyfox.serializable.database.data.Badge
-import net.cakeyfox.serializable.database.data.FoxyUser
-import net.dv8tion.jda.api.entities.Member
+import net.cakeyfox.foxy.database.data.Badge
+import net.cakeyfox.foxy.database.data.FoxyUser
 import java.time.Instant
 
 object BadgeUtils {

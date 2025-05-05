@@ -9,28 +9,20 @@ plugins {
 group = "net.cakeyfox"
 version = Versions.FOXY_VERSION
 
-application {
-    mainClass.set("net.cakeyfox.foxy.FoxyLauncher")
-}
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation(project(":artistry-client"))
     implementation(project(":common"))
     implementation(project(":cirno-serializable"))
 
     // Discord
-    implementation(libs.jda) {
-        exclude(module="opus-java")
-    }
+    implementation(libs.jda)
     implementation("club.minnced:jda-ktx:${Versions.JDA_KTX}")
+
 
     // MongoDB
     implementation("org.mongodb:bson-kotlinx:${Versions.MONGODB}")
     implementation("org.mongodb:mongodb-driver-kotlin-coroutine:${Versions.MONGODB}")
+    implementation("com.github.FoxyTheBot:DatabaseUtils:1.0.0")
 
     // Ktor
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -69,13 +61,16 @@ tasks.test {
     useJUnitPlatform()
 }
 
-
 tasks {
     shadowJar {
         archiveBaseName.set("Foxy")
         archiveVersion.set(version.toString())
         archiveClassifier.set("")
     }
+}
+
+application {
+    mainClass.set("net.cakeyfox.foxy.FoxyLauncher")
 }
 
 kotlin {

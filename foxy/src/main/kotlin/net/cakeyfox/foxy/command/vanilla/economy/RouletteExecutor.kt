@@ -4,8 +4,8 @@ import mu.KotlinLogging
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.command.structure.FoxyCommandExecutor
+import net.cakeyfox.foxy.database.data.Roulette
 import net.cakeyfox.foxy.utils.pretty
-import net.cakeyfox.serializable.database.data.Roulette
 
 class RouletteExecutor : FoxyCommandExecutor() {
     companion object {

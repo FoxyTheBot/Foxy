@@ -13,6 +13,7 @@ version = Versions.FOXY_VERSION
 
 allprojects {
     repositories {
+        mavenLocal()
         mavenCentral()
         maven("https://jitpack.io")
         maven("https://m2.dv8tion.net/releases")
@@ -20,7 +21,9 @@ allprojects {
 }
 
 subprojects {
-    tasks.withType<KotlinCompile> {
-        kotlinOptions.javaParameters = true
+    tasks.withType<KotlinCompile>().configureEach {
+        compilerOptions {
+            javaParameters.set(true)
+        }
     }
 }

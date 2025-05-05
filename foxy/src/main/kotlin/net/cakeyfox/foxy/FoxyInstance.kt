@@ -56,7 +56,10 @@ class FoxyInstance(
     private val currentClusterName = if (config.discord.clusters.size < 2) null else currentCluster.name
     private val coroutineExecutor = ThreadUtils.createThreadPool("CoroutineExecutor [%d]")
 
-    val json = Json { ignoreUnknownKeys = true }
+    val json = Json {
+        encodeDefaults = true
+        ignoreUnknownKeys = true
+    }
     val threadPoolManager = ThreadPoolManager()
     val coroutineDispatcher = coroutineExecutor.asCoroutineDispatcher()
 

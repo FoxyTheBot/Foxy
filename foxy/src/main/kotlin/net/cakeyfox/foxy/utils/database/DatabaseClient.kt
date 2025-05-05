@@ -3,30 +3,28 @@ package net.cakeyfox.foxy.utils.database
 import com.mongodb.kotlin.client.coroutine.MongoClient
 import com.mongodb.kotlin.client.coroutine.MongoCollection
 import com.mongodb.kotlin.client.coroutine.MongoDatabase
-import kotlinx.serialization.json.Json
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.utils.database.utils.*
-import net.cakeyfox.serializable.database.data.FoxyUser
-import net.cakeyfox.serializable.database.data.Guild
+import net.cakeyfox.foxy.database.data.FoxyUser
+import net.cakeyfox.foxy.database.data.Guild
 import java.util.concurrent.TimeUnit
 
 class DatabaseClient(
-    foxy: FoxyInstance
+    val foxy: FoxyInstance
 ) {
     companion object {
-        private var logger = KotlinLogging.logger { }
+        private val logger = KotlinLogging.logger {}
     }
 
     private lateinit var mongoClient: MongoClient
     private lateinit var guilds: MongoCollection<Guild>
+    private lateinit var foxyInstance: FoxyInstance
+
     lateinit var users: MongoCollection<FoxyUser>
     lateinit var database: MongoDatabase
-
-    val json = Json {
-        encodeDefaults = true
-        ignoreUnknownKeys = true
-    }
 
     val profile = ProfileUtils(this)
     val economy = EconomyUtils(this)
@@ -35,16 +33,61 @@ class DatabaseClient(
     val bot = BotUtils(this)
 
     fun start(foxy: FoxyInstance) {
-        mongoClient = MongoClient.create(foxy.config.database.uri)
-        mongoClient.withTimeout(10, TimeUnit.SECONDS)
-        database = mongoClient.getDatabase(foxy.config.database.databaseName)
-        users = database.getCollection("users")
-        guilds = database.getCollection("guilds")
-        logger.info { "Connected to ${foxy.config.database.databaseName} database" }
+        this.foxyInstance = foxy
+        connect()
+    }
+
+    private fun connect() {
+        try {
+            mongoClient = MongoClient.create(foxyInstance.config.database.uri)
+            mongoClient.withTimeout(10, TimeUnit.SECONDS)
+            database = mongoClient.getDatabase(foxyInstance.config.database.databaseName)
+            users = database.getCollection("users")
+            guilds = database.getCollection("guilds")
+            logger.info { "Connected to ${foxyInstance.config.database.databaseName} database" }
+        } catch (e: Exception) {
+            logger.error(e) { "Failed to connect to MongoDB" }
+        }
+    }
+
+    private fun reconnect() {
+        logger.warn { "Reconnecting to MongoDB..." }
+        try {
+            close()
+        } catch (e: Exception) {
+            logger.warn(e) { "Error closing MongoDB during reconnect" }
+        }
+        connect()
+    }
+
+    private suspend fun <T> withDatabaseRetry(
+        retries: Int = 3,
+        block: suspend MongoDatabase.() -> T
+    ): T {
+        var attempt = 0
+        while (true) {
+            try {
+                return database.block()
+            } catch (e: Exception) {
+                logger.warn(e) { "Database operation failed (attempt ${attempt + 1}/$retries)" }
+                if (++attempt >= retries) throw e
+                reconnect()
+            }
+        }
+    }
+
+    suspend fun <T> withRetry(block: suspend MongoDatabase.() -> T): T {
+        return withContext(Dispatchers.IO) {
+            this@DatabaseClient.withDatabaseRetry(block = block)
+        }
     }
 
     fun close() {
-        mongoClient.close()
-        logger.info { "Disconnected from MongoDB" }
+        try {
+            mongoClient.close()
+            logger.info { "Disconnected from MongoDB" }
+        } catch (e: Exception) {
+            logger.warn(e) { "Error while closing MongoDB client" }
+        }
     }
 }

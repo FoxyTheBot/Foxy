@@ -41,7 +41,7 @@ class BotUtils(
             }
 
         val documentToJSON = botSettingsDocument.toJson()
-        return client.json.decodeFromString(documentToJSON)
+        return client.foxy.json.decodeFromString(documentToJSON)
     }
 
     suspend fun getActivity(): String {
@@ -53,7 +53,7 @@ class BotUtils(
             }
 
         val documentToJSON = botSettingsDocument.toJson()
-        val botSettingsData = client.json.decodeFromString<BotSettings>(documentToJSON)
+        val botSettingsData = client.foxy.json.decodeFromString<BotSettings>(documentToJSON)
 
         return botSettingsData.activity
     }
@@ -104,7 +104,7 @@ class BotUtils(
 
         logger.info { "Creating new bot settings document" }
 
-        val documentToJSON = client.json.encodeToString(botSettings)
+        val documentToJSON = client.foxy.json.encodeToString(botSettings)
         val document = Document.parse(documentToJSON)
 
         botSettingsCollection.insertOne(document)

@@ -3,7 +3,7 @@ package net.cakeyfox.foxy.utils.profile
 import com.github.benmanes.caffeine.cache.Cache
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import net.cakeyfox.serializable.database.data.Layout
+import net.cakeyfox.foxy.database.data.Layout
 
 object ProfileUtils {
     fun formatAboutMe(aboutMe: String, layoutInfo: Layout): String {
