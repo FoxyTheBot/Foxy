@@ -5,9 +5,9 @@
   fileTooBig: I would love to see how the video would turn out with this audio, but
     it's too big... What if I open it and it explodes and takes me with it? :(
 commands:
-  earlyAccess: Esse comando está em beta e apenas usuários premium possuem acesso
-    antecipado. Se você quiser ter acesso a esse comando e muitos outros, você pode
-    se tornar um usuário premium clicando [aqui](https://foxybot.win/br/premium)
+  earlyAccess: This command is in beta and only premium users have early access. If
+    you want to have access to this command and many others, you can become a premium
+    user by clicking [here](https://foxybot.win/br/premium)
 dashboard:
   embed:
     title: Dashboard
@@ -26,13 +26,13 @@ russianRoulette:
     youSurvived: You survived! The bullet was in the chamber {0}.
 slots:
   embed:
-    title: Caça-Níqueis da Foxy
-    winnings: 'Você ganhou:'
-    loss: 'Você perdeu:'
+    title: Foxy Slots
+    winnings: 'You won:'
+    loss: 'You lost:'
   chart:
     embed:
-      title: Tabela de Multiplicadores
-      description: Será que a sorte está ao seu lado?
+      title: Multipliers Chart
+      description: Could luck be on your side?
 cakes:
   atm:
     balance: "{0} has **{1}**"
@@ -157,9 +157,9 @@ cancel:
 rob:
   youFailedAndLostCakes: Você foi pego e perdeu **{0} Cakes**!
   youFailedAndGotArrested: Você foi pego e foi preso(a)!
-  userNotEnoughCakes: "{0} não tem Cakes suficientes para roubar! Coitado(a)!"
-  success: Você roubou **{0} Cakes** de {1}!
-  cooldown: Você precisa esperar **{0}** para roubar novamente!
+  userNotEnoughCakes: "{0} doesn't have enough Cakes to steal!"
+  success: You stole **{0} Cakes** from {1}!
+  cooldown: You can only steal again at {0}!
 pay:
   confirm: "Do you really want to transfer **{0}** to {1}? \nThe Foxy Team **is not
     responsible** for lost Cakes, so make sure you're transferring to someone trustworthy!
