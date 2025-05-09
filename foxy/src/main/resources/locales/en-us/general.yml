@@ -1,406 +1,369 @@
-greetings: "Olá {0}! Meu nome é Foxy, meu prefixo nesse servidor é `/`, Utilize `/help` para obter ajuda!"
-
+---
+greetings: Howdy {0}! My name is Foxy, my prefix on this server is `/`, Use `/help`
+  for help!
 commands:
-  onlyUserCanInteractWithThisComponent: "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {0}!"
-  componentExpired: "Pera, cadê? Eu não acho as informações da interação... Parece que expirou! Execute o comando novamente."
-  error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
-
+  onlyUserCanInteractWithThisComponent: Hey! What are you doing? You can't do this!
+    You're not {0}!
+  componentExpired: Wait, where is it? I can't find the interaction information...
+    It seems to have expired! Please run the command again.
+  error: An error occurred while executing the command, the problem has been reported!
+    `{0}`
   command:
     status:
-      name: "status"
-      description: "Veja o consumo da JVM e outras informações"
-
+      name: status
+      description: View JVM consumption and other information
     roulette:
-      name: "roleta"
-      description: "Ganhe prêmios jogando roleta"
-
+      name: roulette
+      description: Win prizes playing roulette
     dashboard:
-      name: "dashboard"
-      description: "Acesse o painel de configuração do servidor atual"
-
+      name: dashboard
+      description: Access the current server dashboard
     ship:
-      name: "ship"
-      description: "Ship two users"
+      name: ship
+      description: Ship two users
       options:
         user1:
-          name: "user1"
-          description: "The first user to be shipped"
+          name: user1
+          description: The first user to be shipped
         user2:
-          name: "user2"
-          description: "The second user to be shipped"
-
+          name: user2
+          description: The second user to be shipped
     rob:
-      name: "roubar"
-      description: "Roube alguém"
+      name: rob
+      description: rob someone
       options:
         user:
-          name: "usuário"
-          description: "O usuário que você deseja roubar"
-
+          name: user
+          description: The user you want to rob
     serverinvite:
-      name: "convite"
-      description: "Obtém convites de um servidor por ID"
+      name: invite
+      description: Gets invites from a server by ID
       retrieve:
-        name: "obter"
-        description: "Obtém convites de um servidor por ID"
+        name: retrieve
+        description: Gets invites from a server by ID
         options:
           server_id:
-            name: "id_do_servidor"
-            description: "O ID do servidor que você deseja obter os convites"
-
+            name: server_id
+            description: The server ID you want to get the invites from
     russian-roulette:
-      name: "roleta-russa"
-      description: "Jogue roleta russa comigo"
+      name: russian-roulette
+      description: Play Russian Roulette with me
     server:
-      name: "servidor"
-      description: "Veja informações sobre o servidor"
+      name: server
+      description: View server information
       info:
-        name: "info"
-        description: "Veja informações sobre o servidor"
+        name: info
+        description: View server information
         options:
           server_id:
-            name: "id_do_servidor"
-            description: "O ID do servidor que você deseja ver as informações"
-
+            name: server_id
+            description: The server ID you want to see information about
       icon:
-        name: "icone"
-        description: "Veja o ícone do servidor"
+        name: icon
+        description: View the server icon
         options:
           server_id:
-            name: "id_do_servidor"
-            description: "O ID do servidor que você deseja ver o ícone"
-
+            name: server_id
+            description: The server ID you want to see the icon for
     user:
-      name: "user"
-      description: "Veja informações sobre um usuário"
+      name: user
+      description: View information about a user
       info:
-        name: "info"
-        description: "Veja informações sobre um usuário"
+        name: info
+        description: View information about a user
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja ver as informações"
-
+            name: user
+            description: The user you want to see the information
     daily:
-      name: "daily"
-      description: "Receba seus cakes diários"
-
+      name: daily
+      description: Receive your daily cakes
     ping:
-      name: "ping"
-      description: "Veja a latência da Foxy"
-
+      name: ping
+      description: See Foxy's latency
     magic:
-      name: "magic"
-      description: "Comandos divertidos para você se divertir com seus amigos"
+      name: magic
+      description: Fun commands for you to have fun with your friends
       eminem:
-        name: "eminem"
-        description: "Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
+        name: eminem
+        description: Generates a video with a scene from the movie 8 Mile and custom
+          audio
         8mile:
-          name: "8mile"
-          description: "Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
+          name: 8mile
+          description: Generates a video with a scene from the movie 8 Mile and custom
+            audio
       8mile:
-        name: "8mile"
-        description: "Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
+        name: 8mile
+        description: Generates a video with a scene from the movie 8 Mile and custom
+          audio
         options:
           video_or_audio:
-            name: "video_ou_audio"
-            description: "O áudio ou vídeo que será usado no vídeo"
-
+            name: video_or_audio
+            description: The audio or video that will be used in the video
       antes_que_vire_moda:
-        name: "antes_que_vire_moda"
-        description: "Montagem do meme 'Antes que vire moda, já vou avisando que sou fã de:'"
+        name: antes_que_vire_moda
+        description: Brazilian meme 'Antes que vire moda, já vou avisando que sou
+          fã de:'
         options:
           image:
-            name: "imagem"
-            description: "A imagem que será usada no meme"
-
+            name: image
+            description: The image that will be used in the meme
       windows_error:
-        name: "windows_error"
-        description: "Gera um meme de erro do Windows"
+        name: windows_error
+        description: Generates a Windows error meme
         options:
           message:
-            name: "texto"
-            description: "O texto que será exibido no meme"
-
+            name: text
+            description: The text that will be displayed in the meme
       girlfriend:
-        name: "namorada"
-        description: "Que legal, mas olha minha namorada!"
+        name: girlfriend
+        description: That's cool, but look at my girlfriend!
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja exibir a namorada"
-
+            name: user
+            description: The user you want to display the girlfriend
       nao_somos_iguais:
-        name: "nao_somos_iguais"
-        description: "Montagem do meme 'Não somos iguais, mas somos parecidos'"
+        name: nao_somos_iguais
+        description: Brazilian meme 'Não somos iguais, mas somos parecidos'
         options:
           first_image:
-            name: "primeira_imagem"
-            description: "A primeira imagem que será usada no meme"
+            name: first_image
+            description: The first image that will be used in the meme
           second_image:
-            name: "segunda_imagem"
-            description: "A segunda imagem que será usada no meme"
+            name: second_image
+            description: The second image that will be used in the meme
           text:
-            name: "texto"
-            description: "O texto que será exibido no meme"
-
+            name: text
+            description: The text that will be displayed in the meme
       laranjo:
-        name: "laranjo"
-        description: "Gera um meme do Laranjo"
+        name: laranjo
+        description: Generates a Laranjo meme
         options:
           text:
-            name: "texto"
-            description: "O texto que será exibido no meme"
-
+            name: text
+            description: The text that will be displayed in the meme
       stonks:
-        name: "stonks"
-        description: "Gera um meme de stonks"
+        name: stonks
+        description: Generates a stonks meme
         options:
           text:
-            name: "texto"
-            description: "O texto que será exibido no meme"
-
+            name: text
+            description: The text that will be displayed in the meme
       not_stonks:
-        name: "not_stonks"
-        description: "Gera um meme de not stonks"
+        name: not_stonks
+        description: Generate a not stonks meme
         options:
           text:
-            name: "texto"
-            description: "O texto que será exibido no meme"
-
+            name: text
+            description: The text that will be displayed in the meme
     fate:
-      name: "fate"
-      description: "Descubra o seu destino com uma pessoa"
+      name: fate
+      description: Discover your destiny with a person
       options:
         user:
-          name: "usuário"
-          description: "O usuário que você quer descobrir o seu destino"
-
+          name: user
+          description: The user you want to discover your destiny
     cancel:
-      name: "cancelar"
-      description: "Cancele uma pessoa que fez algo errado"
+      name: cancel
+      description: Cancel a person who did something wrong
       someone:
-        name: "alguém"
-        description: "Cancele uma pessoa que fez algo errado"
+        name: somebody
+        description: Cancel a person who did something wrong
       options:
         reason:
-          name: "motivo"
-          description: "O motivo do porque você quer cancelar esse usuário"
+          name: reason
+          description: The reason why you want to cancel this user
         user:
-          name: "usuário"
-          description: "O usuário que você deseja cancelar"
-
+          name: user
+          description: O usuário que você deseja cancelar
     ratewaifu:
-      name: "avaliar_waifu"
-      description: "Avalie a sua waifu"
+      name: rate_waifu
+      description: Rate your waifu
       rate:
-        name: "avaliar"
-        description: "Avalie a sua waifu"
+        name: rate
+        description: Rate your waifu
       options:
         user:
-          name: "usuário"
-          description: "O usuário que você deseja avaliar"
-
+          name: user
+          description: The user you want to rate
     ask:
-      name: "perguntar"
-      description: "Comandos relacionados a perguntas e respostas"
+      name: ask
+      description: Commands related to questions and answers
       foxy:
-        name: "foxy"
-        description: "Faça uma pergunta para a Foxy"
+        name: foxy
+        description: Ask Foxy a question
         options:
           question:
-            name: "pergunta"
-            description: "A pergunta que será feita para a Foxy"
-
+            name: question
+            description: The question that will be asked to Foxy
     slots:
-      name: "slots"
-      description: "Jogue nas máquinas caça-níqueis"
+      name: slots
+      description: Play slot machines
       chart:
-        name: "tabela"
-        description: "Veja a tabela de pagamentos das máquinas caça-níqueis"
+        name: chart
+        description: See the slot machine payout table
       bet:
-        name: "apostar"
-        description: "Jogue nas máquinas caça-níqueis"
+        name: bet
+        description: Play slot machines
         options:
           amount:
-            name: "quantidade"
-            description: "A quantidade de cakes que você deseja apostar"
-
+            name: amount
+            description: The amount of cakes you want to bet
     cakes:
-      name: "cakes"
-      description: "Comandos relacionados a economia da Foxy"
+      name: cakes
+      description: Foxy's economy related commands
       atm:
-        name: "atm"
-        description: "Veja a sua quantidade de cakes"
+        name: atm
+        description: See your amount of cakes
         options:
           user:
-            name: "usuário"
-            description: "Veja a quantidade de cakes de outro usuário"
+            name: user
+            description: See the number of cakes from another user
           type:
-            name: "tipo"
-            description: "O tipo de informação que você deseja ver"
+            name: type
+            description: The type of information you want to see
       convert:
-        name: "converter"
-        description: "Converta seus Cakes para Sonhos da Loritta"
+        name: convert
+        description: Convert your Cakes into Loritta's Sonhos
         options:
           amount:
-            name: "quantidade"
-            description: "A quantidade de cakes que você deseja converter"
+            name: amount
+            description: The amount of cakes you want to convert
           from:
-            name: "tipo_de_transação"
-            description: "O tipo de transação que você deseja fazer"
-
+            name: transaction_type
+            description: The type of transaction you want to make
       top:
-        name: "top"
-        description: "Veja quem são os usuários mais ricos."
+        name: top
+        description: See who the richest users are.
       pay:
-        name: "pagar"
-        description: "Pague alguém"
+        name: pay
+        description: Pay someone
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja pagar"
+            name: user
+            description: The user you want to pay
           amount:
-            name: "quantidade"
-            description: "A quantidade de cakes que você deseja pagar"
-
+            name: amount
+            description: The amount of cakes you want to pay for
       coinflipbet:
-        name: "coinflipbet"
-        description: "Aposte em cara ou coroa"
+        name: coinflipbet
+        description: Bet on heads or tails
         options:
           amount:
-            name: "quantidade"
-            description: "A quantidade de cakes que você deseja apostar"
+            name: amount
+            description: The amount of cakes you want to bet
           side:
-            name: "lado"
-            description: "O lado que você deseja apostar"
+            name: side
+            description: The side you want to bet on
           user:
-            name: "usuário"
-            description: "O usuário que você deseja desafiar"
-
+            name: user
+            description: The user you want to challenge
     foxy:
-      name: "foxy"
-      description: "Comandos relacionados ao bot"
+      name: foxy
+      description: Bot related commands
       ping:
-        name: "ping"
-        description: "Verifica a latência do bot"
-
+        name: ping
+        description: Check bot latency
     aboutme:
-      name: "sobremim"
-      description: "Comandos relacionados ao seu perfil"
+      name: about_me
+      description: Commands related to your profile
       options:
         text:
-          name: "texto"
-          description: "O texto que será exibido no seu perfil"
-
+          name: text
+          description: The text that will be displayed on your profile
     profile:
-      name: "perfil"
-      description: "Veja o seu lindo perfil ou o de outro usuário"
+      name: profile
+      description: View your or another user's beautiful profile
       view:
-        name: "ver"
-        description: "Veja o seu lindo perfil ou o de outro usuário"
+        name: see
+        description: View your or another user's beautiful profile
       options:
         user:
-          name: "usuário"
-          description: "O usuário que você deseja ver o perfil"
-
+          name: user
+          description: The user whose profile you want to view
     actions:
-      name: "ações"
-      description: "Comandos de ações para você se divertir com seus amigos"
+      name: actions
+      description: Action commands for you to have fun with your friends
       kiss:
-        name: "beijar"
-        description: "Beije alguém"
+        name: kiss
+        description: Kiss someone
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja beijar"
-
+            name: user
+            description: The user you want to kiss
       bite:
-        name: "morder"
-        description: "Morda alguém"
+        name: bite
+        description: Bite someone
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja morder"
-
+            name: user
+            description: The user you want to bite
       dance:
-        name: "dançar"
-        description: "Mostre seus passos de dança!"
-
+        name: dance
+        description: Show off your dance moves!
       hug:
-        name: "abraçar"
-        description: "Abraçe alguém"
+        name: hug
+        description: Hug someone
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja abraçar"
-
+            name: user
+            description: The user you want to hug
       laugh:
-        name: "rir"
-        description: "Mostre que você é uma pessoa alegre"
-
+        name: laugh
+        description: Show that you are a happy person
       lick:
-        name: "lamber"
-        description: "Lamba alguém"
+        name: lick
+        description: Lick someone
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja lamber"
-
+            name: user
+            description: The user you want to lick
       pat:
-        name: "acariciar"
-        description: "Acaricie alguém"
+        name: pat
+        description: Pat someone
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja acariciar"
-
+            name: user
+            description: The user you want to pet
       slap:
-        name: "tapa"
-        description: "Dê um tapa em alguém"
+        name: slap
+        description: Slap someone
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja dar um tapa"
-
+            name: user
+            description: The user you want to slap
       smile:
-        name: "sorrir"
-        description: "Mostre que você é uma pessoa alegre"
-
+        name: smile
+        description: Show that you are a happy person
       tickles:
-        name: "cócegas"
-        description: "Faça cosquinhas em alguém"
+        name: tickle
+        description: Tickle someone
         options:
           user:
-            name: "usuário"
-            description: "O usuário que você deseja fazer cosquinhas"
-
+            name: user
+            description: The user you want to tickle
     help:
-      name: "ajuda"
-      description: "Veja informações sobre a Foxy"
-
+      name: help
+      description: View information about Foxy
     dbl:
-      name: "dbl"
-      description: "Vote na Foxy na Top.gg"
+      name: dbl
+      description: Vote for Foxy on Top.gg
       vote:
-        name: "votar"
-        description: "Vote na Foxy na Top.gg"
-
+        name: vote
+        description: Vote for Foxy on Top.gg
     language:
-      name: "idioma"
-      description: "Altera o idioma do bot"
-
+      name: language
+      description: Change the bot's language
     marry:
-      name: "casar"
-      description: "Case com alguém"
+      name: marry
+      description: Marry someone
       propose:
-        name: "pedir"
-        description: "Peça alguém em casamento"
+        name: ask
+        description: Ask someone to marry you
       options:
         user:
-          name: "usuário"
-          description: "O usuário que você deseja pedir em casamento"
-
+          name: user
+          description: The user you want to propose to
     divorce:
-      name: "divorciar"
-      description: "Se divorcie do seu parceiro"
+      name: divorce
+      description: Divorce your partner
