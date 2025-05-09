@@ -102,8 +102,8 @@ commands:
             description: The audio or video that will be used in the video
       antes_que_vire_moda:
         name: antes_que_vire_moda
-        description: Mashup about a Brazilian meme called 'Antes que vire moda, já
-          vou avisando que sou fã de:'
+        description: Brazilian meme 'Antes que vire moda, já vou avisando que sou
+          fã de:'
         options:
           image:
             name: image
