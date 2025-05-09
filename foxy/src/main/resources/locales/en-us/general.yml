@@ -102,8 +102,8 @@ commands:
             description: The audio or video that will be used in the video
       antes_que_vire_moda:
         name: antes_que_vire_moda
-        description: Meme mashup about a Brazilian meme called 'Antes que vire moda,
-          já vou avisando que sou fã de:'
+        description: Mashup about a Brazilian meme called 'Antes que vire moda, já
+          vou avisando que sou fã de:'
         options:
           image:
             name: image
@@ -124,7 +124,7 @@ commands:
             description: The user you want to display the girlfriend
       nao_somos_iguais:
         name: nao_somos_iguais
-        description: Montagem do meme 'Não somos iguais, mas somos parecidos'
+        description: Brazilian meme 'Não somos iguais, mas somos parecidos'
         options:
           first_image:
             name: first_image
