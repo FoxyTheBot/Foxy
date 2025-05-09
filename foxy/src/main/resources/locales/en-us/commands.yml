@@ -1,198 +1,219 @@
+---
 8mile:
-  wrongContentType: "I wish I could use this, but I can't. You need to send an audio file of type MP3 or WAV."
-  fileTooBig: "I would love to see how the video would turn out with this audio, but it's too big... What if I open it and it explodes and takes me with it? :("
-
+  wrongContentType: I wish I could use this, but I can't. You need to send an audio
+    file of type MP3 or WAV.
+  fileTooBig: I would love to see how the video would turn out with this audio, but
+    it's too big... What if I open it and it explodes and takes me with it? :(
 commands:
-  earlyAccess: "Esse comando está em beta e apenas usuários premium possuem acesso antecipado. Se você quiser ter acesso a esse comando e muitos outros, você pode se tornar um usuário premium clicando [aqui](https://foxybot.win/br/premium)"
-
+  earlyAccess: Esse comando está em beta e apenas usuários premium possuem acesso
+    antecipado. Se você quiser ter acesso a esse comando e muitos outros, você pode
+    se tornar um usuário premium clicando [aqui](https://foxybot.win/br/premium)
+dashboard:
+  embed:
+    title: Dashboard
+    description: Want to make your `{0}` server awesome but don't know where to start?
+      Access the control panel to configure your server!
+    button: Go to Dashboard
+    noPermission: You need `Manage Server` permission to use this command.
+    guildNotFound: I need to be on that server for this to work!
+russianRoulette:
+  embed:
+    title: Russian Roulette
+    description: You spun the chamber and pointed the gun at yourself...
+    bullets: 'Bullets in the chamber:'
+    suspense: You pulled the trigger...
+    youDie: You survived! The bullet was in the chamber {0}.
+    youSurvived: You survived! The bullet was in the chamber {0}.
 slots:
   embed:
-    title: "Caça-Níqueis da Foxy"
-    winnings: "Você ganhou:"
-    loss: "Você perdeu:"
+    title: Caça-Níqueis da Foxy
+    winnings: 'Você ganhou:'
+    loss: 'Você perdeu:'
   chart:
     embed:
-      title: "Tabela de Multiplicadores"
-      description: "Será que a sorte está ao seu lado?"
-
+      title: Tabela de Multiplicadores
+      description: Será que a sorte está ao seu lado?
 cakes:
   atm:
     balance: "{0} has **{1}**"
-    singleCake: "Cake"
-    multipleCakes: "Cakes"
-
-rob:
-  youFailedAndLostCakes: "Você foi pego e perdeu **{0} Cakes**!"
-  youFailedAndGotArrested: "Você foi pego e foi preso(a)!"
-  userNotEnoughCakes: "{0} não tem Cakes suficientes para roubar! Coitado(a)!"
-  success: "Você roubou **{0} Cakes** de {1}!"
-  cooldown: "Você precisa esperar **{0}** para roubar novamente!"
-
+    singleCake: Cake
+    multipleCakes: Cakes
 moda:
-  wrongContentType: "I wish I could use this, but I can't. You need to send an image of type PNG or JPG."
-  fileNotSupported: "I wanted to make the montage, but I can't open this type of file... :("
-  imageTooBig: "I would love to make the montage, but the image is too big... What if I open it and it explodes and takes me with it? :("
-
+  wrongContentType: I wish I could use this, but I can't. You need to send an image
+    of type PNG or JPG.
+  fileNotSupported: I wanted to make the montage, but I can't open this type of file...
+    :(
+  imageTooBig: I would love to make the montage, but the image is too big... What
+    if I open it and it explodes and takes me with it? :(
 server:
   info:
-    owner: "Owner"
-    members: "Members"
-    roles: "Roles"
-    channels: "Channels"
-    emojis: "Emojis"
-    boosts: "Boosts"
-    created: "Created at"
-    joined: "Joined at"
-    verificationLevel: "Verification level"
-    region: "Region"
-    features: "Features"
-    afkChannel: "AFK Channel"
-    afkTimeout: "AFK Timeout"
-    cluster: "Guild Cluster: {0} ({1}) - Shard: {2}"
-    textChannels: "Text Channels"
-    voiceChannels: "Voice Channels"
-    createdAt: "Created at"
-    joinedAt: "Joined at"
-    firstEmojis: "Some emojis"
-    serverNotFound: "I couldn't find the server with the ID `{0}`"
-    invalidServerId: "You need to provide a valid server ID!"
-
+    owner: Owner
+    members: Members
+    roles: Roles
+    channels: Channels
+    emojis: Emojis
+    boosts: Boosts
+    created: Created at
+    joined: Joined at
+    verificationLevel: Verification level
+    region: Region
+    features: Features
+    afkChannel: AFK Channel
+    afkTimeout: AFK Timeout
+    cluster: 'Guild Cluster: {0} ({1}) - Shard: {2}'
+    textChannels: Text Channels
+    voiceChannels: Voice Channels
+    createdAt: Created at
+    joinedAt: Joined at
+    firstEmojis: Some emojis
+    serverNotFound: I couldn't find the server with the ID `{0}`
+    invalidServerId: You need to provide a valid server ID!
 ask:
   foxy:
-    noYes: "I can't answer that, but yes!"
-    yesNo: "I can't answer that, but no!"
-    noNo: "No, no!"
-    yesSure: "Absolutely!"
-    noWay: "No way!"
-    noComment: "I'd rather not comment..."
-    noIdea: "I have no idea..."
-    cantAnswer: "I can't answer that..."
-    askLater: "Ask me later..."
-    maybe: "Maybe..."
-    no: "No"
-    yes: "Yes"
-
+    noYes: I can't answer that, but yes!
+    yesNo: I can't answer that, but no!
+    noNo: No, no!
+    yesSure: Absolutely!
+    noWay: No way!
+    noComment: I'd rather not comment...
+    noIdea: I have no idea...
+    cantAnswer: I can't answer that...
+    askLater: Ask me later...
+    maybe: Maybe...
+    'false': 'No'
+    'true': 'Yes'
 aboutme:
-  success: "Your profile text has been changed to `{0}`!"
-  tooLong: "Your profile text cannot be longer than 177 characters!"
-
+  success: Your profile text has been changed to `{0}`!
+  tooLong: Your profile text cannot be longer than 177 characters!
 ban:
-  title: "You are **banned**"
-  description: "If you'd like to appeal your ban, you can make a ban appeal.\n\nI recommend reading the [terms of service](https://foxybot.win/terms)."
+  title: You are **banned**
+  description: |-
+    If you'd like to appeal your ban, you can make a ban appeal.
+
+    I recommend reading the [terms of service](https://foxybot.win/terms).
   field:
-    reason: "Reason for ban:"
-    date: "Ban date:"
-  button: "Make an appeal"
-
+    reason: 'Reason for ban:'
+    date: 'Ban date:'
+  button: Make an appeal
 profile:
-  marriedWith: "Married to:"
-  marriedSince: "Since {0}"
+  marriedWith: 'Married to:'
+  marriedSince: Since {0}
   view: "{0}'s profile"
-  defaultAboutMe: "Change your about me using /aboutme command"
+  defaultAboutMe: Change your about me using /aboutme command
   isBanned: "{0} is banned!"
-  banReason: "Ban reason:"
-  bannedSince: "Banned since:"
-
+  banReason: 'Ban reason:'
+  bannedSince: 'Banned since:'
 kiss:
   description: ":heart: **{0} kissed {1}!**"
-  kissBot: "No, no! I don't like kisses!"
-
+  kissBot: No, no! I don't like kisses!
 bite:
   description: " :rage: **{0} bit {1}!**"
-
 hug:
   description: " :hugging: **{0} hugged {1}!**"
   selfHug: " :heart: Let me do it! **{0} hugged {1}!**"
   hugBot: " :blush: **Thank you!! {0} hugged {1}**"
-
 dance:
   description: "{0} **is dancing**"
-
 help:
-  description: "Hello {0}, I'm Foxy, a multipurpose bot for your server! I have lots of features, like economy, fun, utilities, and much more!"
+  description: Hello {0}, I'm Foxy, a multipurpose bot for your server! I have lots
+    of features, like economy, fun, utilities, and much more!
   field:
     addMe: "{0} Liked my features? Add me to your server!"
-    addMeValue: "Add me by clicking here"
+    addMeValue: Add me by clicking here
     support: "{0} Need help? Join my support server!"
     terms: "{0} Read the terms of service to avoid problems"
     website: "{0} My website where you can add me and see more information"
-
 daily:
   embed:
-    title: "Daily Reward"
-    description: "Claim your daily reward! You can claim your daily reward every 24 hours!\n\n**Note:** You cannot trade Cakes for things like money, Nitro, NSFW content, etc.! If you do, you'll be permanently banned from using Foxy!"
-    redeemDaily: "Claim reward"
-    buyMore: "I want more Cakes!"
+    title: Daily Reward
+    description: |-
+      Claim your daily reward! You can claim your daily reward every 24 hours!
 
+      **Note:** You cannot trade Cakes for things like money, Nitro, NSFW content, etc.! If you do, you'll be permanently banned from using Foxy!
+    redeemDaily: Claim reward
+    buyMore: I want more Cakes!
 coinflipbet:
-  proposal: "**{0}**, **{1}** wants to place a bet of {2}! They bet the coin will land on **{3}**. Do you accept the bet?"
-  betResult: "It landed on **{0}**! {1} won the bet and gained {2}, paid by {3}. Hihihi!"
-  youHaveNotEnoughBalance: "You don't have enough Cakes to bet!"
-  declined: "The bet request was declined :/"
-  heads: "heads"
-  tails: "tails"
-
+  proposal: "**{0}**, **{1}** wants to place a bet of {2}! They bet the coin will
+    land on **{3}**. Do you accept the bet?"
+  betResult: It landed on **{0}**! {1} won the bet and gained {2}, paid by {3}. Hihihi!
+  youHaveNotEnoughBalance: You don't have enough Cakes to bet!
+  declined: The bet request was declined :/
+  heads: heads
+  tails: tails
 tickle:
   description: " :joy: **{0} tickled {1}!**"
-
 laugh:
   description: " :joy: **{0} is laughing!**"
-
 lick:
   description: " :joy: **{0} licked {1}**"
-
 pat:
   description: " :heart: **{0} patted {1}**"
-
 smile:
   description: " :smiley: **{0} is smiling because they are a very happy person!**"
-
 slap:
   description: " :rage: **{0} slapped {1} hard!**"
-
 cancel:
   userCancelledBecause: "**{0} was canceled by `{1}`**"
-
+rob:
+  youFailedAndLostCakes: Você foi pego e perdeu **{0} Cakes**!
+  youFailedAndGotArrested: Você foi pego e foi preso(a)!
+  userNotEnoughCakes: "{0} não tem Cakes suficientes para roubar! Coitado(a)!"
+  success: Você roubou **{0} Cakes** de {1}!
+  cooldown: Você precisa esperar **{0}** para roubar novamente!
 pay:
-  confirm: "Do you really want to transfer **{0}** to {1}? \nThe Foxy Team **is not responsible** for lost Cakes, so make sure you're transferring to someone trustworthy! \nTrading NSFW(+18) content for Cakes is prohibited!"
-  success: "You transferred **{0}** to {1}!"
-  notEnoughBalance: "You don't have enough Cakes to transfer!"
-  cantPayYourself: "You can't pay yourself!"
-  invalidAmount: "You need to transfer a valid amount of Cakes!"
-
+  confirm: "Do you really want to transfer **{0}** to {1}? \nThe Foxy Team **is not
+    responsible** for lost Cakes, so make sure you're transferring to someone trustworthy!
+    \nTrading NSFW(+18) content for Cakes is prohibited!"
+  success: You transferred **{0}** to {1}!
+  notEnoughBalance: You don't have enough Cakes to transfer!
+  cantPayYourself: You can't pay yourself!
+  invalidAmount: You need to transfer a valid amount of Cakes!
+roulette:
+  spinResultWin: You spun the wheel and won {0}!
+  spinResultLose: You spun and won nothing!
+  notEnoughCakes: You need **1,000 Cakes** to spin the wheel!
+  spinTimeout: You can't spin the wheel again any time soon! Try again at {0}!
 marry:
-  proposal: "Hey, {0}, a little birdie told me that **{1}** wants to marry you. Do you accept?"
-  userAlreadyMarried: "You can't marry someone who's already married! Stealing someone's partner is not cool!"
-  youAlreadyMarried: "You're already married!"
-  cantMarryMe: "No, sorry, but I don't want to marry you!"
-  cantMarryYourself: "Self-love is great, but you can't marry yourself."
-  cantMarryBot: "You can't marry bots!"
-  accepted: "Proposal accepted! Best wishes to the happy couple! :3"
-
+  authorHasNoCakes: Weddings cost **6,000 Cakes** for each person, and you don't have
+    enough Cakes!
+  userHasNoCakes: Weddings cost **6,000 Cakes** for each person, and {0} doesn't have
+    enough Cakes!
+  proposal: Hey, {0}, a little birdie told me that **{1}** wants to marry you. Do
+    you accept?
+  premiumProposal: Hey {0}, a little bird told me that **{1}** wants to marry you,
+    do you accept? Marriages are free for premium users!
+  userAlreadyMarried: You can't marry someone who's already married! Stealing someone's
+    partner is not cool!
+  youAlreadyMarried: You're already married!
+  cantMarryMe: No, sorry, but I don't want to marry you!
+  cantMarryYourself: Self-love is great, but you can't marry yourself.
+  cantMarryBot: You can't marry bots!
+  accepted: Proposal accepted! Best wishes to the happy couple! :3
 divorce:
-  notMarried: "Silly, you need to get married before you can divorce."
-  success: "Done! You're now divorced!"
-  confirm: "Are you sure you want to divorce from **{0}**?"
-
+  notMarried: Silly, you need to get married before you can divorce.
+  success: Done! You're now divorced!
+  confirm: Are you sure you want to divorce from **{0}**?
 fate:
-  onAParallelUniverse: "In a parallel universe, you and {0} are **{1}**."
-  couple: "a couple"
-  friend: "friends"
-  enemy: "enemies"
-  soulmate: "soulmates"
-  crush: "crushes (but neither of them knows)"
-  sibling: "siblings"
-  parent: "parents"
-  married: "married"
-
+  onAParallelUniverse: In a parallel universe, you and {0} are **{1}**.
+  couple: a couple
+  friend: friends
+  enemy: enemies
+  soulmate: soulmates
+  crush: crushes (but neither of them knows)
+  sibling: siblings
+  parent: parents
+  married: married
 dbl:
   embed:
-    description: "Help me grow and become a better bot by voting for me on <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nEvery vote helps to promote me to more people on the Discord Bot List <:catblush:768292358458179595>\n\nYou can vote every 12 hours, and as a bonus, you'll get 1500 Cakes!\nHow about joining all the amazing people who voted and helped me grow? :heart:"
+    description: |-
+      Help me grow and become a better bot by voting for me on <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>
+      Every vote helps to promote me to more people on the Discord Bot List <:catblush:768292358458179595>
 
+      You can vote every 12 hours, and as a bonus, you'll get 1500 Cakes!
+      How about joining all the amazing people who voted and helped me grow? :heart:
 ratewaifu:
-  success: "Hmm... I give a rating of **{0}/10** to {1}"
-
+  success: Hmm... I give a rating of **{0}/10** to {1}
 top:
   cakes:
     embed:
-      title: "Global Cakes Leaderboard"
+      title: Global Cakes Leaderboard
