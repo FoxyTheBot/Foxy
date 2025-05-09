@@ -1,5 +1,9 @@
 ---
+greetings: Howdy {0}! My name is Foxy, my prefix on this server is `/`, Use `/help`
+  for help!
 commands:
+  onlyUserCanInteractWithThisComponent: Hey! What are you doing? You can't do this!
+    You're not {0}!
   componentExpired: Wait, where is it? I can't find the interaction information...
     It seems to have expired! Please run the command again.
   error: An error occurred while executing the command, the problem has been reported!
@@ -13,6 +17,7 @@ commands:
       description: Win prizes playing roulette
     dashboard:
       name: dashboard
+      description: Access the current server dashboard
     ship:
       name: ship
       description: Ship two users
@@ -34,6 +39,7 @@ commands:
       name: invite
       description: Gets invites from a server by ID
       retrieve:
+        name: retrieve
         description: Gets invites from a server by ID
         options:
           server_id:
@@ -99,7 +105,9 @@ commands:
         description: Meme mashup about a Brazilian meme called 'Antes que vire moda,
           já vou avisando que sou fã de:'
         options:
-          image: {}
+          image:
+            name: image
+            description: The image that will be used in the meme
       windows_error:
         name: windows_error
         description: Generates a Windows error meme
@@ -109,8 +117,10 @@ commands:
             description: The text that will be displayed in the meme
       girlfriend:
         name: girlfriend
+        description: That's cool, but look at my girlfriend!
         options:
           user:
+            name: user
             description: The user you want to display the girlfriend
       nao_somos_iguais:
         name: nao_somos_iguais
