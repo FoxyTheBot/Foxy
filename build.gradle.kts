@@ -4,7 +4,7 @@ plugins {
     java
     kotlin("jvm") version Versions.KOTLIN
     kotlin("plugin.serialization") version Versions.KOTLIN
-    id("com.github.johnrengelman.shadow") version Versions.SHADOW_JAR
+    id("com.gradleup.shadow") version Versions.SHADOW_JAR
     base
 }
 

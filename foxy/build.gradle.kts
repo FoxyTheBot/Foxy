@@ -2,7 +2,7 @@ plugins {
     java
     kotlin("jvm") version Versions.KOTLIN
     kotlin("plugin.serialization") version Versions.KOTLIN
-    id("com.github.johnrengelman.shadow")
+    id("com.gradleup.shadow")
     application
 }
 
@@ -18,9 +18,9 @@ dependencies {
     implementation(libs.jda)
     implementation("club.minnced:jda-ktx:${Versions.JDA_KTX}")
 
-
     // MongoDB
     implementation("org.mongodb:bson-kotlinx:${Versions.MONGODB}")
+    implementation(platform("org.mongodb:mongodb-driver-bom:${Versions.MONGODB}"))
     implementation("org.mongodb:mongodb-driver-kotlin-coroutine:${Versions.MONGODB}")
     implementation("com.github.FoxyTheBot:DatabaseUtils:1.0.0")
 
@@ -66,6 +66,7 @@ tasks {
         archiveBaseName.set("Foxy")
         archiveVersion.set(version.toString())
         archiveClassifier.set("")
+        mergeServiceFiles()
     }
 }
 
