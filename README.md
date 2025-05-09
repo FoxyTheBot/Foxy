@@ -7,6 +7,7 @@
 </a>
 <div align="center">
 
+[![gitlocalized ](https://gitlocalize.com/repo/10169/whole_project/badge.svg)](https://gitlocalize.com/repo/10169?utm_source=badge)
 [![Continuous Integration](https://github.com/FoxyTheBot/Foxy/actions/workflows/deploy.yml/badge.svg)](https://github.com/FoxyTheBot/Foxy/actions/workflows/deploy.yml)
 <img src="https://img.shields.io/badge/license-AGPL%20v3-blue.svg">
 </div>
