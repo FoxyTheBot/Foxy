@@ -8,8 +8,8 @@ import net.cakeyfox.foxy.utils.pretty
 class AskFoxyExecutor: FoxyCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val answers = listOf(
-            context.locale["ask.foxy.yes"],
-            context.locale["ask.foxy.no"],
+            context.locale["ask.foxy.true"],
+            context.locale["ask.foxy.false"],
             context.locale["ask.foxy.maybe"],
             context.locale["ask.foxy.askLater"],
             context.locale["ask.foxy.cantAnswer"],

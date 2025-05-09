@@ -79,8 +79,8 @@ ask:
     cantAnswer: "Não posso responder isso..."
     askLater: "Pergunte mais tarde..."
     maybe: "Talvez..."
-    no: "Não"
-    yes: "Sim"
+    'false': "Não"
+    'true': "Sim"
 
 aboutme:
   success: "O texto do seu perfil foi alterado para `{0}`!"
