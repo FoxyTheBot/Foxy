@@ -13,7 +13,7 @@ import net.cakeyfox.serializable.data.cluster.ClusterStats
 import java.util.concurrent.TimeUnit
 import kotlin.reflect.jvm.jvmName
 
-class TopggStatsSender(
+class DblStatsSender(
     val foxy: FoxyInstance
 ) {
     private val logger = KotlinLogging.logger(this::class.jvmName)
