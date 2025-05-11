@@ -33,7 +33,7 @@ class MarryExecutor : FoxyCommandExecutor() {
             return
         }
 
-        if (user.id == context.foxy.selfUser.id) {
+        if (user.id == context.jda.selfUser.id) {
             context.reply(true) {
                 content = pretty(
                     FoxyEmotes.FoxyCry,

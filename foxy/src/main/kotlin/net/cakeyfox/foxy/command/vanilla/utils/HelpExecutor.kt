@@ -17,7 +17,7 @@ class HelpExecutor : FoxyCommandExecutor() {
                 )
 
                 color = Colors.FOXY_DEFAULT
-                thumbnail = context.foxy.selfUser.effectiveAvatarUrl
+                thumbnail = context.jda.selfUser.effectiveAvatarUrl
 
                 field {
                     name = context.locale["help.field.addMe", FoxyEmotes.FoxyWow]

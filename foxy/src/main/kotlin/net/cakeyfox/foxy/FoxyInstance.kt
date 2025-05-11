@@ -18,14 +18,13 @@ import net.cakeyfox.foxy.listeners.MessageListener
 import net.cakeyfox.foxy.utils.FoxyCacheManager
 import net.cakeyfox.serializable.database.utils.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
-import net.cakeyfox.foxy.utils.analytics.TopggStatsSender
+import net.cakeyfox.foxy.utils.analytics.DblStatsSender
 import net.cakeyfox.foxy.utils.api.FoxyInternalAPI
 import net.cakeyfox.foxy.utils.database.DatabaseClient
 import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
 import net.cakeyfox.foxy.utils.threads.ThreadUtils
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
-import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
 import net.dv8tion.jda.api.sharding.ShardManager
@@ -46,10 +45,9 @@ class FoxyInstance(
     lateinit var interactionManager: FoxyComponentManager
     lateinit var httpClient: HttpClient
     lateinit var cacheManager: FoxyCacheManager
-    lateinit var selfUser: User
 
     private lateinit var foxyInternalAPI: FoxyInternalAPI
-    private lateinit var topggStatsSender: TopggStatsSender
+    private lateinit var dblStatsSender: DblStatsSender
     private lateinit var environment: String
 
     private val activeJobs = ThreadUtils.activeJobs
@@ -60,12 +58,11 @@ class FoxyInstance(
         encodeDefaults = true
         ignoreUnknownKeys = true
     }
+    val logger = KotlinLogging.logger { }
     val threadPoolManager = ThreadPoolManager()
     val coroutineDispatcher = coroutineExecutor.asCoroutineDispatcher()
 
     suspend fun start() {
-        val logger = KotlinLogging.logger { }
-
         environment = config.environment
         database = DatabaseClient(this)
         commandHandler = FoxyCommandManager(this)
@@ -118,8 +115,7 @@ class FoxyInstance(
 
         this.commandHandler.handle()
 
-        selfUser = shardManager.shards.first().selfUser
-        topggStatsSender = TopggStatsSender(this)
+        dblStatsSender = DblStatsSender(this)
         foxyInternalAPI = FoxyInternalAPI(this)
         cacheManager = FoxyCacheManager(this)
         cacheManager.loadCakesLeaderboard()

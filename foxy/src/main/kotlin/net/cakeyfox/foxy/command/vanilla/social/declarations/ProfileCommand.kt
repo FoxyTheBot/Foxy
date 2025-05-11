@@ -14,7 +14,8 @@ class ProfileCommand : FoxyCommandDeclarationWrapper {
         category = "social",
         interactionContexts = listOf(
             InteractionContextType.GUILD,
-            InteractionContextType.PRIVATE_CHANNEL
+            InteractionContextType.PRIVATE_CHANNEL,
+            InteractionContextType.BOT_DM
         ),
         integrationType = listOf(
             IntegrationType.USER_INSTALL,

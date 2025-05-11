@@ -19,7 +19,7 @@ class PingExecutor : FoxyCommandExecutor() {
         context.reply {
             embed {
                 title = pretty(FoxyEmotes.FoxyWow, "Pong! (Shard: #$currentShardId)")
-                thumbnail = context.foxy.selfUser.effectiveAvatarUrl
+                thumbnail = context.jda.selfUser.effectiveAvatarUrl
                 color = Colors.FOXY_DEFAULT
 
                 field {

@@ -15,8 +15,9 @@ class AboutMeExecutor : FoxyCommandExecutor() {
                     FoxyEmotes.FoxyCry,
                     context.locale["aboutme.tooLong"]
                 )
-                return@reply
             }
+
+            return
         }
 
         context.database.user.updateUser(
