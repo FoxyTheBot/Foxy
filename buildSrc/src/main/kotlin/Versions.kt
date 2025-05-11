@@ -11,7 +11,7 @@ object Versions {
     const val KOTLIN_COROUTINES = "1.10.2"
     const val KOTLIN_LOGGING = "2.1.16"
     const val JVM_TARGET = 21
-    const val LOGBACK = "1.5.16"
+    const val LOGBACK = "1.5.18"
     const val CAFFEINE = "3.1.8"
     const val KOTLINX_DATE_TIME = "0.3.3"
     const val JDA_KTX = "0.12.0"
