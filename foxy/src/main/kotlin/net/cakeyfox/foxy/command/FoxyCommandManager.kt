@@ -7,7 +7,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.command.vanilla.actions.declarations.ActionsCommand
 import net.cakeyfox.foxy.command.vanilla.dev.declarations.ServerInviteCommand
-import net.cakeyfox.foxy.command.vanilla.dev.declarations.StatusCommand
+import net.cakeyfox.foxy.command.vanilla.utils.declarations.StatusCommand
 import net.cakeyfox.foxy.command.vanilla.economy.declarations.*
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.*
 import net.cakeyfox.foxy.command.vanilla.entertainment.declarations.RussianRouletteCommand

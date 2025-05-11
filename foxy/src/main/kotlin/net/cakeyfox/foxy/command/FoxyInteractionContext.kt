@@ -13,7 +13,6 @@ import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent
-import net.dv8tion.jda.api.interactions.DiscordLocale
 import net.dv8tion.jda.api.interactions.InteractionHook
 import net.dv8tion.jda.api.interactions.commands.OptionType
 
@@ -24,11 +23,8 @@ class FoxyInteractionContext(
     private val logger = KotlinLogging.logger { }
     val jda = event.jda
     val database = foxy.database
-    private val parsedLocale = hashMapOf(
-        DiscordLocale.PORTUGUESE_BRAZILIAN to "pt-br",
-        DiscordLocale.ENGLISH_US to "en-us",
-    )
-    val locale = FoxyLocale(parsedLocale[event.userLocale] ?: "en-us")
+
+    val locale = FoxyLocale(foxy.utils.availableLanguages[event.userLocale] ?: "en-us")
     val utils = FoxyUtils(foxy)
     val user = event.user
     val guild = event.guild

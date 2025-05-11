@@ -12,6 +12,7 @@ import net.cakeyfox.foxy.command.FoxyInteractionContext
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.serializable.data.ActionResponse
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
+import net.dv8tion.jda.api.interactions.DiscordLocale
 import java.text.NumberFormat
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -20,6 +21,12 @@ import java.util.*
 class FoxyUtils(
     val foxy: FoxyInstance
 ) {
+    val availableLanguages = hashMapOf(
+        DiscordLocale.PORTUGUESE_BRAZILIAN to "pt-br",
+        DiscordLocale.ENGLISH_US to "en-us",
+        DiscordLocale.SPANISH_LATAM to "es"
+    )
+
     fun convertISOToDiscordTimestamp(iso: Instant): String {
         val convertedDate = iso.epochSeconds.let { "<t:$it:f> (<t:$it:R>)" }
         return convertedDate
