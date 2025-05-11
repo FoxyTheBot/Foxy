@@ -19,7 +19,6 @@ import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
-import net.dv8tion.jda.api.interactions.DiscordLocale
 import java.util.concurrent.TimeUnit
 import kotlin.reflect.jvm.jvmName
 
@@ -52,16 +51,11 @@ class AntiRaidModule(
         .expireAfterWrite(5, TimeUnit.SECONDS)
         .build()
 
-    private val parsedLocale = hashMapOf(
-        DiscordLocale.PORTUGUESE_BRAZILIAN to "pt-br",
-        DiscordLocale.ENGLISH_US to "en-us",
-    )
-
     // Handling mass joins
     suspend fun handleJoin(event: GuildMemberJoinEvent) {
         val guildId = event.guild.idLong
         val guildInfo = foxy.database.guild.getGuild(event.guild.id)
-        val locale = FoxyLocale(parsedLocale[event.guild.locale] ?: "en-us")
+        val locale = FoxyLocale(foxy.utils.availableLanguages[event.guild.locale] ?: "en-us")
 
         if (guildInfo.antiRaidModule.handleMultipleJoins) {
             val currentTimestamp = System.currentTimeMillis()
@@ -108,7 +102,7 @@ class AntiRaidModule(
     suspend fun handleMessage(event: MessageReceivedEvent) {
         val guildInfo = foxy.database.guild.getGuild(event.guild.id)
         val userId = "${event.guild.id}:${event.author.id}"
-        val locale = FoxyLocale(parsedLocale[event.guild.locale] ?: "en-us")
+        val locale = FoxyLocale(foxy.utils.availableLanguages[event.guild.locale] ?: "en-us")
         val currentTimestamp = System.currentTimeMillis()
         val timestamps = messageCache.get(userId) { mutableListOf() }
         val antiRaidSettings = guildInfo.antiRaidModule
