@@ -4,7 +4,7 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.modules.antiraid.AntiRaidModule
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
-import net.cakeyfox.foxy.utils.pretty
+import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter

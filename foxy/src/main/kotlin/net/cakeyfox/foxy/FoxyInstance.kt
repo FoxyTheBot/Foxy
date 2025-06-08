@@ -10,19 +10,19 @@ import kotlinx.serialization.json.Json
 import mu.KotlinLogging
 import net.cakeyfox.artistry.ArtistryClient
 import net.cakeyfox.common.Constants
-import net.cakeyfox.foxy.command.FoxyCommandManager
-import net.cakeyfox.foxy.command.component.FoxyComponentManager
+import net.cakeyfox.foxy.interactions.commands.FoxyCommandManager
+import net.cakeyfox.foxy.interactions.components.FoxyComponentManager
 import net.cakeyfox.foxy.listeners.GuildListener
 import net.cakeyfox.foxy.listeners.InteractionsListener
 import net.cakeyfox.foxy.listeners.MessageListener
-import net.cakeyfox.foxy.utils.FoxyCacheManager
+import net.cakeyfox.foxy.utils.leaderboard.LeaderboardManager
 import net.cakeyfox.serializable.database.utils.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.analytics.DblStatsSender
 import net.cakeyfox.foxy.utils.api.FoxyInternalAPI
 import net.cakeyfox.foxy.utils.database.DatabaseClient
-import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
-import net.cakeyfox.foxy.utils.threads.ThreadUtils
+import net.cakeyfox.foxy.threads.ThreadPoolManager
+import net.cakeyfox.foxy.threads.ThreadUtils
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.requests.GatewayIntent
@@ -44,7 +44,7 @@ class FoxyInstance(
     lateinit var utils: FoxyUtils
     lateinit var interactionManager: FoxyComponentManager
     lateinit var httpClient: HttpClient
-    lateinit var cacheManager: FoxyCacheManager
+    lateinit var leaderboardManager: LeaderboardManager
 
     private lateinit var foxyInternalAPI: FoxyInternalAPI
     private lateinit var dblStatsSender: DblStatsSender
@@ -117,8 +117,9 @@ class FoxyInstance(
 
         dblStatsSender = DblStatsSender(this)
         foxyInternalAPI = FoxyInternalAPI(this)
-        cacheManager = FoxyCacheManager(this)
-        cacheManager.loadCakesLeaderboard()
+        leaderboardManager = LeaderboardManager(this)
+        leaderboardManager.getCakesLeaderboard()
+        leaderboardManager.getMarriageLeaderboard()
 
         Runtime.getRuntime().addShutdownHook(thread(false) {
             try {

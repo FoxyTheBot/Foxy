@@ -18,9 +18,8 @@ dependencies {
     implementation(libs.jda)
     implementation("club.minnced:jda-ktx:${Versions.JDA_KTX}")
 
-    // MongoDB
+    // Database
     implementation("org.mongodb:bson-kotlinx:${Versions.MONGODB}")
-    implementation(platform("org.mongodb:mongodb-driver-bom:${Versions.MONGODB}"))
     implementation("org.mongodb:mongodb-driver-kotlin-coroutine:${Versions.MONGODB}")
     implementation("com.github.FoxyTheBot:DatabaseUtils:1.0.0")
 

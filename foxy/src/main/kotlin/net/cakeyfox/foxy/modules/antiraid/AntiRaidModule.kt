@@ -13,7 +13,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.modules.antiraid.utils.AntiRaidActions
 import net.cakeyfox.foxy.modules.antiraid.utils.AntiRaidUtils
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
-import net.cakeyfox.foxy.utils.pretty
+import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.User

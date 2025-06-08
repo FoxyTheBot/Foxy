@@ -8,7 +8,8 @@ import kotlinx.datetime.Instant
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.command.FoxyInteractionContext
+import net.cakeyfox.foxy.interactions.FoxyInteractionContext
+import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.serializable.data.ActionResponse
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
@@ -47,6 +48,11 @@ class FoxyUtils(
 
     fun convertLongToDiscordTimestamp(epoch: Long): String {
         val convertedDate = epoch.let { "<t:$it:f> (<t:$it:R>)" }
+        return convertedDate
+    }
+
+    fun convertISOToSimpleDiscordTimestamp(iso: Instant): String {
+        val convertedDate = iso.epochSeconds.let { "<t:$it:R>" }
         return convertedDate
     }
 
@@ -107,7 +113,7 @@ class FoxyUtils(
             }
 
             actionRow(
-                foxy.interactionManager.createLinkButton(
+                linkButton(
                     FoxyEmotes.FoxyCake,
                     context.locale["ban.appealButton"],
                     Constants.UNBAN_FORM_URL

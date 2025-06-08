@@ -5,7 +5,7 @@ package net.cakeyfox.foxy.utils.image
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import mu.KotlinLogging
-import net.cakeyfox.foxy.utils.profile.ProfileCacheManager
+import net.cakeyfox.foxy.profile.ProfileCacheManager
 import net.cakeyfox.serializable.data.ImagePosition
 import java.awt.Color
 import java.awt.Font

@@ -393,13 +393,16 @@ commands:
     marry:
       name: "casar"
       description: "Case com alguém"
-      propose:
+      ask:
         name: "pedir"
         description: "Peça alguém em casamento"
       options:
         user:
           name: "usuário"
           description: "O usuário que você deseja pedir em casamento"
+
+      leaderboard:
+        name: "leaderboard"
 
     divorce:
       name: "divorciar"

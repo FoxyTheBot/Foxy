@@ -355,15 +355,19 @@ commands:
       name: language
       description: Change the bot's language
     marry:
-      name: marry
-      description: Marry someone
-      propose:
-        name: ask
-        description: Ask someone to marry you
+      name: "casar"
+      description: "Case com alguém"
+      ask:
+        name: "pedir"
+        description: "Peça alguém em casamento"
       options:
         user:
-          name: user
-          description: The user you want to propose to
+          name: "usuário"
+          description: "O usuário que você deseja pedir em casamento"
+
+      leaderboard:
+        name: "leaderboard"
+
     divorce:
       name: divorce
       description: Divorce your partner

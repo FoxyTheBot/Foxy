@@ -1,11 +1,15 @@
 package net.cakeyfox.foxy.utils.database.utils
 
+import com.mongodb.client.model.Filters.and
 import kotlinx.datetime.toJavaInstant
 import net.cakeyfox.foxy.utils.database.DatabaseClient
 import org.bson.Document
 import kotlinx.coroutines.flow.firstOrNull
 import com.mongodb.client.model.Filters.eq
+import com.mongodb.client.model.Filters.exists
+import com.mongodb.client.model.Filters.ne
 import com.mongodb.client.model.Indexes.descending
+import com.mongodb.client.model.Sorts.ascending
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
 import net.cakeyfox.foxy.FoxyInstance
@@ -42,6 +46,26 @@ class UserUtils(
             val update = Document("\$set", Document(updates))
 
             client.users.updateMany(query, update)
+        }
+    }
+
+    suspend fun getTopMarriedUsers(): List<FoxyUser> {
+        return client.withRetry {
+            val collection = client.database.getCollection<Document>("users")
+            collection.find(
+                and(
+                    exists("marryStatus.marriedWith", true),
+                    exists("marryStatus.marriedDate", true),
+                    ne("marryStatus.marriedDate", null)
+                )
+            )
+                .sort(ascending("marryStatus.marriedDate"))
+                .limit(foxy.config.others.leaderboardLimit)
+                .map { document ->
+                    val documentToJSON = document.toJson()
+                    client.foxy.json.decodeFromString<FoxyUser>(documentToJSON)
+                }
+                .toList()
         }
     }
 

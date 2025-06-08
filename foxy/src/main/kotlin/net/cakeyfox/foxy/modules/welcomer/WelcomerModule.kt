@@ -5,7 +5,7 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerJSONParser
 import net.cakeyfox.foxy.utils.PlaceholderUtils
-import net.cakeyfox.foxy.utils.pretty
+import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.database.data.Guild
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent

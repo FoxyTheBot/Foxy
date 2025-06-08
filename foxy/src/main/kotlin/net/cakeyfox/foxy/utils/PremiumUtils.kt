@@ -1,7 +1,7 @@
 package net.cakeyfox.foxy.utils
 
 import kotlinx.datetime.Clock
-import net.cakeyfox.foxy.command.FoxyInteractionContext
+import net.cakeyfox.foxy.interactions.FoxyInteractionContext
 import net.cakeyfox.foxy.database.data.FoxyUser
 import kotlin.time.Duration.Companion.days
 

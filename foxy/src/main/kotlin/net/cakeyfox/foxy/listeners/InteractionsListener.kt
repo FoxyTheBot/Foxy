@@ -5,11 +5,11 @@ import kotlinx.coroutines.*
 import mu.KotlinLogging
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.command.FoxyInteractionContext
-import net.cakeyfox.foxy.command.component.ComponentId
-import net.cakeyfox.foxy.command.structure.FoxyCommandDeclarationBuilder
+import net.cakeyfox.foxy.interactions.FoxyInteractionContext
+import net.cakeyfox.foxy.interactions.ComponentId
+import net.cakeyfox.foxy.interactions.commands.FoxyCommandDeclarationBuilder
 import net.cakeyfox.foxy.utils.PremiumUtils
-import net.cakeyfox.foxy.utils.pretty
+import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
