@@ -85,6 +85,8 @@ class InteractionsListener(
                     logger.info { "${context.user.name} (${context.user.id}) executed ${event.fullCommandName} in ${context.guild?.name} (${context.guild?.id})" }
                 }
             }
+
+            foxy.database.bot.updateCommandUsage(event.name)
         }
     }
 

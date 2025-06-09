@@ -27,7 +27,6 @@ class DatabaseClient(
     lateinit var database: MongoDatabase
 
     val profile = ProfileUtils(this)
-    val economy = EconomyUtils(this)
     val guild = GuildUtils(this)
     val user = UserUtils(this, foxy)
     val bot = BotUtils(this)

@@ -13,7 +13,9 @@ import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.Russian
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.*
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.*
 import net.cakeyfox.foxy.utils.ClusterUtils
+import net.cakeyfox.foxy.utils.database.utils.BotUtils
 import net.dv8tion.jda.api.interactions.commands.Command
+import java.util.UUID
 
 class FoxyCommandManager(private val foxy: FoxyInstance) {
     val commands = mutableListOf<FoxyCommandDeclarationWrapper>()
@@ -39,15 +41,35 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
             val action = shard.updateCommands()
 
             commands.forEach { command ->
+                val builtCommand = command.create().build()
+
                 if (command.create().isPrivate) {
                     if (shard.shardInfo.shardId == supportServerShardId) {
                         val supportServer = foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
-
-                        supportServer?.updateCommands()?.addCommands(command.create().build())?.await()
-                        logger.info { "Registered /${command.create().name} as private command (Shard: #${shard.shardInfo.shardId})" }                    }
+                        supportServer?.updateCommands()?.addCommands(builtCommand)?.await()
+                        logger.info { "Registered /${command.create().name} as private command (Shard: #${shard.shardInfo.shardId})" }
+                    }
                 } else {
-                    action.addCommands(command.create().build())
+                    action.addCommands(builtCommand)
                 }
+
+                foxy.database.bot.getOrRegisterCommand(
+                    BotUtils.Companion.Command(
+                        uniqueId = UUID.randomUUID().toString(),
+                        name = command.create().name,
+                        description = command.create().description,
+                        supportsLegacy = false,
+                        category = command.create().category,
+                        usage = null,
+                        usageCount = 0,
+                        subCommands = builtCommand.subcommands.map {
+                            BotUtils.Companion.Command.SubCommand(
+                                uniqueId = UUID.randomUUID().toString(),
+                                name = it.name,
+                                description = it.description
+                            )
+                        }
+                    ))
             }
 
             val registeredCommands = action.await()

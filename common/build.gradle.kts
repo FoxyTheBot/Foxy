@@ -3,13 +3,6 @@ plugins {
     id("com.github.johnrengelman.shadow")
 }
 
-group = "net.cakeyfox"
-version = Versions.FOXY_VERSION
-
-repositories {
-    mavenCentral()
-}
-
 kotlin {
     jvm {
         compilations.all {

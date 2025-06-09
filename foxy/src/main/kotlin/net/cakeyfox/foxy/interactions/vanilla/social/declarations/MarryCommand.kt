@@ -52,23 +52,23 @@ class MarryCommand : FoxyCommandDeclarationWrapper {
             executor = MarryExecutor()
         }
 
-        subCommand(
-            "leaderboard",
-            "marry.leaderboard.description",
-            interactionContexts = listOf(
-                InteractionContextType.GUILD,
-                InteractionContextType.PRIVATE_CHANNEL,
-                InteractionContextType.BOT_DM
-            ),
-
-            integrationType = listOf(
-                IntegrationType.USER_INSTALL,
-                IntegrationType.GUILD_INSTALL
-            ),
-
-            baseName = this@command.name
-        ) {
-            executor = TopMarriageExecutor()
-        }
+//        subCommand(
+//            "leaderboard",
+//            "marry.leaderboard.description",
+//            interactionContexts = listOf(
+//                InteractionContextType.GUILD,
+//                InteractionContextType.PRIVATE_CHANNEL,
+//                InteractionContextType.BOT_DM
+//            ),
+//
+//            integrationType = listOf(
+//                IntegrationType.USER_INSTALL,
+//                IntegrationType.GUILD_INSTALL
+//            ),
+//
+//            baseName = this@command.name
+//        ) {
+//            executor = TopMarriageExecutor()
+//        }
     }
 }
