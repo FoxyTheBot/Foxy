@@ -15,8 +15,8 @@ class AskFoxyCommand: FoxyCommandDeclarationWrapper {
             subCommand(
                 "foxy",
                 "ask.foxy.description",
-                baseName = this@command.name,
                 block = {
+                    baseName = this@command.name
                     executor = AskExecutor()
                     addOption(
                         OptionData(

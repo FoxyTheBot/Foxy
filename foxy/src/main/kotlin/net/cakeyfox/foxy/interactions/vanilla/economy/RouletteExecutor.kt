@@ -3,11 +3,11 @@ package net.cakeyfox.foxy.interactions.vanilla.economy
 import mu.KotlinLogging
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.CommandExecutor
+import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import net.cakeyfox.foxy.database.data.Roulette
 import net.cakeyfox.foxy.interactions.pretty
 
-class RouletteExecutor : CommandExecutor() {
+class RouletteExecutor : FoxySlashCommandExecutor() {
     companion object {
         private const val SPIN_TIMEOUT = 86_400_000L
         private val prizes = mapOf(

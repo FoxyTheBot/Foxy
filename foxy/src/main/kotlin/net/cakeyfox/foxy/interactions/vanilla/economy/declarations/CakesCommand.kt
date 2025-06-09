@@ -28,8 +28,8 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
         subCommand(
             "atm",
             "cakes.atm.description",
-            baseName = this@command.name,
             block = {
+                baseName = this@command.name
                 executor = AtmExecutor()
                 addOptions(
                     listOf(
@@ -49,9 +49,8 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
         subCommand(
             "top",
             "cakes.top.description",
-            baseName = this@command.name,
-
             block = {
+                baseName = this@command.name
                 executor = TopCakesExecutor()
             }
         )
@@ -59,9 +58,8 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
         subCommand(
             "pay",
             "cakes.pay.description",
-            baseName = this@command.name,
-
             block = {
+                baseName = this@command.name
                 executor = PayExecutor()
                 addOptions(
                     listOf(
@@ -88,8 +86,8 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
         subCommand(
             "coinflipbet",
             "cakes.coinflipbet.description",
-            baseName = this@command.name,
             block = {
+                baseName = this@command.name
                 executor = CoinflipBetExecutor()
 
                 addOptions(

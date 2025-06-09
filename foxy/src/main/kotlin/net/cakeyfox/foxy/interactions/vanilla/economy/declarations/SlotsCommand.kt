@@ -36,8 +36,8 @@ class SlotsCommand : FoxyCommandDeclarationWrapper {
         subCommand(
             "bet",
             "slots.bet.description",
-            baseName = this@command.name,
             block = {
+                baseName = this@command.name
                 addOption(
                     OptionData(
                         OptionType.INTEGER,

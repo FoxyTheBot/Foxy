@@ -4,11 +4,11 @@ import net.cakeyfox.common.Colors
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.CommandExecutor
+import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import net.cakeyfox.foxy.utils.ClusterUtils
 import net.cakeyfox.foxy.interactions.pretty
 
-class ServerInviteRetrieveExecutor : CommandExecutor() {
+class ServerInviteRetrieveExecutor : FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer(true)
 

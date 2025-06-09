@@ -16,9 +16,8 @@ class ServerInviteCommand : FoxyCommandDeclarationWrapper {
         subCommand(
             "retrieve",
             "serverinvite.retrieve.description",
-            baseName = this@command.name,
-
             block = {
+                baseName = this@command.name
                 addOption(
                     OptionData(
                         OptionType.STRING,

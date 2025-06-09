@@ -2,11 +2,11 @@ package net.cakeyfox.foxy.interactions.vanilla.entertainment
 
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.CommandExecutor
+import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.entities.User
 
-class CancelExecutor : CommandExecutor() {
+class CancelExecutor : FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
 

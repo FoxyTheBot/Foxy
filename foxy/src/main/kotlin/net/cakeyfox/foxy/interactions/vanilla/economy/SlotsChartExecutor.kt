@@ -2,10 +2,10 @@ package net.cakeyfox.foxy.interactions.vanilla.economy
 
 import net.cakeyfox.common.Colors
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.CommandExecutor
+import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 
-class SlotsChartExecutor : CommandExecutor() {
+class SlotsChartExecutor : FoxySlashCommandExecutor() {
     companion object {
         val multipliers = mapOf(
             "🍒" to 2,

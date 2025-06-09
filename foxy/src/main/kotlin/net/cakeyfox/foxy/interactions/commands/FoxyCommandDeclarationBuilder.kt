@@ -17,9 +17,10 @@ class FoxyCommandDeclarationBuilder(
     val isPrivate: Boolean,
     var category: String,
     val availableForEarlyAccess: Boolean = false,
-    val integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
-    val interactionContexts: List<InteractionContextType> = listOf(InteractionContextType.GUILD),
-    var executor: CommandExecutor? = null
+    var integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
+    var interactionContexts: List<InteractionContextType> = listOf(InteractionContextType.GUILD),
+    var baseName: String? = name,
+    var executor: FoxySlashCommandExecutor? = null
 ) {
     private val subCommands = mutableListOf<FoxyCommandDeclarationBuilder>()
     private val subCommandGroups = mutableListOf<FoxyCommandGroupBuilder>()
@@ -27,16 +28,16 @@ class FoxyCommandDeclarationBuilder(
     private val commandOptions = mutableListOf<OptionData>()
     private val enUsLocale = FoxyLocale("en-us")
     private val ptBrLocale = FoxyLocale("pt-br")
-    var baseName = ""
+
+    // TODO: Remove baseName param from all commands, subCommands and options
 
     fun subCommand(
         name: String,
-        description: String,
+        description: String = "placeholderDescription",
         isPrivate: Boolean = false,
         category: String = this.category,
         integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
         interactionContexts: List<InteractionContextType> = listOf(InteractionContextType.GUILD),
-        baseName: String? = null,
         block: FoxyCommandDeclarationBuilder.() -> Unit
     ) {
         val subCommand = FoxyCommandDeclarationBuilder(
@@ -73,13 +74,21 @@ class FoxyCommandDeclarationBuilder(
         permission.forEach { permissions.add(it) }
     }
 
-    fun addOptions(vararg options: List<OptionData>, isSubCommand: Boolean = false, baseName: String) {
+    fun addOptions(
+        vararg options: List<OptionData>,
+        isSubCommand: Boolean = false,
+        baseName: String? = this@FoxyCommandDeclarationBuilder.baseName
+    ) {
         options.forEach { option ->
             addOption(*option.toTypedArray(), isSubCommand = isSubCommand, baseName = baseName)
         }
     }
 
-    fun addOption(vararg option: OptionData, isSubCommand: Boolean = false, baseName: String) {
+    fun addOption(
+        vararg option: OptionData,
+        isSubCommand: Boolean = false,
+        baseName: String? = this@FoxyCommandDeclarationBuilder.baseName
+    ) {
         option.forEach { op ->
             if (isSubCommand) {
                 op.setNameLocalizations(

@@ -8,10 +8,10 @@ import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.CommandExecutor
+import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import net.dv8tion.jda.api.utils.FileUpload
 
-class NotStonksExecutor : CommandExecutor() {
+class NotStonksExecutor : FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
         val text = context.getOption<String>("text")!!

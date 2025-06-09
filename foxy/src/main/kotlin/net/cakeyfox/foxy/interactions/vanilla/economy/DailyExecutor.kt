@@ -3,11 +3,11 @@ package net.cakeyfox.foxy.interactions.vanilla.economy
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.CommandExecutor
+import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import net.cakeyfox.foxy.utils.linkButton
 import net.cakeyfox.foxy.interactions.pretty
 
-class DailyExecutor : CommandExecutor() {
+class DailyExecutor : FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.reply(true) {
             embed {

@@ -3,11 +3,11 @@ package net.cakeyfox.foxy.interactions.vanilla.social
 import dev.minn.jda.ktx.coroutines.await
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.CommandExecutor
+import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
-class DivorceExecutor : CommandExecutor() {
+class DivorceExecutor : FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         if (context.getAuthorData().marryStatus.marriedWith == null) {
             context.reply {

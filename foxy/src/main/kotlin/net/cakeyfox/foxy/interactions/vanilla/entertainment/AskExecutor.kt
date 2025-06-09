@@ -2,10 +2,10 @@ package net.cakeyfox.foxy.interactions.vanilla.entertainment
 
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.CommandExecutor
+import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 
-class AskExecutor: CommandExecutor() {
+class AskExecutor: FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val answers = listOf(
             context.locale["ask.foxy.true"],

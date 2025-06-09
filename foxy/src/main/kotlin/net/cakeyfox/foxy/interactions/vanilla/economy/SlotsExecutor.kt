@@ -3,10 +3,10 @@ package net.cakeyfox.foxy.interactions.vanilla.economy
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.CommandExecutor
+import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 
-class SlotsExecutor : CommandExecutor() {
+class SlotsExecutor : FoxySlashCommandExecutor() {
     companion object {
         private val symbols = listOf("🍒", "🍉", "🍋", "🍀", "💎", "🦊")
         private val multipliers = mapOf(

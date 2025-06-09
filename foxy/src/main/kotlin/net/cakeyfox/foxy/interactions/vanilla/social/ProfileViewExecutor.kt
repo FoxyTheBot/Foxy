@@ -5,14 +5,14 @@ import kotlinx.coroutines.withContext
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.CommandExecutor
+import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.profile.ProfileRender
 import net.cakeyfox.foxy.profile.config.ProfileConfig
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.utils.FileUpload
 
-class ProfileViewExecutor: CommandExecutor() {
+class ProfileViewExecutor: FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
 

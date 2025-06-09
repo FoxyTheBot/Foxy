@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.interactions.InteractionContextType
 interface FoxyCommandDeclarationWrapper {
     fun create(): FoxyCommandDeclarationBuilder
 
+    @Deprecated("Use slashCommand instead | https://google.com")
     fun command(
         name: String,
         description: String,
@@ -24,6 +25,22 @@ interface FoxyCommandDeclarationWrapper {
             availableForEarlyAccess,
             integrationType,
             interactionContexts
+        ).apply(block)
+    }
+
+    fun slashCommand(
+        name: String,
+        category: String,
+        block: FoxyCommandDeclarationBuilder.() -> Unit
+    ): FoxyCommandDeclarationBuilder {
+        return FoxyCommandDeclarationBuilder(
+            name,
+            description = "placeholderDescription",
+            isPrivate = false,
+            category = category,
+            availableForEarlyAccess = false,
+            integrationType = listOf(IntegrationType.GUILD_INSTALL),
+            interactionContexts = listOf(InteractionContextType.GUILD)
         ).apply(block)
     }
 }

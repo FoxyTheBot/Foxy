@@ -1,9 +1,9 @@
 package net.cakeyfox.foxy.interactions.vanilla.actions
 
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.CommandExecutor
+import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 
-class DanceExecutor : CommandExecutor() {
+class DanceExecutor : FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
 

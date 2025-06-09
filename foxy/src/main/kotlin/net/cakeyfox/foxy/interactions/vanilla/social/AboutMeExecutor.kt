@@ -2,10 +2,10 @@ package net.cakeyfox.foxy.interactions.vanilla.social
 
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.CommandExecutor
+import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 
-class AboutMeExecutor : CommandExecutor() {
+class AboutMeExecutor : FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val text = context.getOption<String>("text")!!
 

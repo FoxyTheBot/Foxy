@@ -37,8 +37,8 @@ class MarryCommand : FoxyCommandDeclarationWrapper {
                 IntegrationType.USER_INSTALL
             ),
 
-            baseName = this@command.name
         ) {
+            baseName = this@command.name
             addOption(
                 OptionData(
                     OptionType.USER,
