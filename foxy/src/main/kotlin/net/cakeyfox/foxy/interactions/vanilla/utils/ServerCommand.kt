@@ -11,7 +11,6 @@ import net.cakeyfox.foxy.utils.ClusterUtils
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
 import net.dv8tion.jda.api.interactions.commands.OptionType
-import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
 class ServerCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("server", CommandCategory.UTILS) {
@@ -19,26 +18,12 @@ class ServerCommand : FoxyCommandDeclarationWrapper {
         interactionContexts = listOf(InteractionContextType.GUILD)
 
         subCommand("info") {
-            addOption(
-                OptionData(
-                    OptionType.STRING,
-                    "server_id",
-                    "server.info.options.server_id.description"
-                ),
-                isSubCommand = true
-            )
+            addOption(opt(OptionType.STRING, "server_id"), isSubCommand = true)
             executor = ServerInfoExecutor()
         }
 
         subCommand("icon") {
-            addOption(
-                OptionData(
-                    OptionType.STRING,
-                    "server_id",
-                    "server.icon.options.server_id.description"
-                ),
-                isSubCommand = true
-            )
+            addOption(opt(OptionType.STRING, "server_id"), isSubCommand = true)
             executor = ServerIconExecutor()
         }
     }

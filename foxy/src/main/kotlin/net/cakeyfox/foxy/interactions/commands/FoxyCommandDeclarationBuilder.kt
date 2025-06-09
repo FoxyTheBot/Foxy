@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.interactions.DiscordLocale
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
+import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData
 
@@ -83,6 +84,8 @@ class FoxyCommandDeclarationBuilder(
             addOption(*option.toTypedArray(), isSubCommand = isSubCommand, baseName = baseName)
         }
     }
+
+    fun opt(type: OptionType, name: String, required: Boolean = false) = OptionData(type, name, "owo", required)
 
     fun addOption(
         vararg option: OptionData,

@@ -10,7 +10,10 @@ import net.cakeyfox.foxy.interactions.vanilla.utils.StatusCommand
 import net.cakeyfox.foxy.interactions.vanilla.economy.declarations.*
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.*
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RussianRouletteCommand
-import net.cakeyfox.foxy.interactions.vanilla.social.declarations.*
+import net.cakeyfox.foxy.interactions.vanilla.social.AboutMeCommand
+import net.cakeyfox.foxy.interactions.vanilla.social.DivorceCommand
+import net.cakeyfox.foxy.interactions.vanilla.social.MarryCommand
+import net.cakeyfox.foxy.interactions.vanilla.social.ProfileCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.DashboardCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.DblCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.HelpCommand
