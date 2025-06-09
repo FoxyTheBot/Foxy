@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.interactions.InteractionContextType
 interface FoxyCommandDeclarationWrapper {
     fun create(): FoxyCommandDeclarationBuilder
 
-    @Deprecated("Use slashCommand instead | https://google.com")
+    @Deprecated("Use slashCommand instead | Check https://github.com/FoxyTheBot/Foxy/issues/167")
     fun command(
         name: String,
         description: String,
