@@ -5,11 +5,7 @@ import net.cakeyfox.foxy.interactions.commands.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.RussianRouletteExecutor
 
 class RussianRouletteCommand : FoxyCommandDeclarationWrapper {
-    override fun create() = command(
-        "russian-roulette",
-        "russian-roulette.description",
-        category = CommandCategory.FUN,
-        ) {
+    override fun create() = slashCommand("russian-roulette", CommandCategory.FUN) {
         executor = RussianRouletteExecutor()
     }
 }

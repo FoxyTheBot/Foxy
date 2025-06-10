@@ -7,23 +7,14 @@ import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
 
 class DailyCommand : FoxyCommandDeclarationWrapper {
-    override fun create() = command(
-        "daily",
-        "daily.description",
+    override fun create() = slashCommand("daily", CommandCategory.ECONOMY) {
         interactionContexts = listOf(
             InteractionContextType.GUILD,
             InteractionContextType.BOT_DM,
             InteractionContextType.PRIVATE_CHANNEL
-        ),
+        )
 
-        integrationType = listOf(
-            IntegrationType.GUILD_INSTALL,
-            IntegrationType.USER_INSTALL
-        ),
-        category = CommandCategory.ECONOMY,
-
-        block = {
-            executor = DailyExecutor()
-        }
-    )
+        integrationType = listOf(IntegrationType.GUILD_INSTALL, IntegrationType.USER_INSTALL)
+        executor = DailyExecutor()
+    }
 }

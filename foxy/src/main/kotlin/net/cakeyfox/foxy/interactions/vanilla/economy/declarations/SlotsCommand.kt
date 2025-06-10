@@ -10,46 +10,22 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
 class SlotsCommand : FoxyCommandDeclarationWrapper {
-    override fun create() = command(
-        "slots",
-        "slots.description",
-        integrationType = listOf(
-            IntegrationType.GUILD_INSTALL,
-            IntegrationType.USER_INSTALL
-        ),
-
+    override fun create() = slashCommand("slots", CommandCategory.ECONOMY) {
         interactionContexts = listOf(
             InteractionContextType.GUILD,
             InteractionContextType.BOT_DM,
             InteractionContextType.PRIVATE_CHANNEL
-        ),
-        category = CommandCategory.ECONOMY,
-        ) {
-        subCommand(
-            "chart",
-            "slots.chart.description",
-            block = {
-                executor = SlotsChartExecutor()
-            }
         )
+        integrationType = listOf(IntegrationType.GUILD_INSTALL, IntegrationType.USER_INSTALL)
 
-        subCommand(
-            "bet",
-            "slots.bet.description",
-            block = {
-                baseName = this@command.name
-                addOption(
-                    OptionData(
-                        OptionType.INTEGER,
-                        "amount",
-                        "slots.bet.option.amount",
-                        true
-                    ),
-                    baseName = this@command.name,
-                    isSubCommand = true,
-                )
-                executor = SlotsExecutor()
-            }
-        )
+        subCommand("chart") { executor = SlotsChartExecutor() }
+
+        subCommand("bet") {
+            addOption(
+                opt(OptionType.INTEGER, "amount", true),
+                isSubCommand = true,
+            )
+            executor = SlotsExecutor()
+        }
     }
 }

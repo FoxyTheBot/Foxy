@@ -10,114 +10,52 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
 class CakesCommand : FoxyCommandDeclarationWrapper {
-    override fun create() = command(
-        "cakes",
-        "cakes.description",
+    override fun create() = slashCommand("cakes", CommandCategory.ECONOMY) {
         interactionContexts = listOf(
             InteractionContextType.GUILD,
             InteractionContextType.BOT_DM,
             InteractionContextType.PRIVATE_CHANNEL
-        ),
-
-        integrationType = listOf(
-            IntegrationType.USER_INSTALL,
-            IntegrationType.GUILD_INSTALL
-        ),
-        category = CommandCategory.ECONOMY
-    ) {
-        subCommand(
-            "atm",
-            "cakes.atm.description",
-            block = {
-                baseName = this@command.name
-                executor = AtmExecutor()
-                addOptions(
-                    listOf(
-                        OptionData(
-                            OptionType.USER,
-                            "user",
-                            "cakes.atm.option.user",
-                            false
-                        )
-                    ),
-
-                    isSubCommand = true,
-                    baseName = this@command.name
-                )
-            }
         )
-        subCommand(
-            "top",
-            "cakes.top.description",
-            block = {
-                baseName = this@command.name
-                executor = TopCakesExecutor()
-            }
-        )
+        integrationType = listOf(IntegrationType.USER_INSTALL, IntegrationType.GUILD_INSTALL)
 
-        subCommand(
-            "pay",
-            "cakes.pay.description",
-            block = {
-                baseName = this@command.name
-                executor = PayExecutor()
-                addOptions(
-                    listOf(
-                        OptionData(
-                            OptionType.USER,
-                            "user",
-                            "cakes.pay.option.user",
-                            true
-                        ),
+        subCommand("atm") {
+            executor = AtmExecutor()
+            addOptions(
+                listOf(
+                    opt(OptionType.USER, "user")
+                ),
 
-                        OptionData(
-                            OptionType.INTEGER,
-                            "amount",
-                            "cakes.pay.option.amount",
-                            true
-                        )
-                    ),
-                    baseName = this@command.name,
-                    isSubCommand = true
-                )
-            }
-        )
+                isSubCommand = true
+            )
+        }
 
-        subCommand(
-            "coinflipbet",
-            "cakes.coinflipbet.description",
-            block = {
-                baseName = this@command.name
-                executor = CoinflipBetExecutor()
+        subCommand("top") { executor = TopCakesExecutor() }
 
-                addOptions(
-                    listOf(
-                        OptionData(
-                            OptionType.USER,
-                            "user",
-                            "cakes.coinflipbet.option.user",
-                            true
-                        ),
+        subCommand("pay") {
+            addOptions(
+                listOf(
+                    opt(OptionType.USER, "user", true),
+                    opt(OptionType.INTEGER, "amount", true)
+                ),
+                isSubCommand = true
+            )
 
-                        OptionData(
-                            OptionType.INTEGER,
-                            "amount",
-                            "cakes.coinflipbet.option.amount",
-                            true
-                        ),
+            executor = PayExecutor()
+        }
 
-                        OptionData(
-                            OptionType.STRING,
-                            "side",
-                            "cakes.coinflipbet.option.side",
-                            true
-                        ).choice("Heads", "heads")
-                            .choice("Tails", "tails")
-                    ),
-                    isSubCommand = true,
-                    baseName = this@command.name
-                )
-            }
-        )
+        subCommand("coinflipbet") {
+            addOptions(
+                listOf(
+                    opt(OptionType.USER, "user", true),
+                    opt(OptionType.INTEGER, "amount", true),
+                    opt(OptionType.STRING, "side", true)
+                        .choice("Heads", "heads")
+                        .choice("Tails", "tails")
+                ),
+                isSubCommand = true
+            )
+
+            executor = CoinflipBetExecutor()
+        }
     }
 }

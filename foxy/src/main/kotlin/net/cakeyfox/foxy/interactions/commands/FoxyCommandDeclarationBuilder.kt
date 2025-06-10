@@ -15,7 +15,7 @@ import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData
 class FoxyCommandDeclarationBuilder(
     val name: String,
     val description: String,
-    val isPrivate: Boolean,
+    var isPrivate: Boolean,
     var category: String,
     val availableForEarlyAccess: Boolean = false,
     var integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
@@ -29,8 +29,6 @@ class FoxyCommandDeclarationBuilder(
     private val commandOptions = mutableListOf<OptionData>()
     private val enUsLocale = FoxyLocale("en-us")
     private val ptBrLocale = FoxyLocale("pt-br")
-
-    // TODO: Remove baseName param from all commands, subCommands and options
 
     fun subCommand(
         name: String,
@@ -61,8 +59,7 @@ class FoxyCommandDeclarationBuilder(
 
     fun subCommandGroup(
         name: String,
-        description: String,
-        baseName: String,
+        description: String = "placeholderDescription",
         block: FoxyCommandGroupBuilder.() -> Unit
     ) {
         val group = FoxyCommandGroupBuilder(name, description)

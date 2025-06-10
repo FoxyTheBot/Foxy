@@ -7,28 +7,12 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
 class CancelCommand : FoxyCommandDeclarationWrapper {
-    override fun create() = command(
-        "cancel",
-        "cancel.description",
-        category = CommandCategory.FUN,
-        ) {
+    override fun create() = slashCommand("cancel", CommandCategory.FUN) {
         addOptions(
             listOf(
-                OptionData(
-                    OptionType.USER,
-                    "user",
-                    "cancel.someone.user.description",
-                    true
-                ),
-
-                OptionData(
-                    OptionType.STRING,
-                    "reason",
-                    "cancel.someone.reason.description",
-                    true
-                )
-            ),
-            baseName = this@command.name
+                opt(OptionType.USER, "user", true),
+                opt(OptionType.STRING, "reason", true)
+            )
         )
 
         executor = CancelExecutor()

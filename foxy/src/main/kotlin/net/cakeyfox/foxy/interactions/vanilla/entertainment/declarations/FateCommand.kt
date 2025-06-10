@@ -7,20 +7,8 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
 class FateCommand : FoxyCommandDeclarationWrapper {
-    override fun create() = command(
-        "fate",
-        "fate.description",
-        category = CommandCategory.FUN,
-        ) {
-        addOption(
-            OptionData(
-                OptionType.USER,
-                "user",
-                "fate.user.description",
-                true
-            ),
-            baseName = this@command.name
-        )
+    override fun create() = slashCommand("fate", CommandCategory.FUN) {
+        addOption(opt(OptionType.USER, "user", true))
 
         executor = FateExecutor()
     }

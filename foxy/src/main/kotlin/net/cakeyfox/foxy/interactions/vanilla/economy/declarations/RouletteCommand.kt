@@ -7,21 +7,14 @@ import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
 
 class RouletteCommand : FoxyCommandDeclarationWrapper {
-    override fun create() = command(
-        "roulette",
-        "roulette.description",
-        availableForEarlyAccess = false,
-        integrationType = listOf(
-            IntegrationType.GUILD_INSTALL,
-            IntegrationType.USER_INSTALL
-        ),
+    override fun create() = slashCommand("roulette", CommandCategory.ECONOMY,) {
         interactionContexts = listOf(
             InteractionContextType.GUILD,
             InteractionContextType.BOT_DM,
             InteractionContextType.PRIVATE_CHANNEL
-        ),
-        category = CommandCategory.ECONOMY,
-        ) {
+        )
+        integrationType = listOf(IntegrationType.GUILD_INSTALL, IntegrationType.USER_INSTALL)
+
         executor = RouletteExecutor()
     }
 }
