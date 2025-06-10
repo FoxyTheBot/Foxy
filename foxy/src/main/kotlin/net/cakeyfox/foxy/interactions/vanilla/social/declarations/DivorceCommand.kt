@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.interactions.vanilla.social
+package net.cakeyfox.foxy.interactions.vanilla.social.declarations
 
 import dev.minn.jda.ktx.coroutines.await
 import net.cakeyfox.common.FoxyEmotes
