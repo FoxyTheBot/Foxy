@@ -7,7 +7,6 @@ import net.cakeyfox.foxy.interactions.vanilla.economy.*
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
 import net.dv8tion.jda.api.interactions.commands.OptionType
-import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
 class CakesCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("cakes", CommandCategory.ECONOMY) {

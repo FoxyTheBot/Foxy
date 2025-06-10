@@ -6,7 +6,6 @@ import net.cakeyfox.foxy.interactions.vanilla.actions.*
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
 import net.dv8tion.jda.api.interactions.commands.OptionType
-import net.dv8tion.jda.api.interactions.commands.build.OptionData
 
 class ActionsCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("actions", CommandCategory.ACTIONS) {
