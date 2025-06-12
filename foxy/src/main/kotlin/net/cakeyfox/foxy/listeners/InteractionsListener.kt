@@ -94,7 +94,7 @@ class InteractionsListener(
         coroutineScope.launch {
             val componentId = try {
                 ComponentId(event.componentId)
-            } catch (e: IllegalArgumentException) {
+            } catch (_: IllegalArgumentException) {
                 logger.info { "Invalid component ID: ${event.componentId}" }
                 return@launch
             }
@@ -125,7 +125,7 @@ class InteractionsListener(
         coroutineScope.launch(foxy.coroutineDispatcher) {
             val componentId = try {
                 ComponentId(event.componentId)
-            } catch (e: IllegalArgumentException) {
+            } catch (_: IllegalArgumentException) {
                 logger.info { "Unknown component received" }
                 return@launch
             }

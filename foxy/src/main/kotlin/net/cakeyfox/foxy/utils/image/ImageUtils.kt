@@ -7,9 +7,12 @@ import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import net.cakeyfox.foxy.profile.ProfileCacheManager
 import net.cakeyfox.serializable.data.ImagePosition
+import java.awt.AlphaComposite
 import java.awt.Color
 import java.awt.Font
 import java.awt.Graphics2D
+import java.awt.Image
+import java.awt.RenderingHints
 import java.awt.image.BufferedImage
 import java.io.InputStream
 import java.net.URL
@@ -77,6 +80,36 @@ object ImageUtils {
         var fontColor: Color = Color.WHITE,
         var textPosition: ImagePosition = ImagePosition(0f, 0f, null)
     )
+
+    suspend fun loadImageFromResources(directory: String): BufferedImage? = withContext(Dispatchers.IO) {
+        ImageIO.read(this::class.java.getResourceAsStream(directory))
+    }
+
+    fun createCircularAvatar(original: BufferedImage, size: Int): BufferedImage {
+        val avatar = BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB)
+        val g2 = avatar.createGraphics()
+
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR)
+        g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY)
+
+        val mask = BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB)
+        val mg = mask.createGraphics()
+        mg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
+        mg.color = Color(0, 0, 0, 0)
+        mg.fillRect(0, 0, size, size)
+        mg.color = Color(0, 0, 0, 255)
+        mg.fillOval(0, 0, size, size)
+        mg.dispose()
+
+        g2.drawImage(original.getScaledInstance(size, size, Image.SCALE_SMOOTH), 0, 0, null)
+
+        g2.composite = AlphaComposite.getInstance(AlphaComposite.DST_IN)
+        g2.drawImage(mask, 0, 0, null)
+
+        g2.dispose()
+        return avatar
+    }
 
     private suspend fun readImage(image: URL) = withContext(Dispatchers.IO) { ImageIO.read(image) }!!
 }

@@ -1,33 +1,31 @@
 package net.cakeyfox.foxy.interactions.vanilla.economy
 
-import net.cakeyfox.common.Colors
-import net.cakeyfox.common.Constants
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
 import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
+import net.cakeyfox.foxy.utils.leaderboard.data.LeaderboardConfig
+import net.cakeyfox.foxy.utils.leaderboard.utils.LeaderboardRender
+import net.dv8tion.jda.api.utils.FileUpload
 
 class TopCakesExecutor : FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
         val topUsersWithName = context.foxy.leaderboardManager.getCakesLeaderboard()
+        val profile = withContext(Dispatchers.IO) {
+            LeaderboardRender(LeaderboardConfig(), context).create(topUsersWithName)
+        }
+        val file = FileUpload.fromData(profile, "ranking.png")
 
         context.reply {
-            embed {
-                title = pretty(FoxyEmotes.FoxyDaily, context.locale["top.cakes.embed.title"])
-                color = Colors.FOXY_DEFAULT
-                thumbnail = Constants.DAILY_EMOJI
+            content = pretty(
+                FoxyEmotes.FoxyDrinkingCoffee,
+                context.locale["top.cakes.embed.title"]
+            )
 
-                topUsersWithName.forEach { (rank, username, balance) ->
-                    val formattedCakes = context.utils.formatLongNumber(balance.toLong(), "pt", "BR")
-
-                    field {
-                        name = "#$rank. $username"
-                        value = "**$formattedCakes** Cakes"
-                        inline = true
-                    }
-                }
-            }
+            files.plusAssign(file)
         }
     }
 }

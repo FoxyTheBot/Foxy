@@ -31,11 +31,11 @@ object FoxyLauncher {
             try {
                 // If the hostname is in the expected format, extract the ID after the "-"
                 hostname.split("-")[1].toInt()
-            } catch (e: IndexOutOfBoundsException) {
+            } catch (_: IndexOutOfBoundsException) {
                 logger.error { "Invalid hostname ($hostname)! The hostname must contain '-' followed by a numeric ID (e.g., foxy-1)." }
                 exitProcess(1)
 
-            } catch (e: NumberFormatException) {
+            } catch (_: NumberFormatException) {
                 logger.error { "Invalid ID in hostname ($hostname)! The value after '-' must be a number (e.g., foxy-1)." }
                 exitProcess(1)
             }

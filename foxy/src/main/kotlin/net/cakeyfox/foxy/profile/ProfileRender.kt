@@ -39,7 +39,6 @@ class ProfileRender(
     suspend fun create(user: User, userData: FoxyUser): ByteArray {
         val renderTime = measureTimeMillis {
             coroutineScope {
-
                 val layoutInfo: Layout = getOrFetchFromCache(
                     ProfileCacheManager.layoutCache,
                     userData.userProfile.layout
