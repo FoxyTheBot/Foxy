@@ -22,7 +22,7 @@ import kotlin.reflect.jvm.jvmName
 object ImageUtils {
     private val logger = KotlinLogging.logger(this::class.jvmName)
 
-    private fun getFont(fontName: String, fontSize: Int): Font? {
+    fun getFont(fontName: String, fontSize: Int): Font? {
         val fontStream: InputStream? = this::class.java.classLoader.getResourceAsStream("fonts/$fontName.ttf")
 
         return if (fontStream != null) {

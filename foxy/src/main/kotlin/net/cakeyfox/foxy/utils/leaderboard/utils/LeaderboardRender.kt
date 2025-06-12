@@ -5,6 +5,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
+import net.cakeyfox.foxy.utils.image.CustomFonts
 import net.cakeyfox.foxy.utils.image.ImageUtils
 import net.cakeyfox.foxy.utils.leaderboard.data.LeaderboardConfig
 import net.cakeyfox.foxy.utils.leaderboard.data.LeaderboardUser
@@ -56,19 +57,19 @@ class LeaderboardRender(
                 graphics.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY)
                 graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR)
 
-                val fontUsername = Font("Arial", Font.BOLD, 24)
-                val fontCakes = Font("Arial", Font.PLAIN, 19)
+                val fontUsername = ImageUtils.getFont(CustomFonts.NOTO_SANS_BOLD, 24)
+                val fontCakes = ImageUtils.getFont(CustomFonts.NOTO_SANS_REGULAR, 19)
 
-                val avatarSize = 53
+                    val avatarSize = 53
                 val startXAvatar = 60
                 val startXText = startXAvatar + avatarSize + 12
                 val startY = 45
                 val lineHeight = 68
 
-                graphics.font = Font("Arial", Font.BOLD, 24)
+                graphics.font = ImageUtils.getFont(CustomFonts.NOTO_SANS_BOLD, 24)
                 graphics.color = Color.WHITE
                 graphics.rotate(-Math.PI / 2)
-                graphics.drawString("Ranking Global de Cakes", -config.height + 18, 28)
+                graphics.drawString("Ranking Global de Cakes", -config.height + 15, 28)
                 graphics.rotate(Math.PI / 2)
 
                 users.take(5).forEachIndexed { index, user ->
