@@ -3,7 +3,6 @@ package net.cakeyfox.foxy.utils.leaderboard
 import com.github.benmanes.caffeine.cache.Caffeine
 import dev.minn.jda.ktx.coroutines.await
 import kotlinx.datetime.Instant
-import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.utils.leaderboard.data.LeaderboardUser
 import java.util.concurrent.TimeUnit

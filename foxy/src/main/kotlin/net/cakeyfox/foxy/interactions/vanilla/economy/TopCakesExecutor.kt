@@ -1,6 +1,5 @@
 package net.cakeyfox.foxy.interactions.vanilla.economy
 
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext

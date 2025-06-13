@@ -2,7 +2,6 @@ package net.cakeyfox.foxy.interactions.vanilla.entertainment.media
 
 import io.ktor.client.call.*
 import io.ktor.utils.io.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject

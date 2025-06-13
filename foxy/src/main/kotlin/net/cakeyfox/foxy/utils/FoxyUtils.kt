@@ -2,7 +2,6 @@ package net.cakeyfox.foxy.utils
 
 import io.ktor.client.call.*
 import io.ktor.client.request.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Instant
 import net.cakeyfox.common.Constants

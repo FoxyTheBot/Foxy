@@ -1,6 +1,5 @@
 package net.cakeyfox.foxy.interactions.vanilla.social
 
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes

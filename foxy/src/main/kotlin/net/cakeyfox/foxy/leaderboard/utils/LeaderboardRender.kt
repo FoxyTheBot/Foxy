@@ -1,8 +1,6 @@
 package net.cakeyfox.foxy.utils.leaderboard.utils
 
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
 import net.cakeyfox.foxy.utils.image.CustomFonts

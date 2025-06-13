@@ -1,10 +1,8 @@
 package net.cakeyfox.foxy.profile
 
 import dev.minn.jda.ktx.coroutines.await
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
