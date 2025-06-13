@@ -30,7 +30,7 @@ class DblStatsSender(
     private fun startMainClusterRoutine() {
         logger.info { "Running TopggStatsSender on Main Cluster" }
 
-        statsSenderJob = CoroutineScope(Dispatchers.IO).launch {
+        statsSenderJob = CoroutineScope(foxy.coroutineDispatcher).launch {
             while (true) {
                 val serverCounts = getServerCountsFromClusters()
                 sendStatsToTopGG(serverCounts)
@@ -45,7 +45,7 @@ class DblStatsSender(
             .mapNotNull { if (!it.canPublishStats) it.clusterUrl else null }
 
         if (foxy.currentCluster.maxShard == 0 && foxy.currentCluster.minShard == 0) {
-            return withContext(Dispatchers.IO) {
+            return withContext(foxy.coroutineDispatcher) {
                 foxy.shardManager.shards
                     .map { it.awaitReady() }
                     .sumOf { it.guilds.size }
@@ -68,7 +68,7 @@ class DblStatsSender(
             }.awaitAll()
         }
 
-        val currentClusterCount = withContext(Dispatchers.IO) {
+        val currentClusterCount = withContext(foxy.coroutineDispatcher) {
             foxy.shardManager.shards
                 .map { it.awaitReady() }
                 .sumOf { it.guilds.size }
@@ -83,7 +83,7 @@ class DblStatsSender(
     }
 
     private suspend fun sendStatsToTopGG(serverCount: Int): Boolean {
-        return withContext(Dispatchers.IO) {
+        return withContext(foxy.coroutineDispatcher) {
             val response = foxy.httpClient.post("https://top.gg/api/bots/$clientId/stats") {
                 header("Authorization", token)
                 contentType(ContentType.Application.Json)

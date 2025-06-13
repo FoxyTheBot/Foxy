@@ -83,11 +83,9 @@ class ProfileRender(
 
         logger.info { "Profile rendered in ${renderTime}ms" }
 
-        return withContext(Dispatchers.IO) {
-            val outputStream = ByteArrayOutputStream()
-            ImageIO.write(image, "png", outputStream)
-            outputStream.toByteArray()
-        }
+        val outputStream = ByteArrayOutputStream()
+        ImageIO.write(image, "png", outputStream)
+        return outputStream.toByteArray()
     }
 
     private suspend fun drawUserDetails(

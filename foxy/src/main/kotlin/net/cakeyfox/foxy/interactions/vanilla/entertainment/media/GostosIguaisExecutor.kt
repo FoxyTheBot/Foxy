@@ -32,7 +32,7 @@ class GostosIguaisExecutor : FoxySlashCommandExecutor() {
             return replyFileTooBig(context)
         }
 
-        val image = withContext(Dispatchers.IO) {
+        val image = withContext(context.foxy.coroutineDispatcher) {
             context.foxy.artistryClient.generateImage("memes/gosto", buildJsonObject {
                 put("asset1", attachment1.url)
                 put("asset2", attachment2.url)

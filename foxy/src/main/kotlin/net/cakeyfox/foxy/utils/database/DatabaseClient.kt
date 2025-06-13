@@ -76,7 +76,7 @@ class DatabaseClient(
     }
 
     suspend fun <T> withRetry(block: suspend MongoDatabase.() -> T): T {
-        return withContext(Dispatchers.IO) {
+        return withContext(foxy.coroutineDispatcher) {
             this@DatabaseClient.withDatabaseRetry(block = block)
         }
     }

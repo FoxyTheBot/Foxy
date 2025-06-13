@@ -137,6 +137,8 @@ class FoxyInstance(
                     logger.info { "Cancelling job $it" }
                     it.cancel()
                 }
+
+                coroutineExecutor.shutdown()
             } catch (e: Exception) {
                 logger.error(e) { "Error during shutdown process" }
             }

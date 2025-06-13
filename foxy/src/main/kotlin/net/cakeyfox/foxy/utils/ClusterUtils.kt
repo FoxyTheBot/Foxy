@@ -123,7 +123,7 @@ object ClusterUtils {
         cluster: FoxyConfig.Cluster,
         endpoint: String
     ): String? {
-        return withContext(Dispatchers.IO) {
+        return withContext(foxy.coroutineDispatcher) {
             logger.info { "Fetching data from ${cluster.clusterUrl}" }
             val response = foxy.httpClient.get {
                 url(cluster.clusterUrl + endpoint)

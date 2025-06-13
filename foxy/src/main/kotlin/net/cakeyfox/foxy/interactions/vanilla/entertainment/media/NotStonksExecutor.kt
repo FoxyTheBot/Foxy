@@ -16,7 +16,7 @@ class NotStonksExecutor : FoxySlashCommandExecutor() {
         context.defer()
         val text = context.getOption<String>("text")!!
 
-        val notStonksImage = withContext(Dispatchers.IO) {
+        val notStonksImage = withContext(context.foxy.coroutineDispatcher) {
             context.foxy.artistryClient.generateImage("memes/notstonks", buildJsonObject {
                 put("text", text)
             })

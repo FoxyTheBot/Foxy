@@ -10,7 +10,6 @@ import net.cakeyfox.foxy.utils.image.ImageUtils
 import net.cakeyfox.foxy.utils.leaderboard.data.LeaderboardConfig
 import net.cakeyfox.foxy.utils.leaderboard.data.LeaderboardUser
 import java.awt.Color
-import java.awt.Font
 import java.awt.Graphics2D
 import java.awt.RenderingHints
 import java.awt.image.BufferedImage
@@ -60,7 +59,7 @@ class LeaderboardRender(
                 val fontUsername = ImageUtils.getFont(CustomFonts.NOTO_SANS_BOLD, 23)
                 val fontCakes = ImageUtils.getFont(CustomFonts.NOTO_SANS_REGULAR, 19)
 
-                    val avatarSize = 53
+                val avatarSize = 53
                 val startXAvatar = 60
                 val startXText = startXAvatar + avatarSize + 12
                 val startY = 45
@@ -102,8 +101,7 @@ class LeaderboardRender(
 
                     graphics.color = Color.WHITE
                     graphics.font = fontCakes
-                    val shortCakes = user.cakes
-                    val line2 = "$shortCakes Cakes"
+                    val line2 = "${user.cakes} Cakes"
                     graphics.drawString(line2, startXText, textStartY + lineSpacing)
                 }
 
@@ -112,10 +110,14 @@ class LeaderboardRender(
 
         logger.debug { "Leaderboard rendered in ${renderTime}ms" }
 
-        return withContext(Dispatchers.IO) {
-            val outputStream = ByteArrayOutputStream()
-            ImageIO.write(image, "png", outputStream)
-            outputStream.toByteArray()
-        }
+        val outputStream = ByteArrayOutputStream()
+        ImageIO.write(image, "png", outputStream)
+        cleanUp()
+        return outputStream.toByteArray()
+    }
+
+    private fun cleanUp() {
+        graphics.dispose()
+        image.flush()
     }
 }

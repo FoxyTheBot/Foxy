@@ -40,7 +40,7 @@ class ProfileViewExecutor : FoxySlashCommandExecutor() {
             return
         }
 
-        val profile = withContext(Dispatchers.IO) {
+        val profile = withContext(context.foxy.coroutineDispatcher) {
             ProfileRender(ProfileConfig(1436, 884), context).create(user, userData)
         }
         val file = FileUpload.fromData(profile, "profile.png")

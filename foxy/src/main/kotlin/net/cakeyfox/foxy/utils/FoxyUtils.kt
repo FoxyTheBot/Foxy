@@ -77,7 +77,7 @@ class FoxyUtils(
     }
 
     suspend fun getActionImage(action: String): String {
-        return withContext(Dispatchers.IO) {
+        return withContext(foxy.coroutineDispatcher) {
             val response: ActionResponse = try {
                 foxy.httpClient.get("https://nekos.life/api/v2/img/$action").body()
             } catch (e: Exception) {

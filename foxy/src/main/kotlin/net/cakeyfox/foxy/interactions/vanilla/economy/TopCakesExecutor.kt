@@ -42,7 +42,7 @@ class TopCakesExecutor : FoxySlashCommandExecutor() {
         page: Int
     ): FileUpload {
         val pageData = pages[page]
-        val profile = withContext(Dispatchers.IO) {
+        val profile = withContext(context.foxy.coroutineDispatcher) {
             LeaderboardRender(LeaderboardConfig(), context).create(pageData)
         }
         return FileUpload.fromData(profile, "ranking_page_${page + 1}.png")

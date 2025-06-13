@@ -28,7 +28,7 @@ class ErrorExecutor : FoxySlashCommandExecutor() {
             }
         }
 
-        val errorImage = withContext(Dispatchers.IO) {
+        val errorImage = withContext(context.foxy.coroutineDispatcher) {
             context.foxy.artistryClient.generateImage("memes/windowserror", buildJsonObject {
                 put("text", text)
             })

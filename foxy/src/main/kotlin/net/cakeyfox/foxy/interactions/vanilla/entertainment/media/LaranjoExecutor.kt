@@ -16,7 +16,7 @@ class LaranjoExecutor : FoxySlashCommandExecutor() {
         context.defer()
         val text = context.getOption<String>("text")!!
 
-        val laranjoImage = withContext(Dispatchers.IO) {
+        val laranjoImage = withContext(context.foxy.coroutineDispatcher) {
             context.foxy.artistryClient.generateImage("memes/laranjo", buildJsonObject {
                 put("text", text)
             })
