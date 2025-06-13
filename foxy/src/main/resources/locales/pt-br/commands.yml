@@ -220,5 +220,6 @@ ratewaifu:
 
 top:
   cakes:
-    embed:
-      title: "Ranking Global de Cakes"
+    title: "Ranking Global de Cakes"
+    loading: "Carregando..."
+    page: "Página **{0}**"

@@ -38,7 +38,6 @@ class LeaderboardManager(
 
     private suspend fun loadCakesLeaderboard(): List<LeaderboardUser.CakesUser> {
         val users = foxy.database.user.getTopUsersByCakes()
-        KotlinLogging.logger { "Loading cakes leaderboard..." }
         val sorted = users.sortedByDescending { it.balance }
 
         return sorted.take(foxy.config.others.leaderboardLimit).mapIndexed { index, user ->

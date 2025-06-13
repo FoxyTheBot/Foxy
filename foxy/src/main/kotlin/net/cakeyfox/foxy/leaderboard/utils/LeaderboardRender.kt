@@ -57,7 +57,7 @@ class LeaderboardRender(
                 graphics.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY)
                 graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR)
 
-                val fontUsername = ImageUtils.getFont(CustomFonts.NOTO_SANS_BOLD, 24)
+                val fontUsername = ImageUtils.getFont(CustomFonts.NOTO_SANS_BOLD, 23)
                 val fontCakes = ImageUtils.getFont(CustomFonts.NOTO_SANS_REGULAR, 19)
 
                     val avatarSize = 53
@@ -69,7 +69,7 @@ class LeaderboardRender(
                 graphics.font = ImageUtils.getFont(CustomFonts.NOTO_SANS_BOLD, 24)
                 graphics.color = Color.WHITE
                 graphics.rotate(-Math.PI / 2)
-                graphics.drawString("Ranking Global de Cakes", -config.height + 15, 28)
+                graphics.drawString(context.locale["top.cakes.title"], -config.height + 15, 28)
                 graphics.rotate(Math.PI / 2)
 
                 users.take(5).forEachIndexed { index, user ->
@@ -110,7 +110,7 @@ class LeaderboardRender(
             }
         }
 
-        logger.info { "Leaderboard rendered in ${renderTime}ms" }
+        logger.debug { "Leaderboard rendered in ${renderTime}ms" }
 
         return withContext(Dispatchers.IO) {
             val outputStream = ByteArrayOutputStream()

@@ -15,7 +15,6 @@ import net.cakeyfox.foxy.interactions.components.FoxyComponentManager
 import net.cakeyfox.foxy.listeners.GuildListener
 import net.cakeyfox.foxy.listeners.InteractionsListener
 import net.cakeyfox.foxy.listeners.MessageListener
-import net.cakeyfox.foxy.utils.leaderboard.LeaderboardManager
 import net.cakeyfox.serializable.database.utils.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.analytics.DblStatsSender
@@ -23,6 +22,7 @@ import net.cakeyfox.foxy.utils.api.FoxyInternalAPI
 import net.cakeyfox.foxy.utils.database.DatabaseClient
 import net.cakeyfox.foxy.threads.ThreadPoolManager
 import net.cakeyfox.foxy.threads.ThreadUtils
+import net.cakeyfox.foxy.utils.leaderboard.LeaderboardManager
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.requests.GatewayIntent
