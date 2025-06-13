@@ -9,11 +9,14 @@ import com.mongodb.client.model.Filters.eq
 import com.mongodb.client.model.Filters.exists
 import com.mongodb.client.model.Filters.ne
 import com.mongodb.client.model.Indexes.descending
+import com.mongodb.client.model.Projections.include
 import com.mongodb.client.model.Sorts.ascending
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
+import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.database.data.*
+import net.cakeyfox.serializable.data.UserBalance
 
 class UserUtils(
     private val client: DatabaseClient,
@@ -69,15 +72,24 @@ class UserUtils(
         }
     }
 
-    suspend fun getTopUsersByCakes(): List<FoxyUser> {
+    suspend fun getTopUsersByCakes(): List<UserBalance> {
         return client.withRetry {
             val collection = client.database.getCollection<Document>("users")
             collection.find()
                 .sort(descending("userCakes.balance"))
                 .limit(foxy.config.others.leaderboardLimit)
+                .projection(include("_id", "userCakes.balance"))
                 .map { document ->
-                    val documentToJSON = document.toJson()
-                    client.foxy.json.decodeFromString<FoxyUser>(documentToJSON)
+                    val id = document.getString("_id")
+                    val balanceAny = document.getEmbedded(listOf("userCakes", "balance"), Any::class.java)
+                    val balanceDouble = when (balanceAny) {
+                        is Double -> balanceAny
+                        is Int -> balanceAny.toDouble()
+                        is Long -> balanceAny.toDouble()
+                        else -> 0.0
+                    }
+                    val balance = balanceDouble.toLong()
+                    UserBalance(userId = id, balance = balance)
                 }
                 .toList()
         }

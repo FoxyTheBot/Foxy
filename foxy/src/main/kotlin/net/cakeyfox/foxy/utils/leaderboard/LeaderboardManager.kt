@@ -3,6 +3,7 @@ package net.cakeyfox.foxy.utils.leaderboard
 import com.github.benmanes.caffeine.cache.Caffeine
 import dev.minn.jda.ktx.coroutines.await
 import kotlinx.datetime.Instant
+import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.utils.leaderboard.data.LeaderboardUser
 import java.util.concurrent.TimeUnit
@@ -37,18 +38,19 @@ class LeaderboardManager(
 
     private suspend fun loadCakesLeaderboard(): List<LeaderboardUser.CakesUser> {
         val users = foxy.database.user.getTopUsersByCakes()
-        val sorted = users.sortedByDescending { it.userCakes.balance }
+        KotlinLogging.logger { "Loading cakes leaderboard..." }
+        val sorted = users.sortedByDescending { it.balance }
 
         return sorted.take(foxy.config.others.leaderboardLimit).mapIndexed { index, user ->
             val rank = index + 1
-            val userInfo = foxy.shardManager.retrieveUserById(user._id).await()
+            val userInfo = foxy.shardManager.retrieveUserById(user.userId).await()
 
             LeaderboardUser.CakesUser(
                 rank = rank,
                 username = userInfo.globalName ?: userInfo.name,
-                id = user._id,
+                id = user.userId,
                 avatar = userInfo.effectiveAvatarUrl,
-                cakes = foxy.utils.formatLongNumber(user.userCakes.balance.toLong(), "pt", "BR")
+                cakes = foxy.utils.formatLongNumber(user.balance, "pt", "BR")
             )
         }
     }
