@@ -109,7 +109,7 @@ class FoxyInstance(
         foxyInternalAPI = FoxyInternalAPI(this)
         leaderboardManager = LeaderboardManager(this)
         leaderboardManager.getCakesLeaderboard()
-        leaderboardManager.getMarriageLeaderboard()
+//        leaderboardManager.getMarriageLeaderboard()
 
         shardManager.setStatus(OnlineStatus.fromKey(database.bot.getBotSettings().status))
         shardManager.setActivity(
