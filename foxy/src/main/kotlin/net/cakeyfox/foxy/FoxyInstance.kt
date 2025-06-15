@@ -74,7 +74,7 @@ class FoxyInstance(
             install(ContentNegotiation) { json() }
         }
 
-        database.start(this)
+        database.start()
         shardManager = DefaultShardManagerBuilder.create(
             GatewayIntent.GUILD_MEMBERS,
             GatewayIntent.MESSAGE_CONTENT,

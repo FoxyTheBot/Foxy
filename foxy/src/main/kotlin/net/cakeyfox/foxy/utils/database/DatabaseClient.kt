@@ -20,7 +20,6 @@ class DatabaseClient(
 
     private lateinit var mongoClient: MongoClient
     private lateinit var guilds: MongoCollection<Guild>
-    private lateinit var foxyInstance: FoxyInstance
 
     lateinit var users: MongoCollection<FoxyUser>
     lateinit var database: MongoDatabase
@@ -30,19 +29,16 @@ class DatabaseClient(
     val user = UserUtils(this, foxy)
     val bot = BotUtils(this)
 
-    fun start(foxy: FoxyInstance) {
-        this.foxyInstance = foxy
-        connect()
-    }
+    fun start() = connect()
 
     private fun connect() {
         try {
-            mongoClient = MongoClient.create(foxyInstance.config.database.uri)
+            mongoClient = MongoClient.create(foxy.config.database.uri)
             mongoClient.withTimeout(10, TimeUnit.SECONDS)
-            database = mongoClient.getDatabase(foxyInstance.config.database.databaseName)
+            database = mongoClient.getDatabase(foxy.config.database.databaseName)
             users = database.getCollection("users")
             guilds = database.getCollection("guilds")
-            logger.info { "Connected to ${foxyInstance.config.database.databaseName} database" }
+            logger.info { "Connected to ${foxy.config.database.databaseName} database" }
         } catch (e: Exception) {
             logger.error(e) { "Failed to connect to MongoDB" }
         }

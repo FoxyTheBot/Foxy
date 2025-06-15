@@ -63,7 +63,7 @@ class UserUtils(
                 )
             )
                 .sort(ascending("marryStatus.marriedDate"))
-                .limit(foxy.config.others.leaderboardLimit)
+                .limit(10)
                 .map { document ->
                     val documentToJSON = document.toJson()
                     client.foxy.json.decodeFromString<FoxyUser>(documentToJSON)
