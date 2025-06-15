@@ -52,23 +52,33 @@ class ProfileRender(
                 }
 
                 val layoutDeferred = async {
-                    ProfileCacheManager.loadImageFromCache(Constants.getProfileLayout(layoutInfo.filename))
+                    ProfileCacheManager.loadImageFromCache(
+                        Constants.getProfileLayout(layoutInfo.filename)
+                    )
                 }
 
                 val backgroundDeferred = async {
-                    ProfileCacheManager.loadImageFromCache(Constants.getProfileBackground(backgroundInfo.filename))
+                    ProfileCacheManager.loadImageFromCache(
+                        Constants.getProfileBackground(backgroundInfo.filename)
+                    )
                 }
 
                 val layout = layoutDeferred.await()
                 val background = backgroundDeferred.await()
 
-                image = BufferedImage(layout.width, layout.height, BufferedImage.TYPE_INT_ARGB)
+                image = BufferedImage(
+                    layout.width,
+                    layout.height,
+                    BufferedImage.TYPE_INT_ARGB
+                )
                 graphics = image.createGraphics()
                 graphics.setRenderingHint(
                     RenderingHints.KEY_TEXT_ANTIALIASING,
                     RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB
                 )
-                graphics.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY)
+                graphics.setRenderingHint(
+                    RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY
+                )
 
                 drawBackgroundAndLayout(background, layout)
                 drawUserDetails(user, userData, layoutInfo, context)

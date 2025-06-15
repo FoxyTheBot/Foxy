@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.utils.leaderboard.data
+package net.cakeyfox.foxy.leaderboard.data
 
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable

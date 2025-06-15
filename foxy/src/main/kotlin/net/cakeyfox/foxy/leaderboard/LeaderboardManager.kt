@@ -1,10 +1,10 @@
-package net.cakeyfox.foxy.utils.leaderboard
+package net.cakeyfox.foxy.leaderboard
 
 import com.github.benmanes.caffeine.cache.Caffeine
 import dev.minn.jda.ktx.coroutines.await
 import kotlinx.datetime.Instant
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.utils.leaderboard.data.LeaderboardUser
+import net.cakeyfox.foxy.leaderboard.data.LeaderboardUser
 import java.util.concurrent.TimeUnit
 
 class LeaderboardManager(

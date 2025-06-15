@@ -1,12 +1,12 @@
-package net.cakeyfox.foxy.utils.leaderboard.utils
+package net.cakeyfox.foxy.leaderboard.utils
 
 import kotlinx.coroutines.coroutineScope
 import mu.KotlinLogging
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
 import net.cakeyfox.foxy.utils.image.CustomFonts
 import net.cakeyfox.foxy.utils.image.ImageUtils
-import net.cakeyfox.foxy.utils.leaderboard.data.LeaderboardConfig
-import net.cakeyfox.foxy.utils.leaderboard.data.LeaderboardUser
+import net.cakeyfox.foxy.leaderboard.data.LeaderboardConfig
+import net.cakeyfox.foxy.leaderboard.data.LeaderboardUser
 import java.awt.Color
 import java.awt.Graphics2D
 import java.awt.RenderingHints

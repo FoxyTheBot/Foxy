@@ -22,7 +22,7 @@ import net.cakeyfox.foxy.utils.api.FoxyInternalAPI
 import net.cakeyfox.foxy.utils.database.DatabaseClient
 import net.cakeyfox.foxy.threads.ThreadPoolManager
 import net.cakeyfox.foxy.threads.ThreadUtils
-import net.cakeyfox.foxy.utils.leaderboard.LeaderboardManager
+import net.cakeyfox.foxy.leaderboard.LeaderboardManager
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.requests.GatewayIntent

@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy.interactions.vanilla.utils
 
+import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
 import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
@@ -24,23 +25,28 @@ class StatusExecutor : FoxySlashCommandExecutor() {
         val currentClusterShards = "${currentCluster.minShard} / ${currentCluster.maxShard}"
         val currentClusterInfo = "`$currentClusterName` (${currentClusterId}) (Shards: $currentClusterShards)"
 
+        val userCache = context.jda.userCache.size()
+        val guildCache = context.jda.guildCache.size()
         val threads = threadMXBean.threadCount
         val peakThreads = threadMXBean.peakThreadCount
 
-        val msg = buildString {
-            appendLine(pretty(FoxyEmotes.FoxyDrinkingCoffee, "**Foxy's Status**"))
-            appendLine(pretty(FoxyEmotes.Computer, "Used memory: ${usedMemory}MB"))
-            appendLine(pretty(FoxyEmotes.Computer, "Allocated memory: ${totalMemory}MB"))
-            appendLine(pretty(FoxyEmotes.Computer, "Max memory: ${maxMemory}MB"))
-            appendLine(pretty(FoxyEmotes.Thread, "Active threads: $threads"))
-            appendLine(pretty(FoxyEmotes.Graph, "Peak threads: $peakThreads"))
-            appendLine(pretty(FoxyEmotes.FoxyYay, "Total Shards: ${foxy.config.discord.totalShards}"))
-            appendLine(pretty(FoxyEmotes.FoxyDrinkingCoffee, "Current cluster: $currentClusterInfo"))
-            appendLine(pretty(FoxyEmotes.FoxyHug, "Total clusters: ${foxy.config.discord.clusters.size}"))
-        }
-
         context.reply {
-            content = msg
+            embed {
+                title = pretty(FoxyEmotes.FoxyDrinkingCoffee, "**Foxy's Status**")
+                thumbnail = context.jda.selfUser.effectiveAvatarUrl
+                color = Colors.BLURPLE
+
+                field("${FoxyEmotes.Computer} **|** Used memory:", "${usedMemory}MB")
+                field("${FoxyEmotes.Computer} **|** Allocated memory:", "${totalMemory}MB")
+                field("${FoxyEmotes.Computer} **|** Max memory:", "${maxMemory}MB")
+                field("${FoxyEmotes.Thread} **|** Active threads:", "$threads Threads")
+                field("${FoxyEmotes.Graph} **|** Peak threads:", "$peakThreads Threads")
+                field("${FoxyEmotes.Online} **|** User cache:", "$userCache Users")
+                field("${FoxyEmotes.Online} **|** Guild cache:", "$guildCache Guilds")
+                field("${FoxyEmotes.FoxyYay} **|** Total Shards:", "${foxy.config.discord.totalShards} Shards")
+                field("${FoxyEmotes.FoxyHug} **|** Total clusters:", "${foxy.config.discord.clusters.size} Clusters")
+                field("${FoxyEmotes.FoxyDrinkingCoffee} **|** Current cluster:", currentClusterInfo)
+            }
         }
     }
 }

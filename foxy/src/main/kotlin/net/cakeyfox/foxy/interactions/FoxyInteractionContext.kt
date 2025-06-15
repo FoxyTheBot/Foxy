@@ -29,9 +29,7 @@ class FoxyInteractionContext(
     val user = event.user
     val guild = event.guild
 
-    suspend fun getAuthorData(): FoxyUser {
-        return database.user.getFoxyProfile(user.id)
-    }
+    suspend fun getAuthorData(): FoxyUser = database.user.getFoxyProfile(user.id)
 
     suspend fun reply(
         ephemeral: Boolean = false,

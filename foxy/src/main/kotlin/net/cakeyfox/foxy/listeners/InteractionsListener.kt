@@ -69,7 +69,11 @@ class InteractionsListener(
                             isEarlyAccessOnlyCommand(context, command)
                         }
                     }
-                    logger.info { "Command /${event.fullCommandName} executed in ${executionTime}ms" }
+                    if (event.channelType == ChannelType.PRIVATE) {
+                        logger.info { "${context.user.name} (${context.user.id}) executed ${event.fullCommandName} on a private channel in ${executionTime}ms" }
+                    } else {
+                        logger.info { "${context.user.name} (${context.user.id}) executed ${event.fullCommandName} in ${context.guild?.name} (${context.guild?.id}) in ${executionTime}ms" }
+                    }
                 } catch (e: Exception) {
                     logger.error(e) { "An error occurred while executing command: ${event.fullCommandName}" }
                     context.reply(true) {
@@ -78,11 +82,6 @@ class InteractionsListener(
                             context.locale["commands.error", e.toString()]
                         )
                     }
-                }
-                if (event.channelType == ChannelType.PRIVATE) {
-                    logger.info { "${context.user.name} (${context.user.id}) executed ${event.fullCommandName} on a private channel" }
-                } else {
-                    logger.info { "${context.user.name} (${context.user.id}) executed ${event.fullCommandName} in ${context.guild?.name} (${context.guild?.id})" }
                 }
             }
 

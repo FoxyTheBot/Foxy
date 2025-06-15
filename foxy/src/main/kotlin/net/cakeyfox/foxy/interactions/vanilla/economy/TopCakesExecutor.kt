@@ -5,9 +5,9 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
 import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
-import net.cakeyfox.foxy.utils.leaderboard.data.LeaderboardConfig
-import net.cakeyfox.foxy.utils.leaderboard.data.LeaderboardUser
-import net.cakeyfox.foxy.utils.leaderboard.utils.LeaderboardRender
+import net.cakeyfox.foxy.leaderboard.data.LeaderboardConfig
+import net.cakeyfox.foxy.leaderboard.data.LeaderboardUser
+import net.cakeyfox.foxy.leaderboard.utils.LeaderboardRender
 import net.dv8tion.jda.api.interactions.components.ActionRow
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 import net.dv8tion.jda.api.utils.FileUpload
