@@ -193,7 +193,7 @@ class LeaderboardManager(
     /**
      * Starts automatic refresh of leaderboards every 1 hour.
      */
-    fun startAutoRefresh(scope: CoroutineScope = CoroutineScope(Dispatchers.Default)) {
+    fun startAutoRefresh(scope: CoroutineScope = CoroutineScope(foxy.coroutineDispatcher)) {
         scope.launch {
             while (true) {
                 try {
