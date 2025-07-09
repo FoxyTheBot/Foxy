@@ -38,4 +38,8 @@ class ThreadPoolManager {
             }
         }
     }
+
+    fun shutdown() {
+        coroutineMessageExecutor.shutdown()
+    }
 }
