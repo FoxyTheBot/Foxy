@@ -19,7 +19,7 @@ sealed class LeaderboardUser {
     ) : LeaderboardUser()
 
     data class MarriageUser(
-        override val rank: Int,
+        override var rank: Int,
         override val username: String,
         override val id: String,
         override val avatar: String,
