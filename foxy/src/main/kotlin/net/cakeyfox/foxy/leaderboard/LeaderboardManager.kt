@@ -159,8 +159,8 @@ class LeaderboardManager(
                     continue
                 }
 
-                val userName = userInfo.globalName ?: userInfo.name
-                val partnerName = partnerInfo.globalName ?: partnerInfo.name
+                val userName = userInfo.name
+                val partnerName = partnerInfo.name
 
                 if ("deleted_user" in userName || "deleted_user" in partnerName) continue
 
@@ -203,11 +203,11 @@ class LeaderboardManager(
                         leaderboardCache.put("cakes", cakes)
                         logger.info { "Cakes leaderboard updated" }
                     }
-                    marriageLoadMutex.withLock {
-                        val marriage = loadMarriageLeaderboard()
-                        leaderboardCache.put("marriage", marriage)
-                        logger.info { "Marriage leaderboard updated" }
-                    }
+//                    marriageLoadMutex.withLock {
+//                        val marriage = loadMarriageLeaderboard()
+//                        leaderboardCache.put("marriage", marriage)
+//                        logger.info { "Marriage leaderboard updated" }
+//                    }
                 } catch (ex: Exception) {
                     logger.error(ex) { "Error during leaderboards auto-refresh" }
                 }
