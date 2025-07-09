@@ -1,9 +1,17 @@
 package net.cakeyfox.foxy.profile
 
 import com.github.benmanes.caffeine.cache.Cache
+import dev.minn.jda.ktx.coroutines.await
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import net.cakeyfox.common.Constants
+import net.cakeyfox.foxy.database.data.Badge
+import net.cakeyfox.foxy.database.data.FoxyUser
 import net.cakeyfox.foxy.database.data.Layout
+import net.cakeyfox.foxy.interactions.FoxyInteractionContext
+import net.cakeyfox.foxy.profile.badge.BadgeUtils
+import net.cakeyfox.foxy.utils.ClusterUtils
+import net.dv8tion.jda.api.entities.User
 
 object ProfileUtils {
     fun formatAboutMe(aboutMe: String, layoutInfo: Layout): String {
@@ -15,6 +23,36 @@ object ProfileUtils {
         } else {
             aboutMe
         }
+    }
+
+     suspend fun getBadgeAssets(data: FoxyUser, user: User, context: FoxyInteractionContext): List<Badge> {
+        val defaultBadges = getOrFetchFromCache(
+            ProfileCacheManager.badgesCache,
+            "default"
+        ) {
+            context.database.profile.getBadges()
+        }
+
+        val roles = try {
+            context.foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
+                ?.retrieveMember(user)
+                ?.await()
+                ?.roles
+                ?.map { it.id } ?: run {
+                ClusterUtils.getMemberRolesFromCluster(context.foxy, Constants.SUPPORT_SERVER_ID.toLong(), user.idLong)
+            }
+        } catch (e: Exception) {
+            null
+        }
+
+        val userBadges = roles?.let { BadgeUtils.getBadges(it, defaultBadges, data) }
+            ?: BadgeUtils.getFallbackBadges(defaultBadges, data)
+
+        if (userBadges.isEmpty()) {
+            return emptyList()
+        }
+
+        return userBadges
     }
 
     suspend fun <T> getOrFetchFromCache(
