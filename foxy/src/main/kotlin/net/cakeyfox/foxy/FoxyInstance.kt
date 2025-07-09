@@ -108,8 +108,6 @@ class FoxyInstance(
         dblStatsSender = DblStatsSender(this)
         foxyInternalAPI = FoxyInternalAPI(this)
         leaderboardManager = LeaderboardManager(this)
-        leaderboardManager.getCakesLeaderboard()
-//        leaderboardManager.getMarriageLeaderboard()
 
         shardManager.setStatus(OnlineStatus.fromKey(database.bot.getBotSettings().status))
         shardManager.setActivity(
@@ -122,6 +120,7 @@ class FoxyInstance(
             )
         )
 
+        leaderboardManager.startAutoRefresh()
         Runtime.getRuntime().addShutdownHook(thread(false) {
             try {
                 logger.info { "Foxy is shutting down..." }
@@ -140,6 +139,7 @@ class FoxyInstance(
                 }
 
                 coroutineExecutor.shutdown()
+                threadPoolManager.shutdown()
             } catch (e: Exception) {
                 logger.error(e) { "Error during shutdown process" }
             }
