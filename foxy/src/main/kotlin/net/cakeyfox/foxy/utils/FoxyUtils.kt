@@ -55,6 +55,11 @@ class FoxyUtils(
         return convertedDate
     }
 
+    fun convertISOToExtendedDiscordTimestamp(iso: Instant): String {
+        val convertedDate = iso.epochSeconds.let { "<t:$it:f> (<t:$it:R>)" }
+        return convertedDate
+    }
+
     fun convertToHumanReadableDate(iso: Instant): String {
         iso.let {
             val instant = java.time.Instant.ofEpochMilli(it.toEpochMilliseconds())
