@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     java
     kotlin("jvm") version Versions.KOTLIN
@@ -60,13 +62,12 @@ tasks.test {
     useJUnitPlatform()
 }
 
-tasks {
-    shadowJar {
-        archiveBaseName.set("Foxy")
-        archiveVersion.set(version.toString())
-        archiveClassifier.set("")
-        mergeServiceFiles()
-    }
+tasks.register<ShadowJar>("buildFoxy") {
+    archiveBaseName.set("Foxy")
+    archiveVersion.set(version.toString())
+    archiveClassifier.set("")
+    mergeServiceFiles()
+    from(sourceSets.main.get().output)
 }
 
 application {
