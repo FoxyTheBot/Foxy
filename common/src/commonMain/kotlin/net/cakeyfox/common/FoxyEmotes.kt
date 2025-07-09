@@ -49,4 +49,41 @@ object FoxyEmotes {
     const val Computer = "\uD83D\uDCBB"
     const val Thread = "\uD83E\uDDF5"
     const val Graph = "\uD83D\uDCC8"
+
+    // Badges
+    const val ARTISTS = "<:artists:1392547788478218333>"
+    const val BANNED = "<:banned:1392547789996556419>"
+    const val BOOST = "<:boost:1392547791888322611>"
+    const val DONOR = "<:donor:1392547793389879320>"
+    const val FHANY = "<:fhany:1392547795726241904>"
+    const val FOXY = "<:foxy:1392547797378662541>"
+    const val MARRIED = "<:married:1392547799710826637>"
+    const val MEMBER = "<:member:1392547801329565736>"
+    const val PAINTBRUSH = "<:paintbrush:1392547803095498895>"
+    const val VALORANT = "<:valorant:1392548108688429136>"
+    const val UPVOTERS = "<:upvoters:1392547814638092358>"
+    const val TRANSLATORS = "<:translators:1392548029491576892>"
+    const val SUPPORT = "<:support:1392547810913554553>"
+    const val STAFF = "<:staff:1392547971815702716>"
+    const val SALLY = "<:sally:1392547806937481278>"
+    const val RDRBR = "<:rdrbr:1392547804823425024>"
+
+    val badgesMap = mapOf(
+        "artists" to ARTISTS,
+        "banned" to BANNED,
+        "boost" to BOOST,
+        "donor" to DONOR,
+        "fhany" to FHANY,
+        "foxy" to FOXY,
+        "married" to MARRIED,
+        "member" to MEMBER,
+        "paintbrush" to PAINTBRUSH,
+        "valorant" to VALORANT,
+        "upvoters" to UPVOTERS,
+        "translators" to TRANSLATORS,
+        "support" to SUPPORT,
+        "staff" to STAFF,
+        "sally" to SALLY,
+        "rdrbr" to RDRBR
+    )
 }
