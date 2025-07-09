@@ -62,12 +62,13 @@ tasks.test {
     useJUnitPlatform()
 }
 
-tasks.register<ShadowJar>("buildFoxy") {
-    archiveBaseName.set("Foxy")
-    archiveVersion.set(version.toString())
-    archiveClassifier.set("")
-    mergeServiceFiles()
-    from(sourceSets.main.get().output)
+tasks {
+    shadowJar {
+        archiveBaseName.set("Foxy")
+        archiveVersion.set(version.toString())
+        archiveClassifier.set("")
+        mergeServiceFiles()
+    }
 }
 
 application {
