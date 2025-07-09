@@ -11,6 +11,10 @@ import java.time.ZoneId
 import java.time.ZonedDateTime
 
 class MarryAskExecutor : FoxySlashCommandExecutor() {
+    companion object {
+        const val MARRIAGE_TAX = 6000
+    }
+
     override suspend fun execute(context: FoxyInteractionContext) {
         val user = context.getOption<User>("user")!!
 
@@ -71,7 +75,7 @@ class MarryAskExecutor : FoxySlashCommandExecutor() {
         if (isUserPremium || isAuthorPremium) {
             buildMarryMessage(context)
         } else {
-            if (context.getAuthorData().userCakes.balance < 6000) {
+            if (context.getAuthorData().userCakes.balance < MARRIAGE_TAX) {
                 context.reply(true) {
                     content = pretty(
                         FoxyEmotes.FoxyCry,
@@ -81,7 +85,7 @@ class MarryAskExecutor : FoxySlashCommandExecutor() {
 
                 return
 
-            } else if (userData.userCakes.balance < 6000) {
+            } else if (userData.userCakes.balance < MARRIAGE_TAX) {
                 context.reply {
                     content = pretty(
                         FoxyEmotes.FoxyCry,
@@ -126,7 +130,7 @@ class MarryAskExecutor : FoxySlashCommandExecutor() {
                         mapOf(
                             "marryStatus.marriedWith" to user.id,
                             "marryStatus.marriedDate" to marriedDate,
-                            "userCakes.balance" to authorData.userCakes.balance - 6000
+                            "userCakes.balance" to authorData.userCakes.balance - MARRIAGE_TAX
                         )
                     )
 
@@ -135,7 +139,7 @@ class MarryAskExecutor : FoxySlashCommandExecutor() {
                         mapOf(
                             "marryStatus.marriedWith" to context.event.user.id,
                             "marryStatus.marriedDate" to marriedDate,
-                            "userCakes.balance" to userData.userCakes.balance - 6000
+                            "userCakes.balance" to userData.userCakes.balance - MARRIAGE_TAX
                         )
                     )
 
