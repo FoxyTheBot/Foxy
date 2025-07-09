@@ -3,7 +3,6 @@ package net.cakeyfox.foxy.listeners
 import kotlinx.coroutines.*
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.modules.antiraid.AntiRaidModule
 import net.cakeyfox.foxy.modules.autorole.AutoRoleModule
 import net.cakeyfox.foxy.modules.welcomer.WelcomerModule
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent
@@ -16,7 +15,6 @@ import kotlin.reflect.jvm.jvmName
 class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
     private val logger = KotlinLogging.logger(this::class.jvmName)
     private val welcomer = WelcomerModule(foxy)
-    private val antiRaid = AntiRaidModule(foxy)
     private val autoRole = AutoRoleModule(foxy)
     private val coroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
 
@@ -37,7 +35,6 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
     override fun onGuildMemberJoin(event: GuildMemberJoinEvent) {
         coroutineScope.launch(foxy.coroutineDispatcher) {
             welcomer.onGuildJoin(event)
-//            antiRaid.handleJoin(event)
             autoRole.handleUser(event)
         }
     }
