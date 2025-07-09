@@ -236,7 +236,7 @@ class ProfileRender(
             null
         }
 
-        val userBadges = roles?.let { BadgeUtils.getBadges(it, defaultBadges, data) }
+        val userBadges = roles?.let { BadgeUtils.getBadges(context, it, defaultBadges, data) }
             ?: BadgeUtils.getFallbackBadges(defaultBadges, data)
 
         if (userBadges.isEmpty()) {

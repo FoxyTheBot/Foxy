@@ -42,6 +42,7 @@ class FoxyInternalAPI(
                 GetUserRolesFromAGuild().apply { getUserRolesFromAGuild(foxy) }
                 GetClusterInfo().apply { getClusterInfo(foxy) }
                 PostUpdateActivityRoute().apply { updateActivity(foxy) }
+                GetUserFromGuild().apply { getUserFromGuild(foxy) }
             }
         }
     }.start(wait = false)

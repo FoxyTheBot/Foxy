@@ -2,13 +2,20 @@ package net.cakeyfox.foxy.profile.badge
 
 import net.cakeyfox.foxy.database.data.Badge
 import net.cakeyfox.foxy.database.data.FoxyUser
+import net.cakeyfox.foxy.interactions.FoxyInteractionContext
+import net.cakeyfox.foxy.utils.ClusterUtils
 import java.time.Instant
 import kotlin.collections.forEach
 
 object BadgeUtils {
     private val twelveHoursAgo = System.currentTimeMillis() - 12 * 60 * 60 * 1000
 
-    fun getBadges(roles: List<String>, defaultBadges: List<Badge>, data: FoxyUser): List<Badge> {
+    suspend fun getBadges(
+        context: FoxyInteractionContext,
+        roles: List<String>,
+        defaultBadges: List<Badge>,
+        data: FoxyUser
+    ): List<Badge> {
         val userBadges = mutableListOf<Badge>()
 
         val roleBadges = roles
@@ -30,7 +37,10 @@ object BadgeUtils {
         }
 
         defaultBadges.filter { it.isFromGuild != null }.forEach { badge ->
-            if (userBadges.none {
+            val guildId = badge.isFromGuild!!
+            val memberInfo = ClusterUtils.getMemberFromGuild(context.foxy, guildId, context.user.idLong)
+
+            if (memberInfo?.isMember == true && userBadges.none {
                     it.id == badge.id || it.isFromGuild == badge.isFromGuild
                 }) {
                 userBadges.add(badge)

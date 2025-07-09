@@ -41,11 +41,11 @@ object ProfileUtils {
                 ?.map { it.id } ?: run {
                 ClusterUtils.getMemberRolesFromCluster(context.foxy, Constants.SUPPORT_SERVER_ID.toLong(), user.idLong)
             }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             null
         }
 
-        val userBadges = roles?.let { BadgeUtils.getBadges(it, defaultBadges, data) }
+        val userBadges = roles?.let { BadgeUtils.getBadges(context, it, defaultBadges, data) }
             ?: BadgeUtils.getFallbackBadges(defaultBadges, data)
 
         if (userBadges.isEmpty()) {

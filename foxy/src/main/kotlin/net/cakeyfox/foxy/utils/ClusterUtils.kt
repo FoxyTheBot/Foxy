@@ -11,6 +11,7 @@ import kotlinx.serialization.json.Json
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.serializable.data.CustomGuildInfo
+import net.cakeyfox.serializable.data.CustomMemberResponse
 import net.cakeyfox.serializable.database.utils.FoxyConfig
 import org.jetbrains.annotations.TestOnly
 import java.util.concurrent.TimeUnit
@@ -33,6 +34,28 @@ object ClusterUtils {
     }
 
     fun getShardIdFromGuildId(id: Long, totalShards: Int) = (id shr 22).rem(totalShards).toInt()
+
+    suspend fun getMemberFromGuild(foxy: FoxyInstance, guildId: String, memberId: Long): CustomMemberResponse? {
+        val shardId = getShardIdFromGuildId(guildId.toLong(), foxy.config.discord.totalShards)
+        val cluster = getClusterByShardId(foxy, shardId)
+        val memberAsUser = foxy.shardManager.retrieveUserById(memberId).await()
+
+        return if (cluster.id == foxy.currentCluster.id) {
+            foxy.shardManager.getGuildById(guildId)?.let {
+                val isMember = it.isMember(memberAsUser)
+
+                return CustomMemberResponse(isMember = isMember)
+            }
+        } else {
+            val fetchedInfo = getFromAnotherCluster(foxy, cluster, "/api/v1/guilds/$guildId/$memberId")
+
+            return if (fetchedInfo == null) {
+                null
+            } else {
+                json.decodeFromString(fetchedInfo)
+            }
+        }
+    }
 
     suspend fun getGuildInfo(foxy: FoxyInstance, guildId: Long): CustomGuildInfo? {
         val shardId = getShardIdFromGuildId(guildId, foxy.config.discord.totalShards)
@@ -139,10 +162,21 @@ object ClusterUtils {
      * THIS IS A TEST METHOD
      * It is used to simulate fetching data from another cluster, but using the current cluster instead
     */
-    suspend fun testGetGuildInfo(foxy: FoxyInstance, guildId: Long): CustomGuildInfo? {
+    suspend fun testGetGuildInfo(foxy: FoxyInstance, guildId: String?): CustomGuildInfo? {
         val cluster = foxy.currentCluster
         logger.warn { "Testing fetching data from $cluster" }
         val fetchedInfo = getFromAnotherCluster(foxy, cluster, "/api/v1/guilds/$guildId")
+        if (fetchedInfo == null) {
+            return null
+        } else {
+            return json.decodeFromString(fetchedInfo)
+        }
+    }
+
+    suspend fun testGetMemberFromGuild(foxy: FoxyInstance, guildId: String?, memberId: Long): CustomMemberResponse? {
+        val cluster = foxy.currentCluster
+        val fetchedInfo = getFromAnotherCluster(foxy, cluster, "/api/v1/guilds/$guildId/$memberId")
+        println(fetchedInfo)
         if (fetchedInfo == null) {
             return null
         } else {
