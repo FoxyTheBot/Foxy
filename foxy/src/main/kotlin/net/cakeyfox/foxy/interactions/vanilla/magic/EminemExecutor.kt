@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.interactions.vanilla.entertainment.media
+package net.cakeyfox.foxy.interactions.vanilla.magic
 
 import io.ktor.client.call.*
 import io.ktor.utils.io.*
@@ -6,7 +6,6 @@ import kotlinx.coroutines.withContext
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
-import mu.KotlinLogging
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
 import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
@@ -15,42 +14,35 @@ import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.utils.FileUpload
 
 private val supportedTypes = listOf(
-    "image/png",
-    "image/jpeg",
-    "image/jpg"
+    "audio/mpeg",
+    "audio/wav",
+    "audio/aac",
+    "audio/ogg",
+    "audio/flac",
+    "audio/opus",
+    "audio/x-m4a",
+    "video/mp4",
+    "video/x-msvideo",
+    "video/x-matroska",
+    "video/ogg",
+    "video/x-flv"
 )
 
 private const val maxSize = 8_000_000 // 8MB
 
 
-class AntesQueVireModaExecutor: FoxySlashCommandExecutor() {
-    companion object {
-        private val logger = KotlinLogging.logger {  }
-    }
-
+class EminemExecutor: FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         context.defer()
-        val attachment = context.getOption<Message.Attachment>("image")!!
-
-        if (attachment.width > 1920 || attachment.height > 1440) {
-            context.reply {
-                content = pretty(
-                    FoxyEmotes.FoxyCry,
-                    context.locale["moda.imageTooBig"]
-                )
-            }
-
-            return
-        }
+        val attachment = context.getOption<Message.Attachment>("video_or_audio")!!
 
         if (attachment.size > maxSize) {
             context.reply {
                 content = pretty(
                     FoxyEmotes.FoxyCry,
-                    context.locale["moda.fileTooBig"]
+                    context.locale["8mile.fileTooBig"]
                 )
             }
-
             return
         }
 
@@ -58,37 +50,38 @@ class AntesQueVireModaExecutor: FoxySlashCommandExecutor() {
             context.reply {
                 content = pretty(
                     FoxyEmotes.FoxyCry,
-                    context.locale["moda.wrongContentType"]
+                    context.locale["8mile.wrongContentType"]
                 )
             }
-
             return
         }
 
+
         val response = withContext(context.foxy.coroutineDispatcher) {
-            context.foxy.artistryClient.generateImage("memes/moda", buildJsonObject {
-                put("asset", attachment.url)
+            context.foxy.artistryClient.generateImage("memes/8mile", buildJsonObject {
+                put("url", attachment.url)
+                put("contentType", attachment.contentType)
+                put("size", attachment.size)
             })
         }
 
-        logger.debug { "Received response: ${response.status} from Artistry Server" }
         if (response.status.value in 400..499) {
             context.reply {
                 content = pretty(
                     FoxyEmotes.FoxyCry,
-                    context.locale["moda.fileNotSupported"]
+                    context.locale["8mile.fileNotSupported"]
                 )
             }
-
             return
         } else if (response.status.value !in 200..299) {
-            throw IllegalArgumentException("Error processing image! Status code: ${response.status}")
+            throw IllegalArgumentException("Error processing video! Status code: ${response.status}")
         }
 
-        val image = response.body<ByteReadChannel>().readRemaining().readByteArray()
+        val video = response.body<ByteReadChannel>().readRemaining().readByteArray()
+        val file = FileUpload.fromData(video, "8mile_${context.user.id}.mp4")
 
         context.reply {
-            files.plusAssign(FileUpload.fromData(image, "moda.png"))
+            files.plusAssign(file)
         }
     }
 }

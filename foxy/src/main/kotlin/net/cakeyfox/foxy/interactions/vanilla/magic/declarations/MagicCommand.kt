@@ -1,18 +1,22 @@
-package net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations
+package net.cakeyfox.foxy.interactions.vanilla.magic.declarations
 
 import net.cakeyfox.foxy.interactions.commands.CommandCategory
 import net.cakeyfox.foxy.interactions.commands.FoxyCommandDeclarationWrapper
-import net.cakeyfox.foxy.interactions.vanilla.entertainment.media.*
+import net.cakeyfox.foxy.interactions.vanilla.magic.AntesQueVireModaExecutor
+import net.cakeyfox.foxy.interactions.vanilla.magic.EminemExecutor
+import net.cakeyfox.foxy.interactions.vanilla.magic.ErrorExecutor
+import net.cakeyfox.foxy.interactions.vanilla.magic.GirlfriendMemeExecutor
+import net.cakeyfox.foxy.interactions.vanilla.magic.GostosIguaisExecutor
+import net.cakeyfox.foxy.interactions.vanilla.magic.LaranjoExecutor
+import net.cakeyfox.foxy.interactions.vanilla.magic.NotStonksExecutor
+import net.cakeyfox.foxy.interactions.vanilla.magic.StonksExecutor
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
 import net.dv8tion.jda.api.interactions.commands.OptionType
 
 class MagicCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("magic", CommandCategory.MAGIC) {
-        integrationType = listOf(
-            IntegrationType.GUILD_INSTALL,
-            IntegrationType.USER_INSTALL
-        )
+        integrationType = listOf(IntegrationType.GUILD_INSTALL, IntegrationType.USER_INSTALL)
         interactionContexts = listOf(
             InteractionContextType.BOT_DM,
             InteractionContextType.GUILD,

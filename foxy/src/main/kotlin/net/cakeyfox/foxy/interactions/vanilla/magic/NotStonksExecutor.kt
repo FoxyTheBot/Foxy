@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.interactions.vanilla.entertainment.media
+package net.cakeyfox.foxy.interactions.vanilla.magic
 
 import io.ktor.client.call.*
 import io.ktor.utils.io.*
