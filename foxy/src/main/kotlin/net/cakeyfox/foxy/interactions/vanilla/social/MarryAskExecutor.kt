@@ -127,20 +127,34 @@ class MarryAskExecutor : FoxySlashCommandExecutor() {
                 ) {
                     context.database.user.updateUser(
                         context.event.user.id,
-                        mapOf(
-                            "marryStatus.marriedWith" to user.id,
-                            "marryStatus.marriedDate" to marriedDate,
-                            "userCakes.balance" to authorData.userCakes.balance - MARRIAGE_TAX
-                        )
+                        if (isAuthorPremium || isUserPremium) {
+                            mapOf(
+                                "marryStatus.marriedWith" to user.id,
+                                "marryStatus.marriedDate" to marriedDate,
+                            )
+                        } else {
+                            mapOf(
+                                "marryStatus.marriedWith" to user.id,
+                                "marryStatus.marriedDate" to marriedDate,
+                                "userCakes.balance" to authorData.userCakes.balance - MARRIAGE_TAX
+                            )
+                        }
                     )
 
                     context.database.user.updateUser(
                         user.id,
-                        mapOf(
-                            "marryStatus.marriedWith" to context.event.user.id,
-                            "marryStatus.marriedDate" to marriedDate,
-                            "userCakes.balance" to userData.userCakes.balance - MARRIAGE_TAX
-                        )
+                        if (isAuthorPremium || isUserPremium) {
+                            mapOf(
+                                "marryStatus.marriedWith" to context.event.user.id,
+                                "marryStatus.marriedDate" to marriedDate
+                            )
+                        } else {
+                            mapOf(
+                                "marryStatus.marriedWith" to context.event.user.id,
+                                "marryStatus.marriedDate" to marriedDate,
+                                "userCakes.balance" to userData.userCakes.balance - MARRIAGE_TAX
+                            )
+                        }
                     )
 
                     it.edit {
