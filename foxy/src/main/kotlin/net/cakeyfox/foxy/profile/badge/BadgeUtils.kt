@@ -41,7 +41,7 @@ object BadgeUtils {
             val memberInfo = ClusterUtils.getMemberFromGuild(context.foxy, guildId, context.user.idLong)
 
             if (memberInfo?.isMember == true && userBadges.none {
-                    it.id == badge.id || it.isFromGuild == badge.isFromGuild
+                    it.isFromGuild == badge.isFromGuild
                 }) {
                 userBadges.add(badge)
             }
