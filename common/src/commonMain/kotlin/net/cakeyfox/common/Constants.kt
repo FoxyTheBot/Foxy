@@ -11,8 +11,9 @@ object Constants {
     const val INVITE_LINK = "https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255"
     const val PREMIUM = "https://foxybot.win/br/premium"
     const val DAILY = "https://foxybot.win/br/daily"
-    const val DAILY_EMOJI = "https://cdn.discordapp.com/emojis/915736630495686696.png?size=2048"
+    const val DAILY_EMOJI = "https://stuff.foxybot.win/images/foxy_daily.png"
     const val DASHBOARD_URL = "https://foxybot.win/br/dashboard"
+    const val FOXY_CRY = "https://stuff.foxybot.win/images/foxy_cry.png"
 
     @OptIn(ExperimentalSerializationApi::class)
     val HOCON = Hocon { useArrayPolymorphism = true }
