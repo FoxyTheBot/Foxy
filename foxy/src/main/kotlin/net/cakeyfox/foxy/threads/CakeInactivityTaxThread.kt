@@ -49,7 +49,7 @@ class CakeInactivityTaxThread(
             contextClassLoader = FoxyLauncher::class.java.classLoader
         }
     }
-    private val locale = FoxyLocale("pt-BR")
+    private val locale = FoxyLocale("pt-br")
     private val formattedMinimumAmount = foxy.utils.formatLongNumber(MINIMUM_AMOUNT.toLong())
     private val scope = CoroutineScope(SupervisorJob() + coroutineExecutor.asCoroutineDispatcher())
     private val semaphore = Semaphore(10)
