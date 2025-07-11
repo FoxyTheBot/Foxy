@@ -22,7 +22,6 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.dv8tion.jda.api.utils.messages.MessageCreateData
-import org.bson.BsonType
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.util.concurrent.Executors
