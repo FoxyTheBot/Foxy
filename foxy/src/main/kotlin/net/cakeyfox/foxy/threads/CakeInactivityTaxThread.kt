@@ -34,7 +34,7 @@ class CakeInactivityTaxThread(
         private val logger = KotlinLogging.logger { }
         private val zone = TimeZone.currentSystemDefault()
 
-        private const val MINIMUM_AMOUNT = 500_000
+        private const val MINIMUM_AMOUNT = 100_000
         private const val TAX_PERCENTAGE = 0.15
 
         private const val WARNING_DAYS = 15
