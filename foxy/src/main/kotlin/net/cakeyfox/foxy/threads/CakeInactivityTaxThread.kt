@@ -19,6 +19,7 @@ import net.cakeyfox.common.Colors
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
+import net.cakeyfox.foxy.FoxyLauncher
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.dv8tion.jda.api.utils.messages.MessageCreateData
@@ -43,7 +44,10 @@ class CakeInactivityTaxThread(
     }
 
     private val coroutineExecutor = Executors.newFixedThreadPool(8) {
-        Thread(it, "CakeInactivityTaxThread").apply { isDaemon = true }
+        Thread(it, "CakeInactivityTaxThread").apply {
+            isDaemon = true
+            contextClassLoader = FoxyLauncher::class.java.classLoader
+        }
     }
     private val locale = FoxyLocale("pt-BR")
     private val formattedMinimumAmount = foxy.utils.formatLongNumber(MINIMUM_AMOUNT.toLong())
