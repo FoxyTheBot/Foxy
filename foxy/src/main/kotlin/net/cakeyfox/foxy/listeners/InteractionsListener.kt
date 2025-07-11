@@ -22,7 +22,7 @@ import kotlin.system.measureTimeMillis
 class InteractionsListener(
     private val foxy: FoxyInstance
 ) : ListenerAdapter() {
-    private val coroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+    private val coroutineScope = CoroutineScope(foxy.coroutineDispatcher + SupervisorJob())
     private val logger = KotlinLogging.logger(this::class.jvmName)
 
     override fun onReady(event: ReadyEvent) {

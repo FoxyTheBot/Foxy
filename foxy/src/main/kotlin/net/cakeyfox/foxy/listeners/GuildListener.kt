@@ -16,7 +16,7 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
     private val logger = KotlinLogging.logger(this::class.jvmName)
     private val welcomer = WelcomerModule(foxy)
     private val autoRole = AutoRoleModule(foxy)
-    private val coroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+    private val coroutineScope = CoroutineScope(foxy.coroutineDispatcher + SupervisorJob())
 
     override fun onGuildJoin(event: GuildJoinEvent) {
         coroutineScope.launch(foxy.coroutineDispatcher) {
