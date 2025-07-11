@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.threads
+package net.cakeyfox.foxy.utils.threads
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder
 import kotlinx.coroutines.Job

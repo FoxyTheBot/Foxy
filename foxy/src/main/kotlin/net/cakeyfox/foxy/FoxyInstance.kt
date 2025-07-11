@@ -20,9 +20,10 @@ import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.analytics.DblStatsSender
 import net.cakeyfox.foxy.utils.api.FoxyInternalAPI
 import net.cakeyfox.foxy.utils.database.DatabaseClient
-import net.cakeyfox.foxy.threads.ThreadPoolManager
-import net.cakeyfox.foxy.threads.ThreadUtils
+import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
+import net.cakeyfox.foxy.utils.threads.ThreadUtils
 import net.cakeyfox.foxy.leaderboard.LeaderboardManager
+import net.cakeyfox.foxy.threads.CakeInactivityTaxThread
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.requests.GatewayIntent
@@ -121,6 +122,8 @@ class FoxyInstance(
         )
 
         leaderboardManager.startAutoRefresh()
+        CakeInactivityTaxThread(this).start()
+
         Runtime.getRuntime().addShutdownHook(thread(false) {
             try {
                 logger.info { "Foxy is shutting down..." }

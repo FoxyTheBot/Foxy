@@ -6,3 +6,25 @@ categories:
   magic: "🪄 Mágica"
   actions: "🎮 Roleplay"
   dev: "💻 Especial"
+
+tax:
+  cakes:
+    title: "Você perdeu os seus Cakes!"
+    description: |
+      Oii <@!{0}>! Como você não pegou seu prêmio diário, precisei pegar **{1} Cakes** para evitar que eles se perdessem.
+
+      Vou continuar pegando essa taxa toda semana até você voltar a pegar seu daily.
+
+      Não esquece de pegar seu daily [clicando aqui]({2}) para proteger seus Cakes!
+    warning:
+      title: "Pegue seu daily, ou perca seus Cakes!"
+      description: |
+        Oii <@!{0}>! Eu percebi que você tem mais de **{1} Cakes** e está há mais de **{2} dias** sem pegar seu daily!
+
+        Eu estou de olho nos seus **{3} Cakes** e, se você não pegar seu daily, vou precisar pegar **{4} Cakes** de você (taxa de 15%) para ajudar a manter tudo em ordem.
+
+        Mas não precisa se preocupar! É só pegar seu daily [clicando aqui]({5}) que você não perde nadinha.
+
+        Se continuar sem pegar, essa taxa vai ser cobrada toda semana até você voltar a pegar o daily.
+
+        Proteja seus Cakes, se não eu vou comer todos :3

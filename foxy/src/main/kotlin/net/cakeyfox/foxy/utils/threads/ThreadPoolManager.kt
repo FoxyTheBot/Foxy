@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.threads
+package net.cakeyfox.foxy.utils.threads
 
 import kotlinx.coroutines.*
 import mu.KotlinLogging

@@ -1,9 +1,13 @@
 package net.cakeyfox.foxy.utils
 
+import dev.minn.jda.ktx.coroutines.await
+import dev.minn.jda.ktx.messages.EmbedBuilder
 import io.ktor.client.call.*
 import io.ktor.client.request.*
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Instant
+import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
@@ -11,8 +15,11 @@ import net.cakeyfox.foxy.interactions.FoxyInteractionContext
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.serializable.data.ActionResponse
+import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
+import net.dv8tion.jda.api.exceptions.RateLimitedException
 import net.dv8tion.jda.api.interactions.DiscordLocale
+import net.dv8tion.jda.api.utils.messages.MessageCreateData
 import java.text.NumberFormat
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -21,6 +28,10 @@ import java.util.*
 class FoxyUtils(
     val foxy: FoxyInstance
 ) {
+    companion object {
+        private val logger = KotlinLogging.logger {  }
+    }
+
     val availableLanguages = hashMapOf(
         DiscordLocale.PORTUGUESE_BRAZILIAN to "pt-br",
         DiscordLocale.ENGLISH_US to "en-us",
@@ -60,6 +71,23 @@ class FoxyUtils(
         return convertedDate
     }
 
+    suspend fun sendDM(user: User, message: MessageCreateData, delayMs: Long = 1500L) {
+        if (user.isBot || user.isSystem) return
+
+        try {
+            val channel = user.openPrivateChannel().await()
+            channel.sendMessage(message).await()
+            delay(delayMs)
+        } catch (e: RateLimitedException) {
+            val retryAfter = e.retryAfter
+            logger.warn { "Rate limited. Retrying after $retryAfter ms for user ${user.id}" }
+            delay(retryAfter)
+            sendDM(user, message, delayMs)
+        } catch (e: Exception) {
+            logger.error(e) { "Error while sending DM to user ${user.id}, is DM closed?" }
+        }
+    }
+
     fun convertToHumanReadableDate(iso: Instant): String {
         iso.let {
             val instant = java.time.Instant.ofEpochMilli(it.toEpochMilliseconds())
@@ -70,12 +98,12 @@ class FoxyUtils(
         }
     }
 
-    private fun formatNumber(number: Double, language: String, country: String): String {
+    private fun formatNumber(number: Double, language: String? = "pt", country: String? = "BR"): String {
         return NumberFormat.getNumberInstance(Locale(language, country))
             .format(number)
     }
 
-    fun formatLongNumber(number: Long, language: String, country: String): String {
+    fun formatLongNumber(number: Long, language: String? = "pt", country: String? = "BR"): String {
         return NumberFormat.getNumberInstance(Locale(language, country))
             .format(number)
     }
