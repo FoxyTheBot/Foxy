@@ -114,6 +114,8 @@ class CakeInactivityTaxThread(
                                 user._id,
                                 mapOf("userCakes.warnedAboutInactivityTax" to true)
                             )
+
+                            logger.info { "${user._id} warned about inactivity tax" }
                         }
                     }
 
@@ -147,6 +149,8 @@ class CakeInactivityTaxThread(
                                 "userCakes.warnedAboutInactivityTax" to false
                             )
                         )
+
+                        logger.info { "$tax Cakes removed from ${user._id}" }
                     }
                 } catch (e: Exception) {
                     logger.error(e) { "Error processing inactivity tax for user ${user._id}" }
