@@ -1,7 +1,6 @@
 package net.cakeyfox.foxy.utils
 
 import dev.minn.jda.ktx.coroutines.await
-import dev.minn.jda.ktx.messages.EmbedBuilder
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.delay
@@ -84,7 +83,7 @@ class FoxyUtils(
             delay(retryAfter)
             sendDM(user, message, delayMs)
         } catch (e: Exception) {
-            logger.error(e) { "Error while sending DM to user ${user.id}, is DM closed?" }
+            logger.error { "Error while sending DM to user ${user.id}, is DM closed? ${e.message}" }
         }
     }
 
