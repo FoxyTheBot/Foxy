@@ -63,7 +63,7 @@ class UserUtils(
                 )
             )
                 .sort(ascending("marryStatus.marriedDate"))
-                .limit(10)
+                .limit(55)
                 .map { document ->
                     val documentToJSON = document.toJson()
                     client.foxy.json.decodeFromString<FoxyUser>(documentToJSON)
@@ -132,7 +132,7 @@ class UserUtils(
 
             val documentToJSON = client.foxy.json.encodeToString(newUser)
             val document = Document.parse(documentToJSON)
-            document["userCreationTimestamp"] = java.util.Date.from(newUser.userCreationTimestamp.toJavaInstant())
+            document["userCreationTimestamp"] = java.util.Date.from(newUser.userCreationTimestamp!!.toJavaInstant())
 
             collection.insertOne(document)
 
