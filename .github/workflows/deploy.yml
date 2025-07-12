@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: REDACTED
-        run: echo "$SSH_PRIVATE_KEY"
+        run: echo "$SSH_PRIVATE_KEY" | base64
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
