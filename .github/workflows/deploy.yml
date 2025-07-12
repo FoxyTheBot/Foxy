@@ -8,9 +8,10 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+        
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
