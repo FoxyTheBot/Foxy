@@ -275,12 +275,15 @@ commands:
       name: profile
       description: View your or another user's beautiful profile
       view:
-        name: see
+        name: view
         description: View your or another user's beautiful profile
       options:
         user:
           name: user
           description: The user whose profile you want to view
+      badges:
+        name: manage_badges
+        description: "Veja ou altere as insignías do seu perfil"
     actions:
       name: actions
       description: Action commands for you to have fun with your friends
@@ -335,7 +338,7 @@ commands:
       smile:
         name: smile
         description: Show that you are a happy person
-      tickles:
+      tickle:
         name: tickle
         description: Tickle someone
         options:

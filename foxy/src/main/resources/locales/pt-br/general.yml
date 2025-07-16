@@ -297,12 +297,15 @@ commands:
       name: "perfil"
       description: "Veja o seu lindo perfil ou o de outro usuário"
       view:
-        name: "ver"
+        name: "visualizar"
         description: "Veja o seu lindo perfil ou o de outro usuário"
       options:
         user:
           name: "usuário"
           description: "O usuário que você deseja ver o perfil"
+      badges:
+        name: "gerenciar_insígnias"
+        description: "Veja ou altere as insignías do seu perfil"
 
     actions:
       name: "ações"
@@ -367,7 +370,7 @@ commands:
         name: "sorrir"
         description: "Mostre que você é uma pessoa alegre"
 
-      tickles:
+      tickle:
         name: "cócegas"
         description: "Faça cosquinhas em alguém"
         options:
