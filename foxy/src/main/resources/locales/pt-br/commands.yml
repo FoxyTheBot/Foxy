@@ -1,3 +1,4 @@
+
 8mile:
   wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar um áudio do tipo MP3 ou WAV"
   fileTooBig: "Eu até queria ver como ficaria o vídeo com esse áudio, mas ele é muito grande... E se eu abrir ele e ele explodir e me levar junto? :("
@@ -102,18 +103,29 @@ profile:
   isBanned: "{0} está banido!"
   banReason: "Motivo do banimento:"
   bannedSince: "Banido desde:"
+  badges:
+    title: "Suas Insígnias"
+    description: "Cansado(a) do seu perfil estar poluído de tanta insígnia? Organize seu perfil adicionando ou removendo insígnias!"
+    back: "Voltar"
+    hideBadge: "Esconder insígnia do perfil"
+    showBadge: "Mostrar insígnia no perfil"
 
 kiss:
   description: ":heart: **{0} beijou {1}!**"
-  kissBot: "Não, não! Eu não gosto de beijos!"
+  botAsTargetMessage: "Não, não! Eu não gosto de beijos!"
+  didActionWithYourself: "Isso que é amor próprio, hein! **{0} beijou ele(a) mesmo(a)**"
 
 bite:
   description: " :rage: **{0} mordeu {1}!**"
+  didActionWithYourself: "Para que se morder? Você só está se machucando! **{0} mordeu a si mesmo**"
+  botAsTargetMessage: "Você me mordeu, porém, eu vou te morder de volta! **<@!1006520438865801296> mordeu {0}**"
+  button: "Retribuir a mordida"
 
 hug:
   description: " :hugging: **{0} abraçou {1}!**"
-  selfHug: " :heart: Deixa que eu faço! **{0} abraçou {1}!**"
-  hugBot: " :blush: **Obrigada!! {0} abraçou {1}**"
+  didActionWithYourself: " :heart: Deixa que eu faço! **<@!1006520438865801296> abraçou {1}!**"
+  botAsTargetMessage: " :blush: **Obrigada!! {0} abraçou {1}**"
+  button: "Retribuir o abraço"
 
 dance:
   description: "{0} **está dançando**"
@@ -144,21 +156,32 @@ coinflipbet:
 
 tickle:
   description: " :joy: **{0} fez cócegas em {1}!**"
+  didActionWithYourself: ":thinking: Ué, você fez cócegas em você mesmo(a)? **{0} fez cócegas em si mesmo(a)**"
+  botAsTargetMessage: ":laugh: Para isso faz cócegas! **{0} fez cócegas em {1}**"
+  button: "Retribuir as cócegas"
 
 laugh:
   description: " :joy: **{0} está rindo!**"
 
 lick:
   description: " :joy: **{0} lambeu {1}**"
+  didActionWithYourself: ":thinking: Você é um gato para se lamber? **{0} lambeu a si mesmo(a)**"
+  botAsTargetMessage: "Sai daqui! Que coisa nojenta!"
 
 pat:
   description: " :heart: **{0} fez cafuné em {1}**"
+  didActionWithYourself: ":thinking: Você fez cafune em você mesmo(a)? Isso é bom?"
+  botAsTargetMessage: ":heart: Obrigada pelo cafuné! :3 **{0} fez cafuné em {1}**"
+  button: "Retribuir o cafuné"
 
 smile:
   description: " :smiley: **{0} está sorrindo, pois é uma pessoa muito feliz!**"
 
 slap:
   description: " :rage: **{0} deu um tabefe bem dado no(a) {1}**"
+  didActionWithYourself: ":cry: Porque você está se batendo? **{0} bateu em si mesmo(a)**"
+  botAsTargetMessage: ":rage: Porque você está ME BATENDO? **<@!1006520438865801296> bateu de volta em {0}**"
+  button: "Retribuir o tapa"
 
 cancel:
   userCancelledBecause: "**{0} foi cancelado(a) por `{1}`**"
@@ -223,3 +246,7 @@ top:
     title: "Ranking Global de Cakes"
     loading: "Carregando..."
     page: "Página **{0}**"
+  marriage:
+    embed:
+      title: "Casamentos mais velhos da Foxy"
+      marriedSince: "**Casados desde:** {0}"
