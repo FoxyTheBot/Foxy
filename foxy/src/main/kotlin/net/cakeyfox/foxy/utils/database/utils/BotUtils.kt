@@ -4,6 +4,7 @@ import com.mongodb.kotlin.client.coroutine.MongoCollection
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.serialization.Serializable
 import mu.KotlinLogging
+import net.cakeyfox.foxy.database.data.Command
 import net.cakeyfox.foxy.utils.database.DatabaseClient
 import org.bson.Document
 
@@ -11,30 +12,6 @@ class BotUtils(
     val client: DatabaseClient
 ) {
     companion object {
-        // TODO: Move this data class to DatabaseUtils library
-        // https://github.com/FoxyTheBot/DatabaseUtils
-
-        @Serializable
-        data class Command(
-            val uniqueId: String,
-            val name: String,
-            val usageCount: Long = 0,
-            val description: String,
-            val subCommands: List<SubCommand>,
-            val usage: String? = null,
-            val category: String? = "utils",
-            val supportsLegacy: Boolean? = false
-        ) {
-            @Serializable
-            data class SubCommand(
-                val uniqueId: String,
-                val name: String,
-                val description: String,
-                val usage: String? = null,
-                val supportsLegacy: Boolean? = false
-            )
-        }
-
         @Serializable
         data class BotSettings(
             val activity: String,

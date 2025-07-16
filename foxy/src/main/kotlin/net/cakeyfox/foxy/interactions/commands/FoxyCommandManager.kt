@@ -21,7 +21,6 @@ import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.HelpCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.PingCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.ServerCommand
 import net.cakeyfox.foxy.utils.ClusterUtils
-import net.cakeyfox.foxy.utils.database.utils.BotUtils
 import net.dv8tion.jda.api.interactions.commands.Command
 import java.util.UUID
 
@@ -62,7 +61,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
                 }
 
                 foxy.database.bot.getOrRegisterCommand(
-                    BotUtils.Companion.Command(
+                    net.cakeyfox.foxy.database.data.Command(
                         uniqueId = UUID.randomUUID().toString(),
                         name = command.create().name,
                         description = command.create().description,
@@ -71,7 +70,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
                         usage = null,
                         usageCount = 0,
                         subCommands = builtCommand.subcommands.map {
-                            BotUtils.Companion.Command.SubCommand(
+                            net.cakeyfox.foxy.database.data.Command.SubCommand(
                                 uniqueId = UUID.randomUUID().toString(),
                                 name = it.name,
                                 description = it.description
