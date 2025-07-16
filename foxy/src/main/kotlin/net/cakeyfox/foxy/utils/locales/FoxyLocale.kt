@@ -3,6 +3,7 @@ package net.cakeyfox.foxy.utils.locales
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import mu.KotlinLogging
 import java.io.InputStream
 
 class FoxyLocale(val locale: String) {
@@ -10,6 +11,7 @@ class FoxyLocale(val locale: String) {
 
     companion object {
         const val PATH = "locales"
+        private val logger = KotlinLogging.logger {  }
     }
 
     operator fun get(key: String, vararg placeholder: String): String {
@@ -46,6 +48,7 @@ class FoxyLocale(val locale: String) {
             }
         }
 
+        logger.warn { "Missing !!{${key}}!!" }
         return "!!{${key}}!!"
     }
 }

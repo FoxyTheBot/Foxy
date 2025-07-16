@@ -177,10 +177,10 @@ object ClusterUtils {
         val cluster = foxy.currentCluster
         val fetchedInfo = getFromAnotherCluster(foxy, cluster, "/api/v1/guilds/$guildId/$memberId")
         println(fetchedInfo)
-        if (fetchedInfo == null) {
-            return null
+        return if (fetchedInfo == null) {
+            null
         } else {
-            return json.decodeFromString(fetchedInfo)
+            json.decodeFromString(fetchedInfo)
         }
     }
 }
