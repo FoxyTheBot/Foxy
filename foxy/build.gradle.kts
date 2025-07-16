@@ -1,5 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
     java
     kotlin("jvm") version Versions.KOTLIN
@@ -17,13 +15,13 @@ dependencies {
     implementation(project(":cirno-serializable"))
 
     // Discord
-    implementation(libs.jda)
+    implementation("net.dv8tion:JDA:${Versions.JDA}")
     implementation("club.minnced:jda-ktx:${Versions.JDA_KTX}")
 
     // Database
     implementation("org.mongodb:bson-kotlinx:${Versions.MONGODB}")
     implementation("org.mongodb:mongodb-driver-kotlin-coroutine:${Versions.MONGODB}")
-    implementation("com.github.FoxyTheBot:DatabaseUtils:1.1.0")
+    implementation("com.github.FoxyTheBot:DatabaseUtils:1.1.1")
 
     // Ktor
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
