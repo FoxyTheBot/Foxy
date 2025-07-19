@@ -21,7 +21,7 @@ class FoxyComponentManager(
     val foxy: FoxyInstance
 ) {
     companion object {
-        val delay = 15.minutes
+        val delay = 5.minutes
     }
 
     val componentCallbacks = Caffeine
@@ -81,6 +81,7 @@ class FoxyComponentManager(
     ): Button {
         val buttonId = UUID.randomUUID()
         componentCallbacks[buttonId] = callback
+
         return Button.of(
             style,
             ComponentId(buttonId).toString(),

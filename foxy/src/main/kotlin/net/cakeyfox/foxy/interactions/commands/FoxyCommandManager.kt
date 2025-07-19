@@ -4,7 +4,7 @@ import dev.minn.jda.ktx.coroutines.await
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.interactions.vanilla.actions.declarations.ActionsCommand
+import net.cakeyfox.foxy.interactions.vanilla.actions.declarations.RoleplayCommand
 import net.cakeyfox.foxy.interactions.vanilla.dev.declarations.ServerInviteCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.StatusCommand
 import net.cakeyfox.foxy.interactions.vanilla.economy.declarations.*
@@ -90,7 +90,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
 
     init {
         /* ---- [Roleplay] ---- */
-        register(ActionsCommand())
+        register(RoleplayCommand())
 
         /* ---- [Economy] ---- */
         register(CakesCommand())
