@@ -8,21 +8,21 @@ import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
 import net.dv8tion.jda.api.interactions.commands.OptionType
 
-class ActionsCommand : FoxyCommandDeclarationWrapper {
+class RoleplayCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("actions", CommandCategory.ACTIONS) {
         interactionContexts = listOf(InteractionContextType.GUILD, InteractionContextType.PRIVATE_CHANNEL)
         integrationType = listOf(IntegrationType.GUILD_INSTALL, IntegrationType.USER_INSTALL)
 
-        subCommand("laugh") { executor = ActionExecutor(canDoWithBot = false, canRetribute = false) }
-        subCommand("dance") { executor = ActionExecutor(false, canRetribute = false) }
-        subCommand("smile") { executor = ActionExecutor(canDoWithBot = false, canRetribute = false) }
+        subCommand("laugh") { executor = RoleplayActionExecutor(canDoWithBot = false, canRetribute = false) }
+        subCommand("dance") { executor = RoleplayActionExecutor(false, canRetribute = false) }
+        subCommand("smile") { executor = RoleplayActionExecutor(canDoWithBot = false, canRetribute = false) }
 
         subCommand("kiss") {
             addOption(
                 opt(OptionType.USER, "user", true),
                 isSubCommand = true
             )
-            executor = ActionExecutor(canDoWithBot = false, canRetribute = true, FoxyEmotes.FoxyBread)
+            executor = RoleplayActionExecutor(canDoWithBot = false, canRetribute = true, FoxyEmotes.FoxyBread)
         }
 
         subCommand("bite") {
@@ -30,7 +30,7 @@ class ActionsCommand : FoxyCommandDeclarationWrapper {
                 opt(OptionType.USER, "user", true),
                 isSubCommand = true
             )
-            executor = ActionExecutor(canDoWithBot = true, canRetribute = true, FoxyEmotes.FoxyRage)
+            executor = RoleplayActionExecutor(canDoWithBot = true, canRetribute = true, FoxyEmotes.FoxyRage)
         }
 
 
@@ -40,7 +40,7 @@ class ActionsCommand : FoxyCommandDeclarationWrapper {
                 isSubCommand = true
             )
 
-            executor = ActionExecutor(canDoWithBot = true, canRetribute = true, FoxyEmotes.FoxyHug)
+            executor = RoleplayActionExecutor(canDoWithBot = true, canRetribute = true, FoxyEmotes.FoxyHug)
         }
 
         subCommand("pat") {
@@ -48,7 +48,7 @@ class ActionsCommand : FoxyCommandDeclarationWrapper {
                 opt(OptionType.USER, "user", true),
                 isSubCommand = true
             )
-            executor = ActionExecutor(canDoWithBot = true, canRetribute = true, FoxyEmotes.FoxyBread)
+            executor = RoleplayActionExecutor(canDoWithBot = true, canRetribute = true, FoxyEmotes.FoxyBread)
         }
 
         subCommand("lick") {
@@ -56,7 +56,7 @@ class ActionsCommand : FoxyCommandDeclarationWrapper {
                 opt(OptionType.USER, "user", true),
                 isSubCommand = true
             )
-            executor = ActionExecutor(canDoWithBot = false, canRetribute = false)
+            executor = RoleplayActionExecutor(canDoWithBot = false, canRetribute = false)
         }
 
         subCommand("slap") {
@@ -64,11 +64,11 @@ class ActionsCommand : FoxyCommandDeclarationWrapper {
                 opt(OptionType.USER, "user", true),
                 isSubCommand = true
             )
-            executor = ActionExecutor(canDoWithBot = true, canRetribute = true, FoxyEmotes.FoxyRage)
+            executor = RoleplayActionExecutor(canDoWithBot = true, canRetribute = true, FoxyEmotes.FoxyRage)
         }
 
         subCommand("tickle") {
-            executor = ActionExecutor(canDoWithBot = true, canRetribute = true, FoxyEmotes.FoxyBread)
+            executor = RoleplayActionExecutor(canDoWithBot = true, canRetribute = true, FoxyEmotes.FoxyBread)
 
             addOption(
                 opt(OptionType.USER, "user", true),

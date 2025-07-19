@@ -5,18 +5,18 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
 import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
+import net.cakeyfox.foxy.utils.linkButton
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
-class ActionExecutor(
+class RoleplayActionExecutor(
     val canDoWithBot: Boolean? = false,
     val canRetribute: Boolean? = true,
     val actionEmoji: String = FoxyEmotes.FoxyHm
 ) : FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val action = if (context.event is SlashCommandInteractionEvent) context.event.subcommandName else return
-
         context.defer()
 
         val user = context.getOption<User>("user")
@@ -84,8 +84,17 @@ class ActionExecutor(
                         actionEmoji,
                         context.locale["$action.button"]
                     ) { interaction ->
-                        sendActionEmbed(context, user, context.user, interaction, action)
-                    }
+                        val giver = user
+                        val receiver = context.user
+
+                        sendActionEmbed(context, interaction, response) {
+                            this.giver = giver
+                            this.receiver = receiver
+                            this.action = action
+                        }
+                    },
+
+                    linkButton(FoxyEmotes.FoxyHm, context.locale["imageSource"], response)
                 )
             }
         }
@@ -93,16 +102,33 @@ class ActionExecutor(
 
     private suspend fun sendActionEmbed(
         context: FoxyInteractionContext,
-        sender: User,
-        receiver: User,
         interaction: FoxyInteractionContext,
-        action: String
+        oldResponse: String,
+        data: RoleplayDataBuilder.() -> Unit = {}
     ) {
-        val response = context.utils.getActionImage(action)
+        val roleplayData = buildRoleplayData(data)
+        val response = context.utils.getActionImage(roleplayData.action)
+
+        interaction.edit {
+            actionRow(
+                context.foxy.interactionManager.createButtonForUser(
+                    roleplayData.receiver,
+                    ButtonStyle.PRIMARY,
+                    actionEmoji,
+                    context.locale["${roleplayData.action}.button"]
+                ) { }.withDisabled(true),
+
+                linkButton(FoxyEmotes.FoxyHm, context.locale["imageSource"], oldResponse)
+            )
+        }
 
         interaction.reply {
             embed {
-                description = context.locale["$action.description", sender.asMention, receiver.asMention]
+                description = context.locale[
+                    "${roleplayData.action}.description",
+                    roleplayData.giver.asMention,
+                    roleplayData.receiver.asMention
+                ]
                 color = Colors.RANDOM
                 image = response
             }
@@ -110,15 +136,39 @@ class ActionExecutor(
             if (canRetribute == true) {
                 actionRow(
                     context.foxy.interactionManager.createButtonForUser(
-                        receiver,
+                        roleplayData.receiver,
                         ButtonStyle.PRIMARY,
                         actionEmoji,
-                        context.locale["$action.button"]
+                        context.locale["${roleplayData.action}.button"]
                     ) { nextInteraction ->
-                        sendActionEmbed(context, receiver, sender, nextInteraction, action)
-                    }
+                        sendActionEmbed(context, nextInteraction, response) {
+                            giver = roleplayData.receiver
+                            receiver = roleplayData.giver
+                            action = roleplayData.action
+                        }
+                    },
+
+                    linkButton(FoxyEmotes.FoxyHm, context.locale["imageSource"], response)
                 )
             }
         }
+    }
+
+    inner class RoleplayDataBuilder {
+        var giver: User? = null
+        var receiver: User? = null
+        var action: String = ""
+
+        fun build(): RoleplayData {
+            val g = giver ?: throw IllegalArgumentException("giver is required")
+            val r = receiver ?: throw IllegalArgumentException("receiver is required")
+            return RoleplayData(g, r, action)
+        }
+    }
+
+    fun buildRoleplayData(block: RoleplayDataBuilder.() -> Unit): RoleplayData {
+        val builder = RoleplayDataBuilder()
+        builder.block()
+        return builder.build()
     }
 }
