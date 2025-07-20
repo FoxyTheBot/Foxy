@@ -1,4 +1,5 @@
 ---
+imageSource: Image Link
 8mile:
   wrongContentType: I wish I could use this, but I can't. You need to send an audio
     file of type MP3 or WAV.
@@ -107,6 +108,7 @@ profile:
     title: Your Badges
     description: Tired of your profile being cluttered with badges? Organize your
       profile by adding or removing badges!
+    back: Back
     hideBadge: Hide profile badge
     showBadge: Show badge on profile
 kiss:
@@ -174,6 +176,10 @@ smile:
   description: " :smiley: **{0} is smiling because they are a very happy person!**"
 slap:
   description: " :rage: **{0} slapped {1} hard!**"
+  didActionWithYourself: ":cry: Why are you slapping yourself? **{0} slapped yourself**"
+  botAsTargetMessage: ":rage: Why are you HITTING ME? **<@!1006520438865801296> slap
+    back at {0}**"
+  button: Slap back
 cancel:
   userCancelledBecause: "**{0} was canceled by `{1}`**"
 rob:
@@ -237,6 +243,8 @@ ratewaifu:
   success: Hmm... I give a rating of **{0}/10** to {1}
 top:
   cakes:
+    title: Global Cake Ranking
+    loading: Loading...
     page: Page **{0}**
   marriage:
     embed:
