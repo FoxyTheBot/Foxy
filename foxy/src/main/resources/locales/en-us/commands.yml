@@ -103,15 +103,28 @@ profile:
   isBanned: "{0} is banned!"
   banReason: 'Ban reason:'
   bannedSince: 'Banned since:'
+  badges:
+    title: Your Badges
+    description: Tired of your profile being cluttered with badges? Organize your
+      profile by adding or removing badges!
+    hideBadge: Hide profile badge
+    showBadge: Show badge on profile
 kiss:
   description: ":heart: **{0} kissed {1}!**"
-  kissBot: No, no! I don't like kisses!
+  botAsTargetMessage: No, no! I don't like kisses!
+  didActionWithYourself: That's what self-love is, huh! **{0} kissed themself**
 bite:
   description: " :rage: **{0} bit {1}!**"
+  didActionWithYourself: Why bite yourself? You're only hurting you! **{0} bit themself**
+  botAsTargetMessage: You bit me, however, I'll bite you back! **<@!1006520438865801296>
+    bit {0}**
+  button: Bite back
 hug:
   description: " :hugging: **{0} hugged {1}!**"
-  selfHug: " :heart: Let me do it! **{0} hugged {1}!**"
-  hugBot: " :blush: **Thank you!! {0} hugged {1}**"
+  didActionWithYourself: ":heart: Let me do it myself! **<@!1006520438865801296> hugged
+    {1}!**"
+  botAsTargetMessage: ":blush: **Thank you!! {0} hugged {1}**"
+  button: Hug back
 dance:
   description: "{0} **is dancing**"
 help:
@@ -142,12 +155,21 @@ coinflipbet:
   tails: tails
 tickle:
   description: " :joy: **{0} tickled {1}!**"
+  didActionWithYourself: ":thinking: Hey, did you tickle yourself? **{0} tickled themself**"
+  botAsTargetMessage: ":laugh: Stop, that tickles! **{0} tickled {1}**"
+  button: Tickle back
 laugh:
   description: " :joy: **{0} is laughing!**"
 lick:
   description: " :joy: **{0} licked {1}**"
+  didActionWithYourself: ":thinking: Are you a cat to lick yourself? **{0} licked
+    themself**"
+  botAsTargetMessage: Get out of here! That's disgusting!
 pat:
   description: " :heart: **{0} patted {1}**"
+  didActionWithYourself: ":thinking: Did you pat yourself? Does it feel good?"
+  botAsTargetMessage: ":heart: Thanks for the pat! :3 **{0} patted {1}**"
+  button: Pat back
 smile:
   description: " :smiley: **{0} is smiling because they are a very happy person!**"
 slap:
@@ -207,7 +229,7 @@ dbl:
   embed:
     description: |-
       Help me grow and become a better bot by voting for me on <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>
-      Every vote helps to promote me to more people on the Discord Bot List <:catblush:768292358458179595>
+      Every vote helps promoting myself to more people on the Discord Bot List <:catblush:768292358458179595>
 
       You can vote every 12 hours, and as a bonus, you'll get 1500 Cakes!
       How about joining all the amazing people who voted and helped me grow? :heart:
@@ -215,5 +237,8 @@ ratewaifu:
   success: Hmm... I give a rating of **{0}/10** to {1}
 top:
   cakes:
+    page: Page **{0}**
+  marriage:
     embed:
-      title: Global Cakes Leaderboard
+      title: Foxy's oldest marriages
+      marriedSince: "**Married since:** {0}"
