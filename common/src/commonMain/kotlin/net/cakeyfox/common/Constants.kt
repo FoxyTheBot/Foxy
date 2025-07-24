@@ -5,15 +5,20 @@ import kotlinx.serialization.hocon.Hocon
 
 object Constants {
     const val UNBAN_FORM_URL = "https://forms.gle/bKfRKxoyFGZzRB7x8"
-    const val FOXY_WEBSITE = "https://foxybot.win"
-    const val TERMS = "https://foxybot.win/br/support/terms"
-    const val SUPPORT_SERVER = "https://foxybot.win/br/support"
+    const val FOXY_WEBSITE = "https://foxybot.xyz"
+    const val TERMS = "https://foxybot.xyz/br/support/terms"
+    const val SUPPORT_SERVER = "https://foxybot.xyz/br/support"
     const val INVITE_LINK = "https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255"
-    const val PREMIUM = "https://foxybot.win/br/premium"
-    const val DAILY = "https://foxybot.win/br/daily"
+    const val PREMIUM = "https://foxybot.xyz/br/premium"
+    const val DAILY = "https://foxybot.xyz/br/daily"
     const val DAILY_EMOJI = "https://stuff.foxybot.win/images/foxy_daily.png"
-    const val DASHBOARD_URL = "https://foxybot.win/br/dashboard"
+    const val DASHBOARD_URL = "https://foxybot.xyz/br/dashboard"
     const val FOXY_CRY = "https://stuff.foxybot.win/images/foxy_cry.png"
+
+    // Discord
+    const val AUTHORIZATION_ENDPOINT = "https://discord.com/api/oauth2/authorize"
+    const val TOKEN_ENDPOINT = "https://discord.com/api/oauth2/token"
+    const val DEFAULT_ENDPOINT = "https://discord.com/api/users/@me"
 
     @OptIn(ExperimentalSerializationApi::class)
     val HOCON = Hocon { useArrayPolymorphism = true }
