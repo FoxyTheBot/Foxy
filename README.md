@@ -14,15 +14,15 @@
  <br>
 
 ## 💜 | Inviting Foxy to your server
-If you want to test Foxy features you can add her by [clicking here](https://foxybot.win/add)
+If you want to test Foxy features you can add her by [clicking here](https://foxybot.xyz/add)
 
 ## 👨‍💻 | Contributing
-If you want to contribute to Foxy, you can read the tutorial by [clicking here](https://github.com/FoxyTheBot/Foxy/blob/development/docs/CONTRIBUTING.md), if you want help you can contact us in our [support server](https://foxybot.win/discord).
+If you want to contribute to Foxy, you can read the tutorial by [clicking here](https://github.com/FoxyTheBot/Foxy/blob/development/docs/CONTRIBUTING.md), if you want help you can contact us in our [support server](https://foxybot.xyz/discord).
 
 ## 🤔 | Need help?
 - If you need help, you can enter in My Discord Server!
 
-<a href="https://foxybot.win/discord"><img src="https://discordapp.com/api/guilds/768267522670723094/widget.png?style=banner3"></a>
+<a href="https://foxybot.xyz/discord"><img src="https://discordapp.com/api/guilds/768267522670723094/widget.png?style=banner3"></a>
 
 ## ✨ Powered by
 <img align="left" src="https://www.yourkit.com/images/yklogo.png">

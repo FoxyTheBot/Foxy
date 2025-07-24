@@ -11,9 +11,9 @@ object Constants {
     const val INVITE_LINK = "https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255"
     const val PREMIUM = "https://foxybot.xyz/br/premium"
     const val DAILY = "https://foxybot.xyz/br/daily"
-    const val DAILY_EMOJI = "https://stuff.foxybot.win/images/foxy_daily.png"
+    const val DAILY_EMOJI = "https://stuff.foxybot.xyz/images/foxy_daily.png"
     const val DASHBOARD_URL = "https://foxybot.xyz/br/dashboard"
-    const val FOXY_CRY = "https://stuff.foxybot.win/images/foxy_cry.png"
+    const val FOXY_CRY = "https://stuff.foxybot.xyz/images/foxy_cry.png"
 
     // Discord
     const val AUTHORIZATION_ENDPOINT = "https://discord.com/api/oauth2/authorize"
@@ -45,22 +45,22 @@ object Constants {
     /* ---- [Profile Assets] ---- */
 
     fun getProfileBackground(backgroundId: String): String {
-        return "https://stuff.foxybot.win/backgrounds/$backgroundId"
+        return "https://stuff.foxybot.xyz/backgrounds/$backgroundId"
     }
 
     fun getProfileLayout(layoutId: String): String {
-        return "https://stuff.foxybot.win/layouts/$layoutId"
+        return "https://stuff.foxybot.xyz/layouts/$layoutId"
     }
 
     fun getProfileDecoration(maskId: String): String {
-        return "https://stuff.foxybot.win/decorations/$maskId.png"
+        return "https://stuff.foxybot.xyz/decorations/$maskId.png"
     }
 
     fun getMarriedOverlay(layoutId: String): String {
-        return "https://stuff.foxybot.win/layouts/${layoutId}-married.png"
+        return "https://stuff.foxybot.xyz/layouts/${layoutId}-married.png"
     }
 
     fun getProfileBadge(badgeId: String): String {
-        return "https://stuff.foxybot.win/badges/$badgeId"
+        return "https://stuff.foxybot.xyz/badges/$badgeId"
     }
 }

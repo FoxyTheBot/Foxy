@@ -8,7 +8,7 @@ imageSource: Image Link
 commands:
   earlyAccess: This command is in beta and only premium users have early access. If
     you want to have access to this command and many others, you can become a premium
-    user by clicking [here](https://foxybot.win/br/premium)
+    user by clicking [here](https://foxybot.xyz/br/premium)
 dashboard:
   embed:
     title: Dashboard
@@ -91,7 +91,7 @@ ban:
   description: |-
     If you'd like to appeal your ban, you can make a ban appeal.
 
-    I recommend reading the [terms of service](https://foxybot.win/terms).
+    I recommend reading the [terms of service](https://foxybot.xyz/terms).
   field:
     reason: 'Reason for ban:'
     date: 'Ban date:'

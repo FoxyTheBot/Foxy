@@ -74,7 +74,7 @@ class BotUtils(
             ?: run {
                 createBotSettings(botSettings)
                 return BotSettings(
-                    activity = "foxybot.win · /help",
+                    activity = "foxybot.xyz · /help",
                     status = "online",
                     avatarUrl = null,
                     exchangeSettings = BotSettings.ExchangeSettings(
@@ -103,7 +103,7 @@ class BotUtils(
         val botSettingsDocument = botSettings.find().firstOrNull()
             ?: run {
                 createBotSettings(botSettings)
-                return "foxybot.win · /help"
+                return "foxybot.xyz · /help"
             }
 
         val documentToJSON = botSettingsDocument.toJson()
@@ -114,7 +114,7 @@ class BotUtils(
 
     private suspend fun createBotSettings(botSettingsCollection: MongoCollection<Document>) {
         val botSettings = BotSettings(
-            activity = "foxybot.win · /help",
+            activity = "foxybot.xyz · /help",
             status = "online",
             avatarUrl = null,
             exchangeSettings = BotSettings.ExchangeSettings(

@@ -18,5 +18,5 @@ You can donate to support our project, check the sponsors page: [WinG4merBR's Sp
 
 "Oh I can't donate to Foxy"
 
-Don't worry, we valorize so much your opinion/suggestion/bug report about Foxy, you can write a feedback or a suggestion about Foxy in our [Discord Server](https://foxybot.win/discord) or [Top.gg page](https://top.gg/bot/1006520438865801296)
+Don't worry, we valorize so much your opinion/suggestion/bug report about Foxy, you can write a feedback or a suggestion about Foxy in our [Discord Server](https://foxybot.xyz/discord) or [Top.gg page](https://top.gg/bot/1006520438865801296)
 you also can report a bug in [Issues Page](https://github.com/FoxyTheBot/Foxy/issues)
