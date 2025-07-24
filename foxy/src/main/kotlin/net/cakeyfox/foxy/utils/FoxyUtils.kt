@@ -112,7 +112,7 @@ class FoxyUtils(
             val response: ActionResponse = try {
                 foxy.httpClient.get("https://nekos.life/api/v2/img/$action").body()
             } catch (e: Exception) {
-                foxy.httpClient.get("https://cakey.foxybot.win/roleplay/$action").body()
+                foxy.httpClient.get("https://cakey.foxybot.xyz/roleplay/$action").body()
             }
 
             return@withContext response.url
