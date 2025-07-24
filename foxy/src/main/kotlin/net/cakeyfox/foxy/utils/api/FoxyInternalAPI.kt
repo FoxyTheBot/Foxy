@@ -36,6 +36,8 @@ class FoxyInternalAPI(
             get("/") {
                 call.respondRedirect(Constants.FOXY_WEBSITE)
             }
+            GetUserAvatar().apply { getUserAvatar(foxy) }
+
             authenticate("auth-bearer") {
                 GetGuildsFromCluster().apply { getGuildsFromCluster(foxy) }
                 GetGuildInfo().apply { getGuildInfo(foxy) }
