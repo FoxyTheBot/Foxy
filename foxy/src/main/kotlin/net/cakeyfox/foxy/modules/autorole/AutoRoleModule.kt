@@ -14,24 +14,23 @@ import kotlin.coroutines.resumeWithException
 class AutoRoleModule(
     val foxy: FoxyInstance
 ) {
-
     suspend fun handleUser(event: GuildMemberJoinEvent) {
         if (!event.guild.selfMember.hasPermission(Permission.MANAGE_ROLES)) return
 
-            val guildData = foxy.database.guild.getGuild(event.guild.id)
-            val member = event.member
+        val guildData = foxy.database.guild.getGuild(event.guild.id)
+        val member = event.member
 
-            if (guildData.AutoRoleModule.isEnabled) {
-                val roleIds = guildData.AutoRoleModule.roles
+        if (guildData.AutoRoleModule.isEnabled) {
+            val roleIds = guildData.AutoRoleModule.roles
 
-                val rolesToGive = roleIds.mapNotNull { event.guild.getRoleById(it) }
+            val rolesToGive = roleIds.mapNotNull { event.guild.getRoleById(it) }
                 .filter { canAssignRole(event.guild, it) }
 
-                rolesToGive.take(5).forEach { role ->
-                    assignRoleAsync(event.guild, member, role)
-                    delay(200)
-                }
+            rolesToGive.take(5).forEach { role ->
+                assignRoleAsync(event.guild, member, role)
+                delay(200)
             }
+        }
     }
 
     private fun canAssignRole(guild: Guild, role: Role): Boolean {
@@ -44,10 +43,10 @@ class AutoRoleModule(
         member: Member,
         role: Role
     ) {
-        suspendCancellableCoroutine<Unit> { continuation ->
+        suspendCancellableCoroutine { continuation ->
             guild.addRoleToMember(member, role).queue(
                 { continuation.resume(Unit) },
-                                                      { error -> continuation.resumeWithException(error) }
+                { error -> continuation.resumeWithException(error) }
             )
         }
     }
