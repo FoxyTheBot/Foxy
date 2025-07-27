@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.datetime.Instant
-import kotlinx.datetime.TimeZone
 import kotlinx.datetime.daysUntil
 import kotlinx.datetime.toLocalDateTime
 import mu.KotlinLogging
@@ -33,7 +32,6 @@ class CakeInactivityTaxThread(
 ) {
     companion object {
         private val logger = KotlinLogging.logger { }
-        private val zone = TimeZone.currentSystemDefault()
 
         private const val MINIMUM_AMOUNT = 100_000
         private const val TAX_PERCENTAGE = 0.15
@@ -82,10 +80,11 @@ class CakeInactivityTaxThread(
 
                     val tax = (user.userCakes.balance * TAX_PERCENTAGE).toLong()
                     val lastTax = user.userCakes.lastInactivityTax
-                    val daysSinceLastDaily =
-                        lastDaily.toLocalDateTime(zone).date.daysUntil(now.toLocalDateTime(zone).date)
-                    val daysSinceLastTax =
-                        lastTax?.toLocalDateTime(zone)?.date?.daysUntil(now.toLocalDateTime(zone).date)
+                    val daysSinceLastDaily = lastDaily.toLocalDateTime(foxy.foxyZone)
+                            .date.daysUntil(now.toLocalDateTime(foxy.foxyZone).date)
+
+                    val daysSinceLastTax = lastTax?.toLocalDateTime(foxy.foxyZone)
+                            ?.date?.daysUntil(now.toLocalDateTime(foxy.foxyZone).date)
                             ?: Int.MAX_VALUE
                     val formattedBalance = foxy.utils.formatLongNumber(user.userCakes.balance.toLong())
                     val formattedTax = foxy.utils.formatLongNumber(tax)

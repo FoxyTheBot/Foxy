@@ -9,6 +9,7 @@ commands:
   earlyAccess: This command is in beta and only premium users have early access. If
     you want to have access to this command and many others, you can become a premium
     user by clicking [here](https://foxybot.xyz/br/premium)
+
 dashboard:
   embed:
     title: Dashboard

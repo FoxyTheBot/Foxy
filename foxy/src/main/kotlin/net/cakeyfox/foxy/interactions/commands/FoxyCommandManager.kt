@@ -12,6 +12,7 @@ import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.*
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RussianRouletteCommand
 import net.cakeyfox.foxy.interactions.vanilla.magic.declarations.MagicCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.AboutMeCommand
+import net.cakeyfox.foxy.interactions.vanilla.social.declarations.BirthdayCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.DivorceCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.MarryCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.ProfileCommand
@@ -111,6 +112,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(ProfileCommand())
         register(MarryCommand())
         register(DivorceCommand())
+        register(BirthdayCommand())
 
         /* ---- [Utils] ---- */
         register(HelpCommand())

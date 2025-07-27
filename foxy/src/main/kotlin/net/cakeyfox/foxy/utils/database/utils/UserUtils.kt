@@ -122,6 +122,7 @@ class UserUtils(
                 userCakes = UserCakes(balance = 0.0),
                 marryStatus = MarryStatus(),
                 userProfile = UserProfile(),
+                userBirthday = UserBirthday(),
                 userPremium = UserPremium(),
                 userSettings = UserSettings(language = "pt-br"),
                 petInfo = PetInfo(),

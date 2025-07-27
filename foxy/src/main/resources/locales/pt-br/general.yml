@@ -6,6 +6,20 @@ commands:
   error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
 
   command:
+    birthday:
+      name: "aniversário"
+      description: "Comandos relacionados a aniversário"
+      set:
+        name: "definir"
+        description: "Defina a data do seu aniversário"
+      enable:
+        name: "ativar"
+        description: "Ativa ou desativa as mensagens de aniversário"
+      options:
+        date:
+          name: "data"
+          description: "A data do seu aniversário no formato dd/MM/yyyy"
+
     status:
       name: "status"
       description: "Veja o consumo da JVM e outras informações"

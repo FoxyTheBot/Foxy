@@ -9,6 +9,19 @@ commands:
   error: An error occurred while executing the command, the problem has been reported!
     `{0}`
   command:
+    birthday:
+      name: "aniversário"
+      description: "Comandos relacionados a aniversário"
+      set:
+        name: "definir"
+      enable:
+        name: "ativar"
+        description: "Ativa ou desativa as mensagens de aniversário"
+      options:
+        date:
+          name: "data"
+          description: "A data do seu aniversário no formato dd/MM/yyyy"
+
     status:
       name: status
       description: View JVM consumption and other information

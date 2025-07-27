@@ -15,6 +15,15 @@ dashboard:
     noPermission: "Você precisa da permissão `Gerenciar Servidor` para utilizar esse comando"
     guildNotFound: "Eu preciso estar nesse servidor para isso funcionar!"
 
+birthday:
+  set:
+    changed: "O seu aniversário foi definido para **{0}**"
+    cantSet: "Não foi possível alterar o seu aniversário! Lembre-se que o formato deve ser **dd/MM/yyyy**"
+
+  enable:
+    disabled: "Okay, então não vou mandar mais mensagens de aniversário!"
+    enabled: "Okay, eu vou mandar feliz aniversário para você todo ano!"
+
 russianRoulette:
   embed:
     title: "Roleta Russa"

@@ -7,6 +7,25 @@ categories:
   actions: "🎮 Roleplay"
   dev: "💻 Especial"
 
+birthday:
+  title: "Feliz aniversário!"
+  message: |
+    Feliz aniversário querido(a)! Hoje é o seu dia, só conseguimos pensar em como o mundo ficou mais lindo quando te recebemos.
+    
+    Que essa nova etapa da sua vida venha cheia de esperança, amor, conquistas e momentos inesquecíveis! 
+    
+    Não esqueça, é um dia especial para uma pessoa mais especial ainda. Parabéns pelo seu dia e aproveite! 
+
+    "Parabéns pra você
+    Nesta data querida
+    Muita felicidade
+    Muitos anos de vida
+    É pique, é pique
+    É pique, é pique, é pique
+    É hora, é hora
+    É hora, é hora, é hora
+    Rá‑tim‑bum!!"
+
 tax:
   cakes:
     title: "Você perdeu os seus Cakes!"

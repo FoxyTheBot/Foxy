@@ -21,7 +21,7 @@ dependencies {
     // Database
     implementation("org.mongodb:bson-kotlinx:${Versions.MONGODB}")
     implementation("org.mongodb:mongodb-driver-kotlin-coroutine:${Versions.MONGODB}")
-    implementation("com.github.FoxyTheBot:DatabaseUtils:1.1.1")
+    implementation("com.github.FoxyTheBot:DatabaseUtils:1.1.3")
 
     // Ktor
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")

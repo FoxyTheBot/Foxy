@@ -6,6 +6,7 @@ import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.datetime.TimeZone
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
 import net.cakeyfox.artistry.ArtistryClient
@@ -23,6 +24,7 @@ import net.cakeyfox.foxy.utils.database.DatabaseClient
 import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
 import net.cakeyfox.foxy.utils.threads.ThreadUtils
 import net.cakeyfox.foxy.leaderboard.LeaderboardManager
+import net.cakeyfox.foxy.threads.BirthdayReminderThread
 import net.cakeyfox.foxy.threads.CakeInactivityTaxThread
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
@@ -62,6 +64,7 @@ class FoxyInstance(
     val logger = KotlinLogging.logger { }
     val threadPoolManager = ThreadPoolManager()
     val coroutineDispatcher = coroutineExecutor.asCoroutineDispatcher()
+    val foxyZone = TimeZone.currentSystemDefault()
 
     suspend fun start() {
         environment = config.environment
@@ -123,6 +126,7 @@ class FoxyInstance(
 
         leaderboardManager.startAutoRefresh()
         CakeInactivityTaxThread(this).start()
+        BirthdayReminderThread(this).start()
 
         Runtime.getRuntime().addShutdownHook(thread(false) {
             try {
