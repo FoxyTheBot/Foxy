@@ -9,7 +9,6 @@ commands:
   earlyAccess: This command is in beta and only premium users have early access. If
     you want to have access to this command and many others, you can become a premium
     user by clicking [here](https://foxybot.xyz/br/premium)
-
 dashboard:
   embed:
     title: Dashboard
@@ -18,6 +17,13 @@ dashboard:
     button: Go to Dashboard
     noPermission: You need `Manage Server` permission to use this command.
     guildNotFound: I need to be on that server for this to work!
+birthday:
+  set:
+    changed: Your birthday has been set to **{0}**
+    cantSet: We couldn't change your birthday! Remember the format must be **dd/MM/yyyy**
+  enable:
+    disabled: Okay, so I won't send you any more birthday messages!
+    enabled: Okay, I'll send you a happy birthday every year!
 russianRoulette:
   embed:
     title: Russian Roulette
@@ -184,8 +190,8 @@ slap:
 cancel:
   userCancelledBecause: "**{0} was canceled by `{1}`**"
 rob:
-  youFailedAndLostCakes: Você foi pego e perdeu **{0} Cakes**!
-  youFailedAndGotArrested: Você foi pego e foi preso(a)!
+  youFailedAndLostCakes: You got caught and lost **{0} Cakes**!
+  youFailedAndGotArrested: You were caught and arrested!
   userNotEnoughCakes: "{0} não tem Cakes suficientes para roubar! Coitado(a)!"
   success: Você roubou **{0} Cakes** de {1}!
   cooldown: Você precisa esperar **{0}** para roubar novamente!
