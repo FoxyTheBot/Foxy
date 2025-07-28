@@ -10,18 +10,18 @@ commands:
     `{0}`
   command:
     birthday:
-      name: "aniversário"
-      description: "Comandos relacionados a aniversário"
+      name: aniversário
+      description: Birthday-related commands
       set:
-        name: "definir"
+        name: define
+        description: Define the date of your birthday
       enable:
-        name: "ativar"
-        description: "Ativa ou desativa as mensagens de aniversário"
+        name: enable
+        description: Turn birthday messages on or off
       options:
         date:
-          name: "data"
-          description: "A data do seu aniversário no formato dd/MM/yyyy"
-
+          name: date
+          description: Your birthday date in dd/MM/yyyy format
     status:
       name: status
       description: View JVM consumption and other information
@@ -188,7 +188,7 @@ commands:
           description: The reason why you want to cancel this user
         user:
           name: user
-          description: O usuário que você deseja cancelar
+          description: The user you want to cancel
     ratewaifu:
       name: rate_waifu
       description: Rate your waifu
@@ -296,7 +296,7 @@ commands:
           description: The user whose profile you want to view
       badges:
         name: manage_badges
-        description: "Veja ou altere as insignías do seu perfil"
+        description: Veja ou altere as insignías do seu perfil
     actions:
       name: actions
       description: Action commands for you to have fun with your friends
@@ -371,19 +371,17 @@ commands:
       name: language
       description: Change the bot's language
     marry:
-      name: "casar"
-      description: "Case com alguém"
+      name: casar
+      description: Case com alguém
       ask:
-        name: "pedir"
-        description: "Peça alguém em casamento"
+        name: pedir
+        description: Peça alguém em casamento
       options:
         user:
-          name: "usuário"
-          description: "O usuário que você deseja pedir em casamento"
-
+          name: usuário
+          description: O usuário que você deseja pedir em casamento
       leaderboard:
-        name: "leaderboard"
-
+        name: leaderboard
     divorce:
       name: divorce
       description: Divorce your partner
