@@ -5,7 +5,11 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.cancel
 import kotlinx.datetime.TimeZone
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
@@ -24,8 +28,7 @@ import net.cakeyfox.foxy.utils.database.DatabaseClient
 import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
 import net.cakeyfox.foxy.utils.threads.ThreadUtils
 import net.cakeyfox.foxy.leaderboard.LeaderboardManager
-import net.cakeyfox.foxy.threads.BirthdayReminderThread
-import net.cakeyfox.foxy.threads.CakeInactivityTaxThread
+import net.cakeyfox.foxy.utils.TasksUtils
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.requests.GatewayIntent
@@ -65,6 +68,7 @@ class FoxyInstance(
     val threadPoolManager = ThreadPoolManager()
     val coroutineDispatcher = coroutineExecutor.asCoroutineDispatcher()
     val foxyZone = TimeZone.currentSystemDefault()
+    val tasksScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     suspend fun start() {
         environment = config.environment
@@ -125,8 +129,7 @@ class FoxyInstance(
         )
 
         leaderboardManager.startAutoRefresh()
-        CakeInactivityTaxThread(this).start()
-        BirthdayReminderThread(this).start()
+        TasksUtils.launchTasks(this)
 
         Runtime.getRuntime().addShutdownHook(thread(false) {
             try {
@@ -147,6 +150,7 @@ class FoxyInstance(
 
                 coroutineExecutor.shutdown()
                 threadPoolManager.shutdown()
+                tasksScope.cancel()
             } catch (e: Exception) {
                 logger.error(e) { "Error during shutdown process" }
             }
