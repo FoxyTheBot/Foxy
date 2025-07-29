@@ -6,7 +6,6 @@ import net.cakeyfox.foxy.interactions.FoxyInteractionContext
 import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-
 import kotlinx.datetime.toJavaInstant
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.pretty
@@ -27,7 +26,7 @@ class BirthdaySetExecutor : FoxySlashCommandExecutor() {
             val birthdayToInstantKx: Instant = parsedKxDate.atStartOfDayIn(context.foxy.foxyZone)
             val birthdayToInstantJava = birthdayToInstantKx.toJavaInstant()
 
-            context.reply {
+            context.reply(true) {
                 content = pretty(FoxyEmotes.FoxyCake, context.locale["birthday.set.changed", userBirthday])
             }
 
