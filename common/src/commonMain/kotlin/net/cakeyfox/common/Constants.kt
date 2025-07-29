@@ -24,7 +24,7 @@ object Constants {
     val HOCON = Hocon { useArrayPolymorphism = true }
     const val SUPPORT_SERVER_ID = "768267522670723094"
     const val UPVOTE_URL = "https://top.gg/bot/1006520438865801296/vote"
-
+    const val FOXY_TIMEZONE = "America/Sao_Paulo"
 
     fun getDefaultActivity(activity: String, environment: String, clusterName: String?): String {
         if (clusterName != null) {
