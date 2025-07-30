@@ -34,7 +34,7 @@ class DblStatsSender(
             while (true) {
                 val serverCounts = getServerCountsFromClusters()
                 sendStatsToTopGG(serverCounts)
-                delay(TimeUnit.HOURS.toMillis(1))
+                delay(TimeUnit.HOURS.toMillis(2))
             }
         }
     }
@@ -74,11 +74,9 @@ class DblStatsSender(
                 .sumOf { it.guilds.size }
         }
 
-        logger.info { "Current cluster has $currentClusterCount servers." }
 
         val totalServerCount = currentClusterCount + otherClusterCounts.sum()
-        logger.info { "Total server count: $totalServerCount" }
-
+        logger.info { "Current cluster: $currentClusterCount servers | Total: $totalServerCount" }
         return totalServerCount
     }
 
@@ -97,7 +95,6 @@ class DblStatsSender(
                 logger.error { "Failed to send stats to top.gg: ${response.status}" }
                 return@withContext false
             }
-            logger.info { "Sending $serverCount servers to Top.gg" }
             return@withContext true
         }
     }

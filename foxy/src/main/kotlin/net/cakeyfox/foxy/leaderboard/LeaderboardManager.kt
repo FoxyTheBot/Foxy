@@ -201,12 +201,10 @@ class LeaderboardManager(
                     cakesLoadMutex.withLock {
                         val cakes = loadCakesLeaderboard()
                         leaderboardCache.put("cakes", cakes)
-                        logger.info { "Cakes leaderboard updated" }
                     }
 //                    marriageLoadMutex.withLock {
 //                        val marriage = loadMarriageLeaderboard()
 //                        leaderboardCache.put("marriage", marriage)
-//                        logger.info { "Marriage leaderboard updated" }
 //                    }
                 } catch (ex: Exception) {
                     logger.error(ex) { "Error during leaderboards auto-refresh" }
