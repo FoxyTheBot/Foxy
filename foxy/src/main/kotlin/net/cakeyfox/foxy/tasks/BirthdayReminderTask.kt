@@ -23,7 +23,7 @@ import java.time.ZonedDateTime
 class BirthdayReminderTask(
     val foxy: FoxyInstance
 ) : RunnableCoroutine {
-    private val logger = KotlinLogging.logger { }
+    private val logger = KotlinLogging.logger(this::class.simpleName!!)
     private val locale = FoxyLocale("pt-br")
     private val semaphore = Semaphore(5)
     private val javaZone: ZoneId = ZoneId.of(foxy.foxyZone.id)

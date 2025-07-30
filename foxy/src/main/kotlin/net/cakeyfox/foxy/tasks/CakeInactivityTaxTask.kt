@@ -24,8 +24,6 @@ class CakeInactivityTaxTask(
     private val foxy: FoxyInstance
 ) : RunnableCoroutine {
     companion object {
-        private val logger = KotlinLogging.logger { }
-
         private const val MINIMUM_AMOUNT = 100_000
         private const val TAX_PERCENTAGE = 0.15
 
@@ -34,6 +32,7 @@ class CakeInactivityTaxTask(
         private const val TAX_INTERVAL_DAYS = 7
     }
 
+    private val logger = KotlinLogging.logger(this::class.simpleName!!)
     private val locale = FoxyLocale("pt-br")
     private val formattedMinimumAmount = foxy.utils.formatLongNumber(MINIMUM_AMOUNT.toLong())
     private val semaphore = Semaphore(10)
