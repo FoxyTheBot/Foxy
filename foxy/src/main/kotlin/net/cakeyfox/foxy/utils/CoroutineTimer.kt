@@ -18,7 +18,13 @@ import kotlin.time.toKotlinDuration
 /**
  * Schedules [action] to be executed on [scope] every [period] with a [initialDelay]
  */
-fun scheduleCoroutineAtFixedRate(taskName: String, scope: CoroutineScope, period: Duration, initialDelay: Duration = Duration.ZERO, action: RunnableCoroutine) {
+fun scheduleCoroutineAtFixedRate(
+    taskName: String,
+    scope: CoroutineScope,
+    period: Duration,
+    initialDelay: Duration = Duration.ZERO,
+    action: RunnableCoroutine
+) {
     val logger = KotlinLogging.logger(taskName)
 
     scope.launch(CoroutineName("$taskName Scheduler")) {
