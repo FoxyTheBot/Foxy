@@ -54,7 +54,7 @@ class PostUpvoteWebhookRoute {
             val discordUser = foxy.shardManager.retrieveUserById(userId).await()
             foxy.database.user.addVote(userId)
             val userVotes = foxy.database.user.getFoxyProfile(userId).voteCount ?: 0
-            val formattedVotes = "$userVotes voto${if (userVotes == 1) "" else "s"}"
+            logger.info { "User ${discordUser.name} / $userId has $userVotes vote(s)" }
 
             try {
                 delay(500)
@@ -63,7 +63,7 @@ class PostUpvoteWebhookRoute {
                     MessageCreateData.fromEmbeds(
                         EmbedBuilder {
                             title = pretty(FoxyEmotes.FoxyHowdy, locale["upvote.title"])
-                            description = locale["upvote.thanksForVoting", formattedVotes]
+                            description = locale["upvote.thanksForVoting", userVotes.toString()]
                             thumbnail = Constants.DAILY_EMOJI
                             color = Colors.FOXY_DEFAULT
                             footer {
