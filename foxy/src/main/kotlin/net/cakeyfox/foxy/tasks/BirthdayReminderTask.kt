@@ -57,7 +57,7 @@ class BirthdayReminderTask(
                     val isBirthdayToday = birthdayZoned.dayOfMonth == nowZoned.dayOfMonth &&
                             birthdayZoned.month == nowZoned.month
 
-                    logger.info { "Checking user ${user._id}: birthday=$birthdayZoned, now=$nowZoned, isBirthdayToday=$isBirthdayToday" }
+                    logger.debug { "Checking user ${user._id}: birthday=$birthdayZoned, now=$nowZoned, isBirthdayToday=$isBirthdayToday" }
 
                     try {
                         val hasReceivedThisYear = lastMessage?.let {

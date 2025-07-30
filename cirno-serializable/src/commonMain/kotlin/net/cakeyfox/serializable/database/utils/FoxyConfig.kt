@@ -7,6 +7,7 @@ data class FoxyConfig(
     val environment: String,
     val discord: DiscordSettings,
     val database: DatabaseSettings,
+    val topgg: Topgg,
     val others: OtherSettings
 ) {
     @Serializable
@@ -36,6 +37,11 @@ data class FoxyConfig(
         val uri: String,
         val databaseName: String,
         val requestTimeout: Int
+    )
+
+    @Serializable
+    data class Topgg(
+        val authorization: String
     )
 
     @Serializable

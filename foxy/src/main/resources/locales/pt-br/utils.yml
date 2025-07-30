@@ -47,3 +47,15 @@ tax:
         Se continuar sem pegar, essa taxa vai ser cobrada toda semana até você voltar a pegar o daily.
 
         Proteja seus Cakes, se não eu vou comer todos :3
+
+upvote:
+  thanksForVoting: |
+    Você sabia que votando você me ajuda a crescer? <:foxy_yay:1070906796274888795>
+
+    E como recompensa você recebeu **1.500 cakes**!
+
+    Você pode votar novamente em 12 horas!
+
+    **Sabia que você tem {0}?**
+  footer: "Obrigada por votar! Você é incrível!"
+  title: "Obrigada por votar! <:foxy_cake:866084383843549204>"

@@ -232,7 +232,7 @@ class ProfileRender(
                 logger.info { "Guild not found on this cluster" }
                 ClusterUtils.getMemberRolesFromCluster(context.foxy, Constants.SUPPORT_SERVER_ID.toLong(), user.idLong)
             }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             null
         }
 

@@ -13,10 +13,10 @@ import com.mongodb.client.model.Projections.include
 import com.mongodb.client.model.Sorts.ascending
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
-import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.database.data.*
 import net.cakeyfox.serializable.data.UserBalance
+import java.time.Instant
 
 class UserUtils(
     private val client: DatabaseClient,
@@ -39,6 +39,22 @@ class UserUtils(
             val query = Document("_id", userId)
             val update = Document("\$set", Document(updates))
 
+            client.users.updateOne(query, update)
+        }
+    }
+
+    suspend fun addVote(userId: String) {
+        val userData = getFoxyProfile(userId)
+        client.withRetry {
+            val query = Document("_id", userId)
+            val updates = mapOf<String, Any?>(
+                "lastVote" to Instant.now(),
+                "voteCount" to (userData.voteCount ?: 0) + 1,
+                "notifiedForVote" to false,
+                "userCakes.balance" to userData.userCakes.balance + 1500
+            )
+
+            val update = Document("\$set", Document(updates))
             client.users.updateOne(query, update)
         }
     }

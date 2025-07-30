@@ -37,6 +37,7 @@ class FoxyInternalAPI(
                 call.respondRedirect(Constants.FOXY_WEBSITE)
             }
             GetUserAvatar().apply { getUserAvatar(foxy) }
+            PostUpvoteWebhookRoute().apply { postUpvoteWebhook(foxy) }
 
             authenticate("auth-bearer") {
                 GetGuildsFromCluster().apply { getGuildsFromCluster(foxy) }
