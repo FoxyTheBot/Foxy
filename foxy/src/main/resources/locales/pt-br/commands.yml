@@ -119,6 +119,7 @@ profile:
     back: "Voltar"
     hideBadge: "Esconder insígnia do perfil"
     showBadge: "Mostrar insígnia no perfil"
+    youDontHaveAnyBadge: "Você não tem nenhuma insígnia no seu perfil."
 
 kiss:
   description: ":heart: **{0} beijou {1}!**"

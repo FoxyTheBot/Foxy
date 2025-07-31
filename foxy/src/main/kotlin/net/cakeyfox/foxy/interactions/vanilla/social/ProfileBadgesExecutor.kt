@@ -7,6 +7,7 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.database.data.Badge
 import net.cakeyfox.foxy.interactions.FoxyInteractionContext
 import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.profile.ProfileUtils
 import net.dv8tion.jda.api.entities.emoji.Emoji
 import net.dv8tion.jda.api.interactions.components.ActionComponent
@@ -16,7 +17,13 @@ class ProfileBadgesExecutor : FoxySlashCommandExecutor() {
     override suspend fun execute(context: FoxyInteractionContext) {
         val data = context.getAuthorData()
         val badges = ProfileUtils.getBadgeAssets(data, context.user, context)
+        if (badges.isEmpty()) {
+            context.reply(true) {
+                content = pretty(FoxyEmotes.FoxyCry, context.locale["profile.badges.youDontHaveAnyBadge"])
+            }
 
+            return
+        }
         showBadgeMenu(context, badges, isInitial = true)
     }
 
