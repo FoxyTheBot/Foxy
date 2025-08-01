@@ -12,6 +12,7 @@ object Constants {
     const val PREMIUM = "https://foxybot.xyz/br/premium"
     const val DAILY = "https://foxybot.xyz/br/daily"
     const val DAILY_EMOJI = "https://stuff.foxybot.xyz/images/foxy_daily.png"
+    const val FOXY_WOW = "https://stuff.foxybot.xyz/images/foxy_wow.png"
     const val DASHBOARD_URL = "https://foxybot.xyz/br/dashboard"
     const val FOXY_CRY = "https://stuff.foxybot.xyz/images/foxy_cry.png"
 

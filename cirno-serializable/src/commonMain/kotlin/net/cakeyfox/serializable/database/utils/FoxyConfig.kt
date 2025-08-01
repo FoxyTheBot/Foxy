@@ -28,7 +28,7 @@ data class FoxyConfig(
         val name: String,
         val minShard: Int,
         val maxShard: Int,
-        val canPublishStats: Boolean,
+        val isMasterCluster: Boolean,
         val clusterUrl: String,
     )
 

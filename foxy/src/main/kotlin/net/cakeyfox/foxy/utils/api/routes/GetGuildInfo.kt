@@ -56,7 +56,7 @@ class GetGuildInfo {
                     put("name", foxy.currentCluster.name)
                     put("minShard", foxy.currentCluster.minShard)
                     put("maxShard", foxy.currentCluster.maxShard)
-                    put("canPublishStats", foxy.currentCluster.canPublishStats)
+                    put("isMasterCluster", foxy.currentCluster.isMasterCluster)
                     put("clusterUrl", foxy.currentCluster.clusterUrl)
                 })
                 put("invites", buildJsonArray {

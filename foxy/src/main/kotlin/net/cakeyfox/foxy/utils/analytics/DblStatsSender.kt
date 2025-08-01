@@ -22,7 +22,7 @@ class DblStatsSender(
     private var statsSenderJob: Job? = null
 
     init {
-        if (foxy.currentCluster.canPublishStats && foxy.config.environment == "production") {
+        if (foxy.currentCluster.isMasterCluster && foxy.config.environment == "production") {
             startMainClusterRoutine()
         }
     }
@@ -42,7 +42,7 @@ class DblStatsSender(
     private suspend fun getServerCountsFromClusters(): Int {
         val client = foxy.httpClient
         val clusterUrls = foxy.config.discord.clusters
-            .mapNotNull { if (!it.canPublishStats) it.clusterUrl else null }
+            .mapNotNull { if (!it.isMasterCluster) it.clusterUrl else null }
 
         if (foxy.currentCluster.maxShard == 0 && foxy.currentCluster.minShard == 0) {
             return withContext(foxy.coroutineDispatcher) {
