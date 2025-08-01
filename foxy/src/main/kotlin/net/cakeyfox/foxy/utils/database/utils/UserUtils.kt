@@ -7,6 +7,7 @@ import org.bson.Document
 import kotlinx.coroutines.flow.firstOrNull
 import com.mongodb.client.model.Filters.eq
 import com.mongodb.client.model.Filters.exists
+import com.mongodb.client.model.Filters.lt
 import com.mongodb.client.model.Filters.ne
 import com.mongodb.client.model.Indexes.descending
 import com.mongodb.client.model.Projections.include
@@ -17,6 +18,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.database.data.*
 import net.cakeyfox.serializable.data.UserBalance
 import java.time.Instant
+import java.time.temporal.ChronoUnit
 
 class UserUtils(
     private val client: DatabaseClient,
@@ -31,6 +33,38 @@ class UserUtils(
 
             val documentToJSON = existingUserDocument.toJson()
             client.foxy.json.decodeFromString<FoxyUser>(documentToJSON)
+        }
+    }
+
+    suspend fun getExpiredDailies(): List<FoxyUser> {
+        return client.withRetry {
+            val now = Instant.now()
+            val expirationTime = now.minus(24, ChronoUnit.HOURS)
+
+            val expiredDailies = foxy.database.users.find(
+                and(
+                    exists("userCakes.lastDaily", true),
+                    lt("userCakes.lastDaily", expirationTime)
+                )
+            ).toList()
+
+            expiredDailies
+        }
+    }
+
+    suspend fun getExpiredVotes(): List<FoxyUser> {
+        return client.withRetry {
+            val now = Instant.now()
+            val expirationTime = now.minus(12, ChronoUnit.HOURS)
+
+            val expiredVotes = foxy.database.users.find(
+                and(
+                    lt("lastVote", expirationTime),
+                    eq("notifiedForVote", false)
+                )
+            ).toList()
+
+            expiredVotes
         }
     }
 

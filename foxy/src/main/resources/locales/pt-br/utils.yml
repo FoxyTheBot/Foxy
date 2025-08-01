@@ -59,3 +59,21 @@ upvote:
     **Sabia que você já votou {0} vezes?**
   footer: "Obrigada por votar! Você é incrível!"
   title: "Obrigada por votar! <:foxy_cake:866084383843549204>"
+
+  reminder:
+    title: "Vote na Foxy! <:foxy_cake:866084383843549204>"
+    message: |
+      O-oi! Você já pode votar novamente em mim!
+      
+      Lembrando que você pode votar a cada 12 horas, e a cada voto você ganha **1500 cakes**! Sem falar que isso também me ajuda a crescer :3 <:foxy_yay:1070906796274888795>
+    footer: "Isso é um teste, se você recebeu isso, my bad ai bro"
+
+dailyReminder:
+  embed:
+    title: "Recompensa diária"
+    description: |
+      Oii! Sabia que você já pode resgatar a sua recompensa diária?
+      
+      Pegue sua recompensa diária antes que ela se perca!
+      
+      **Pegue sua recompensa diária clicando [aqui](https://foxybot.xyz/br/daily)**
