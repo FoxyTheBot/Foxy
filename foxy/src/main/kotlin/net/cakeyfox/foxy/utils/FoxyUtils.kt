@@ -75,8 +75,10 @@ class FoxyUtils(
 
         try {
             val channel = user.openPrivateChannel().await()
-            channel.sendMessage(message).await()
-            delay(delayMs)
+            if (channel.canTalk()) {
+                channel.sendMessage(message).await()
+                delay(delayMs)
+            } else logger.warn { "Can't send message to ${user.id}! Skipping..." }
         } catch (e: RateLimitedException) {
             val retryAfter = e.retryAfter
             logger.warn { "Rate limited. Retrying after $retryAfter ms for user ${user.id}" }
