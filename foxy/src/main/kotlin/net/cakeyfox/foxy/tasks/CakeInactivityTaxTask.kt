@@ -5,6 +5,7 @@ import dev.minn.jda.ktx.messages.EmbedBuilder
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.sync.Semaphore
+import kotlinx.coroutines.sync.withPermit
 import kotlinx.datetime.Instant
 import kotlinx.datetime.daysUntil
 import kotlinx.datetime.toLocalDateTime
@@ -51,93 +52,94 @@ class CakeInactivityTaxTask(
         val nowZoned = ZonedDateTime.now(ZoneId.systemDefault()).toInstant()
         val now = Instant.fromEpochMilliseconds(nowZoned.toEpochMilli())
 
-        users.forEach { user ->
-            semaphore.acquire()
-            try {
-                val lastDaily = user.userCakes.lastDaily?.takeUnless { it == Instant.fromEpochMilliseconds(0) }
-                    ?: return@forEach
+        users.chunked(10).forEach { chunk ->
+            chunk.map { user ->
+                semaphore.withPermit {
+                    try {
+                        val lastDaily = user.userCakes.lastDaily?.takeUnless { it == Instant.fromEpochMilliseconds(0) }
+                            ?: return@withPermit
 
-                val tax = (user.userCakes.balance * TAX_PERCENTAGE).toLong()
-                val lastTax = user.userCakes.lastInactivityTax
-                val daysSinceLastDaily = lastDaily.toLocalDateTime(foxy.foxyZone)
-                    .date.daysUntil(now.toLocalDateTime(foxy.foxyZone).date)
+                        val tax = (user.userCakes.balance * TAX_PERCENTAGE).toLong()
+                        val lastTax = user.userCakes.lastInactivityTax
+                        val daysSinceLastDaily = lastDaily.toLocalDateTime(foxy.foxyZone)
+                            .date.daysUntil(now.toLocalDateTime(foxy.foxyZone).date)
 
-                val daysSinceLastTax = lastTax?.toLocalDateTime(foxy.foxyZone)
-                    ?.date?.daysUntil(now.toLocalDateTime(foxy.foxyZone).date)
-                    ?: Int.MAX_VALUE
-                val formattedBalance = foxy.utils.formatLongNumber(user.userCakes.balance.toLong())
-                val formattedTax = foxy.utils.formatLongNumber(tax)
+                        val daysSinceLastTax = lastTax?.toLocalDateTime(foxy.foxyZone)
+                            ?.date?.daysUntil(now.toLocalDateTime(foxy.foxyZone).date)
+                            ?: Int.MAX_VALUE
+                        val formattedBalance = foxy.utils.formatLongNumber(user.userCakes.balance.toLong())
+                        val formattedTax = foxy.utils.formatLongNumber(tax)
 
-                if (user.userCakes.balance <= MINIMUM_AMOUNT) return@forEach
+                        if (user.userCakes.balance <= MINIMUM_AMOUNT) return@withPermit
 
-                if (daysSinceLastDaily >= WARNING_DAYS && daysSinceLastDaily < TAX_START_DAYS) {
-                    if (user.userCakes.warnedAboutInactivityTax != true) {
-                        val userFromDiscord = foxy.shardManager.retrieveUserById(user._id).await()
-                        foxy.utils.sendDM(
-                            userFromDiscord,
-                            MessageCreateData.fromEmbeds(
-                                EmbedBuilder {
-                                    title = pretty(FoxyEmotes.FoxyCry, locale["tax.cakes.warning.title"])
-                                    description = locale[
-                                        "tax.cakes.warning.description",
-                                        user._id,
-                                        formattedMinimumAmount,
-                                        WARNING_DAYS.toString(),
-                                        formattedBalance,
-                                        formattedTax,
-                                        Constants.DAILY
-                                    ]
-                                    thumbnail = Constants.FOXY_CRY
-                                    color = Colors.FOXY_DEFAULT
-                                }.build()
+                        if (daysSinceLastDaily in WARNING_DAYS until TAX_START_DAYS) {
+                            if (user.userCakes.warnedAboutInactivityTax != true) {
+                                val userFromDiscord = foxy.shardManager.retrieveUserById(user._id).await()
+                                foxy.utils.sendDM(
+                                    userFromDiscord,
+                                    MessageCreateData.fromEmbeds(
+                                        EmbedBuilder {
+                                            title = pretty(FoxyEmotes.FoxyCry, locale["tax.cakes.warning.title"])
+                                            description = locale[
+                                                "tax.cakes.warning.description",
+                                                user._id,
+                                                formattedMinimumAmount,
+                                                WARNING_DAYS.toString(),
+                                                formattedBalance,
+                                                formattedTax,
+                                                Constants.DAILY
+                                            ]
+                                            thumbnail = Constants.FOXY_CRY
+                                            color = Colors.FOXY_DEFAULT
+                                        }.build()
+                                    )
+                                )
+                                foxy.database.user.updateUser(
+                                    user._id,
+                                    mapOf("userCakes.warnedAboutInactivityTax" to true)
+                                )
+
+                                logger.info { "${user._id} warned about inactivity tax" }
+                            }
+                        }
+
+                        if (daysSinceLastDaily >= TAX_START_DAYS && daysSinceLastTax >= TAX_INTERVAL_DAYS) {
+                            val tax = (user.userCakes.balance * TAX_PERCENTAGE).toLong()
+                            val userFromDiscord = foxy.shardManager.retrieveUserById(user._id).await()
+                            val formattedTax = foxy.utils.formatLongNumber(tax)
+
+                            foxy.utils.sendDM(
+                                userFromDiscord,
+                                MessageCreateData.fromEmbeds(
+                                    EmbedBuilder {
+                                        title = pretty(FoxyEmotes.FoxyCry, locale["tax.cakes.title"])
+                                        description = locale[
+                                            "tax.cakes.description",
+                                            user._id,
+                                            formattedTax,
+                                            Constants.DAILY
+                                        ]
+                                        thumbnail = Constants.FOXY_CRY
+                                        color = Colors.FOXY_DEFAULT
+                                    }.build()
+                                )
                             )
-                        )
-                        foxy.database.user.updateUser(
-                            user._id,
-                            mapOf("userCakes.warnedAboutInactivityTax" to true)
-                        )
 
-                        logger.info { "${user._id} warned about inactivity tax" }
+                            foxy.database.user.removeCakesFromUser(user._id, tax)
+                            foxy.database.user.updateUser(
+                                user._id,
+                                mapOf(
+                                    "userCakes.lastInactivityTax" to nowZoned,
+                                    "userCakes.warnedAboutInactivityTax" to false
+                                )
+                            )
+
+                            logger.info { "$tax Cakes removed from ${user._id}" }
+                        }
+                    } catch (e: Exception) {
+                        logger.error(e) { "Error processing inactivity tax for user ${user._id}" }
                     }
                 }
-
-                if (daysSinceLastDaily >= TAX_START_DAYS && daysSinceLastTax >= TAX_INTERVAL_DAYS) {
-                    val tax = (user.userCakes.balance * TAX_PERCENTAGE).toLong()
-                    val userFromDiscord = foxy.shardManager.retrieveUserById(user._id).await()
-                    val formattedTax = foxy.utils.formatLongNumber(tax)
-
-                    foxy.utils.sendDM(
-                        userFromDiscord,
-                        MessageCreateData.fromEmbeds(
-                            EmbedBuilder {
-                                title = pretty(FoxyEmotes.FoxyCry, locale["tax.cakes.title"])
-                                description = locale[
-                                    "tax.cakes.description",
-                                    user._id,
-                                    formattedTax,
-                                    Constants.DAILY
-                                ]
-                                thumbnail = Constants.FOXY_CRY
-                                color = Colors.FOXY_DEFAULT
-                            }.build()
-                        )
-                    )
-
-                    foxy.database.user.removeCakesFromUser(user._id, tax)
-                    foxy.database.user.updateUser(
-                        user._id,
-                        mapOf(
-                            "userCakes.lastInactivityTax" to nowZoned,
-                            "userCakes.warnedAboutInactivityTax" to false
-                        )
-                    )
-
-                    logger.info { "$tax Cakes removed from ${user._id}" }
-                }
-            } catch (e: Exception) {
-                logger.error(e) { "Error processing inactivity tax for user ${user._id}" }
-            } finally {
-                semaphore.release()
             }
         }
     }

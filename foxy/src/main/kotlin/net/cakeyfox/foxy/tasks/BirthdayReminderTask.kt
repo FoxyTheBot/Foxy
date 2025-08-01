@@ -46,7 +46,7 @@ class BirthdayReminderTask(
         }
 
         users.chunked(5).forEach { chunk ->
-            chunk.forEach { user ->
+            chunk.map { user ->
                 semaphore.withPermit {
                     val birthday = user.userBirthday?.birthday.takeUnless { it == Instant.fromEpochMilliseconds(0) }
                         ?: return@forEach
