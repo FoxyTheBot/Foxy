@@ -10,9 +10,9 @@ import kotlin.time.Duration.Companion.hours
 
 object TasksUtils {
     fun launchTasks(foxy: FoxyInstance) {
-        scheduleCoroutine(BirthdayReminderTask(foxy),at(0, 0), foxy.tasksScope)
-        scheduleCoroutine(CakeInactivityTaxTask(foxy),at(0,15), foxy.tasksScope)
-        scheduleCoroutine(DailyReminderTask(foxy),at(0, 30), foxy.tasksScope)
+        scheduleCoroutine(DailyReminderTask(foxy),at(0, 0), foxy.tasksScope)
+        scheduleCoroutine(BirthdayReminderTask(foxy),at(0, 15), foxy.tasksScope)
+        scheduleCoroutine(CakeInactivityTaxTask(foxy),at(0,30), foxy.tasksScope)
         scheduleCoroutineAtFixedRate(
             taskName = UpvoteReminderTask::class.simpleName!!,
             scope = foxy.tasksScope,
