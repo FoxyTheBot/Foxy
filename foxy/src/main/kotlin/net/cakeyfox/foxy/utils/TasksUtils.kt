@@ -17,7 +17,7 @@ object TasksUtils {
             taskName = UpvoteReminderTask::class.simpleName!!,
             scope = foxy.tasksScope,
             period = 2.hours,
-            action = CakeInactivityTaxTask(foxy)
+            action = UpvoteReminderTask(foxy)
         )
     }
 
