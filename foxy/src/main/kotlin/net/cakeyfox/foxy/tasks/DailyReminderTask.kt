@@ -34,7 +34,7 @@ class DailyReminderTask(
 
     private suspend fun runDailyReminder() = coroutineScope {
         val now = Clock.System.now()
-        val maxInactivity = now - 90.days
+        val maxInactivity = now - 30.days
         val usersToNotify = foxy.database.user.getExpiredDailies()
             .filter { it.userCakes.lastDaily != null && it.userCakes.lastDaily!! > maxInactivity }
 
