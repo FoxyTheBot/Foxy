@@ -48,32 +48,42 @@ jobs:
           push: true
           tags: ${{ env.DOCKER_USERNAME }}/foxy-bot:latest
 
-      - name: Deploy Foxy to clusters
+      - name: Deploy Foxy to servers
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SERVERS: ${{ secrets.SERVERS }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
-          SSH_TARGET: ${{ secrets.SSH_TARGET }}
           DOCKER_USERNAME: ${{ env.DOCKER_USERNAME }}
-          PORT: ${{secrets.PORT}}
+          PORT: ${{ secrets.PORT }}
+
         run: |
           mkdir -p ~/.ssh
           echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
           IFS=',' read -r -a server_array <<< "$SERVERS"
+          cluster_id=1
 
-          for index in "${!server_array[@]}"; do
-            cluster_id=$((index + 1))
-            SERVER=${server_array[$index]}
+          for SERVER in "${server_array[@]}"; do
+            echo "Deploying to $SERVER..."
 
-            echo "Deploying to cluster $cluster_id at $SERVER..."
+            for i in 0 1; do
+              current_cluster_id=$cluster_id
+              current_port=$((PORT + i))
 
-            ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SERVER "
-              docker pull $DOCKER_USERNAME/foxy-bot:latest &&
-              docker stop foxy-$cluster_id || true &&
-              docker rm foxy-$cluster_id || true &&
-              docker run -d --name foxy-$cluster_id --hostname foxy-$cluster_id -p ${PORT}:${PORT} -v /home/foxy/foxy.conf:/app/foxy.conf $DOCKER_USERNAME/foxy-bot:latest
-            "
+              echo "  Deploying cluster $current_cluster_id on port $current_port"
+
+              ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SERVER "
+                docker pull $DOCKER_USERNAME/foxy-bot:latest &&
+                docker stop foxy-$current_cluster_id || true &&
+                docker rm foxy-$current_cluster_id || true &&
+                docker run -d --name foxy-$current_cluster_id --hostname foxy-$current_cluster_id \
+                  -p ${current_port}:${PORT} \
+                  -v /home/foxy/foxy.conf:/app/foxy.conf \
+                  $DOCKER_USERNAME/foxy-bot:latest
+              "
+
+              cluster_id=$((cluster_id + 1))
+            done
           done
