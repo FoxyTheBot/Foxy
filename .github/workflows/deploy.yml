@@ -56,6 +56,7 @@ jobs:
           SSH_PORT: ${{ secrets.SSH_PORT }}
           SSH_TARGET: ${{ secrets.SSH_TARGET }}
           DOCKER_USERNAME: ${{ env.DOCKER_USERNAME }}
+          PORT: ${{secrets.PORT}}
         run: |
           mkdir -p ~/.ssh
           echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
@@ -73,6 +74,6 @@ jobs:
               docker pull $DOCKER_USERNAME/foxy-bot:latest &&
               docker stop foxy-$cluster_id || true &&
               docker rm foxy-$cluster_id || true &&
-              docker run -d --name foxy-$cluster_id --hostname foxy-$cluster_id -v $SSH_TARGET/foxy.conf:/app/config.conf $DOCKER_USERNAME/foxy-bot:latest
+              docker run -d --name foxy-$cluster_id --hostname foxy-$cluster_id -p ${PORT}:${PORT} -v $SSH_TARGET/foxy.conf:/app/config.conf $DOCKER_USERNAME/foxy-bot:latest
             "
           done
