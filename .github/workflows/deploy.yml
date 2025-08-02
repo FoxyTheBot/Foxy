@@ -79,6 +79,7 @@ jobs:
                 docker stop foxy-$current_cluster_id || true &&
                 docker rm foxy-$current_cluster_id || true &&
                 docker run -d --name foxy-$current_cluster_id --hostname foxy-$current_cluster_id \
+                  --net host \
                   -p ${current_port}:${PORT} \
                   -v /home/foxy/foxy.conf:/app/foxy.conf \
                   $DOCKER_USERNAME/foxy-bot:latest
