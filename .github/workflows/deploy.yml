@@ -55,36 +55,20 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
           DOCKER_USERNAME: ${{ env.DOCKER_USERNAME }}
-          PORT: ${{ secrets.PORT }}
 
         run: |
           mkdir -p ~/.ssh
           echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-
+      
           IFS=',' read -r -a server_array <<< "$SERVERS"
-          cluster_id=1
-
+      
           for SERVER in "${server_array[@]}"; do
             echo "Deploying to $SERVER..."
-
-            for i in 0 1; do
-              current_cluster_id=$cluster_id
-              current_port=$((PORT + i))
-
-              echo "  Deploying cluster $current_cluster_id on port $current_port"
-
-              ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SERVER "
-                docker pull $DOCKER_USERNAME/foxy-bot:latest &&
-                docker stop foxy-$current_cluster_id || true &&
-                docker rm foxy-$current_cluster_id || true &&
-                docker run -d --name foxy-$current_cluster_id --hostname foxy-$current_cluster_id \
-                  --net host \
-                  -p ${current_port}:${PORT} \
-                  -v /home/foxy/foxy.conf:/app/foxy.conf \
-                  $DOCKER_USERNAME/foxy-bot:latest
-              "
-
-              cluster_id=$((cluster_id + 1))
-            done
+      
+            ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SERVER "
+              docker pull $DOCKER_USERNAME/foxy-bot:latest &&
+              docker-compose down &&
+              docker-compose up -d
+            "
           done
