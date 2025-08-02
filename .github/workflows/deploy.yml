@@ -5,34 +5,57 @@ on:
     branches:
       - master
 
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_TOKEN }}
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
       - name: Build Foxy with Gradle
         env:
           GIT_COMMIT: ${{ github.sha }}
           GITHUB_RUN_NUMBER: ${{ github.run_number }}
-        run: |
-          chmod +x ./gradlew
-          ./gradlew :foxy:shadowJar --no-daemon
+        run: ./gradlew :foxy:shadowJar --no-daemon
 
-      - name: Deploying Foxy to clusters
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ env.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: docker/Dockerfile
+          push: true
+          tags: ${{ env.DOCKER_USERNAME }}/foxy-bot:latest
+
+      - name: Deploy Foxy to clusters
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SERVERS: ${{ secrets.SERVERS }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
           SSH_TARGET: ${{ secrets.SSH_TARGET }}
+          DOCKER_USERNAME: ${{ env.DOCKER_USERNAME }}
         run: |
           mkdir -p ~/.ssh
           echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
@@ -41,10 +64,15 @@ jobs:
           IFS=',' read -r -a server_array <<< "$SERVERS"
 
           for index in "${!server_array[@]}"; do
-            echo "Deploying to server $((index + 1)) of ${#server_array[@]}..."
+            cluster_id=$((index + 1))
             SERVER=${server_array[$index]}
-          
-            scp -o StrictHostKeyChecking=no -P $SSH_PORT foxy/build/libs/Foxy-*.jar $SSH_USER@$SERVER:$SSH_TARGET/ > /dev/null 2>&1
-          
-            ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SERVER "echo 'Deploy completed on server $((index + 1))!'"
+
+            echo "Deploying to cluster $cluster_id at $SERVER..."
+
+            ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SERVER "
+              docker pull $DOCKER_USERNAME/foxy-bot:latest &&
+              docker stop foxy-$cluster_id || true &&
+              docker rm foxy-$cluster_id || true &&
+              docker run -d --name foxy-$cluster_id --hostname foxy-$cluster_id -v $SSH_TARGET/foxy.conf:/app/config.conf $DOCKER_USERNAME/foxy-bot:latest
+            "
           done
