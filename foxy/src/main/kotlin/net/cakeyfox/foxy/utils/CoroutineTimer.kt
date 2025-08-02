@@ -8,6 +8,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
+import net.cakeyfox.foxy.utils.logging.task
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.ZoneId
@@ -34,18 +35,18 @@ fun scheduleCoroutineAtFixedRate(
 
         while (true) {
             launch(CoroutineName("$taskName Task")) {
-                logger.info { "Preparing to run task - Is mutex locked? ${mutex.isLocked}" }
+                logger.task { "Preparing to run task - Is mutex locked? ${mutex.isLocked}" }
                 mutex.withLock {
-                    logger.info { "Running task..." }
+                    logger.task { "Running task..." }
                     try {
                         action.run()
                     } catch (e: Throwable) {
                         logger.warn(e) { "Uncaught error when running the task!" }
                     }
-                    logger.info { "Task has finished running!" }
+                    logger.task { "Task has finished running!" }
                 }
             }
-            logger.info { "Waiting $period to execute next task..." }
+            logger.task { "Waiting $period to execute next task..." }
             delay(period)
         }
     }
@@ -57,7 +58,7 @@ fun scheduleCoroutine(
     scope: CoroutineScope,
 ) {
     val logger = KotlinLogging.logger { }
-    logger.info { "Scheduled task: ${action::class.simpleName!!}" }
+    logger.task { "Scheduled task: ${action::class.simpleName!!}" }
 
     val now = LocalDateTime.now(ZoneId.of(Constants.FOXY_TIMEZONE))
     val nextRun = if (now.toLocalTime().isBefore(targetTime)) {

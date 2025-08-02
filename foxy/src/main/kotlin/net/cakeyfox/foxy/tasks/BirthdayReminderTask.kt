@@ -1,7 +1,6 @@
 package net.cakeyfox.foxy.tasks
 
 import dev.minn.jda.ktx.coroutines.await
-import dev.minn.jda.ktx.messages.EmbedBuilder
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.sync.Semaphore
@@ -15,7 +14,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.RunnableCoroutine
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
-import net.dv8tion.jda.api.utils.messages.MessageCreateData
+import net.cakeyfox.foxy.utils.logging.task
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
@@ -30,7 +29,7 @@ class BirthdayReminderTask(
 
     override suspend fun run() {
         try {
-            logger.info { "Running birthday check using ${foxy.foxyZone.id}..." }
+            logger.task { "Running birthday check using ${foxy.foxyZone.id}..." }
             sendMessageToBirthdayPeople()
         } catch (e: Exception) {
             logger.error(e) { "Error sending birthday messages" }
@@ -66,26 +65,20 @@ class BirthdayReminderTask(
 
                         val discordUser = foxy.shardManager.retrieveUserById(user._id).await()
                         if (isBirthdayToday && !hasReceivedThisYear) {
-                            foxy.utils.sendDM(
-                                discordUser,
-                                MessageCreateData.fromEmbeds(
-                                    EmbedBuilder {
-                                        title = pretty(FoxyEmotes.FoxyCake, locale["birthday.title"])
-                                        color = Colors.PURPLE
-                                        description = locale[
-                                            "birthday.message",
-                                            FoxyEmotes.FoxyYay
-                                        ]
-                                    }.build()
-                                )
-                            )
+                            foxy.utils.sendDirectMessage(discordUser) {
+                                embed {
+                                    title = pretty(FoxyEmotes.FoxyCake, locale["birthday.title"])
+                                    color = Colors.PURPLE
+                                    description = locale["birthday.message", FoxyEmotes.FoxyYay]
+                                }
+                            }
 
                             foxy.database.user.updateUser(
                                 user._id,
                                 mapOf("userBirthday.lastMessage" to nowZoned.toInstant())
                             )
 
-                            logger.info { "Sent birthday message to ${user._id}" }
+                            logger.task { "Sent birthday message to ${user._id}" }
                         }
                     } catch (e: Exception) {
                         logger.error(e) { "Error processing birthday message for user ${user._id}" }

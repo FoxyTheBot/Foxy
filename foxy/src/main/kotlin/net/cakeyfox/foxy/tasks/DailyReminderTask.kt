@@ -1,7 +1,6 @@
 package net.cakeyfox.foxy.tasks
 
 import dev.minn.jda.ktx.coroutines.await
-import dev.minn.jda.ktx.messages.EmbedBuilder
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
@@ -13,8 +12,9 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.RunnableCoroutine
+import net.cakeyfox.foxy.utils.linkButton
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
-import net.dv8tion.jda.api.utils.messages.MessageCreateData
+import net.cakeyfox.foxy.utils.logging.task
 import kotlin.time.Duration.Companion.days
 
 class DailyReminderTask(
@@ -34,7 +34,7 @@ class DailyReminderTask(
 
     private suspend fun runDailyReminder() = coroutineScope {
         val now = Clock.System.now()
-        val maxInactivity = now - 30.days
+        val maxInactivity = now - 60.days
         val usersToNotify = foxy.database.user.getExpiredDailies()
             .filter { it.userCakes.lastDaily != null && it.userCakes.lastDaily!! > maxInactivity }
 
@@ -45,23 +45,28 @@ class DailyReminderTask(
                         if (user.userCakes.notifiedForDaily == true) return@withPermit
                         val discordUser = foxy.shardManager.retrieveUserById(user._id).await()
 
-                        foxy.utils.sendDM(
-                            discordUser,
-                            MessageCreateData.fromEmbeds(
-                                EmbedBuilder {
-                                    title = pretty(FoxyEmotes.FoxyHowdy, locale["dailyReminder.embed.title"])
-                                    description = locale["dailyReminder.embed.description", user._id]
-                                    color = Colors.FOXY_DEFAULT
-                                    thumbnail = Constants.DAILY_EMOJI
-                                }.build()
+                        foxy.utils.sendDirectMessage(discordUser) {
+                            embed {
+                                title = pretty(FoxyEmotes.FoxyHowdy, locale["dailyReminder.embed.title"])
+                                description = locale["dailyReminder.embed.description", user._id]
+                                color = Colors.FOXY_DEFAULT
+                                thumbnail = Constants.DAILY_EMOJI
+                            }
+
+                            actionRow(
+                                linkButton(
+                                    FoxyEmotes.FoxyDaily,
+                                    locale["dailyReminder.button"],
+                                    Constants.DAILY
+                                )
                             )
-                        )
+                        }
 
                         foxy.database.user.updateUser(
                             user._id,
                             mapOf("userCakes.notifiedForDaily" to true)
                         )
-                        logger.info { "Sent daily reminder to ${user._id}" }
+                        logger.task { "Sent daily reminder to ${user._id}" }
                     } catch (e: Exception) {
                         logger.error(e) { "Error running daily reminder task" }
                     }

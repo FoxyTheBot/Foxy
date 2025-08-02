@@ -1,6 +1,8 @@
 package net.cakeyfox.foxy.utils
 
 import dev.minn.jda.ktx.coroutines.await
+import dev.minn.jda.ktx.messages.InlineMessage
+import dev.minn.jda.ktx.messages.MessageCreateBuilder
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.delay
@@ -18,7 +20,6 @@ import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.exceptions.RateLimitedException
 import net.dv8tion.jda.api.interactions.DiscordLocale
-import net.dv8tion.jda.api.utils.messages.MessageCreateData
 import java.text.NumberFormat
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -70,20 +71,23 @@ class FoxyUtils(
         return convertedDate
     }
 
-    suspend fun sendDM(user: User, message: MessageCreateData, delayMs: Long = 1500L) {
+    suspend fun sendDirectMessage(user: User, delayMs: Long = 1500L, block: InlineMessage<*>.() -> Unit) {
         if (user.isBot || user.isSystem) return
+        val message = MessageCreateBuilder {
+            apply(block)
+        }
 
         try {
             val channel = user.openPrivateChannel().await()
             if (channel.canTalk()) {
-                channel.sendMessage(message).await()
+                channel.sendMessage(message.build()).await()
                 delay(delayMs)
             } else logger.warn { "Can't send message to ${user.id}! Skipping..." }
         } catch (e: RateLimitedException) {
             val retryAfter = e.retryAfter
             logger.warn { "Rate limited. Retrying after $retryAfter ms for user ${user.id}" }
             delay(retryAfter)
-            sendDM(user, message, delayMs)
+            sendDirectMessage(user, delayMs) { block() }
         } catch (e: Exception) {
             logger.error { "Error while sending DM to user ${user.id}, is DM closed? ${e.message}" }
         }

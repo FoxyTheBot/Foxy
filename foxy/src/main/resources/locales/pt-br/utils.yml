@@ -34,7 +34,10 @@ tax:
 
       Vou continuar pegando essa taxa toda semana até você voltar a pegar seu daily.
 
-      Não esquece de pegar seu daily [clicando aqui]({2}) para proteger seus Cakes!
+      Não esquece de pegar seu daily para proteger seus Cakes!
+
+    button: "Resgatar Recompensa Diária"
+
     warning:
       title: "Pegue seu daily, ou perca seus Cakes!"
       description: |
@@ -42,7 +45,7 @@ tax:
 
         Eu estou de olho nos seus **{3} Cakes** e, se você não pegar seu daily, vou precisar pegar **{4} Cakes** de você (taxa de 15%) para ajudar a manter tudo em ordem.
 
-        Mas não precisa se preocupar! É só pegar seu daily [clicando aqui]({5}) que você não perde nadinha.
+        Mas não precisa se preocupar! É só pegar seu daily que você não perde nadinha.
 
         Se continuar sem pegar, essa taxa vai ser cobrada toda semana até você voltar a pegar o daily.
 
@@ -65,7 +68,7 @@ upvote:
     message: |
       O-oi! Você já pode votar novamente em mim!
       
-      Lembrando que você pode votar a cada 12 horas, e a cada voto você ganha **1500 cakes**! Sem falar que isso também me ajuda a crescer :3 <:foxy_yay:1070906796274888795>
+      Lembrando que você pode votar a cada 12 horas, e a cada voto você ganha **1.500 cakes**! Sem falar que isso também me ajuda a crescer :3 <:foxy_yay:1070906796274888795>
     footer: "Isso é um teste, se você recebeu isso, my bad ai bro"
 
 dailyReminder:
@@ -76,4 +79,6 @@ dailyReminder:
       
       Pegue sua recompensa diária antes que ela se perca!
       
-      **Pegue sua recompensa diária clicando [aqui](https://foxybot.xyz/br/daily)**
+      **Lembre-se! Se você tiver mais de 100.000 Cakes e não pegar seu prêmio diário em 30 dias, você perderá 15% dos seus Cakes.**
+
+  button: "Resgatar Recompensa Diária"

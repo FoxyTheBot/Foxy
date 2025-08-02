@@ -1,7 +1,6 @@
 package net.cakeyfox.foxy.tasks
 
 import dev.minn.jda.ktx.coroutines.await
-import dev.minn.jda.ktx.messages.EmbedBuilder
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
@@ -12,8 +11,9 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.RunnableCoroutine
+import net.cakeyfox.foxy.utils.linkButton
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
-import net.dv8tion.jda.api.utils.messages.MessageCreateData
+import net.cakeyfox.foxy.utils.logging.task
 
 class UpvoteReminderTask(
     private val foxy: FoxyInstance
@@ -24,7 +24,7 @@ class UpvoteReminderTask(
 
     override suspend fun run() {
         try {
-            logger.info { "Running upvote reminder task..." }
+            logger.task { "Running upvote reminder task..." }
             checkVotes()
         } catch (e: Exception) {
             logger.error(e) { "Error running upvote reminder task" }
@@ -41,18 +41,23 @@ class UpvoteReminderTask(
                         if (user.notifiedForVote == true) return@withPermit
                         val discordUser = foxy.shardManager.retrieveUserById(user._id).await()
 
-                        foxy.utils.sendDM(
-                            discordUser,
-                            MessageCreateData.fromEmbeds(
-                                EmbedBuilder {
-                                    title = pretty(FoxyEmotes.FoxyYay, locale["upvote.reminder.title"])
-                                    description = locale["upvote.reminder.message", user._id]
-                                    footer(locale["upvote.reminder.footer"])
-                                    color = Colors.FOXY_DEFAULT
-                                    thumbnail = Constants.FOXY_WOW
-                                }.build()
+                        foxy.utils.sendDirectMessage(discordUser) {
+                            embed {
+                                title = pretty(FoxyEmotes.FoxyYay, locale["upvote.reminder.title"])
+                                description = locale["upvote.reminder.message", user._id]
+                                footer(locale["upvote.reminder.footer"])
+                                color = Colors.FOXY_DEFAULT
+                                thumbnail = Constants.FOXY_WOW
+                            }
+
+                            actionRow(
+                                linkButton(
+                                    FoxyEmotes.FoxyYay,
+                                    locale["upvote.reminderButton"],
+                                    Constants.UPVOTE_URL
+                                )
                             )
-                        )
+                        }
 
                         foxy.database.user.updateUser(
                             user._id,
@@ -61,7 +66,7 @@ class UpvoteReminderTask(
                             )
                         )
 
-                        logger.info { "Sent upvote reminder to ${user._id}" }
+                        logger.task { "Sent upvote reminder to ${user._id}" }
                     } catch (e: Exception) {
                         logger.error(e) { "Error sending upvote reminder to user ${user._id}" }
                     }

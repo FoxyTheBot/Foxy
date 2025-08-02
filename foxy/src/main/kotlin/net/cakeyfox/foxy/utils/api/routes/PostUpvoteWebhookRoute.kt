@@ -20,7 +20,6 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.dv8tion.jda.api.utils.messages.MessageCreateData
-import java.time.Instant
 
 class PostUpvoteWebhookRoute {
     private val logger = KotlinLogging.logger { }
@@ -58,20 +57,17 @@ class PostUpvoteWebhookRoute {
 
             try {
                 delay(500)
-                foxy.utils.sendDM(
-                    discordUser,
-                    MessageCreateData.fromEmbeds(
-                        EmbedBuilder {
-                            title = pretty(FoxyEmotes.FoxyHowdy, locale["upvote.title"])
-                            description = locale["upvote.thanksForVoting", userVotes.toString()]
-                            thumbnail = Constants.DAILY_EMOJI
-                            color = Colors.FOXY_DEFAULT
-                            footer {
-                                title = locale["upvote.footer"]
-                            }
-                        }.build()
-                    )
-                )
+                foxy.utils.sendDirectMessage(discordUser) {
+                    embed {
+                        title = pretty(FoxyEmotes.FoxyHowdy, locale["upvote.title"])
+                        description = locale["upvote.thanksForVoting", userVotes.toString()]
+                        thumbnail = Constants.DAILY_EMOJI
+                        color = Colors.FOXY_DEFAULT
+                        footer {
+                            title = locale["upvote.footer"]
+                        }
+                    }
+                }
 
                 call.respond(HttpStatusCode.OK)
             } catch (ex: Exception) {
