@@ -74,6 +74,6 @@ jobs:
               docker pull $DOCKER_USERNAME/foxy-bot:latest &&
               docker stop foxy-$cluster_id || true &&
               docker rm foxy-$cluster_id || true &&
-              docker run -d --name foxy-$cluster_id --hostname foxy-$cluster_id -p ${PORT}:${PORT} -v $SSH_TARGET/foxy.conf:/app/config.conf $DOCKER_USERNAME/foxy-bot:latest
+              docker run -d --name foxy-$cluster_id --hostname foxy-$cluster_id -p ${PORT}:${PORT} -v /home/foxy/foxy.conf:/app/foxy.conf $DOCKER_USERNAME/foxy-bot:latest
             "
           done
