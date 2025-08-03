@@ -99,21 +99,30 @@ class FoxyInstance(
             GatewayIntent.GUILD_EXPRESSIONS,
             GatewayIntent.DIRECT_MESSAGES
         ).apply {
-                if (baseUrl != null) {
-                    logger.info { "Using Discord base URL: $baseUrl" }
+            if (baseUrl != null) {
+                logger.info { "Using Discord base URL: $baseUrl" }
 
-                    setRestConfig(RestConfig().setBaseUrl("${baseUrl.removeSuffix("/")}/api/v$restVersion/"))
-                }
+                setRestConfig(RestConfig().setBaseUrl("${baseUrl.removeSuffix("/")}/api/v$restVersion/"))
             }
+        }
             .addEventListeners(
                 GuildListener(this),
                 InteractionsListener(this),
                 MessageListener(this)
             )
             .setAutoReconnect(true)
-            .setStatus(OnlineStatus.IDLE)
-            .setActivity(Activity.customStatus("✨ | Foxy is restarting..."))
+            .setStatus(OnlineStatus.fromKey(database.bot.getBotSettings().status))
+            .setActivity(
+                Activity.customStatus(
+                    Constants.getDefaultActivity(
+                        database.bot.getActivity(),
+                        config.environment,
+                        currentClusterName
+                    )
+                )
+            )
             .setShardsTotal(config.discord.totalShards)
+
             .setShards(currentCluster.minShard, currentCluster.maxShard)
             .setMemberCachePolicy(MemberCachePolicy.ALL)
             .setChunkingFilter(ChunkingFilter.NONE)
@@ -131,17 +140,6 @@ class FoxyInstance(
 
         dblStatsSender = DblStatsSender(this)
         leaderboardManager = LeaderboardManager(this)
-
-        shardManager.setStatus(OnlineStatus.fromKey(database.bot.getBotSettings().status))
-        shardManager.setActivity(
-            Activity.customStatus(
-                Constants.getDefaultActivity(
-                    database.bot.getActivity(),
-                    config.environment,
-                    currentClusterName
-                )
-            )
-        )
 
         leaderboardManager.startAutoRefresh()
         if (currentCluster.isMasterCluster) TasksUtils.launchTasks(this)
