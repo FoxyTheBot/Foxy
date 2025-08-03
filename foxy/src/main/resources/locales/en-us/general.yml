@@ -102,11 +102,11 @@ commands:
         description: Generates a video with a scene from the movie 8 Mile and custom
           audio
         8mile:
-          name: 8mile
+          name: eminem
           description: Generates a video with a scene from the movie 8 Mile and custom
             audio
       8mile:
-        name: 8mile
+        name: eminem
         description: Generates a video with a scene from the movie 8 Mile and custom
           audio
         options:
