@@ -83,6 +83,7 @@ class FoxyInstance(
         utils = FoxyUtils(this)
         interactionManager = FoxyComponentManager(this)
         artistryClient = ArtistryClient(config, config.others.artistry.key)
+        foxyInternalAPI = FoxyInternalAPI(this)
         httpClient = HttpClient(CIO) {
             install(HttpTimeout) { requestTimeoutMillis = 60_000 }
             install(ContentNegotiation) { json() }
@@ -129,7 +130,6 @@ class FoxyInstance(
         this.commandHandler.handle()
 
         dblStatsSender = DblStatsSender(this)
-        foxyInternalAPI = FoxyInternalAPI(this)
         leaderboardManager = LeaderboardManager(this)
 
         shardManager.setStatus(OnlineStatus.fromKey(database.bot.getBotSettings().status))
