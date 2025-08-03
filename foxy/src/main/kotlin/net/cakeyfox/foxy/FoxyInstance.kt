@@ -97,8 +97,7 @@ class FoxyInstance(
             GatewayIntent.SCHEDULED_EVENTS,
             GatewayIntent.GUILD_EXPRESSIONS,
             GatewayIntent.DIRECT_MESSAGES
-        )
-            .apply {
+        ).apply {
                 if (baseUrl != null) {
                     logger.info { "Using Discord base URL: $baseUrl" }
 
