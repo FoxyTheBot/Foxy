@@ -33,6 +33,7 @@ russianRoulette:
     youDie: You're dead! The bullet was in the chamber {0}.
     youSurvived: You survived! The bullet was in the chamber {0}.
 slots:
+  notEnoughCakes: "You don't have enough cakes"
   embed:
     title: Foxy Slots
     winnings: 'You won:'

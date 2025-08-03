@@ -34,6 +34,7 @@ russianRoulette:
     youSurvived: "Você sobreviveu! A bala estava na câmara {0}."
 
 slots:
+  notEnoughCakes: "Você não tem Cakes o suficiente"
   embed:
     title: "Caça-Níqueis da Foxy"
     winnings: "Você ganhou:"
