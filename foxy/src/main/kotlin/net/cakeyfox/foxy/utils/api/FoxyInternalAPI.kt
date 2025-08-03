@@ -36,6 +36,11 @@ class FoxyInternalAPI(
             get("/") {
                 call.respondRedirect(Constants.FOXY_WEBSITE)
             }
+
+            get("/health") {
+                call.respondText("OK")
+            }
+
             GetUserAvatar().apply { getUserAvatar(foxy) }
             PostUpvoteWebhookRoute().apply { postUpvoteWebhook(foxy) }
 

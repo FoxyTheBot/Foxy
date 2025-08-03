@@ -16,6 +16,7 @@ data class FoxyConfig(
         val guildId: String,
         val applicationId: String,
         val token: String,
+        val baseUrl: String? = null,
         val totalShards: Int,
         val getClusterIdFromHostname: Boolean,
         val replicaId: Int,

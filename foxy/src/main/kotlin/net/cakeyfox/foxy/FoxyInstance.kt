@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy
 
+import com.neovisionaries.ws.client.WebSocketFactory
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
@@ -29,14 +30,17 @@ import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
 import net.cakeyfox.foxy.utils.threads.ThreadUtils
 import net.cakeyfox.foxy.leaderboard.LeaderboardManager
 import net.cakeyfox.foxy.utils.TasksUtils
+import net.dv8tion.jda.api.JDAInfo
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.requests.GatewayIntent
+import net.dv8tion.jda.api.requests.RestConfig
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
 import net.dv8tion.jda.api.sharding.ShardManager
 import net.dv8tion.jda.api.utils.ChunkingFilter
 import net.dv8tion.jda.api.utils.MemberCachePolicy
 import net.dv8tion.jda.api.utils.cache.CacheFlag
+import okhttp3.OkHttpClient
 import kotlin.concurrent.thread
 
 class FoxyInstance(
@@ -69,6 +73,8 @@ class FoxyInstance(
     val coroutineDispatcher = coroutineExecutor.asCoroutineDispatcher()
     val foxyZone = TimeZone.currentSystemDefault()
     val tasksScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+    val restVersion = JDAInfo.DISCORD_REST_VERSION
+    val baseUrl = config.discord.baseUrl
 
     suspend fun start() {
         environment = config.environment
@@ -83,17 +89,20 @@ class FoxyInstance(
         }
 
         database.start()
+
         shardManager = DefaultShardManagerBuilder.create(
             GatewayIntent.GUILD_MEMBERS,
             GatewayIntent.MESSAGE_CONTENT,
             GatewayIntent.GUILD_MESSAGES,
             GatewayIntent.SCHEDULED_EVENTS,
-            GatewayIntent.GUILD_EXPRESSIONS
-        ).addEventListeners(
-            GuildListener(this),
-            InteractionsListener(this),
-            MessageListener(this)
+            GatewayIntent.GUILD_EXPRESSIONS,
+            GatewayIntent.DIRECT_MESSAGES
         )
+            .addEventListeners(
+                GuildListener(this),
+                InteractionsListener(this),
+                MessageListener(this)
+            )
             .setAutoReconnect(true)
             .setStatus(OnlineStatus.IDLE)
             .setActivity(Activity.customStatus("✨ | Foxy is restarting..."))
@@ -109,6 +118,13 @@ class FoxyInstance(
             )
             .setToken(config.discord.token)
             .setEnableShutdownHook(false)
+            .apply {
+                if (baseUrl != null) {
+                    logger.info { "Using Discord base URL: $baseUrl" }
+
+                    setRestConfig(RestConfig().setBaseUrl("${baseUrl.removeSuffix("/")}/api/v$restVersion/"))
+                }
+            }
             .build()
 
         this.commandHandler.handle()
