@@ -98,11 +98,6 @@ class FoxyInstance(
             GatewayIntent.GUILD_EXPRESSIONS,
             GatewayIntent.DIRECT_MESSAGES
         )
-            .addEventListeners(
-                GuildListener(this),
-                InteractionsListener(this),
-                MessageListener(this)
-            )
             .apply {
                 if (baseUrl != null) {
                     logger.info { "Using Discord base URL: $baseUrl" }
@@ -110,6 +105,11 @@ class FoxyInstance(
                     setRestConfig(RestConfig().setBaseUrl("${baseUrl.removeSuffix("/")}/api/v$restVersion/"))
                 }
             }
+            .addEventListeners(
+                GuildListener(this),
+                InteractionsListener(this),
+                MessageListener(this)
+            )
             .setAutoReconnect(true)
             .setStatus(OnlineStatus.IDLE)
             .setActivity(Activity.customStatus("✨ | Foxy is restarting..."))
