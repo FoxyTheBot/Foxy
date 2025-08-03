@@ -23,14 +23,12 @@ class MagicCommand : FoxyCommandDeclarationWrapper {
             InteractionContextType.PRIVATE_CHANNEL
         )
 
-        subCommandGroup("eminem") {
-            subCommand("8mile") {
-                executor = EminemExecutor()
-                addOption(
-                    opt(OptionType.ATTACHMENT, "video_or_audio", true),
-                    isSubCommand = true
-                )
-            }
+        subCommand("eminem") {
+            executor = EminemExecutor()
+            addOption(
+                opt(OptionType.ATTACHMENT, "video_or_audio", true),
+                isSubCommand = true
+            )
         }
 
         subCommand("antes_que_vire_moda") {

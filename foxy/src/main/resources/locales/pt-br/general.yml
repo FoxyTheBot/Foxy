@@ -105,12 +105,6 @@ commands:
       eminem:
         name: "eminem"
         description: "Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
-        8mile:
-          name: "eminem"
-          description: "Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
-      8mile:
-        name: "eminem"
-        description: "Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
         options:
           video_or_audio:
             name: "video_ou_audio"
