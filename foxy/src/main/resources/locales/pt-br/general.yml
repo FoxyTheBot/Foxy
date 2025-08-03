@@ -99,10 +99,6 @@ commands:
       name: "daily"
       description: "Receba seus cakes diários"
 
-    ping:
-      name: "ping"
-      description: "Veja a latência da Foxy"
-
     magic:
       name: "mágica"
       description: "Comandos divertidos para você se divertir com seus amigos"
@@ -298,6 +294,9 @@ commands:
       ping:
         name: "ping"
         description: "Verifica a latência do bot"
+      clusters:
+        name: "clusters"
+        description: "Veja as informações de todos os meus clusters"
 
     aboutme:
       name: "sobremim"

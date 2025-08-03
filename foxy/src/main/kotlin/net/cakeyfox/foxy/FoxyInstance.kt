@@ -122,7 +122,6 @@ class FoxyInstance(
                 )
             )
             .setShardsTotal(config.discord.totalShards)
-
             .setShards(currentCluster.minShard, currentCluster.maxShard)
             .setMemberCachePolicy(MemberCachePolicy.ALL)
             .setChunkingFilter(ChunkingFilter.NONE)

@@ -277,6 +277,10 @@ commands:
       ping:
         name: ping
         description: Check bot latency
+      clusters:
+        name: "clusters"
+        description: Check the information and latency of all my clusters
+
     aboutme:
       name: about_me
       description: Commands related to your profile

@@ -12,6 +12,7 @@ import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.serializable.data.CustomGuildInfo
 import net.cakeyfox.serializable.data.CustomMemberResponse
+import net.cakeyfox.serializable.data.cluster.ClusterInfo
 import net.cakeyfox.serializable.database.utils.FoxyConfig
 import org.jetbrains.annotations.TestOnly
 import java.util.concurrent.TimeUnit
@@ -137,6 +138,15 @@ object ClusterUtils {
                 // If user is not in the guild, return empty list
                 return emptyList()
             }
+        }
+    }
+
+    suspend fun getClusterInfo(foxy: FoxyInstance, cluster: FoxyConfig.Cluster): ClusterInfo? {
+        return runCatching {
+            val jsonString = getFromAnotherCluster(foxy, cluster, "/api/v1/info") ?: return null
+            json.decodeFromString<ClusterInfo>(jsonString)
+        }.getOrElse {
+            null
         }
     }
 
