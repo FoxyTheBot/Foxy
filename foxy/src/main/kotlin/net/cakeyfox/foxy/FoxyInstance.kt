@@ -103,6 +103,13 @@ class FoxyInstance(
                 InteractionsListener(this),
                 MessageListener(this)
             )
+            .apply {
+                if (baseUrl != null) {
+                    logger.info { "Using Discord base URL: $baseUrl" }
+
+                    setRestConfig(RestConfig().setBaseUrl("${baseUrl.removeSuffix("/")}/api/v$restVersion/"))
+                }
+            }
             .setAutoReconnect(true)
             .setStatus(OnlineStatus.IDLE)
             .setActivity(Activity.customStatus("✨ | Foxy is restarting..."))
@@ -118,13 +125,6 @@ class FoxyInstance(
             )
             .setToken(config.discord.token)
             .setEnableShutdownHook(false)
-            .apply {
-                if (baseUrl != null) {
-                    logger.info { "Using Discord base URL: $baseUrl" }
-
-                    setRestConfig(RestConfig().setBaseUrl("${baseUrl.removeSuffix("/")}/api/v$restVersion/"))
-                }
-            }
             .build()
 
         this.commandHandler.handle()
