@@ -18,12 +18,14 @@ class FoxyCommandDeclarationBuilder(
     var isPrivate: Boolean,
     var category: String,
     val availableForEarlyAccess: Boolean = false,
+    var aliases: List<String> = emptyList(),
+    var supportsLegacy: Boolean = false,
     var integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
     var interactionContexts: List<InteractionContextType> = listOf(InteractionContextType.GUILD),
     var baseName: String? = name,
-    var executor: FoxySlashCommandExecutor? = null
+    var executor: UnleashedCommandExecutor? = null
 ) {
-    private val subCommands = mutableListOf<FoxyCommandDeclarationBuilder>()
+    val subCommands = mutableListOf<FoxyCommandDeclarationBuilder>()
     private val subCommandGroups = mutableListOf<FoxyCommandGroupBuilder>()
     private val permissions = mutableListOf<Permission>()
     private val commandOptions = mutableListOf<OptionData>()
@@ -45,6 +47,8 @@ class FoxyCommandDeclarationBuilder(
             isPrivate,
             category,
             availableForEarlyAccess,
+            aliases,
+            supportsLegacy,
             integrationType,
             interactionContexts
         )
@@ -122,7 +126,7 @@ class FoxyCommandDeclarationBuilder(
     }
 
     fun getSubCommand(name: String): FoxyCommandDeclarationBuilder? {
-        return subCommands.find { it.name == name }
+        return subCommands.find { it.name == name || it.aliases.contains(name) }
     }
 
     fun getSubCommandGroup(name: String): FoxyCommandGroupBuilder? {

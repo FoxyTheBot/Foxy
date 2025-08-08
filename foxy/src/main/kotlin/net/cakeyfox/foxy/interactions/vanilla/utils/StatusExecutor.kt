@@ -2,13 +2,13 @@ package net.cakeyfox.foxy.interactions.vanilla.utils
 
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import java.lang.management.ManagementFactory
 
-class StatusExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class StatusExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         val mb = 1024 * 1024
         val runtime = Runtime.getRuntime()
         val threadMXBean = ManagementFactory.getThreadMXBean()

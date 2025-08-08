@@ -16,6 +16,8 @@ class DblCommand : FoxyCommandDeclarationWrapper {
 
         integrationType = listOf(IntegrationType.GUILD_INSTALL, IntegrationType.USER_INSTALL)
         subCommand("vote") {
+            supportsLegacy = true
+            aliases = listOf("vote", "votar", "upvote", "dbl")
             executor = DblExecutor()
         }
     }

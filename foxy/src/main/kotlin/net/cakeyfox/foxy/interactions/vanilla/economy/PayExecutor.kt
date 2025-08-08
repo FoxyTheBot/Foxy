@@ -1,16 +1,29 @@
 package net.cakeyfox.foxy.interactions.vanilla.economy
 
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
-class PayExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
-        val userToPay = context.getOption<User>("user")!!
-        val amount = context.getOption<Long>("amount")!!
+class PayExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
+        val userToPay = context.getOption("user", 0, User::class.java)
+        val amount = context.getOption("amount", 1, Long::class.java)
+
+        if (amount == null) {
+            return context.reply {
+                content = pretty(FoxyEmotes.FoxyCry, context.locale["pay.invalidAmount"])
+            }
+        }
+
+        if (userToPay == null) {
+            return context.reply {
+                content = pretty(FoxyEmotes.FoxyCry, context.locale["pay.cantFindThisUser"])
+            }
+        }
+
         val formattedAmount = context.utils.formatUserBalance(amount, context.locale)
         val userBalance = context.getAuthorData().userCakes.balance.toLong() - amount
         val formattedBalance = context.utils.formatUserBalance(userBalance, context.locale)
@@ -70,7 +83,7 @@ class PayExecutor : FoxySlashCommandExecutor() {
         }
     }
 
-    private suspend fun isAbleToPay(context: FoxyInteractionContext, amount: Long): Boolean {
+    private suspend fun isAbleToPay(context: CommandContext, amount: Long): Boolean {
         if (amount <= 0) {
             context.reply {
                 content = pretty(

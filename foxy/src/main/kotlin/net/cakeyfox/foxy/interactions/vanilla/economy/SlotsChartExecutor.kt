@@ -1,11 +1,11 @@
 package net.cakeyfox.foxy.interactions.vanilla.economy
 
 import net.cakeyfox.common.Colors
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 
-class SlotsChartExecutor : FoxySlashCommandExecutor() {
+class SlotsChartExecutor : UnleashedCommandExecutor() {
     companion object {
         val multipliers = mapOf(
             "🍒" to 2,
@@ -17,7 +17,7 @@ class SlotsChartExecutor : FoxySlashCommandExecutor() {
         )
     }
 
-    override suspend fun execute(context: FoxyInteractionContext) {
+    override suspend fun execute(context: CommandContext) {
         context.reply {
             embed {
                 title = pretty("🎰", context.locale["slots.chart.embed.title"])

@@ -4,7 +4,7 @@ import com.github.benmanes.caffeine.cache.Caffeine
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.ComponentId
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
+import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.entities.emoji.Emoji
@@ -27,13 +27,13 @@ class FoxyComponentManager(
     val componentCallbacks = Caffeine
         .newBuilder()
         .expireAfterWrite(delay.toJavaDuration())
-        .build<UUID, suspend (FoxyInteractionContext) -> Unit>()
+        .build<UUID, suspend (CommandContext) -> Unit>()
         .asMap()
 
     val stringSelectMenuCallbacks = Caffeine
         .newBuilder()
         .expireAfterWrite(delay.toJavaDuration())
-        .build<UUID, suspend (FoxyInteractionContext, List<String>) -> Unit>()
+        .build<UUID, suspend (CommandContext, List<String>) -> Unit>()
         .asMap()
 
     fun createButtonForUser(
@@ -42,7 +42,7 @@ class FoxyComponentManager(
         emoji: String? = null,
         label: String = "",
         builder: (ButtonBuilder).() -> (Unit) = {},
-        callback: suspend (FoxyInteractionContext) -> (Unit)
+        callback: suspend (CommandContext) -> (Unit)
     ) = createButton(targetUser.idLong, style, emoji, label, builder, callback)
 
     private fun createButton(
@@ -51,7 +51,7 @@ class FoxyComponentManager(
         emoji: String? = null,
         label: String = "",
         builder: (ButtonBuilder).() -> (Unit) = {},
-        callback: suspend (FoxyInteractionContext) -> (Unit)
+        callback: suspend (CommandContext) -> (Unit)
     ) = button(
         style,
         emoji,
@@ -77,7 +77,7 @@ class FoxyComponentManager(
         emoji: String? = null,
         label: String = "",
         builder: (ButtonBuilder).() -> (Unit) = {},
-        callback: suspend (FoxyInteractionContext) -> (Unit)
+        callback: suspend (CommandContext) -> (Unit)
     ): Button {
         val buttonId = UUID.randomUUID()
         componentCallbacks[buttonId] = callback
@@ -95,7 +95,7 @@ class FoxyComponentManager(
     fun createModal(
         title: String,
         builder: (ModalBuilder).() -> (Unit) = {},
-        callback: suspend (FoxyInteractionContext) -> (Unit)
+        callback: suspend (CommandContext) -> (Unit)
     ) = modal(
         title,
         builder,
@@ -106,7 +106,7 @@ class FoxyComponentManager(
     fun stringSelectMenuForUser(
         target: User,
         builder: (StringSelectMenu.Builder).() -> (Unit) = {},
-        callback: suspend (FoxyInteractionContext, List<String>) -> (Unit)
+        callback: suspend (CommandContext, List<String>) -> (Unit)
     ) = stringSelectMenu(
         builder
     ) { context, strings ->
@@ -125,7 +125,7 @@ class FoxyComponentManager(
 
     private fun stringSelectMenu(
         builder: (StringSelectMenu.Builder).() -> (Unit) = {},
-        callback: suspend (FoxyInteractionContext, List<String>) -> (Unit)
+        callback: suspend (CommandContext, List<String>) -> (Unit)
     ): StringSelectMenu {
         val selectMenuId = UUID.randomUUID()
         stringSelectMenuCallbacks[selectMenuId] = callback
@@ -137,7 +137,7 @@ class FoxyComponentManager(
     private fun modal(
         title: String,
         builder: (ModalBuilder).() -> (Unit) = {},
-        callback: suspend (FoxyInteractionContext) -> (Unit)
+        callback: suspend (CommandContext) -> (Unit)
     ): Modal {
         val modalId = UUID.randomUUID()
         componentCallbacks[modalId] = callback

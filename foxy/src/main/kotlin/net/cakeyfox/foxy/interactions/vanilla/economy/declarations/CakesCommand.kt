@@ -19,6 +19,8 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
 
         subCommand("atm") {
             executor = AtmExecutor()
+            supportsLegacy = true
+            aliases = listOf("atm", "cakes")
             addOptions(
                 listOf(
                     opt(OptionType.USER, "user")
@@ -28,9 +30,16 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
             )
         }
 
-        subCommand("top") { executor = TopCakesExecutor() }
+        subCommand("rank") {
+            supportsLegacy = true
+            aliases = listOf("topcakes")
+            executor = TopCakesExecutor()
+        }
 
         subCommand("pay") {
+            supportsLegacy = true
+            aliases = listOf("pagar")
+
             addOptions(
                 listOf(
                     opt(OptionType.USER, "user", true),

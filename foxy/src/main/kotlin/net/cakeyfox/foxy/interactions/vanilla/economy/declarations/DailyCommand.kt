@@ -15,6 +15,8 @@ class DailyCommand : FoxyCommandDeclarationWrapper {
         )
 
         integrationType = listOf(IntegrationType.GUILD_INSTALL, IntegrationType.USER_INSTALL)
+
+        supportsLegacy = true
         executor = DailyExecutor()
     }
 }

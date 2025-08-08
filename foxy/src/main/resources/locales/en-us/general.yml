@@ -1,5 +1,5 @@
 ---
-greetings: Howdy {0}! My name is Foxy, my prefix on this server is `/`, Use `/help`
+greetings: Howdy {0}! My name is Foxy, my prefix on this server is `{1}`, Use `{1}help`
   for help!
 commands:
   onlyUserCanInteractWithThisComponent: Hey! What are you doing? You can't do this!
@@ -237,8 +237,8 @@ commands:
           from:
             name: transaction_type
             description: The type of transaction you want to make
-      top:
-        name: top
+      rank:
+        name: rank
         description: See who the richest users are.
       pay:
         name: pay

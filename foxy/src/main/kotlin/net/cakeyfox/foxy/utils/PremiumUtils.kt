@@ -1,12 +1,12 @@
 package net.cakeyfox.foxy.utils
 
 import kotlinx.datetime.Clock
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
+import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.database.data.FoxyUser
 import kotlin.time.Duration.Companion.days
 
 object PremiumUtils {
-    suspend fun eligibleForEarlyAccess(context: FoxyInteractionContext): Boolean {
+    suspend fun eligibleForEarlyAccess(context: CommandContext): Boolean {
         val user = context.database.user.getFoxyProfile(context.user.id)
         var isEligible = false
 

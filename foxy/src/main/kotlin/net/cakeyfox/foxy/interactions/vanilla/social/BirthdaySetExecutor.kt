@@ -2,54 +2,57 @@ package net.cakeyfox.foxy.interactions.vanilla.social
 
 import kotlinx.datetime.Instant
 import kotlinx.datetime.atStartOfDayIn
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import kotlinx.datetime.toJavaInstant
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.pretty
 
-class BirthdaySetExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
-        try {
-            val userBirthday = context.getOption<String>("date")!!
-            val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+class BirthdaySetExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
+        val userBirthday = context.getOption("date", 0, String::class.java)
 
-            val parsedJavaDate = LocalDate.parse(userBirthday, formatter)
+        if (userBirthday != null) {
+            try {
+                val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
 
-            val parsedKxDate = kotlinx.datetime.LocalDate(
-                year = parsedJavaDate.year,
-                monthNumber = parsedJavaDate.monthValue,
-                dayOfMonth = parsedJavaDate.dayOfMonth
-            )
-            val birthdayToInstantKx: Instant = parsedKxDate.atStartOfDayIn(context.foxy.foxyZone)
-            val birthdayToInstantJava = birthdayToInstantKx.toJavaInstant()
+                val parsedJavaDate = LocalDate.parse(userBirthday, formatter)
 
-            context.reply(true) {
-                content = pretty(FoxyEmotes.FoxyCake, context.locale["birthday.set.changed", userBirthday])
-            }
-
-            if (context.getAuthorData().userBirthday == null) {
-                context.database.user.updateUser(
-                    context.user.id,
-                    mapOf(
-                        "userBirthday.birthday" to birthdayToInstantJava,
-                        "userBirthday.lastMessage" to null,
-                        "userBirthday.isEnabled" to true
-                    )
+                val parsedKxDate = kotlinx.datetime.LocalDate(
+                    year = parsedJavaDate.year,
+                    monthNumber = parsedJavaDate.monthValue,
+                    dayOfMonth = parsedJavaDate.dayOfMonth
                 )
-            } else {
-                context.database.user.updateUser(
-                    context.user.id,
-                    mapOf(
-                        "userBirthday.birthday" to birthdayToInstantJava
+                val birthdayToInstantKx: Instant = parsedKxDate.atStartOfDayIn(context.foxy.foxyZone)
+                val birthdayToInstantJava = birthdayToInstantKx.toJavaInstant()
+
+                context.reply(true) {
+                    content = pretty(FoxyEmotes.FoxyCake, context.locale["birthday.set.changed", userBirthday])
+                }
+
+                if (context.getAuthorData().userBirthday == null) {
+                    context.database.user.updateUser(
+                        context.user.id,
+                        mapOf(
+                            "userBirthday.birthday" to birthdayToInstantJava,
+                            "userBirthday.lastMessage" to null,
+                            "userBirthday.isEnabled" to true
+                        )
                     )
-                )
-            }
-        } catch(_: Exception) {
-            context.reply {
-                content = pretty(FoxyEmotes.FoxyCry, context.locale["birthday.set.cantSet"])
+                } else {
+                    context.database.user.updateUser(
+                        context.user.id,
+                        mapOf(
+                            "userBirthday.birthday" to birthdayToInstantJava
+                        )
+                    )
+                }
+            } catch(_: Exception) {
+                context.reply {
+                    content = pretty(FoxyEmotes.FoxyCry, context.locale["birthday.set.cantSet"])
+                }
             }
         }
     }

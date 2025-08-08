@@ -19,7 +19,7 @@ class DatabaseClient(
     }
 
     private lateinit var mongoClient: MongoClient
-    private lateinit var guilds: MongoCollection<Guild>
+    lateinit var guilds: MongoCollection<Guild>
 
     lateinit var users: MongoCollection<FoxyUser>
     lateinit var database: MongoDatabase

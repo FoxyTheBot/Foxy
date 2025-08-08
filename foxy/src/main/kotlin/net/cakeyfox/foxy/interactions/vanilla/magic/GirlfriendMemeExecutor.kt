@@ -6,19 +6,19 @@ import kotlinx.coroutines.withContext
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.utils.FileUpload
 
-class GirlfriendMemeExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class GirlfriendMemeExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         context.defer()
-        val user = context.getOption<User>("user")
-
+        val user = context.getOption("user", 0, User::class.java)
+        if (user == null) return
         val girlfriendImageBuffer = withContext(context.foxy.coroutineDispatcher) {
             context.foxy.artistryClient.generateImage("memes/girlfriend", buildJsonObject {
-                put("avatar", user?.avatarUrl)
+                put("avatar", user.avatarUrl)
             })
         }
 

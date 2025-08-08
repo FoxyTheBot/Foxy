@@ -7,6 +7,7 @@ import dev.minn.jda.ktx.messages.MessageEditBuilder
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.database.data.FoxyUser
+import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
@@ -16,25 +17,26 @@ import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionE
 import net.dv8tion.jda.api.interactions.InteractionHook
 import net.dv8tion.jda.api.interactions.commands.OptionType
 
-class FoxyInteractionContext(
-    val event: GenericInteractionCreateEvent,
-    val foxy: FoxyInstance
-) {
+class InteractionCommandContext(
+    override val event: GenericInteractionCreateEvent,
+    override val foxy: FoxyInstance
+) : CommandContext {
+    override val jda = event.jda
+    override val database = foxy.database
+    override val userId get() = event.user.id
+    override val guildId get() = event.guild?.id
+    override val locale = FoxyLocale("pt-br")
+    override val utils = FoxyUtils(foxy)
+    override val guild = event.guild
+    override val user = event.user
+
     private val logger = KotlinLogging.logger { }
-    val jda = event.jda
-    val database = foxy.database
 
-    val locale = FoxyLocale(foxy.utils.availableLanguages[event.userLocale] ?: "en-us")
-    val utils = FoxyUtils(foxy)
-    val user = event.user
-    val guild = event.guild
-
-    suspend fun getAuthorData(): FoxyUser = database.user.getFoxyProfile(user.id)
-
-    suspend fun reply(
-        ephemeral: Boolean = false,
+    override suspend fun getAuthorData(): FoxyUser = database.user.getFoxyProfile(user.id)
+    override suspend fun reply(
+        ephemeral: Boolean,
         block: InlineMessage<*>.() -> Unit
-    ): Any {
+    ) {
         val msg = MessageCreateBuilder {
             apply(block)
         }
@@ -81,27 +83,28 @@ class FoxyInteractionContext(
             }
 
             else -> throw IllegalStateException("Cannot reply to this event type")
-        }
+        } as Unit
     }
 
-    inline fun <reified T> getOption(name: String): T? {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T> getOption(name: String, argNumber: Int, type: Class<T>, isFullString: Boolean): T? {
         val option = if (event is SlashCommandInteractionEvent) {
             event.getOption(name)
         } else null
 
         return when (option?.type) {
-            OptionType.USER -> option.asUser as T
-            OptionType.INTEGER -> option.asLong as T
-            OptionType.CHANNEL -> option.asChannel as T
-            OptionType.BOOLEAN -> option.asBoolean as T
-            OptionType.STRING -> option.asString as T
-            OptionType.ROLE -> option.asRole as T
-            OptionType.ATTACHMENT -> option.asAttachment as T
+            OptionType.USER -> option.asUser
+            OptionType.INTEGER -> option.asLong
+            OptionType.CHANNEL -> option.asChannel
+            OptionType.BOOLEAN -> option.asBoolean
+            OptionType.STRING -> option.asString
+            OptionType.ROLE -> option.asRole
+            OptionType.ATTACHMENT -> option.asAttachment
             else -> null
-        }
+        } as T?
     }
 
-    suspend fun deferEdit(): InteractionHook? {
+    override suspend fun deferEdit(): InteractionHook? {
         return when (event) {
             is ButtonInteractionEvent -> {
                 event.deferEdit().await()
@@ -115,7 +118,7 @@ class FoxyInteractionContext(
         }
     }
 
-    suspend fun edit(block: InlineMessage<*>.() -> Unit): Unit? {
+    override suspend fun edit(block: InlineMessage<*>.() -> Unit): Unit? {
         val msg = MessageEditBuilder {
             apply(block)
         }
@@ -147,7 +150,7 @@ class FoxyInteractionContext(
         }
     }
 
-    suspend fun defer(ephemeral: Boolean = false): InteractionHook = when (event) {
+    override suspend fun defer(ephemeral: Boolean): InteractionHook = when (event) {
         is SlashCommandInteractionEvent -> {
             try {
                 if (event.isAcknowledged) {

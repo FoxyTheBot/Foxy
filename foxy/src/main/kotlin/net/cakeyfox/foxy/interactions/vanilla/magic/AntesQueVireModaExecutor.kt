@@ -8,8 +8,8 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import mu.KotlinLogging
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.utils.FileUpload
@@ -23,14 +23,14 @@ private val supportedTypes = listOf(
 private const val maxSize = 8_000_000 // 8MB
 
 
-class AntesQueVireModaExecutor: FoxySlashCommandExecutor() {
+class AntesQueVireModaExecutor : UnleashedCommandExecutor() {
     companion object {
-        private val logger = KotlinLogging.logger {  }
+        private val logger = KotlinLogging.logger { }
     }
 
-    override suspend fun execute(context: FoxyInteractionContext) {
+    override suspend fun execute(context: CommandContext) {
         context.defer()
-        val attachment = context.getOption<Message.Attachment>("image")!!
+        val attachment = context.getOption("image", 0, Message.Attachment::class.java)!!
 
         if (attachment.width > 1920 || attachment.height > 1440) {
             context.reply {

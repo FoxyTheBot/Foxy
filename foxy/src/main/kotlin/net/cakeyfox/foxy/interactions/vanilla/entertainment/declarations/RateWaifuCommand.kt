@@ -9,6 +9,8 @@ class RateWaifuCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("ratewaifu", CommandCategory.FUN) {
         addOption(opt(OptionType.USER, "user", true))
 
+        supportsLegacy = true
+        aliases = listOf("avaliarwaifu")
         executor = RateWaifuExecutor()
     }
 }

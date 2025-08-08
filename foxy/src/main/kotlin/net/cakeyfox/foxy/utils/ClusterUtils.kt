@@ -36,7 +36,7 @@ object ClusterUtils {
 
     fun getShardIdFromGuildId(id: Long, totalShards: Int) = (id shr 22).rem(totalShards).toInt()
 
-    suspend fun getMemberFromGuild(foxy: FoxyInstance, guildId: String, memberId: Long): CustomMemberResponse? {
+    suspend fun FoxyInstance.getMemberFromGuild(foxy: FoxyInstance, guildId: String, memberId: Long): CustomMemberResponse? {
         val shardId = getShardIdFromGuildId(guildId.toLong(), foxy.config.discord.totalShards)
         val cluster = getClusterByShardId(foxy, shardId)
         val memberAsUser = foxy.shardManager.retrieveUserById(memberId).await()
@@ -58,7 +58,7 @@ object ClusterUtils {
         }
     }
 
-    suspend fun getGuildInfo(foxy: FoxyInstance, guildId: Long): CustomGuildInfo? {
+    suspend fun FoxyInstance.getGuildInfo(foxy: FoxyInstance, guildId: Long): CustomGuildInfo? {
         val shardId = getShardIdFromGuildId(guildId, foxy.config.discord.totalShards)
         val cluster = getClusterByShardId(foxy, shardId)
 
@@ -114,7 +114,7 @@ object ClusterUtils {
         }
     }
 
-    suspend fun getMemberRolesFromCluster(foxy: FoxyInstance, guildId: Long, memberId: Long): List<String> {
+    suspend fun FoxyInstance.getMemberRolesFromCluster(foxy: FoxyInstance, guildId: Long, memberId: Long): List<String> {
         val shardId = getShardIdFromGuildId(guildId, foxy.config.discord.totalShards)
         val cluster = getClusterByShardId(foxy, shardId)
         val rolesResponse = cachedRoles.getIfPresent(memberId)
@@ -141,7 +141,7 @@ object ClusterUtils {
         }
     }
 
-    suspend fun getClusterInfo(foxy: FoxyInstance, cluster: FoxyConfig.Cluster): ClusterInfo? {
+    suspend fun FoxyInstance.getClusterInfo(foxy: FoxyInstance, cluster: FoxyConfig.Cluster): ClusterInfo? {
         return runCatching {
             val jsonString = getFromAnotherCluster(foxy, cluster, "/api/v1/info") ?: return null
             json.decodeFromString<ClusterInfo>(jsonString)

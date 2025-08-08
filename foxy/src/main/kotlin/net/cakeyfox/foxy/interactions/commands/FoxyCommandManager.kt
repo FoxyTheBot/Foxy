@@ -18,9 +18,10 @@ import net.cakeyfox.foxy.interactions.vanilla.social.declarations.ProfileCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.DashboardCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.DblCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.HelpCommand
+import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.LanguageCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.PingCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.ServerCommand
-import net.cakeyfox.foxy.utils.ClusterUtils
+import net.cakeyfox.foxy.utils.ClusterUtils.getShardIdFromGuildId
 import net.dv8tion.jda.api.interactions.commands.Command
 import java.util.UUID
 
@@ -32,6 +33,30 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         return commands.find { it.create().name == name }
     }
 
+    fun getCommandAsLegacy(commandName: String): FoxyCommand? {
+        commands.forEach { wrapper ->
+            val cmd = wrapper.create()
+
+            cmd.subCommands.forEach { subCmd ->
+                if (subCmd.name.equals(commandName, ignoreCase = true) || subCmd.aliases.any {
+                        it.equals(commandName, ignoreCase = true)
+                    }) {
+                    return FoxyCommand(subCmd.executor ?: cmd.executor, subCmd)
+                }
+            }
+
+            if (cmd.name.equals(commandName, ignoreCase = true) || cmd.aliases.any {
+                    it.equals(commandName, ignoreCase = true)
+                }) {
+                if (cmd.executor != null) {
+                    return FoxyCommand(cmd.executor, cmd)
+                }
+            }
+        }
+        return null
+    }
+
+
     private fun register(command: FoxyCommandDeclarationWrapper) {
         commands.add(command)
     }
@@ -39,7 +64,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
     suspend fun handle(): MutableList<Command> {
         val allCommands = mutableListOf<Command>()
 
-        val supportServerShardId = ClusterUtils.getShardIdFromGuildId(
+        val supportServerShardId = getShardIdFromGuildId(
             Constants.SUPPORT_SERVER_ID.toLong(),
             foxy.config.discord.totalShards
         )
@@ -66,7 +91,8 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
                             uniqueId = UUID.randomUUID().toString(),
                             name = command.create().name,
                             description = command.create().description,
-                            supportsLegacy = false,
+                            supportsLegacy = command.create().supportsLegacy,
+                            aliases = command.create().aliases,
                             category = command.create().category,
                             usage = null,
                             usageCount = 0,
@@ -124,6 +150,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(PingCommand())
         register(ServerCommand())
         register(DashboardCommand())
+        register(LanguageCommand())
 
         /* ---- [Staff] ---- */
         register(StatusCommand())

@@ -5,7 +5,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
+import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.utils.ClusterUtils
 import net.cakeyfox.foxy.utils.image.ImageUtils
 import net.cakeyfox.foxy.utils.image.ImageUtils.drawTextWithFont
@@ -13,6 +13,7 @@ import net.cakeyfox.foxy.profile.ProfileUtils.getOrFetchFromCache
 import net.cakeyfox.foxy.profile.badge.BadgeUtils
 import net.cakeyfox.foxy.profile.config.ProfileConfig
 import net.cakeyfox.foxy.database.data.*
+import net.cakeyfox.foxy.utils.ClusterUtils.getMemberRolesFromCluster
 import net.dv8tion.jda.api.entities.User
 import java.awt.Color
 import java.awt.Graphics2D
@@ -25,7 +26,7 @@ import kotlin.reflect.jvm.jvmName
 import kotlin.system.measureTimeMillis
 
 class ProfileRender(
-    private val config: ProfileConfig, private val context: FoxyInteractionContext
+    private val config: ProfileConfig, private val context: CommandContext
 ) {
     private lateinit var graphics: Graphics2D
     lateinit var image: BufferedImage
@@ -100,7 +101,7 @@ class ProfileRender(
         user: User,
         userData: FoxyUser,
         layout: Layout,
-        context: FoxyInteractionContext
+        context: CommandContext
     ) {
         val color = if (layout.darkText) Color.BLACK else Color.WHITE
 
@@ -230,7 +231,7 @@ class ProfileRender(
                 ?.roles
                 ?.map { it.id } ?: run {
                 logger.info { "Guild not found on this cluster" }
-                ClusterUtils.getMemberRolesFromCluster(context.foxy, Constants.SUPPORT_SERVER_ID.toLong(), user.idLong)
+                context.foxy.getMemberRolesFromCluster(context.foxy, Constants.SUPPORT_SERVER_ID.toLong(), user.idLong)
             }
         } catch (_: Exception) {
             null

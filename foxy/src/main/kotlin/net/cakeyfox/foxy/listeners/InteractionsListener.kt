@@ -5,11 +5,10 @@ import kotlinx.coroutines.*
 import mu.KotlinLogging
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
 import net.cakeyfox.foxy.interactions.ComponentId
-import net.cakeyfox.foxy.interactions.commands.FoxyCommandDeclarationBuilder
-import net.cakeyfox.foxy.utils.PremiumUtils
+import net.cakeyfox.foxy.interactions.InteractionCommandContext
 import net.cakeyfox.foxy.interactions.pretty
+import net.cakeyfox.foxy.utils.isEarlyAccessOnlyCommand
 import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
@@ -32,15 +31,10 @@ class InteractionsListener(
     override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) {
         foxy.threadPoolManager.launchMessageJob(event) {
             val commandName = event.fullCommandName.split(" ").first()
-            if (event.isFromGuild) {
-                // This will be used to create a guild object in the database if it doesn't exist
-                event.guild?.let { foxy.database.guild.getGuild(it.id) }
-            }
-
             val command = foxy.commandHandler[commandName]?.create()
 
             if (command != null) {
-                val context = FoxyInteractionContext(event, foxy)
+                val context = InteractionCommandContext(event, foxy)
 
                 val subCommandGroupName = event.subcommandGroup
                 val subCommandName = event.subcommandName
@@ -99,7 +93,7 @@ class InteractionsListener(
             }
 
             val callbackId = foxy.interactionManager.componentCallbacks[componentId.uniqueId]
-            val context = FoxyInteractionContext(event, foxy)
+            val context = InteractionCommandContext(event, foxy)
 
             if (callbackId == null) {
                 event.editButton(
@@ -131,10 +125,7 @@ class InteractionsListener(
 
             try {
                 val callback = foxy.interactionManager.stringSelectMenuCallbacks[componentId.uniqueId]
-                val context = FoxyInteractionContext(
-                    event,
-                    foxy
-                )
+                val context = InteractionCommandContext(event, foxy)
 
                 if (callback == null) {
                     event.editSelectMenu(
@@ -156,24 +147,5 @@ class InteractionsListener(
                 e.printStackTrace()
             }
         }
-    }
-
-    private suspend fun isEarlyAccessOnlyCommand(
-        context: FoxyInteractionContext,
-        command: FoxyCommandDeclarationBuilder
-    ) {
-        val isEarlyAccessEligible = PremiumUtils.eligibleForEarlyAccess(context)
-
-        if (command.availableForEarlyAccess) {
-            if (!isEarlyAccessEligible) {
-                context.reply(true) {
-                    content = pretty(
-                        FoxyEmotes.FoxyCry,
-                        context.locale["commands.earlyAccess"]
-                    )
-                }
-                return
-            } else command.executor?.execute(context)
-        } else command.executor?.execute(context)
     }
 }

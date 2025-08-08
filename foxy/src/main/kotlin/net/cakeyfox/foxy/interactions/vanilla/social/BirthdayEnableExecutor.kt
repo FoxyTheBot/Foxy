@@ -1,12 +1,12 @@
 package net.cakeyfox.foxy.interactions.vanilla.social
 
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 
-class BirthdayEnableExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class BirthdayEnableExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         val userData = context.getAuthorData()
         val isEnabled = userData.userBirthday?.isEnabled ?: false
         val message: String = when (!isEnabled) {

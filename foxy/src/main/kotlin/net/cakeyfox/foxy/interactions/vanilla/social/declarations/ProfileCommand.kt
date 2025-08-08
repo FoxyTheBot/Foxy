@@ -19,10 +19,15 @@ class ProfileCommand : FoxyCommandDeclarationWrapper {
 
         subCommand("view") {
             addOption(opt(OptionType.USER, "user"))
-
+            supportsLegacy = true
+            aliases = listOf("perfil", "profile")
             executor = ProfileViewExecutor()
         }
 
-        subCommand("badges") { executor = ProfileBadgesExecutor() }
+        subCommand("badges") {
+            supportsLegacy = true
+            aliases = listOf("insignías", "insignias")
+            executor = ProfileBadgesExecutor()
+        }
     }
 }

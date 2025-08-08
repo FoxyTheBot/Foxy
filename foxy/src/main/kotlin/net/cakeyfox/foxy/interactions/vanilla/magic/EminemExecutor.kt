@@ -7,8 +7,8 @@ import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.utils.FileUpload
@@ -31,10 +31,10 @@ private val supportedTypes = listOf(
 private const val maxSize = 8_000_000 // 8MB
 
 
-class EminemExecutor: FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class EminemExecutor: UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         context.defer()
-        val attachment = context.getOption<Message.Attachment>("video_or_audio")!!
+        val attachment = context.getOption("video_or_audio", 0, Message.Attachment::class.java)!!
 
         if (attachment.size > maxSize) {
             context.reply {

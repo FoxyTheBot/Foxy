@@ -15,6 +15,8 @@ class FoxyCommandGroupBuilder(
         isPrivate: Boolean = false,
         category: String,
         availableForEarlyAccess: Boolean = false,
+        aliases: List<String> = emptyList(),
+        supportsLegacy: Boolean = false,
         integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
         interactionContexts: List<InteractionContextType> = listOf(InteractionContextType.GUILD),
         block: FoxyCommandDeclarationBuilder.() -> Unit
@@ -25,6 +27,8 @@ class FoxyCommandGroupBuilder(
             isPrivate,
             category,
             availableForEarlyAccess,
+            aliases,
+            supportsLegacy,
             integrationType,
             interactionContexts
         )

@@ -15,6 +15,9 @@ class StatusCommand : FoxyCommandDeclarationWrapper {
         )
         integrationType = listOf(IntegrationType.GUILD_INSTALL, IntegrationType.USER_INSTALL)
 
+        supportsLegacy = true
+        aliases = listOf("status")
+
         executor = StatusExecutor()
     }
 }

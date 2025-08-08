@@ -6,14 +6,14 @@ import kotlinx.coroutines.withContext
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.dv8tion.jda.api.utils.FileUpload
 
-class StonksExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class StonksExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         context.defer()
-        val text = context.getOption<String>("text")!!
+        val text = context.getOption("text", 0, String::class.java, true)
 
         val stonksImage = withContext(context.foxy.coroutineDispatcher) {
             context.foxy.artistryClient.generateImage("memes/stonks", buildJsonObject {

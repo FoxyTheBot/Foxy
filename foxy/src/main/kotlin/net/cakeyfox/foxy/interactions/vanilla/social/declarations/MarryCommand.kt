@@ -14,6 +14,8 @@ class MarryCommand : FoxyCommandDeclarationWrapper {
 
         subCommand("ask") {
             addOption(opt(OptionType.USER, "user", true))
+            supportsLegacy = true
+            aliases = listOf("marry", "casar")
             executor = MarryAskExecutor()
         }
 

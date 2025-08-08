@@ -17,10 +17,13 @@ class PingCommand : FoxyCommandDeclarationWrapper {
         integrationType = listOf(IntegrationType.USER_INSTALL, IntegrationType.GUILD_INSTALL)
 
         subCommand("ping") {
+            aliases = listOf("ping")
+            supportsLegacy = true
             executor = PingExecutor()
         }
 
         subCommand("clusters") {
+            supportsLegacy = true
             executor = PingClustersExecutor()
         }
     }

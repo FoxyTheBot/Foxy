@@ -8,6 +8,8 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 class AskFoxyCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("ask", CommandCategory.FUN) {
         subCommand("foxy") {
+            supportsLegacy = true
+            aliases = listOf("8ball")
             addOption(opt(OptionType.STRING, "question", true), isSubCommand = true)
 
             executor = AskExecutor()

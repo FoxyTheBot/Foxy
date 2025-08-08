@@ -2,7 +2,7 @@ package net.cakeyfox.foxy.leaderboard.utils
 
 import kotlinx.coroutines.coroutineScope
 import mu.KotlinLogging
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
+import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.utils.image.CustomFonts
 import net.cakeyfox.foxy.utils.image.ImageUtils
 import net.cakeyfox.foxy.leaderboard.data.LeaderboardConfig
@@ -18,7 +18,7 @@ import kotlin.system.measureTimeMillis
 
 class LeaderboardRender(
     private val config: LeaderboardConfig,
-    private val context: FoxyInteractionContext
+    private val context: CommandContext
 ) {
     private lateinit var graphics: Graphics2D
     lateinit var image: BufferedImage

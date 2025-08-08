@@ -16,7 +16,8 @@ class AboutMeCommand : FoxyCommandDeclarationWrapper {
         )
         integrationType = listOf(IntegrationType.USER_INSTALL, IntegrationType.GUILD_INSTALL)
         addOption(opt(OptionType.STRING, "text", true))
-
+        supportsLegacy = true
+        aliases = listOf("sobremim")
         executor = AboutMeExecutor()
     }
 }

@@ -7,6 +7,8 @@ categories:
   actions: "🎮 Roleplay"
   dev: "💻 Especial"
 
+youCantUseCommandsHere: "Você não pode usar comandos nesse canal!"
+
 birthday:
   title: "Feliz aniversário!"
   message: |

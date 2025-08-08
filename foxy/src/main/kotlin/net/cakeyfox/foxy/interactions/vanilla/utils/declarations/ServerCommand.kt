@@ -15,11 +15,15 @@ class ServerCommand : FoxyCommandDeclarationWrapper {
 
         subCommand("info") {
             addOption(opt(OptionType.STRING, "server_id"), isSubCommand = true)
+            supportsLegacy = true
+            aliases = listOf("serverinfo")
             executor = ServerInfoExecutor()
         }
 
         subCommand("icon") {
             addOption(opt(OptionType.STRING, "server_id"), isSubCommand = true)
+            supportsLegacy = true
+            aliases = listOf("servericon")
             executor = ServerIconExecutor()
         }
     }

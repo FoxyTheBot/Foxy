@@ -2,8 +2,8 @@ package net.cakeyfox.foxy.interactions.vanilla.actions
 
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.linkButton
 import net.dv8tion.jda.api.entities.User
@@ -14,12 +14,12 @@ class RoleplayActionExecutor(
     val canDoWithBot: Boolean? = false,
     val canRetribute: Boolean? = true,
     val actionEmoji: String = FoxyEmotes.FoxyHm
-) : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
-        val action = if (context.event is SlashCommandInteractionEvent) context.event.subcommandName else return
+) : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
+        val action = if (context.event is SlashCommandInteractionEvent) (context.event as SlashCommandInteractionEvent).subcommandName else return
         context.defer()
 
-        val user = context.getOption<User>("user")
+        val user = context.getOption("user", 0, User::class.java)
         val response = context.foxy.utils.getActionImage(action!!)
 
         if (canDoWithBot == false && user == context.jda.selfUser) {
@@ -69,7 +69,7 @@ class RoleplayActionExecutor(
             embed {
                 description = context.locale[
                     "$action.description",
-                    context.event.user.asMention,
+                    context.user.asMention,
                     user?.asMention ?: " "
                 ]
                 color = Colors.RANDOM
@@ -101,8 +101,8 @@ class RoleplayActionExecutor(
     }
 
     private suspend fun sendActionEmbed(
-        context: FoxyInteractionContext,
-        interaction: FoxyInteractionContext,
+        context: CommandContext,
+        interaction: CommandContext,
         oldResponse: String,
         data: RoleplayDataBuilder.() -> Unit = {}
     ) {

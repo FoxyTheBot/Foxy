@@ -2,21 +2,22 @@ package net.cakeyfox.foxy.interactions.vanilla.utils
 
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.ClusterUtils
+import net.cakeyfox.foxy.utils.ClusterUtils.getClusterInfo
 import net.cakeyfox.serializable.data.cluster.ClusterInfo
 import kotlin.math.round
 
-class PingClustersExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class PingClustersExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         context.defer()
         val clusters = context.foxy.config.discord.clusters
         val infos = mutableListOf<Pair<Int, ClusterInfo?>>()
 
         for (cluster in clusters) {
-            val info = ClusterUtils.getClusterInfo(context.foxy, cluster)
+            val info = context.foxy.getClusterInfo(context.foxy, cluster)
             infos += cluster.id to info
         }
 

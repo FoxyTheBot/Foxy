@@ -29,6 +29,15 @@ class GuildUtils(
         return updateGuildWithNewFields(guildId)
     }
 
+    suspend fun updateGuild(guildId: String, updates: Map<String, Any?>) {
+        client.withRetry {
+            val query = Document("_id", guildId)
+            val update = Document("\$set", Document(updates))
+
+            client.guilds.updateOne(query, update)
+        }
+    }
+
     suspend fun deleteGuild(guildId: String) {
         client.withRetry {
             val guilds = client.database.getCollection<Document>("guilds")

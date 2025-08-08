@@ -1,14 +1,15 @@
 package net.cakeyfox.foxy.interactions.vanilla.economy
 
+import net.cakeyfox.common.Colors
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.utils.linkButton
 import net.cakeyfox.foxy.interactions.pretty
 
-class DailyExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class DailyExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         context.reply(true) {
             embed {
                 title = pretty(
@@ -18,6 +19,7 @@ class DailyExecutor : FoxySlashCommandExecutor() {
 
                 thumbnail = Constants.DAILY_EMOJI
                 description = context.locale["daily.embed.description"]
+                color = Colors.FOXY_DEFAULT
 
                 actionRow(
                     linkButton(

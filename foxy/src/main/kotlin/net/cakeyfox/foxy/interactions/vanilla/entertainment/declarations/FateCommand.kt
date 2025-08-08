@@ -8,7 +8,7 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 class FateCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("fate", CommandCategory.FUN) {
         addOption(opt(OptionType.USER, "user", true))
-
+        supportsLegacy = true
         executor = FateExecutor()
     }
 }

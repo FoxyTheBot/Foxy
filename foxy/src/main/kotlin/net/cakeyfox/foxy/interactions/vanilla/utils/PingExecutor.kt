@@ -2,12 +2,12 @@ package net.cakeyfox.foxy.interactions.vanilla.utils
 
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 
-class PingExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class PingExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         val gatewayPing = context.jda.gatewayPing
         val currentShardId = context.jda.shardInfo.shardId
         val totalShards = context.jda.shardInfo.shardTotal

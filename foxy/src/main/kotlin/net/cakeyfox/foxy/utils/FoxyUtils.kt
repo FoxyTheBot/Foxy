@@ -12,7 +12,7 @@ import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
+import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.serializable.data.ActionResponse
@@ -125,7 +125,7 @@ class FoxyUtils(
         }
     }
 
-    suspend fun handleBan(event: SlashCommandInteractionEvent, context: FoxyInteractionContext) {
+    suspend fun handleBan(event: SlashCommandInteractionEvent, context: CommandContext) {
         val user = context.database.user.getFoxyProfile(event.user.id)
 
         context.reply {

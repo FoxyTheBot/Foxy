@@ -2,23 +2,24 @@ package net.cakeyfox.foxy.interactions.vanilla.social
 
 import kotlinx.datetime.Instant
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
-class MarryAskExecutor : FoxySlashCommandExecutor() {
+class MarryAskExecutor : UnleashedCommandExecutor() {
     companion object {
         const val MARRIAGE_TAX = 6000
     }
 
-    override suspend fun execute(context: FoxyInteractionContext) {
-        val user = context.getOption<User>("user")!!
+    override suspend fun execute(context: CommandContext) {
+        val user = context.getOption("user", 0, User::class.java)
+        if (user == null) return
 
-        if (user.id == context.event.user.id) {
+        if (user.id == context.user.id) {
             context.reply(true) {
                 content = pretty(
                     FoxyEmotes.FoxyCry,
@@ -97,8 +98,9 @@ class MarryAskExecutor : FoxySlashCommandExecutor() {
         }
     }
 
-    private suspend fun buildMarryMessage(context: FoxyInteractionContext) {
-        val user = context.getOption<User>("user")!!
+    private suspend fun buildMarryMessage(context: CommandContext) {
+        val user = context.getOption("user", 0, User::class.java)
+        if (user == null) return
         val userData = context.database.user.getFoxyProfile(user.id)
         val authorData = context.getAuthorData()
         val isUserPremium = isPremium(userData.userPremium.premiumDate)
@@ -126,7 +128,7 @@ class MarryAskExecutor : FoxySlashCommandExecutor() {
                     context.locale["marry.acceptButton"],
                 ) {
                     context.database.user.updateUser(
-                        context.event.user.id,
+                        context.user.id,
                         if (isAuthorPremium || isUserPremium) {
                             mapOf(
                                 "marryStatus.marriedWith" to user.id,
@@ -145,12 +147,12 @@ class MarryAskExecutor : FoxySlashCommandExecutor() {
                         user.id,
                         if (isAuthorPremium || isUserPremium) {
                             mapOf(
-                                "marryStatus.marriedWith" to context.event.user.id,
+                                "marryStatus.marriedWith" to context.user.id,
                                 "marryStatus.marriedDate" to marriedDate
                             )
                         } else {
                             mapOf(
-                                "marryStatus.marriedWith" to context.event.user.id,
+                                "marryStatus.marriedWith" to context.user.id,
                                 "marryStatus.marriedDate" to marriedDate,
                                 "userCakes.balance" to userData.userCakes.balance - MARRIAGE_TAX
                             )

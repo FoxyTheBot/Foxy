@@ -14,6 +14,8 @@ class CancelCommand : FoxyCommandDeclarationWrapper {
             )
         )
 
+        supportsLegacy = true
+        aliases = listOf("cancelar")
         executor = CancelExecutor()
     }
 }

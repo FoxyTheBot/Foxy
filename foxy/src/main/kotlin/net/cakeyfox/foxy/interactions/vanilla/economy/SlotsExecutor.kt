@@ -2,11 +2,11 @@ package net.cakeyfox.foxy.interactions.vanilla.economy
 
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 
-class SlotsExecutor : FoxySlashCommandExecutor() {
+class SlotsExecutor : UnleashedCommandExecutor() {
     companion object {
         private val symbols = listOf("🍒", "🍉", "🍋", "🍀", "💎", "🦊")
         private val multipliers = mapOf(
@@ -19,8 +19,8 @@ class SlotsExecutor : FoxySlashCommandExecutor() {
         )
     }
 
-    override suspend fun execute(context: FoxyInteractionContext) {
-        val amount = context.getOption<Long>("amount") ?: return
+    override suspend fun execute(context: CommandContext) {
+        val amount = context.getOption("amount", 0, Long::class.java) ?: return
         val (result, winnings) = playSlots(amount)
         val userData = context.getAuthorData()
 

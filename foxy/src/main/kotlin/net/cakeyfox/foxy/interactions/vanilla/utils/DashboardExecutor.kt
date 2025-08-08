@@ -4,14 +4,14 @@ import dev.minn.jda.ktx.coroutines.await
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.linkButton
 import net.dv8tion.jda.api.Permission
 
-class DashboardExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class DashboardExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         if (context.guild == null) {
             context.reply(true) {
                 content = pretty(
@@ -23,7 +23,7 @@ class DashboardExecutor : FoxySlashCommandExecutor() {
             return
         }
 
-        val userAsMember = context.guild.retrieveMember(context.user).await()
+        val userAsMember = context.guild!!.retrieveMember(context.user).await()
 
         if (!userAsMember.hasPermission(Permission.MANAGE_SERVER)) {
             context.reply(true) {
@@ -38,7 +38,7 @@ class DashboardExecutor : FoxySlashCommandExecutor() {
             embed {
                 title = pretty(FoxyEmotes.FoxyYay, context.locale["dashboard.embed.title"])
                 color = Colors.BLURPLE
-                description = context.locale["dashboard.embed.description", context.guild.name]
+                description = context.locale["dashboard.embed.description", context.guild!!.name]
             }
 
             actionRow(

@@ -50,6 +50,7 @@ object FoxyEmotes {
     const val Thread = "\uD83E\uDDF5"
     const val Graph = "\uD83D\uDCC8"
 
+
     // Badges
     const val ARTISTS = "<:artists:1392547788478218333>"
     const val BANNED = "<:banned:1392547789996556419>"

@@ -2,8 +2,8 @@ package net.cakeyfox.foxy.interactions.vanilla.economy
 
 import kotlinx.coroutines.withContext
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.leaderboard.data.LeaderboardConfig
 import net.cakeyfox.foxy.leaderboard.data.LeaderboardUser
@@ -12,8 +12,8 @@ import net.dv8tion.jda.api.interactions.components.ActionRow
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 import net.dv8tion.jda.api.utils.FileUpload
 
-class TopCakesExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class TopCakesExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         context.defer()
 
         val topUsersWithName = context.foxy.leaderboardManager.getCakesLeaderboard()
@@ -36,7 +36,7 @@ class TopCakesExecutor : FoxySlashCommandExecutor() {
     }
 
     private suspend fun renderPage(
-        context: FoxyInteractionContext,
+        context: CommandContext,
         pages: List<List<LeaderboardUser.CakesUser>>,
         page: Int
     ): FileUpload {
@@ -48,7 +48,7 @@ class TopCakesExecutor : FoxySlashCommandExecutor() {
     }
 
     private fun buildNavButtons(
-        context: FoxyInteractionContext,
+        context: CommandContext,
         pages: List<List<LeaderboardUser.CakesUser>>,
         currentPage: Int,
         currentFile: FileUpload,
@@ -83,7 +83,7 @@ class TopCakesExecutor : FoxySlashCommandExecutor() {
     }
 
     private suspend fun handlePageChange(
-        context: FoxyInteractionContext,
+        context: CommandContext,
         pages: List<List<LeaderboardUser.CakesUser>>,
         newPage: Int,
         currentFile: FileUpload,
@@ -106,7 +106,7 @@ class TopCakesExecutor : FoxySlashCommandExecutor() {
     }
 
     private suspend fun sendLoading(
-        context: FoxyInteractionContext,
+        context: CommandContext,
         pages: List<List<LeaderboardUser.CakesUser>>,
         newPage: Int,
         currentFile: FileUpload

@@ -2,15 +2,16 @@ package net.cakeyfox.foxy.interactions.vanilla.utils
 
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.ClusterUtils
+import net.cakeyfox.foxy.utils.ClusterUtils.getGuildInfo
 
-class ServerInfoExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class ServerInfoExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         context.defer()
-        val serverId = context.getOption<String>("server_id") ?: context.guild?.id
+        val serverId = context.getOption("server_id", 0, String::class.java) ?: context.guild?.id
 
         if (serverId?.toLongOrNull() == null) {
             context.reply {
@@ -20,7 +21,7 @@ class ServerInfoExecutor : FoxySlashCommandExecutor() {
             return
         }
 
-        val guildInfo = ClusterUtils.getGuildInfo(context.foxy, serverId.toLong())
+        val guildInfo = context.foxy.getGuildInfo(context.foxy, serverId.toLong())
 
         if (guildInfo == null) {
             context.reply {

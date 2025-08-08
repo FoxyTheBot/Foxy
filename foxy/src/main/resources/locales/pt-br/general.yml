@@ -1,4 +1,4 @@
-greetings: "Olá {0}! Meu nome é Foxy, meu prefixo nesse servidor é `/`, Utilize `/help` para obter ajuda!"
+greetings: "Olá {0}! Meu nome é Foxy, meu prefixo nesse servidor é `{1}`, Utilize `{1}help` para obter ajuda!"
 
 commands:
   onlyUserCanInteractWithThisComponent: "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {0}!"
@@ -254,8 +254,8 @@ commands:
             name: "tipo_de_transação"
             description: "O tipo de transação que você deseja fazer"
 
-      top:
-        name: "top"
+      rank:
+        name: "rank"
         description: "Veja quem são os usuários mais ricos."
       pay:
         name: "pagar"

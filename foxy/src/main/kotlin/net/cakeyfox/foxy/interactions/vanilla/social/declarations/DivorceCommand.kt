@@ -2,10 +2,10 @@ package net.cakeyfox.foxy.interactions.vanilla.social.declarations
 
 import dev.minn.jda.ktx.coroutines.await
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
+import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.CommandCategory
 import net.cakeyfox.foxy.interactions.commands.FoxyCommandDeclarationWrapper
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
@@ -19,11 +19,13 @@ class DivorceCommand : FoxyCommandDeclarationWrapper {
             InteractionContextType.PRIVATE_CHANNEL
         )
         integrationType = listOf(IntegrationType.USER_INSTALL, IntegrationType.GUILD_INSTALL)
+        supportsLegacy = true
+        aliases = listOf("divorciar")
         executor = DivorceExecutor()
     }
 
-    inner class DivorceExecutor : FoxySlashCommandExecutor() {
-        override suspend fun execute(context: FoxyInteractionContext) {
+    inner class DivorceExecutor : UnleashedCommandExecutor() {
+        override suspend fun execute(context: CommandContext) {
             if (context.getAuthorData().marryStatus.marriedWith == null) {
                 context.reply {
                     content = pretty(

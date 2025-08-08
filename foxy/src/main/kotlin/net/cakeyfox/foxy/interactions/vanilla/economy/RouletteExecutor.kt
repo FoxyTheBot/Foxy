@@ -2,12 +2,12 @@ package net.cakeyfox.foxy.interactions.vanilla.economy
 
 import mu.KotlinLogging
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.database.data.Roulette
 import net.cakeyfox.foxy.interactions.pretty
 
-class RouletteExecutor : FoxySlashCommandExecutor() {
+class RouletteExecutor : UnleashedCommandExecutor() {
     companion object {
         private const val SPIN_TIMEOUT = 86_400_000L
         private val prizes = mapOf(
@@ -25,7 +25,7 @@ class RouletteExecutor : FoxySlashCommandExecutor() {
         private val logger = KotlinLogging.logger { }
     }
 
-    override suspend fun execute(context: FoxyInteractionContext) {
+    override suspend fun execute(context: CommandContext) {
         val authorData = context.getAuthorData()
 
         if (authorData.userCakes.balance < 1_000L) {
@@ -82,7 +82,7 @@ class RouletteExecutor : FoxySlashCommandExecutor() {
         context.database.user.removeCakesFromUser(context.user.id, 1_000L)
     }
 
-    private suspend fun initializeRoulette(context: FoxyInteractionContext): Roulette {
+    private suspend fun initializeRoulette(context: CommandContext): Roulette {
         logger.info { "Initializing roulette for user ${context.user.id}" }
         val newRoulette = Roulette(availableSpins = 5, lastSpin = System.currentTimeMillis())
         context.database.user.updateUser(

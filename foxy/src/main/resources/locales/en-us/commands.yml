@@ -9,6 +9,16 @@ commands:
   earlyAccess: This command is in beta and only premium users have early access. If
     you want to have access to this command and many others, you can become a premium
     user by clicking [here](https://foxybot.xyz/br/premium)
+  language:
+    embed:
+      title: "Change my language in your server!"
+      description: |
+        {0} Olá! Selecione o idioma do seu servidor e eu passarei a usá-lo nas minhas mensagens.
+
+        {1} Howdy! Select your server's language and I'll start using it in my messages.
+
+    pt-BR: "Agora eu vou falar com você usando o Português Brasileiro!"
+    en-US: "Okay, now I'll talk with you in English!"
 dashboard:
   embed:
     title: Dashboard

@@ -8,9 +8,10 @@ import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.database.data.Badge
 import net.cakeyfox.foxy.database.data.FoxyUser
 import net.cakeyfox.foxy.database.data.Layout
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
+import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.profile.badge.BadgeUtils
 import net.cakeyfox.foxy.utils.ClusterUtils
+import net.cakeyfox.foxy.utils.ClusterUtils.getMemberRolesFromCluster
 import net.dv8tion.jda.api.entities.User
 
 object ProfileUtils {
@@ -25,7 +26,7 @@ object ProfileUtils {
         }
     }
 
-     suspend fun getBadgeAssets(data: FoxyUser, user: User, context: FoxyInteractionContext): List<Badge> {
+     suspend fun getBadgeAssets(data: FoxyUser, user: User, context: CommandContext): List<Badge> {
         val defaultBadges = getOrFetchFromCache(
             ProfileCacheManager.badgesCache,
             "default"
@@ -39,7 +40,7 @@ object ProfileUtils {
                 ?.await()
                 ?.roles
                 ?.map { it.id } ?: run {
-                ClusterUtils.getMemberRolesFromCluster(context.foxy, Constants.SUPPORT_SERVER_ID.toLong(), user.idLong)
+                context.foxy.getMemberRolesFromCluster(context.foxy, Constants.SUPPORT_SERVER_ID.toLong(), user.idLong)
             }
         } catch (_: Exception) {
             null

@@ -2,11 +2,11 @@ package net.cakeyfox.foxy.interactions.vanilla.entertainment
 
 import kotlinx.coroutines.delay
 import net.cakeyfox.common.Colors
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 
-class RussianRouletteExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class RussianRouletteExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         val totalBullets = (1..4).random()
         val bulletInChamber = (1..totalBullets).random()
 

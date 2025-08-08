@@ -9,7 +9,7 @@ import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.utils.ClusterUtils
+import net.cakeyfox.foxy.utils.ClusterUtils.getShardIdFromGuildId
 
 class GetGuildInfo {
     fun Route.getGuildInfo(foxy: FoxyInstance) {
@@ -47,7 +47,7 @@ class GetGuildInfo {
                 put("splashUrl", guild.splashUrl)
                 put("createdAt", guild.timeCreated.toEpochSecond())
                 put("joinedAt", guild.selfMember.timeJoined.toEpochSecond())
-                put("shardId", ClusterUtils.getShardIdFromGuildId(guild.idLong, foxy.config.discord.totalShards))
+                put("shardId", getShardIdFromGuildId(guild.idLong, foxy.config.discord.totalShards))
                 put("firstEmojis", buildJsonArray {
                     firstEmojis.forEach { add(it) }
                 })

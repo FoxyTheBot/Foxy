@@ -7,6 +7,17 @@ imageSource: "Link da Imagem"
 commands:
   earlyAccess: "Esse comando está em beta e apenas usuários premium possuem acesso antecipado. Se você quiser ter acesso a esse comando e muitos outros, você pode se tornar um usuário premium clicando [aqui](https://foxybot.xyz/br/premium)"
 
+language:
+  embed:
+    title: "Altere o meu idioma no seu servidor!"
+    description: |
+      {0} Olá! Selecione o idioma do seu servidor e eu passarei a usá-lo nas minhas mensagens.
+
+      {1} Howdy! Select your server's language and I'll start using it in my messages.
+
+  pt-BR: "Agora eu vou falar com você usando o Português Brasileiro!"
+  en-US: "Okay, now I'll talk with you in English!"
+
 dashboard:
   embed:
     title: "Painel de Controle"
@@ -211,6 +222,7 @@ pay:
   notEnoughBalance: "Você não tem Cakes suficientes para transferir!"
   cantPayYourself: "Você não pode transferir Cakes para você mesmo!"
   invalidAmount: "Você precisa transferir uma quantidade válida de Cakes!"
+  cantFindThisUser: "Eu não consegui encontrar esse usuário."
 
 roulette:
   spinResultWin: "Você girou a roleta e ganhou {0}!"

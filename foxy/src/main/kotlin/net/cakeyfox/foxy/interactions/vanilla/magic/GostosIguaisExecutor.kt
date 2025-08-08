@@ -7,19 +7,19 @@ import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.utils.FileUpload
 
-class GostosIguaisExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class GostosIguaisExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         context.defer()
 
-        val attachment1 = context.getOption<Message.Attachment>("first_image") ?: return handleInvalidAttachment(context)
-        val attachment2 = context.getOption<Message.Attachment>("second_image") ?: return handleInvalidAttachment(context)
-        val text = context.getOption<String>("text") ?: "Não, não somos iguais"
+        val attachment1 = context.getOption("first_image", 0, Message.Attachment::class.java) ?: return handleInvalidAttachment(context)
+        val attachment2 = context.getOption("second_image", 0, Message.Attachment::class.java) ?: return handleInvalidAttachment(context)
+        val text = context.getOption("text", 0, String::class.java) ?: "Não, não somos iguais"
         val maxDimension = 4096
 
         if (!attachment1.isImage || !attachment2.isImage) {
@@ -51,7 +51,7 @@ class GostosIguaisExecutor : FoxySlashCommandExecutor() {
         }
     }
 
-    private suspend fun handleInvalidAttachment(context: FoxyInteractionContext) {
+    private suspend fun handleInvalidAttachment(context: CommandContext) {
         context.reply {
             content = pretty(
                 FoxyEmotes.FoxyCry,
@@ -60,7 +60,7 @@ class GostosIguaisExecutor : FoxySlashCommandExecutor() {
         }
     }
 
-    private suspend fun replyNotImages(context: FoxyInteractionContext) {
+    private suspend fun replyNotImages(context: CommandContext) {
         context.reply {
             content = pretty(
                 FoxyEmotes.FoxyCry,
@@ -69,7 +69,7 @@ class GostosIguaisExecutor : FoxySlashCommandExecutor() {
         }
     }
 
-    private suspend fun replyFileTooBig(context: FoxyInteractionContext) {
+    private suspend fun replyFileTooBig(context: CommandContext) {
         context.reply {
             content = pretty(
                 FoxyEmotes.FoxyCry,

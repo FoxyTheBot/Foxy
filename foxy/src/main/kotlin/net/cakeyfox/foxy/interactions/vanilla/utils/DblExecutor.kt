@@ -3,12 +3,12 @@ package net.cakeyfox.foxy.interactions.vanilla.utils
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.utils.linkButton
 
-class DblExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class DblExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         context.reply {
             embed {
                 description = context.locale["dbl.embed.description"]

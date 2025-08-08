@@ -5,16 +5,16 @@ import net.cakeyfox.common.Colors
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.database.data.Badge
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.profile.ProfileUtils
 import net.dv8tion.jda.api.entities.emoji.Emoji
 import net.dv8tion.jda.api.interactions.components.ActionComponent
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
-class ProfileBadgesExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
+class ProfileBadgesExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
         val data = context.getAuthorData()
         val badges = ProfileUtils.getBadgeAssets(data, context.user, context)
         if (badges.isEmpty()) {
@@ -28,7 +28,7 @@ class ProfileBadgesExecutor : FoxySlashCommandExecutor() {
     }
 
     private suspend fun showBadgeMenu(
-        context: FoxyInteractionContext,
+        context: CommandContext,
         badges: List<Badge>,
         isInitial: Boolean = false
     ) {
@@ -86,7 +86,7 @@ class ProfileBadgesExecutor : FoxySlashCommandExecutor() {
     }
 
     private fun buildBadgeButtons(
-        context: FoxyInteractionContext,
+        context: CommandContext,
         disabledBadges: List<String>?,
         selectedBadgeId: String,
         badges: List<Badge>
@@ -119,8 +119,8 @@ class ProfileBadgesExecutor : FoxySlashCommandExecutor() {
     }
 
     private suspend fun enableBadge(
-        context: FoxyInteractionContext,
-        componentContext: FoxyInteractionContext,
+        context: CommandContext,
+        componentContext: CommandContext,
         selectedBadgeId: String,
         badges: List<Badge>
     ) {
@@ -142,8 +142,8 @@ class ProfileBadgesExecutor : FoxySlashCommandExecutor() {
     }
 
     private suspend fun disableBadge(
-        context: FoxyInteractionContext,
-        componentContext: FoxyInteractionContext,
+        context: CommandContext,
+        componentContext: CommandContext,
         selectedBadgeId: String,
         badges: List<Badge>
     ) {

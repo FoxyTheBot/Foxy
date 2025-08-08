@@ -1,18 +1,20 @@
 package net.cakeyfox.foxy.interactions.vanilla.economy
 
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.interactions.FoxyInteractionContext
-import net.cakeyfox.foxy.interactions.commands.FoxySlashCommandExecutor
+import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
-class CoinflipBetExecutor : FoxySlashCommandExecutor() {
-    override suspend fun execute(context: FoxyInteractionContext) {
-        val user = context.getOption<User>("user")!!
-        val amount = context.getOption<Long>("amount")!!
+class CoinflipBetExecutor : UnleashedCommandExecutor() {
+    override suspend fun execute(context: CommandContext) {
+        val user = context.getOption("user", 0, User::class.java)
+        val amount = context.getOption("amount", 1, Long::class.java)
+        val side = context.getOption("side", 2, String::class.java)
+
+        if (user == null || amount == null || side == null) return
         val formattedAmount = context.utils.formatUserBalance(amount, context.locale)
-        val side = context.getOption<String>("side")!!
         val userToBet = context.database.user.getFoxyProfile(user.id)
 
         if (amount < 1) {
@@ -155,7 +157,7 @@ class CoinflipBetExecutor : FoxySlashCommandExecutor() {
     }
 
     private suspend fun editAndDisableButtons(
-        context: FoxyInteractionContext,
+        context: CommandContext,
         emoji: String,
         message: String,
         isFollowUp: Boolean = false
