@@ -10,7 +10,6 @@ import net.cakeyfox.foxy.database.data.FoxyUser
 import net.cakeyfox.foxy.database.data.Layout
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.profile.badge.BadgeUtils
-import net.cakeyfox.foxy.utils.ClusterUtils
 import net.cakeyfox.foxy.utils.ClusterUtils.getMemberRolesFromCluster
 import net.dv8tion.jda.api.entities.User
 

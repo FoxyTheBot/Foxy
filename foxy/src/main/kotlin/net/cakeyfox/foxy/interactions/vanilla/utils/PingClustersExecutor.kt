@@ -5,7 +5,6 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
-import net.cakeyfox.foxy.utils.ClusterUtils
 import net.cakeyfox.foxy.utils.ClusterUtils.getClusterInfo
 import net.cakeyfox.serializable.data.cluster.ClusterInfo
 import kotlin.math.round

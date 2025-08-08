@@ -6,7 +6,6 @@ import kotlinx.coroutines.coroutineScope
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.interactions.commands.CommandContext
-import net.cakeyfox.foxy.utils.ClusterUtils
 import net.cakeyfox.foxy.utils.image.ImageUtils
 import net.cakeyfox.foxy.utils.image.ImageUtils.drawTextWithFont
 import net.cakeyfox.foxy.profile.ProfileUtils.getOrFetchFromCache

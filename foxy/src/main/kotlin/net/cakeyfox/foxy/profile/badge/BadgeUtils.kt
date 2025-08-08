@@ -3,7 +3,6 @@ package net.cakeyfox.foxy.profile.badge
 import net.cakeyfox.foxy.database.data.Badge
 import net.cakeyfox.foxy.database.data.FoxyUser
 import net.cakeyfox.foxy.interactions.commands.CommandContext
-import net.cakeyfox.foxy.utils.ClusterUtils
 import net.cakeyfox.foxy.utils.ClusterUtils.getMemberFromGuild
 import java.time.Instant
 import kotlin.collections.forEach

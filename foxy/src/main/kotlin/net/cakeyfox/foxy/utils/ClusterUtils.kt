@@ -134,7 +134,7 @@ object ClusterUtils {
                         return roles
                     }
                 }
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 // If user is not in the guild, return empty list
                 return emptyList()
             }

@@ -12,7 +12,7 @@ class PayExecutor : UnleashedCommandExecutor() {
         val userToPay = context.getOption("user", 0, User::class.java)
         val amount = context.getOption("amount", 1, Long::class.java)
 
-        if (amount == null) {
+        if (amount?.takeIf { it > 0 } == null) {
             return context.reply {
                 content = pretty(FoxyEmotes.FoxyCry, context.locale["pay.invalidAmount"])
             }
