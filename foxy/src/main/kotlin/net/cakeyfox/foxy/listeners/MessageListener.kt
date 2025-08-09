@@ -29,10 +29,10 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
             val guild = foxy.database.guild.getGuild(event.guild.id)
             val localeKey = DiscordLocale.from(guild.guildSettings.language)
             val locale = FoxyLocale(foxy.utils.availableLanguages[localeKey] ?: "en-us")
-            val raw = event.message.contentRaw
-            val selfId = event.jda.selfUser.id
+            val raw = event.message.contentRaw.lowercase()
+            val selfUser = event.jda.selfUser
 
-            if (raw == "<@$selfId>" || raw == "<@!$selfId>") {
+            if (raw == selfUser.asMention) {
                 event.channel.sendMessage(
                     pretty(
                         FoxyEmotes.FoxyHowdy,
@@ -44,8 +44,7 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
 
             val prefixes = listOf(
                 guild.guildSettings.prefix,
-                "<@!$selfId> ",
-                "<@$selfId> "
+                "${selfUser.asMention} "
             )
 
             val usedPrefix = prefixes.firstOrNull { raw.startsWith(it) } ?: return@launch
@@ -74,7 +73,7 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
                 val executionTime = measureTimeMillis {
                     command.executor?.execute(context)
                 }
-                logger.info { "${context.user.name} (${context.user.id}) executed .$commandName in ${context.guild.name} (${context.guild.id}) in ${executionTime}ms" }
+                logger.info { "${context.user.name} (${context.user.id}) executed $raw in ${context.guild.name} (${context.guild.id}) in ${executionTime}ms" }
             }
         }
     }
