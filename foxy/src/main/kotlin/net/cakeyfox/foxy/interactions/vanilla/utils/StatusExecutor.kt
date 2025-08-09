@@ -36,6 +36,7 @@ class StatusExecutor : UnleashedCommandExecutor() {
                 thumbnail = context.jda.selfUser.effectiveAvatarUrl
                 color = Colors.BLURPLE
 
+                field("${FoxyEmotes.Computer} **|** Environment", "`${context.foxy.environment.uppercase()}`")
                 field("${FoxyEmotes.Computer} **|** Used memory:", "${usedMemory}MB")
                 field("${FoxyEmotes.Computer} **|** Allocated memory:", "${totalMemory}MB")
                 field("${FoxyEmotes.Computer} **|** Max memory:", "${maxMemory}MB")

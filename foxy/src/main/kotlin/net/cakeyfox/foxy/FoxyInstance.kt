@@ -1,6 +1,5 @@
 package net.cakeyfox.foxy
 
-import com.neovisionaries.ws.client.WebSocketFactory
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
@@ -40,7 +39,6 @@ import net.dv8tion.jda.api.sharding.ShardManager
 import net.dv8tion.jda.api.utils.ChunkingFilter
 import net.dv8tion.jda.api.utils.MemberCachePolicy
 import net.dv8tion.jda.api.utils.cache.CacheFlag
-import okhttp3.OkHttpClient
 import kotlin.concurrent.thread
 
 class FoxyInstance(
@@ -55,10 +53,10 @@ class FoxyInstance(
     lateinit var interactionManager: FoxyComponentManager
     lateinit var httpClient: HttpClient
     lateinit var leaderboardManager: LeaderboardManager
+    lateinit var environment: String
 
     private lateinit var foxyInternalAPI: FoxyInternalAPI
     private lateinit var dblStatsSender: DblStatsSender
-    private lateinit var environment: String
 
     private val activeJobs = ThreadUtils.activeJobs
     private val currentClusterName = if (config.discord.clusters.size < 2) null else currentCluster.name
