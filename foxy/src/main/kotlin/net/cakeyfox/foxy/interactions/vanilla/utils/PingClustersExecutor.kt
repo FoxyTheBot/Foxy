@@ -16,7 +16,7 @@ class PingClustersExecutor : UnleashedCommandExecutor() {
         val infos = mutableListOf<Pair<Int, ClusterInfo?>>()
 
         for (cluster in clusters) {
-            val info = context.foxy.getClusterInfo(context.foxy, cluster)
+            val info = context.foxy.getClusterInfo(cluster)
             infos += cluster.id to info
         }
 
@@ -26,7 +26,6 @@ class PingClustersExecutor : UnleashedCommandExecutor() {
                 for ((id, info) in infos) {
                     val name = info?.name ?: context.foxy.config.discord.clusters.find { it.id == id }?.name
                     val title = "Cluster $id (`$name`)"
-
                     if (info == null) {
                         field(pretty(FoxyEmotes.Offline, title), inline = true) {
                             this.value = "${FoxyEmotes.FoxyCry} Cluster offline"

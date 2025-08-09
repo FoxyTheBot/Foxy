@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ClusterInfo(
-    val id: String,
+    val id: Int,
     val name: String,
     val shardCount: Int,
     val guildCount: Int,

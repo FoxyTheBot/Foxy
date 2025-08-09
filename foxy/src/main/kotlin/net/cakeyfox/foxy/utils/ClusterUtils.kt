@@ -141,14 +141,15 @@ object ClusterUtils {
         }
     }
 
-    suspend fun FoxyInstance.getClusterInfo(foxy: FoxyInstance, cluster: FoxyConfig.Cluster): ClusterInfo? {
-        return runCatching {
-            val jsonString = getFromAnotherCluster(foxy, cluster, "/api/v1/info") ?: return null
+    suspend fun FoxyInstance.getClusterInfo(cluster: FoxyConfig.Cluster): ClusterInfo? {
+        return try {
+            val jsonString = getFromAnotherCluster(this, cluster, "/api/v1/info") ?: return null
             json.decodeFromString<ClusterInfo>(jsonString)
-        }.getOrElse {
+        } catch (_: Exception) {
             null
         }
     }
+
 
     private suspend fun getFromAnotherCluster(
         foxy: FoxyInstance,
