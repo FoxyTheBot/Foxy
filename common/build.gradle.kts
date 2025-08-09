@@ -4,10 +4,8 @@ plugins {
 }
 
 kotlin {
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = Versions.JVM_TARGET.toString()
-        }
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(Versions.JVM_TARGET))
     }
 
     jvm().compilations["main"].defaultSourceSet {

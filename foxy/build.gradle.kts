@@ -74,5 +74,7 @@ application {
 }
 
 kotlin {
-    jvmToolchain(Versions.JVM_TARGET)
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(Versions.JVM_TARGET))
+    }
 }

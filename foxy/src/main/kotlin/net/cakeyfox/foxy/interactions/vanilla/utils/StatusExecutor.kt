@@ -14,7 +14,7 @@ class StatusExecutor : UnleashedCommandExecutor() {
         val threadMXBean = ManagementFactory.getThreadMXBean()
         val foxy = context.foxy
         val currentCluster = foxy.currentCluster
-        val buildNumber = System.getenv("BUILD_NUMBER") ?: "unknown"
+        val buildNumber = System.getenv("BUILD_NUMBER") ?: "0"
         val commitHash = System.getenv("COMMIT_HASH") ?: "unknown"
         val javaVersion = System.getProperty("java.version")
         val kotlinVersion = KotlinVersion.CURRENT.toString()
@@ -27,34 +27,30 @@ class StatusExecutor : UnleashedCommandExecutor() {
         val currentClusterName = currentCluster.name
         val currentClusterId = currentCluster.id
         val currentClusterShards = "${currentCluster.minShard} / ${currentCluster.maxShard}"
-        val currentClusterInfo = "`$currentClusterName` (${currentClusterId}) (Shards: $currentClusterShards)"
-
+        val currentClusterInfo = "Foxy Cluster $currentClusterId (`$currentClusterName`) [Shards: $currentClusterShards]"
         val userCache = context.jda.userCache.size()
         val guildCache = context.jda.guildCache.size()
         val threads = threadMXBean.threadCount
-        val peakThreads = threadMXBean.peakThreadCount
 
         context.reply {
             embed {
-                title = pretty(FoxyEmotes.FoxyDrinkingCoffee, "**Foxy's Status**")
+                title = pretty(FoxyEmotes.FoxyDrinkingCoffee, currentClusterInfo)
                 thumbnail = context.jda.selfUser.effectiveAvatarUrl
-                color = Colors.BLURPLE
+                color = Colors.FOXY_DEFAULT
 
-                field("${FoxyEmotes.Computer} **|** Environment", "`${context.foxy.environment.uppercase()}`")
-                field("${FoxyEmotes.Computer} **|** Used memory:", "${usedMemory}MB")
-                field("${FoxyEmotes.Computer} **|** Allocated memory:", "${totalMemory}MB")
-                field("${FoxyEmotes.Computer} **|** Max memory:", "${maxMemory}MB")
-                field("${FoxyEmotes.Thread} **|** Active threads:", "$threads Threads")
-                field("${FoxyEmotes.Graph} **|** Peak threads:", "$peakThreads Threads")
-                field("${FoxyEmotes.Online} **|** User cache:", "$userCache Users")
-                field("${FoxyEmotes.Online} **|** Guild cache:", "$guildCache Guilds")
-                field("${FoxyEmotes.FoxyYay} **|** Total Shards:", "${foxy.config.discord.totalShards} Shards")
-                field("${FoxyEmotes.FoxyHug} **|** Total clusters:", "${foxy.config.discord.clusters.size} Clusters")
-                field("${FoxyEmotes.FoxyDrinkingCoffee} **|** Current cluster:", currentClusterInfo)
-                field("${FoxyEmotes.Computer} **|** Build Number", "#$buildNumber")
-                field("${FoxyEmotes.GitHubLogo} **|** Commit", commitHash)
+                field("${FoxyEmotes.Computer} **|** Environment", context.foxy.environment.uppercase())
                 field("${FoxyEmotes.Java} **|** Java Version", javaVersion)
                 field("${FoxyEmotes.Kotlin} **|** Kotlin Version", kotlinVersion)
+                field("${FoxyEmotes.GitHubLogo} **|** Build Number", "#$buildNumber")
+                field("${FoxyEmotes.FoxyYay} **|** Total Shards:", "${foxy.config.discord.totalShards} Shards")
+                field("${FoxyEmotes.FoxyHug} **|** Total Clusters:", "${foxy.config.discord.clusters.size} Clusters")
+                field("${FoxyEmotes.Computer} **|** Used Memory:", "${usedMemory}MB")
+                field("${FoxyEmotes.Computer} **|** Allocated Memory:", "${totalMemory}MB")
+                field("${FoxyEmotes.Computer} **|** Max Memory:", "${maxMemory}MB")
+                field("${FoxyEmotes.Thread} **|** Active Threads:", "$threads Threads")
+                field("${FoxyEmotes.Online} **|** User Cache:", "$userCache Users")
+                field("${FoxyEmotes.Online} **|** Guild Cache:", "$guildCache Guilds")
+                footer("Commit Hash: $commitHash")
             }
         }
     }
