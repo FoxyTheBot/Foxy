@@ -14,6 +14,10 @@ class StatusExecutor : UnleashedCommandExecutor() {
         val threadMXBean = ManagementFactory.getThreadMXBean()
         val foxy = context.foxy
         val currentCluster = foxy.currentCluster
+        val buildNumber = System.getenv("BUILD_NUMBER") ?: "unknown"
+        val commitHash = System.getenv("COMMIT_HASH") ?: "unknown"
+        val javaVersion = System.getProperty("java.version")
+        val kotlinVersion = KotlinVersion.CURRENT.toString()
 
         val totalMemory = runtime.totalMemory() / mb
         val freeMemory = runtime.freeMemory() / mb
@@ -47,6 +51,10 @@ class StatusExecutor : UnleashedCommandExecutor() {
                 field("${FoxyEmotes.FoxyYay} **|** Total Shards:", "${foxy.config.discord.totalShards} Shards")
                 field("${FoxyEmotes.FoxyHug} **|** Total clusters:", "${foxy.config.discord.clusters.size} Clusters")
                 field("${FoxyEmotes.FoxyDrinkingCoffee} **|** Current cluster:", currentClusterInfo)
+                field("${FoxyEmotes.Computer} **|** Build Number", "#$buildNumber")
+                field("${FoxyEmotes.GitHubLogo} **|** Commit", commitHash)
+                field("${FoxyEmotes.Java} **|** Java Version", javaVersion)
+                field("${FoxyEmotes.Kotlin} **|** Kotlin Version", kotlinVersion)
             }
         }
     }

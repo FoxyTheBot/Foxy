@@ -47,6 +47,9 @@ jobs:
           file: docker/Dockerfile
           push: true
           tags: ${{ env.DOCKER_USERNAME }}/foxy-bot:latest
+          build-args: |
+            BUILD_NUMBER=${{ github.run_number }}
+            COMMIT_HASH=${{ github.sha }}
 
       - name: Deploy Foxy to servers
         env:
