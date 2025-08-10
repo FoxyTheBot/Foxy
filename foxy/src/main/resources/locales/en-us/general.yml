@@ -22,9 +22,6 @@ commands:
         date:
           name: date
           description: Your birthday date in dd/MM/yyyy format
-    status:
-      name: status
-      description: View JVM consumption and other information
     roulette:
       name: roulette
       description: Win prizes playing roulette
@@ -272,6 +269,9 @@ commands:
       clusters:
         name: "clusters"
         description: Check the information and latency of all my clusters
+      status:
+        name: status
+        description: View JVM consumption and other information
 
     aboutme:
       name: about_me

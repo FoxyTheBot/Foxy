@@ -4,10 +4,11 @@ import net.cakeyfox.foxy.interactions.commands.CommandCategory
 import net.cakeyfox.foxy.interactions.commands.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.interactions.vanilla.utils.PingClustersExecutor
 import net.cakeyfox.foxy.interactions.vanilla.utils.PingExecutor
+import net.cakeyfox.foxy.interactions.vanilla.utils.StatusExecutor
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
 
-class PingCommand : FoxyCommandDeclarationWrapper {
+class FoxyCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("foxy", CommandCategory.UTILS) {
         interactionContexts = listOf(
             InteractionContextType.BOT_DM,
@@ -25,6 +26,12 @@ class PingCommand : FoxyCommandDeclarationWrapper {
         subCommand("clusters") {
             supportsLegacy = true
             executor = PingClustersExecutor()
+        }
+
+        subCommand("status") {
+            supportsLegacy = true
+
+            executor = StatusExecutor()
         }
     }
 }

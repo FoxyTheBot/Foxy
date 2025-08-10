@@ -5,7 +5,6 @@ import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.vanilla.actions.declarations.RoleplayCommand
-import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.StatusCommand
 import net.cakeyfox.foxy.interactions.vanilla.economy.declarations.*
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.*
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RussianRouletteCommand
@@ -19,7 +18,7 @@ import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.DashboardComman
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.DblCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.HelpCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.LanguageCommand
-import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.PingCommand
+import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.FoxyCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.ServerCommand
 import net.cakeyfox.foxy.utils.ClusterUtils.getShardIdFromGuildId
 import net.dv8tion.jda.api.interactions.commands.Command
@@ -33,7 +32,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         return commands.find { it.create().name == name }
     }
 
-    fun getCommandAsLegacy(commandName: String): FoxyCommand? {
+    fun getCommandAsLegacy(commandName: String): net.cakeyfox.foxy.interactions.commands.FoxyCommand? {
         commands.forEach { wrapper ->
             val cmd = wrapper.create()
 
@@ -147,12 +146,9 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         /* ---- [Utils] ---- */
         register(HelpCommand())
         register(DblCommand())
-        register(PingCommand())
+        register(FoxyCommand())
         register(ServerCommand())
         register(DashboardCommand())
         register(LanguageCommand())
-
-        /* ---- [Staff] ---- */
-        register(StatusCommand())
     }
 }

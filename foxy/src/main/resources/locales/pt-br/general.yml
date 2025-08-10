@@ -20,10 +20,6 @@ commands:
           name: "data"
           description: "A data do seu aniversário no formato dd/MM/yyyy"
 
-    status:
-      name: "status"
-      description: "Veja o consumo da JVM e outras informações"
-
     roulette:
       name: "roleta"
       description: "Ganhe prêmios jogando roleta"
@@ -291,6 +287,9 @@ commands:
       clusters:
         name: "clusters"
         description: "Veja as informações de todos os meus clusters"
+      status:
+        name: "status"
+        description: "Veja o consumo da JVM e outras informações"
 
     aboutme:
       name: "sobremim"

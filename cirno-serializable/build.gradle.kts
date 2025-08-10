@@ -12,10 +12,6 @@ repositories {
 
 kotlin {
     jvm {
-        compilations.all {
-
-        }
-
         withJava()
     }
 
