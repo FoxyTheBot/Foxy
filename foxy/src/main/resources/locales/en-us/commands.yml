@@ -27,6 +27,11 @@ dashboard:
     button: Go to Dashboard
     noPermission: You need `Manage Server` permission to use this command.
     guildNotFound: I need to be on that server for this to work!
+
+user:
+  avatar:
+    showInBrowser: "Open in browser"
+
 birthday:
   set:
     changed: Your birthday has been set to **{0}**

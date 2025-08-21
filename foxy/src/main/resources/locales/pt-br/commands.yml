@@ -224,6 +224,10 @@ pay:
   invalidAmount: "Você precisa transferir uma quantidade válida de Cakes!"
   cantFindThisUser: "Eu não consegui encontrar esse usuário."
 
+user:
+  avatar:
+    showInBrowser: "Ver no navegador"
+
 roulette:
   spinResultWin: "Você girou a roleta e ganhou {0}!"
   spinResultLose: "Você girou e não ganhou nada!"
