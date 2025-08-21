@@ -78,6 +78,13 @@ commands:
     user:
       name: user
       description: View information about a user
+      avatar:
+        name: avatar
+        description: Veja o avatar de algum usuário
+        options:
+          user:
+            name: user
+            description: O usuário que você quer ver a foto de perfil
       info:
         name: info
         description: View information about a user
@@ -273,26 +280,28 @@ commands:
         name: status
         description: View JVM consumption and other information
 
-    aboutme:
-      name: about_me
-      description: Commands related to your profile
-      options:
-        text:
-          name: text
-          description: The text that will be displayed on your profile
     profile:
       name: profile
       description: View your or another user's beautiful profile
       view:
         name: view
         description: View your or another user's beautiful profile
+      aboutme:
+        name: aboutme
+        description: Change the "About Me" section on your profile
       options:
         user:
           name: user
           description: The user whose profile you want to view
+        text:
+          name: text
+          description: The text that will be displayed on your profile
       badges:
         name: manage_badges
         description: Veja ou altere as insignías do seu perfil
+      edit:
+        name: edit
+        description: Edit your profile
     actions:
       name: actions
       description: Action commands for you to have fun with your friends

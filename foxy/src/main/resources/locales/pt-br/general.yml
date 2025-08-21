@@ -83,6 +83,14 @@ commands:
     user:
       name: "user"
       description: "Veja informações sobre um usuário"
+      avatar:
+        name: avatar
+        description: Veja o avatar de algum usuário
+        options:
+          user:
+            name: usuário
+            description: O usuário que você quer ver a foto de perfil
+
       info:
         name: "info"
         description: "Veja informações sobre um usuário"
@@ -97,7 +105,7 @@ commands:
 
     magic:
       name: "mágica"
-      description: "Comandos divertidos para você se divertir com seus amigos"
+      description: "Crie imagens e vídeos com os comandos de mágica!"
       eminem:
         name: "eminem"
         description: "Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
@@ -228,7 +236,7 @@ commands:
 
     cakes:
       name: "cakes"
-      description: "Comandos relacionados a economia da Foxy"
+      description: "Comandos relacionados ao meu sistema de economia!"
       atm:
         name: "atm"
         description: "Veja a sua quantidade de cakes"
@@ -280,7 +288,7 @@ commands:
 
     foxy:
       name: "foxy"
-      description: "Comandos relacionados ao bot"
+      description: "Veja algumas informações sobre mim :3"
       ping:
         name: "ping"
         description: "Verifica a latência do bot"
@@ -291,31 +299,32 @@ commands:
         name: "status"
         description: "Veja o consumo da JVM e outras informações"
 
-    aboutme:
-      name: "sobremim"
-      description: "Comandos relacionados ao seu perfil"
-      options:
-        text:
-          name: "texto"
-          description: "O texto que será exibido no seu perfil"
-
     profile:
       name: "perfil"
-      description: "Veja o seu lindo perfil ou o de outro usuário"
+      description: "Gerencie seu perfil e deixe-o como você quiser!"
       view:
         name: "visualizar"
         description: "Veja o seu lindo perfil ou o de outro usuário"
+      aboutme:
+        name: "sobremim"
+        description: Personalize o campo "Sobre Mim" do seu perfil
       options:
         user:
           name: "usuário"
           description: "O usuário que você deseja ver o perfil"
+        text:
+          name: "texto"
+          description: "O texto que será exibido no seu perfil"
       badges:
         name: "gerenciar_insígnias"
         description: "Veja ou altere as insignías do seu perfil"
+      edit:
+        name: "editar"
+        description: "Gerencie seu perfil e deixe-o como você quiser!"
 
     actions:
       name: "ações"
-      description: "Comandos de ações para você se divertir com seus amigos"
+      description: "Comandos de roleplaying para você se divertir com seus amigos"
       kiss:
         name: "beijar"
         description: "Beije alguém"
