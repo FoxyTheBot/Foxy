@@ -15,6 +15,7 @@ object Constants {
     const val FOXY_WOW = "https://stuff.foxybot.xyz/images/foxy_wow.png"
     const val DASHBOARD_URL = "https://foxybot.xyz/br/dashboard"
     const val FOXY_CRY = "https://stuff.foxybot.xyz/images/foxy_cry.png"
+    const val FOXY_BAN = "https://stuff.foxybot.xyz/images/foxyban.png"
 
     // Discord
     const val AUTHORIZATION_ENDPOINT = "https://discord.com/api/oauth2/authorize"

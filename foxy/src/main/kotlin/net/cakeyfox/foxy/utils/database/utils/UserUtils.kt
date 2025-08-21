@@ -14,10 +14,13 @@ import com.mongodb.client.model.Projections.include
 import com.mongodb.client.model.Sorts.ascending
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
+import kotlinx.datetime.Clock
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.database.data.*
-import net.cakeyfox.serializable.data.UserBalance
+import net.cakeyfox.serializable.data.utils.UserBalance
 import java.time.Instant
+import java.time.ZoneId
+import java.time.ZonedDateTime
 import java.time.temporal.ChronoUnit
 
 class UserUtils(
@@ -32,6 +35,17 @@ class UserUtils(
                 ?: return@withRetry createUser(userId)
 
             val documentToJSON = existingUserDocument.toJson()
+            client.foxy.json.decodeFromString<FoxyUser>(documentToJSON)
+        }
+    }
+
+    suspend fun getUserByToken(token: String): FoxyUser? {
+        return client.withRetry {
+            val collection = client.database.getCollection<Document>("users")
+            val user = collection.find(eq("publicApiAccessToken", token)).firstOrNull() ?:
+            return@withRetry null
+            val documentToJSON = user.toJson()
+
             client.foxy.json.decodeFromString<FoxyUser>(documentToJSON)
         }
     }
@@ -65,6 +79,21 @@ class UserUtils(
             ).toList()
 
             expiredVotes
+        }
+    }
+
+    suspend fun banUserById(userId: String, reason: String) {
+        val now = ZonedDateTime.now(ZoneId.systemDefault()).toInstant()
+        val updatedBanState = mapOf<String, Any?>(
+            "isBanned" to true,
+            "banDate" to now,
+            "banReason" to reason
+        )
+        client.withRetry {
+            val query = Document("_id", userId)
+            val update = Document("\$set", Document(updatedBanState))
+
+            client.users.updateOne(query, update)
         }
     }
 

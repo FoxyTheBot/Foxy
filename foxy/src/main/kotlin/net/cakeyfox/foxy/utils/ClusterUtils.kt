@@ -10,10 +10,10 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.serializable.data.CustomGuildInfo
-import net.cakeyfox.serializable.data.CustomMemberResponse
+import net.cakeyfox.serializable.data.cluster.CustomGuildInfo
+import net.cakeyfox.serializable.data.cluster.CustomMemberResponse
 import net.cakeyfox.serializable.data.cluster.ClusterInfo
-import net.cakeyfox.serializable.database.utils.FoxyConfig
+import net.cakeyfox.serializable.data.utils.FoxyConfig
 import org.jetbrains.annotations.TestOnly
 import java.util.concurrent.TimeUnit
 
@@ -29,7 +29,7 @@ object ClusterUtils {
         prettyPrint = true
     }
 
-    private fun getClusterByShardId(foxy: FoxyInstance, shardId: Int): FoxyConfig.Cluster {
+    fun getClusterByShardId(foxy: FoxyInstance, shardId: Int): FoxyConfig.Cluster {
         val shard = foxy.config.discord.clusters.firstOrNull { shardId in it.minShard..it.maxShard }
         return shard ?: throw IllegalArgumentException("Shard $shardId not found in any cluster")
     }

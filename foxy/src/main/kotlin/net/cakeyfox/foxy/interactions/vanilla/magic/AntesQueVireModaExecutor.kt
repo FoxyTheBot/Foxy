@@ -66,7 +66,7 @@ class AntesQueVireModaExecutor : UnleashedCommandExecutor() {
         }
 
         val response = withContext(context.foxy.coroutineDispatcher) {
-            context.foxy.artistryClient.generateImage("memes/moda", buildJsonObject {
+            context.foxy.showtimeClient.generateImage("memes/moda", buildJsonObject {
                 put("asset", attachment.url)
             })
         }

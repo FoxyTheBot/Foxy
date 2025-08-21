@@ -58,7 +58,7 @@ class EminemExecutor: UnleashedCommandExecutor() {
 
 
         val response = withContext(context.foxy.coroutineDispatcher) {
-            context.foxy.artistryClient.generateImage("memes/8mile", buildJsonObject {
+            context.foxy.showtimeClient.generateImage("memes/8mile", buildJsonObject {
                 put("url", attachment.url)
                 put("contentType", attachment.contentType)
                 put("size", attachment.size)

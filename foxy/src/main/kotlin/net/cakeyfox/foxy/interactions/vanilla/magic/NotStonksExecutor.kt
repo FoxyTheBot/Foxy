@@ -16,7 +16,7 @@ class NotStonksExecutor : UnleashedCommandExecutor() {
         val text = context.getOption("text", 0, String::class.java, true)
 
         val notStonksImage = withContext(context.foxy.coroutineDispatcher) {
-            context.foxy.artistryClient.generateImage("memes/notstonks", buildJsonObject {
+            context.foxy.showtimeClient.generateImage("memes/notstonks", buildJsonObject {
                 put("text", text)
             })
         }

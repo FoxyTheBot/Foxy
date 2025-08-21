@@ -9,7 +9,6 @@ import net.cakeyfox.foxy.interactions.vanilla.economy.declarations.*
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.*
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RussianRouletteCommand
 import net.cakeyfox.foxy.interactions.vanilla.magic.declarations.MagicCommand
-import net.cakeyfox.foxy.interactions.vanilla.social.declarations.AboutMeCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.BirthdayCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.DivorceCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.MarryCommand
@@ -20,6 +19,7 @@ import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.HelpCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.LanguageCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.FoxyCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.ServerCommand
+import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.UserCommand
 import net.cakeyfox.foxy.utils.ClusterUtils.getShardIdFromGuildId
 import net.dv8tion.jda.api.interactions.commands.Command
 import java.util.UUID
@@ -137,7 +137,6 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(RussianRouletteCommand())
 
         /* ---- [Social] ---- */
-        register(AboutMeCommand())
         register(ProfileCommand())
         register(MarryCommand())
         register(DivorceCommand())
@@ -150,5 +149,6 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(ServerCommand())
         register(DashboardCommand())
         register(LanguageCommand())
+        register(UserCommand())
     }
 }

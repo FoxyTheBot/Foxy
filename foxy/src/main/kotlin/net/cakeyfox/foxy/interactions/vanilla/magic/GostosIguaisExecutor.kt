@@ -32,7 +32,7 @@ class GostosIguaisExecutor : UnleashedCommandExecutor() {
         }
 
         val image = withContext(context.foxy.coroutineDispatcher) {
-            context.foxy.artistryClient.generateImage("memes/gosto", buildJsonObject {
+            context.foxy.showtimeClient.generateImage("memes/gosto", buildJsonObject {
                 put("asset1", attachment1.url)
                 put("asset2", attachment2.url)
                 put("text", text)

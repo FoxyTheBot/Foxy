@@ -1,7 +1,7 @@
-package net.cakeyfox.serializable.data
+package net.cakeyfox.serializable.data.cluster
 
 import kotlinx.serialization.Serializable
-import net.cakeyfox.serializable.database.utils.FoxyConfig
+import net.cakeyfox.serializable.data.utils.FoxyConfig
 
 
 @Serializable

@@ -16,6 +16,8 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel
 import net.dv8tion.jda.api.entities.channel.concrete.PrivateChannel
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.interactions.InteractionHook
+import net.dv8tion.jda.api.interactions.modals.Modal
+import net.dv8tion.jda.api.interactions.modals.ModalMapping
 
 class MessageCommandContext(
     override val event: MessageReceivedEvent,
@@ -153,6 +155,13 @@ class MessageCommandContext(
         }
     }
 
+    override suspend fun sendModal(modal: Modal): Void? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getValue(name: String): ModalMapping? {
+        TODO("Not yet implemented")
+    }
 
     override suspend fun deferEdit(): InteractionHook? {
         TODO("Not yet implemented")

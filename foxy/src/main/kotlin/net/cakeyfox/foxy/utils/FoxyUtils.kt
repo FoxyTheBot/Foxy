@@ -5,31 +5,39 @@ import dev.minn.jda.ktx.messages.InlineMessage
 import dev.minn.jda.ktx.messages.MessageCreateBuilder
 import io.ktor.client.call.*
 import io.ktor.client.request.*
+import io.ktor.client.statement.bodyAsText
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Instant
 import mu.KotlinLogging
+import net.cakeyfox.common.Colors
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
+import net.cakeyfox.foxy.database.data.Guild
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
-import net.cakeyfox.serializable.data.ActionResponse
+import net.cakeyfox.serializable.data.utils.ActionResponse
+import net.cakeyfox.serializable.data.utils.FoxyConfig
 import net.dv8tion.jda.api.entities.User
+import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.exceptions.RateLimitedException
 import net.dv8tion.jda.api.interactions.DiscordLocale
 import java.text.NumberFormat
 import java.time.ZoneId
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.time.Duration.Companion.seconds
 
 class FoxyUtils(
     val foxy: FoxyInstance
 ) {
     companion object {
-        private val logger = KotlinLogging.logger {  }
+        private val logger = KotlinLogging.logger { }
     }
 
     val availableLanguages = hashMapOf(
@@ -69,6 +77,23 @@ class FoxyUtils(
     fun convertISOToExtendedDiscordTimestamp(iso: Instant): String {
         val convertedDate = iso.epochSeconds.let { "<t:$it:f> (<t:$it:R>)" }
         return convertedDate
+    }
+
+    suspend fun sendMessageToAGuildChannel(
+        guild: Guild,
+        guildCluster: FoxyConfig.Cluster,
+        channelId: String,
+        block: InlineMessage<*>.() -> Unit
+    ) {
+        val message = MessageCreateBuilder().apply(block)
+
+        if (guildCluster.id == foxy.currentCluster.id) {
+            foxy.shardManager.getGuildById(guild._id)?.getTextChannelById(channelId)
+                ?.sendMessage(message.build())
+                ?.await()
+        } else {
+            // TODO: Send message to another cluster
+        }
     }
 
     suspend fun sendDirectMessage(user: User, delayMs: Long = 1500L, block: InlineMessage<*>.() -> Unit) {
@@ -125,8 +150,15 @@ class FoxyUtils(
         }
     }
 
-    suspend fun handleBan(event: SlashCommandInteractionEvent, context: CommandContext) {
-        val user = context.database.user.getFoxyProfile(event.user.id)
+    suspend fun handleBan(event: GenericEvent, context: CommandContext) {
+        if (event !is SlashCommandInteractionEvent && event !is MessageReceivedEvent) return
+        val discordUser = when (event) {
+            is SlashCommandInteractionEvent -> event.user
+            is MessageReceivedEvent -> event.author
+            else -> null
+        }
+        val user = context.database.user.getFoxyProfile(discordUser!!.id)
+        val isGuildOwner = context.guild?.ownerId == user._id
 
         context.reply {
             embed {
@@ -134,6 +166,8 @@ class FoxyUtils(
                     FoxyEmotes.FoxyRage,
                     context.locale["ban.title"]
                 )
+                color = Colors.RED
+                thumbnail = Constants.FOXY_BAN
 
                 description = context.locale["ban.description"]
                 field {
@@ -156,6 +190,11 @@ class FoxyUtils(
                     Constants.UNBAN_FORM_URL
                 )
             )
+        }
+        delay(1_000)
+        if (isGuildOwner) {
+            logger.info { "Leaving from banned guild: ${context.guild?.id} | Owner ID: ${discordUser.id}" }
+            context.guild?.leave()?.await()
         }
     }
 }

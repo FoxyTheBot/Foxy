@@ -1,59 +1,61 @@
 plugins {
     java
-    kotlin("jvm") version Versions.KOTLIN
-    kotlin("plugin.serialization") version Versions.KOTLIN
+    kotlin("jvm")
+    kotlin("plugin.serialization")
     id("com.gradleup.shadow")
-    application
 }
 
-group = "net.cakeyfox"
-version = Versions.FOXY_VERSION
-
 dependencies {
-    implementation(project(":artistry-client"))
+    implementation(libs.kotlin.stdlib.jdk8)
+    implementation(project(":showtime-client"))
     implementation(project(":common"))
-    implementation(project(":cirno-serializable"))
+    implementation(project(":serializable-commons"))
 
     // Discord
-    implementation("net.dv8tion:JDA:${Versions.JDA}")
-    implementation("club.minnced:jda-ktx:${Versions.JDA_KTX}")
-
-    // Database
-    implementation("org.mongodb:bson-kotlinx:${Versions.MONGODB}")
-    implementation("org.mongodb:mongodb-driver-kotlin-coroutine:${Versions.MONGODB}")
-    implementation("com.github.FoxyTheBot:DatabaseUtils:1.1.6")
-
-    // Ktor
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:${Versions.KTOR}")
-    implementation("io.ktor:ktor-client-core:${Versions.KTOR}")
-    implementation("io.ktor:ktor-server-netty:${Versions.KTOR}")
-    implementation("io.ktor:ktor-server-core:${Versions.KTOR}")
-    implementation("io.ktor:ktor-client-content-negotiation:${Versions.KTOR}")
-    implementation("io.ktor:ktor-client-cio:${Versions.KTOR}")
-    implementation("io.ktor:ktor-server-content-negotiation:${Versions.KTOR}")
-    implementation("io.ktor:ktor-server-auth:${Versions.KTOR}")
-
-    // ThreadFactoryBuilder
-    implementation("com.google.guava:guava:32.1.3-jre")
-
-    // Caching
-    implementation("com.github.ben-manes.caffeine:caffeine:${Versions.CAFFEINE}")
+    implementation(libs.jda)
+    implementation(libs.jda.ktx)
 
     // Coroutines and DateTime
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.KOTLIN_COROUTINES}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-debug:${Versions.KOTLIN_COROUTINES}")
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.KOTLINX_DATE_TIME}")
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.debug)
+    implementation(libs.kotlinx.datetime)
 
-    // Logging
-    implementation("ch.qos.logback:logback-classic:${Versions.LOGBACK}")
-    implementation("io.github.microutils:kotlin-logging:${Versions.KOTLIN_LOGGING}")
+    // Database
+    implementation(libs.mongodb.bson)
+    implementation(libs.mongodb.coroutine.driver)
+    implementation(libs.foxy.databaseutils)
+
+    // Ktor
+    implementation(libs.ktor.server.core)
+    implementation(libs.ktor.server.netty)
+    implementation(libs.ktor.server.cio)
+    implementation(libs.ktor.server.auth)
+    implementation(libs.ktor.server.content.negotiation)
+    implementation(libs.ktor.server.htmx)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.json)
 
     // Serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.KOTLIN_SERIALIZATION}")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-hocon:${Versions.KOTLIN_SERIALIZATION}")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${Versions.JACKSON}")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.JACKSON}")
+    implementation(libs.kotlinx.serialization.core)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.serialization.hocon)
+    implementation(libs.jackson.dataformat.yaml)
+    implementation(libs.jackson.module.kotlin)
+
+    // Logging
+    implementation(libs.logback.classic)
+    implementation(libs.kotlin.logging)
+
+    // Thread Factory
+    implementation(libs.guava)
+
+    // Caching
+    implementation(libs.caffeine)
+
+    // HTML Parsing
+    implementation(libs.jsoup)
 }
 
 tasks.test {
@@ -67,10 +69,6 @@ tasks {
         archiveClassifier.set("")
         mergeServiceFiles()
     }
-}
-
-application {
-    mainClass.set("net.cakeyfox.foxy.FoxyLauncher")
 }
 
 kotlin {

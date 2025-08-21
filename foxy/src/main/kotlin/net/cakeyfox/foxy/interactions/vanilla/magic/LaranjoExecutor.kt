@@ -16,7 +16,7 @@ class LaranjoExecutor : UnleashedCommandExecutor() {
         val text = context.getOption("text", 0, String::class.java, true)
 
         val laranjoImage = withContext(context.foxy.coroutineDispatcher) {
-            context.foxy.artistryClient.generateImage("memes/laranjo", buildJsonObject {
+            context.foxy.showtimeClient.generateImage("memes/laranjo", buildJsonObject {
                 put("text", text)
             })
         }

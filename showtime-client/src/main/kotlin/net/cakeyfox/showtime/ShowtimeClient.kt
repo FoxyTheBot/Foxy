@@ -1,4 +1,4 @@
-package net.cakeyfox.artistry
+package net.cakeyfox.showtime
 
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
@@ -6,9 +6,9 @@ import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.serialization.json.JsonObject
-import net.cakeyfox.serializable.database.utils.FoxyConfig
+import net.cakeyfox.serializable.data.utils.FoxyConfig
 
-class ArtistryClient (
+class ShowtimeClient (
     private val config: FoxyConfig,
     private val artistryToken: String
 ) {

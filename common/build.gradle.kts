@@ -10,7 +10,7 @@ kotlin {
 
     jvm().compilations["main"].defaultSourceSet {
         dependencies {
-            implementation("org.jetbrains.kotlinx:kotlinx-serialization-hocon:${Versions.KOTLIN_SERIALIZATION}")
+            implementation(libs.kotlinx.serialization.hocon)
         }
     }
 }

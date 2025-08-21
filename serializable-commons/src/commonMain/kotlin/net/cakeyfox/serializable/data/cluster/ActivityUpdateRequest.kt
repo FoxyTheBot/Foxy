@@ -1,4 +1,4 @@
-package net.cakeyfox.serializable.data
+package net.cakeyfox.serializable.data.cluster
 
 import kotlinx.serialization.Serializable
 

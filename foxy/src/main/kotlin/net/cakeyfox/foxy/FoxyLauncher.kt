@@ -9,7 +9,7 @@ import net.cakeyfox.foxy.utils.HoconUtils.decodeFromString
 import net.cakeyfox.foxy.utils.HostnameUtils
 import net.cakeyfox.foxy.utils.checkConfigFile
 import net.cakeyfox.foxy.utils.installCoroutinesDebugProbes
-import net.cakeyfox.serializable.database.utils.FoxyConfig
+import net.cakeyfox.serializable.data.utils.FoxyConfig
 import java.io.File
 import javax.imageio.ImageIO
 import kotlin.reflect.jvm.jvmName

@@ -11,11 +11,13 @@ import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
+import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent
 import net.dv8tion.jda.api.interactions.InteractionHook
 import net.dv8tion.jda.api.interactions.commands.OptionType
+import net.dv8tion.jda.api.interactions.modals.Modal
 
 class InteractionCommandContext(
     override val event: GenericInteractionCreateEvent,
@@ -178,5 +180,17 @@ class InteractionCommandContext(
         }
 
         else -> throw IllegalStateException("Cannot defer this event type")
+    }
+
+    override suspend fun sendModal(modal: Modal) = when (event) {
+        is SlashCommandInteractionEvent -> event.replyModal(modal).await()
+        is ButtonInteractionEvent -> event.replyModal(modal).await()
+        is StringSelectInteractionEvent -> event.replyModal(modal).await()
+        else -> throw IllegalStateException("Cannot send modal to this event type.")
+    }
+
+    override fun getValue(name: String) = when (event) {
+        is ModalInteractionEvent -> event.getValue(name)
+        else -> throw IllegalStateException("Cannot get value from this event type.")
     }
 }

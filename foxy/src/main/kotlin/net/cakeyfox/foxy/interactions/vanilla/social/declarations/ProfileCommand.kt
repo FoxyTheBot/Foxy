@@ -2,6 +2,7 @@ package net.cakeyfox.foxy.interactions.vanilla.social.declarations
 
 import net.cakeyfox.foxy.interactions.commands.CommandCategory
 import net.cakeyfox.foxy.interactions.commands.FoxyCommandDeclarationWrapper
+import net.cakeyfox.foxy.interactions.vanilla.social.AboutMeExecutor
 import net.cakeyfox.foxy.interactions.vanilla.social.ProfileBadgesExecutor
 import net.cakeyfox.foxy.interactions.vanilla.social.ProfileViewExecutor
 import net.dv8tion.jda.api.interactions.IntegrationType
@@ -22,6 +23,13 @@ class ProfileCommand : FoxyCommandDeclarationWrapper {
             supportsLegacy = true
             aliases = listOf("perfil", "profile")
             executor = ProfileViewExecutor()
+        }
+
+        subCommand("aboutme") {
+            addOption(opt(OptionType.STRING, "text"))
+            supportsLegacy = true
+            aliases = listOf("sobremim")
+            executor = AboutMeExecutor()
         }
 
         subCommand("badges") {

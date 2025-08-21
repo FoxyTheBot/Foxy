@@ -29,7 +29,7 @@ class ErrorExecutor : UnleashedCommandExecutor() {
         }
 
         val errorImage = withContext(context.foxy.coroutineDispatcher) {
-            context.foxy.artistryClient.generateImage("memes/windowserror", buildJsonObject {
+            context.foxy.showtimeClient.generateImage("memes/windowserror", buildJsonObject {
                 put("text", text)
             })
         }

@@ -1,4 +1,4 @@
-package net.cakeyfox.serializable.database.utils
+package net.cakeyfox.serializable.data.utils
 
 import kotlinx.serialization.Serializable
 
@@ -8,13 +8,33 @@ data class FoxyConfig(
     val discord: DiscordSettings,
     val database: DatabaseSettings,
     val topgg: Topgg,
+    val website: WebsiteSettings,
+    val youtube: YouTubeSettings,
+    val foxpayments: FoxPayments,
     val others: OtherSettings
 ) {
+    @Serializable
+    data class WebsiteSettings(
+        val port: Int,
+        val url: String,
+    )
+
+    @Serializable
+    data class FoxPayments(
+        val url: String,
+        val key: String,
+    )
+    @Serializable
+    data class YouTubeSettings(
+        val key: String,
+    )
+
     @Serializable
     data class DiscordSettings(
         val ownerId: String,
         val guildId: String,
         val applicationId: String,
+        val clientSecret: String,
         val token: String,
         val baseUrl: String? = null,
         val totalShards: Int,
@@ -49,6 +69,7 @@ data class FoxyConfig(
     data class OtherSettings(
         val foxyApi: FoxyAPISettings,
         val internalApi: InternalApi,
+        val youtubeWebhook: String,
         val leaderboardLimit: Int,
         val artistry: ArtistrySettings,
         val topggToken: String,

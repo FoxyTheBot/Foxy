@@ -17,7 +17,7 @@ class GirlfriendMemeExecutor : UnleashedCommandExecutor() {
         val user = context.getOption("user", 0, User::class.java)
         if (user == null) return
         val girlfriendImageBuffer = withContext(context.foxy.coroutineDispatcher) {
-            context.foxy.artistryClient.generateImage("memes/girlfriend", buildJsonObject {
+            context.foxy.showtimeClient.generateImage("memes/girlfriend", buildJsonObject {
                 put("avatar", user.avatarUrl)
             })
         }

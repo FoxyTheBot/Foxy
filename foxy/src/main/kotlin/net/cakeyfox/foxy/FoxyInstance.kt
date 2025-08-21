@@ -13,22 +13,22 @@ import kotlinx.coroutines.cancel
 import kotlinx.datetime.TimeZone
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
-import net.cakeyfox.artistry.ArtistryClient
+import net.cakeyfox.showtime.ShowtimeClient
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.interactions.commands.FoxyCommandManager
 import net.cakeyfox.foxy.interactions.components.FoxyComponentManager
 import net.cakeyfox.foxy.listeners.GuildListener
 import net.cakeyfox.foxy.listeners.InteractionsListener
 import net.cakeyfox.foxy.listeners.MessageListener
-import net.cakeyfox.serializable.database.utils.FoxyConfig
+import net.cakeyfox.serializable.data.utils.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.analytics.DblStatsSender
-import net.cakeyfox.foxy.utils.api.FoxyInternalAPI
 import net.cakeyfox.foxy.utils.database.DatabaseClient
 import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
 import net.cakeyfox.foxy.utils.threads.ThreadUtils
 import net.cakeyfox.foxy.leaderboard.LeaderboardManager
 import net.cakeyfox.foxy.utils.TasksUtils
+import net.cakeyfox.foxy.utils.api.FoxyInternalAPI
 import net.dv8tion.jda.api.JDAInfo
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
@@ -48,7 +48,7 @@ class FoxyInstance(
     lateinit var shardManager: ShardManager
     lateinit var database: DatabaseClient
     lateinit var commandHandler: FoxyCommandManager
-    lateinit var artistryClient: ArtistryClient
+    lateinit var showtimeClient: ShowtimeClient
     lateinit var utils: FoxyUtils
     lateinit var interactionManager: FoxyComponentManager
     lateinit var httpClient: HttpClient
@@ -80,7 +80,7 @@ class FoxyInstance(
         commandHandler = FoxyCommandManager(this)
         utils = FoxyUtils(this)
         interactionManager = FoxyComponentManager(this)
-        artistryClient = ArtistryClient(config, config.others.artistry.key)
+        showtimeClient = ShowtimeClient(config, config.others.artistry.key)
         foxyInternalAPI = FoxyInternalAPI(this)
         httpClient = HttpClient(CIO) {
             install(HttpTimeout) { requestTimeoutMillis = 60_000 }
