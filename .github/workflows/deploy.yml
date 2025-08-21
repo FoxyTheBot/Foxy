@@ -35,7 +35,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GH_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
@@ -66,7 +66,7 @@ jobs:
             echo "Deploying to $SERVER..."
           
             ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SERVER "
-              docker pull ghcr.io/${{ github.repository_owner }}/foxy-bot:latest &&
+              docker pull ghcr.io/foxythebot/foxy-bot:latest &&
               docker-compose down &&
               docker-compose up -d
             "
