@@ -41,7 +41,6 @@ class FoxyInternalAPI(
                 call.respondText("OK")
             }
 
-            YouTubeWebhook(foxy).apply { postYouTubeWebhook(); getYouTubeWebhook() }
             GetUserAvatar().apply { getUserAvatar(foxy) }
             PostUpvoteWebhookRoute().apply { postUpvoteWebhook(foxy) }
 
