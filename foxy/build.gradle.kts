@@ -3,6 +3,7 @@ plugins {
     kotlin("jvm")
     kotlin("plugin.serialization")
     id("com.gradleup.shadow")
+    application
 }
 
 dependencies {
@@ -60,6 +61,11 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+
+application {
+    mainClass.set("net.cakeyfox.foxy.FoxyLauncher")
 }
 
 tasks {
