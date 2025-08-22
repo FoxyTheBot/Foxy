@@ -31,6 +31,8 @@ dashboard:
 user:
   avatar:
     showInBrowser: "Open in browser"
+    title: "{0}'s avatar"
+    userId: "User ID: {0}"
 
 birthday:
   set:

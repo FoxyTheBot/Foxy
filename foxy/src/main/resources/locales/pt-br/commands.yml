@@ -227,6 +227,8 @@ pay:
 user:
   avatar:
     showInBrowser: "Ver no navegador"
+    title: "Avatar de {0}"
+    userId: "ID do Usuário: {0}"
 
 roulette:
   spinResultWin: "Você girou a roleta e ganhou {0}!"

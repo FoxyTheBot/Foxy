@@ -14,13 +14,15 @@ class UserAvatarExecutor : UnleashedCommandExecutor() {
 
         context.reply {
             embed {
-                title = pretty(FoxyEmotes.FoxyYay, "${user.globalName} (@${user.name})")
+                title = pretty(FoxyEmotes.FoxyYay, context.locale["user.avatar.title", user.effectiveName])
                 image = user.effectiveAvatarUrl + "?size=2048"
                 color = Colors.FOXY_DEFAULT
+                footer(context.locale["user.avatar.userId", context.user.id])
             }
 
             actionRow(
                 linkButton(
+                    emoji = FoxyEmotes.FoxyWow,
                     label = context.locale["user.avatar.showInBrowser"],
                     url = user.effectiveAvatarUrl + "?size=2048"
                 )

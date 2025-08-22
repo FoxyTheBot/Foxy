@@ -18,8 +18,8 @@ class UserCommand : FoxyCommandDeclarationWrapper {
         integrationType = listOf(IntegrationType.USER_INSTALL, IntegrationType.GUILD_INSTALL)
 
         subCommand("avatar") {
+            addOption(opt(OptionType.USER, "user", true))
             supportsLegacy = true
-            opt(OptionType.USER, "user", true)
             executor = UserAvatarExecutor()
         }
     }

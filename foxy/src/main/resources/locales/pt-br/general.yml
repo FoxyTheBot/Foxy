@@ -86,10 +86,10 @@ commands:
       avatar:
         name: avatar
         description: Veja o avatar de algum usuário
-        options:
-          user:
-            name: usuário
-            description: O usuário que você quer ver a foto de perfil
+      options:
+        user:
+          name: usuário
+          description: O usuário que você quer ver a foto de perfil
 
       info:
         name: "info"
