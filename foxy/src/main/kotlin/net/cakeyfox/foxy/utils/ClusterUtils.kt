@@ -29,7 +29,7 @@ object ClusterUtils {
         prettyPrint = true
     }
 
-    fun getClusterByShardId(foxy: FoxyInstance, shardId: Int): FoxyConfig.Cluster {
+    fun getClusterByShardId(foxy: FoxyInstance, shardId: Int): FoxyConfig.DiscordSettings.Cluster {
         val shard = foxy.config.discord.clusters.firstOrNull { shardId in it.minShard..it.maxShard }
         return shard ?: throw IllegalArgumentException("Shard $shardId not found in any cluster")
     }
@@ -141,7 +141,7 @@ object ClusterUtils {
         }
     }
 
-    suspend fun FoxyInstance.getClusterInfo(cluster: FoxyConfig.Cluster): ClusterInfo? {
+    suspend fun FoxyInstance.getClusterInfo(cluster: FoxyConfig.DiscordSettings.Cluster): ClusterInfo? {
         return try {
             val jsonString = getFromAnotherCluster(this, cluster, "/api/v1/info") ?: return null
             json.decodeFromString<ClusterInfo>(jsonString)
@@ -153,7 +153,7 @@ object ClusterUtils {
 
     private suspend fun getFromAnotherCluster(
         foxy: FoxyInstance,
-        cluster: FoxyConfig.Cluster,
+        cluster: FoxyConfig.DiscordSettings.Cluster,
         endpoint: String
     ): String? {
         return withContext(foxy.coroutineDispatcher) {
@@ -161,7 +161,7 @@ object ClusterUtils {
             val response = foxy.httpClient.get {
                 url(cluster.clusterUrl + endpoint)
                 header("Content-Type", "application/json")
-                header("Authorization", "Bearer ${foxy.config.others.internalApi.key}")
+                header("Authorization", "Bearer ${foxy.config.internalApi.key}")
             }
             if (response.status != HttpStatusCode.OK) return@withContext null
             response.bodyAsText()
