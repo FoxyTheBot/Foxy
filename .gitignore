@@ -18,5 +18,5 @@ css/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-foxy.conf
+./foxy.conf
 /.kotlin/
