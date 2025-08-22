@@ -22,7 +22,7 @@ class ShowtimeClient (
 
     suspend fun generateImage(endpoint: String, data: JsonObject): HttpResponse {
         val response = client.post {
-            url(config.others.artistry.url + endpoint)
+            url(config.showtime.url + endpoint)
             header("Content-Type", "application/json")
             header("Authorization", artistryToken)
             setBody(data.toString())

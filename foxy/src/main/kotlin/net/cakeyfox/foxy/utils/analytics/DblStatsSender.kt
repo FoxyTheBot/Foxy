@@ -17,7 +17,7 @@ class DblStatsSender(
     val foxy: FoxyInstance
 ) {
     private val logger = KotlinLogging.logger(this::class.jvmName)
-    private val token = foxy.config.others.topggToken
+    private val token = foxy.config.topgg.authorization
     private val clientId = foxy.config.discord.applicationId
     private var statsSenderJob: Job? = null
 
@@ -57,7 +57,7 @@ class DblStatsSender(
                 async {
                     try {
                         val response = client.get("$url/guilds", {
-                            header("Authorization", "Bearer ${foxy.config.others.internalApi.key}")
+                            header("Authorization", "Bearer ${foxy.config.internalApi.key}")
                         })
                         Json.decodeFromString<ClusterStats>(response.bodyAsText()).serverCount
                     } catch (e: Exception) {

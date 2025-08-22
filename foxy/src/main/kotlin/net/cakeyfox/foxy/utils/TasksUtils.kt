@@ -21,7 +21,5 @@ object TasksUtils {
         )
     }
 
-    private fun at(hour: Int, minute: Int): LocalTime {
-        return LocalTime.of(hour, minute)
-    }
+    private fun at(hour: Int, minute: Int) = LocalTime.of(hour, minute)
 }

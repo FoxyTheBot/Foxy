@@ -17,7 +17,7 @@ class FoxyInternalAPI(
     val foxy: FoxyInstance
 ) {
     private val logger = KotlinLogging.logger { }
-    private val server = embeddedServer(Netty, port = foxy.config.others.internalApi.port) {
+    private val server = embeddedServer(Netty, port = foxy.config.internalApi.port) {
         install(ContentNegotiation) {
             json()
         }
@@ -25,7 +25,7 @@ class FoxyInternalAPI(
         install(Authentication) {
             bearer("auth-bearer") {
                 authenticate { tokenCredential ->
-                    if (tokenCredential.token == foxy.config.others.internalApi.key) {
+                    if (tokenCredential.token == foxy.config.internalApi.key) {
                         UserIdPrincipal("authenticatedUser")
                     } else null
                 }
@@ -41,6 +41,7 @@ class FoxyInternalAPI(
                 call.respondText("OK")
             }
 
+            YouTubeWebhook(foxy).apply { postYouTubeWebhook(); getYouTubeWebhook() }
             GetUserAvatar().apply { getUserAvatar(foxy) }
             PostUpvoteWebhookRoute().apply { postUpvoteWebhook(foxy) }
 

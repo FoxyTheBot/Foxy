@@ -43,7 +43,7 @@ import kotlin.concurrent.thread
 
 class FoxyInstance(
     val config: FoxyConfig,
-    val currentCluster: FoxyConfig.Cluster
+    val currentCluster: FoxyConfig.DiscordSettings.Cluster
 ) {
     lateinit var shardManager: ShardManager
     lateinit var database: DatabaseClient
@@ -80,7 +80,7 @@ class FoxyInstance(
         commandHandler = FoxyCommandManager(this)
         utils = FoxyUtils(this)
         interactionManager = FoxyComponentManager(this)
-        showtimeClient = ShowtimeClient(config, config.others.artistry.key)
+        showtimeClient = ShowtimeClient(config, config.showtime.key)
         foxyInternalAPI = FoxyInternalAPI(this)
         httpClient = HttpClient(CIO) {
             install(HttpTimeout) { requestTimeoutMillis = 60_000 }

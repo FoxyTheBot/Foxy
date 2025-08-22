@@ -156,7 +156,7 @@ class UserUtils(
             val collection = client.database.getCollection<Document>("users")
             collection.find()
                 .sort(descending("userCakes.balance"))
-                .limit(foxy.config.others.leaderboardLimit)
+                .limit(foxy.config.leaderboard.limit)
                 .projection(include("_id", "userCakes.balance"))
                 .map { document ->
                     val id = document.getString("_id")

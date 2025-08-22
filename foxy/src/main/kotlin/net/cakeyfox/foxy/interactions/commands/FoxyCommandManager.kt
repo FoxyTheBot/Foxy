@@ -72,14 +72,18 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
             val globalCommandAction = if (foxy.currentCluster.isMasterCluster) shard.updateCommands() else null
 
             commands.forEach { command ->
-                val builtCommand = command.create().build()
+                val createdCommand = command.create()
+                val builtCommand = createdCommand.build()
 
-                if (command.create().isPrivate) {
-                    if (shard.shardInfo.shardId == supportServerShardId) {
-                        val supportServer = foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
-                        supportServer?.updateCommands()?.addCommands(builtCommand)?.await()
-                        logger.info { "Registered /${command.create().name} as private command (Shard: #${shard.shardInfo.shardId})" }
-                    }
+                if (createdCommand.isPrivate) {
+                    if (shard.shardInfo.shardId != supportServerShardId) return@forEach
+
+                    foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
+                        ?.updateCommands()
+                        ?.addCommands(builtCommand)
+                        ?.await()
+
+                    logger.info { "Registered /${createdCommand.name} as private command (Shard: #${shard.shardInfo.shardId})" }
                 } else {
                     globalCommandAction?.addCommands(builtCommand)
                 }
@@ -88,11 +92,11 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
                     foxy.database.bot.getOrRegisterCommand(
                         net.cakeyfox.foxy.database.data.Command(
                             uniqueId = UUID.randomUUID().toString(),
-                            name = command.create().name,
-                            description = command.create().description,
-                            supportsLegacy = command.create().supportsLegacy,
-                            aliases = command.create().aliases,
-                            category = command.create().category,
+                            name = createdCommand.name,
+                            description = createdCommand.description,
+                            supportsLegacy = createdCommand.supportsLegacy,
+                            aliases = createdCommand.aliases,
+                            category = createdCommand.category,
                             usage = null,
                             usageCount = 0,
                             subCommands = builtCommand.subcommands.map {
@@ -105,12 +109,6 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
                         )
                     )
                 }
-            }
-
-            if (foxy.currentCluster.isMasterCluster && globalCommandAction != null) {
-                val registeredCommands = globalCommandAction.await()
-                allCommands.addAll(registeredCommands)
-                logger.info { "${commands.count { !it.create().isPrivate }} commands registered on shard #${shard.shardInfo.shardId}" }
             }
         }
 

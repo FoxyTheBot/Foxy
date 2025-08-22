@@ -81,7 +81,7 @@ class FoxyUtils(
 
     suspend fun sendMessageToAGuildChannel(
         guild: Guild,
-        guildCluster: FoxyConfig.Cluster,
+        guildCluster: FoxyConfig.DiscordSettings.Cluster,
         channelId: String,
         block: InlineMessage<*>.() -> Unit
     ) {

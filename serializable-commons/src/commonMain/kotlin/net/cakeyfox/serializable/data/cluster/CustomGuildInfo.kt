@@ -25,7 +25,7 @@ data class CustomGuildInfo(
     val createdAt: Long,
     val joinedAt: Long,
     val firstEmojis: List<String> = emptyList(),
-    val clusterInfo: FoxyConfig.Cluster,
+    val clusterInfo: FoxyConfig.DiscordSettings.Cluster,
     val invites: List<Invite> = emptyList(),
 ) {
     @Serializable

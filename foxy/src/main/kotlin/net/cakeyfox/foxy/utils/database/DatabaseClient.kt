@@ -20,7 +20,6 @@ class DatabaseClient(
 
     private lateinit var mongoClient: MongoClient
     lateinit var guilds: MongoCollection<Guild>
-
     lateinit var users: MongoCollection<FoxyUser>
     lateinit var database: MongoDatabase
 
@@ -33,7 +32,7 @@ class DatabaseClient(
 
     private fun connect() {
         try {
-            mongoClient = MongoClient.create(foxy.config.database.uri)
+            mongoClient = MongoClient.create(foxy.config.database.address)
             mongoClient.withTimeout(10, TimeUnit.SECONDS)
             database = mongoClient.getDatabase(foxy.config.database.databaseName)
             users = database.getCollection("users")

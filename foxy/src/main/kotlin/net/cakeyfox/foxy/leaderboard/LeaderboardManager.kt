@@ -23,7 +23,7 @@ class LeaderboardManager(
     }
 
     private val leaderboardCache = Caffeine.newBuilder()
-        .maximumSize(foxy.config.others.leaderboardLimit.toLong())
+        .maximumSize(foxy.config.leaderboard.limit.toLong())
         .expireAfterWrite(1, TimeUnit.HOURS)
         .build<String, List<LeaderboardUser>>()
 
@@ -133,7 +133,7 @@ class LeaderboardManager(
         val processedUsers = mutableSetOf<String>()
         val result = mutableListOf<LeaderboardUser.MarriageUser>()
 
-        val desiredAmount = foxy.config.others.leaderboardLimit
+        val desiredAmount = foxy.config.leaderboard.limit
 
         val elapsedTime = measureTimeMillis {
             val rawUsers = foxy.database.user.getTopMarriedUsers()
