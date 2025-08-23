@@ -6,6 +6,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
+import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.dv8tion.jda.api.utils.FileUpload
@@ -16,7 +17,7 @@ class StonksExecutor : UnleashedCommandExecutor() {
         val text = context.getOption("text", 0, String::class.java, true)
 
         val stonksImage = withContext(context.foxy.coroutineDispatcher) {
-            context.foxy.showtimeClient.generateImage("memes/stonks", buildJsonObject {
+            context.foxy.showtimeClient.generateImage(Constants.STONKS_ROUTE, buildJsonObject {
                 put("text", text)
             })
         }

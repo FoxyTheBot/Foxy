@@ -7,6 +7,7 @@ import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import mu.KotlinLogging
+import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
@@ -66,7 +67,7 @@ class AntesQueVireModaExecutor : UnleashedCommandExecutor() {
         }
 
         val response = withContext(context.foxy.coroutineDispatcher) {
-            context.foxy.showtimeClient.generateImage("memes/moda", buildJsonObject {
+            context.foxy.showtimeClient.generateImage(Constants.ANTES_QUE_VIRE_MODA_ROUTE, buildJsonObject {
                 put("asset", attachment.url)
             })
         }

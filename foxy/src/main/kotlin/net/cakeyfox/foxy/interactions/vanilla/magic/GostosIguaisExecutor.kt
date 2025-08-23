@@ -6,6 +6,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
+import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
@@ -32,7 +33,7 @@ class GostosIguaisExecutor : UnleashedCommandExecutor() {
         }
 
         val image = withContext(context.foxy.coroutineDispatcher) {
-            context.foxy.showtimeClient.generateImage("memes/gosto", buildJsonObject {
+            context.foxy.showtimeClient.generateImage(Constants.GOSTOS_IGUAIS_ROUTE, buildJsonObject {
                 put("asset1", attachment1.url)
                 put("asset2", attachment2.url)
                 put("text", text)

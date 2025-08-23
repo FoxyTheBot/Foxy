@@ -28,6 +28,16 @@ object Constants {
     const val UPVOTE_URL = "https://top.gg/bot/1006520438865801296/vote"
     const val FOXY_TIMEZONE = "America/Sao_Paulo"
 
+    // Showtime Endpoints
+    const val ANTES_QUE_VIRE_MODA_ROUTE = "/memes/moda"
+    const val EMINEM_ROUTE = "/memes/8mile"
+    const val ERROR_ROUTE = "/memes/windowserror"
+    const val GIRLFRIEND_ROUTE = "/memes/girlfriend"
+    const val GOSTOS_IGUAIS_ROUTE = "/memes/gosto"
+    const val LARANJO_ROUTE = "/memes/laranjo"
+    const val NOT_STONKS_ROUTE = "/memes/notstonks"
+    const val STONKS_ROUTE = "/memes/stonks"
+
     fun getDefaultActivity(activity: String, environment: String, clusterName: String?): String {
         if (clusterName != null) {
             return when(environment) {

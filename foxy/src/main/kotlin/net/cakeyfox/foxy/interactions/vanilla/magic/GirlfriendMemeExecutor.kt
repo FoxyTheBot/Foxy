@@ -6,6 +6,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
+import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.dv8tion.jda.api.entities.User
@@ -17,7 +18,7 @@ class GirlfriendMemeExecutor : UnleashedCommandExecutor() {
         val user = context.getOption("user", 0, User::class.java)
         if (user == null) return
         val girlfriendImageBuffer = withContext(context.foxy.coroutineDispatcher) {
-            context.foxy.showtimeClient.generateImage("memes/girlfriend", buildJsonObject {
+            context.foxy.showtimeClient.generateImage(Constants.GIRLFRIEND_ROUTE, buildJsonObject {
                 put("avatar", user.avatarUrl)
             })
         }

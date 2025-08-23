@@ -6,6 +6,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
+import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
@@ -58,7 +59,7 @@ class EminemExecutor: UnleashedCommandExecutor() {
 
 
         val response = withContext(context.foxy.coroutineDispatcher) {
-            context.foxy.showtimeClient.generateImage("memes/8mile", buildJsonObject {
+            context.foxy.showtimeClient.generateImage(Constants.EMINEM_ROUTE, buildJsonObject {
                 put("url", attachment.url)
                 put("contentType", attachment.contentType)
                 put("size", attachment.size)

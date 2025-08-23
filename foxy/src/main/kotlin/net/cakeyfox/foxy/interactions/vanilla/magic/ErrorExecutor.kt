@@ -6,6 +6,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.io.readByteArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
+import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
@@ -29,7 +30,7 @@ class ErrorExecutor : UnleashedCommandExecutor() {
         }
 
         val errorImage = withContext(context.foxy.coroutineDispatcher) {
-            context.foxy.showtimeClient.generateImage("memes/windowserror", buildJsonObject {
+            context.foxy.showtimeClient.generateImage(Constants.ERROR_ROUTE, buildJsonObject {
                 put("text", text)
             })
         }
