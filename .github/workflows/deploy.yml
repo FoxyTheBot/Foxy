@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '24'
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
@@ -25,7 +25,7 @@ jobs:
         env:
           GIT_COMMIT: ${{ github.sha }}
           GITHUB_RUN_NUMBER: ${{ github.run_number }}
-        run: ./gradlew :foxy:shadowJar --no-daemon
+        run: ./gradlew :foxy:shadowJar --no-daemon -Dorg.gradle.jvmargs="-Xmx4096m -Xms4096m"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -47,27 +47,3 @@ jobs:
           build-args: |
             BUILD_NUMBER=${{ github.run_number }}
             COMMIT_HASH=${{ github.sha }}
-
-      - name: Deploy Foxy to servers
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SERVERS: ${{ secrets.SERVERS }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
-
-        run: |
-          mkdir -p ~/.ssh
-          echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          
-          IFS=',' read -r -a server_array <<< "$SERVERS"
-          
-          for SERVER in "${server_array[@]}"; do
-            echo "Deploying to $SERVER..."
-          
-            ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SERVER "
-              docker pull ghcr.io/foxythebot/foxy-bot:latest &&
-              docker-compose down &&
-              docker-compose up -d
-            "
-          done
