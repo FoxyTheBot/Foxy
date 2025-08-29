@@ -1,6 +1,7 @@
 package net.cakeyfox.foxy.utils.api.routes
 
 import io.ktor.http.HttpStatusCode
+import io.ktor.server.request.header
 import io.ktor.server.request.receiveText
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.Route
@@ -10,6 +11,9 @@ import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import org.jsoup.Jsoup
 import org.jsoup.parser.Parser
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
@@ -35,19 +39,39 @@ class PostPubSubCallbackRoute(
         post("/api/v1/youtube/webhook") {
             val xmlBody = call.receiveText()
 
-            val signatureHeader = call.request.headers["X-Hub-Signature"]
-            if (signatureHeader == null) {
-                call.respondText("Missing signature", status = HttpStatusCode.Unauthorized)
+            val originalSignature = call.request.header("X-Hub-Signature")
+            if (originalSignature == null) {
+                logger.warn { "Missing X-Hub-Signature Header from Request!" }
+                call.respondText("Missing X-Hub-Signature Header from Request", status = HttpStatusCode.BadRequest)
                 return@post
             }
 
-            val mac = Mac.getInstance("HmacSHA1").apply {
-                init(SecretKeySpec(foxy.config.youtube.webhookSecret.toByteArray(), "HmacSHA1"))
-            }
-            val expected = "sha1=" + mac.doFinal(xmlBody.toByteArray()).joinToString("") { "%02x".format(it) }
+            val secret = foxy.config.youtube.webhookSecret
+            val computedSignature = when {
+                originalSignature.startsWith("sha1=") -> {
+                    val signingKey = SecretKeySpec(secret.toByteArray(Charsets.UTF_8), "HmacSHA1")
+                    val mac = Mac.getInstance("HmacSHA1").apply { init(signingKey) }
+                    val doneFinal = mac.doFinal(xmlBody.toByteArray(Charsets.UTF_8))
+                    "sha1=" + doneFinal.joinToString("") { "%02x".format(it) }
+                }
 
-            if (signatureHeader != expected) {
-                call.respondText("Invalid signature", status = HttpStatusCode.Unauthorized)
+                originalSignature.startsWith("sha256=") -> {
+                    val signingKey = SecretKeySpec(secret.toByteArray(Charsets.UTF_8), "HmacSHA256")
+                    val mac = Mac.getInstance("HmacSHA256").apply { init(signingKey) }
+                    val doneFinal = mac.doFinal(xmlBody.toByteArray(Charsets.UTF_8))
+                    "sha256=" + doneFinal.joinToString("") { "%02x".format(it) }
+                }
+
+                else -> {
+                    logger.error { "Unsupported signature algorithm in header: $originalSignature" }
+                    call.respondText("Unsupported signature algorithm", status = HttpStatusCode.BadRequest)
+                    return@post
+                }
+            }
+
+            if (originalSignature != computedSignature) {
+                logger.warn { "Invalid X-Hub-Signature Header from Request!" }
+                call.respondText("Invalid X-Hub-Signature Header from Request", status = HttpStatusCode.BadRequest)
                 return@post
             }
 
@@ -57,7 +81,11 @@ class PostPubSubCallbackRoute(
             val videoId = entry?.selectFirst("yt|videoId")?.text()
             val channelId = entry?.selectFirst("yt|channelId")?.text()
             val author = entry?.selectFirst("author > name")?.text() ?: "Unknown"
-            val videoUrl = entry?.selectFirst("link[rel=alternate]")?.attr("href") ?: return@post
+            val publishedText = entry?.selectFirst("published")?.text() ?: return@post
+            val videoUrl = entry.selectFirst("link[rel=alternate]")?.attr("href") ?: return@post
+            val publishedInstant = Instant.parse(publishedText)
+            val publishedDate = publishedInstant.atZone(ZoneId.systemDefault()).toLocalDate()
+            val today = LocalDate.now()
 
             logger.info { "Notifying from PubHubSubbub for $channelId" }
             if (videoId != null && channelId != null) {
