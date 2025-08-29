@@ -16,6 +16,9 @@ object Constants {
     const val DASHBOARD_URL = "https://foxybot.xyz/br/dashboard"
     const val FOXY_CRY = "https://stuff.foxybot.xyz/images/foxy_cry.png"
     const val FOXY_BAN = "https://stuff.foxybot.xyz/images/foxyban.png"
+    const val FOXY_FUMO = "https://stuff.foxybot.xyz/images/foxy_fumo.png"
+    const val PUBSUBHUBBUB_SUBSCRIBE = "https://pubsubhubbub.appspot.com/subscribe"
+    const val YOUTUBE_FEED = "https://www.youtube.com/xml/feeds/videos.xml"
 
     // Discord
     const val AUTHORIZATION_ENDPOINT = "https://discord.com/api/oauth2/authorize"
@@ -61,7 +64,7 @@ object Constants {
     }
 
     fun getProfileLayout(layoutId: String): String {
-        return "https://stuff.foxybot.xyz/layouts/$layoutId"
+        return "https://stuff.foxybot.xyz/layouts/test-blue.png"
     }
 
     fun getProfileDecoration(maskId: String): String {
