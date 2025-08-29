@@ -7,6 +7,22 @@ imageSource: "Link da Imagem"
 commands:
   earlyAccess: "Esse comando está em beta e apenas usuários premium possuem acesso antecipado. Se você quiser ter acesso a esse comando e muitos outros, você pode se tornar um usuário premium clicando [aqui](https://foxybot.xyz/br/premium)"
 
+youtube:
+  channel:
+    add:
+      title: "Adicionar o canal {0}"
+      field:
+        customMessage: "Mensagem customizada:"
+      undefined: "Não definido"
+      addedButton: "Adicionado"
+      addButton: "Adicionar"
+      addedSuccessfully: "Okay, agora eu vou notificar novos vídeos de **{0}** no canal {1}"
+      youCantAddMoreChannels: "Você não pode adicionar mais canais"
+      youCantAddDuplicatedChannels: "Você não pode adicionar o mesmo canal, bobinho!"
+    remove:
+      channelRemoved: "Okay, não vou mais enviar notificações de **{0}**!"
+      unknownChannel: "Não encontrei nenhum canal chamado **{0}** no seu servidor."
+
 language:
   embed:
     title: "Altere o meu idioma no seu servidor!"

@@ -9,6 +9,14 @@ object PlaceholderUtils {
         return getUserPlaceholders(user) + getGuildPlaceholders(guild)
     }
 
+    fun getYouTubeChannelPlaceholders(channelId: String, videoUrl: String, channelName: String): Map<String, String?> {
+        return mapOf(
+            Placeholders.CHANNEL_NAME to channelName,
+            Placeholders.VIDEO_URL to videoUrl,
+            Placeholders.CHANNEL_ID to channelId
+        )
+    }
+
     private fun getUserPlaceholders(user: User): Map<String, String?> {
         return mapOf(
             Placeholders.USER_GLOBAL_NAME to user.globalName,

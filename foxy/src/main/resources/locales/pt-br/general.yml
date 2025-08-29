@@ -6,6 +6,25 @@ commands:
   error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
 
   command:
+    youtube:
+      name: "youtube"
+      description: "Receba notificações de canais do youtube"
+      remove_channel:
+        name: "remover_canal"
+        description: "Remova um canal do YouTube da lista de seguidos do servidor"
+      add_channel:
+        name: "adicionar_canal"
+        description: "Adiciona um canal do YouTube a lista de seguidos do servidor"
+      options:
+        youtube_channel:
+          name: "canal"
+          description: "O nome/id/url do canal que você quer seguir"
+        text_channel:
+          name: "canal_de_texto"
+          description: "O canal de texto onde você quer que eu envie avisos de novos vídeos"
+        message:
+          name: "mensagem"
+          description: "A mensagem que será enviada a cada vídeo novo"
     birthday:
       name: "aniversário"
       description: "Comandos relacionados a aniversário"

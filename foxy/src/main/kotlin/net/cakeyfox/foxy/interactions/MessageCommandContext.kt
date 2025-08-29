@@ -12,6 +12,7 @@ import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.dv8tion.jda.api.entities.User
+import net.dv8tion.jda.api.entities.channel.Channel
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel
 import net.dv8tion.jda.api.entities.channel.concrete.PrivateChannel
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
@@ -146,6 +147,10 @@ class MessageCommandContext(
                     } else {
                         args[argNumber]
                     }
+                }
+
+                Channel::class.java -> {
+                    args[argNumber]
                 }
 
                 else -> null

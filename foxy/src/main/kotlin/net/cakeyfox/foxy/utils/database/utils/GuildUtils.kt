@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode
 import kotlinx.coroutines.flow.firstOrNull
 import mu.KotlinLogging
 import com.mongodb.client.model.Filters.eq
+import kotlinx.coroutines.flow.toList
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.jvmName
 
@@ -25,8 +26,30 @@ class GuildUtils(
         coerceInputValues = true
     }
 
+    suspend fun getFoxyverseGuildOrNull(guildId: String): FoxyverseGuild? {
+        return client.withRetry {
+            val query = Document("_id", guildId)
+            client.foxyverseGuilds.find(query).firstOrNull()
+        }
+    }
+
+
     suspend fun getGuild(guildId: String): Guild {
         return updateGuildWithNewFields(guildId)
+    }
+
+    suspend fun getGuildOrNull(guildId: String): Guild? {
+        return client.withRetry {
+            val query = Document("_id", guildId)
+            client.guilds.find(query).firstOrNull()
+        }
+    }
+
+    suspend fun getGuildsByFollowedYouTubeChannel(channelId: String): List<Guild> {
+        return client.withRetry {
+            val query = Document("followedYouTubeChannels.channelId", channelId)
+            client.guilds.find(query).toList()
+        }
     }
 
     suspend fun updateGuild(guildId: String, updates: Map<String, Any?>) {

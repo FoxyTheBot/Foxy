@@ -9,8 +9,22 @@ commands:
   error: An error occurred while executing the command, the problem has been reported!
     `{0}`
   command:
+    youtube:
+      name: "youtube"
+      description: Receive notifications from YouTube
+      remove_channel:
+        name: remove_channel
+      add_channel:
+        name: add_channel
+      options:
+        youtube_channel:
+          name: youtube_channel
+        text_channel:
+          name: text_channel
+        message:
+          name: message
     birthday:
-      name: aniversário
+      name: birthday
       description: Birthday-related commands
       set:
         name: define

@@ -29,6 +29,7 @@ import net.cakeyfox.foxy.utils.threads.ThreadUtils
 import net.cakeyfox.foxy.leaderboard.LeaderboardManager
 import net.cakeyfox.foxy.utils.TasksUtils
 import net.cakeyfox.foxy.utils.api.FoxyInternalAPI
+import net.cakeyfox.foxy.utils.youtube.YouTubeManager
 import net.dv8tion.jda.api.JDAInfo
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
@@ -54,6 +55,7 @@ class FoxyInstance(
     lateinit var httpClient: HttpClient
     lateinit var leaderboardManager: LeaderboardManager
     lateinit var environment: String
+    lateinit var youtubeManager: YouTubeManager
 
     private lateinit var foxyInternalAPI: FoxyInternalAPI
     private lateinit var dblStatsSender: DblStatsSender
@@ -81,6 +83,7 @@ class FoxyInstance(
         utils = FoxyUtils(this)
         interactionManager = FoxyComponentManager(this)
         showtimeClient = ShowtimeClient(config, config.showtime.key)
+        youtubeManager = YouTubeManager(this)
         foxyInternalAPI = FoxyInternalAPI(this)
         httpClient = HttpClient(CIO) {
             install(HttpTimeout) { requestTimeoutMillis = 60_000 }
