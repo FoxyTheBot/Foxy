@@ -64,7 +64,7 @@ object Constants {
     }
 
     fun getProfileLayout(layoutId: String): String {
-        return "https://stuff.foxybot.xyz/layouts/test-blue.png"
+        return "https://stuff.foxybot.xyz/layouts/$layoutId.png"
     }
 
     fun getProfileDecoration(maskId: String): String {
