@@ -9,6 +9,7 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.toJavaInstant
 import mu.KotlinLogging
 import net.cakeyfox.common.Colors
+import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.pretty
@@ -70,6 +71,7 @@ class BirthdayReminderTask(
                                     title = pretty(FoxyEmotes.FoxyCake, locale["birthday.title"])
                                     color = Colors.PURPLE
                                     description = locale["birthday.message", FoxyEmotes.FoxyYay]
+                                    thumbnail = Constants.FOXY_WOW
                                 }
                             }
 
