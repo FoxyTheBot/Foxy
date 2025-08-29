@@ -49,7 +49,7 @@ class YouTubeManager(
                             append("hub.mode", "subscribe")
                             append("hub.topic", "${Constants.YOUTUBE_FEED}?channel_id=$channelId")
                             append("hub.verify", "async")
-                            append("hub.secret", "Bearer ${foxy.config.internalApi.key}")
+                            append("hub.secret", foxy.config.youtube.webhookSecret)
                         }
                     )
                 )
