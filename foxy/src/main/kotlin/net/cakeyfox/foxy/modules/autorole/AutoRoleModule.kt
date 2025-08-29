@@ -20,15 +20,17 @@ class AutoRoleModule(
         val guildData = foxy.database.guild.getGuild(event.guild.id)
         val member = event.member
 
-        if (guildData.AutoRoleModule.isEnabled) {
-            val roleIds = guildData.AutoRoleModule.roles
+        if (guildData.AutoRoleModule != null) {
+            if (guildData.AutoRoleModule!!.isEnabled) {
+                val roleIds = guildData.AutoRoleModule!!.roles
 
-            val rolesToGive = roleIds.mapNotNull { event.guild.getRoleById(it) }
-                .filter { canAssignRole(event.guild, it) }
+                val rolesToGive = roleIds.mapNotNull { event.guild.getRoleById(it) }
+                    .filter { canAssignRole(event.guild, it) }
 
-            rolesToGive.take(5).forEach { role ->
-                assignRoleAsync(event.guild, member, role)
-                delay(200)
+                rolesToGive.take(5).forEach { role ->
+                    assignRoleAsync(event.guild, member, role)
+                    delay(200)
+                }
             }
         }
     }
