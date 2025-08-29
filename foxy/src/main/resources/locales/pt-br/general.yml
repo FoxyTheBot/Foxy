@@ -1,4 +1,5 @@
 greetings: "Olá {0}! Meu nome é Foxy, meu prefixo nesse servidor é `{1}`, Utilize `{1}help` para obter ajuda!"
+youDontHavePermissionToDoThat: "Você não tem permissão para fazer isso!"
 
 commands:
   onlyUserCanInteractWithThisComponent: "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {0}!"
