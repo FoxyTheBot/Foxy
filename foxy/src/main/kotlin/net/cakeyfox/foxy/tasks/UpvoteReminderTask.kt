@@ -47,7 +47,7 @@ class UpvoteReminderTask(
                                 description = locale["upvote.reminder.message", user._id]
                                 footer(locale["upvote.reminder.footer"])
                                 color = Colors.FOXY_DEFAULT
-                                thumbnail = Constants.FOXY_WOW
+                                thumbnail = Constants.FOXY_FUMO
                             }
 
                             actionRow(
