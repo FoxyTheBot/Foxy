@@ -5,7 +5,6 @@ import dev.minn.jda.ktx.messages.InlineMessage
 import dev.minn.jda.ktx.messages.MessageCreateBuilder
 import io.ktor.client.call.*
 import io.ktor.client.request.*
-import io.ktor.client.statement.bodyAsText
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Instant
@@ -18,6 +17,7 @@ import net.cakeyfox.foxy.database.data.Guild
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
+import net.cakeyfox.serializable.data.cluster.RelayMessage
 import net.cakeyfox.serializable.data.utils.ActionResponse
 import net.cakeyfox.serializable.data.utils.FoxyConfig
 import net.dv8tion.jda.api.entities.User
@@ -28,10 +28,8 @@ import net.dv8tion.jda.api.exceptions.RateLimitedException
 import net.dv8tion.jda.api.interactions.DiscordLocale
 import java.text.NumberFormat
 import java.time.ZoneId
-import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.time.Duration.Companion.seconds
 
 class FoxyUtils(
     val foxy: FoxyInstance
@@ -83,16 +81,38 @@ class FoxyUtils(
         guild: Guild,
         guildCluster: FoxyConfig.DiscordSettings.Cluster,
         channelId: String,
+        delayMs: Long = 1_500L,
         block: InlineMessage<*>.() -> Unit
     ) {
         val message = MessageCreateBuilder().apply(block)
-
         if (guildCluster.id == foxy.currentCluster.id) {
-            foxy.shardManager.getGuildById(guild._id)?.getTextChannelById(channelId)
-                ?.sendMessage(message.build())
-                ?.await()
+            delay(delayMs)
+            try {
+                foxy.shardManager.getGuildById(guild._id)?.getTextChannelById(channelId)
+                    ?.sendMessage(message.build())
+                    ?.await()
+            } catch (e: RateLimitedException) {
+                val retryAfter = e.retryAfter
+                logger.warn { "Rate limited. Retrying after ${retryAfter}ms" }
+                delay(retryAfter)
+                sendMessageToAGuildChannel(guild, guildCluster, channelId) { block() }
+            }
         } else {
-            // TODO: Send message to another cluster
+            val guildClusterUrl = guildCluster.clusterUrl.removeSuffix("/")
+            logger.info { "Relaying message to Cluster ${guildCluster.id} (${guildCluster.name})" }
+
+            val messageData = message.build()
+            val payload = RelayMessage(
+                content = messageData.content,
+                embeds = messageData.embeds.map { it.toRelayEmbed() }
+            )
+
+            foxy.httpClient.post {
+                url("$guildClusterUrl/api/v1/guilds/${guild._id}/$channelId")
+                header("Content-Type", "application/json")
+                header("Authorization", "Bearer ${foxy.config.internalApi.key}")
+                setBody(payload)
+            }
         }
     }
 

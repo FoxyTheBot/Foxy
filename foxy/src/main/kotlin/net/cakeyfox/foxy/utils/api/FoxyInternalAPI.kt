@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy.utils.api
 
+import net.cakeyfox.foxy.utils.api.routes.PostDiscordMessageToGuildRoute
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
@@ -42,9 +43,11 @@ class FoxyInternalAPI(
             }
 
             GetUserAvatar().apply { getUserAvatar(foxy) }
+            PostPubSubCallbackRoute(foxy).apply { postYouTubeWebhook(); getYouTubeWebhook() }
             PostUpvoteWebhookRoute().apply { postUpvoteWebhook(foxy) }
 
             authenticate("auth-bearer") {
+                PostDiscordMessageToGuildRoute().apply { postDiscordMessageToGuildRoute(foxy) }
                 GetGuildsFromCluster().apply { getGuildsFromCluster(foxy) }
                 GetGuildInfo().apply { getGuildInfo(foxy) }
                 GetUserRolesFromAGuild().apply { getUserRolesFromAGuild(foxy) }
