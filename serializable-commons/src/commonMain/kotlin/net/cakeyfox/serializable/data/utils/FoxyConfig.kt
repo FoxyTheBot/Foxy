@@ -47,7 +47,8 @@ data class FoxyConfig(
     @Serializable
     data class YouTubeSettings(
         val key: String,
-        val webhookUrl: String
+        val webhookUrl: String,
+        val webhookSecret: String
     )
 
     @Serializable

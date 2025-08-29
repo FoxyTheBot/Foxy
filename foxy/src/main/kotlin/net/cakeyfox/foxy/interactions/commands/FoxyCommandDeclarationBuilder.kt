@@ -17,7 +17,7 @@ class FoxyCommandDeclarationBuilder(
     val description: String,
     var isPrivate: Boolean,
     var category: String,
-    val availableForEarlyAccess: Boolean = false,
+    var availableForEarlyAccess: Boolean = false,
     var aliases: List<String> = emptyList(),
     var supportsLegacy: Boolean = false,
     var integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
