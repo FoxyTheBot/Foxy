@@ -20,6 +20,7 @@ import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.LanguageCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.FoxyCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.ServerCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.UserCommand
+import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.YouTubeCommand
 import net.cakeyfox.foxy.utils.ClusterUtils.getShardIdFromGuildId
 import net.dv8tion.jda.api.interactions.commands.Command
 import java.util.UUID
@@ -69,47 +70,43 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         )
 
         foxy.shardManager.shards.forEach { shard ->
-            val globalCommandAction = if (foxy.currentCluster.isMasterCluster) shard.updateCommands() else null
+            val action = shard.updateCommands()
 
             commands.forEach { command ->
-                val createdCommand = command.create()
-                val builtCommand = createdCommand.build()
+                val builtCommand = command.create().build()
 
-                if (createdCommand.isPrivate) {
-                    if (shard.shardInfo.shardId != supportServerShardId) return@forEach
-
-                    foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
-                        ?.updateCommands()
-                        ?.addCommands(builtCommand)
-                        ?.await()
-
-                    logger.info { "Registered /${createdCommand.name} as private command (Shard: #${shard.shardInfo.shardId})" }
+                if (command.create().isPrivate) {
+                    if (shard.shardInfo.shardId == supportServerShardId) {
+                        val supportServer = foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
+                        supportServer?.updateCommands()?.addCommands(builtCommand)?.await()
+                        logger.info { "Registered /${command.create().name} as private command (Shard: #${shard.shardInfo.shardId})" }
+                    }
                 } else {
-                    globalCommandAction?.addCommands(builtCommand)
+                    action.addCommands(builtCommand)
                 }
 
-                if (foxy.currentCluster.isMasterCluster) {
-                    foxy.database.bot.getOrRegisterCommand(
-                        net.cakeyfox.foxy.database.data.Command(
-                            uniqueId = UUID.randomUUID().toString(),
-                            name = createdCommand.name,
-                            description = createdCommand.description,
-                            supportsLegacy = createdCommand.supportsLegacy,
-                            aliases = createdCommand.aliases,
-                            category = createdCommand.category,
-                            usage = null,
-                            usageCount = 0,
-                            subCommands = builtCommand.subcommands.map {
-                                net.cakeyfox.foxy.database.data.Command.SubCommand(
-                                    uniqueId = UUID.randomUUID().toString(),
-                                    name = it.name,
-                                    description = it.description
-                                )
-                            }
-                        )
-                    )
-                }
+                foxy.database.bot.getOrRegisterCommand(
+                    net.cakeyfox.foxy.database.data.Command(
+                        uniqueId = UUID.randomUUID().toString(),
+                        name = command.create().name,
+                        description = command.create().description,
+                        supportsLegacy = false,
+                        category = command.create().category,
+                        usage = null,
+                        usageCount = 0,
+                        subCommands = builtCommand.subcommands.map {
+                            net.cakeyfox.foxy.database.data.Command.SubCommand(
+                                uniqueId = UUID.randomUUID().toString(),
+                                name = it.name,
+                                description = it.description
+                            )
+                        }
+                    ))
             }
+
+            val registeredCommands = action.await()
+            allCommands.addAll(registeredCommands)
+            logger.info { "${commands.size} commands registered on shard #${shard.shardInfo.shardId}" }
         }
 
         return allCommands
@@ -148,5 +145,6 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(DashboardCommand())
         register(LanguageCommand())
         register(UserCommand())
+        register(YouTubeCommand())
     }
 }
