@@ -114,7 +114,7 @@ class FoxyUtils(
                 setBody(payload)
             }
 
-            logger.info { "Received Status: ${request.status.value} from ${guildCluster.id} (${guildCluster.name})"}
+            logger.info { "Received Status: ${request.status.value} from Cluster ${guildCluster.id} (${guildCluster.name})"}
         }
     }
 

@@ -8,6 +8,7 @@ import net.cakeyfox.foxy.utils.database.DatabaseClient
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.entities.Guild
+import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.interactions.InteractionHook
@@ -23,6 +24,7 @@ interface CommandContext {
     val utils: FoxyUtils
     val user: User
     val guild: Guild?
+    val member: Member?
     val foxy: FoxyInstance
     val event: GenericEvent
 

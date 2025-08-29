@@ -5,6 +5,7 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.channel.Channel
 import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
@@ -14,6 +15,13 @@ class YouTubeAddChannelExecutor : UnleashedCommandExecutor() {
         val youtubeChannel = context.getOption("youtube_channel", type = String::class.java)!!
         val textChannel = context.getOption("text_channel", type = Channel::class.java)!!
         val message = context.getOption("message", type = String::class.java)
+        if (context.member?.hasPermission(Permission.MANAGE_SERVER) == false) {
+            context.reply(true) {
+                content = pretty(FoxyEmotes.FoxyRage, context.locale["youDontHavePermissionToDoThat"])
+            }
+
+            return
+        }
 
         if (textChannel.type.isMessage) {
             val channelInfo = context.foxy.youtubeManager.getChannelInfo(youtubeChannel)?.items?.get(0) ?: return

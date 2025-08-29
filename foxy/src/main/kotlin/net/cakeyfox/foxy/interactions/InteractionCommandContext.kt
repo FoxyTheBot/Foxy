@@ -31,6 +31,7 @@ class InteractionCommandContext(
     override val utils = FoxyUtils(foxy)
     override val guild = event.guild
     override val user = event.user
+    override val member = event.member
 
     private val logger = KotlinLogging.logger { }
 

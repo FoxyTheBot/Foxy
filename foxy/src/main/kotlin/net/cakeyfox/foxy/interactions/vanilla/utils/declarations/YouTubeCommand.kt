@@ -4,6 +4,7 @@ import net.cakeyfox.foxy.interactions.commands.CommandCategory
 import net.cakeyfox.foxy.interactions.commands.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.interactions.vanilla.utils.YouTubeAddChannelExecutor
 import net.cakeyfox.foxy.interactions.vanilla.utils.YouTubeRemoveChannelExecutor
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.interactions.commands.OptionType
 
 class YouTubeCommand : FoxyCommandDeclarationWrapper {
@@ -13,6 +14,7 @@ class YouTubeCommand : FoxyCommandDeclarationWrapper {
             addOption(opt(OptionType.CHANNEL, "text_channel", true))
             addOption(opt(OptionType.STRING, "message", false))
             availableForEarlyAccess = true
+            addPermission(Permission.MANAGE_SERVER)
 
             executor = YouTubeAddChannelExecutor()
         }
@@ -20,6 +22,7 @@ class YouTubeCommand : FoxyCommandDeclarationWrapper {
         subCommand("remove_channel") {
             addOption(opt(OptionType.STRING, "youtube_channel", true))
             availableForEarlyAccess = true
+            addPermission(Permission.MANAGE_SERVER)
 
             executor = YouTubeRemoveChannelExecutor()
         }
