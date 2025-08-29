@@ -46,6 +46,7 @@ class PostDiscordMessageToGuildRoute() {
         val guild = foxy.shardManager.getGuildById(guildId)
         if (guild == null) {
             call.respond(HttpStatusCode.NotFound, "Guild not found")
+            logger.warn { "Guild not found!" }
             return
         }
 
@@ -53,6 +54,7 @@ class PostDiscordMessageToGuildRoute() {
         val channel = guild.getTextChannelById(channelId)
         if (channel == null) {
             call.respond(HttpStatusCode.NotFound, "Channel not found")
+            logger.warn { "Channel not found" }
             return
         }
 
@@ -63,6 +65,7 @@ class PostDiscordMessageToGuildRoute() {
             }
         }
 
+        logger.info { "Sending message to $guildId" }
         channel.sendMessage(messageBuilder.build()).await()
     }
 

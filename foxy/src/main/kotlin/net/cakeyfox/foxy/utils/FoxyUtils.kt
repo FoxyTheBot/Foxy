@@ -107,12 +107,14 @@ class FoxyUtils(
                 embeds = messageData.embeds.map { it.toRelayEmbed() }
             )
 
-            foxy.httpClient.post {
+            val request = foxy.httpClient.post {
                 url("$guildClusterUrl/api/v1/guilds/${guild._id}/$channelId")
                 header("Content-Type", "application/json")
                 header("Authorization", "Bearer ${foxy.config.internalApi.key}")
                 setBody(payload)
             }
+
+            logger.info { "Received Status: ${request.status.value} from ${guildCluster.id} (${guildCluster.name})"}
         }
     }
 

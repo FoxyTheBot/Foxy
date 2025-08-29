@@ -50,7 +50,7 @@ class YouTubeAddChannelExecutor : UnleashedCommandExecutor() {
                         name = context.locale["youtube.channel.add.field.customMessage"]
                         value = message
                             ?.replace("{channel.name}", channelInfo.snippet.title)
-                            ?.replace("{url}", "https://www.youtube.com/watch?v=fSeFxzeo5Ts")
+                            ?.replace("{video.url}", "https://www.youtube.com/watch?v=fSeFxzeo5Ts")
                             ?: context.locale["youtube.channel.add.undefined"]
                     }
                     color = Colors.RED
