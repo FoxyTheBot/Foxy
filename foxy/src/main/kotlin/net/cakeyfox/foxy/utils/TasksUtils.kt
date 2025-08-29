@@ -3,6 +3,7 @@ package net.cakeyfox.foxy.utils
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.tasks.BirthdayReminderTask
 import net.cakeyfox.foxy.tasks.CakeInactivityTaxTask
+import net.cakeyfox.foxy.tasks.CreateYouTubeWebhookTask
 import net.cakeyfox.foxy.tasks.DailyReminderTask
 import net.cakeyfox.foxy.tasks.UpvoteReminderTask
 import java.time.LocalTime
@@ -18,6 +19,12 @@ object TasksUtils {
             scope = foxy.tasksScope,
             period = 2.hours,
             action = UpvoteReminderTask(foxy)
+        )
+        scheduleCoroutineAtFixedRate(
+            taskName = CreateYouTubeWebhookTask::class.simpleName!!,
+            scope = foxy.tasksScope,
+            period = 3.hours,
+            action = CreateYouTubeWebhookTask(foxy)
         )
     }
 
