@@ -8,7 +8,9 @@ import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.utils.database.utils.*
 import net.cakeyfox.foxy.database.data.FoxyUser
+import net.cakeyfox.foxy.database.data.FoxyverseGuild
 import net.cakeyfox.foxy.database.data.Guild
+import net.cakeyfox.foxy.database.data.YouTubeWebhook
 import java.util.concurrent.TimeUnit
 
 class DatabaseClient(
@@ -21,12 +23,15 @@ class DatabaseClient(
     private lateinit var mongoClient: MongoClient
     lateinit var guilds: MongoCollection<Guild>
     lateinit var users: MongoCollection<FoxyUser>
+    lateinit var foxyverseGuilds: MongoCollection<FoxyverseGuild>
+    lateinit var youtubeWebhooks: MongoCollection<YouTubeWebhook>
     lateinit var database: MongoDatabase
 
     val profile = ProfileUtils(this)
     val guild = GuildUtils(this)
     val user = UserUtils(this, foxy)
     val bot = BotUtils(this)
+    val youtube = YouTubeUtils(this)
 
     fun start() = connect()
 
@@ -37,6 +42,9 @@ class DatabaseClient(
             database = mongoClient.getDatabase(foxy.config.database.databaseName)
             users = database.getCollection("users")
             guilds = database.getCollection("guilds")
+            foxyverseGuilds = database.getCollection("foxyverses")
+            youtubeWebhooks = database.getCollection("youtubeWebhooks")
+
             logger.info { "Connected to ${foxy.config.database.databaseName} database" }
         } catch (e: Exception) {
             logger.error(e) { "Failed to connect to MongoDB" }
