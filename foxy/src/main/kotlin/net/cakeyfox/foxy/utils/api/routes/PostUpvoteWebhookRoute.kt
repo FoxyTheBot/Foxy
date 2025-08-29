@@ -61,7 +61,7 @@ class PostUpvoteWebhookRoute {
                     embed {
                         title = pretty(FoxyEmotes.FoxyHowdy, locale["upvote.title"])
                         description = locale["upvote.thanksForVoting", userVotes.toString()]
-                        thumbnail = Constants.DAILY_EMOJI
+                        thumbnail = Constants.FOXY_FUMO
                         color = Colors.FOXY_DEFAULT
                         footer {
                             title = locale["upvote.footer"]
