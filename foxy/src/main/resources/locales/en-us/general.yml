@@ -11,18 +11,23 @@ commands:
   command:
     youtube:
       name: "youtube"
-      description: Receive notifications from YouTube
+      description: "Receive notifications from YouTube channels"
       remove_channel:
-        name: remove_channel
+        name: "remove_channel"
+        description: "Remove a YouTube channel from the server's followed list"
       add_channel:
-        name: add_channel
+        name: "add_channel"
+        description: "Add a YouTube channel to the server's followed list"
       options:
         youtube_channel:
-          name: youtube_channel
+          name: "channel"
+          description: "The name/id/url of the channel you want to follow"
         text_channel:
-          name: text_channel
+          name: "text_channel"
+          description: "The text channel where you want me to send notifications about new videos"
         message:
-          name: message
+          name: "message"
+          description: "The message that will be sent for each new video"
     birthday:
       name: birthday
       description: Birthday-related commands
