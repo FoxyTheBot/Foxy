@@ -46,6 +46,7 @@ birthday:
   set:
     changed: "O seu aniversário foi definido para **{0}**"
     cantSet: "Não foi possível alterar o seu aniversário! Lembre-se que o formato deve ser **dd/MM/yyyy**"
+    youCantAddDatesBeforeThat: "Você não pode adicionar datas anteriores à 1970"
 
   enable:
     disabled: "Okay, então não vou mandar mais mensagens de aniversário!"
