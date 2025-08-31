@@ -32,7 +32,7 @@ object Constants {
     const val FOXY_TIMEZONE = "America/Sao_Paulo"
 
     // Showtime Endpoints
-    const val ANTES_QUE_VIRE_MODA_ROUTE = "/memes/moda"
+    const val ANTES_QUE_VIRE_MODA_ROUTE = "/memes/antesqueviremoda"
     const val EMINEM_ROUTE = "/memes/8mile"
     const val ERROR_ROUTE = "/memes/windowserror"
     const val GIRLFRIEND_ROUTE = "/memes/girlfriend"
