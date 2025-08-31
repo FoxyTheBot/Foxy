@@ -1,6 +1,5 @@
 package net.cakeyfox.foxy.tasks
 
-import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope

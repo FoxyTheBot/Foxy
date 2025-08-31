@@ -24,7 +24,7 @@ fun scheduleCoroutineAtFixedRate(
     scope: CoroutineScope,
     period: Duration,
     initialDelay: Duration = Duration.ZERO,
-    action: RunnableCoroutine
+    action: RunnableCoroutine,
 ) {
     val logger = KotlinLogging.logger(taskName)
 
