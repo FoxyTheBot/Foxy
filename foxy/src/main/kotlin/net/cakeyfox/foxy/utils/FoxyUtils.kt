@@ -107,7 +107,7 @@ class FoxyUtils(
                 embeds = messageData.embeds.map { it.toRelayEmbed() }
             )
 
-            val request = foxy.httpClient.post {
+            val request = foxy.http.post {
                 url("$guildClusterUrl/api/v1/guilds/${guild._id}/$channelId")
                 header("Content-Type", "application/json")
                 header("Authorization", "Bearer ${foxy.config.internalApi.key}")
@@ -163,9 +163,9 @@ class FoxyUtils(
     suspend fun getActionImage(action: String): String {
         return withContext(foxy.coroutineDispatcher) {
             val response: ActionResponse = try {
-                foxy.httpClient.get("https://nekos.life/api/v2/img/$action").body()
+                foxy.http.get("https://nekos.life/api/v2/img/$action").body()
             } catch (_: Exception) {
-                foxy.httpClient.get("https://cakey.foxybot.xyz/roleplay/$action").body()
+                foxy.http.get("https://cakey.foxybot.xyz/roleplay/$action").body()
             }
 
             return@withContext response.url

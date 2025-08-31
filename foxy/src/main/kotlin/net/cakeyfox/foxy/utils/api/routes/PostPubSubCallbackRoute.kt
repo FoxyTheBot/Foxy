@@ -11,9 +11,6 @@ import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import org.jsoup.Jsoup
 import org.jsoup.parser.Parser
-import java.time.Instant
-import java.time.LocalDate
-import java.time.ZoneId
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
@@ -81,11 +78,7 @@ class PostPubSubCallbackRoute(
             val videoId = entry?.selectFirst("yt|videoId")?.text()
             val channelId = entry?.selectFirst("yt|channelId")?.text()
             val author = entry?.selectFirst("author > name")?.text() ?: "Unknown"
-            val publishedText = entry?.selectFirst("published")?.text() ?: return@post
-            val videoUrl = entry.selectFirst("link[rel=alternate]")?.attr("href") ?: return@post
-            val publishedInstant = Instant.parse(publishedText)
-            val publishedDate = publishedInstant.atZone(ZoneId.systemDefault()).toLocalDate()
-            val today = LocalDate.now()
+            val videoUrl = entry?.selectFirst("link[rel=alternate]")?.attr("href") ?: return@post
 
             logger.info { "Notifying from PubHubSubbub for $channelId" }
             if (videoId != null && channelId != null) {

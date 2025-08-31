@@ -14,7 +14,6 @@ import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.utils.ClusterUtils
 import net.cakeyfox.foxy.utils.PlaceholderUtils
-import net.cakeyfox.foxy.utils.PlaceholderUtils.replacePlaceholders
 import net.cakeyfox.serializable.data.utils.YouTubeQuery
 import net.cakeyfox.serializable.data.utils.YouTubeQueryBody
 import java.util.concurrent.TimeUnit
@@ -40,7 +39,7 @@ class YouTubeManager(
 
     suspend fun createWebhook(channelId: String) {
         try {
-            val response = foxy.httpClient.post {
+            val response = foxy.http.post {
                 url(Constants.PUBSUBHUBBUB_SUBSCRIBE)
                 setBody(
                     FormDataContent(
@@ -104,7 +103,7 @@ class YouTubeManager(
                 channelIdRegex.matches(channel) -> {
                     cachedChannels.getIfPresent(channel)?.let { return it }
 
-                    val request = foxy.httpClient.get {
+                    val request = foxy.http.get {
                         url("https://www.googleapis.com/youtube/v3/channels?part=snippet&id=$channel&key=$youtubeApiKey")
                     }.bodyAsText()
 
@@ -130,7 +129,7 @@ class YouTubeManager(
                         return cachedChannels.getIfPresent(cachedId) ?: getChannelInfo(cachedId)
                     }
 
-                    val request = foxy.httpClient.get {
+                    val request = foxy.http.get {
                         url("https://www.googleapis.com/youtube/v3/search?part=snippet&q=${channel.encodeURLParameter()}&type=channel&key=$youtubeApiKey")
                     }.bodyAsText()
 

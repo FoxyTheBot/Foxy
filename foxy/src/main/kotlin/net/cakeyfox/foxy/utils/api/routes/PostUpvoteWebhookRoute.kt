@@ -1,7 +1,6 @@
 package net.cakeyfox.foxy.utils.api.routes
 
 import dev.minn.jda.ktx.coroutines.await
-import dev.minn.jda.ktx.messages.EmbedBuilder
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.request.header
 import io.ktor.server.request.receiveText
@@ -19,7 +18,6 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
-import net.dv8tion.jda.api.utils.messages.MessageCreateData
 
 class PostUpvoteWebhookRoute {
     private val logger = KotlinLogging.logger { }

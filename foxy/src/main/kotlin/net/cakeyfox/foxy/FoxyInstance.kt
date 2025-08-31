@@ -22,7 +22,6 @@ import net.cakeyfox.foxy.listeners.InteractionsListener
 import net.cakeyfox.foxy.listeners.MessageListener
 import net.cakeyfox.serializable.data.utils.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
-import net.cakeyfox.foxy.utils.analytics.DblStatsSender
 import net.cakeyfox.foxy.utils.database.DatabaseClient
 import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
 import net.cakeyfox.foxy.utils.threads.ThreadUtils
@@ -52,13 +51,11 @@ class FoxyInstance(
     lateinit var showtimeClient: ShowtimeClient
     lateinit var utils: FoxyUtils
     lateinit var interactionManager: FoxyComponentManager
-    lateinit var httpClient: HttpClient
+    lateinit var http: HttpClient
     lateinit var leaderboardManager: LeaderboardManager
     lateinit var environment: String
     lateinit var youtubeManager: YouTubeManager
-
     private lateinit var foxyInternalAPI: FoxyInternalAPI
-    private lateinit var dblStatsSender: DblStatsSender
 
     private val activeJobs = ThreadUtils.activeJobs
     private val currentClusterName = if (config.discord.clusters.size < 2) null else currentCluster.name
@@ -85,7 +82,7 @@ class FoxyInstance(
         showtimeClient = ShowtimeClient(config, config.showtime.key)
         youtubeManager = YouTubeManager(this)
         foxyInternalAPI = FoxyInternalAPI(this)
-        httpClient = HttpClient(CIO) {
+        http = HttpClient(CIO) {
             install(HttpTimeout) { requestTimeoutMillis = 60_000 }
             install(ContentNegotiation) { json() }
         }
@@ -138,9 +135,7 @@ class FoxyInstance(
 
         this.commandHandler.handle()
 
-        dblStatsSender = DblStatsSender(this)
         leaderboardManager = LeaderboardManager(this)
-
         leaderboardManager.startAutoRefresh()
         if (currentCluster.isMasterCluster) TasksUtils.launchTasks(this)
 
@@ -152,7 +147,7 @@ class FoxyInstance(
                     logger.info { "Shutting down shard #${shard.shardInfo.shardId}..." }
                     shard.shutdown()
                 }
-                httpClient.close()
+                http.close()
                 database.close()
                 foxyInternalAPI.stop()
 
