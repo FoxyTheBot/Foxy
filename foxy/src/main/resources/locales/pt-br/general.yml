@@ -9,7 +9,7 @@ commands:
   command:
     youtube:
       name: "youtube"
-      description: "Receba notificações de canais do youtube"
+      description: "Receba notificações de canais do YouTube"
       remove_channel:
         name: "remover_canal"
         description: "Remova um canal do YouTube da lista de seguidos do servidor"

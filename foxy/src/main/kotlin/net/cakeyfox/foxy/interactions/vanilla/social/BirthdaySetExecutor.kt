@@ -17,8 +17,15 @@ class BirthdaySetExecutor : UnleashedCommandExecutor() {
         if (userBirthday != null) {
             try {
                 val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-
                 val parsedJavaDate = LocalDate.parse(userBirthday, formatter)
+
+                if (parsedJavaDate.year < 1970) {
+                    context.reply(true) {
+                        content = pretty(FoxyEmotes.FoxyCake, context.locale["birthday.set.youCantAddDatesBeforeThat"])
+                    }
+
+                    return
+                }
 
                 val parsedKxDate = kotlinx.datetime.LocalDate(
                     year = parsedJavaDate.year,
