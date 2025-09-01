@@ -52,11 +52,9 @@ class FoxyInstance(
     lateinit var utils: FoxyUtils
     lateinit var interactionManager: FoxyComponentManager
     lateinit var http: HttpClient
-    lateinit var leaderboardManager: LeaderboardManager
     lateinit var environment: String
     lateinit var youtubeManager: YouTubeManager
     private lateinit var foxyInternalAPI: FoxyInternalAPI
-
     private val activeJobs = ThreadUtils.activeJobs
     private val currentClusterName = if (config.discord.clusters.size < 2) null else currentCluster.name
     private val coroutineExecutor = ThreadUtils.createThreadPool("CoroutineExecutor [%d]")
@@ -72,6 +70,7 @@ class FoxyInstance(
     val tasksScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     val restVersion = JDAInfo.DISCORD_REST_VERSION
     val baseUrl = config.discord.baseUrl
+    val leaderboardManager: LeaderboardManager by lazy { LeaderboardManager(this) }
 
     suspend fun start() {
         environment = config.environment
@@ -135,7 +134,6 @@ class FoxyInstance(
 
         this.commandHandler.handle()
 
-        leaderboardManager = LeaderboardManager(this)
         leaderboardManager.startAutoRefresh()
         if (currentCluster.isMasterCluster) TasksUtils.launchTasks(this)
 
