@@ -28,6 +28,9 @@ commands:
       add_channel:
         name: add_channel
         description: Add a YouTube channel to the server's followed list
+      view_channels:
+        name: list_channels
+        description: See the list of YouTube channels followed by the server
       options:
         youtube_channel:
           name: channel
