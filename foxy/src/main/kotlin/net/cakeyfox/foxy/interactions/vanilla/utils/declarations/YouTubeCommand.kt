@@ -14,7 +14,7 @@ class YouTubeCommand : FoxyCommandDeclarationWrapper {
             addOption(opt(OptionType.STRING, "youtube_channel", true))
             addOption(opt(OptionType.CHANNEL, "text_channel", true))
             addOption(opt(OptionType.STRING, "message", false))
-            availableForEarlyAccess = true
+            availableForEarlyAccess = false
             addPermission(Permission.MANAGE_SERVER)
 
             executor = YouTubeAddChannelExecutor()
@@ -22,15 +22,14 @@ class YouTubeCommand : FoxyCommandDeclarationWrapper {
 
         subCommand("remove_channel") {
             addOption(opt(OptionType.STRING, "youtube_channel", true))
-            availableForEarlyAccess = true
+            availableForEarlyAccess = false
             addPermission(Permission.MANAGE_SERVER)
 
             executor = YouTubeRemoveChannelExecutor()
         }
 
         subCommand("view_channels") {
-            addOption(opt(OptionType.STRING, "youtube_channels", true))
-            availableForEarlyAccess = true
+            availableForEarlyAccess = false
             addPermission(Permission.MANAGE_SERVER)
 
             executor = YouTubeListChannelsExecutor()
