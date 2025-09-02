@@ -10,7 +10,7 @@ commands:
     `{0}`
   command:
     rolls:
-      name: rolar
+      name: rolls
       description: Role um ou mais dados de vários lados
       options:
         dices:
@@ -20,24 +20,25 @@ commands:
           name: lados
           description: A quantidade de lados que cada dado irá ter
     youtube:
-      name: "youtube"
-      description: "Receive notifications from YouTube channels"
+      name: youtube
+      description: Receive notifications from YouTube channels
       remove_channel:
-        name: "remove_channel"
-        description: "Remove a YouTube channel from the server's followed list"
+        name: remove_channel
+        description: Remove a YouTube channel from the server's followed list
       add_channel:
-        name: "add_channel"
-        description: "Add a YouTube channel to the server's followed list"
+        name: add_channel
+        description: Add a YouTube channel to the server's followed list
       options:
         youtube_channel:
-          name: "channel"
-          description: "The name/id/url of the channel you want to follow"
+          name: channel
+          description: The name/id/url of the channel you want to follow
         text_channel:
-          name: "text_channel"
-          description: "The text channel where you want me to send notifications about new videos"
+          name: text_channel
+          description: The text channel where you want me to send notifications about
+            new videos
         message:
-          name: "message"
-          description: "The message that will be sent for each new video"
+          name: message
+          description: The message that will be sent for each new video
     birthday:
       name: birthday
       description: Birthday-related commands
@@ -124,9 +125,6 @@ commands:
     daily:
       name: daily
       description: Receive your daily cakes
-    ping:
-      name: ping
-      description: See Foxy's latency
     magic:
       name: magic
       description: Fun commands for you to have fun with your friends
@@ -303,12 +301,11 @@ commands:
         name: ping
         description: Check bot latency
       clusters:
-        name: "clusters"
+        name: clusters
         description: Check the information and latency of all my clusters
       status:
         name: status
         description: View JVM consumption and other information
-
     profile:
       name: profile
       description: View your or another user's beautiful profile
