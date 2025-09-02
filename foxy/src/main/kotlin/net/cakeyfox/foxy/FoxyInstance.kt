@@ -131,7 +131,6 @@ class FoxyInstance(
         this.commandHandler.handle()
 
         leaderboardManager.startAutoRefresh()
-        if (currentCluster.isMasterCluster) TasksUtils.launchTasks(this)
 
         Runtime.getRuntime().addShutdownHook(thread(false) {
             try {

@@ -13,8 +13,10 @@ import net.cakeyfox.foxy.interactions.MessageCommandContext
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.NitroUtils
+import net.cakeyfox.foxy.utils.TasksUtils
 import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.dv8tion.jda.api.interactions.DiscordLocale
 import kotlin.system.measureTimeMillis
@@ -22,6 +24,10 @@ import kotlin.system.measureTimeMillis
 class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
     private val logger = KotlinLogging.logger { }
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+
+    override fun onReady(event: ReadyEvent) {
+        if (foxy.currentCluster.isMasterCluster) TasksUtils.launchTasks(foxy)
+    }
 
     override fun onMessageReceived(event: MessageReceivedEvent) {
         if (event.author.isBot || event.isWebhookMessage || event.channelType == ChannelType.PRIVATE) return
