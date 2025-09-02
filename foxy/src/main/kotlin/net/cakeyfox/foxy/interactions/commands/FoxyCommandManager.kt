@@ -18,6 +18,7 @@ import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.DblCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.HelpCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.LanguageCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.FoxyCommand
+import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.RollsCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.ServerCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.UserCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.YouTubeCommand
@@ -146,5 +147,6 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(LanguageCommand())
         register(UserCommand())
         register(YouTubeCommand())
+        register(RollsCommand())
     }
 }

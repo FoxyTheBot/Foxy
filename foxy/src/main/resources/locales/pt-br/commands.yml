@@ -61,6 +61,11 @@ russianRoulette:
     youDie: "Você morreu! A bala estava na câmara {0}."
     youSurvived: "Você sobreviveu! A bala estava na câmara {0}."
 
+rolls:
+  youSpinAndGotOne: "Você rolou **{0}** dado de **{1}** lados e o resultado foi **{2}**"
+  youSpinAndGotMany: "Você rolou **{0}** dados de **{1}** lados e o resultado foi **{2}**"
+  invalidFormat: "Formato inválido! Use algo como 1d6, 2d20..."
+
 slots:
   notEnoughCakes: "Você não tem Cakes o suficiente"
   embed:

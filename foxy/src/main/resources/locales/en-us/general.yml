@@ -9,6 +9,16 @@ commands:
   error: An error occurred while executing the command, the problem has been reported!
     `{0}`
   command:
+    rolls:
+      name: rolar
+      description: Role um ou mais dados de vários lados
+      options:
+        dices:
+          name: dados
+          description: A quantidade de dados que você vai rolar
+        sides:
+          name: lados
+          description: A quantidade de lados que cada dado irá ter
     youtube:
       name: "youtube"
       description: "Receive notifications from YouTube channels"

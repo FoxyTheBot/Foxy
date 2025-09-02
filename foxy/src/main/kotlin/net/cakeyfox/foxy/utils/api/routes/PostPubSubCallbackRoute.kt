@@ -74,7 +74,6 @@ class PostPubSubCallbackRoute(
 
             val doc = Jsoup.parse(xmlBody, "", Parser.xmlParser())
             val entry = doc.selectFirst("entry")
-
             val videoId = entry?.selectFirst("yt|videoId")?.text()
             val channelId = entry?.selectFirst("yt|channelId")?.text()
             val author = entry?.selectFirst("author > name")?.text() ?: "Unknown"

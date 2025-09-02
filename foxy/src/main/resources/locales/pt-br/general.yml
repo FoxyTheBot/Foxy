@@ -7,6 +7,16 @@ commands:
   error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
 
   command:
+    rolls:
+      name: rolar
+      description: Para os jogadores de RPG, role um, ou mais dados e obtenha o resultado exato
+      options:
+        dices:
+          name: dados
+          description: A quantidade de dados que você vai rolar
+        sides:
+          name: lados
+          description: A quantidade de lados que cada dado irá ter
     youtube:
       name: "youtube"
       description: "Receba notificações de canais do YouTube"
