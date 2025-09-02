@@ -46,14 +46,10 @@ class FoxyInstance(
     val currentCluster: FoxyConfig.DiscordSettings.Cluster
 ) {
     lateinit var shardManager: ShardManager
-    lateinit var database: DatabaseClient
     lateinit var commandHandler: FoxyCommandManager
     lateinit var showtimeClient: ShowtimeClient
     lateinit var utils: FoxyUtils
     lateinit var interactionManager: FoxyComponentManager
-    lateinit var http: HttpClient
-    lateinit var environment: String
-    lateinit var youtubeManager: YouTubeManager
     private lateinit var foxyInternalAPI: FoxyInternalAPI
     private val activeJobs = ThreadUtils.activeJobs
     private val currentClusterName = if (config.discord.clusters.size < 2) null else currentCluster.name
@@ -63,30 +59,30 @@ class FoxyInstance(
         encodeDefaults = true
         ignoreUnknownKeys = true
     }
+    val environment = config.environment
+    val restVersion = JDAInfo.DISCORD_REST_VERSION
+    val baseUrl = config.discord.baseUrl
     val logger = KotlinLogging.logger { }
     val threadPoolManager = ThreadPoolManager()
     val coroutineDispatcher = coroutineExecutor.asCoroutineDispatcher()
     val foxyZone = TimeZone.currentSystemDefault()
     val tasksScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
-    val restVersion = JDAInfo.DISCORD_REST_VERSION
-    val baseUrl = config.discord.baseUrl
     val leaderboardManager: LeaderboardManager by lazy { LeaderboardManager(this) }
+    val youtubeManager: YouTubeManager by lazy { YouTubeManager(this) }
+    val database: DatabaseClient by lazy { DatabaseClient(this).also { it.start() } }
+    val http: HttpClient by lazy {
+        HttpClient(CIO) {
+            install(HttpTimeout) { requestTimeoutMillis = 60_000 }
+            install(ContentNegotiation) { json() }
+        }
+    }
 
     suspend fun start() {
-        environment = config.environment
-        database = DatabaseClient(this)
         commandHandler = FoxyCommandManager(this)
         utils = FoxyUtils(this)
         interactionManager = FoxyComponentManager(this)
         showtimeClient = ShowtimeClient(config, config.showtime.key)
-        youtubeManager = YouTubeManager(this)
         foxyInternalAPI = FoxyInternalAPI(this)
-        http = HttpClient(CIO) {
-            install(HttpTimeout) { requestTimeoutMillis = 60_000 }
-            install(ContentNegotiation) { json() }
-        }
-
-        database.start()
 
         shardManager = DefaultShardManagerBuilder.create(
             GatewayIntent.GUILD_MEMBERS,
