@@ -116,10 +116,10 @@ class YouTubeManager(
                     val match = channelUrlRegex.find(channel)!!
                     val identifier = match.groupValues[1]
 
-                    if (channelIdRegex.matches(identifier)) {
-                        return getChannelInfo(identifier)
+                    return if (channelIdRegex.matches(identifier)) {
+                        getChannelInfo(identifier)
                     } else {
-                        return getChannelInfo(identifier)
+                        getChannelInfo(identifier)
                     }
                 }
 

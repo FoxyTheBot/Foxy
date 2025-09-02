@@ -26,6 +26,7 @@ youtube:
       noChannel: "Não há nenhum canal setado para receber videos."
       undefined: "Nenhum canal encontrado..."
       title: "Lista de Canais"
+      empty: "Nenhum canal foi adicionado! Que tal começar adicionando um?"
 
 language:
   embed:
