@@ -3,6 +3,7 @@ package net.cakeyfox.foxy.utils
 import com.github.benmanes.caffeine.cache.Cache
 import com.github.benmanes.caffeine.cache.Caffeine
 import dev.minn.jda.ktx.coroutines.await
+import io.ktor.client.plugins.timeout
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
@@ -162,6 +163,10 @@ object ClusterUtils {
                 url(cluster.clusterUrl + endpoint)
                 header("Content-Type", "application/json")
                 header("Authorization", "Bearer ${foxy.config.internalApi.key}")
+                timeout {
+                    connectTimeoutMillis = foxy.config.discord.clusterConnectionTimeout
+                    requestTimeoutMillis = foxy.config.discord.clusterReadTimeout
+                }
             }
             if (response.status != HttpStatusCode.OK) return@withContext null
             response.bodyAsText()
