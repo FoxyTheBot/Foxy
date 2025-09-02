@@ -22,6 +22,10 @@ youtube:
     remove:
       channelRemoved: "Okay, não vou mais enviar notificações de **{0}**!"
       unknownChannel: "Não encontrei nenhum canal chamado **{0}** no seu servidor."
+    list:
+      noChannel: "Não há nenhum canal setado para receber videos."
+      undefined: "Nenhum canal encontrado..."
+      title: "Lista de Canais"
 
 language:
   embed:
