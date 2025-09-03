@@ -71,6 +71,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         )
 
         foxy.shardManager.shards.forEach { shard ->
+            shard.awaitReady()
             val action = shard.updateCommands()
 
             commands.forEach { command ->
