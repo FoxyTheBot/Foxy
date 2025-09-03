@@ -25,10 +25,6 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
     private val logger = KotlinLogging.logger { }
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
-    override fun onReady(event: ReadyEvent) {
-        if (foxy.currentCluster.isMasterCluster) TasksUtils.launchTasks(foxy)
-    }
-
     override fun onMessageReceived(event: MessageReceivedEvent) {
         if (event.author.isBot || event.isWebhookMessage || event.channelType == ChannelType.PRIVATE) return
 
