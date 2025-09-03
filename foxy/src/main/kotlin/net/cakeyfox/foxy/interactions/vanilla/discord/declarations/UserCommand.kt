@@ -1,15 +1,14 @@
-package net.cakeyfox.foxy.interactions.vanilla.utils.declarations
+package net.cakeyfox.foxy.interactions.vanilla.discord.declarations
 
 import net.cakeyfox.foxy.interactions.commands.CommandCategory
-import net.cakeyfox.foxy.interactions.commands.FoxyCommandDeclarationBuilder
 import net.cakeyfox.foxy.interactions.commands.FoxyCommandDeclarationWrapper
-import net.cakeyfox.foxy.interactions.vanilla.utils.UserAvatarExecutor
+import net.cakeyfox.foxy.interactions.vanilla.discord.UserAvatarExecutor
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
 import net.dv8tion.jda.api.interactions.commands.OptionType
 
 class UserCommand : FoxyCommandDeclarationWrapper {
-    override fun create() = slashCommand("user", CommandCategory.UTILS) {
+    override fun create() = slashCommand("user", CommandCategory.DISCORD) {
         interactionContexts = listOf(
             InteractionContextType.BOT_DM,
             InteractionContextType.GUILD,

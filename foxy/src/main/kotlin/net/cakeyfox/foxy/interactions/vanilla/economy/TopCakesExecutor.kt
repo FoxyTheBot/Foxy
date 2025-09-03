@@ -57,7 +57,7 @@ class TopCakesExecutor : UnleashedCommandExecutor() {
     ): ActionRow {
         val prevButton = context.foxy.interactionManager.createButtonForUser(
             context.user,
-            ButtonStyle.SECONDARY,
+            ButtonStyle.PRIMARY,
             "⬅️"
         ) { btnContext ->
             if (currentPage > 0) {
@@ -69,7 +69,7 @@ class TopCakesExecutor : UnleashedCommandExecutor() {
 
         val nextButton = context.foxy.interactionManager.createButtonForUser(
             context.user,
-            ButtonStyle.SECONDARY,
+            ButtonStyle.PRIMARY,
             "➡️"
         ) { btnContext ->
             if (currentPage < pages.lastIndex) {

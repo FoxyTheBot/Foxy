@@ -13,15 +13,15 @@ import net.cakeyfox.foxy.interactions.vanilla.social.declarations.BirthdayComman
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.DivorceCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.MarryCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.ProfileCommand
-import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.DashboardCommand
-import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.DblCommand
+import net.cakeyfox.foxy.interactions.vanilla.discord.declarations.DashboardCommand
+import net.cakeyfox.foxy.interactions.vanilla.discord.declarations.DblCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.HelpCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.LanguageCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.FoxyCommand
-import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.RollsCommand
-import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.ServerCommand
-import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.UserCommand
-import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.YouTubeCommand
+import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RollsCommand
+import net.cakeyfox.foxy.interactions.vanilla.discord.declarations.ServerCommand
+import net.cakeyfox.foxy.interactions.vanilla.discord.declarations.UserCommand
+import net.cakeyfox.foxy.interactions.vanilla.youtube.declarations.YouTubeCommand
 import net.cakeyfox.foxy.utils.ClusterUtils.getShardIdFromGuildId
 import net.dv8tion.jda.api.interactions.commands.Command
 import java.util.UUID
@@ -131,6 +131,8 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(CancelCommand())
         register(RateWaifuCommand())
         register(RussianRouletteCommand())
+        register(RollsCommand())
+        register(YouTubeCommand())
 
         /* ---- [Social] ---- */
         register(ProfileCommand())
@@ -138,15 +140,15 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(DivorceCommand())
         register(BirthdayCommand())
 
+        /* ---- [Discord] ---- */
+        register(UserCommand())
+        register(DashboardCommand())
+        register(DblCommand())
+        register(ServerCommand())
+
         /* ---- [Utils] ---- */
         register(HelpCommand())
-        register(DblCommand())
         register(FoxyCommand())
-        register(ServerCommand())
-        register(DashboardCommand())
         register(LanguageCommand())
-        register(UserCommand())
-        register(YouTubeCommand())
-        register(RollsCommand())
     }
 }

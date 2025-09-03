@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.interactions.vanilla.utils
+package net.cakeyfox.foxy.interactions.vanilla.discord
 
 import dev.minn.jda.ktx.coroutines.await
 import net.cakeyfox.common.Colors

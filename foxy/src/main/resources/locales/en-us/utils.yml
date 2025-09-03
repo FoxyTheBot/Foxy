@@ -1,12 +1,14 @@
 ---
 categories:
-  fun: "\U0001F602 Fun"
-  utils: "\U0001F6E0️ Utils"
-  social: "\U0001F933 Social"
-  economy: "\U0001F4B5 Economy"
-  magic: "\U0001FA84 Magic"
-  actions: "\U0001F3AE Roleplay"
-  dev: "\U0001F4BB Developers"
+  fun: "Fun"
+  utils: "Utils"
+  social: "Social"
+  economy: "Economy"
+  magic: "Magic"
+  actions: "Roleplay"
+  dev: "Developers"
+  discord: "Discord"
+  youtube: "YouTube"
 
 youCantUseCommandsHere: "You can't use commands here!"
 birthday:

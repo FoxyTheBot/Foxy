@@ -1,11 +1,13 @@
 categories:
-  fun: "😂 Diversão"
-  utils: "🛠️ Utilitários"
-  social: "🤳 Social"
-  economy: "💵 Economia"
-  magic: "🪄 Mágica"
-  actions: "🎮 Roleplay"
-  dev: "💻 Especial"
+  fun: "Diversão"
+  utils: "Utilitários"
+  social: "Social"
+  economy: "Economia"
+  magic: "Mágica"
+  actions: "Roleplay"
+  dev: "Especial"
+  discord: "Discord"
+  youtube: "YouTube"
 
 youCantUseCommandsHere: "Você não pode usar comandos nesse canal!"
 

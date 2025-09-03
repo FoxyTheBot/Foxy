@@ -230,6 +230,6 @@ class FoxyCommandDeclarationBuilder(
     }
 
     private fun buildDescription(category: String, description: String): String {
-        return "[$category] - $description"
+        return "[$category] • $description"
     }
 }

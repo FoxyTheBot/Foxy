@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.interactions.vanilla.utils
+package net.cakeyfox.foxy.interactions.vanilla.entertainment
 
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext

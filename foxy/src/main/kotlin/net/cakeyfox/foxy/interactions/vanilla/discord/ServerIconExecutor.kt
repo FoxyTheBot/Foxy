@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.interactions.vanilla.utils
+package net.cakeyfox.foxy.interactions.vanilla.discord
 
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
