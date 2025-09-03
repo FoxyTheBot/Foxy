@@ -46,7 +46,6 @@ class FoxyInstance(
     val currentCluster: FoxyConfig.DiscordSettings.Cluster
 ) {
     lateinit var shardManager: ShardManager
-    lateinit var commandHandler: FoxyCommandManager
     lateinit var showtimeClient: ShowtimeClient
     lateinit var utils: FoxyUtils
     lateinit var interactionManager: FoxyComponentManager
@@ -70,6 +69,7 @@ class FoxyInstance(
     val leaderboardManager: LeaderboardManager by lazy { LeaderboardManager(this) }
     val youtubeManager: YouTubeManager by lazy { YouTubeManager(this) }
     val database: DatabaseClient by lazy { DatabaseClient(this).also { it.start() } }
+    val commandHandler: FoxyCommandManager by lazy { FoxyCommandManager(this) }
     val http: HttpClient by lazy {
         HttpClient(CIO) {
             install(HttpTimeout) { requestTimeoutMillis = 60_000 }
@@ -78,7 +78,6 @@ class FoxyInstance(
     }
 
     suspend fun start() {
-        commandHandler = FoxyCommandManager(this)
         utils = FoxyUtils(this)
         interactionManager = FoxyComponentManager(this)
         showtimeClient = ShowtimeClient(config, config.showtime.key)
@@ -131,6 +130,7 @@ class FoxyInstance(
         this.commandHandler.handle()
 
         leaderboardManager.startAutoRefresh()
+        if (currentCluster.isMasterCluster) TasksUtils.launchTasks(this)
 
         Runtime.getRuntime().addShutdownHook(thread(false) {
             try {

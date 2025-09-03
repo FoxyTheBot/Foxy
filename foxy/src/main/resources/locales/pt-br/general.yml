@@ -360,7 +360,7 @@ commands:
       description: "Comandos de roleplaying para você se divertir com seus amigos"
       kiss:
         name: "beijar"
-        description: "Beije alguém"
+        description: "Demonstre seu amor beijando seu webnamorado ou webnamorada"
         options:
           user:
             name: "usuário"
@@ -368,7 +368,7 @@ commands:
 
       bite:
         name: "morder"
-        description: "Morda alguém"
+        description: "Morda alguém seja por carinho ou para machucar"
         options:
           user:
             name: "usuário"
@@ -380,7 +380,7 @@ commands:
 
       hug:
         name: "abraçar"
-        description: "Abraçe alguém"
+        description: "Alguém precisa de abraço? Abrace!"
         options:
           user:
             name: "usuário"
