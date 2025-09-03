@@ -127,8 +127,9 @@ class FoxyInstance(
             .setEnableShutdownHook(false)
             .build()
 
-        this.commandHandler.handle()
+        shardManager.shards.forEach { it.awaitReady() }
 
+        this.commandHandler.handle()
         leaderboardManager.startAutoRefresh()
         if (currentCluster.isMasterCluster) TasksUtils.launchTasks(this)
 
