@@ -27,6 +27,10 @@ youtube:
       undefined: "Nenhum canal encontrado..."
       title: "Lista de Canais"
       empty: "Nenhum canal foi adicionado! Que tal começar adicionando um?"
+      customMessage: "Mensagem customizada:"
+      channelToSend: "Canal onde será enviado:"
+      channelId: "ID do Canal: {0}"
+      removeChannelButton: "Remover canal"
 
 language:
   embed:

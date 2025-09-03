@@ -19,6 +19,7 @@ class YouTubeListChannelsExecutor : UnleashedCommandExecutor() {
             val message: String?
         )
     }
+
     override suspend fun execute(context: CommandContext) {
         context.defer()
 
@@ -45,15 +46,15 @@ class YouTubeListChannelsExecutor : UnleashedCommandExecutor() {
                 title = pretty(FoxyEmotes.YouTube, pageInfo.title ?: "No title")
                 this.thumbnail = pageInfo.avatar
                 field {
-                    name = "Mensagem customizada"
-                    value = pageInfo.message ?: "Não definido"
+                    name = context.locale["youtube.channel.list.customMessage"]
+                    value = pageInfo.message ?: context.locale["youtube.channel.list.undefined"]
                 }
 
                 field {
-                    name = "Canal para enviar"
+                    name = context.locale["youtube.channel.list.channelToSend"]
                     value = "<#${pageInfo.channelToSend}>"
                 }
-                footer(pageInfo.channelId)
+                footer(context.locale["youtube.channel.list.channelId", pageInfo.channelId])
                 color = Colors.RED
             }
             components += buildNavButtons(context, pages, currentPage, pageInfo.channelId) { newPage ->
@@ -86,7 +87,7 @@ class YouTubeListChannelsExecutor : UnleashedCommandExecutor() {
             )
         } else {
             ChannelList(
-                title = "Unknown channel",
+                title = context.locale["youtube.channel.list.unknownChannel"],
                 avatar = null,
                 channelId = channel.channelId,
                 channelToSend = channel.channelToSend!!,
@@ -104,7 +105,7 @@ class YouTubeListChannelsExecutor : UnleashedCommandExecutor() {
     ): ActionRow {
         val prevButton = context.foxy.interactionManager.createButtonForUser(
             context.user,
-            ButtonStyle.SECONDARY,
+            ButtonStyle.PRIMARY,
             "⬅️"
         ) { btnContext ->
             if (currentPage > 0) {
@@ -116,7 +117,7 @@ class YouTubeListChannelsExecutor : UnleashedCommandExecutor() {
 
         val nextButton = context.foxy.interactionManager.createButtonForUser(
             context.user,
-            ButtonStyle.SECONDARY,
+            ButtonStyle.PRIMARY,
             "➡️"
         ) { btnContext ->
             if (currentPage < pages.lastIndex) {
@@ -130,7 +131,7 @@ class YouTubeListChannelsExecutor : UnleashedCommandExecutor() {
             val removeButton = context.foxy.interactionManager.createButtonForUser(
                 context.user,
                 ButtonStyle.DANGER,
-                label = "Remover canal"
+                label = context.locale["youtube.channel.list.removeChannelButton"]
             ) { btnContext ->
                 context.foxy.database.youtube.removeChannelFromGuild(context.guildId!!, channelId)
 
@@ -175,16 +176,15 @@ class YouTubeListChannelsExecutor : UnleashedCommandExecutor() {
                 title = pretty(FoxyEmotes.YouTube, pageInfo.title ?: "No title")
                 this.thumbnail = pageInfo.avatar
                 field {
-                    name = "Mensagem customizada"
-                    value = pageInfo.message ?: "Não definido"
+                    name = context.locale["youtube.channel.list.customMessage"]
+                    value = pageInfo.message ?: context.locale["youtube.channel.list.undefined"]
                 }
 
                 field {
-                    name = "Canal para enviar"
+                    name = context.locale["youtube.channel.list.channelToSend"]
                     value = "<#${pageInfo.channelToSend}>"
                 }
-
-                footer(pageInfo.channelId)
+                footer(context.locale["youtube.channel.list.channelId", pageInfo.channelId])
                 color = Colors.RED
             }
             components += buildNavButtons(context, pages, newPage, pageInfo.channelId, onPageChange)
