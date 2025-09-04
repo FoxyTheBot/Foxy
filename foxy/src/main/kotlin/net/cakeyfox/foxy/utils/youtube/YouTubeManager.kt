@@ -55,7 +55,7 @@ class YouTubeManager(
             }
 
             if (response.status.value in listOf(202, 204)) {
-                foxy.database.youtube.getOrRegisterYouTubeWebhook(channelId)
+                foxy.database.youtube.registerOrUpdateYouTubeWebhook(channelId)
             } else {
                 logger.warn { "Failed to create webhook for $channelId! Received ${response.status}" }
             }

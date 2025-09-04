@@ -1,6 +1,7 @@
 package net.cakeyfox.foxy.utils.database.utils
 
 import com.mongodb.client.model.Filters.eq
+import com.mongodb.client.model.ReplaceOptions
 import com.mongodb.client.model.UpdateOptions
 import com.mongodb.client.model.Updates.pull
 import com.mongodb.client.model.Updates.push
@@ -95,26 +96,18 @@ class YouTubeUtils(
         return client.withRetry {
             val collection = client.database.getCollection<Document>(YOUTUBE_WEBHOOKS)
             val youtubeChannel = collection.find(eq("channelId", channelId)).firstOrNull()
-                ?: return@withRetry registerYouTubeWebhook(channelId)
+                ?: return@withRetry registerOrUpdateYouTubeWebhook(channelId)
 
             val documentToJSON = youtubeChannel.toJson()
             client.foxy.json.decodeFromString<YouTubeWebhook>(documentToJSON)
         }
     }
 
-    suspend fun registerYouTubeWebhook(channelId: String): YouTubeWebhook {
+    suspend fun registerOrUpdateYouTubeWebhook(channelId: String): YouTubeWebhook {
         return client.withRetry {
             val collection = client.database.getCollection<Document>(YOUTUBE_WEBHOOKS)
             val query = eq("channelId", channelId)
-            val existingDocument = collection.find(query).firstOrNull()
-            if (existingDocument != null) {
-                logger.warn { "Webhook for $channelId already exists! Skipping..." }
 
-                val documentToJSON = client.foxy.json.decodeFromString<YouTubeWebhook>(existingDocument.toJson())
-                return@withRetry documentToJSON
-            }
-
-            logger.info { "Created webhook for $channelId" }
             val newWebhook = YouTubeWebhook(
                 channelId = channelId,
                 createdAt = System.currentTimeMillis(),
@@ -124,7 +117,14 @@ class YouTubeUtils(
             val documentToJSON = client.foxy.json.encodeToString(newWebhook)
             val document = Document.parse(documentToJSON)
 
-            collection.insertOne(document)
+            val result = collection.replaceOne(query, document, ReplaceOptions().upsert(true))
+
+            if (result.matchedCount == 0L) {
+                logger.info { "Created new webhook for $channelId" }
+            } else {
+                logger.info { "Updated webhook for $channelId" }
+            }
+
             newWebhook
         }
     }
