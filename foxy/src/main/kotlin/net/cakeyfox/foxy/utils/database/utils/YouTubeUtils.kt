@@ -1,10 +1,12 @@
 package net.cakeyfox.foxy.utils.database.utils
 
+import com.mongodb.client.model.Filters.and
 import com.mongodb.client.model.Filters.eq
 import com.mongodb.client.model.ReplaceOptions
 import com.mongodb.client.model.UpdateOptions
 import com.mongodb.client.model.Updates.pull
 import com.mongodb.client.model.Updates.push
+import com.mongodb.client.model.Updates.set
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.toList
 import mu.KotlinLogging
@@ -55,6 +57,18 @@ class YouTubeUtils(
         }
     }
 
+    suspend fun updateChannelCustomMessage(guildId: String, channelId: String, message: String?) {
+        client.withRetry {
+            client.guilds.updateOne(
+                and(
+                    eq("_id", guildId),
+                    eq("followedYouTubeChannels.channelId", channelId)
+                ),
+                set("followedYouTubeChannels.$.notificationMessage", message)
+            )
+        }
+    }
+
     suspend fun addVideoToList(guildId: String, channelId: String, videoId: String) {
         return client.withRetry {
             val query = Document("_id", guildId)
@@ -79,16 +93,6 @@ class YouTubeUtils(
             val webhooks = client.youtubeWebhooks.find().toList()
 
             webhooks
-        }
-    }
-
-    suspend fun getYouTubeWebhookByChannelId(channelId: String): YouTubeWebhook? {
-        return client.withRetry {
-            val collection = client.database.getCollection<Document>(YOUTUBE_WEBHOOKS)
-            val youtubeChannel = collection.find(eq("channelId", channelId)).firstOrNull() ?: return@withRetry null
-
-            val documentToJSON = youtubeChannel.toJson()
-            client.foxy.json.decodeFromString<YouTubeWebhook>(documentToJSON)
         }
     }
 
