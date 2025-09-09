@@ -77,7 +77,10 @@ class YouTubeManager(
             } else foxy.database.youtube.addVideoToList(guild._id, channelId, videoId)
             logger.info { "Sending $author new video to guild ${guild._id}" }
 
-            val notificationMessage = currentChannel.notificationMessage ?: "Novo vídeo de **$author**: $videoUrl"
+            val notificationMessage = currentChannel.notificationMessage
+                ?.takeIf { it.isNotBlank() }
+                ?: "Novo vídeo de **$author**: $videoUrl"
+
             foxy.utils.sendMessageToAGuildChannel(
                 guild,
                 guildCluster,
