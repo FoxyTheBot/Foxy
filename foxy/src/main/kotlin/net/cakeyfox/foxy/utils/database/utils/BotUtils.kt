@@ -16,24 +16,8 @@ class BotUtils(
         data class BotSettings(
             val activity: String,
             val status: String,
-            val avatarUrl: String?,
-            val exchangeSettings: ExchangeSettings
-        ) {
-            @Serializable
-            data class ExchangeSettings(
-                val transactionFee: Long,
-                val isExchangeEnabled: Boolean,
-                val foxyToLorittaExchange: FoxyLorittaExchange,
-                val lorittaToFoxyExchange: FoxyLorittaExchange
-            ) {
-                @Serializable
-                data class FoxyLorittaExchange(
-                    val exchangeRate: Long,
-                    val minimumAmount: Long,
-                    val isExchangeEnabled: Boolean
-                )
-            }
-        }
+            val avatarUrl: String?
+        )
 
         private val logger = KotlinLogging.logger { }
     }
@@ -76,21 +60,7 @@ class BotUtils(
                 return BotSettings(
                     activity = "foxybot.xyz · /help",
                     status = "online",
-                    avatarUrl = null,
-                    exchangeSettings = BotSettings.ExchangeSettings(
-                        transactionFee = 0,
-                        isExchangeEnabled = true,
-                        foxyToLorittaExchange = BotSettings.ExchangeSettings.FoxyLorittaExchange(
-                            exchangeRate = 0,
-                            minimumAmount = 0,
-                            isExchangeEnabled = true
-                        ),
-                        lorittaToFoxyExchange = BotSettings.ExchangeSettings.FoxyLorittaExchange(
-                            exchangeRate = 0,
-                            minimumAmount = 0,
-                            isExchangeEnabled = true
-                        )
-                    )
+                    avatarUrl = null
                 )
             }
 
@@ -116,21 +86,7 @@ class BotUtils(
         val botSettings = BotSettings(
             activity = "foxybot.xyz · /help",
             status = "online",
-            avatarUrl = null,
-            exchangeSettings = BotSettings.ExchangeSettings(
-                transactionFee = 0,
-                isExchangeEnabled = true,
-                foxyToLorittaExchange = BotSettings.ExchangeSettings.FoxyLorittaExchange(
-                    exchangeRate = 0,
-                    minimumAmount = 0,
-                    isExchangeEnabled = true
-                ),
-                lorittaToFoxyExchange = BotSettings.ExchangeSettings.FoxyLorittaExchange(
-                    exchangeRate = 0,
-                    minimumAmount = 0,
-                    isExchangeEnabled = true
-                )
-            )
+            avatarUrl = null
         )
 
         logger.info { "Generating Foxy settings..." }
