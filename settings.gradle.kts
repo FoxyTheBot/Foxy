@@ -21,8 +21,8 @@ dependencyResolutionManagement {
             library("kotlinx-datetime", "org.jetbrains.kotlinx", "kotlinx-datetime").version("0.3.3")
 
             // Discord
-            library("jda", "net.dv8tion", "JDA").version("5.4.0")
-            library("jda-ktx", "club.minnced", "jda-ktx").version("0.12.0")
+            library("jda", "net.dv8tion", "JDA").version("6.0.0-preview_DEV")
+            library("jda-ktx", "club.minnced", "jda-ktx").version("0.13.0")
 
             // Database
             library("mongodb-bson", "org.mongodb", "bson-kotlinx").version("5.5.0")
