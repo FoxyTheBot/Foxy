@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.modules.welcomer.utils
+package net.cakeyfox.serializable.data.utils
 
 import kotlinx.serialization.Serializable
 

@@ -1,24 +1,29 @@
-package net.cakeyfox.foxy.modules.welcomer.utils
+package net.cakeyfox.foxy.utils.discord
 
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
+import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.utils.PlaceholderUtils
+import net.cakeyfox.serializable.data.utils.DiscordMessageBody
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.MessageEmbed
 
-class WelcomerJSONParser {
-    companion object {
-        private val replacePlaceholders = PlaceholderUtils::replacePlaceholders
-        private val logger = KotlinLogging.logger { }
-        private val json = Json { ignoreUnknownKeys = true }
-    }
+object DiscordMessageUtils {
+    private val replacePlaceholders = PlaceholderUtils::replacePlaceholders
+    private val logger = KotlinLogging.logger { }
+    private val json = Json { ignoreUnknownKeys = true }
 
     fun getMessageFromJson(
         jsonString: String,
         placeholders: Map<String, String?>
     ): Pair<String, List<MessageEmbed>> {
         try {
-            val messageBody = json.decodeFromString<DiscordMessageBody>(jsonString)
+            val messageBody = try {
+                json.decodeFromString<DiscordMessageBody>(jsonString)
+            } catch(e: SerializationException) {
+                DiscordMessageBody(content = jsonString)
+            }
 
             val content = messageBody.content?.let {
                 replacePlaceholders(it, placeholders)
@@ -59,7 +64,7 @@ class WelcomerJSONParser {
                             setFooter(
                                 replacePlaceholders(it.text, placeholders),
                                 try {
-                                    replacePlaceholders(it.iconUrl, placeholders)
+                                    replacePlaceholders(it.iconUrl ?: Constants.DISCORD_DEFAULT_AVATAR, placeholders)
                                 } catch (e: Exception) {
                                     null
                                 }

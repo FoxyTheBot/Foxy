@@ -5,8 +5,8 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.database.data.Guild
 import net.cakeyfox.foxy.interactions.pretty
-import net.cakeyfox.foxy.modules.welcomer.utils.WelcomerJSONParser
 import net.cakeyfox.foxy.utils.PlaceholderUtils
+import net.cakeyfox.foxy.utils.discord.DiscordMessageUtils
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent
 
@@ -16,8 +16,6 @@ class WelcomerModule(val foxy: FoxyInstance) {
         private val getAllPlaceholders = PlaceholderUtils::getAllPlaceholders
     }
 
-    private val welcomer = WelcomerJSONParser()
-
     suspend fun onGuildJoin(event: GuildMemberJoinEvent) {
         val guildData = foxy.database.guild.getGuild(event.guild.id)
 
@@ -25,7 +23,7 @@ class WelcomerModule(val foxy: FoxyInstance) {
             val placeholders = getAllPlaceholders(event.guild, event.user)
             val rawMessage = guildData.GuildJoinLeaveModule.joinMessage ?: return
 
-            val (content, embeds) = welcomer.getMessageFromJson(rawMessage, placeholders)
+            val (content, embeds) = DiscordMessageUtils.getMessageFromJson(rawMessage, placeholders)
 
             if (guildData.GuildJoinLeaveModule.sendDmWelcomeMessage)
                 sendDmMessage(event, guildData, placeholders)
@@ -47,7 +45,7 @@ class WelcomerModule(val foxy: FoxyInstance) {
             val rawMessage = guildData.GuildJoinLeaveModule.leaveMessage ?: return
 
             val (content, embeds) =
-                welcomer.getMessageFromJson(rawMessage, placeholders)
+                DiscordMessageUtils.getMessageFromJson(rawMessage, placeholders)
 
             val channelId = guildData.GuildJoinLeaveModule.leaveChannel ?: return
             val channel = event.guild.getTextChannelById(channelId) ?: return
@@ -66,7 +64,7 @@ class WelcomerModule(val foxy: FoxyInstance) {
         placeholders: Map<String, String?>
     ) {
         val rawDmMessage = guildData.GuildJoinLeaveModule.dmWelcomeMessage ?: return
-        val (dmContent, dmEmbeds) = welcomer.getMessageFromJson(rawDmMessage, placeholders)
+        val (dmContent, dmEmbeds) = DiscordMessageUtils.getMessageFromJson(rawDmMessage, placeholders)
         val formattedContent =
             """
             > ${
