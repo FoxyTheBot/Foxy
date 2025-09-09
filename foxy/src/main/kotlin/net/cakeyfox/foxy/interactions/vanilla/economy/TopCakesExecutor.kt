@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy.interactions.vanilla.economy
 
+import dev.minn.jda.ktx.messages.InlineMessage
 import kotlinx.coroutines.withContext
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
@@ -8,8 +9,7 @@ import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.leaderboard.data.LeaderboardConfig
 import net.cakeyfox.foxy.leaderboard.data.LeaderboardUser
 import net.cakeyfox.foxy.leaderboard.utils.LeaderboardRender
-import net.dv8tion.jda.api.interactions.components.ActionRow
-import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
+import net.dv8tion.jda.api.components.buttons.ButtonStyle
 import net.dv8tion.jda.api.utils.FileUpload
 
 class TopCakesExecutor : UnleashedCommandExecutor() {
@@ -28,7 +28,8 @@ class TopCakesExecutor : UnleashedCommandExecutor() {
                 context.locale["top.cakes.page", (currentPage + 1).toString()]
             )
             files.plusAssign(currentFile)
-            components += buildNavButtons(context, pages, currentPage, currentFile) { newPage, file ->
+
+            buildNavButtons(context, pages, currentPage, currentFile) { newPage, file ->
                 currentPage = newPage
                 currentFile = file
             }
@@ -47,14 +48,14 @@ class TopCakesExecutor : UnleashedCommandExecutor() {
         return FileUpload.fromData(profile, "ranking_page_${page + 1}.png")
     }
 
-    private fun buildNavButtons(
+    private fun InlineMessage<*>.buildNavButtons(
         context: CommandContext,
         pages: List<List<LeaderboardUser.CakesUser>>,
         currentPage: Int,
         currentFile: FileUpload,
         isDisabled: Boolean = false,
         onPageChange: suspend (Int, FileUpload) -> Unit
-    ): ActionRow {
+    ) {
         val prevButton = context.foxy.interactionManager.createButtonForUser(
             context.user,
             ButtonStyle.PRIMARY,
@@ -79,7 +80,7 @@ class TopCakesExecutor : UnleashedCommandExecutor() {
             }
         }.withDisabled(currentPage >= pages.lastIndex || isDisabled)
 
-        return ActionRow.of(prevButton, nextButton)
+        actionRow(prevButton, nextButton)
     }
 
     private suspend fun handlePageChange(
@@ -99,7 +100,7 @@ class TopCakesExecutor : UnleashedCommandExecutor() {
                 context.locale["top.cakes.page", (newPage + 1).toString()]
             )
             files.plusAssign(newFile)
-            components += buildNavButtons(context, pages, newPage, currentFile, false, onPageChange)
+            buildNavButtons(context, pages, newPage, currentFile, false, onPageChange)
         }
 
         onPageChange(newPage, newFile)
@@ -118,7 +119,7 @@ class TopCakesExecutor : UnleashedCommandExecutor() {
             )
 
             files.minusAssign(currentFile)
-            components += buildNavButtons(context, pages, newPage, currentFile, true) { _, _ -> }
+            buildNavButtons(context, pages, newPage, currentFile, true) { _, _ -> }
         }
     }
 }

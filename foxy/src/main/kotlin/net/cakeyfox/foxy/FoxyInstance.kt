@@ -15,7 +15,7 @@ import kotlinx.serialization.json.Json
 import mu.KotlinLogging
 import net.cakeyfox.showtime.ShowtimeClient
 import net.cakeyfox.common.Constants
-import net.cakeyfox.foxy.interactions.commands.FoxyCommandManager
+import net.cakeyfox.foxy.interactions.FoxyCommandManager
 import net.cakeyfox.foxy.interactions.components.FoxyComponentManager
 import net.cakeyfox.foxy.listeners.GuildListener
 import net.cakeyfox.foxy.listeners.InteractionsListener

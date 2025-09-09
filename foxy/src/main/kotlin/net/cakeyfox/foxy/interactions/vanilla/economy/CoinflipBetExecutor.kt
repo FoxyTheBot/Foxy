@@ -4,8 +4,8 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
+import net.dv8tion.jda.api.components.buttons.ButtonStyle
 import net.dv8tion.jda.api.entities.User
-import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
 class CoinflipBetExecutor : UnleashedCommandExecutor() {
     override suspend fun execute(context: CommandContext) {

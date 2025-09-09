@@ -4,10 +4,10 @@ import net.cakeyfox.serializable.data.cluster.RelayEmbed
 import net.cakeyfox.serializable.data.cluster.RelayEmbedAuthor
 import net.cakeyfox.serializable.data.cluster.RelayEmbedField
 import net.cakeyfox.serializable.data.cluster.RelayEmbedFooter
+import net.dv8tion.jda.api.components.buttons.Button
+import net.dv8tion.jda.api.components.buttons.ButtonStyle
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.emoji.Emoji
-import net.dv8tion.jda.api.interactions.components.buttons.Button
-import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
 fun linkButton(
     emoji: String? = null,

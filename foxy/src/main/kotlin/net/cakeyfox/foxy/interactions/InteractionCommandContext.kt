@@ -14,6 +14,7 @@ import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
+import net.dv8tion.jda.api.events.interaction.component.EntitySelectInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent
 import net.dv8tion.jda.api.interactions.InteractionHook
 import net.dv8tion.jda.api.interactions.commands.OptionType
@@ -73,6 +74,18 @@ class InteractionCommandContext(
                 }
             }
 
+            is EntitySelectInteractionEvent -> {
+                try {
+                    if (event.isAcknowledged) {
+                        event.hook
+                    } else {
+                        event.deferReply().setEphemeral(ephemeral).queue()
+                    }
+                } catch (e: Exception) {
+                    logger.warn { "Failed to reply entity select! It was deleted? ${e.message}" }
+                }
+            }
+
             is StringSelectInteractionEvent -> {
                 try {
                     if (event.isAcknowledged) {
@@ -82,6 +95,16 @@ class InteractionCommandContext(
                     }
                 } catch (e: Exception) {
                     logger.warn { "Failed to reply string select! It was deleted? ${e.message}" }
+                }
+            }
+
+            is ModalInteractionEvent -> {
+                if (event.isAcknowledged) {
+                    event.hook.setEphemeral(ephemeral).sendMessage(msg.build()).await()
+                } else {
+                    val defer = defer(ephemeral)
+
+                    defer.sendMessage(msg.build()).await()
                 }
             }
 
@@ -113,6 +136,18 @@ class InteractionCommandContext(
                 event.deferEdit().await()
             }
 
+            is ModalInteractionEvent -> {
+                if (event.isAcknowledged) {
+                    event.hook
+                } else {
+                    event.deferEdit().await()
+                }
+            }
+
+            is EntitySelectInteractionEvent -> {
+                event.deferEdit().await()
+            }
+
             is StringSelectInteractionEvent -> {
                 event.deferEdit().await()
             }
@@ -141,6 +176,14 @@ class InteractionCommandContext(
                 }
             }
 
+            is EntitySelectInteractionEvent -> {
+                if (event.isAcknowledged) {
+                    event.hook.editOriginal(msg.build()).queue()
+                } else {
+                    event.deferEdit().await()?.editOriginal(msg.build())?.queue()
+                }
+            }
+
             is StringSelectInteractionEvent -> {
                 if (event.isAcknowledged) {
                     event.hook.editOriginal(msg.build()).queue()
@@ -148,6 +191,7 @@ class InteractionCommandContext(
                     event.deferEdit().await()?.editOriginal(msg.build())?.queue()
                 }
             }
+
 
             else -> throw IllegalStateException("Cannot edit this event type. ${event.javaClass}")
         }
@@ -164,6 +208,14 @@ class InteractionCommandContext(
             } catch (e: Exception) {
                 logger.warn { "Failed to defer command! It was deleted? ${e.message}" }
                 event.hook
+            }
+        }
+
+        is ModalInteractionEvent -> {
+            if (event.isAcknowledged) {
+                event.hook
+            } else {
+                event.deferReply().setEphemeral(ephemeral).await()
             }
         }
 

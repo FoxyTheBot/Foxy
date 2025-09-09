@@ -10,8 +10,10 @@ import net.cakeyfox.foxy.interactions.InteractionCommandContext
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.isEarlyAccessOnlyCommand
 import net.dv8tion.jda.api.entities.channel.ChannelType
+import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
+import net.dv8tion.jda.api.events.interaction.component.EntitySelectInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent
 import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
@@ -146,6 +148,60 @@ class InteractionsListener(
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+        }
+    }
+
+    override fun onEntitySelectInteraction(event: EntitySelectInteractionEvent) {
+        coroutineScope.launch {
+            val componentId = try {
+                ComponentId(event.componentId)
+            } catch (_: IllegalArgumentException) {
+                logger.info { "Unknown component received" }
+                return@launch
+            }
+
+            try {
+                val callback = foxy.interactionManager.entitySelectMenuCallbacks[componentId.uniqueId]
+                val context = InteractionCommandContext(event, foxy)
+
+                if (callback == null) {
+                    event.editSelectMenu(
+                        event.selectMenu.asDisabled()
+                    ).await()
+
+                    context.reply(true) {
+                        content = pretty(
+                            FoxyEmotes.FoxyCry,
+                            context.locale["commands.componentExpired"]
+                        )
+                    }
+
+                    return@launch
+                }
+
+                callback.invoke(context, event.values)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    override fun onModalInteraction(event: ModalInteractionEvent) {
+        coroutineScope.launch {
+            logger.info { "Modal ${event.modalId} submitted by ${event.user.name} (${event.user.id})" }
+
+            val modalId = try {
+                ComponentId(event.modalId)
+            } catch (e: IllegalArgumentException) {
+                logger.info { "Invalid Modal ID: ${event.modalId}" }
+                return@launch
+            }
+
+            val callbackId = foxy.interactionManager.componentCallbacks[modalId.uniqueId]
+
+            val context = InteractionCommandContext(event, foxy)
+
+            callbackId?.invoke(context)
         }
     }
 }

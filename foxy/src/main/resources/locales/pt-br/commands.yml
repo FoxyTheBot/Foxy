@@ -19,18 +19,56 @@ youtube:
       addedSuccessfully: "Okay, agora eu vou notificar novos vídeos de **{0}** no canal {1}"
       youCantAddMoreChannels: "Você não pode adicionar mais canais"
       youCantAddDuplicatedChannels: "Você não pode adicionar o mesmo canal, bobinho!"
+
+      # New strings
+      boldCustomMessage: "**Mensagem Customizada:**"
+      noCustomMessage: "Não definido"
+      channelId: "-# ID do Canal: {0}"
+      buttons:
+        addMessage: "Adicionar Mensagem"
+      customMessage: "Mensagem Customizada"
+      modal:
+        title: "Alterar Mensagem"
+        placeholder: "Placeholders: {channel.name} e {video.url}"
+      addCustomMessageButton: "Adicionar Mensagem"
+
     remove:
       channelRemoved: "Okay, não vou mais enviar notificações de **{0}**!"
       unknownChannel: "Não encontrei nenhum canal chamado **{0}** no seu servidor."
     list:
-      noChannel: "Não há nenhum canal setado para receber videos."
+      noChannel: "Não há nenhum canal configurado para receber vídeos."
       undefined: "Nenhum canal encontrado..."
       title: "Lista de Canais"
       empty: "Nenhum canal foi adicionado! Que tal começar adicionando um?"
-      customMessage: "Mensagem customizada:"
+      customMessage: "Mensagem Customizada"
       channelToSend: "Canal onde será enviado:"
       channelId: "ID do Canal: {0}"
       removeChannelButton: "Remover canal"
+
+      # New strings
+      modal:
+        title: "Editar Mensagem Customizada"
+        label: "Mensagem Customizada"
+        placeholder: "Placeholders: {channel.name} e {video.url}"
+
+      addModal:
+        title: "Adicionar Canal"
+        label: "Canal"
+        channelPlaceholder: "URL/ID/Usuário do YouTube"
+
+      addChannel: "## Adicionar {0}"
+      whereDoISendNewVideos: "Onde você quer que eu envie notificações de vídeos novos"
+      maxChannels: "Adicione até **{0}** canais no seu servidor"
+      addButton: "Adicionar Canal"
+      customMessageBold: "**Mensagem Customizada**"
+      boldEmpty: "## Vazio, vazio... Igual o coração da 10/10"
+      iWillNotifyIn: "-# Eu vou notificar em {0}"
+      iWillNotifyInBold: "**Notificarei em {0}**"
+      noCustomMessage: "Não definido"
+      editButton: "Editar"
+      editCustomMessage: "Editar Mensagem"
+      backButton: "Voltar"
+      removeButton: "Remover Canal"
 
 language:
   embed:

@@ -1,28 +1,35 @@
-package net.cakeyfox.foxy.interactions.commands
+package net.cakeyfox.foxy.interactions
 
 import dev.minn.jda.ktx.coroutines.await
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
+import net.cakeyfox.foxy.interactions.commands.FoxyCommandUnleashed
+import net.cakeyfox.foxy.interactions.commands.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.interactions.vanilla.actions.declarations.RoleplayCommand
-import net.cakeyfox.foxy.interactions.vanilla.economy.declarations.*
-import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.*
+import net.cakeyfox.foxy.interactions.vanilla.discord.declarations.DashboardCommand
+import net.cakeyfox.foxy.interactions.vanilla.discord.declarations.DblCommand
+import net.cakeyfox.foxy.interactions.vanilla.discord.declarations.ServerCommand
+import net.cakeyfox.foxy.interactions.vanilla.discord.declarations.UserCommand
+import net.cakeyfox.foxy.interactions.vanilla.economy.declarations.CakesCommand
+import net.cakeyfox.foxy.interactions.vanilla.economy.declarations.DailyCommand
+import net.cakeyfox.foxy.interactions.vanilla.economy.declarations.SlotsCommand
+import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.AskFoxyCommand
+import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.CancelCommand
+import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.FateCommand
+import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RateWaifuCommand
+import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RollsCommand
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RussianRouletteCommand
 import net.cakeyfox.foxy.interactions.vanilla.magic.declarations.MagicCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.BirthdayCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.DivorceCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.MarryCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.ProfileCommand
-import net.cakeyfox.foxy.interactions.vanilla.discord.declarations.DashboardCommand
-import net.cakeyfox.foxy.interactions.vanilla.discord.declarations.DblCommand
+import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.FoxyCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.HelpCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.LanguageCommand
-import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.FoxyCommand
-import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RollsCommand
-import net.cakeyfox.foxy.interactions.vanilla.discord.declarations.ServerCommand
-import net.cakeyfox.foxy.interactions.vanilla.discord.declarations.UserCommand
 import net.cakeyfox.foxy.interactions.vanilla.youtube.declarations.YouTubeCommand
-import net.cakeyfox.foxy.utils.ClusterUtils.getShardIdFromGuildId
+import net.cakeyfox.foxy.utils.ClusterUtils
 import net.dv8tion.jda.api.interactions.commands.Command
 import java.util.UUID
 
@@ -34,7 +41,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         return commands.find { it.create().name == name }
     }
 
-    fun getCommandAsLegacy(commandName: String): net.cakeyfox.foxy.interactions.commands.FoxyCommand? {
+    fun getCommandAsLegacy(commandName: String): FoxyCommandUnleashed? {
         commands.forEach { wrapper ->
             val cmd = wrapper.create()
 
@@ -42,7 +49,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
                 if (subCmd.name.equals(commandName, ignoreCase = true) || subCmd.aliases.any {
                         it.equals(commandName, ignoreCase = true)
                     }) {
-                    return FoxyCommand(subCmd.executor ?: cmd.executor, subCmd)
+                    return FoxyCommandUnleashed(subCmd.executor ?: cmd.executor, subCmd)
                 }
             }
 
@@ -50,7 +57,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
                     it.equals(commandName, ignoreCase = true)
                 }) {
                 if (cmd.executor != null) {
-                    return FoxyCommand(cmd.executor, cmd)
+                    return FoxyCommandUnleashed(cmd.executor, cmd)
                 }
             }
         }
@@ -65,7 +72,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
     suspend fun handle(): MutableList<Command> {
         val allCommands = mutableListOf<Command>()
 
-        val supportServerShardId = getShardIdFromGuildId(
+        val supportServerShardId = ClusterUtils.getShardIdFromGuildId(
             Constants.SUPPORT_SERVER_ID.toLong(),
             foxy.config.discord.totalShards
         )

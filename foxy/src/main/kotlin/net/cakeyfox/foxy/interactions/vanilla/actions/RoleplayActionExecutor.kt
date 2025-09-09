@@ -6,9 +6,10 @@ import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.linkButton
+import net.dv8tion.jda.api.components.actionrow.ActionRow
+import net.dv8tion.jda.api.components.buttons.ButtonStyle
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
-import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
 class RoleplayActionExecutor(
     val canDoWithBot: Boolean? = false,
@@ -110,7 +111,7 @@ class RoleplayActionExecutor(
         val response = context.utils.getActionImage(roleplayData.action)
 
         interaction.edit {
-            actionRow(
+            ActionRow.of(
                 context.foxy.interactionManager.createButtonForUser(
                     roleplayData.receiver,
                     ButtonStyle.PRIMARY,

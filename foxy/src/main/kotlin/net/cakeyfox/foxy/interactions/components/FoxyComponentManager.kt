@@ -1,18 +1,22 @@
 package net.cakeyfox.foxy.interactions.components
 
 import com.github.benmanes.caffeine.cache.Caffeine
+import dev.minn.jda.ktx.interactions.components.EntitySelectMenu
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.ComponentId
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.pretty
+import net.dv8tion.jda.api.components.buttons.Button
+import net.dv8tion.jda.api.components.buttons.ButtonStyle
+import net.dv8tion.jda.api.components.selections.EntitySelectMenu
+import net.dv8tion.jda.api.components.selections.StringSelectMenu
+import net.dv8tion.jda.api.components.tree.MessageComponentTree
+import net.dv8tion.jda.api.entities.IMentionable
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.entities.emoji.Emoji
-import net.dv8tion.jda.api.interactions.components.LayoutComponent
-import net.dv8tion.jda.api.interactions.components.buttons.Button
-import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
-import net.dv8tion.jda.api.interactions.components.selections.StringSelectMenu
 import net.dv8tion.jda.api.interactions.modals.Modal
+import net.dv8tion.jda.api.interactions.modals.ModalTopLevelComponent
 import java.util.UUID
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.toJavaDuration
@@ -34,6 +38,12 @@ class FoxyComponentManager(
         .newBuilder()
         .expireAfterWrite(delay.toJavaDuration())
         .build<UUID, suspend (CommandContext, List<String>) -> Unit>()
+        .asMap()
+
+    val entitySelectMenuCallbacks = Caffeine
+        .newBuilder()
+        .expireAfterWrite(delay.toJavaDuration())
+        .build<UUID, suspend (CommandContext, List<IMentionable>) -> Unit>()
         .asMap()
 
     fun createButtonForUser(
@@ -103,6 +113,28 @@ class FoxyComponentManager(
         callback.invoke(it)
     }
 
+    fun entitySelectMenuForUser(
+        target: User,
+        type: EntitySelectMenu.SelectTarget,
+        builder: (EntitySelectMenu.Builder).() -> (Unit) = {},
+        callback: suspend (CommandContext, List<IMentionable>) -> (Unit)
+    ) = entitySelectMenu(
+        type,
+        builder
+    ) { context, strings ->
+        if (target.idLong != context.user.idLong) {
+            context.reply(true) {
+                content = pretty(
+                    FoxyEmotes.FoxyRage,
+                    context.locale["commands.onlyUserCanInteractWithThisComponent", target.asMention, target.id]
+                )
+            }
+            return@entitySelectMenu
+        }
+
+        callback.invoke(context, strings)
+    }
+
     fun stringSelectMenuForUser(
         target: User,
         builder: (StringSelectMenu.Builder).() -> (Unit) = {},
@@ -121,6 +153,19 @@ class FoxyComponentManager(
         }
 
         callback.invoke(context, strings)
+    }
+
+    private fun entitySelectMenu(
+        type: EntitySelectMenu.SelectTarget,
+        builder: (EntitySelectMenu.Builder).() -> (Unit) = {},
+        callback: suspend (CommandContext, List<IMentionable>) -> (Unit)
+    ): EntitySelectMenu {
+        val selectMenuId = UUID.randomUUID()
+
+        entitySelectMenuCallbacks[selectMenuId] = callback
+        return EntitySelectMenu.create(ComponentId(selectMenuId).toString(), type)
+            .apply(builder)
+            .build()
     }
 
     private fun stringSelectMenu(
@@ -160,7 +205,7 @@ class FoxyComponentManager(
             }
 
         @get:JvmSynthetic
-        var components: List<LayoutComponent>
+        var components: List<ModalTopLevelComponent>
             @Deprecated("", level = DeprecationLevel.ERROR)
             get() = throw UnsupportedOperationException()
             set(value) {

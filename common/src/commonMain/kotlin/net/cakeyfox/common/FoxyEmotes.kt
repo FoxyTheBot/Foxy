@@ -49,6 +49,9 @@ object FoxyEmotes {
     const val Computer = "\uD83D\uDCBB"
     const val Thread = "\uD83E\uDDF5"
     const val Graph = "\uD83D\uDCC8"
+    const val PaintBrush = "\uD83D\uDD8C\uFE0F"
+    const val TrashCan = "\uD83D\uDDD1\uFE0F"
+    const val Back = "◀\uFE0F"
 
 
     // Badges

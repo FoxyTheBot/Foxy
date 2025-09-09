@@ -6,6 +6,20 @@ import net.cakeyfox.foxy.database.data.FoxyUser
 import kotlin.time.Duration.Companion.days
 
 object PremiumUtils {
+    suspend fun maximumYouTubeChannels(context: CommandContext): Int {
+        val user = context.database.user.getFoxyProfile(context.user.id)
+
+        if (isUserPremium(user)) {
+            val premiumType = getPremiumType(user)
+            return when(premiumType) {
+                1 -> 5 // Max 5 channels
+                2 -> 10 // Max 10 channels
+                3 -> 15 // Max 15 channels
+                else -> 3
+            }
+        } else return 3
+    }
+
     suspend fun eligibleForEarlyAccess(context: CommandContext): Boolean {
         val user = context.database.user.getFoxyProfile(context.user.id)
         var isEligible = false

@@ -14,7 +14,7 @@ dependencies {
 
     // Discord
     implementation(libs.jda)
-    implementation(libs.jda.ktx)
+    implementation("com.github.freya022:jda-ktx:8929de93af")
 
     // Coroutines and DateTime
     implementation(libs.kotlinx.coroutines.core)

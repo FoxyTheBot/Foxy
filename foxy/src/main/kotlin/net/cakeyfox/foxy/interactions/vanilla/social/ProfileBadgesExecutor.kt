@@ -9,9 +9,8 @@ import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.profile.ProfileUtils
+import net.dv8tion.jda.api.components.buttons.ButtonStyle
 import net.dv8tion.jda.api.entities.emoji.Emoji
-import net.dv8tion.jda.api.interactions.components.ActionComponent
-import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle
 
 class ProfileBadgesExecutor : UnleashedCommandExecutor() {
     override suspend fun execute(context: CommandContext) {
@@ -77,23 +76,23 @@ class ProfileBadgesExecutor : UnleashedCommandExecutor() {
                             thumbnail = Constants.getProfileBadge(selectedBadge.asset)
                             color = Colors.FOXY_DEFAULT
                         }
-                        
-                        actionRow(*buildBadgeButtons(context, disabledBadges, selectedBadgeId, badges).toTypedArray())
+
+                        buildBadgeButtons(context, disabledBadges, selectedBadgeId, badges)
                     }
                 }
             )
         }
     }
 
-    private fun buildBadgeButtons(
+    private fun InlineMessage<*>.buildBadgeButtons(
         context: CommandContext,
         disabledBadges: List<String>?,
         selectedBadgeId: String,
         badges: List<Badge>
-    ): List<ActionComponent> {
+    ) {
         val isDisabled = disabledBadges?.contains(selectedBadgeId) == true
 
-        return listOf(
+        actionRow(
             context.foxy.interactionManager.createButtonForUser(
                 context.user,
                 ButtonStyle.SECONDARY,
@@ -137,7 +136,7 @@ class ProfileBadgesExecutor : UnleashedCommandExecutor() {
         val newDisabledBadges = context.getAuthorData().userProfile.disabledBadges
 
         componentContext.edit {
-            actionRow(*buildBadgeButtons(context, newDisabledBadges, selectedBadgeId, badges).toTypedArray())
+            buildBadgeButtons(context, newDisabledBadges, selectedBadgeId, badges)
         }
     }
 
@@ -164,7 +163,7 @@ class ProfileBadgesExecutor : UnleashedCommandExecutor() {
         val newDisabledBadges = context.getAuthorData().userProfile.disabledBadges
 
         componentContext.edit {
-            actionRow(*buildBadgeButtons(context, newDisabledBadges, selectedBadgeId, badges).toTypedArray())
+            buildBadgeButtons(context, newDisabledBadges, selectedBadgeId, badges)
         }
     }
 }
