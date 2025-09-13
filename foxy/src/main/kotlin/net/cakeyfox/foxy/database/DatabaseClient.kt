@@ -10,11 +10,11 @@ import net.cakeyfox.foxy.database.data.FoxyUser
 import net.cakeyfox.foxy.database.data.FoxyverseGuild
 import net.cakeyfox.foxy.database.data.Guild
 import net.cakeyfox.foxy.database.data.YouTubeWebhook
-import net.cakeyfox.foxy.utils.database.BotUtils
-import net.cakeyfox.foxy.utils.database.GuildUtils
-import net.cakeyfox.foxy.utils.database.ProfileUtils
-import net.cakeyfox.foxy.utils.database.UserUtils
-import net.cakeyfox.foxy.utils.database.YouTubeUtils
+import net.cakeyfox.foxy.database.utils.BotUtils
+import net.cakeyfox.foxy.database.utils.GuildUtils
+import net.cakeyfox.foxy.database.utils.ProfileUtils
+import net.cakeyfox.foxy.database.utils.UserUtils
+import net.cakeyfox.foxy.database.utils.YouTubeUtils
 import java.util.concurrent.TimeUnit
 
 class DatabaseClient(

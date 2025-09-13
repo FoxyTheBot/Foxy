@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.utils.database
+package net.cakeyfox.foxy.database.utils
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper

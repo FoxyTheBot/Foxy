@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.utils.database
+package net.cakeyfox.foxy.database.utils
 
 import kotlinx.coroutines.flow.firstOrNull
 import mu.KotlinLogging

@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.utils.database
+package net.cakeyfox.foxy.database.utils
 
 import com.mongodb.client.model.Filters.and
 import com.mongodb.client.model.Filters.eq
