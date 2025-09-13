@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.utils.database.utils
+package net.cakeyfox.foxy.utils.database
 
 import com.mongodb.client.model.Filters.and
 import com.mongodb.client.model.Filters.eq
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.toList
 import mu.KotlinLogging
 import net.cakeyfox.foxy.database.data.YouTubeWebhook
-import net.cakeyfox.foxy.utils.database.DatabaseClient
+import net.cakeyfox.foxy.database.DatabaseClient
 import org.bson.Document
 import java.time.Instant
 
