@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.utils.database.utils
+package net.cakeyfox.foxy.utils.database
 
 import kotlinx.coroutines.flow.firstOrNull
 import mu.KotlinLogging
@@ -6,7 +6,7 @@ import net.cakeyfox.foxy.database.data.Background
 import net.cakeyfox.foxy.database.data.Badge
 import net.cakeyfox.foxy.database.data.Decoration
 import net.cakeyfox.foxy.database.data.Layout
-import net.cakeyfox.foxy.utils.database.DatabaseClient
+import net.cakeyfox.foxy.database.DatabaseClient
 import org.bson.Document
 import kotlin.reflect.jvm.jvmName
 

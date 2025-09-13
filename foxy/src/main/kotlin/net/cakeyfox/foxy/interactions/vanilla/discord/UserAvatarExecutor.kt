@@ -17,7 +17,7 @@ class UserAvatarExecutor : UnleashedCommandExecutor() {
                 title = pretty(FoxyEmotes.FoxyYay, context.locale["user.avatar.title", user.effectiveName])
                 image = user.effectiveAvatarUrl + "?size=2048"
                 color = Colors.FOXY_DEFAULT
-                footer(context.locale["user.avatar.userId", context.user.id])
+                footer(context.locale["user.avatar.userId", user.id])
             }
 
             actionRow(

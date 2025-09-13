@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.utils.api.routes
+package net.cakeyfox.foxy.internal.routes
 
 import io.ktor.http.*
 import io.ktor.server.request.*

@@ -22,12 +22,12 @@ import net.cakeyfox.foxy.listeners.InteractionsListener
 import net.cakeyfox.foxy.listeners.MessageListener
 import net.cakeyfox.serializable.data.utils.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
-import net.cakeyfox.foxy.utils.database.DatabaseClient
+import net.cakeyfox.foxy.database.DatabaseClient
 import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
 import net.cakeyfox.foxy.utils.threads.ThreadUtils
 import net.cakeyfox.foxy.leaderboard.LeaderboardManager
 import net.cakeyfox.foxy.utils.TasksUtils
-import net.cakeyfox.foxy.utils.api.FoxyInternalAPI
+import net.cakeyfox.foxy.internal.FoxyInternalAPI
 import net.cakeyfox.foxy.utils.youtube.YouTubeManager
 import net.dv8tion.jda.api.JDAInfo
 import net.dv8tion.jda.api.OnlineStatus

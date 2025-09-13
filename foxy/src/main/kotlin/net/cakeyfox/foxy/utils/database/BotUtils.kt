@@ -1,11 +1,11 @@
-package net.cakeyfox.foxy.utils.database.utils
+package net.cakeyfox.foxy.utils.database
 
 import com.mongodb.kotlin.client.coroutine.MongoCollection
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.serialization.Serializable
 import mu.KotlinLogging
 import net.cakeyfox.foxy.database.data.Command
-import net.cakeyfox.foxy.utils.database.DatabaseClient
+import net.cakeyfox.foxy.database.DatabaseClient
 import org.bson.Document
 
 class BotUtils(

@@ -1,9 +1,9 @@
-package net.cakeyfox.foxy.utils.database.utils
+package net.cakeyfox.foxy.utils.database
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import kotlinx.serialization.json.Json
-import net.cakeyfox.foxy.utils.database.DatabaseClient
+import net.cakeyfox.foxy.database.DatabaseClient
 import net.cakeyfox.foxy.database.data.*
 import org.bson.Document
 import kotlin.reflect.KClass

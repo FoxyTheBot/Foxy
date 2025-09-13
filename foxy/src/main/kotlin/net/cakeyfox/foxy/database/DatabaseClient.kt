@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.utils.database
+package net.cakeyfox.foxy.database
 
 import com.mongodb.kotlin.client.coroutine.MongoClient
 import com.mongodb.kotlin.client.coroutine.MongoCollection
@@ -6,11 +6,15 @@ import com.mongodb.kotlin.client.coroutine.MongoDatabase
 import kotlinx.coroutines.withContext
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.utils.database.utils.*
 import net.cakeyfox.foxy.database.data.FoxyUser
 import net.cakeyfox.foxy.database.data.FoxyverseGuild
 import net.cakeyfox.foxy.database.data.Guild
 import net.cakeyfox.foxy.database.data.YouTubeWebhook
+import net.cakeyfox.foxy.utils.database.BotUtils
+import net.cakeyfox.foxy.utils.database.GuildUtils
+import net.cakeyfox.foxy.utils.database.ProfileUtils
+import net.cakeyfox.foxy.utils.database.UserUtils
+import net.cakeyfox.foxy.utils.database.YouTubeUtils
 import java.util.concurrent.TimeUnit
 
 class DatabaseClient(
@@ -37,7 +41,7 @@ class DatabaseClient(
 
     private fun connect() {
         try {
-            mongoClient = MongoClient.create(foxy.config.database.address)
+            mongoClient = MongoClient.Factory.create(foxy.config.database.address)
             mongoClient.withTimeout(10, TimeUnit.SECONDS)
             database = mongoClient.getDatabase(foxy.config.database.databaseName)
             users = database.getCollection("users")

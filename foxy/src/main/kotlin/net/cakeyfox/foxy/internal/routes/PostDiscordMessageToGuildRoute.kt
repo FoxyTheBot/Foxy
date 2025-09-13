@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.utils.api.routes
+package net.cakeyfox.foxy.internal.routes
 
 import dev.minn.jda.ktx.coroutines.await
 import io.ktor.server.routing.*

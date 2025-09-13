@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.utils
+package net.cakeyfox.foxy.utils.discord
 
 import kotlinx.datetime.Clock
 import mu.KotlinLogging
@@ -7,6 +7,7 @@ import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.pretty
+import net.cakeyfox.foxy.utils.linkButton
 import net.dv8tion.jda.api.entities.Member
 import kotlin.time.Duration.Companion.days
 

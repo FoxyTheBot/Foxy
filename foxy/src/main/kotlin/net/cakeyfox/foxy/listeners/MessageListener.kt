@@ -12,7 +12,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.MessageCommandContext
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.foxy.interactions.pretty
-import net.cakeyfox.foxy.utils.NitroUtils
+import net.cakeyfox.foxy.utils.discord.NitroUtils
 import net.cakeyfox.foxy.utils.TasksUtils
 import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent

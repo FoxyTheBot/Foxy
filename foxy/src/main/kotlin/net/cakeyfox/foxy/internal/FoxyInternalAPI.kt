@@ -1,6 +1,6 @@
-package net.cakeyfox.foxy.utils.api
+package net.cakeyfox.foxy.internal
 
-import net.cakeyfox.foxy.utils.api.routes.PostDiscordMessageToGuildRoute
+import net.cakeyfox.foxy.internal.routes.PostDiscordMessageToGuildRoute
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
@@ -12,7 +12,15 @@ import io.ktor.server.routing.*
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.utils.api.routes.*
+import net.cakeyfox.foxy.internal.routes.GetClusterInfo
+import net.cakeyfox.foxy.internal.routes.GetGuildInfo
+import net.cakeyfox.foxy.internal.routes.GetGuildsFromCluster
+import net.cakeyfox.foxy.internal.routes.GetUserAvatar
+import net.cakeyfox.foxy.internal.routes.GetUserFromGuild
+import net.cakeyfox.foxy.internal.routes.GetUserRolesFromAGuild
+import net.cakeyfox.foxy.internal.routes.PostPubSubCallbackRoute
+import net.cakeyfox.foxy.internal.routes.PostUpdateActivityRoute
+import net.cakeyfox.foxy.internal.routes.PostUpvoteWebhookRoute
 
 class FoxyInternalAPI(
     val foxy: FoxyInstance

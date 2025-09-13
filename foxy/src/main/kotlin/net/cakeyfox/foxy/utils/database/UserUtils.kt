@@ -1,8 +1,8 @@
-package net.cakeyfox.foxy.utils.database.utils
+package net.cakeyfox.foxy.utils.database
 
 import com.mongodb.client.model.Filters.and
 import kotlinx.datetime.toJavaInstant
-import net.cakeyfox.foxy.utils.database.DatabaseClient
+import net.cakeyfox.foxy.database.DatabaseClient
 import org.bson.Document
 import kotlinx.coroutines.flow.firstOrNull
 import com.mongodb.client.model.Filters.eq
@@ -14,7 +14,6 @@ import com.mongodb.client.model.Projections.include
 import com.mongodb.client.model.Sorts.ascending
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
-import kotlinx.datetime.Clock
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.database.data.*
 import net.cakeyfox.serializable.data.utils.UserBalance
@@ -22,6 +21,7 @@ import java.time.Instant
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.temporal.ChronoUnit
+import java.util.Date
 
 class UserUtils(
     private val client: DatabaseClient,
@@ -212,7 +212,7 @@ class UserUtils(
 
             val documentToJSON = client.foxy.json.encodeToString(newUser)
             val document = Document.parse(documentToJSON)
-            document["userCreationTimestamp"] = java.util.Date.from(newUser.userCreationTimestamp!!.toJavaInstant())
+            document["userCreationTimestamp"] = Date.from(newUser.userCreationTimestamp!!.toJavaInstant())
 
             collection.insertOne(document)
 

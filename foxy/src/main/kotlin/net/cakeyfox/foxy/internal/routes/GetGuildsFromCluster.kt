@@ -1,9 +1,8 @@
-package net.cakeyfox.foxy.utils.api.routes
+package net.cakeyfox.foxy.internal.routes
 
 import io.ktor.http.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
