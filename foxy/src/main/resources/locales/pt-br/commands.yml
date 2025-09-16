@@ -36,8 +36,9 @@ music:
     source: "Fonte:"
     queueLimitReached: "Você só pode adicionar até **{0}** músicas na fila!"
     youMustProvideASong: "Você precisa fornecer o nome ou a URL do SoundCloud ou do Discord! :3"
+    missingPermissions: "Eu não tenho permissão para falar ou conectar no seu canal de voz!"
   stop:
-    stopped: "Pare de me torturar! Saindo do canal de voz..."
+    stopped: "Saindo do canal... Até mais!"
     nothingPlaying: "Não há nada tocando no momento!"
   queue:
     currentQueue: "Fila atual"

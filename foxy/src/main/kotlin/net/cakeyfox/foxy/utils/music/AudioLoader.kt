@@ -99,6 +99,8 @@ class AudioLoader(val context: CommandContext, val manager: GuildMusicManager) :
 
     override fun ontrackLoaded(result: TrackLoaded) {
         val track = result.track
+        val trackTitle = track.info.title
+        val trackAuthor = track.info.author
         val sourceName = track.info.sourceName
         val emote = FoxyEmotes::class.memberProperties
             .firstOrNull { it.name.equals(sourceName, ignoreCase = true) }
@@ -110,10 +112,6 @@ class AudioLoader(val context: CommandContext, val manager: GuildMusicManager) :
         val link = context.foxy.lavalink.getOrCreateLink(context.guild!!.idLong)
         val currentPlaying = link.cachedPlayer?.track
         val isFirstTrack = currentPlaying == null && manager.scheduler.queue.isEmpty()
-
-        this.manager.scheduler.enqueue(track)
-        val trackTitle = track.info.title
-        val trackAuthor = track.info.author
 
         replyScope.launch {
             context.reply {
@@ -146,5 +144,8 @@ class AudioLoader(val context: CommandContext, val manager: GuildMusicManager) :
                 }
             }
         }
+
+
+        this.manager.scheduler.enqueue(track)
     }
 }

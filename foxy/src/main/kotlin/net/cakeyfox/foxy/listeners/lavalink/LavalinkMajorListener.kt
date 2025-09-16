@@ -17,12 +17,6 @@ class LavalinkMajorListener(lavalink: LavalinkClient, val foxy: FoxyInstance) : 
             logger.info { "Node '${event.node.name}' is ready, session id is '${event.sessionId}'!" }
         }
 
-        lavalink.on<StatsEvent>().subscribe({ event ->
-            logger.info { "Node '${event.node.name}' has stats, current players: ${event.playingPlayers}/${event.players}" }
-        }) { err ->
-            err.printStackTrace()
-        }
-
         lavalink.on<TrackStartEvent>().subscribe { event ->
             logger.info { "Node '${event.node.name}' started playing a track in guild ${event.guildId}!" }
         }

@@ -78,7 +78,7 @@ class QueueExecutor : UnleashedCommandExecutor() {
 
                     it.edit {
                         embed {
-                            color = Colors.AQUA
+                            color = Colors.BLUE
                             title = pretty(FoxyEmotes.FoxyPlush, context.locale["music.queue.currentQueue"])
                             description = context.locale["music.queue.queueCleared"]
                             thumbnail = Constants.FOXY_FUMO

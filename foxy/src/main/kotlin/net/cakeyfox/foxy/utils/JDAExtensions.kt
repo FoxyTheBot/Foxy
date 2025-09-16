@@ -7,6 +7,7 @@ import net.cakeyfox.serializable.data.cluster.RelayEmbed
 import net.cakeyfox.serializable.data.cluster.RelayEmbedAuthor
 import net.cakeyfox.serializable.data.cluster.RelayEmbedField
 import net.cakeyfox.serializable.data.cluster.RelayEmbedFooter
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.components.buttons.Button
 import net.dv8tion.jda.api.components.buttons.ButtonStyle
 import net.dv8tion.jda.api.entities.MessageEmbed
@@ -28,7 +29,23 @@ suspend fun joinInAVoiceChannel(context: CommandContext): Channel? {
 
     if (botVoiceChannel != null && botVoiceChannel != memberVoiceChannel) {
         context.reply(true) {
-            content = pretty(FoxyEmotes.FoxyDrinkingCoffee, context.locale["music.play.alreadyConnectedInAnotherChannel", botVoiceChannel.asMention])
+            content = pretty(
+                FoxyEmotes.FoxyDrinkingCoffee,
+                context.locale["music.play.alreadyConnectedInAnotherChannel", botVoiceChannel.asMention]
+            )
+        }
+        return null
+    }
+
+    val hasJoinAndSpeak = selfMember.hasPermission(
+        memberVoiceChannel,
+        Permission.VOICE_CONNECT,
+        Permission.VOICE_SPEAK
+    )
+
+    if (!hasJoinAndSpeak) {
+        context.reply(true) {
+            content = pretty(FoxyEmotes.FoxyRage, context.locale["music.play.missingPermissions"])
         }
         return null
     }
