@@ -8,8 +8,10 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.ComponentId
 import net.cakeyfox.foxy.interactions.InteractionCommandContext
 import net.cakeyfox.foxy.interactions.pretty
+import net.cakeyfox.foxy.utils.LavalinkUtils.registerNode
 import net.cakeyfox.foxy.utils.isEarlyAccessOnlyCommand
 import net.dv8tion.jda.api.entities.channel.ChannelType
+import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent

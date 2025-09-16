@@ -18,9 +18,7 @@ import net.cakeyfox.serializable.data.utils.YouTubeQuery
 import net.cakeyfox.serializable.data.utils.YouTubeQueryBody
 import java.util.concurrent.TimeUnit
 
-class YouTubeManager(
-    private val foxy: FoxyInstance
-) {
+class YouTubeManager(val foxy: FoxyInstance) {
     private val youtubeApiKey = foxy.config.youtube.key
     private val cachedChannels = Caffeine.newBuilder()
         .expireAfterWrite(1, TimeUnit.HOURS)

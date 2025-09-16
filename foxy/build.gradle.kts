@@ -16,6 +16,9 @@ dependencies {
     implementation(libs.jda)
     implementation("com.github.freya022:jda-ktx:8929de93af")
 
+    // Music
+    implementation(libs.lavalink.client)
+
     // Coroutines and DateTime
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.debug)

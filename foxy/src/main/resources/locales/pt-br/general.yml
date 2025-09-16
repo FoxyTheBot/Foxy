@@ -7,6 +7,35 @@ commands:
   error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
 
   command:
+    nowplaying:
+      name: "tocando_agora"
+      description: "Veja a música que está tocando"
+    volume:
+      name: "volume"
+      description: "Ajuste o volume da música que está tocando"
+      options:
+        level:
+          name: "nível"
+          description: "O nível de volume que você deseja definir (0-500)"
+    skip:
+      name: "pular"
+      description: "Pule a música que está tocando"
+    stop:
+      name: "parar"
+      description: "Pare a música que está tocando"
+    pause:
+      name: "pausar"
+      description: "Pausa a música que está tocando"
+    play:
+      name: "tocar"
+      description: "Toque uma música em um canal de voz"
+      options:
+        query:
+          name: "música"
+          description: "O nome ou URL da música que você deseja tocar"
+    queue:
+      name: "fila"
+      description: "Veja a lista de reprodução do servidor"
     rolls:
       name: rolar
       description: Para os jogadores de RPG, role um, ou mais dados e obtenha o resultado exato

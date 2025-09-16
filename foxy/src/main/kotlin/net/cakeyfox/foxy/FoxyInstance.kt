@@ -1,5 +1,9 @@
 package net.cakeyfox.foxy
 
+import dev.arbjerg.lavalink.client.LavalinkClient
+import dev.arbjerg.lavalink.client.getUserIdFromToken
+import dev.arbjerg.lavalink.client.loadbalancing.builtin.VoiceRegionPenaltyProvider
+import dev.arbjerg.lavalink.libraries.jda.JDAVoiceUpdateListener
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
@@ -23,11 +27,14 @@ import net.cakeyfox.foxy.listeners.MessageListener
 import net.cakeyfox.serializable.data.utils.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.database.DatabaseClient
+import net.cakeyfox.foxy.utils.music.GuildMusicManager
 import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
 import net.cakeyfox.foxy.utils.threads.ThreadUtils
 import net.cakeyfox.foxy.leaderboard.LeaderboardManager
 import net.cakeyfox.foxy.utils.TasksUtils
 import net.cakeyfox.foxy.internal.FoxyInternalAPI
+import net.cakeyfox.foxy.listeners.lavalink.LavalinkMajorListener
+import net.cakeyfox.foxy.utils.LavalinkUtils.registerNode
 import net.cakeyfox.foxy.utils.youtube.YouTubeManager
 import net.dv8tion.jda.api.JDAInfo
 import net.dv8tion.jda.api.OnlineStatus
@@ -58,6 +65,7 @@ class FoxyInstance(
         encodeDefaults = true
         ignoreUnknownKeys = true
     }
+
     val environment = config.environment
     val restVersion = JDAInfo.DISCORD_REST_VERSION
     val baseUrl = config.discord.baseUrl
@@ -70,6 +78,9 @@ class FoxyInstance(
     val youtubeManager: YouTubeManager by lazy { YouTubeManager(this) }
     val database: DatabaseClient by lazy { DatabaseClient(this).also { it.start() } }
     val commandHandler: FoxyCommandManager by lazy { FoxyCommandManager(this) }
+    val lavalink = LavalinkClient(getUserIdFromToken(config.discord.token))
+    val musicManagers = mutableMapOf<Long, GuildMusicManager>()
+
     val http: HttpClient by lazy {
         HttpClient(CIO) {
             install(HttpTimeout) { requestTimeoutMillis = 60_000 }
@@ -78,6 +89,7 @@ class FoxyInstance(
     }
 
     suspend fun start() {
+        lavalink.loadBalancer.addPenaltyProvider(VoiceRegionPenaltyProvider())
         utils = FoxyUtils(this)
         interactionManager = FoxyComponentManager(this)
         showtimeClient = ShowtimeClient(config, config.showtime.key)
@@ -89,7 +101,8 @@ class FoxyInstance(
             GatewayIntent.GUILD_MESSAGES,
             GatewayIntent.SCHEDULED_EVENTS,
             GatewayIntent.GUILD_EXPRESSIONS,
-            GatewayIntent.DIRECT_MESSAGES
+            GatewayIntent.DIRECT_MESSAGES,
+            GatewayIntent.GUILD_VOICE_STATES
         ).apply {
             if (baseUrl != null) {
                 logger.info { "Using Discord base URL: $baseUrl" }
@@ -100,8 +113,10 @@ class FoxyInstance(
             .addEventListeners(
                 GuildListener(this),
                 InteractionsListener(this),
-                MessageListener(this)
+                MessageListener(this),
+                LavalinkMajorListener(lavalink, this)
             )
+            .setVoiceDispatchInterceptor(JDAVoiceUpdateListener((lavalink)))
             .setAutoReconnect(true)
             .setStatus(OnlineStatus.fromKey(database.bot.getBotSettings().status))
             .setActivity(
@@ -122,12 +137,14 @@ class FoxyInstance(
                 CacheFlag.EMOJI,
                 CacheFlag.STICKER,
                 CacheFlag.MEMBER_OVERRIDES,
+                CacheFlag.VOICE_STATE
             )
             .setToken(config.discord.token)
             .setEnableShutdownHook(false)
             .build()
 
         leaderboardManager.startAutoRefresh()
+        registerNode(this)
         if (currentCluster.isMasterCluster) TasksUtils.launchTasks(this)
         this.commandHandler.handle()
 

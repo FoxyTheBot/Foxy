@@ -9,6 +9,35 @@ commands:
   error: An error occurred while executing the command, the problem has been reported!
     `{0}`
   command:
+    nowplaying:
+      name: "tocando_agora"
+      description: "Veja a música que está tocando"
+    volume:
+      name: "volume"
+      description: "Ajuste o volume da música que está tocando"
+      options:
+        level:
+          name: "nível"
+          description: "O nível de volume que você deseja definir (0-100)"
+    queue:
+      name: "fila"
+      description: "Veja a lista de reprodução do servidor"
+    skip:
+      name: "pular"
+      description: "Pule a música que está tocando"
+    stop:
+      name: "parar"
+      description: "Pare a música que está tocando"
+    pause:
+      name: "pausar"
+      description: "Pausa a música que está tocando"
+    play:
+      name: "tocar"
+      description: "Toque uma música em um canal de voz"
+      options:
+        query:
+          name: "música"
+          description: "O nome ou URL da música que você deseja tocar"
     rolls:
       name: rolls
       description: Role um ou mais dados de vários lados

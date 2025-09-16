@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.events.guild.GuildJoinEvent
 import net.dv8tion.jda.api.events.guild.GuildLeaveEvent
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent
+import net.dv8tion.jda.api.events.guild.voice.GuildVoiceUpdateEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import kotlin.reflect.jvm.jvmName
 
@@ -29,6 +30,33 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
         coroutineScope.launch(foxy.coroutineDispatcher) {
             foxy.database.guild.deleteGuild(event.guild.id)
             logger.info { "Left guild ${event.guild.name} - ${event.guild.id}" }
+        }
+    }
+
+    override fun onGuildVoiceUpdate(event: GuildVoiceUpdateEvent) {
+        coroutineScope.launch(foxy.coroutineDispatcher) {
+            val isFoxyConnected = event.guild.selfMember.voiceState?.inAudioChannel() == true
+
+            if (isFoxyConnected) {
+                val members = event.guild.selfMember.voiceState?.channel?.members ?: return@launch
+                val channelMembers = members.filterNot { it.user.isBot }
+
+                if (channelMembers.isEmpty()) {
+                    logger.info { "Starting inactivity timer in guild ${event.guild.name} - ${event.guild.id}" }
+                    delay(30_000)
+                    val stillInChannel = event.guild.selfMember.voiceState?.inAudioChannel() == true
+                    val stillNonBotMembers =
+                        event.guild.selfMember.voiceState?.channel?.members?.filterNot { it.user.isBot }
+                            ?: return@launch
+                    val manager = foxy.musicManagers[event.guild.idLong] ?: return@launch
+
+                    if (stillInChannel && stillNonBotMembers.isEmpty()) {
+                        manager.stop()
+                        event.guild.audioManager.closeAudioConnection()
+                        logger.info { "Left voice channel in guild ${event.guild.name} - ${event.guild.id} due to inactivity." }
+                    }
+                }
+            }
         }
     }
 

@@ -27,6 +27,9 @@ object Constants {
     const val TOKEN_ENDPOINT = "https://discord.com/api/oauth2/token"
     const val DEFAULT_ENDPOINT = "https://discord.com/api/users/@me"
 
+    // Last.fm
+    const val LASTFM_API = "https://ws.audioscrobbler.com/2.0/"
+
     @OptIn(ExperimentalSerializationApi::class)
     val HOCON = Hocon { useArrayPolymorphism = true }
     const val SUPPORT_SERVER_ID = "768267522670723094"
@@ -60,7 +63,6 @@ object Constants {
     }
 
     /* ---- [Profile Assets] ---- */
-
     fun getProfileBackground(backgroundId: String): String {
         return "https://stuff.foxybot.xyz/backgrounds/$backgroundId"
     }

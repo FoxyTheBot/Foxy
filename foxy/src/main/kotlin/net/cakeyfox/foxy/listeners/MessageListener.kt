@@ -13,10 +13,8 @@ import net.cakeyfox.foxy.interactions.MessageCommandContext
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.discord.NitroUtils
-import net.cakeyfox.foxy.utils.TasksUtils
 import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
-import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.dv8tion.jda.api.interactions.DiscordLocale
 import kotlin.system.measureTimeMillis

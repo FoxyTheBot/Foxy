@@ -38,18 +38,18 @@ class StatusExecutor : UnleashedCommandExecutor() {
                 thumbnail = context.jda.selfUser.effectiveAvatarUrl
                 color = Colors.FOXY_DEFAULT
 
-                field("${FoxyEmotes.Computer} **|** Environment", context.foxy.environment.uppercase())
-                field("${FoxyEmotes.Java} **|** Java Version", javaVersion)
-                field("${FoxyEmotes.Kotlin} **|** Kotlin Version", kotlinVersion)
-                field("${FoxyEmotes.GitHubLogo} **|** Build Number", "#$buildNumber")
-                field("${FoxyEmotes.FoxyYay} **|** Total Shards:", "${foxy.config.discord.totalShards} Shards")
-                field("${FoxyEmotes.FoxyHug} **|** Total Clusters:", "${foxy.config.discord.clusters.size} Clusters")
-                field("${FoxyEmotes.Computer} **|** Used Memory:", "${usedMemory}MB")
-                field("${FoxyEmotes.Computer} **|** Allocated Memory:", "${totalMemory}MB")
-                field("${FoxyEmotes.Computer} **|** Max Memory:", "${maxMemory}MB")
-                field("${FoxyEmotes.Thread} **|** Active Threads:", "$threads Threads")
-                field("${FoxyEmotes.Online} **|** User Cache:", "$userCache Users")
-                field("${FoxyEmotes.Online} **|** Guild Cache:", "$guildCache Guilds")
+                field("${FoxyEmotes.Computer} Environment", context.foxy.environment.uppercase())
+                field("${FoxyEmotes.Java} Java Version", javaVersion)
+                field("${FoxyEmotes.Kotlin} Kotlin Version", kotlinVersion)
+                field("${FoxyEmotes.GitHubLogo} Build Number", "#$buildNumber")
+                field("${FoxyEmotes.FoxyYay} Total Shards:", "${foxy.config.discord.totalShards} Shards")
+                field("${FoxyEmotes.FoxyHug} Total Clusters:", "${foxy.config.discord.clusters.size} Clusters")
+                field("${FoxyEmotes.Computer} Used Memory:", "${usedMemory}MB")
+                field("${FoxyEmotes.Computer} Allocated Memory:", "${totalMemory}MB")
+                field("${FoxyEmotes.Computer} Max Memory:", "${maxMemory}MB")
+                field("${FoxyEmotes.Thread} Active Threads:", "$threads Threads")
+                field("${FoxyEmotes.Online} User Cache:", "$userCache Users")
+                field("${FoxyEmotes.Online} Guild Cache:", "$guildCache Guilds")
                 footer("Commit Hash: $commitHash")
             }
         }

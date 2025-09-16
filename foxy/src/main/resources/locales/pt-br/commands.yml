@@ -7,6 +7,53 @@ imageSource: "Link da Imagem"
 commands:
   earlyAccess: "Esse comando está em beta e apenas usuários premium possuem acesso antecipado. Se você quiser ter acesso a esse comando e muitos outros, você pode se tornar um usuário premium clicando [aqui](https://foxybot.xyz/br/premium)"
 
+music:
+  nowPlaying:
+    nowPlaying: "Tocando agora"
+    byAuthor: "Artista:"
+    duration: "Duração:"
+    volume: "Volume:"
+    nothingPlaying: "Nada está tocando no momento!"
+  skip:
+    wasPlaying: "Estava tocando"
+    currentlyPlaying: "Tocando agora"
+    noTrack:
+      title: "Nenhuma música"
+      description: "Não há nenhuma música tocando no momento!"
+    noMoreTracks: "Não há mais músicas na fila!"
+  play:
+    addedToQueue: "Adicionado à fila"
+    nowPlaying: "Tocando agora"
+    searchResults: "Resultados da busca para: {0}"
+    noMatches: "Nenhum resultado encontrado"
+    invalidSoundCloudUrl: "URL inválida do SoundCloud!"
+    notConnected: "Eu não estou conectado a nenhum canal de voz!"
+    noPermissionToJoin: "Eu não tenho permissão para entrar no seu canal de voz!"
+    userNotInVoiceChannel: "Você precisa estar em um canal de voz para usar esse comando!"
+    alreadyConnectedInAnotherChannel: "Eu já estou tocando música em outro canal de voz, porque você não vem fazer companhia para nós? {0}"
+    differentVoiceChannel: "Você precisa estar no mesmo canal de voz que eu para usar esse comando!"
+    playlistsNotSupported: "Você não pode adicionar playlists."
+    source: "Fonte:"
+    queueLimitReached: "Você só pode adicionar até **{0}** músicas na fila!"
+    youMustProvideASong: "Você precisa fornecer o nome ou a URL do SoundCloud ou do Discord! :3"
+  stop:
+    stopped: "Pare de me torturar! Saindo do canal de voz..."
+    nothingPlaying: "Não há nada tocando no momento!"
+  queue:
+    currentQueue: "Fila atual"
+    totalTracks: "Total de faixas na fila: {0}"
+    queueCleared: "A fila de reprodução foi limpa!"
+  pause:
+    paused: "Pausado! Use o comando novamente para continuar a reprodução."
+    resumed: "Reproduzindo! Use o comando novamente para pausar a reprodução."
+    notPlaying: "Não há nada tocando no momento!"
+    notInVoiceChannel: "Eu não estou em nenhum canal de voz!"
+  volume:
+    setTo: "Ok, defini o volume para `{0}`"
+    currentVolume: "O volume atual é {0}"
+    volumeRange: "O volume deve estar entre 1 e 100"
+    notInVoiceChannel: "Eu não estou em nenhum canal de voz!"
+    notPlaying: "Não há nada tocando no momento!"
 youtube:
   channel:
     add:
@@ -19,8 +66,6 @@ youtube:
       addedSuccessfully: "Okay, agora eu vou notificar novos vídeos de **{0}** no canal {1}"
       youCantAddMoreChannels: "Você não pode adicionar mais canais"
       youCantAddDuplicatedChannels: "Você não pode adicionar o mesmo canal, bobinho!"
-
-      # New strings
       boldCustomMessage: "**Mensagem Customizada:**"
       noCustomMessage: "Não definido"
       channelId: "-# ID do Canal: {0}"
@@ -31,7 +76,6 @@ youtube:
         title: "Alterar Mensagem"
         placeholder: "Placeholders: {channel.name} e {video.url}"
       addCustomMessageButton: "Adicionar Mensagem"
-
     remove:
       channelRemoved: "Okay, não vou mais enviar notificações de **{0}**!"
       unknownChannel: "Não encontrei nenhum canal chamado **{0}** no seu servidor."
@@ -44,8 +88,6 @@ youtube:
       channelToSend: "Canal onde será enviado:"
       channelId: "ID do Canal: {0}"
       removeChannelButton: "Remover canal"
-
-      # New strings
       modal:
         title: "Editar Mensagem Customizada"
         label: "Mensagem Customizada"

@@ -21,6 +21,13 @@ import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RateWai
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RollsCommand
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RussianRouletteCommand
 import net.cakeyfox.foxy.interactions.vanilla.magic.declarations.MagicCommand
+import net.cakeyfox.foxy.interactions.vanilla.music.declarations.NowPlayingCommand
+import net.cakeyfox.foxy.interactions.vanilla.music.declarations.PauseCommand
+import net.cakeyfox.foxy.interactions.vanilla.music.declarations.PlayCommand
+import net.cakeyfox.foxy.interactions.vanilla.music.declarations.QueueCommand
+import net.cakeyfox.foxy.interactions.vanilla.music.declarations.SkipCommand
+import net.cakeyfox.foxy.interactions.vanilla.music.declarations.StopCommand
+import net.cakeyfox.foxy.interactions.vanilla.music.declarations.VolumeCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.BirthdayCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.DivorceCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.MarryCommand
@@ -122,9 +129,6 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
 
 
     init {
-        /* ---- [Roleplay] ---- */
-        register(RoleplayCommand())
-
         /* ---- [Economy] ---- */
         register(CakesCommand())
         register(DailyCommand())
@@ -146,6 +150,16 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(MarryCommand())
         register(DivorceCommand())
         register(BirthdayCommand())
+        register(RoleplayCommand())
+
+        /* ---- [Music] ---- */
+        register(PlayCommand())
+        register(SkipCommand())
+        register(StopCommand())
+        register(NowPlayingCommand())
+        register(PauseCommand())
+        register(VolumeCommand())
+        register(QueueCommand())
 
         /* ---- [Discord] ---- */
         register(UserCommand())

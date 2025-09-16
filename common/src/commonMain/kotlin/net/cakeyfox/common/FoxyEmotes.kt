@@ -72,6 +72,12 @@ object FoxyEmotes {
     const val SALLY = "<:sally:1392547806937481278>"
     const val RDRBR = "<:rdrbr:1392547804823425024>"
 
+    // Music platforms
+    const val YOUTUBE = "<:youtube:1092607821771710584>"
+    const val SOUNDCLOUD = "<:soundcloud:1416909085609037968>"
+    const val DEEZER = "<:deezer:1416909400009871550>"
+    const val DISCORD = "<:online:1304276804885938197>"
+
     val badgesMap = mapOf(
         "artists" to ARTISTS,
         "banned" to BANNED,

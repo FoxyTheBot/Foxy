@@ -8,6 +8,7 @@ object CommandCategory {
     const val SOCIAL = "social"
     const val UTILS = "utils"
     const val MAGIC = "magic"
+    const val MUSIC = "music"
     const val DISCORD = "discord"
     const val YOUTUBE = "youtube"
 }

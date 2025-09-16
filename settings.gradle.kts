@@ -24,6 +24,9 @@ dependencyResolutionManagement {
             library("jda", "net.dv8tion", "JDA").version("6.0.0-preview_DEV")
             library("jda-ktx", "club.minnced", "jda-ktx").version("0.13.0")
 
+            // Music
+            library("lavalink-client", "dev.arbjerg", "lavalink-client").version("3.2.0")
+
             // Database
             library("mongodb-bson", "org.mongodb", "bson-kotlinx").version("5.5.0")
             library("mongodb-coroutine-driver", "org.mongodb", "mongodb-driver-kotlin-coroutine").version("5.5.0")

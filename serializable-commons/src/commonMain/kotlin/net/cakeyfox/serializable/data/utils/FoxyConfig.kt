@@ -13,9 +13,30 @@ data class FoxyConfig(
     val turnstile: Turnstile,
     val foxpayments: FoxPayments,
     val topgg: TopggSettings,
+    val lavalink: LavalinkSettings,
+    val lastFm: LastFmSettings,
     val internalApi: InternalAPI,
     val leaderboard: Leaderboard
 ) {
+    @Serializable
+    data class LavalinkSettings(
+        val nodes: List<Node>
+    ) {
+        @Serializable
+        data class Node(
+            val name: String,
+            val host: String,
+            val port: Int,
+            val password: String,
+            val region: String?
+        )
+    }
+
+    @Serializable
+    data class LastFmSettings(
+        val authorization: String
+    )
+
     @Serializable
     data class Leaderboard(
         val limit: Int
