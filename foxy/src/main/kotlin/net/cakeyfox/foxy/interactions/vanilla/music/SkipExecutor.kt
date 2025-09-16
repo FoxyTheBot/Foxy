@@ -21,7 +21,7 @@ class SkipExecutor : UnleashedCommandExecutor() {
         }
 
         val lavalink = context.foxy.lavalink
-        val musicManager = getOrCreateMusicManager(guildId, lavalink, context, channel!!)
+        val musicManager = getOrCreateMusicManager(guildId, lavalink, context, channel)
 
         val player = musicManager.getPlayer()
 

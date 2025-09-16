@@ -44,6 +44,7 @@ music:
     currentQueue: "Fila atual"
     totalTracks: "Total de faixas na fila: {0}"
     queueCleared: "A fila de reprodução foi limpa!"
+    clearQueue: "Limpar fila"
   pause:
     paused: "Pausado! Use o comando novamente para continuar a reprodução."
     resumed: "Reproduzindo! Use o comando novamente para pausar a reprodução."

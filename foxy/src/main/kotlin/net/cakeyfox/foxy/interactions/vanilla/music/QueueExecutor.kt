@@ -65,7 +65,7 @@ class QueueExecutor : UnleashedCommandExecutor() {
                     context.user,
                     ButtonStyle.DANGER,
                     "🗑️",
-                    "Limpar Fila"
+                    context.locale["music.queue.clearQueue"]
                 ) {
                     if (manager.getPlayer()?.track == null) {
                         context.reply(true) {
@@ -93,7 +93,7 @@ class QueueExecutor : UnleashedCommandExecutor() {
                                 context.user,
                                 ButtonStyle.DANGER,
                                 "🗑️",
-                                "Limpar Fila"
+                                context.locale["music.queue.clearQueue"]
                             ) {}.withDisabled(true)
                         )
                     }
