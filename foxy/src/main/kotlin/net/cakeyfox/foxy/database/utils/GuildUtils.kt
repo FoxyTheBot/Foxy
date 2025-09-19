@@ -33,6 +33,12 @@ class GuildUtils(
         }
     }
 
+    suspend fun getKeyByGuildId(guildId: String): Key? {
+        return client.withRetry {
+            val query = Document("usedBy", guildId)
+            client.premiumKeys.find(query).firstOrNull()
+        }
+    }
 
     suspend fun getGuild(guildId: String): Guild {
         return updateGuildWithNewFields(guildId)
@@ -79,6 +85,7 @@ class GuildUtils(
                 antiRaidModule = AntiRaidModule(),
                 AutoRoleModule = AutoRoleModule(),
                 guildSettings = GuildSettings(),
+                musicSettings = MusicSettings(),
             )
 
             val documentToJSON = client.foxy.json.encodeToString(newGuild)
@@ -153,6 +160,7 @@ class GuildUtils(
             AutoRoleModule::class -> AutoRoleModule()
             WelcomerModule::class -> WelcomerModule()
             GuildSettings::class -> GuildSettings()
+            MusicSettings::class -> MusicSettings()
             else -> null
         }
     }

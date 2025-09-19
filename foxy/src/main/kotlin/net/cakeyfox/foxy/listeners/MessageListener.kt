@@ -12,7 +12,12 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.MessageCommandContext
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.foxy.interactions.pretty
+import net.cakeyfox.foxy.utils.PremiumUtils
 import net.cakeyfox.foxy.utils.discord.NitroUtils
+import net.cakeyfox.foxy.utils.joinInAVoiceChannel
+import net.cakeyfox.foxy.utils.music.AudioLoader
+import net.cakeyfox.foxy.utils.music.getOrCreateMusicManager
+import net.cakeyfox.foxy.utils.music.processQuery
 import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
@@ -28,10 +33,35 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
 
         scope.launch {
             processCommandOrMention(event)
+            processDjFoxyMessage(event)
 //            if (event.member?.isBoosting == true) {
 //                processNitroBoost(event)
 //            }
         }
+    }
+
+    private suspend fun processDjFoxyMessage(event: MessageReceivedEvent) {
+        val guild = foxy.database.guild.getGuild(event.guild.id)
+        if (guild.musicSettings?.requstMusicChannel != event.channel.id) return
+
+        val raw = event.message.contentRaw
+        if (raw.startsWith(guild.guildSettings.prefix)) return
+
+        val context = MessageCommandContext(event, foxy)
+        val channel = joinInAVoiceChannel(context) ?: return
+        val maximumQueueSize = PremiumUtils.getMaxQueueSize(context)
+        val link = context.foxy.lavalink.getOrCreateLink(context.guild.idLong)
+        val manager = getOrCreateMusicManager(context.guild.idLong, context.foxy.lavalink, context, channel)
+        val queueSize = manager.scheduler.queue.size + 1
+
+        if (queueSize >= maximumQueueSize) {
+            context.reply(true) {
+                content = pretty(FoxyEmotes.FoxyCry, context.locale["music.play.queueLimitReached", "100"])
+            }
+            return
+        }
+
+        link.loadItem(processQuery(raw)).subscribe(AudioLoader(context, manager))
     }
 
     private suspend fun processNitroBoost(event: MessageReceivedEvent) {

@@ -6,6 +6,7 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
+import net.cakeyfox.foxy.utils.PremiumUtils
 import net.dv8tion.jda.api.components.buttons.ButtonStyle
 
 class QueueExecutor : UnleashedCommandExecutor() {
@@ -38,6 +39,7 @@ class QueueExecutor : UnleashedCommandExecutor() {
 
         val trackList = StringBuilder()
         val currentTrack = manager.getPlayer()?.track
+        val maximumQueueSize = PremiumUtils.getMaxQueueSize(context)
         trackList.append("➤ **${currentTrack?.info?.author}** - ${currentTrack?.info?.title}\n\n")
 
         for ((index, track) in tracks.withIndex()) {
@@ -56,7 +58,7 @@ class QueueExecutor : UnleashedCommandExecutor() {
                 thumbnail = currentTrack?.info?.artworkUrl ?: Constants.FOXY_FUMO
 
                 footer {
-                    name = context.locale["music.queue.totalTracks", "${tracks.size}"]
+                    name = context.locale["music.queue.totalTracks", "${tracks.size}/$maximumQueueSize"]
                 }
             }
 

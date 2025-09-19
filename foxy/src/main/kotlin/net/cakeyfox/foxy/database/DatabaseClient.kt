@@ -9,6 +9,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.database.data.FoxyUser
 import net.cakeyfox.foxy.database.data.FoxyverseGuild
 import net.cakeyfox.foxy.database.data.Guild
+import net.cakeyfox.foxy.database.data.Key
 import net.cakeyfox.foxy.database.data.YouTubeWebhook
 import net.cakeyfox.foxy.database.utils.BotUtils
 import net.cakeyfox.foxy.database.utils.GuildUtils
@@ -29,6 +30,7 @@ class DatabaseClient(
     lateinit var users: MongoCollection<FoxyUser>
     lateinit var foxyverseGuilds: MongoCollection<FoxyverseGuild>
     lateinit var youtubeWebhooks: MongoCollection<YouTubeWebhook>
+    lateinit var premiumKeys: MongoCollection<Key>
     lateinit var database: MongoDatabase
 
     val profile = ProfileUtils(this)
@@ -48,6 +50,7 @@ class DatabaseClient(
             guilds = database.getCollection("guilds")
             foxyverseGuilds = database.getCollection("foxyverses")
             youtubeWebhooks = database.getCollection("youtubeWebhooks")
+            premiumKeys = database.getCollection("keys")
 
             logger.info { "Connected to ${foxy.config.database.databaseName} database" }
         } catch (e: Exception) {

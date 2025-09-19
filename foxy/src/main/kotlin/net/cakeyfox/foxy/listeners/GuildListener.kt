@@ -36,10 +36,18 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
     override fun onGuildVoiceUpdate(event: GuildVoiceUpdateEvent) {
         coroutineScope.launch(foxy.coroutineDispatcher) {
             val isFoxyConnected = event.guild.selfMember.voiceState?.inAudioChannel() == true
+            val guild = foxy.database.guild.getGuild(event.guild.id)
 
             if (isFoxyConnected) {
                 val members = event.guild.selfMember.voiceState?.channel?.members ?: return@launch
                 val channelMembers = members.filterNot { it.user.isBot }
+
+                guild.musicSettings?.leaveOnEmptyChannel?.let {
+                    if (!it) {
+                        logger.info { "Not leaving voice channel in guild ${event.guild.name} - ${event.guild.id} because 24/7 mode is enabled" }
+                        return@launch
+                    }
+                }
 
                 if (channelMembers.isEmpty()) {
                     logger.info { "Starting inactivity timer in guild ${event.guild.name} - ${event.guild.id}" }

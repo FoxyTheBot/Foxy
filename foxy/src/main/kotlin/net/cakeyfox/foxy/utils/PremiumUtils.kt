@@ -6,18 +6,36 @@ import net.cakeyfox.foxy.database.data.FoxyUser
 import kotlin.time.Duration.Companion.days
 
 object PremiumUtils {
-    suspend fun maximumYouTubeChannels(context: CommandContext): Int {
-        val user = context.database.user.getFoxyProfile(context.user.id)
+    suspend fun getMaxQueueSize(context: CommandContext): Int {
+        val guildKey = context.database.guild.getKeyByGuildId(context.guildId!!) ?: return 100
+        val user = context.database.user.getUserByPremiumKey(guildKey.key)
 
-        if (isUserPremium(user)) {
-            val premiumType = getPremiumType(user)
-            return when(premiumType) {
-                1 -> 5 // Max 5 channels
-                2 -> 10 // Max 10 channels
-                3 -> 15 // Max 15 channels
+        if (user != null && isUserPremium(user)) {
+            return when (getPremiumType(user)) {
+                1 -> 200
+                2 -> 300
+                3 -> 500
+                else -> 100
+            }
+        }
+
+        return 100
+    }
+
+    suspend fun maximumYouTubeChannels(context: CommandContext): Int {
+        val guildKey = context.database.guild.getKeyByGuildId(context.guildId!!) ?: return 3
+        val user = context.database.user.getUserByPremiumKey(guildKey.key)
+
+        if (user != null && isUserPremium(user)) {
+            return when (getPremiumType(user)) {
+                1 -> 5
+                2 -> 10
+                3 -> 15
                 else -> 3
             }
-        } else return 3
+        }
+
+        return 3
     }
 
     suspend fun eligibleForEarlyAccess(context: CommandContext): Boolean {

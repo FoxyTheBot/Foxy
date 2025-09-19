@@ -16,7 +16,7 @@ class PlayExecutor : UnleashedCommandExecutor() {
         val query = context.getOption("query", 0, String::class.java, true)
 
         if (query.isNullOrBlank()) {
-            context.reply() {
+            context.reply {
                 content = pretty(FoxyEmotes.FoxyCry, context.locale["music.play.youMustProvideASong"])
             }
             return

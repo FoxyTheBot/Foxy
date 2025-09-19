@@ -29,6 +29,22 @@ class UserUtils(
     private val client: DatabaseClient,
     private val foxy: FoxyInstance
 ) {
+    suspend fun getUserByPremiumKey(key: String): FoxyUser? {
+        return client.withRetry {
+            val collection = client.database.getCollection<Document>("keys")
+            val userCollection = client.database.getCollection<Document>("users")
+            val keyInfo = collection.find(eq("key", key)).firstOrNull()
+                ?: return@withRetry null
+            val keyToJSON = keyInfo.toJson()
+            val keyData = client.foxy.json.decodeFromString<Key>(keyToJSON)
+            val user = userCollection.find(eq("_id", keyData.ownedBy)).firstOrNull()
+                ?: return@withRetry null
+            val documentToJSON = user.toJson()
+
+            client.foxy.json.decodeFromString<FoxyUser>(documentToJSON)
+        }
+    }
+
     suspend fun getFoxyProfile(userId: String): FoxyUser {
         return client.withRetry {
             val collection = client.database.getCollection<Document>("users")
@@ -44,8 +60,7 @@ class UserUtils(
     suspend fun getUserByToken(token: String): FoxyUser? {
         return client.withRetry {
             val collection = client.database.getCollection<Document>("users")
-            val user = collection.find(eq("publicApiAccessToken", token)).firstOrNull() ?:
-            return@withRetry null
+            val user = collection.find(eq("publicApiAccessToken", token)).firstOrNull() ?: return@withRetry null
             val documentToJSON = user.toJson()
 
             client.foxy.json.decodeFromString<FoxyUser>(documentToJSON)
@@ -208,7 +223,6 @@ class UserUtils(
                 userSettings = UserSettings(language = "pt-br"),
                 petInfo = PetInfo(),
                 userTransactions = emptyList(),
-                premiumKeys = emptyList(),
                 roulette = Roulette(),
             )
 
