@@ -118,10 +118,10 @@ object ClusterUtils {
     suspend fun FoxyInstance.getMemberRolesFromGuildOrCluster(foxy: FoxyInstance, guildId: Long, memberId: Long): List<String> {
         val shardId = getShardIdFromGuildId(guildId, foxy.config.discord.totalShards)
         val cluster = getClusterByShardId(foxy, shardId)
-        val rolesResponse = cachedRoles.getIfPresent(memberId)
         val guildShardId = getShardIdFromGuildId(guildId, foxy.config.discord.totalShards)
         val guildCluster = getClusterByShardId(foxy, guildShardId)
         val cacheKey = "$guildId:$memberId"
+        val rolesResponse = cachedRoles.getIfPresent(cacheKey)
 
         if (guildCluster.id == foxy.currentCluster.id) {
             logger.debug { "Fetching member roles from current cluster for guild $guildId and member $memberId" }
