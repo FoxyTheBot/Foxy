@@ -239,9 +239,7 @@ class ProfileRender(
         val userBadges = roles?.let { BadgeUtils.getBadges(context, it, defaultBadges, data) }
             ?: BadgeUtils.getFallbackBadges(defaultBadges, data)
 
-        if (userBadges.isEmpty()) {
-            return
-        }
+        if (userBadges.isEmpty()) return
 
         var x = layoutInfo.profileSettings.positions.badgesPosition.x
         var y = layoutInfo.profileSettings.positions.badgesPosition.y

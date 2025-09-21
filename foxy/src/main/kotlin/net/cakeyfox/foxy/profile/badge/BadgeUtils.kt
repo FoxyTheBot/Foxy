@@ -4,6 +4,7 @@ import net.cakeyfox.foxy.database.data.Badge
 import net.cakeyfox.foxy.database.data.FoxyUser
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.utils.ClusterUtils.getMemberFromGuild
+import net.cakeyfox.foxy.utils.ClusterUtils.getMemberRolesFromCluster
 import java.time.Instant
 import kotlin.collections.forEach
 
@@ -16,14 +17,13 @@ object BadgeUtils {
         defaultBadges: List<Badge>,
         data: FoxyUser
     ): List<Badge> {
-        val userBadges = mutableListOf<Badge>()
         val foxy = context.foxy
-        val roleBadges = roles
-            .mapNotNull { role ->
-                defaultBadges.find {
-                    it.id == role
-                }
+        val userBadges = mutableListOf<Badge>()
+        val roleBadges = roles.mapNotNull { role ->
+            defaultBadges.find {
+                it.id == role
             }
+        }
 
         userBadges.addAll(roleBadges)
 
@@ -35,6 +35,16 @@ object BadgeUtils {
                 }
             }
         }
+
+        defaultBadges.filter { it.isFromGuild != null }.forEach { badge ->
+            val guildId = badge.isFromGuild!!
+            val memberRoles = context.foxy.getMemberRolesFromCluster(foxy, guildId.toLong(), data._id.toLong())
+
+            if (memberRoles.contains(badge.id) && userBadges.none { it.id == badge.id }) {
+                userBadges.add(badge)
+            }
+        }
+
 
         defaultBadges.filter { it.isFromGuild != null }.forEach { badge ->
             val guildId = badge.isFromGuild!!
