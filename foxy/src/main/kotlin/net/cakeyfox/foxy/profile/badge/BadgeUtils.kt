@@ -17,7 +17,7 @@ object BadgeUtils {
         data: FoxyUser
     ): List<Badge> {
         val userBadges = mutableListOf<Badge>()
-
+        val foxy = context.foxy
         val roleBadges = roles
             .mapNotNull { role ->
                 defaultBadges.find {
@@ -38,11 +38,9 @@ object BadgeUtils {
 
         defaultBadges.filter { it.isFromGuild != null }.forEach { badge ->
             val guildId = badge.isFromGuild!!
-            val memberInfo = context.foxy.getMemberFromGuild(context.foxy, guildId, context.user.idLong)
+            val memberInfo = context.foxy.getMemberFromGuild(foxy, guildId, data._id.toLong())
 
-            if (memberInfo?.isMember == true && userBadges.none {
-                    it.isFromGuild == badge.isFromGuild
-                }) {
+            if (memberInfo?.isMember == true && userBadges.none { it.isFromGuild == badge.isFromGuild }) {
                 userBadges.add(badge)
             }
         }
@@ -79,6 +77,5 @@ object BadgeUtils {
                 instant.toEpochMilli() >= System.currentTimeMillis()
             } ?: false)
         )
-
     }
 }
