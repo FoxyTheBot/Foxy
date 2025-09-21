@@ -12,7 +12,7 @@ import net.cakeyfox.foxy.profile.ProfileUtils.getOrFetchFromCache
 import net.cakeyfox.foxy.profile.badge.BadgeUtils
 import net.cakeyfox.foxy.profile.config.ProfileConfig
 import net.cakeyfox.foxy.database.data.*
-import net.cakeyfox.foxy.utils.ClusterUtils.getMemberRolesFromCluster
+import net.cakeyfox.foxy.utils.ClusterUtils.getMemberRolesFromGuildOrCluster
 import net.dv8tion.jda.api.entities.User
 import java.awt.Color
 import java.awt.Graphics2D
@@ -219,20 +219,13 @@ class ProfileRender(
         val defaultBadges = getOrFetchFromCache(
             ProfileCacheManager.badgesCache,
             "default"
-        ) {
-            context.database.profile.getBadges()
-        }
+        ) { context.database.profile.getBadges() }
 
-        val roles = try {
-            context.foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
-                ?.retrieveMember(user)
-                ?.await()
-                ?.roles
-                ?.map { it.id }
-        } catch (_: Exception) {
-            null
-        } ?: context.foxy.getMemberRolesFromCluster(context.foxy, Constants.SUPPORT_SERVER_ID.toLong(), user.idLong) ?: emptyList()
-
+        val roles = context.foxy.getMemberRolesFromGuildOrCluster(
+            context.foxy,
+            Constants.SUPPORT_SERVER_ID.toLong(),
+            user.idLong
+        )
 
         val userBadges = roles.let { BadgeUtils.getBadges(context, it, defaultBadges, data) }
 

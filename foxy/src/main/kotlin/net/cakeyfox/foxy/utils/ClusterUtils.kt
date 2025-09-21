@@ -115,10 +115,25 @@ object ClusterUtils {
         }
     }
 
-    suspend fun FoxyInstance.getMemberRolesFromCluster(foxy: FoxyInstance, guildId: Long, memberId: Long): List<String> {
+    suspend fun FoxyInstance.getMemberRolesFromGuildOrCluster(foxy: FoxyInstance, guildId: Long, memberId: Long): List<String> {
         val shardId = getShardIdFromGuildId(guildId, foxy.config.discord.totalShards)
         val cluster = getClusterByShardId(foxy, shardId)
         val rolesResponse = cachedRoles.getIfPresent(memberId)
+        val guildShardId = getShardIdFromGuildId(guildId, foxy.config.discord.totalShards)
+        val guildCluster = getClusterByShardId(foxy, guildShardId)
+
+        if (guildCluster.id == foxy.currentCluster.id) {
+            logger.debug { "Fetching member roles from current cluster for guild $guildId and member $memberId" }
+            val guild = foxy.shardManager.getGuildById(guildId)
+            if (guild != null) {
+                val member = guild.retrieveMemberById(memberId).await()
+                val roles = member.roles.map { it.id }
+                cachedRoles.put(memberId, roles)
+                return roles
+            } else {
+                return emptyList()
+            }
+        }
 
         if (rolesResponse != null) {
             // Return cached roles to avoid unnecessary API calls
@@ -189,14 +204,21 @@ object ClusterUtils {
         }
     }
 
-    suspend fun testGetMemberFromGuild(foxy: FoxyInstance, guildId: String?, memberId: Long): CustomMemberResponse? {
+    suspend fun testGetMemberRolesFromGuild(
+        foxy: FoxyInstance,
+        guildId: String?,
+        memberId: Long
+    ): List<String> {
+        println("Testing fetching member roles from guild $guildId and member $memberId")
         val cluster = foxy.currentCluster
-        val fetchedInfo = getFromAnotherCluster(foxy, cluster, "/api/v1/guilds/$guildId/$memberId")
-        println(fetchedInfo)
-        return if (fetchedInfo == null) {
-            null
+        val fetchedRoles = getFromAnotherCluster(foxy, cluster, "/api/v1/guilds/$guildId/users/$memberId/roles")
+
+        println(fetchedRoles)
+
+        return if (fetchedRoles == null) {
+            emptyList()
         } else {
-            json.decodeFromString(fetchedInfo)
+            json.decodeFromString(fetchedRoles)
         }
     }
 }
