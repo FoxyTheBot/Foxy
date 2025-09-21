@@ -37,7 +37,11 @@ object ClusterUtils {
 
     fun getShardIdFromGuildId(id: Long, totalShards: Int) = (id shr 22).rem(totalShards).toInt()
 
-    suspend fun FoxyInstance.getMemberFromGuild(foxy: FoxyInstance, guildId: String, memberId: Long): CustomMemberResponse? {
+    suspend fun FoxyInstance.getMemberFromGuild(
+        foxy: FoxyInstance,
+        guildId: String,
+        memberId: Long
+    ): CustomMemberResponse? {
         val shardId = getShardIdFromGuildId(guildId.toLong(), foxy.config.discord.totalShards)
         val cluster = getClusterByShardId(foxy, shardId)
         val memberAsUser = foxy.shardManager.retrieveUserById(memberId).await()
@@ -115,7 +119,11 @@ object ClusterUtils {
         }
     }
 
-    suspend fun FoxyInstance.getMemberRolesFromGuildOrCluster(foxy: FoxyInstance, guildId: Long, memberId: Long): List<String> {
+    suspend fun FoxyInstance.getMemberRolesFromGuildOrCluster(
+        foxy: FoxyInstance,
+        guildId: Long,
+        memberId: Long
+    ): List<String> {
         val shardId = getShardIdFromGuildId(guildId, foxy.config.discord.totalShards)
         val cluster = getClusterByShardId(foxy, shardId)
         val guildShardId = getShardIdFromGuildId(guildId, foxy.config.discord.totalShards)
@@ -130,6 +138,7 @@ object ClusterUtils {
                 val member = guild.retrieveMemberById(memberId).await()
                 val roles = member.roles.map { it.id }
                 cachedRoles.put(cacheKey, roles)
+                println(roles)
                 return roles
             } else {
                 return emptyList()
@@ -142,17 +151,17 @@ object ClusterUtils {
         } else {
             try {
                 // Fetch roles from another cluster
-                getFromAnotherCluster(foxy, cluster, "/api/v1/guilds/$guildId/users/$memberId/roles").let {
-                    if (it == null) {
-                        return emptyList()
-                    } else {
-                        val roles = json.decodeFromString<List<String>>(it)
-                        cachedRoles.put(cacheKey, roles)
-                        return roles
-                    }
+                val roles = getFromAnotherCluster(foxy, cluster, "/api/v1/guilds/$guildId/users/$memberId/roles")
+                if (roles == null) {
+                    return emptyList()
+                } else {
+                    val rolesToJSON = json.decodeFromString<List<Long>>(roles)
+                    val rolesAsString = rolesToJSON.map { it.toString() }
+                    cachedRoles.put(cacheKey, rolesAsString)
+                    return rolesAsString
                 }
-            } catch (_: Exception) {
-                // If user is not in the guild, return empty list
+            } catch (e: Exception) {
+                logger.error(e) { e.message }
                 return emptyList()
             }
         }
