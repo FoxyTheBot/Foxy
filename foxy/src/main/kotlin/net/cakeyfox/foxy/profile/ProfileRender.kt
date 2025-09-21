@@ -228,16 +228,13 @@ class ProfileRender(
                 ?.retrieveMember(user)
                 ?.await()
                 ?.roles
-                ?.map { it.id } ?: run {
-                logger.info { "Guild not found on this cluster" }
-                context.foxy.getMemberRolesFromCluster(context.foxy, Constants.SUPPORT_SERVER_ID.toLong(), user.idLong)
-            }
+                ?.map { it.id }
         } catch (_: Exception) {
             null
-        }
+        } ?: context.foxy.getMemberRolesFromCluster(context.foxy, Constants.SUPPORT_SERVER_ID.toLong(), user.idLong) ?: emptyList()
 
-        val userBadges = roles?.let { BadgeUtils.getBadges(context, it, defaultBadges, data) }
-            ?: BadgeUtils.getFallbackBadges(defaultBadges, data)
+
+        val userBadges = roles.let { BadgeUtils.getBadges(context, it, defaultBadges, data) }
 
         if (userBadges.isEmpty()) return
 
