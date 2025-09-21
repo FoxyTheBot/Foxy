@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
 
 object ClusterUtils {
     private val logger = KotlinLogging.logger { }
-    private val cachedRoles: Cache<Long, List<String>> = Caffeine.newBuilder()
+    private val cachedRoles: Cache<String, List<String>> = Caffeine.newBuilder()
         .maximumSize(1000)
         .expireAfterWrite(10, TimeUnit.MINUTES)
         .build()
@@ -121,6 +121,7 @@ object ClusterUtils {
         val rolesResponse = cachedRoles.getIfPresent(memberId)
         val guildShardId = getShardIdFromGuildId(guildId, foxy.config.discord.totalShards)
         val guildCluster = getClusterByShardId(foxy, guildShardId)
+        val cacheKey = "$guildId:$memberId"
 
         if (guildCluster.id == foxy.currentCluster.id) {
             logger.debug { "Fetching member roles from current cluster for guild $guildId and member $memberId" }
@@ -128,7 +129,7 @@ object ClusterUtils {
             if (guild != null) {
                 val member = guild.retrieveMemberById(memberId).await()
                 val roles = member.roles.map { it.id }
-                cachedRoles.put(memberId, roles)
+                cachedRoles.put(cacheKey, roles)
                 return roles
             } else {
                 return emptyList()
@@ -146,7 +147,7 @@ object ClusterUtils {
                         return emptyList()
                     } else {
                         val roles = json.decodeFromString<List<String>>(it)
-                        cachedRoles.put(memberId, roles)
+                        cachedRoles.put(cacheKey, roles)
                         return roles
                     }
                 }
