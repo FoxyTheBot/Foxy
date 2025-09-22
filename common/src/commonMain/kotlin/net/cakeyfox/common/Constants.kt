@@ -46,16 +46,21 @@ object Constants {
     const val NOT_STONKS_ROUTE = "/memes/notstonks"
     const val STONKS_ROUTE = "/memes/stonks"
 
-    fun getDefaultActivity(activity: String, environment: String, clusterName: String?): String {
-        if (clusterName != null) {
-            return when(environment) {
-                "development" -> "https://youtu.be/0OIqlp2U9EQ | Cluster: $clusterName"
-                "production" -> "$activity | Cluster: $clusterName"
-                else -> "$activity | Cluster: $clusterName"
+    fun getDefaultActivity(
+        activity: String,
+        environment: String,
+        clusterId: Int?,
+        shards: Int
+    ): String {
+        return if (clusterId != null) {
+            when(environment) {
+                "development" -> "💫 foxybot.xyz/add | Cluster $clusterId"
+                "production" -> "$activity | Cluster $clusterId"
+                else -> "$activity | Cluster $clusterId"
             }
         } else {
-            return when(environment) {
-                "development" -> "https://youtu.be/0OIqlp2U9EQ"
+            when(environment) {
+                "development" -> "💫 foxybot.xyz/add"
                 "production" -> activity
                 else -> activity
             }

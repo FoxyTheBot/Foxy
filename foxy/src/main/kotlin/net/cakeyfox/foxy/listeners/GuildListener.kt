@@ -2,14 +2,17 @@ package net.cakeyfox.foxy.listeners
 
 import kotlinx.coroutines.*
 import mu.KotlinLogging
+import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.modules.autorole.AutoRoleModule
 import net.cakeyfox.foxy.modules.welcomer.WelcomerModule
+import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent
 import net.dv8tion.jda.api.events.guild.GuildLeaveEvent
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent
 import net.dv8tion.jda.api.events.guild.voice.GuildVoiceUpdateEvent
+import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import kotlin.reflect.jvm.jvmName
 
@@ -18,6 +21,19 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
     private val welcomer = WelcomerModule(foxy)
     private val autoRole = AutoRoleModule(foxy)
     private val coroutineScope = CoroutineScope(foxy.coroutineDispatcher + SupervisorJob())
+
+    override fun onReady(event: ReadyEvent) {
+        coroutineScope.launch {
+            event.jda.presence.activity = Activity.customStatus(
+                Constants.getDefaultActivity(
+                    foxy.database.bot.getActivity(),
+                    foxy.config.environment,
+                    foxy.currentCluster.id,
+                    event.jda.shardManager?.shards?.size ?: 1
+                )
+            )
+        }
+    }
 
     override fun onGuildJoin(event: GuildJoinEvent) {
         coroutineScope.launch(foxy.coroutineDispatcher) {

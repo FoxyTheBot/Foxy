@@ -119,15 +119,7 @@ class FoxyInstance(
             .setVoiceDispatchInterceptor(JDAVoiceUpdateListener((lavalink)))
             .setAutoReconnect(true)
             .setStatus(OnlineStatus.fromKey(database.bot.getBotSettings().status))
-            .setActivity(
-                Activity.customStatus(
-                    Constants.getDefaultActivity(
-                        database.bot.getActivity(),
-                        config.environment,
-                        currentClusterName
-                    )
-                )
-            )
+            .setActivity(Activity.playing("💫 Foxy is starting..."),)
             .setShardsTotal(config.discord.totalShards)
             .setShards(currentCluster.minShard, currentCluster.maxShard)
             .setMemberCachePolicy(MemberCachePolicy.ALL)
