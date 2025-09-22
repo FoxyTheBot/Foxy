@@ -54,9 +54,9 @@ object Constants {
     ): String {
         return if (clusterId != null) {
             when(environment) {
-                "development" -> "💫 foxybot.xyz/add | Cluster $clusterId"
-                "production" -> "$activity | Cluster $clusterId"
-                else -> "$activity | Cluster $clusterId"
+                "development" -> "💫 foxybot.xyz/add | Cluster $clusterId | Shards: $shards"
+                "production" -> "$activity | Cluster $clusterId | Shards: $shards"
+                else -> "$activity | Cluster $clusterId | Shards: $shards"
             }
         } else {
             when(environment) {
