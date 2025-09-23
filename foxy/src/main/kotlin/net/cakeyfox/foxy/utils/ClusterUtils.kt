@@ -138,7 +138,6 @@ object ClusterUtils {
                 val member = guild.retrieveMemberById(memberId).await()
                 val roles = member.roles.map { it.id }
                 cachedRoles.put(cacheKey, roles)
-                println(roles)
                 return roles
             } else {
                 return emptyList()
