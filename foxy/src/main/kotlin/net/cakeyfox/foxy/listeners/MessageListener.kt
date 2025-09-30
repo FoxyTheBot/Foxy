@@ -14,9 +14,9 @@ import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.PremiumUtils
 import net.cakeyfox.foxy.utils.discord.NitroUtils
-import net.cakeyfox.foxy.utils.joinInAVoiceChannel
 import net.cakeyfox.foxy.utils.music.AudioLoader
 import net.cakeyfox.foxy.utils.music.getOrCreateMusicManager
+import net.cakeyfox.foxy.utils.music.joinInAVoiceChannel
 import net.cakeyfox.foxy.utils.music.processQuery
 import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
@@ -42,7 +42,7 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
 
     private suspend fun processDjFoxyMessage(event: MessageReceivedEvent) {
         val guild = foxy.database.guild.getGuild(event.guild.id)
-        if (guild.musicSettings?.requstMusicChannel != event.channel.id) return
+        if (guild.musicSettings?.requestMusicChannel != event.channel.id) return
 
         val raw = event.message.contentRaw
         if (raw.startsWith(guild.guildSettings.prefix)) return

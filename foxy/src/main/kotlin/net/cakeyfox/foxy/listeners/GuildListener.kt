@@ -7,6 +7,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.modules.autorole.AutoRoleModule
 import net.cakeyfox.foxy.modules.welcomer.WelcomerModule
 import net.dv8tion.jda.api.entities.Activity
+import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent
 import net.dv8tion.jda.api.events.guild.GuildLeaveEvent
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
@@ -53,13 +54,14 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
         coroutineScope.launch(foxy.coroutineDispatcher) {
             val isFoxyConnected = event.guild.selfMember.voiceState?.inAudioChannel() == true
             val guild = foxy.database.guild.getGuild(event.guild.id)
+            val voiceChannel = event.guild.selfMember.voiceState?.channel ?: return@launch
 
             if (isFoxyConnected) {
                 val members = event.guild.selfMember.voiceState?.channel?.members ?: return@launch
                 val channelMembers = members.filterNot { it.user.isBot }
 
-                guild.musicSettings?.leaveOnEmptyChannel?.let {
-                    if (!it) {
+                guild.musicSettings?.is247ModeEnabled?.let {
+                    if (it) {
                         logger.info { "Not leaving voice channel in guild ${event.guild.name} - ${event.guild.id} because 24/7 mode is enabled" }
                         return@launch
                     }
@@ -77,6 +79,9 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
                     if (stillInChannel && stillNonBotMembers.isEmpty()) {
                         manager.stop()
                         event.guild.audioManager.closeAudioConnection()
+                        if (voiceChannel.type == ChannelType.STAGE) {
+                            event.guild.getStageChannelById(voiceChannel.id)?.stageInstance?.delete()?.queue()
+                        }
                         logger.info { "Left voice channel in guild ${event.guild.name} - ${event.guild.id} due to inactivity." }
                     }
                 }
