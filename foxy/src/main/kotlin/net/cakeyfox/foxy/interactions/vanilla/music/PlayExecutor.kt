@@ -1,7 +1,9 @@
 package net.cakeyfox.foxy.interactions.vanilla.music
 
 import dev.arbjerg.lavalink.client.event.TrackStartEvent
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
@@ -14,9 +16,11 @@ import net.cakeyfox.foxy.utils.music.processQuery
 import net.cakeyfox.foxy.utils.music.updateStageChannelTopic
 
 class PlayExecutor : UnleashedCommandExecutor() {
+    private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+
     override suspend fun execute(context: CommandContext) {
-        val channel = joinInAVoiceChannel(context) ?: return
         context.defer()
+        val channel = joinInAVoiceChannel(context) ?: return
         val query = context.getOption("query", 0, String::class.java, true)
 
         if (query.isNullOrBlank()) {
@@ -39,8 +43,7 @@ class PlayExecutor : UnleashedCommandExecutor() {
 
         link.loadItem(processQuery(query)).subscribe(AudioLoader(context, manager)).also {
             context.foxy.lavalink.on<TrackStartEvent>().subscribe { event ->
-                // TODO: Replace GlobalScope with a proper scope
-                GlobalScope.launch {
+                scope.launch {
                     updateStageChannelTopic(context.foxy, event.track.info.title, context.guild!!.id)
                 }
             }

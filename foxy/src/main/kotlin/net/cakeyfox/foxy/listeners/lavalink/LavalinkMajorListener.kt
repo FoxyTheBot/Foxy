@@ -5,7 +5,10 @@ import dev.arbjerg.lavalink.client.event.ReadyEvent
 import dev.arbjerg.lavalink.client.event.StatsEvent
 import dev.arbjerg.lavalink.client.event.TrackEndEvent
 import dev.arbjerg.lavalink.client.event.TrackStartEvent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
@@ -14,6 +17,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter
 
 class LavalinkMajorListener(lavalink: LavalinkClient, val foxy: FoxyInstance) : ListenerAdapter() {
     private val logger = KotlinLogging.logger { }
+    private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
 
     init {
         lavalink.on<ReadyEvent>().subscribe { event ->
@@ -21,7 +25,7 @@ class LavalinkMajorListener(lavalink: LavalinkClient, val foxy: FoxyInstance) : 
         }
 
         lavalink.on<TrackStartEvent>().subscribe { event ->
-            GlobalScope.launch {
+            scope.launch {
                 updateStageChannelTopic(foxy, event.track.info.title, event.guildId.toString())
             }
             logger.info { "Node '${event.node.name}' started playing a track in guild ${event.guildId}!" }
