@@ -18,6 +18,14 @@ class GuildMusicManager(
         }
     }
 
+
+    fun isUserAbleToControl(userId: Long): Boolean {
+        val player = getPlayer() ?: return false
+        println(player)
+
+        return true
+    }
+
     fun changeVolume(newVolume: Long) = getPlayer()?.setVolume(newVolume.toInt())?.subscribe()
 
     fun getLink(): Link? = lavalink.getLinkIfCached(guildId)

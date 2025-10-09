@@ -40,14 +40,14 @@ suspend fun handleStageChannel(context: CommandContext, topic: String? = null): 
         return null
     }
 
-    // Managing Stage Channel is different than normal voice channel, so let's get the stage channel instance
+    // Managing Stage Channel is different from normal voice channel, so let's get the stage channel instance
 
     val stageChannel = context.guild!!.getStageChannelById(memberVoiceChannel!!.id)
 
     if (stageChannel?.stageInstance == null) {
         // Create a new stage instance
         try {
-            stageChannel?.createStageInstance(topic ?: "Foxy Stage Channel")?.await()
+            stageChannel?.createStageInstance(topic ?: "Foxy Stage Channel")?.queue()
         } catch (e: Exception) {
             context.reply(true) {
                 content = pretty(FoxyEmotes.FoxyRage, context.locale["music.play.couldNotCreateStageInstance"])
@@ -58,7 +58,7 @@ suspend fun handleStageChannel(context: CommandContext, topic: String? = null): 
         // Update the existing stage instance topic if needed
         if (topic != null && stageChannel.stageInstance?.topic != topic) {
             try {
-                stageChannel.stageInstance?.manager?.setTopic(topic)?.await()
+                stageChannel.stageInstance?.manager?.setTopic(topic)?.queue()
             } catch (e: Exception) {
                 context.reply(true) {
                     content = pretty(FoxyEmotes.FoxyRage, context.locale["music.play.couldNotUpdateStageTopic"])

@@ -63,7 +63,6 @@ dependencyResolutionManagement {
             // Utilities
             library("guava", "com.google.guava", "guava").version("32.1.3-jre")
             library("jsoup", "org.jsoup", "jsoup").version("1.21.1")
-
         }
     }
 }
@@ -77,7 +76,7 @@ rootProject.name = "foxy-parent"
 // Foxy
 include("foxy")
 
-// Showtime
+// ShowtimeAPI
 include("showtime-client")
 
 // Common

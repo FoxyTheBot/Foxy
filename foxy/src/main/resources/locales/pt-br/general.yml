@@ -7,6 +7,12 @@ commands:
   error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
 
   command:
+    music:
+      name: "música"
+      description: "Comandos relacionados a música"
+      configure:
+        name: "configurar"
+        description: "Configure o canal de música do servidor"
     nowplaying:
       name: "tocando_agora"
       description: "Veja a música que está tocando"

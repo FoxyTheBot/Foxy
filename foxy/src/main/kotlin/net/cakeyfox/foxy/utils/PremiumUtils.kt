@@ -38,6 +38,22 @@ object PremiumUtils {
         return 3
     }
 
+    suspend fun eligibleFor247Mode(context: CommandContext): Boolean {
+        val guildKey = context.database.guild.getKeyByGuildId(context.guildId!!) ?: return false
+        val user = context.database.user.getUserByPremiumKey(guildKey.key) ?: return false
+
+        if (isUserPremium(user)) {
+            return when (getPremiumType(user)) {
+                1 -> false
+                2 -> true
+                3 -> true
+                else -> false
+            }
+        }
+
+        return false
+    }
+
     suspend fun eligibleForEarlyAccess(context: CommandContext): Boolean {
         val user = context.database.user.getFoxyProfile(context.user.id)
         var isEligible = false

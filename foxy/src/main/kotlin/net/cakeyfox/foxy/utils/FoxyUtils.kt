@@ -30,6 +30,10 @@ import java.text.NumberFormat
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
+import javax.crypto.Cipher
+import javax.crypto.Mac
+import javax.crypto.spec.GCMParameterSpec
+import javax.crypto.spec.SecretKeySpec
 
 class FoxyUtils(
     val foxy: FoxyInstance
@@ -60,6 +64,20 @@ class FoxyUtils(
         return if (isBold) {
             "**$formattedNumber $formattedBalance**"
         } else "$formattedNumber $formattedBalance"
+    }
+
+    fun generateHmac(data: String): String {
+        val hmacSecret = foxy.config.internalApi.hmacSecret
+        val mac = Mac.getInstance("HmacSHA256")
+        val keySpec = SecretKeySpec(hmacSecret.toByteArray(Charsets.UTF_8), "HmacSHA256")
+        mac.init(keySpec)
+        val hmacBytes = mac.doFinal(data.toByteArray(Charsets.UTF_8))
+        return hmacBytes.joinToString("") { "%02x".format(it) }
+    }
+
+    fun verifyHmac(data: String, signature: String): Boolean {
+        logger.debug { "Verifying HMAC. Data: $data | Signature: $signature" }
+        return generateHmac(data) == signature
     }
 
     fun convertLongToDiscordTimestamp(epoch: Long): String {

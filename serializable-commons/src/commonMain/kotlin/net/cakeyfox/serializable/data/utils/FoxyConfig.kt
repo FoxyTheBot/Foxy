@@ -45,7 +45,8 @@ data class FoxyConfig(
     @Serializable
     data class InternalAPI(
         val key: String,
-        val port: Int
+        val port: Int,
+        val hmacSecret: String,
     )
 
     @Serializable

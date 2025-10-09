@@ -21,6 +21,7 @@ import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RateWai
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RollsCommand
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RussianRouletteCommand
 import net.cakeyfox.foxy.interactions.vanilla.magic.declarations.MagicCommand
+import net.cakeyfox.foxy.interactions.vanilla.music.declarations.MusicConfigureCommand
 import net.cakeyfox.foxy.interactions.vanilla.music.declarations.NowPlayingCommand
 import net.cakeyfox.foxy.interactions.vanilla.music.declarations.PauseCommand
 import net.cakeyfox.foxy.interactions.vanilla.music.declarations.PlayCommand
@@ -160,6 +161,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(PauseCommand())
         register(VolumeCommand())
         register(QueueCommand())
+        register(MusicConfigureCommand())
 
         /* ---- [Discord] ---- */
         register(UserCommand())

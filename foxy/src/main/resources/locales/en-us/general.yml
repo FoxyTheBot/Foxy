@@ -9,6 +9,12 @@ commands:
   error: An error occurred while executing the command, the problem has been reported!
     `{0}`
   command:
+    music:
+      name: "music"
+      description: "Comandos relacionados a música"
+      configure:
+        name: "configure"
+        description: "Configure o canal de música do servidor"
     nowplaying:
       name: "tocando_agora"
       description: "Veja a música que está tocando"
