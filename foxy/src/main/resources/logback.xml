@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property name="CLUSTER" value="${HOSTNAME:-unknown}" />
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%property{CLUSTER}] %boldCyan(%-34.-34thread) %boldGreen(%-15.-15logger{0}) %highlight(%-6level) %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} %boldCyan(%-34.-34thread) %boldGreen(%-15.-15logger{0}) %highlight(%-6level) %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -15,7 +14,7 @@
             <totalSizeCap>1GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%property{CLUSTER}] %-34.-34thread %-15.-15logger{0} %-6level %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-34.-34thread %-15.-15logger{0} %-6level %msg%n</pattern>
         </encoder>
     </appender>
 
