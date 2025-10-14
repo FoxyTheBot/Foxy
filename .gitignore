@@ -5,6 +5,9 @@ build
 !**/src/test/**/build/
 .idea
 
+### Log folder
+logs/
+
 ### Compiled CSS
 css/
 ### IntelliJ IDEA ###
