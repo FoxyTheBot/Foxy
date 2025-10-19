@@ -7,6 +7,7 @@ import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import kotlinx.datetime.Instant
 import kotlinx.datetime.toJavaInstant
+import kotlinx.datetime.toKotlinInstant
 import mu.KotlinLogging
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.Constants
@@ -75,10 +76,9 @@ class BirthdayReminderTask(
                                 }
                             }
 
-                            foxy.database.user.updateUser(
-                                user._id,
-                                mapOf("userBirthday.lastMessage" to nowZoned.toInstant())
-                            )
+                            foxy.database.user.updateUser(user._id) {
+                                userBirthday.lastMessage = nowZoned.toInstant().toKotlinInstant()
+                            }
 
                             logger.task { "Sent birthday message to ${user._id}" }
                         }

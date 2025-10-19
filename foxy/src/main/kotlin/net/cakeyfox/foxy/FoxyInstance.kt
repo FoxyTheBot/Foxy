@@ -18,7 +18,6 @@ import kotlinx.datetime.TimeZone
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
 import net.cakeyfox.showtime.ShowtimeClient
-import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.interactions.FoxyCommandManager
 import net.cakeyfox.foxy.interactions.components.FoxyComponentManager
 import net.cakeyfox.foxy.listeners.GuildListener
@@ -26,7 +25,7 @@ import net.cakeyfox.foxy.listeners.InteractionsListener
 import net.cakeyfox.foxy.listeners.MessageListener
 import net.cakeyfox.serializable.data.utils.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
-import net.cakeyfox.foxy.database.DatabaseClient
+import net.cakeyfox.foxy.database.core.DatabaseClient
 import net.cakeyfox.foxy.utils.music.GuildMusicManager
 import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
 import net.cakeyfox.foxy.utils.threads.ThreadUtils
@@ -46,6 +45,7 @@ import net.dv8tion.jda.api.sharding.ShardManager
 import net.dv8tion.jda.api.utils.ChunkingFilter
 import net.dv8tion.jda.api.utils.MemberCachePolicy
 import net.dv8tion.jda.api.utils.cache.CacheFlag
+import java.util.concurrent.TimeUnit
 import kotlin.concurrent.thread
 
 class FoxyInstance(
@@ -58,7 +58,6 @@ class FoxyInstance(
     lateinit var interactionManager: FoxyComponentManager
     private lateinit var foxyInternalAPI: FoxyInternalAPI
     private val activeJobs = ThreadUtils.activeJobs
-    private val currentClusterName = if (config.discord.clusters.size < 2) null else currentCluster.name
     private val coroutineExecutor = ThreadUtils.createThreadPool("CoroutineExecutor [%d]")
 
     val json = Json {
@@ -76,7 +75,16 @@ class FoxyInstance(
     val tasksScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     val leaderboardManager: LeaderboardManager by lazy { LeaderboardManager(this) }
     val youtubeManager: YouTubeManager by lazy { YouTubeManager(this) }
-    val database: DatabaseClient by lazy { DatabaseClient(this).also { it.start() } }
+    val database = DatabaseClient()
+        .setPassword(config.database.password)
+        .setUser(config.database.user)
+        .setDatabase(config.database.databaseName)
+        .setAddress(config.database.address)
+        .setTimeout(config.database.requestTimeout, TimeUnit.SECONDS)
+        .also {
+            it.connect()
+        }
+
     val commandHandler: FoxyCommandManager by lazy { FoxyCommandManager(this) }
     val lavalink = LavalinkClient(getUserIdFromToken(config.discord.token))
     val musicManagers = mutableMapOf<Long, GuildMusicManager>()
@@ -119,7 +127,7 @@ class FoxyInstance(
             .setVoiceDispatchInterceptor(JDAVoiceUpdateListener((lavalink)))
             .setAutoReconnect(true)
             .setStatus(OnlineStatus.fromKey(database.bot.getBotSettings().status))
-            .setActivity(Activity.playing("💫 Foxy is starting..."),)
+            .setActivity(Activity.playing("💫 Foxy is starting..."))
             .setShardsTotal(config.discord.totalShards)
             .setShards(currentCluster.minShard, currentCluster.maxShard)
             .setMemberCachePolicy(MemberCachePolicy.ALL)

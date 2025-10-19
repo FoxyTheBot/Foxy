@@ -55,8 +55,13 @@ class PayExecutor : UnleashedCommandExecutor() {
                     context.locale["pay.confirmButton"]
                 ) {
 
-                    context.database.user.removeCakesFromUser(context.user.id, amount)
-                    context.database.user.addCakesToUser(userToPay.id, amount)
+                    context.database.user.updateUser(context.user.id) {
+                        userCakes.removeCakes(amount)
+                    }
+
+                    context.database.user.updateUser(userToPay.id) {
+                        userCakes.addCakes(amount)
+                    }
 
                     it.edit {
                         content = pretty(

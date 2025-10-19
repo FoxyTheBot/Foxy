@@ -4,7 +4,7 @@ import dev.minn.jda.ktx.messages.InlineMessage
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.database.data.Badge
+import net.cakeyfox.foxy.database.data.profile.Badge
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
@@ -128,10 +128,9 @@ class ProfileBadgesExecutor : UnleashedCommandExecutor() {
 
         val updatedDisabledBadges = disabledBadges.filterNot { it == selectedBadgeId }
 
-        context.database.user.updateUser(
-            context.user.id,
-            mapOf("userProfile.disabledBadges" to updatedDisabledBadges)
-        )
+        context.database.user.updateUser(context.user.id) {
+            userProfile.disabledBadges = updatedDisabledBadges
+        }
 
         val newDisabledBadges = context.getAuthorData().userProfile.disabledBadges
 
@@ -155,10 +154,9 @@ class ProfileBadgesExecutor : UnleashedCommandExecutor() {
             disabledBadges + selectedBadgeId
         }
 
-        context.database.user.updateUser(
-            context.user.id,
-            mapOf("userProfile.disabledBadges" to updatedDisabledBadges)
-        )
+        context.database.user.updateUser(context.user.id) {
+            userProfile.disabledBadges = updatedDisabledBadges
+        }
 
         val newDisabledBadges = context.getAuthorData().userProfile.disabledBadges
 

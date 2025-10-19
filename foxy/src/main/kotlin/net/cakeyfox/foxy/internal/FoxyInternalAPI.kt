@@ -18,6 +18,7 @@ import net.cakeyfox.foxy.internal.routes.GetGuildsFromCluster
 import net.cakeyfox.foxy.internal.routes.GetUserAvatar
 import net.cakeyfox.foxy.internal.routes.GetUserFromGuild
 import net.cakeyfox.foxy.internal.routes.GetUserRolesFromAGuild
+import net.cakeyfox.foxy.internal.routes.PostDiscordMessageToUserRoute
 import net.cakeyfox.foxy.internal.routes.PostPubSubCallbackRoute
 import net.cakeyfox.foxy.internal.routes.PostUpdateActivityRoute
 import net.cakeyfox.foxy.internal.routes.PostUpvoteWebhookRoute
@@ -62,6 +63,7 @@ class FoxyInternalAPI(
                 PostPausePlayerRoute().apply { postPausePlayerRoute(foxy) }
                 PostSkipPlayerRoute().apply { postSkipPlayer(foxy) }
                 PostDiscordMessageToGuildRoute().apply { postDiscordMessageToGuildRoute(foxy) }
+                PostDiscordMessageToUserRoute().apply { postDiscordMessageToUser(foxy) }
                 GetGuildsFromCluster().apply { getGuildsFromCluster(foxy) }
                 GetGuildInfo().apply { getGuildInfo(foxy) }
                 GetUserRolesFromAGuild().apply { getUserRolesFromAGuild(foxy) }

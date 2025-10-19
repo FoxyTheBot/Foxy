@@ -1,8 +1,8 @@
 package net.cakeyfox.foxy.utils
 
 import kotlinx.datetime.Clock
+import net.cakeyfox.foxy.database.data.user.FoxyUser
 import net.cakeyfox.foxy.interactions.commands.CommandContext
-import net.cakeyfox.foxy.database.data.FoxyUser
 import kotlin.time.Duration.Companion.days
 
 object PremiumUtils {

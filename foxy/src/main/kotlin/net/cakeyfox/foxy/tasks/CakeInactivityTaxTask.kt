@@ -7,6 +7,7 @@ import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import kotlinx.datetime.Instant
 import kotlinx.datetime.daysUntil
+import kotlinx.datetime.toKotlinInstant
 import kotlinx.datetime.toLocalDateTime
 import mu.KotlinLogging
 import net.cakeyfox.common.Colors
@@ -26,7 +27,7 @@ class CakeInactivityTaxTask(
 ) : RunnableCoroutine {
     companion object {
         private const val MINIMUM_AMOUNT = 100_000
-        private const val TAX_PERCENTAGE = 0.15
+        private const val TAX_PERCENTAGE = 0.5
 
         private const val WARNING_DAYS = 15
         private const val TAX_START_DAYS = 30
@@ -98,10 +99,9 @@ class CakeInactivityTaxTask(
                                         )
                                     )
                                 }
-                                foxy.database.user.updateUser(
-                                    user._id,
-                                    mapOf("userCakes.warnedAboutInactivityTax" to true)
-                                )
+                                foxy.database.user.updateUser(user._id) {
+                                    userCakes.warnedAboutInactivityTax = true
+                                }
 
                                 logger.task { "${user._id} warned about inactivity tax" }
                             }
@@ -134,13 +134,10 @@ class CakeInactivityTaxTask(
                             }
 
                             foxy.database.user.removeCakesFromUser(user._id, tax)
-                            foxy.database.user.updateUser(
-                                user._id,
-                                mapOf(
-                                    "userCakes.lastInactivityTax" to nowZoned,
-                                    "userCakes.warnedAboutInactivityTax" to false
-                                )
-                            )
+                            foxy.database.user.updateUser(user._id,) {
+                                userCakes.warnedAboutInactivityTax = false
+                                userCakes.lastInactivityTax = nowZoned.toKotlinInstant()
+                            }
 
                             logger.task { "$tax Cakes removed from ${user._id}" }
                         }

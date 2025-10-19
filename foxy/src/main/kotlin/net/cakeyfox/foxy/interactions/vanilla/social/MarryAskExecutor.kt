@@ -1,6 +1,7 @@
 package net.cakeyfox.foxy.interactions.vanilla.social
 
 import kotlinx.datetime.Instant
+import kotlinx.datetime.toKotlinInstant
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
@@ -127,37 +128,21 @@ class MarryAskExecutor : UnleashedCommandExecutor() {
                     FoxyEmotes.FoxyCake,
                     context.locale["marry.acceptButton"],
                 ) {
-                    context.database.user.updateUser(
-                        context.user.id,
-                        if (isAuthorPremium || isUserPremium) {
-                            mapOf(
-                                "marryStatus.marriedWith" to user.id,
-                                "marryStatus.marriedDate" to marriedDate,
-                            )
-                        } else {
-                            mapOf(
-                                "marryStatus.marriedWith" to user.id,
-                                "marryStatus.marriedDate" to marriedDate,
-                                "userCakes.balance" to authorData.userCakes.balance - MARRIAGE_TAX
-                            )
+                    context.database.user.updateUser(context.user.id) {
+                        marryStatus.marriedWith = user.id
+                        marryStatus.marriedDate = marriedDate.toKotlinInstant()
+                        if (!isAuthorPremium || !isUserPremium) {
+                            userCakes.removeCakes(MARRIAGE_TAX.toLong())
                         }
-                    )
+                    }
 
-                    context.database.user.updateUser(
-                        user.id,
-                        if (isAuthorPremium || isUserPremium) {
-                            mapOf(
-                                "marryStatus.marriedWith" to context.user.id,
-                                "marryStatus.marriedDate" to marriedDate
-                            )
-                        } else {
-                            mapOf(
-                                "marryStatus.marriedWith" to context.user.id,
-                                "marryStatus.marriedDate" to marriedDate,
-                                "userCakes.balance" to userData.userCakes.balance - MARRIAGE_TAX
-                            )
+                    context.database.user.updateUser(user.id) {
+                        marryStatus.marriedWith = context.user.id
+                        marryStatus.marriedDate = marriedDate.toKotlinInstant()
+                        if (!isAuthorPremium || !isUserPremium) {
+                            userCakes.removeCakes(MARRIAGE_TAX.toLong())
                         }
-                    )
+                    }
 
                     it.edit {
                         content = pretty(

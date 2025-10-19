@@ -62,10 +62,9 @@ class DailyReminderTask(
                             )
                         }
 
-                        foxy.database.user.updateUser(
-                            user._id,
-                            mapOf("userCakes.notifiedForDaily" to true)
-                        )
+                        foxy.database.user.updateUser(user._id) {
+                            userCakes.notifiedForDaily = true
+                        }
                         logger.task { "Sent daily reminder to ${user._id}" }
                     } catch (e: Exception) {
                         logger.error(e) { "Error running daily reminder task" }

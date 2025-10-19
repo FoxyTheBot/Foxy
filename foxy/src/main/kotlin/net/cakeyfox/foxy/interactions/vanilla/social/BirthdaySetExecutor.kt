@@ -12,12 +12,12 @@ import net.cakeyfox.foxy.interactions.pretty
 
 class BirthdaySetExecutor : UnleashedCommandExecutor() {
     override suspend fun execute(context: CommandContext) {
-        val userBirthday = context.getOption("date", 0, String::class.java)
+        val birthdayInput = context.getOption("date", 0, String::class.java)
 
-        if (userBirthday != null) {
+        if (birthdayInput != null) {
             try {
                 val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-                val parsedJavaDate = LocalDate.parse(userBirthday, formatter)
+                val parsedJavaDate = LocalDate.parse(birthdayInput, formatter)
 
                 if (parsedJavaDate.year < 1970) {
                     context.reply(true) {
@@ -33,28 +33,21 @@ class BirthdaySetExecutor : UnleashedCommandExecutor() {
                     dayOfMonth = parsedJavaDate.dayOfMonth
                 )
                 val birthdayToInstantKx: Instant = parsedKxDate.atStartOfDayIn(context.foxy.foxyZone)
-                val birthdayToInstantJava = birthdayToInstantKx.toJavaInstant()
 
                 context.reply(true) {
-                    content = pretty(FoxyEmotes.FoxyCake, context.locale["birthday.set.changed", userBirthday])
+                    content = pretty(FoxyEmotes.FoxyCake, context.locale["birthday.set.changed", birthdayInput])
                 }
 
                 if (context.getAuthorData().userBirthday == null) {
-                    context.database.user.updateUser(
-                        context.user.id,
-                        mapOf(
-                            "userBirthday.birthday" to birthdayToInstantJava,
-                            "userBirthday.lastMessage" to null,
-                            "userBirthday.isEnabled" to true
-                        )
-                    )
+                    context.database.user.updateUser(context.user.id) {
+                        userBirthday.birthday = birthdayToInstantKx
+                        userBirthday.lastMessage = null
+                        userBirthday.isEnabled = true
+                    }
                 } else {
-                    context.database.user.updateUser(
-                        context.user.id,
-                        mapOf(
-                            "userBirthday.birthday" to birthdayToInstantJava
-                        )
-                    )
+                    context.database.user.updateUser(context.user.id) {
+                        userBirthday.birthday = birthdayToInstantKx
+                    }
                 }
             } catch(_: Exception) {
                 context.reply {

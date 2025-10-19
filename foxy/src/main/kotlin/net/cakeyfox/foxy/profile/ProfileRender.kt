@@ -12,6 +12,9 @@ import net.cakeyfox.foxy.profile.ProfileUtils.getOrFetchFromCache
 import net.cakeyfox.foxy.profile.badge.BadgeUtils
 import net.cakeyfox.foxy.profile.config.ProfileConfig
 import net.cakeyfox.foxy.database.data.*
+import net.cakeyfox.foxy.database.data.profile.Background
+import net.cakeyfox.foxy.database.data.profile.Layout
+import net.cakeyfox.foxy.database.data.user.FoxyUser
 import net.cakeyfox.foxy.utils.ClusterUtils.getMemberRolesFromGuildOrCluster
 import net.dv8tion.jda.api.entities.User
 import java.awt.Color

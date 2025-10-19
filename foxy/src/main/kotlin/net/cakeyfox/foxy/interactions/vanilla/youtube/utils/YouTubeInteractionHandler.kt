@@ -11,7 +11,7 @@ import dev.minn.jda.ktx.messages.InlineMessage
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.database.data.YouTubeChannel
+import net.cakeyfox.foxy.database.data.guild.YouTubeChannel
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.serializable.data.utils.YouTubeQueryBody
 import net.dv8tion.jda.api.components.buttons.ButtonStyle
@@ -120,7 +120,7 @@ object YouTubeInteractionHandler {
                 +TextDisplay(context.locale["youtube.channel.list.customMessageBold"])
                 val message = storedChannel.notificationMessage
                     ?.replace("{channel.name}", youtubeApiChannel.snippet.title)
-                    ?.replace("{video.url}", "https://www.youtube.com/watch?v=fSeFxzeo5Ts")
+                    ?.replace("{video.url}", "https://www.youtube.com/watch?v=6Y8Su-mbEvI")
                     .takeIf { it?.isNotBlank() == true } ?: context.locale["youtube.channel.list.noCustomMessage"]
 
                 +TextDisplay(message)

@@ -1,7 +1,7 @@
 package net.cakeyfox.foxy.interactions.vanilla.youtube.utils
 
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.database.data.YouTubeChannel
+import net.cakeyfox.foxy.database.data.guild.YouTubeChannel
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.vanilla.youtube.utils.YouTubeInteractionHandler.renderChannelEditView
 import net.cakeyfox.serializable.data.utils.YouTubeQueryBody

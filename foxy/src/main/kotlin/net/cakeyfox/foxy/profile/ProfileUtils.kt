@@ -4,9 +4,9 @@ import com.github.benmanes.caffeine.cache.Cache
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import net.cakeyfox.common.Constants
-import net.cakeyfox.foxy.database.data.Badge
-import net.cakeyfox.foxy.database.data.FoxyUser
-import net.cakeyfox.foxy.database.data.Layout
+import net.cakeyfox.foxy.database.data.profile.Badge
+import net.cakeyfox.foxy.database.data.profile.Layout
+import net.cakeyfox.foxy.database.data.user.FoxyUser
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.profile.badge.BadgeUtils
 import net.cakeyfox.foxy.utils.ClusterUtils.getMemberRolesFromGuildOrCluster

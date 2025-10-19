@@ -21,7 +21,8 @@ object DiscordMessageUtils {
         try {
             val messageBody = try {
                 json.decodeFromString<DiscordMessageBody>(jsonString)
-            } catch(e: SerializationException) {
+            } catch (_: SerializationException) {
+                logger.warn { "Can't process message content, sending as string" }
                 DiscordMessageBody(content = jsonString)
             }
 
@@ -54,7 +55,7 @@ object DiscordMessageUtils {
                     embed.image?.url?.let {
                         try {
                             setImage(replacePlaceholders(it, placeholders))
-                        } catch (e: Exception) {
+                        } catch (_: Exception) {
                             null
                         }
                     }
@@ -65,7 +66,7 @@ object DiscordMessageUtils {
                                 replacePlaceholders(it.text, placeholders),
                                 try {
                                     replacePlaceholders(it.iconUrl ?: Constants.DISCORD_DEFAULT_AVATAR, placeholders)
-                                } catch (e: Exception) {
+                                } catch (_: Exception) {
                                     null
                                 }
                             )
@@ -77,8 +78,7 @@ object DiscordMessageUtils {
                     embed.thumbnail?.url?.let {
                         try {
                             setThumbnail(replacePlaceholders(it, placeholders))
-                        } catch (e: Exception) {
-                            null
+                        } catch (_: Exception) {
                         }
                     }
                 }.build()

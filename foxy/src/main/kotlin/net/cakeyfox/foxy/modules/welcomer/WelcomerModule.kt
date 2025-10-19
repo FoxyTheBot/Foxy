@@ -3,7 +3,7 @@ package net.cakeyfox.foxy.modules.welcomer
 import mu.KotlinLogging
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.database.data.Guild
+import net.cakeyfox.foxy.database.data.guild.Guild
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.PlaceholderUtils
 import net.cakeyfox.foxy.utils.discord.DiscordMessageUtils

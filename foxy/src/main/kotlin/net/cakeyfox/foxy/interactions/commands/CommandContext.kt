@@ -2,9 +2,9 @@ package net.cakeyfox.foxy.interactions.commands
 
 import dev.minn.jda.ktx.messages.InlineMessage
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.database.data.FoxyUser
 import net.cakeyfox.foxy.utils.FoxyUtils
-import net.cakeyfox.foxy.database.DatabaseClient
+import net.cakeyfox.foxy.database.core.DatabaseClient
+import net.cakeyfox.foxy.database.data.user.FoxyUser
 import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.entities.Guild

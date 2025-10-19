@@ -16,7 +16,7 @@ class CoinflipBetExecutor : UnleashedCommandExecutor() {
         if (user == null || amount == null || side == null) return
         val formattedAmount = context.utils.formatUserBalance(amount, context.locale)
         val userToBet = context.database.user.getFoxyProfile(user.id)
-
+        val userData = context.getAuthorData()
         if (amount < 1) {
             context.reply {
                 content = pretty(
@@ -77,21 +77,14 @@ class CoinflipBetExecutor : UnleashedCommandExecutor() {
                     context.locale["coinflipbet.acceptButton"]
                 ) {
                     val result = flipCoin()
-
                     if (side == result) {
-                        context.database.user.updateUser(
-                            context.user.id,
-                            mapOf(
-                                "userCakes.balance" to context.getAuthorData().userCakes.balance + amount
-                            )
-                        )
+                        context.database.user.updateUser(context.user.id) {
+                            userCakes.addCakes(amount)
+                        }
 
-                        context.database.user.updateUser(
-                            user.id,
-                            mapOf(
-                                "userCakes.balance" to userToBet.userCakes.balance - amount
-                            )
-                        )
+                        context.database.user.updateUser(user.id) {
+                            userCakes.removeCakes(amount)
+                        }
 
                         editAndDisableButtons(
                             it,
@@ -107,19 +100,13 @@ class CoinflipBetExecutor : UnleashedCommandExecutor() {
                         )
 
                     } else {
-                        context.database.user.updateUser(
-                            context.user.id,
-                            mapOf(
-                                "userCakes.balance" to context.getAuthorData().userCakes.balance - amount
-                            )
-                        )
+                        context.database.user.updateUser(context.user.id) {
+                            userCakes.removeCakes(amount)
+                        }
 
-                        context.database.user.updateUser(
-                            user.id,
-                            mapOf(
-                                "userCakes.balance" to userToBet.userCakes.balance + amount
-                            )
-                        )
+                        context.database.user.updateUser(user.id) {
+                            userCakes.addCakes(amount)
+                        }
 
                         editAndDisableButtons(
                             it,

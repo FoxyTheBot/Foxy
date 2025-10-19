@@ -59,12 +59,9 @@ class UpvoteReminderTask(
                             )
                         }
 
-                        foxy.database.user.updateUser(
-                            user._id,
-                            mapOf(
-                                "notifiedForVote" to true
-                            )
-                        )
+                        foxy.database.user.updateUser(user._id) {
+                            notifiedForVote = true
+                        }
 
                         logger.task { "Sent upvote reminder to ${user._id}" }
                     } catch (e: Exception) {

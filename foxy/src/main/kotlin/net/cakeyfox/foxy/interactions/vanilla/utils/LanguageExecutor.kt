@@ -48,12 +48,9 @@ class LanguageExecutor : UnleashedCommandExecutor() {
                         }
                     }
 
-                    context.database.guild.updateGuild(
-                        context.guildId!!,
-                        mapOf(
-                            "guildSettings.language" to selectedLanguage,
-                        )
-                    )
+                    context.database.guild.updateGuild(context.guildId!!) {
+                        guildSettings.language = selectedLanguage
+                    }
                 }
             )
         }

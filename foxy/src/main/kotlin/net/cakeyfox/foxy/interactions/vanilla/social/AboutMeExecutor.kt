@@ -21,10 +21,9 @@ class AboutMeExecutor : UnleashedCommandExecutor( ){
                return
            }
 
-           context.database.user.updateUser(
-               context.user.id,
-               mapOf("userProfile.aboutme" to text)
-           )
+           context.database.user.updateUser(context.user.id) {
+               userProfile.aboutme = text
+           }
 
            context.reply {
                content = pretty(

@@ -19,19 +19,15 @@ class BirthdayEnableExecutor : UnleashedCommandExecutor() {
         }
 
         if (userData.userBirthday == null) {
-            context.database.user.updateUser(
-                context.user.id,
-                mapOf(
-                    "userBirthday.birthday" to null,
-                    "userBirthday.lastMessage" to null,
-                    "userBirthday.isEnabled" to true
-                )
-            )
+            context.database.user.updateUser(context.user.id) {
+                userBirthday.isEnabled = true
+                userBirthday.lastMessage = null
+                userBirthday.birthday = null
+            }
         } else {
-            context.database.user.updateUser(
-                context.user.id,
-                mapOf("userBirthday.isEnabled" to !isEnabled)
-            )
+            context.database.user.updateUser(context.user.id) {
+                userBirthday.isEnabled = !isEnabled
+            }
         }
     }
 }

@@ -2,10 +2,10 @@ package net.cakeyfox.foxy.profile
 
 import com.github.benmanes.caffeine.cache.Cache
 import com.github.benmanes.caffeine.cache.Caffeine
-import net.cakeyfox.foxy.database.data.Background
-import net.cakeyfox.foxy.database.data.Badge
-import net.cakeyfox.foxy.database.data.Decoration
-import net.cakeyfox.foxy.database.data.Layout
+import net.cakeyfox.foxy.database.data.profile.Background
+import net.cakeyfox.foxy.database.data.profile.Badge
+import net.cakeyfox.foxy.database.data.profile.Decoration
+import net.cakeyfox.foxy.database.data.profile.Layout
 import net.cakeyfox.foxy.utils.image.ImageUtils
 import java.awt.image.BufferedImage
 

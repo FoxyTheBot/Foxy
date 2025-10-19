@@ -21,14 +21,11 @@ object NitroUtils {
         if (userInfo.userPremium.premium) return
         val premiumDate = Clock.System.now().plus(PREMIUM_DURATION)
 
-        foxy.database.user.updateUser(
-            member.user.id,
-            mapOf(
-                "userPremium.premium" to true,
-                "userPremium.premiumDate" to premiumDate,
-                "userPremium.premiumType" to PREMIUM_TYPE
-            )
-        )
+        foxy.database.user.updateUser(member.user.id) {
+            userPremium.premium = true
+            userPremium.premiumDate = premiumDate
+            userPremium.premiumType = PREMIUM_TYPE
+        }
 
         logger.info { "${member.id} boosted server ${member.guild.id}" }
         foxy.utils.sendDirectMessage(member.user) {

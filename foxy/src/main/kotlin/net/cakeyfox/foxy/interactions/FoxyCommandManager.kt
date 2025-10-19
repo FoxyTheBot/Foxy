@@ -102,7 +102,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
                 }
 
                 foxy.database.bot.getOrRegisterCommand(
-                    net.cakeyfox.foxy.database.data.Command(
+                    net.cakeyfox.foxy.database.data.bot.Command(
                         uniqueId = UUID.randomUUID().toString(),
                         name = command.create().name,
                         description = command.create().description,
@@ -111,7 +111,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
                         usage = null,
                         usageCount = 0,
                         subCommands = builtCommand.subcommands.map {
-                            net.cakeyfox.foxy.database.data.Command.SubCommand(
+                            net.cakeyfox.foxy.database.data.bot.Command.SubCommand(
                                 uniqueId = UUID.randomUUID().toString(),
                                 name = it.name,
                                 description = it.description
@@ -134,7 +134,6 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(CakesCommand())
         register(DailyCommand())
         register(SlotsCommand())
-//        register(RouletteCommand())
 
         /* ---- [Entertainment] ---- */
         register(MagicCommand())

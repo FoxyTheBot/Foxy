@@ -10,7 +10,7 @@ import dev.minn.jda.ktx.messages.InlineMessage
 import net.cakeyfox.common.Colors
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
-import net.cakeyfox.foxy.database.data.Guild
+import net.cakeyfox.foxy.database.data.guild.Guild
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
@@ -98,10 +98,9 @@ class MusicConfigureExecutor : UnleashedCommandExecutor() {
                     ) { selectMenuContext, strings ->
                         val channel = strings.first()
 
-                        context.database.guild.updateGuild(
-                            context.guildId!!,
-                            mapOf("musicSettings.requestMusicChannel" to channel.id)
-                        )
+                        context.database.guild.updateGuild(context.guildId!!) {
+                            musicSettings.requestMusicChannel = channel.id
+                        }
 
                         selectMenuContext.deferEdit()
                         val updatedGuildData = context.foxy.database.guild.getGuild(context.guildId!!)
@@ -147,10 +146,9 @@ class MusicConfigureExecutor : UnleashedCommandExecutor() {
                 return@createButtonForUser
             }
 
-            context.database.guild.updateGuild(
-                context.guildId!!,
-                mapOf("musicSettings.is247ModeEnabled" to !isEnabled)
-            )
+            context.database.guild.updateGuild(context.guildId!!) {
+                musicSettings.is247ModeEnabled = !isEnabled
+            }
 
             it.deferEdit()
             val updatedGuildData = context.foxy.database.guild.getGuild(context.guildId!!)
