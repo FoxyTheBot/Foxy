@@ -34,9 +34,9 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
         scope.launch {
             processCommandOrMention(event)
             processDjFoxyMessage(event)
-//            if (event.member?.isBoosting == true) {
-//                processNitroBoost(event)
-//            }
+            if (event.member?.isBoosting == true) {
+                processNitroBoost(event)
+            }
         }
     }
 

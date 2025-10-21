@@ -71,9 +71,10 @@ object PremiumUtils {
         return isEligible
     }
 
-    private fun isUserPremium(user: FoxyUser): Boolean {
-        val premiumSince = user.userPremium.premiumDate?.epochSeconds ?: return false
-        return premiumSince + 30.days.inWholeSeconds > Clock.System.now().epochSeconds
+    fun isUserPremium(user: FoxyUser): Boolean {
+        val premiumDate = user.userPremium.premiumDate ?: return false
+        val expirationDate = premiumDate.plus(30.days)
+        return Clock.System.now() < expirationDate
     }
 
     private fun getPremiumType(user: FoxyUser): Int {

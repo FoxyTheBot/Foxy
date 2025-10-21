@@ -7,6 +7,7 @@ import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.pretty
+import net.cakeyfox.foxy.utils.PremiumUtils.isUserPremium
 import net.cakeyfox.foxy.utils.linkButton
 import net.dv8tion.jda.api.entities.Member
 import kotlin.time.Duration.Companion.days
@@ -18,15 +19,13 @@ object NitroUtils {
 
     suspend fun onBoostActivation(foxy: FoxyInstance, member: Member) {
         val userInfo = foxy.database.user.getFoxyProfile(member.user.id)
-        if (userInfo.userPremium.premium) return
-        val premiumDate = Clock.System.now().plus(PREMIUM_DURATION)
+        if (isUserPremium(userInfo)) return
 
         foxy.database.user.updateUser(member.user.id) {
             userPremium.premium = true
-            userPremium.premiumDate = premiumDate
+            userPremium.premiumDate = Clock.System.now().plus(PREMIUM_DURATION)
             userPremium.premiumType = PREMIUM_TYPE
         }
-
         logger.info { "${member.id} boosted server ${member.guild.id}" }
         foxy.utils.sendDirectMessage(member.user) {
             embed {

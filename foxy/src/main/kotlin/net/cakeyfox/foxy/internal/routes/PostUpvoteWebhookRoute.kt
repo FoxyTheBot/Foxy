@@ -7,9 +7,7 @@ import io.ktor.server.request.receiveText
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.post
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import mu.KotlinLogging
 import net.cakeyfox.common.Colors
@@ -34,7 +32,7 @@ class PostUpvoteWebhookRoute {
 
     fun Route.postUpvoteWebhook(foxy: FoxyInstance) {
         post("/api/v1/upvote/dbl") {
-            val response = withContext(Dispatchers.IO) { call.receiveText() }
+            val response = call.receiveText()
 
             val payload = foxy.json.decodeFromString<UpvotePayload>(response)
             val userId = payload.user
