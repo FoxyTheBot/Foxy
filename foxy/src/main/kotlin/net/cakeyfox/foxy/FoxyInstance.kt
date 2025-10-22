@@ -30,10 +30,10 @@ import net.cakeyfox.foxy.utils.music.GuildMusicManager
 import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
 import net.cakeyfox.foxy.utils.threads.ThreadUtils
 import net.cakeyfox.foxy.leaderboard.LeaderboardManager
-import net.cakeyfox.foxy.utils.TasksUtils
 import net.cakeyfox.foxy.internal.FoxyInternalAPI
 import net.cakeyfox.foxy.listeners.lavalink.LavalinkMajorListener
 import net.cakeyfox.foxy.utils.LavalinkUtils.registerNode
+import net.cakeyfox.foxy.utils.TasksUtils
 import net.cakeyfox.foxy.utils.youtube.YouTubeManager
 import net.dv8tion.jda.api.JDAInfo
 import net.dv8tion.jda.api.OnlineStatus
@@ -81,6 +81,7 @@ class FoxyInstance(
         .setDatabase(config.database.databaseName)
         .setAddress(config.database.address)
         .setTimeout(config.database.requestTimeout, TimeUnit.SECONDS)
+        .setProtocol("mongodb+srv://")
         .also {
             it.connect()
         }
@@ -95,6 +96,8 @@ class FoxyInstance(
             install(ContentNegotiation) { json() }
         }
     }
+
+    fun isReady(): Boolean = ::shardManager.isInitialized
 
     suspend fun start() {
         lavalink.loadBalancer.addPenaltyProvider(VoiceRegionPenaltyProvider())
@@ -143,9 +146,13 @@ class FoxyInstance(
             .setEnableShutdownHook(false)
             .build()
 
-        leaderboardManager.startAutoRefresh()
+
         registerNode(this)
-        if (currentCluster.isMasterCluster) TasksUtils.launchTasks(this)
+
+        if (currentCluster.isMasterCluster) {
+            TasksUtils.launchTasks(this)
+        }
+
         this.commandHandler.handle()
 
         Runtime.getRuntime().addShutdownHook(thread(false) {

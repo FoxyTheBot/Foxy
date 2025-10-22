@@ -41,6 +41,7 @@ object FoxyEmotes {
     const val Offline = "<:offline:1304276914265133097>"
     const val Kotlin = "<:kotlin:1317932082244358215>"
     const val Java = "<:java:1317934020285304843>"
+    const val PetTheFoxy = "<a:pet_the_foxy:775566720425394188>"
 
     // Unicode Emotes
     const val FlagBr = "\uD83C\uDDE7\uD83C\uDDF7"

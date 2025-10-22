@@ -13,14 +13,18 @@ import net.dv8tion.jda.api.components.buttons.ButtonStyle
 import net.dv8tion.jda.api.utils.FileUpload
 
 class TopCakesExecutor : UnleashedCommandExecutor() {
+    private val pageSize = 5
+
     override suspend fun execute(context: CommandContext) {
         context.defer()
 
-        val topUsersWithName = context.foxy.leaderboardManager.getCakesLeaderboard()
-        val pages = topUsersWithName.chunked(5)
         var currentPage = 0
+        val pageData = context.foxy.leaderboardManager.getCakesLeaderboardByPage(
+            page = currentPage + 1,
+            pageSize = pageSize
+        )
 
-        var currentFile = renderPage(context, pages, currentPage)
+        var currentFile = renderPage(context, pageData, currentPage)
 
         context.reply {
             content = pretty(
@@ -29,28 +33,45 @@ class TopCakesExecutor : UnleashedCommandExecutor() {
             )
             files.plusAssign(currentFile)
 
-            buildNavButtons(context, pages, currentPage, currentFile) { newPage, file ->
+            buildNavButtons(context, currentPage, currentFile) { newPage, newFile ->
                 currentPage = newPage
-                currentFile = file
+                currentFile = newFile
             }
         }
     }
 
     private suspend fun renderPage(
         context: CommandContext,
-        pages: List<List<LeaderboardUser.CakesUser>>,
-        page: Int
+        pageData: List<LeaderboardUser.CakesUser>,
+        pageNumber: Int
     ): FileUpload {
-        val pageData = pages[page]
         val profile = withContext(context.foxy.coroutineDispatcher) {
             LeaderboardRender(LeaderboardConfig(), context).create(pageData)
         }
-        return FileUpload.fromData(profile, "ranking_page_${page + 1}.png")
+        return FileUpload.fromData(profile, "ranking_page_${pageNumber + 1}.png")
+    }
+
+    private fun InlineMessage<*>.buildDisabledNavButtons(
+        context: CommandContext,
+        isBack: Boolean,
+    ) {
+        val prevButton = context.foxy.interactionManager.createButtonForUser(
+            context.user,
+            ButtonStyle.PRIMARY,
+            if (isBack) { "<a:pet_the_foxy:775566720425394188>" } else "⬅️"
+        ) {}.withDisabled(true)
+
+        val nextButton = context.foxy.interactionManager.createButtonForUser(
+            context.user,
+            ButtonStyle.PRIMARY,
+            if (!isBack) { "<a:pet_the_foxy:775566720425394188>" } else "➡️"
+        ) { }.withDisabled(true)
+
+        actionRow(prevButton, nextButton)
     }
 
     private fun InlineMessage<*>.buildNavButtons(
         context: CommandContext,
-        pages: List<List<LeaderboardUser.CakesUser>>,
         currentPage: Int,
         currentFile: FileUpload,
         isDisabled: Boolean = false,
@@ -62,7 +83,7 @@ class TopCakesExecutor : UnleashedCommandExecutor() {
             "⬅️"
         ) { btnContext ->
             if (currentPage > 0) {
-                handlePageChange(btnContext, pages, currentPage - 1, currentFile, onPageChange)
+                handlePageChange(btnContext, currentPage - 1, currentFile, true, onPageChange)
             } else {
                 btnContext.deferEdit()
             }
@@ -73,26 +94,27 @@ class TopCakesExecutor : UnleashedCommandExecutor() {
             ButtonStyle.PRIMARY,
             "➡️"
         ) { btnContext ->
-            if (currentPage < pages.lastIndex) {
-                handlePageChange(btnContext, pages, currentPage + 1, currentFile, onPageChange)
-            } else {
-                btnContext.deferEdit()
-            }
-        }.withDisabled(currentPage >= pages.lastIndex || isDisabled)
+            handlePageChange(btnContext, currentPage + 1, currentFile, false, onPageChange)
+        }.withDisabled(isDisabled)
 
         actionRow(prevButton, nextButton)
     }
 
     private suspend fun handlePageChange(
         context: CommandContext,
-        pages: List<List<LeaderboardUser.CakesUser>>,
         newPage: Int,
         currentFile: FileUpload,
+        isBack: Boolean,
         onPageChange: suspend (Int, FileUpload) -> Unit
     ) {
-        sendLoading(context, pages, newPage, currentFile)
+        sendLoading(context, currentFile, isBack)
 
-        val newFile = renderPage(context, pages, newPage)
+        val pageData = context.foxy.leaderboardManager.getCakesLeaderboardByPage(
+            page = newPage + 1,
+            pageSize = pageSize
+        )
+
+        val newFile = renderPage(context, pageData, newPage)
 
         context.edit {
             content = pretty(
@@ -100,26 +122,21 @@ class TopCakesExecutor : UnleashedCommandExecutor() {
                 context.locale["top.cakes.page", (newPage + 1).toString()]
             )
             files.plusAssign(newFile)
-            buildNavButtons(context, pages, newPage, currentFile, false, onPageChange)
+
+            buildNavButtons(context, newPage, newFile, false, onPageChange)
         }
 
         onPageChange(newPage, newFile)
     }
 
-    private suspend fun sendLoading(
-        context: CommandContext,
-        pages: List<List<LeaderboardUser.CakesUser>>,
-        newPage: Int,
-        currentFile: FileUpload
-    ) {
+    private suspend fun sendLoading(context: CommandContext, currentFile: FileUpload, isBack: Boolean) {
         context.edit {
             content = pretty(
                 FoxyEmotes.FoxyDrinkingCoffee,
                 context.locale["top.cakes.loading"]
             )
-
+            buildDisabledNavButtons(context, isBack)
             files.minusAssign(currentFile)
-            buildNavButtons(context, pages, newPage, currentFile, true) { _, _ -> }
         }
     }
 }

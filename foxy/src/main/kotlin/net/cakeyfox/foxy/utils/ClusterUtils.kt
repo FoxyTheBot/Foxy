@@ -175,7 +175,6 @@ object ClusterUtils {
         }
     }
 
-
     private suspend fun getFromAnotherCluster(
         foxy: FoxyInstance,
         cluster: FoxyConfig.DiscordSettings.Cluster,

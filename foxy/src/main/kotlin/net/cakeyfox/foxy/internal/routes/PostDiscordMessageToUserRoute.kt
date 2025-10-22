@@ -15,8 +15,6 @@ class PostDiscordMessageToUserRoute {
         private val logger = KotlinLogging.logger { }
     }
 
-    // TODO: Add thumbnail support
-
     fun Route.postDiscordMessageToUser(foxy: FoxyInstance) {
         post("/api/v1/users/{userId}/send") {
             val bodyAsText = call.receiveText()
@@ -37,6 +35,7 @@ class PostDiscordMessageToUserRoute {
                             raw.fields?.forEach { f ->
                                 field(f.name, f.value, f.inline)
                             }
+                            raw.thumbnail?.url?.let { thumbnail = it }
                             raw.footer?.let { footer(it.text, it.icon_url) }
                         }
                     }

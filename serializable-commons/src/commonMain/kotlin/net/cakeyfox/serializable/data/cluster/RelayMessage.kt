@@ -17,9 +17,12 @@ data class RelayEmbed(
     val timestamp: String? = null,
     val footer: RelayEmbedFooter? = null,
     val author: RelayEmbedAuthor? = null,
-    val fields: List<RelayEmbedField>? = null
+    val fields: List<RelayEmbedField>? = null,
+    val thumbnail: Thumbnail? = null
 )
 
+@Serializable
+data class Thumbnail(val url: String?)
 @Serializable
 data class RelayEmbedFooter(val text: String, val icon_url: String? = null)
 @Serializable

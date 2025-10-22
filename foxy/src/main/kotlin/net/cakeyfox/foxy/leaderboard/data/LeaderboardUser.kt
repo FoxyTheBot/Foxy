@@ -10,6 +10,7 @@ sealed class LeaderboardUser {
     abstract val id: String
     abstract val avatar: String
 
+    @Serializable
     data class CakesUser(
         override val rank: Int,
         override val username: String,
@@ -18,6 +19,7 @@ sealed class LeaderboardUser {
         val cakes: String
     ) : LeaderboardUser()
 
+    @Serializable
     data class MarriageUser(
         override var rank: Int,
         override val username: String,
@@ -25,6 +27,6 @@ sealed class LeaderboardUser {
         override val avatar: String,
         val marriedWith: String,
         @Serializable(with = MongoDateSerializer::class)
-        val marriedDate: Instant
+        val marriedDate: Instant?
     ) : LeaderboardUser()
 }
