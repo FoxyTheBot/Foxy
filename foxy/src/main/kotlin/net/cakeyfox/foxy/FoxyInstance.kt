@@ -81,7 +81,6 @@ class FoxyInstance(
         .setDatabase(config.database.databaseName)
         .setAddress(config.database.address)
         .setTimeout(config.database.requestTimeout, TimeUnit.SECONDS)
-        .setProtocol("mongodb+srv://")
         .also {
             it.connect()
         }
