@@ -135,7 +135,12 @@ object ClusterUtils {
             logger.debug { "Fetching member roles from current cluster for guild $guildId and member $memberId" }
             val guild = foxy.shardManager.getGuildById(guildId)
             if (guild != null) {
-                val member = guild.retrieveMemberById(memberId).await()
+                val member = try {
+                    guild.retrieveMemberById(memberId).await()
+                } catch (_: Exception) {
+                    return emptyList()
+                }
+
                 val roles = member.roles.map { it.id }
                 cachedRoles.put(cacheKey, roles)
                 return roles
