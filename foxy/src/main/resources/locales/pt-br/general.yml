@@ -7,6 +7,15 @@ commands:
   error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
 
   command:
+    rep:
+      name: "reputação"
+      give:
+        name: "dar"
+      options:
+        user:
+          name: "usuário"
+        reason:
+          name: "motivo"
     music:
       name: "música"
       description: "Comandos relacionados a música"
@@ -35,6 +44,12 @@ commands:
     play:
       name: "tocar"
       description: "Toque uma música em um canal de voz"
+      music:
+        name: "música"
+        description: "Toque uma música da SoundCloud ou do Discord em um canal de voz"
+      radio:
+        name: "rádio"
+        description: "Sintoniza na rádio da Foxy hospedada pela zeno.fm"
       options:
         query:
           name: "música"

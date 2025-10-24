@@ -10,20 +10,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import net.cakeyfox.common.Colors
+import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.pretty
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.javaField
 
-class AudioLoader(val context: CommandContext, val manager: GuildMusicManager) : AbstractAudioLoadResultHandler() {
+class AudioLoader(val context: CommandContext, val manager: GuildMusicManager, val isRadioMode: Boolean = false) : AbstractAudioLoadResultHandler() {
     private val replyScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
     val sourceNamesMap = mapOf(
         "youtube" to "YouTube",
         "soundcloud" to "SoundCloud",
         "deezer" to "Deezer",
         // Only Discord CDN is authorized to use http source
-        "http" to "Discord",
+        "http" to "HTTP",
     )
 
     override fun loadFailed(result: LoadFailed) {
@@ -31,10 +32,7 @@ class AudioLoader(val context: CommandContext, val manager: GuildMusicManager) :
             context.reply {
                 embed {
                     title = pretty(FoxyEmotes.FoxyCry, context.locale["music.play.loadFailed.title"])
-                    description = context.locale[
-                        "music.play.loadFailed.description",
-                        result.exception.message ?: "Unknown error"
-                    ]
+                    description = result.exception.message
                     color = Colors.BLUE
                 }
             }
@@ -115,7 +113,13 @@ class AudioLoader(val context: CommandContext, val manager: GuildMusicManager) :
 
         replyScope.launch {
             context.reply {
-                if (isFirstTrack) {
+                if (isRadioMode) {
+                    embed {
+                        title = "Tocando músicas da Rádio Foxy"
+                        color = Colors.BLUE
+                        thumbnail = Constants.FOXY_WOW
+                    }
+                } else if (isFirstTrack) {
                     embed {
                         color = Colors.BLUE
                         title = pretty("🎵", context.locale["music.play.nowPlaying"])

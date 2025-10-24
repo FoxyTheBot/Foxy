@@ -7,10 +7,18 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 
 class PlayCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("play", CommandCategory.MUSIC) {
-        addOption(opt(OptionType.STRING, "query", true))
+        subCommand("music") {
+            addOption(opt(OptionType.STRING, "query", true))
 
-        supportsLegacy = true
-        aliases = listOf("tocar", "p", "t", "play")
-        executor = PlayExecutor()
+            supportsLegacy = true
+            aliases = listOf("tocar", "p", "t", "play")
+            executor = PlayExecutor()
+        }
+
+        subCommand("radio") {
+            supportsLegacy = true
+            aliases = listOf("radio")
+            executor = PlayExecutor(true)
+        }
     }
 }

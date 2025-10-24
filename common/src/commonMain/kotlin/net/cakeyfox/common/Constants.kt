@@ -21,6 +21,7 @@ object Constants {
     const val YOUTUBE_FEED = "https://www.youtube.com/xml/feeds/videos.xml"
     const val FOXY_BANNER = "https://stuff.foxybot.xyz/images/banner.png"
     const val DISCORD_DEFAULT_AVATAR = "https://cdn.discordapp.com/embed/avatars/0.png"
+    const val FOXY_RADIO_URL = "https://stream.zeno.fm/n581qrfyvchvv"
 
     // Discord
     const val AUTHORIZATION_ENDPOINT = "https://discord.com/api/oauth2/authorize"

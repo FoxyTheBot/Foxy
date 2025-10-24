@@ -5,6 +5,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
@@ -15,13 +16,14 @@ import net.cakeyfox.foxy.utils.music.joinInAVoiceChannel
 import net.cakeyfox.foxy.utils.music.processQuery
 import net.cakeyfox.foxy.utils.music.updateStageChannelTopic
 
-class PlayExecutor : UnleashedCommandExecutor() {
+class PlayExecutor(val isRadioMode: Boolean = false) : UnleashedCommandExecutor() {
     private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
 
     override suspend fun execute(context: CommandContext) {
         context.defer()
         val channel = joinInAVoiceChannel(context) ?: return
-        val query = context.getOption("query", 0, String::class.java, true)
+        var query = context.getOption("query", 0, String::class.java, true)
+        if (isRadioMode) query = "a" // dummy query
 
         if (query.isNullOrBlank()) {
             context.reply {
@@ -33,6 +35,18 @@ class PlayExecutor : UnleashedCommandExecutor() {
         val link = context.foxy.lavalink.getOrCreateLink(context.guild!!.idLong)
         val manager = getOrCreateMusicManager(context.guild!!.idLong, context.foxy.lavalink, context, channel)
         val queueSize = manager.scheduler.queue.size + 1
+
+        if (isRadioMode) {
+            link.loadItem(Constants.FOXY_RADIO_URL).subscribe(AudioLoader(context, manager, true)).also {
+                context.foxy.lavalink.on<TrackStartEvent>().subscribe { event ->
+                    scope.launch {
+                        updateStageChannelTopic(context.foxy, "Foxy Radio", context.guild!!.id)
+                    }
+                }
+            }
+
+            return
+        }
 
         if (queueSize >= 100) {
             context.reply(true) {
