@@ -38,6 +38,19 @@ object PremiumUtils {
         return 3
     }
 
+    fun canBypassInactivityTax(user: FoxyUser): Boolean {
+        if (isUserPremium(user)) {
+            return when(getPremiumType(user)) {
+                1 -> false
+                2 -> true
+                3 -> true
+                else -> false
+            }
+        }
+
+        return false
+    }
+
     suspend fun eligibleFor247Mode(context: CommandContext): Boolean {
         val guildKey = context.database.guild.getKeyByGuildId(context.guildId!!) ?: return false
         val user = context.database.user.getUserByPremiumKey(guildKey.key) ?: return false
