@@ -6,6 +6,7 @@ import net.cakeyfox.foxy.tasks.CakeInactivityTaxTask
 import net.cakeyfox.foxy.tasks.CreateYouTubeWebhookTask
 import net.cakeyfox.foxy.tasks.DailyReminderTask
 import net.cakeyfox.foxy.tasks.PostTopggStatsTask
+import net.cakeyfox.foxy.tasks.UpdateStoreTask
 import net.cakeyfox.foxy.tasks.UpvoteReminderTask
 import java.time.LocalTime
 import kotlin.time.Duration.Companion.hours
@@ -15,6 +16,8 @@ object TasksUtils {
         scheduleCoroutine(DailyReminderTask(foxy),at(0, 0), foxy.tasksScope)
         scheduleCoroutine(BirthdayReminderTask(foxy),at(0, 15), foxy.tasksScope)
         scheduleCoroutine(CakeInactivityTaxTask(foxy),at(0,30), foxy.tasksScope)
+        scheduleCoroutine(UpdateStoreTask(foxy), at(21, 0), foxy.tasksScope)
+
         scheduleCoroutineAtFixedRate(
             taskName = UpvoteReminderTask::class.simpleName!!,
             scope = foxy.tasksScope,
