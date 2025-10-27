@@ -17,7 +17,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.RunnableCoroutine
 import net.cakeyfox.foxy.utils.linkButton
-import net.cakeyfox.common.FoxyLocale
+import net.cakeyfox.foxy.utils.locales.FoxyLocale
 import net.cakeyfox.foxy.utils.PremiumUtils.canBypassInactivityTax
 import net.cakeyfox.foxy.utils.logging.task
 import java.time.ZoneId
