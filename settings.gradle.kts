@@ -7,7 +7,7 @@ pluginManagement {
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
-            val kotlin = version("kotlin", "2.2.0")
+            val kotlin = version("kotlin", "2.2.21")
             val kotlinxSerialization = version("kotlin-serialization", "1.8.1")
             val ktor = version("ktor", "3.2.2")
             val logback = version("logback", "1.5.8")
@@ -50,8 +50,16 @@ dependencyResolutionManagement {
             library("kotlinx-serialization-core", "org.jetbrains.kotlinx", "kotlinx-serialization-core").versionRef(kotlinxSerialization)
             library("kotlinx-serialization-json", "org.jetbrains.kotlinx", "kotlinx-serialization-json").versionRef(kotlinxSerialization)
             library("kotlinx-serialization-hocon", "org.jetbrains.kotlinx", "kotlinx-serialization-hocon").versionRef(kotlinxSerialization)
-            library("jackson-dataformat-yaml", "com.fasterxml.jackson.dataformat", "jackson-dataformat-yaml").versionRef(jackson)
-            library("jackson-module-kotlin", "com.fasterxml.jackson.module", "jackson-module-kotlin").versionRef(jackson)
+            library(
+                "jackson-dataformat-yaml",
+                "com.fasterxml.jackson.dataformat",
+                "jackson-dataformat-yaml"
+            ).versionRef(jackson)
+            library(
+                "jackson-module-kotlin",
+                "com.fasterxml.jackson.module",
+                "jackson-module-kotlin"
+            ).versionRef(jackson)
 
             // Logging
             library("logback-classic", "ch.qos.logback", "logback-classic").versionRef(logback)
@@ -82,3 +90,9 @@ include("showtime-client")
 // Common
 include("common")
 include("serializable-commons")
+
+// Website
+include("website:dashboard:frontend")
+include("website:frontend")
+include("website:flandre")
+include("website:dashboard:dashboard-utils")

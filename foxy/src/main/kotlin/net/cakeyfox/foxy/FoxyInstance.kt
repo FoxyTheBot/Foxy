@@ -35,6 +35,7 @@ import net.cakeyfox.foxy.listeners.lavalink.LavalinkMajorListener
 import net.cakeyfox.foxy.utils.LavalinkUtils.registerNode
 import net.cakeyfox.foxy.utils.TasksUtils
 import net.cakeyfox.foxy.utils.youtube.YouTubeManager
+import net.cakeyfox.foxy.website.FoxyWebsite
 import net.dv8tion.jda.api.JDAInfo
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
@@ -81,6 +82,7 @@ class FoxyInstance(
         .setDatabase(config.database.databaseName)
         .setAddress(config.database.address)
         .setTimeout(config.database.requestTimeout, TimeUnit.SECONDS)
+        .setProtocol(config.database.protocol)
         .also {
             it.connect()
         }
@@ -95,8 +97,6 @@ class FoxyInstance(
             install(ContentNegotiation) { json() }
         }
     }
-
-    fun isReady(): Boolean = ::shardManager.isInitialized
 
     suspend fun start() {
         lavalink.loadBalancer.addPenaltyProvider(VoiceRegionPenaltyProvider())
@@ -150,6 +150,9 @@ class FoxyInstance(
 
         if (currentCluster.isMasterCluster) {
             TasksUtils.launchTasks(this)
+           if (config.environment == "development") {
+               FoxyWebsite(this, config)
+           }
         }
 
         this.commandHandler.handle()

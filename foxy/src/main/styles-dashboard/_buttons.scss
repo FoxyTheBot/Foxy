@@ -1,0 +1,36 @@
+.discord-buttons {
+  a .button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    font-family: Roboto, sans-serif;
+    line-height: 20px;
+    font-size: 17px;
+    color: var(--reimu-button-font-color);
+    min-width: 36px;
+    padding: .55rem 1rem;
+    box-sizing: border-box;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #5865f2;
+    animation: float 5s ease-in-out infinite;
+
+    &.danger {
+      background: #ED4245;
+    }
+
+    &.success {
+      background: #27a750;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}

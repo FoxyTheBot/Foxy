@@ -10,7 +10,7 @@ import mu.KotlinLogging
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.MessageCommandContext
-import net.cakeyfox.foxy.utils.locales.FoxyLocale
+import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.PremiumUtils
 import net.cakeyfox.foxy.utils.discord.NitroUtils

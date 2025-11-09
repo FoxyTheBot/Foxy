@@ -1,0 +1,84 @@
+dashboard:
+  actionWrapper:
+    saveCard: Clique em salvar para aplicar as alterações
+    saveButton: Salvar
+
+  guildSidebar:
+    separators:
+      modules: Módulos
+      social: Redes Sociais
+      settings: Extras
+
+    backToServerList: Voltar para a lista de servidores
+    generalSettings: Configurações Gerais
+    welcomer: Mensagem de Entrada/Saída
+    autorole: Configurar Autorole
+    antiraid: Configurar Anti-Raid
+    inviteblocker: Bloqueio de Convites
+    music: Música
+    youtube: Notificações do YouTube
+    manageKeys: Gerenciar Chaves Premium
+    auditLog: Registro de Auditoria
+  modules:
+    manage: "Painel de Controle | {0}"
+
+    inviteblocker:
+      title: Bloqueador de Convites
+      description: Bloqueie convites indesejados no seu servidor
+
+    autorole:
+      title: Autorole
+      description: Cansado(a) de dar cargos manualmente para novos membros? Deixe que eu faça isso!
+
+    music:
+      title: DJ Foxy
+      description: Toque músicas do SoundCloud ou da minha própria rádio diretamente no seu servidor!
+
+    youtube:
+      title: Notificações do YouTube
+      description: Receba notificações de novos vídeos do YouTube diretamente no seu servidor!
+
+    keys:
+      title: Gerenciar Chaves Premium
+      description: Adicione ou remova chaves premium do seu servidor para desbloquear benefícios extras!
+
+    logs:
+      title: Registro de Auditoria
+      description: Monitore o que a equipe do seu servidor anda fazendo no meu painel de configuração
+
+    general:
+      title: Configurações Gerais
+      description: Olá, obrigada por me adicionar no seu servidor! Aqui estão algumas configurações básicas para você me configurar como quiser!
+
+      changePrefix:
+        title: Prefixo da Foxy
+
+      autoDeleteMessage:
+        title: Deletar mensagem quando um comando foi enviado
+
+      warnIfCommandIsExecutedInBlockedChannel:
+        title: Avisar quando enviarem comandos em um canal bloqueado
+
+      channelsToBlockCommands:
+        title: Canais onde comandos não podem ser executados
+        addChannelButton: Adicionar
+        selectAChannel: Selecione um canal
+
+  category:
+    general: Geral
+    yourProfile: Seu Perfil
+    foxyStore: Lojinha da Foxy
+
+  entries:
+    foxyToGo: Foxy De Bolso
+    manageServers: Gerenciar Servidores
+    backgrounds: Planos de Fundo
+    layouts: Designs de Perfil
+    decorations: Decorações de Avatar
+    manageSubscriptions: Gerenciar Assinaturas
+    buyPremium: Comprar Premium
+    buyCakes: Comprar Cakes
+    logout: Sair
+
+  guildList:
+    manageButton: Gerenciar

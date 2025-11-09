@@ -1,0 +1,226 @@
+.popup-wrapper {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  #user-avatar {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .popup {
+    background-color: #fff;
+    width: 80%;
+    border-radius: 5px;
+    max-width: 35rem;
+    margin: 10% auto;
+    animation: scaleIn 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+
+    .content {
+      padding: 1rem;
+
+      .title {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+    }
+
+    #purchaseForm {
+      padding: 0;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    #importForm {
+      padding: 0 !important;
+    }
+
+    .form-content {
+      padding: 1rem;
+      font-family: var(--reimu-default-font-family), serif;
+
+      label {
+        color: black;
+      }
+    }
+
+    .popup-buttons {
+      padding: 1em;
+      background-color: #cecece;
+      display: flex;
+      justify-content: flex-end;
+      gap: 1em;
+      border-radius: 0 0 7px 7px;
+
+      .popup-button {
+        background-color: var(--reimu-button-color);
+        color: white;
+        border: none;
+        padding: var(--reimu-button-padding);
+        border-radius: var(--reimu-button-border-radius);
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+
+        &:hover {
+          background-color: var(--reimu-button-hover-color);
+        }
+
+        &:disabled {
+          opacity: .5;
+          cursor: not-allowed;
+        }
+
+        &:active {
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        &.cancel {
+          background-color: transparent;
+          color: #000000;
+          border: 1px solid #616161;
+
+          &:hover {
+            background-color: #616161;
+            color: var(--reimu-default-font-color);
+          }
+        }
+      }
+
+    }
+
+    h2 {
+      color: #ff4655;
+      font-size: 24px;
+      margin-left: 5px;
+      font-family: var(--reimu-default-font-family), serif;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      color: var(--reimu-popup-font-color) !important;
+      font-size: 15px;
+      margin-bottom: 10px;
+      margin-left: 0;
+      text-align: left;
+      margin-right: 0;
+    }
+
+
+    h3 {
+      color: #000000;
+      font-size: 15px;
+      font-family: var(--reimu-default-font-family), serif;
+      margin-bottom: 5px;
+      margin-top: 3%;
+      margin-right: 12%;
+      text-align: left;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin: 0 auto;
+    }
+  }
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: var(--reimu-default-font-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .popup-content {
+    width: 95%;
+    padding: 10px;
+    margin: 25% auto;
+  }
+
+  .popup-content h2 {
+    font-size: 18px;
+  }
+
+  .popup-content h3 {
+    font-size: 12px;
+  }
+
+  .popup-content button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  #save {
+    color: var(--reimu-default-font-color);
+    display: block;
+    padding: 10px 10px;
+    border-radius: 5px;
+    background-color: #359553;
+    border: none;
+    outline: none;
+    font-family: var(--reimu-default-font-family), serif;
+    font-size: 14px;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .popup-content {
+    width: 90%;
+    padding: 15px;
+    margin: 20% auto;
+  }
+
+  .popup-content h2 {
+    font-size: 20px;
+  }
+
+  .popup-content h3 {
+    font-size: 14px;
+  }
+
+  .popup-content button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,429 @@
+imageSource: "Link da Imagem"
+
+8mile:
+  wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar um áudio do tipo MP3 ou WAV"
+  fileTooBig: "Eu até queria ver como ficaria o vídeo com esse áudio, mas ele é muito grande... E se eu abrir ele e ele explodir e me levar junto? :("
+
+commands:
+  earlyAccess: "Esse comando está em beta e apenas usuários premium possuem acesso antecipado. Se você quiser ter acesso a esse comando e muitos outros, você pode se tornar um usuário premium clicando [aqui](https://foxybot.xyz/br/premium)"
+
+music:
+  configure:
+    upgradeToPremium: "Atualize para premium"
+    title: "Configurações de Música"
+
+    requestChannel:
+      description: "Defina um canal de texto para onde os comandos de música serão enviados"
+      current: "Canal atual: {0}"
+      button: "Configurar"
+
+    twentyFourSeven:
+      description: "Quer que eu fique tocando música 24/7 no canal de voz?"
+      current: "Modo 24/7 está atualmente: {0}"
+      enableButton: "Ativar"
+      disableButton: "Desativar"
+      premiumOnly:
+        title: "Recurso apenas para servidores premium"
+        description: |
+          Esse recurso está disponível apenas para servidores premium!
+          Que tal você se tornar um usuário premium para ter acesso a esse e muitos outros recursos? E me ajudar a continuar online :3
+    volume:
+      description: "Defina o volume padrão para a reprodução de música."
+      current: "Volume atual: {0}%"
+      button: "Definir Volume Padrão"
+      modal:
+        title: "Definir Volume Padrão"
+        label: "Volume (1-100)"
+        placeholder: "Insira um valor entre 1 e 100"
+        error: "Por favor, insira um número válido entre 1 e"
+        success: "Volume padrão atualizado para {0}%!"
+
+    enabled: "Ativado"
+    disabled: "Desativado"
+    notConfigured: "Não configurado"
+
+  nowPlaying:
+    nowPlaying: "Tocando agora"
+    byAuthor: "Artista:"
+    duration: "Duração:"
+    volume: "Volume:"
+    nothingPlaying: "Nada está tocando no momento!"
+  skip:
+    wasPlaying: "Estava tocando"
+    currentlyPlaying: "Tocando agora"
+    noTrack:
+      title: "Nenhuma música"
+      description: "Não há nenhuma música tocando no momento!"
+    noMoreTracks: "Não há mais músicas na fila!"
+  play:
+    addedToQueue: "Adicionado à fila"
+    nowPlaying: "Tocando agora"
+    searchResults: "Resultados da busca para: {0}"
+    noMatches: "Nenhum resultado encontrado"
+    invalidSoundCloudUrl: "URL inválida do SoundCloud!"
+    notConnected: "Eu não estou conectado a nenhum canal de voz!"
+    noPermissionToJoin: "Eu não tenho permissão para entrar no seu canal de voz!"
+    userNotInVoiceChannel: "Você precisa estar em um canal de voz para usar esse comando!"
+    alreadyConnectedInAnotherChannel: "Eu já estou tocando música em outro canal de voz, porque você não vem fazer companhia para nós? {0}"
+    differentVoiceChannel: "Você precisa estar no mesmo canal de voz que eu para usar esse comando!"
+    playlistsNotSupported: "Você não pode adicionar playlists."
+    source: "Fonte:"
+    queueLimitReached: "Você só pode adicionar até **{0}** músicas na fila!"
+    youMustProvideASong: "Você precisa fornecer o nome ou a URL do SoundCloud ou do Discord! :3"
+    missingPermissions: "Eu não tenho permissão para falar ou conectar no seu canal de voz!"
+  stop:
+    stopped: "Saindo do canal... Até mais!"
+    nothingPlaying: "Não há nada tocando no momento!"
+  queue:
+    currentQueue: "Fila atual"
+    totalTracks: "Total de faixas na fila: {0}"
+    queueCleared: "A fila de reprodução foi limpa!"
+    clearQueue: "Limpar fila"
+  pause:
+    paused: "Pausado! Use o comando novamente para continuar a reprodução."
+    resumed: "Reproduzindo! Use o comando novamente para pausar a reprodução."
+    notPlaying: "Não há nada tocando no momento!"
+    notInVoiceChannel: "Eu não estou em nenhum canal de voz!"
+  volume:
+    setTo: "Ok, defini o volume para `{0}`"
+    currentVolume: "O volume atual é {0}"
+    volumeRange: "O volume deve estar entre 1 e 100"
+    notInVoiceChannel: "Eu não estou em nenhum canal de voz!"
+    notPlaying: "Não há nada tocando no momento!"
+youtube:
+  channel:
+    add:
+      title: "Adicionar o canal {0}"
+      field:
+        customMessage: "Mensagem customizada:"
+      undefined: "Não definido"
+      addedButton: "Adicionado"
+      addButton: "Adicionar"
+      addedSuccessfully: "Okay, agora eu vou notificar novos vídeos de **{0}** no canal {1}"
+      youCantAddMoreChannels: "Você não pode adicionar mais canais"
+      youCantAddDuplicatedChannels: "Você não pode adicionar o mesmo canal, bobinho!"
+      boldCustomMessage: "**Mensagem Customizada:**"
+      noCustomMessage: "Não definido"
+      channelId: "-# ID do Canal: {0}"
+      buttons:
+        addMessage: "Adicionar Mensagem"
+      customMessage: "Mensagem Customizada"
+      modal:
+        title: "Alterar Mensagem"
+        placeholder: "Placeholders: {channel.name} e {video.url}"
+      addCustomMessageButton: "Adicionar Mensagem"
+    remove:
+      channelRemoved: "Okay, não vou mais enviar notificações de **{0}**!"
+      unknownChannel: "Não encontrei nenhum canal chamado **{0}** no seu servidor."
+    list:
+      noChannel: "Não há nenhum canal configurado para receber vídeos."
+      undefined: "Nenhum canal encontrado..."
+      title: "Lista de Canais"
+      empty: "Nenhum canal foi adicionado! Que tal começar adicionando um?"
+      customMessage: "Mensagem Customizada"
+      channelToSend: "Canal onde será enviado:"
+      channelId: "ID do Canal: {0}"
+      removeChannelButton: "Remover canal"
+      modal:
+        title: "Editar Mensagem Customizada"
+        label: "Mensagem Customizada"
+        placeholder: "Placeholders: {channel.name} e {video.url}"
+
+      addModal:
+        title: "Adicionar Canal"
+        label: "Canal"
+        channelPlaceholder: "URL/ID/Usuário do YouTube"
+
+      addChannel: "## Adicionar {0}"
+      whereDoISendNewVideos: "Onde você quer que eu envie notificações de vídeos novos"
+      maxChannels: "Adicione até **{0}** canais no seu servidor"
+      addButton: "Adicionar Canal"
+      customMessageBold: "**Mensagem Customizada**"
+      boldEmpty: "## Vazio, vazio... Igual o coração da 10/10"
+      iWillNotifyIn: "-# Eu vou notificar em {0}"
+      iWillNotifyInBold: "**Notificarei em {0}**"
+      noCustomMessage: "Não definido"
+      editButton: "Editar"
+      editCustomMessage: "Editar Mensagem"
+      backButton: "Voltar"
+      removeButton: "Remover Canal"
+
+language:
+  embed:
+    title: "Altere o meu idioma no seu servidor!"
+    description: |
+      {0} Olá! Selecione o idioma do seu servidor e eu passarei a usá-lo nas minhas mensagens.
+
+      {1} Howdy! Select your server's language and I'll start using it in my messages.
+
+  pt-BR: "Agora eu vou falar com você usando o Português Brasileiro!"
+  en-US: "Okay, now I'll talk with you in English!"
+
+dashboard:
+  embed:
+    title: "Painel de Controle"
+    description: "Quer deixar o servidor `{0}` incrível e mas não sabe por onde começar? Acesse o painel de controle para configurar o seu servidor!"
+    button: "Acessar o Painel de Controle"
+    noPermission: "Você precisa da permissão `Gerenciar Servidor` para utilizar esse comando"
+    guildNotFound: "Eu preciso estar nesse servidor para isso funcionar!"
+
+birthday:
+  set:
+    changed: "O seu aniversário foi definido para **{0}**"
+    cantSet: "Não foi possível alterar o seu aniversário! Lembre-se que o formato deve ser **dd/MM/yyyy**"
+    youCantAddDatesBeforeThat: "Você não pode adicionar datas anteriores à 1970"
+
+  enable:
+    disabled: "Okay, então não vou mandar mais mensagens de aniversário!"
+    enabled: "Okay, eu vou mandar feliz aniversário para você todo ano!"
+
+russianRoulette:
+  embed:
+    title: "Roleta Russa"
+    description: "Você girou o tambor e apontou a arma para si..."
+    bullets: "Balas no tambor:"
+    suspense: "Você puxou o gatilho..."
+    youDie: "Você morreu! A bala estava na câmara {0}."
+    youSurvived: "Você sobreviveu! A bala estava na câmara {0}."
+
+rolls:
+  youSpinAndGotOne: "Você rolou **{0}** dado de **{1}** lados e o resultado foi **{2}**"
+  youSpinAndGotMany: "Você rolou **{0}** dados de **{1}** lados e o resultado foi **{2}**"
+  invalidFormat: "Formato inválido! Use algo como 1d6, 2d20..."
+
+slots:
+  notEnoughCakes: "Você não tem Cakes o suficiente"
+  embed:
+    title: "Caça-Níqueis da Foxy"
+    winnings: "Você ganhou:"
+    loss: "Você perdeu:"
+  chart:
+    embed:
+      title: "Tabela de Multiplicadores"
+      description: "Será que a sorte está ao seu lado?"
+
+cakes:
+  atm:
+    balance: "{0} possui {1}"
+    singleCake: "Cake"
+    multipleCakes: "Cakes"
+
+moda:
+  wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar uma imagem do tipo PNG ou JPG"
+  fileNotSupported: "Eu queria fazer a montagem, mas não consigo abrir esse tipo de arquivo... :("
+  imageTooBig: "Eu até queria fazer a montagem, mas a imagem é muito grande... E se eu abrir ela e ela explodir e me levar junto? :("
+
+server:
+  info:
+    owner: "Dono(a)"
+    members: "Membros"
+    roles: "Cargos"
+    channels: "Canais"
+    emojis: "Emojis"
+    boosts: "Boosts"
+    created: "Criado em"
+    joined: "Entrou em"
+    verificationLevel: "Nível de verificação"
+    region: "Região"
+    features: "Recursos"
+    afkChannel: "Canal AFK"
+    afkTimeout: "Tempo AFK"
+    cluster: "Foxy Cluster {0} ({1}) - Shard: {2}"
+    textChannels: "Canais de texto"
+    voiceChannels: "Canais de voz"
+    createdAt: "Criado há"
+    joinedAt: "Entrei há"
+    firstEmojis: "Alguns emojis"
+    serverNotFound: "Eu não consegui encontrar o servidor com o ID `{0}`"
+    invalidServerId: "Você precisa fornecer um ID de servidor válido!"
+
+ask:
+  foxy:
+    noYes: "Não sei responder isso, mas sim!"
+    yesNo: "Não sei responder isso, mas não!"
+    noNo: "Não, não!"
+    yesSure: "Com certeza!"
+    noWay: "De jeito nenhum!"
+    noComment: "Prefiro não comentar..."
+    noIdea: "Não faço ideia..."
+    cantAnswer: "Não posso responder isso..."
+    askLater: "Pergunte mais tarde..."
+    maybe: "Talvez..."
+    'false': "Não"
+    'true': "Sim"
+
+aboutme:
+  success: "O texto do seu perfil foi alterado para `{0}`!"
+  tooLong: "O texto do seu perfil não pode ter mais de 177 caracteres!"
+
+ban:
+  title: "Você está **banido(a)**"
+  description: "Se você quiser fazer um apelo de ban você pode fazer um apelo de ban \n\n Recomendo você ler os [termos de uso](https://foxybot.xyz/terms)"
+  field:
+    reason: "Motivo do banimento:"
+    date: "Data do banimento:"
+  button: "Fazer um apelo"
+
+profile:
+  marriedWith: "Casado(a) com:"
+  marriedSince: "Desde {0}"
+  view: "Perfil de {0}"
+  defaultAboutMe: "Use /sobremim para alterar o seu sobre mim"
+  isBanned: "{0} está banido!"
+  banReason: "Motivo do banimento:"
+  bannedSince: "Banido desde:"
+  badges:
+    title: "Suas Insígnias"
+    description: "Cansado(a) do seu perfil estar poluído de tanta insígnia? Organize seu perfil adicionando ou removendo insígnias!"
+    back: "Voltar"
+    hideBadge: "Esconder insígnia do perfil"
+    showBadge: "Mostrar insígnia no perfil"
+    youDontHaveAnyBadge: "Você não tem nenhuma insígnia no seu perfil."
+
+kiss:
+  description: ":heart: **{0} beijou {1}!**"
+  botAsTargetMessage: "Não, não! Eu não gosto de beijos!"
+  didActionWithYourself: "Isso que é amor próprio, hein! **{0} beijou ele(a) mesmo(a)**"
+
+bite:
+  description: " :rage: **{0} mordeu {1}!**"
+  didActionWithYourself: "Para que se morder? Você só está se machucando! **{0} mordeu a si mesmo**"
+  botAsTargetMessage: "Você me mordeu, porém, eu vou te morder de volta! **<@!1006520438865801296> mordeu {0}**"
+  button: "Morder de volta"
+
+hug:
+  description: " :hugging: **{0} abraçou {1}!**"
+  didActionWithYourself: " :heart: Deixa que eu faço! **<@!1006520438865801296> abraçou {1}!**"
+  botAsTargetMessage: " :blush: **Obrigada!! {0} abraçou {1}**"
+  button: "Abraçar de volta"
+
+dance:
+  description: "{0} **está dançando**"
+
+help:
+  description: "Olá {0}, eu sou a Foxy, um multiuso para o seu servidor! Eu tenho muitas funcionalidades, como economia, diversão, utilitários e muito mais!"
+  field:
+    addMe: "{0} Gostou das minhas funcionalidades? Me adicione no seu servidor!"
+    addMeValue: "Me adicione clicando aqui"
+    support: "{0} Precisa de ajuda? Entre no meu servidor de suporte!"
+    terms: "{0} Leia os termos de uso para evitar problemas"
+    website: "{0} Meu website onde você pode me adicionar e ver mais informações"
+
+daily:
+  embed:
+    title: "Recompensa diária"
+    description: "Pegue sua recompensa diária! Você pode pegar sua recompensa diária a cada 24 horas!\n\n**Aviso:** Você não pode trocar cakes por coisas como dinheiro, Nitro, conteúdos NSFW, etc! Caso faça isso, você será banido de usar a Foxy permanentemente!"
+    redeemDaily: "Pegar recompensa"
+    buyMore: "Quero mais Cakes!"
+
+coinflipbet:
+  proposal: "**{0}**, **{1}** quer fazer uma aposta de {2}! Ele(a) aposta que a moeda irá cair em **{3}**. Você aceita a aposta?"
+  betResult: "Deu **{0}**! {1} ganhou a aposta e ganhou {2}! Pago por {3} hihihi"
+  youHaveNotEnoughBalance: "Você não tem cakes o suficiente para apostar!"
+  declined: "O pedido de aposta foi recusado :/"
+  heads: "cara"
+  tails: "coroa"
+
+tickle:
+  description: " :joy: **{0} fez cócegas em {1}!**"
+  didActionWithYourself: ":thinking: Ué, você fez cócegas em você mesmo(a)? **{0} fez cócegas em si mesmo(a)**"
+  botAsTargetMessage: ":laugh: Para isso faz cócegas! **{0} fez cócegas em {1}**"
+  button: "Fazer cócegas de volta"
+
+laugh:
+  description: " :joy: **{0} está rindo!**"
+
+lick:
+  description: " :joy: **{0} lambeu {1}**"
+  didActionWithYourself: ":thinking: Você é um gato para se lamber? **{0} lambeu a si mesmo(a)**"
+  botAsTargetMessage: "Sai daqui! Que coisa nojenta!"
+
+pat:
+  description: " :heart: **{0} fez cafuné em {1}**"
+  didActionWithYourself: ":thinking: Você fez cafune em você mesmo(a)? Isso é bom?"
+  botAsTargetMessage: ":heart: Obrigada pelo cafuné! :3 **{0} fez cafuné em {1}**"
+  button: "Fazer cafuné de volta"
+
+smile:
+  description: " :smiley: **{0} está sorrindo, pois é uma pessoa muito feliz!**"
+
+slap:
+  description: " :rage: **{0} deu um tabefe bem dado no(a) {1}**"
+  didActionWithYourself: ":cry: Porque você está se batendo? **{0} bateu em si mesmo(a)**"
+  botAsTargetMessage: ":rage: Porque você está ME BATENDO? **<@!1006520438865801296> bateu de volta em {0}**"
+  button: "Devolver o tapa"
+
+cancel:
+  userCancelledBecause: "**{0} foi cancelado(a) por `{1}`**"
+
+rob:
+  youFailedAndLostCakes: "Você foi pego e perdeu **{0} Cakes**!"
+  youFailedAndGotArrested: "Você foi pego e foi preso(a)!"
+  userNotEnoughCakes: "{0} não tem Cakes suficientes para roubar! Coitado(a)!"
+  success: "Você roubou **{0} Cakes** de {1}!"
+  cooldown: "Você só pode roubar novamente em {0}!"
+
+pay:
+  confirm: "Você deseja mesmo transferir {0} para {1}? \nA Equipe da Foxy **Não se responsabiliza** pelos Cakes perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \nÉ proibido o comércio de conteúdo NSFW(+18) em troca de Cakes!"
+  success: "Você transferiu {0} para {1}! Você agora tem {2}!"
+  notEnoughBalance: "Você não tem Cakes suficientes para transferir!"
+  cantPayYourself: "Você não pode transferir Cakes para você mesmo!"
+  invalidAmount: "Você precisa transferir uma quantidade válida de Cakes!"
+  cantFindThisUser: "Eu não consegui encontrar esse usuário."
+
+user:
+  avatar:
+    showInBrowser: "Ver no navegador"
+    title: "Avatar de {0}"
+    userId: "ID do Usuário: {0}"
+
+roulette:
+  spinResultWin: "Você girou a roleta e ganhou {0}!"
+  spinResultLose: "Você girou e não ganhou nada!"
+  notEnoughCakes: "Você precisa de **1.000 Cakes** para girar a roleta!"
+  spinTimeout: "Você não pode girar a roleta novamente tão cedo! Tente novamente em {0}!"
+
+marry:
+  authorHasNoCakes: "Casamentos custam **6.000 Cakes** para cada pessoa, e você não tem Cakes suficientes!"
+  userHasNoCakes: "Casamentos custam **6.000 Cakes** para cada pessoa, e {0} não tem Cakes suficientes!"
+  proposal: "Ei, {0}, um passarinho me contou que **{1}** quer casar com você, você aceita? Casamentos custam 6.000 Cakes para cada pessoa!"
+  premiumProposal: "Ei, {0}, um passarinho me contou que **{1}** quer casar com você, você aceita? Casamentos são gratuitos para usuários premium!"
+  userAlreadyMarried: "Você não pode se casar com quem já está casado! Talaricagem é feio!"
+  youAlreadyMarried: "Você já está casado(a)!"
+  cantMarryMe: "Não, desculpa, mas eu não quero me casar com você!"
+  cantMarryYourself: "Amor próprio é algo bom, mas você não pode casar com você mesmo"
+  cantMarryBot: "Você não pode se casar com bots!"
+  accepted: "Pedido aceito! Felicidades para o casal! :3"
+
+divorce:
+  notMarried: "Bobinho(a), você precisa se casar antes de se divorciar."
+  success: "Prontinho, agora vocês estão divorciados!"
+  confirm: "Você tem certeza que quer se divorciar de **{0}**?"
+
+fate:
+  onAParallelUniverse: "Em um universo pararelo você e {0} são **{1}**"
+  couple: "um casal"
+  friend: "amigos"
+  enemy: "inimigos"
+  soulmate: "almas gêmeas"
+  crush: "apaixonados um no outro (mas nenhum dos dois sabem)"
+  sibling: "irmãos"
+  parent: "parentes"
+  married: "casados"
+
+dbl:
+  embed:
+    description: "Me ajude a crescer e ser um bot melhor votando em mim no <:topgg:1074823809376460923> Discord Bot List! <:catblush:768292358458179595>\nCada voto ajuda a me divulgar para outras pessoas na Discord Bot List <:catblush:768292358458179595>\n\nVocê pode estar votando a cada 12 horas, e de bônus, você ganha 1500 Cakes!\nQue tal você se juntar a todas as outras pessoas incríveis que votaram e que me ajudaram a crescer? :heart:"
+
+ratewaifu:
+  success: "Hmm... Eu dou a nota **{0}/10** para {1}"
+
+top:
+  cakes:
+    title: "Ranking Global de Cakes"
+    loading: "Carregando..."
+    page: "Página **{0}**"
+  marriage:
+    embed:
+      title: "Casamentos mais velhos da Foxy"
+      marriedSince: "**Casados desde:** {0}"

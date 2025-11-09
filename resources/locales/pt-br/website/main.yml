@@ -1,0 +1,49 @@
+website:
+  homepage:
+    greetings: "Transformando seu servidor em um lugar incrível!"
+    addButton: "Me Adicione"
+    manageGuilds: "Gerenciar Servidores"
+    letMeHelpWithYourServer: "Me deixe te ajudar com o seu servidor!"
+
+    iCanHelpYourServer: |
+      Eu posso ajudar a entreter e proteger seu servidor contra convites indesejados,
+      além de quebrar um galho adicionando cargos a novos membros!
+
+    iAmEasyToUse: |
+      Também sou simples e fácil de usar, e caso você precise de ajuda pode sempre contar com o meu suporte na minha cafeteria!
+
+    someServersThatLikeMyFeatures: "Alguns servidores que gostam das minhas funcionalidades"
+
+    features:
+      fun:
+        title: "Divertindo seu servidor"
+        description: |
+          O meu principal objetivo sempre foi ajudar a engajar seu servidor e entreter os membros. Por isso,
+          tenho vários comandos diferentes focados em entretenimento! 
+          Possuo alguns jogos, comandos de modificação de imagem e muito mais!
+
+      mod:
+        title: "Moderação"
+        description: |
+          Seu servidor, suas regras. Te auxilio a bloquear convites indesejados e a adicionar cargos para novos usuários, assim você pode descansar tranquilamente enquanto estou cuidando disso por você!
+
+      custom:
+        title: "Customização"
+        description: Customize seu perfil de diversas maneiras, trocando layout, decorações de avatar e backgrounds que estão na minha loja diária. E caso você queira sugerir um background ou uma decoração de avatar, você pode fazer isso no meu servidor de suporte :3
+
+      economy:
+        title: "Economia"
+        description: Compre backgrounds, decorações de avatar, aposte, ganhe ou perca cakes... E muito mais!
+          A economia é uma das minhas funcionalidades mais populares, e você pode ganhar cakes de diversas maneiras, como votando em mim, através de eventos, prêmio diário, etc.
+          Porém, existem regras. Não venda conteúdo NSFW ou assinaturas como Discord Nitro!
+
+      music:
+        title: "Música"
+        description: Toque músicas do SoundCloud e links HTTP diretamente no seu servidor! Você pode criar playlists, usar filtros, modo 24/7 e muito mais! Tudo isso de maneira simples e fácil de usar!
+
+    support:
+      title: "Suporte e Comunidade"
+      description: Que tal ir na minha cafeteria para tomar um café ou um chá com bolo comigo e com os membros do meu servidor de suporte? Lá você pode publicar fanarts minhas, e caso você crie um background, você receberá cakes por cada venda. Apenas pessoas incríveis estão lá, e eu sei que você também é, então o que acha de se juntar à nós? Caso tenha dúvidas, a minha equipe está lá para te ajudar!
+
+    footerAdd:
+      title: "Gostou? Que tal me adicionar no seu servidor!"

@@ -1,0 +1,398 @@
+@import "https://fonts.googleapis.com/css?family=Roboto:500";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import "sidebar";
+@import "servers-wrapper";
+@import "loading";
+@import "module-config";
+@import "discord-invite";
+@import "adsense";
+@import "cirno-card";
+@import "empty-content";
+@import "notification";
+@import "popup";
+@import "buttons";
+
+* {
+  text-decoration: none;
+}
+
+html {
+  background: url("/assets/images/background-white.png"), var(--reimu-background-color) !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  height: 100%;
+  width: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: var(--reimu-primary-color);
+}
+
+.pocket-foxy-wrapper {
+        display: flex;
+        padding: 0rem 7rem 6rem 18rem;
+        justify-content: center;
+    justify-items: start;
+
+    .description {
+        text-align: left;
+        padding-bottom: 1rem;
+    }
+
+    .pocket-foxy-btn {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            outline: none;
+            font-family: Roboto, sans-serif;
+            line-height: 20px;
+            font-size: 17px;
+            color: var(--reimu-button-font-color);
+            min-width: 36px;
+            padding: 0.55rem 1rem;
+            box-sizing: border-box;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            background: #5865f2;
+    }
+    .pocket-foxy {
+         max-height: 100%;
+         width: 15rem;
+         object-fit: contain;
+         text-align: center;
+         aspect-ratio: 16 / 12;
+     }
+}
+
+.page-title {
+  color: #e7385d;
+  font-size: 2rem;
+  font-family: var(--reimu-default-font-family);
+  text-align: center;
+  margin: 2rem 0 1rem 5rem;
+  margin-left: 7em;
+}
+
+p {
+  color: var(--reimu-default-font-color) !important;
+  font-size: 1rem;
+  font-family: sans-serif;
+  text-align: center;
+  margin: 1rem 0;
+  margin-left: 26rem;
+  margin-right: 13rem;
+}
+
+.remaining-time {
+  color: var(--reimu-default-font-color);
+  font-size: 0.7545rem;
+  font-family: var(--reimu-default-font-family);
+  text-align: center;
+  margin-left: 13rem;
+}
+
+.page-separator {
+  height: 3px;
+  background-color: #e7385d;
+  width: 80%;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  margin-left: 24rem;
+  border-radius: 1px;
+  display: none;
+}
+
+main {
+    padding: 5rem;
+
+  .title {
+    color: #e7385d;
+    font-size: 2.5rem;
+    font-family: var(--reimu-default-font-family);
+    text-align: center;
+    margin-top: -3rem;
+  }
+
+  h3 {
+    color: var(--reimu-default-font-color);
+    font-size: 1.125rem;
+    font-family: sans-serif;
+  }
+}
+
+.item-name {
+  color: var(--reimu-default-font-color);
+  font-size: 2.5rem;
+  font-family: var(--reimu-default-font-family);
+  text-align: center;
+  margin-top: -3rem;
+}
+
+.updateTimer {
+  position: relative;
+  z-index: 10;
+  color: white;
+  font-size: 1.5rem;
+  padding: 1rem 0;
+  margin-bottom: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 48em) {
+
+  #addBanner,
+  .adsbygoogle {
+    display: none !important;
+  }
+
+  html {
+    background-size: contain;
+  }
+
+  .store-item,
+  .itens {
+    margin: 0 auto;
+    flex-direction: column;
+  }
+
+  .item-name,
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .item-img {
+    width: 50%;
+    height: auto;
+  }
+
+  .module,
+  .server-feature,
+  .item,
+  .server {
+    min-width: 100%;
+    max-width: 100%;
+    margin: 5% auto;
+    padding: 0.625rem;
+  }
+
+  .sidebar-logo {
+    width: 6.25rem;
+    height: auto;
+  }
+
+  .server__button,
+  .key-manager__add__submit {
+    width: 80%;
+    margin: 0.625rem auto;
+    text-align: center;
+  }
+
+  .item_info h1 {
+    font-size: 1.125rem;
+  }
+
+  .item_info .purchased,
+  .item_info .cakes {
+    font-size: 0.875rem;
+  }
+
+  .page-separator {
+    width: 90%;
+    height: 2px;
+    margin: 1rem auto;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+    margin: 1rem 0 1rem 0;
+  }
+
+  p {
+    font-size: 0.875rem;
+    margin: 0.5rem 0.5rem;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 30em) {
+  .item {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .page-title {
+    margin-top: 4rem;
+  }
+
+  h2 {
+    margin-top: 4rem;
+  }
+
+  .title,
+  .item-name {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 101em) {
+  .itens {
+    margin-top: 0.5em;
+    font-size: 1.5625rem;
+  }
+}
+
+@media (min-width: 120em) {
+  .itens {
+    margin-top: 0.5rem;
+    font-size: 1.6875rem;
+  }
+}
+
+#inventory {
+  margin-top: -2rem !important;
+  margin-left: 18rem !important;
+  margin-right: 5rem !important;
+}
+
+@media (max-width: 768px) {
+
+  #addBanner,
+  .adsbygoogle {
+    display: none !important;
+  }
+
+  #inventory {
+    margin-top: 0rem !important;
+    margin-left: 0rem !important;
+    margin-right: 1rem !important;
+  }
+
+  .servers {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  html {
+    background-size: contain;
+  }
+
+  .store-item,
+  .itens {
+    margin: -4rem auto;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .item-name,
+  .title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .item-img {
+    width: 80%;
+    height: auto;
+    max-width: 300px;
+  }
+
+  .cirno-card-buttons {
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+    margin-left: 0rem;
+  }
+
+  .cirno-card-title {
+    margin-left: 0;
+    font-size: 1.2rem;
+  }
+
+  .cirno-card-name {
+    font-size: 1.25rem;
+  }
+
+  .cirno-card-info {
+    align-items: center;
+  }
+
+  .cirno-card {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 3rem;
+  }
+
+  .cirno-card-buttons a>button {
+    width: 100%;
+    max-width: 300px;
+    margin-left: 0;
+  }
+
+  .module,
+  .server-feature,
+  .item,
+  .server {
+    min-width: 100%;
+    max-width: 100%;
+    margin: 5% auto;
+    padding: 0.625rem;
+    box-shadow: none;
+  }
+
+  .sidebar-logo {
+    width: 50%;
+    height: auto;
+  }
+
+  .server__button,
+  .key-manager__add__submit {
+    width: 90%;
+    margin: 0.625rem auto;
+    text-align: center;
+  }
+
+  .item_info h1 {
+    font-size: 1rem;
+  }
+
+  .item_info .purchased,
+  .item_info .cakes {
+    font-size: 0.875rem;
+  }
+
+  .page-separator {
+    width: 90%;
+    height: 2px;
+    margin: 1rem auto;
+  }
+
+  .page-title {
+    font-size: 1.90rem;
+  }
+
+  p {
+    font-size: 0.875rem;
+    margin: 0.5rem 0.5rem;
+    margin-top: 0.5rem;
+    display: none;
+  }
+
+  .updateTimer {
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+  }
+
+  #countdown {
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+  }
+
+  .remaining-time {
+    font-size: 0.6254rem !important;
+    margin: -2.5rem 0rem 0rem 0rem !important;
+  }
+}

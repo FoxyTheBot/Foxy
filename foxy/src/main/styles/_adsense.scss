@@ -1,0 +1,20 @@
+.ad {
+  &.horizontal {
+    text-align: center;
+    max-width: 100%;
+    height: auto;
+  }
+
+  &.vertical {
+    position: fixed;
+    right: 0;
+    top: 60px;
+    z-index: 1000;
+
+
+    @media (max-width: 1024px) {
+      width: 120px;
+      height: 500px;
+    }
+  }
+}

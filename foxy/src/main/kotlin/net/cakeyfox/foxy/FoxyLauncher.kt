@@ -16,7 +16,7 @@ import kotlin.reflect.jvm.jvmName
 import kotlin.system.exitProcess
 
 object FoxyLauncher {
-    private val logger = KotlinLogging.logger(this::class.jvmName)
+    private val logger = KotlinLogging.logger { }
 
     @JvmStatic
     fun main(args: Array<String>) {

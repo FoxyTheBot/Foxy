@@ -155,7 +155,7 @@ class RoleplayActionExecutor(
         }
     }
 
-    inner class RoleplayDataBuilder {
+    class RoleplayDataBuilder {
         var giver: User? = null
         var receiver: User? = null
         var action: String = ""

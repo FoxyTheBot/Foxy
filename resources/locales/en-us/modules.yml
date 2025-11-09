@@ -1,0 +1,17 @@
+antiraid:
+  title: "Foxy Anti-Raid"
+  tooFastMessages: "The member **{0}** is sending too many messages in a short period of time."
+  membersJoiningTooQuickly: "Too many members are joining the server in a short period of time."
+  userIsSendingRepeatedSequences: "{0} You cannot spam in this channel."
+  cantTakeAction: "Can't take any action against this member. Missing permissions?"
+
+  reasons:
+    userIsSendingMessagesTooFast: "Anti-Raid: The member is sending too many messages in a short period of time."
+  fields:
+    user: "User"
+    actionTaken: "Action Taken"
+  actions:
+    NOTHING: "No action taken"
+    BAN: "The member was banned"
+    KICK: "The member was kicked"
+    TIMEOUT: "The member was timed out"

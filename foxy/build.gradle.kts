@@ -8,6 +8,8 @@ plugins {
 
 dependencies {
     implementation(libs.kotlin.stdlib.jdk8)
+    implementation(project(":website:frontend"))
+    implementation(project(":website:dashboard:frontend"))
     implementation(project(":showtime-client"))
     implementation(project(":common"))
     implementation(project(":serializable-commons"))
@@ -62,16 +64,83 @@ dependencies {
     implementation(libs.jsoup)
 }
 
+evaluationDependsOn(":website:flandre")
+evaluationDependsOn(":website:dashboard:dashboard-utils")
+
+val jsBrowserDistribution =
+    tasks.getByPath(":website:flandre:jsBrowserDistribution")
+val jsBrowserProductionWebpack =
+    tasks.getByPath(":website:flandre:jsBrowserProductionWebpack") as org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
+
+val jsDashboardBrowserDistribution = tasks.getByPath(":website:dashboard:dashboard-utils:jsBrowserDistribution")
+val jsDashboardProductionWebpack =
+    tasks.getByPath(":website:dashboard:dashboard-utils:jsBrowserProductionWebpack") as org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
+
+val sass = tasks.register<SassTask>("sass-style-scss") {
+    this.inputSass.set(file("src/main/styles/style.scss"))
+    this.inputSassFolder.set(file("src/main/styles/"))
+    this.outputSass.set(file("$buildDir/styles/style-scss"))
+}
+
+
+val globalSass = tasks.register<SassTask>("sass-global-style-scss") {
+    this.inputSass.set(file("src/main/styles/global.scss"))
+    this.inputSassFolder.set(file("src/main/styles/"))
+    this.outputSass.set(file("$buildDir/styles/style-scss"))
+}
+
+val sassDashboard = tasks.register<SassTask>("sass-dashboard-style-scss") {
+    this.inputSass.set(file("src/main/styles-dashboard/style.scss"))
+    this.inputSassFolder.set(file("src/main/styles-dashboard/"))
+    this.outputSass.set(file("$buildDir/sass/style-dashboard-scss"))
+}
+
+val skipKotlinJsBuild = (findProperty("net.cakeyfox.foxy.skipKotlinJsBuild") as String?)?.toBoolean() == true
+val skipScssBuild = (findProperty("net.cakeyfox.foxy.skipScssBuild") as String?)?.toBoolean() == true
+
 tasks.test {
     useJUnitPlatform()
 }
-
 
 application {
     mainClass.set("net.cakeyfox.foxy.FoxyLauncher")
 }
 
 tasks {
+    processResources {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        from("../resources/")
+
+        if (!skipKotlinJsBuild) {
+            dependsOn(jsBrowserProductionWebpack)
+            dependsOn(jsDashboardProductionWebpack)
+
+            from(jsBrowserProductionWebpack.outputDirectory) {
+                into("js/")
+            }
+
+            from(jsDashboardProductionWebpack.outputDirectory) {
+                into("dashboard/js/")
+            }
+        }
+
+        if (!skipScssBuild) {
+            dependsOn(sass)
+
+            from(sass) {
+                into("static/v1/assets/css")
+            }
+
+            from(globalSass) {
+                into("static/v1/assets/css")
+            }
+
+            from(sassDashboard) {
+                into("static/dashboard/assets/css")
+            }
+        }
+    }
+
     shadowJar {
         archiveBaseName.set("Foxy")
         archiveVersion.set(version.toString())

@@ -1,0 +1,48 @@
+---
+categories:
+  fun: "Fun"
+  utils: "Utils"
+  social: "Social"
+  economy: "Economy"
+  magic: "Magic"
+  actions: "Roleplay"
+  dev: "Developers"
+  discord: "Discord"
+  youtube: "YouTube"
+  music: "Music"
+
+youCantUseCommandsHere: "You can't use commands here!"
+birthday:
+  title: Happy birthday!
+  message: |-
+    Happy birthday, dear! Today is your day, and all we can think about is how much more beautiful the world became when we welcomed you.
+
+    May this new stage of your life be filled with hope, love, achievements, and unforgettable moments!
+
+    Don't forget, it's a special day for an even more special person. Congratulations on your day and enjoy!
+
+    "Happy birthday to you
+    Happy birthday to you
+    Happy birthday, dear <@!{0}>
+    Happy birthday to you!"
+tax:
+  cakes:
+    title: You lost your Cakes!
+    description: |-
+      Hey <@!{0}>! Since you didn't claim your daily prize, I had to collect **{1} Cakes** to keep them from getting lost.
+
+      I'll continue collecting this fee every week until you claim your daily prize again.
+
+      Don't forget to collect your daily prize [by clicking here]({2}) to protect your Cakes!
+    warning:
+      title: Get your daily, or lose your Cakes!
+      description: |-
+        Hey <@!{0}>! I noticed you have more than **{1} Cakes** and haven't claimed your daily for more than **{2} days**!
+
+        I'm keeping an eye on your **{3} Cakes**, and if you don't claim your daily, I'll need to claim **{4} Cakes** from you (15% fee) to help keep everything in order.
+
+        But don't worry! Just claim your daily [by clicking here]({5}) and you won't lose anything.
+
+        If you continue to not claim it, this fee will be charged every week until you claim your daily again.
+
+        Protect your Cakes, or I'll eat them all :3

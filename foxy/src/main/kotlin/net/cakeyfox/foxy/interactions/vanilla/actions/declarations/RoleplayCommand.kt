@@ -12,11 +12,7 @@ class RoleplayCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("actions", CommandCategory.ACTIONS) {
         interactionContexts = listOf(InteractionContextType.GUILD, InteractionContextType.PRIVATE_CHANNEL)
         integrationType = listOf(IntegrationType.GUILD_INSTALL, IntegrationType.USER_INSTALL)
-
-        subCommand("laugh") { executor = RoleplayActionExecutor(canDoWithBot = false, canRetribute = false) }
-        subCommand("dance") { executor = RoleplayActionExecutor(false, canRetribute = false) }
-        subCommand("smile") { executor = RoleplayActionExecutor(canDoWithBot = false, canRetribute = false) }
-
+        
         subCommand("kiss") {
             addOption(
                 opt(OptionType.USER, "user", true),
@@ -65,15 +61,6 @@ class RoleplayCommand : FoxyCommandDeclarationWrapper {
                 isSubCommand = true
             )
             executor = RoleplayActionExecutor(canDoWithBot = true, canRetribute = true, FoxyEmotes.FoxyRage)
-        }
-
-        subCommand("tickle") {
-            executor = RoleplayActionExecutor(canDoWithBot = true, canRetribute = true, FoxyEmotes.FoxyBread)
-
-            addOption(
-                opt(OptionType.USER, "user", true),
-                isSubCommand = true
-            )
         }
     }
 }

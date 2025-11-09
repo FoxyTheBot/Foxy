@@ -15,7 +15,7 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.RunnableCoroutine
-import net.cakeyfox.foxy.utils.locales.FoxyLocale
+import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.utils.logging.task
 import java.time.ZoneId
 import java.time.ZonedDateTime

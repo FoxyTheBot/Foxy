@@ -1,0 +1,29 @@
+kiss:
+  button: "Retribuir Beijo"
+
+hug:
+  button: "Retribuir Abraço"
+
+bite:
+  button: "Morder de volta"
+
+coinflipbet:
+  acceptButton: "Aceitar"
+  declineButton: "Recusar"
+
+ban:
+  appealButton: "Fazer um apelo"
+
+marry:
+  acceptButton: "Aceitar pedido"
+  acceptedButton: "Pedido aceito"
+
+divorce:
+  confirmButton: "Divorciar"
+
+pay:
+  confirmButton: "Confirmar Transferência"
+  confirmedButton: "Transferência Realizada"
+
+dbl:
+  clickHereToVote: "Clique aqui para votar"

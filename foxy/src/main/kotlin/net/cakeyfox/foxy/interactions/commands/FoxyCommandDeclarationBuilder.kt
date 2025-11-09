@@ -3,7 +3,7 @@ package net.cakeyfox.foxy.interactions.commands
 import dev.minn.jda.ktx.interactions.commands.Command
 import dev.minn.jda.ktx.interactions.commands.Subcommand
 import dev.minn.jda.ktx.interactions.commands.SubcommandGroup
-import net.cakeyfox.foxy.utils.locales.FoxyLocale
+import net.cakeyfox.common.FoxyLocale
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.interactions.DiscordLocale
 import net.dv8tion.jda.api.interactions.IntegrationType

@@ -17,7 +17,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.RunnableCoroutine
 import net.cakeyfox.foxy.utils.linkButton
-import net.cakeyfox.foxy.utils.locales.FoxyLocale
+import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.utils.PremiumUtils.canBypassInactivityTax
 import net.cakeyfox.foxy.utils.logging.task
 import java.time.ZoneId
@@ -61,11 +61,6 @@ class CakeInactivityTaxTask(
                         val lastDaily = user.userCakes.lastDaily?.takeUnless { it == Instant.fromEpochMilliseconds(0) }
                             ?: return@withPermit
 
-                        if (canBypassInactivityTax(user)) {
-                            logger.info { "Skipping inactive user ${user._id}"}
-                            return@withPermit
-                        }
-
                         val tax = (user.userCakes.balance * TAX_PERCENTAGE).toLong()
                         val lastTax = user.userCakes.lastInactivityTax
                         val daysSinceLastDaily = lastDaily.toLocalDateTime(foxy.foxyZone)
@@ -80,6 +75,11 @@ class CakeInactivityTaxTask(
                         if (user.userCakes.balance <= MINIMUM_AMOUNT) return@withPermit
 
                         if (daysSinceLastDaily in WARNING_DAYS until TAX_START_DAYS) {
+                            if (canBypassInactivityTax(user)) {
+                                logger.info { "Skipping inactive user ${user._id}"}
+                                return@withPermit
+                            }
+
                             if (user.userCakes.warnedAboutInactivityTax != true) {
                                 val userFromDiscord = foxy.shardManager.retrieveUserById(user._id).await()
                                 foxy.utils.sendDirectMessage(userFromDiscord) {

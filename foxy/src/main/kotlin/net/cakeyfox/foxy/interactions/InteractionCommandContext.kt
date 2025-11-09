@@ -9,7 +9,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.database.data.user.FoxyUser
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.utils.FoxyUtils
-import net.cakeyfox.foxy.utils.locales.FoxyLocale
+import net.cakeyfox.common.FoxyLocale
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent

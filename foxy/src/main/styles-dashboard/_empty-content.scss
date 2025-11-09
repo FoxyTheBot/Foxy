@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 13rem;
+  margin-top: 15rem;
+  padding: 1rem;
+
+  .empty-img {
+    width: 10rem;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    filter: grayscale(100%);
+  }
+
+  p {
+    margin: 1rem;
+    font-size: 20px;
+    font-family: var(--reimu-default-font-family), serif;
+    font-weight: 400;
+    color: var(--reimu-default-font-color);
+  }
+
+  &.hidden {
+    display: none;
+  }
+}

@@ -33,6 +33,7 @@ import net.cakeyfox.foxy.interactions.vanilla.social.declarations.BirthdayComman
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.DivorceCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.MarryCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.ProfileCommand
+import net.cakeyfox.foxy.interactions.vanilla.social.declarations.RepCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.FoxyCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.HelpCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.LanguageCommand
@@ -151,6 +152,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(DivorceCommand())
         register(BirthdayCommand())
         register(RoleplayCommand())
+//        register(RepCommand())
 
         /* ---- [Music] ---- */
         register(PlayCommand())

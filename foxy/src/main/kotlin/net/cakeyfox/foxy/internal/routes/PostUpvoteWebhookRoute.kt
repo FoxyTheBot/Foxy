@@ -15,7 +15,7 @@ import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.pretty
-import net.cakeyfox.foxy.utils.locales.FoxyLocale
+import net.cakeyfox.common.FoxyLocale
 
 class PostUpvoteWebhookRoute {
     private val logger = KotlinLogging.logger { }

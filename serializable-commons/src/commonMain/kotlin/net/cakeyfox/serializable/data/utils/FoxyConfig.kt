@@ -81,6 +81,7 @@ data class FoxyConfig(
 
     @Serializable
     data class Database(
+        val protocol: String,
         val address: String,
         val databaseName: String,
         val user: String,

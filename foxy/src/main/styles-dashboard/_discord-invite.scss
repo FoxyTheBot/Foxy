@@ -1,0 +1,104 @@
+.support-invites-wrapper {
+  .support-invite-wrapper {
+    .discord-support-invite-wrapper {
+      display: flex;
+      margin-top: auto;
+      justify-content: center;
+    }
+  }
+
+}
+.discord-invite-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #282a2e;
+  border-radius: 3px;
+  padding: 1em;
+  margin-left: 31%;
+  gap: 0.5em;
+  color: #fff;
+  transition-duration: 1s;
+  font-family: Arial, Helvetica, sans-serif;
+  width: fit-content;
+  margin-bottom: 20.5em;
+
+  .discord-server-details {
+    .discord-server-icon img {
+      border-radius: 25%;
+      width: 50px;
+      height: 50px;
+      display: block;
+    }
+  }
+
+  .discord-invite-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #b5bac1;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.75em;
+  }
+
+  .discord-server-details {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+
+    .discord-server-icon {
+      flex-shrink: 0;
+    }
+
+    .discord-server-info {
+      line-height: 1;
+      flex-direction: column;
+      display: flex;
+      justify-content: center;
+      align-self: stretch;
+      flex-shrink: 1;
+
+      .discord-server-name {
+        font-weight: bold;
+      }
+
+      .discord-server-description {
+        font-size: 0.9em;
+      }
+    }
+
+    .discord-server-button {
+      margin-left: auto;
+      background-color: #3ba55d;
+      border-radius: 3px;
+      color: white;
+      font-size: 0.9em;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      padding-left: 1em;
+      padding-right: 1em;
+      height: 40px;
+      transition-duration: 0.5s;
+      flex-shrink: 0;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+
+  .discord-invite-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: #282a2e;
+    border-radius: 3px;
+    padding: 0.5em;
+    margin-left: -5%;
+    margin-right: -5%;
+    gap: 0.5em;
+    color: var(--reimu-default-font-color);
+    transition-duration: 1s;
+    font-family: Arial, Helvetica, sans-serif;
+    width: fit-content;
+    margin-bottom: 20.5em;
+  }
+}
