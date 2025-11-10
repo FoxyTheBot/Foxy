@@ -34,10 +34,10 @@ cd Foxy
 Build the project with Gradle by running:
 
 ```bash
-./gradlew build
+./gradlew shadowJar
 ```
 
-> If you have Gradle installed globally, you can use `gradle build` instead of `./gradlew build`.
+> If you have Gradle installed globally, you can use `gradle shadowJar` instead of `./gradlew shadowJar`.
 
 > If Gradle reports missing methods or unsupported features in your JDK, update to the latest JDK 21+ version from [Adoptium](https://adoptium.net/).
 
