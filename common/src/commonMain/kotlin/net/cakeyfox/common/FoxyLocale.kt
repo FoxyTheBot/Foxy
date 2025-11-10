@@ -16,10 +16,10 @@ class FoxyLocale(var locale: String) {
         get() = locale
     
     operator fun get(key: String, vararg placeholder: String): String {
-        when(locale) {
-            "br" -> locale = "pt-br"
-            "us" -> locale = "en-us"
-            else -> locale = "pt-br"
+        locale = when(locale) {
+            "pt-br" -> "br"
+            "en-us" -> "us"
+            else -> "br"
         }
 
         val resourcePaths = listOf(
