@@ -7,10 +7,12 @@ import io.ktor.server.response.respondText
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
+import kotlinx.datetime.LocalDate
 import mu.KotlinLogging
 import net.cakeyfox.foxy.FoxyInstance
 import org.jsoup.Jsoup
 import org.jsoup.parser.Parser
+import java.time.OffsetDateTime
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
@@ -78,11 +80,21 @@ class PostPubSubCallbackRoute(
             val channelId = entry?.selectFirst("yt|channelId")?.text()
             val author = entry?.selectFirst("author > name")?.text() ?: "Unknown"
             val videoUrl = entry?.selectFirst("link[rel=alternate]")?.attr("href") ?: return@post
+            val publishedStr = entry.selectFirst("published")?.text() ?: return@post
+            val publishedDate = OffsetDateTime.parse(publishedStr)
 
             logger.info { "Notifying from PubHubSubbub for $channelId" }
+
             if (videoId != null && channelId != null) {
-                foxy.database.youtube.getOrRegisterYouTubeWebhook(channelId)
-                manager.notifyGuilds(channelId, author, videoUrl, videoId)
+                val cutoffDate = java.time.LocalDate.now()
+                val videoDate = publishedDate.toLocalDate()
+
+                if (videoDate.isBefore(cutoffDate)) {
+                    logger.info { "Skipping old video ($videoId)" }
+                } else {
+                    foxy.database.youtube.getOrRegisterYouTubeWebhook(channelId)
+                    manager.notifyGuilds(channelId, author, videoUrl, videoId)
+                }
             }
 
             call.respondText("OK")
