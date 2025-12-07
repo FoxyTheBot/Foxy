@@ -7,6 +7,7 @@ plugins {
     kotlin("jvm") version Versions.KOTLIN apply false
     kotlin("plugin.serialization") version Versions.KOTLIN
     id("com.gradleup.shadow") version Versions.SHADOW_JAR
+    id("org.jlleitschuh.gradle.ktlint") version "14.0.1"
     base
 }
 
@@ -24,6 +25,17 @@ allprojects {
 }
 
 subprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+
+    ktlint {
+        version.set("1.8.0")
+        android.set(false)
+        verbose.set(true)
+        outputToConsole.set(true)
+        coloredOutput.set(true)
+        ignoreFailures.set(false)
+    }
+
     plugins.withId("org.jetbrains.kotlin.multiplatform") {
         extensions.configure<KotlinMultiplatformExtension> {
             jvmToolchain(21)
