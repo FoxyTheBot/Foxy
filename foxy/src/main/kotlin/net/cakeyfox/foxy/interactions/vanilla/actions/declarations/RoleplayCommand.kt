@@ -47,14 +47,6 @@ class RoleplayCommand : FoxyCommandDeclarationWrapper {
             executor = RoleplayActionExecutor(canDoWithBot = true, canRetribute = true, FoxyEmotes.FoxyBread)
         }
 
-        subCommand("lick") {
-            addOption(
-                opt(OptionType.USER, "user", true),
-                isSubCommand = true
-            )
-            executor = RoleplayActionExecutor(canDoWithBot = false, canRetribute = false)
-        }
-
         subCommand("slap") {
             addOption(
                 opt(OptionType.USER, "user", true),

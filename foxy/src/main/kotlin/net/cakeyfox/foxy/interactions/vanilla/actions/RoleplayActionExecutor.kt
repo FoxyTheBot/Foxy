@@ -130,7 +130,7 @@ class RoleplayActionExecutor(
                     roleplayData.giver.asMention,
                     roleplayData.receiver.asMention
                 ]
-                color = Colors.RANDOM
+                color = Colors.FOXY_DEFAULT
                 image = response
             }
 
