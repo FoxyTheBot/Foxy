@@ -48,6 +48,7 @@ class PostUpvoteWebhookRoute {
             }
             val discordUser = foxy.shardManager.retrieveUserById(userId).await()
             foxy.database.user.addVote(userId)
+            foxy.database.user.addCakesToUser(userId, 1500)
             val userVotes = foxy.database.user.getFoxyProfile(userId).voteCount ?: 0
             logger.info { "User ${discordUser.name} / $userId has $userVotes vote(s)" }
 
