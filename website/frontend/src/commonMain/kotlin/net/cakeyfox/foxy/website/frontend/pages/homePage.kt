@@ -1,8 +1,5 @@
-package net.cakeyfox.foxy.website.frontend.pages.home
+package net.cakeyfox.foxy.website.frontend.pages
 
-import io.ktor.server.routing.RoutingCall
-import io.ktor.server.sessions.get
-import io.ktor.server.sessions.sessions
 import kotlinx.html.ATarget
 import kotlinx.html.ButtonType
 import kotlinx.html.FlowContent
@@ -18,12 +15,8 @@ import kotlinx.html.html
 import kotlinx.html.id
 import kotlinx.html.img
 import kotlinx.html.main
-import kotlinx.html.onClick
-import kotlinx.html.script
 import kotlinx.html.stream.createHTML
 import kotlinx.html.style
-import kotlinx.html.unsafe
-import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.website.frontend.utils.buildAd
 import net.cakeyfox.foxy.website.frontend.utils.buildHead
 import net.cakeyfox.foxy.website.frontend.utils.footerSection
@@ -31,9 +24,9 @@ import net.cakeyfox.foxy.website.frontend.utils.getLanguage
 import net.cakeyfox.foxy.website.frontend.utils.headerWithUser
 import net.cakeyfox.serializable.data.website.UserSession
 
-fun homePage(call: RoutingCall, isProduction: Boolean): String {
+fun homePage(lang: String, user: UserSession?, isProduction: Boolean): String {
     return createHTML().html {
-        val locale = getLanguage(call)
+        val locale = getLanguage(lang)
 
         head {
             buildHead(
@@ -43,7 +36,8 @@ fun homePage(call: RoutingCall, isProduction: Boolean): String {
         }
 
         body {
-            headerWithUser(call, locale)
+            headerWithUser(user, locale)
+
             main {
                 div("intro") {
                     img(classes = "foxy-logo") {

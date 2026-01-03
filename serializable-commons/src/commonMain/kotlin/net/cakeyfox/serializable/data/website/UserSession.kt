@@ -6,8 +6,9 @@ import kotlinx.serialization.Serializable
 data class UserSession(
     val tokenType: String,
     val accessToken: String,
-    val avatar: String,
+    val avatar: String?,
     val globalName: String?,
     val username: String,
-    val userId: String
+    val userId: String,
+    val hmac: String
 )

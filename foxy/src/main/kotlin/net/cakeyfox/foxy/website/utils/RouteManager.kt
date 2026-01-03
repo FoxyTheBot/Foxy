@@ -1,0 +1,86 @@
+package net.cakeyfox.foxy.website.utils
+
+import io.ktor.server.application.Application
+import io.ktor.server.http.content.staticResources
+import io.ktor.server.response.respondRedirect
+import io.ktor.server.routing.get
+import io.ktor.server.routing.routing
+import net.cakeyfox.foxy.website.FoxyWebsite
+import net.cakeyfox.foxy.website.routes.api.v1.PostAutoRoleSettingsRoute
+import net.cakeyfox.foxy.website.routes.api.v1.PostGeneralSettingsRoute
+import net.cakeyfox.foxy.website.routes.api.v1.PostSaveYouTubeSettings
+import net.cakeyfox.foxy.website.routes.api.v1.PostWelcomerRoute
+import net.cakeyfox.foxy.website.routes.api.v1.PostWelcomerTestRoute
+import net.cakeyfox.foxy.website.routes.api.v1.PostYouTubeAddChannelRoute
+import net.cakeyfox.foxy.website.routes.api.v1.PostYouTubeRemoveChannelRoute
+import net.cakeyfox.foxy.website.routes.api.v1.PostYouTubeTestRoute
+import net.cakeyfox.foxy.website.routes.dashboard.GetDashboardRoute
+import net.cakeyfox.foxy.website.routes.dashboard.GetGenericServerModuleRoute
+import net.cakeyfox.foxy.website.routes.dashboard.GetPocketFoxyRoute
+import net.cakeyfox.foxy.website.routes.dashboard.GetYouTubeChannelRoute
+import net.cakeyfox.foxy.website.routes.pages.GetCommandsPage
+import net.cakeyfox.foxy.website.routes.pages.GetDailyPage
+import net.cakeyfox.foxy.website.routes.pages.GetHomePage
+import net.cakeyfox.foxy.website.routes.pages.GetPremiumPage
+import net.cakeyfox.foxy.website.routes.pages.GetSupportPage
+import net.cakeyfox.foxy.website.routes.pages.GetTermsOfServiceRoute
+import net.cakeyfox.foxy.website.routes.partials.GetServerAutoRoleSettingsRoute
+import net.cakeyfox.foxy.website.routes.partials.GetServerGeneralSettingsPartial
+import net.cakeyfox.foxy.website.routes.partials.GetServerListPartial
+import net.cakeyfox.foxy.website.routes.partials.GetServerWelcomerSettingsPartial
+import net.cakeyfox.foxy.website.routes.partials.GetYouTubeChannelPartial
+import net.cakeyfox.foxy.website.routes.partials.GetYouTubePartial
+
+// TODO: Create these pages
+/*
+/br/store
+all /br/user pages
+ */
+
+fun Application.registerAllRoutes(server: FoxyWebsite) {
+    routing {
+        get("/") { call.respondRedirect("/br/") }
+
+        // ==[NORMAL PAGES]==
+        GetPremiumPage(server).install(this)
+        GetCommandsPage(server).install(this)
+        GetTermsOfServiceRoute(server).install(this)
+        GetSupportPage(server).install(this)
+        GetHomePage(server).install(this)
+        GetDailyPage(server).install(this)
+
+        // ==[DASHBOARD]==
+        GetDashboardRoute(server).install(this)
+        GetGenericServerModuleRoute(server).install(this)
+        GetPocketFoxyRoute(server).install(this)
+        GetYouTubeChannelRoute(server).install(this)
+
+        // ==[API]==
+        PostGeneralSettingsRoute(server).install(this)
+        PostWelcomerRoute(server).install(this)
+        PostWelcomerTestRoute(server).install(this)
+        PostYouTubeTestRoute(server).install(this)
+        PostYouTubeRemoveChannelRoute(server).install(this)
+        PostYouTubeAddChannelRoute(server).install(this)
+        PostSaveYouTubeSettings(server).install(this)
+        PostAutoRoleSettingsRoute(server).install(this)
+
+        // ==[PARTIALS]==
+        GetServerListPartial().apply { getServerList(server, server.httpClient) }
+        GetServerGeneralSettingsPartial().apply { getServerSettings(server) }
+        GetYouTubePartial().apply { getYouTubePartial(server) }
+        GetYouTubeChannelPartial().apply { getYouTubeChannel(server) }
+        GetServerWelcomerSettingsPartial().apply { getServerSettings(server) }
+        GetServerAutoRoleSettingsRoute().apply { getAutoRoleSettings(server) }
+
+        // ==[OAUTH]==
+        OAuthManager(server).apply { oauthRoutes() }
+
+        // ==[STATIC CONTENT]==
+        staticResources("", "website/")
+        staticResources("/v1/assets/css", "static/v1/assets/css")
+        staticResources("/dashboard/assets/css", "static/dashboard/assets/css")
+        staticResources("/js/", "js/")
+        staticResources("/dashboard/js", "dashboard/js")
+    }
+}

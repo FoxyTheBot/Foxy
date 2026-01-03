@@ -1,6 +1,5 @@
-package net.cakeyfox.foxy.dashboard.frontend.htmx.partials
+package frontend.htmx.partials
 
-import io.ktor.server.routing.RoutingCall
 import kotlinx.html.InputType
 import kotlinx.html.a
 import kotlinx.html.div
@@ -21,9 +20,9 @@ fun renderServerListPage(guilds: List<DiscordServer>, locale: FoxyLocale): Strin
 
         div(classes = "server-list-with-searchbar") {
 
-            div("server-search-wrapper") {
+            div("search-wrapper") {
                 input(type = InputType.text) {
-                    id = "server-search"
+                    id = "search-bar"
                     placeholder = "Buscar servidor..."
                 }
             }
@@ -41,12 +40,21 @@ fun renderServerListPage(guilds: List<DiscordServer>, locale: FoxyLocale): Strin
 fun renderServerList(guilds: List<DiscordServer>, locale: FoxyLocale): String {
     return createHTML().div("servers") {
         guilds.forEach { guild ->
-            div("server") {
-                div("server__icon") {
-                    val gifUrl = "https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.gif?size=128"
-                    val pngUrl = "https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128"
-                    val defaultUrl = Constants.DISCORD_DEFAULT_AVATAR
+            val gifUrl = "https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.gif?size=128"
+            val pngUrl = "https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128"
+            val defaultUrl = Constants.DISCORD_DEFAULT_AVATAR
 
+            div("server") {
+                div("server__banner") {
+                    img {
+                        src = gifUrl
+                        alt = guild.name
+                        onError =
+                            "this.onerror=null; this.src='${pngUrl}'; this.onerror=function(){this.src='${defaultUrl}'};"
+                    }
+                }
+
+                div("server__icon") {
                     img {
                         src = gifUrl
                         alt = guild.name

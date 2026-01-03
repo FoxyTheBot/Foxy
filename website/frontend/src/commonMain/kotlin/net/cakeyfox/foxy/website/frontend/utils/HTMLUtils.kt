@@ -1,12 +1,9 @@
 package net.cakeyfox.foxy.website.frontend.utils
 
-import io.ktor.server.routing.RoutingCall
 import kotlinx.html.*
-import kotlinx.html.stream.createHTML
 import net.cakeyfox.common.FoxyLocale
 
-fun getLanguage(call: RoutingCall): FoxyLocale {
-    val lang = call.parameters["lang"]!!
+fun getLanguage(lang: String): FoxyLocale {
     return FoxyLocale(lang)
 }
 
@@ -51,8 +48,8 @@ fun FlowContent.buildAd(isVertical: Boolean, isProduction: Boolean) {
 }
 
 fun HEAD.buildHead(
-    titleText: String,
-    description: String,
+    titleText: String? = "Foxy",
+    description: String? = "💫 Um bot multiuso para o seu servidor do Discord!",
     url: String? = "https://foxybot.xyz",
     image: String? = "images/FoxyAvatar.png",
     themeColor: String = "#e7385d",
@@ -90,9 +87,9 @@ fun HEAD.buildHead(
     }
 
     metaProperty("og:type", "website")
-    metaProperty("og:title", titleText)
-    metaProperty("og:site_name", titleText)
-    metaProperty("og:description", description)
+    metaProperty("og:title", titleText!!)
+    metaProperty("og:site_name", "Foxy")
+    metaProperty("og:description", description!!)
     metaProperty("og:url", url!!)
     metaProperty("og:image", "/assets/$image")
     metaName("theme-color", themeColor, mapOf("data-react-helmet" to "true"))

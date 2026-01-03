@@ -1,11 +1,7 @@
-package net.cakeyfox.foxy.website.frontend.pages.premium
+package net.cakeyfox.foxy.website.frontend.pages
 
-import io.ktor.server.routing.RoutingCall
-import io.ktor.server.sessions.get
-import io.ktor.server.sessions.sessions
 import kotlinx.html.*
 import kotlinx.html.stream.createHTML
-import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.website.frontend.utils.buildHead
 import net.cakeyfox.foxy.website.frontend.utils.getLanguage
 import net.cakeyfox.foxy.website.frontend.utils.headerWithUser
@@ -107,18 +103,19 @@ private val cakePackages = listOf(
     PremiumItem("2.000.000 Cakes", 99.99, monthly = false, itemId = "8068fd2e-a799-43e4-9b50-e7505cc9ab95")
 )
 
-fun premiumPage(call: RoutingCall): String = createHTML().html {
-    val locale = getLanguage(call)
+fun premiumPage(user: UserSession?, lang: String): String = createHTML().html {
+    val locale = getLanguage(lang)
 
     head {
         buildHead(
-            titleText = "Foxy | Premium",
-            description = "Me ajude a ficar online comprando premium ou cakes!",
+            titleText = "Premium",
+            description = "Me ajude a ficar online comprando premium e melhore a sua experiência e a dos membros do seu servidor! :3",
+            image = "images/foxy_wow.png"
         )
     }
 
     body {
-        headerWithUser(call, locale)
+        headerWithUser(user, locale)
 
         main {
             section("store-info") {
@@ -162,9 +159,12 @@ private fun FlowContent.addItem(item: PremiumItem) {
             h2("plan-title") { +item.name }
 
             h3("price") {
-                if (item.price == 0.0) +"Grátis"
-                else if (item.monthly) +"R$ %.2f/mês".format(item.price)
-                else +"R$ %.2f".format(item.price)
+                val text = when {
+                    item.price == 0.0 -> "Grátis"
+                    item.monthly -> "R$ ${item.price.toTwoDecimalString()}/mês"
+                    else -> "R$ ${item.price.toTwoDecimalString()}"
+                }
+                +text
             }
 
             if (item.perks.isNotEmpty()) {
@@ -184,6 +184,14 @@ private fun FlowContent.addItem(item: PremiumItem) {
             }
         }
     }
+}
+
+fun Double.toTwoDecimalString(): String {
+    val rounded = kotlin.math.round(this * 100) / 100
+    val parts = rounded.toString().split(".")
+    val integerPart = parts[0]
+    val decimalPart = parts.getOrElse(1) { "0" }.padEnd(2, '0')
+    return "$integerPart.$decimalPart"
 }
 
 private fun UL.addPerk(perk: Perk) {
