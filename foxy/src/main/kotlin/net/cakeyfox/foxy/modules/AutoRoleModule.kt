@@ -1,13 +1,13 @@
-package net.cakeyfox.foxy.modules.autorole
+package net.cakeyfox.foxy.modules
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.suspendCancellableCoroutine
 import net.cakeyfox.foxy.FoxyInstance
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.entities.Role
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
-import net.dv8tion.jda.api.Permission
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
