@@ -6,7 +6,7 @@ import net.cakeyfox.foxy.interactions.vanilla.music.StopExecutor
 
 class StopCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("stop", CommandCategory.MUSIC) {
-        supportsLegacy = true
+        enableLegacyMessageSupport = true
         aliases = listOf("parar")
         executor = StopExecutor()
     }

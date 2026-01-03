@@ -10,13 +10,13 @@ class PlayCommand : FoxyCommandDeclarationWrapper {
         subCommand("music") {
             addOption(opt(OptionType.STRING, "query", true))
 
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             aliases = listOf("tocar", "p", "t", "play")
             executor = PlayExecutor()
         }
 
         subCommand("radio") {
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             aliases = listOf("radio")
             executor = PlayExecutor(true)
         }

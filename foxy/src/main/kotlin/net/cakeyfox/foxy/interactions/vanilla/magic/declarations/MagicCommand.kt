@@ -48,7 +48,7 @@ class MagicCommand : FoxyCommandDeclarationWrapper {
         }
 
         subCommand("girlfriend") {
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             aliases = listOf("namorada")
             addOption(
                 opt(OptionType.USER, "user", true),
@@ -70,7 +70,7 @@ class MagicCommand : FoxyCommandDeclarationWrapper {
         }
 
         subCommand("laranjo") {
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             addOption(
                 opt(OptionType.STRING, "text", true),
                 isSubCommand = true
@@ -79,7 +79,7 @@ class MagicCommand : FoxyCommandDeclarationWrapper {
         }
 
         subCommand("stonks") {
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             addOption(
                 opt(OptionType.STRING, "text", true),
                 isSubCommand = true
@@ -88,7 +88,7 @@ class MagicCommand : FoxyCommandDeclarationWrapper {
         }
 
         subCommand("not_stonks") {
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             addOption(
                 opt(OptionType.STRING, "text", true),
                 isSubCommand = true

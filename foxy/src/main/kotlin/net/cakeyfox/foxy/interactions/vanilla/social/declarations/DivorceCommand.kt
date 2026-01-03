@@ -14,7 +14,7 @@ class DivorceCommand : FoxyCommandDeclarationWrapper {
             InteractionContextType.PRIVATE_CHANNEL
         )
         integrationType = listOf(IntegrationType.USER_INSTALL, IntegrationType.GUILD_INSTALL)
-        supportsLegacy = true
+        enableLegacyMessageSupport = true
         aliases = listOf("divorciar")
 
         executor = DivorceExecutor()

@@ -19,17 +19,17 @@ class FoxyCommand : FoxyCommandDeclarationWrapper {
 
         subCommand("ping") {
             aliases = listOf("ping")
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             executor = PingExecutor()
         }
 
         subCommand("clusters") {
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             executor = PingClustersExecutor()
         }
 
         subCommand("status") {
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
 
             executor = StatusExecutor()
         }

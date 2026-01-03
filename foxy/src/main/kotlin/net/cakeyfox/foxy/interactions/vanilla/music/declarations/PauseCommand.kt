@@ -6,7 +6,7 @@ import net.cakeyfox.foxy.interactions.vanilla.music.PauseExecutor
 
 class PauseCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("pause", CommandCategory.MUSIC) {
-        supportsLegacy = true
+        enableLegacyMessageSupport = true
         aliases = mutableListOf("pausar")
 
         executor = PauseExecutor()

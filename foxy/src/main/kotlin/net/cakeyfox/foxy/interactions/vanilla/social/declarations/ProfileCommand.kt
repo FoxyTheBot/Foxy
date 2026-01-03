@@ -20,20 +20,20 @@ class ProfileCommand : FoxyCommandDeclarationWrapper {
 
         subCommand("view") {
             addOption(opt(OptionType.USER, "user"))
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             aliases = listOf("perfil", "profile")
             executor = ProfileViewExecutor()
         }
 
         subCommand("aboutme") {
             addOption(opt(OptionType.STRING, "text"))
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             aliases = listOf("sobremim")
             executor = AboutMeExecutor()
         }
 
         subCommand("badges") {
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             aliases = listOf("insignías", "insignias")
             executor = ProfileBadgesExecutor()
         }

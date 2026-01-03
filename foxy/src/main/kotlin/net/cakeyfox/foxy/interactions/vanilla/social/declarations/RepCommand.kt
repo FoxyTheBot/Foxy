@@ -9,7 +9,7 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 
 class RepCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("rep", CommandCategory.SOCIAL) {
-        supportsLegacy = true
+        enableLegacyMessageSupport = true
         integrationType = listOf(
             IntegrationType.USER_INSTALL,
             IntegrationType.GUILD_INSTALL
@@ -22,7 +22,7 @@ class RepCommand : FoxyCommandDeclarationWrapper {
 
         subCommand("give") {
             aliases = listOf("rep")
-            supportsLegacy = true
+//            enableLegacyMessageSupport = true
             addOption(opt(OptionType.USER, "user", true))
             addOption(opt(OptionType.STRING, "reason", true))
 

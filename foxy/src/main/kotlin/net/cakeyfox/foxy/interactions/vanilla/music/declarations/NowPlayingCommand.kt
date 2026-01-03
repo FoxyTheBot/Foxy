@@ -6,7 +6,7 @@ import net.cakeyfox.foxy.interactions.vanilla.music.NowPlayingExecutor
 
 class NowPlayingCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("nowplaying", CommandCategory.MUSIC) {
-        supportsLegacy = true
+        enableLegacyMessageSupport = true
         aliases = listOf("np")
 
         executor = NowPlayingExecutor()

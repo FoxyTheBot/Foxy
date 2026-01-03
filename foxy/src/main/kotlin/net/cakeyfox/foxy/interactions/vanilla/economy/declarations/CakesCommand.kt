@@ -19,7 +19,7 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
 
         subCommand("atm") {
             executor = AtmExecutor()
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             aliases = listOf("atm", "cakes")
             addOptions(
                 listOf(
@@ -31,13 +31,13 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
         }
 
         subCommand("rank") {
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             aliases = listOf("topcakes")
             executor = TopCakesExecutor()
         }
 
         subCommand("pay") {
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             aliases = listOf("pagar")
 
             addOptions(

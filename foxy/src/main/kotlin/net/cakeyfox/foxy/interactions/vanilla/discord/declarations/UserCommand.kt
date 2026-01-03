@@ -18,7 +18,7 @@ class UserCommand : FoxyCommandDeclarationWrapper {
 
         subCommand("avatar") {
             addOption(opt(OptionType.USER, "user", true))
-            supportsLegacy = true
+            enableLegacyMessageSupport = true
             executor = UserAvatarExecutor()
         }
     }

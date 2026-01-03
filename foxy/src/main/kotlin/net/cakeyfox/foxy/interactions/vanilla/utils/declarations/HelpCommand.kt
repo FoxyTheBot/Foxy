@@ -13,7 +13,7 @@ class HelpCommand : FoxyCommandDeclarationWrapper {
             InteractionContextType.BOT_DM,
             InteractionContextType.PRIVATE_CHANNEL
         )
-        supportsLegacy = true
+        enableLegacyMessageSupport = true
         aliases = listOf("help", "ajuda")
         integrationType = listOf(IntegrationType.GUILD_INSTALL, IntegrationType.USER_INSTALL)
 

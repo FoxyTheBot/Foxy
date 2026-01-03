@@ -6,7 +6,7 @@ import net.cakeyfox.foxy.interactions.vanilla.music.QueueExecutor
 
 class QueueCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("queue", CommandCategory.MUSIC) {
-        supportsLegacy = true
+        enableLegacyMessageSupport = true
         aliases = listOf("fila", "q", "queue")
 
         executor = QueueExecutor()

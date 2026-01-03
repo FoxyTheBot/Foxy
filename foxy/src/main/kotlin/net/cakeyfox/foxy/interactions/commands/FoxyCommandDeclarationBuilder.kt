@@ -20,7 +20,7 @@ class FoxyCommandDeclarationBuilder(
     var category: String,
     var availableForEarlyAccess: Boolean = false,
     var aliases: List<String> = emptyList(),
-    var supportsLegacy: Boolean = false,
+    var enableLegacyMessageSupport: Boolean = false,
     var integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
     var interactionContexts: List<InteractionContextType> = listOf(InteractionContextType.GUILD),
     var defaultMemberPermissions: DefaultMemberPermissions?,
@@ -50,7 +50,7 @@ class FoxyCommandDeclarationBuilder(
             category,
             availableForEarlyAccess,
             aliases,
-            supportsLegacy,
+            enableLegacyMessageSupport,
             integrationType,
             interactionContexts,
             defaultMemberPermissions

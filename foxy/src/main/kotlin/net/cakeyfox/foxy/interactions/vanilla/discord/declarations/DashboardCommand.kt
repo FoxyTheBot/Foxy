@@ -11,7 +11,7 @@ class DashboardCommand : FoxyCommandDeclarationWrapper {
         interactionContexts = listOf(InteractionContextType.GUILD)
         integrationType = listOf(IntegrationType.GUILD_INSTALL)
 
-        supportsLegacy = true
+        enableLegacyMessageSupport = true
         aliases = listOf("dashboard")
         executor = DashboardExecutor()
     }
