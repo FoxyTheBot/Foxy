@@ -9,6 +9,7 @@ plugins {
 dependencies {
     implementation(libs.kotlin.stdlib.jdk8)
     implementation(project(":website:frontend"))
+    implementation(project(":website:dashboard:dashboard-utils"))
     implementation(project(":website:dashboard:frontend"))
     implementation(project(":showtime-client"))
     implementation(project(":common"))
@@ -29,7 +30,7 @@ dependencies {
     // Database
     implementation(libs.mongodb.bson)
     implementation(libs.mongodb.coroutine.driver)
-    implementation(libs.foxy.databaseutils)
+    implementation(libs.foxy.databaseutils.jvm)
 
     // Ktor
     implementation(libs.ktor.server.core)

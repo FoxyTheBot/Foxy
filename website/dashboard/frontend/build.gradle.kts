@@ -1,5 +1,6 @@
 plugins {
-    kotlin("jvm")
+    kotlin("multiplatform")
+    kotlin("plugin.serialization")
 }
 
 group = "net.cakeyfox.foxy.dashboard"
@@ -9,23 +10,31 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation(project(":serializable-commons"))
-    implementation(project(":website:frontend"))
-    implementation(project(":common"))
-    implementation(project(":serializable-commons"))
-
-    implementation(libs.foxy.databaseutils)
-    implementation(libs.ktor.htmx)
-    implementation(libs.ktor.htmx.html)
-    implementation(libs.ktor.server.core)
-    implementation(libs.ktor.server.auth)
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
-
 kotlin {
-    jvmToolchain(Versions.JVM_TARGET)
+    jvm()
+    js(IR) {
+        browser()
+        binaries.executable()
+    }
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.content.negotiation)
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.kotlinx.serialization.core)
+                implementation(libs.ktor.serialization.json)
+                implementation(libs.ktor.client.cio)
+                implementation(project(":serializable-commons"))
+                implementation(project(":website:frontend"))
+                implementation(project(":common"))
+                implementation(libs.foxy.databaseutils.common)
+                implementation(libs.ktor.htmx)
+                implementation(libs.ktor.htmx.html)
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.kotlinx.serialization.core)
+            }
+        }
+    }
 }

@@ -12,7 +12,10 @@ kotlin {
     sourceSets {
         val jsMain by getting {
             dependencies {
+                implementation(kotlin("stdlib-js"))
                 implementation("org.jetbrains.kotlinx:kotlinx-browser:0.5.0")
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.kotlinx.serialization.core)
             }
         }
 
