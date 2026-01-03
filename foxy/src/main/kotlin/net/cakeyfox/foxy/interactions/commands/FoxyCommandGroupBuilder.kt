@@ -2,6 +2,7 @@ package net.cakeyfox.foxy.interactions.commands
 
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
+import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions
 
 class FoxyCommandGroupBuilder(
     val name: String,
@@ -16,9 +17,10 @@ class FoxyCommandGroupBuilder(
         category: String,
         availableForEarlyAccess: Boolean = false,
         aliases: List<String> = emptyList(),
-        supportsLegacy: Boolean = false,
+        enableLegacyMessageSupport: Boolean = false,
         integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
         interactionContexts: List<InteractionContextType> = listOf(InteractionContextType.GUILD),
+        defaultMemberPermissions: DefaultMemberPermissions?,
         block: FoxyCommandDeclarationBuilder.() -> Unit
     ) {
         val subCommand = FoxyCommandDeclarationBuilder(
@@ -28,9 +30,10 @@ class FoxyCommandGroupBuilder(
             category,
             availableForEarlyAccess,
             aliases,
-            supportsLegacy,
+            enableLegacyMessageSupport,
             integrationType,
-            interactionContexts
+            interactionContexts,
+            defaultMemberPermissions
         )
         subCommand.block()
         subCommands.add(subCommand)

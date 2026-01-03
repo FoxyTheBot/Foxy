@@ -2,6 +2,7 @@ package net.cakeyfox.foxy.interactions.components
 
 import com.github.benmanes.caffeine.cache.Caffeine
 import dev.minn.jda.ktx.interactions.components.EntitySelectMenu
+import dev.minn.jda.ktx.interactions.components.Modal
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.ComponentId
@@ -206,7 +207,6 @@ class FoxyComponentManager(
 
         @get:JvmSynthetic
         var components: List<ModalTopLevelComponent>
-            @Deprecated("", level = DeprecationLevel.ERROR)
             get() = throw UnsupportedOperationException()
             set(value) {
                 modal.addComponents(value)

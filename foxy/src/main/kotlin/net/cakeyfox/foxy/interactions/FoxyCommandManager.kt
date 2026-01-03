@@ -21,6 +21,9 @@ import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RateWai
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RollsCommand
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RussianRouletteCommand
 import net.cakeyfox.foxy.interactions.vanilla.magic.declarations.MagicCommand
+import net.cakeyfox.foxy.interactions.vanilla.moderation.declarations.BanCommand
+import net.cakeyfox.foxy.interactions.vanilla.moderation.declarations.ClearCommand
+import net.cakeyfox.foxy.interactions.vanilla.moderation.declarations.MuteCommand
 import net.cakeyfox.foxy.interactions.vanilla.music.declarations.MusicConfigureCommand
 import net.cakeyfox.foxy.interactions.vanilla.music.declarations.NowPlayingCommand
 import net.cakeyfox.foxy.interactions.vanilla.music.declarations.PauseCommand
@@ -146,13 +149,18 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(RollsCommand())
         register(YouTubeCommand())
 
+        /* ---- [Moderation] ----*/
+//        register(ClearCommand())
+//        register(BanCommand())
+//        register(MuteCommand())
+
         /* ---- [Social] ---- */
         register(ProfileCommand())
         register(MarryCommand())
         register(DivorceCommand())
         register(BirthdayCommand())
         register(RoleplayCommand())
-//        register(RepCommand())
+        register(RepCommand())
 
         /* ---- [Music] ---- */
         register(PlayCommand())

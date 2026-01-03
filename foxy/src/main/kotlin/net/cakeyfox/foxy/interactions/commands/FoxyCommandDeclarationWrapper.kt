@@ -2,6 +2,7 @@ package net.cakeyfox.foxy.interactions.commands
 
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
+import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions
 
 interface FoxyCommandDeclarationWrapper {
     fun create(): FoxyCommandDeclarationBuilder
@@ -11,7 +12,8 @@ interface FoxyCommandDeclarationWrapper {
         category: String,
         supportsLegacy: Boolean = false,
         aliases: List<String> = emptyList(),
-        block: FoxyCommandDeclarationBuilder.() -> Unit
+        defaultMemberPermissions: DefaultMemberPermissions? = null,
+        block: FoxyCommandDeclarationBuilder.() -> Unit,
     ): FoxyCommandDeclarationBuilder {
         return FoxyCommandDeclarationBuilder(
             name,
@@ -22,7 +24,8 @@ interface FoxyCommandDeclarationWrapper {
             aliases,
             supportsLegacy,
             integrationType = listOf(IntegrationType.GUILD_INSTALL),
-            interactionContexts = listOf(InteractionContextType.GUILD)
+            interactionContexts = listOf(InteractionContextType.GUILD),
+            defaultMemberPermissions
         ).apply(block)
     }
 }
