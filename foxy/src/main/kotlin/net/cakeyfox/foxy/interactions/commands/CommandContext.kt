@@ -10,6 +10,8 @@ import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.entities.User
+import net.dv8tion.jda.api.entities.channel.Channel
+import net.dv8tion.jda.api.entities.channel.middleman.GuildMessageChannel
 import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.interactions.InteractionHook
 import net.dv8tion.jda.api.interactions.modals.Modal
@@ -23,6 +25,7 @@ interface CommandContext {
     val database: DatabaseClient
     val utils: FoxyUtils
     val user: User
+    val channel: Channel?
     val guild: Guild?
     val member: Member?
     val foxy: FoxyInstance
