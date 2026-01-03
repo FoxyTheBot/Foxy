@@ -19,19 +19,6 @@ import net.dv8tion.jda.api.components.mediagallery.MediaGalleryItem
 import net.dv8tion.jda.api.components.separator.Separator
 
 object YouTubeInteractionHandler {
-    suspend fun fetchFollowedChannelsWithInfo(
-        context: CommandContext
-    ): List<Pair<YouTubeChannel, YouTubeQueryBody.Item?>> {
-        val guildData = context.foxy.database.guild.getGuild(context.guildId!!)
-        return guildData.followedYouTubeChannels.map { storedChannel ->
-            val youtubeApiChannel = context.foxy.youtubeManager
-                .getChannelInfo(storedChannel.channelId)
-                ?.items
-                ?.firstOrNull()
-            storedChannel to youtubeApiChannel
-        }
-    }
-
     fun InlineMessage<*>.renderFollowedChannelsList(
         context: CommandContext,
         followedChannelsWithInfo: List<Pair<YouTubeChannel, YouTubeQueryBody.Item?>>,
@@ -134,7 +121,8 @@ object YouTubeInteractionHandler {
                     emoji = FoxyEmotes.Back,
                     label = context.locale["youtube.channel.list.backButton"]
                 ) { btnContext ->
-                    val followedChannelsWithInfo = fetchFollowedChannelsWithInfo(context)
+                    val guildData = context.foxy.database.guild.getGuild(context.guildId!!)
+                    val followedChannelsWithInfo = context.foxy.youtubeManager.fetchFollowedChannelsWithInfo(guildData)
                     btnContext.edit {
                         useComponentsV2 = true
                         renderFollowedChannelsList(btnContext, followedChannelsWithInfo, maxChannelsAvailable)
@@ -152,7 +140,8 @@ object YouTubeInteractionHandler {
 
                     if (stillExists) {
                         context.foxy.database.youtube.removeChannelFromGuild(context.guildId!!, storedChannel.channelId)
-                        val followedChannelsWithInfo = fetchFollowedChannelsWithInfo(context)
+
+                        val followedChannelsWithInfo = context.foxy.youtubeManager.fetchFollowedChannelsWithInfo(guildData)
 
                         btnContext.edit {
                             useComponentsV2 = true
