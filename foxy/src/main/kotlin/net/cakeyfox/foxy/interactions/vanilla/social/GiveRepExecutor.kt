@@ -10,15 +10,15 @@ import kotlin.time.Duration.Companion.days
 
 class GiveRepExecutor : UnleashedCommandExecutor() {
     override suspend fun execute(context: CommandContext) {
+        context.defer()
         val user = context.getOption("user", 0, User::class.java)
         val reason = context.getOption("reason", 1, String::class.java, true)
         val lastRep = context.getAuthorData().userProfile.lastRep
 
-        if (user == null || reason == null) return helpEmbed(context)
+        if (user == null || reason == null) return
 
-        val userReps = context.database.user.getFoxyProfile(user.id).userProfile.repCount
         if (lastRep != null) {
-            if (lastRep <= Clock.System.now()) {
+            if (lastRep >= Clock.System.now()) {
                 return context.reply(true) {
                     content = pretty(FoxyEmotes.FoxyRage, context.locale[
                         "rep.give.youCantGiveRepUntil",
@@ -28,11 +28,7 @@ class GiveRepExecutor : UnleashedCommandExecutor() {
             }
         }
 
-
-        context.database.user.updateUser(user.id) {
-            userProfile.repCount = userReps + 1
-        }
-
+        context.database.user.addReputation(user.id, reason)
         context.database.user.updateUser(context.user.id) {
             userProfile.lastRep = Clock.System.now()
         }
@@ -40,11 +36,5 @@ class GiveRepExecutor : UnleashedCommandExecutor() {
         context.reply {
             content = pretty(FoxyEmotes.FoxyYay, context.locale["rep.give.youGaveRepToUser", user.asMention])
         }
-
-        // TODO: Add reason to database
-    }
-
-    private fun helpEmbed(context: CommandContext) {
-        // TODO
     }
 }
