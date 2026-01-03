@@ -14,6 +14,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.serializable.data.cluster.CustomGuildInfo
 import net.cakeyfox.serializable.data.cluster.CustomMemberResponse
 import net.cakeyfox.serializable.data.cluster.ClusterInfo
+import net.cakeyfox.serializable.data.cluster.UnbanRouteRequest
 import net.cakeyfox.serializable.data.utils.FoxyConfig
 import org.jetbrains.annotations.TestOnly
 import java.util.concurrent.TimeUnit
@@ -179,6 +180,27 @@ object ClusterUtils {
             null
         }
     }
+
+    suspend fun removePunishmentFromAGuildFromAnotherCluster(
+        foxy: FoxyInstance,
+        cluster: FoxyConfig.DiscordSettings.Cluster,
+        guildId: String,
+    ) {
+        return withContext(foxy.coroutineDispatcher) {
+            val response = foxy.http.post {
+                url(cluster.clusterUrl + "/api/v1/unban/$guildId")
+                header("Content-Type", "application/json")
+                header("Authorization", "Bearer ${foxy.config.internalApi.key}")
+                timeout {
+                    connectTimeoutMillis = foxy.config.discord.clusterConnectionTimeout
+                    requestTimeoutMillis = foxy.config.discord.clusterReadTimeout
+                }
+            }
+
+            if (response.status != HttpStatusCode.OK) return@withContext
+        }
+    }
+
 
     private suspend fun getFromAnotherCluster(
         foxy: FoxyInstance,
