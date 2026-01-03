@@ -53,6 +53,10 @@ object FoxyEmotes {
     const val PaintBrush = "\uD83D\uDD8C\uFE0F"
     const val TrashCan = "\uD83D\uDDD1\uFE0F"
     const val Back = "◀\uFE0F"
+    const val Locked = "\uD83D\uDD12"
+    const val Unlocked = "\uD83D\uDD13"
+    const val BrokenHeart = "\uD83D\uDC94"
+    const val Letter = "\uD83D\uDC8C"
 
 
     // Badges
