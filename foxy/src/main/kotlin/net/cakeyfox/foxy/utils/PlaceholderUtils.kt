@@ -1,11 +1,15 @@
 package net.cakeyfox.foxy.utils
 
+import kotlinx.datetime.Instant
+import net.cakeyfox.common.Constants
 import net.cakeyfox.common.Placeholders
+import net.cakeyfox.foxy.FoxyInstance
+import net.cakeyfox.serializable.data.website.DiscordServer
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.User
 
 object PlaceholderUtils {
-    fun getAllPlaceholders(guild: Guild, user: User): Map<String, String?> {
+    fun getAllPlaceholders(guild: DiscordServer, user: User): Map<String, String?> {
         return getUserPlaceholders(user) + getGuildPlaceholders(guild)
     }
 
@@ -14,6 +18,36 @@ object PlaceholderUtils {
             Placeholders.CHANNEL_NAME to channelName,
             Placeholders.VIDEO_URL to videoUrl,
             Placeholders.CHANNEL_ID to channelId
+        )
+    }
+
+    fun getModerationPlaceholders(
+        foxy: FoxyInstance,
+        staff: User,
+        punishedMember: User,
+        guild: Guild,
+        duration: Instant?,
+        reason: String,
+        punishmentType: String
+    ): Map<String, String?> {
+        return mapOf(
+            Placeholders.DURATION to if (duration != null) {
+                foxy.utils.convertISOToExtendedDiscordTimestamp(duration)
+            } else "Permanente",
+
+            Placeholders.STAFF_NAME to staff.name,
+            Placeholders.STAFF_ID to staff.id,
+            Placeholders.STAFF_MENTION to staff.asMention,
+            Placeholders.STAFF_AVATAR to staff.effectiveAvatarUrl + "?size=2048",
+            Placeholders.MEMBER_NAME to punishedMember.name,
+            Placeholders.MEMBER_AVATAR to punishedMember.avatarUrl,
+            Placeholders.MEMBERS_ID to punishedMember.id,
+            Placeholders.MEMBER_MENTION to punishedMember.asMention,
+            Placeholders.GUILD_NAME to guild.name,
+            Placeholders.GUILD_ID to guild.id,
+            Placeholders.GUILD_ICON to guild.iconUrl,
+            Placeholders.REASON to reason,
+            Placeholders.PUNISHMENT_TYPE to punishmentType,
         )
     }
 
@@ -27,12 +61,13 @@ object PlaceholderUtils {
         )
     }
 
-    private fun getGuildPlaceholders(guild: Guild): Map<String, String?> {
+    private fun getGuildPlaceholders(guild: DiscordServer): Map<String, String?> {
+        val staticImage = "https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128"
+
         return mapOf(
             Placeholders.GUILD_NAME to guild.name,
             Placeholders.GUILD_ID to guild.id,
-            Placeholders.GUILD_MEMBERS to guild.memberCount.toString(),
-            Placeholders.GUILD_ICON to guild.iconUrl
+            Placeholders.GUILD_ICON to if (guild.icon != null) staticImage else guild.iconUrl
         )
     }
 
