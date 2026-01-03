@@ -11,4 +11,5 @@ object CommandCategory {
     const val MUSIC = "music"
     const val DISCORD = "discord"
     const val YOUTUBE = "youtube"
+    const val MODERATION = "mod"
 }
