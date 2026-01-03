@@ -2,11 +2,11 @@
 
 :root {
     --reimu-primary-color: #e7385d;
-    --reimu-secondary-color: #1d1d1d;
-    --reimu-tertiary-color: #f8f7f6;
+    --reimu-secondary-color: #25232d;
+    --reimu-tertiary-color: #25232d;
     --reimu-border-color: #d1d1d1;
     --reimu-background-color: #f8f7f6;
-    --reimu-loading-overlay-color: #f8f7f6;
+    --reimu-loading-overlay-color: #bbbbbb91;
     --reimu-feature-session-background: #fff;
     --reimu-feature-card-background: var(--reimu-tertiary-color);
     --reimu-feature-card-font-color: #2e3038;
@@ -14,7 +14,7 @@
     --reimu-sidebar-font-size: 14px;
     --reimu-sidebar-font-weight: 500;
     --reimu-sidebar-font-color: #353535;
-    --reimu-sidebar-entry-hover: #e1e1e1;
+    --reimu-sidebar-entry-hover: #eeeeee;
     --reimu-navbar-color: #ffffffa8;
     --reimu-navbar-text-color: #2e3038;
     --reimu-navbar-text-hover-color: #bbb;
@@ -30,12 +30,14 @@
     --reimu-button-font-weight: 500;
     --reimu-button-border-radius: 10px;
     --reimu-button-padding: 10px 20px;
+    --reimu-sidebar-separator: #c2c2c25c;
     --reimu-server-card-color: var(--reimu-secondary-color);
     --reimu-backdrop-blur: blur(12px);
     --reimu-premium-card-background: var(--reimu-tertiary-color);
     --reimu-premium-card-border: 1px solid var(--reimu-primary-color);
     --reimu-premium-recommended-color: #b93e69;
     --reimu-premium-card-font-color: #eee;
+    --reimu-embed-color: #393a41;
     --reimu-premium-recommended-flag-font-color: #fff;
     --reimu-premium-recommended-flag-color: var(--reimu-primary-color);
     --reimu-premium-card-button-color: var(--reimu-primary-color);
@@ -48,4 +50,5 @@
     --reimu-footer-color: #e7385d;
     --reimu-searchbar-text: #fff;
     --reimu-searchbar-background: #fff;
+    --reimu-header-border: #c6c6c68f;
 }
