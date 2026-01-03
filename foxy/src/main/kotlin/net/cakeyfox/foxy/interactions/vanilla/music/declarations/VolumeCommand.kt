@@ -7,7 +7,7 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 
 class VolumeCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("volume", CommandCategory.MUSIC) {
-        supportsLegacy = true
+        enableLegacyMessageSupport = true
         aliases = listOf("vol", "volume")
         addOption(opt(
             OptionType.INTEGER, "level", true)
