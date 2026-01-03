@@ -12,6 +12,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.MessageCommandContext
 import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.interactions.pretty
+import net.cakeyfox.foxy.modules.ServerLogModule
 import net.cakeyfox.foxy.utils.PremiumUtils
 import net.cakeyfox.foxy.utils.discord.NitroUtils
 import net.cakeyfox.foxy.utils.music.AudioLoader
@@ -19,7 +20,9 @@ import net.cakeyfox.foxy.utils.music.getOrCreateMusicManager
 import net.cakeyfox.foxy.utils.music.joinInAVoiceChannel
 import net.cakeyfox.foxy.utils.music.processQuery
 import net.dv8tion.jda.api.entities.channel.ChannelType
+import net.dv8tion.jda.api.events.message.MessageDeleteEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.events.message.MessageUpdateEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.dv8tion.jda.api.interactions.DiscordLocale
 import kotlin.system.measureTimeMillis
@@ -27,11 +30,41 @@ import kotlin.system.measureTimeMillis
 class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
     private val logger = KotlinLogging.logger { }
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+    private val serverLogModule = ServerLogModule(foxy)
+
+    override fun onMessageDelete(event: MessageDeleteEvent) {
+        scope.launch {
+            if (event.channelType == ChannelType.PRIVATE) return@launch
+
+            val guildData = foxy.database.guild.getGuild(event.guild.id).serverLogModule
+            if (guildData?.sendDeletedMessagesLogs == true) serverLogModule.processMessageDeleted(event)
+        }
+    }
+
+    override fun onMessageUpdate(event: MessageUpdateEvent) {
+        scope.launch {
+            if (event.author.isBot || event.channelType == ChannelType.PRIVATE) return@launch
+
+            val guildData = foxy.database.guild.getGuild(event.guild.id).serverLogModule
+            if (guildData?.sendUpdatedMessagesLogs == true) serverLogModule.processUpdatedMessage(event)
+        }
+    }
 
     override fun onMessageReceived(event: MessageReceivedEvent) {
         if (event.author.isBot || event.isWebhookMessage || event.channelType == ChannelType.PRIVATE) return
 
+        val customMember = ServerLogModule.CustomMember(
+            message = event.message,
+            member = event.member
+        )
+
         scope.launch {
+            val guildData = foxy.database.guild.getGuild(event.guild.id).serverLogModule
+
+            if (guildData?.sendDeletedMessagesLogs == true || guildData?.sendUpdatedMessagesLogs == true) {
+                serverLogModule.cachedMessages.put(event.messageIdLong, customMember)
+            }
+
             processCommandOrMention(event)
             processDjFoxyMessage(event)
             if (event.member?.isBoosting == true) {
@@ -58,6 +91,7 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
             context.reply(true) {
                 content = pretty(FoxyEmotes.FoxyCry, context.locale["music.play.queueLimitReached", "100"])
             }
+
             return
         }
 
@@ -108,7 +142,7 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
             .lowercase()
 
         val command = foxy.commandHandler.getCommandAsLegacy(commandName)
-        if (command == null || !command.command.supportsLegacy) return
+        if (command == null || !command.command.enableLegacyMessageSupport) return
 
         if (guild.guildSettings.blockedChannels.contains(event.channel.id)) {
             if (guild.guildSettings.sendMessageIfChannelIsBlocked) {

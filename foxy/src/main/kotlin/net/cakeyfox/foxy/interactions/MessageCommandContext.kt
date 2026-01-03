@@ -30,6 +30,7 @@ class MessageCommandContext(
     override val guildId get() = event.guild.id
     override val locale = FoxyLocale("pt-br")
     override val utils = FoxyUtils(foxy)
+    override val channel = event.channel
     override val guild = event.guild
     override val user = event.author
     override val member = event.member

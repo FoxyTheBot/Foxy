@@ -5,6 +5,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
+import net.cakeyfox.foxy.database.common.data.marry.Marry
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.utils.image.ImageUtils
 import net.cakeyfox.foxy.utils.image.ImageUtils.drawTextWithFont
@@ -37,6 +38,7 @@ class ProfileRender(
         private val logger = KotlinLogging.logger(this::class.jvmName)
     }
 
+    // TODO: Add the reputation count on profile
     suspend fun create(user: User, userData: FoxyUser): ByteArray {
         val renderTime = measureTimeMillis {
             coroutineScope {
@@ -115,7 +117,8 @@ class ProfileRender(
             textPosition = layout.profileSettings.positions.usernamePosition
         }
 
-        if (userData.marryStatus.marriedWith != null) drawMarryInfo(userData, layout)
+        val marriageInfo = context.database.user.getMarriage(user.id)
+        if (marriageInfo != null) drawMarryInfo(userData, layout, marriageInfo)
 
         val formattedBalance = context.utils.formatUserBalance(
             userData.userCakes.balance.toLong(),
@@ -249,11 +252,15 @@ class ProfileRender(
         }
     }
 
-    private suspend fun drawMarryInfo(userData: FoxyUser, layout: Layout) {
-        val marriedDateFormatted = context.utils.convertToHumanReadableDate(userData.marryStatus.marriedDate!!)
+    private suspend fun drawMarryInfo(userData: FoxyUser, layout: Layout, marriageInfo: Marry) {
+        val marriedDateFormatted = context.utils.convertToHumanReadableDate(marriageInfo.marriedDate!!)
         val marriedOverlay = ProfileCacheManager.loadImageFromCache(Constants.getMarriedOverlay(layout.id))
         val color = if (layout.darkText) Color.BLACK else Color.WHITE
-        val partnerUser = context.jda.retrieveUserById(userData.marryStatus.marriedWith!!).await()
+        val partnerUser = if (marriageInfo.firstUserId == context.user.id) {
+            context.jda.retrieveUserById(marriageInfo.secondUserId).await()
+        } else {
+            context.jda.retrieveUserById(marriageInfo.firstUserId).await()
+        }
 
         marriedOverlay.let {
             graphics.drawImage(it, 0, 0, config.profileWidth, config.profileHeight, null)

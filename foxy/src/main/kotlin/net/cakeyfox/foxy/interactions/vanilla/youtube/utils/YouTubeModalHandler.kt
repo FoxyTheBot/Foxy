@@ -10,7 +10,6 @@ import net.cakeyfox.common.Colors
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.pretty
-import net.cakeyfox.foxy.interactions.vanilla.youtube.utils.YouTubeInteractionHandler.fetchFollowedChannelsWithInfo
 import net.cakeyfox.foxy.interactions.vanilla.youtube.utils.YouTubeInteractionHandler.renderChannelEditView
 import net.cakeyfox.foxy.interactions.vanilla.youtube.utils.YouTubeInteractionHandler.renderFollowedChannelsList
 import net.cakeyfox.serializable.data.utils.YouTubeQueryBody
@@ -107,6 +106,7 @@ object YouTubeModalHandler {
                                 },
                             ) { selectMenuContext, strings ->
                                 val channel = strings.first()
+                                val guildData = context.foxy.database.guild.getGuild(context.guildId!!)
 
                                 context.foxy.youtubeManager.createWebhook(channelInfo.id)
                                 context.foxy.database.youtube.addChannelToAGuild(
@@ -117,7 +117,7 @@ object YouTubeModalHandler {
                                 )
 
                                 selectMenuContext.deferEdit()
-                                val followedChannelsWithInfo = fetchFollowedChannelsWithInfo(context)
+                                val followedChannelsWithInfo = context.foxy.youtubeManager.fetchFollowedChannelsWithInfo(guildData)
 
                                 context.edit {
                                     useComponentsV2 = true
@@ -157,6 +157,7 @@ object YouTubeModalHandler {
                 context.foxy.database.youtube.updateChannelCustomMessage(
                     context.guildId!!,
                     youtubeApiChannel.id,
+                    null,
                     newCustomMessage
                 )
 

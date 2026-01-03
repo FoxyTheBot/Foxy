@@ -2,7 +2,7 @@ package net.cakeyfox.foxy.leaderboard.data
 
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
-import net.cakeyfox.foxy.database.utils.MongoDateSerializer
+import net.cakeyfox.foxy.database.common.data.MongoDateSerializer
 
 sealed class LeaderboardUser {
     abstract val rank: Int

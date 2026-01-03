@@ -14,23 +14,24 @@ class FoxyLocale(var locale: String) {
 
     val language: String
         get() = locale
-    
+
     operator fun get(key: String, vararg placeholder: String): String {
-        locale = when(locale) {
-            "pt-br" -> "br"
-            "en-us" -> "us"
+        val resolvedLocaleFolder = when (locale.lowercase()) {
+            "pt-br", "br" -> "br"
+            "en-us", "us" -> "us"
             else -> "br"
         }
 
         val resourcePaths = listOf(
-            "$PATH/$locale/general.yml",
-            "$PATH/$locale/commands.yml",
-            "$PATH/$locale/components.yml",
-            "$PATH/$locale/modules.yml",
-            "$PATH/$locale/utils.yml",
-            "$PATH/$locale/website/main.yml",
-            "$PATH/$locale/website/header.yml",
-            "$PATH/$locale/website/dashboard.yml"
+            "$PATH/$resolvedLocaleFolder/general.yml",
+            "$PATH/$resolvedLocaleFolder/commands.yml",
+            "$PATH/$resolvedLocaleFolder/components.yml",
+            "$PATH/$resolvedLocaleFolder/modules.yml",
+            "$PATH/$resolvedLocaleFolder/utils.yml",
+            "$PATH/$resolvedLocaleFolder/website/main.yml",
+            "$PATH/$resolvedLocaleFolder/website/header.yml",
+            "$PATH/$resolvedLocaleFolder/website/dashboard.yml",
+            "$PATH/$resolvedLocaleFolder/punishments.yml"
         )
 
         for (resourcePath in resourcePaths) {

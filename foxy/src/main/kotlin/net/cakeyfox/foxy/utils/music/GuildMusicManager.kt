@@ -21,7 +21,6 @@ class GuildMusicManager(
 
     fun isUserAbleToControl(userId: Long): Boolean {
         val player = getPlayer() ?: return false
-        println(player)
 
         return true
     }

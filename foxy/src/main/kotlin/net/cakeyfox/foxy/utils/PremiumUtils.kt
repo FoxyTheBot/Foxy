@@ -1,6 +1,7 @@
 package net.cakeyfox.foxy.utils
 
 import kotlinx.datetime.Clock
+import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.database.data.user.FoxyUser
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import kotlin.time.Duration.Companion.days
@@ -22,9 +23,9 @@ object PremiumUtils {
         return 100
     }
 
-    suspend fun maximumYouTubeChannels(context: CommandContext): Int {
-        val guildKey = context.database.guild.getKeyByGuildId(context.guildId!!) ?: return 3
-        val user = context.database.user.getUserByPremiumKey(guildKey.key)
+    suspend fun maximumYouTubeChannels(foxy: FoxyInstance, guildId: String): Int {
+        val guildKey = foxy.database.guild.getKeyByGuildId(guildId) ?: return 3
+        val user = foxy.database.user.getUserByPremiumKey(guildKey.key)
 
         if (user != null && isUserPremium(user)) {
             return when (getPremiumType(user)) {
