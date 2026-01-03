@@ -1,26 +1,38 @@
+enableModule: Ativar Módulo
+
 dashboard:
   actionWrapper:
     saveCard: Clique em salvar para aplicar as alterações
     saveButton: Salvar
+    cancelButton: Descartar
 
   guildSidebar:
     separators:
       modules: Módulos
       social: Redes Sociais
       settings: Extras
+      moderation: Moderação
+      misc: Miscelâneas
 
     backToServerList: Voltar para a lista de servidores
     generalSettings: Configurações Gerais
     welcomer: Mensagem de Entrada/Saída
     autorole: Configurar Autorole
+    modlog: Registro de Punições
     antiraid: Configurar Anti-Raid
     inviteblocker: Bloqueio de Convites
     music: Música
     youtube: Notificações do YouTube
+    instagram: Notificações do Instagram
+    twitch: Notificações da Twitch
     manageKeys: Gerenciar Chaves Premium
     auditLog: Registro de Auditoria
   modules:
     manage: "Painel de Controle | {0}"
+
+    welcomer:
+      title: Mensagem de Entrada/Saída
+      description: Saiba em tempo real quem entrou ou saiu do seu servidor!
 
     inviteblocker:
       title: Bloqueador de Convites
@@ -29,6 +41,9 @@ dashboard:
     autorole:
       title: Autorole
       description: Cansado(a) de dar cargos manualmente para novos membros? Deixe que eu faça isso!
+      rolesToAdd:
+        title: "Cargos que serão adicionados a novos membros"
+        addRoleButton: "Adicionar Cargo"
 
     music:
       title: DJ Foxy
@@ -68,16 +83,22 @@ dashboard:
     general: Geral
     yourProfile: Seu Perfil
     foxyStore: Lojinha da Foxy
+    settings: Configurações
 
   entries:
     foxyToGo: Foxy De Bolso
     manageServers: Gerenciar Servidores
     backgrounds: Planos de Fundo
     layouts: Designs de Perfil
+    dailyStore: Loja Diária
+    daily: Prêmio Diário
     decorations: Decorações de Avatar
     manageSubscriptions: Gerenciar Assinaturas
     buyPremium: Comprar Premium
     buyCakes: Comprar Cakes
+    termsOfUse: Termos de Uso
+    guidelines: Diretrizes da Comunidade
+    deleteAccount: Deletar Conta
     logout: Sair
 
   guildList:

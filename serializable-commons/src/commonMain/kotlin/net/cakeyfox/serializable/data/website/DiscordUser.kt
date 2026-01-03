@@ -6,6 +6,6 @@ import kotlinx.serialization.Serializable
 data class DiscordUser(
     val id: String,
     val username: String,
-    val global_name: String,
-    val avatar: String
+    val global_name: String?,
+    val avatar: String?
 )

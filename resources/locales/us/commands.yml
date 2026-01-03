@@ -1,4 +1,5 @@
 ---
+youDontHavePermissionToUseThisCommand: "You don't have permission to use this command!"
 imageSource: Image Link
 8mile:
   wrongContentType: I wish I could use this, but I can't. You need to send an audio
@@ -19,6 +20,7 @@ commands:
 
     pt-BR: "Agora eu vou falar com você usando o Português Brasileiro!"
     en-US: "Okay, now I'll talk with you in English!"
+
 dashboard:
   embed:
     title: Dashboard

@@ -9,6 +9,30 @@ commands:
   error: An error occurred while executing the command, the problem has been reported!
     `{0}`
   command:
+    ban:
+      name: banir
+      description: Bana até 200 membros do servidor
+      # TODO: Translate this
+      options:
+        time:
+          name: duração
+        users:
+          name: usuários
+        reason:
+          name: motivo
+        skip_confirmation:
+          name: pular_confirmação
+
+    clear:
+      name: "limpar"
+      chat:
+        name: chat
+      options:
+        quantity:
+          name: quantidade
+        users:
+          name: usuários
+
     rep:
       name: "reputação"
       give:
@@ -457,13 +481,28 @@ commands:
     marry:
       name: casar
       description: Case com alguém
+      letter:
+        name: "cartinha"
+        description: "Compre cartinhas ou coisas para deixar seu casamento único!"
       ask:
         name: pedir
         description: Peça alguém em casamento
+      manage:
+        name: "ver"
+        description: "Gerencie seu casamento atual ou se quer receber pedidos ou não"
       options:
         user:
           name: usuário
           description: O usuário que você deseja pedir em casamento
+        proposal:
+          name: "cartinha"
+          description: "Algo fofo para convencer seu webnamorado(a) a aceitar o pedido"
+        letter_type:
+          name: "letter_type"
+          description: "O item que será comprado na Loja de Casal"
+        letter:
+          name: "texto"
+          description: "O que será dito na cartinha (Escreva com seu coração rs)"
       leaderboard:
         name: leaderboard
     divorce:

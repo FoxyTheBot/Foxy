@@ -83,15 +83,14 @@ class PostPubSubCallbackRoute(
             val publishedStr = entry.selectFirst("published")?.text() ?: return@post
             val publishedDate = OffsetDateTime.parse(publishedStr)
 
-            logger.info { "Notifying from PubHubSubbub for $channelId" }
-
             if (videoId != null && channelId != null) {
                 val cutoffDate = java.time.LocalDate.now()
                 val videoDate = publishedDate.toLocalDate()
 
                 if (videoDate.isBefore(cutoffDate)) {
-                    logger.info { "Skipping old video ($videoId)" }
+                    logger.debug { "Skipping old video ($videoId)" }
                 } else {
+                    logger.info { "Notifying from PubHubSubbub for $channelId" }
                     foxy.database.youtube.getOrRegisterYouTubeWebhook(channelId)
                     manager.notifyGuilds(channelId, author, videoUrl, videoId)
                 }

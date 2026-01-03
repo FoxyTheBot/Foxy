@@ -1,0 +1,101 @@
+dashboard:
+  actionWrapper:
+    saveCard: Click save to apply the changes
+    saveButton: Save
+    cancelButton: Discard
+
+  guildSidebar:
+    separators:
+      modules: Modules
+      social: Social Networks
+      settings: Extras
+      moderation: Moderation
+      misc: Miscellaneous
+
+    backToServerList: Back to server list
+    generalSettings: General Settings
+    welcomer: Join/Leave Message
+    autorole: Configure Autorole
+    modlog: Punishment Log
+    antiraid: Configure Anti-Raid
+    inviteblocker: Invite Blocker
+    music: Music
+    youtube: YouTube Notifications
+    instagram: Instagram Notifications
+    twitch: Twitch Notifications
+    manageKeys: Manage Premium Keys
+    auditLog: Audit Log
+
+  modules:
+    manage: "Control Panel | {0}"
+
+    welcomer:
+      title: Join/Leave Message
+      description: Find out in real time who joined or left your server!
+
+    inviteblocker:
+      title: Invite Blocker
+      description: Block unwanted invites on your server
+
+    autorole:
+      title: Autorole
+      description: Tired of assigning roles manually to new members? Let me handle it!
+
+    music:
+      title: DJ Foxy
+      description: Play music from SoundCloud or from my own radio directly on your server!
+
+    youtube:
+      title: YouTube Notifications
+      description: Receive notifications for new YouTube videos directly on your server!
+
+    keys:
+      title: Manage Premium Keys
+      description: Add or remove premium keys from your server to unlock extra benefits!
+
+    logs:
+      title: Audit Log
+      description: Monitor what your server staff has been doing through my configuration panel
+
+    general:
+      title: General Settings
+      description: Hello, thank you for adding me to your server! Here are some basic settings so you can configure me however you like!
+
+      changePrefix:
+        title: Foxy Prefix
+
+      autoDeleteMessage:
+        title: Delete message when a command is sent
+
+      warnIfCommandIsExecutedInBlockedChannel:
+        title: Warn when commands are sent in a blocked channel
+
+      channelsToBlockCommands:
+        title: Channels where commands cannot be executed
+        addChannelButton: Add
+        selectAChannel: Select a channel
+
+  category:
+    general: General
+    yourProfile: Your Profile
+    foxyStore: Foxy Shop
+    settings: Settings
+
+  entries:
+    foxyToGo: Pocket Foxy
+    manageServers: Manage Servers
+    backgrounds: Backgrounds
+    layouts: Profile Layouts
+    dailyStore: Daily Shop
+    daily: Daily Reward
+    decorations: Avatar Decorations
+    manageSubscriptions: Manage Subscriptions
+    buyPremium: Buy Premium
+    buyCakes: Buy Cakes
+    termsOfUse: Terms of Use
+    guidelines: Community Guidelines
+    deleteAccount: Delete Account
+    logout: Log Out
+
+  guildList:
+    manageButton: Manage

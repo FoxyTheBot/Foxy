@@ -1,4 +1,6 @@
 imageSource: "Link da Imagem"
+youDontHavePermissionToUseThisCommand: "Você não tem permissão para usar esse comando, bobinho"
+howToUseParams: Parâmetros com * são obrigatórios
 
 8mile:
   wrongContentType: "Eu queria poder usar isso, mas não consigo, você precisa enviar um áudio do tipo MP3 ou WAV"
@@ -6,6 +8,26 @@ imageSource: "Link da Imagem"
 
 commands:
   earlyAccess: "Esse comando está em beta e apenas usuários premium possuem acesso antecipado. Se você quiser ter acesso a esse comando e muitos outros, você pode se tornar um usuário premium clicando [aqui](https://foxybot.xyz/br/premium)"
+
+clear:
+  howToUse:
+    title: Limpando Mensagens do Servidor
+    description: |
+        Você pode limpar até **1.000** Mensagens em um canal de texto
+      
+        **Como usar:** `/clear chat <quantity> [usuários]`
+    params:
+      quantity:
+        title: "Quantidade (*)"
+        description: A quantidade de mensagens que serão deletadas (2-1000)
+
+      users:
+        title: Usuários
+        description: "Os membros que terão suas mensagens deletadas | Exemplo: `687867247116812378 460099742320427019` ou `@wing4merbr @gustavoam7`"
+  youCanDeleteOnlyTwoOrFiveHundredMessages: "Você só pode deletar de 2 a 500 mensagens por vez"
+  noMessageToDelete: "Não encontrei nenhuma mensagem para deletar"
+  operationQueued: "Já existe uma limpeza em andamento, aguarde o fim dela para executar o comando novamente!"
+  deletedMessages: "Foram deletadas **{0}** mensagens!"
 
 music:
   configure:
@@ -257,6 +279,41 @@ aboutme:
   tooLong: "O texto do seu perfil não pode ter mais de 177 caracteres!"
 
 ban:
+  howToUse:
+    title: Banindo Meliantes do Servidor
+    description: |
+      Você pode banir até 200 membros por vez
+      
+      `/limpar chat <duração> [motivo] [pular_confirmação]`
+      
+      **Como usar:**
+      
+    params:
+      users:
+        title: Usuários (*)
+        description: "Exemplo: `687867247116812378 460099742320427019` ou `@wing4merbr @gustavoam7`"
+      duration:
+        title: Duração
+        description: "3 days (O banimento durará por três dias)"
+      reason:
+        title: Motivo
+        description: "Falou coisa safada no servidor"
+      skip_confirmation:
+        title: Pular Confirmação
+        description: O membro será banido sem confirmação
+
+  invalidUsers: Não consegui encontrar ninguém com essas IDs
+  banWithoutConfirmation: "Ok, estou banindo os membros: {0}"
+  confirmPunishment: "Você tem certeza que deseja banir os usuários: {0}"
+  bannedUsers: Foram punidos **{0}** membros do servidor
+  removedPunishments: "**{0}** banimento(s) foram removidos"
+  canTakeALongTimeToBan: "A ação pode demorar um pouco para ser concluída"
+  buttons:
+    confirmPunishment: Sim, banir esses meliantes!
+    removePunishment: Me arrependi de banir, quero remover
+    banInProgress: Banindo...
+    removeInProgress: Removendo Punições...
+
   title: "Você está **banido(a)**"
   description: "Se você quiser fazer um apelo de ban você pode fazer um apelo de ban \n\n Recomendo você ler os [termos de uso](https://foxybot.xyz/terms)"
   field:
@@ -386,7 +443,8 @@ roulette:
 marry:
   authorHasNoCakes: "Casamentos custam **6.000 Cakes** para cada pessoa, e você não tem Cakes suficientes!"
   userHasNoCakes: "Casamentos custam **6.000 Cakes** para cada pessoa, e {0} não tem Cakes suficientes!"
-  proposal: "Ei, {0}, um passarinho me contou que **{1}** quer casar com você, você aceita? Casamentos custam 6.000 Cakes para cada pessoa!"
+  proposal: "O amor está no ar!"
+  proposalDescription: "Ei, {0}, um passarinho me contou que **{1}** quer casar com você, você aceita? Casamentos custam 6.000 Cakes para cada pessoa!"
   premiumProposal: "Ei, {0}, um passarinho me contou que **{1}** quer casar com você, você aceita? Casamentos são gratuitos para usuários premium!"
   userAlreadyMarried: "Você não pode se casar com quem já está casado! Talaricagem é feio!"
   youAlreadyMarried: "Você já está casado(a)!"
@@ -394,6 +452,33 @@ marry:
   cantMarryYourself: "Amor próprio é algo bom, mas você não pode casar com você mesmo"
   cantMarryBot: "Você não pode se casar com bots!"
   accepted: "Pedido aceito! Felicidades para o casal! :3"
+  requestField: "Cartinha"
+  letter:
+    sendLoveLetter:
+      title: Enviar Cartinha de Amor
+      button: Enviar Cartinha [{0} Cakes]
+
+  manager:
+    marriageState: "Estado de Casamento"
+    marriageName: "Nome de Casal: "
+    didYouKnowThatYouCanChangeYourMarriageName: "Você sabia que você pode liberar nomes customizáveis na Loja de Casal?"
+    marriedWith: "Casado(a) com: {0}"
+    marriedSince: "Casado(a) desde: {0}"
+    stats: "Estatísticas"
+    userLetters: "Cartinhas de {0}: {1}"
+    affinityPoints: "Pontos de Afinidade: {0}"
+    doRoleplayAndSendLettersToGetMoreAffinityPoints: "**Curiosidade:** Ações de roleplay e cartinhas geram pontos, você pode usar esses pontos para comprar adicionais para o casamento "
+    buttons:
+      editMarriageName: "Editar Nome de Casal [20 Pontos]"
+      sendLoveLetter: "Enviar Cartinha de Amor"
+      coupleStore: "Loja de Casal"
+    modals:
+      loveLetter: "Cartinha de Amor"
+    youReceivedALoveLetter: "Você recebeu uma cartinha do seu amor"
+    youAreNotMarried: "Você não está casado(a)"
+    blockRequests: "Bloquear Pedidos"
+    okYouWontReceiveAnyRequests: "Okay! Você não vai mais receber pedidos de casamento"
+    okYouWillReceiveAnyRequests: "Okay! Você agora você vai poder receber pedidos de casamento"
 
 divorce:
   notMarried: "Bobinho(a), você precisa se casar antes de se divorciar."

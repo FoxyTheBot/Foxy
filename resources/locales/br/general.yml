@@ -7,6 +7,34 @@ commands:
   error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
 
   command:
+    ban:
+      name: banir
+      description: Bana até 200 membros do servidor
+      # TODO: Translate this
+      options:
+        time:
+          name: duração
+        users:
+          name: usuários
+        reason:
+          name: motivo
+        skip_confirmation:
+          name: pular_confirmação
+
+    clear:
+      name: limpar
+      description: Limpe até 1.000 mensagens em um chat do seu servidor
+      chat:
+        name: chat
+        description: Limpe até 1.000 mensagens em um chat do seu servidor
+      options:
+        quantity:
+          name: quantidade
+          description: O número de mensagens que serão deletadas
+        users:
+          name: usuários
+          description: Os usuários que terão as mensagens deletadas
+
     rep:
       name: "reputação"
       give:
@@ -380,7 +408,7 @@ commands:
       name: "perfil"
       description: "Gerencie seu perfil e deixe-o como você quiser!"
       view:
-        name: "visualizar"
+        name: "ver"
         description: "Veja o seu lindo perfil ou o de outro usuário"
       aboutme:
         name: "sobremim"
@@ -486,18 +514,33 @@ commands:
       description: "Altera o idioma do bot"
 
     marry:
-      name: "casar"
+      name: "casamento"
       description: "Case com alguém"
+      letter:
+        name: "cartinha"
+        description: "Compre cartinhas ou coisas para deixar seu casamento único!"
       ask:
         name: "pedir"
         description: "Peça alguém em casamento"
+      manage:
+        name: "gerenciar"
+        description: "Gerencie seu casamento atual ou se quer receber pedidos ou não"
       options:
         user:
           name: "usuário"
           description: "O usuário que você deseja pedir em casamento"
+        proposal:
+          name: "pedido"
+          description: "Algo fofo para convencer seu webnamorado(a) a aceitar o pedido"
+        letter_type:
+          name: "letter_type"
+          description: "O item que será comprado na Loja de Casal"
+        letter:
+          name: "texto"
+          description: "O que será dito na cartinha (Escreva com seu coração rs)"
 
       leaderboard:
-        name: "leaderboard"
+        name: "rank"
 
     divorce:
       name: "divorciar"

@@ -10,4 +10,5 @@ data class DiscordServer(
     val banner: String?,
     val owner: Boolean,
     val permissions: Long,
+    val iconUrl: String? = null,
 )

@@ -1,0 +1,60 @@
+website:
+  homepage:
+    greetings: "Transforming your server into an amazing place!"
+    addButton: "Add Me"
+    manageGuilds: "Manage Servers"
+    letMeHelpWithYourServer: "Let me help you with your server!"
+
+    iCanHelpYourServer: |
+      I can help entertain and protect your server against unwanted invites,
+      as well as lend a hand by assigning roles to new members!
+
+    iAmEasyToUse: |
+      I’m also simple and easy to use, and if you ever need help,
+      you can always count on my support at my café!
+
+    someServersThatLikeMyFeatures: "Some servers that enjoy my features"
+
+    features:
+      fun:
+        title: "Making your server more fun"
+        description: |
+          My main goal has always been to help engage your server and entertain its members.
+          That’s why I have many different commands focused on entertainment!
+          I offer some games, image editing commands, and much more!
+
+      mod:
+        title: "Moderation"
+        description: |
+          Your server, your rules. I help you block unwanted invites and assign roles to new users,
+          so you can rest easy while I take care of it for you!
+
+      custom:
+        title: "Customization"
+        description: Customize your profile in many ways by changing layouts, avatar decorations,
+          and backgrounds available in my daily shop. And if you want to suggest a background
+          or an avatar decoration, you can do so on my support server :3
+
+      economy:
+        title: "Economy"
+        description: Buy backgrounds, avatar decorations, bet, win or lose cakes... and much more!
+          The economy is one of my most popular features, and you can earn cakes in many ways,
+          such as voting for me, through events, daily rewards, etc.
+          However, there are rules. Do not sell NSFW content or subscriptions like Discord Nitro!
+
+      music:
+        title: "Music"
+        description: Play SoundCloud tracks and HTTP links directly on your server!
+          You can create playlists, use filters, 24/7 mode, and much more!
+          All of this in a simple and easy-to-use way!
+
+    support:
+      title: "Support and Community"
+      description: How about stopping by my café to have a coffee or tea with cake together
+        with me and the members of my support server? There you can share fan art of me,
+        and if you create a background, you’ll earn cakes for each sale.
+        Only amazing people are there, and I know you are one too,
+        so how about joining us? If you have any questions, my team will be there to help you!
+
+    footerAdd:
+      title: "Liked it? How about adding me to your server!"
