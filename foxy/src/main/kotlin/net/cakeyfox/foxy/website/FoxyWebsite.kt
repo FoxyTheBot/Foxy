@@ -1,68 +1,67 @@
 package net.cakeyfox.foxy.website
 
 import com.github.benmanes.caffeine.cache.Caffeine
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.cio.CIO
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.install
 import io.ktor.server.engine.embeddedServer
-import io.ktor.server.http.content.resources
-import io.ktor.server.http.content.static
-import io.ktor.server.http.content.staticResources
 import io.ktor.server.netty.Netty
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.server.routing.routing
+import io.ktor.server.sessions.SameSite
 import io.ktor.server.sessions.Sessions
 import io.ktor.server.sessions.cookie
+import io.ktor.server.sessions.sameSite
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
-import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.FoxyInstance
-import net.cakeyfox.foxy.website.routes.RouteManager
-import net.cakeyfox.foxy.website.utils.OAuthManager
+import net.cakeyfox.foxy.website.utils.registerAllRoutes
 import net.cakeyfox.serializable.data.utils.FoxyConfig
+import net.cakeyfox.serializable.data.website.DiscordRole
 import net.cakeyfox.serializable.data.website.DiscordServer
 import net.cakeyfox.serializable.data.website.UserSession
 import java.util.concurrent.TimeUnit
 
 class FoxyWebsite(val foxy: FoxyInstance, val config: FoxyConfig) {
-    private val logger = KotlinLogging.logger {  }
-    private val json = Json { ignoreUnknownKeys = true }
-    lateinit var locale: FoxyLocale
+    private val logger = KotlinLogging.logger { }
+    val json = Json { ignoreUnknownKeys = true }
+    val isProduction = foxy.config.environment == "production"
+    val generateHmac = foxy.utils::generateHmac
+    val formKeys = Caffeine.newBuilder()
+        .expireAfterWrite(1, TimeUnit.MINUTES)
+        .maximumSize(100_000)
+        .build<String, String>()
+
+    val httpClient = HttpClient(CIO) {
+        install(io.ktor.client.plugins.contentnegotiation.ContentNegotiation) {
+            json(Json { ignoreUnknownKeys = true })
+        }
+    }
     val guildCache = Caffeine.newBuilder()
         .expireAfterWrite(20, TimeUnit.MINUTES)
         .maximumSize(1000)
         .build<String, List<DiscordServer>>()
-
-    val isProduction = foxy.config.environment == "production"
+    val rolesCache = Caffeine.newBuilder()
+        .expireAfterWrite(1, TimeUnit.MINUTES)
+        .maximumSize(1000)
+        .build<String, List<DiscordRole>>()
 
     private val server = embeddedServer(Netty, config.website.port) {
         install(ContentNegotiation) { json() }
         install(Sessions) {
             cookie<UserSession>("user_session") {
                 cookie.path = "/"
+                cookie.maxAgeInSeconds = 2592000
                 cookie.httpOnly = true
+                cookie.sameSite = SameSite.Lax
             }
         }
 
-        routing {
-            RouteManager(this@FoxyWebsite).apply { registerRoutes() }
-            OAuthManager(this@FoxyWebsite).apply {
-                oauthRoutes(config.discord.applicationId.toString(), config.discord.clientSecret, json)
-            }
-            staticResources("", "website/")
-            staticResources("/v1/assets/css", "static/v1/assets/css")
-            staticResources("/dashboard/assets/css", "static/dashboard/assets/css")
-            staticResources("/js/", "js/")
-            staticResources("/dashboard/js", "dashboard/js")
-        }
+        registerAllRoutes(this@FoxyWebsite)
     }
 
     init {
         logger.info { "Running website at port ${config.website.port}" }
         server.start(wait = false)
-    }
-
-    fun stop() {
-        server.stop(10, 10, TimeUnit.SECONDS)
-        logger.info { "Stopping website webserver... "}
     }
 }

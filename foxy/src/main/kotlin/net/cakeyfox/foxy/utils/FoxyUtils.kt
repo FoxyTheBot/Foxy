@@ -30,9 +30,7 @@ import java.text.NumberFormat
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
-import javax.crypto.Cipher
 import javax.crypto.Mac
-import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
 class FoxyUtils(
@@ -75,6 +73,43 @@ class FoxyUtils(
         return hmacBytes.joinToString("") { "%02x".format(it) }
     }
 
+    data class UserMatchesResult(
+        val validUsers: List<User>,
+        val remainingString: String?
+    )
+
+    suspend fun checkValidUsersFromString(
+        context: CommandContext,
+        usersAsString: String
+    ): UserMatchesResult? {
+        val split = usersAsString.split(" ")
+        var matchedCount = 0
+
+        val validUsers = mutableListOf<User>()
+
+        for (input in split) {
+            if (input.isBlank()) continue
+
+            val regex = """<@!?(\d+)>""".toRegex()
+            val matchResult = regex.find(input)
+            val userId = matchResult?.groupValues?.get(1) ?: input
+
+            try {
+                val user = context.jda.retrieveUserById(userId).await()
+                validUsers.add(user)
+                matchedCount++
+            } catch (_: Exception) {
+                break
+            }
+        }
+
+        if (validUsers.isEmpty()) {
+            return null
+        }
+
+        return UserMatchesResult(validUsers, split.drop(matchedCount).joinToString(" "))
+    }
+
     fun verifyHmac(data: String, signature: String): Boolean {
         logger.debug { "Verifying HMAC. Data: $data | Signature: $signature" }
         return generateHmac(data) == signature
@@ -95,14 +130,34 @@ class FoxyUtils(
         return convertedDate
     }
 
+    suspend fun sendMessageToAGuildFromThisCluster(
+        guild: net.dv8tion.jda.api.entities.Guild,
+        channelId: String,
+        delayMs: Long = 1500L,
+        block: InlineMessage<*>.() -> Unit
+    ) {
+        try {
+            val message = MessageCreateBuilder().apply(block)
+            delay(delayMs)
+
+            foxy.shardManager.getGuildById(guild.id)?.getTextChannelById(channelId)
+                ?.sendMessage(message.build())
+                ?.await()
+        } catch (e: Exception) {
+            logger.error(e) { "Can't send message to this guild, is from this cluster?" }
+        }
+    }
+
     suspend fun sendMessageToAGuildChannel(
         guild: Guild,
-        guildCluster: FoxyConfig.DiscordSettings.Cluster,
         channelId: String,
         delayMs: Long = 1_500L,
         block: InlineMessage<*>.() -> Unit
     ) {
         val message = MessageCreateBuilder().apply(block)
+        val guildShard = ClusterUtils.getShardIdFromGuildId(guild._id.toLong(), foxy.config.discord.totalShards)
+        val guildCluster = ClusterUtils.getClusterByShardId(foxy, guildShard)
+
         if (guildCluster.id == foxy.currentCluster.id) {
             delay(delayMs)
             try {
@@ -113,7 +168,7 @@ class FoxyUtils(
                 val retryAfter = e.retryAfter
                 logger.warn { "Rate limited. Retrying after ${retryAfter}ms" }
                 delay(retryAfter)
-                sendMessageToAGuildChannel(guild, guildCluster, channelId) { block() }
+                sendMessageToAGuildChannel(guild, channelId) { block() }
             }
         } else {
             val guildClusterUrl = guildCluster.clusterUrl.removeSuffix("/")
@@ -132,7 +187,7 @@ class FoxyUtils(
                 setBody(payload)
             }
 
-            logger.info { "Received Status: ${request.status.value} from Cluster ${guildCluster.id} (${guildCluster.name})"}
+            logger.info { "Received Status: ${request.status.value} from Cluster ${guildCluster.id} (${guildCluster.name})" }
         }
     }
 
