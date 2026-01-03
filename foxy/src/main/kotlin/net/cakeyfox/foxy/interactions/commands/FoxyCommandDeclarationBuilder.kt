@@ -23,8 +23,9 @@ class FoxyCommandDeclarationBuilder(
     var supportsLegacy: Boolean = false,
     var integrationType: List<IntegrationType> = listOf(IntegrationType.GUILD_INSTALL),
     var interactionContexts: List<InteractionContextType> = listOf(InteractionContextType.GUILD),
+    var defaultMemberPermissions: DefaultMemberPermissions?,
     var baseName: String? = name,
-    var executor: UnleashedCommandExecutor? = null
+    var executor: UnleashedCommandExecutor? = null,
 ) {
     val subCommands = mutableListOf<FoxyCommandDeclarationBuilder>()
     private val subCommandGroups = mutableListOf<FoxyCommandGroupBuilder>()
@@ -51,7 +52,8 @@ class FoxyCommandDeclarationBuilder(
             aliases,
             supportsLegacy,
             integrationType,
-            interactionContexts
+            interactionContexts,
+            defaultMemberPermissions
         )
         subCommand.baseName = baseName ?: this.name
         subCommand.block()
@@ -143,6 +145,7 @@ class FoxyCommandDeclarationBuilder(
                 )
             )
 
+            if (defaultMemberPermissions != null) this.defaultPermissions = defaultMemberPermissions!!
             this.setIntegrationTypes(integrationType[0], *integrationType.drop(1).toTypedArray())
             this.setContexts(interactionContexts[0], *interactionContexts.drop(1).toTypedArray())
             val enUsCategory = enUsLocale["categories.$category"]

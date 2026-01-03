@@ -9,6 +9,7 @@ import net.cakeyfox.foxy.interactions.ComponentId
 import net.cakeyfox.foxy.interactions.InteractionCommandContext
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.LavalinkUtils.registerNode
+import net.cakeyfox.foxy.utils.hasRawPermissions
 import net.cakeyfox.foxy.utils.isEarlyAccessOnlyCommand
 import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.GenericEvent
@@ -61,6 +62,23 @@ class InteractionsListener(
 
                 try {
                     val executionTime = measureTimeMillis {
+                        event.guild?.let {
+                            // Let's check the permissions, because for some reason, Discord doesn't update slash command permissions
+                            command.defaultMemberPermissions?.permissionsRaw?.let { required ->
+                                context.member?.let { member ->
+                                    if (!member.hasRawPermissions(required)) {
+                                        context.reply(true) {
+                                            content = pretty(
+                                                FoxyEmotes.FoxyRage,
+                                                context.locale["youDontHavePermissionToUseThisCommand"]
+                                            )
+                                        }
+                                        return@launchMessageJob
+                                    }
+                                }
+                            }
+                        }
+
                         if (subCommand != null) {
                             isEarlyAccessOnlyCommand(context, subCommand)
                         } else if (subCommandGroupName == null && subCommandName == null) {
