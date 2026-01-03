@@ -15,8 +15,7 @@ import net.dv8tion.jda.api.utils.FileUpload
 class GirlfriendMemeExecutor : UnleashedCommandExecutor() {
     override suspend fun execute(context: CommandContext) {
         context.defer()
-        val user = context.getOption("user", 0, User::class.java)
-        if (user == null) return
+        val user = context.getOption("user", 0, User::class.java) ?: return
         val girlfriendImageBuffer = withContext(context.foxy.coroutineDispatcher) {
             context.foxy.showtimeClient.generateImage(Constants.GIRLFRIEND_ROUTE, buildJsonObject {
                 put("avatar", user.avatarUrl)
