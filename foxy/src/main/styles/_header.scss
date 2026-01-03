@@ -11,6 +11,11 @@
   text-decoration: none;
 }
 
+.lucide.lucide-chevron-down-icon.lucide-chevron-down {
+  width: 16px;
+  height: 14px;
+}
+
 .mobile i {
   font-size: 30px;
   color: white;
@@ -21,7 +26,6 @@
   display: none;
   position: fixed;
   top: 0.141rem;
-  z-index: 9999;
   left: 20px;
   font-size: 30px;
   background-color: transparent;
@@ -37,6 +41,58 @@
     outline: none;
   }
 }
+
+#features-menu,
+#support-menu,
+#dashboard-menu {
+  position: fixed;
+  display: none;    
+  z-index: 20000;
+  background: var(--reimu-feature-session-background);
+  padding: 12px 5px;
+  font-weight: 500;
+  border-radius: 9px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+  min-width: 220px;
+  max-width: calc(100vw - 32px);
+  color: var(--reimu-default-font-color);
+  transition: opacity .12s ease;
+  opacity: 0;
+}
+
+#features-menu.open,
+#support-menu.open,
+#dashboard-menu.open {
+  display: block;
+  opacity: 1;
+}
+
+.menu-wrapper {
+  gap: 5px;
+  align-items: stretch;
+
+  &.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    flex-direction: column;
+    gap: 5px 10px !important;
+  }
+}
+
+.cmd-category-link {
+  display: block;
+  padding: 10px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--reimu-default-font-color);
+  font-family: var(--reimu-default-font-family), serif;
+  transition: transform .12s ease, background .12s ease;
+}
+
+.cmd-category-link:hover {
+  background: var(--reimu-sidebar-entry-hover);
+}
+
 
 nav.marisa-navbar {
   background-color: var(--reimu-navbar-color);
@@ -54,6 +110,12 @@ nav.marisa-navbar {
   flex-wrap: nowrap;
   align-items: center;
   padding: 0.29rem 0;
+  border: 1px solid var(--reimu-header-border);
+
+  .menu-parent {
+    position: relative;
+    display: inline-block;
+  }
 
   .icon {
     filter: drop-shadow(0 1px rgba(0, 0, 0, 0.2));
@@ -79,7 +141,6 @@ nav.marisa-navbar {
       height: 36px;
       width: auto;
     }
-
   }
 }
 
@@ -88,23 +149,23 @@ nav.marisa-navbar {
   display: flex;
   padding: 0em 1em 0em 6em;
 
-  a#login-button {
+  a#login-header-btn {
     &>img {
-      line-height: 0px;
+      line-height: 0;
       width: 40px;
       height: 40px;
       position: absolute;
-      top: 3px;
+      top: -11px;
       border-radius: 100%;
-      font-size: 0px;
+      font-size: 0;
     }
 
     &>div {
       width: 40px;
-      line-height: 0px;
-      font-size: 0px;
+      line-height: 0;
+      font-size: 0;
       visibility: hidden;
-      height: 0px;
+      height: 0;
       display: inline-block;
     }
 
@@ -122,6 +183,11 @@ nav.marisa-navbar {
   transition: 0.5s;
   cursor: pointer;
   white-space: nowrap;
+  font-weight: 400;
+
+  &.logout {
+    color: #f34040 !important;
+  }
 
   a {
     color: var(--reimu-navbar-text-color) !important;
@@ -272,12 +338,6 @@ nav.marisa-navbar {
 
   main {
     text-align: center;
-    margin-top: 6rem;
-    margin-bottom: 15%;
-    margin-right: 5%;
-    margin-left: 5%;
-    padding-left: 5%;
-    padding-right: 5%;
     transition-duration: 0.5;
   }
 

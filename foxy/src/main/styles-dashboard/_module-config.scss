@@ -6,6 +6,16 @@
   margin-right: 10.4rem;
   height: 100vh;
 
+  .embed-config {
+    margin-top: 2rem;
+    background-color: var(--reimu-embed-color);
+    border-left: 4px solid #5865F2;
+    border-radius: 8px;
+    padding: 12px;
+    max-width: 500px;
+    font-family: 'Arial', sans-serif;
+  }
+
   .module-title {
     color: var(--reimu-primary-color);
     font-size: 2rem;
@@ -14,13 +24,42 @@
     text-align: center;
   }
 
+  .channel-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    .manage-channel-btn {
+      position: absolute !important;
+      right: 1rem;
+      top: 46%;
+      transform: translateY(-50%);
+      z-index: 5;
+
+      &:first-child {
+        right: 5rem
+      }
+
+      &:last-child {
+        right: 1rem;
+      }
+    }
+
+    .config-module-image {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+    }
+  }
+
   .module-description {
     color: var(--reimu-default-font-color);
     font-size: 1rem;
     font-weight: 600;
     font-family: sans-serif;
     text-align: center;
-    margin-left: 0rem;
+    margin-left: 0;
     margin-right: 0;
   }
 
@@ -31,17 +70,44 @@
       margin-left: auto;
       margin-right: auto;
 
+      .channel-info-module {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: #fff;
+        padding-top: 1rem;
+      }
+
+      .icon-md {
+        width: 78px;
+        height: 78px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .channel-name {
+        font-family: var(--reimu-default-font-family), serif;
+        color: var(--reimu-default-font-color)
+      }
+
       .config-module {
-        margin-top: 2rem;
-        background-color: var(--reimu-secondary-color);
-        padding: 1rem;
-        border-radius: 10px;
+        position: relative;
+        margin-top: 1rem;
+        background-color: var(--reimu-feature-session-background);;
+        padding: 1.2rem;
+        border-radius: 15px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         margin-left: -3rem;
         margin-right: -2rem;
-        border: 1px solid var(--reimu-border-color);
+        border: 1px solid var(--reimu-header-border);
+
+        .channel-selector {
+          width: auto;
+          display: flex;
+          align-items: center;
+        }
 
         .module-name {
           color: var(--reimu-default-font-color);
@@ -61,26 +127,14 @@
           flex-direction: column;
           margin-top: 1rem;
 
-          .toggleable-option-title {
-            color: var(--reimu-default-font-color);
-            font-size: 1rem;
-            font-family: sans-serif;
-            margin-bottom: 0.5rem;
+          &.blocked {
+            pointer-events: none;
+            filter: blur(10px);
           }
 
           .toggleable-option {
             margin-top: 0.5rem;
             margin-right: 0;
-
-            &.embed-config {
-              margin-top: 2rem;
-              background-color: #2b2d31;
-              border-left: 4px solid #5865F2;
-              border-radius: 8px;
-              padding: 12px;
-              max-width: 500px;
-              font-family: 'Arial', sans-serif;
-            }
           }
 
           .toggleable-option:not(:last-child) {
@@ -95,6 +149,15 @@
 
       .channel-selector button {
         margin-left: 8px;
+        margin-top: 0.1rem;
+      }
+
+
+      .toggleable-option-title {
+        color: var(--reimu-default-font-color);
+        font-size: 1rem;
+        font-family: sans-serif;
+        margin-bottom: 0.5rem;
       }
 
       .channel-mention {
@@ -102,10 +165,11 @@
         align-items: center;
         background-color: var(--reimu-tertiary-color);
         color: #7289da;
-        font-family: sans-serif;
+        font-family: var(--reimu-default-font-family);
         padding: 4px 8px;
         border-radius: 4px;
         margin: 5px 5px 0 0;
+        font-weight: 501;
       }
 
       .channel-mention button {
@@ -119,7 +183,7 @@
 }
 
 form {
-  width: 83%;
+  width: 90%;
 
   select,
   input,
@@ -159,7 +223,7 @@ form {
     background-color: var(--reimu-secondary-color);
     border: 2px solid var(--reimu-primary-color);
     font-family: sans-serif;
-    font-size: 18px;
+    font-size: 14px;
     margin-bottom: 10px;
     margin-top: 0.625rem;
     box-sizing: border-box;
@@ -192,10 +256,6 @@ form {
     resize: vertical;
   }
 
-  textarea:hover {
-    background-color: #f0f0f0;
-  }
-
   textarea:focus {
     border-color: var(--reimu-primary-color);
     box-shadow: 0 0 8px rgba(88, 101, 242, 0.4);
@@ -213,7 +273,7 @@ form {
     border: none;
     margin: 0.2rem;
     outline: none;
-    font-family: var(--reimu-default-button-font-family);
+    font-family: var(--reimu-default-button-font-family), serif;
     font-size: var(--reimu-button-font-size);
     font-weight: var(--reimu-button-font-weight);
     color: var(--reimu-button-font-color);
@@ -223,8 +283,9 @@ form {
     transition: background-color 0.3s;
 
     &.disabled {
-      cursor: not-allowed;
+      cursor: not-allowed !important;
       opacity: 0.5;
+      pointer-events: none;
     }
 
     &:hover {
@@ -292,8 +353,7 @@ form {
   bottom: 1em;
   border-radius: 10px;
   padding: 1em;
-  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.01), 0 0px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--reimu-tertiary-color);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   justify-content: center;
   align-items: center;
   transform: scale(1.025);
@@ -302,6 +362,7 @@ form {
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 0.3s ease, transform 0.3s ease;
+  margin-top: 50%;
 }
 
 .actions-wrapper.show {
@@ -344,18 +405,18 @@ form {
 }
 
 @keyframes focus-glow {
-    from {
-        box-shadow: 0 0 6px rgba(88, 101, 242, 0.5);
-    }
-    to {
-        box-shadow: 0 0 12px rgba(88, 101, 242, 0.8);
-    }
+  from {
+    box-shadow: 0 0 6px rgba(88, 101, 242, 0.5);
+  }
+  to {
+    box-shadow: 0 0 12px rgba(88, 101, 242, 0.8);
+  }
 }
 
 @media (max-width: 768px) {
   .config-wrapper {
-    margin-left: 0rem;
-    margin-right: 0rem;
+    margin-left: -1.5rem;
+    margin-right: 0.9rem;
 
     .module-description {
       display: block;

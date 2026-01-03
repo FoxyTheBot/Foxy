@@ -3,9 +3,10 @@
 @import "store";
 @import "footer";
 @import "adsense";
+@import "readonly";
 
 html {
-  background: url("/assets/images/background-white.png"), var(--reimu-background-color) !important;
+  background: var(--reimu-background-color) !important;
   background-size: cover !important;
   background-attachment: fixed !important;
   height: 100%;
@@ -134,6 +135,7 @@ main {
   border-color: #000;
   position: relative;
   text-align: center;
+  border: 1px solid var(--reimu-header-border);
 
   .title {
     font-family: var(--reimu-default-font-family);
@@ -174,7 +176,7 @@ main {
     margin-top: 1rem;
     margin-bottom: 1rem;
     transition: transform 0.3s, box-shadow 0.3s;
-
+    border: 1px solid var(--reimu-header-border);
 
     &.right {
       flex-direction: row;

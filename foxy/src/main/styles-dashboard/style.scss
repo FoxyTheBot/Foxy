@@ -11,13 +11,14 @@
 @import "notification";
 @import "popup";
 @import "buttons";
+@import "searchbar";
 
 * {
   text-decoration: none;
 }
 
 html {
-  background: url("/assets/images/background-white.png"), var(--reimu-background-color) !important;
+  background: var(--reimu-background-color) !important;
   background-size: cover !important;
   background-attachment: fixed !important;
   height: 100%;
@@ -26,6 +27,7 @@ html {
   scrollbar-color: var(--reimu-primary-color);
 }
 
+// TODO: Fix style problems
 .pocket-foxy-wrapper {
         display: flex;
         padding: 0rem 7rem 6rem 18rem;

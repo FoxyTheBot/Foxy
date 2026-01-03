@@ -1,0 +1,40 @@
+.search-wrapper {
+  display: flex;
+  padding: 0 7rem 6rem 15.4rem;
+  justify-content: center;
+  width: 100%;
+  pointer-events: none;
+
+  &.youtube {
+    padding: 0 !important;
+    align-items: baseline;
+  }
+}
+
+#search-bar {
+  width: 50%;
+  max-width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  color: var(--reimu-searchbar-text);
+  background-color: var(--reimu-searchbar-background);
+  border: 1px solid var(--reimu-border-color, #3a3d45);
+  border-radius: 8px;
+  pointer-events: all;
+  outline: none;
+  transition:
+          width 0.3s ease,
+          border-color 0.2s ease,
+          box-shadow 0.2s ease,
+          background-color 0.3s ease;
+}
+
+#search-bar::placeholder {
+  color: #888;
+}
+
+#search-bar:focus {
+  width: 87%;
+  border-color: var(--reimu-primary-color, #5865f2);
+  box-shadow: 0 0 5px rgba(88, 101, 242, 0.4);
+}

@@ -15,11 +15,6 @@
   color: var(--reimu-default-font-color);
   transition: 0.3s;
   box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
-
-  &:hover {
-    transform: scale(1.05);
-    transition: 0.3s;
-  }
 }
 
 .cirno-card-buttons {
@@ -34,7 +29,7 @@
     justify-content: center;
     border: none;
     outline: none;
-    font-family: var(--reimu-default-font-family);
+    font-family: var(--reimu-default-font-family), serif;
     line-height: 20px;
     font-size: 17px;
     color: var(--reimu-button-font-color);

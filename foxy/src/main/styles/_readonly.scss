@@ -1,0 +1,85 @@
+.foxy-tos-wrapper {
+  padding: 0 1rem 1rem 1rem;
+  transition-duration: 0.5s;
+}
+
+.foxy-tos-term h2 {
+  color: #e7385d;
+  font-size: 25px;
+  margin-bottom: 1%;
+  text-align: left;
+  font-family: "Segoe UI", serif;
+}
+
+.foxy-tos-term h3 {
+  color: var(--reimu-default-font-color);
+  font-size: 17px;
+  margin-bottom: 2%;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: left;
+}
+
+.foxy-tos-title {
+  color: #e7385d;
+  font-size: 40px;
+  margin-bottom: 2rem;
+  font-family: sans-serif;
+  text-align: left;
+}
+
+.foxy-tos-section-title {
+  color: #e7385d;
+  font-size: 25px;
+  margin-bottom: 1%;
+  font-family: "Segoe UI", serif;
+  text-align: left;
+}
+
+.tos-container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.foxy-tos-description {
+  color: var(--reimu-default-font-color);
+  font-size: 17px;
+  margin-bottom: 2%;
+  font-family: Arial, Helvetica, sans-serif;
+  white-space: pre-line;
+  text-align: left;
+}
+
+.foxy-tos-description ul {
+  margin-left: 20px;
+}
+
+.foxy-tos-description li {
+  margin-bottom: 0.5%;
+}
+
+@media only screen and (max-width: 768px) {
+  .foxy-tos-wrapper {
+    padding: 0 1rem 1rem 1rem;
+    text-align: center;
+  }
+
+  .tos-container {
+    padding-left: 0;
+  }
+
+  .foxy-tos-title {
+    font-size: 10vw;
+  }
+
+  .foxy-tos-term h2, h3, .foxy-tos-title, .foxy-tos-section-title, .foxy-tos-description {
+    text-align: left;
+  }
+
+  .foxy-tos-description,
+  .foxy-tos-term h3 {
+    font-size: 4vw;
+  }
+}
