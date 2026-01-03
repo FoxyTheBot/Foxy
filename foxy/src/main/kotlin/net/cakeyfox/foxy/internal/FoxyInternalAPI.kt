@@ -20,6 +20,7 @@ import net.cakeyfox.foxy.internal.routes.GetUserFromGuild
 import net.cakeyfox.foxy.internal.routes.GetUserRolesFromAGuild
 import net.cakeyfox.foxy.internal.routes.PostDiscordMessageToUserRoute
 import net.cakeyfox.foxy.internal.routes.PostPubSubCallbackRoute
+import net.cakeyfox.foxy.internal.routes.PostUnbanUserFromGuild
 import net.cakeyfox.foxy.internal.routes.PostUpdateActivityRoute
 import net.cakeyfox.foxy.internal.routes.PostUpvoteWebhookRoute
 import net.cakeyfox.foxy.internal.routes.music.GetGuildPlayerStatus
@@ -36,7 +37,7 @@ class FoxyInternalAPI(
         }
 
         install(Authentication) {
-            bearer("auth-bearer") {
+            bearer {
                 authenticate { tokenCredential ->
                     if (tokenCredential.token == foxy.config.internalApi.key) {
                         UserIdPrincipal("authenticatedUser")
@@ -58,7 +59,8 @@ class FoxyInternalAPI(
             PostPubSubCallbackRoute(foxy).apply { postYouTubeWebhook(); getYouTubeWebhook() }
             PostUpvoteWebhookRoute().apply { postUpvoteWebhook(foxy) }
 
-            authenticate("auth-bearer") {
+            authenticate {
+                PostUnbanUserFromGuild().apply { postUnbanUserFromGuild(foxy) }
                 GetGuildPlayerStatus().apply { getGuildPlayerStatus(foxy) }
                 PostPausePlayerRoute().apply { postPausePlayerRoute(foxy) }
                 PostSkipPlayerRoute().apply { postSkipPlayer(foxy) }

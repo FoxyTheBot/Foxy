@@ -1,7 +1,6 @@
 package net.cakeyfox.foxy
 
 import dev.arbjerg.lavalink.client.LavalinkClient
-import dev.arbjerg.lavalink.client.getUserIdFromToken
 import dev.arbjerg.lavalink.client.loadbalancing.builtin.VoiceRegionPenaltyProvider
 import dev.arbjerg.lavalink.libraries.jda.JDAVoiceUpdateListener
 import io.ktor.client.*
@@ -17,6 +16,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.datetime.TimeZone
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
+import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.showtime.ShowtimeClient
 import net.cakeyfox.foxy.interactions.FoxyCommandManager
 import net.cakeyfox.foxy.interactions.components.FoxyComponentManager
@@ -76,6 +76,7 @@ class FoxyInstance(
     val tasksScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     val leaderboardManager: LeaderboardManager by lazy { LeaderboardManager(this) }
     val youtubeManager: YouTubeManager by lazy { YouTubeManager(this) }
+    val locale = FoxyLocale("br")
     val database = DatabaseClient()
         .setPassword(config.database.password)
         .setUser(config.database.user)
@@ -88,7 +89,7 @@ class FoxyInstance(
         }
 
     val commandHandler: FoxyCommandManager by lazy { FoxyCommandManager(this) }
-    val lavalink = LavalinkClient(getUserIdFromToken(config.discord.token))
+    val lavalink = LavalinkClient(config.discord.applicationId)
     val musicManagers = mutableMapOf<Long, GuildMusicManager>()
 
     val http: HttpClient by lazy {
@@ -112,7 +113,10 @@ class FoxyInstance(
             GatewayIntent.SCHEDULED_EVENTS,
             GatewayIntent.GUILD_EXPRESSIONS,
             GatewayIntent.DIRECT_MESSAGES,
-            GatewayIntent.GUILD_VOICE_STATES
+            GatewayIntent.GUILD_VOICE_STATES,
+            GatewayIntent.GUILD_MODERATION,
+            GatewayIntent.AUTO_MODERATION_EXECUTION,
+            GatewayIntent.AUTO_MODERATION_CONFIGURATION
         ).apply {
             if (baseUrl != null) {
                 logger.info { "Using Discord base URL: $baseUrl" }
