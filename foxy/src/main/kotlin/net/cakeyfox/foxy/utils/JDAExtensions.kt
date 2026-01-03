@@ -5,8 +5,10 @@ import net.cakeyfox.serializable.data.cluster.RelayEmbedAuthor
 import net.cakeyfox.serializable.data.cluster.RelayEmbedField
 import net.cakeyfox.serializable.data.cluster.RelayEmbedFooter
 import net.cakeyfox.serializable.data.cluster.Thumbnail
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.components.buttons.Button
 import net.dv8tion.jda.api.components.buttons.ButtonStyle
+import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.entities.MessageEmbed
 import net.dv8tion.jda.api.entities.emoji.Emoji
 
@@ -22,6 +24,13 @@ fun linkButton(
         emoji?.let { Emoji.fromFormatted(it) }
     )
 }
+
+fun Member.hasRawPermissions(requiredPermissions: Long): Boolean {
+    return (rawPermissions and requiredPermissions) == requiredPermissions
+}
+
+val Member.rawPermissions: Long
+    get() = permissions.fold(0L) { acc, perm -> acc or perm.rawValue }
 
 fun MessageEmbed.toRelayEmbed(): RelayEmbed {
     return RelayEmbed(
