@@ -28,8 +28,7 @@ class CreateYouTubeWebhookTask(
             }
 
             val expiredOrMissing = allChannels.filter { channelId ->
-                val webhook = webhooks[channelId]
-                if (webhook == null) return@filter true
+                val webhook = webhooks[channelId] ?: return@filter true
                 val expireAt = Instant.ofEpochMilli(webhook.createdAt + (webhook.leaseSeconds * 1000))
                 Instant.now().isAfter(expireAt)
             }
