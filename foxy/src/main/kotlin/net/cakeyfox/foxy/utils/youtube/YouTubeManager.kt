@@ -12,6 +12,9 @@ import io.ktor.http.encodeURLParameter
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
+import net.cakeyfox.foxy.database.data.guild.Guild
+import net.cakeyfox.foxy.database.data.guild.YouTubeChannel
+import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.utils.ClusterUtils
 import net.cakeyfox.foxy.utils.PlaceholderUtils
 import net.cakeyfox.serializable.data.utils.YouTubeQuery
@@ -22,11 +25,11 @@ class YouTubeManager(val foxy: FoxyInstance) {
     private val youtubeApiKey = foxy.config.youtube.key
     private val cachedChannels = Caffeine.newBuilder()
         .expireAfterWrite(1, TimeUnit.HOURS)
-        .maximumSize(500)
+        .maximumSize(2000)
         .build<String, YouTubeQueryBody>()
     private val cachedQueries = Caffeine.newBuilder()
         .expireAfterWrite(1, TimeUnit.HOURS)
-        .maximumSize(500)
+        .maximumSize(1000)
         .build<String, String>()
 
 
@@ -62,16 +65,26 @@ class YouTubeManager(val foxy: FoxyInstance) {
         }
     }
 
+    suspend fun fetchFollowedChannelsWithInfo(
+        guildData: Guild
+    ): List<Pair<YouTubeChannel, YouTubeQueryBody.Item?>> {
+        return guildData.followedYouTubeChannels.map { storedChannel ->
+            val youtubeApiChannel = foxy.youtubeManager
+                .getChannelInfo(storedChannel.channelId)
+                ?.items
+                ?.firstOrNull()
+            storedChannel to youtubeApiChannel
+        }
+    }
+
     suspend fun notifyGuilds(channelId: String, author: String, videoUrl: String, videoId: String) {
         val guildsThatFollow = foxy.database.guild.getGuildsByFollowedYouTubeChannel(channelId)
 
         guildsThatFollow.forEach { guild ->
-            val guildShard = ClusterUtils.getShardIdFromGuildId(guild._id.toLong(), foxy.config.discord.totalShards)
-            val guildCluster = ClusterUtils.getClusterByShardId(foxy, guildShard)
             val currentChannel = guild.followedYouTubeChannels.find { it.channelId == channelId } ?: return@forEach
 
             if (currentChannel.notifiedVideos?.any { it.id == videoId } ?: false) {
-                return@forEach
+                return@forEach logger.info { "Skipping $videoId video" }
             } else foxy.database.youtube.addVideoToList(guild._id, channelId, videoId)
             logger.info { "Sending $author new video to guild ${guild._id}" }
 
@@ -81,8 +94,7 @@ class YouTubeManager(val foxy: FoxyInstance) {
 
             foxy.utils.sendMessageToAGuildChannel(
                 guild,
-                guildCluster,
-                channelId = currentChannel.channelToSend.toString()
+                currentChannel.channelToSend.toString()
             ) {
                 content = replacePlaceholders(
                     notificationMessage,
