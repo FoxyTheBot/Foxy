@@ -61,7 +61,13 @@ class BanExecutor : UnleashedCommandExecutor() {
                             )
                         }
 
-                        banUsers(context.foxy, context.guildId!!, userAsSnowflakes, reason, context.user, durationInMs)
+                        banUsers(
+                            context.foxy,
+                            context.guildId!!,
+                            userAsSnowflakes, reason,
+                            context.user,
+                            durationInMs
+                        )
                     }
                 )
             }
@@ -69,12 +75,21 @@ class BanExecutor : UnleashedCommandExecutor() {
             context.reply {
                 embed {
                     color = Colors.FOXY_DEFAULT
-                    description = context.locale["ban.banWithoutConfirmation", validUserUsernames.joinToString(", ")]
+                    description = context.locale[
+                        "ban.banWithoutConfirmation",
+                        validUserUsernames.joinToString(", ")
+                    ]
                     footer(context.locale["ban.canTakeALongTimeToBan"])
                 }
             }
 
-            banUsers(context.foxy, context.guildId!!, userAsSnowflakes, reason, context.user, durationInMs)
+            banUsers(
+                context.foxy,
+                context.guildId!!,
+                userAsSnowflakes, reason,
+                context.user,
+                durationInMs
+            )
         }
     }
 

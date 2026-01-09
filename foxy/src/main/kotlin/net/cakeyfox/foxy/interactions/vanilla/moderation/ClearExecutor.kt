@@ -64,7 +64,10 @@ class ClearExecutor : UnleashedCommandExecutor() {
         val messagesToBeIgnored = mutableListOf<Message>()
 
         val messages = channel.iterableHistory.takeAsync(quantity.toInt()).await()
-        val allowedMessages = messages.getAllowedMessages(validUsers.map { it.idLong }.toSet()).minus(messagesToBeIgnored)
+        val allowedMessages = messages.getAllowedMessages(
+            validUsers.map { it.idLong }.toSet()
+        )
+            .minus(messagesToBeIgnored)
             .minus(messagesToBeIgnored.toSet())
 
         if (allowedMessages.isEmpty()) {

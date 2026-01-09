@@ -256,10 +256,10 @@ class ProfileRender(
         val marriedDateFormatted = context.utils.convertToHumanReadableDate(marriageInfo.marriedDate!!)
         val marriedOverlay = ProfileCacheManager.loadImageFromCache(Constants.getMarriedOverlay(layout.id))
         val color = if (layout.darkText) Color.BLACK else Color.WHITE
-        val partnerUser = if (marriageInfo.firstUserId == context.user.id) {
-            context.jda.retrieveUserById(marriageInfo.secondUserId).await()
+        val partnerUser = if (marriageInfo.firstUser.id == userData._id) {
+            context.jda.retrieveUserById(marriageInfo.secondUser.id).await()
         } else {
-            context.jda.retrieveUserById(marriageInfo.firstUserId).await()
+            context.jda.retrieveUserById(marriageInfo.firstUser.id).await()
         }
 
         marriedOverlay.let {

@@ -19,10 +19,10 @@ class DivorceExecutor : UnleashedCommandExecutor() {
         }
 
 
-        val partnerUser = if (marriageInfo.firstUserId == context.user.id) {
-            context.jda.retrieveUserById(marriageInfo.secondUserId).await()
+        val partnerUser = if (marriageInfo.firstUser.id == context.user.id) {
+            context.jda.retrieveUserById(marriageInfo.secondUser.id).await()
         } else {
-            context.jda.retrieveUserById(marriageInfo.firstUserId).await()
+            context.jda.retrieveUserById(marriageInfo.secondUser.id).await()
         }
         context.reply(true) {
             content = pretty(

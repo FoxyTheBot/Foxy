@@ -10,7 +10,6 @@ commands:
     ban:
       name: banir
       description: Bana até 200 membros do servidor
-      # TODO: Translate this
       options:
         time:
           name: duração

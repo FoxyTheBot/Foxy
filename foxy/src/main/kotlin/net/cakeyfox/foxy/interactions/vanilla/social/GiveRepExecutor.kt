@@ -20,10 +20,12 @@ class GiveRepExecutor : UnleashedCommandExecutor() {
         if (lastRep != null) {
             if (lastRep >= Clock.System.now()) {
                 return context.reply(true) {
-                    content = pretty(FoxyEmotes.FoxyRage, context.locale[
-                        "rep.give.youCantGiveRepUntil",
-                        context.utils.convertISOToSimpleDiscordTimestamp(lastRep.plus(1.days))
-                    ])
+                    content = pretty(
+                        FoxyEmotes.FoxyRage, context.locale[
+                            "rep.give.youCantGiveRepUntil",
+                            context.utils.convertISOToSimpleDiscordTimestamp(lastRep.plus(1.days))
+                        ]
+                    )
                 }
             }
         }
@@ -34,7 +36,10 @@ class GiveRepExecutor : UnleashedCommandExecutor() {
         }
 
         context.reply {
-            content = pretty(FoxyEmotes.FoxyYay, context.locale["rep.give.youGaveRepToUser", user.asMention])
+            content = pretty(
+                FoxyEmotes.FoxyYay,
+                context.locale["rep.give.youGaveRepToUser", user.asMention]
+            )
         }
     }
 }

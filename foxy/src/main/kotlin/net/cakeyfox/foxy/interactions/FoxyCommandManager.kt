@@ -150,8 +150,8 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(YouTubeCommand())
 
         /* ---- [Moderation] ----*/
-//        register(ClearCommand())
-//        register(BanCommand())
+        register(ClearCommand())
+        register(BanCommand())
 //        register(MuteCommand())
 
         /* ---- [Social] ---- */

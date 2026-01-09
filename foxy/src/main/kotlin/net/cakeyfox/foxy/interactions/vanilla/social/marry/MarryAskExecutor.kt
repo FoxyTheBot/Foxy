@@ -113,7 +113,7 @@ class MarryAskExecutor : UnleashedCommandExecutor() {
                     else -> 3
                 }
 
-                append(clean.substring(0, partSize))
+                append(clean.take(partSize))
             }
         }
     }

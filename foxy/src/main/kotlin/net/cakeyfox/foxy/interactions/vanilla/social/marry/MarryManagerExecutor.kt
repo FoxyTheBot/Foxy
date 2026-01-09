@@ -27,8 +27,8 @@ class MarryManagerExecutor : UnleashedCommandExecutor() {
         val marriageInfo = context.database.user.getMarriage(context.userId)
         val partnerId = marriageInfo?.let { marriage ->
             when (context.userId) {
-                marriage.firstUserId -> marriage.secondUserId
-                marriage.secondUserId -> marriage.firstUserId
+                marriage.firstUser.id -> marriage.secondUser.id
+                marriage.secondUser.id -> marriage.firstUser.id
                 else -> null
             }
         }
@@ -63,23 +63,43 @@ class MarryManagerExecutor : UnleashedCommandExecutor() {
         marriedWith: User,
         marriageInfo: Marry,
         disableButtons: Boolean? = false
-        ) {
+    ) {
         val formattedDate = context.utils.convertISOToExtendedDiscordTimestamp(marriageInfo.marriedDate!!)
         val userLetters = marriageInfo.run {
-            if (firstUserId == context.userId) firstUserLetters else secondUserLetters
+            if (firstUser.id == context.userId) firstUser.letterCount else secondUser.letterCount
         }
         val partnerLetters = marriageInfo.run {
-            if (firstUserId == context.userId) secondUserLetters else firstUserLetters
+            if (firstUser.id == context.userId) secondUser.letterCount else firstUser.letterCount
         }
 
         val customName = marriageInfo.marriageName ?: "Não Definido"
-        +TextDisplay(componentMsg(Type.BOLD, context.locale["marry.manager.marriageName"]) + customName)
-        +TextDisplay(componentMsg(Type.BOLD, context.locale["marry.manager.marriedWith", marriedWith.asMention]))
-        +TextDisplay(componentMsg(Type.BOLD, context.locale["marry.manager.marriedSince", formattedDate]))
+        +TextDisplay(
+            componentMsg(
+                Type.BOLD,
+                context.locale["marry.manager.marriageName"]
+            ) + customName
+        )
+        +TextDisplay(
+            componentMsg(
+                Type.BOLD,
+                context.locale["marry.manager.marriedWith", marriedWith.asMention]
+            )
+        )
+        +TextDisplay(
+            componentMsg(
+                Type.BOLD,
+                context.locale["marry.manager.marriedSince", formattedDate]
+            )
+        )
 
         +Separator(false, Separator.Spacing.SMALL)
 
-        +TextDisplay(componentMsg(Type.SMALL_HEADER, context.locale["marry.manager.stats"], FoxyEmotes.FoxyWow))
+        +TextDisplay(
+            componentMsg(
+                Type.SMALL_HEADER,
+                context.locale["marry.manager.stats"], FoxyEmotes.FoxyWow
+            )
+        )
 
         +TextDisplay(
             """
@@ -106,11 +126,11 @@ class MarryManagerExecutor : UnleashedCommandExecutor() {
 
                 it.sendModal(
                     context.foxy.interactionManager.createModal(
-                        title = "Editar Nome de Casal",
+                        title = context.locale["marry.manager.modals.marriageName"],
                         builder = {
                             val name = TextInput.create(
                                 "marriageName",
-                                "Nome de Casal",
+                                context.locale["marry.manager.modals.editMarriageName"],
                                 TextInputStyle.SHORT
                             )
                                 .setRequired(true)
@@ -128,6 +148,8 @@ class MarryManagerExecutor : UnleashedCommandExecutor() {
                             this.marriageName = marriageName
                             this.decAffinityPoints(20)
                         }
+                        val updatedMarriageInfo = context.database.user.getMarriage(context.userId)
+                            ?: return@createModal
 
                         context.edit {
                             useComponentsV2 = true
@@ -144,7 +166,7 @@ class MarryManagerExecutor : UnleashedCommandExecutor() {
                                     )
                                 )
 
-                                buildMarriedComponent(context, marriedWith, marriageInfo)
+                                buildMarriedComponent(context, marriedWith, updatedMarriageInfo)
                             }
                         }
                     }
@@ -154,7 +176,11 @@ class MarryManagerExecutor : UnleashedCommandExecutor() {
     }
 
     private fun InlineContainer.buildNotMarriedComponent(context: CommandContext) {
-        +TextDisplay(pretty(FoxyEmotes.FoxyCry, context.locale["marry.manager.youAreNotMarried"]))
+        +TextDisplay(
+            pretty(
+                FoxyEmotes.FoxyCry, context.locale["marry.manager.youAreNotMarried"]
+            )
+        )
 
         +Separator(true, Separator.Spacing.SMALL)
 
@@ -173,9 +199,15 @@ class MarryManagerExecutor : UnleashedCommandExecutor() {
                 it.reply(true) {
                     val isNowLocked = !isMarriageBlocked
                     content = if (isNowLocked) {
-                        pretty(FoxyEmotes.Locked, context.locale["marry.manager.okYouWontReceiveAnyRequests"])
+                        pretty(
+                            FoxyEmotes.Locked,
+                            context.locale["marry.manager.okYouWontReceiveAnyRequests"]
+                        )
                     } else {
-                        pretty(FoxyEmotes.Unlocked, context.locale["marry.manager.okYouWillReceiveAnyRequests"])
+                        pretty(
+                            FoxyEmotes.Unlocked,
+                            context.locale["marry.manager.okYouWillReceiveAnyRequests"]
+                        )
                     }
                 }
             }
