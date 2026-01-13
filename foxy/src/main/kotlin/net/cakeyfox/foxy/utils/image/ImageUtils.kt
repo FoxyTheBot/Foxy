@@ -5,7 +5,7 @@ package net.cakeyfox.foxy.utils.image
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import mu.KotlinLogging
-import net.cakeyfox.foxy.profile.ProfileCacheManager
+import net.cakeyfox.foxy.image.ImageCacheManager
 import net.cakeyfox.serializable.data.ImagePosition
 import java.awt.AlphaComposite
 import java.awt.Color
@@ -38,15 +38,15 @@ object ImageUtils {
         }
     }
 
-    suspend fun loadProfileAssetFromURL(url: String): BufferedImage {
+    suspend fun loadAssetFromURL(url: String): BufferedImage {
         return withContext(Dispatchers.IO) {
             try {
-                val image = ProfileCacheManager.imageCache.getIfPresent(url)
+                val image = ImageCacheManager.imageCache.getIfPresent(url)
                 if (image != null) {
                     return@withContext image
                 } else {
                     val downloadedImage = downloadImage(url)
-                    ProfileCacheManager.imageCache.put(url, downloadedImage)
+                    ImageCacheManager.imageCache.put(url, downloadedImage)
                     return@withContext downloadedImage
                 }
             } catch (e: Exception) {

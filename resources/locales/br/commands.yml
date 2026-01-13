@@ -454,7 +454,7 @@ marry:
   accepted: "Pedido aceito! Felicidades para o casal! :3"
   requestField: "Cartinha"
   letter:
-    tip: "Envie uma cartinha com esse tipo de carta e ganhe **{0} Pontos de Afinidade**"
+    tip: "Envie uma cartinha desse tipo e ganhe **{0} Pontos de Afinidade** para gastar na loja de casal"
     sendLoveLetter:
       title: Enviar Cartinha de Amor
       button: Enviar Cartinha [{0} Cakes]

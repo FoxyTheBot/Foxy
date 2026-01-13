@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.profile
+package net.cakeyfox.foxy.image.profile
 
 import com.github.benmanes.caffeine.cache.Cache
 import kotlinx.coroutines.Dispatchers
@@ -7,8 +7,9 @@ import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.database.data.profile.Badge
 import net.cakeyfox.foxy.database.data.profile.Layout
 import net.cakeyfox.foxy.database.data.user.FoxyUser
+import net.cakeyfox.foxy.image.ImageCacheManager
 import net.cakeyfox.foxy.interactions.commands.CommandContext
-import net.cakeyfox.foxy.profile.badge.BadgeUtils
+import net.cakeyfox.foxy.image.profile.badge.BadgeUtils
 import net.cakeyfox.foxy.utils.ClusterUtils.getMemberRolesFromGuildOrCluster
 import net.dv8tion.jda.api.entities.User
 
@@ -26,7 +27,7 @@ object ProfileUtils {
 
     suspend fun getBadgeAssets(data: FoxyUser, user: User, context: CommandContext): List<Badge> {
         val defaultBadges = getOrFetchFromCache(
-            ProfileCacheManager.badgesCache,
+            ImageCacheManager.badgesCache,
             "default"
         ) {
             context.database.profile.getBadges()

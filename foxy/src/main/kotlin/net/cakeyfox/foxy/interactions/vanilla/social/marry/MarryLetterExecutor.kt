@@ -13,7 +13,9 @@ import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.componentMsg
 import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.components.buttons.ButtonStyle
+import kotlin.time.Duration.Companion.days
 
+// TODO: Rework marry command using image
 class MarryLetterExecutor : UnleashedCommandExecutor() {
     override suspend fun execute(context: CommandContext) {
         val itemId = context.getOption("letter_type", 0, String::class.java) ?: return
@@ -48,6 +50,18 @@ class MarryLetterExecutor : UnleashedCommandExecutor() {
         val now = Clock.System.now().toLocalDateTime(context.foxy.foxyZone).date
         val lastSentLetter = userInfoAsMarried.lastLetter?.toLocalDateTime(context.foxy.foxyZone)?.date
 
+        val label = if (lastSentLetter == null || now > lastSentLetter) {
+            context.locale[
+                "marry.letter.sendLoveLetter.button",
+                context.utils.formatLongNumber(storeItem.price.toLong())
+            ]
+        } else {
+            context.locale[
+                "marry.letter.sendLoveLetter.sendLetterWithoutAffinityPoints",
+                context.utils.formatLongNumber(storeItem.price.toLong())
+            ]
+        }
+
         context.reply(true) {
             embed {
                 color = Colors.FOXY_DEFAULT
@@ -67,17 +81,7 @@ class MarryLetterExecutor : UnleashedCommandExecutor() {
                     targetUser = context.user,
                     style = ButtonStyle.PRIMARY,
                     emoji = FoxyEmotes.Letter,
-                    label = if (lastSentLetter != null && lastSentLetter > now) {
-                        context.locale[
-                            "marry.letter.sendLoveLetter.button",
-                            context.utils.formatLongNumber(storeItem.price.toLong())
-                        ]
-                    } else {
-                        context.locale[
-                            "marry.letter.sendLoveLetter.sendLetterWithoutAffinityPoints",
-                            context.utils.formatLongNumber(storeItem.price.toLong())
-                        ]
-                    }
+                    label
                 ) {
                     it.deferEdit()
                     val marriedWith = if (marriageInfo.firstUser.id == context.user.id) {
@@ -90,16 +94,18 @@ class MarryLetterExecutor : UnleashedCommandExecutor() {
                     context.database.user.updateMarriage(context.user.id) {
                         if (marriageInfo.firstUser.id == context.user.id) {
                             incFirstUserLetters()
-                            lastFirstUserLetter = Clock.System.now()
                         } else {
                             incSecondUserLetters()
-                            lastSecondUserLetter = Clock.System.now()
                         }
 
-                        if (lastSentLetter != null) {
-                            if (lastSentLetter > now) {
-                                incAffinityPoints(storeItem.card.affinityPoints)
+                        if (lastSentLetter == null || now > lastSentLetter) {
+                            if (marriageInfo.firstUser.id == context.user.id) {
+                                lastFirstUserLetter = Clock.System.now()
+                            } else {
+                                lastSecondUserLetter = Clock.System.now()
                             }
+
+                            incAffinityPoints(storeItem.card.affinityPoints)
                         }
                     }
 
@@ -120,7 +126,7 @@ class MarryLetterExecutor : UnleashedCommandExecutor() {
                             description = """
                     > $letterText
                     
-                    Envie uma cartinha com esse tipo de carta e ganhe **${storeItem.card.affinityPoints} Pontos de Afinidade**
+                    ${context.locale["marry.letter.tip", storeItem.card.affinityPoints.toString()]}
                 """.trimIndent()
                         }
 
@@ -129,11 +135,7 @@ class MarryLetterExecutor : UnleashedCommandExecutor() {
                                 targetUser = context.user,
                                 style = ButtonStyle.PRIMARY,
                                 emoji = FoxyEmotes.Letter,
-                                label = context.locale[
-                                    "marry.letter.sendLoveLetter.button",
-                                    context.utils.formatLongNumber(storeItem.price.toLong())
-                                ]
-
+                                label
                             ) { }.asDisabled()
                         )
                     }

@@ -6,8 +6,8 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
-import net.cakeyfox.foxy.profile.ProfileRender
-import net.cakeyfox.foxy.profile.config.ProfileConfig
+import net.cakeyfox.foxy.image.profile.ProfileRender
+import net.cakeyfox.foxy.image.ImageConfig
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.utils.FileUpload
 
@@ -40,7 +40,7 @@ class ProfileViewExecutor : UnleashedCommandExecutor() {
         }
 
         val profile = withContext(context.foxy.coroutineDispatcher) {
-            ProfileRender(ProfileConfig(1436, 884), context).create(user, userData)
+            ProfileRender(ImageConfig(1436, 884), context).create(user, userData)
         }
         val file = FileUpload.fromData(profile, "profile.png")
 

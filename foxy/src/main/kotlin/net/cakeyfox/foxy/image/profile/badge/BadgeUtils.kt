@@ -1,4 +1,4 @@
-package net.cakeyfox.foxy.profile.badge
+package net.cakeyfox.foxy.image.profile.badge
 
 import net.cakeyfox.foxy.database.data.profile.Badge
 import net.cakeyfox.foxy.database.data.user.FoxyUser

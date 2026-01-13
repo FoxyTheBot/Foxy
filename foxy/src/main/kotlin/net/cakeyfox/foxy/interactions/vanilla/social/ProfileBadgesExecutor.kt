@@ -8,7 +8,7 @@ import net.cakeyfox.foxy.database.data.profile.Badge
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
-import net.cakeyfox.foxy.profile.ProfileUtils
+import net.cakeyfox.foxy.image.profile.ProfileUtils
 import net.dv8tion.jda.api.components.buttons.ButtonStyle
 import net.dv8tion.jda.api.entities.emoji.Emoji
 

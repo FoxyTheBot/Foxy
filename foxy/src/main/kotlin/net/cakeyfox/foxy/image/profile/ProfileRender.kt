@@ -1,27 +1,29 @@
-package net.cakeyfox.foxy.profile
+package net.cakeyfox.foxy.image.profile
 
 import dev.minn.jda.ktx.coroutines.await
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
+import net.cakeyfox.common.Constants.getProfileDecoration
 import net.cakeyfox.foxy.database.common.data.marry.Marry
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.utils.image.ImageUtils
 import net.cakeyfox.foxy.utils.image.ImageUtils.drawTextWithFont
-import net.cakeyfox.foxy.profile.ProfileUtils.getOrFetchFromCache
-import net.cakeyfox.foxy.profile.badge.BadgeUtils
-import net.cakeyfox.foxy.profile.config.ProfileConfig
-import net.cakeyfox.foxy.database.data.*
+import net.cakeyfox.foxy.image.profile.ProfileUtils.getOrFetchFromCache
+import net.cakeyfox.foxy.image.profile.badge.BadgeUtils
+import net.cakeyfox.foxy.image.ImageConfig
 import net.cakeyfox.foxy.database.data.profile.Background
 import net.cakeyfox.foxy.database.data.profile.Layout
 import net.cakeyfox.foxy.database.data.user.FoxyUser
+import net.cakeyfox.foxy.image.ImageCacheManager
 import net.cakeyfox.foxy.utils.ClusterUtils.getMemberRolesFromGuildOrCluster
 import net.dv8tion.jda.api.entities.User
 import java.awt.Color
 import java.awt.Graphics2D
 import java.awt.RenderingHints
 import java.awt.geom.Ellipse2D
+import java.awt.geom.Rectangle2D
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
 import javax.imageio.ImageIO
@@ -29,7 +31,7 @@ import kotlin.reflect.jvm.jvmName
 import kotlin.system.measureTimeMillis
 
 class ProfileRender(
-    private val config: ProfileConfig, private val context: CommandContext
+    private val config: ImageConfig, private val context: CommandContext
 ) {
     private lateinit var graphics: Graphics2D
     lateinit var image: BufferedImage
@@ -43,27 +45,27 @@ class ProfileRender(
         val renderTime = measureTimeMillis {
             coroutineScope {
                 val layoutInfo: Layout = getOrFetchFromCache(
-                    ProfileCacheManager.layoutCache,
+                    ImageCacheManager.layoutCache,
                     userData.userProfile.layout
                 ) { layoutKey ->
                     context.database.profile.getLayout(layoutKey)
                 }
 
                 val backgroundInfo: Background = getOrFetchFromCache(
-                    ProfileCacheManager.backgroundCache,
+                    ImageCacheManager.backgroundCache,
                     userData.userProfile.background
                 ) { backgroundKey ->
                     context.database.profile.getBackground(backgroundKey)
                 }
 
                 val layoutDeferred = async {
-                    ProfileCacheManager.loadImageFromCache(
+                    ImageCacheManager.loadImageFromCache(
                         Constants.getProfileLayout(layoutInfo.filename)
                     )
                 }
 
                 val backgroundDeferred = async {
-                    ProfileCacheManager.loadImageFromCache(
+                    ImageCacheManager.loadImageFromCache(
                         Constants.getProfileBackground(backgroundInfo.filename)
                     )
                 }
@@ -109,7 +111,7 @@ class ProfileRender(
     ) {
         val color = if (layout.darkText) Color.BLACK else Color.WHITE
 
-        graphics.drawTextWithFont(config.profileWidth, config.profileHeight) {
+        graphics.drawTextWithFont(config.imageWidth, config.imageHeight) {
             text = user.name
             fontFamily = layout.profileSettings.defaultFont
             fontSize = layout.profileSettings.fontSize.username
@@ -125,7 +127,7 @@ class ProfileRender(
             context.locale,
             false
         )
-        graphics.drawTextWithFont(config.profileWidth, config.profileHeight) {
+        graphics.drawTextWithFont(config.imageWidth, config.imageHeight) {
             text = formattedBalance
             fontFamily = layout.profileSettings.defaultFont
             fontSize = layout.profileSettings.fontSize.cakes
@@ -133,10 +135,12 @@ class ProfileRender(
             textPosition = layout.profileSettings.positions.cakesPosition
         }
 
-        val userAboutMe =
-            ProfileUtils.formatAboutMe(userData.userProfile.aboutme ?: context.locale["profile.defaultAboutMe"], layout)
+        val userAboutMe = ProfileUtils.formatAboutMe(
+                userData.userProfile.aboutme ?: context.locale["profile.defaultAboutMe"],
+                layout
+            )
 
-        graphics.drawTextWithFont(config.profileWidth, config.profileHeight) {
+        graphics.drawTextWithFont(config.imageWidth, config.imageHeight) {
             text = userAboutMe
             fontFamily = layout.profileSettings.defaultFont
             fontSize = layout.profileSettings.fontSize.aboutme
@@ -147,45 +151,70 @@ class ProfileRender(
 
     private suspend fun drawUserAvatar(user: User, layoutInfo: Layout, data: FoxyUser) {
         coroutineScope {
+            // Carregamento assíncrono das imagens
             val avatarDeferred = async {
                 val avatarUrl = user.avatarUrl ?: user.defaultAvatarUrl
                 val avatarWithSize = avatarUrl.plus("?size=1024")
-                ImageUtils.loadProfileAssetFromURL(avatarWithSize)
+                ImageUtils.loadAssetFromURL(avatarWithSize)
             }
 
             val decorationDeferred = async {
                 data.userProfile.decoration?.let {
-                    ProfileCacheManager.loadImageFromCache(Constants.getProfileDecoration(it))
+                    ImageCacheManager.loadImageFromCache(getProfileDecoration(it))
                 }
             }
 
             val avatar = avatarDeferred.await()
             val decorationImage = decorationDeferred.await()
 
-            val arcX = layoutInfo.profileSettings.positions.avatarPosition.arc?.x ?: 125f
-            val arcY = layoutInfo.profileSettings.positions.avatarPosition.arc?.y ?: 700f
-            val arcRadius = layoutInfo.profileSettings.positions.avatarPosition.arc?.radius ?: 100
-
+            val avatarSize = layoutInfo.profileSettings.fontSize.avatarSize ?: 200f
             val avatarX = layoutInfo.profileSettings.positions.avatarPosition.x
             val avatarY = layoutInfo.profileSettings.positions.avatarPosition.y
 
-            val clippingShape = arcRadius.times(2).let {
-                arcRadius.times(2).let { it1 ->
-                    Ellipse2D.Float(arcX.minus(arcRadius), arcY.minus(arcRadius), it.toFloat(), it1.toFloat())
-                }
+            val arc = layoutInfo.profileSettings.positions.avatarPosition.arc
+            val arcRadius = arc?.radius?.toFloat() ?: 100f
+
+            val arcX = arc?.x ?: (avatarX + avatarSize / 2f)
+            val arcY = arc?.y ?: (avatarY + avatarSize / 2f)
+
+            val clippingShape = if (arcRadius > 0f) {
+                val diameter = arcRadius * 2f
+                Ellipse2D.Float(
+                    arcX - arcRadius,
+                    arcY - arcRadius,
+                    diameter,
+                    diameter
+                )
+            } else {
+                Rectangle2D.Float(
+                    avatarX,
+                    avatarY,
+                    avatarSize,
+                    avatarSize
+                )
             }
 
-            graphics.clip(clippingShape)
-            graphics.drawImage(avatar, avatarX.toInt(), avatarY.toInt(), 200, 200, null)
-            graphics.clip = null
+            val oldClip = graphics.clip
+            graphics.clip = clippingShape
+
+            graphics.drawImage(
+                avatar,
+                avatarX.toInt(),
+                avatarY.toInt(),
+                avatarSize.toInt(),
+                avatarSize.toInt(),
+                null
+            )
+
+            graphics.clip = oldClip
 
             decorationImage?.let {
                 graphics.drawImage(
                     it,
-                    (config.profileWidth / layoutInfo.profileSettings.positions.decorationPosition.x).toInt(),
-                    (config.profileHeight / layoutInfo.profileSettings.positions.decorationPosition.y).toInt(),
-                    200,
-                    200,
+                    (config.imageWidth / layoutInfo.profileSettings.positions.decorationPosition.x).toInt(),
+                    (config.imageHeight / layoutInfo.profileSettings.positions.decorationPosition.y).toInt(),
+                    avatarSize.toInt(),
+                    avatarSize.toInt(),
                     null
                 )
             }
@@ -195,14 +224,14 @@ class ProfileRender(
     private suspend fun drawDecoration(data: FoxyUser, layoutInfo: Layout) {
         if (data.userProfile.decoration != null) {
             val decorationInfo = getOrFetchFromCache(
-                ProfileCacheManager.decorationCache,
+                ImageCacheManager.decorationCache,
                 data.userProfile.decoration!!
             ) { decorationKey ->
                 context.database.profile.getDecoration(decorationKey)
             }
 
             val decorationImage =
-                ProfileCacheManager.loadImageFromCache(
+                ImageCacheManager.loadImageFromCache(
                     Constants.getProfileDecoration(
                         decorationInfo.filename.replace(
                             ".png",
@@ -212,8 +241,8 @@ class ProfileRender(
                 )
             graphics.drawImage(
                 decorationImage,
-                (config.profileWidth / layoutInfo.profileSettings.positions.decorationPosition.x).toInt(),
-                (config.profileHeight / layoutInfo.profileSettings.positions.decorationPosition.y).toInt(),
+                (config.imageWidth / layoutInfo.profileSettings.positions.decorationPosition.x).toInt(),
+                (config.imageHeight / layoutInfo.profileSettings.positions.decorationPosition.y).toInt(),
                 200,
                 200,
                 null
@@ -223,7 +252,7 @@ class ProfileRender(
 
     private suspend fun drawBadges(data: FoxyUser, user: User, layoutInfo: Layout) {
         val defaultBadges = getOrFetchFromCache(
-            ProfileCacheManager.badgesCache,
+            ImageCacheManager.badgesCache,
             "default"
         ) { context.database.profile.getBadges() }
 
@@ -241,7 +270,7 @@ class ProfileRender(
         var y = layoutInfo.profileSettings.positions.badgesPosition.y
 
         for (badge in userBadges) {
-            val badgeImage = ProfileCacheManager.loadImageFromCache(Constants.getProfileBadge(badge.asset))
+            val badgeImage = ImageCacheManager.loadImageFromCache(Constants.getProfileBadge(badge.asset))
             graphics.drawImage(badgeImage, x.toInt(), y.toInt(), 50, 50, null)
 
             x += 60
@@ -254,7 +283,7 @@ class ProfileRender(
 
     private suspend fun drawMarryInfo(userData: FoxyUser, layout: Layout, marriageInfo: Marry) {
         val marriedDateFormatted = context.utils.convertToHumanReadableDate(marriageInfo.marriedDate!!)
-        val marriedOverlay = ProfileCacheManager.loadImageFromCache(Constants.getMarriedOverlay(layout.id))
+        val marriedOverlay = ImageCacheManager.loadImageFromCache(Constants.getMarriedOverlay(layout.id))
         val color = if (layout.darkText) Color.BLACK else Color.WHITE
         val partnerUser = if (marriageInfo.firstUser.id == userData._id) {
             context.jda.retrieveUserById(marriageInfo.secondUser.id).await()
@@ -263,8 +292,8 @@ class ProfileRender(
         }
 
         marriedOverlay.let {
-            graphics.drawImage(it, 0, 0, config.profileWidth, config.profileHeight, null)
-            graphics.drawTextWithFont(config.profileWidth, config.profileHeight) {
+            graphics.drawImage(it, 0, 0, config.imageWidth, config.imageHeight, null)
+            graphics.drawTextWithFont(config.imageWidth, config.imageHeight) {
                 text = context.locale["profile.marriedWith", marriedDateFormatted]
                 fontFamily = layout.profileSettings.defaultFont
                 fontSize = layout.profileSettings.fontSize.married
@@ -272,7 +301,7 @@ class ProfileRender(
                 textPosition = layout.profileSettings.positions.marriedPosition
             }
 
-            graphics.drawTextWithFont(config.profileWidth, config.profileHeight) {
+            graphics.drawTextWithFont(config.imageWidth, config.imageHeight) {
                 text = partnerUser.name
                 fontFamily = layout.profileSettings.defaultFont
                 fontSize = layout.profileSettings.fontSize.marriedSince
@@ -280,7 +309,7 @@ class ProfileRender(
                 textPosition = layout.profileSettings.positions.marriedUsernamePosition
             }
 
-            graphics.drawTextWithFont(config.profileWidth, config.profileHeight) {
+            graphics.drawTextWithFont(config.imageWidth, config.imageHeight) {
                 text = context.locale["profile.marriedSince", marriedDateFormatted]
                 fontFamily = layout.profileSettings.defaultFont
                 fontSize = layout.profileSettings.fontSize.marriedSince
@@ -291,9 +320,9 @@ class ProfileRender(
     }
 
     private fun drawBackgroundAndLayout(background: BufferedImage, layout: BufferedImage) {
-        graphics.clearRect(0, 0, config.profileWidth, config.profileHeight)
-        graphics.drawImage(background, 0, 0, config.profileWidth, config.profileHeight, null)
-        graphics.drawImage(layout, 0, 0, config.profileWidth, config.profileHeight, null)
+        graphics.clearRect(0, 0, config.imageWidth, config.imageHeight)
+        graphics.drawImage(background, 0, 0, config.imageWidth, config.imageHeight, null)
+        graphics.drawImage(layout, 0, 0, config.imageWidth, config.imageHeight, null)
     }
 
     private fun cleanUp() {
