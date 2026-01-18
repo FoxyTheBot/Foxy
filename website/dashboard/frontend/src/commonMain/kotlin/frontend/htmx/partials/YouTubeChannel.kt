@@ -93,7 +93,7 @@ fun getYouTubeChannelPage(
                         defaultValue = youtubeMessage.content
                     )
 
-                    buildGenericEmbed(youtubeMessage)
+                    buildGenericEmbed(youtubeMessage, "")
                 }
             }
         }

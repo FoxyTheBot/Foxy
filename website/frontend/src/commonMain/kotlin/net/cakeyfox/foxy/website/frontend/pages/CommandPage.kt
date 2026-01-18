@@ -30,8 +30,6 @@ fun commandPage(lang: String, user: UserSession?, isProduction: Boolean): String
                 h1("commands-title") { +"Comandos" }
 
                 buildAd(false, isProduction)
-
-
             }
         }
     }

@@ -9,6 +9,7 @@ import net.cakeyfox.foxy.website.FoxyWebsite
 import net.cakeyfox.foxy.website.routes.api.v1.PostAutoRoleSettingsRoute
 import net.cakeyfox.foxy.website.routes.api.v1.PostGeneralSettingsRoute
 import net.cakeyfox.foxy.website.routes.api.v1.PostSaveYouTubeSettings
+import net.cakeyfox.foxy.website.routes.api.v1.PostServerLogsSettingsRoute
 import net.cakeyfox.foxy.website.routes.api.v1.PostWelcomerRoute
 import net.cakeyfox.foxy.website.routes.api.v1.PostWelcomerTestRoute
 import net.cakeyfox.foxy.website.routes.api.v1.PostYouTubeAddChannelRoute
@@ -27,6 +28,7 @@ import net.cakeyfox.foxy.website.routes.pages.GetTermsOfServiceRoute
 import net.cakeyfox.foxy.website.routes.partials.GetServerAutoRoleSettingsRoute
 import net.cakeyfox.foxy.website.routes.partials.GetServerGeneralSettingsPartial
 import net.cakeyfox.foxy.website.routes.partials.GetServerListPartial
+import net.cakeyfox.foxy.website.routes.partials.GetServerLogsSettingsRoute
 import net.cakeyfox.foxy.website.routes.partials.GetServerWelcomerSettingsPartial
 import net.cakeyfox.foxy.website.routes.partials.GetYouTubeChannelPartial
 import net.cakeyfox.foxy.website.routes.partials.GetYouTubePartial
@@ -56,6 +58,7 @@ fun Application.registerAllRoutes(server: FoxyWebsite) {
         GetYouTubeChannelRoute(server).install(this)
 
         // ==[API]==
+        PostServerLogsSettingsRoute(server).install(this)
         PostGeneralSettingsRoute(server).install(this)
         PostWelcomerRoute(server).install(this)
         PostWelcomerTestRoute(server).install(this)
@@ -72,6 +75,7 @@ fun Application.registerAllRoutes(server: FoxyWebsite) {
         GetYouTubeChannelPartial().apply { getYouTubeChannel(server) }
         GetServerWelcomerSettingsPartial().apply { getServerSettings(server) }
         GetServerAutoRoleSettingsRoute().apply { getAutoRoleSettings(server) }
+        GetServerLogsSettingsRoute().apply { getServerLogsSettingsRoute(server) }
 
         // ==[OAUTH]==
         OAuthManager(server).apply { oauthRoutes() }

@@ -1,2 +1,0 @@
-package frontend.htmx.partials
-

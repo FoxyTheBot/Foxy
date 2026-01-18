@@ -79,8 +79,7 @@ fun setUpGenericTestButton(
         val prefix = getPrefix(eventType)
 
         val (thumbKey, imageKey) = when (eventType) {
-            EventType.LEAVE -> "${prefix}EmbedThumbnail" to "${prefix}ImageLink"
-            EventType.DM -> "${prefix}EmbedThumbnail" to "${prefix}ImageLink"
+            EventType.LEAVE, EventType.JOIN, EventType.DM -> "${prefix}EmbedThumbnail" to "${prefix}ImageLink"
             else -> "embedThumbnail" to "imageLink"
         }
 
@@ -99,22 +98,22 @@ fun setUpGenericTestButton(
                 MessageSettings(
                     channel = dataMap["welcomeChannel"],
                     content = dataMap["messageContent"],
-                    embedTitle = dataMap["embedTitle"],
-                    embedDescription = dataMap["embedDescription"],
-                    embedThumbnail = dataMap["embedThumbnail"],
-                    imageLink = dataMap["imageLink"],
-                    embedFooter = dataMap["embedFooter"]
+                    embedTitle = dataMap["welcomeEmbedTitle"],
+                    embedDescription = dataMap["welcomeEmbedDescription"],
+                    embedThumbnail = dataMap["welcomeEmbedThumbnail"],
+                    imageLink = dataMap["welcomeImageLink"],
+                    embedFooter = dataMap["welcomeEmbedFooter"]
                 )
             }
 
             EventType.DM -> {
                 MessageSettings(
-                    content = dataMap["DmMessageContent"],
-                    embedTitle = dataMap["DmEmbedTitle"],
-                    embedDescription = dataMap["DmEmbedDescription"],
-                    embedThumbnail = dataMap["DmEmbedThumbnail"],
-                    imageLink = dataMap["DmImageLink"],
-                    embedFooter = dataMap["DmEmbedFooter"]
+                    content = dataMap["dmMessageContent"],
+                    embedTitle = dataMap["dmEmbedTitle"],
+                    embedDescription = dataMap["dmEmbedDescription"],
+                    embedThumbnail = dataMap["dmEmbedThumbnail"],
+                    imageLink = dataMap["dmImageLink"],
+                    embedFooter = dataMap["dmEmbedFooter"]
                 )
             }
 
@@ -172,9 +171,9 @@ fun setUpGenericTestButton(
 
 private fun getPrefix(eventType: EventType): String {
     return when (eventType) {
-        EventType.JOIN, EventType.ANY -> ""
+        EventType.JOIN, EventType.ANY -> "welcome"
         EventType.LEAVE -> "leave"
-        EventType.DM -> "Dm"
+        EventType.DM -> "dm"
     }
 }
 

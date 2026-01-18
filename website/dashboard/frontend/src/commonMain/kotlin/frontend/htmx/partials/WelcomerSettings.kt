@@ -156,7 +156,7 @@ fun getWelcomerSettings(guild: Guild, locale: FoxyLocale, channels: List<Discord
                         button {
                             this.id = "welcomeImportJsonButton"
                             type = ButtonType.button
-                            onClick = "showPopup()"
+                            onClick = "showPopup('welcome')"
                             attributes["data-module-type"] = "welcome"
                             +"Importar JSON"
                         }
@@ -171,7 +171,7 @@ fun getWelcomerSettings(guild: Guild, locale: FoxyLocale, channels: List<Discord
                         defaultValue = joinMessage.content
                     )
 
-                    buildGenericEmbed(joinMessage)
+                    buildGenericEmbed(joinMessage, "welcome")
                 }
             }
 
@@ -192,7 +192,7 @@ fun getWelcomerSettings(guild: Guild, locale: FoxyLocale, channels: List<Discord
                         button {
                             this.id = "welcomeDMImportJsonButton"
                             type = ButtonType.button
-                            onClick = "showPopup()"
+                            onClick = "showPopup('dm')"
                             attributes["data-module-type"] = "dm"
                             +"Importar JSON"
                         }
@@ -207,62 +207,7 @@ fun getWelcomerSettings(guild: Guild, locale: FoxyLocale, channels: List<Discord
                         defaultValue = dmMessage.content
                     )
 
-                    buildToggleableEntry("Configurar Embed", "embed-config") {
-                        br {}
-                        br {}
-
-                        div {
-                            label("toggleable-option-title") { +"Título da Embed" }
-                            input(InputType.text) {
-                                name = "DmEmbedTitle"
-                                id = "DmEmbedTitle"
-                                placeholder = "Título da Embed"
-                                value = dmMessage.embeds?.firstOrNull()?.title ?: ""
-                            }
-                        }
-
-                        div {
-                            label("toggleable-option-title") { +"Descrição da Embed" }
-                            textArea {
-                                name = "DmEmbedDescription"
-                                id = "DmEmbedDescription"
-                                rows = "10"
-                                cols = "50"
-                                placeholder = "A Foxy é fofa!"
-                                +dmMessage.embeds?.firstOrNull()?.description.orEmpty()
-                            }
-                        }
-
-                        div {
-                            label("toggleable-option-title") { +"Thumbnail da Embed" }
-                            input(InputType.text) {
-                                name = "DmEmbedThumbnail"
-                                id = "DmEmbedThumbnail"
-                                placeholder = "Link da Thumbnail"
-                                value = dmMessage.embeds?.firstOrNull()?.thumbnail?.url ?: ""
-                            }
-                        }
-
-                        div {
-                            label("toggleable-option-title") { +"Imagem da Embed" }
-                            input(InputType.text) {
-                                name = "DmImageLink"
-                                id = "DmImageLink"
-                                placeholder = "Link da Imagem"
-                                value = dmMessage.embeds?.firstOrNull()?.image?.url ?: ""
-                            }
-                        }
-
-                        div {
-                            label("toggleable-option-title") { +"Footer da Embed" }
-                            input(InputType.text) {
-                                name = "DmEmbedFooter"
-                                id = "DmEmbedFooter"
-                                placeholder = "Footer da Embed"
-                                value = dmMessage.embeds?.firstOrNull()?.footer?.text ?: ""
-                            }
-                        }
-                    }
+                    buildGenericEmbed(dmMessage, "dm")
                 }
             }
 
@@ -295,7 +240,7 @@ fun getWelcomerSettings(guild: Guild, locale: FoxyLocale, channels: List<Discord
                         button {
                             this.id = "leaveImportJsonButton"
                             type = ButtonType.button
-                            onClick = "showPopup()"
+                            onClick = "showPopup('leave')"
                             attributes["data-module-type"] = "leave"
                             +"Importar JSON"
                         }
@@ -310,62 +255,7 @@ fun getWelcomerSettings(guild: Guild, locale: FoxyLocale, channels: List<Discord
                         defaultValue = leaveMessage.content
                     )
 
-                    buildToggleableEntry("Configurar Embed", "embed-config") {
-                        br {}
-                        br {}
-
-                        div {
-                            label("toggleable-option-title") { +"Título da Embed" }
-                            input(InputType.text) {
-                                name = "leaveEmbedTitle"
-                                id = "leaveEmbedTitle"
-                                placeholder = "Título da Embed"
-                                value = leaveMessage.embeds?.firstOrNull()?.title ?: ""
-                            }
-                        }
-
-                        div {
-                            label("toggleable-option-title") { +"Descrição da Embed" }
-                            textArea {
-                                name = "leaveEmbedDescription"
-                                id = "leaveEmbedDescription"
-                                rows = "10"
-                                cols = "50"
-                                placeholder = "Mensagem de despedida na embed"
-                                +leaveMessage.embeds?.firstOrNull()?.description.orEmpty()
-                            }
-                        }
-
-                        div {
-                            label("toggleable-option-title") { +"Thumbnail da Embed" }
-                            input(InputType.text) {
-                                name = "leaveEmbedThumbnail"
-                                id = "leaveEmbedThumbnail"
-                                placeholder = "Link da Thumbnail"
-                                value = leaveMessage.embeds?.firstOrNull()?.thumbnail?.url ?: ""
-                            }
-                        }
-
-                        div {
-                            label("toggleable-option-title") { +"Imagem da Embed" }
-                            input(InputType.text) {
-                                name = "leaveImageLink"
-                                id = "leaveImageLink"
-                                placeholder = "Link da Imagem"
-                                value = leaveMessage.embeds?.firstOrNull()?.image?.url ?: ""
-                            }
-                        }
-
-                        div {
-                            label("toggleable-option-title") { +"Footer da Embed" }
-                            input(InputType.text) {
-                                name = "leaveEmbedFooter"
-                                id = "leaveEmbedFooter"
-                                placeholder = "Footer da Embed"
-                                value = leaveMessage.embeds?.firstOrNull()?.footer?.text ?: ""
-                            }
-                        }
-                    }
+                    buildGenericEmbed(leaveMessage, "leave")
                 }
             }
         }

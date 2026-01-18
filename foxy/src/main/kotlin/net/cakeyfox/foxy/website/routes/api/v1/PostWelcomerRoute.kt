@@ -42,11 +42,11 @@ class PostWelcomerRoute(val server: FoxyWebsite) :
                 EventType.JOIN to MessageSettings(
                     channel = params["welcomeChannel"],
                     content = params["messageContent"],
-                    embedTitle = params["embedTitle"],
-                    embedDescription = params["embedDescription"],
-                    embedThumbnail = params["embedThumbnail"],
-                    imageLink = params["imageLink"],
-                    embedFooter = params["embedFooter"]
+                    embedTitle = params["welcomeEmbedTitle"],
+                    embedDescription = params["welcomeEmbedDescription"],
+                    embedThumbnail = params["welcomeEmbedThumbnail"],
+                    imageLink = params["welcomeImageLink"],
+                    embedFooter = params["welcomeEmbedFooter"]
                 ),
                 EventType.LEAVE to MessageSettings(
                     channel = params["leaveChannel"],
@@ -58,12 +58,12 @@ class PostWelcomerRoute(val server: FoxyWebsite) :
                     embedFooter = params["leaveEmbedFooter"]
                 ),
                 EventType.DM to MessageSettings(
-                    content = params["DmMessageContent"],
-                    embedTitle = params["DmEmbedTitle"],
-                    embedDescription = params["DmEmbedDescription"],
-                    embedThumbnail = params["DmEmbedThumbnail"],
-                    imageLink = params["DmImageLink"],
-                    embedFooter = params["DmEmbedFooter"]
+                    content = params["dmMessageContent"],
+                    embedTitle = params["dmEmbedTitle"],
+                    embedDescription = params["dmEmbedDescription"],
+                    embedThumbnail = params["dmEmbedThumbnail"],
+                    imageLink = params["dmImageLink"],
+                    embedFooter = params["dmEmbedFooter"]
                 )
             )
 

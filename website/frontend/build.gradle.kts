@@ -21,8 +21,10 @@ kotlin {
             dependencies {
                 implementation(project(":serializable-commons"))
                 implementation(project(":common"))
+                implementation(project(":website:dashboard:dashboard-utils"))
                 implementation(libs.foxy.databaseutils.common)
                 implementation(libs.ktor.htmx)
+                implementation(libs.kotlinx.datetime)
                 implementation(libs.ktor.htmx.html)
             }
         }

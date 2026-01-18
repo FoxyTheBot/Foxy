@@ -24,4 +24,13 @@ object Placeholders {
     const val STAFF_MENTION = "{@staff}"
     const val STAFF_AVATAR = "{staff.avatar}"
     const val PUNISHMENT_TYPE = "{punishment.type}"
+
+    // Loritta & Carl-bot placeholders for JSON Import
+    const val USER_NAME_ALT = "{user.name}"
+    const val USER_TAG = "{user.tag}"
+    const val USER_DISCRIMINATOR = "{user.discriminator}"
+    const val USER_PROPER = "{user(proper)}"
+    const val MENTION_LEGACY = "{mention}"
+    const val GUILD_LEGACY = "{guild}"
+    const val SERVER_NAME = "{server}"
 }

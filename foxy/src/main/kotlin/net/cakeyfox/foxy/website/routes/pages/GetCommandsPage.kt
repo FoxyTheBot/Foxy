@@ -15,7 +15,6 @@ class GetCommandsPage(val server: FoxyWebsite) : BaseRoute("/commands") {
     override suspend fun handle(context: RoutingContext, locale: FoxyLocale) {
         val lang = context.call.parameters["lang"] ?: "br"
         val user = checkSession(context.call, server, context.call.sessions.get<UserSession>())
-
         respondWithPage(context.call) { commandPage(lang, user, server.isProduction) }
     }
 }

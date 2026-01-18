@@ -140,6 +140,13 @@ fun FlowContent.renderGuildSidebar(
                 icon = Icons.GEAR
             )
 
+            entry(
+                locale["dashboard.guildSidebar.auditLog"],
+                "/br/servers/${guild._id}/logs",
+                isSelected = moduleId == "logs",
+                icon = Icons.LOG
+            )
+
             if (isFoxyverseGuild) {
                 hr("separator")
                 h2("section-title")
@@ -158,18 +165,26 @@ fun FlowContent.renderGuildSidebar(
                 isSelected = moduleId == "autorole",
                 icon = Icons.AUTOROLE
             )
+//            entry(
+//                locale["dashboard.guildSidebar.inviteblocker"],
+//                "/br/servers/${guild._id}/inviteblocker",
+//                isSelected = moduleId == "inviteblocker",
+//                icon = Icons.INVITEBLOCKER
+//            )
+//            entry(
+//                locale["dashboard.guildSidebar.modlog"],
+//                "/br/servers/${guild._id}/modlog",
+//                isSelected = moduleId == "modlog",
+//                icon = Icons.PUNISHMENTS
+//            )
+
             entry(
-                locale["dashboard.guildSidebar.inviteblocker"],
-                "/br/servers/${guild._id}/inviteblocker",
-                isSelected = moduleId == "inviteblocker",
-                icon = Icons.INVITEBLOCKER
+                locale["dashboard.guildSidebar.serverLogs"],
+                "/br/servers/${guild._id}/serverlogs",
+                isSelected = moduleId == "serverlogs",
+                icon = Icons.LOG
             )
-            entry(
-                locale["dashboard.guildSidebar.modlog"],
-                "/br/servers/${guild._id}/modlog",
-                isSelected = moduleId == "modlog",
-                icon = Icons.PUNISHMENTS
-            )
+
             entry(
                 locale["dashboard.guildSidebar.welcomer"],
                 "/br/servers/${guild._id}/welcomer",
@@ -186,14 +201,14 @@ fun FlowContent.renderGuildSidebar(
                 icon = Icons.YOUTUBE
             )
 
-            separateCategory(locale["dashboard.guildSidebar.separators.misc"])
-
-            entry(
-                locale["dashboard.guildSidebar.music"],
-                "/br/servers/${guild._id}/music",
-                isSelected = moduleId == "music",
-                icon = Icons.MUSIC
-            )
+//            separateCategory(locale["dashboard.guildSidebar.separators.misc"])
+//
+//            entry(
+//                locale["dashboard.guildSidebar.music"],
+//                "/br/servers/${guild._id}/music",
+//                isSelected = moduleId == "music",
+//                icon = Icons.MUSIC
+//            )
 
             separateCategory(locale["dashboard.guildSidebar.separators.settings"])
 
@@ -203,12 +218,10 @@ fun FlowContent.renderGuildSidebar(
                 isSelected = moduleId == "keys",
                 icon = Icons.PREMIUM
             )
-            entry(
-                locale["dashboard.guildSidebar.auditLog"],
-                "/br/servers/${guild._id}/logs",
-                isSelected = moduleId == "logs",
-                icon = Icons.LOG
-            )
+
+            a(href = "/logout") {
+                div("entry logout") { +"Sair" }
+            }
         }
     }
 

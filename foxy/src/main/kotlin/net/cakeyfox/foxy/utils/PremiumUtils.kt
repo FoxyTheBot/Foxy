@@ -87,8 +87,7 @@ object PremiumUtils {
 
     fun isUserPremium(user: FoxyUser): Boolean {
         val premiumDate = user.userPremium.premiumDate ?: return false
-        val expirationDate = premiumDate.plus(30.days)
-        return Clock.System.now() < expirationDate
+        return Clock.System.now() < premiumDate
     }
 
     private fun getPremiumType(user: FoxyUser): Int {

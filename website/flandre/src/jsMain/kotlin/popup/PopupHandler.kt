@@ -11,10 +11,11 @@ fun setupPopupHandler() {
     window.asDynamic().hidePopup = ::hidePopup
 }
 
-fun showPopup() {
+fun showPopup(type: String) {
     val popup = document.getElementById("popup") ?: return
     popup.classList.add("visible")
     popup.classList.remove("hidden")
+    setUpImportFromJson(type)
 }
 
 fun hidePopup() {

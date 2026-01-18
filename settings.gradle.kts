@@ -30,8 +30,8 @@ dependencyResolutionManagement {
             // Database
             library("mongodb-bson", "org.mongodb", "bson-kotlinx").version("5.5.0")
             library("mongodb-coroutine-driver", "org.mongodb", "mongodb-driver-kotlin-coroutine").version("5.5.0")
-            library("foxy-databaseutils-common", "com.github.CakeyFox.DatabaseUtils", "core").version("1.3.6")
-            library("foxy-databaseutils-jvm", "com.github.CakeyFox.DatabaseUtils", "core-jvm").version("1.3.6")
+            library("foxy-databaseutils-common", "com.github.CakeyFox.DatabaseUtils", "core").version("1.3.7")
+            library("foxy-databaseutils-jvm", "com.github.CakeyFox.DatabaseUtils", "core-jvm").version("1.3.7")
 
             // Ktor
             library("ktor-htmx", "io.ktor", "ktor-htmx").versionRef(ktor)

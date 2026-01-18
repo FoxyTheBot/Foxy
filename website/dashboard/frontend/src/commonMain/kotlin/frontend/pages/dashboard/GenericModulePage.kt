@@ -19,7 +19,7 @@ fun getModuleConfig(
 ): String {
     return buildDashboardModule(
         session,
-        titleText = locale["dashboard.modules.manage", locale["dashboard.modules.$moduleId.title"]],
+        titleText = locale["dashboard.modules.$moduleId.title"],
         moduleTitle = locale["dashboard.modules.$moduleId.title"],
         moduleDescription = locale["dashboard.modules.$moduleId.description"],
         currentGuild = guild,

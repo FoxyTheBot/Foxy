@@ -74,8 +74,10 @@ fun FlowContent.headerWithUser(user: UserSession?, locale: FoxyLocale) {
                                 alt = "Avatar"
                             )
                             div {}
-                            span {
-                                +(user.globalName ?: user.username)
+                            unsafe {
+                                +"""
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="25" viewBox="0 0 24 25"><path d="m6 9 6 6 6-6"></path></svg>
+                            """.trimIndent()
                             }
                         }
                     }
@@ -110,10 +112,20 @@ fun FlowContent.headerWithUser(user: UserSession?, locale: FoxyLocale) {
     }
 
     addExpandableMenu("dashboard-menu") {
+        if (user != null) {
+            div("user-info") {
+                h3 { +"Olá, ${user.globalName ?: user.username}" }
+            }
+        }
+        hr("separator")
         a(href = "/${locale.language}/dashboard", classes = "cmd-category-link") { +"Gerenciar Servidores" }
         a(href = "/${locale.language}/daily", classes = "cmd-category-link") { +"Prêmio Diário" }
         a(href = "/${locale.language}/store", classes = "cmd-category-link") { +"Loja Diária" }
-        a(href = "/${locale.language}/dashboard/subscriptions", classes = "cmd-category-link") { +"Gerenciar Assinaturas" }
+        a(
+            href = "/${locale.language}/dashboard/subscriptions",
+            classes = "cmd-category-link"
+        ) { +"Gerenciar Assinaturas" }
+        hr("separator")
         a(href = "/logout", classes = "cmd-category-link") { +"Sair" }
     }
 

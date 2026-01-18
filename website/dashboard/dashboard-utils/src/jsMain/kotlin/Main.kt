@@ -3,6 +3,7 @@ import io.ktor.client.engine.js.Js
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.browser.document
+import kotlinx.browser.window
 import kotlinx.coroutines.MainScope
 import kotlinx.html.div
 import kotlinx.html.dom.append
@@ -18,6 +19,7 @@ import modules.setUpGuildSearchBar
 import modules.setUpGuildSelectMenu
 import modules.setUpYouTubeAddButtons
 import modules.setUpYouTubeRemoveButtons
+import modules.showToast
 import net.cakeyfox.serializable.data.website.EventType
 
 val client = HttpClient(Js) {
@@ -72,6 +74,7 @@ fun main() {
     })
 
     setUpGuildSelectMenu()
+    window.asDynamic().showToast = ::showToast
 }
 
 fun showLoading() {

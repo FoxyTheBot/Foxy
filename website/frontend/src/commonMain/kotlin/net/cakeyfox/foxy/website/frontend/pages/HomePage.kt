@@ -41,8 +41,7 @@ fun homePage(lang: String, user: UserSession?, isProduction: Boolean): String {
             main {
                 div("intro") {
                     img(classes = "foxy-logo") {
-                        src = "/assets/images/fumo.png"
-                        id = "foxy-fumo"
+                        src = "/assets/images/logo.png"
                     }
 
                     h2("greetings-2") { +locale["website.homepage.greetings"] }
@@ -63,7 +62,9 @@ fun homePage(lang: String, user: UserSession?, isProduction: Boolean): String {
                     br()
                 }
             }
-
+            img(classes = "foxy-body") {
+                src = "/assets/images/foxy-fullbody.png"
+            }
             div("feature-card-section") {
                 h1("title") { +locale["website.homepage.letMeHelpWithYourServer"] }
 
@@ -75,23 +76,6 @@ fun homePage(lang: String, user: UserSession?, isProduction: Boolean): String {
                     br()
                     h2 {
                         +locale["website.homepage.iAmEasyToUse"]
-                    }
-                }
-
-                div("feature-card centralized") {
-                    h1 {
-                        style = "margin-bottom: 1.650rem"
-                        +locale["website.homepage.someServersThatLikeMyFeatures"]
-                    }
-                    div("server-container") {
-                        div("server-wrapper") {
-                            addGuild("Servidor da Fhany", "fhany", "fhany.png")
-                            addGuild("Station Coffee", "station-coffee-772182631798276158", "stationcoffee.gif")
-                            addGuild("Red Dead Brasil", "gMz858Zahf", "raposas.png")
-                            addGuild("Snow's Bakery", "m6mEeXxHZb", "snow.png")
-                            addGuild("Rikagaku", "eXTPeabPdX", "rikagaku.png")
-                            addGuild("Braixen's House", "bbBqaEBmJT", "bh.gif")
-                        }
                     }
                 }
 
@@ -143,6 +127,23 @@ fun homePage(lang: String, user: UserSession?, isProduction: Boolean): String {
                     "/assets/images/features/your-server.png"
                 )
 
+                div("feature-card centralized") {
+                    h1 {
+                        style = "margin-bottom: 1.650rem"
+                        +locale["website.homepage.someServersThatLikeMyFeatures"]
+                    }
+                    div("server-container") {
+                        div("server-wrapper") {
+                            addGuild("fhany", "fhany.png")
+                            addGuild("station-coffee-772182631798276158", "stationcoffee.gif")
+                            addGuild("gMz858Zahf", "raposas.png")
+                            addGuild("m6mEeXxHZb", "snow.png")
+                            addGuild("eXTPeabPdX", "rikagaku.png")
+                            addGuild("bbBqaEBmJT", "bh.gif")
+                        }
+                    }
+                }
+
                 div("footer-add") {
                     h2 { +locale["website.homepage.footerAdd.title"] }
                     a(href = "/add") {
@@ -169,7 +170,7 @@ fun FlowContent.featureCard(position: String, title: String, description: String
     }
 }
 
-fun FlowContent.addGuild(guildName: String, guildInvite: String, filename: String) {
+fun FlowContent.addGuild(guildInvite: String, filename: String) {
     a(href = "https://discord.gg/$guildInvite", target = ATarget.blank) {
         div("server-card") {
             img("server-avatar") {

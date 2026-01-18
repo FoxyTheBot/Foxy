@@ -79,7 +79,7 @@ class PostWelcomerTestRoute(val server: FoxyWebsite) :
             context.call.respondText("OK", status = HttpStatusCode.OK)
         }
 
-        if (body.channel == null) return
+        if (body.channel == null) return println("Empty body")
 
         server.foxy.utils.sendMessageToAGuildChannel(guildInfo, body.channel!!) {
             this.content = content

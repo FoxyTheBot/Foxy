@@ -36,42 +36,42 @@ main .greetings-2 {
 }
 
 .foxy-logo {
-  width: 10rem;
+  width: 11rem;
   height: auto;
-  transition: transform 0.5s ease, filter 0.5s ease, box-shadow 0.5s ease;
-  cursor: pointer;
-  animation: float 3s infinite ease-in-out;
 }
 
-.foxy-logo:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
+.foxy-body {
+  width: 24rem;
+  height: auto;
+  position: absolute;
+  right: 7rem;
+  top: 3rem;
+  animation: fadeInLeft 1s ease-out forwards;
 }
 
-
-.foxy-logo.glow {
-  animation: glow 2s infinite ease-in-out;
+.intro {
+  animation: fadeInRight 1s ease-out forwards;
 }
 
-@keyframes float {
-  0% {
-    transform: translateY(0) rotate(0deg);
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
   }
-
-  25% {
-    transform: translateY(-3px) rotate(-1deg);
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
+}
 
-  50% {
-    transform: translateY(0) rotate(0deg);
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
   }
-
-  75% {
-    transform: translateY(3px) rotate(1deg);
-  }
-
-  100% {
-    transform: translateY(0) rotate(0deg);
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -126,6 +126,14 @@ main {
   transition-duration: 0.5s;
   text-align: center;
   cursor: default;
+
+  .intro {
+    text-align: center;
+    width: 65%;
+    position: relative;
+    margin-bottom: 9rem;
+    margin-top: 11rem;
+  }
 }
 
 
@@ -241,6 +249,10 @@ main {
         margin-right: 0;
         padding: 0;
         margin-top: 20px;
+      }
+
+      .foxy-body {
+        display: none;
       }
 
       .feature-card-image {

@@ -126,11 +126,11 @@ fun premiumPage(user: UserSession?, lang: String): String = createHTML().html {
                 }
 
                 p("store-description") {
-                    +"Preciso de uma ajudinha para continuar online, sabia que manter um bot online não é fácil?"
+                    +"Melhore sua experiência com os recursos premium da Foxy!"
                     br()
-                    +"Sem falar nos investimentos em novidades que você pode usar! Você pode ajudar no meu desenvolvimento e investir em novos recursos, assinando Premium, comprando cakes, ou fazendo uma doação de qualquer valor!"
+                    +"Desbloqueie recursos especiais para tornar seu servidor um lugar único!"
                     br()
-                    +"Tudo bem se não puder, meus comandos são gratuitos para qualquer um!"
+                    +"Além de desbloquear recursos únicos, você ajuda a Foxy a continuar online e espalhando alegria e fofura pelo Discord!"
                 }
             }
 

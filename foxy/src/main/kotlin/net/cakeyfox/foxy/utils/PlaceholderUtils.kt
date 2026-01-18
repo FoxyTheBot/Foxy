@@ -52,22 +52,32 @@ object PlaceholderUtils {
     }
 
     private fun getUserPlaceholders(user: User): Map<String, String?> {
+        val avatar = user.effectiveAvatarUrl + "?size=2048"
+
         return mapOf(
             Placeholders.USER_GLOBAL_NAME to user.globalName,
-            Placeholders.USER_MENTION to user.asMention,
             Placeholders.USER_USERNAME to user.name,
+            Placeholders.USER_NAME_ALT to user.name,
+            Placeholders.USER_PROPER to user.name,
+            Placeholders.USER_MENTION to user.asMention,
+            Placeholders.MENTION_LEGACY to user.asMention,
             Placeholders.USER_ID to user.id,
-            Placeholders.USER_AVATAR to user.effectiveAvatarUrl + "?size=2048",
+            Placeholders.USER_TAG to (user.globalName ?: user.name),
+            Placeholders.USER_DISCRIMINATOR to user.discriminator,
+            Placeholders.USER_AVATAR to avatar
         )
     }
 
     private fun getGuildPlaceholders(guild: DiscordServer): Map<String, String?> {
         val staticImage = "https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128"
+        val icon = if (guild.icon != null) staticImage else guild.iconUrl
 
         return mapOf(
             Placeholders.GUILD_NAME to guild.name,
+            Placeholders.GUILD_LEGACY to guild.name,
+            Placeholders.SERVER_NAME to guild.name,
             Placeholders.GUILD_ID to guild.id,
-            Placeholders.GUILD_ICON to if (guild.icon != null) staticImage else guild.iconUrl
+            Placeholders.GUILD_ICON to icon,
         )
     }
 

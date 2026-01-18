@@ -4,18 +4,18 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class LorittaMessage(
-    val content: String,
-    val embed: LorittaEmbed,
+    val content: String? = null,
+    val embed: LorittaEmbed? = null,
 )
 
 @Serializable
 data class LorittaEmbed(
-    val title: String,
-    val description: String,
-    val color: Int,
-    val thumbnail: Image,
-    val image: Image,
-    val footer: Footer
+    val title: String? = null,
+    val description: String? = null,
+    val color: Int? = null,
+    val thumbnail: Image? = null,
+    val image: Image? = null,
+    val footer: Footer? = null
 )
 
 @Serializable

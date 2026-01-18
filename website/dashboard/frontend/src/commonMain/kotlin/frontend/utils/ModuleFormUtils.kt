@@ -21,7 +21,9 @@ import kotlinx.html.id
 import kotlinx.html.input
 import kotlinx.html.label
 import kotlinx.html.onClick
+import kotlinx.html.option
 import kotlinx.html.script
+import kotlinx.html.select
 import kotlinx.html.span
 import kotlinx.html.stream.createHTML
 import kotlinx.html.style
@@ -34,6 +36,7 @@ import net.cakeyfox.foxy.website.frontend.utils.buildHead
 import net.cakeyfox.foxy.website.frontend.utils.headerWithUser
 import net.cakeyfox.foxy.website.frontend.utils.isLoading
 import net.cakeyfox.serializable.data.utils.DiscordMessageBody
+import net.cakeyfox.serializable.data.website.DiscordChannel
 import net.cakeyfox.serializable.data.website.DiscordServer
 import net.cakeyfox.serializable.data.website.UserSession
 
@@ -86,6 +89,29 @@ fun FORM.buildTextModuleEntry(
     }
 }
 
+fun DIV.buildSimpleChannelSelector(
+    channels: List<DiscordChannel>,
+    locale: FoxyLocale,
+    selectorName: String,
+    defaultValue: String?
+) {
+    div("channel-selector") {
+        select {
+            name = selectorName
+            id = "channelSelector"
+
+            channels.forEach { channel ->
+                option {
+                    this.id = channel.id
+                    this.value = channel.id
+                    this.selected = defaultValue == channel.id
+                    +channel.name
+                }
+            }
+        }
+    }
+}
+
 fun FORM.buildExpandableModuleEntry(
     entryName: String,
     entryId: String,
@@ -130,7 +156,7 @@ fun FORM.buildExpandableModuleEntry(
     }
 }
 
-fun DIV.buildGenericEmbed(messageBody: DiscordMessageBody) {
+fun DIV.buildGenericEmbed(messageBody: DiscordMessageBody, prefix: String) {
     return buildToggleableEntry("Configurar Embed", "embed-config") {
         br {}
         br {}
@@ -138,8 +164,8 @@ fun DIV.buildGenericEmbed(messageBody: DiscordMessageBody) {
         div {
             label("toggleable-option-title") { +"Título da Embed" }
             input(InputType.text) {
-                name = "embedTitle"
-                id = "embedTitle"
+                name = "${prefix}EmbedTitle"
+                id = "${prefix}EmbedTitle"
                 placeholder = "Título da Embed"
                 value = messageBody.embeds?.firstOrNull()?.title ?: ""
             }
@@ -148,8 +174,8 @@ fun DIV.buildGenericEmbed(messageBody: DiscordMessageBody) {
         div {
             label("toggleable-option-title") { +"Descrição da Embed" }
             textArea {
-                name = "embedDescription"
-                id = "embedDescription"
+                name = "${prefix}EmbedDescription"
+                id = "${prefix}EmbedDescription"
                 rows = "10"
                 cols = "50"
                 placeholder = "A Foxy é fofa!"
@@ -160,8 +186,8 @@ fun DIV.buildGenericEmbed(messageBody: DiscordMessageBody) {
         div {
             label("toggleable-option-title") { +"Thumbnail da Embed" }
             input(InputType.text) {
-                name = "embedThumbnail"
-                id = "embedThumbnail"
+                name = "${prefix}EmbedThumbnail"
+                id = "${prefix}EmbedThumbnail"
                 placeholder = "Link da Thumbnail"
                 value = messageBody.embeds?.firstOrNull()?.thumbnail?.url ?: ""
             }
@@ -170,8 +196,8 @@ fun DIV.buildGenericEmbed(messageBody: DiscordMessageBody) {
         div {
             label("toggleable-option-title") { +"Imagem da Embed" }
             input(InputType.text) {
-                name = "imageLink"
-                id = "imageLink"
+                name = "${prefix}ImagePrefix"
+                id = "${prefix}ImagePrefix"
                 placeholder = "Link da Imagem"
                 value = messageBody.embeds?.firstOrNull()?.image?.url ?: ""
             }
@@ -180,8 +206,8 @@ fun DIV.buildGenericEmbed(messageBody: DiscordMessageBody) {
         div {
             label("toggleable-option-title") { +"Footer da Embed" }
             input(InputType.text) {
-                name = "embedFooter"
-                id = "embedFooter"
+                name = "${prefix}EmbedFooter"
+                id = "${prefix}EmbedFooter"
                 placeholder = "Footer da Embed"
                 value = messageBody.embeds?.firstOrNull()?.footer?.text ?: ""
             }
@@ -324,6 +350,8 @@ fun buildDashboardModule(
                     isLoading()
                 }
             }
+
+            div("notifications-container") { }
         }
     }
 }
