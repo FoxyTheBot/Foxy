@@ -73,9 +73,9 @@ fun HEAD.buildHead(
         }
 
         script(src = "/js/flandre.js") { defer = true }
-        script(src = "/dashboard/js/dashboard-utils.js") { defer = true }
+        script(src = "/dashboard/js/dashboard-js.js") { defer = true }
     } else {
-        script(src = "/js/flandre.js") { defer = true }
+        script(src = "/js/flandre-js.js") { defer = true }
 
         link(rel = "stylesheet", href = "/v1/assets/css/global.css") {
             attributes["type"] = "text/css"
