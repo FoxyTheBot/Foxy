@@ -51,10 +51,6 @@ fun buildPocketFoxyPage(lang: String, user: UserSession?, isProduction: Boolean)
                         +"E se você cansar e não quiser mais usar, você pode remover ela da sua conta do Discord na aba \"Aplicativos autorizados\""
                     }
 
-                    img(classes = "pocket-foxy") {
-                        src = "/assets/images/pocket-foxy.png"
-                    }
-
                     div("discord-buttons") {
                         a("https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=applications.commands&integration_type=1") {
                             button(classes = "pocket-foxy-btn") { +"Adicionar Foxy" }

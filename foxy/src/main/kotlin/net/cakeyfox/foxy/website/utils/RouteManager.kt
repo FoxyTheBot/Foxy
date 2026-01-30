@@ -15,10 +15,12 @@ import net.cakeyfox.foxy.website.routes.api.v1.PostWelcomerTestRoute
 import net.cakeyfox.foxy.website.routes.api.v1.PostYouTubeAddChannelRoute
 import net.cakeyfox.foxy.website.routes.api.v1.PostYouTubeRemoveChannelRoute
 import net.cakeyfox.foxy.website.routes.api.v1.PostYouTubeTestRoute
+import net.cakeyfox.foxy.website.routes.api.v1.dashboard.user.PostChangeProfileItemRoute
 import net.cakeyfox.foxy.website.routes.dashboard.GetDashboardRoute
 import net.cakeyfox.foxy.website.routes.dashboard.GetGenericServerModuleRoute
 import net.cakeyfox.foxy.website.routes.dashboard.GetPocketFoxyRoute
 import net.cakeyfox.foxy.website.routes.dashboard.GetYouTubeChannelRoute
+import net.cakeyfox.foxy.website.routes.dashboard.user.GetUserGenericInventoryRoute
 import net.cakeyfox.foxy.website.routes.pages.GetCommandsPage
 import net.cakeyfox.foxy.website.routes.pages.GetDailyPage
 import net.cakeyfox.foxy.website.routes.pages.GetHomePage
@@ -32,12 +34,7 @@ import net.cakeyfox.foxy.website.routes.partials.GetServerLogsSettingsRoute
 import net.cakeyfox.foxy.website.routes.partials.GetServerWelcomerSettingsPartial
 import net.cakeyfox.foxy.website.routes.partials.GetYouTubeChannelPartial
 import net.cakeyfox.foxy.website.routes.partials.GetYouTubePartial
-
-// TODO: Create these pages
-/*
-/br/store
-all /br/user pages
- */
+import net.cakeyfox.foxy.website.routes.partials.dashboard.user.GetGenericUserInventoryRoute
 
 fun Application.registerAllRoutes(server: FoxyWebsite) {
     routing {
@@ -56,6 +53,7 @@ fun Application.registerAllRoutes(server: FoxyWebsite) {
         GetGenericServerModuleRoute(server).install(this)
         GetPocketFoxyRoute(server).install(this)
         GetYouTubeChannelRoute(server).install(this)
+        GetUserGenericInventoryRoute(server).install(this)
 
         // ==[API]==
         PostServerLogsSettingsRoute(server).install(this)
@@ -67,6 +65,7 @@ fun Application.registerAllRoutes(server: FoxyWebsite) {
         PostYouTubeAddChannelRoute(server).install(this)
         PostSaveYouTubeSettings(server).install(this)
         PostAutoRoleSettingsRoute(server).install(this)
+        PostChangeProfileItemRoute(server).install(this)
 
         // ==[PARTIALS]==
         GetServerListPartial().apply { getServerList(server, server.httpClient) }
@@ -76,6 +75,7 @@ fun Application.registerAllRoutes(server: FoxyWebsite) {
         GetServerWelcomerSettingsPartial().apply { getServerSettings(server) }
         GetServerAutoRoleSettingsRoute().apply { getAutoRoleSettings(server) }
         GetServerLogsSettingsRoute().apply { getServerLogsSettingsRoute(server) }
+        GetGenericUserInventoryRoute().apply { getUserBackgroundInventory(server) }
 
         // ==[OAUTH]==
         OAuthManager(server).apply { oauthRoutes() }

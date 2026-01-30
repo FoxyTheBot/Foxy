@@ -48,14 +48,14 @@ class ProfileRender(
                     ImageCacheManager.layoutCache,
                     userData.userProfile.layout
                 ) { layoutKey ->
-                    context.database.profile.getLayout(layoutKey)
+                    context.database.profile.getLayout(layoutKey)!!
                 }
 
                 val backgroundInfo: Background = getOrFetchFromCache(
                     ImageCacheManager.backgroundCache,
                     userData.userProfile.background
                 ) { backgroundKey ->
-                    context.database.profile.getBackground(backgroundKey)
+                    context.database.profile.getBackground(backgroundKey)!!
                 }
 
                 val layoutDeferred = async {
@@ -227,7 +227,7 @@ class ProfileRender(
                 ImageCacheManager.decorationCache,
                 data.userProfile.decoration!!
             ) { decorationKey ->
-                context.database.profile.getDecoration(decorationKey)
+                context.database.profile.getDecoration(decorationKey)!!
             }
 
             val decorationImage =

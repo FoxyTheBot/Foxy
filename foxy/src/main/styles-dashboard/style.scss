@@ -11,6 +11,7 @@
 @import "notification";
 @import "popup";
 @import "buttons";
+@import "items-wrapper";
 @import "searchbar";
 
 * {
@@ -27,54 +28,53 @@ html {
   scrollbar-color: var(--reimu-primary-color);
 }
 
-// TODO: Fix style problems
 .pocket-foxy-wrapper {
-        display: flex;
-        padding: 0rem 7rem 6rem 18rem;
-        justify-content: center;
-    justify-items: start;
+  display: inherit;
+  padding: 3rem 7rem 6rem 18rem;
+  justify-content: center;
+  justify-items: start;
 
-    .description {
-        text-align: left;
-        padding-bottom: 1rem;
-    }
+  .description {
+    text-align: left;
+    padding-bottom: 1rem;
+  }
 
-    .pocket-foxy-btn {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            outline: none;
-            font-family: Roboto, sans-serif;
-            line-height: 20px;
-            font-size: 17px;
-            color: var(--reimu-button-font-color);
-            min-width: 36px;
-            padding: 0.55rem 1rem;
-            box-sizing: border-box;
-            border-radius: 10px;
-            cursor: pointer;
-            text-decoration: none;
-            background: #5865f2;
-    }
-    .pocket-foxy {
-         max-height: 100%;
-         width: 15rem;
-         object-fit: contain;
-         text-align: center;
-         aspect-ratio: 16 / 12;
-     }
+  .pocket-foxy-btn {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    font-family: Roboto, sans-serif;
+    line-height: 20px;
+    font-size: 17px;
+    color: var(--reimu-button-font-color);
+    min-width: 36px;
+    padding: 0.55rem 1rem;
+    box-sizing: border-box;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #5865f2;
+  }
+
+  .pocket-foxy {
+    max-height: 100%;
+    width: 15rem;
+    object-fit: contain;
+    text-align: center;
+    aspect-ratio: 16 / 12;
+  }
 }
 
 .page-title {
   color: #e7385d;
   font-size: 2rem;
-  font-family: var(--reimu-default-font-family);
+  font-family: var(--reimu-default-font-family), serif;
   text-align: center;
-  margin: 2rem 0 1rem 5rem;
-  margin-left: 7em;
+  margin: 2rem 0 1rem 7em;
 }
 
 p {
@@ -82,15 +82,13 @@ p {
   font-size: 1rem;
   font-family: sans-serif;
   text-align: center;
-  margin: 1rem 0;
-  margin-left: 26rem;
-  margin-right: 13rem;
+  margin: 1rem 13rem 1rem 26rem;
 }
 
 .remaining-time {
   color: var(--reimu-default-font-color);
   font-size: 0.7545rem;
-  font-family: var(--reimu-default-font-family);
+  font-family: var(--reimu-default-font-family), serif;
   text-align: center;
   margin-left: 13rem;
 }
@@ -107,12 +105,12 @@ p {
 }
 
 main {
-    padding: 5rem;
+  padding: 5rem;
 
   .title {
     color: #e7385d;
-    font-size: 2.5rem;
-    font-family: var(--reimu-default-font-family);
+    font-size: clamp(35px, 1.2vw, 18px);
+    font-family: var(--reimu-default-font-family), serif;
     text-align: center;
     margin-top: -3rem;
   }
@@ -256,9 +254,9 @@ main {
 }
 
 #inventory {
-  margin-top: -2rem !important;
-  margin-left: 18rem !important;
-  margin-right: 5rem !important;
+  margin-top: 5rem !important;
+  margin-left: 20rem !important;
+  margin-right: 10rem !important;
 }
 
 @media (max-width: 768px) {
@@ -328,7 +326,7 @@ main {
     margin-bottom: 3rem;
   }
 
-  .cirno-card-buttons a>button {
+  .cirno-card-buttons a > button {
     width: 100%;
     max-width: 300px;
     margin-left: 0;

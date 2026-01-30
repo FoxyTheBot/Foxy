@@ -11,6 +11,7 @@ import kotlinx.html.h1
 import kotlinx.html.id
 import kotlinx.html.img
 import kotlinx.serialization.json.Json
+import modules.onInventoryItemChange
 import modules.setUpActionsWrapper
 import modules.setUpAddChannelButton
 import modules.setUpAddRoleButton
@@ -69,6 +70,7 @@ fun main() {
             eventType = EventType.ANY
         )
 
+        onInventoryItemChange()
         setUpYouTubeRemoveButtons(client, scope)
         setUpYouTubeAddButtons(client, scope)
     })

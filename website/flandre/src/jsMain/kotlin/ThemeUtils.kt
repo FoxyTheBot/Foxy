@@ -2,6 +2,7 @@ import kotlinx.browser.document
 import kotlinx.browser.localStorage
 import kotlinx.browser.window
 import org.w3c.dom.HTMLElement
+import org.w3c.dom.HTMLImageElement
 
 private const val THEME_KEY = "foxy-theme"
 
@@ -14,6 +15,11 @@ fun setupThemeSwitcher() {
 fun enableDarkTheme() {
     val root = document.querySelector(":root") as? HTMLElement ?: return
     val themeSwitcherButton = document.getElementById("theme-toggle-btn") as HTMLElement
+    val foxyBody = document.getElementById("foxy-body") as? HTMLImageElement
+
+    if (foxyBody != null) {
+        foxyBody.src = "/assets/images/foxy-fullbody-darktheme.png"
+    }
 
     val darkTheme = mapOf(
         "--reimu-primary-color" to "#e7385d",
@@ -50,6 +56,11 @@ fun enableDarkTheme() {
 fun disableDarkTheme() {
     val root = document.querySelector(":root") as? HTMLElement ?: return
     val themeSwitcherButton = document.getElementById("theme-toggle-btn") as HTMLElement
+    val foxyBody = document.getElementById("foxy-body") as? HTMLImageElement
+
+    if (foxyBody != null) {
+        foxyBody.src = "/assets/images/foxy-fullbody-whitetheme.png"
+    }
 
     val lightTheme = mapOf(
         "--reimu-primary-color" to "#e7385d",

@@ -310,6 +310,46 @@ fun FlowContent.getActionWrapper(locale: FoxyLocale, formId: String, endpoint: S
 }
 
 @OptIn(ExperimentalKtorApi::class)
+fun buildUserInventory(
+    session: UserSession?,
+    locale: FoxyLocale,
+    isProduction: Boolean = false,
+    partialUrl: String
+): String {
+    return createHTML().html {
+        // TODO: Migrate theses strings to locale system
+        head {
+            buildHead(
+                titleText = "Personalizar Perfil",
+                description = "Personalize seu perfil e deixe-o um charme!",
+                url = "https://foxybot.xyz/br/dashboard",
+                isDashboard = true
+            )
+        }
+
+        body {
+            buildAd(true, isProduction)
+            headerWithUser(session, locale)
+            renderDashboardSidebar(locale)
+
+                div {
+                    this.id = "content"
+                    attributes.hx {
+                        get = partialUrl
+                        trigger = "load"
+                        target = "#content"
+                        swap = HxSwap.innerHtml
+                    }
+
+                    isLoading()
+                }
+
+            div("notifications-container") { }
+        }
+    }
+}
+
+@OptIn(ExperimentalKtorApi::class)
 fun buildDashboardModule(
     session: UserSession?,
     titleText: String,

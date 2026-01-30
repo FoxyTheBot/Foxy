@@ -63,8 +63,10 @@ fun homePage(lang: String, user: UserSession?, isProduction: Boolean): String {
                 }
             }
             img(classes = "foxy-body") {
-                src = "/assets/images/foxy-fullbody.png"
+                id = "foxy-body"
+                src = "/assets/images/foxy-fullbody-whitetheme.png"
             }
+
             div("feature-card-section") {
                 h1("title") { +locale["website.homepage.letMeHelpWithYourServer"] }
 
