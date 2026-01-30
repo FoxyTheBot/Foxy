@@ -1,0 +1,24 @@
+.daily-main {
+  margin-top: 4rem;
+
+  .daily-wrapper {
+    margin-top: 1rem;
+
+    .daily-title {
+      color: #e7385d;
+      font-size: 40px !important;
+      font-family: var(--reimu-default-font-family), serif !important;
+    }
+
+    p {
+      padding: 0 18rem 1rem 18rem;
+      font-family: var(--reimu-default-button-font-family), serif;
+      margin-top: 1rem;
+      color: var(--reimu-default-font-color);
+
+      &.red {
+        color: red !important;
+      }
+    }
+  }
+}
