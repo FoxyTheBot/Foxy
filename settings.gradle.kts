@@ -95,6 +95,6 @@ include("serializable-commons")
 // Website
 include("website:dashboard:frontend")
 include("website:frontend")
-include("website:flandre")
-include("website:dashboard:dashboard-utils")
+include("website:flandre-js")
+include("website:dashboard:dashboard-js")
 include("youtube")

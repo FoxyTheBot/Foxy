@@ -9,7 +9,7 @@ plugins {
 dependencies {
     implementation(libs.kotlin.stdlib.jdk8)
     implementation(project(":website:frontend"))
-    implementation(project(":website:dashboard:dashboard-utils"))
+    implementation(project(":website:dashboard:dashboard-js"))
     implementation(project(":website:dashboard:frontend"))
     implementation(project(":showtime-client"))
     implementation(project(":common"))
@@ -65,17 +65,17 @@ dependencies {
     implementation(libs.jsoup)
 }
 
-evaluationDependsOn(":website:flandre")
-evaluationDependsOn(":website:dashboard:dashboard-utils")
+evaluationDependsOn(":website:flandre-js")
+evaluationDependsOn(":website:dashboard:dashboard-js")
 
 val jsBrowserDistribution =
-    tasks.getByPath(":website:flandre:jsBrowserDistribution")
+    tasks.getByPath(":website:flandre-js:jsBrowserDistribution")
 val jsBrowserProductionWebpack =
-    tasks.getByPath(":website:flandre:jsBrowserProductionWebpack") as org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
+    tasks.getByPath(":website:flandre-js:jsBrowserProductionWebpack") as org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 
-val jsDashboardBrowserDistribution = tasks.getByPath(":website:dashboard:dashboard-utils:jsBrowserDistribution")
+val jsDashboardBrowserDistribution = tasks.getByPath(":website:dashboard:dashboard-js:jsBrowserDistribution")
 val jsDashboardProductionWebpack =
-    tasks.getByPath(":website:dashboard:dashboard-utils:jsBrowserProductionWebpack") as org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
+    tasks.getByPath(":website:dashboard:dashboard-js:jsBrowserProductionWebpack") as org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 
 val sass = tasks.register<SassTask>("sass-style-scss") {
     this.inputSass.set(file("src/main/styles/style.scss"))
