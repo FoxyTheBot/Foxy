@@ -37,12 +37,15 @@ class PostGeneralSettingsRoute(val server: FoxyWebsite) :
             val currentBlocked = guildData.guildSettings.blockedChannels
             val afterAdd = (currentBlocked + cleanedBlocked).distinct()
             val finalBlocked = afterAdd.filterNot { it in channelsToRemove }
+            val supportedLanguages = listOf("pt-BR", "en-US")
+
+            val selectedLang = params["languageSelector"]
+
             server.foxy.database.guild.updateGuild(guildId) {
                 guildSettings.apply {
                     prefix = params["botPrefix"]
-                    // TODO: Tirar essa lógica de retardado depois
-                    if (params["languageSelector"] == "pt-BR" || params["languageSelector"] == "en-US") {
-                        language = params["languageSelector"]
+                    if (selectedLang in supportedLanguages) {
+                        language = selectedLang
                     }
                     deleteMessageIfCommandIsExecuted = params.getBoolean("deleteMessageIfCommandIsExecuted")
                     sendMessageIfChannelIsBlocked = params.getBoolean("warnIfCommandIsExecutedInBlockedChannel")
