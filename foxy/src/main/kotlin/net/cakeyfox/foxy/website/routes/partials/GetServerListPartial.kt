@@ -16,6 +16,7 @@ import io.ktor.server.sessions.get as getSession
 import io.ktor.server.sessions.sessions
 import io.ktor.utils.io.ExperimentalKtorApi
 import kotlinx.serialization.json.Json
+import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.common.checkUserPermissions
@@ -27,7 +28,10 @@ import net.cakeyfox.serializable.data.website.DiscordServer
 import net.cakeyfox.serializable.data.website.UserSession
 
 class GetServerListPartial {
-    private val json = Json { ignoreUnknownKeys = true }
+    companion object {
+        private val logger = KotlinLogging.logger { }
+    }
+
     @OptIn(ExperimentalKtorApi::class)
     fun Route.getServerList(server: FoxyWebsite, httpClient: HttpClient) {
         route("/{lang}/partials/servers") {
@@ -42,7 +46,7 @@ class GetServerListPartial {
                         renderServerListPage(guilds, locale)
                     }
                 } catch (e: Exception) {
-                    println(e.message)
+                    logger.error(e) { "Error while getting server list" }
                 }
             }
         }
