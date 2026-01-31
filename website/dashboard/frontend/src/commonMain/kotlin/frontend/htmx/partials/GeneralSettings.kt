@@ -6,14 +6,18 @@ import frontend.utils.buildModuleForm
 import frontend.utils.buildSliderModuleEntry
 import frontend.utils.buildTextModuleEntry
 import kotlinx.html.ButtonType
+import kotlinx.html.InputType
 import kotlinx.html.button
 import kotlinx.html.classes
 import kotlinx.html.div
 import kotlinx.html.id
+import kotlinx.html.input
+import kotlinx.html.label
 import kotlinx.html.option
 import kotlinx.html.select
 import kotlinx.html.span
 import kotlinx.html.stream.createHTML
+import kotlinx.html.style
 import net.cakeyfox.foxy.database.data.guild.Guild
 import net.cakeyfox.serializable.data.website.DiscordChannel
 
@@ -31,13 +35,44 @@ fun getGeneralSettings(
             locale = locale,
             idempotencyKey = idempotencyKey
         ) {
-            buildTextModuleEntry(
-                entryName = locale["dashboard.modules.general.changePrefix.title"],
-                entryId = "botPrefix",
-                entryPlaceholder = ".",
-                defaultValue = guild.guildSettings.prefix,
-                isRequired = true
-            )
+            buildGenericModuleEntry(
+                entryName = "Configurações Gerais"
+            ) {
+                div {
+                    this.style = "margin-top: 1rem;"
+
+                    label("submodule-name") { +"Prefixo do Bot" }
+                    input(type = InputType.text) {
+                        name = "botPrefix"
+                        id = "botPrefix"
+                        placeholder = "."
+                        maxLength = "10"
+                        minLength = "1"
+                        required = true
+                        style = "width: 50%"
+
+                        value = guild.guildSettings.prefix
+                    }
+
+                    label("submodule-name") { +"Idioma do Bot" }
+                    select {
+                        id = "languageSelector"
+                        name = "languageSelector"
+
+                        option {
+                            this.id = "pt-BR"
+                            this.value = "pt-BR"
+                            +"Português do Brasil"
+                        }
+
+                        option {
+                            this.id = "en-US"
+                            this.value = "en-US"
+                            +"English"
+                        }
+                    }
+                }
+            }
 
             buildSliderModuleEntry(
                 entryName = locale["dashboard.modules.general.autoDeleteMessage.title"],
