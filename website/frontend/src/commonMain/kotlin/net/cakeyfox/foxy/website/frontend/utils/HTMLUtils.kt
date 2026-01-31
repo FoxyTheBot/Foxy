@@ -72,7 +72,7 @@ fun HEAD.buildHead(
             attributes["type"] = "text/css"
         }
 
-        script(src = "/js/flandre.js") { defer = true }
+        script(src = "/js/flandre-js.js") { defer = true }
         script(src = "/dashboard/js/dashboard-js.js") { defer = true }
     } else {
         script(src = "/js/flandre-js.js") { defer = true }
