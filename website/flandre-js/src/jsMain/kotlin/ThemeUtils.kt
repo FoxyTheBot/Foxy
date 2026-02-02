@@ -49,7 +49,7 @@ fun enableDarkTheme() {
         root.style.setProperty(key, value)
     }
 
-    themeSwitcherButton.innerText = "☀️"
+    themeSwitcherButton.innerHTML = Icons.SUN
     localStorage.setItem(THEME_KEY, "dark")
 }
 
@@ -92,7 +92,7 @@ fun disableDarkTheme() {
         root.style.setProperty(key, value)
     }
 
-    themeSwitcherButton.innerText = "🌙"
+    themeSwitcherButton.innerHTML = Icons.MOON
     localStorage.setItem(THEME_KEY, "light")
 }
 
