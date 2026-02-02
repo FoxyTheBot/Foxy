@@ -26,7 +26,7 @@ class ProfileCommand : FoxyCommandDeclarationWrapper {
         }
 
         subCommand("aboutme") {
-            addOption(opt(OptionType.STRING, "text"))
+            addOption(opt(OptionType.STRING, "text", true))
             enableLegacyMessageSupport = true
             aliases = listOf("sobremim")
             executor = AboutMeExecutor()
