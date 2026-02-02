@@ -12,7 +12,9 @@ import net.cakeyfox.common.Colors
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.database.data.guild.YouTubeChannel
+import net.cakeyfox.foxy.interactions.Type
 import net.cakeyfox.foxy.interactions.commands.CommandContext
+import net.cakeyfox.foxy.interactions.componentMsg
 import net.cakeyfox.serializable.data.utils.YouTubeQueryBody
 import net.dv8tion.jda.api.components.buttons.ButtonStyle
 import net.dv8tion.jda.api.components.mediagallery.MediaGalleryItem
@@ -49,7 +51,7 @@ object YouTubeInteractionHandler {
                         maxChannelsAvailable
                     )
                 ) {
-                    +TextDisplay("### $title")
+                    +TextDisplay(componentMsg(Type.SMALL_HEADER, title))
                     +TextDisplay(
                         context.locale["youtube.channel.list.iWillNotifyIn", "<#${storedChannel.channelToSend}>"]
                     )
@@ -89,7 +91,7 @@ object YouTubeInteractionHandler {
             accentColor = Colors.RED
 
             +Section(Thumbnail(youtubeApiChannel!!.snippet.thumbnails.default.url)) {
-                +TextDisplay("### ${youtubeApiChannel.snippet.title}")
+                +TextDisplay(componentMsg(Type.SMALL_HEADER, youtubeApiChannel.snippet.title))
                 +TextDisplay(
                     context.locale["youtube.channel.list.iWillNotifyInBold", "<#${storedChannel.channelToSend}>"]
                 )

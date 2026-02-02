@@ -117,7 +117,8 @@ object YouTubeModalHandler {
                                 )
 
                                 selectMenuContext.deferEdit()
-                                val followedChannelsWithInfo = context.foxy.youtubeManager.fetchFollowedChannelsWithInfo(guildData)
+                                val followedChannelsWithInfo =
+                                    context.foxy.youtubeManager.fetchFollowedChannelsWithInfo(guildData)
 
                                 context.edit {
                                     useComponentsV2 = true
