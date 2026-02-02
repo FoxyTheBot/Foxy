@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy.image.profile.badge
 
+import net.cakeyfox.foxy.database.common.data.marry.Marry
 import net.cakeyfox.foxy.database.data.profile.Badge
 import net.cakeyfox.foxy.database.data.user.FoxyUser
 import net.cakeyfox.foxy.interactions.commands.CommandContext
@@ -23,10 +24,10 @@ object BadgeUtils {
                     it.id == role
                 }
             }
-
+        val marriedInfo = context.foxy.database.user.getMarriage(data._id)
         userBadges.addAll(roleBadges)
 
-        getAdditionalBadges(data).forEach { condition ->
+        getAdditionalBadges(data, marriedInfo).forEach { condition ->
             if (condition.condition as Boolean) {
                 val badge = defaultBadges.find { it.id == condition.id }
                 if (badge != null && userBadges.none { it.id == badge.id }) {
@@ -47,9 +48,9 @@ object BadgeUtils {
         return userBadges.distinctBy { it.id }.sortedByDescending { it.priority }
     }
 
-    private fun getAdditionalBadges(userData: FoxyUser): List<BadgeCondition> {
+    private fun getAdditionalBadges(userData: FoxyUser, marriedInfo: Marry?): List<BadgeCondition> {
         return listOf(
-            BadgeCondition("married", userData.marryStatus.marriedWith != null),
+            BadgeCondition("married", marriedInfo != null),
             BadgeCondition("upvoter", userData.lastVote?.let {
                 val dateString = it.toString().substringAfter("\$date\": \"").substringBefore("\"")
                 val instant = Instant.parse(dateString)
