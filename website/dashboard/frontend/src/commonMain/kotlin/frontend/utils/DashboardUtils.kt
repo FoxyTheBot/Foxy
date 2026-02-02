@@ -266,7 +266,6 @@ fun FlowContent.renderDashboardSidebar(locale: FoxyLocale) {
             separateCategory(locale["dashboard.category.foxyStore"])
             entry(locale["dashboard.entries.dailyStore"], "/br/store", Icons.DAILY_SHOP)
             entry(locale["dashboard.entries.buyPremium"], "/br/premium", Icons.PREMIUM)
-            entry(locale["dashboard.entries.buyCakes"], "/br/premium", Icons.PREMIUM)
 
             separateCategory(locale["dashboard.category.settings"])
             entry(locale["dashboard.entries.termsOfUse"], "/br/support/terms", Icons.TOS)
