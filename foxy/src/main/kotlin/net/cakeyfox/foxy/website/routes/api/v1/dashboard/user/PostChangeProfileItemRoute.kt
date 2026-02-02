@@ -45,6 +45,13 @@ class PostChangeProfileItemRoute(val server: FoxyWebsite) : BaseRoute("/api/v1/u
                 updateAction = { userProfile.layout = itemId }
             )
 
+            "decoration" -> handleUpdate(
+                call,
+                isValid = { server.foxy.database.profile.getDecoration(itemId) != null },
+                hasOwnership = { userData.userProfile.decorationList.contains(itemId) },
+                updateAction = { userProfile.decoration = itemId }
+            )
+
             else -> call.respond(HttpStatusCode.BadRequest, "Invalid item type")
         }
     }

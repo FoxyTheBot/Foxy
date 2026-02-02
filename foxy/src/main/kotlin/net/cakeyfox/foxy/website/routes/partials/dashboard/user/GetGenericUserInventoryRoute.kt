@@ -1,8 +1,11 @@
 package net.cakeyfox.foxy.website.routes.partials.dashboard.user
 
 import frontend.htmx.partials.getBackgroundInventory
+import frontend.htmx.partials.getDecorationInventory
 import frontend.htmx.partials.getLayoutInventoryPage
+import io.ktor.http.HttpStatusCode
 import io.ktor.server.htmx.hx
+import io.ktor.server.response.respond
 import io.ktor.server.routing.Routing
 import io.ktor.server.routing.get
 import io.ktor.server.routing.route
@@ -52,6 +55,18 @@ class GetGenericUserInventoryRoute {
                                 getLayoutInventoryPage(userData.userProfile.layout, layouts, locale)
                             }
                         }
+
+                        "decorations" -> {
+                            val decorations = userData.userProfile.decorationList.map { decorationId ->
+                                server.foxy.database.profile.getDecoration(decorationId)
+                            }
+
+                            respondWithPage(call) {
+                                getDecorationInventory(userData.userProfile.decoration, decorations)
+                            }
+                        }
+
+                        else -> call.respond(HttpStatusCode.NotFound)
                     }
                 } catch (e: Exception) {
                     logger.error(e) { "Error while getting user inventory ($type)" }
