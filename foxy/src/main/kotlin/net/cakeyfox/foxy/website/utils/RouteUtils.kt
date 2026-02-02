@@ -32,15 +32,15 @@ import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.User
 import java.util.UUID
 
-data class PermissionResult(
-    val user: User,
-    val guild: DiscordServer,
-    val session: UserSession?,
-    val guildInfo: net.cakeyfox.foxy.database.data.guild.Guild,
-    val authorizedGuilds: List<DiscordServer>
-)
-
 object RouteUtils {
+    data class PermissionResult(
+        val user: User,
+        val guild: DiscordServer,
+        val session: UserSession?,
+        val guildInfo: net.cakeyfox.foxy.database.data.guild.Guild,
+        val authorizedGuilds: List<DiscordServer>
+    )
+
     suspend fun respondWithPage(call: RoutingCall, statusCode: HttpStatusCode? = null, provider: suspend () -> String) {
         call.respondText(ContentType.Text.Html, statusCode ?: HttpStatusCode.OK, provider)
     }
