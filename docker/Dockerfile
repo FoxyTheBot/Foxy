@@ -1,4 +1,4 @@
-FROM eclipse-temurin:24-jdk
+FROM eclipse-temurin:25-jdk
 
 ARG BUILD_NUMBER
 ARG COMMIT_HASH
