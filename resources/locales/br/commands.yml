@@ -337,7 +337,7 @@ profile:
     showBadge: "Mostrar insígnia no perfil"
     youDontHaveAnyBadge: "Você não tem nenhuma insígnia no seu perfil."
 
-roleplayStreak: "**[Sequência x{0}]**"
+roleplayStreak: "**[STREAK {0}X]**"
 kiss:
   description: ":heart: **{0} beijou {1}!**"
   descriptionStreak: ":heart: {2} **{0} beijou {1}!**"
