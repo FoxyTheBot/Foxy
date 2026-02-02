@@ -10,17 +10,6 @@ class AboutMeExecutor : UnleashedCommandExecutor( ){
         val text = context.getOption("text", 0, String::class.java, true)
 
        if (text != null) {
-           if (text.length > 177) {
-               context.reply {
-                   content = pretty(
-                       FoxyEmotes.FoxyCry,
-                       context.locale["aboutme.tooLong"]
-                   )
-               }
-
-               return
-           }
-
            context.database.user.updateUser(context.user.id) {
                userProfile.aboutme = text
            }
@@ -31,6 +20,6 @@ class AboutMeExecutor : UnleashedCommandExecutor( ){
                    context.locale["aboutme.success", text]
                )
            }
-       } else null
+       }
     }
 }
