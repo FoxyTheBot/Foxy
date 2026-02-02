@@ -19,11 +19,28 @@ fun getDecorationInventory(
     return createHTML().div("itens decorations") {
         this.id = "inventory"
 
+            div ("item decoration") {
+                attributes.hx {
+                    post = "/api/v1/user/decoration/change/none"
+                    target = "this"
+                    swap = HxSwap.none
+                    trigger = "click"
+                }
+
+                div ("item__icon") {
+                    img {
+                        this.classes = setOf("decorations")
+                        this.src = "/assets/images/none.png"
+                    }
+                }
+            }
+
+
         userDecorations.forEach { decoration ->
             if (decoration != null) {
-                div ("item") {
+                div ("item decoration") {
                     if (decoration.id == currentDecorationId) {
-                        this.classes = setOf("item", "selected")
+                        this.classes = setOf("item", "decoration", "selected")
                     }
 
                     attributes.hx {
@@ -39,10 +56,6 @@ fun getDecorationInventory(
                             this.src = "https://stuff.foxybot.xyz/decorations/${decoration.id}.png"
                         }
                     }
-//
-//                    div ("item_info") {
-//                        h1("item_-name")
-//                    }
                 }
             }
         }
