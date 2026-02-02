@@ -42,30 +42,38 @@ object AdminUtils {
                 foxy.database.guild.removeTempBanFromGuild(guildId, user.id)
                 guild.unban(user).await()
 
-                sendUnbanDm(foxy, guild, user, bannedBy, expiredBan)
+                try {
+                    sendUnbanDm(foxy, guild, user, bannedBy, expiredBan)
 
-                val placeholders = getModerationPlaceholders(
-                    foxy,
-                    bannedBy,
-                    user,
-                    guild,
-                    expiredBan.duration!!,
-                    expiredBan.reason,
-                    foxy.locale["UNBAN"]
-                )
+                    val placeholders = getModerationPlaceholders(
+                        foxy,
+                        bannedBy,
+                        user,
+                        guild,
+                        expiredBan.duration!!,
+                        expiredBan.reason,
+                        foxy.locale["UNBAN"]
+                    )
 
-                delay(1000)
-                sendMessage(foxy, guildData, placeholders, guild)
+                    delay(1000)
+                    sendMessage(foxy, guildData, placeholders, guild)
+                } catch (e: Exception) {
+                    logger.warn { "Can't send message to ${expiredBan.userId}! Is DM closed? ${e.message}" }
+                }
 
             } catch (e: RateLimitedException) {
                 logger.warn { "Rate limited while unbanning ${expiredBan.userId}. Retrying in ${e.retryAfter}ms" }
                 delay(e.retryAfter)
             } catch (e: Exception) {
-                if (e.message?.startsWith("10026") == true)
+                if (e.message?.startsWith("10026") == true) {
                     logger.warn { "Ban not found for ${expiredBan.userId}" }
-                else
+                    foxy.database.guild.removeTempBanFromGuild(guildId, expiredBan.userId)
+                } else {
                     logger.error(e) { "Error while unbanning ${expiredBan.userId}" }
+                }
             }
+
+            delay(50L)
         }
     }
 
