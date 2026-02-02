@@ -17,8 +17,12 @@ class RoleplayActionExecutor(
     val actionEmoji: String = FoxyEmotes.FoxyHm
 ) : UnleashedCommandExecutor() {
     override suspend fun execute(context: CommandContext) {
-        val action = if (context.event is SlashCommandInteractionEvent) (context.event as SlashCommandInteractionEvent).subcommandName else return
+        val action =
+            if (context.event is SlashCommandInteractionEvent) (context.event as SlashCommandInteractionEvent).subcommandName else return
         context.defer()
+
+        val actionStreakKey = "$action:0"
+        var streak = actionStreakKey.split(":").getOrNull(1)?.toIntOrNull() ?: 0
 
         val user = context.getOption("user", 0, User::class.java)
         val response = context.foxy.utils.getActionImage(action!!)
@@ -85,10 +89,11 @@ class RoleplayActionExecutor(
                         actionEmoji,
                         context.locale["$action.button"]
                     ) { interaction ->
+                        streak++
                         val giver = user
                         val receiver = context.user
 
-                        sendActionEmbed(context, interaction, response) {
+                        sendActionEmbed(context, interaction, response, streak) {
                             this.giver = giver
                             this.receiver = receiver
                             this.action = action
@@ -105,31 +110,41 @@ class RoleplayActionExecutor(
         context: CommandContext,
         interaction: CommandContext,
         oldResponse: String,
+        streak: Int,
         data: RoleplayDataBuilder.() -> Unit = {}
     ) {
         val roleplayData = buildRoleplayData(data)
         val response = context.utils.getActionImage(roleplayData.action)
-
+        var newStreak = streak
         interaction.edit {
-            ActionRow.of(
+            actionRow(
                 context.foxy.interactionManager.createButtonForUser(
                     roleplayData.receiver,
                     ButtonStyle.PRIMARY,
                     actionEmoji,
                     context.locale["${roleplayData.action}.button"]
-                ) { }.withDisabled(true),
+                ) {}.withDisabled(true),
 
-                linkButton(FoxyEmotes.FoxyHm, context.locale["imageSource"], oldResponse)
+                linkButton(FoxyEmotes.FoxyHm, context.locale["imageSource"], response)
             )
         }
 
         interaction.reply {
             embed {
-                description = context.locale[
-                    "${roleplayData.action}.description",
-                    roleplayData.giver.asMention,
-                    roleplayData.receiver.asMention
-                ]
+                description = if (streak <= 0) {
+                    context.locale[
+                        "${roleplayData.action}.description",
+                        roleplayData.giver.asMention,
+                        roleplayData.receiver.asMention
+                    ]
+                } else {
+                    context.locale[
+                        "${roleplayData.action}.descriptionStreak",
+                        roleplayData.giver.asMention,
+                        roleplayData.receiver.asMention,
+                        context.locale["roleplayStreak", streak.toString()],
+                    ]
+                }
                 color = Colors.FOXY_DEFAULT
                 image = response
             }
@@ -142,7 +157,8 @@ class RoleplayActionExecutor(
                         actionEmoji,
                         context.locale["${roleplayData.action}.button"]
                     ) { nextInteraction ->
-                        sendActionEmbed(context, nextInteraction, response) {
+                        newStreak++
+                        sendActionEmbed(context, nextInteraction, response, newStreak) {
                             giver = roleplayData.receiver
                             receiver = roleplayData.giver
                             action = roleplayData.action

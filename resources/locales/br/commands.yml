@@ -337,19 +337,23 @@ profile:
     showBadge: "Mostrar insígnia no perfil"
     youDontHaveAnyBadge: "Você não tem nenhuma insígnia no seu perfil."
 
+roleplayStreak: "**[Sequência x{0}]**"
 kiss:
   description: ":heart: **{0} beijou {1}!**"
+  descriptionStreak: ":heart: {2} **{0} beijou {1}!**"
   botAsTargetMessage: "Não, não! Eu não gosto de beijos!"
   didActionWithYourself: "Isso que é amor próprio, hein! **{0} beijou ele(a) mesmo(a)**"
 
 bite:
-  description: " :rage: **{0} mordeu {1}!**"
+  description: ":rage: **{0} mordeu {1}!**"
+  descriptionStreak: ":rage: {2} **{0} mordeu {1}!**"
   didActionWithYourself: "Para que se morder? Você só está se machucando! **{0} mordeu a si mesmo**"
   botAsTargetMessage: "Você me mordeu, porém, eu vou te morder de volta! **<@!1006520438865801296> mordeu {0}**"
   button: "Morder de volta"
 
 hug:
-  description: " :hugging: **{0} abraçou {1}!**"
+  description: ":hugging: **{0} abraçou {1}!**"
+  descriptionStreak: ":hugging: {2} **{0} abraçou {1}!**"
   didActionWithYourself: " :heart: Deixa que eu faço! **<@!1006520438865801296> abraçou {1}!**"
   botAsTargetMessage: " :blush: **Obrigada!! {0} abraçou {1}**"
   button: "Abraçar de volta"

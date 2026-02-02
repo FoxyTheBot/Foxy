@@ -15,7 +15,7 @@ dashboard:
       misc: Miscelâneas
 
     backToServerList: Voltar para a lista de servidores
-    generalSettings: Configurações Gerais
+    generalSettings: Seu Servidor
     welcomer: Mensagem de Entrada/Saída
     autorole: Configurar Autorole
     modlog: Registro de Punições
@@ -68,7 +68,7 @@ dashboard:
       description: Monitore o que a equipe do seu servidor anda fazendo no meu painel de configuração
 
     general:
-      title: Configurações Gerais
+      title: Seu Servidor
       description: Olá, obrigada por me adicionar no seu servidor! Aqui estão algumas configurações básicas para você me configurar como quiser!
 
       changePrefix:
