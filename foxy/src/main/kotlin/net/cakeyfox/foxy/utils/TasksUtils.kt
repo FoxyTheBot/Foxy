@@ -16,17 +16,11 @@ import kotlin.time.Duration.Companion.minutes
 object TasksUtils {
     fun launchTasks(foxy: FoxyInstance) {
         scheduleCoroutine(DailyReminderTask(foxy),at(0, 0), foxy.tasksScope)
-//        scheduleCoroutine(CheckExpiredBansTask(foxy), at(0, 10), foxy.tasksScope)
+        scheduleCoroutine(CheckExpiredBansTask(foxy), at(0, 10), foxy.tasksScope)
         scheduleCoroutine(BirthdayReminderTask(foxy),at(0, 15), foxy.tasksScope)
         scheduleCoroutine(CakeInactivityTaxTask(foxy),at(0,30), foxy.tasksScope)
         scheduleCoroutine(UpdateStoreTask(foxy), at(21, 0), foxy.tasksScope)
 
-//        scheduleCoroutineAtFixedRate(
-//            taskName = CheckExpiredBansTask::class.simpleName!!,
-//            scope = foxy.tasksScope,
-//            period = 1.minutes,
-//            action = CheckExpiredBansTask(foxy)
-//        )
         scheduleCoroutineAtFixedRate(
             taskName = UpvoteReminderTask::class.simpleName!!,
             scope = foxy.tasksScope,
