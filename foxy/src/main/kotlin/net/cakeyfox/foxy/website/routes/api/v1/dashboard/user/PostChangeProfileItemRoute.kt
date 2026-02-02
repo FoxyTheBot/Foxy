@@ -35,21 +35,30 @@ class PostChangeProfileItemRoute(val server: FoxyWebsite) : BaseRoute("/api/v1/u
                 call,
                 isValid = { server.foxy.database.profile.getBackground(itemId) != null },
                 hasOwnership = { userData.userProfile.backgroundList.contains(itemId) },
-                updateAction = { userProfile.background = itemId }
+                updateAction = { userProfile.background = itemId },
+                itemId = itemId
             )
 
             "layout" -> handleUpdate(
                 call,
                 isValid = { server.foxy.database.profile.getLayout(itemId) != null },
                 hasOwnership = { userData.userProfile.layoutList.contains(itemId) },
-                updateAction = { userProfile.layout = itemId }
+                updateAction = { userProfile.layout = itemId },
+                itemId = itemId
             )
 
             "decoration" -> handleUpdate(
                 call,
                 isValid = { server.foxy.database.profile.getDecoration(itemId) != null },
                 hasOwnership = { userData.userProfile.decorationList.contains(itemId) },
-                updateAction = { userProfile.decoration = itemId }
+                updateAction = {
+                    if (itemId == "none") {
+                        userProfile.decoration = ""
+                    } else {
+                        userProfile.decoration = itemId
+                    }
+                },
+                itemId = itemId
             )
 
             else -> call.respond(HttpStatusCode.BadRequest, "Invalid item type")
@@ -60,10 +69,13 @@ class PostChangeProfileItemRoute(val server: FoxyWebsite) : BaseRoute("/api/v1/u
         call: ApplicationCall,
         isValid: suspend () -> Boolean,
         hasOwnership: () -> Boolean,
+        itemId: String,
         updateAction: FoxyUserBuilder.() -> Unit
     ) {
-        if (!isValid() || !hasOwnership()) {
-            return call.respond(HttpStatusCode.Forbidden, "Item not owned or invalid")
+        if (itemId != "none") {
+            if (!isValid() || !hasOwnership()) {
+                return call.respond(HttpStatusCode.Forbidden, "Item not owned or invalid")
+            }
         }
 
         server.foxy.database.user.updateUser(call.sessions.get<UserSession>()!!.userId) {
