@@ -3,7 +3,7 @@ object Versions {
     const val FOXY_VERSION = "2025-SNAPSHOT"
 
     // Kotlin
-    const val KOTLIN = "2.2.21"
+    const val KOTLIN = "2.3.0"
 
     // Libraries
     const val KTOR = "3.2.2"
