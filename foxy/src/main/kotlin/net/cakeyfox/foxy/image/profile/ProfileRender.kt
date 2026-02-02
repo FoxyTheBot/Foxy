@@ -40,7 +40,6 @@ class ProfileRender(
         private val logger = KotlinLogging.logger(this::class.jvmName)
     }
 
-    // TODO: Add the reputation count on profile
     suspend fun create(user: User, userData: FoxyUser): ByteArray {
         val renderTime = measureTimeMillis {
             coroutineScope {
@@ -91,7 +90,6 @@ class ProfileRender(
                 drawUserDetails(user, userData, layoutInfo, context)
                 drawBadges(userData, user, layoutInfo)
                 drawUserAvatar(user, layoutInfo, userData)
-                drawDecoration(userData, layoutInfo)
                 cleanUp()
             }
         }
@@ -151,7 +149,6 @@ class ProfileRender(
 
     private suspend fun drawUserAvatar(user: User, layoutInfo: Layout, data: FoxyUser) {
         coroutineScope {
-            // Carregamento assíncrono das imagens
             val avatarDeferred = async {
                 val avatarUrl = user.avatarUrl ?: user.defaultAvatarUrl
                 val avatarWithSize = avatarUrl.plus("?size=1024")
@@ -206,47 +203,20 @@ class ProfileRender(
                 null
             )
 
+            val decorationX = layoutInfo.profileSettings.positions.avatarPosition.x - 1
+            val decorationY = layoutInfo.profileSettings.positions.avatarPosition.y - (avatarSize * 0.35)
             graphics.clip = oldClip
 
             decorationImage?.let {
                 graphics.drawImage(
                     it,
-                    (config.imageWidth / layoutInfo.profileSettings.positions.decorationPosition.x).toInt(),
-                    (config.imageHeight / layoutInfo.profileSettings.positions.decorationPosition.y).toInt(),
+                    decorationX.toInt(),
+                    decorationY.toInt(),
                     avatarSize.toInt(),
                     avatarSize.toInt(),
                     null
                 )
             }
-        }
-    }
-
-    private suspend fun drawDecoration(data: FoxyUser, layoutInfo: Layout) {
-        if (data.userProfile.decoration != null) {
-            val decorationInfo = getOrFetchFromCache(
-                ImageCacheManager.decorationCache,
-                data.userProfile.decoration!!
-            ) { decorationKey ->
-                context.database.profile.getDecoration(decorationKey)!!
-            }
-
-            val decorationImage =
-                ImageCacheManager.loadImageFromCache(
-                    Constants.getProfileDecoration(
-                        decorationInfo.filename.replace(
-                            ".png",
-                            ""
-                        )
-                    )
-                )
-            graphics.drawImage(
-                decorationImage,
-                (config.imageWidth / layoutInfo.profileSettings.positions.decorationPosition.x).toInt(),
-                (config.imageHeight / layoutInfo.profileSettings.positions.decorationPosition.y).toInt(),
-                200,
-                200,
-                null
-            )
         }
     }
 
