@@ -62,12 +62,14 @@ fun getGeneralSettings(
                         option {
                             this.id = "pt-BR"
                             this.value = "pt-BR"
+                            this.selected = guild.guildSettings.language == "pt-BR"
                             +"Português do Brasil"
                         }
 
                         option {
                             this.id = "en-US"
                             this.value = "en-US"
+                            this.selected = guild.guildSettings.language == "en-US"
                             +"English"
                         }
                     }
