@@ -21,8 +21,7 @@ class RoleplayActionExecutor(
             if (context.event is SlashCommandInteractionEvent) (context.event as SlashCommandInteractionEvent).subcommandName else return
         context.defer()
 
-        val actionStreakKey = "$action:0"
-        var streak = actionStreakKey.split(":").getOrNull(1)?.toIntOrNull() ?: 0
+        var streak = 0
 
         val user = context.getOption("user", 0, User::class.java)
         val response = context.foxy.utils.getActionImage(action!!)
@@ -98,9 +97,7 @@ class RoleplayActionExecutor(
                             this.receiver = receiver
                             this.action = action
                         }
-                    },
-
-                    linkButton(FoxyEmotes.FoxyHm, context.locale["imageSource"], response)
+                    }
                 )
             }
         }
@@ -124,8 +121,6 @@ class RoleplayActionExecutor(
                     actionEmoji,
                     context.locale["${roleplayData.action}.button"]
                 ) {}.withDisabled(true),
-
-                linkButton(FoxyEmotes.FoxyHm, context.locale["imageSource"], response)
             )
         }
 
@@ -163,9 +158,7 @@ class RoleplayActionExecutor(
                             receiver = roleplayData.giver
                             action = roleplayData.action
                         }
-                    },
-
-                    linkButton(FoxyEmotes.FoxyHm, context.locale["imageSource"], response)
+                    }
                 )
             }
         }
