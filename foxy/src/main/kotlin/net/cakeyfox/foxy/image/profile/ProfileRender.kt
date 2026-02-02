@@ -18,6 +18,7 @@ import net.cakeyfox.foxy.database.data.profile.Layout
 import net.cakeyfox.foxy.database.data.user.FoxyUser
 import net.cakeyfox.foxy.image.ImageCacheManager
 import net.cakeyfox.foxy.utils.ClusterUtils.getMemberRolesFromGuildOrCluster
+import net.cakeyfox.foxy.utils.image.ImageUtils.wrapText
 import net.dv8tion.jda.api.entities.User
 import java.awt.Color
 import java.awt.Graphics2D
@@ -133,17 +134,26 @@ class ProfileRender(
             textPosition = layout.profileSettings.positions.cakesPosition
         }
 
-        val userAboutMe = ProfileUtils.formatAboutMe(
-                userData.userProfile.aboutme ?: context.locale["profile.defaultAboutMe"],
-                layout
-            )
+        val rawAboutMe = userData.userProfile.aboutme ?: context.locale["profile.defaultAboutMe"]
+        val aboutMeLines = graphics.wrapText(rawAboutMe, layout.profileSettings.aboutme.limit)
 
-        graphics.drawTextWithFont(config.imageWidth, config.imageHeight) {
-            text = userAboutMe
-            fontFamily = layout.profileSettings.defaultFont
-            fontSize = layout.profileSettings.fontSize.aboutme
-            fontColor = color
-            textPosition = layout.profileSettings.positions.aboutmePosition
+        aboutMeLines.forEachIndexed { index, lineText ->
+            graphics.drawTextWithFont(config.imageWidth, config.imageHeight) {
+                text = lineText
+                fontFamily = layout.profileSettings.defaultFont
+                fontSize = layout.profileSettings.fontSize.aboutme
+                fontColor = color
+
+                val originalPos = layout.profileSettings.positions.aboutmePosition
+                val currentPixelY = config.imageHeight / originalPos.y
+                val newLinePixelY = currentPixelY + (index * (fontSize * 1.2))
+                val dynamicY = config.imageHeight / newLinePixelY
+
+                textPosition = originalPos.copy(
+                    x = originalPos.x,
+                    y = dynamicY.toFloat()
+                )
+            }
         }
     }
 
@@ -157,7 +167,9 @@ class ProfileRender(
 
             val decorationDeferred = async {
                 data.userProfile.decoration?.let {
-                    ImageCacheManager.loadImageFromCache(getProfileDecoration(it))
+                    if (it.isNotEmpty()) {
+                        ImageCacheManager.loadImageFromCache(getProfileDecoration(it))
+                    } else null
                 }
             }
 

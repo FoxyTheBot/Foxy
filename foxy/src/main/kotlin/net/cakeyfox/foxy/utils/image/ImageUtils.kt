@@ -66,6 +66,23 @@ object ImageUtils {
     }
 
 
+    fun Graphics2D.wrapText(text: String, limit: Int): List<String> {
+        val words = text.split(" ")
+        val lines = mutableListOf<String>()
+        var currentLine = ""
+
+        for (word in words) {
+            if ((currentLine + word).length <= limit) {
+                currentLine += if (currentLine.isEmpty()) word else " $word"
+            } else {
+                lines.add(currentLine)
+                currentLine = word
+            }
+        }
+        if (currentLine.isNotEmpty()) lines.add(currentLine)
+        return lines
+    }
+
     fun Graphics2D.drawTextWithFont(width: Int, height: Int, textConfig: TextConfig.() -> Unit) {
         val config = TextConfig().apply(textConfig)
         this.font = getFont(config.fontFamily, config.fontSize) ?: Font("SansSerif", Font.PLAIN, config.fontSize)
