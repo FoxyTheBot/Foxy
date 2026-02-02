@@ -33,6 +33,10 @@
     border-radius: 0.625rem;
     transition: transform 0.3s ease-in-out;
 
+    &.decoration {
+      padding: 1rem;
+    }
+
     &.common {
       border: 0.125rem solid #2196f3;
     }

@@ -114,7 +114,7 @@
 
 nav.marisa-navbar {
   background-color: var(--reimu-navbar-color);
-  top: 0rem;
+  top: 0;
   width: 100%;
   font-family: 'Poppins', sans-serif;
   font-weight: 300 !important;
@@ -130,7 +130,25 @@ nav.marisa-navbar {
   padding: 0.29rem 0;
   border: 1px solid var(--reimu-header-border);
 
+
+  #theme-toggle-btn {
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+    }
+  }
+
   .menu-parent {
+    margin-top: 2px;
     position: relative;
     display: inline-block;
   }
@@ -165,7 +183,7 @@ nav.marisa-navbar {
 
 .right-entries {
   display: flex;
-  padding: 0em 1em 0em 6em;
+  padding: 0 1em 0 6em;
 
   a#login-header-btn {
     &>img {
