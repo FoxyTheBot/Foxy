@@ -4,6 +4,7 @@ fun pretty(emoji: String, content: String, separator: String? = "**|**"): String
 
 fun componentMsg(type: Type, content: String, emoji: String? = null): String {
     val size = when (type) {
+        Type.NONE -> ""
         Type.BIG_HEADER -> "#"
         Type.MEDIUM_HEADER -> "##"
         Type.SMALL_HEADER -> "###"
@@ -26,4 +27,5 @@ enum class Type {
     SMALL_HEADER,
     SUBTEXT,
     BOLD,
+    NONE
 }
