@@ -5,6 +5,7 @@ import mu.KotlinLogging
 import net.dv8tion.jda.api.events.Event
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
+import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import java.util.concurrent.ExecutorService
 
@@ -19,6 +20,7 @@ class ThreadPoolManager {
             is MessageReceivedEvent -> "Message ${event.message} by user ${event.author}"
             is SlashCommandInteractionEvent -> "Slash Command ${event.fullCommandName} by user ${event.user}"
             is MessageContextInteractionEvent -> "User Command ${event.fullCommandName} by user ${event.user}"
+            is UserContextInteractionEvent -> "User Context ${event.fullCommandName} by user ${event.user}"
             else -> throw IllegalArgumentException("Event $event is not supported")
         }
 
