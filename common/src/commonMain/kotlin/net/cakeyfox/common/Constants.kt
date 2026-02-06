@@ -2,8 +2,6 @@ package net.cakeyfox.common
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.hocon.Hocon
-import java.net.HttpURLConnection
-import java.net.URL
 
 object Constants {
     const val UNBAN_FORM_URL = "https://forms.gle/bKfRKxoyFGZzRB7x8"
