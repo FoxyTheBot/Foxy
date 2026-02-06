@@ -4,8 +4,10 @@ import dev.minn.jda.ktx.interactions.commands.choice
 import net.cakeyfox.foxy.interactions.commands.CommandCategory
 import net.cakeyfox.foxy.interactions.commands.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.interactions.vanilla.economy.*
+import net.cakeyfox.foxy.interactions.vanilla.social.ProfileViewExecutor
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
+import net.dv8tion.jda.api.interactions.commands.Command
 import net.dv8tion.jda.api.interactions.commands.OptionType
 
 class CakesCommand : FoxyCommandDeclarationWrapper {
@@ -17,6 +19,7 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
         )
         integrationType = listOf(IntegrationType.USER_INSTALL, IntegrationType.GUILD_INSTALL)
 
+        contextMenu(Command.Type.USER, this.name, AtmExecutor())
         subCommand("atm") {
             executor = AtmExecutor()
             enableLegacyMessageSupport = true

@@ -9,13 +9,18 @@ import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.image.profile.ProfileRender
 import net.cakeyfox.foxy.image.ImageConfig
 import net.dv8tion.jda.api.entities.User
+import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent
 import net.dv8tion.jda.api.utils.FileUpload
 
 class ProfileViewExecutor : UnleashedCommandExecutor() {
     override suspend fun execute(context: CommandContext) {
         context.defer()
 
-        val user = context.getOption("user", 0, User::class.java) ?: context.user
+        val user = when (context.event) {
+            is UserContextInteractionEvent -> (context.event as UserContextInteractionEvent).target
+            else -> context.getOption("user", 0, User::class.java) ?: context.user
+        }
+
         val userData = context.database.user.getFoxyProfile(user.id)
 
         if (userData.isBanned == true) {

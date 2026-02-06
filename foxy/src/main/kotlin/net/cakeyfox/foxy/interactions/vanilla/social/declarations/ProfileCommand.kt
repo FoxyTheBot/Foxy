@@ -7,6 +7,7 @@ import net.cakeyfox.foxy.interactions.vanilla.social.ProfileBadgesExecutor
 import net.cakeyfox.foxy.interactions.vanilla.social.ProfileViewExecutor
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
+import net.dv8tion.jda.api.interactions.commands.Command
 import net.dv8tion.jda.api.interactions.commands.OptionType
 
 class ProfileCommand : FoxyCommandDeclarationWrapper {
@@ -17,6 +18,8 @@ class ProfileCommand : FoxyCommandDeclarationWrapper {
             InteractionContextType.BOT_DM
         )
         integrationType = listOf(IntegrationType.USER_INSTALL, IntegrationType.GUILD_INSTALL)
+
+        contextMenu(Command.Type.USER, this.name, ProfileViewExecutor())
 
         subCommand("view") {
             addOption(opt(OptionType.USER, "user"))

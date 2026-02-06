@@ -12,7 +12,9 @@ import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.common.FoxyLocale
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent
+import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
+import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.EntitySelectInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent
@@ -62,6 +64,34 @@ class InteractionCommandContext(
             }
 
             is ButtonInteractionEvent -> {
+                try {
+                    if (event.isAcknowledged) {
+                        event.hook.setEphemeral(ephemeral).sendMessage(msg.build()).queue()
+                    } else {
+                        val defer = defer(ephemeral)
+
+                        defer.sendMessage(msg.build()).queue()
+                    }
+                } catch (e: Exception) {
+                    logger.warn { "Failed to reply button! It was deleted? ${e.message}" }
+                }
+            }
+
+            is UserContextInteractionEvent -> {
+                try {
+                    if (event.isAcknowledged) {
+                        event.hook.setEphemeral(ephemeral).sendMessage(msg.build()).queue()
+                    } else {
+                        val defer = defer(ephemeral)
+
+                        defer.sendMessage(msg.build()).queue()
+                    }
+                } catch (e: Exception) {
+                    logger.warn { "Failed to reply button! It was deleted? ${e.message}" }
+                }
+            }
+
+            is MessageContextInteractionEvent -> {
                 try {
                     if (event.isAcknowledged) {
                         event.hook.setEphemeral(ephemeral).sendMessage(msg.build()).queue()
@@ -209,6 +239,22 @@ class InteractionCommandContext(
             } catch (e: Exception) {
                 logger.warn { "Failed to defer command! It was deleted? ${e.message}" }
                 event.hook
+            }
+        }
+
+        is UserContextInteractionEvent -> {
+            if (event.isAcknowledged) {
+                event.hook
+            } else {
+                event.deferReply().setEphemeral(true).await()
+            }
+        }
+
+        is MessageContextInteractionEvent -> {
+            if (event.isAcknowledged) {
+                event.hook
+            } else {
+                event.deferReply().setEphemeral(true).await()
             }
         }
 

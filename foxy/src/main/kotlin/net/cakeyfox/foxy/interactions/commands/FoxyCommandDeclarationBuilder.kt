@@ -8,8 +8,11 @@ import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.interactions.DiscordLocale
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
+import net.dv8tion.jda.api.interactions.commands.Command
 import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions
 import net.dv8tion.jda.api.interactions.commands.OptionType
+import net.dv8tion.jda.api.interactions.commands.build.CommandData
+import net.dv8tion.jda.api.interactions.commands.build.Commands
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData
 
@@ -33,6 +36,11 @@ class FoxyCommandDeclarationBuilder(
     private val commandOptions = mutableListOf<OptionData>()
     private val enUsLocale = FoxyLocale("en-us")
     private val ptBrLocale = FoxyLocale("pt-br")
+    val contextMenus = mutableListOf<ContextMenuConfig>()
+
+    fun contextMenu(type: Command.Type, customName: String? = null, executor: UnleashedCommandExecutor? = null) {
+        contextMenus.add(ContextMenuConfig(type, customName ?: this.name, executor))
+    }
 
     fun subCommand(
         name: String,
@@ -136,100 +144,79 @@ class FoxyCommandDeclarationBuilder(
         return subCommandGroups.find { it.name == name }
     }
 
-    fun build(): SlashCommandData {
-        val commandData = Command(name, description) {
-            setNameLocalizations(
-                mapOf(
-                    DiscordLocale.ENGLISH_US to enUsLocale["commands.command.$name.name"],
-                    DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.$name.name"]
-                )
-            )
+    fun buildAll(): List<CommandData> {
+        val commands = mutableListOf<CommandData>()
 
-            if (defaultMemberPermissions != null) this.defaultPermissions = defaultMemberPermissions!!
-            this.setIntegrationTypes(integrationType[0], *integrationType.drop(1).toTypedArray())
-            this.setContexts(interactionContexts[0], *interactionContexts.drop(1).toTypedArray())
+        val slashCommand = Command(name, description) {
+            applyCommonSettings(this)
+
             val enUsCategory = enUsLocale["categories.$category"]
             val ptBrCategory = ptBrLocale["categories.$category"]
 
             setDescriptionLocalizations(
                 mapOf(
-                    DiscordLocale.PORTUGUESE_BRAZILIAN to buildDescription(
-                        ptBrCategory,
-                        ptBrLocale["commands.command.$name.description"]
-                    ),
-                    DiscordLocale.ENGLISH_US to buildDescription(
-                        enUsCategory,
-                        enUsLocale["commands.command.$name.description"]
-                    )
+                    DiscordLocale.PORTUGUESE_BRAZILIAN to buildDescription(ptBrCategory, ptBrLocale["commands.command.$name.description"]),
+                    DiscordLocale.ENGLISH_US to buildDescription(enUsCategory, enUsLocale["commands.command.$name.description"])
                 )
             )
 
-            defaultPermissions = DefaultMemberPermissions.enabledFor(permissions)
             this.addOptions(commandOptions)
+
             subCommands.forEach { subCmd ->
-                addSubcommands(
-                    Subcommand(subCmd.name, subCmd.description) {
-                        setNameLocalizations(
-                            mapOf(
-                                DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${subCmd.name}.name"],
-                                DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${subCmd.name}.name"]
-                            )
-                        )
-
-                        setDescriptionLocalizations(
-                            mapOf(
-                                DiscordLocale.ENGLISH_US to buildDescription(
-                                    enUsCategory,
-                                    enUsLocale["commands.command.${baseName}.${subCmd.name}.description"]
-                                ),
-                                DiscordLocale.PORTUGUESE_BRAZILIAN to buildDescription(
-                                    ptBrCategory,
-                                    ptBrLocale["commands.command.${baseName}.${subCmd.name}.description"]
-                                )
-                            )
-                        )
-
-                        this.addOptions(subCmd.commandOptions)
-                    }
-                )
+                addSubcommands(Subcommand(subCmd.name, subCmd.description) {
+                    setNameLocalizations(mapOf(
+                        DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${subCmd.name}.name"],
+                        DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${subCmd.name}.name"]
+                    ))
+                    setDescriptionLocalizations(mapOf(
+                        DiscordLocale.ENGLISH_US to buildDescription(enUsCategory, enUsLocale["commands.command.${baseName}.${subCmd.name}.description"]),
+                        DiscordLocale.PORTUGUESE_BRAZILIAN to buildDescription(ptBrCategory, ptBrLocale["commands.command.${baseName}.${subCmd.name}.description"])
+                    ))
+                    this.addOptions(subCmd.commandOptions)
+                })
             }
 
-            subCommandGroups.forEach {
-                addSubcommandGroups(
-                    SubcommandGroup(it.name, it.description).apply {
-                        it.subCommands.forEach { subCommand ->
-                            addSubcommands(
-                                Subcommand(subCommand.name, subCommand.description) {
-                                    setNameLocalizations(
-                                        mapOf(
-                                            DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${it.name}.${subCommand.name}.name"],
-                                            DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${it.name}.${subCommand.name}.name"]
-                                        )
-                                    )
-
-                                    setDescriptionLocalizations(
-                                        mapOf(
-                                            DiscordLocale.ENGLISH_US to buildDescription(
-                                                enUsCategory,
-                                                enUsLocale["commands.command.${baseName}.${it.name}.${subCommand.name}.description"]
-                                            ),
-                                            DiscordLocale.PORTUGUESE_BRAZILIAN to buildDescription(
-                                                ptBrCategory,
-                                                ptBrLocale["commands.command.${baseName}.${it.name}.${subCommand.name}.description"]
-                                            )
-                                        )
-                                    )
-                                    this.addOptions(subCommand.commandOptions)
-                                }
-                            )
-                        }
+            subCommandGroups.forEach { group ->
+                addSubcommandGroups(SubcommandGroup(group.name, group.description).apply {
+                    group.subCommands.forEach { subCommand ->
+                        addSubcommands(Subcommand(subCommand.name, subCommand.description) {
+                            setNameLocalizations(mapOf(
+                                DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${group.name}.${subCommand.name}.name"],
+                                DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${group.name}.${subCommand.name}.name"]
+                            ))
+                            this.addOptions(subCommand.commandOptions)
+                        })
                     }
-                )
+                })
             }
+        }
+        commands.add(slashCommand)
 
+        contextMenus.forEach { config ->
+            val contextData = Commands.context(config.type, config.name).apply {
+                applyCommonSettings(this)
+
+                setNameLocalizations(mapOf(
+//                    DiscordLocale.ENGLISH_US to enUsLocale["commands.context.${config.name}"],
+                    DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.context.${config.name}"]
+                ))
+            }
+            commands.add(contextData)
         }
 
-        return commandData
+        return commands
+    }
+
+    private fun applyCommonSettings(data: CommandData) {
+        data.setNameLocalizations(mapOf(
+            DiscordLocale.ENGLISH_US to enUsLocale["commands.command.$name.name"],
+            DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.$name.name"]
+        ))
+
+        data.defaultPermissions = defaultMemberPermissions ?: DefaultMemberPermissions.enabledFor(permissions)
+
+        data.setIntegrationTypes(integrationType[0], *integrationType.drop(1).toTypedArray())
+        data.setContexts(interactionContexts[0], *interactionContexts.drop(1).toTypedArray())
     }
 
     private fun buildDescription(category: String, description: String): String {

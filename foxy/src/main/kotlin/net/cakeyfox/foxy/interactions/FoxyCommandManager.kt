@@ -39,9 +39,11 @@ import net.cakeyfox.foxy.interactions.vanilla.social.declarations.RepCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.FoxyCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.HelpCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.LanguageCommand
+import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.TranslateCommand
 import net.cakeyfox.foxy.interactions.vanilla.youtube.declarations.YouTubeCommand
 import net.cakeyfox.foxy.utils.ClusterUtils
 import net.dv8tion.jda.api.interactions.commands.Command
+import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData
 import java.util.UUID
 
 class FoxyCommandManager(private val foxy: FoxyInstance) {
@@ -91,46 +93,51 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         foxy.shardManager.shards.forEach { shard ->
             val action = shard.updateCommands()
 
-            commands.forEach { command ->
-                val builtCommand = command.create().build()
+            commands.forEach { commandWrapper ->
+                val builder = commandWrapper.create()
+                val builtList = builder.buildAll()
 
-                if (command.create().isPrivate) {
+                if (builder.isPrivate) {
                     if (shard.shardInfo.shardId == supportServerShardId) {
                         val supportServer = foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
-                        supportServer?.updateCommands()?.addCommands(builtCommand)?.await()
-                        logger.info { "Registered /${command.create().name} as private command (Shard: #${shard.shardInfo.shardId})" }
+                        val privateRegistered = supportServer?.updateCommands()?.addCommands(builtList)?.await()
+                        if (privateRegistered != null) allCommands.addAll(privateRegistered)
+
+                        logger.info { "Registered ${builder.name} (and contexts) as private command (Shard: #${shard.shardInfo.shardId})" }
                     }
                 } else {
-                    action.addCommands(builtCommand)
+                    action.addCommands(builtList)
                 }
+
+                val rootCommand = builtList.filterIsInstance<SlashCommandData>().first()
 
                 foxy.database.bot.getOrRegisterCommand(
                     net.cakeyfox.foxy.database.data.bot.Command(
                         uniqueId = UUID.randomUUID().toString(),
-                        name = command.create().name,
-                        description = command.create().description,
-                        supportsLegacy = false,
-                        category = command.create().category,
+                        name = builder.name,
+                        description = builder.description,
+                        supportsLegacy = builder.enableLegacyMessageSupport,
+                        category = builder.category,
                         usage = null,
                         usageCount = 0,
-                        subCommands = builtCommand.subcommands.map {
+                        subCommands = rootCommand.subcommands.map {
                             net.cakeyfox.foxy.database.data.bot.Command.SubCommand(
                                 uniqueId = UUID.randomUUID().toString(),
                                 name = it.name,
                                 description = it.description
                             )
                         }
-                    ))
+                    )
+                )
             }
 
             val registeredCommands = action.await()
             allCommands.addAll(registeredCommands)
-            logger.info { "${commands.size} commands registered on shard #${shard.shardInfo.shardId}" }
+            logger.info { "Registered ${allCommands.size} commands on shard #${shard.shardInfo.shardId}" }
         }
 
         return allCommands
     }
-
 
     init {
         /* ---- [Economy] ---- */
@@ -180,5 +187,6 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(HelpCommand())
         register(FoxyCommand())
         register(LanguageCommand())
+        register(TranslateCommand())
     }
 }

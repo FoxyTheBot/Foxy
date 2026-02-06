@@ -14,7 +14,9 @@ import net.cakeyfox.foxy.utils.isEarlyAccessOnlyCommand
 import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent
+import net.dv8tion.jda.api.events.interaction.command.GenericContextInteractionEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
+import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.EntitySelectInteractionEvent
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent
@@ -31,6 +33,47 @@ class InteractionsListener(
 
     override fun onReady(event: ReadyEvent) {
         logger.info { "Shard #${event.jda.shardInfo.shardId} is ready!" }
+    }
+
+    override fun onGenericContextInteraction(event: GenericContextInteractionEvent<*>) {
+        foxy.threadPoolManager.launchMessageJob(event) {
+            val command = foxy.commandHandler[event.name]?.create() ?: return@launchMessageJob
+            val context = InteractionCommandContext(event, foxy)
+            val commandContextExecutor = command.contextMenus.find { it.name == event.name }?.executor
+
+            if (context.database.user.getFoxyProfile(event.user.id).isBanned == true) {
+                foxy.utils.handleBan(event, context)
+                return@launchMessageJob
+            }
+
+            try {
+                val executionTime = measureTimeMillis {
+                    event.guild?.let {
+                        command.defaultMemberPermissions?.permissionsRaw?.let { required ->
+                            context.member?.let { member ->
+                                if (!member.hasRawPermissions(required)) {
+                                    context.reply(true) {
+                                        content = pretty(FoxyEmotes.FoxyRage, context.locale["youDontHavePermissionToUseThisCommand"])
+                                    }
+                                    return@launchMessageJob
+                                }
+                            }
+                        }
+                    }
+
+                    commandContextExecutor?.execute(context)
+                }
+
+                logger.info { "Context menu command ${event.name} executed in ${executionTime}ms" }
+                foxy.database.bot.updateCommandUsage(event.name)
+
+            } catch (e: Exception) {
+                logger.error(e) { "Error executing User Context: ${event.name}" }
+                context.reply(true) {
+                    content = pretty(FoxyEmotes.FoxyCry, context.locale["commands.error", e.toString()])
+                }
+            }
+        }
     }
 
     override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) {
