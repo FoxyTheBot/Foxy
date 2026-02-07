@@ -187,6 +187,5 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(HelpCommand())
         register(FoxyCommand())
         register(LanguageCommand())
-        register(TranslateCommand())
     }
 }
