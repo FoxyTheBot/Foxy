@@ -32,7 +32,11 @@ class ServerInfoExecutor : UnleashedCommandExecutor() {
 
         context.reply {
             embed {
-                title = guildInfo.name
+                title = pretty(
+                    FoxyEmotes.FoxyWow,
+                    guildInfo.name,
+                    ""
+                )
 
                 thumbnail = guildInfo.icon ?: "https://cdn.discordapp.com/embed/avatars/0.png"
                 color = Colors.FOXY_DEFAULT
@@ -42,22 +46,65 @@ class ServerInfoExecutor : UnleashedCommandExecutor() {
                 }
 
                 field {
-                    name = "ID"
-                    value = guildInfo.id.toString()
+                    name = pretty(
+                        FoxyEmotes.FoxyIdPurple,
+                        "ID",
+                        ""
+                    )
+                    value = "`${guildInfo.id}`"
                 }
 
                 field {
-                    name = context.locale["server.info.owner"]
-                    value = "${guildInfo.owner.username} (${guildInfo.owner.id})"
+                    name = pretty(
+                        FoxyEmotes.FoxyHm,
+                        context.locale["server.info.owner"],
+                        ""
+                    )
+                    value = "`@${guildInfo.owner.username}` (`${guildInfo.owner.id}`)"
                 }
 
                 field {
-                    name = context.locale["server.info.members"]
+                    name = pretty(
+                        FoxyEmotes.FoxyNice,
+                        context.locale["server.info.roles"],
+                        ""
+                    )
+                    value = guildInfo.roleCount.toString()
+                }
+
+                field {
+                    name = pretty(
+                        FoxyEmotes.BOOST,
+                        context.locale["server.info.boosts"],
+                        ""
+                    )
+                    value = guildInfo.boostCount.toString()
+                }
+
+                field {
+                    name = pretty(
+                        FoxyEmotes.FoxyPlush,
+                        context.locale["server.info.members"],
+                        ""
+                    )
                     value = guildInfo.memberCount.toString()
                 }
 
                 field {
-                    name = context.locale["server.info.channels"]
+                    name = pretty(
+                        FoxyEmotes.FoxyBread,
+                        context.locale["server.info.emojis"],
+                        ""
+                    )
+                    value = guildInfo.emojiCount.toString()
+                }
+
+                field {
+                    name = pretty(
+                        FoxyEmotes.FoxyWow,
+                        context.locale["server.info.channels"],
+                        ""
+                    )
                     value = """
                         ${context.locale["server.info.textChannels"]}: ${guildInfo.textChannelCount}
                         ${context.locale["server.info.voiceChannels"]}: ${guildInfo.voiceChannelCount}
@@ -65,35 +112,21 @@ class ServerInfoExecutor : UnleashedCommandExecutor() {
                 }
 
                 field {
-                    name = context.locale["server.info.roles"]
-                    value = guildInfo.roleCount.toString()
-                }
-
-                field {
-                    name = context.locale["server.info.emojis"]
-                    value = guildInfo.emojiCount.toString()
-                }
-
-                field {
-                    name = context.locale["server.info.createdAt"]
+                    name = pretty(
+                        FoxyEmotes.FoxyCake,
+                        context.locale["server.info.createdAt"],
+                        ""
+                    )
                     value = context.foxy.utils.convertLongToDiscordTimestamp(guildInfo.createdAt)
                 }
 
                 field {
-                    name = context.locale["server.info.joinedAt"]
+                    name = pretty(
+                        FoxyEmotes.FoxyHowdy,
+                        context.locale["server.info.joinedAt"],
+                        ""
+                    )
                     value = context.foxy.utils.convertLongToDiscordTimestamp(guildInfo.joinedAt)
-                }
-
-                field {
-                    name = context.locale["server.info.boosts"]
-                    value = guildInfo.boostCount.toString()
-                }
-
-                if (guildInfo.firstEmojis.isNotEmpty()) {
-                    field {
-                        name = context.locale["server.info.firstEmojis"]
-                        value = guildInfo.firstEmojis.joinToString(" ")
-                    }
                 }
 
                 footer {
