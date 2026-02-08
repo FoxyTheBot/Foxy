@@ -370,17 +370,20 @@ dance:
 
 help:
   description: |
-    Olá {0}, eu sou a Foxy! Um bot multiuso pronto para tornar o seu servidor **um lugar incrível e divertido** para os seus membros!
-    Me deixe cuidar das tarefas chatas do seu servidor enquanto você se diverte!
-    
-    Possuo uma variedade de comandos para ajudar você a **moderar** e **entreter** o seu servidor!
-    **E o melhor de tudo:** Você pode me colocar no seu bolso e me levar para qualquer lugar com o **[Foxy de Bolso](https://foxybot.xyz/br/pocket-foxy)**!
+    Olá {0}, eu sou a Foxy! Um bot multiuso criado para tornar o seu servidor um lugar incrível, organizado e divertido para todos os seus membros.
+    Deixe comigo as tarefas chatas e repetitivas da moderação enquanto você aproveita o melhor da sua comunidade.
+
+    Também possuo uma grande variedade de comandos para ajudar você a moderar, proteger e entreter o seu servidor de forma simples, prática e eficiente.
+
+    **E o melhor de tudo:** você pode me colocar no seu bolso e me levar para qualquer lugar com o **[Foxy de Bolso](https://foxybot.xyz/br/pocket-foxy)**!
+
   field:
     addMe: "{0} Gostou das minhas funcionalidades? Me adicione no seu servidor!"
-    addMeValue: "Me adicione clicando aqui"
-    support: "{0} Precisa de ajuda? Entre no meu servidor de suporte!"
-    terms: "{0} Leia os termos de uso para evitar problemas"
-    website: "{0} Meu website onde você pode me adicionar e ver mais informações"
+    addMeValue: "Me adicionar ao servidor"
+    support: "{0} Precisa de ajuda ou tem alguma dúvida? Entre no meu servidor de suporte!"
+    terms: "{0} Leia os termos de uso para evitar problemas!"
+    website: "{0} Acesse meu site para me adicionar e conhecer todas as minhas funcionalidades!"
+
 
 daily:
   embed:
