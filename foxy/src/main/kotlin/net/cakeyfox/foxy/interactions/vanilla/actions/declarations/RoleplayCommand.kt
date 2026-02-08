@@ -21,15 +21,6 @@ class RoleplayCommand : FoxyCommandDeclarationWrapper {
             executor = RoleplayActionExecutor(canDoWithBot = false, canRetribute = true, FoxyEmotes.FoxyBread)
         }
 
-        subCommand("bite") {
-            addOption(
-                opt(OptionType.USER, "user", true),
-                isSubCommand = true
-            )
-            executor = RoleplayActionExecutor(canDoWithBot = true, canRetribute = true, FoxyEmotes.FoxyRage)
-        }
-
-
         subCommand("hug") {
             addOption(
                 opt(OptionType.USER, "user", true),
