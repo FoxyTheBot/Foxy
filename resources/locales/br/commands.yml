@@ -384,7 +384,12 @@ help:
     terms: "{0} Leia os termos de uso para evitar problemas!"
     website: "{0} Acesse meu site para me adicionar e conhecer todas as minhas funcionalidades!"
 
-
+  buttons:
+    premium: "Premium"
+    commands: "Lista de Comandos"
+    dashboard: "Painel de Controle"
+    addMe: "Me Adicione"
+    support: "Suporte"
 daily:
   embed:
     title: "Recompensa diária"

@@ -31,12 +31,6 @@ class HelpExecutor : UnleashedCommandExecutor() {
                 thumbnail = context.jda.selfUser.effectiveAvatarUrl
 
                 field {
-                    name = context.locale["help.field.addMe", FoxyEmotes.FoxyWow]
-                    value = "[${context.locale["help.field.addMeValue"]}](${Constants.INVITE_LINK})"
-                    inline = false
-                }
-
-                field {
                     name = context.locale["help.field.support", FoxyEmotes.FoxyHug]
                     value = Constants.SUPPORT_SERVER
                     inline = false
@@ -53,7 +47,32 @@ class HelpExecutor : UnleashedCommandExecutor() {
                     value = Constants.TERMS
                     inline = false
                 }
+
+                image = Constants.FOXY_BANNER
             }
+
+            actionRow(
+                linkButton(
+                    FoxyEmotes.FoxyWow,
+                    context.locale["help.buttons.addMe"],
+                    Constants.PREMIUM
+                ),
+                linkButton(
+                    FoxyEmotes.FoxyDaily,
+                    context.locale["help.buttons.premium"],
+                    Constants.PREMIUM
+                ),
+                linkButton(
+                    FoxyEmotes.FoxyDrinkingCoffee,
+                    context.locale["help.buttons.commands"],
+                    "https://foxybot.xyz/br/commands"
+                ),
+                linkButton(
+                    FoxyEmotes.FoxyCake,
+                    context.locale["help.buttons.dashboard"],
+                    Constants.DASHBOARD_URL
+                )
+            )
 
             actionRow(
                 linkButton(
