@@ -112,6 +112,13 @@ music:
     volumeRange: "O volume deve estar entre 1 e 100"
     notInVoiceChannel: "Eu não estou em nenhum canal de voz!"
     notPlaying: "Não há nada tocando no momento!"
+
+rep:
+  give:
+    defaultReason: "Por ser uma pessoa incrível :3"
+    youCantGiveRepUntil: "Você só poderá dar outra reputação {0}"
+    youGaveRepToUser: "Você deu reputação para {0}!"
+    youMustProvideAReason: "Você precisa ter um motivo para dar a reputação."
 youtube:
   channel:
     add:
@@ -226,7 +233,7 @@ slots:
 
 cakes:
   atm:
-    balance: "{0} possui {1}"
+    balance: "{0} possui {1}! Você sabia que {0} está em **#{2}** no ranking?"
     singleCake: "Cake"
     multipleCakes: "Cakes"
 
@@ -362,7 +369,12 @@ dance:
   description: "{0} **está dançando**"
 
 help:
-  description: "Olá {0}, eu sou a Foxy, um multiuso para o seu servidor! Eu tenho muitas funcionalidades, como economia, diversão, utilitários e muito mais!"
+  description: |
+    Olá {0}, eu sou a Foxy! Um bot multiuso pronto para tornar o seu servidor **um lugar incrível e divertido** para os seus membros!
+    Me deixe cuidar das tarefas chatas do seu servidor enquanto você se diverte!
+    
+    Possuo uma variedade de comandos para ajudar você a **moderar** e **entreter** o seu servidor!
+    **E o melhor de tudo:** Você pode me colocar no seu bolso e me levar para qualquer lugar com o **[Foxy de Bolso](https://foxybot.xyz/br/pocket-foxy)**!
   field:
     addMe: "{0} Gostou das minhas funcionalidades? Me adicione no seu servidor!"
     addMeValue: "Me adicione clicando aqui"
@@ -437,6 +449,16 @@ user:
     showInBrowser: "Ver no navegador"
     title: "Avatar de {0}"
     userId: "ID do Usuário: {0}"
+
+  info:
+    userInformation: "Informações de {0}"
+    userId: "**ID do Usuário:** `{0}`"
+    username: "**Nome de Usuário:** `{0}`"
+    onDiscordSince: "**Usuário do Discord desde:** {0}"
+    memberSince: "**Membro do servidor desde:** {0}"
+    roles: "**Cargos:** {0}"
+    isBoosting: "**Impulsiona esse servidor?:** {0}"
+    isOwner: "**É dono(a):** {0}"
 
 roulette:
   spinResultWin: "Você girou a roleta e ganhou {0}!"
