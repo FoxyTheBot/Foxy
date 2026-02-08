@@ -3,11 +3,13 @@ package net.cakeyfox.common
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import mu.KotlinLogging
 import java.io.InputStream
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual class FoxyLocale actual constructor(actual var locale: String) {
     private val mapper = ObjectMapper(YAMLFactory()).registerKotlinModule()
+    private val logger = KotlinLogging.logger { }
 
     companion object {
         const val PATH = "locales"
@@ -60,6 +62,7 @@ actual class FoxyLocale actual constructor(actual var locale: String) {
             }
         }
 
+        logger.warn { "Missing key $key at locale $locale" }
         return "!!{${key}}!!"
     }
 }
