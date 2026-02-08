@@ -5,6 +5,7 @@ import net.cakeyfox.foxy.interactions.commands.FoxyCommandDeclarationWrapper
 import net.cakeyfox.foxy.interactions.vanilla.social.GiveRepExecutor
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
+import net.dv8tion.jda.api.interactions.commands.Command
 import net.dv8tion.jda.api.interactions.commands.OptionType
 
 class RepCommand : FoxyCommandDeclarationWrapper {
@@ -20,9 +21,11 @@ class RepCommand : FoxyCommandDeclarationWrapper {
             InteractionContextType.GUILD
         )
 
+        contextMenu(Command.Type.USER, this.name, GiveRepExecutor())
+
         subCommand("give") {
             aliases = listOf("rep")
-//            enableLegacyMessageSupport = true
+            enableLegacyMessageSupport = true
             addOption(opt(OptionType.USER, "user", true))
             addOption(opt(OptionType.STRING, "reason", true))
 

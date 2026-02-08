@@ -6,24 +6,51 @@ import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.dv8tion.jda.api.entities.User
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
+import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
 
 class GiveRepExecutor : UnleashedCommandExecutor() {
     override suspend fun execute(context: CommandContext) {
         context.defer()
-        val user = context.getOption("user", 0, User::class.java)
-        val reason = context.getOption("reason", 1, String::class.java, true)
+        val user = when (context.event) {
+            is UserContextInteractionEvent -> (context.event as UserContextInteractionEvent).target
+            else -> context.getOption("user", 0, User::class.java)
+        }
+
+        val reason = if (context.event is SlashCommandInteractionEvent) {
+            context.getOption(
+                "reason",
+                1,
+                String::class.java,
+                true
+            )
+        } else context.locale["rep.give.defaultReason"]
+
+        if (reason.isNullOrEmpty()) {
+            return context.reply {
+                content = pretty(
+                    FoxyEmotes.FoxyRage,
+                    context.locale["rep.give.youMustProvideAReason"]
+                )
+            }
+        }
+
         val lastRep = context.getAuthorData().userProfile.lastRep
 
-        if (user == null || reason == null) return
+        if (user == null) return
 
         if (lastRep != null) {
-            if (lastRep >= Clock.System.now()) {
+            val now = Clock.System.now()
+            val nextAvailableRep = lastRep.plus(1.hours)
+
+            if (now < nextAvailableRep) {
                 return context.reply(true) {
                     content = pretty(
                         FoxyEmotes.FoxyRage, context.locale[
                             "rep.give.youCantGiveRepUntil",
-                            context.utils.convertISOToSimpleDiscordTimestamp(lastRep.plus(1.days))
+                            context.utils.convertISOToSimpleDiscordTimestamp(nextAvailableRep)
                         ]
                     )
                 }
