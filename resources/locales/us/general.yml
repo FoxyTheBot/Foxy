@@ -1,4 +1,6 @@
 ---
+yes: Yes
+no: No
 greetings: Howdy {0}! My name is Foxy, my prefix on this server is `{1}`, Use `{1}help`
   for help!
 commands:
@@ -8,6 +10,15 @@ commands:
     It seems to have expired! Please run the command again.
   error: An error occurred while executing the command, the problem has been reported!
     `{0}`
+
+  context:
+    profile: View Profile
+    cakes: View Cakes
+    user: View User Info
+    roleplay: Interact
+    translate: Translate Message
+    rep: Give Reputation
+
   command:
     ban:
       name: banir
@@ -22,6 +33,12 @@ commands:
           name: motivo
         skip_confirmation:
           name: pular_confirmação
+
+    translate:
+      name: translate
+      options:
+        text:
+          name: text
 
     clear:
       name: "limpar"

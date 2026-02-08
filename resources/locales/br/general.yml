@@ -1,10 +1,21 @@
 greetings: "Olá {0}! Meu nome é Foxy, meu prefixo nesse servidor é `{1}`, Utilize `{1}help` para obter ajuda!"
 youDontHavePermissionToDoThat: "Você não tem permissão para fazer isso!"
+yes: Sim
+no: Não
 
 commands:
   onlyUserCanInteractWithThisComponent: "Ei! o que você está fazendo? Você não pode fazer isso! Você não é {0}!"
   componentExpired: "Pera, cadê? Eu não acho as informações da interação... Parece que expirou! Execute o comando novamente."
   error: "Ocorreu um erro ao executar o comando, o problema foi reportado! `{0}`"
+  missingPermissionError: Eu preciso da permissão `{0}` para executar esse comando!
+
+  context:
+    profile: Ver Perfil
+    cakes: Ver Cakes
+    user: Ver Informações
+    roleplay: Interagir
+    translate: Traduzir Mensagem
+    rep: Dar Reputação
 
   command:
     ban:
@@ -19,6 +30,12 @@ commands:
           name: motivo
         skip_confirmation:
           name: pular_confirmação
+
+    translate:
+      name: traduzir
+      options:
+        text:
+          name: texto
 
     clear:
       name: limpar

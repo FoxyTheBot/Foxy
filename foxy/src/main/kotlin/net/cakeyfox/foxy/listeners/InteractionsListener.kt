@@ -8,6 +8,7 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.ComponentId
 import net.cakeyfox.foxy.interactions.InteractionCommandContext
 import net.cakeyfox.foxy.interactions.pretty
+import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.utils.LavalinkUtils.registerNode
 import net.cakeyfox.foxy.utils.hasRawPermissions
 import net.cakeyfox.foxy.utils.isEarlyAccessOnlyCommand
@@ -53,7 +54,10 @@ class InteractionsListener(
                             context.member?.let { member ->
                                 if (!member.hasRawPermissions(required)) {
                                     context.reply(true) {
-                                        content = pretty(FoxyEmotes.FoxyRage, context.locale["youDontHavePermissionToUseThisCommand"])
+                                        content = pretty(
+                                            FoxyEmotes.FoxyRage,
+                                            context.locale["youDontHavePermissionToUseThisCommand"]
+                                        )
                                     }
                                     return@launchMessageJob
                                 }
@@ -68,10 +72,7 @@ class InteractionsListener(
                 foxy.database.bot.updateCommandUsage(event.name)
 
             } catch (e: Exception) {
-                logger.error(e) { "Error executing User Context: ${event.name}" }
-                context.reply(true) {
-                    content = pretty(FoxyEmotes.FoxyCry, context.locale["commands.error", e.toString()])
-                }
+                context.utils.handleCommandExecutionException(context, e, event.name)
             }
         }
     }
@@ -134,13 +135,7 @@ class InteractionsListener(
                         logger.info { "${context.user.name} (${context.user.id}) executed ${event.fullCommandName} in ${context.guild?.name} (${context.guild?.id}) in ${executionTime}ms" }
                     }
                 } catch (e: Exception) {
-                    logger.error(e) { "An error occurred while executing command: ${event.fullCommandName}" }
-                    context.reply(true) {
-                        content = pretty(
-                            FoxyEmotes.FoxyCry,
-                            context.locale["commands.error", e.toString()]
-                        )
-                    }
+                    context.utils.handleCommandExecutionException(context, e, event.fullCommandName)
                 }
             }
 

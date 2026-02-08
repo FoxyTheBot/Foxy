@@ -24,6 +24,7 @@ import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.exceptions.InsufficientPermissionException
 import net.dv8tion.jda.api.exceptions.RateLimitedException
 import net.dv8tion.jda.api.interactions.DiscordLocale
 import java.text.NumberFormat
@@ -77,6 +78,34 @@ class FoxyUtils(
         val validUsers: List<User>,
         val remainingString: String?
     )
+
+    suspend fun handleCommandExecutionException(context: CommandContext, e: Exception, commandName: String) {
+        when (e) {
+            is InsufficientPermissionException -> {
+                context.reply(true) {
+                    content = pretty(
+                        FoxyEmotes.FoxyCry,
+                        context.locale[
+                            "commands.missingPermissionError",
+                            context.locale[
+                                    "permissions.${e.permission.name}"
+                            ]
+                        ]
+                    )
+                }
+            }
+
+            else -> {
+                logger.error(e) { "An error occurred while executing command: $commandName" }
+                context.reply(true) {
+                    content = pretty(
+                        FoxyEmotes.FoxyCry,
+                        context.locale["commands.error", e.toString()]
+                    )
+                }
+            }
+        }
+    }
 
     suspend fun checkValidUsersFromString(
         context: CommandContext,
