@@ -12,6 +12,8 @@ kotlin {
                 implementation(libs.kotlinx.serialization.hocon)
                 implementation(libs.jackson.dataformat.yaml)
                 implementation(libs.jackson.module.kotlin)
+                implementation(libs.logback.classic)
+                implementation(libs.kotlin.logging)
             }
         }
     }
