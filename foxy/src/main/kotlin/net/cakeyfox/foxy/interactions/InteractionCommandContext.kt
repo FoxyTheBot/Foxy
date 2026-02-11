@@ -223,7 +223,6 @@ class InteractionCommandContext(
                 }
             }
 
-
             else -> throw IllegalStateException("Cannot edit this event type. ${event.javaClass}")
         }
     }

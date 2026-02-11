@@ -5,6 +5,7 @@
 @import "adsense";
 @import "readonly";
 @import "daily";
+@import "commands";
 
 html {
   background: var(--reimu-background-color) !important;
@@ -23,7 +24,7 @@ html {
 main .greetings {
   color: var(--reimu-default-font-color);
   font-size: 40px;
-  font-family: 'Cookie';
+  font-family: 'Cookie', serif;
   margin-left: 5px;
   margin-top: 5px;
 }
@@ -269,7 +270,7 @@ main {
 }
 
 main {
-  margin-top: 7rem;
+  margin-top: 6rem;
 
   .title {
     color: var(--reimu-default-font-color);

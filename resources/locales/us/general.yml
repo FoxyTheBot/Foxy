@@ -20,6 +20,11 @@ commands:
     rep: Give Reputation
 
   command:
+    gay:
+      name: gay
+      options:
+        user:
+          name: usuário
     ban:
       name: banir
       description: Bana até 200 membros do servidor
@@ -44,21 +49,21 @@ commands:
       name: "limpar"
       chat:
         name: chat
-      options:
-        quantity:
-          name: quantidade
-        users:
-          name: usuários
+        options:
+          quantity:
+            name: quantidade
+          users:
+            name: usuários
 
     rep:
       name: "reputação"
       give:
         name: "dar"
-      options:
-        user:
-          name: "usuário"
-        reason:
-          name: "motivo"
+        options:
+          user:
+            name: "usuário"
+          reason:
+            name: "motivo"
     music:
       name: "music"
       description: "Comandos relacionados a música"
@@ -205,10 +210,10 @@ commands:
       avatar:
         name: avatar
         description: Veja o avatar de algum usuário
-      options:
-        user:
-          name: user
-          description: O usuário que você quer ver a foto de perfil
+        options:
+          user:
+            name: user
+            description: O usuário que você quer ver a foto de perfil
       info:
         name: info
         description: View information about a user

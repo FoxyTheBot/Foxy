@@ -18,9 +18,15 @@ commands:
     rep: Dar Reputação
 
   command:
+    gay:
+      name: gay
+      options:
+        user:
+          name: usuário
+
     ban:
       name: banir
-      description: Bana até 200 membros do servidor
+      description: Dê ban naqueles delinquentes insuportáveis do seu servidor
       options:
         time:
           name: duração
@@ -43,35 +49,35 @@ commands:
       chat:
         name: chat
         description: Limpe até 1.000 mensagens em um chat do seu servidor
-      options:
-        quantity:
-          name: quantidade
-          description: O número de mensagens que serão deletadas
-        users:
-          name: usuários
-          description: Os usuários que terão as mensagens deletadas
+        options:
+          quantity:
+            name: quantidade
+            description: O número de mensagens que serão deletadas
+          users:
+            name: usuários
+            description: Os usuários que terão as mensagens deletadas
 
     rep:
       name: "reputação"
       give:
         name: "dar"
-      options:
-        user:
-          name: "usuário"
-        reason:
-          name: "motivo"
+        options:
+          user:
+            name: "usuário"
+          reason:
+            name: "motivo"
     music:
       name: "música"
-      description: "Comandos relacionados a música"
+      description: Comandos relacionados a música
       configure:
         name: "configurar"
-        description: "Configure o canal de música do servidor"
+        description: Configure um canal especialmente para enviar pedidos de música
     nowplaying:
       name: "tocando_agora"
-      description: "Veja a música que está tocando"
+      description: Veja qual música está tocando no canal de voz atual
     volume:
       name: "volume"
-      description: "Ajuste o volume da música que está tocando"
+      description: Ajuste o volume da música que está tocando
       options:
         level:
           name: "nível"
@@ -117,22 +123,22 @@ commands:
       view_channels:
         name: "gerenciar_canais"
         description: "Veja a lista de canais do Youtube seguidos pelo servidor"
-      options:
-        youtube_channel:
-          name: "canal"
-          description: "O nome/id/url do canal que você quer seguir"
-        text_channel:
-          name: "canal_de_texto"
-          description: "O canal de texto onde você quer que eu envie avisos de novos vídeos"
-        message:
-          name: "mensagem"
-          description: "A mensagem que será enviada a cada vídeo novo"
+        options:
+          youtube_channel:
+            name: "canal"
+            description: "O nome/id/url do canal que você quer seguir"
+          text_channel:
+            name: "canal_de_texto"
+            description: "O canal de texto onde você quer que eu envie avisos de novos vídeos"
+          message:
+            name: "mensagem"
+            description: "A mensagem que será enviada a cada vídeo novo"
     birthday:
       name: "aniversário"
       description: "Comandos relacionados a aniversário"
       set:
         name: "definir"
-        description: "Defina a data do seu aniversário"
+        description: "Defina a data do seu aniversário para receber uma mensagem especial no dia"
       enable:
         name: "ativar"
         description: "Ativa ou desativa as mensagens de aniversário"
@@ -207,10 +213,10 @@ commands:
       avatar:
         name: avatar
         description: Veja o avatar de algum usuário
-      options:
-        user:
-          name: usuário
-          description: O usuário que você quer ver a foto de perfil
+        options:
+          user:
+            name: usuário
+            description: O usuário que você quer ver a foto de perfil
 
       info:
         name: "info"
@@ -222,14 +228,14 @@ commands:
 
     daily:
       name: "daily"
-      description: "Receba seus cakes diários"
+      description: Receba seu prêmio diário e ganhe cakes
 
     magic:
       name: "mágica"
       description: "Crie imagens e vídeos com os comandos de mágica!"
       eminem:
         name: "eminem"
-        description: "Gera um vídeo com uma cena do filme 8 Mile e um áudio customizado"
+        description: "Gera um vídeo com uma cena do filme 8 Mile do Eminem"
         options:
           video_or_audio:
             name: "video_ou_audio"
@@ -237,7 +243,7 @@ commands:
 
       antes_que_vire_moda:
         name: "antes_que_vire_moda"
-        description: "Montagem do meme 'Antes que vire moda, já vou avisando que sou fã de:'"
+        description: "Faça uma versão sua do meme 'Antes que vire moda, já vou avisando que sou fã de:'"
         options:
           image:
             name: "imagem"
@@ -245,7 +251,7 @@ commands:
 
       windows_error:
         name: "windows_error"
-        description: "Gera um meme de erro do Windows"
+        description: Gera uma imagem de uma janela de erro do Windows
         options:
           message:
             name: "texto"
@@ -253,7 +259,7 @@ commands:
 
       girlfriend:
         name: "namorada"
-        description: "Que legal, mas olha minha namorada!"
+        description: "Crie um meme do meme 'Que legal, mas olha minha namorada!'"
         options:
           user:
             name: "usuário"
@@ -261,7 +267,7 @@ commands:
 
       nao_somos_iguais:
         name: "nao_somos_iguais"
-        description: "Montagem do meme 'Não somos iguais, mas somos parecidos'"
+        description: "Crie sua versão do meme 'Não somos iguais, mas somos parecidos'"
         options:
           first_image:
             name: "primeira_imagem"
@@ -275,7 +281,7 @@ commands:
 
       laranjo:
         name: "laranjo"
-        description: "Gera um meme do Laranjo"
+        description: "Crie um meme com texto customizável do Laranjo"
         options:
           text:
             name: "texto"
@@ -283,7 +289,7 @@ commands:
 
       stonks:
         name: "stonks"
-        description: "Gera um meme de stonks"
+        description: "Crie um meme com texto customizável do stonks"
         options:
           text:
             name: "texto"
@@ -291,7 +297,7 @@ commands:
 
       not_stonks:
         name: "not_stonks"
-        description: "Gera um meme de not stonks"
+        description: "Crie um meme com texto customizável do not stonks"
         options:
           text:
             name: "texto"
@@ -299,7 +305,7 @@ commands:
 
     fate:
       name: "fate"
-      description: "Descubra o seu destino com uma pessoa"
+      description: "Descubra o que você é de alguém em um universo totalmente alternativo"
       options:
         user:
           name: "usuário"
@@ -307,10 +313,7 @@ commands:
 
     cancel:
       name: "cancelar"
-      description: "Cancele uma pessoa que fez algo errado"
-      someone:
-        name: "alguém"
-        description: "Cancele uma pessoa que fez algo errado"
+      description: Alguém fez algo muito errado? Porque não cancelar ela?
       options:
         reason:
           name: "motivo"
@@ -321,10 +324,7 @@ commands:
 
     ratewaifu:
       name: "avaliar_waifu"
-      description: "Avalie a sua waifu"
-      rate:
-        name: "avaliar"
-        description: "Avalie a sua waifu"
+      description: Me deixe avaliar a sua waifu para ver se ela é uma boa companheira
       options:
         user:
           name: "usuário"
@@ -343,7 +343,7 @@ commands:
 
     slots:
       name: "slots"
-      description: "Jogue nas máquinas caça-níqueis"
+      description: Jogue nas máquinas de caça-níqueis da Foxy e ganhe (ou perca) Cakes :3
       chart:
         name: "tabela"
         description: "Veja a tabela de pagamentos das máquinas caça-níqueis"
@@ -384,7 +384,7 @@ commands:
         description: "Veja quem são os usuários mais ricos."
       pay:
         name: "pagar"
-        description: "Pague alguém"
+        description: Pague aquela dívida ou envie Cakes para o seu amiguinho
         options:
           user:
             name: "usuário"
@@ -395,7 +395,7 @@ commands:
 
       coinflipbet:
         name: "coinflipbet"
-        description: "Aposte em cara ou coroa"
+        description: Aposte no cara ou cora e ganhe ou perca Cakes
         options:
           amount:
             name: "quantidade"
@@ -446,6 +446,10 @@ commands:
     actions:
       name: "ações"
       description: "Comandos de roleplaying para você se divertir com seus amigos"
+      options:
+        user:
+          name: "usuário"
+          description: "O usuário que você deseja fazer a ação de roleplay"
       kiss:
         name: "beijar"
         description: "Demonstre seu amor beijando seu webnamorado ou webnamorada"
@@ -487,12 +491,12 @@ commands:
             description: "O usuário que você deseja lamber"
 
       pat:
-        name: "acariciar"
-        description: "Acaricie alguém"
+        name: cafuné
+        description: Faça um cafuné em alguém que está precisando
         options:
           user:
             name: "usuário"
-            description: "O usuário que você deseja acariciar"
+            description: "O usuário que você deseja fazer um cafuné"
 
       slap:
         name: "tapa"
@@ -537,7 +541,7 @@ commands:
         description: "Compre cartinhas ou coisas para deixar seu casamento único!"
       ask:
         name: "pedir"
-        description: "Peça alguém em casamento"
+        description: "Peça seu webnamorado ou webnamorada em casamento"
       manage:
         name: "gerenciar"
         description: "Gerencie seu casamento atual ou se quer receber pedidos ou não"

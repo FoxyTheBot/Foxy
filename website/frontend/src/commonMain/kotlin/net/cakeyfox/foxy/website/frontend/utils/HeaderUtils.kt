@@ -102,6 +102,7 @@ fun FlowContent.headerWithUser(user: UserSession?, locale: FoxyLocale) {
     }
 
     addExpandableMenu("features-menu", true) {
+        a(href = "/${locale.language}/commands/all", classes = "cmd-category-link") { +"Ver Todos" }
         a(href = "/${locale.language}/commands/actions", classes = "cmd-category-link") { +"Roleplay" }
         a(href = "/${locale.language}/commands/economy", classes = "cmd-category-link") { +"Economia" }
         a(href = "/${locale.language}/commands/magic", classes = "cmd-category-link") { +"Mágica" }

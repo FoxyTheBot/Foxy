@@ -7,7 +7,13 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 
 class RateWaifuCommand : FoxyCommandDeclarationWrapper {
     override fun create() = slashCommand("ratewaifu", CommandCategory.FUN) {
-        addOption(opt(OptionType.USER, "user", true))
+        addOption(
+            opt(
+                OptionType.USER,
+                "user",
+                true
+            )
+        )
 
         enableLegacyMessageSupport = true
         aliases = listOf("avaliarwaifu")

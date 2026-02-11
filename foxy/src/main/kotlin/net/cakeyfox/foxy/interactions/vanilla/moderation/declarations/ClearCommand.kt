@@ -16,7 +16,8 @@ class ClearCommand : FoxyCommandDeclarationWrapper {
                 listOf(
                     opt(OptionType.INTEGER, "quantity", true),
                     opt(OptionType.STRING, "users"),
-                )
+                ),
+                isSubCommand = true,
             )
 
             executor = ClearExecutor()

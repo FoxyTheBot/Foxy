@@ -6,6 +6,7 @@ import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.ClusterUtils.getGuildInfo
+import net.cakeyfox.foxy.utils.linkButton
 
 class ServerIconExecutor : UnleashedCommandExecutor() {
     override suspend fun execute(context: CommandContext) {
@@ -14,7 +15,10 @@ class ServerIconExecutor : UnleashedCommandExecutor() {
 
         if (serverId?.toLongOrNull() == null) {
             context.reply {
-                content = pretty(FoxyEmotes.FoxyCry, context.locale["server.info.invalidServerId"])
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["server.info.invalidServerId"]
+                )
             }
 
             return
@@ -24,14 +28,20 @@ class ServerIconExecutor : UnleashedCommandExecutor() {
 
         if (guildInfo == null) {
             context.reply {
-                content = pretty(FoxyEmotes.FoxyCry, context.locale["server.info.serverNotFound", serverId])
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["server.info.serverNotFound", serverId]
+                )
             }
 
             return
         }
         if (guildInfo.icon == null) {
             context.reply {
-                content = pretty(FoxyEmotes.FoxyCry, context.locale["server.icon.noIcon"])
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["server.icon.noIcon"]
+                )
             }
 
             return
@@ -43,6 +53,14 @@ class ServerIconExecutor : UnleashedCommandExecutor() {
                 color = Colors.FOXY_DEFAULT
                 image = guildInfo.icon + "?size=2048"
             }
+
+            actionRow(
+                linkButton(
+                    emoji = FoxyEmotes.FoxyWow,
+                    label = context.locale["user.avatar.showInBrowser"],
+                    url = guildInfo.icon + "?size=2048"
+                )
+            )
         }
     }
 }

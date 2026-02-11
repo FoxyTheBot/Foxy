@@ -104,6 +104,7 @@ main .store-title {
   font-weight: 500;
   margin-bottom: 1rem;
   color: #e7385d;
+  text-align: center;
 }
 
 .perks {
@@ -151,9 +152,8 @@ main .store-title {
     margin-top: -2rem;
   }
 
-  main {
+  .store-info {
     padding: 1rem;
-    margin: 1rem;
   }
 
   .item, .item-rec {

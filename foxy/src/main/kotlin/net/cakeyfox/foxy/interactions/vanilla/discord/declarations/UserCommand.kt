@@ -21,7 +21,15 @@ class UserCommand : FoxyCommandDeclarationWrapper {
 
         contextMenu(Command.Type.USER, this.name, UserInfoExecutor())
         subCommand("avatar") {
-            addOption(opt(OptionType.USER, "user", true))
+            addOption(
+                opt(
+                    OptionType.USER,
+                    "user",
+                    true
+                ),
+
+                isSubCommand = true
+            )
 
             enableLegacyMessageSupport = true
             executor = UserAvatarExecutor()
@@ -29,7 +37,15 @@ class UserCommand : FoxyCommandDeclarationWrapper {
 
         subCommand("info") {
             aliases = listOf("userinfo")
-            addOption(opt(OptionType.USER, "user", false))
+            addOption(
+                opt(
+                    OptionType.USER,
+                    "user",
+                    false
+                ),
+
+                isSubCommand = true
+            )
             enableLegacyMessageSupport = true
             executor = UserInfoExecutor()
         }

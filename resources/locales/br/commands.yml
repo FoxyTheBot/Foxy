@@ -368,6 +368,16 @@ hug:
 dance:
   description: "{0} **está dançando**"
 
+gayMeter:
+  embed:
+    title: "Medidor de Gay"
+    description: |
+      🎵 "O lado bom de ser gay, o lado bom de ser gay, qual o lado bom de ser gay~"
+      
+      Qual será o nível de gayness~ do(a) {0}?
+    field: "Nível"
+    footer: "Não leve esse comando a sério, é apenas uma brincadeira :3"
+
 help:
   description: |
     Olá {0}, eu sou a Foxy! Um bot multiuso criado para tornar o seu servidor um lugar incrível, organizado e divertido para todos os seus membros.

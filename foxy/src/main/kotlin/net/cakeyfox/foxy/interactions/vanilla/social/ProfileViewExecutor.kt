@@ -26,17 +26,28 @@ class ProfileViewExecutor : UnleashedCommandExecutor() {
         if (userData.isBanned == true) {
             context.reply {
                 embed {
-                    title = pretty(FoxyEmotes.FoxyRage, context.locale["profile.isBanned", user.name])
+                    title = pretty(
+                        FoxyEmotes.FoxyRage,
+                        context.locale["profile.isBanned", user.name]
+                    )
                     color = Colors.RED
                     field {
-                        name = pretty(FoxyEmotes.FoxyDrinkingCoffee, context.locale["profile.banReason"])
+                        name = pretty(
+                            FoxyEmotes.FoxyDrinkingCoffee,
+                            context.locale["profile.banReason"]
+                        )
                         value = userData.banReason ?: context.locale["profile.noBanReasonProvided"]
                         inline = false
                     }
 
                     field {
-                        name = pretty(FoxyEmotes.FoxyBan, context.locale["profile.bannedSince"])
-                        value = userData.banDate?.let { context.utils.convertISOToDiscordTimestamp(it) }.toString()
+                        name = pretty(
+                            FoxyEmotes.FoxyBan,
+                            context.locale["profile.bannedSince"]
+                        )
+                        value = userData.banDate?.let {
+                            context.utils.convertISOToDiscordTimestamp(it)
+                        }.toString()
                         inline = false
                     }
                 }
@@ -45,7 +56,13 @@ class ProfileViewExecutor : UnleashedCommandExecutor() {
         }
 
         val profile = withContext(context.foxy.coroutineDispatcher) {
-            ProfileRender(ImageConfig(1436, 884), context).create(user, userData)
+            ProfileRender(
+                ImageConfig(
+                    1436,
+                    884
+                ),
+                context
+            ).create(user, userData)
         }
         val file = FileUpload.fromData(profile, "profile.png")
 

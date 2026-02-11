@@ -48,6 +48,7 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
                     opt(OptionType.USER, "user", true),
                     opt(OptionType.INTEGER, "amount", true)
                 ),
+
                 isSubCommand = true
             )
 
@@ -63,6 +64,7 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
                         .choice("Heads", "heads")
                         .choice("Tails", "tails")
                 ),
+
                 isSubCommand = true
             )
 

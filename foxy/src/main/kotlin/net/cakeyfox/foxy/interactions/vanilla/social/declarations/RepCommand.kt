@@ -26,8 +26,24 @@ class RepCommand : FoxyCommandDeclarationWrapper {
         subCommand("give") {
             aliases = listOf("rep")
             enableLegacyMessageSupport = true
-            addOption(opt(OptionType.USER, "user", true))
-            addOption(opt(OptionType.STRING, "reason", true))
+            addOption(
+                opt(
+                    OptionType.USER,
+                    "user",
+                    true
+                ),
+
+                isSubCommand = true
+            )
+            addOption(
+                opt(
+                    OptionType.STRING,
+                    "reason",
+                    true
+                ),
+
+                isSubCommand = true
+            )
 
             executor = GiveRepExecutor()
         }
