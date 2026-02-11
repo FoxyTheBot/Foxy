@@ -17,6 +17,7 @@ import net.cakeyfox.foxy.interactions.vanilla.economy.declarations.SlotsCommand
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.AskFoxyCommand
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.CancelCommand
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.FateCommand
+import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.GayCommand
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RateWaifuCommand
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RollsCommand
 import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.RussianRouletteCommand
@@ -154,6 +155,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(RussianRouletteCommand())
         register(RollsCommand())
         register(YouTubeCommand())
+        register(GayCommand())
 
         /* ---- [Moderation] ----*/
         register(ClearCommand())
@@ -187,5 +189,6 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(HelpCommand())
         register(FoxyCommand())
         register(LanguageCommand())
+//        register(TranslateCommand())
     }
 }
