@@ -11,25 +11,18 @@ kotlin {
     }
 
     sourceSets {
-        val jvmMain by getting {
-            dependencies {
-                implementation(kotlin("stdlib-jdk8"))
-            }
-        }
         val jsMain by getting {
             dependencies {
                 implementation(project(":serializable-commons"))
                 implementation(libs.ktor.client.core)
-                implementation(libs.ktor.client.cio)
                 implementation(libs.ktor.client.content.negotiation)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.kotlinx.serialization.core)
                 implementation(libs.ktor.serialization.json)
                 implementation(libs.foxy.databaseutils.common)
                 implementation(libs.ktor.htmx.html)
-                implementation(kotlin("stdlib-js"))
+                implementation(libs.kotlinx.coroutines.core)
                 implementation("org.jetbrains.kotlinx:kotlinx-browser:0.5.0")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
             }
         }
 

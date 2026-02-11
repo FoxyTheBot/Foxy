@@ -1,13 +1,21 @@
+import org.gradle.kotlin.dsl.version
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
+    }
+
+    plugins {
+        kotlin("jvm") version "2.2.20"
+        kotlin("multiplatform") version "2.2.20"
+        kotlin("plugin.serialization") version "2.2.20"
     }
 }
 
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
-            val kotlin = version("kotlin", "2.3.0")
+            val kotlin = version("kotlin", "2.2.20")
             val kotlinxSerialization = version("kotlin-serialization", "1.8.1")
             val ktor = version("ktor", "3.2.2")
             val logback = version("logback", "1.5.8")
@@ -18,7 +26,7 @@ dependencyResolutionManagement {
             library("kotlin-stdlib-jdk8", "org.jetbrains.kotlin", "kotlin-stdlib-jdk8").versionRef(kotlin)
             library("kotlinx-coroutines-core", "org.jetbrains.kotlinx", "kotlinx-coroutines-core").version(kotlinxCoroutines)
             library("kotlinx-coroutines-debug", "org.jetbrains.kotlinx", "kotlinx-coroutines-debug").version(kotlinxCoroutines)
-            library("kotlinx-datetime", "org.jetbrains.kotlinx", "kotlinx-datetime").version("0.3.3")
+            library("kotlinx-datetime", "org.jetbrains.kotlinx", "kotlinx-datetime").version("0.4.0")
 
             // Discord
             library("jda", "net.dv8tion", "JDA").version("6.0.0-preview_DEV")

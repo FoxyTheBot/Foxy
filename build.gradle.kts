@@ -4,14 +4,15 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     java
-    kotlin("jvm") version Versions.KOTLIN apply false
-    kotlin("plugin.serialization") version Versions.KOTLIN
-    id("com.gradleup.shadow") version Versions.SHADOW_JAR
+    kotlin("jvm") apply false
+    kotlin("multiplatform") apply false
+    kotlin("plugin.serialization")
+    id("com.gradleup.shadow") version "9.0.0-beta13"
     base
 }
 
 group = "net.cakeyfox"
-version = Versions.FOXY_VERSION
+version = "2025-SNAPSHOT"
 
 allprojects {
     repositories {

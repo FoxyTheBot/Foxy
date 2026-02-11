@@ -7,6 +7,7 @@ kotlin {
     jvm {
         compilations["main"].defaultSourceSet {
             dependencies {
+                implementation(kotlin("stdlib"))
                 implementation(libs.kotlinx.serialization.core)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.kotlinx.serialization.hocon)
