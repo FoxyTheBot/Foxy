@@ -1,8 +1,5 @@
 package net.cakeyfox.common
 
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.hocon.Hocon
-
 object Constants {
     const val UNBAN_FORM_URL = "https://forms.gle/bKfRKxoyFGZzRB7x8"
     const val FOXY_WEBSITE = "https://foxybot.xyz"
@@ -33,8 +30,6 @@ object Constants {
     // Last.fm
     const val LASTFM_API = "https://ws.audioscrobbler.com/2.0/"
 
-    @OptIn(ExperimentalSerializationApi::class)
-    val HOCON = Hocon { useArrayPolymorphism = true }
     const val SUPPORT_SERVER_ID = "768267522670723094"
     const val UPVOTE_URL = "https://top.gg/bot/1006520438865801296/vote"
     const val FOXY_TIMEZONE = "America/Sao_Paulo"
@@ -55,19 +50,7 @@ object Constants {
         clusterId: Int?,
         shards: Int
     ): String {
-        return if (clusterId != null) {
-            when (environment) {
-                "development" -> "💫 foxybot.xyz/add | Cluster $clusterId | Shards: $shards"
-                "production" -> "$activity | Cluster $clusterId | Shards: $shards"
-                else -> "$activity | Cluster $clusterId | Shards: $shards"
-            }
-        } else {
-            when (environment) {
-                "development" -> "💫 foxybot.xyz/add"
-                "production" -> activity
-                else -> activity
-            }
-        }
+        return "💫 $activity"
     }
 
     // Website utils

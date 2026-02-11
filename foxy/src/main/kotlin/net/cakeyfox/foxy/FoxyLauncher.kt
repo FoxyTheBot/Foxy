@@ -3,6 +3,7 @@ package net.cakeyfox.foxy
 import kotlinx.coroutines.runBlocking
 import kotlinx.io.IOException
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.hocon.Hocon
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.utils.HoconUtils.decodeFromString
@@ -17,6 +18,8 @@ import kotlin.system.exitProcess
 
 object FoxyLauncher {
     private val logger = KotlinLogging.logger { }
+    @OptIn(ExperimentalSerializationApi::class)
+    val HOCON = Hocon { useArrayPolymorphism = true }
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -59,7 +62,7 @@ object FoxyLauncher {
     inline fun <reified T> readConfigFile(file: File): T {
         try {
             val json = file.readText()
-            return Constants.HOCON.decodeFromString<T>(json)
+            return HOCON.decodeFromString<T>(json)
         } catch (e: IOException) {
             e.printStackTrace()
             exitProcess(1)
