@@ -58,8 +58,9 @@ class CakeInactivityTaxTask(
             chunk.map { user ->
                 semaphore.withPermit {
                     try {
-                        val lastDaily = user.userCakes.lastDaily?.takeUnless { it == Instant.fromEpochMilliseconds(0) }
-                            ?: return@withPermit
+                        val lastDaily = user.userCakes.lastDaily?.takeUnless {
+                            it == Instant.fromEpochMilliseconds(0)
+                        } ?: return@withPermit
 
                         val tax = (user.userCakes.balance * TAX_PERCENTAGE).toLong()
                         val lastTax = user.userCakes.lastInactivityTax
@@ -76,7 +77,7 @@ class CakeInactivityTaxTask(
 
                         if (daysSinceLastDaily in WARNING_DAYS until TAX_START_DAYS) {
                             if (canBypassInactivityTax(user)) {
-                                logger.info { "Skipping inactive user ${user._id}"}
+                                logger.info { "Skipping inactive user ${user._id}" }
                                 return@withPermit
                             }
 
@@ -140,7 +141,7 @@ class CakeInactivityTaxTask(
                             }
 
                             foxy.database.user.removeCakesFromUser(user._id, tax)
-                            foxy.database.user.updateUser(user._id,) {
+                            foxy.database.user.updateUser(user._id) {
                                 userCakes.warnedAboutInactivityTax = false
                                 userCakes.lastInactivityTax = nowZoned.toKotlinInstant()
                             }

@@ -1,6 +1,7 @@
 package net.cakeyfox.foxy.website.frontend.utils
 
 import kotlinx.html.*
+import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.serializable.data.website.UserSession
 
@@ -106,7 +107,7 @@ fun FlowContent.headerWithUser(user: UserSession?, locale: FoxyLocale) {
         a(href = "/${locale.language}/commands/actions", classes = "cmd-category-link") { +"Roleplay" }
         a(href = "/${locale.language}/commands/economy", classes = "cmd-category-link") { +"Economia" }
         a(href = "/${locale.language}/commands/magic", classes = "cmd-category-link") { +"Mágica" }
-        a(href = "/${locale.language}/commands/entertainment", classes = "cmd-category-link") { +"Diversão" }
+        a(href = "/${locale.language}/commands/fun", classes = "cmd-category-link") { +"Diversão" }
         a(href = "/${locale.language}/commands/social", classes = "cmd-category-link") { +"Social" }
         a(href = "/${locale.language}/commands/music", classes = "cmd-category-link") { +"Música" }
         a(href = "/${locale.language}/commands/utils", classes = "cmd-category-link") { +"Utilitários" }
@@ -136,7 +137,10 @@ fun FlowContent.headerWithUser(user: UserSession?, locale: FoxyLocale) {
         div("overlay__content") {
             a(href = "/${locale.language}/support") { +"Suporte" }
             a(href = "/${locale.language}/support/terms") { +"Termos de uso" }
-            a(href = "/upvote") { +"Votar" }
+            a(href = Constants.UPVOTE_URL) {
+                this.target = "_blank"
+                +"Votar"
+            }
             a(href = "/${locale.language}/premium") { +"Premium" }
             a(href = "/${locale.language}/commands") { +"Comandos" }
             if (user != null) {

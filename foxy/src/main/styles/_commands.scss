@@ -1,0 +1,197 @@
+/* Commands Section */
+
+/* Base Info */
+
+#commandDescription {
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+#optionDescription {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: #272727;
+}
+
+#optionInfo {
+  font-size: 0.9rem;
+  font-family: monospace;
+  font-weight: bold;
+  color: #272727;
+}
+
+#commandOptions {
+  margin-bottom: 0.5rem;
+  color: #131313;
+}
+
+/* Required Badge */
+
+#requiredCard {
+  display: inline-block;
+
+  padding: 5px 9px;
+  border-radius: 15px;
+
+  background: #ed4e70;
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 600;
+  font-family: Arial, sans-serif;
+}
+
+/* Layout */
+
+.commandInfoField {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 8px;
+}
+
+.commands {
+  margin-top: 1rem;
+  padding: 0 10rem;
+
+  &-title {
+    margin-bottom: 1rem;
+
+    font-family: var(--reimu-default-font-family), serif;
+    color: var(--reimu-default-font-color);
+  }
+}
+
+/* Command Item */
+
+.command-item {
+  position: relative;
+
+  margin: 1.3rem 2rem 1rem;
+  padding: 1.6rem 1rem;
+
+  border-radius: 8px;
+
+  background-color: #ed4e70;
+  color: #fff;
+
+  font-size: 1rem;
+  font-family: Roboto, serif;
+
+  text-align: left;
+  user-select: text;
+
+  cursor: pointer;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23FFF" stroke="%23000" stroke-width="2" stroke-linejoin="round" d="M10 11V8.99c0-.88.59-1.64 1.44-1.86h.05A1.99 1.99 0 0 1 14 9.05V12v-2c0-.88.6-1.65 1.46-1.87h.05A1.98 1.98 0 0 1 18 10.06V13v-1.94a2 2 0 0 1 1.51-1.94h0A2 2 0 0 1 22 11.06V14c0 .6-.08 1.27-.21 1.97a7.96 7.96 0 0 1-7.55 6.48 54.98 54.98 0 0 1-4.48 0 7.96 7.96 0 0 1-7.55-6.48C2.08 15.27 2 14.59 2 14v-1.49c0-1.11.9-2.01 2.01-2.01h0a2 2 0 0 1 2.01 2.03l-.01.97v-10c0-1.1.9-2.01 2-2.01h0a2 2 0 0 1 2 2V11Z"></path></svg>'),
+    pointer;
+  }
+
+  /* Category Badge */
+
+  p#commandCategory {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    margin: 0;
+    padding: 9px;
+
+    border-radius: 0 7px 0 7px;
+
+    background-color: #b62a48;
+    color: #fff;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: Roboto, serif;
+
+    user-select: none;
+  }
+
+  &.open {
+    .expandable-command {
+      max-height: 600px;
+
+      opacity: 1;
+      transform: translateY(0);
+
+      padding: 1rem;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .expand-arrow {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+/* Category (Outside Card) */
+
+#commandCategory {
+  font-family: Roboto, serif;
+  color: black;
+}
+
+.command-category-name {
+  margin: 2% 0 1%;
+
+  text-align: center;
+
+  font-size: 30px;
+  font-family: var(--reimu-default-font-family), serif;
+  color: var(--reimu-default-font-color);
+}
+
+/* Expandable Area */
+
+.expandable-command {
+  max-height: 0;
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(-5px);
+
+  padding: 0 1rem;
+  margin-top: 0;
+
+  border-radius: 8px;
+  background-color: #fff;
+
+  transition:
+          max-height 0.35s ease,
+          opacity 0.25s ease,
+          transform 0.25s ease,
+          padding 0.25s ease,
+          margin 0.25s ease;
+}
+
+/* Arrow */
+
+.expand-arrow {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+
+  font-size: 14px;
+  opacity: 0.9;
+
+  transition: transform 0.25s ease;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .commands {
+    padding: 0;
+  }
+}

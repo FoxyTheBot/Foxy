@@ -212,11 +212,6 @@ main {
     &:hover {
       transform: scale(1.05);
       transition: transform 0.3s;
-
-      .feature-card-image {
-        animation: float 1s infinite ease-in-out;
-        filter: brightness(1.2);
-      }
     }
 
     h1 {
@@ -238,28 +233,6 @@ main {
       height: auto;
       margin-left: 20px;
       transition: transform 0.5s ease, filter 0.5s ease, box-shadow 0.5s ease;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .feature-card {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-
-      .text-container {
-        margin-right: 0;
-        padding: 0;
-        margin-top: 20px;
-      }
-
-      .foxy-body {
-        display: none;
-      }
-
-      .feature-card-image {
-        display: none;
-      }
     }
   }
 }
@@ -336,14 +309,33 @@ main {
   }
 }
 
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0);
+@media (max-width: 768px) {
+  main .intro {
+    width: 100%;
+    padding: 1rem;
   }
 
-  50% {
-    transform: translateY(-5px);
+  button #add {
+    margin-bottom: 0.5rem;
+  }
+
+  .foxy-body {
+    display: none;
+  }
+
+  .feature-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .text-container {
+      margin-right: 0;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    .feature-card-image {
+      display: none;
+    }
   }
 }

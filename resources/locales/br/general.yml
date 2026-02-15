@@ -20,6 +20,7 @@ commands:
   command:
     gay:
       name: gay
+      description: Qual será a porcentagem de gay vibes sua ou do(a) seu(sua) amigo(a)?~
       options:
         user:
           name: usuário
@@ -564,4 +565,4 @@ commands:
 
     divorce:
       name: "divorciar"
-      description: "Se divorcie do seu parceiro"
+      description: Teve problemas no seu casmento? Porque não se divorciar?

@@ -4,6 +4,8 @@ import dev.minn.jda.ktx.interactions.commands.Command
 import dev.minn.jda.ktx.interactions.commands.Subcommand
 import dev.minn.jda.ktx.interactions.commands.SubcommandGroup
 import net.cakeyfox.common.FoxyLocale
+import net.cakeyfox.serializable.data.website.FoxyCommand
+import net.cakeyfox.serializable.data.website.Option
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.interactions.DiscordLocale
 import net.dv8tion.jda.api.interactions.IntegrationType
@@ -33,10 +35,10 @@ class FoxyCommandDeclarationBuilder(
     val subCommands = mutableListOf<FoxyCommandDeclarationBuilder>()
     private val subCommandGroups = mutableListOf<FoxyCommandGroupBuilder>()
     private val permissions = mutableListOf<Permission>()
-    private val commandOptions = mutableListOf<OptionData>()
     private val enUsLocale = FoxyLocale("en-us")
     private val ptBrLocale = FoxyLocale("pt-br")
     val contextMenus = mutableListOf<ContextMenuConfig>()
+    val commandOptions = mutableListOf<OptionData>()
 
     fun contextMenu(type: Command.Type, customName: String? = null, executor: UnleashedCommandExecutor? = null) {
         contextMenus.add(ContextMenuConfig(type, customName ?: this.name, executor))
@@ -144,6 +146,47 @@ class FoxyCommandDeclarationBuilder(
         return subCommandGroups.find { it.name == name }
     }
 
+    fun buildCommandInfo(): FoxyCommand {
+        return FoxyCommand(
+            commandName = ptBrLocale["commands.command.$name.name"],
+            commandDescription = ptBrLocale["commands.command.$name.description"],
+            category = category,
+            supportsLegacy = enableLegacyMessageSupport,
+            options = commandOptions.map { option ->
+                Option(
+                    ptBrLocale["commands.command.$baseName.options.${option.name}.name"],
+                    ptBrLocale["commands.command.$baseName.options.${option.name}.description"],
+                    option.isRequired,
+                    option.type.name
+                )
+            },
+            aliases = aliases,
+            subCommands = subCommands.map { subCommand ->
+                FoxyCommand(
+                    commandName = ptBrLocale[
+                        "commands.command.${baseName}.${subCommand.name}.name"
+                    ],
+                    commandDescription = ptBrLocale[
+                        "commands.command.${baseName}.${subCommand.name}.description"
+                    ],
+                    supportsLegacy = subCommand.enableLegacyMessageSupport,
+                    options = subCommand.commandOptions.map { option ->
+                        Option(
+                            ptBrLocale[
+                                "commands.command.${baseName}.${subCommand.name}.options.${option.name}.name"
+                            ],
+                            ptBrLocale[
+                                "commands.command.${baseName}.${subCommand.name}.options.${option.name}.description"
+                            ],
+                            option.isRequired,
+                            option.type.name
+                        )
+                    },
+                )
+            }
+        )
+    }
+
     fun buildAll(): List<CommandData> {
         val commands = mutableListOf<CommandData>()
 
@@ -155,8 +198,14 @@ class FoxyCommandDeclarationBuilder(
 
             setDescriptionLocalizations(
                 mapOf(
-                    DiscordLocale.PORTUGUESE_BRAZILIAN to buildDescription(ptBrCategory, ptBrLocale["commands.command.$name.description"]),
-                    DiscordLocale.ENGLISH_US to buildDescription(enUsCategory, enUsLocale["commands.command.$name.description"])
+                    DiscordLocale.PORTUGUESE_BRAZILIAN to buildDescription(
+                        ptBrCategory,
+                        ptBrLocale["commands.command.$name.description"]
+                    ),
+                    DiscordLocale.ENGLISH_US to buildDescription(
+                        enUsCategory,
+                        enUsLocale["commands.command.$name.description"]
+                    )
                 )
             )
 
@@ -164,14 +213,24 @@ class FoxyCommandDeclarationBuilder(
 
             subCommands.forEach { subCmd ->
                 addSubcommands(Subcommand(subCmd.name, subCmd.description) {
-                    setNameLocalizations(mapOf(
-                        DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${subCmd.name}.name"],
-                        DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${subCmd.name}.name"]
-                    ))
-                    setDescriptionLocalizations(mapOf(
-                        DiscordLocale.ENGLISH_US to buildDescription(enUsCategory, enUsLocale["commands.command.${baseName}.${subCmd.name}.description"]),
-                        DiscordLocale.PORTUGUESE_BRAZILIAN to buildDescription(ptBrCategory, ptBrLocale["commands.command.${baseName}.${subCmd.name}.description"])
-                    ))
+                    setNameLocalizations(
+                        mapOf(
+                            DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${subCmd.name}.name"],
+                            DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${subCmd.name}.name"]
+                        )
+                    )
+                    setDescriptionLocalizations(
+                        mapOf(
+                            DiscordLocale.ENGLISH_US to buildDescription(
+                                enUsCategory,
+                                enUsLocale["commands.command.${baseName}.${subCmd.name}.description"]
+                            ),
+                            DiscordLocale.PORTUGUESE_BRAZILIAN to buildDescription(
+                                ptBrCategory,
+                                ptBrLocale["commands.command.${baseName}.${subCmd.name}.description"]
+                            )
+                        )
+                    )
                     this.addOptions(subCmd.commandOptions)
                 })
             }
@@ -180,10 +239,12 @@ class FoxyCommandDeclarationBuilder(
                 addSubcommandGroups(SubcommandGroup(group.name, group.description).apply {
                     group.subCommands.forEach { subCommand ->
                         addSubcommands(Subcommand(subCommand.name, subCommand.description) {
-                            setNameLocalizations(mapOf(
-                                DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${group.name}.${subCommand.name}.name"],
-                                DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${group.name}.${subCommand.name}.name"]
-                            ))
+                            setNameLocalizations(
+                                mapOf(
+                                    DiscordLocale.ENGLISH_US to enUsLocale["commands.command.${baseName}.${group.name}.${subCommand.name}.name"],
+                                    DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.${baseName}.${group.name}.${subCommand.name}.name"]
+                                )
+                            )
                             this.addOptions(subCommand.commandOptions)
                         })
                     }
@@ -196,10 +257,12 @@ class FoxyCommandDeclarationBuilder(
             val contextData = Commands.context(config.type, config.name).apply {
                 applyCommonSettings(this)
 
-                setNameLocalizations(mapOf(
-//                    DiscordLocale.ENGLISH_US to enUsLocale["commands.context.${config.name}"],
-                    DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.context.${config.name}"]
-                ))
+                setNameLocalizations(
+                    mapOf(
+//                        DiscordLocale.ENGLISH_US to enUsLocale["commands.context.${config.name}"],
+                        DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.context.${config.name}"]
+                    )
+                )
             }
             commands.add(contextData)
         }
@@ -208,13 +271,14 @@ class FoxyCommandDeclarationBuilder(
     }
 
     private fun applyCommonSettings(data: CommandData) {
-        data.setNameLocalizations(mapOf(
-            DiscordLocale.ENGLISH_US to enUsLocale["commands.command.$name.name"],
-            DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.$name.name"]
-        ))
+        data.setNameLocalizations(
+            mapOf(
+                DiscordLocale.ENGLISH_US to enUsLocale["commands.command.$name.name"],
+                DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.command.$name.name"]
+            )
+        )
 
         data.defaultPermissions = defaultMemberPermissions ?: DefaultMemberPermissions.enabledFor(permissions)
-
         data.setIntegrationTypes(integrationType[0], *integrationType.drop(1).toTypedArray())
         data.setContexts(interactionContexts[0], *interactionContexts.drop(1).toTypedArray())
     }

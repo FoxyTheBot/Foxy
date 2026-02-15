@@ -49,16 +49,15 @@ class BirthdayReminderTask(
         users.chunked(5).forEach { chunk ->
             chunk.map { user ->
                 semaphore.withPermit {
-                    val birthday = user.userBirthday?.birthday.takeUnless { it == Instant.fromEpochMilliseconds(0) }
-                        ?: return@forEach
+                    val birthday = user.userBirthday?.birthday.takeUnless {
+                        it == Instant.fromEpochMilliseconds(0)
+                    } ?: return@forEach
                     val lastMessage = user.userBirthday?.lastMessage
 
                     val nowZoned = ZonedDateTime.now(javaZone)
                     val birthdayZoned = ZonedDateTime.ofInstant(birthday.toJavaInstant(), javaZone)
                     val isBirthdayToday = birthdayZoned.dayOfMonth == nowZoned.dayOfMonth &&
                             birthdayZoned.month == nowZoned.month
-
-                    logger.debug { "Checking user ${user._id}: birthday=$birthdayZoned, now=$nowZoned, isBirthdayToday=$isBirthdayToday" }
 
                     try {
                         val hasReceivedThisYear = lastMessage?.let {
@@ -69,7 +68,10 @@ class BirthdayReminderTask(
                         if (isBirthdayToday && !hasReceivedThisYear) {
                             foxy.utils.sendDirectMessage(discordUser) {
                                 embed {
-                                    title = pretty(FoxyEmotes.FoxyCake, locale["birthday.title"])
+                                    title = pretty(
+                                        FoxyEmotes.FoxyCake,
+                                        locale["birthday.title"]
+                                    )
                                     color = Colors.PURPLE
                                     description = locale["birthday.message", FoxyEmotes.FoxyYay]
                                     thumbnail = Constants.FOXY_WOW

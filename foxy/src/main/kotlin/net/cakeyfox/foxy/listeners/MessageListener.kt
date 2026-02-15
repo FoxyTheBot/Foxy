@@ -89,7 +89,10 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
 
         if (queueSize >= maximumQueueSize) {
             context.reply(true) {
-                content = pretty(FoxyEmotes.FoxyCry, context.locale["music.play.queueLimitReached", "100"])
+                content = pretty(
+                    FoxyEmotes.FoxyCry,
+                    context.locale["music.play.queueLimitReached", "100"]
+                )
             }
 
             return

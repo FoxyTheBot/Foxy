@@ -166,7 +166,7 @@ fun FlowContent.featureCard(position: String, title: String, description: String
             h1 { +title }
             h2 { +description }
         }
-        img("feature-card-image") {
+        img(classes = "feature-card-image") {
             src = imageUrl
         }
     }

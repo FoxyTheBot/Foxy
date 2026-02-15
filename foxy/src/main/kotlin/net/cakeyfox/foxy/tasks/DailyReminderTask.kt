@@ -47,7 +47,10 @@ class DailyReminderTask(
 
                         foxy.utils.sendDirectMessage(discordUser) {
                             embed {
-                                title = pretty(FoxyEmotes.FoxyHowdy, locale["dailyReminder.embed.title"])
+                                title = pretty(
+                                    FoxyEmotes.FoxyHowdy,
+                                    locale["dailyReminder.embed.title"]
+                                )
                                 description = locale["dailyReminder.embed.description", user._id]
                                 color = Colors.FOXY_DEFAULT
                                 thumbnail = Constants.DAILY_EMOJI
