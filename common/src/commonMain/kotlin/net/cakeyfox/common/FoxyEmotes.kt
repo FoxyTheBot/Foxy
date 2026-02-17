@@ -76,6 +76,7 @@ object FoxyEmotes {
     const val STAFF = "<:staff:1392547971815702716>"
     const val SALLY = "<:sally:1392547806937481278>"
     const val RDRBR = "<:rdrbr:1392547804823425024>"
+    const val BRIX = "<:BH_Braix:1442170555074613368>"
 
     // Music platforms
     const val YOUTUBE = "<:youtube:1092607821771710584>"
@@ -99,6 +100,7 @@ object FoxyEmotes {
         "support" to SUPPORT,
         "staff" to STAFF,
         "sally" to SALLY,
-        "rdrbr" to RDRBR
+        "rdrbr" to RDRBR,
+        "brix" to BRIX
     )
 }

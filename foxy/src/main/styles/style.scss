@@ -32,7 +32,7 @@ main .greetings {
 main .greetings-2 {
   color: var(--reimu-default-font-color);
   font-size: 40px;
-  font-family: 'Cookie';
+  font-family:var(--reimu-greetings-font);
   margin-left: 5px;
   margin-top: 1px;
 }
