@@ -33,7 +33,7 @@ class PostSaveYouTubeSettings(val server: FoxyWebsite) : BaseRoute("/api/v1/serv
         }
 
         try {
-            checkPermissions(server, context, locale) ?: return
+            checkPermissions(server, context, locale, context.call) ?: return
 
             val params = context.call.receiveParameters()
 

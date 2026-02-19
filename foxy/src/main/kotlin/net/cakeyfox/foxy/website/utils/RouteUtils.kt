@@ -9,8 +9,9 @@ import io.ktor.client.request.url
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
+import io.ktor.http.isSuccess
 import io.ktor.server.application.ApplicationCall
-import io.ktor.server.cio.CIO
+import io.ktor.server.response.respond
 import io.ktor.server.response.respondRedirect
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.RoutingCall
@@ -19,16 +20,15 @@ import io.ktor.server.sessions.clear
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
 import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.json.Json
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.common.checkUserPermissions
 import net.cakeyfox.foxy.website.FoxyWebsite
+import net.cakeyfox.serializable.data.website.DiscordAPIError
 import net.cakeyfox.serializable.data.website.DiscordChannel
 import net.cakeyfox.serializable.data.website.DiscordRole
 import net.cakeyfox.serializable.data.website.DiscordServer
 import net.cakeyfox.serializable.data.website.UserSession
-import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.User
 import java.util.UUID
 
@@ -51,6 +51,7 @@ object RouteUtils {
         return server.formKeys.asMap()
             .putIfAbsent(guildId, formId) == null
     }
+
     fun generateFormId(): String = UUID.randomUUID().toString()
 
     suspend fun getRolesFromAGuild(server: FoxyWebsite, guildId: String, client: HttpClient): List<DiscordRole> {
@@ -71,29 +72,59 @@ object RouteUtils {
         return roles
     }
 
-    suspend fun getUserGuilds(server: FoxyWebsite, session: UserSession, client: HttpClient): List<DiscordServer> {
+    suspend fun getUserGuilds(
+        server: FoxyWebsite,
+        session: UserSession,
+        client: HttpClient,
+        call: ApplicationCall
+    ): List<DiscordServer>? {
         val cachedGuilds = server.guildCache.getIfPresent(session.userId)
         if (cachedGuilds != null) return cachedGuilds
-
         val response = client.get {
             url(Constants.DISCORD_GUILD_LIST)
             header("Authorization", "${session.tokenType} ${session.accessToken}")
         }
 
-        val guilds = server.json.decodeFromString<List<DiscordServer>>(response.bodyAsText())
+        val body = response.bodyAsText()
 
-        val authorizedGuilds = guilds.filter { guild ->
-            checkUserPermissions(guild.permissions)
+        if (!response.status.isSuccess()) {
+            val error = server.json.decodeFromString<DiscordAPIError>(body)
+
+            if (error.code == 0) {
+                val loginUrl = "/login"
+                val isHtmx = call.request.headers["HX-Request"] == "true"
+
+                if (isHtmx) {
+                    call.response.headers.append("HX-Redirect", loginUrl)
+                    call.respond(HttpStatusCode.NoContent)
+                } else {
+                    call.respondRedirect(loginUrl)
+                }
+
+            } else {
+                call.respond(HttpStatusCode.BadGateway)
+            }
+
+            return null
         }
 
-        server.guildCache.put(session.userId, authorizedGuilds)
-        return authorizedGuilds
+        val guilds = server.json.decodeFromString<List<DiscordServer>>(body)
+
+        val authorized = guilds.filter {
+            checkUserPermissions(it.permissions)
+        }
+
+        server.guildCache.put(session.userId, authorized)
+
+        return authorized
     }
+
 
     suspend fun checkPermissions(
         server: FoxyWebsite,
         context: RoutingContext,
-        locale: FoxyLocale
+        locale: FoxyLocale,
+        call: ApplicationCall
     ): PermissionResult? {
 
         val guildId = context.call.parameters["guildId"] ?: return null
@@ -113,9 +144,9 @@ object RouteUtils {
         val availableGuilds = server
             .guildCache
             .getIfPresent(session.userId)
-            ?: run { return@run this.getUserGuilds(server, session, server.httpClient) }
+            ?: run { return@run this.getUserGuilds(server, session, server.httpClient, call) }
 
-        val guild = availableGuilds.find { it.id == guildId }
+        val guild = availableGuilds?.find { it.id == guildId }
             ?: run {
                 context.call.respondRedirect(Constants.INVITE_LINK)
                 return null
@@ -157,23 +188,41 @@ object RouteUtils {
         }
     }
 
-suspend fun getChannelsFromDiscord(server: FoxyWebsite, guildId: String): List<DiscordChannel> {
+    suspend fun getChannelsFromDiscord(
+        server: FoxyWebsite,
+        guildId: String,
+        call: ApplicationCall
+    ): List<DiscordChannel>? {
+
         val response = server.httpClient.get {
             url("https://discord.com/api/guilds/$guildId/channels")
             header("Authorization", "Bot ${server.config.discord.token}")
         }
 
-        val channels = server.json.decodeFromString(
-            ListSerializer(DiscordChannel.serializer()), response.body()
-        )
-        val filteredChannels = mutableListOf<DiscordChannel>()
+        val body = response.bodyAsText()
 
-        for (channel in channels) {
-            if (channel.type == 0) {
-                filteredChannels.add(channel)
+        if (!response.status.isSuccess()) {
+            val error = server.json.decodeFromString<DiscordAPIError>(body)
+            when (error.code) {
+                50001 -> {
+                    call.response.headers.append("HX-Redirect", Constants.getServerInviteLink(guildId))
+                    call.respond(HttpStatusCode.NoContent)
+                }
+
+                else -> {
+                    call.respond(HttpStatusCode.BadGateway)
+                }
             }
+
+            return null
         }
 
-        return filteredChannels
+        val channels = server.json.decodeFromString(
+            ListSerializer(DiscordChannel.serializer()),
+            body
+        )
+
+        return channels.filter { it.type == 0 }
     }
+
 }

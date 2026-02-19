@@ -17,7 +17,7 @@ class PostYouTubeRemoveChannelRoute(val server: FoxyWebsite) :
 
         if (guildData == null) return
 
-        checkPermissions(server, context, locale) ?: return
+        checkPermissions(server, context, locale, context.call) ?: return
 
         val followedChannel = guildData.followedYouTubeChannels.find { it.channelId == channelId }
 

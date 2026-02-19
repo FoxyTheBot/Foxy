@@ -28,12 +28,12 @@ import net.cakeyfox.foxy.website.routes.pages.GetPremiumPage
 import net.cakeyfox.foxy.website.routes.pages.GetSupportPage
 import net.cakeyfox.foxy.website.routes.pages.GetTermsOfServiceRoute
 import net.cakeyfox.foxy.website.routes.partials.GetServerAutoRoleSettingsRoute
-import net.cakeyfox.foxy.website.routes.partials.GetServerGeneralSettingsPartial
-import net.cakeyfox.foxy.website.routes.partials.GetServerListPartial
-import net.cakeyfox.foxy.website.routes.partials.GetServerLogsSettingsRoute
-import net.cakeyfox.foxy.website.routes.partials.GetServerWelcomerSettingsPartial
-import net.cakeyfox.foxy.website.routes.partials.GetYouTubeChannelPartial
 import net.cakeyfox.foxy.website.routes.partials.GetYouTubePartial
+import net.cakeyfox.foxy.website.routes.partials.dashboard.guild.GetServerGeneralSettingsPartial
+import net.cakeyfox.foxy.website.routes.partials.dashboard.guild.GetServerListPartial
+import net.cakeyfox.foxy.website.routes.partials.dashboard.guild.GetServerLogsSettingsRoute
+import net.cakeyfox.foxy.website.routes.partials.dashboard.guild.GetServerWelcomerSettingsPartial
+import net.cakeyfox.foxy.website.routes.partials.dashboard.guild.GetYouTubeChannelPartial
 import net.cakeyfox.foxy.website.routes.partials.dashboard.user.GetGenericUserInventoryRoute
 
 fun Application.registerAllRoutes(server: FoxyWebsite) {

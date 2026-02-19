@@ -14,7 +14,6 @@ import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.modules.ServerLogModule
 import net.cakeyfox.foxy.utils.PremiumUtils
-import net.cakeyfox.foxy.utils.discord.NitroUtils
 import net.cakeyfox.foxy.utils.music.AudioLoader
 import net.cakeyfox.foxy.utils.music.getOrCreateMusicManager
 import net.cakeyfox.foxy.utils.music.joinInAVoiceChannel
@@ -67,9 +66,6 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
 
             processCommandOrMention(event)
             processDjFoxyMessage(event)
-            if (event.member?.isBoosting == true) {
-                processNitroBoost(event)
-            }
         }
     }
 
@@ -99,20 +95,6 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
         }
 
         link.loadItem(processQuery(raw)).subscribe(AudioLoader(context, manager))
-    }
-
-    private suspend fun processNitroBoost(event: MessageReceivedEvent) {
-        val member = event.member ?: return
-        val guildAsFoxyverseGuild = foxy.database.guild.getFoxyverseGuildOrNull(event.guild.id) ?: return
-
-        guildAsFoxyverseGuild.serverBenefits?.givePremiumIfBoosted?.let { benefit ->
-            val redeemChannel = benefit.textChannelToRedeem
-            if (benefit.isEnabled == true && redeemChannel != null && redeemChannel != event.message.channelId) {
-                return
-            }
-        }
-
-        NitroUtils.onBoostActivation(foxy, member)
     }
 
     private suspend fun processCommandOrMention(event: MessageReceivedEvent) {

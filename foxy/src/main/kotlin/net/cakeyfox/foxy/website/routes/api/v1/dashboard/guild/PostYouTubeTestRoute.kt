@@ -37,7 +37,7 @@ class PostYouTubeTestRoute(val server: FoxyWebsite) :
             return context.call.respondRedirect(Constants.INVITE_LINK)
         }
 
-        val (user, guild, session, guildInfo) = checkPermissions(server, context, locale) ?: return
+        val (user, guild, session, guildInfo) = checkPermissions(server, context, locale, context.call) ?: return
 
         val bodyAsDiscordMessage = Json.encodeToString(
             DiscordMessageBody(

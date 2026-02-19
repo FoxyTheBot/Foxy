@@ -23,7 +23,7 @@ class PostYouTubeAddChannelRoute(val server: FoxyWebsite) :
         val channelQuery = context.call.receive<String>()
         if (guildData == null) return
 
-        checkPermissions(server, context, locale) ?: return
+        checkPermissions(server, context, locale, context.call) ?: return
         val channelInfo = server.foxy.youtubeManager.getChannelInfo(channelQuery)
             ?.items?.get(0) ?: return
 

@@ -53,6 +53,10 @@ object Constants {
         return "💫 $activity"
     }
 
+    fun getServerInviteLink(serverId: String): String {
+        return "https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255&guild_id=$serverId"
+    }
+
     // Website utils
     const val DISCORD_AVATAR = "https://cdn.discordapp.com/embed/avatars/0.png"
 

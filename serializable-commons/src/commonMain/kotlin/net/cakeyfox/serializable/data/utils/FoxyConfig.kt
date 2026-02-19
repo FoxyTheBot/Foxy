@@ -13,11 +13,18 @@ data class FoxyConfig(
     val turnstile: Turnstile,
     val foxpayments: FoxPayments,
     val topgg: TopggSettings,
+    val libreTranslate: LibreTranslateConfig,
     val lavalink: LavalinkSettings,
     val lastFm: LastFmSettings,
     val internalApi: InternalAPI,
     val leaderboard: Leaderboard
 ) {
+    @Serializable
+    data class LibreTranslateConfig(
+        val url: String,
+        val key: String,
+    )
+
     @Serializable
     data class LavalinkSettings(
         val nodes: List<Node>

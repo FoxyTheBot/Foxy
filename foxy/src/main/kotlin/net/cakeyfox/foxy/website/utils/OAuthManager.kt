@@ -19,6 +19,7 @@ import io.ktor.server.sessions.clear
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
 import io.ktor.server.sessions.set
+import kotlinx.coroutines.delay
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
@@ -26,6 +27,7 @@ import net.cakeyfox.foxy.website.FoxyWebsite
 import net.cakeyfox.serializable.data.website.DiscordUser
 import net.cakeyfox.serializable.data.website.TokenResponse
 import net.cakeyfox.serializable.data.website.UserSession
+import kotlin.time.Duration.Companion.seconds
 
 class OAuthManager(val server: FoxyWebsite) {
     val redirectUri = "${server.config.website.url.removeSuffix("/")}/login/callback"
@@ -35,7 +37,8 @@ class OAuthManager(val server: FoxyWebsite) {
 
     fun Route.oauthRoutes() {
         get("/login") {
-            val scope = listOf("identify", "email").joinToString(" ")
+            call.sessions.clear<UserSession>()
+            val scope = listOf("identify", "email", "guilds").joinToString(" ")
             val url = URLBuilder(Constants.AUTHORIZATION_ENDPOINT).apply {
                 parameters.append("client_id", clientId)
                 parameters.append("redirect_uri", redirectUri)
@@ -105,6 +108,7 @@ class OAuthManager(val server: FoxyWebsite) {
             )
 
             logger.info { "${discordUser.username} (${discordUser.id}) is logged" }
+            delay(1.seconds)
             call.respondRedirect("/br/dashboard")
         }
 

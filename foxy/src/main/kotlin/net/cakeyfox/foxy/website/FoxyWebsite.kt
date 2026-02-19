@@ -8,13 +8,17 @@ import io.ktor.server.application.install
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.server.plugins.statuspages.StatusPages
+import io.ktor.server.response.respondRedirect
 import io.ktor.server.sessions.SameSite
 import io.ktor.server.sessions.Sessions
 import io.ktor.server.sessions.cookie
 import io.ktor.server.sessions.sameSite
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
+import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
+import net.cakeyfox.foxy.website.utils.DiscordAPIException
 import net.cakeyfox.foxy.website.utils.registerAllRoutes
 import net.cakeyfox.serializable.data.utils.FoxyConfig
 import net.cakeyfox.serializable.data.website.DiscordRole

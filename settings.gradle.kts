@@ -54,7 +54,7 @@ dependencyResolutionManagement {
             library("ktor-client-cio", "io.ktor", "ktor-client-cio").versionRef(ktor)
             library("ktor-client-content-negotiation", "io.ktor", "ktor-client-content-negotiation").versionRef(ktor)
             library("ktor-serialization-json", "io.ktor", "ktor-serialization-kotlinx-json").versionRef(ktor)
-
+            library("ktor-server-status-pages", "io.ktor", "ktor-server-status-pages").versionRef(ktor)
             // Serialization
             library("kotlinx-serialization-core", "org.jetbrains.kotlinx", "kotlinx-serialization-core").versionRef(kotlinxSerialization)
             library("kotlinx-serialization-json", "org.jetbrains.kotlinx", "kotlinx-serialization-json").versionRef(kotlinxSerialization)

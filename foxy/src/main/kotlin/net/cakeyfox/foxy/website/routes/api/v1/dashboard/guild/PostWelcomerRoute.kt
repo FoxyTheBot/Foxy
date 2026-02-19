@@ -23,7 +23,7 @@ class PostWelcomerRoute(val server: FoxyWebsite) :
         val guildId = context.call.parameters["guildId"] ?: return
 
         try {
-            checkPermissions(server, context, locale) ?: return
+            checkPermissions(server, context, locale, context.call) ?: return
 
             val params = context.call.receiveParameters()
             fun Parameters.getBoolean(name: String) = this[name] == "on"

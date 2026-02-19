@@ -23,7 +23,7 @@ class PostServerLogsSettingsRoute(val server: FoxyWebsite) : BaseRoute("/api/v1/
             ?: return htmxRedirect(context.call, Constants.INVITE_LINK)
 
         try {
-            checkPermissions(server, context, locale) ?: return
+            checkPermissions(server, context, locale, context.call) ?: return
 
             val params = context.call.receiveParameters()
             fun Parameters.getBoolean(name: String) = this[name] == "on"

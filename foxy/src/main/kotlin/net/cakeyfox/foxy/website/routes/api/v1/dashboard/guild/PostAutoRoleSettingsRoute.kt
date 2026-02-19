@@ -24,7 +24,7 @@ class PostAutoRoleSettingsRoute(val server: FoxyWebsite) : BaseRoute("/api/v1/se
             ?: return htmxRedirect(context.call, Constants.INVITE_LINK)
 
         try {
-            checkPermissions(server, context, locale) ?: return
+            checkPermissions(server, context, locale, context.call) ?: return
             fun Parameters.getBoolean(name: String) = this[name] == "on"
 
             val params = context.call.receiveParameters()
