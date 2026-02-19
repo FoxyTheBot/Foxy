@@ -33,6 +33,7 @@ dependencies {
     implementation(libs.foxy.databaseutils.jvm)
 
     // Ktor
+    implementation(libs.ktor.server.status.pages)
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.netty)
     implementation(libs.ktor.server.cio)
