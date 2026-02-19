@@ -29,7 +29,7 @@ class GetServerGeneralSettingsPartial {
 
                 try {
                     val guild = server.foxy.database.guild.getGuildOrNull(guildId)!!
-                    val channels = RouteUtils.getChannelsFromDiscord(server, guildId)
+                    val channels = RouteUtils.getChannelsFromDiscord(server, guildId, call) ?: return@get
                     val blockedChannels = guild.guildSettings.blockedChannels
 
                     respondWithPage(call) { getGeneralSettings(guild, locale, channels, blockedChannels, idempotencyKey) }

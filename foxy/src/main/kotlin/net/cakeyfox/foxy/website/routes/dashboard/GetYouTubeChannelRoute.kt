@@ -23,7 +23,7 @@ class GetYouTubeChannelRoute(
 
         val locale = FoxyLocale(lang)
         try {
-            val (user, guild, session, guildInfo, authorizedGuilds) = checkPermissions(server, context, locale) ?: return
+            val (user, guild, session, guildInfo, authorizedGuilds) = checkPermissions(server, context, locale, context.call) ?: return
 
             respondWithPage(context.call) {
                 buildDashboardModule(

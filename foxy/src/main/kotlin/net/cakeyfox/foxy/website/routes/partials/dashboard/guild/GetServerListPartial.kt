@@ -26,7 +26,7 @@ class GetServerListPartial {
                 val session = checkSession(call, server, call.sessions.get<UserSession>()) ?: return@get
                 val lang = call.parameters["lang"] ?: return@get
                 val locale = FoxyLocale(lang)
-                val guilds = getUserGuilds(server, session, httpClient)
+                val guilds = getUserGuilds(server, session, httpClient, call) ?: return@get
 
                 try {
                     respondWithPage(call) {

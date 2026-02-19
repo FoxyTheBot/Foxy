@@ -8,6 +8,7 @@ import io.ktor.server.routing.route
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
 import io.ktor.utils.io.ExperimentalKtorApi
+import mu.KotlinLogging
 import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.website.FoxyWebsite
 import net.cakeyfox.foxy.website.utils.RouteUtils
@@ -28,7 +29,7 @@ class GetServerLogsSettingsRoute {
                 val guild = server.foxy.database.guild.getGuildOrNull(guildId)!!
 
                 try {
-                    val channels = RouteUtils.getChannelsFromDiscord(server, guildId)
+                    val channels = RouteUtils.getChannelsFromDiscord(server, guildId, call) ?: return@get
 
                     respondWithPage(call) {
                         renderServerLogsPartial(guild, locale, channels, idempotencyKey)
