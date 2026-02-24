@@ -21,7 +21,9 @@ import net.cakeyfox.serializable.data.utils.DiscordImageBody
 import net.cakeyfox.serializable.data.utils.DiscordMessageBody
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.entities.UserSnowflake
+import net.dv8tion.jda.api.exceptions.ErrorResponseException
 import net.dv8tion.jda.api.exceptions.RateLimitedException
+import net.dv8tion.jda.api.requests.ErrorResponse
 
 object AdminUtils {
     private val logger = KotlinLogging.logger {}
@@ -91,11 +93,9 @@ object AdminUtils {
         val guildData = foxy.database.guild.getGuild(guildId)
 
         try {
-            try {
-                guild.ban(userAsSnowflakes, null)
-                    .reason(reason + " - ${staff.name} (${staff.id})")
-                    .await()
-            } catch (e: Exception) { }
+            guild.ban(userAsSnowflakes, null)
+                .reason(reason + " - ${staff.name} (${staff.id})")
+                .await()
 
             val durationInstant =
                 if (durationInMs > 0) Instant.fromEpochMilliseconds(
@@ -132,6 +132,19 @@ object AdminUtils {
                 sendMessage(foxy, guildData, placeholders, guild)
             }
 
+        } catch (e: ErrorResponseException) {
+            when (e.errorResponse) {
+                ErrorResponse.FAILED_TO_BAN_USERS,
+                ErrorResponse.UNKNOWN_BAN -> {
+                    // Already banned users can catch at this
+                }
+
+                else -> {
+                    logger.error(e) {
+                        "Mass ban failed | guild=${guild.id} | users=${userAsSnowflakes.size} | staff=${staff.id}"
+                    }
+                }
+            }
         } catch (e: Exception) {
             logger.error(e) { "Failed to ban users on guild $guildId" }
         }
