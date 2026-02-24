@@ -38,7 +38,7 @@ class MessageCommandContext(
     private val logger = KotlinLogging.logger { }
 
     override suspend fun getAuthorData(): FoxyUser = database.user.getFoxyProfile(userId)
-    suspend fun getGuildData(): Guild = database.guild.getGuild(guildId)
+    override suspend fun getGuildData(): Guild? = database.guild.getGuildOrNull(guildId)
 
     override suspend fun reply(ephemeral: Boolean, block: InlineMessage<*>.() -> Unit) {
         val msg = MessageCreateBuilder {
@@ -57,9 +57,9 @@ class MessageCommandContext(
             channel.sendTyping().queue()
 
             val original = channel.retrieveMessageById(event.messageId).await()
-            val shouldDelete = getGuildData().guildSettings.deleteMessageIfCommandIsExecuted
+            val shouldDelete = getGuildData()?.guildSettings?.deleteMessageIfCommandIsExecuted
 
-            if (shouldDelete) {
+            if (shouldDelete == true) {
                 original.delete().await()
                 channel.sendMessage(msg.build()).await()
             } else {

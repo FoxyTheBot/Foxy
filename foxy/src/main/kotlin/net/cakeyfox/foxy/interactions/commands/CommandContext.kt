@@ -33,6 +33,7 @@ interface CommandContext {
 
     suspend fun reply(ephemeral: Boolean = false, block: InlineMessage<*>.() -> Unit)
     suspend fun getAuthorData(): FoxyUser
+    suspend fun getGuildData(): net.cakeyfox.foxy.database.data.guild.Guild?
     suspend fun defer(ephemeral: Boolean = false): InteractionHook?
     suspend fun deferEdit(): InteractionHook?
     suspend fun edit(block: InlineMessage<*>.() -> Unit): Unit?

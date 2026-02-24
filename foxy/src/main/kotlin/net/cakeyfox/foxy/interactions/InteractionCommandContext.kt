@@ -10,6 +10,7 @@ import net.cakeyfox.foxy.database.data.user.FoxyUser
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.common.FoxyLocale
+import net.cakeyfox.foxy.database.data.guild.Guild
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent
@@ -40,6 +41,11 @@ class InteractionCommandContext(
     private val logger = KotlinLogging.logger { }
 
     override suspend fun getAuthorData(): FoxyUser = database.user.getFoxyProfile(user.id)
+    override suspend fun getGuildData(): Guild? {
+        return if (guildId != null) {
+            database.guild.getGuildOrNull(guildId!!)
+        } else null
+    }
     override suspend fun reply(
         ephemeral: Boolean,
         block: InlineMessage<*>.() -> Unit
