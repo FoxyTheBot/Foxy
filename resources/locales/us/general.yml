@@ -25,19 +25,26 @@ commands:
       options:
         user:
           name: usuário
+
     ban:
-      name: banir
-      description: Bana até 200 membros do servidor
-      # TODO: Translate this
-      options:
-        time:
-          name: duração
-        users:
-          name: usuários
-        reason:
-          name: motivo
-        skip_confirmation:
-          name: pular_confirmação
+      name: ban
+      ban:
+        name: banir
+        description: Dê ban naqueles delinquentes insuportáveis do seu servidor
+        options:
+          time:
+            name: duração
+          users:
+            name: usuários
+          reason:
+            name: motivo
+          skip_confirmation:
+            name: pular_confirmação
+      manage:
+        name: "gerenciar"
+        options:
+          user:
+            name: "usuário"
 
     translate:
       name: translate
