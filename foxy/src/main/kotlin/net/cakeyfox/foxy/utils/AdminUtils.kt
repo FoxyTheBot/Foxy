@@ -89,9 +89,11 @@ object AdminUtils {
         val guildData = foxy.database.guild.getGuild(guildId)
 
         try {
-            guild.ban(userAsSnowflakes, null)
-                .reason(reason)
-                .await()
+            try {
+                guild.ban(userAsSnowflakes, null)
+                    .reason(reason + " - ${staff.name} (${staff.id})")
+                    .await()
+            } catch (e: Exception) { }
 
             val durationInstant =
                 if (durationInMs > 0) Instant.fromEpochMilliseconds(
