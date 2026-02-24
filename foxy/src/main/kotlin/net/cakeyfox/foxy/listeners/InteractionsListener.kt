@@ -114,7 +114,7 @@ class InteractionsListener(
                                         context.reply(true) {
                                             content = pretty(
                                                 FoxyEmotes.FoxyRage,
-                                                context.locale["youDontHavePermissionToUseThisCommand"]
+                                                context.locale["youDontHavePermissionToDoThat"]
                                             )
                                         }
                                         return@launchMessageJob
