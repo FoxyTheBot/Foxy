@@ -10,6 +10,7 @@ commands:
   missingPermissionError: Eu preciso da permissão `{0}` para executar esse comando!
 
   context:
+    gay: Medidor de Gay
     profile: Ver Perfil
     cakes: Ver Cakes
     user: Ver Informações
@@ -24,19 +25,35 @@ commands:
       options:
         user:
           name: usuário
+          description: O usuário que você quer medir a vibe de gay
 
     ban:
-      name: banir
-      description: Dê ban naqueles delinquentes insuportáveis do seu servidor
-      options:
-        time:
-          name: duração
-        users:
-          name: usuários
-        reason:
-          name: motivo
-        skip_confirmation:
-          name: pular_confirmação
+      name: ban
+      description: Gerencie os banimentos do seu servidor
+      ban:
+        name: banir
+        description: Dê ban naqueles delinquentes insuportáveis do seu servidor
+        options:
+          time:
+            name: duração
+            description: A duração do banimento
+          users:
+            name: usuários
+            description: Os usuários que serão banidos
+          reason:
+            name: motivo
+            description: O motivo do banimento
+          skip_confirmation:
+            name: pular_confirmação
+            description: Pular a confirmação de banimento
+
+      manage:
+        name: "gerenciar"
+        description: Gerencie a punição de algum usuário, tornando-a permanente ou temporária
+        options:
+          user:
+            name: "usuário"
+            description: O usuário que você quer gerenciar
 
     translate:
       name: traduzir
@@ -60,13 +77,17 @@ commands:
 
     rep:
       name: "reputação"
+      description: Dê reputação para aquela pessoa que fez algo incrível!
       give:
         name: "dar"
+        description: Dê reputação para aquela pessoa que fez algo incrível!
         options:
           user:
             name: "usuário"
+            description: O usuário que você quer dar a reputação
           reason:
             name: "motivo"
+            description: O porquê você quer dar essa reputação
     music:
       name: "música"
       description: Comandos relacionados a música
