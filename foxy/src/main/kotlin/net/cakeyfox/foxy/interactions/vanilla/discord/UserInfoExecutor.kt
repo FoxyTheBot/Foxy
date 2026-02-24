@@ -196,8 +196,7 @@ class UserInfoExecutor : UnleashedCommandExecutor() {
                     }
                 }
 
-                if (moderatorActions.isNotEmpty()) {
-
+                if (moderatorActions.isNotEmpty() && userAsMember?.isOwner == false && user != context.user) {
                     +Separator(true, Separator.Spacing.SMALL)
                     +TextDisplay(
                         componentMsg(
