@@ -16,6 +16,7 @@ object PremiumUtils {
                 1 -> 200
                 2 -> 300
                 3 -> 500
+                4 -> 600
                 else -> 100
             }
         }
@@ -32,6 +33,7 @@ object PremiumUtils {
                 1 -> 5
                 2 -> 10
                 3 -> 15
+                4 -> 20
                 else -> 3
             }
         }
@@ -61,6 +63,7 @@ object PremiumUtils {
                 1 -> false
                 2 -> true
                 3 -> true
+                4 -> true
                 else -> false
             }
         }
@@ -78,6 +81,7 @@ object PremiumUtils {
                 1 -> false
                 2 -> true
                 3 -> true
+                4 -> true
                 else -> false
             }
         }
@@ -96,6 +100,7 @@ object PremiumUtils {
                 PremiumType.TIER1_LEGACY, PremiumType.TIER1 -> 1
                 PremiumType.TIER2_LEGACY, PremiumType.TIER2 -> 2
                 PremiumType.TIER3_LEGACY, PremiumType.TIER3 -> 3
+                PremiumType.PARTNER -> 4
             }
         } ?: 0
     }
