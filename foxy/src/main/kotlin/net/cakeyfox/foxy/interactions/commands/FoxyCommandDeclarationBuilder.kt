@@ -259,7 +259,7 @@ class FoxyCommandDeclarationBuilder(
 
                 setNameLocalizations(
                     mapOf(
-//                        DiscordLocale.ENGLISH_US to enUsLocale["commands.context.${config.name}"],
+                        DiscordLocale.ENGLISH_US to enUsLocale["commands.context.${config.name}"],
                         DiscordLocale.PORTUGUESE_BRAZILIAN to ptBrLocale["commands.context.${config.name}"]
                     )
                 )
