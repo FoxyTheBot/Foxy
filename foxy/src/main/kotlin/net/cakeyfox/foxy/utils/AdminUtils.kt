@@ -40,7 +40,9 @@ object AdminUtils {
                 val bannedBy = foxy.shardManager.retrieveUserById(expiredBan.bannedBy).await()
 
                 foxy.database.guild.removeTempBanFromGuild(guildId, user.id)
-                guild.unban(user).await()
+                guild.unban(user)
+                    .reason("Banimento expirado")
+                    .await()
 
                 try {
                     sendUnbanDm(foxy, guild, user, bannedBy, expiredBan)
