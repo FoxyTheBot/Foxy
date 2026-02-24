@@ -286,6 +286,24 @@ aboutme:
   tooLong: "O texto do seu perfil não pode ter mais de 177 caracteres!"
 
 ban:
+  manage:
+    userBan: "Banimento de {0}"
+    bannedPermanently: Banido Permanentemente
+    banReason: "Motivo do Banimento:"
+    noReason: "Motivo desconhecido"
+    convertBanToPermanently: "{0} foi banido permanentemente do servidor!"
+    convertBanToTemp: "Por quanto tempo você quer banir **{0}**?"
+    userUnbannedBy: "Autor: {0}"
+    convertedBanToTemp: "{0} foi banido temporariamente do servidor, e só poderá voltar em {1}!"
+    willBeUnbannedIn: "Será desbanido(a) em: {0}"
+    userIsNotBanned: Esse usuário não está banido do servidor.
+    userUnbanned: "{0} foi desbanido(a) do servidor! Espero que não quebre as regras novamente."
+    unknownBan: "**{0}** não está banido do servidor."
+    bannedBy: "Banido(a) por: {0}"
+    button:
+      removeBan: "Remover Banimento"
+      applyTempBan: Banir Temporariamente
+      banPermanently: Banir Permanentemente
   howToUse:
     title: Banindo Meliantes do Servidor
     description: |
