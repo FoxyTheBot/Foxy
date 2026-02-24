@@ -38,7 +38,13 @@ class BanExecutor : UnleashedCommandExecutor() {
             context.reply {
                 embed {
                     color = Colors.FOXY_DEFAULT
-                    description = context.locale["ban.confirmPunishment", validUserUsernames.joinToString(", ")]
+                    description = pretty(
+                        FoxyEmotes.FoxyBan,
+                        context.locale[
+                            "ban.confirmPunishment",
+                            validUserUsernames.joinToString(", ")
+                        ]
+                    )
                     footer(context.locale["ban.canTakeALongTimeToBan"])
                 }
 
@@ -64,7 +70,8 @@ class BanExecutor : UnleashedCommandExecutor() {
                         banUsers(
                             context.foxy,
                             context.guildId!!,
-                            userAsSnowflakes, reason,
+                            userAsSnowflakes,
+                            reason,
                             context.user,
                             durationInMs
                         )
@@ -75,10 +82,13 @@ class BanExecutor : UnleashedCommandExecutor() {
             context.reply {
                 embed {
                     color = Colors.FOXY_DEFAULT
-                    description = context.locale[
-                        "ban.banWithoutConfirmation",
-                        validUserUsernames.joinToString(", ")
-                    ]
+                    description = pretty(
+                        FoxyEmotes.FoxyBan,
+                        context.locale[
+                            "ban.banWithoutConfirmation",
+                            validUserUsernames.joinToString(", ")
+                        ]
+                    )
                     footer(context.locale["ban.canTakeALongTimeToBan"])
                 }
             }
