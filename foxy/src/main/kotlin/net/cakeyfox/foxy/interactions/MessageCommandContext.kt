@@ -54,9 +54,11 @@ class MessageCommandContext(
         }
 
         if (hasTextContent && canSendMessage) {
+            val original = channel.retrieveMessageById(event.messageId).await()
+            if (original.isWebhookMessage) return
+
             channel.sendTyping().queue()
 
-            val original = channel.retrieveMessageById(event.messageId).await()
             val shouldDelete = getGuildData()?.guildSettings?.deleteMessageIfCommandIsExecuted
 
             if (shouldDelete == true) {

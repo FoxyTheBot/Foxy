@@ -57,6 +57,11 @@ class CakeInactivityTaxTask(
         users.chunked(10).forEach { chunk ->
             chunk.map { user ->
                 semaphore.withPermit {
+                    if (canBypassInactivityTax(user)) {
+                        logger.info { "Skipping inactive user ${user._id}" }
+                        return@withPermit
+                    }
+
                     try {
                         val lastDaily = user.userCakes.lastDaily?.takeUnless {
                             it == Instant.fromEpochMilliseconds(0)
@@ -76,16 +81,16 @@ class CakeInactivityTaxTask(
                         if (user.userCakes.balance <= MINIMUM_AMOUNT) return@withPermit
 
                         if (daysSinceLastDaily in WARNING_DAYS until TAX_START_DAYS) {
-                            if (canBypassInactivityTax(user)) {
-                                logger.info { "Skipping inactive user ${user._id}" }
-                                return@withPermit
-                            }
-
                             if (user.userCakes.warnedAboutInactivityTax != true) {
                                 val userFromDiscord = foxy.shardManager.retrieveUserById(user._id).await()
                                 foxy.utils.sendDirectMessage(userFromDiscord) {
                                     embed {
-                                        title = pretty(FoxyEmotes.FoxyCry, locale["tax.cakes.warning.title"])
+                                        title = pretty(
+                                            FoxyEmotes.FoxyCry,
+                                            locale[
+                                                "tax.cakes.warning.title"
+                                            ]
+                                        )
                                         description = locale[
                                             "tax.cakes.warning.description",
                                             user._id,

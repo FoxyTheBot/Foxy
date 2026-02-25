@@ -1,5 +1,6 @@
 package net.cakeyfox.foxy.tasks
 
+import kotlinx.coroutines.delay
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.utils.AdminUtils
 import net.cakeyfox.foxy.utils.ClusterUtils.getClusterByShardId
@@ -19,6 +20,7 @@ class CheckExpiredBansTask(
             val guildShardId = getShardIdFromGuildId(guildId.toLong(), foxy.config.discord.totalShards)
             val guildCluster = getClusterByShardId(foxy, guildShardId)
 
+            delay(500) // Time to breath
             if (guildCluster.id == foxy.currentCluster.id) {
                 AdminUtils.removeExpiredBans(foxy, guildId, expiredBans)
             } else {
