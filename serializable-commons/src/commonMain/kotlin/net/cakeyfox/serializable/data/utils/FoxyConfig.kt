@@ -13,7 +13,6 @@ data class FoxyConfig(
     val turnstile: Turnstile,
     val foxpayments: FoxPayments,
     val topgg: TopggSettings,
-    val libreTranslate: LibreTranslateConfig,
     val lavalink: LavalinkSettings,
     val lastFm: LastFmSettings,
     val internalApi: InternalAPI,
