@@ -32,20 +32,33 @@ class BanExecutor : UnleashedCommandExecutor() {
         } else emptyList()
 
         val userAsSnowflakes = validUsers.map { UserSnowflake.fromId(it.idLong) }
-        val validUserUsernames = validUsers.map { "`${it.effectiveName} (${it.id})`" }
+        val validUserUsernames = validUsers.map { "`@${it.name} (${it.id})`" }
+        val durationToDiscordTimestamp = context.utils.convertISOToExtendedDiscordTimestamp(
+            Instant.fromEpochMilliseconds(
+                Clock.System.now().toEpochMilliseconds() + durationInMs
+            )
+        )
+
 
         if (!skipConfirmation) {
             context.reply {
-                embed {
-                    color = Colors.FOXY_DEFAULT
-                    description = pretty(
+                content = if (durationInMs > 0) {
+                    pretty(
                         FoxyEmotes.FoxyBan,
                         context.locale[
                             "ban.confirmPunishment",
+                            validUserUsernames.joinToString(", "),
+                            durationToDiscordTimestamp
+                        ]
+                    )
+                } else {
+                    pretty(
+                        FoxyEmotes.FoxyBan,
+                        context.locale[
+                            "ban.confirmPermanentPunishment",
                             validUserUsernames.joinToString(", ")
                         ]
                     )
-                    footer(context.locale["ban.canTakeALongTimeToBan"])
                 }
 
                 actionRow(
@@ -67,6 +80,16 @@ class BanExecutor : UnleashedCommandExecutor() {
                             )
                         }
 
+                        it.reply(true) {
+                            content = pretty(
+                                FoxyEmotes.FoxyBan,
+                                context.locale[
+                                    "ban.bannedUsers",
+                                    validUserUsernames.joinToString(", ")
+                                ]
+                            )
+                        }
+
                         banUsers(
                             context.foxy,
                             context.guildId!!,
@@ -80,17 +103,13 @@ class BanExecutor : UnleashedCommandExecutor() {
             }
         } else {
             context.reply {
-                embed {
-                    color = Colors.FOXY_DEFAULT
-                    description = pretty(
-                        FoxyEmotes.FoxyBan,
-                        context.locale[
-                            "ban.banWithoutConfirmation",
-                            validUserUsernames.joinToString(", ")
-                        ]
-                    )
-                    footer(context.locale["ban.canTakeALongTimeToBan"])
-                }
+                content = pretty(
+                    FoxyEmotes.FoxyBan,
+                    context.locale[
+                        "ban.bannedUsers",
+                        validUserUsernames.joinToString(", ")
+                    ]
+                )
             }
 
             banUsers(

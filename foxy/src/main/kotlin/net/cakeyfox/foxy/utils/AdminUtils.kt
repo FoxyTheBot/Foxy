@@ -11,6 +11,7 @@ import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.database.data.guild.Guild
 import net.cakeyfox.foxy.database.data.guild.TempBan
+import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.PlaceholderUtils.getModerationPlaceholders
 import net.cakeyfox.foxy.utils.discord.DiscordMessageUtils.getMessageFromJson
@@ -24,6 +25,7 @@ import net.dv8tion.jda.api.entities.UserSnowflake
 import net.dv8tion.jda.api.exceptions.ErrorResponseException
 import net.dv8tion.jda.api.exceptions.RateLimitedException
 import net.dv8tion.jda.api.requests.ErrorResponse
+import kotlin.math.log
 
 object AdminUtils {
     private val logger = KotlinLogging.logger {}
@@ -68,16 +70,97 @@ object AdminUtils {
             } catch (e: RateLimitedException) {
                 logger.warn { "Rate limited while unbanning ${expiredBan.userId}. Retrying in ${e.retryAfter}ms" }
                 delay(e.retryAfter)
-            } catch (e: Exception) {
-                if (e.message?.startsWith("10026") == true) {
-                    logger.warn { "Ban not found for ${expiredBan.userId}" }
-                    foxy.database.guild.removeTempBanFromGuild(guildId, expiredBan.userId)
-                } else {
-                    logger.error(e) { "Error while unbanning ${expiredBan.userId}" }
+            } catch (e: ErrorResponseException) {
+                when (e.errorResponse) {
+                    ErrorResponse.UNKNOWN_BAN -> {
+                        logger.warn { "Ban not found for ${expiredBan.userId} on guild ${guildId}" }
+                        foxy.database.guild.removeTempBanFromGuild(guildId, expiredBan.userId)
+                    }
+
+                    else -> logger.error(e) { "Error while unbanning ${expiredBan.userId}" }
                 }
+            } catch (e: Exception) {
+                logger.error(e) { "Error while unbanning ${expiredBan.userId}" }
             }
 
             delay(50L)
+        }
+    }
+
+    suspend fun unbanUser(
+        context: CommandContext,
+        user: User,
+        reason: String,
+        staff: User
+    ): Boolean {
+        val guildId = context.guildId!!
+        val foxy = context.foxy
+        val guild = foxy.shardManager.getGuildById(guildId) ?: return false
+        val guildData = foxy.database.guild.getGuild(guildId)
+        val isTempBan = guildData.tempBans?.any { it.userId == user.id } ?: false
+
+        if (isTempBan) context.database.guild.removeTempBanFromGuild(guildId, user.id)
+
+        try {
+            guild.unban(user)
+                .reason(reason + "- ${staff.name} (${staff.id})")
+                .await()
+
+            val placeholders = getModerationPlaceholders(
+                foxy,
+                staff,
+                user,
+                guild,
+                duration = null,
+                reason,
+                foxy.locale["KICK"]
+            )
+
+            sendMessage(foxy, guildData, placeholders, guild)
+
+            return true
+        } catch (e: ErrorResponseException) {
+            when (e.errorResponse) {
+                ErrorResponse.UNKNOWN_BAN -> {
+                    return false
+                }
+
+                else -> {
+                    logger.error(e) { "Error while unbanning ${user.id}" }
+                    return false
+                }
+            }
+        }
+    }
+
+    suspend fun kickUser(
+        foxy: FoxyInstance,
+        guildId: String,
+        user: User,
+        staff: User,
+        reason: String
+    ) {
+        val guild = foxy.shardManager.getGuildById(guildId) ?: return
+        val guildData = foxy.database.guild.getGuild(guildId)
+
+        try {
+            guild.kick(user)
+                .reason(reason)
+                .await()
+
+            val placeholders = getModerationPlaceholders(
+                foxy,
+                staff,
+                user,
+                guild,
+                duration = null,
+                reason,
+                foxy.locale["KICK"]
+            )
+
+            sendMessage(foxy, guildData, placeholders, guild)
+        } catch (e: Exception) {
+            logger.error(e) { "Error while kicking user ${user.id}" }
         }
     }
 
@@ -139,9 +222,13 @@ object AdminUtils {
                     // Already banned users can catch at this
                 }
 
+                ErrorResponse.SERVER_ERROR -> {
+                    logger.warn { "The ban was processed by Discord, but I received a 5xx error from the server" }
+                }
+
                 else -> {
                     logger.error(e) {
-                        "Mass ban failed | guild=${guild.id} | users=${userAsSnowflakes.size} | staff=${staff.id}"
+                        "Mass ban failed | guild=${guild.id} | users=${userAsSnowflakes.size} | staff=${staff.id} | ${e.errorResponse}"
                     }
                 }
             }
