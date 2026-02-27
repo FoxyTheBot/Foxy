@@ -285,6 +285,13 @@ aboutme:
   success: "O texto do seu perfil foi alterado para `{0}`!"
   tooLong: "O texto do seu perfil não pode ter mais de 177 caracteres!"
 
+unban:
+  cantUnbanUser: "Eu não consegui desbanir {0}, ele(a) realmente está banido(a)?"
+  userUnbanned: Pronto! Eu desbani o meliante, espero que não volte a causar problemas no servidor!
+  areYouSure: "Você tem certeza que quer desbanir {0}?"
+  button:
+    confirm: Desbanir
+
 ban:
   manage:
     userBan: "Banimento de {0}"
@@ -328,13 +335,12 @@ ban:
         description: O membro será banido sem confirmação
 
   invalidUsers: Não consegui encontrar ninguém com essas IDs
-  banWithoutConfirmation: "Ok, estou banindo os membros: {0}"
-  confirmPunishment: "Você tem certeza que deseja banir os usuários: {0}"
-  bannedUsers: Foram punidos **{0}** membros do servidor
-  removedPunishments: "**{0}** banimento(s) foram removidos"
-  canTakeALongTimeToBan: "A ação pode demorar um pouco para ser concluída"
+  confirmPunishment: "Você tem certeza que deseja banir {0} até **{1}**"
+  confirmPermanentPunishment: "Você tem certeza que deseja banir {0} **permanentemente**?"
+  bannedUsers: "Pronto! Os meliantes foram banidos! Eu espero que não voltem a causar problemas."
+  removedPunishments: "Pronto! Eu removi o banimento dos meliantes! Eu espero que não voltem a causar problemas."
   buttons:
-    confirmPunishment: Sim, banir esses meliantes!
+    confirmPunishment: Confirmar
     removePunishment: Me arrependi de banir, quero remover
     banInProgress: Banindo...
     removeInProgress: Removendo Punições...

@@ -27,6 +27,20 @@ commands:
           name: usuário
           description: O usuário que você quer medir a vibe de gay
 
+    unban:
+      name: desbanir
+      description: Remova o banimento de alguém
+      options:
+        user:
+          name: usuário
+          description: O usuário que você quer remover a punição
+        skip_confirmation:
+          name: pular_confirmação
+          description: "Pule a confirmação"
+        reason:
+          name: motivo
+          description: O motivo do porquê você quer remover
+
     ban:
       name: ban
       description: Gerencie os banimentos do seu servidor
