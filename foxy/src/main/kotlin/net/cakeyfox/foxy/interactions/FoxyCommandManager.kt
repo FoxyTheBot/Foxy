@@ -24,6 +24,7 @@ import net.cakeyfox.foxy.interactions.vanilla.entertainment.declarations.Russian
 import net.cakeyfox.foxy.interactions.vanilla.magic.declarations.MagicCommand
 import net.cakeyfox.foxy.interactions.vanilla.moderation.declarations.BanCommand
 import net.cakeyfox.foxy.interactions.vanilla.moderation.declarations.ClearCommand
+import net.cakeyfox.foxy.interactions.vanilla.moderation.declarations.UnbanCommand
 import net.cakeyfox.foxy.interactions.vanilla.music.declarations.MusicConfigureCommand
 import net.cakeyfox.foxy.interactions.vanilla.music.declarations.NowPlayingCommand
 import net.cakeyfox.foxy.interactions.vanilla.music.declarations.PauseCommand
@@ -159,6 +160,7 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         /* ---- [Moderation] ----*/
         register(ClearCommand())
         register(BanCommand())
+        register(UnbanCommand())
 
         /* ---- [Social] ---- */
         register(ProfileCommand())
@@ -188,6 +190,5 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(HelpCommand())
         register(FoxyCommand())
         register(LanguageCommand())
-//        register(TranslateCommand())
     }
 }

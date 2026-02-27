@@ -62,7 +62,6 @@ actual class FoxyLocale actual constructor(actual var locale: String) {
             }
         }
 
-        logger.warn { "Missing key $key at locale $locale" }
         return "!!{${key}}!!"
     }
 }
