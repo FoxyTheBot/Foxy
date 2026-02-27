@@ -16,6 +16,8 @@ import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.componentMsg
 import net.cakeyfox.foxy.interactions.pretty
+import net.cakeyfox.foxy.utils.AdminUtils
+import net.cakeyfox.foxy.utils.linkButton
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.components.actionrow.ActionRowChildComponent
 import net.dv8tion.jda.api.components.buttons.ButtonStyle
@@ -165,49 +167,84 @@ class UserInfoExecutor : UnleashedCommandExecutor() {
                         )
                     )
                 }
-
-                val moderatorActions = buildList {
-                    val member = context.member ?: return@buildList
-
-                    if (member.hasPermission(Permission.BAN_MEMBERS)) {
-                        add(
-                            context.foxy.interactionManager.createButtonForUser(
-                                context.user,
-                                ButtonStyle.DANGER,
-                                FoxyEmotes.FoxyBan,
-                                "Banir"
-                            ) {
-                                // TODO: Add ban logic
-                            }
-                        )
-                    }
-
-                    if (member.hasPermission(Permission.KICK_MEMBERS)) {
-                        add(
-                            context.foxy.interactionManager.createButtonForUser(
-                                context.user,
-                                ButtonStyle.DANGER,
-                                FoxyEmotes.FoxyRage,
-                                "Expulsar"
-                            ) {
-                                // TODO: Add kick logic
-                            }
-                        )
-                    }
-                }
-
-                if (moderatorActions.isNotEmpty() && userAsMember?.isOwner == false && user != context.user) {
-                    +Separator(true, Separator.Spacing.SMALL)
-                    +TextDisplay(
-                        componentMsg(
-                            Type.SMALL_HEADER,
-                            "Ações de Moderador",
-                            FoxyEmotes.FoxyBan
-                        )
-                    )
-                    +row(*moderatorActions.toTypedArray())
-                }
-
+//
+//                val moderatorActions = buildList {
+//                    val member = context.member ?: return@buildList
+//
+//                    if (member.hasPermission(Permission.BAN_MEMBERS)) {
+//                        add(
+//                            context.foxy.interactionManager.createButtonForUser(
+//                                context.user,
+//                                ButtonStyle.DANGER,
+//                                FoxyEmotes.FoxyBan,
+//                                "Banir"
+//                            ) {
+//                                it.deferEdit()
+//
+//                                context.reply(true) {
+//                                    content = pretty(
+//                                        FoxyEmotes.FoxyBan,
+//                                        context.locale["teste"]
+//                                    )
+//                                }
+//
+//                                AdminUtils.banUsers(
+//                                    context.foxy,
+//                                    context.guildId!!,
+//                                    listOf(user),
+//                                    reason = "Banido(a) por ",
+//                                    staff = context.user,
+//                                    0L
+//                                )
+//                            }
+//                        )
+//                    }
+//
+//                    if (member.hasPermission(Permission.KICK_MEMBERS)) {
+//                        add(
+//                            context.foxy.interactionManager.createButtonForUser(
+//                                context.user,
+//                                ButtonStyle.DANGER,
+//                                FoxyEmotes.FoxyRage,
+//                                "Expulsar"
+//                            ) {
+//                                it.deferEdit()
+//
+//                                context.reply(true) {
+//                                    content = pretty(
+//                                        FoxyEmotes.FoxyRage,
+//                                        context.locale["teste"]
+//                                    )
+//                                }
+//
+//                                AdminUtils.kickUser(
+//                                    context.foxy,
+//                                    context.guildId!!,
+//                                    user,
+//                                    context.user,
+//                                    reason = "Expulso(a) por ${context.user.name} (${context.user.id})",
+//                                )
+//                            }
+//                        )
+//                    }
+//                }
+//
+//                val hasActions = moderatorActions.isNotEmpty()
+//                val isNotOwner = userAsMember?.isOwner == false
+//                val isDifferentUser = user != context.user
+//                val isNotMember = userAsMember == null
+//
+//                if (hasActions && ((isNotOwner && isDifferentUser) || isNotMember)) {
+//                    +Separator(true, Separator.Spacing.SMALL)
+//                    +TextDisplay(
+//                        componentMsg(
+//                            Type.SMALL_HEADER,
+//                            "Ações de Moderador",
+//                            FoxyEmotes.FoxyBan
+//                        )
+//                    )
+//                    +row(*moderatorActions.toTypedArray())
+//                }
                 +Separator(true, Separator.Spacing.SMALL)
                 +TextDisplay(
                     componentMsg(
@@ -223,7 +260,21 @@ class UserInfoExecutor : UnleashedCommandExecutor() {
                         FoxyEmotes.FoxyWow,
                         "Ver Avatar"
                     ) {
-                        // TODO: Add view avatar logic
+                        it.deferEdit()
+
+                        it.reply(true) {
+                            embed {
+                                image = user.effectiveAvatarUrl + "?size=2048"
+                            }
+
+                            actionRow(
+                                linkButton(
+                                    FoxyEmotes.FoxyWow,
+                                    "Ver no Navegador",
+                                    user.effectiveAvatarUrl + "?size=2048"
+                                )
+                            )
+                        }
                     },
 
                     context.foxy.interactionManager.createButtonForUser(
@@ -232,7 +283,21 @@ class UserInfoExecutor : UnleashedCommandExecutor() {
                         FoxyEmotes.FoxyCake,
                         "Ver Banner"
                     ) {
-                        // TODO: Add view banner logic
+                        it.deferEdit()
+
+                        it.reply(true) {
+                            embed {
+                                image = userProfile.bannerUrl + "?size=2048"
+                            }
+
+                            actionRow(
+                                linkButton(
+                                    FoxyEmotes.FoxyWow,
+                                    "Ver no Navegador",
+                                    userProfile.bannerUrl + "?size=2048"
+                                )
+                            )
+                        }
                     }.withDisabled(userProfile.bannerUrl == null),
                 )
             }
