@@ -1,6 +1,6 @@
 package net.cakeyfox.foxy.interactions
 
-fun pretty(emoji: String, content: String, separator: String? = "**•**"): String = "$emoji $separator $content"
+fun pretty(emoji: String, content: String, separator: String? = "**|**"): String = "$emoji $separator $content"
 
 fun componentMsg(type: Type, content: String, emoji: String? = null, separator: String? = "•"): String {
     val size = when (type) {

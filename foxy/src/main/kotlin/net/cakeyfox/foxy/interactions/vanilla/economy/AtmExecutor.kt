@@ -1,9 +1,11 @@
 package net.cakeyfox.foxy.interactions.vanilla.economy
 
+import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyEmotes
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.interactions.commands.UnleashedCommandExecutor
 import net.cakeyfox.foxy.interactions.pretty
+import net.cakeyfox.foxy.utils.linkButton
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent
 
@@ -26,6 +28,14 @@ class AtmExecutor : UnleashedCommandExecutor() {
                     formattedBalance,
                     userPositionAtRank.toString()
                 ]
+            )
+
+            actionRow(
+                linkButton(
+                    FoxyEmotes.FoxyDaily,
+                    context.locale["daily.embed.buyMore"],
+                    Constants.PREMIUM
+                )
             )
         }
     }
