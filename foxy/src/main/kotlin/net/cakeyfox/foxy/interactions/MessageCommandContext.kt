@@ -11,6 +11,7 @@ import net.cakeyfox.foxy.database.data.user.FoxyUser
 import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.common.FoxyLocale
+import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.entities.channel.Channel
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel
@@ -19,6 +20,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.interactions.InteractionHook
 import net.dv8tion.jda.api.interactions.modals.Modal
 import net.dv8tion.jda.api.interactions.modals.ModalMapping
+import java.util.EnumSet
 
 class MessageCommandContext(
     override val event: MessageReceivedEvent,
@@ -43,6 +45,7 @@ class MessageCommandContext(
     override suspend fun reply(ephemeral: Boolean, block: InlineMessage<*>.() -> Unit) {
         val msg = MessageCreateBuilder {
             apply(block)
+            allowedMentionTypes = EnumSet.noneOf(Message.MentionType::class.java)
         }
 
         val channel = event.channel
@@ -101,6 +104,7 @@ class MessageCommandContext(
 
         val msg = MessageEditBuilder {
             apply(block)
+            allowedMentionTypes = EnumSet.noneOf(Message.MentionType::class.java)
         }
 
         if (channel is TextChannel || channel is PrivateChannel) {

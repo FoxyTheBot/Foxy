@@ -11,6 +11,7 @@ import net.cakeyfox.foxy.interactions.commands.CommandContext
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.database.data.guild.Guild
+import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent
@@ -22,6 +23,7 @@ import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionE
 import net.dv8tion.jda.api.interactions.InteractionHook
 import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.modals.Modal
+import java.util.EnumSet
 
 class InteractionCommandContext(
     override val event: GenericInteractionCreateEvent,
@@ -52,6 +54,7 @@ class InteractionCommandContext(
     ) {
         val msg = MessageCreateBuilder {
             apply(block)
+            allowedMentionTypes = EnumSet.noneOf(Message.MentionType::class.java)
         }
 
         return when (event) {
@@ -196,6 +199,7 @@ class InteractionCommandContext(
     override suspend fun edit(block: InlineMessage<*>.() -> Unit): Unit? {
         val msg = MessageEditBuilder {
             apply(block)
+            allowedMentionTypes = EnumSet.noneOf(Message.MentionType::class.java)
         }
 
         return when (event) {
