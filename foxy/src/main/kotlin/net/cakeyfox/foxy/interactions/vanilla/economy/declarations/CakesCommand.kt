@@ -41,7 +41,7 @@ class CakesCommand : FoxyCommandDeclarationWrapper {
 
         subCommand("pay") {
             enableLegacyMessageSupport = true
-            aliases = listOf("pagar")
+            aliases = listOf("pagar", "p")
 
             addOptions(
                 listOf(

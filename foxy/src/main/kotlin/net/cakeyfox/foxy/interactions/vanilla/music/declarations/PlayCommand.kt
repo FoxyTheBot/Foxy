@@ -11,7 +11,7 @@ class PlayCommand : FoxyCommandDeclarationWrapper {
             addOption(opt(OptionType.STRING, "query", true))
 
             enableLegacyMessageSupport = true
-            aliases = listOf("tocar", "p", "t", "play")
+            aliases = listOf("tocar", "t", "play")
             executor = PlayExecutor()
         }
 
