@@ -41,6 +41,7 @@ import net.cakeyfox.foxy.interactions.vanilla.social.declarations.RepCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.FoxyCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.HelpCommand
 import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.LanguageCommand
+import net.cakeyfox.foxy.interactions.vanilla.utils.declarations.NotificationCommand
 import net.cakeyfox.foxy.interactions.vanilla.youtube.declarations.YouTubeCommand
 import net.cakeyfox.foxy.utils.ClusterUtils
 import net.dv8tion.jda.api.interactions.commands.Command
@@ -190,5 +191,6 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(HelpCommand())
         register(FoxyCommand())
         register(LanguageCommand())
+        register(NotificationCommand())
     }
 }
