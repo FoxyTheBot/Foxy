@@ -49,8 +49,6 @@ object AdminUtils {
                     .await()
 
                 try {
-                    sendUnbanDm(foxy, guild, user, bannedBy, expiredBan)
-
                     val placeholders = getModerationPlaceholders(
                         foxy,
                         bannedBy,
