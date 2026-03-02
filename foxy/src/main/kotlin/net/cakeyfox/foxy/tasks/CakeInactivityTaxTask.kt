@@ -83,20 +83,57 @@ class CakeInactivityTaxTask(
                         if (daysSinceLastDaily in WARNING_DAYS until TAX_START_DAYS) {
                             if (user.userCakes.warnedAboutInactivityTax != true) {
                                 val userFromDiscord = foxy.shardManager.retrieveUserById(user._id).await()
+                                if (user.notifications?.disableInactivityTaxNotifications != true) {
+                                    foxy.utils.sendDirectMessage(userFromDiscord) {
+                                        embed {
+                                            title = pretty(
+                                                FoxyEmotes.FoxyCry,
+                                                locale[
+                                                    "tax.cakes.warning.title"
+                                                ]
+                                            )
+                                            description = locale[
+                                                "tax.cakes.warning.description",
+                                                user._id,
+                                                formattedMinimumAmount,
+                                                WARNING_DAYS.toString(),
+                                                formattedBalance,
+                                                formattedTax
+                                            ]
+                                            thumbnail = Constants.FOXY_CRY
+                                            color = Colors.FOXY_DEFAULT
+                                        }
+
+                                        actionRow(
+                                            linkButton(
+                                                FoxyEmotes.FoxyDaily,
+                                                locale["tax.cakes.button"],
+                                                Constants.DAILY
+                                            )
+                                        )
+                                    }
+                                }
+
+                                foxy.database.user.updateUser(user._id) {
+                                    userCakes.warnedAboutInactivityTax = true
+                                }
+
+                                logger.task { "${user._id} warned about inactivity tax" }
+                            }
+                        }
+
+                        if (daysSinceLastDaily >= TAX_START_DAYS && daysSinceLastTax >= TAX_INTERVAL_DAYS) {
+                            val tax = (user.userCakes.balance * TAX_PERCENTAGE).toLong()
+                            val userFromDiscord = foxy.shardManager.retrieveUserById(user._id).await()
+                            val formattedTax = foxy.utils.formatLongNumber(tax)
+
+                            if (user.notifications?.disableInactivityTaxNotifications != true) {
                                 foxy.utils.sendDirectMessage(userFromDiscord) {
                                     embed {
-                                        title = pretty(
-                                            FoxyEmotes.FoxyCry,
-                                            locale[
-                                                "tax.cakes.warning.title"
-                                            ]
-                                        )
+                                        title = pretty(FoxyEmotes.FoxyCry, locale["tax.cakes.title"])
                                         description = locale[
-                                            "tax.cakes.warning.description",
+                                            "tax.cakes.description",
                                             user._id,
-                                            formattedMinimumAmount,
-                                            WARNING_DAYS.toString(),
-                                            formattedBalance,
                                             formattedTax
                                         ]
                                         thumbnail = Constants.FOXY_CRY
@@ -111,38 +148,6 @@ class CakeInactivityTaxTask(
                                         )
                                     )
                                 }
-                                foxy.database.user.updateUser(user._id) {
-                                    userCakes.warnedAboutInactivityTax = true
-                                }
-
-                                logger.task { "${user._id} warned about inactivity tax" }
-                            }
-                        }
-
-                        if (daysSinceLastDaily >= TAX_START_DAYS && daysSinceLastTax >= TAX_INTERVAL_DAYS) {
-                            val tax = (user.userCakes.balance * TAX_PERCENTAGE).toLong()
-                            val userFromDiscord = foxy.shardManager.retrieveUserById(user._id).await()
-                            val formattedTax = foxy.utils.formatLongNumber(tax)
-
-                            foxy.utils.sendDirectMessage(userFromDiscord) {
-                                embed {
-                                    title = pretty(FoxyEmotes.FoxyCry, locale["tax.cakes.title"])
-                                    description = locale[
-                                        "tax.cakes.description",
-                                        user._id,
-                                        formattedTax
-                                    ]
-                                    thumbnail = Constants.FOXY_CRY
-                                    color = Colors.FOXY_DEFAULT
-                                }
-
-                                actionRow(
-                                    linkButton(
-                                        FoxyEmotes.FoxyDaily,
-                                        locale["tax.cakes.button"],
-                                        Constants.DAILY
-                                    )
-                                )
                             }
 
                             foxy.database.user.removeCakesFromUser(user._id, tax)

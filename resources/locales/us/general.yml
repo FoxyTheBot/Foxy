@@ -26,6 +26,27 @@ commands:
         user:
           name: usuário
 
+    notifications:
+      name: notificações
+      options:
+        enabled:
+          name: ativado
+      punishments:
+        name: punições
+      tempban:
+        name: banimento_temporário
+      ban:
+        name: banimento
+      birthday:
+        name: aniversário
+      daily_reminder:
+        name: daily
+      daily_tax:
+        name: taxa_de_inatividade
+      upvote:
+        name: votos
+        description: Desative ou ative os lembretes para votar na Foxy
+
     unban:
       name: desbanir
       description: Remova o banimento de alguém

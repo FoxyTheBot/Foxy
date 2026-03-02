@@ -41,22 +41,24 @@ class UpvoteReminderTask(
                         if (user.notifiedForVote == true) return@withPermit
                         val discordUser = foxy.shardManager.retrieveUserById(user._id).await()
 
-                        foxy.utils.sendDirectMessage(discordUser) {
-                            embed {
-                                title = pretty(FoxyEmotes.FoxyYay, locale["upvote.reminder.title"])
-                                description = locale["upvote.reminder.message", user._id]
-                                footer(locale["upvote.reminder.footer"])
-                                color = Colors.FOXY_DEFAULT
-                                thumbnail = Constants.FOXY_FUMO
-                            }
+                        if (user.notifications?.disableUpvoteNotifications != true) {
+                            foxy.utils.sendDirectMessage(discordUser) {
+                                embed {
+                                    title = pretty(FoxyEmotes.FoxyYay, locale["upvote.reminder.title"])
+                                    description = locale["upvote.reminder.message", user._id]
+                                    footer(locale["upvote.reminder.footer"])
+                                    color = Colors.FOXY_DEFAULT
+                                    thumbnail = Constants.FOXY_FUMO
+                                }
 
-                            actionRow(
-                                linkButton(
-                                    FoxyEmotes.FoxyYay,
-                                    locale["upvote.reminderButton"],
-                                    Constants.UPVOTE_URL
+                                actionRow(
+                                    linkButton(
+                                        FoxyEmotes.FoxyYay,
+                                        locale["upvote.reminderButton"],
+                                        Constants.UPVOTE_URL
+                                    )
                                 )
-                            )
+                            }
                         }
 
                         foxy.database.user.updateUser(user._id) {

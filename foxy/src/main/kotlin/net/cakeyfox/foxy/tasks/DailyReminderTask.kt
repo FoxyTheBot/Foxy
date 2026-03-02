@@ -45,24 +45,26 @@ class DailyReminderTask(
                         if (user.userCakes.notifiedForDaily == true) return@withPermit
                         val discordUser = foxy.shardManager.retrieveUserById(user._id).await()
 
-                        foxy.utils.sendDirectMessage(discordUser) {
-                            embed {
-                                title = pretty(
-                                    FoxyEmotes.FoxyHowdy,
-                                    locale["dailyReminder.embed.title"]
-                                )
-                                description = locale["dailyReminder.embed.description", user._id]
-                                color = Colors.FOXY_DEFAULT
-                                thumbnail = Constants.DAILY_EMOJI
-                            }
+                        if (user.notifications?.disableDailyReminderNotifications != true) {
+                            foxy.utils.sendDirectMessage(discordUser) {
+                                embed {
+                                    title = pretty(
+                                        FoxyEmotes.FoxyHowdy,
+                                        locale["dailyReminder.embed.title"]
+                                    )
+                                    description = locale["dailyReminder.embed.description", user._id]
+                                    color = Colors.FOXY_DEFAULT
+                                    thumbnail = Constants.DAILY_EMOJI
+                                }
 
-                            actionRow(
-                                linkButton(
-                                    FoxyEmotes.FoxyDaily,
-                                    locale["dailyReminder.button"],
-                                    Constants.DAILY
+                                actionRow(
+                                    linkButton(
+                                        FoxyEmotes.FoxyDaily,
+                                        locale["dailyReminder.button"],
+                                        Constants.DAILY
+                                    )
                                 )
-                            )
+                            }
                         }
 
                         foxy.database.user.updateUser(user._id) {

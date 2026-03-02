@@ -42,13 +42,17 @@ object AdminUtils {
             try {
                 val user = foxy.shardManager.retrieveUserById(expiredBan.userId).await()
                 val bannedBy = foxy.shardManager.retrieveUserById(expiredBan.bannedBy).await()
-
+                val userData = foxy.database.user.getFoxyProfile(expiredBan.userId)
                 foxy.database.guild.removeTempBanFromGuild(guildId, user.id)
                 guild.unban(user)
                     .reason("Banimento expirado")
                     .await()
 
                 try {
+                    if (userData.notifications?.disableTempBanNotifications != true) {
+                        sendUnbanDm(foxy, guild, user, bannedBy, expiredBan)
+                    }
+
                     val placeholders = getModerationPlaceholders(
                         foxy,
                         bannedBy,

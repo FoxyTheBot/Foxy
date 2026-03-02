@@ -27,6 +27,27 @@ commands:
           name: usuário
           description: O usuário que você quer medir a vibe de gay
 
+    notifications:
+      name: notificações
+      options:
+        enabled:
+          name: ativado
+      tempban:
+        name: ban_temporário
+        description: Desative ou ative as mensagens quando seu ban temporário expirar
+      birthday:
+        name: aniversário
+        description: Desative ou ative as mensagens de aniversário
+      daily_reminder:
+        name: daily
+        description: Desative ou ative os lembretes para pegar seu prêmio diário
+      daily_tax:
+        name: taxa_de_inatividade
+        description: Desative ou ative os lembretes sobre a taxa de inatividade
+      upvote:
+        name: votos
+        description: Desative ou ative os lembretes para votar na Foxy
+
     unban:
       name: desbanir
       description: Remova o banimento de alguém

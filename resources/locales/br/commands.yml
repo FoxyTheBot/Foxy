@@ -9,6 +9,23 @@ howToUseParams: Parâmetros com * são obrigatórios
 commands:
   earlyAccess: "Esse comando está em beta e apenas usuários premium possuem acesso antecipado. Se você quiser ter acesso a esse comando e muitos outros, você pode se tornar um usuário premium clicando [aqui](https://foxybot.xyz/br/premium)"
 
+notifications:
+  tempban:
+    enabled: Agora eu vou te enviar notificações quando seus banimentos expirarem
+    disabled: Agora eu não vou mais te enviar notificações quando seus banimentos expirarem
+  birthday:
+    enabled: Agora eu vou te enviar notificações de aniversário
+    disabled: Agora eu não vou mais te enviar notificações de aniversário
+  daily_reminder:
+    enabled: Agora eu vou te lembrar de pegar seu prêmio diário
+    disabled: Agora eu não vou mais te lembrar de pegar seu prêmio diário
+  daily_tax:
+    enabled: Agora eu vou te enviar notificações sobre a taxa de inatividade
+    disabled: Agora eu não vou mais te enviar notificações sobre a taxa de inatividade (incluindo quando eu comer seus cakes rs)
+  upvote:
+    enabled: Agora eu vou te enviar lembretes para votar em mim!
+    disabled: Agora eu não vou mais enviar lembretes para votar em mim
+
 clear:
   howToUse:
     title: Limpando Mensagens do Servidor

@@ -17,6 +17,7 @@ import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.RunnableCoroutine
 import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.utils.logging.task
+import net.dv8tion.jda.api.components.buttons.ButtonStyle
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
@@ -66,15 +67,17 @@ class BirthdayReminderTask(
 
                         val discordUser = foxy.shardManager.retrieveUserById(user._id).await()
                         if (isBirthdayToday && !hasReceivedThisYear) {
-                            foxy.utils.sendDirectMessage(discordUser) {
-                                embed {
-                                    title = pretty(
-                                        FoxyEmotes.FoxyCake,
-                                        locale["birthday.title"]
-                                    )
-                                    color = Colors.PURPLE
-                                    description = locale["birthday.message", FoxyEmotes.FoxyYay]
-                                    thumbnail = Constants.FOXY_WOW
+                            if (user.notifications?.disableBirthdayNotifications != true) {
+                                foxy.utils.sendDirectMessage(discordUser) {
+                                    embed {
+                                        title = pretty(
+                                            FoxyEmotes.FoxyCake,
+                                            locale["birthday.title"]
+                                        )
+                                        color = Colors.PURPLE
+                                        description = locale["birthday.message", FoxyEmotes.FoxyYay]
+                                        thumbnail = Constants.FOXY_WOW
+                                    }
                                 }
                             }
 
