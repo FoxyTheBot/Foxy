@@ -67,17 +67,15 @@ class BirthdayReminderTask(
 
                         val discordUser = foxy.shardManager.retrieveUserById(user._id).await()
                         if (isBirthdayToday && !hasReceivedThisYear) {
-                            if (user.notifications?.disableBirthdayNotifications != true) {
-                                foxy.utils.sendDirectMessage(discordUser) {
-                                    embed {
-                                        title = pretty(
-                                            FoxyEmotes.FoxyCake,
-                                            locale["birthday.title"]
-                                        )
-                                        color = Colors.PURPLE
-                                        description = locale["birthday.message", FoxyEmotes.FoxyYay]
-                                        thumbnail = Constants.FOXY_WOW
-                                    }
+                            foxy.utils.sendDirectMessage(discordUser) {
+                                embed {
+                                    title = pretty(
+                                        FoxyEmotes.FoxyCake,
+                                        locale["birthday.title"]
+                                    )
+                                    color = Colors.PURPLE
+                                    description = locale["birthday.message", FoxyEmotes.FoxyYay]
+                                    thumbnail = Constants.FOXY_WOW
                                 }
                             }
 

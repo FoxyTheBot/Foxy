@@ -10,10 +10,6 @@ class NotificationCommand : FoxyCommandDeclarationWrapper {
             executor = NotificationExecutor(this.name)
         }
 
-        subCommand("birthday") {
-            executor = NotificationExecutor(this.name)
-        }
-
         subCommand("daily_reminder") {
             executor = NotificationExecutor(this.name)
         }
