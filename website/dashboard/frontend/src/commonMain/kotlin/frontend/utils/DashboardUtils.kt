@@ -2,9 +2,7 @@ package frontend.utils
 
 import kotlinx.html.ButtonType
 import kotlinx.html.FlowContent
-import kotlinx.html.InputType
 import kotlinx.html.a
-import kotlinx.html.br
 import kotlinx.html.button
 import kotlinx.html.classes
 import kotlinx.html.div
@@ -14,16 +12,12 @@ import kotlinx.html.hr
 import kotlinx.html.i
 import kotlinx.html.id
 import kotlinx.html.img
-import kotlinx.html.input
-import kotlinx.html.label
 import kotlinx.html.li
 import kotlinx.html.onError
 import kotlinx.html.option
 import kotlinx.html.p
-import kotlinx.html.select
 import kotlinx.html.span
 import kotlinx.html.style
-import kotlinx.html.textArea
 import kotlinx.html.ul
 import kotlinx.html.unsafe
 import net.cakeyfox.common.Constants

@@ -1,14 +1,11 @@
 package frontend.htmx.partials
 
 import kotlinx.html.ButtonType
-import kotlinx.html.InputType
 import kotlinx.html.br
 import kotlinx.html.button
 import kotlinx.html.div
 import kotlinx.html.id
-import kotlinx.html.input
 import kotlinx.html.label
-import kotlinx.html.script
 import kotlinx.html.select
 import kotlinx.html.textArea
 import kotlinx.serialization.json.Json
