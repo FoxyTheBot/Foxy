@@ -1,6 +1,5 @@
 package net.cakeyfox.foxy.website.routes.api.v1.dashboard.user
 
-import FoxyUserBuilder
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.response.respond
@@ -10,6 +9,7 @@ import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyLocale
+import net.cakeyfox.foxy.database.utils.builders.FoxyUserBuilder
 import net.cakeyfox.foxy.utils.BaseRoute
 import net.cakeyfox.foxy.website.FoxyWebsite
 import net.cakeyfox.foxy.website.utils.RouteUtils.checkSession
