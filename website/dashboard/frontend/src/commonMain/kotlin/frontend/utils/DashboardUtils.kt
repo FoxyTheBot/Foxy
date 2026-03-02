@@ -151,13 +151,21 @@ fun FlowContent.renderGuildSidebar(
                 hr("separator")
                 h2("section-title")
                 entry(
-                    locale["dashboard.guildSidebar.manageFoxyverseGuild"],
+                    locale["dashboard.guildSidebar.partner"],
                     "/br/servers/${guild._id}/partnership",
-                    isSelected = moduleId == "partnership"
+                    isSelected = moduleId == "partnership",
+                    icon = Icons.POCKET_FOXY
                 )
             }
 
             separateCategory(locale["dashboard.guildSidebar.separators.moderation"])
+
+            entry(
+                locale["dashboard.guildSidebar.welcomer"],
+                "/br/servers/${guild._id}/welcomer",
+                isSelected = moduleId == "welcomer",
+                icon = Icons.DOOR
+            )
 
             entry(
                 locale["dashboard.guildSidebar.autorole"],
@@ -165,31 +173,19 @@ fun FlowContent.renderGuildSidebar(
                 isSelected = moduleId == "autorole",
                 icon = Icons.AUTOROLE
             )
+
 //            entry(
 //                locale["dashboard.guildSidebar.inviteblocker"],
 //                "/br/servers/${guild._id}/inviteblocker",
 //                isSelected = moduleId == "inviteblocker",
 //                icon = Icons.INVITEBLOCKER
 //            )
-//            entry(
-//                locale["dashboard.guildSidebar.modlog"],
-//                "/br/servers/${guild._id}/modlog",
-//                isSelected = moduleId == "modlog",
-//                icon = Icons.PUNISHMENTS
-//            )
 
             entry(
-                locale["dashboard.guildSidebar.serverLogs"],
-                "/br/servers/${guild._id}/serverlogs",
-                isSelected = moduleId == "serverlogs",
-                icon = Icons.LOG
-            )
-
-            entry(
-                locale["dashboard.guildSidebar.welcomer"],
-                "/br/servers/${guild._id}/welcomer",
-                isSelected = moduleId == "welcomer",
-                icon = Icons.DOOR
+                locale["dashboard.guildSidebar.modlog"],
+                "/br/servers/${guild._id}/modlog",
+                isSelected = moduleId == "modlog",
+                icon = Icons.PUNISHMENTS
             )
 
             separateCategory(locale["dashboard.guildSidebar.separators.social"])
