@@ -20,11 +20,19 @@ class GetGenericServerModuleRoute(val server: FoxyWebsite) : BaseRoute("/servers
         val isProduction = server.isProduction
         val moduleId = context.call.parameters["module"] ?: return
 
-        val (user, guild, session, guildInfo, authorizedGuilds) = checkPermissions(server, context, locale, context.call) ?: return
+        val (user, guild, session, guildInfo, availableGuilds) = checkPermissions(server, context, locale, context.call) ?: return
+        val isFoxyverseGuild = server.foxy.database.guild.getFoxyverseGuildOrNull(guild.id) != null
 
         respondWithPage(context.call) {
-            getModuleConfig(session, moduleId, guildInfo, false, locale, isProduction, authorizedGuilds)
+            getModuleConfig(
+                session,
+                moduleId,
+                guildInfo,
+                isFoxyverseGuild,
+                locale,
+                isProduction,
+                availableGuilds
+            )
         }
     }
-
 }

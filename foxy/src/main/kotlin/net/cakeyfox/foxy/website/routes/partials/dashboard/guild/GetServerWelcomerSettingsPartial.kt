@@ -31,9 +31,16 @@ class GetServerWelcomerSettingsPartial {
                     val guild = server.foxy.database.guild.getGuildOrNull(guildId)!!
                     val channels = RouteUtils.getChannelsFromDiscord(server, guildId, call) ?: return@get
 
-                    respondWithPage(call) { getWelcomerSettings(guild, locale, channels, idempotencyKey) }
-                } catch(e: Exception) {
-                    KotlinLogging.logger {  }.error(e) { }
+                    respondWithPage(call) {
+                        getWelcomerSettings(
+                            guild,
+                            locale,
+                            channels,
+                            idempotencyKey,
+                        )
+                    }
+                } catch (e: Exception) {
+                    KotlinLogging.logger { }.error(e) { }
                 }
             }
         }

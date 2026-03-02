@@ -21,7 +21,12 @@ class GetDashboardRoute(val server: FoxyWebsite) : BaseRoute("/dashboard") {
             return
         }
 
-        respondWithPage(context.call) { dashboardPage(user, locale, server.isProduction) }
+        respondWithPage(context.call) {
+            dashboardPage(
+                user,
+                locale,
+                server.isProduction
+            )
+        }
     }
-
 }

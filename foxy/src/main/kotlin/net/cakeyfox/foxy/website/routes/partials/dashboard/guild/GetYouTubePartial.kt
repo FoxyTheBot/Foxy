@@ -32,7 +32,15 @@ class GetYouTubePartial {
                     val savedChannels = server.foxy.youtubeManager.fetchFollowedChannelsWithInfo(guild)
                     val maxChannelsAvailable = PremiumUtils.maximumYouTubeChannels(server.foxy, guildId)
 
-                    respondWithPage(call) { getYouTubeSettings(guild, locale, savedChannels, maxChannelsAvailable, idempotencyKey) }
+                    respondWithPage(call) {
+                        getYouTubeSettings(
+                            guild,
+                            locale,
+                            savedChannels,
+                            maxChannelsAvailable,
+                            idempotencyKey
+                        )
+                    }
                 } catch (e: Exception) {
                     println(e)
                 }
