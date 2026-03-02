@@ -30,7 +30,12 @@ import net.cakeyfox.foxy.database.data.guild.Guild
 import net.cakeyfox.serializable.data.utils.DiscordMessageBody
 import net.cakeyfox.serializable.data.website.DiscordChannel
 
-fun getWelcomerSettings(guild: Guild, locale: FoxyLocale, channels: List<DiscordChannel>, idempotencyKey: String): String {
+fun getWelcomerSettings(
+    guild: Guild,
+    locale: FoxyLocale,
+    channels: List<DiscordChannel>,
+    idempotencyKey: String,
+): String {
     return createHTML().div {
         renderPopUp(
             "Importar JSON",

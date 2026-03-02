@@ -12,9 +12,7 @@
   align-items: center;
   transition: opacity 0.3s ease, transform 0.3s ease;
   opacity: 0;
-  transform: translateY(-10px);
   pointer-events: none;
-
 
   input {
     background-color: #fff;
