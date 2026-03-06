@@ -9,6 +9,7 @@ import kotlinx.serialization.json.Json
 import mu.KotlinLogging
 import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.utils.BaseRoute
+import net.cakeyfox.common.LogType
 import net.cakeyfox.foxy.website.FoxyWebsite
 import net.cakeyfox.foxy.website.utils.RouteUtils.checkPermissions
 import net.cakeyfox.serializable.data.utils.DiscordMessageBody
@@ -23,7 +24,7 @@ class PostWelcomerRoute(val server: FoxyWebsite) :
         val guildId = context.call.parameters["guildId"] ?: return
 
         try {
-            checkPermissions(server, context, locale, context.call) ?: return
+            val result = checkPermissions(server, context, locale, context.call) ?: return
 
             val params = context.call.receiveParameters()
             fun Parameters.getBoolean(name: String) = this[name] == "on"
@@ -89,6 +90,12 @@ class PostWelcomerRoute(val server: FoxyWebsite) :
                 guildJoinLeaveModule.leaveMessage = body["whenUserLeavesSettings"]
                 guildJoinLeaveModule.dmWelcomeMessage = body["dmSettings"]
             }
+
+            server.foxy.database.guild.addLogToGuild(
+                guildId,
+                result.user.id,
+                LogType.UPDATE_WELCOMER_SETTINGS.value
+            )
 
             context.call.response.headers.append("HX-Refresh", "true")
             context.call.respondText("", ContentType.Text.Html)

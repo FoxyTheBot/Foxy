@@ -24,6 +24,7 @@ kotlin {
                 implementation(libs.ktor.client.content.negotiation)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.kotlinx.serialization.core)
+                implementation(libs.kotlinx.datetime)
                 implementation(libs.ktor.serialization.json)
                 implementation(libs.ktor.client.cio)
                 implementation(project(":serializable-commons"))

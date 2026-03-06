@@ -177,8 +177,8 @@ fun FlowContent.renderGuildSidebar(
 
             entry(
                 locale["dashboard.guildSidebar.modlog"],
-                "/br/servers/${guild._id}/modlog",
-                isSelected = moduleId == "modlog",
+                "/br/servers/${guild._id}/serverlogs",
+                isSelected = moduleId == "serverlogs",
                 icon = Icons.PUNISHMENTS
             )
 

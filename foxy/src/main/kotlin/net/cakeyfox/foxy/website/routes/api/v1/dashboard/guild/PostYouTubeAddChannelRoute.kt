@@ -6,6 +6,7 @@ import io.ktor.server.response.respondText
 import io.ktor.server.routing.RoutingContext
 import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.utils.BaseRoute
+import net.cakeyfox.common.LogType
 import net.cakeyfox.foxy.website.FoxyWebsite
 import net.cakeyfox.foxy.website.utils.RouteUtils
 import net.cakeyfox.foxy.website.utils.RouteUtils.checkPermissions
@@ -23,7 +24,7 @@ class PostYouTubeAddChannelRoute(val server: FoxyWebsite) :
         val channelQuery = context.call.receive<String>()
         if (guildData == null) return
 
-        checkPermissions(server, context, locale, context.call) ?: return
+        val result = checkPermissions(server, context, locale, context.call) ?: return
         val channelInfo = server.foxy.youtubeManager.getChannelInfo(channelQuery)
             ?.items?.get(0) ?: return
 
@@ -36,6 +37,11 @@ class PostYouTubeAddChannelRoute(val server: FoxyWebsite) :
                 channelInfo.id,
                 "",
                 ""
+            )
+            server.foxy.database.guild.addLogToGuild(
+                guildId,
+                result.user.id,
+                LogType.UPDATE_YOUTUBE_SETTINGS.value
             )
         }
 

@@ -9,6 +9,7 @@ import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.utils.BaseRoute
+import net.cakeyfox.common.LogType
 import net.cakeyfox.foxy.website.FoxyWebsite
 import net.cakeyfox.foxy.website.utils.RouteUtils.checkPermissions
 import net.cakeyfox.foxy.website.utils.RouteUtils.htmxRedirect
@@ -19,11 +20,11 @@ class PostServerLogsSettingsRoute(val server: FoxyWebsite) : BaseRoute("/api/v1/
     override suspend fun handle(context: RoutingContext, locale: FoxyLocale) {
         val guildId = context.call.parameters["guildId"] ?: return
 
-        val guildData = server.foxy.database.guild.getGuildOrNull(guildId)
+        server.foxy.database.guild.getGuildOrNull(guildId)
             ?: return htmxRedirect(context.call, Constants.INVITE_LINK)
 
         try {
-            checkPermissions(server, context, locale, context.call) ?: return
+            val result = checkPermissions(server, context, locale, context.call) ?: return
 
             val params = context.call.receiveParameters()
             fun Parameters.getBoolean(name: String) = this[name] == "on"
@@ -55,6 +56,11 @@ class PostServerLogsSettingsRoute(val server: FoxyWebsite) : BaseRoute("/api/v1/
                     }
                 }
             }
+            server.foxy.database.guild.addLogToGuild(
+                guildId,
+                result.user.id,
+                LogType.UPDATE_SERVER_LOGS_SETTINGS.value
+            )
 
             context.call.response.headers.append("HX-Refresh", "true")
             context.call.respondText("", ContentType.Text.Html)

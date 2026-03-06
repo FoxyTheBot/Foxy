@@ -5,6 +5,7 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.RoutingContext
 import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.utils.BaseRoute
+import net.cakeyfox.common.LogType
 import net.cakeyfox.foxy.website.FoxyWebsite
 import net.cakeyfox.foxy.website.utils.RouteUtils.checkPermissions
 
@@ -17,12 +18,17 @@ class PostYouTubeRemoveChannelRoute(val server: FoxyWebsite) :
 
         if (guildData == null) return
 
-        checkPermissions(server, context, locale, context.call) ?: return
+       val result = checkPermissions(server, context, locale, context.call) ?: return
 
         val followedChannel = guildData.followedYouTubeChannels.find { it.channelId == channelId }
 
         if (followedChannel != null) {
             server.foxy.database.youtube.removeChannelFromGuild(guildId, channelId)
+            server.foxy.database.guild.addLogToGuild(
+                guildId,
+                result.user.id,
+                LogType.UPDATE_YOUTUBE_SETTINGS.value
+            )
         }
 
         context.call.respond(HttpStatusCode.OK)
