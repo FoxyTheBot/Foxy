@@ -10,6 +10,17 @@ categories:
   youtube: "YouTube"
   music: "Música"
   mod: "Moderação"
+auditLogEntries:
+  UNKNOWN_UPDATE: "Alteração Desconhecida"
+  UPDATE_GENERAL_SETTINGS: "Alterou as Configurações Gerais"
+  UPDATE_WELCOMER_SETTINGS: "Alterou as Configurações de Entrada/Saída"
+  UPDATE_AUTO_ROLE_SETTINGS: "Alterou as Configurações de Autorole"
+  UPDATE_INVITE_BLOCKER_SETTINGS: "Alterou as Configurações do Bloqueador de Convites"
+  UPDATE_SERVER_LOGS_SETTINGS: "Alterou as Configurações de Logs do Servidor"
+  UPDATE_YOUTUBE_SETTINGS: "Alterou as Configurações do YouTube"
+  UPDATE_TWITCH_SETTINGS: "Alterou as Configurações do Twitch"
+  UPDATE_PREMIUM_SETTINGS: "Alterou as Configurações Premium"
+  UPDATE_PARTNERSHIP_SETTINGS: "Alterou as Configurações de Parceria"
 
 youCantUseCommandsHere: "Você não pode usar comandos nesse canal!"
 

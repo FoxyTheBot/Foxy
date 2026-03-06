@@ -1,7 +1,6 @@
 package net.cakeyfox.foxy.website.routes.partials.dashboard.guild
 
 import frontend.htmx.partials.renderAuditLog
-import frontend.htmx.partials.renderServerLogsPartial
 import io.ktor.server.htmx.hx
 import io.ktor.server.routing.Routing
 import io.ktor.server.routing.get
@@ -9,10 +8,8 @@ import io.ktor.server.routing.route
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
 import io.ktor.utils.io.ExperimentalKtorApi
-import mu.KotlinLogging
 import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.website.FoxyWebsite
-import net.cakeyfox.foxy.website.utils.RouteUtils
 import net.cakeyfox.foxy.website.utils.RouteUtils.checkSession
 import net.cakeyfox.foxy.website.utils.RouteUtils.respondWithPage
 import net.cakeyfox.serializable.data.website.UserSession
