@@ -13,10 +13,10 @@ object PremiumUtils {
 
         if (user != null && isUserPremium(user)) {
             return when (getPremiumType(user)) {
-                1 -> 200
-                2 -> 300
-                3 -> 500
-                4 -> 600
+                PremiumType.TIER1 -> 200
+                PremiumType.TIER2 -> 300
+                PremiumType.TIER3 -> 500
+                PremiumType.PARTNER -> 600
                 else -> 100
             }
         }
@@ -30,10 +30,10 @@ object PremiumUtils {
 
         if (user != null && isUserPremium(user)) {
             return when (getPremiumType(user)) {
-                1 -> 5
-                2 -> 10
-                3 -> 15
-                4 -> 20
+                PremiumType.TIER1 -> 5
+                PremiumType.TIER2 -> 10
+                PremiumType.TIER3 -> 15
+                PremiumType.PARTNER -> 20
                 else -> 3
             }
         }
@@ -44,9 +44,9 @@ object PremiumUtils {
     fun canBypassInactivityTax(user: FoxyUser): Boolean {
         if (isUserPremium(user)) {
             return when(getPremiumType(user)) {
-                1 -> false
-                2 -> true
-                3 -> true
+                PremiumType.TIER1 -> false
+                PremiumType.TIER2 -> true
+                PremiumType.TIER3 -> true
                 else -> false
             }
         }
@@ -60,10 +60,10 @@ object PremiumUtils {
 
         if (isUserPremium(user)) {
             return when (getPremiumType(user)) {
-                1 -> false
-                2 -> true
-                3 -> true
-                4 -> true
+                PremiumType.TIER1 -> false
+                PremiumType.TIER2 -> true
+                PremiumType.TIER3 -> true
+                PremiumType.PARTNER -> true
                 else -> false
             }
         }
@@ -78,10 +78,10 @@ object PremiumUtils {
         if (isUserPremium(user)) {
             val premiumType = getPremiumType(user)
             isEligible = when (premiumType) {
-                1 -> false
-                2 -> true
-                3 -> true
-                4 -> true
+                PremiumType.TIER1 -> false
+                PremiumType.TIER2 -> true
+                PremiumType.TIER3 -> true
+                PremiumType.PARTNER -> true
                 else -> false
             }
         }
@@ -94,14 +94,8 @@ object PremiumUtils {
         return Clock.System.now() < premiumDate
     }
 
-    private fun getPremiumType(user: FoxyUser): Int {
-        return PremiumType.entries.find { it.s == user.userPremium.premiumType }?.let {
-            when (it) {
-                PremiumType.TIER1_LEGACY, PremiumType.TIER1 -> 1
-                PremiumType.TIER2_LEGACY, PremiumType.TIER2 -> 2
-                PremiumType.TIER3_LEGACY, PremiumType.TIER3 -> 3
-                PremiumType.PARTNER -> 4
-            }
-        } ?: 0
+    private fun getPremiumType(user: FoxyUser): PremiumType {
+        val raw = user.userPremium.premiumType ?: return PremiumType.FREE
+        return PremiumType.fromDb(raw)
     }
 }
