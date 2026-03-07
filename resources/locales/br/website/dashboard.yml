@@ -33,6 +33,9 @@ dashboard:
   modules:
     manage: "Painel de Controle | {0}"
 
+    partnership:
+      title: Foxy Partners
+
     welcomer:
       title: Mensagem de Entrada/Saída
       description: Saiba em tempo real quem entrou ou saiu do seu servidor!

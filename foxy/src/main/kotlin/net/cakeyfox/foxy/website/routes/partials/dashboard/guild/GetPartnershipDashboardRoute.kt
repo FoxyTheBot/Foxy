@@ -1,6 +1,7 @@
 package net.cakeyfox.foxy.website.routes.partials.dashboard.guild
 
 import frontend.htmx.partials.renderAuditLog
+import frontend.htmx.partials.renderPartnershipDashboard
 import io.ktor.server.htmx.hx
 import io.ktor.server.routing.Routing
 import io.ktor.server.routing.get
@@ -14,24 +15,21 @@ import net.cakeyfox.foxy.website.utils.RouteUtils.checkSession
 import net.cakeyfox.foxy.website.utils.RouteUtils.respondWithPage
 import net.cakeyfox.serializable.data.website.UserSession
 
-class GetServerAuditLog {
+class GetPartnershipDashboardRoute {
     @OptIn(ExperimentalKtorApi::class)
-    fun Routing.getServerAuditLogRoute(server: FoxyWebsite) {
-        route("/{lang}/partials/{guildId}/logs") {
+    fun Routing.getPartnershipRoute(server: FoxyWebsite) {
+        route("/{lang}/partials/{guildId}/partnership") {
             hx.get {
                 val guildId = call.parameters["guildId"] ?: return@get
                 checkSession(call, server, call.sessions.get<UserSession>()) ?: return@get
                 val lang = call.parameters["lang"] ?: return@get
                 val locale = FoxyLocale(lang)
-                val guild = server.foxy.database.guild.getGuildOrNull(guildId)!!
+                val guild = server.foxy.database.guild.getFoxyverseGuildOrNull(guildId) ?: return@get
 
                 try {
 
                     respondWithPage(call) {
-                        renderAuditLog(
-                            locale,
-                            guild.dashboardLogs
-                        )
+                        renderPartnershipDashboard(locale)
                     }
                 } catch (e: Exception) {
                     println(e.message)

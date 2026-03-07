@@ -27,7 +27,8 @@ import net.cakeyfox.foxy.website.routes.pages.GetHomePage
 import net.cakeyfox.foxy.website.routes.pages.GetPremiumPage
 import net.cakeyfox.foxy.website.routes.pages.GetSupportPage
 import net.cakeyfox.foxy.website.routes.pages.GetTermsOfServiceRoute
-import net.cakeyfox.foxy.website.routes.partials.dashboard.guild.GetServerAuditLog
+import net.cakeyfox.foxy.website.routes.partials.dashboard.guild.GetPartnershipDashboardRoute
+import net.cakeyfox.foxy.website.routes.partials.dashboard.guild.GetServerAuditLogRoute
 import net.cakeyfox.foxy.website.routes.partials.dashboard.guild.GetServerAutoRoleSettingsRoute
 import net.cakeyfox.foxy.website.routes.partials.dashboard.guild.GetServerGeneralSettingsPartial
 import net.cakeyfox.foxy.website.routes.partials.dashboard.guild.GetServerListPartial
@@ -77,7 +78,8 @@ fun Application.registerAllRoutes(server: FoxyWebsite) {
         GetServerAutoRoleSettingsRoute().apply { getAutoRoleSettings(server) }
         GetServerLogsSettingsRoute().apply { getServerLogsSettingsRoute(server) }
         GetGenericUserInventoryRoute().apply { getUserBackgroundInventory(server) }
-        GetServerAuditLog().apply { getServerAuditLogRoute(server) }
+        GetServerAuditLogRoute().apply { getServerAuditLogRoute(server) }
+        GetPartnershipDashboardRoute().apply { getPartnershipRoute(server) }
 
         // ==[OAUTH]==
         OAuthManager(server).apply { oauthRoutes() }
