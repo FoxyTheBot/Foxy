@@ -7,14 +7,29 @@
 .cirno-card {
   margin-top: 20px;
   padding: 20px;
-  border-radius: 4px;
+  border-radius: 10px;
   margin-bottom: 1rem;
   font-family: sans-serif;
   background-color: var(--reimu-feature-card-background);
   color: var(--reimu-default-font-color);
   transition: 0.3s;
-  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--reimu-header-border);
+
+  &.warning {
+      background-color: #f003;
+      border-color: #f003;
+  }
+
+   &.grid {
+       padding: 30px;
+   }
 }
+  .cirno-card-grid {
+      text-align: center;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+  }
 
 .cirno-card-buttons {
   margin-top: 1.2rem;
@@ -100,7 +115,7 @@
 
   &.big-name {
     font-size: 1rem;
-    margin-bottom: 2px;
+    margin-bottom: 10px;
   }
 }
 
