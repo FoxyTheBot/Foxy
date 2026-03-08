@@ -1,5 +1,13 @@
 .blur-wrapper {
   position: relative;
+  padding-left: 15rem;
+  padding-right: 5rem;
+}
+
+@media (max-width: 790px) {
+  .blur-wrapper {
+    padding: 0;
+  }
 }
 
 .blurred-overlay {
@@ -29,9 +37,6 @@
   position: relative;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: -5rem;
-  margin-left: 15.6rem;
-  margin-right: 7.20rem;
   pointer-events: all;
 
   .server {

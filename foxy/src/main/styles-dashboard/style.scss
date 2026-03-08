@@ -69,6 +69,12 @@ html {
   }
 }
 
+@media only screen and (max-width: 800px) {
+  .pocket-foxy-wrapper {
+    padding: 3rem 0 0 0;
+  }
+}
+
 .page-title {
   color: #e7385d;
   font-size: 2rem;
@@ -267,8 +273,8 @@ main {
   }
 
   #inventory {
-    margin-top: 0rem !important;
-    margin-left: 0rem !important;
+    margin-top: 4rem !important;
+    margin-left: 0 !important;
     margin-right: 1rem !important;
   }
 

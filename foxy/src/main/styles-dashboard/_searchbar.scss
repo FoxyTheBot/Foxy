@@ -1,9 +1,9 @@
 .search-wrapper {
   display: flex;
-  padding: 0 7rem 6rem 15.4rem;
   justify-content: center;
   width: 100%;
   pointer-events: none;
+  padding-bottom: 1rem;
 
   &.youtube {
     padding: 0 !important;
@@ -37,4 +37,14 @@
   width: 87%;
   border-color: var(--reimu-primary-color, #5865f2);
   box-shadow: 0 0 5px rgba(88, 101, 242, 0.4);
+}
+
+@media (max-width: 790px) {
+  #search-bar {
+    width: 100%;
+
+    &:focus {
+      width: 100%;
+    }
+  }
 }
