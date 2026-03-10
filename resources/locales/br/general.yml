@@ -1,5 +1,6 @@
 greetings: "Olá {0}! Meu nome é Foxy, meu prefixo nesse servidor é `{1}`, Utilize `{1}help` para obter ajuda!"
 youDontHavePermissionToDoThat: "Você não tem permissão para fazer isso!"
+youCantSendInviteHere: Você não pode enviar convites para outros servidores aqui!
 yes: Sim
 no: Não
 

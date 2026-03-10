@@ -23,9 +23,6 @@ import net.cakeyfox.foxy.internal.routes.PostPubSubCallbackRoute
 import net.cakeyfox.foxy.internal.routes.PostUnbanUserFromGuild
 import net.cakeyfox.foxy.internal.routes.PostUpdateActivityRoute
 import net.cakeyfox.foxy.internal.routes.PostUpvoteWebhookRoute
-import net.cakeyfox.foxy.internal.routes.music.GetGuildPlayerStatus
-import net.cakeyfox.foxy.internal.routes.music.PostPausePlayerRoute
-import net.cakeyfox.foxy.internal.routes.music.PostSkipPlayerRoute
 
 class FoxyInternalAPI(
     val foxy: FoxyInstance
@@ -61,9 +58,6 @@ class FoxyInternalAPI(
 
             authenticate {
                 PostUnbanUserFromGuild().apply { postUnbanUserFromGuild(foxy) }
-                GetGuildPlayerStatus().apply { getGuildPlayerStatus(foxy) }
-                PostPausePlayerRoute().apply { postPausePlayerRoute(foxy) }
-                PostSkipPlayerRoute().apply { postSkipPlayer(foxy) }
                 PostDiscordMessageToGuildRoute().apply { postDiscordMessageToGuildRoute(foxy) }
                 PostDiscordMessageToUserRoute().apply { postDiscordMessageToUser(foxy) }
                 GetGuildsFromCluster().apply { getGuildsFromCluster(foxy) }

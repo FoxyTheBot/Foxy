@@ -25,14 +25,6 @@ import net.cakeyfox.foxy.interactions.vanilla.magic.declarations.MagicCommand
 import net.cakeyfox.foxy.interactions.vanilla.moderation.declarations.BanCommand
 import net.cakeyfox.foxy.interactions.vanilla.moderation.declarations.ClearCommand
 import net.cakeyfox.foxy.interactions.vanilla.moderation.declarations.UnbanCommand
-import net.cakeyfox.foxy.interactions.vanilla.music.declarations.MusicConfigureCommand
-import net.cakeyfox.foxy.interactions.vanilla.music.declarations.NowPlayingCommand
-import net.cakeyfox.foxy.interactions.vanilla.music.declarations.PauseCommand
-import net.cakeyfox.foxy.interactions.vanilla.music.declarations.PlayCommand
-import net.cakeyfox.foxy.interactions.vanilla.music.declarations.QueueCommand
-import net.cakeyfox.foxy.interactions.vanilla.music.declarations.SkipCommand
-import net.cakeyfox.foxy.interactions.vanilla.music.declarations.StopCommand
-import net.cakeyfox.foxy.interactions.vanilla.music.declarations.VolumeCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.BirthdayCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.DivorceCommand
 import net.cakeyfox.foxy.interactions.vanilla.social.declarations.MarryCommand
@@ -102,7 +94,9 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
                 if (builder.isPrivate) {
                     if (shard.shardInfo.shardId == supportServerShardId) {
                         val supportServer = foxy.shardManager.getGuildById(Constants.SUPPORT_SERVER_ID)
-                        val privateRegistered = supportServer?.updateCommands()?.addCommands(builtList)?.await()
+                        val privateRegistered = supportServer
+                            ?.updateCommands()
+                            ?.addCommands(builtList)?.await()
                         if (privateRegistered != null) allCommands.addAll(privateRegistered)
 
                         logger.info { "Registered ${builder.name} (and contexts) as private command (Shard: #${shard.shardInfo.shardId})" }
@@ -170,16 +164,6 @@ class FoxyCommandManager(private val foxy: FoxyInstance) {
         register(BirthdayCommand())
         register(RoleplayCommand())
         register(RepCommand())
-
-        /* ---- [Music] ---- */
-        register(PlayCommand())
-        register(SkipCommand())
-        register(StopCommand())
-        register(NowPlayingCommand())
-        register(PauseCommand())
-        register(VolumeCommand())
-        register(QueueCommand())
-        register(MusicConfigureCommand())
 
         /* ---- [Discord] ---- */
         register(UserCommand())
