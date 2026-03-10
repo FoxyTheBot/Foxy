@@ -71,7 +71,6 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
     override fun onGuildVoiceUpdate(event: GuildVoiceUpdateEvent) {
         coroutineScope.launch(foxy.coroutineDispatcher) {
             serverLogModule.processGuildVoiceUpdate(event)
-            process247Mode(event)
         }
     }
 
@@ -85,43 +84,6 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
     override fun onGuildMemberRemove(event: GuildMemberRemoveEvent) {
         coroutineScope.launch(foxy.coroutineDispatcher) {
             welcomer.onGuildLeave(event)
-        }
-    }
-
-    private suspend fun process247Mode(event: GuildVoiceUpdateEvent) {
-        val isFoxyConnected = event.guild.selfMember.voiceState?.inAudioChannel() == true
-        val guild = foxy.database.guild.getGuild(event.guild.id)
-        val voiceChannel = event.guild.selfMember.voiceState?.channel ?: return
-
-        if (isFoxyConnected) {
-            val members = event.guild.selfMember.voiceState?.channel?.members ?: return
-            val channelMembers = members.filterNot { it.user.isBot }
-
-            guild.musicSettings?.is247ModeEnabled?.let {
-                if (it) {
-                    logger.info { "Not leaving voice channel in guild ${event.guild.name} - ${event.guild.id} because 24/7 mode is enabled" }
-                    return
-                }
-            }
-
-            if (channelMembers.isEmpty()) {
-                logger.info { "Starting inactivity timer in guild ${event.guild.name} - ${event.guild.id}" }
-                delay(30_000)
-                val stillInChannel = event.guild.selfMember.voiceState?.inAudioChannel() == true
-                val stillNonBotMembers =
-                    event.guild.selfMember.voiceState?.channel?.members?.filterNot { it.user.isBot }
-                        ?: return
-                val manager = foxy.musicManagers[event.guild.idLong] ?: return
-
-                if (stillInChannel && stillNonBotMembers.isEmpty()) {
-                    manager.stop()
-                    event.guild.audioManager.closeAudioConnection()
-                    if (voiceChannel.type == ChannelType.STAGE) {
-                        event.guild.getStageChannelById(voiceChannel.id)?.stageInstance?.delete()?.queue()
-                    }
-                    logger.info { "Left voice channel in guild ${event.guild.name} - ${event.guild.id} due to inactivity." }
-                }
-            }
         }
     }
 }

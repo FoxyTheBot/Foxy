@@ -12,12 +12,8 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.interactions.MessageCommandContext
 import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.foxy.interactions.pretty
+import net.cakeyfox.foxy.modules.InviteBlockerModule
 import net.cakeyfox.foxy.modules.ServerLogModule
-import net.cakeyfox.foxy.utils.PremiumUtils
-import net.cakeyfox.foxy.utils.music.AudioLoader
-import net.cakeyfox.foxy.utils.music.getOrCreateMusicManager
-import net.cakeyfox.foxy.utils.music.joinInAVoiceChannel
-import net.cakeyfox.foxy.utils.music.processQuery
 import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.message.MessageDeleteEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
@@ -30,6 +26,7 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
     private val logger = KotlinLogging.logger { }
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     private val serverLogModule = ServerLogModule(foxy)
+    private val inviteBlockerModule = InviteBlockerModule(foxy)
 
     override fun onMessageDelete(event: MessageDeleteEvent) {
         scope.launch {
@@ -43,7 +40,7 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
     override fun onMessageUpdate(event: MessageUpdateEvent) {
         scope.launch {
             if (event.author.isBot || event.channelType == ChannelType.PRIVATE) return@launch
-
+            inviteBlockerModule.handleMessage(event)
             val guildData = foxy.database.guild.getGuild(event.guild.id).serverLogModule
             if (guildData?.sendUpdatedMessagesLogs == true) serverLogModule.processUpdatedMessage(event)
         }
@@ -59,42 +56,14 @@ class MessageListener(val foxy: FoxyInstance) : ListenerAdapter() {
 
         scope.launch {
             val guildData = foxy.database.guild.getGuild(event.guild.id).serverLogModule
+            inviteBlockerModule.handleMessage(event)
 
             if (guildData?.sendDeletedMessagesLogs == true || guildData?.sendUpdatedMessagesLogs == true) {
                 serverLogModule.cachedMessages.put(event.messageIdLong, customMember)
             }
 
             processCommandOrMention(event)
-            processDjFoxyMessage(event)
         }
-    }
-
-    private suspend fun processDjFoxyMessage(event: MessageReceivedEvent) {
-        val guild = foxy.database.guild.getGuild(event.guild.id)
-        if (guild.musicSettings?.requestMusicChannel != event.channel.id) return
-
-        val raw = event.message.contentRaw
-        if (raw.startsWith(guild.guildSettings.prefix)) return
-
-        val context = MessageCommandContext(event, foxy)
-        val channel = joinInAVoiceChannel(context) ?: return
-        val maximumQueueSize = PremiumUtils.getMaxQueueSize(context)
-        val link = context.foxy.lavalink.getOrCreateLink(context.guild.idLong)
-        val manager = getOrCreateMusicManager(context.guild.idLong, context.foxy.lavalink, context, channel)
-        val queueSize = manager.scheduler.queue.size + 1
-
-        if (queueSize >= maximumQueueSize) {
-            context.reply(true) {
-                content = pretty(
-                    FoxyEmotes.FoxyCry,
-                    context.locale["music.play.queueLimitReached", "100"]
-                )
-            }
-
-            return
-        }
-
-        link.loadItem(processQuery(raw)).subscribe(AudioLoader(context, manager))
     }
 
     private suspend fun processCommandOrMention(event: MessageReceivedEvent) {
