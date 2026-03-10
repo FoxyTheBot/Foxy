@@ -1,8 +1,5 @@
 package net.cakeyfox.foxy
 
-import dev.arbjerg.lavalink.client.LavalinkClient
-import dev.arbjerg.lavalink.client.loadbalancing.builtin.VoiceRegionPenaltyProvider
-import dev.arbjerg.lavalink.libraries.jda.JDAVoiceUpdateListener
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
@@ -26,13 +23,10 @@ import net.cakeyfox.foxy.listeners.MessageListener
 import net.cakeyfox.serializable.data.utils.FoxyConfig
 import net.cakeyfox.foxy.utils.FoxyUtils
 import net.cakeyfox.foxy.database.core.DatabaseClient
-import net.cakeyfox.foxy.utils.music.GuildMusicManager
 import net.cakeyfox.foxy.utils.threads.ThreadPoolManager
 import net.cakeyfox.foxy.utils.threads.ThreadUtils
 import net.cakeyfox.foxy.leaderboard.LeaderboardManager
 import net.cakeyfox.foxy.internal.FoxyInternalAPI
-import net.cakeyfox.foxy.listeners.lavalink.LavalinkMajorListener
-import net.cakeyfox.foxy.utils.LavalinkUtils.registerNode
 import net.cakeyfox.foxy.utils.TasksUtils
 import net.cakeyfox.foxy.utils.youtube.YouTubeManager
 import net.cakeyfox.foxy.website.FoxyWebsite
@@ -89,8 +83,6 @@ class FoxyInstance(
         }
 
     val commandHandler: FoxyCommandManager by lazy { FoxyCommandManager(this) }
-    val lavalink = LavalinkClient(config.discord.applicationId)
-    val musicManagers = mutableMapOf<Long, GuildMusicManager>()
 
     val http: HttpClient by lazy {
         HttpClient(CIO) {
@@ -100,7 +92,6 @@ class FoxyInstance(
     }
 
     suspend fun start() {
-        lavalink.loadBalancer.addPenaltyProvider(VoiceRegionPenaltyProvider())
         utils = FoxyUtils(this)
         interactionManager = FoxyComponentManager(this)
         showtimeClient = ShowtimeClient(config, config.showtime.key)
@@ -128,9 +119,7 @@ class FoxyInstance(
                 GuildListener(this),
                 InteractionsListener(this),
                 MessageListener(this),
-                LavalinkMajorListener(lavalink, this)
             )
-            .setVoiceDispatchInterceptor(JDAVoiceUpdateListener((lavalink)))
             .setAutoReconnect(true)
             .setStatus(OnlineStatus.fromKey(database.bot.getBotSettings().status))
             .setActivity(Activity.playing("💫 Hold on! I'm starting :3c"))
@@ -148,9 +137,6 @@ class FoxyInstance(
             .setToken(config.discord.token)
             .setEnableShutdownHook(false)
             .build()
-
-
-        registerNode(this)
 
         if (currentCluster.isMasterCluster) {
             TasksUtils.launchTasks(this)
