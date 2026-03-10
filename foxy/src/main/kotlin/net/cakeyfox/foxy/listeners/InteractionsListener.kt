@@ -9,7 +9,6 @@ import net.cakeyfox.foxy.interactions.ComponentId
 import net.cakeyfox.foxy.interactions.InteractionCommandContext
 import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.foxy.utils.FoxyUtils
-import net.cakeyfox.foxy.utils.LavalinkUtils.registerNode
 import net.cakeyfox.foxy.utils.hasRawPermissions
 import net.cakeyfox.foxy.utils.isEarlyAccessOnlyCommand
 import net.dv8tion.jda.api.entities.channel.ChannelType
