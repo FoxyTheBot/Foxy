@@ -75,17 +75,33 @@ class PostPubSubCallbackRoute(
             }
 
             val doc = Jsoup.parse(xmlBody, "", Parser.xmlParser())
-            val entry = doc.selectFirst("entry")
-            val videoId = entry?.selectFirst("yt|videoId")?.text()
-            val channelId = entry?.selectFirst("yt|channelId")?.text()
-            val author = entry?.selectFirst("author > name")?.text() ?: "Unknown"
-            val videoUrl = entry?.selectFirst("link[rel=alternate]")?.attr("href") ?: return@post
+            val entry = doc.selectFirst("entry") ?: run {
+                logger.debug { "Feed update without entry" }
+                call.respondText("OK")
+                return@post
+            }
+            val entryId = entry.selectFirst("id")?.text() ?: return@post
+
+            if (!entryId.startsWith("yt:video:")) {
+                logger.debug { "Ignoring non-video entry: $entryId" }
+                call.respondText("OK")
+                return@post
+            }
+            val videoId = entry.selectFirst("yt|videoId")?.text()
+            val channelId = entry.selectFirst("yt|channelId")?.text()
+            val author = entry.selectFirst("author > name")?.text() ?: "Unknown"
+            val videoUrl = entry.selectFirst("link[rel=alternate]")?.attr("href") ?: return@post
             val publishedStr = entry.selectFirst("published")?.text() ?: return@post
             val publishedDate = OffsetDateTime.parse(publishedStr)
 
             if (videoId != null && channelId != null) {
                 val cutoffDate = java.time.LocalDate.now()
                 val videoDate = publishedDate.toLocalDate()
+                if (!videoUrl.contains("/watch")) {
+                    logger.debug { "Ignoring non-video entry: $videoUrl" }
+                    call.respondText("OK")
+                    return@post
+                }
 
                 if (videoDate.isBefore(cutoffDate)) {
                     logger.debug { "Skipping old video ($videoId)" }
