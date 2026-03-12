@@ -60,7 +60,7 @@ tax:
       description: |
         Olá <@!{0}>! Eu percebi que você tem mais de **{1} Cakes** e está há mais de **{2} dias** sem pegar seu daily!
 
-        Eu estou de olho nos seus **{3} Cakes** e, se você não pegar seu daily, vou precisar pegar **{4} Cakes** de você (taxa de 15%) para ajudar a manter tudo em ordem.
+        Eu estou de olho nos seus **{3} Cakes** e, se você não pegar seu daily, vou precisar pegar **{4} Cakes** de você (taxa de 3%) para ajudar a manter tudo em ordem.
 
         Mas não precisa se preocupar! É só pegar seu daily que você não perde nadinha.
 
@@ -86,7 +86,7 @@ upvote:
     message: |
       Olá! Você já pode votar novamente em mim!
       
-      Lembrando que você pode votar a cada 12 horas, e a cada voto você ganha **1.500 cakes**! Sem falar que isso também me ajuda a crescer :3 <:foxy_yay:1070906796274888795>
+      Lembrando que você pode votar a cada 12 horas, e a cada voto você ganha **6.500 cakes**! Sem falar que isso também me ajuda a crescer :3 <:foxy_yay:1070906796274888795>
     footer: "Sabia que ao votar, você me ajuda a crescer?"
 
 dailyReminder:
