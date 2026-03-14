@@ -54,7 +54,7 @@ object ClusterUtils {
                 return CustomMemberResponse(isMember = isMember)
             }
         } else {
-            val fetchedInfo = getFromAnotherCluster(foxy, cluster, "/api/v1/guilds/$guildId/$memberId")
+            val fetchedInfo = getFromAnotherCluster(foxy, cluster, "/api/v1/guilds/$guildId/members/$memberId")
 
             return if (fetchedInfo == null) {
                 null

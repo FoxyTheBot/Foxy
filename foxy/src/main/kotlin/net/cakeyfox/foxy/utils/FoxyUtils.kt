@@ -19,9 +19,10 @@ import net.cakeyfox.foxy.interactions.pretty
 import net.cakeyfox.common.FoxyLocale
 import net.cakeyfox.serializable.data.cluster.RelayMessage
 import net.cakeyfox.serializable.data.utils.ActionResponse
-import net.cakeyfox.serializable.data.utils.FoxyConfig
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.entities.channel.ChannelType
+import net.dv8tion.jda.api.entities.channel.concrete.NewsChannel
+import net.dv8tion.jda.api.entities.emoji.Emoji
 import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
@@ -66,6 +67,9 @@ class FoxyUtils(
         } else "$formattedNumber $formattedBalance"
     }
 
+    /**
+     * Generates a HMAC signature for some data
+     */
     fun generateHmac(data: String): String {
         val hmacSecret = foxy.config.internalApi.hmacSecret
         val mac = Mac.getInstance("HmacSHA256")
@@ -80,7 +84,17 @@ class FoxyUtils(
         val remainingString: String?
     )
 
-    suspend fun handleCommandExecutionException(context: CommandContext, e: Exception, commandName: String) {
+    /**
+     * Custom exception handler for Foxy's commands
+     * @param context The command context (Can be MessageCommandContext or InteractionCommandContext)
+     * @param e The command exception
+     * @param commandName The command name
+     */
+    suspend fun handleCommandExecutionException(
+        context: CommandContext,
+        e: Exception,
+        commandName: String
+    ) {
         when (e) {
             is InsufficientPermissionException -> {
                 context.reply(true) {
@@ -178,18 +192,32 @@ class FoxyUtils(
         }
     }
 
+    /**
+     * Sends a message to a specific guild channel.
+     *
+     * @param guild The guild where the channel is located.
+     * @param channelId The ID of the channel where the message will be sent.
+     * @param delayMs Delay in milliseconds before sending the message.
+     *                This can help avoid rate limits or control message order.
+     *                Default value is 1500ms.
+     * @param canSendAsAnnouncement Whether the message should be crossposted
+     *                              if the channel is a NewsChannel (announcement channel).
+     * @param block The message body
+     */
     suspend fun sendMessageToAGuildChannel(
         guild: Guild,
         channelId: String,
         delayMs: Long = 1_500L,
+        canSendAsAnnouncement: Boolean = false,
         block: InlineMessage<*>.() -> Unit
     ) {
         val message = MessageCreateBuilder().apply(block)
-        val guildShard = ClusterUtils.getShardIdFromGuildId(guild._id.toLong(), foxy.config.discord.totalShards)
-        val guildCluster = ClusterUtils.getClusterByShardId(foxy, guildShard)
+        val shardId = ClusterUtils.getShardIdFromGuildId(guild._id.toLong(), foxy.config.discord.totalShards)
+        val targetCluster = ClusterUtils.getClusterByShardId(foxy, shardId)
 
-        if (guildCluster.id == foxy.currentCluster.id) {
+        if (targetCluster.id == foxy.currentCluster.id) {
             delay(delayMs)
+
             try {
                 val guild = foxy.shardManager.getGuildById(guild._id)
                 val channel = guild?.getGuildChannelById(channelId)
@@ -198,18 +226,30 @@ class FoxyUtils(
                     ChannelType.TEXT -> guild.getTextChannelById(channel.id)
                     ChannelType.NEWS -> guild.getNewsChannelById(channel.id)
                     else -> null
+                } ?: return
+
+                val sentMessage = textChannel
+                    .sendMessage(message.build())
+                    .await()
+
+                if (textChannel is NewsChannel && canSendAsAnnouncement) {
+                    textChannel.crosspostMessageById(sentMessage.id).await()
+                    delay(500)
+                    textChannel.addReactionById(
+                        sentMessage.id,
+                        Emoji.fromFormatted(FoxyEmotes.FoxyCake)
+                    ).await()
                 }
 
-                textChannel?.sendMessage(message.build())?.await()
             } catch (e: RateLimitedException) {
                 val retryAfter = e.retryAfter
                 logger.warn { "Rate limited. Retrying after ${retryAfter}ms" }
                 delay(retryAfter)
-                sendMessageToAGuildChannel(guild, channelId) { block() }
+                sendMessageToAGuildChannel(guild, channelId, delayMs, canSendAsAnnouncement) { block() }
             }
         } else {
-            val guildClusterUrl = guildCluster.clusterUrl.removeSuffix("/")
-            logger.info { "Relaying message to Cluster ${guildCluster.id} (${guildCluster.name})" }
+            val guildClusterUrl = targetCluster.clusterUrl.removeSuffix("/")
+            logger.info { "Relaying message to Cluster ${targetCluster.id} (${targetCluster.name})" }
 
             val messageData = message.build()
             val payload = RelayMessage(
@@ -218,17 +258,31 @@ class FoxyUtils(
             )
 
             val request = foxy.http.post {
-                url("$guildClusterUrl/api/v1/guilds/${guild._id}/$channelId")
+                url("$guildClusterUrl/api/v1/guilds/${guild._id}/channels/$channelId/send")
                 header("Content-Type", "application/json")
                 header("Authorization", "Bearer ${foxy.config.internalApi.key}")
                 setBody(payload)
             }
 
-            logger.info { "Received Status: ${request.status.value} from Cluster ${guildCluster.id} (${guildCluster.name})" }
+            logger.info { "Received Status: ${request.status.value} from Cluster ${targetCluster.id} (${targetCluster.name})" }
         }
     }
 
-    suspend fun sendDirectMessage(user: User, delayMs: Long = 1500L, block: InlineMessage<*>.() -> Unit) {
+    /**
+     * Sends a message directly to user
+     *
+     * @param user The recipient's snowflake
+     * @param delayMs Delay in milliseconds before sending the message.
+     *                This can help avoid rate limits or control message order.
+     *                Default value is 1500ms.
+     * @param block The message body
+     */
+
+    suspend fun sendDirectMessage(
+        user: User,
+        delayMs: Long = 1500L,
+        block: InlineMessage<*>.() -> Unit
+    ) {
         if (user.isBot || user.isSystem) return
         val message = MessageCreateBuilder {
             apply(block)

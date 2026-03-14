@@ -1,23 +1,17 @@
 package net.cakeyfox.foxy.internal.routes
 
-import dev.minn.jda.ktx.coroutines.await
+import dev.minn.jda.ktx.messages.InlineEmbed
 import io.ktor.server.routing.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.http.*
 import kotlinx.coroutines.delay
 import mu.KotlinLogging
-import net.dv8tion.jda.api.entities.MessageEmbed
-import net.dv8tion.jda.api.utils.messages.MessageCreateBuilder
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.serializable.data.cluster.RelayEmbed
 import net.cakeyfox.serializable.data.cluster.RelayMessage
-import net.dv8tion.jda.api.EmbedBuilder
-import net.dv8tion.jda.api.entities.channel.ChannelType
-import net.dv8tion.jda.api.entities.channel.middleman.GuildChannel
 import net.dv8tion.jda.api.exceptions.RateLimitedException
 import java.time.Instant
-import java.awt.Color
 
 class PostDiscordMessageToGuildRoute() {
     companion object {
@@ -25,7 +19,7 @@ class PostDiscordMessageToGuildRoute() {
     }
 
     fun Route.postDiscordMessageToGuildRoute(foxy: FoxyInstance) {
-        post("/api/v1/guilds/{guildId}/{channelId}") {
+        post("/api/v1/guilds/{guildId}/channels/{channelId}/send") {
             val guildId = call.parameters["guildId"] ?: return@post call.respond(HttpStatusCode.BadRequest, "Missing guildId")
             val channelId = call.parameters["channelId"] ?: return@post call.respond(HttpStatusCode.BadRequest, "Missing channelId")
 
@@ -46,6 +40,8 @@ class PostDiscordMessageToGuildRoute() {
 
     suspend fun sendMessage(foxy: FoxyInstance, call: RoutingCall, guildId: String, channelId: String) {
         val guild = foxy.shardManager.getGuildById(guildId)
+        val guildData = foxy.database.guild.getGuild(guildId)
+
         if (guild == null) {
             call.respond(HttpStatusCode.NotFound, "Guild not found")
             logger.warn { "Guild not found!" }
@@ -54,38 +50,57 @@ class PostDiscordMessageToGuildRoute() {
 
         val payload = call.receive<RelayMessage>()
         val channel = guild.getGuildChannelById(channelId)
-        val textChannel = when (channel?.type) {
-            ChannelType.TEXT -> guild.getTextChannelById(channel.id)
-            ChannelType.NEWS -> guild.getNewsChannelById(channel.id)
-            else -> null
-        }
 
-        if (channel == null || textChannel == null) {
-            call.respond(HttpStatusCode.NotFound, "Channel not found")
-            logger.warn { "Channel not found" }
+        if (channel == null) {
+            call.respond(HttpStatusCode.NotFound, "Discord channel not found!")
+            logger.warn { "Discord channel not found!" }
             return
         }
 
-        val messageBuilder = MessageCreateBuilder().apply {
-            payload.content?.let { setContent(it) }
-            payload.embeds?.forEach { embed ->
-                addEmbeds(buildEmbed(embed))
+        foxy.utils.sendMessageToAGuildChannel(
+            guildData,
+            channel.id,
+            canSendAsAnnouncement = true
+        ) {
+            content = payload.content
+
+            payload.embeds?.forEach { relayEmbed ->
+                embed {
+                    applyRelayEmbed(relayEmbed)
+                }
+            }
+        }
+    }
+
+    fun InlineEmbed.applyRelayEmbed(embed: RelayEmbed) {
+        embed.title?.let { title = it }
+        embed.url?.let { url = it }
+
+        embed.description?.let { description = it }
+        embed.color?.let { color = it }
+        embed.timestamp?.let { timestamp = Instant.parse(it) }
+
+        embed.footer?.let {
+            footer {
+                name = it.text
+                iconUrl = it.icon_url
             }
         }
 
-        logger.info { "Sending message to $guildId" }
-        textChannel.sendMessage(messageBuilder.build()).await()
-    }
+        embed.author?.let {
+            author {
+                name = it.name
+                url = it.url
+                iconUrl = it.icon_url
+            }
+        }
 
-    fun buildEmbed(embed: RelayEmbed): MessageEmbed {
-        val eb = EmbedBuilder()
-        embed.title?.let { eb.setTitle(it, embed.url) }
-        embed.description?.let { eb.setDescription(it) }
-        embed.color?.let { eb.setColor(Color(it)) }
-        embed.timestamp?.let { eb.setTimestamp(Instant.parse(it)) }
-        embed.footer?.let { eb.setFooter(it.text, it.icon_url) }
-        embed.author?.let { eb.setAuthor(it.name, it.url, it.icon_url) }
-        embed.fields?.forEach { f -> eb.addField(f.name, f.value, f.inline) }
-        return eb.build()
+        embed.fields?.forEach {
+            field {
+                name = it.name
+                value = it.value
+                inline = it.inline
+            }
+        }
     }
 }

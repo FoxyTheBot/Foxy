@@ -62,6 +62,10 @@ class ServerLogModule(
                 thumbnail = oldMessageContent.member?.effectiveAvatarUrl ?: Constants.DISCORD_DEFAULT_AVATAR
                 color = Colors.BLUE
                 title = "Uma mensagem foi alterada"
+                field(
+                    "Usuário",
+                    "`(@${customMember.member?.user?.name}) ${customMember.member?.id}`"
+                )
                 field("Canal de Texto:", event.channel.asMention)
                 field(
                     "Mensagem Original",
@@ -92,7 +96,10 @@ class ServerLogModule(
                 color = Colors.RED
                 title = "Uma mensagem foi deletada"
                 thumbnail = messageContent.member!!.effectiveAvatarUrl
-
+                field(
+                    "Usuário",
+                    "`(@${messageContent.member.user.name}) ${messageContent.member.id}`"
+                )
                 if (messageContent.message.contentRaw.isNotEmpty()) {
                     field("Conteúdo da Mensagem:", "```${messageContent.message.contentRaw}```", false)
                 }

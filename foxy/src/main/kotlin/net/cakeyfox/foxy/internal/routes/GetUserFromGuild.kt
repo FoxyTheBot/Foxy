@@ -13,7 +13,7 @@ import net.cakeyfox.foxy.FoxyInstance
 
 class GetUserFromGuild {
     fun Route.getUserFromGuild(foxy: FoxyInstance) {
-        get("/api/v1/guilds/{guildId}/{memberId}") {
+        get("/api/v1/guilds/{guildId}/members/{memberId}") {
             val guildId = call.parameters["guildId"]?.toLongOrNull()
             val memberId = call.parameters["memberId"]?.toLongOrNull()
 
