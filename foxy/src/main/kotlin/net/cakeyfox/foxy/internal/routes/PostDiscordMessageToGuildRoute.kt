@@ -13,6 +13,8 @@ import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.serializable.data.cluster.RelayEmbed
 import net.cakeyfox.serializable.data.cluster.RelayMessage
 import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.entities.channel.ChannelType
+import net.dv8tion.jda.api.entities.channel.middleman.GuildChannel
 import net.dv8tion.jda.api.exceptions.RateLimitedException
 import java.time.Instant
 import java.awt.Color
@@ -51,8 +53,14 @@ class PostDiscordMessageToGuildRoute() {
         }
 
         val payload = call.receive<RelayMessage>()
-        val channel = guild.getTextChannelById(channelId)
-        if (channel == null) {
+        val channel = guild.getGuildChannelById(channelId)
+        val textChannel = when (channel?.type) {
+            ChannelType.TEXT -> guild.getTextChannelById(channel.id)
+            ChannelType.NEWS -> guild.getNewsChannelById(channel.id)
+            else -> null
+        }
+
+        if (channel == null || textChannel == null) {
             call.respond(HttpStatusCode.NotFound, "Channel not found")
             logger.warn { "Channel not found" }
             return
@@ -66,7 +74,7 @@ class PostDiscordMessageToGuildRoute() {
         }
 
         logger.info { "Sending message to $guildId" }
-        channel.sendMessage(messageBuilder.build()).await()
+        textChannel.sendMessage(messageBuilder.build()).await()
     }
 
     fun buildEmbed(embed: RelayEmbed): MessageEmbed {

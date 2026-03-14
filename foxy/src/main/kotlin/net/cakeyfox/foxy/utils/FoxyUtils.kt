@@ -21,6 +21,7 @@ import net.cakeyfox.serializable.data.cluster.RelayMessage
 import net.cakeyfox.serializable.data.utils.ActionResponse
 import net.cakeyfox.serializable.data.utils.FoxyConfig
 import net.dv8tion.jda.api.entities.User
+import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
@@ -88,7 +89,7 @@ class FoxyUtils(
                         context.locale[
                             "commands.missingPermissionError",
                             context.locale[
-                                    "permissions.${e.permission.name}"
+                                "permissions.${e.permission.name}"
                             ]
                         ]
                     )
@@ -190,9 +191,16 @@ class FoxyUtils(
         if (guildCluster.id == foxy.currentCluster.id) {
             delay(delayMs)
             try {
-                foxy.shardManager.getGuildById(guild._id)?.getTextChannelById(channelId)
-                    ?.sendMessage(message.build())
-                    ?.await()
+                val guild = foxy.shardManager.getGuildById(guild._id)
+                val channel = guild?.getGuildChannelById(channelId)
+
+                val textChannel = when (channel?.type) {
+                    ChannelType.TEXT -> guild.getTextChannelById(channel.id)
+                    ChannelType.NEWS -> guild.getNewsChannelById(channel.id)
+                    else -> null
+                }
+
+                textChannel?.sendMessage(message.build())?.await()
             } catch (e: RateLimitedException) {
                 val retryAfter = e.retryAfter
                 logger.warn { "Rate limited. Retrying after ${retryAfter}ms" }
