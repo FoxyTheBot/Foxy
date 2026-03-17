@@ -69,9 +69,7 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
 
     override fun onGuildLeave(event: GuildLeaveEvent) {
         coroutineScope.launch(foxy.coroutineDispatcher) {
-            foxy.database.guild.updateGuild(event.guild.id) {
-                leftAt = Clock.System.now()
-            }
+            foxy.database.guild.deleteGuild(event.guild.id)
 
             logger.info { "Left guild ${event.guild.name} (${event.guild.id}) - ${event.guild.memberCount} members" }
         }
