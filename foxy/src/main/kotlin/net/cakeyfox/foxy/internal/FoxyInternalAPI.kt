@@ -13,6 +13,7 @@ import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
 import net.cakeyfox.foxy.internal.routes.GetClusterInfo
+import net.cakeyfox.foxy.internal.routes.GetClusterList
 import net.cakeyfox.foxy.internal.routes.GetGuildInfo
 import net.cakeyfox.foxy.internal.routes.GetGuildsFromCluster
 import net.cakeyfox.foxy.internal.routes.GetUserAvatar
@@ -66,6 +67,7 @@ class FoxyInternalAPI(
                 GetClusterInfo().apply { getClusterInfo(foxy) }
                 PostUpdateActivityRoute().apply { updateActivity(foxy) }
                 GetUserFromGuild().apply { getUserFromGuild(foxy) }
+                GetClusterList().apply { getClusterList(foxy) }
             }
         }
     }.start(wait = false)

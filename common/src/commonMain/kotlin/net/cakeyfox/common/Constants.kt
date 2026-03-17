@@ -46,11 +46,10 @@ object Constants {
 
     fun getDefaultActivity(
         activity: String,
-        environment: String,
         clusterId: Int?,
         shards: Int
     ): String {
-        return "💫 $activity"
+        return "$activity | Cluster $clusterId"
     }
 
     fun getServerInviteLink(serverId: String): String {

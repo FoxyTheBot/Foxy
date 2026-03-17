@@ -19,16 +19,14 @@ class PostUpdateActivityRoute {
             val request = call.receive<ActivityUpdateRequest>()
             logger.info { "Received activity update request: $request" }
 
-            if (request.type !in 0..5) {
-                logger.error { "Invalid activity type: ${request.type}" }
-                call.respond(HttpStatusCode.BadRequest, "Invalid activity type: ${request.type}")
-                return@post
-            }
-
             foxy.shardManager.setStatus(OnlineStatus.fromKey(request.status))
+
             foxy.shardManager.setActivity(
                 Activity.of(
-                    ActivityType.fromKey(request.type),
+                    when(request.isStreaming) {
+                        true -> ActivityType.STREAMING
+                        false -> ActivityType.CUSTOM_STATUS
+                    },
                     request.name,
                     request.url
                 )

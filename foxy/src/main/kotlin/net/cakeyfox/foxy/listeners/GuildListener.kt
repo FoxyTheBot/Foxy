@@ -1,6 +1,7 @@
 package net.cakeyfox.foxy.listeners
 
 import kotlinx.coroutines.*
+import kotlinx.datetime.Clock
 import mu.KotlinLogging
 import net.cakeyfox.common.Constants
 import net.cakeyfox.foxy.FoxyInstance
@@ -43,14 +44,19 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
 
     override fun onReady(event: ReadyEvent) {
         coroutineScope.launch {
-            event.jda.presence.activity = Activity.customStatus(
-                Constants.getDefaultActivity(
-                    foxy.database.bot.getActivity(),
-                    foxy.config.environment,
-                    foxy.currentCluster.id,
-                    event.jda.shardManager?.shards?.size ?: 1
-                )
+            val replacements = mapOf(
+                "{cluster.id}" to foxy.currentCluster.id.toString(),
+                "{cluster.name}" to foxy.currentCluster.name,
+                "{cluster.shards}" to (event.jda.shardManager?.shards?.size?.toString() ?: "1")
             )
+
+            val activityText = replacements.entries.fold(
+                foxy.database.bot.getActivity()
+            ) { acc, (key, value) ->
+                acc.replace(key, value)
+            }
+
+            event.jda.presence.activity = Activity.customStatus(activityText)
         }
     }
 
@@ -63,7 +69,10 @@ class GuildListener(private val foxy: FoxyInstance) : ListenerAdapter() {
 
     override fun onGuildLeave(event: GuildLeaveEvent) {
         coroutineScope.launch(foxy.coroutineDispatcher) {
-            foxy.database.guild.deleteGuild(event.guild.id)
+            foxy.database.guild.updateGuild(event.guild.id) {
+                leftAt = Clock.System.now()
+            }
+
             logger.info { "Left guild ${event.guild.name} (${event.guild.id}) - ${event.guild.memberCount} members" }
         }
     }
