@@ -37,7 +37,7 @@ class PostUpdateActivityRoute {
                 )
             )
 
-            if (!relayed && foxy.currentCluster.isMasterCluster) {
+            if (!relayed) {
                 logger.info { "Relaying activity update to other clusters" }
 
                 val clusters = foxy.config.discord.clusters
