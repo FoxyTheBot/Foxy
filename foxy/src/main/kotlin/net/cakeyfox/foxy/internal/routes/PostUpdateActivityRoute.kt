@@ -41,9 +41,9 @@ class PostUpdateActivityRoute {
                 logger.info { "Relaying activity update to other clusters" }
 
                 val clusters = foxy.config.discord.clusters
-                    .filter { !it.isMasterCluster }
 
                 for (cluster in clusters) {
+                    if (cluster.isMasterCluster) continue
                     delay(1_000)
 
                     foxy.http.post("${cluster.clusterUrl}/api/v1/status/update?relayed=true") {
